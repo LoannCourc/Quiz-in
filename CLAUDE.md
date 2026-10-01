@@ -6,7 +6,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 
 ## État d'avancement
 - Phase 0 (préparation) : terminée.
-- Phase 1 (bases React/TypeScript + Firebase) : à venir.
+- Phase 1 (fondations : projet Expo + Firebase temps réel) : en cours. Projet Expo créé dans `app/`.
 - Mettre à jour cette section à chaque fin de phase.
 
 ## Stack
@@ -28,7 +28,9 @@ Le partage de `shared/` entre `app/` et `receiver/` (chemin relatif ou workspace
 - Test sur un téléphone Android avec Expo Go (jusqu'à la phase 4, qui demandera un build de développement pour le Cast).
 
 ## Commandes
-À compléter en phase 1, dès que les projets existent. Scripts prévus : lancer l'app, lancer le récepteur, vérifier le typage (`typecheck`), vérifier le style (`lint`).
+À compléter au fil des phases.
+- Lancer l'app (depuis `app/`) : `npx expo start`, puis scanner le QR code avec Expo Go.
+- Scripts prévus : lancer le récepteur, vérifier le typage (`typecheck`), vérifier le style (`lint`).
 
 ## Conventions de code
 - TypeScript en mode `strict`. Pas de `any` sans justification en commentaire.
@@ -48,9 +50,9 @@ Le partage de `shared/` entre `app/` et `receiver/` (chemin relatif ou workspace
 - Animations TV légères (CSS) pour tourner sur de vieux Chromecast.
 
 ## Règles de travail
-Le développeur est expérimenté en gestion de projet et en Unity/C#, mais **débutant en React Native, TypeScript et Firebase**.
+Le développeur est expérimenté en gestion de projet et en Unity/C#, mais **débutant en React Native, TypeScript et Firebase**. Sa priorité est de **livrer le MVP** : c'est toi qui écris le code, lui le relit et le teste. Il n'a pas besoin d'un cours, mais doit comprendre ce qui est fait.
 - **Avance par petites étapes**, une seule à la fois, et dis ce que tu vas faire avant de le faire.
-- **Explique toute notion nouvelle** (hook, état, navigation, règle de sécurité Firebase…) en 2 à 3 phrases simples, en français, au moment où elle apparaît.
+- **Explique brièvement** (2 à 3 phrases, en français) chaque choix important ou notion nouvelle (état, hook, règle de sécurité Firebase…), pour que le développeur puisse relire et déboguer le code.
 - **Demande avant** d'installer une dépendance, de supprimer ou de renommer un fichier, de modifier la configuration Firebase ou ses règles de sécurité, ou de changer la structure du dépôt.
 - **Ne devine pas une API.** Pour Expo, Firebase ou le Cast, vérifie la documentation à jour. Si tu n'es pas sûr, dis-le.
 - **Après chaque étape qui fonctionne**, propose un message de commit en français. Ne fais pas de `git push` sans demande explicite.
