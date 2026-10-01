@@ -1,6 +1,6 @@
-# [Quiz'In]
+# Quiz'in
 
-Application de quiz pour soirées entre amis et en famille. L'hôte choisit un quiz dans l'app Android, l'affiche sur la TV via Google Cast, et les joueurs répondent en silence depuis leur téléphone (navigateur, sans installation) en scannant un QR code.
+Quiz'in est une application de quiz pour soirées entre amis et en famille. L'hôte choisit un quiz dans l'app Android, l'affiche sur la TV via Google Cast, et les joueurs répondent en silence depuis leur téléphone (navigateur, sans installation) en scannant un QR code.
 
 **Source de vérité : `docs/spec.md`.** Lis-la avant toute fonctionnalité. Si le code et la spec divergent, ou si la spec est ambiguë, pose la question avant de coder. Toute évolution de règle se fait d'abord dans la spec.
 
@@ -24,7 +24,7 @@ Application de quiz pour soirées entre amis et en famille. L'hôte choisit un q
 Le partage de `shared/` entre `app/` et `receiver/` (chemin relatif ou workspaces npm) sera décidé en phase 1.
 
 ## Environnement du développeur
-- Windows, terminal PowerShell, dossier de travail `C:\dev\quiz-tv`.
+- Windows, terminal PowerShell, dossier de travail `C:\dev\quiz-in`.
 - Test sur un téléphone Android avec Expo Go (jusqu'à la phase 4, qui demandera un build de développement pour le Cast).
 
 ## Commandes
