@@ -1,0 +1,37 @@
+.avatar {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.4rem;
+  transition: opacity 300ms ease-out;
+}
+
+.avatar-emoji {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 0.2rem solid transparent;
+  font-size: 2.6rem;
+  line-height: 1;
+  transition: transform 300ms ease-out, border-color 300ms ease-out;
+}
+
+.avatar-name {
+  max-width: 8em;
+  font-size: 1.3rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar.is-dimmed {
+  opacity: 0.35;
+}
+
+.avatar.is-lit .avatar-emoji {
+  border-color: var(--color-accent);
+  transform: scale(1.12);
+}

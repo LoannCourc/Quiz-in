@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.1 — 1er octobre 2026
+Version 0.3 — 1er octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -114,7 +114,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | **REVEAL** (8 s en Choix multiples, 10 s en Réponse libre) | Automatique | Fin du délai. L'hôte peut avancer plus tôt |
 | **VALIDATION** *(P1, 15 s)* | Automatique | Fin du délai ou action de l'hôte |
 | **SCORES** (6 s) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
-| **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend |
+| **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
 | **END** | Hôte | « Rejouer » (nouvelle partie) ou « Quitter » |
 
 Les durées sont des constantes de configuration, ajustables après les tests.
@@ -186,8 +186,11 @@ sessions/{code}
   settings: { answerMode: "free|choice", speedBonus, control, teams }
   currentIndex
   phaseStartedAt, phaseEndsAt         // horodatage serveur
+  pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   currentQuestion: { text, options?, difficulty, timeLimit }   // SANS la bonne réponse
   reveal: { correctAnswer, explanation, stats }                // publié à la révélation
+    stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition
+    stats.freeAnswers?: [{ playerId, value }]                  // Réponse libre : objets extensibles (masquage par l'hôte en P1)
   players/{uid}: { name, avatar, score, rank, connected }
   answers/{index}/{uid}: { value, submittedAt, correct, points }
 ```

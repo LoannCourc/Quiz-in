@@ -1,0 +1,39 @@
+.status {
+  place-content: center;
+  justify-items: center;
+  row-gap: 1.5rem;
+  text-align: center;
+}
+
+.status-title {
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.status-hint {
+  max-width: 40rem;
+  font-size: 2rem;
+  color: var(--color-text-muted);
+}
+
+.status-detail {
+  max-width: 50rem;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.status-spinner {
+  width: 5rem;
+  height: 5rem;
+  border: 0.6rem solid var(--color-surface);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: status-spin 1s linear infinite;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

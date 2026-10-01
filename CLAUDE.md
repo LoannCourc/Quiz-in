@@ -6,7 +6,8 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 
 ## État d'avancement
 - Phase 0 (préparation) : terminée.
-- Phase 1 (fondations : projet Expo + Firebase temps réel) : en cours. Projet Expo créé dans `app/`.
+- Phase 1 (fondations : projet Expo + Firebase temps réel) : terminée. Compteur partagé `debug/counter` fonctionnel sur Android (Expo Go) et web.
+- Phase 2 (récepteur TV) : en cours.
 - Mettre à jour cette section à chaque fin de phase.
 
 ## Stack
@@ -30,7 +31,9 @@ Le partage de `shared/` entre `app/` et `receiver/` (chemin relatif ou workspace
 ## Commandes
 À compléter au fil des phases.
 - Lancer l'app (depuis `app/`) : `npx expo start`, puis scanner le QR code avec Expo Go.
-- Scripts prévus : lancer le récepteur, vérifier le typage (`typecheck`), vérifier le style (`lint`).
+- Lancer le récepteur TV (depuis `receiver/`) : `npm run dev`, puis ouvrir l'adresse affichée (mode démo avec panneau de développement).
+- Vérifier le typage : `npm run typecheck` ; vérifier le style : `npm run lint` (dans `app/` ou `receiver/`).
+- Types et constantes partagés : `shared/`, importés via l'alias `@shared/...` (déclaré dans les `tsconfig` des deux projets, `app/metro.config.js` et `receiver/vite.config.ts`).
 
 ## Conventions de code
 - TypeScript en mode `strict`. Pas de `any` sans justification en commentaire.

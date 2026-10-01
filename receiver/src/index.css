@@ -1,0 +1,104 @@
+/* Thème TV : fond sombre et texte très contrasté, lisible à 3 mètres. */
+:root {
+  --color-background: #0e1430;
+  --color-surface: #1f2a55;
+  --color-text: #ffffff;
+  --color-text-muted: #b8c2e8;
+  --color-accent: #ffd23f;
+  --color-on-accent: #1a1300;
+  --color-correct: #3ddc84;
+  --color-on-correct: #002611;
+  --color-wrong: #ff5c6c;
+
+  /* Unité de base proportionnelle à l'écran : 30px en 1920×1080, 20px en 1280×720.
+     Tout le reste est exprimé en rem, donc la mise en page est identique sur toutes les TV. */
+  font-size: min(100vw / 64, 100vh / 36);
+  font-family: Roboto, system-ui, 'Segoe UI', sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+/* Marges de sécurité : 5 % autour de l'écran, car certaines TV rognent les bords. */
+.screen {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  padding: 5vh 5vw;
+  overflow: hidden;
+  animation: screen-fade-in 300ms ease-out both;
+}
+
+.screen-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+}
+
+/* Couleurs des 4 propositions, communes à la question et à la révélation. */
+.choice-0 {
+  --choice-color: #2f6fed;
+}
+
+.choice-1 {
+  --choice-color: #e8590c;
+}
+
+.choice-2 {
+  --choice-color: #8e44d9;
+}
+
+.choice-3 {
+  --choice-color: #0f9d8a;
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1.2rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 1.2rem;
+  background: var(--choice-color);
+  font-size: 2.1rem;
+  font-weight: 800;
+}
+
+.choice-letter {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.8rem;
+  background: var(--choice-color);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.choice .choice-letter {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@keyframes screen-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

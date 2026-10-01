@@ -1,0 +1,27 @@
+.difficulty {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 0.6rem;
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  background: var(--color-surface);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.difficulty-dots {
+  letter-spacing: 0.15em;
+}
+
+.difficulty-1 .difficulty-dots {
+  color: var(--color-correct);
+}
+
+.difficulty-2 .difficulty-dots {
+  color: var(--color-accent);
+}
+
+.difficulty-3 .difficulty-dots {
+  color: var(--color-wrong);
+}

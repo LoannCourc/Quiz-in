@@ -1,0 +1,34 @@
+.starting {
+  place-content: center;
+  justify-items: center;
+  row-gap: 2rem;
+}
+
+.starting-label {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.starting-number {
+  font-size: 16rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-accent);
+  animation: starting-pop 900ms ease-out both;
+}
+
+@keyframes starting-pop {
+  from {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+}

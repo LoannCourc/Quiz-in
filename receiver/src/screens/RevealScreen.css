@@ -1,0 +1,147 @@
+.reveal {
+  grid-template-rows: auto auto 1fr auto;
+  row-gap: 1.5rem;
+}
+
+.reveal-question {
+  font-size: 1.6rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.reveal-answer {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.5rem;
+}
+
+.reveal-label {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.reveal-correct {
+  padding: 0.5rem 3rem;
+  border-radius: 1.5rem;
+  background: var(--color-correct);
+  color: var(--color-on-correct);
+  font-size: 4rem;
+  font-weight: 900;
+  animation: reveal-pop 600ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.reveal-stats {
+  display: grid;
+  align-content: center;
+  row-gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: auto 14rem 1fr 3ch;
+  align-items: center;
+  column-gap: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+  opacity: 0.45;
+}
+
+.stat.is-correct {
+  opacity: 1;
+}
+
+.stat-bar {
+  height: 1.6rem;
+  border-radius: 0.6rem;
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-text-muted);
+  transform-origin: left center;
+  animation: reveal-grow 800ms ease-out both;
+}
+
+.stat.is-correct .stat-bar-fill {
+  background: var(--color-correct);
+}
+
+.stat-count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal-free {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  gap: 1rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.free-answer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1rem;
+  background: var(--color-surface);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.free-answer-value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.free-answer-mark {
+  color: var(--color-wrong);
+}
+
+.free-answer.is-correct .free-answer-mark {
+  color: var(--color-correct);
+}
+
+.reveal-empty {
+  align-self: center;
+  font-size: 2.2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.reveal-explanation {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+@keyframes reveal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* La longueur de la barre est fixée en style (scaleX) : on anime seulement son apparition. */
+@keyframes reveal-grow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

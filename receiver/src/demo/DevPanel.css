@@ -1,0 +1,46 @@
+/* Taille fixe en pixels : le panneau ne fait pas partie de l'affichage TV. */
+.dev-panel {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 420px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  font: 13px/1.2 system-ui, sans-serif;
+  opacity: 0.4;
+  transition: opacity 150ms;
+}
+
+.dev-panel:hover {
+  opacity: 1;
+}
+
+.dev-panel > * {
+  margin: 3px;
+}
+
+.dev-panel button {
+  padding: 4px 8px;
+  border: 1px solid #666666;
+  border-radius: 4px;
+  background: #222222;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dev-panel button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.dev-panel button.is-active {
+  border-color: #ffd23f;
+  color: #ffd23f;
+}

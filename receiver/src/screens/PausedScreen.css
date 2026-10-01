@@ -1,0 +1,27 @@
+.paused {
+  place-content: center;
+  justify-items: center;
+  row-gap: 1.5rem;
+}
+
+.paused-icon {
+  font-size: 8rem;
+  color: var(--color-accent);
+  animation: paused-breathe 2.4s ease-in-out infinite;
+}
+
+.paused-title {
+  font-size: 6rem;
+  font-weight: 900;
+}
+
+.paused-subtitle {
+  font-size: 2.2rem;
+  color: var(--color-text-muted);
+}
+
+@keyframes paused-breathe {
+  50% {
+    opacity: 0.35;
+  }
+}

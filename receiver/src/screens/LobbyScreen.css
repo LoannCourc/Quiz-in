@@ -1,0 +1,82 @@
+.lobby {
+  grid-template-columns: auto 1fr;
+  column-gap: 4rem;
+  align-items: center;
+}
+
+.lobby-join {
+  display: grid;
+  justify-items: center;
+  row-gap: 1rem;
+}
+
+.lobby-label {
+  font-size: 1.6rem;
+  color: var(--color-text-muted);
+}
+
+.lobby-qr {
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background: #ffffff;
+}
+
+.lobby-qr svg {
+  display: block;
+  width: 15rem;
+  height: 15rem;
+}
+
+.lobby-code {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.3em;
+  /* Compense l'espacement ajouté après la dernière lettre. */
+  margin-right: -0.3em;
+  color: var(--color-accent);
+}
+
+.lobby-players {
+  display: grid;
+  align-content: center;
+  row-gap: 1.5rem;
+}
+
+.lobby-count {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.lobby-avatars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: 1.5rem 1rem;
+}
+
+.lobby-avatars .avatar {
+  animation: lobby-avatar-pop 400ms ease-out both;
+}
+
+.lobby-waiting {
+  font-size: 1.6rem;
+  color: var(--color-text-muted);
+  animation: lobby-breathe 2.4s ease-in-out infinite;
+}
+
+/* Uniquement transform : une opacité figée par l'animation écraserait l'atténuation
+   des joueurs déconnectés (.is-dimmed). */
+@keyframes lobby-avatar-pop {
+  from {
+    transform: scale(0.6);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes lobby-breathe {
+  50% {
+    opacity: 0.4;
+  }
+}
