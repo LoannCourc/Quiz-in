@@ -1,0 +1,308 @@
+# [Quiz'In] — Spécification du MVP
+
+Version 0.1 — 1er octobre 2026
+Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
+
+---
+
+## 1. Vision
+
+**Problème.** Organiser un quiz à la maison est compliqué : il faut trouver les questions, un moyen de les afficher, un moyen de répondre. Quand on joue à voix haute devant la TV, ceux qui parlent fort dominent et les plus discrets s'effacent.
+
+**Solution.** Une application tout-en-un : l'hôte choisit un quiz dans l'app et l'affiche sur la TV ; chaque joueur répond en silence sur son téléphone ; les réponses sont révélées en même temps pour tout le monde.
+
+**Cible.** Les familles et les groupes d'amis, en soirée à la maison.
+
+**Promesses au joueur.**
+- **Simple** : rejoindre une partie en moins d'une minute, sans compte ni installation.
+- **Équitable** : tout le monde répond en même temps, sans se couvrir la voix.
+- **Fun** : animations, classement, ambiance de soirée.
+
+**Vision long terme.** Trois types de jeu : quiz, blind test, « N'oubliez pas les paroles ». **Le MVP ne contient que le quiz.**
+
+---
+
+## 2. Périmètre du MVP
+
+### 2.1 Plateformes du MVP
+- **App de l'hôte** : Android (Expo / React Native).
+- **Joueurs** : navigateur web (Android, iPhone, ordinateur). Aucune installation requise.
+- **Écran TV** : Google Cast (Chromecast ou TV avec Chromecast intégré).
+- **iOS** : une app hôte iOS est hors MVP (build iOS = Mac ou service de build cloud, plus un compte Apple Developer payant). Les joueurs sur iPhone participent via le navigateur dès le MVP. **[À VALIDER]**
+
+### 2.2 Fonctionnalités par priorité
+
+| Priorité | Fonctionnalité |
+|---|---|
+| **P0** (indispensable) | Catalogue de quiz avec filtres thème et difficulté |
+| | Partie de 10 questions |
+| | Deux modes de réponse : **Réponse libre** et **Choix multiples** (4 choix) |
+| | Option **Rapidité** |
+| | Affichage sur TV via Cast, avec lobby (QR code + code de salle) |
+| | Rejoindre par QR code ou code, pseudo + avatar prédéfini |
+| | L'hôte joue aussi en tant que joueur |
+| | Validation automatique des réponses libres |
+| | Classement après chaque question et classement final |
+| | Reconnexion d'un joueur en cours de partie |
+| **P1** (si le temps le permet) | Option **Contrôle** (validation des réponses par les joueurs) |
+| | Animations TV enrichies, sons |
+| | Exclure un joueur depuis l'app hôte |
+| **P2** (après le MVP) | Option **Groupe** (équipes) |
+| | App hôte iOS, redirection QR vers l'app joueur |
+| | Blind test, « N'oubliez pas les paroles » |
+| | Quiz créés par l'hôte, paiement, abonnement |
+
+---
+
+## 3. Rôles
+
+| Rôle | Appareil | Ce qu'il fait |
+|---|---|---|
+| **Hôte** | App Android | Choisit le quiz et les options, lance l'affichage sur la TV, administre la partie (lancer, passer, pause, terminer), et joue comme les autres. |
+| **Joueur** | Navigateur (ou app, plus tard) | Rejoint en scannant le QR code ou avec le code, choisit pseudo et avatar, répond aux questions. |
+| **Écran TV** | Chromecast / TV | Affichage uniquement : lobby, questions, révélations, classements. Aucune interaction. |
+| **Serveur** | Firebase | Garde l'état de la partie et synchronise tous les écrans en temps réel. |
+
+---
+
+## 4. Parcours
+
+### 4.1 Hôte
+1. Ouvre l'app et arrive sur le **catalogue** de quiz, rangés par thème, difficulté et type de jeu. Au MVP, seul le type « Quiz » est actif ; « Blind test » et « Paroles » sont visibles mais grisés (« bientôt »).
+2. Ouvre la **fiche d'un quiz** : titre, thème, difficulté moyenne, nombre de questions, durée estimée.
+3. **Configure la partie** :
+   - **Mode de réponse** : *Réponse libre* (les joueurs écrivent) ou *Choix multiples* (4 propositions).
+   - **Options** : Rapidité (P0), Contrôle (P1), Groupe (P2).
+   - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
+4. Appuie sur **« Afficher sur la TV »**, choisit sa TV dans la liste Cast.
+5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
+6. L'hôte choisit son propre pseudo et avatar : il rejoint comme joueur.
+7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris).
+8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**.
+9. À la fin : classement final, puis **Rejouer** (même quiz) ou **Retour au catalogue**.
+
+### 4.2 Joueur
+1. Scanne le **QR code** affiché sur la TV (ou ouvre l'adresse et saisit le code de salle).
+2. Une **page web** s'ouvre, sans installation. Il saisit un **pseudo** (2 à 12 caractères) et choisit un **avatar** dans une liste prédéfinie.
+3. Il attend dans le lobby et voit les autres arriver.
+4. À chaque **question**, son téléphone affiche le compte à rebours et :
+   - en *Réponse libre* : un champ de saisie et un bouton « Valider » ;
+   - en *Choix multiples* : les 4 propositions, en texte lisible, sous forme de gros boutons.
+5. Une fois validée, la réponse est **définitive**. Le téléphone affiche « Réponse envoyée ».
+6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang.
+7. À la fin, il voit le classement final.
+
+### 4.3 Écran TV (séquence des écrans)
+1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés.
+2. **Démarrage** : compte à rebours 3-2-1.
+3. **Question** : énoncé, difficulté, propositions (en Choix multiples), compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses).
+4. **Révélation** : bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou liste des réponses (en Réponse libre).
+5. **Validation** *(P1, option Contrôle)* : vote des joueurs sur les réponses libres.
+6. **Classement** : top 5 et progression après chaque question.
+7. **Fin** : podium et classement complet.
+8. **États spéciaux** : pause, « l'hôte se reconnecte… », partie terminée.
+
+---
+
+## 5. États d'une partie et transitions
+
+| État | Sortie déclenchée par | Condition |
+|---|---|---|
+| **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs |
+| **STARTING** (3 s) | Automatique | Fin du compte à rebours |
+| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer » |
+| **REVEAL** (8 s en Choix multiples, 10 s en Réponse libre) | Automatique | Fin du délai. L'hôte peut avancer plus tôt |
+| **VALIDATION** *(P1, 15 s)* | Automatique | Fin du délai ou action de l'hôte |
+| **SCORES** (6 s) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
+| **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend |
+| **END** | Hôte | « Rejouer » (nouvelle partie) ou « Quitter » |
+
+Les durées sont des constantes de configuration, ajustables après les tests.
+
+---
+
+## 6. Règles du jeu
+
+### 6.1 Durées
+- **Choix multiples** : 20 secondes par question.
+- **Réponse libre** : 30 secondes par question.
+- Chaque question peut surcharger sa durée.
+- **Durée d'une partie** : 10 questions représentent environ 8 à 12 minutes. L'objectif de 15 à 20 minutes demande 15 à 20 questions. **[À VALIDER]**
+
+### 6.2 Points
+- **Bonne réponse** : 100 points.
+- **Option Rapidité** : bonus proportionnel au temps restant. `points = 100 + arrondi(100 × temps restant / durée de la question)`, soit de 100 à 200 points.
+- **Mauvaise réponse ou absence de réponse** : 0 point.
+- Le temps de réponse est mesuré avec l'horodatage du **serveur**, pas celui du téléphone.
+
+### 6.3 Validation des réponses libres
+- **Automatique (P0)** : la réponse du joueur est normalisée (minuscules, sans accents ni ponctuation, sans article initial) puis comparée à la liste des réponses acceptées de la question.
+- **Tolérance aux fautes** : une faute de frappe est acceptée pour les réponses de 5 lettres ou plus. À affiner après les tests.
+- **Contrôle (P1)** : après la révélation, les réponses libres s'affichent sur la TV. Chaque joueur peut voter ✓ ou ✗ sur les réponses des autres. Une réponse est acceptée à la majorité des votes. En cas d'égalité, la décision est en faveur du joueur. Ce vote prime sur la validation automatique.
+
+### 6.4 Équipes (P2, option Groupe)
+- Les équipes sont formées dans le lobby. Chaque joueur répond toujours sur son téléphone.
+- Score d'équipe = **moyenne** des scores individuels (pour ne pas avantager les grandes équipes). **[À VALIDER]**
+
+### 6.5 Classement
+- En cas d'égalité, les joueurs partagent le même rang et le suivant est sauté (1er, 1er, 3e).
+- Le classement est mis à jour **après chaque révélation**, pas pendant la question, pour ne pas influencer les joueurs.
+
+### 6.6 Joueurs et connexion
+- **Nombre de joueurs** : 2 à 20, hôte compris. Cette limite est une constante, relevable plus tard. Elle protège la lisibilité du classement sur la TV et les coûts. **[À VALIDER]**
+- **Pseudo** : 2 à 12 caractères, unique dans la partie, filtre de base contre les mots interdits.
+- **Avatar** : choisi dans une liste prédéfinie d'environ 24. Pas d'envoi de photo.
+- **Rejoindre après le lancement** : impossible, sauf reconnexion d'un joueur déjà présent.
+- **Joueur déconnecté** : il garde son score, peut revenir avec le même pseudo et retrouve l'état en cours. Il obtient 0 point aux questions manquées.
+- **Hôte déconnecté** : la partie se met en pause automatiquement (la TV l'indique). Au-delà de 2 minutes, elle se termine.
+- **Cast interrompu** : l'hôte relance le Cast et la TV reprend à l'état courant, car l'état est stocké sur le serveur.
+- **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://<projet>.web.app/join/CODE`. Une partie est supprimée automatiquement 24 heures après sa fin.
+
+### 6.7 Animations et sons
+- **Pendant la question** : animations **discrètes** qui ne distraient pas ceux qui réfléchissent. Exemple : les avatars de ceux qui ont répondu s'illuminent, fond légèrement animé.
+- **Pendant la révélation et le classement** : animations plus riches (confettis, montée au podium) pour amuser ceux qui ont fini de répondre.
+- **Sons** : désactivés par défaut au MVP.
+- **Performance** : animations légères (CSS), pour tourner sur de vieux Chromecast.
+
+---
+
+## 7. Modèle de données (première version)
+
+Base : Firebase Realtime Database.
+
+```
+quizzes/{quizId}                      // lisible par tous
+  title, theme, gameType: "quiz", language: "fr"
+  difficulty: 2.3                     // moyenne des questions
+  difficultyLabel: "Moyen"
+  questionCount: 10, estimatedMinutes: 10
+
+questions/{quizId}/{index}            // lisible UNIQUEMENT par l'hôte
+  (voir section 8)
+
+sessions/{code}
+  hostUid, quizId
+  status: "lobby|starting|question|reveal|validation|scores|paused|ended"
+  settings: { answerMode: "free|choice", speedBonus, control, teams }
+  currentIndex
+  phaseStartedAt, phaseEndsAt         // horodatage serveur
+  currentQuestion: { text, options?, difficulty, timeLimit }   // SANS la bonne réponse
+  reveal: { correctAnswer, explanation, stats }                // publié à la révélation
+  players/{uid}: { name, avatar, score, rank, connected }
+  answers/{index}/{uid}: { value, submittedAt, correct, points }
+```
+
+**Principes**
+- **L'hôte est l'autorité de la partie** : il fait avancer les états, calcule la validité des réponses et les points. Il garde donc l'écran allumé pendant la partie.
+- **La bonne réponse n'est jamais envoyée aux joueurs avant la révélation.** Le catalogue de questions n'est lisible que par l'hôte, et il publie la bonne réponse au moment de la révélation. Cela évite la triche en inspectant le navigateur.
+- **Un joueur ne peut écrire que sa propre réponse**, et seulement pendant l'état QUESTION. Les réponses des autres ne lui sont pas lisibles avant la révélation.
+- **Authentification anonyme** pour tout le monde (hôte, joueurs, TV). Les règles de sécurité précises seront conçues en phase 1.
+
+---
+
+## 8. Format d'une question
+
+| Champ | Description |
+|---|---|
+| `id` | Identifiant unique |
+| `text` | Énoncé (140 caractères maximum, lisible sur TV) |
+| `options` | 4 propositions, une seule correcte |
+| `correctIndex` | Position de la bonne proposition |
+| `acceptedAnswers` | Liste des réponses acceptées en Réponse libre |
+| `difficulty` | 1 (Facile), 2 (Moyen), 3 (Difficile) |
+| `explanation` | Optionnel, affichée à la révélation |
+| `timeLimit` | Optionnel, remplace la durée par défaut |
+| `media` | Réservé pour plus tard (image, audio, vidéo) |
+
+**Le mode de réponse est un réglage de la partie, pas du quiz.** Chaque question doit donc fonctionner dans les deux modes : une réponse courte et sans ambiguïté en libre, quatre propositions plausibles en choix multiples.
+
+**Exemple**
+```json
+{
+  "id": "q-0001",
+  "text": "Quelle planète est la plus proche du Soleil ?",
+  "options": ["Mars", "Mercure", "Vénus", "La Terre"],
+  "correctIndex": 1,
+  "acceptedAnswers": ["mercure"],
+  "difficulty": 1,
+  "explanation": "Mercure orbite à environ 58 millions de km du Soleil."
+}
+```
+
+**Difficulté**
+- La difficulté de chaque question est affichée à côté de l'énoncé.
+- Celle du quiz est la moyenne des difficultés de ses questions : moins de 1,67 → Facile, jusqu'à 2,33 → Moyen, au-delà → Difficile.
+
+**Règles de contenu**
+- Contenu original, jamais copié d'un quiz existant.
+- Faits vérifiés auprès d'au moins deux sources.
+- Contenu adapté à un public familial.
+- Textes en français.
+
+---
+
+## 9. Contraintes techniques
+
+- **Stack** : Expo (React Native) + TypeScript pour l'app et le client joueur web ; Vite + TypeScript pour le récepteur TV ; Firebase (Realtime Database, authentification anonyme, Hosting).
+- **Réseau** : Internet requis pour tous. L'hôte et la TV doivent être sur le **même réseau local** pour le Cast. Les joueurs peuvent être sur n'importe quel réseau, y compris en 4G/5G.
+- **Latence** : un changement d'état doit apparaître sur tous les écrans en moins d'une seconde.
+- **Lisibilité TV** : texte très grand et fort contraste, lisible à 3 mètres, marges de sécurité autour de l'écran.
+- **Langues** : français au MVP, mais tous les textes dans un fichier dédié pour faciliter les traductions.
+- **Confidentialité** : uniquement pseudo et avatar, aucun compte, aucun e-mail. Données de partie supprimées sous 24 h. Une politique de confidentialité sera nécessaire pour publier sur les stores. Pas de chat ni d'envoi d'images, car la cible inclut des mineurs.
+- **Réponses libres affichées sur la TV** : filtre de base, et l'hôte peut masquer une réponse (P1).
+
+---
+
+## 10. Critères de réussite du MVP
+
+**Fonctionnels**
+- L'hôte choisit un quiz et ses options, puis l'affiche sur sa TV.
+- Les joueurs se connectent et répondent.
+- On joue une partie jusqu'au bout et on voit le classement final.
+
+**Mesurables** (sur au moins 5 parties tests de 4 à 8 joueurs, dont 2 avec enfants ou personnes âgées)
+- 80 % des joueurs rejoignent en moins d'une minute.
+- 3 parties sur 4 vont jusqu'au bout.
+- Aucun plantage bloquant sur l'ensemble des tests.
+- Mise à jour des écrans en moins d'une seconde.
+
+**Qualitatifs**
+- Au moins 7 joueurs sur 10 disent qu'ils rejoueraient.
+
+---
+
+## 11. Décisions prises dans cette version
+
+1. Le MVP est un quiz seul de 10 questions (pas de blind test ni de paroles).
+2. L'hôte est joueur et administrateur.
+3. Le mode de réponse (libre ou choix multiples) se règle à chaque partie.
+4. Rejoindre en scannant un QR code, sans compte, avec pseudo et avatar prédéfini.
+5. Les joueurs passent par le navigateur au MVP.
+6. Réponse définitive après validation.
+7. Égalités : même rang.
+8. Classement mis à jour après chaque révélation.
+
+---
+
+## 12. Questions ouvertes
+
+1. **Quiz'In**
+2. **Joueurs sans limite ou plafonnés à 20 ?** Proposition : 20 au MVP. -> 20 est la limite du nombre de joueurs pour le MVP.
+3. **iOS** : confirmer que l'app hôte iOS est reportée et que les joueurs iPhone passent par le web -> Confirmé. 
+4. **Redirection du QR code vers l'app** pour ceux qui l'ont installée : proposition de la reporter après le MVP, car elle demande des liens profonds (Android App Links / iOS Universal Links) et un domaine configuré -> Confirmé.
+5. **Durée de partie** : rester à 10 questions (environ 10 minutes) ou viser 15 à 20 questions pour atteindre 15 à 20 minutes ? -> Pour le MVP, rester à 10 questions. 
+6. **Contrôle** : valider le vote à la majorité, ou une autre règle ? -> Les joueurs décident eux mêmes, pas besoin de faire de règles spécifiques.
+7. **Groupe** : score d'équipe en moyenne ou en somme ? Équipes choisies par les joueurs ou assignées aléatoirement ? -> En moyenne + les équipes peuvent soit être choisies par les joueurs soient assignées aléatoirement
+8. **Priorités** : valider que Contrôle (P1) et Groupe (P2) sortent du premier MVP. -> Validé.
+9. **Quiz de lancement** : quels thèmes pour les 10 premiers quiz ? -> Culture G classique
+
+---
+
+## 13. Après le MVP (feuille de route indicative)
+
+- Option Groupe (équipes).
+- App hôte iOS et redirection du QR code vers l'app joueur.
+- Quiz créés par l'hôte (anniversaires, mariages, réunions de famille).
+- Packs thématiques et de saison, modèle freemium pour l'hôte.
+- Blind test et « N'oubliez pas les paroles » (après étude des droits musicaux).
+- Mode bars et événements.
