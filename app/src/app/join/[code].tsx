@@ -1,17 +1,15 @@
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState, type ReactNode } from 'react';
 
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
+import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
+import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
-import { textStyles } from '@/components/ui/textStyles';
-import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
-import { Spacing } from '@/constants/theme';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
 import { useAnswer } from '@/hooks/useAnswer';
 import { usePresence } from '@/hooks/usePresence';
@@ -23,18 +21,29 @@ export default function JoinRoomScreen() {
   const params = useLocalSearchParams<{ code: string }>();
   const code = normalizeRoomCode(params.code ?? '');
 
+  // Code validé avant toute lecture dans la base.
+  return isValidRoomCode(code) ? (
+    <JoinRoom code={code} />
+  ) : (
+    <WelcomeScreen>
+      <PlayerNotice message={strings.join.invalidCode} tone="error" showOtherCode />
+    </WelcomeScreen>
+  );
+}
+
+// Écrans d'accueil (avant la partie) : fond, logo et code. Pendant la partie, PlayerGame
+// occupe tout l'écran.
+interface WelcomeScreenProps {
+  code?: string;
+  children: ReactNode;
+  footer?: ReactNode;
+}
+
+function WelcomeScreen({ code, children, footer }: WelcomeScreenProps) {
   return (
-    <Screen>
-      <View style={styles.header}>
-        <Text style={textStyles.title}>{strings.join.appName}</Text>
-        {isValidRoomCode(code) && <Text style={styles.roomCode}>{strings.join.roomLabel(code)}</Text>}
-      </View>
-      {/* Code validé avant toute lecture dans la base. */}
-      {isValidRoomCode(code) ? (
-        <JoinRoom code={code} />
-      ) : (
-        <PlayerNotice message={strings.join.invalidCode} tone="error" showOtherCode />
-      )}
+    <Screen footer={footer}>
+      <JoinHeader code={code} />
+      {children}
     </Screen>
   );
 }
@@ -50,12 +59,16 @@ function JoinRoom({ code }: { code: string }) {
 
   switch (state.kind) {
     case 'loading':
-      return <PlayerNotice message={strings.join.loading} />;
+      return <WelcomeScreen code={code}><PlayerNotice message={strings.join.loading} /></WelcomeScreen>;
     case 'error':
       // Le détail technique est dans la console (usePlayerSession).
-      return <PlayerNotice message={strings.join.joinFailed} tone="error" />;
+      return <WelcomeScreen code={code}><PlayerNotice message={strings.join.joinFailed} tone="error" /></WelcomeScreen>;
     case 'notFound':
-      return <PlayerNotice message={strings.join.refusals.notFound} tone="error" showOtherCode />;
+      return (
+        <WelcomeScreen code={code}>
+          <PlayerNotice message={strings.join.refusals.notFound} tone="error" showOtherCode />
+        </WelcomeScreen>
+      );
   }
 
   // Reprise : même session anonyme (même navigateur) = même uid, donc on retrouve son entrée.
@@ -64,10 +77,15 @@ function JoinRoom({ code }: { code: string }) {
   }
 
   const refusal = getEntryRefusal(state.status, state.players, state.uid);
-  if (refusal) {
-    return <PlayerNotice message={strings.join.refusals[refusal]} tone="error" showOtherCode />;
-  }
-  return <JoinForm code={code} uid={state.uid} status={state.status} players={state.players} />;
+  return (
+    <WelcomeScreen code={code}>
+      {refusal ? (
+        <PlayerNotice message={strings.join.refusals[refusal]} tone="error" showOtherCode />
+      ) : (
+        <JoinForm code={code} uid={state.uid} status={state.status} players={state.players} />
+      )}
+    </WelcomeScreen>
+  );
 }
 
 interface RegisteredPlayerProps {
@@ -87,29 +105,29 @@ function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
     // l'écriture) et on rappelle le profil réellement enregistré.
     const me = players[uid];
     return (
-      <>
-        {isEditing && <PlayerNotice message={strings.profile.editInterrupted(me.avatar, me.name)} />}
-        <PlayerGame session={state.session} uid={uid} serverOffsetMs={serverOffsetMs} answer={answer} onAnswer={onAnswer} />
-      </>
+      <PlayerGame
+        session={state.session}
+        uid={uid}
+        serverOffsetMs={serverOffsetMs}
+        answer={answer}
+        onAnswer={onAnswer}
+        notice={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : undefined}
+      />
     );
   }
 
-  return isEditing ? (
-    <JoinForm code={code} uid={uid} status={status} players={players} edit={{ onDone: () => setIsEditing(false) }} />
-  ) : (
-    <PlayerLobby uid={uid} players={players} onEditProfile={() => setIsEditing(true)} />
+  if (isEditing) {
+    return (
+      <WelcomeScreen code={code}>
+        <JoinForm code={code} uid={uid} status={status} players={players} edit={{ onDone: () => setIsEditing(false) }} />
+      </WelcomeScreen>
+    );
+  }
+  return (
+    <WelcomeScreen
+      code={code}
+      footer={<BigButton label={strings.profile.editButton} variant="secondary" onPress={() => setIsEditing(true)} />}>
+      <PlayerLobby uid={uid} players={players} />
+    </WelcomeScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    gap: Spacing.one,
-  },
-  roomCode: {
-    color: AppColors.accent,
-    fontSize: 20,
-    fontWeight: '800',
-    textAlign: 'center',
-    letterSpacing: 2,
-  },
-});

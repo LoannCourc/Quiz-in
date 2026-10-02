@@ -1,16 +1,24 @@
-import type { Difficulty } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import { Spacing } from '@/constants/theme';
 
-// « Question 3 · Moyen », en tête des écrans de question.
-export function QuestionHeader({ index, difficulty }: { index: number; difficulty: Difficulty }) {
+interface QuestionHeaderProps {
+  index: number;
+  // Nombre de questions de la partie (absent avant le lancement : « QUESTION 3 » seul).
+  questionCount?: number;
+  score: number;
+}
+
+// Pastille or « QUESTION 3/10 » à gauche, score du joueur à droite (maquette mobile).
+export function QuestionHeader({ index, questionCount, score }: QuestionHeaderProps) {
   return (
     <View style={styles.row}>
-      <Text style={styles.label}>{strings.game.questionLabel(index)}</Text>
-      <Text style={textStyles.muted}>{strings.game.difficulties[difficulty]}</Text>
+      <View style={styles.pill}>
+        <Text style={styles.pillText}>{strings.game.questionPill(index, questionCount)}</Text>
+      </View>
+      <Text style={styles.score}>{strings.game.score(score)}</Text>
     </View>
   );
 }
@@ -19,11 +27,27 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline',
+    alignItems: 'center',
+    gap: Spacing.two,
   },
-  label: {
+  pill: {
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.accent,
+  },
+  pillText: {
+    color: AppColors.onAccent,
+    fontFamily: AppFonts.display,
+    fontSize: 15,
+    lineHeight: 20,
+    textTransform: 'uppercase',
+  },
+  score: {
     color: AppColors.accent,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '800',
+    fontFamily: AppFonts.display,
+    fontSize: 17,
+    lineHeight: 22,
+    textTransform: 'uppercase',
   },
 });

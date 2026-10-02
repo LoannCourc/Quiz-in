@@ -1,9 +1,9 @@
 import { MAX_PLAYERS, MIN_PLAYERS, PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from '@shared/constants';
 import type { GameOption } from '@shared/quizCatalog';
-import type { AnswerMode, Difficulty, DifficultyLevel } from '@shared/types';
+import type { AnswerMode, DifficultyLevel } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
-import type { AnswerRefusal } from '@/lib/playerGame';
+import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -42,6 +42,7 @@ export const strings = {
   lobby: {
     playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''} connecté${count > 1 ? 's' : ''}`,
     you: '(toi)',
+    inLobbyTitle: 'Tu es dans la partie !',
     waiting: 'En attente du lancement…',
   },
   catalog: {
@@ -111,13 +112,15 @@ export const strings = {
   },
   game: {
     choiceLetters: ['A', 'B', 'C', 'D'],
-    questionLabel: (index: number) => `Question ${index + 1}`,
-    difficulties: { 1: 'Facile', 2: 'Moyen', 3: 'Difficile' } satisfies Record<Difficulty, string>,
+    questionPill: (index: number, count: number | undefined) =>
+      count ? `Question ${index + 1}/${count}` : `Question ${index + 1}`,
+    score: (points: number) => `${formatNumber(points)} pts`,
     secondsLeft: (seconds: number) => `${seconds} seconde${seconds > 1 ? 's' : ''} restante${seconds > 1 ? 's' : ''}`,
-    points: (points: number) => `${points} point${points > 1 ? 's' : ''}`,
+    points: (points: number) => `${formatNumber(points)} point${points > 1 ? 's' : ''}`,
+    formatNumber,
     ordinal: (rank: number) => (rank === 1 ? '1er' : `${rank}e`),
     starting: {
-      title: 'Prépare-toi !',
+      title: 'Prêt ?',
       subtitle: 'La première question arrive…',
     },
     question: {
@@ -128,30 +131,36 @@ export const strings = {
       } satisfies Record<AnswerRefusal, string>,
     },
     answerSent: {
-      title: 'Réponse envoyée',
-      yourChoice: 'Ton choix',
+      title: 'Réponse envoyée !',
       unknownChoice: 'Ta réponse est bien enregistrée.',
       waiting: 'En attente des autres joueurs…',
     },
     reveal: {
+      titles: {
+        correct: 'Bonne réponse !',
+        wrong: 'Raté…',
+        noAnswer: 'Trop tard',
+      } satisfies Record<RevealOutcome, string>,
       correctAnswerLabel: 'La bonne réponse',
-      correct: 'Bonne réponse',
-      wrong: 'Raté',
-      noAnswer: 'Pas de réponse',
-      pointsWon: (points: number) => `+${points} point${points > 1 ? 's' : ''}`,
-      rank: (rank: string, playerCount: number) => `Tu es ${rank} sur ${playerCount}`,
-      total: (points: string) => `Total : ${points}`,
+      coinPoints: (points: number) => `+${formatNumber(points)}`,
+      coinLabel: 'points',
+      speedBonus: (bonus: number) => `Bonus rapidité : +${bonus}`,
+      placeLabel: 'Ta place',
+      placeChange: (before: string, after: string, arrow: string) => `${before} → ${after} ${arrow}`,
+      arrows: { up: '▲', down: '▼' },
     },
     scores: {
       title: 'Classement',
+      afterQuestion: (index: number) => `après la question ${index + 1}`,
+      me: 'Toi',
     },
     paused: {
       title: 'Pause',
       message: 'L’hôte a mis la partie en pause. Elle reprendra là où elle s’est arrêtée.',
     },
     ended: {
-      title: 'Partie terminée',
-      myResult: (rank: string, points: string) => `Tu termines ${rank} avec ${points}.`,
+      title: 'Partie terminée !',
+      myResult: 'Tu termines',
       finalRanking: 'Classement final',
     },
     // État de l'option Contrôle (P1), pas encore développée.
@@ -160,5 +169,12 @@ export const strings = {
   playerDemo: {
     title: 'Démo : écrans du joueur',
     hint: 'Données factices, sans Firebase. Les appuis sur les propositions sont simulés.',
+    open: 'Démo',
+    close: 'Fermer',
   },
 };
+
+// Nombres à la française : espace fine insécable entre les milliers (1 242).
+function formatNumber(value: number): string {
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}

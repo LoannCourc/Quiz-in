@@ -1,31 +1,64 @@
 import type { PlayerId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
 
-interface RankingListProps {
+// Hauteur des marches, par position sur le podium (1re, 2e, 3e place du classement trié).
+const STEP_HEIGHTS = [190, 150, 110];
+// Ordre d'affichage de gauche à droite : 3e, 1er, 2e (maquette).
+const DISPLAY_ORDER = [2, 0, 1];
+
+interface RankingProps {
+  // Joueurs triés par rang (égalités comprises).
   players: RankedPlayer[];
-  // Joueur mis en évidence (« toi »).
   uid: PlayerId;
 }
 
-// Les égalités partagent le même rang (spec 6.5) : 1er, 1er, 3e.
-export function RankingList({ players, uid }: RankingListProps) {
+// Podium des trois premiers, puis lignes à partir du 4e. Les égalités gardent leur rang (1, 1, 3).
+export function Ranking({ players, uid }: RankingProps) {
   return (
-    <View style={styles.list}>
-      {players.map((player) => {
+    <View style={styles.container}>
+      <Podium players={players.slice(0, 3)} uid={uid} />
+      <View style={styles.rows}>
+        {players.slice(3).map((player) => (
+          <RankingRow key={player.id} player={player} isMe={player.id === uid} />
+        ))}
+      </View>
+    </View>
+  );
+}
+
+function Podium({ players, uid }: RankingProps) {
+  return (
+    <View style={styles.podium}>
+      {DISPLAY_ORDER.map((position) => {
+        const player = players[position];
+        if (!player) return <View key={position} style={styles.step} />;
         const isMe = player.id === uid;
         return (
-          <View key={player.id} style={[styles.row, isMe && styles.myRow]}>
-            <Text style={styles.rank}>{strings.game.ordinal(player.rank)}</Text>
-            <Text style={styles.avatar}>{player.avatar}</Text>
-            <Text style={styles.name} numberOfLines={1}>
-              {isMe ? `${player.name} ${strings.lobby.you}` : player.name}
-            </Text>
-            <Text style={styles.score}>{player.score}</Text>
+          <View key={player.id} style={styles.step}>
+            <Text style={styles.podiumAvatar}>{player.avatar}</Text>
+            {isMe ? (
+              <View style={styles.meTag}>
+                <Text style={styles.meTagText}>{strings.game.scores.me}</Text>
+              </View>
+            ) : (
+              <Text style={styles.podiumName} numberOfLines={1}>
+                {player.name}
+              </Text>
+            )}
+            <View
+              style={[
+                styles.block,
+                { height: STEP_HEIGHTS[position], backgroundColor: AppColors.podium[position] },
+                isMe && styles.myBlock,
+              ]}>
+              <Text style={styles.blockRank}>{player.rank}</Text>
+              <Text style={styles.blockScore}>{strings.game.formatNumber(player.score)}</Text>
+            </View>
           </View>
         );
       })}
@@ -33,43 +66,113 @@ export function RankingList({ players, uid }: RankingListProps) {
   );
 }
 
+function RankingRow({ player, isMe }: { player: RankedPlayer; isMe: boolean }) {
+  return (
+    <View style={[styles.row, isMe && styles.myRow]}>
+      <Text style={styles.rowRank}>{player.rank}</Text>
+      <Text style={styles.rowAvatar}>{player.avatar}</Text>
+      <Text style={styles.rowName} numberOfLines={1}>
+        {isMe ? strings.game.scores.me : player.name}
+      </Text>
+      <Text style={styles.rowScore}>{strings.game.formatNumber(player.score)}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  list: {
+  container: {
+    gap: Spacing.three,
+  },
+  podium: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    gap: Spacing.two,
+  },
+  step: {
+    flex: 1,
+    maxWidth: AppSizes.podiumWidth + Spacing.four,
+    alignItems: 'center',
+    gap: Spacing.one,
+  },
+  podiumAvatar: {
+    fontSize: 44,
+  },
+  podiumName: {
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
+  },
+  meTag: {
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.card,
+  },
+  meTagText: {
+    color: AppColors.ink,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
+    textTransform: 'uppercase',
+  },
+  block: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopLeftRadius: AppSizes.radius / 2,
+    borderTopRightRadius: AppSizes.radius / 2,
+    borderWidth: AppSizes.selectionWidth,
+    borderColor: 'transparent',
+  },
+  myBlock: {
+    borderColor: AppColors.selection,
+  },
+  blockRank: {
+    color: AppColors.ink,
+    fontFamily: AppFonts.display,
+    fontSize: 40,
+    lineHeight: Math.round(40 * DISPLAY_LINE_HEIGHT),
+  },
+  blockScore: {
+    color: AppColors.ink,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
+  },
+  rows: {
     gap: Spacing.two,
   },
   row: {
-    minHeight: AppSizes.buttonHeight,
+    minHeight: 58,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.two,
+    gap: Spacing.three,
     paddingHorizontal: Spacing.three,
-    borderRadius: AppSizes.radius,
-    borderWidth: 3,
+    borderRadius: AppSizes.radiusPill,
+    borderWidth: AppSizes.selectionWidth,
     borderColor: 'transparent',
     backgroundColor: AppColors.surface,
   },
   myRow: {
-    borderColor: AppColors.accent,
+    borderColor: AppColors.selection,
   },
-  rank: {
-    minWidth: 44,
-    color: AppColors.accent,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '900',
+  rowRank: {
+    minWidth: 24,
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
+    fontSize: 20,
+    lineHeight: 26,
   },
-  avatar: {
+  rowAvatar: {
     fontSize: 28,
   },
-  name: {
+  rowName: {
     flex: 1,
     color: AppColors.text,
+    fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
-    fontWeight: '700',
   },
-  score: {
+  rowScore: {
     color: AppColors.text,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '800',
-    fontVariant: ['tabular-nums'],
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
   },
 });

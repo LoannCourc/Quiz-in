@@ -13,6 +13,11 @@ const Palette = {
   bgTop: '#7a35d9',
   bgMiddle: '#3a1280',
   bgBottom: '#170646',
+  glowOrange: '#f0884a',
+  goldLight: '#fff2a6',
+  goldDeep: '#f2b31c',
+  glowMagenta: '#c42d8a',
+  track: 'rgba(201, 184, 255, 0.35)',
 } as const;
 
 export const AppColors = {
@@ -33,10 +38,27 @@ export const AppColors = {
   // Réponses A, B, C, D : la lettre accompagne toujours la couleur.
   choices: [Palette.pinkLight, Palette.cyan, Palette.gold, Palette.green],
   onChoice: Palette.ink,
+  // Podium : 1er or, 2e cyan, 3e rose (maquette).
+  podium: [Palette.gold, Palette.cyan, Palette.pinkLight],
+  // Anneau du compte à rebours : temps restant en rose, temps écoulé en lavande translucide.
+  ring: Palette.pink,
+  ringTrack: Palette.track,
+  // Pastille « encre » : lettre des réponses, centre de l'anneau, bandeau « Ta place ».
+  inkSurface: Palette.ink,
+  confetti: [Palette.cyan, Palette.gold, Palette.green, Palette.white, Palette.pinkLight],
 } as const;
 
-// Fond : dégradé radial centré en haut, en syntaxe CSS (Android et web).
-export const AppBackground = `radial-gradient(ellipse 120% 90% at 50% 0%, ${Palette.bgTop} 0%, ${Palette.bgMiddle} 45%, ${Palette.bgBottom} 100%)`;
+// Fonds : dégradés radiaux en syntaxe CSS (Android et web).
+export const AppBackgrounds = {
+  main: `radial-gradient(ellipse 120% 90% at 50% 0%, ${Palette.bgTop} 0%, ${Palette.bgMiddle} 45%, ${Palette.bgBottom} 100%)`,
+  // Révélation d'une bonne réponse : halo orangé et rose derrière la pièce (maquette).
+  celebration: `radial-gradient(ellipse 90% 70% at 50% 35%, ${Palette.glowOrange} 0%, ${Palette.glowMagenta} 45%, ${Palette.bgMiddle} 100%)`,
+} as const;
+
+// Pièce de la révélation : reflet clair au centre, or plus soutenu sur les bords (maquette).
+export const AppCoinGradient = `radial-gradient(circle at 50% 40%, ${Palette.goldLight} 0%, ${Palette.gold} 55%, ${Palette.goldDeep} 100%)`;
+
+export type AppBackgroundName = keyof typeof AppBackgrounds;
 
 // Une famille par graisse : sur Android, fontWeight ne choisit pas la graisse d'une police
 // chargée à part. Les noms sont ceux enregistrés au chargement (app/_layout.tsx).
@@ -62,12 +84,23 @@ export const AppSizes = {
   textBody: 18,
   textLarge: 24,
   textTitle: 32,
+  textHero: 40,
   // Compte à rebours et chiffres mis en avant (3-2-1, points gagnés).
   textHuge: 64,
+  // Écrans de partie (maquette mobile).
+  choiceHeight: 82,
+  choiceLetter: 54,
+  cardBorder: 5,
+  ringSize: 112,
+  ringWidth: 12,
+  coinSize: 224,
+  coinBorder: 8,
+  podiumWidth: 100,
 } as const;
 
 // Ombre dure décalée, sans flou.
 export const AppShadows = {
   hard: '0px 7px 0px rgba(0, 0, 0, 0.35)',
   pressed: '0px 3px 0px rgba(0, 0, 0, 0.35)',
+  textColor: 'rgba(0, 0, 0, 0.35)',
 } as const;

@@ -1,4 +1,4 @@
-import { SCORES_TOP_COUNT } from '@shared/constants';
+import { computeRanks } from '@shared/ranking';
 import type { Player, PlayerId, PlayerResult, PublicSession } from '@shared/types';
 
 // Pourquoi une réponse n'a pas été enregistrée : trop tard (définitif) ou erreur réseau (réessai possible).
@@ -29,6 +29,29 @@ export function myResult(session: PublicSession, uid: PlayerId): PlayerResult | 
   return session.reveal?.results?.[uid];
 }
 
+export type RevealOutcome = 'correct' | 'wrong' | 'noAnswer';
+
+export function revealOutcome(result: PlayerResult | undefined): RevealOutcome {
+  if (!result) return 'noAnswer';
+  return result.correct ? 'correct' : 'wrong';
+}
+
+// Rang avant la question révélée : scores actuels moins les points qu'elle a rapportés,
+// classés avec la même règle d'égalités que l'hôte (shared/ranking). Aucun champ en plus.
+export function previousRank(session: PublicSession, uid: PlayerId): number | undefined {
+  const results = session.reveal?.results ?? {};
+  const previousScores = Object.fromEntries(
+    Object.entries(session.players).map(([id, player]) => [id, (player.score ?? 0) - (results[id]?.points ?? 0)]),
+  );
+  return computeRanks(previousScores)[uid];
+}
+
+// Position de la bonne réponse parmi les propositions (pour sa lettre et sa couleur).
+export function correctChoiceIndex(session: PublicSession): number | undefined {
+  const index = session.currentQuestion?.options?.indexOf(session.reveal?.correctAnswer ?? '');
+  return index === undefined || index < 0 ? undefined : index;
+}
+
 export interface RankedPlayer extends Player {
   id: PlayerId;
 }
@@ -40,9 +63,3 @@ export function rankedPlayers(players: Record<PlayerId, Player>): RankedPlayer[]
     .sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'));
 }
 
-// Classement intermédiaire : les premiers, plus le joueur lui-même s'il n'en fait pas partie.
-export function topWithMe(ranked: RankedPlayer[], uid: PlayerId): RankedPlayer[] {
-  const top = ranked.slice(0, SCORES_TOP_COUNT);
-  const me = ranked.find((player) => player.id === uid);
-  return me && !top.includes(me) ? [...top, me] : top;
-}

@@ -1,18 +1,21 @@
-import type { ChoiceOptions, PublicQuestion } from '@shared/types';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import type { PublicQuestion } from '@shared/types';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { AnswerState } from '@/lib/playerGame';
 
+import { ChoicePill } from './ChoicePill';
 import { Countdown, type PhaseTiming } from './Countdown';
+import { QuestionCard } from './QuestionCard';
 import { QuestionHeader } from './QuestionHeader';
 
 interface QuestionViewProps {
   question: PublicQuestion;
   index: number;
+  questionCount?: number;
+  score: number;
   timing: PhaseTiming;
   answer: Exclude<AnswerState, { kind: 'sent' }>;
   onAnswer: (choice: number) => void;
@@ -25,60 +28,38 @@ function isLocked(answer: QuestionViewProps['answer']): boolean {
   return answer.kind === 'refused' && answer.reason === 'tooLate';
 }
 
-export function QuestionView({ question, index, timing, answer, onAnswer }: QuestionViewProps) {
+export function QuestionView({ question, index, questionCount, score, timing, answer, onAnswer }: QuestionViewProps) {
   const locked = isLocked(answer);
   const chosen = answer.kind === 'idle' ? null : answer.choice;
 
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} difficulty={question.difficulty} />
+      <QuestionHeader index={index} questionCount={questionCount} score={score} />
       <Countdown {...timing} />
-      <Text style={styles.text}>{question.text}</Text>
+      <QuestionCard text={question.text} />
 
       {question.options ? (
-        <ChoiceButtons options={question.options} chosen={chosen} locked={locked} onAnswer={onAnswer} />
+        <View style={styles.choices}>
+          {question.options.map((option, choice) => (
+            <ChoicePill
+              key={choice}
+              choice={choice}
+              text={option}
+              isSelected={choice === chosen}
+              isDimmed={locked && choice !== chosen}
+              disabled={locked}
+              onPress={() => onAnswer(choice)}
+            />
+          ))}
+        </View>
       ) : (
         <Text style={textStyles.muted}>{strings.game.waiting}</Text>
       )}
 
       {answer.kind === 'sending' && <Text style={[textStyles.muted, styles.centered]}>{strings.game.question.sending}</Text>}
-      {answer.kind === 'refused' && <Text style={textStyles.error}>{strings.game.question.refusals[answer.reason]}</Text>}
-    </View>
-  );
-}
-
-interface ChoiceButtonsProps {
-  options: ChoiceOptions;
-  chosen: number | null;
-  locked: boolean;
-  onAnswer: (choice: number) => void;
-}
-
-function ChoiceButtons({ options, chosen, locked, onAnswer }: ChoiceButtonsProps) {
-  return (
-    <View style={styles.choices}>
-      {options.map((option, choice) => {
-        const isChosen = choice === chosen;
-        const letter = strings.game.choiceLetters[choice];
-        return (
-          <Pressable
-            key={choice}
-            accessibilityRole="button"
-            accessibilityLabel={`${letter} : ${option}`}
-            accessibilityState={{ disabled: locked, selected: isChosen }}
-            disabled={locked}
-            onPress={() => onAnswer(choice)}
-            style={({ pressed }) => [
-              styles.choice,
-              isChosen && styles.chosenChoice,
-              locked && !isChosen && styles.dimmed,
-              pressed && styles.pressed,
-            ]}>
-            <Text style={[styles.letter, isChosen && styles.chosenText]}>{letter}</Text>
-            <Text style={[styles.option, isChosen && styles.chosenText]}>{option}</Text>
-          </Pressable>
-        );
-      })}
+      {answer.kind === 'refused' && (
+        <Text style={[textStyles.error, styles.centered]}>{strings.game.question.refusals[answer.reason]}</Text>
+      )}
     </View>
   );
 }
@@ -87,49 +68,8 @@ const styles = StyleSheet.create({
   container: {
     gap: Spacing.three,
   },
-  text: {
-    color: AppColors.text,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '700',
-  },
   choices: {
-    gap: Spacing.two,
-  },
-  choice: {
-    minHeight: AppSizes.buttonHeight,
-    flexDirection: 'row',
-    alignItems: 'center',
     gap: Spacing.three,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    borderRadius: AppSizes.radius,
-    borderWidth: 3,
-    borderColor: 'transparent',
-    backgroundColor: AppColors.surface,
-  },
-  chosenChoice: {
-    borderColor: AppColors.accent,
-    backgroundColor: AppColors.accent,
-  },
-  dimmed: {
-    opacity: 0.4,
-  },
-  pressed: {
-    opacity: 0.7,
-  },
-  letter: {
-    color: AppColors.accent,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '900',
-  },
-  option: {
-    flex: 1,
-    color: AppColors.text,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '700',
-  },
-  chosenText: {
-    color: AppColors.onAccent,
   },
   centered: {
     textAlign: 'center',

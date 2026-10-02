@@ -12,6 +12,18 @@ export const textStyles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
+  // Message principal d'un écran de partie (« BONNE RÉPONSE ! »), avec ombre dure sans flou.
+  hero: {
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
+    fontSize: AppSizes.textHero,
+    lineHeight: Math.round(AppSizes.textHero * DISPLAY_LINE_HEIGHT),
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    textShadowColor: AppShadows.textColor,
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 0,
+  },
   label: {
     color: AppColors.text,
     fontFamily: AppFonts.black,

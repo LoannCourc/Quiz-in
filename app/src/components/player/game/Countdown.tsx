@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Animated, Easing, Platform, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Platform, StyleSheet, View } from 'react-native';
 
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
-import { Spacing } from '@/constants/theme';
 
+// Dernières secondes : le chiffre pulse (une demi-pulsation dure PULSE_HALF_MS).
 const URGENT_THRESHOLD_S = 5;
+const PULSE_SCALE = 1.12;
+const PULSE_HALF_MS = 250;
 
 export interface PhaseTiming {
   phaseStartedAt: number;
@@ -15,7 +17,7 @@ export interface PhaseTiming {
 }
 
 interface CountdownProps extends PhaseTiming {
-  variant?: 'bar' | 'digits';
+  size?: number;
 }
 
 function remainingMs({ phaseEndsAt, serverOffsetMs }: PhaseTiming): number {
@@ -44,14 +46,14 @@ function useSecondsLeft(timing: PhaseTiming): number {
   return seconds;
 }
 
-// Barre qui se vide sans rendu React : l'animation est confiée à la couche native (Android).
-// Sur le web, le pilote natif n'existe pas : Animated met alors à jour le style directement.
-function useDrainingProgress(timing: PhaseTiming): Animated.Value {
+// Part restante de la phase, de 1 à 0, animée sans rendu React : sur Android, l'animation est
+// confiée à la couche native ; sur le web, Animated met à jour le style directement.
+function useRemainingFraction(timing: PhaseTiming): Animated.Value {
   const durationMs = Math.max(1, timing.phaseEndsAt - timing.phaseStartedAt);
-  const [progress] = useState(() => new Animated.Value(remainingMs(timing) / durationMs));
+  const [fraction] = useState(() => new Animated.Value(remainingMs(timing) / durationMs));
 
   useEffect(() => {
-    const animation = Animated.timing(progress, {
+    const animation = Animated.timing(fraction, {
       toValue: 0,
       duration: remainingMs(timing),
       easing: Easing.linear,
@@ -59,71 +61,116 @@ function useDrainingProgress(timing: PhaseTiming): Animated.Value {
     });
     animation.start();
     return () => animation.stop();
-  }, [progress, timing]);
+  }, [fraction, timing]);
 
-  return progress;
+  return fraction;
+}
+
+// Pulsation du chiffre (1 → 1,12) pendant les dernières secondes, en boucle native : lancée une
+// seule fois quand l'urgence commence, sans rendu React à chaque image. Aucun changement de couleur.
+function usePulse(isActive: boolean): Animated.Value {
+  const [scale] = useState(() => new Animated.Value(1));
+
+  useEffect(() => {
+    if (!isActive) return;
+    const step = (toValue: number) =>
+      Animated.timing(scale, {
+        toValue,
+        duration: PULSE_HALF_MS,
+        easing: Easing.inOut(Easing.quad),
+        useNativeDriver: Platform.OS !== 'web',
+      });
+    const loop = Animated.loop(Animated.sequence([step(PULSE_SCALE), step(1)]));
+    loop.start();
+    return () => loop.stop();
+  }, [isActive, scale]);
+
+  return scale;
 }
 
 // Nouvelle clé dès que la phase change ou que sa fin est recalculée (reprise après une pause) :
 // le compte à rebours repart alors de zéro avec les nouvelles valeurs.
 export function Countdown(props: CountdownProps) {
-  return <TimedCountdown key={`${props.phaseStartedAt}-${props.phaseEndsAt}`} {...props} />;
+  return <CountdownRing key={`${props.phaseStartedAt}-${props.phaseEndsAt}`} {...props} />;
 }
 
-function TimedCountdown({ variant = 'bar', ...timingProps }: CountdownProps) {
+// Anneau rose qui se vide dans le sens inverse des aiguilles d'une montre, chiffre au centre.
+// Deux moitiés d'anneau, chacune dans une demi-boîte qui coupe ce qui dépasse, tournent pour
+// découvrir l'arc rose : moitié droite pour les premiers 50 % restants, moitié gauche au-delà.
+function CountdownRing({ size = AppSizes.ringSize, ...timingProps }: CountdownProps) {
   // Objet stable : les effets ne redémarrent pas à chaque rendu du parent.
   const [timing] = useState<PhaseTiming>(timingProps);
   const seconds = useSecondsLeft(timing);
-  const progress = useDrainingProgress(timing);
-  const isUrgent = seconds <= URGENT_THRESHOLD_S;
-  const color = isUrgent ? AppColors.wrong : AppColors.accent;
+  const fraction = useRemainingFraction(timing);
+  const pulse = usePulse(seconds > 0 && seconds <= URGENT_THRESHOLD_S);
 
-  if (variant === 'digits') {
-    return (
-      <Text style={[styles.digits, { color: AppColors.accent }]} accessibilityLabel={strings.game.secondsLeft(seconds)}>
-        {seconds}
-      </Text>
-    );
-  }
+  // Les côtés colorés d'une bordure couvrent 90° chacun, centrés sur leur direction :
+  // +45° aligne la demi-bordure colorée sur une moitié exacte du cercle.
+  const rightRotate = fraction.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['-135deg', '45deg', '45deg'] });
+  const leftRotate = fraction.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['-135deg', '-135deg', '45deg'] });
+
+  const circle = { width: size, height: size, borderRadius: size / 2, borderWidth: AppSizes.ringWidth };
+  const half = { width: size / 2, height: size };
 
   return (
-    <View style={styles.row} accessibilityLabel={strings.game.secondsLeft(seconds)}>
-      <View style={styles.track}>
-        <Animated.View style={[styles.fill, { backgroundColor: color, transform: [{ scaleX: progress }] }]} />
+    <View style={[styles.ring, { width: size, height: size }]} accessibilityLabel={strings.game.secondsLeft(seconds)}>
+      <View style={[styles.track, circle]} />
+      <View style={[styles.half, half, { left: size / 2 }]}>
+        <Animated.View
+          style={[styles.rightArc, circle, { left: -size / 2, transform: [{ rotate: rightRotate }] }]}
+        />
       </View>
-      <Text style={[styles.seconds, { color }]}>{seconds}</Text>
+      <View style={[styles.half, half, { left: 0 }]}>
+        <Animated.View style={[styles.leftArc, circle, { transform: [{ rotate: leftRotate }] }]} />
+      </View>
+      <View style={[styles.center, { inset: AppSizes.ringWidth, borderRadius: size / 2 }]}>
+        <Animated.Text style={[styles.seconds, { fontSize: size * 0.4, transform: [{ scale: pulse }] }]}>
+          {seconds}
+        </Animated.Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.three,
+  ring: {
+    alignSelf: 'center',
   },
   track: {
-    flex: 1,
-    height: 14,
-    borderRadius: 7,
-    overflow: 'hidden',
-    backgroundColor: AppColors.surface,
+    position: 'absolute',
+    borderColor: AppColors.ringTrack,
   },
-  fill: {
-    height: '100%',
-    transformOrigin: 'left',
+  half: {
+    position: 'absolute',
+    top: 0,
+    overflow: 'hidden',
+  },
+  rightArc: {
+    position: 'absolute',
+    top: 0,
+    borderTopColor: AppColors.ring,
+    borderRightColor: AppColors.ring,
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+  },
+  leftArc: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    borderBottomColor: AppColors.ring,
+    borderLeftColor: AppColors.ring,
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
+  },
+  center: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: AppColors.inkSurface,
   },
   seconds: {
-    minWidth: 48,
-    textAlign: 'right',
-    fontSize: AppSizes.textTitle,
-    fontWeight: '900',
-    fontVariant: ['tabular-nums'],
-  },
-  digits: {
-    fontSize: AppSizes.textHuge * 2,
-    fontWeight: '900',
-    textAlign: 'center',
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
     fontVariant: ['tabular-nums'],
   },
 });

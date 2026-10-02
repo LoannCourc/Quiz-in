@@ -1,12 +1,10 @@
 import type { PlayerId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
-
-import { textStyles } from '@/components/ui/textStyles';
 
 interface PlayerListProps {
   players: LobbyPlayers;
@@ -25,22 +23,24 @@ function visiblePlayers(players: LobbyPlayers, highlightedUid?: PlayerId) {
     );
 }
 
+// Grille d'avatars en pastilles blanches cerclées d'or, comme sur la TV.
 export function PlayerList({ players, highlightedUid }: PlayerListProps) {
   const list = visiblePlayers(players, highlightedUid);
 
   return (
     <View style={styles.container}>
-      <Text style={textStyles.label}>{strings.lobby.playerCount(list.length)}</Text>
-      <View style={styles.list}>
+      <Text style={styles.count}>{strings.lobby.playerCount(list.length)}</Text>
+      <View style={styles.grid}>
         {list.map((player) => {
           const isHighlighted = player.id === highlightedUid;
           return (
-            <View key={player.id} style={[styles.row, isHighlighted && styles.highlightedRow]}>
-              <Text style={styles.avatar}>{player.avatar}</Text>
-              <Text style={[textStyles.label, styles.name]} numberOfLines={1}>
-                {player.name}
+            <View key={player.id} style={styles.cell}>
+              <View style={[styles.disc, isHighlighted && styles.myDisc]}>
+                <Text style={styles.avatar}>{player.avatar}</Text>
+              </View>
+              <Text style={styles.name} numberOfLines={1}>
+                {isHighlighted ? strings.game.scores.me : player.name}
               </Text>
-              {isHighlighted && <Text style={styles.you}>{strings.lobby.you}</Text>}
             </View>
           );
         })}
@@ -49,36 +49,51 @@ export function PlayerList({ players, highlightedUid }: PlayerListProps) {
   );
 }
 
+const DISC = 64;
+
 const styles = StyleSheet.create({
   container: {
     gap: Spacing.three,
   },
-  list: {
-    gap: Spacing.two,
+  count: {
+    color: AppColors.accent,
+    fontFamily: AppFonts.display,
+    fontSize: 20,
+    lineHeight: Math.round(20 * DISPLAY_LINE_HEIGHT),
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
-  row: {
+  grid: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     gap: Spacing.three,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    borderRadius: AppSizes.radius,
-    borderWidth: 3,
-    borderColor: 'transparent',
-    backgroundColor: AppColors.surface,
   },
-  highlightedRow: {
+  cell: {
+    width: DISC + Spacing.four,
+    alignItems: 'center',
+    gap: Spacing.one,
+  },
+  disc: {
+    width: DISC,
+    height: DISC,
+    borderRadius: DISC / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: AppSizes.selectionWidth,
     borderColor: AppColors.accent,
+    backgroundColor: AppColors.card,
+  },
+  myDisc: {
+    borderColor: AppColors.highlight,
   },
   avatar: {
-    fontSize: 32,
+    fontSize: 34,
   },
   name: {
-    flexShrink: 1,
-  },
-  you: {
-    color: AppColors.accent,
-    fontSize: AppSizes.textBody,
-    fontWeight: '700',
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
+    textAlign: 'center',
   },
 });

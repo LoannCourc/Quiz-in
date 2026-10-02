@@ -1,96 +1,144 @@
-import type { PlayerResult } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppCoinGradient, AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import type { RevealOutcome } from '@/lib/playerGame';
+
+import { gradientStyle } from '@/components/ui/gradient';
+
+import { ChoicePill } from './ChoicePill';
+import { Confetti } from './Confetti';
 
 interface RevealViewProps {
+  outcome: RevealOutcome;
+  points: number;
+  // Part du bonus de rapidité dans les points (option Rapidité), sinon undefined.
+  speedBonus?: number;
   correctAnswer: string;
-  explanation?: string;
-  // undefined : le joueur n'a pas répondu.
-  result: PlayerResult | undefined;
+  // Position de la bonne réponse (lettre et couleur) ; undefined si introuvable.
+  correctChoice?: number;
   rank: number;
-  score: number;
-  playerCount: number;
+  previousRank?: number;
 }
 
-type Outcome = 'correct' | 'wrong' | 'noAnswer';
-
-function outcomeOf(result: PlayerResult | undefined): Outcome {
-  if (!result) return 'noAnswer';
-  return result.correct ? 'correct' : 'wrong';
-}
-
-// Icône et texte en plus de la couleur : le résultat reste lisible sans distinguer les couleurs.
-const OUTCOMES: Record<Outcome, { icon: string; label: string; color: string }> = {
-  correct: { icon: '✓', label: strings.game.reveal.correct, color: AppColors.correct },
-  wrong: { icon: '✗', label: strings.game.reveal.wrong, color: AppColors.wrong },
-  noAnswer: { icon: '–', label: strings.game.reveal.noAnswer, color: AppColors.textMuted },
-};
-
-export function RevealView({ correctAnswer, explanation, result, rank, score, playerCount }: RevealViewProps) {
-  const outcome = OUTCOMES[outcomeOf(result)];
-  const { ordinal, points } = strings.game;
+export function RevealView({ outcome, points, speedBonus, correctAnswer, correctChoice, rank, previousRank }: RevealViewProps) {
+  const isCorrect = outcome === 'correct';
 
   return (
     <View style={styles.container}>
-      <View style={[styles.outcome, { borderColor: outcome.color }]}>
-        <Text style={[styles.icon, { color: outcome.color }]}>{outcome.icon}</Text>
-        <Text style={[styles.outcomeLabel, { color: outcome.color }]}>{outcome.label}</Text>
-        {result && <Text style={styles.points}>{strings.game.reveal.pointsWon(result.points)}</Text>}
-      </View>
+      {isCorrect && <Confetti layout="reveal" />}
+      <Text style={textStyles.hero}>{strings.game.reveal.titles[outcome]}</Text>
 
-      <View style={styles.answer}>
-        <Text style={textStyles.muted}>{strings.game.reveal.correctAnswerLabel}</Text>
-        <Text style={styles.correctAnswer}>{correctAnswer}</Text>
-        {explanation && <Text style={textStyles.body}>{explanation}</Text>}
-      </View>
+      {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}
+      <PointsCoin points={points} isSoft={!isCorrect} />
+      {!isCorrect && <Text style={[textStyles.label, styles.centered]}>{strings.game.reveal.correctAnswerLabel}</Text>}
 
-      <View style={styles.standing}>
-        <Text style={textStyles.label}>{strings.game.reveal.rank(ordinal(rank), playerCount)}</Text>
-        <Text style={textStyles.muted}>{strings.game.reveal.total(points(score))}</Text>
-      </View>
+      {correctChoice === undefined ? (
+        <Text style={[textStyles.label, styles.centered]}>{correctAnswer}</Text>
+      ) : (
+        <ChoicePill choice={correctChoice} text={correctAnswer} />
+      )}
+      {isCorrect && speedBonus !== undefined && speedBonus > 0 && (
+        <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>
+      )}
+
+      <PlaceBand rank={rank} previousRank={previousRank} />
     </View>
   );
 }
 
+function PointsCoin({ points, isSoft }: { points: number; isSoft: boolean }) {
+  return (
+    <View style={[styles.coin, isSoft ? styles.softCoin : COIN_GRADIENT]}>
+      <Text style={[styles.coinPoints, isSoft && styles.softCoinText]}>{strings.game.reveal.coinPoints(points)}</Text>
+      <Text style={[styles.coinLabel, isSoft && styles.softCoinText]}>{strings.game.reveal.coinLabel}</Text>
+    </View>
+  );
+}
+
+// « TA PLACE 4e → 2e ▲ » : rang avant et après la question.
+function PlaceBand({ rank, previousRank }: { rank: number; previousRank?: number }) {
+  const { ordinal, reveal } = strings.game;
+  // Rang inchangé (ou inconnu) : le rang seul, sans flèche.
+  const value =
+    previousRank === undefined || previousRank === rank
+      ? ordinal(rank)
+      : reveal.placeChange(ordinal(previousRank), ordinal(rank), rank < previousRank ? reveal.arrows.up : reveal.arrows.down);
+
+  return (
+    <View style={styles.band}>
+      <Text style={styles.bandLabel}>{reveal.placeLabel}</Text>
+      <Text style={styles.bandValue}>{value}</Text>
+    </View>
+  );
+}
+
+const COIN_GRADIENT = gradientStyle(AppCoinGradient);
+
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     gap: Spacing.four,
   },
-  outcome: {
+  centered: {
+    textAlign: 'center',
+  },
+  coin: {
+    alignSelf: 'center',
+    width: AppSizes.coinSize,
+    height: AppSizes.coinSize,
+    borderRadius: AppSizes.coinSize / 2,
+    borderWidth: AppSizes.coinBorder,
+    borderColor: AppColors.card,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: Spacing.one,
-    padding: Spacing.four,
-    borderRadius: AppSizes.radius,
-    borderWidth: 4,
+    paddingHorizontal: Spacing.three,
+    backgroundColor: AppColors.accent,
+    boxShadow: AppShadows.hard,
+  },
+  softCoin: {
+    borderColor: AppColors.surface,
     backgroundColor: AppColors.surface,
+    boxShadow: 'none',
   },
-  icon: {
-    fontSize: AppSizes.textHuge,
-    fontWeight: '900',
-  },
-  outcomeLabel: {
-    fontSize: AppSizes.textTitle,
-    fontWeight: '900',
-  },
-  points: {
+  softCoinText: {
     color: AppColors.text,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '800',
   },
-  answer: {
-    gap: Spacing.one,
+  coinPoints: {
+    color: AppColors.ink,
+    fontFamily: AppFonts.display,
+    fontSize: 54,
+    lineHeight: Math.round(54 * DISPLAY_LINE_HEIGHT),
   },
-  correctAnswer: {
-    color: AppColors.correct,
-    fontSize: AppSizes.textLarge,
-    fontWeight: '800',
+  coinLabel: {
+    color: AppColors.ink,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
+    textTransform: 'uppercase',
   },
-  standing: {
+  band: {
+    marginTop: 'auto',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: Spacing.one,
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.three,
+    borderRadius: AppSizes.radiusCard,
+    backgroundColor: AppColors.inkSurface,
+  },
+  bandLabel: {
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
+    fontSize: 17,
+    lineHeight: 22,
+    textTransform: 'uppercase',
+  },
+  bandValue: {
+    color: AppColors.accent,
+    fontFamily: AppFonts.display,
+    fontSize: 26,
+    lineHeight: 34,
   },
 });

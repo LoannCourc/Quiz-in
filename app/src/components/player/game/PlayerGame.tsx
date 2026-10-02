@@ -1,6 +1,20 @@
-import type { PlayerId, PublicSession } from '@shared/types';
+import { CORRECT_ANSWER_POINTS } from '@shared/constants';
+import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
+import type { ReactNode } from 'react';
+import { StyleSheet, Text } from 'react-native';
 
-import { effectiveAnswer, myResult, rankedPlayers, topWithMe, type AnswerState } from '@/lib/playerGame';
+import { Screen } from '@/components/ui/Screen';
+import { textStyles } from '@/components/ui/textStyles';
+import type { AppBackgroundName } from '@/constants/appTheme';
+import {
+  correctChoiceIndex,
+  effectiveAnswer,
+  myResult,
+  previousRank,
+  rankedPlayers,
+  revealOutcome,
+  type AnswerState,
+} from '@/lib/playerGame';
 
 import { AnswerSentView } from './AnswerSentView';
 import type { PhaseTiming } from './Countdown';
@@ -16,11 +30,32 @@ export interface PlayerGameProps {
   // Réponse locale à la question courante (appui en cours, refus…).
   answer: AnswerState;
   onAnswer: (choice: number) => void;
+  // Message affiché au-dessus de l'écran (profil modifié au moment du lancement).
+  notice?: string;
 }
 
-// Écran du joueur pendant la partie, choisi d'après l'état de la session. Aucun accès à Firebase :
-// la page parente fournit les données.
-export function PlayerGame({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps) {
+// Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
+function speedBonusOf(session: PublicSession, result: PlayerResult | undefined): number | undefined {
+  if (!session.settings.speedBonus || !result?.correct) return undefined;
+  return result.points - CORRECT_ANSWER_POINTS;
+}
+
+// Écran du joueur pendant la partie, en plein écran, choisi d'après l'état de la session.
+// Aucun accès à Firebase : la page parente fournit les données.
+export function PlayerGame(props: PlayerGameProps) {
+  const { session, uid } = props;
+  const outcome = session.status === 'reveal' ? revealOutcome(myResult(session, uid)) : undefined;
+  // Fond festif seulement pour une bonne réponse ; ton plus doux sinon.
+  const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
+  return (
+    <Screen background={background}>
+      {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
+      {renderView(props)}
+    </Screen>
+  );
+}
+
+function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
     phaseEndsAt: session.phaseEndsAt,
@@ -28,6 +63,8 @@ export function PlayerGame({ session, uid, serverOffsetMs, answer, onAnswer }: P
   };
   const ranked = rankedPlayers(session.players);
   const me = ranked.find((player) => player.id === uid);
+  const score = me?.score ?? 0;
+  const { currentIndex: index, questionCount } = session;
 
   switch (session.status) {
     case 'starting':
@@ -36,32 +73,30 @@ export function PlayerGame({ session, uid, serverOffsetMs, answer, onAnswer }: P
       const question = session.currentQuestion;
       if (!question) return <WaitingView />;
       const current = effectiveAnswer(session, uid, answer);
+      const common = { question, index, questionCount, score, timing };
       return current.kind === 'sent' ? (
-        <AnswerSentView question={question} index={session.currentIndex} timing={timing} choice={current.choice} />
+        <AnswerSentView {...common} choice={current.choice} />
       ) : (
-        <QuestionView
-          question={question}
-          index={session.currentIndex}
-          timing={timing}
-          answer={current}
-          onAnswer={onAnswer}
+        <QuestionView {...common} answer={current} onAnswer={onAnswer} />
+      );
+    }
+    case 'reveal': {
+      if (!session.reveal) return <WaitingView />;
+      const result = myResult(session, uid);
+      return (
+        <RevealView
+          outcome={revealOutcome(result)}
+          points={result?.points ?? 0}
+          speedBonus={speedBonusOf(session, result)}
+          correctAnswer={session.reveal.correctAnswer}
+          correctChoice={correctChoiceIndex(session)}
+          rank={me?.rank ?? ranked.length}
+          previousRank={previousRank(session, uid)}
         />
       );
     }
-    case 'reveal':
-      if (!session.reveal) return <WaitingView />;
-      return (
-        <RevealView
-          correctAnswer={session.reveal.correctAnswer}
-          explanation={session.reveal.explanation}
-          result={myResult(session, uid)}
-          rank={me?.rank ?? ranked.length}
-          score={me?.score ?? 0}
-          playerCount={ranked.length}
-        />
-      );
     case 'scores':
-      return <ScoresView players={topWithMe(ranked, uid)} uid={uid} />;
+      return <ScoresView players={ranked} uid={uid} index={index} />;
     case 'paused':
       return <PausedView />;
     case 'ended':
@@ -71,3 +106,9 @@ export function PlayerGame({ session, uid, serverOffsetMs, answer, onAnswer }: P
       return <WaitingView />;
   }
 }
+
+const styles = StyleSheet.create({
+  notice: {
+    textAlign: 'center',
+  },
+});

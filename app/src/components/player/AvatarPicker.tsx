@@ -9,19 +9,23 @@ interface AvatarPickerProps {
   onSelect: (avatar: string) => void;
 }
 
+// Pastilles blanches ; l'avatar choisi est cerclé d'or et grossi (pas seulement une couleur).
 export function AvatarPicker({ selected, onSelect }: AvatarPickerProps) {
   return (
     <View style={styles.grid}>
-      {AVATARS.map((avatar) => (
-        <Pressable
-          key={avatar}
-          accessibilityRole="radio"
-          accessibilityState={{ selected: avatar === selected }}
-          onPress={() => onSelect(avatar)}
-          style={[styles.cell, avatar === selected && styles.selectedCell]}>
-          <Text style={styles.emoji}>{avatar}</Text>
-        </Pressable>
-      ))}
+      {AVATARS.map((avatar) => {
+        const isSelected = avatar === selected;
+        return (
+          <Pressable
+            key={avatar}
+            accessibilityRole="radio"
+            accessibilityState={{ selected: isSelected }}
+            onPress={() => onSelect(avatar)}
+            style={[styles.cell, isSelected && styles.selectedCell]}>
+            <Text style={styles.emoji}>{avatar}</Text>
+          </Pressable>
+        );
+      })}
     </View>
   );
 }
@@ -38,13 +42,16 @@ const styles = StyleSheet.create({
     height: AppSizes.avatarCell,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: AppSizes.radius,
-    borderWidth: 3,
+    borderRadius: AppSizes.avatarCell / 2,
+    borderWidth: AppSizes.selectionWidth,
     borderColor: 'transparent',
-    backgroundColor: AppColors.surface,
+    backgroundColor: AppColors.card,
+    opacity: 0.85,
   },
   selectedCell: {
     borderColor: AppColors.accent,
+    opacity: 1,
+    transform: [{ scale: 1.15 }],
   },
   emoji: {
     fontSize: 28,
