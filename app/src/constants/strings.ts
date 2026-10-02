@@ -1,4 +1,4 @@
-import { MAX_PLAYERS, PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from '@shared/constants';
+import { MAX_PLAYERS, MIN_PLAYERS, PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from '@shared/constants';
 import type { GameOption } from '@shared/quizCatalog';
 import type { AnswerMode, DifficultyLevel } from '@shared/types';
 
@@ -93,8 +93,10 @@ export const strings = {
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
     noPlayers: 'Aucun joueur pour l’instant. Ils rejoignent en scannant le QR code de la TV.',
+    hostJoinTitle: 'Toi aussi, tu joues !',
     launchButton: 'Lancer la partie',
     launchSoon: 'Le lancement arrivera à la prochaine étape.',
+    notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,
   },
   profile: {
     editButton: 'Modifier mon profil',

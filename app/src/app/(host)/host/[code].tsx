@@ -1,3 +1,4 @@
+import { canLaunchGame } from '@shared/players';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import type { Session } from '@shared/types';
 import * as Clipboard from 'expo-clipboard';
@@ -6,14 +7,16 @@ import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { BigButton } from '@/components/ui/BigButton';
+import { JoinForm } from '@/components/player/JoinForm';
 import { PlayerList } from '@/components/player/PlayerList';
+import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { usePresence } from '@/hooks/usePresence';
 import { receiverUrl } from '@/lib/createGame';
 
 // Lobby de l'hôte : code, lien de l'écran TV, joueurs en direct. Servira aussi pendant la partie.
@@ -40,7 +43,20 @@ function HostLobby({ code }: { code: string }) {
     return <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>;
   }
 
-  const players = session.value.players ?? {};
+  return <LobbyContent code={code} session={session.value} />;
+}
+
+function LobbyContent({ code, session }: { code: string; session: Session }) {
+  // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
+  const uid = session.hostUid;
+  const players = session.players ?? {};
+  const isRegistered = players[uid] !== undefined;
+  const [isEditing, setIsEditing] = useState(false);
+  // Même présence que les autres joueurs : il compte dans les joueurs connectés.
+  usePresence(code, isRegistered ? uid : null);
+
+  const canLaunch = canLaunchGame(players);
+
   return (
     <>
       <View style={styles.codeBlock}>
@@ -50,15 +66,32 @@ function HostLobby({ code }: { code: string }) {
 
       <ReceiverLink code={code} />
 
+      {!isRegistered || isEditing ? (
+        <View style={styles.section}>
+          <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
+          <JoinForm
+            code={code}
+            uid={uid}
+            status={session.status}
+            players={players}
+            edit={isRegistered ? { onDone: () => setIsEditing(false) } : undefined}
+          />
+        </View>
+      ) : (
+        <BigButton label={strings.profile.editButton} variant="secondary" onPress={() => setIsEditing(true)} />
+      )}
+
       {Object.keys(players).length === 0 ? (
         <Text style={textStyles.muted}>{strings.hostLobby.noPlayers}</Text>
       ) : (
-        <PlayerList players={players} />
+        <PlayerList players={players} highlightedUid={isRegistered ? uid : undefined} />
       )}
 
-      {/* Le lancement (étape 3.7) vérifiera MIN_PLAYERS. */}
-      <BigButton label={strings.hostLobby.launchButton} onPress={() => {}} disabled />
-      <Text style={[textStyles.muted, styles.centered]}>{strings.hostLobby.launchSoon}</Text>
+      {/* Le lancement lui-même arrive avec le moteur de partie (étape D). */}
+      <BigButton label={strings.hostLobby.launchButton} onPress={() => {}} disabled={!canLaunch} />
+      <Text style={[textStyles.muted, styles.centered]}>
+        {canLaunch ? strings.hostLobby.launchSoon : strings.hostLobby.notEnoughPlayers}
+      </Text>
     </>
   );
 }
@@ -100,6 +133,9 @@ const styles = StyleSheet.create({
     fontSize: 64,
     fontWeight: '900',
     letterSpacing: 12,
+  },
+  section: {
+    gap: Spacing.three,
   },
   linkBlock: {
     gap: Spacing.two,
