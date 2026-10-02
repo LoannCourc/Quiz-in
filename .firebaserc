@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "quiz-in-7dbd6"
+  },
+  "targets": {
+    "quiz-in-7dbd6": {
+      "hosting": {
+        "tv": ["quiz-in-7dbd6"],
+        "players": ["quizin-jouer"]
+      }
+    }
   }
 }

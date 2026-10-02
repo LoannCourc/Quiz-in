@@ -1,3 +1,4 @@
-// Adresse encodée dans le QR code du lobby (spec 6.6). Provisoire : l'URL réelle
-// de Firebase Hosting sera branchée quand le client joueur web sera publié.
-export const JOIN_URL_BASE = 'https://quiz-in.web.app/join/'
+import { PLAYERS_SITE_URL } from '@shared/constants'
+
+// Adresse encodée dans le QR code du lobby (spec 6.6), réglée dans shared/constants.ts.
+export const JOIN_URL_BASE = `${PLAYERS_SITE_URL}/join/`
