@@ -35,6 +35,7 @@ const PUBLIC_FIELDS = [
   'status',
   'settings',
   'currentIndex',
+  'questionCount',
   'phaseStartedAt',
   'phaseEndsAt',
   'pausedFrom',

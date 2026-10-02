@@ -50,6 +50,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
   - `firebase deploy --only hosting:players` : site des joueurs (`quizin-play.web.app`).
   - `firebase deploy --only database` : règles de sécurité.
 - Claude propose la commande ; il ne déploie pas lui-même. Les builds se font automatiquement avant le déploiement (`predeploy`).
+- Quand le code lit un nouveau champ public, les règles doivent être déployées (`firebase deploy --only database`) avant de tester dans le navigateur. Après chaque changement de règles : tests d'émulateur, puis déploiement, puis test navigateur.
 
 ## Import du contenu dans la console Firebase
 - Procédure détaillée : `content/README.md`. Un nœud à la fois : `import/quizzes.json` sur `/quizzes`, puis `import/questions.json` sur `/questions`.

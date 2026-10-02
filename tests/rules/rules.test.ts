@@ -217,6 +217,79 @@ describe('Hôte et état de la partie', () => {
   })
 })
 
+describe('Nombre de questions (questionCount)', () => {
+  // Écritures du lancement : un seul update() multi-chemins, comme le fera le moteur de l'hôte.
+  function launch(uid: string, questionCount: unknown) {
+    return db(uid)
+      .ref(SESSION)
+      .update({
+        status: 'starting',
+        questionCount,
+        currentIndex: 0,
+        phaseStartedAt: Date.now(),
+        phaseEndsAt: Date.now() + 3_000,
+      })
+  }
+
+  test('lecture par un joueur et par la TV (autre utilisateur connecté)', async () => {
+    await seedSession({ questionCount: 10 })
+    expect((await assertSucceeds(db(PLAYER).ref(`${SESSION}/questionCount`).once('value'))).val()).toBe(10)
+    expect((await assertSucceeds(db(OTHER).ref(`${SESSION}/questionCount`).once('value'))).val()).toBe(10)
+  })
+
+  test('lecture refusée sans connexion', async () => {
+    await seedSession({ questionCount: 10 })
+    await assertFails(db(null).ref(`${SESSION}/questionCount`).once('value'))
+  })
+
+  test('écriture par un joueur refusée', async () => {
+    await seedSession({ status: 'starting' })
+    await assertFails(db(PLAYER).ref(`${SESSION}/questionCount`).set(10))
+    await seedSession({ status: 'lobby' })
+    await assertFails(launch(PLAYER, 10))
+  })
+
+  test("lancement par l'hôte : status starting et questionCount dans le même update", async () => {
+    await seedSession({ status: 'lobby' })
+    await assertSucceeds(launch(HOST, 10))
+    expect(await readAsAdmin(`${SESSION}/questionCount`)).toBe(10)
+  })
+
+  test('écriture de questionCount en lobby, sans lancement, refusée', async () => {
+    await seedSession({ status: 'lobby' })
+    await assertFails(db(HOST).ref(`${SESSION}/questionCount`).set(10))
+  })
+
+  test('écriture de questionCount hors passage à starting refusée (pendant question)', async () => {
+    await seedSession({ status: 'question', questionCount: 10 })
+    await assertFails(db(HOST).ref(`${SESSION}/questionCount`).set(8))
+    await assertFails(db(HOST).ref(SESSION).update({ currentIndex: 1, questionCount: 8 }))
+  })
+
+  test('valeurs 0, 51 et 2,5 refusées', async () => {
+    for (const value of [0, 51, 2.5, '10']) {
+      await seedSession({ status: 'lobby' })
+      await assertFails(launch(HOST, value))
+    }
+  })
+
+  test('update multi-chemins vers question sans toucher questionCount accepté', async () => {
+    await seedSession({ status: 'starting', questionCount: 10 })
+    await assertSucceeds(
+      db(HOST)
+        .ref(SESSION)
+        .update({ status: 'question', currentIndex: 0, phaseStartedAt: Date.now(), phaseEndsAt: Date.now() + 20_000 }),
+    )
+    expect(await readAsAdmin(`${SESSION}/questionCount`)).toBe(10)
+  })
+
+  test("nouvelle valeur acceptée quand l'hôte relance une partie (lobby puis starting)", async () => {
+    await seedSession({ status: 'lobby', questionCount: 10 })
+    await assertSucceeds(launch(HOST, 7))
+    expect(await readAsAdmin(`${SESSION}/questionCount`)).toBe(7)
+  })
+})
+
 describe('Joueurs', () => {
   const entry = (name: string) => ({ name, avatar: '🐼', connected: true })
 

@@ -24,6 +24,10 @@
           ".read": "auth != null",
           ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64"
         },
+        "questionCount": {
+          ".read": "auth != null",
+          ".validate": "newData.parent().child('status').val() == 'starting' && newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 1 && newData.val() <= 50"
+        },
         "status": {
           ".read": "auth != null",
           ".validate": "newData.isString() && newData.val().matches(/^(lobby|starting|question|reveal|validation|scores|paused|ended)$/)"

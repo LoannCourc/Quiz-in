@@ -185,6 +185,7 @@ sessions/{code}
   status: "lobby|starting|question|reveal|validation|scores|paused|ended"
   settings: { answerMode: "free|choice", speedBonus, control, teams }
   currentIndex
+  questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
   phaseStartedAt, phaseEndsAt         // horodatage serveur
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   currentQuestion: { text, options?, difficulty, timeLimit }   // SANS la bonne réponse

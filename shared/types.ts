@@ -110,6 +110,8 @@ export interface PublicSession {
   status: GameStatus;
   settings: SessionSettings;
   currentIndex: number;
+  // Nombre de questions de la partie : écrit par l'hôte au lancement, absent en lobby.
+  questionCount?: number;
   phaseStartedAt: number;
   phaseEndsAt: number;
   // Renseignés en PAUSED : état à reprendre et temps restant de la phase interrompue.
