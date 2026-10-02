@@ -36,7 +36,7 @@ export const strings = {
       full: `Cette partie est complète (${MAX_PLAYERS} joueurs maximum).`,
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
     } satisfies Record<JoinRefusal, string>,
-    errorPrefix: 'Erreur de connexion :',
+    joinFailed: 'Impossible de rejoindre la partie, réessaie.',
     submitFailed: 'L’inscription a échoué. Réessaie dans un instant.',
   },
   lobby: {

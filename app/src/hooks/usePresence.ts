@@ -17,8 +17,9 @@ export function usePresence(code: string, uid: PlayerId | null): void {
       onDisconnect(connectedRef)
         .set(false)
         .then(() => set(connectedRef, true))
-        .catch(() => {
-          // Échec sans conséquence pour l'affichage : la prochaine reconnexion réessaiera.
+        .catch((error: unknown) => {
+          // Sans conséquence pour l'affichage (la prochaine reconnexion réessaiera), mais signalé.
+          console.warn('[presence] Écriture de la présence refusée ou échouée', error);
         });
     });
   }, [code, uid]);

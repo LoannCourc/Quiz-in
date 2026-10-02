@@ -12,7 +12,8 @@ async function hasAnswered(code: string, uid: PlayerId, index: number): Promise<
   try {
     const snapshot = await get(ref(db, `sessions/${code}/answeredBy/${index}/${uid}`));
     return snapshot.val() === true;
-  } catch {
+  } catch (error) {
+    console.warn('[answer] Relecture de answeredBy impossible', error);
     return false;
   }
 }

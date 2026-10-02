@@ -52,7 +52,8 @@ function JoinRoom({ code }: { code: string }) {
     case 'loading':
       return <PlayerNotice message={strings.join.loading} />;
     case 'error':
-      return <PlayerNotice message={`${strings.join.errorPrefix} ${state.detail}`} tone="error" />;
+      // Le détail technique est dans la console (usePlayerSession).
+      return <PlayerNotice message={strings.join.joinFailed} tone="error" />;
     case 'notFound':
       return <PlayerNotice message={strings.join.refusals.notFound} tone="error" showOtherCode />;
   }

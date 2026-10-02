@@ -3,6 +3,7 @@ import { getAuth, signInAnonymously, type User } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 
 import { createAuth } from './createAuth';
+import { traceJoin } from './devLog';
 
 // Expo n'injecte une variable EXPO_PUBLIC_* que si elle est lue en toutes lettres
 // (pas de déstructuration de process.env).
@@ -39,8 +40,10 @@ export const db = getDatabase(app);
 export async function ensureSignedIn(): Promise<User> {
   await auth.authStateReady();
   if (auth.currentUser) {
+    traceJoin('session anonyme restaurée');
     return auth.currentUser;
   }
+  traceJoin('aucune session enregistrée : création d’un utilisateur anonyme');
   const credential = await signInAnonymously(auth);
   return credential.user;
 }
