@@ -8,8 +8,12 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - Phase 0 (préparation), phase 1 (Expo + Firebase temps réel), phase 2 (récepteur TV, déployé) : terminées.
 - Phase 3 (joueurs et moteur de partie) : en cours.
   - 3.1 règles de sécurité et leurs tests ; 3.2 rejoindre une partie et lobby joueur ; 3.3 modification du profil dans le lobby ; 3.4 site des joueurs (`quizin-play`) ; 3.5 fondations du moteur côté hôte (catalogue, fiche du quiz, création de partie, lobby hôte) : **terminées**.
-  - **Prochaine étape : 3.6.** Les questions (`questions/`) ne sont encore lues par aucun écran ; leur validation est prête dans `shared/quizValidation.ts`.
+  - 3.6 partie jouable en choix multiples, **en cours** :
+    - A (l'hôte s'inscrit comme joueur, « Lancer » à 2 joueurs connectés), B (écrans du joueur, composants purs + démo `/debug/player`), C (envoi de la réponse, un seul `update()` multi-chemins) : **terminées**.
+    - Ordre suivant, avec validation du développeur entre chaque bloc : **T** (test manuel de C), **DA** (direction artistique, DA1 → DA3), **D** (moteur de l'hôte, D1 → D4).
+  - Les questions (`questions/`) ne sont encore lues par aucun écran ; leur validation est prête dans `shared/quizValidation.ts`.
 - Mettre à jour cette section à chaque fin d'étape.
+- **À faire plus tard, seulement avec l'accord du développeur** : supprimer l'ancien site Hosting `quizin-jouer` une fois `quizin-play` testé ; exclure le code de démo (`/debug/*`, `app/src/debug/`) du bundle publié avant le lancement.
 
 ## Stack
 - **App hôte + client joueur web** : Expo (React Native) + TypeScript, routes `expo-router`. Le même code est exporté en web pour les joueurs.
@@ -23,7 +27,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - `shared/` : types, constantes de jeu et logique pure (déroulé, points, classement, validation des réponses et des données), importés via l'alias `@shared/...` (déclaré dans les `tsconfig`, `app/metro.config.js` et `receiver/vite.config.ts`).
 - `content/` : quiz sources (`quizzes/*.json`) et script qui génère les fichiers d'import (voir `content/README.md`).
 - `tests/unit/` : tests Vitest de `shared/`. `tests/rules/` : tests des règles de sécurité sur l'émulateur.
-- `docs/` : spec. `database.rules.json` : règles de sécurité. `firebase.json` / `.firebaserc` : Hosting et émulateurs.
+- `docs/` : spec et maquettes (`design/`). `database.rules.json` : règles de sécurité. `firebase.json` / `.firebaserc` : Hosting et émulateurs.
 
 ## Environnement du développeur
 - Windows, terminal PowerShell, dossier de travail `C:\dev\quiz-in`. Pas de Python installé.
@@ -72,6 +76,22 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - **Limite connue acceptée au MVP** : le catalogue `questions/` (avec les bonnes réponses) est lisible par tout utilisateur connecté, car n'importe quel utilisateur anonyme peut devenir hôte. Correction possible plus tard via une Cloud Function (spec 7).
 - Le récepteur TV est une simple page d'affichage, sans interaction. Il se teste d'abord dans un navigateur, puis sur la vraie TV.
 - Animations TV légères (CSS) pour tourner sur de vieux Chromecast.
+
+## Direction artistique « Plateau TV » (validée)
+Références : `docs/design/` (maquettes mobile et TV). Esprit plateau de jeu télévisé, festif, presque « too much », fond sombre : le joueur est toujours accaparé par l'écran.
+- **Tokens centralisés, jamais de couleur en dur dans un écran** : app → `app/src/constants/appTheme.ts` et `components/ui/` (`Screen`, `BigButton`, `textStyles`) ; récepteur → un `theme.css` de variables CSS.
+- **Fond** : dégradé radial `#7a35d9` (haut, centre) → `#3a1280` → `#170646`, identique sur TV.
+- **Texte** : `#ffffff` sur fond sombre ; encre `#1b0a45` sur fond clair et dans les pastilles de lettre.
+- **Accents** : rose `#ff3d8b`, cyan `#3fe9ff`, or `#ffd23d`, vert `#7dff9a`.
+- **Réponses** : A rose `#ff6fa8`, B cyan `#3fe9ff`, C or `#ffd23d`, D vert `#7dff9a`, texte `#1b0a45`. La couleur ne porte jamais seule l'information : toujours la lettre.
+- **Polices** : Bowlby One (titres, chiffres, scores) et Nunito 700/800/900 (texte), hébergées localement (aucune dépendance réseau sur la TV). Avatars : emojis.
+- **Formes** : pilules (rayon 44 px sur mobile) pour les réponses, cartes arrondies (26 à 34 px), ombre dure décalée `0 7px 0 rgba(0,0,0,.35)`, contour blanc pour la sélection.
+- **Règles strictes** :
+  - Pas de bandeau d'ampoules, de bordure décorative haut/bas ni de bandeau « scotch » : tout ce qui n'informe pas est supprimé.
+  - Titres Bowlby One accentués (RÉPONSE, RÉVÉLATION…) : `line-height` ≥ 1,3 et marge suffisante ; un accent ne touche jamais la ligne du dessus.
+  - Un écran = un seul message principal, très gros.
+  - TV : animations CSS uniquement (`transform`, `opacity`), pas d'ombre floue ni de `blur`. Confettis : 10 à 15 éléments CSS maximum, seulement à la révélation et à la fin.
+  - La DA ne change aucune logique de jeu.
 
 ## Règles de travail
 Le développeur est expérimenté en gestion de projet et en Unity/C#, mais **débutant en React Native, TypeScript et Firebase**. Sa priorité est de **livrer le MVP** : c'est toi qui écris le code, lui le relit et le teste. Il n'a pas besoin d'un cours, mais doit comprendre ce qui est fait.
