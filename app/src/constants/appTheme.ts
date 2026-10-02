@@ -6,6 +6,8 @@ export const AppColors = {
   textMuted: '#b8c2e8',
   accent: '#ffd23f',
   onAccent: '#1a1300',
+  correct: '#3ddc84',
+  onCorrect: '#002611',
   wrong: '#ff5c6c',
 } as const;
 
@@ -18,4 +20,6 @@ export const AppSizes = {
   textBody: 18,
   textLarge: 24,
   textTitle: 32,
+  // Compte à rebours et chiffres mis en avant (3-2-1, points gagnés).
+  textHuge: 64,
 } as const;

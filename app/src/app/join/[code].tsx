@@ -3,6 +3,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
@@ -13,7 +14,9 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
 import { usePresence } from '@/hooks/usePresence';
+import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { getEntryRefusal } from '@/lib/joinGame';
+import { IDLE_ANSWER } from '@/lib/playerGame';
 
 // Adresse encodée dans le QR code de la TV : /join/CODE (spec 6.6).
 export default function JoinRoomScreen() {
@@ -74,6 +77,7 @@ interface RegisteredPlayerProps {
 // Joueur déjà inscrit : lobby, modification du profil, ou partie en cours.
 function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const serverOffsetMs = useServerTimeOffset();
   const { uid, status, players } = state;
 
   if (status !== 'lobby') {
@@ -81,9 +85,11 @@ function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
     // l'écriture) et on rappelle le profil réellement enregistré.
     const me = players[uid];
     return (
-      <PlayerNotice
-        message={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : strings.lobby.inGame}
-      />
+      <>
+        {isEditing && <PlayerNotice message={strings.profile.editInterrupted(me.avatar, me.name)} />}
+        {/* L'envoi de la réponse est branché à l'étape C. */}
+        <PlayerGame session={state.session} uid={uid} serverOffsetMs={serverOffsetMs} answer={IDLE_ANSWER} onAnswer={() => {}} />
+      </>
     );
   }
 

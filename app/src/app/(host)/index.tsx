@@ -61,9 +61,14 @@ function CatalogScreen() {
         <CatalogList entries={entries} theme={theme} level={level} onTheme={setTheme} onLevel={setLevel} />
       )}
 
-      <Link href="/debug/counter" style={styles.debugLink}>
-        {strings.catalog.debugLink}
-      </Link>
+      <View style={styles.debugLinks}>
+        <Link href="/debug/player" style={styles.debugLink}>
+          {strings.catalog.playerDemoLink}
+        </Link>
+        <Link href="/debug/counter" style={styles.debugLink}>
+          {strings.catalog.debugLink}
+        </Link>
+      </View>
     </Screen>
   );
 }
@@ -113,8 +118,10 @@ const styles = StyleSheet.create({
   filter: {
     gap: Spacing.two,
   },
-  debugLink: {
+  debugLinks: {
     marginTop: 'auto',
+  },
+  debugLink: {
     paddingVertical: Spacing.three,
     color: AppColors.textMuted,
     textAlign: 'center',

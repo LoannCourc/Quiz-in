@@ -1,4 +1,4 @@
-import type { GameStatus, PlayerId } from '@shared/types';
+import type { GameStatus, PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref, type Unsubscribe } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
@@ -10,22 +10,44 @@ export type PlayerSessionState =
   | { kind: 'loading' }
   | { kind: 'notFound' }
   | { kind: 'error'; detail: string }
-  | { kind: 'ready'; uid: PlayerId; status: GameStatus; players: LobbyPlayers };
+  | { kind: 'ready'; uid: PlayerId; status: GameStatus; players: LobbyPlayers; session: PublicSession };
 
-interface Fields {
-  status?: GameStatus | null;
-  players?: LobbyPlayers | null;
-}
+// Champs lisibles par un joueur : tous sauf answers (réservé à l'hôte). Les règles interdisent
+// de lire sessions/{code} d'un bloc : on s'abonne à chaque champ séparément, comme la TV.
+const PUBLIC_FIELDS = [
+  'hostUid',
+  'quizId',
+  'status',
+  'settings',
+  'currentIndex',
+  'phaseStartedAt',
+  'phaseEndsAt',
+  'pausedFrom',
+  'remainingMs',
+  'currentQuestion',
+  'reveal',
+  'players',
+  'answeredBy',
+] as const satisfies readonly (keyof PublicSession)[];
 
-function toState(uid: PlayerId, fields: Fields): PlayerSessionState {
-  if (fields.status === undefined || fields.players === undefined) return { kind: 'loading' };
+type PublicField = (typeof PUBLIC_FIELDS)[number];
+type FieldValues = Partial<Record<PublicField, unknown>>;
+
+function toState(uid: PlayerId, values: FieldValues, received: Set<PublicField>): PlayerSessionState {
+  // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
+  if (received.size < PUBLIC_FIELDS.length) return { kind: 'loading' };
   // status est toujours écrit par l'hôte : s'il manque, la partie n'existe pas.
-  if (fields.status === null) return { kind: 'notFound' };
-  // La base ne stocke pas les objets vides : players manque tant que personne n'a rejoint.
-  return { kind: 'ready', uid, status: fields.status, players: fields.players ?? {} };
+  if (values.status == null) return { kind: 'notFound' };
+  // Forme garantie par les règles de validation de la base (database.rules.json).
+  const raw = values as PublicSession;
+  // La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
+  const players = raw.players ?? {};
+  const reveal = raw.reveal && { ...raw.reveal, stats: raw.reveal.stats ?? {} };
+  const session: PublicSession = { ...raw, players, reveal };
+  return { kind: 'ready', uid, status: session.status, players, session };
 }
 
-// Connexion anonyme, puis abonnement en temps réel aux seuls champs utiles au joueur.
+// Connexion anonyme, puis abonnement en temps réel aux champs publics de la partie.
 // Jamais la session d'un bloc (refusé par les règles), ni questions ni answers.
 export function usePlayerSession(code: string): PlayerSessionState {
   const [state, setState] = useState<PlayerSessionState>({ kind: 'loading' });
@@ -33,18 +55,20 @@ export function usePlayerSession(code: string): PlayerSessionState {
   useEffect(() => {
     let unsubscribers: Unsubscribe[] = [];
     let isActive = true;
-    const fields: Fields = {};
+    const values: FieldValues = {};
+    const received = new Set<PublicField>();
     const onError = (error: unknown) => setState({ kind: 'error', detail: toErrorMessage(error) });
 
     ensureSignedIn()
       .then((user) => {
         if (!isActive) return;
-        unsubscribers = (['status', 'players'] as const).map((field) =>
+        unsubscribers = PUBLIC_FIELDS.map((field) =>
           onValue(
             ref(db, `sessions/${code}/${field}`),
             (snapshot) => {
-              fields[field] = snapshot.val();
-              setState(toState(user.uid, fields));
+              values[field] = snapshot.val() ?? undefined;
+              received.add(field);
+              setState(toState(user.uid, values, received));
             },
             onError,
           ),

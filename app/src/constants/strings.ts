@@ -1,8 +1,9 @@
 import { MAX_PLAYERS, MIN_PLAYERS, PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from '@shared/constants';
 import type { GameOption } from '@shared/quizCatalog';
-import type { AnswerMode, DifficultyLevel } from '@shared/types';
+import type { AnswerMode, Difficulty, DifficultyLevel } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
+import type { AnswerRefusal } from '@/lib/playerGame';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -42,7 +43,6 @@ export const strings = {
     playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''} connecté${count > 1 ? 's' : ''}`,
     you: '(toi)',
     waiting: 'En attente du lancement…',
-    inGame: 'Tu as retrouvé ta place. La partie est en cours.',
   },
   catalog: {
     title: 'Choisis un quiz',
@@ -57,6 +57,7 @@ export const strings = {
     difficulty: (level: string, average: number) => `${level} (${String(average).replace('.', ',')})`,
     details: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
     debugLink: 'Outils de développement : compteur partagé',
+    playerDemoLink: 'Outils de développement : écrans du joueur',
   },
   quizSetup: {
     loading: 'Chargement du quiz…',
@@ -107,5 +108,57 @@ export const strings = {
     // Le profil affiché est celui lu dans la partie : il est exact même si l'écriture a échoué.
     editInterrupted: (avatar: string, name: string) =>
       `La partie a été lancée pendant la modification. Tu joues en tant que ${avatar} ${name}.`,
+  },
+  game: {
+    choiceLetters: ['A', 'B', 'C', 'D'],
+    questionLabel: (index: number) => `Question ${index + 1}`,
+    difficulties: { 1: 'Facile', 2: 'Moyen', 3: 'Difficile' } satisfies Record<Difficulty, string>,
+    secondsLeft: (seconds: number) => `${seconds} seconde${seconds > 1 ? 's' : ''} restante${seconds > 1 ? 's' : ''}`,
+    points: (points: number) => `${points} point${points > 1 ? 's' : ''}`,
+    ordinal: (rank: number) => (rank === 1 ? '1er' : `${rank}e`),
+    starting: {
+      title: 'Prépare-toi !',
+      subtitle: 'La première question arrive…',
+    },
+    question: {
+      sending: 'Envoi de ta réponse…',
+      refusals: {
+        tooLate: 'Ta réponse n’a pas été prise en compte : le temps était écoulé.',
+        failed: 'Ta réponse n’a pas pu être envoyée. Vérifie ta connexion et réessaie.',
+      } satisfies Record<AnswerRefusal, string>,
+    },
+    answerSent: {
+      title: 'Réponse envoyée',
+      yourChoice: 'Ton choix',
+      unknownChoice: 'Ta réponse est bien enregistrée.',
+      waiting: 'En attente des autres joueurs…',
+    },
+    reveal: {
+      correctAnswerLabel: 'La bonne réponse',
+      correct: 'Bonne réponse',
+      wrong: 'Raté',
+      noAnswer: 'Pas de réponse',
+      pointsWon: (points: number) => `+${points} point${points > 1 ? 's' : ''}`,
+      rank: (rank: string, playerCount: number) => `Tu es ${rank} sur ${playerCount}`,
+      total: (points: string) => `Total : ${points}`,
+    },
+    scores: {
+      title: 'Classement',
+    },
+    paused: {
+      title: 'Pause',
+      message: 'L’hôte a mis la partie en pause. Elle reprendra là où elle s’est arrêtée.',
+    },
+    ended: {
+      title: 'Partie terminée',
+      myResult: (rank: string, points: string) => `Tu termines ${rank} avec ${points}.`,
+      finalRanking: 'Classement final',
+    },
+    // État de l'option Contrôle (P1), pas encore développée.
+    waiting: 'Patiente un instant, la partie continue…',
+  },
+  playerDemo: {
+    title: 'Démo : écrans du joueur',
+    hint: 'Données factices, sans Firebase. Les appuis sur les propositions sont simulés.',
   },
 };
