@@ -14,7 +14,7 @@
       "$code": {
         ".read": "auth != null && data.child('hostUid').val() == auth.uid",
         ".write": "auth != null && (data.exists() ? data.child('hostUid').val() == auth.uid : newData.child('hostUid').val() == auth.uid)",
-        ".validate": "$code.matches(/^[A-HJ-NP-Z2-9]{4}$/) && newData.hasChildren(['hostUid', 'quizId', 'status'])",
+        ".validate": "$code.matches(/^[A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9]$/) && newData.hasChildren(['hostUid', 'quizId', 'status'])",
 
         "hostUid": {
           ".read": "auth != null",
@@ -91,7 +91,7 @@
             ".validate": "newData.hasChildren(['name', 'avatar'])",
             "name": {
               ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",
-              ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 12 && newData.val().matches(/^\\S(.*\\S)?$/)"
+              ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 12 && newData.val().matches(/^[^ ](.*[^ ])?$/)"
             },
             "avatar": {
               ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",

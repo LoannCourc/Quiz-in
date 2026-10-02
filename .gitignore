@@ -141,3 +141,6 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Journaux des émulateurs Firebase (database-debug.log, firestore-debug.log, ui-debug.log…)
+*-debug.log
