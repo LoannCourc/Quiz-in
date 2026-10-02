@@ -1,5 +1,6 @@
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { JoinForm } from '@/components/player/JoinForm';
@@ -55,18 +56,42 @@ function JoinRoom({ code }: { code: string }) {
 
   // Reprise : même session anonyme (même navigateur) = même uid, donc on retrouve son entrée.
   if (registered) {
-    return state.status === 'lobby' ? (
-      <PlayerLobby uid={state.uid} players={state.players} />
-    ) : (
-      <PlayerNotice message={strings.lobby.inGame} />
-    );
+    return <RegisteredPlayer code={code} state={state} />;
   }
 
-  const refusal = getEntryRefusal(state.status, state.players);
+  const refusal = getEntryRefusal(state.status, state.players, state.uid);
   if (refusal) {
     return <PlayerNotice message={strings.join.refusals[refusal]} tone="error" showOtherCode />;
   }
   return <JoinForm code={code} uid={state.uid} status={state.status} players={state.players} />;
+}
+
+interface RegisteredPlayerProps {
+  code: string;
+  state: Extract<PlayerSessionState, { kind: 'ready' }>;
+}
+
+// Joueur déjà inscrit : lobby, modification du profil, ou partie en cours.
+function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const { uid, status, players } = state;
+
+  if (status !== 'lobby') {
+    // Partie lancée pendant la modification : le formulaire disparaît (les règles refuseraient
+    // l'écriture) et on rappelle le profil réellement enregistré.
+    const me = players[uid];
+    return (
+      <PlayerNotice
+        message={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : strings.lobby.inGame}
+      />
+    );
+  }
+
+  return isEditing ? (
+    <JoinForm code={code} uid={uid} status={status} players={players} edit={{ onDone: () => setIsEditing(false) }} />
+  ) : (
+    <PlayerLobby uid={uid} players={players} onEditProfile={() => setIsEditing(true)} />
+  );
 }
 
 const styles = StyleSheet.create({

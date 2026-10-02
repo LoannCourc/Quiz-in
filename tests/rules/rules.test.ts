@@ -234,6 +234,32 @@ describe('Joueurs', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/players/${OTHER}`).update(entry('Tom')))
   })
 
+  // Modification du profil en lobby : même appel que le client (update sur name et avatar).
+  const profile = { name: 'Léa B', avatar: '🐸' }
+
+  test('modification du pseudo et de l’avatar acceptée en lobby', async () => {
+    await seedSession({ status: 'lobby' })
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update(profile))
+    expect(await readAsAdmin(`${SESSION}/players/${PLAYER}`)).toMatchObject({ ...profile, connected: true })
+  })
+
+  test('modification de l’avatar seul acceptée en lobby', async () => {
+    await seedSession({ status: 'lobby' })
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update({ name: 'Léa', avatar: '🐸' }))
+  })
+
+  test('modification du profil refusée dès que la partie est lancée', async () => {
+    for (const status of ['starting', 'question', 'paused', 'ended']) {
+      await seedSession({ status })
+      await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update(profile))
+    }
+  })
+
+  test("modification du profil d'un autre joueur refusée", async () => {
+    await seedSession({ status: 'lobby' })
+    await assertFails(db(OTHER).ref(`${SESSION}/players/${PLAYER}`).update(profile))
+  })
+
   test('score écrit par un joueur refusé', async () => {
     await seedSession()
     await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/score`).set(9999))

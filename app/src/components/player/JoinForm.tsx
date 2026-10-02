@@ -8,7 +8,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { strings } from '@/constants/strings';
 import { PlayerColors } from '@/constants/playerTheme';
 import { Spacing } from '@/constants/theme';
-import { getJoinRefusal, registerPlayer, type LobbyPlayers } from '@/lib/joinGame';
+import { getJoinRefusal, registerPlayer, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
 
 import { AvatarPicker } from './AvatarPicker';
 import { BigButton } from './BigButton';
@@ -19,6 +19,8 @@ interface JoinFormProps {
   uid: PlayerId;
   status: GameStatus;
   players: LobbyPlayers;
+  // Présent : modification du profil d'un joueur déjà inscrit (formulaire prérempli).
+  edit?: { onDone: () => void };
 }
 
 // Premier avatar encore libre : chacun a ainsi un avatar différent sans avoir à chercher.
@@ -27,21 +29,23 @@ function firstFreeAvatar(players: LobbyPlayers): string {
   return AVATARS.find((avatar) => !used.has(avatar)) ?? AVATARS[0];
 }
 
-export function JoinForm({ code, uid, status, players }: JoinFormProps) {
-  const [rawName, setRawName] = useState('');
-  const [avatar, setAvatar] = useState(() => firstFreeAvatar(players));
+export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
+  const current = edit ? players[uid] : undefined;
+  const [rawName, setRawName] = useState(current?.name ?? '');
+  const [avatar, setAvatar] = useState(() => current?.avatar ?? firstFreeAvatar(players));
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const name = cleanPlayerName(rawName);
   const canSubmit = isValidPlayerName(name) && !isSubmitting;
+  const texts = edit ? strings.profile : strings.join;
 
-  // Les vérifications portent sur les joueurs lus en direct dans la partie ; l'hôte vérifiera
-  // aussi de son côté. En cas de succès, la liste des joueurs reçue contient notre entrée
-  // et l'écran parent bascule tout seul sur le lobby.
+  // Les vérifications portent sur les joueurs lus en direct dans la partie, sans compter
+  // le joueur lui-même ; l'hôte vérifiera aussi de son côté. Après une inscription réussie,
+  // la liste reçue contient notre entrée et l'écran parent bascule tout seul sur le lobby.
   async function submit() {
     if (!canSubmit) return;
-    const refusal = getJoinRefusal(status, players, name);
+    const refusal = getJoinRefusal(status, players, uid, name);
     if (refusal) {
       setError(strings.join.refusals[refusal]);
       return;
@@ -49,9 +53,15 @@ export function JoinForm({ code, uid, status, players }: JoinFormProps) {
     setError(null);
     setIsSubmitting(true);
     try {
-      await registerPlayer(code, uid, name, avatar);
+      if (edit) {
+        await updateProfile(code, uid, name, avatar);
+        edit.onDone();
+      } else {
+        await registerPlayer(code, uid, name, avatar);
+      }
     } catch {
-      setError(strings.join.joinFailed);
+      // Cas typique : la partie vient d'être lancée et les règles refusent l'écriture.
+      setError(texts.submitFailed);
       setIsSubmitting(false);
     }
   }
@@ -86,10 +96,18 @@ export function JoinForm({ code, uid, status, players }: JoinFormProps) {
       {error && <Text style={playerTextStyles.error}>{error}</Text>}
 
       <BigButton
-        label={isSubmitting ? strings.join.joining : strings.join.joinButton}
+        label={isSubmitting ? texts.submitting : texts.submitButton}
         onPress={submit}
         disabled={!canSubmit}
       />
+      {edit && (
+        <BigButton
+          label={strings.profile.cancelButton}
+          variant="secondary"
+          onPress={edit.onDone}
+          disabled={isSubmitting}
+        />
+      )}
     </View>
   );
 }

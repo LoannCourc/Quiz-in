@@ -6,11 +6,13 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
+import { BigButton } from './BigButton';
 import { playerTextStyles } from './playerTextStyles';
 
 interface PlayerLobbyProps {
   uid: PlayerId;
   players: LobbyPlayers;
+  onEditProfile: () => void;
 }
 
 // Joueurs connectés, soi-même en premier puis par ordre alphabétique.
@@ -21,7 +23,7 @@ function connectedPlayers(uid: PlayerId, players: LobbyPlayers) {
     .sort((a, b) => Number(b.id === uid) - Number(a.id === uid) || a.name.localeCompare(b.name, 'fr'));
 }
 
-export function PlayerLobby({ uid, players }: PlayerLobbyProps) {
+export function PlayerLobby({ uid, players, onEditProfile }: PlayerLobbyProps) {
   const list = connectedPlayers(uid, players);
 
   return (
@@ -44,6 +46,8 @@ export function PlayerLobby({ uid, players }: PlayerLobbyProps) {
       </View>
 
       <Text style={[playerTextStyles.muted, styles.waiting]}>{strings.lobby.waiting}</Text>
+
+      <BigButton label={strings.profile.editButton} variant="secondary" onPress={onEditProfile} />
     </View>
   );
 }

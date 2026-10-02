@@ -22,8 +22,8 @@ export const strings = {
     namePlaceholder: 'Ex. : Léa',
     nameHint: `${PLAYER_NAME_MIN_LENGTH} à ${PLAYER_NAME_MAX_LENGTH} caractères`,
     avatarLabel: 'Ton avatar',
-    joinButton: 'Rejoindre',
-    joining: 'Inscription…',
+    submitButton: 'Rejoindre',
+    submitting: 'Inscription…',
     roomLabel: (code: string) => `Partie ${code}`,
     otherCodeButton: 'Saisir un autre code',
     refusals: {
@@ -34,12 +34,22 @@ export const strings = {
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
     } satisfies Record<JoinRefusal, string>,
     errorPrefix: 'Erreur de connexion :',
-    joinFailed: 'L’inscription a échoué. Réessaie dans un instant.',
+    submitFailed: 'L’inscription a échoué. Réessaie dans un instant.',
   },
   lobby: {
     playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''} connecté${count > 1 ? 's' : ''}`,
     you: '(toi)',
     waiting: 'En attente du lancement…',
     inGame: 'Tu as retrouvé ta place. La partie est en cours.',
+  },
+  profile: {
+    editButton: 'Modifier mon profil',
+    submitButton: 'Enregistrer',
+    submitting: 'Enregistrement…',
+    cancelButton: 'Annuler',
+    submitFailed: 'La modification n’a pas pu être enregistrée. La partie vient peut-être d’être lancée.',
+    // Le profil affiché est celui lu dans la partie : il est exact même si l'écriture a échoué.
+    editInterrupted: (avatar: string, name: string) =>
+      `La partie a été lancée pendant la modification. Tu joues en tant que ${avatar} ${name}.`,
   },
 };

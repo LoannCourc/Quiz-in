@@ -84,7 +84,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 ### 4.2 Joueur
 1. Scanne le **QR code** affiché sur la TV (ou ouvre l'adresse et saisit le code de salle).
 2. Une **page web** s'ouvre, sans installation. Il saisit un **pseudo** (2 à 12 caractères) et choisit un **avatar** dans une liste prédéfinie.
-3. Il attend dans le lobby et voit les autres arriver.
+3. Il attend dans le lobby et voit les autres arriver. Tant que la partie n'est pas lancée, il peut modifier son pseudo et son avatar (mêmes règles qu'à l'inscription).
 4. À chaque **question**, son téléphone affiche le compte à rebours et :
    - en *Réponse libre* : un champ de saisie et un bouton « Valider » ;
    - en *Choix multiples* : les 4 propositions, en texte lisible, sous forme de gros boutons.
