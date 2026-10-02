@@ -1,0 +1,60 @@
+/* Direction artistique « Plateau TV » : seul endroit où les couleurs, polices et formes sont définies.
+   Les écrans n'utilisent que ces variables (voir CLAUDE.md, section Direction artistique). */
+
+/* Polices hébergées avec l'app (aucune dépendance réseau sur la TV), graisses utilisées seulement. */
+@import '@fontsource/bowlby-one/400.css';
+@import '@fontsource/nunito/700.css';
+@import '@fontsource/nunito/800.css';
+@import '@fontsource/nunito/900.css';
+
+:root {
+  /* Palette */
+  --ink: #1b0a45;
+  --white: #ffffff;
+  --pink: #ff3d8b;
+  --pink-light: #ff6fa8;
+  --cyan: #3fe9ff;
+  --gold: #ffd23d;
+  --green: #7dff9a;
+  --lavender: #c9b8ff;
+
+  /* Fond : dégradé radial, centré en haut. */
+  --bg-top: #7a35d9;
+  --bg-middle: #3a1280;
+  --bg-bottom: #170646;
+  --background: radial-gradient(ellipse 120% 90% at 50% 0%, var(--bg-top) 0%, var(--bg-middle) 45%, var(--bg-bottom) 100%);
+
+  /* Rôles (noms utilisés par les écrans) */
+  --color-background: var(--bg-bottom);
+  --color-surface: rgba(255, 255, 255, 0.12);
+  --color-card: var(--white);
+  --color-text: var(--white);
+  --color-text-muted: var(--lavender);
+  --color-accent: var(--gold);
+  --color-on-accent: var(--ink);
+  --color-correct: var(--green);
+  --color-on-correct: var(--ink);
+  --color-wrong: var(--pink);
+  --color-highlight: var(--pink);
+  --color-selection: var(--white);
+
+  /* Réponses A, B, C, D : la lettre accompagne toujours la couleur. */
+  --choice-0: var(--pink-light);
+  --choice-1: var(--cyan);
+  --choice-2: var(--gold);
+  --choice-3: var(--green);
+  --on-choice: var(--ink);
+
+  /* Polices */
+  --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;
+  --font-text: 'Nunito', system-ui, 'Segoe UI', sans-serif;
+  /* Bowlby One a des accents hauts : jamais moins de 1.3 pour un titre sur plusieurs lignes. */
+  --display-line-height: 1.3;
+
+  /* Formes (1 rem = 30 px en 1080p) */
+  --radius-pill: 2.2rem;
+  --radius-card: 1.1rem;
+  /* Ombre dure décalée : pas de flou, peu coûteuse pour un vieux Chromecast. */
+  --shadow-hard: 0 0.3rem 0 rgba(0, 0, 0, 0.35);
+  --selection-outline: 0.2rem solid var(--color-selection);
+}

@@ -1,19 +1,12 @@
-/* Thème TV : fond sombre et texte très contrasté, lisible à 3 mètres. */
-:root {
-  --color-background: #0e1430;
-  --color-surface: #1f2a55;
-  --color-text: #ffffff;
-  --color-text-muted: #b8c2e8;
-  --color-accent: #ffd23f;
-  --color-on-accent: #1a1300;
-  --color-correct: #3ddc84;
-  --color-on-correct: #002611;
-  --color-wrong: #ff5c6c;
+/* Mise en page commune de la TV. Couleurs, polices et formes : theme.css uniquement. */
+@import './theme.css';
 
+:root {
   /* Unité de base proportionnelle à l'écran : 30px en 1920×1080, 20px en 1280×720.
      Tout le reste est exprimé en rem, donc la mise en page est identique sur toutes les TV. */
   font-size: min(100vw / 64, 100vh / 36);
-  font-family: Roboto, system-ui, 'Segoe UI', sans-serif;
+  font-family: var(--font-text);
+  font-weight: 800;
   color: var(--color-text);
   background: var(--color-background);
   -webkit-font-smoothing: antialiased;
@@ -28,6 +21,8 @@
 body {
   margin: 0;
   overflow: hidden;
+  background: var(--background);
+  min-height: 100vh;
 }
 
 h1,
@@ -46,25 +41,27 @@ p {
 }
 
 .screen-title {
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: 3.2rem;
-  font-weight: 900;
+  line-height: var(--display-line-height);
 }
 
 /* Couleurs des 4 propositions, communes à la question et à la révélation. */
 .choice-0 {
-  --choice-color: #2f6fed;
+  --choice-color: var(--choice-0);
 }
 
 .choice-1 {
-  --choice-color: #e8590c;
+  --choice-color: var(--choice-1);
 }
 
 .choice-2 {
-  --choice-color: #8e44d9;
+  --choice-color: var(--choice-2);
 }
 
 .choice-3 {
-  --choice-color: #0f9d8a;
+  --choice-color: var(--choice-3);
 }
 
 .choice {
@@ -73,10 +70,12 @@ p {
   align-items: center;
   column-gap: 1.2rem;
   padding: 0.7rem 1.2rem;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-pill);
   background: var(--choice-color);
+  color: var(--on-choice);
+  box-shadow: var(--shadow-hard);
   font-size: 2.1rem;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .choice-letter {
@@ -84,14 +83,17 @@ p {
   place-items: center;
   width: 2.8rem;
   height: 2.8rem;
-  border-radius: 0.8rem;
+  border-radius: 50%;
   background: var(--choice-color);
-  color: #ffffff;
-  font-weight: 900;
+  color: var(--on-choice);
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
+/* Dans une pilule : pastille sombre, lettre blanche (maquette). */
 .choice .choice-letter {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--color-on-accent);
+  color: var(--color-text);
 }
 
 @keyframes screen-fade-in {
