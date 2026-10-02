@@ -5,9 +5,15 @@
   "targets": {
     "quiz-in-7dbd6": {
       "hosting": {
-        "tv": ["quiz-in-7dbd6"],
-        "players": ["quizin-jouer"]
+        "tv": [
+          "quiz-in-7dbd6"
+        ],
+        "players": [
+          "quizin-jouer",
+          "quizin-play"
+        ]
       }
     }
-  }
+  },
+  "etags": {}
 }

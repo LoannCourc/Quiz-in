@@ -20,6 +20,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "name": "Quiz'in",
       "output": "single",
       "favicon": "./assets/images/favicon.png"
     },

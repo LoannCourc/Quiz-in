@@ -156,7 +156,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Joueur déconnecté** : il garde son score, peut revenir avec le même pseudo et retrouve l'état en cours. Il obtient 0 point aux questions manquées.
 - **Hôte déconnecté** : la partie se met en pause automatiquement (la TV l'indique). Au-delà de 2 minutes, elle se termine.
 - **Cast interrompu** : l'hôte relance le Cast et la TV reprend à l'état courant, car l'état est stocké sur le serveur.
-- **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://<projet>.web.app/join/CODE`. Une partie est supprimée automatiquement 24 heures après sa fin.
+- **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://quizin-play.web.app/join/CODE` (site Firebase Hosting des joueurs, distinct de celui du récepteur TV). Une partie est supprimée automatiquement 24 heures après sa fin.
 
 ### 6.7 Animations et sons
 - **Pendant la question** : animations **discrètes** qui ne distraient pas ceux qui réfléchissent. Exemple : les avatars de ceux qui ont répondu s'illuminent, fond légèrement animé.

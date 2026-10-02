@@ -32,7 +32,7 @@ export const SESSION_TTL_HOURS = 24;
 
 // Site Firebase Hosting des joueurs (cible « players » dans .firebaserc). Le QR code du lobby
 // pointe vers `${PLAYERS_SITE_URL}/join/CODE` (spec 6.6).
-export const PLAYERS_SITE_URL = 'https://quizin-jouer.web.app';
+export const PLAYERS_SITE_URL = 'https://quizin-play.web.app';
 
 // Seuils de la difficulté moyenne d'un quiz : en dessous = Facile, jusqu'à = Moyen, au-delà = Difficile.
 export const DIFFICULTY_EASY_MAX = 1.67;
