@@ -4,10 +4,10 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { BigButton } from '@/components/player/BigButton';
-import { PlayerScreen } from '@/components/player/PlayerScreen';
-import { playerTextStyles } from '@/components/player/playerTextStyles';
-import { PlayerColors } from '@/constants/playerTheme';
+import { BigButton } from '@/components/ui/BigButton';
+import { Screen } from '@/components/ui/Screen';
+import { textStyles } from '@/components/ui/textStyles';
+import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -26,12 +26,12 @@ export default function JoinCodeScreen() {
   }
 
   return (
-    <PlayerScreen>
-      <Text style={playerTextStyles.title}>{strings.join.appName}</Text>
-      <Text style={[playerTextStyles.label, styles.centered]}>{strings.join.codeTitle}</Text>
+    <Screen>
+      <Text style={textStyles.title}>{strings.join.appName}</Text>
+      <Text style={[textStyles.label, styles.centered]}>{strings.join.codeTitle}</Text>
 
       <View style={styles.field}>
-        <Text style={playerTextStyles.muted}>{strings.join.codeLabel}</Text>
+        <Text style={textStyles.muted}>{strings.join.codeLabel}</Text>
         <TextInput
           value={code}
           onChangeText={(text) => {
@@ -40,24 +40,24 @@ export default function JoinCodeScreen() {
           }}
           onSubmitEditing={submit}
           placeholder={strings.join.codePlaceholder}
-          placeholderTextColor={PlayerColors.textMuted}
+          placeholderTextColor={AppColors.textMuted}
           maxLength={ROOM_CODE_LENGTH}
           autoCapitalize="characters"
           autoCorrect={false}
           autoComplete="off"
           returnKeyType="go"
-          style={[playerTextStyles.input, styles.codeInput]}
+          style={[textStyles.input, styles.codeInput]}
         />
       </View>
 
-      {error && <Text style={playerTextStyles.error}>{error}</Text>}
+      {error && <Text style={textStyles.error}>{error}</Text>}
 
       <BigButton
         label={strings.join.codeButton}
         onPress={submit}
         disabled={code.length !== ROOM_CODE_LENGTH}
       />
-    </PlayerScreen>
+    </Screen>
   );
 }
 

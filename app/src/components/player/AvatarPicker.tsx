@@ -1,7 +1,7 @@
 import { AVATARS } from '@shared/avatars';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 interface AvatarPickerProps {
@@ -34,17 +34,17 @@ const styles = StyleSheet.create({
     gap: Spacing.two,
   },
   cell: {
-    width: PlayerSizes.avatarCell,
-    height: PlayerSizes.avatarCell,
+    width: AppSizes.avatarCell,
+    height: AppSizes.avatarCell,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: PlayerSizes.radius,
+    borderRadius: AppSizes.radius,
     borderWidth: 3,
     borderColor: 'transparent',
-    backgroundColor: PlayerColors.surface,
+    backgroundColor: AppColors.surface,
   },
   selectedCell: {
-    borderColor: PlayerColors.accent,
+    borderColor: AppColors.accent,
   },
   emoji: {
     fontSize: 28,

@@ -1,12 +1,12 @@
 import type { PlayerId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
-import { playerTextStyles } from './playerTextStyles';
+import { textStyles } from '@/components/ui/textStyles';
 
 interface PlayerListProps {
   players: LobbyPlayers;
@@ -30,14 +30,14 @@ export function PlayerList({ players, highlightedUid }: PlayerListProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={playerTextStyles.label}>{strings.lobby.playerCount(list.length)}</Text>
+      <Text style={textStyles.label}>{strings.lobby.playerCount(list.length)}</Text>
       <View style={styles.list}>
         {list.map((player) => {
           const isHighlighted = player.id === highlightedUid;
           return (
             <View key={player.id} style={[styles.row, isHighlighted && styles.highlightedRow]}>
               <Text style={styles.avatar}>{player.avatar}</Text>
-              <Text style={[playerTextStyles.label, styles.name]} numberOfLines={1}>
+              <Text style={[textStyles.label, styles.name]} numberOfLines={1}>
                 {player.name}
               </Text>
               {isHighlighted && <Text style={styles.you}>{strings.lobby.you}</Text>}
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
     gap: Spacing.three,
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
-    borderRadius: PlayerSizes.radius,
+    borderRadius: AppSizes.radius,
     borderWidth: 3,
     borderColor: 'transparent',
-    backgroundColor: PlayerColors.surface,
+    backgroundColor: AppColors.surface,
   },
   highlightedRow: {
-    borderColor: PlayerColors.accent,
+    borderColor: AppColors.accent,
   },
   avatar: {
     fontSize: 32,
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   you: {
-    color: PlayerColors.accent,
-    fontSize: PlayerSizes.textBody,
+    color: AppColors.accent,
+    fontSize: AppSizes.textBody,
     fontWeight: '700',
   },
 });

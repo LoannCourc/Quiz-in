@@ -2,8 +2,8 @@ import { difficultyLevel } from '@shared/quizCatalog';
 import type { QuizSummary } from '@shared/types';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { playerTextStyles } from '@/components/player/playerTextStyles';
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { textStyles } from '@/components/ui/textStyles';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -21,8 +21,8 @@ export function QuizCard({ quiz, onPress }: QuizCardProps) {
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       <Text style={styles.theme}>{quiz.theme}</Text>
-      <Text style={playerTextStyles.label}>{quiz.title}</Text>
-      <Text style={playerTextStyles.muted}>
+      <Text style={textStyles.label}>{quiz.title}</Text>
+      <Text style={textStyles.muted}>
         {strings.catalog.difficulty(level, quiz.difficulty)} ·{' '}
         {strings.catalog.details(quiz.questionCount, quiz.estimatedMinutes)}
       </Text>
@@ -34,15 +34,15 @@ const styles = StyleSheet.create({
   card: {
     gap: Spacing.one,
     padding: Spacing.three,
-    borderRadius: PlayerSizes.radius,
-    backgroundColor: PlayerColors.surface,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
   },
   pressed: {
     opacity: 0.7,
   },
   theme: {
-    color: PlayerColors.accent,
-    fontSize: PlayerSizes.textBody,
+    color: AppColors.accent,
+    fontSize: AppSizes.textBody,
     fontWeight: '700',
   },
 });

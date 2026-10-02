@@ -6,9 +6,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { JoinForm } from '@/components/player/JoinForm';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
-import { PlayerScreen } from '@/components/player/PlayerScreen';
-import { playerTextStyles } from '@/components/player/playerTextStyles';
-import { PlayerColors } from '@/constants/playerTheme';
+import { Screen } from '@/components/ui/Screen';
+import { textStyles } from '@/components/ui/textStyles';
+import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
@@ -21,9 +21,9 @@ export default function JoinRoomScreen() {
   const code = normalizeRoomCode(params.code ?? '');
 
   return (
-    <PlayerScreen>
+    <Screen>
       <View style={styles.header}>
-        <Text style={playerTextStyles.title}>{strings.join.appName}</Text>
+        <Text style={textStyles.title}>{strings.join.appName}</Text>
         {isValidRoomCode(code) && <Text style={styles.roomCode}>{strings.join.roomLabel(code)}</Text>}
       </View>
       {/* Code validé avant toute lecture dans la base. */}
@@ -32,7 +32,7 @@ export default function JoinRoomScreen() {
       ) : (
         <PlayerNotice message={strings.join.invalidCode} tone="error" showOtherCode />
       )}
-    </PlayerScreen>
+    </Screen>
   );
 }
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     gap: Spacing.one,
   },
   roomCode: {
-    color: PlayerColors.accent,
+    color: AppColors.accent,
     fontSize: 20,
     fontWeight: '800',
     textAlign: 'center',

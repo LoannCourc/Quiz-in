@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 export interface Choice<T> {
@@ -45,18 +45,18 @@ const styles = StyleSheet.create({
     minHeight: 48,
     justifyContent: 'center',
     paddingHorizontal: Spacing.three,
-    borderRadius: PlayerSizes.radius,
-    backgroundColor: PlayerColors.surface,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
   },
   selectedChip: {
-    backgroundColor: PlayerColors.accent,
+    backgroundColor: AppColors.accent,
   },
   label: {
-    color: PlayerColors.text,
-    fontSize: PlayerSizes.textBody,
+    color: AppColors.text,
+    fontSize: AppSizes.textBody,
     fontWeight: '700',
   },
   selectedLabel: {
-    color: PlayerColors.onAccent,
+    color: AppColors.onAccent,
   },
 });

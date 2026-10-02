@@ -3,8 +3,8 @@ import { Text } from 'react-native';
 
 import { strings } from '@/constants/strings';
 
-import { BigButton } from './BigButton';
-import { playerTextStyles } from './playerTextStyles';
+import { BigButton } from '@/components/ui/BigButton';
+import { textStyles } from '@/components/ui/textStyles';
 
 interface PlayerNoticeProps {
   message: string;
@@ -16,7 +16,7 @@ interface PlayerNoticeProps {
 export function PlayerNotice({ message, tone = 'info', showOtherCode = false }: PlayerNoticeProps) {
   return (
     <>
-      <Text style={tone === 'error' ? playerTextStyles.error : playerTextStyles.body}>{message}</Text>
+      <Text style={tone === 'error' ? textStyles.error : textStyles.body}>{message}</Text>
       {showOtherCode && (
         <BigButton
           label={strings.join.otherCodeButton}

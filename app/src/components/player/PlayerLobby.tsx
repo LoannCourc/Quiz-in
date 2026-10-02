@@ -5,9 +5,9 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
-import { BigButton } from './BigButton';
+import { BigButton } from '@/components/ui/BigButton';
 import { PlayerList } from './PlayerList';
-import { playerTextStyles } from './playerTextStyles';
+import { textStyles } from '@/components/ui/textStyles';
 
 interface PlayerLobbyProps {
   uid: PlayerId;
@@ -20,7 +20,7 @@ export function PlayerLobby({ uid, players, onEditProfile }: PlayerLobbyProps) {
     <View style={styles.lobby}>
       <PlayerList players={players} highlightedUid={uid} />
 
-      <Text style={[playerTextStyles.muted, styles.waiting]}>{strings.lobby.waiting}</Text>
+      <Text style={[textStyles.muted, styles.waiting]}>{strings.lobby.waiting}</Text>
 
       <BigButton label={strings.profile.editButton} variant="secondary" onPress={onEditProfile} />
     </View>

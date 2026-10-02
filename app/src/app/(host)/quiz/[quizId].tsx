@@ -16,10 +16,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
 import { OptionToggle } from '@/components/host/OptionToggle';
-import { BigButton } from '@/components/player/BigButton';
-import { PlayerScreen } from '@/components/player/PlayerScreen';
-import { playerTextStyles } from '@/components/player/playerTextStyles';
-import { PlayerColors } from '@/constants/playerTheme';
+import { BigButton } from '@/components/ui/BigButton';
+import { Screen } from '@/components/ui/Screen';
+import { textStyles } from '@/components/ui/textStyles';
+import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
@@ -39,17 +39,17 @@ export default function QuizSetupScreen() {
   const { quizId = '' } = useLocalSearchParams<{ quizId: string }>();
 
   return (
-    <PlayerScreen>
+    <Screen>
       {/* Identifiant vérifié avant toute lecture dans la base. */}
       {isValidQuizId(quizId) ? <QuizSetup quizId={quizId} /> : <QuizNotFound />}
-    </PlayerScreen>
+    </Screen>
   );
 }
 
 function QuizNotFound() {
   return (
     <>
-      <Text style={playerTextStyles.error}>{strings.quizSetup.notFound}</Text>
+      <Text style={textStyles.error}>{strings.quizSetup.notFound}</Text>
       <BigButton label={strings.quizSetup.backToCatalog} variant="secondary" onPress={() => router.replace('/')} />
     </>
   );
@@ -93,9 +93,9 @@ function QuizSetup({ quizId }: { quizId: string }) {
     }
   }
 
-  if (quiz.kind === 'loading') return <Text style={playerTextStyles.body}>{strings.quizSetup.loading}</Text>;
+  if (quiz.kind === 'loading') return <Text style={textStyles.body}>{strings.quizSetup.loading}</Text>;
   if (quiz.kind === 'error') {
-    return <Text style={playerTextStyles.error}>{`${strings.catalog.errorPrefix} ${quiz.detail}`}</Text>;
+    return <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${quiz.detail}`}</Text>;
   }
   if (summary === null) return <QuizNotFound />;
 
@@ -105,25 +105,25 @@ function QuizSetup({ quizId }: { quizId: string }) {
     <>
       <View style={styles.header}>
         <Text style={styles.theme}>{summary.theme}</Text>
-        <Text style={playerTextStyles.title}>{summary.title}</Text>
-        <Text style={[playerTextStyles.muted, styles.centered]}>
+        <Text style={textStyles.title}>{summary.title}</Text>
+        <Text style={[textStyles.muted, styles.centered]}>
           {strings.catalog.difficulty(level, summary.difficulty)} ·{' '}
           {strings.catalog.details(summary.questionCount, summary.estimatedMinutes)}
         </Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={playerTextStyles.label}>{strings.quizSetup.answerModeLabel}</Text>
+        <Text style={textStyles.label}>{strings.quizSetup.answerModeLabel}</Text>
         <ChoiceChips
           choices={MODE_CHOICES}
           selected={settings.answerMode}
           onSelect={(mode) => setSettings(withAnswerMode(settings, mode))}
         />
-        <Text style={playerTextStyles.muted}>{strings.quizSetup.answerModeHints[settings.answerMode]}</Text>
+        <Text style={textStyles.muted}>{strings.quizSetup.answerModeHints[settings.answerMode]}</Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={playerTextStyles.label}>{strings.quizSetup.optionsLabel}</Text>
+        <Text style={textStyles.label}>{strings.quizSetup.optionsLabel}</Text>
         {OPTIONS.map((option) => (
           <OptionToggle
             key={option}
@@ -136,7 +136,7 @@ function QuizSetup({ quizId }: { quizId: string }) {
         ))}
       </View>
 
-      {createError && <Text style={playerTextStyles.error}>{createError}</Text>}
+      {createError && <Text style={textStyles.error}>{createError}</Text>}
       <BigButton
         label={isCreating ? strings.quizSetup.creating : strings.quizSetup.createButton}
         onPress={create}
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     gap: Spacing.one,
   },
   theme: {
-    color: PlayerColors.accent,
+    color: AppColors.accent,
     fontSize: 20,
     fontWeight: '800',
     textAlign: 'center',

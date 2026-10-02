@@ -1,7 +1,7 @@
 import { StyleSheet, Switch, Text, View } from 'react-native';
 
-import { playerTextStyles } from '@/components/player/playerTextStyles';
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { textStyles } from '@/components/ui/textStyles';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 interface OptionToggleProps {
@@ -18,18 +18,18 @@ export function OptionToggle({ title, hint, value, onChange, disabledReason }: O
   return (
     <View style={[styles.row, isDisabled && styles.disabled]}>
       <View style={styles.texts}>
-        <Text style={playerTextStyles.label}>
+        <Text style={textStyles.label}>
           {title}
           {isDisabled && <Text style={styles.reason}> ({disabledReason})</Text>}
         </Text>
-        <Text style={playerTextStyles.muted}>{hint}</Text>
+        <Text style={textStyles.muted}>{hint}</Text>
       </View>
       <Switch
         value={value}
         onValueChange={onChange}
         disabled={isDisabled}
-        trackColor={{ true: PlayerColors.accent, false: PlayerColors.background }}
-        thumbColor={PlayerColors.text}
+        trackColor={{ true: AppColors.accent, false: AppColors.background }}
+        thumbColor={AppColors.text}
       />
     </View>
   );
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.three,
     padding: Spacing.three,
-    borderRadius: PlayerSizes.radius,
-    backgroundColor: PlayerColors.surface,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
   },
   disabled: {
     opacity: 0.5,
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     gap: Spacing.one,
   },
   reason: {
-    color: PlayerColors.textMuted,
-    fontSize: PlayerSizes.textBody,
+    color: AppColors.textMuted,
+    fontSize: AppSizes.textBody,
     fontWeight: '400',
   },
 });

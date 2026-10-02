@@ -6,13 +6,13 @@ import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { strings } from '@/constants/strings';
-import { PlayerColors } from '@/constants/playerTheme';
+import { AppColors } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 import { getJoinRefusal, registerPlayer, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
 
 import { AvatarPicker } from './AvatarPicker';
-import { BigButton } from './BigButton';
-import { playerTextStyles } from './playerTextStyles';
+import { BigButton } from '@/components/ui/BigButton';
+import { textStyles } from '@/components/ui/textStyles';
 
 interface JoinFormProps {
   code: string;
@@ -69,7 +69,7 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
   return (
     <View style={styles.form}>
       <View style={styles.field}>
-        <Text style={playerTextStyles.label}>{strings.join.nameLabel}</Text>
+        <Text style={textStyles.label}>{strings.join.nameLabel}</Text>
         <TextInput
           value={rawName}
           onChangeText={(text) => {
@@ -78,22 +78,22 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
           }}
           onSubmitEditing={submit}
           placeholder={strings.join.namePlaceholder}
-          placeholderTextColor={PlayerColors.textMuted}
+          placeholderTextColor={AppColors.textMuted}
           maxLength={PLAYER_NAME_MAX_LENGTH}
           autoCorrect={false}
           autoComplete="off"
           returnKeyType="done"
-          style={playerTextStyles.input}
+          style={textStyles.input}
         />
-        <Text style={playerTextStyles.muted}>{strings.join.nameHint}</Text>
+        <Text style={textStyles.muted}>{strings.join.nameHint}</Text>
       </View>
 
       <View style={styles.field}>
-        <Text style={playerTextStyles.label}>{strings.join.avatarLabel}</Text>
+        <Text style={textStyles.label}>{strings.join.avatarLabel}</Text>
         <AvatarPicker selected={avatar} onSelect={setAvatar} />
       </View>
 
-      {error && <Text style={playerTextStyles.error}>{error}</Text>}
+      {error && <Text style={textStyles.error}>{error}</Text>}
 
       <BigButton
         label={isSubmitting ? texts.submitting : texts.submitButton}

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { PlayerColors, PlayerSizes } from '@/constants/playerTheme';
+import { AppColors, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 interface BigButtonProps {
@@ -31,29 +31,29 @@ export function BigButton({ label, onPress, disabled = false, variant = 'primary
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: PlayerSizes.buttonHeight,
+    minHeight: AppSizes.buttonHeight,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
-    borderRadius: PlayerSizes.radius,
+    borderRadius: AppSizes.radius,
   },
   primary: {
-    backgroundColor: PlayerColors.accent,
+    backgroundColor: AppColors.accent,
   },
   secondary: {
-    backgroundColor: PlayerColors.surface,
+    backgroundColor: AppColors.surface,
   },
   dimmed: {
     opacity: 0.5,
   },
   label: {
-    fontSize: PlayerSizes.textLarge,
+    fontSize: AppSizes.textLarge,
     fontWeight: '800',
   },
   primaryLabel: {
-    color: PlayerColors.onAccent,
+    color: AppColors.onAccent,
   },
   secondaryLabel: {
-    color: PlayerColors.text,
+    color: AppColors.text,
   },
 });
