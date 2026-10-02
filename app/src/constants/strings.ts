@@ -123,8 +123,8 @@ export const strings = {
     question: {
       sending: 'Envoi de ta réponse…',
       refusals: {
-        tooLate: 'Ta réponse n’a pas été prise en compte : le temps était écoulé.',
-        failed: 'Ta réponse n’a pas pu être envoyée. Vérifie ta connexion et réessaie.',
+        tooLate: 'Trop tard : ta réponse n’a pas été prise en compte, le temps était écoulé.',
+        failed: 'Réseau coupé : ta réponse n’a pas été envoyée. Vérifie ta connexion et réessaie.',
       } satisfies Record<AnswerRefusal, string>,
     },
     answerSent: {

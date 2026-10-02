@@ -390,6 +390,42 @@ describe('Réponses', () => {
     await assertFails(submitAnswer(PLAYER, 0, 4))
   })
 
+  // Même écriture que app/src/lib/submitAnswer.ts : ce que la base contient ensuite.
+  test('le client enregistre exactement value, submittedAt (heure du serveur) et answeredBy', async () => {
+    await seedSession()
+    const before = Date.now()
+    await assertSucceeds(submitAnswer(PLAYER, 0, 1))
+    const answer = (await readAsAdmin(`${SESSION}/answers/0/${PLAYER}`)) as Data
+    expect(Object.keys(answer).sort()).toEqual(['submittedAt', 'value'])
+    expect(answer.value).toBe(1)
+    expect(answer.submittedAt).toBeTypeOf('number')
+    expect(answer.submittedAt as number).toBeGreaterThanOrEqual(before - 1_000)
+    expect(await readAsAdmin(`${SESSION}/answeredBy/0/${PLAYER}`)).toBe(true)
+  })
+
+  test('la proposition 0 est acceptée', async () => {
+    await seedSession()
+    await assertSucceeds(submitAnswer(PLAYER, 0, 0))
+  })
+
+  // Après un refus, le client relit answeredBy pour distinguer « déjà répondu » de « trop tard ».
+  test('après un refus, le joueur lit sa propre entrée answeredBy', async () => {
+    await seedSession()
+    const answeredBy = db(PLAYER).ref(`${SESSION}/answeredBy/0/${PLAYER}`)
+    expect((await assertSucceeds(answeredBy.once('value'))).val()).toBeNull()
+    await submitAnswer(PLAYER, 0, 1)
+    await assertFails(submitAnswer(PLAYER, 0, 2))
+    expect((await assertSucceeds(answeredBy.once('value'))).val()).toBe(true)
+  })
+
+  test("l'hôte inscrit comme joueur répond avec la même écriture", async () => {
+    await seedSession({
+      players: { [HOST]: { name: 'Hôte', avatar: '🐸', score: 0, rank: 1, connected: true } },
+    })
+    await assertSucceeds(submitAnswer(HOST, 0, 3))
+    expect(await readAsAdmin(`${SESSION}/answeredBy/0/${HOST}`)).toBe(true)
+  })
+
   test("l'hôte complète la réponse avec correct et points", async () => {
     await seedSession()
     await submitAnswer(PLAYER, 0, 1)

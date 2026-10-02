@@ -24,7 +24,7 @@ export function AnswerSentView({ question, index, timing, choice }: AnswerSentVi
   return (
     <View style={styles.container}>
       <QuestionHeader index={index} difficulty={question.difficulty} />
-      <Countdown key={timing.phaseStartedAt} {...timing} />
+      <Countdown {...timing} />
 
       <View style={styles.card}>
         <Text style={styles.title}>{`✓ ${strings.game.answerSent.title}`}</Text>

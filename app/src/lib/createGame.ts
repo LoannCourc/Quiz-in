@@ -3,14 +3,10 @@ import { generateRoomCode } from '@shared/roomCode';
 import type { SessionSettings } from '@shared/types';
 import { get, ref, serverTimestamp, set } from 'firebase/database';
 
-import { toErrorMessage } from './errors';
+import { isPermissionDenied } from './errors';
 import { db, ensureSignedIn } from './firebase';
 
 export class NoFreeRoomCodeError extends Error {}
-
-function isPermissionDenied(error: unknown): boolean {
-  return /permission[_ ]denied/i.test(toErrorMessage(error));
-}
 
 // Tente d'occuper un code. Faux s'il est déjà pris (par n'importe quel hôte).
 async function tryClaimCode(code: string, hostUid: string, quizId: string, settings: SessionSettings) {

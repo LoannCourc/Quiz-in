@@ -64,8 +64,13 @@ function useDrainingProgress(timing: PhaseTiming): Animated.Value {
   return progress;
 }
 
-// À monter avec key={phaseStartedAt} : le compte à rebours repart de zéro à chaque phase.
-export function Countdown({ variant = 'bar', ...timingProps }: CountdownProps) {
+// Nouvelle clé dès que la phase change ou que sa fin est recalculée (reprise après une pause) :
+// le compte à rebours repart alors de zéro avec les nouvelles valeurs.
+export function Countdown(props: CountdownProps) {
+  return <TimedCountdown key={`${props.phaseStartedAt}-${props.phaseEndsAt}`} {...props} />;
+}
+
+function TimedCountdown({ variant = 'bar', ...timingProps }: CountdownProps) {
   // Objet stable : les effets ne redémarrent pas à chaque rendu du parent.
   const [timing] = useState<PhaseTiming>(timingProps);
   const seconds = useSecondsLeft(timing);

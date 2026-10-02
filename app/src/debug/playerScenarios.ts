@@ -15,6 +15,7 @@ export type ScenarioId =
   | 'questionUrgent'
   | 'answerSent'
   | 'answerRefused'
+  | 'answerNetworkError'
   | 'revealCorrect'
   | 'revealWrong'
   | 'revealNoAnswer'
@@ -29,6 +30,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   questionUrgent: 'Chrono presque fini',
   answerSent: 'Réponse envoyée',
   answerRefused: 'Réponse refusée',
+  answerNetworkError: 'Réseau coupé',
   revealCorrect: 'Bonne réponse',
   revealWrong: 'Mauvaise réponse',
   revealNoAnswer: 'Pas de réponse',
@@ -136,6 +138,11 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return {
         session: questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit),
         answer: { kind: 'refused', choice: 2, reason: 'tooLate' },
+      };
+    case 'answerNetworkError':
+      return {
+        session: questionScenario(now, SHORT_QUESTION, 8),
+        answer: { kind: 'refused', choice: 0, reason: 'failed' },
       };
     case 'revealCorrect':
       return idle(revealScenario(now, REVEAL.results));

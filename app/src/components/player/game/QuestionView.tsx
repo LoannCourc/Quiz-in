@@ -32,7 +32,7 @@ export function QuestionView({ question, index, timing, answer, onAnswer }: Ques
   return (
     <View style={styles.container}>
       <QuestionHeader index={index} difficulty={question.difficulty} />
-      <Countdown key={timing.phaseStartedAt} {...timing} />
+      <Countdown {...timing} />
       <Text style={styles.text}>{question.text}</Text>
 
       {question.options ? (

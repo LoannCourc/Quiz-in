@@ -13,10 +13,10 @@ import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
+import { useAnswer } from '@/hooks/useAnswer';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { getEntryRefusal } from '@/lib/joinGame';
-import { IDLE_ANSWER } from '@/lib/playerGame';
 
 // Adresse encodée dans le QR code de la TV : /join/CODE (spec 6.6).
 export default function JoinRoomScreen() {
@@ -79,6 +79,7 @@ function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const serverOffsetMs = useServerTimeOffset();
   const { uid, status, players } = state;
+  const { answer, onAnswer } = useAnswer(code, uid, state.session);
 
   if (status !== 'lobby') {
     // Partie lancée pendant la modification : le formulaire disparaît (les règles refuseraient
@@ -87,8 +88,7 @@ function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
     return (
       <>
         {isEditing && <PlayerNotice message={strings.profile.editInterrupted(me.avatar, me.name)} />}
-        {/* L'envoi de la réponse est branché à l'étape C. */}
-        <PlayerGame session={state.session} uid={uid} serverOffsetMs={serverOffsetMs} answer={IDLE_ANSWER} onAnswer={() => {}} />
+        <PlayerGame session={state.session} uid={uid} serverOffsetMs={serverOffsetMs} answer={answer} onAnswer={onAnswer} />
       </>
     );
   }

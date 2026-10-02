@@ -16,7 +16,7 @@ export function StartingView({ timing }: { timing: PhaseTiming }) {
   return (
     <View style={styles.centeredBlock}>
       <Text style={textStyles.title}>{strings.game.starting.title}</Text>
-      <Countdown key={timing.phaseStartedAt} {...timing} variant="digits" />
+      <Countdown {...timing} variant="digits" />
       <Text style={[textStyles.muted, styles.centered]}>{strings.game.starting.subtitle}</Text>
     </View>
   );
