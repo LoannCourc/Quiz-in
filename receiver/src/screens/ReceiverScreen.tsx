@@ -1,4 +1,4 @@
-import type { Session } from '@shared/types'
+import type { PublicSession } from '@shared/types'
 
 import { EndScreen } from './EndScreen'
 import { LobbyScreen } from './LobbyScreen'
@@ -9,7 +9,7 @@ import { ScoresScreen } from './ScoresScreen'
 import { StartingScreen } from './StartingScreen'
 
 interface ReceiverScreenProps {
-  session: Session
+  session: PublicSession
   roomCode: string
 }
 

@@ -1,5 +1,5 @@
 import { MAX_PLAYERS } from '@shared/constants'
-import type { Session } from '@shared/types'
+import type { PublicSession } from '@shared/types'
 import { QRCodeSVG } from 'qrcode.react'
 
 import { Avatar } from '../components/Avatar'
@@ -9,7 +9,7 @@ import { strings } from '../strings'
 import './LobbyScreen.css'
 
 interface LobbyScreenProps {
-  session: Session
+  session: PublicSession
   roomCode: string
 }
 

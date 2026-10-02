@@ -1,4 +1,4 @@
-import type { Session } from '@shared/types'
+import type { PublicSession } from '@shared/types'
 
 import { RankingList } from '../components/RankingList'
 import { sortByRank, type RankedPlayer } from '../lib/players'
@@ -11,7 +11,7 @@ const SINGLE_COLUMN_MAX_PLAYERS = 8
 // Ordre visuel classique d'un podium : 2e à gauche, 1er au centre, 3e à droite.
 const PODIUM_VISUAL_ORDER = [1, 0, 2]
 
-export function EndScreen({ session }: { session: Session }) {
+export function EndScreen({ session }: { session: PublicSession }) {
   const players = sortByRank(session.players)
   const podium = PODIUM_VISUAL_ORDER.map((position) => players[position]).filter(
     (player): player is RankedPlayer => player !== undefined,

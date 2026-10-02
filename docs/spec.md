@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.3 — 1er octobre 2026
+Version 0.4 — 2 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -171,13 +171,13 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 Base : Firebase Realtime Database.
 
 ```
-quizzes/{quizId}                      // lisible par tous
+quizzes/{quizId}                      // lisible par tout utilisateur connecté
   title, theme, gameType: "quiz", language: "fr"
   difficulty: 2.3                     // moyenne des questions
   difficultyLabel: "Moyen"
   questionCount: 10, estimatedMinutes: 10
 
-questions/{quizId}/{index}            // lisible UNIQUEMENT par l'hôte
+questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par tout utilisateur connecté au MVP (voir « Limites connues »)
   (voir section 8)
 
 sessions/{code}
@@ -191,15 +191,39 @@ sessions/{code}
   reveal: { correctAnswer, explanation, stats }                // publié à la révélation
     stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition
     stats.freeAnswers?: [{ playerId, value }]                  // Réponse libre : objets extensibles (masquage par l'hôte en P1)
+    results?: { [uid]: { correct, points } }                   // résultat de chaque joueur ayant répondu (✓/✗, points gagnés)
+    // reveal reste en place pendant SCORES et est effacé au passage à la question suivante
   players/{uid}: { name, avatar, score, rank, connected }
-  answers/{index}/{uid}: { value, submittedAt, correct, points }
+    // name, avatar : écrits par le joueur, dans le lobby uniquement
+    // connected : écrit par le joueur (voir « Présence ») ; score, rank : écrits par l'hôte
+  answers/{index}/{uid}: { value, submittedAt, correct, points }   // lisible UNIQUEMENT par l'hôte
+    // value, submittedAt : écrits une seule fois par le joueur, en QUESTION, pour la question courante
+    // value : texte de 1 à 60 caractères (Réponse libre) ou index 0 à 3 (Choix multiples)
+    // submittedAt : horodatage serveur, au plus phaseEndsAt + 1 000 ms (tolérance réseau)
+    // correct, points : écrits par l'hôte
+  answeredBy/{index}/{uid}: true      // lisible par tout utilisateur connecté
+    // écrit par le joueur en même temps que sa réponse : indique QUI a répondu, jamais QUOI
 ```
+
+**Accès** (règles de sécurité dans `database.rules.json`)
+- `sessions` n'est jamais lisible en entier. Seul l'hôte (`hostUid`) peut lire `sessions/{code}` d'un bloc. Les autres (joueurs, TV) lisent chaque champ séparément ; tous sauf `answers` sont lisibles par un utilisateur connecté.
+- L'hôte écrit tout le reste de la session. `hostUid` est fixé à la création et ne change plus.
+- `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit` : la bonne réponse ne peut pas y être publiée par erreur.
+
+**Présence**
+- Chaque joueur écrit `connected: true` à chaque connexion (détectée via `.info/connected`) et enregistre auprès du serveur une écriture `connected: false` à exécuter s'il se déconnecte (`onDisconnect`). C'est le serveur Firebase qui l'exécute : la présence se met à jour même si le téléphone se met en veille ou perd le réseau.
+- « Tous les joueurs connectés ont répondu » (section 5) se calcule avec `players/*/connected` et `answeredBy/{currentIndex}`.
+
+**Limites connues du MVP**
+- **Catalogue lisible** : `questions/` doit être lu par l'hôte, et n'importe quel utilisateur anonyme peut devenir hôte. Le catalogue (avec les bonnes réponses) est donc lisible par tout utilisateur connecté. Un joueur averti pourrait le consulter ; c'est accepté pour une soirée entre amis. Correction possible plus tard : servir les questions par une Cloud Function.
+- Les règles ne peuvent ni compter les joueurs (`MAX_PLAYERS`) ni garantir l'unicité du pseudo : c'est l'hôte qui le vérifie et retire un joueur en trop.
+- **Reprise d'un joueur** : elle repose sur sa session anonyme Firebase, conservée par le navigateur. Le joueur retrouve sa place en revenant depuis le même navigateur sur le même appareil. Changer d'appareil ou de navigateur, ou effacer les données du site, crée un nouvel uid : il ne peut pas reprendre sa place.
 
 **Principes**
 - **L'hôte est l'autorité de la partie** : il fait avancer les états, calcule la validité des réponses et les points. Il garde donc l'écran allumé pendant la partie.
-- **La bonne réponse n'est jamais envoyée aux joueurs avant la révélation.** Le catalogue de questions n'est lisible que par l'hôte, et il publie la bonne réponse au moment de la révélation. Cela évite la triche en inspectant le navigateur.
+- **La bonne réponse n'est jamais envoyée aux joueurs avant la révélation.** Seul l'hôte charge le catalogue de questions, et il publie la bonne réponse au moment de la révélation. Cela évite la triche en inspectant le navigateur (voir la limite connue sur le catalogue ci-dessus).
 - **Un joueur ne peut écrire que sa propre réponse**, et seulement pendant l'état QUESTION. Les réponses des autres ne lui sont pas lisibles avant la révélation.
-- **Authentification anonyme** pour tout le monde (hôte, joueurs, TV). Les règles de sécurité précises seront conçues en phase 1.
+- **Authentification anonyme** pour tout le monde (hôte, joueurs, TV).
 
 ---
 
@@ -284,6 +308,8 @@ sessions/{code}
 6. Réponse définitive après validation.
 7. Égalités : même rang.
 8. Classement mis à jour après chaque révélation.
+9. Le client joueur ne lit jamais `questions/` ; la bonne réponse n'est publiée qu'à la révélation (dans `reveal`). La lisibilité du catalogue par un utilisateur connecté est une limite acceptée au MVP (section 7).
+10. Réponse libre : 60 caractères maximum.
 
 ---
 

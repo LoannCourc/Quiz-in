@@ -1,10 +1,10 @@
-import type { Session } from '@shared/types'
+import type { PublicSession } from '@shared/types'
 
 import { useRemainingMs } from '../hooks/useRemainingMs'
 import { strings } from '../strings'
 import './StartingScreen.css'
 
-export function StartingScreen({ session }: { session: Session }) {
+export function StartingScreen({ session }: { session: PublicSession }) {
   const remainingMs = useRemainingMs(session.phaseEndsAt)
   const seconds = Math.max(1, Math.ceil(remainingMs / 1000))
 

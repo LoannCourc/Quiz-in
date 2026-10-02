@@ -10,8 +10,9 @@ import type {
   GameStatus,
   Player,
   PlayerId,
+  PlayerResult,
+  PublicSession,
   Question,
-  Session,
 } from '@shared/types'
 
 export const DEMO_ROOM_CODE = 'K7PX'
@@ -96,6 +97,19 @@ function buildRevealStats(answerMode: AnswerMode, answers: Record<PlayerId, Answ
   }
 }
 
+function buildResults(answers: Record<PlayerId, Answer>): Record<PlayerId, PlayerResult> {
+  return Object.fromEntries(
+    Object.entries(answers).map(([playerId, answer]) => [
+      playerId,
+      { correct: answer.correct === true, points: answer.points ?? 0 },
+    ]),
+  )
+}
+
+function buildAnsweredBy(answers: Record<PlayerId, Answer>): Record<PlayerId, true> {
+  return Object.fromEntries(Object.keys(answers).map((playerId) => [playerId, true]))
+}
+
 export interface DemoOptions {
   status: GameStatus
   answerMode: AnswerMode
@@ -112,16 +126,19 @@ function buildPlayers(isToggleablePlayerConnected: boolean): Record<PlayerId, Pl
   }
 }
 
-// Construit une session fictive, comme si l'hôte l'avait publiée dans la base.
+// Construit la partie publique d'une session fictive, comme la TV la lit dans la base.
+// Les réponses détaillées restent internes : elles servent à calculer stats et résultats.
 export function buildDemoSession({
   status,
   answerMode,
   answeredCount,
   isToggleablePlayerConnected,
   startedAt,
-}: DemoOptions): Session {
+}: DemoOptions): PublicSession {
   const answers = buildAnswers(answerMode, answeredCount)
   const isPaused = status === 'paused'
+  // L'hôte publie reveal à la révélation et le laisse en place pendant le classement.
+  const hasReveal = status === 'reveal' || status === 'scores'
   return {
     hostUid: 'lea',
     quizId: 'demo',
@@ -138,15 +155,15 @@ export function buildDemoSession({
       difficulty: DEMO_QUESTION.difficulty,
       timeLimit: phaseDurationS('question', answerMode),
     },
-    reveal:
-      status === 'reveal'
-        ? {
-            correctAnswer: DEMO_QUESTION.options[DEMO_QUESTION.correctIndex],
-            explanation: DEMO_QUESTION.explanation,
-            stats: buildRevealStats(answerMode, answers),
-          }
-        : undefined,
+    reveal: hasReveal
+      ? {
+          correctAnswer: DEMO_QUESTION.options[DEMO_QUESTION.correctIndex],
+          explanation: DEMO_QUESTION.explanation,
+          stats: buildRevealStats(answerMode, answers),
+          results: buildResults(answers),
+        }
+      : undefined,
     players: buildPlayers(isToggleablePlayerConnected),
-    answers: { [DEMO_CURRENT_INDEX]: answers },
+    answeredBy: { [DEMO_CURRENT_INDEX]: buildAnsweredBy(answers) },
   }
 }

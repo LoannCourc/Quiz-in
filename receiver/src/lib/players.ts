@@ -1,4 +1,4 @@
-import type { Player, PlayerId, Session } from '@shared/types'
+import type { Player, PlayerId, PublicSession } from '@shared/types'
 
 export interface RankedPlayer extends Player {
   id: PlayerId
@@ -11,8 +11,9 @@ export function sortByRank(players: Record<PlayerId, Player>): RankedPlayer[] {
     .sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'))
 }
 
-export function currentAnswers(session: Session) {
-  return session.answers?.[session.currentIndex] ?? {}
+// La TV sait qui a répondu (answeredBy), jamais ce qui a été répondu.
+export function hasAnswered(session: PublicSession, playerId: PlayerId): boolean {
+  return session.answeredBy?.[session.currentIndex]?.[playerId] === true
 }
 
 // Comme la règle de passage automatique (spec 5), on ne compte que les joueurs connectés.
@@ -20,7 +21,6 @@ export function countConnected(players: RankedPlayer[]): number {
   return players.filter((player) => player.connected).length
 }
 
-export function countConnectedAnswered(session: Session, players: RankedPlayer[]): number {
-  const answers = currentAnswers(session)
-  return players.filter((player) => player.connected && answers[player.id]).length
+export function countConnectedAnswered(session: PublicSession, players: RankedPlayer[]): number {
+  return players.filter((player) => player.connected && hasAnswered(session, player.id)).length
 }

@@ -54,6 +54,13 @@ export interface Reveal {
   correctAnswer: string;
   explanation?: string;
   stats: RevealStats;
+  // Résultat de chaque joueur ayant répondu ; un joueur absent n'a pas répondu (0 point).
+  results?: Record<PlayerId, PlayerResult>;
+}
+
+export interface PlayerResult {
+  correct: boolean;
+  points: number;
 }
 
 export interface SessionSettings {
@@ -81,7 +88,8 @@ export interface Answer {
 
 export type PlayerId = string;
 
-export interface Session {
+// Partie de la session lisible par les joueurs et la TV : tout sauf answers.
+export interface PublicSession {
   hostUid: PlayerId;
   quizId: string;
   status: GameStatus;
@@ -95,5 +103,11 @@ export interface Session {
   currentQuestion?: PublicQuestion;
   reveal?: Reveal;
   players: Record<PlayerId, Player>;
+  // Qui a répondu à chaque question, jamais quoi.
+  answeredBy?: Record<number, Record<PlayerId, true>>;
+}
+
+// Session complète, lisible uniquement par l'hôte.
+export interface Session extends PublicSession {
   answers?: Record<number, Record<PlayerId, Answer>>;
 }

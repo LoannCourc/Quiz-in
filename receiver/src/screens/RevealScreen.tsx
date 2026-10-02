@@ -1,10 +1,9 @@
-import type { ChoiceOptions, Session } from '@shared/types'
+import type { ChoiceOptions, PublicSession } from '@shared/types'
 
-import { currentAnswers } from '../lib/players'
 import { strings } from '../strings'
 import './RevealScreen.css'
 
-export function RevealScreen({ session }: { session: Session }) {
+export function RevealScreen({ session }: { session: PublicSession }) {
   const { currentQuestion: question, reveal } = session
   if (!question || !reveal) return null
 
@@ -61,9 +60,9 @@ function ChoiceStats({ options, counts, correctAnswer }: ChoiceStatsProps) {
   )
 }
 
-function FreeAnswers({ session }: { session: Session }) {
+function FreeAnswers({ session }: { session: PublicSession }) {
   const entries = session.reveal?.stats.freeAnswers ?? []
-  const answers = currentAnswers(session)
+  const results = session.reveal?.results ?? {}
 
   if (entries.length === 0) {
     return <p className="reveal-empty">{strings.reveal.noAnswer}</p>
@@ -73,7 +72,7 @@ function FreeAnswers({ session }: { session: Session }) {
     <ul className="reveal-free">
       {entries.map((entry) => {
         const player = session.players[entry.playerId]
-        const isCorrect = answers[entry.playerId]?.correct === true
+        const isCorrect = results[entry.playerId]?.correct === true
         return (
           <li key={entry.playerId} className={isCorrect ? 'free-answer is-correct' : 'free-answer'}>
             <span className="free-answer-avatar">{player?.avatar}</span>

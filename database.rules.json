@@ -1,0 +1,135 @@
+{
+  "rules": {
+    "debug": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "quizzes": {
+      ".read": "auth != null"
+    },
+    "questions": {
+      ".read": "auth != null"
+    },
+    "sessions": {
+      "$code": {
+        ".read": "auth != null && data.child('hostUid').val() == auth.uid",
+        ".write": "auth != null && (data.exists() ? data.child('hostUid').val() == auth.uid : newData.child('hostUid').val() == auth.uid)",
+        ".validate": "$code.matches(/^[A-HJ-NP-Z2-9]{4}$/) && newData.hasChildren(['hostUid', 'quizId', 'status'])",
+
+        "hostUid": {
+          ".read": "auth != null",
+          ".validate": "newData.val() == auth.uid"
+        },
+        "quizId": {
+          ".read": "auth != null",
+          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64"
+        },
+        "status": {
+          ".read": "auth != null",
+          ".validate": "newData.isString() && newData.val().matches(/^(lobby|starting|question|reveal|validation|scores|paused|ended)$/)"
+        },
+        "settings": {
+          ".read": "auth != null",
+          ".validate": "newData.hasChildren(['answerMode', 'speedBonus', 'control', 'teams'])",
+          "answerMode": { ".validate": "newData.isString() && newData.val().matches(/^(free|choice)$/)" },
+          "speedBonus": { ".validate": "newData.isBoolean()" },
+          "control": { ".validate": "newData.isBoolean()" },
+          "teams": { ".validate": "newData.isBoolean()" },
+          "$other": { ".validate": false }
+        },
+        "currentIndex": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "phaseStartedAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber()"
+        },
+        "phaseEndsAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber()"
+        },
+        "pausedFrom": {
+          ".read": "auth != null",
+          ".validate": "newData.isString() && newData.val().matches(/^(lobby|starting|question|reveal|validation|scores)$/)"
+        },
+        "remainingMs": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "currentQuestion": {
+          ".read": "auth != null",
+          ".validate": "newData.hasChildren(['text', 'difficulty', 'timeLimit'])",
+          "text": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 140" },
+          "options": {
+            ".validate": "newData.hasChildren(['0', '1', '2', '3'])",
+            "$option": { ".validate": "$option.matches(/^[0-3]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 80" }
+          },
+          "difficulty": { ".validate": "newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
+          "timeLimit": { ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 300" },
+          "$other": { ".validate": false }
+        },
+        "reveal": {
+          ".read": "auth != null",
+          ".validate": "newData.hasChildren(['correctAnswer'])",
+          "correctAnswer": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 140" },
+          "explanation": { ".validate": "newData.isString() && newData.val().length <= 300" },
+          "stats": {},
+          "results": {
+            "$uid": {
+              ".validate": "newData.hasChildren(['correct', 'points'])",
+              "correct": { ".validate": "newData.isBoolean()" },
+              "points": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+              "$other": { ".validate": false }
+            }
+          },
+          "$other": { ".validate": false }
+        },
+        "players": {
+          ".read": "auth != null",
+          "$uid": {
+            ".validate": "newData.hasChildren(['name', 'avatar'])",
+            "name": {
+              ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",
+              ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 12 && newData.val().matches(/^\\S(.*\\S)?$/)"
+            },
+            "avatar": {
+              ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",
+              ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 16"
+            },
+            "connected": {
+              ".write": "auth != null && auth.uid == $uid && newData.parent().child('name').exists()",
+              ".validate": "newData.isBoolean()"
+            },
+            "score": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+            "rank": { ".validate": "newData.isNumber() && newData.val() >= 1" },
+            "$other": { ".validate": false }
+          }
+        },
+        "answers": {
+          "$index": {
+            "$uid": {
+              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && newData.child('submittedAt').val() <= root.child('sessions/' + $code + '/phaseEndsAt').val() + 1000 && !newData.hasChild('correct') && !newData.hasChild('points')",
+              ".validate": "newData.hasChildren(['value', 'submittedAt'])",
+              "value": { ".validate": "(newData.isString() && newData.val().length >= 1 && newData.val().length <= 60) || newData.val() == 0 || newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
+              "submittedAt": { ".validate": "newData.isNumber() && (newData.val() == now || newData.val() == data.val())" },
+              "correct": { ".validate": "newData.isBoolean()" },
+              "points": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+              "$other": { ".validate": false }
+            }
+          }
+        },
+        "answeredBy": {
+          ".read": "auth != null",
+          "$index": {
+            "$uid": {
+              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && newData.parent().parent().parent().child('answers/' + $index + '/' + $uid).exists()",
+              ".validate": "newData.val() == true"
+            }
+          }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}

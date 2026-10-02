@@ -7,7 +7,8 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 ## État d'avancement
 - Phase 0 (préparation) : terminée.
 - Phase 1 (fondations : projet Expo + Firebase temps réel) : terminée. Compteur partagé `debug/counter` fonctionnel sur Android (Expo Go) et web.
-- Phase 2 (récepteur TV) : en cours.
+- Phase 2 (récepteur TV) : terminée. Récepteur déployé sur Firebase Hosting (site par défaut du projet).
+- Phase 3 (joueurs et moteur de partie) : en cours.
 - Mettre à jour cette section à chaque fin de phase.
 
 ## Stack

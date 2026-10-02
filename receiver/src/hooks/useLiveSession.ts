@@ -1,5 +1,5 @@
-import type { Session } from '@shared/types'
-import { onValue, ref, type Unsubscribe } from 'firebase/database'
+import type { PublicSession } from '@shared/types'
+import { onValue, ref, type Database, type Unsubscribe } from 'firebase/database'
 import { useEffect, useState } from 'react'
 
 import { ensureSignedIn, getFirebase, MissingConfigError } from '../lib/firebase'
@@ -10,7 +10,7 @@ export type LiveSessionState =
   | { kind: 'loading' }
   | { kind: 'notFound' }
   | { kind: 'error'; errorKind: LoadErrorKind; detail: string }
-  | { kind: 'ready'; session: Session }
+  | { kind: 'ready'; session: PublicSession }
 
 export interface LiveSession {
   state: LiveSessionState
@@ -27,12 +27,60 @@ function toErrorState(error: unknown): LiveSessionState {
   return { kind: 'error', errorKind: 'other', detail }
 }
 
-// La base ne stocke pas les objets vides : une session sans joueur arrive sans « players ».
-function toSession(raw: Session): Session {
-  return { ...raw, players: raw.players ?? {} }
+// Champs lisibles par la TV. Les règles interdisent de lire sessions/{code} d'un bloc
+// (answers est réservé à l'hôte) : on s'abonne donc à chaque champ séparément.
+const PUBLIC_FIELDS = [
+  'hostUid',
+  'quizId',
+  'status',
+  'settings',
+  'currentIndex',
+  'phaseStartedAt',
+  'phaseEndsAt',
+  'pausedFrom',
+  'remainingMs',
+  'currentQuestion',
+  'reveal',
+  'players',
+  'answeredBy',
+] as const satisfies readonly (keyof PublicSession)[]
+
+type PublicField = (typeof PUBLIC_FIELDS)[number]
+type FieldValues = Partial<Record<PublicField, unknown>>
+
+// status est toujours écrit par l'hôte : s'il manque, la session n'existe pas.
+// La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
+function toSessionState(values: FieldValues): LiveSessionState {
+  if (values.status == null) return { kind: 'notFound' }
+  // Forme garantie par les règles de validation de la base (database.rules.json).
+  const session = values as PublicSession
+  const reveal = session.reveal && { ...session.reveal, stats: session.reveal.stats ?? {} }
+  return { kind: 'ready', session: { ...session, players: session.players ?? {}, reveal } }
 }
 
-// Lecture seule et temps réel de sessions/{code}.
+function subscribeToFields(
+  db: Database,
+  roomCode: string,
+  onChange: (state: LiveSessionState) => void,
+): Unsubscribe[] {
+  const values: FieldValues = {}
+  const received = new Set<PublicField>()
+
+  return PUBLIC_FIELDS.map((field) =>
+    onValue(
+      ref(db, `sessions/${roomCode}/${field}`),
+      (snapshot) => {
+        values[field] = snapshot.val() ?? undefined
+        received.add(field)
+        // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
+        if (received.size === PUBLIC_FIELDS.length) onChange(toSessionState(values))
+      },
+      (error) => onChange(toErrorState(error)),
+    ),
+  )
+}
+
+// Lecture seule et temps réel des champs publics de sessions/{code}.
 export function useLiveSession(roomCode: string): LiveSession {
   const [state, setState] = useState<LiveSessionState>({ kind: 'loading' })
   const [isConnected, setIsConnected] = useState(false)
@@ -48,12 +96,7 @@ export function useLiveSession(roomCode: string): LiveSession {
         if (!isActive) return
         const { db } = getFirebase()
         unsubscribers = [
-          onValue(
-            ref(db, `sessions/${roomCode}`),
-            (snapshot) =>
-              setState(snapshot.exists() ? { kind: 'ready', session: toSession(snapshot.val()) } : { kind: 'notFound' }),
-            (error) => setState(toErrorState(error)),
-          ),
+          ...subscribeToFields(db, roomCode, setState),
           onValue(ref(db, '.info/connected'), (snapshot) => {
             const connected = snapshot.val() === true
             setIsConnected(connected)

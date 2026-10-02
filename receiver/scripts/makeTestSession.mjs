@@ -57,7 +57,9 @@ const session = {
     timeLimit: durationS,
   },
   players,
+  // answers n'est lisible que par l'hôte ; la TV lit answeredBy.
   answers: { [CURRENT_INDEX]: answers },
+  answeredBy: { [CURRENT_INDEX]: Object.fromEntries(Object.keys(answers).map((playerId) => [playerId, true])) },
 }
 
 if (status === 'paused') {
@@ -65,7 +67,8 @@ if (status === 'paused') {
   session.remainingMs = 12000
 }
 
-if (status === 'reveal') {
+// L'hôte publie reveal à la révélation et le laisse en place pendant le classement.
+if (status === 'reveal' || status === 'scores') {
   const entries = Object.entries(answers)
   session.reveal = {
     correctAnswer: OPTIONS[CORRECT_INDEX],
@@ -74,6 +77,9 @@ if (status === 'reveal') {
       answerMode === 'choice'
         ? { choiceCounts: OPTIONS.map((_, index) => entries.filter(([, answer]) => answer.value === index).length) }
         : { freeAnswers: entries.map(([playerId, answer]) => ({ playerId, value: answer.value })) },
+    results: Object.fromEntries(
+      entries.map(([playerId, answer]) => [playerId, { correct: answer.correct, points: answer.points }]),
+    ),
   }
 }
 

@@ -1,18 +1,17 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants'
-import type { Session } from '@shared/types'
+import type { PublicSession } from '@shared/types'
 
 import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
 import { DifficultyBadge } from '../components/DifficultyBadge'
-import { countConnected, countConnectedAnswered, currentAnswers, sortByRank } from '../lib/players'
+import { countConnected, countConnectedAnswered, hasAnswered, sortByRank } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
 
-export function QuestionScreen({ session }: { session: Session }) {
+export function QuestionScreen({ session }: { session: PublicSession }) {
   const question = session.currentQuestion
   if (!question) return null
 
-  const answers = currentAnswers(session)
   const players = sortByRank(session.players)
   const connectedCount = countConnected(players)
   const answeredCount = countConnectedAnswered(session, players)
@@ -49,7 +48,7 @@ export function QuestionScreen({ session }: { session: Session }) {
               <Avatar
                 key={player.id}
                 player={player}
-                state={answers[player.id] ? 'lit' : 'dimmed'}
+                state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
                 showName={false}
               />
             ))}
