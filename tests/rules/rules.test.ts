@@ -381,6 +381,19 @@ describe('Présence (onDisconnect)', () => {
     expect(await readAsAdmin(`${SESSION}/players/${PLAYER}/connected`)).toBe(false)
   })
 
+  // Séquence exacte du client joueur (app/src/lib/joinGame.ts puis hooks/usePresence.ts).
+  test("inscription par update, puis présence : seul connected change à la déconnexion", async () => {
+    await seedSession({ status: 'lobby', players: null })
+    const playerDb = db(OTHER)
+    const playerRef = playerDb.ref(`${SESSION}/players/${OTHER}`)
+    await assertSucceeds(playerRef.update({ name: 'Tom', avatar: '🐼', connected: true }))
+    await assertSucceeds(playerRef.child('connected').onDisconnect().set(false))
+    await assertSucceeds(playerRef.child('connected').set(true))
+    playerDb.goOffline()
+    await waitForValue(`${SESSION}/players/${OTHER}/connected`, false)
+    expect(await readAsAdmin(`${SESSION}/players/${OTHER}`)).toEqual({ name: 'Tom', avatar: '🐼', connected: false })
+  })
+
   test("onDisconnect sur la présence d'un autre joueur refusé", async () => {
     await seedSession()
     await assertFails(db(OTHER).ref(`${SESSION}/players/${PLAYER}/connected`).onDisconnect().set(false))

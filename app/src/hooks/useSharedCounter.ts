@@ -1,13 +1,10 @@
 import { increment, onValue, ref, set } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
+import { toErrorMessage } from '@/lib/errors';
 import { db, ensureSignedIn } from '@/lib/firebase';
 
 const COUNTER_PATH = 'debug/counter';
-
-function toMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
-}
 
 // Compteur de test partagé entre tous les appareils, mis à jour en temps réel.
 export function useSharedCounter() {
@@ -25,10 +22,10 @@ export function useSharedCounter() {
         unsubscribe = onValue(
           counterRef,
           (snapshot) => setValue(snapshot.val() ?? 0),
-          (listenError) => setError(toMessage(listenError)),
+          (listenError) => setError(toErrorMessage(listenError)),
         );
       })
-      .catch((signInError: unknown) => setError(toMessage(signInError)));
+      .catch((signInError: unknown) => setError(toErrorMessage(signInError)));
 
     return () => {
       isMounted = false;
@@ -39,7 +36,7 @@ export function useSharedCounter() {
   function incrementCounter() {
     // increment() est appliqué par le serveur : deux appuis simultanés comptent bien pour 2.
     set(ref(db, COUNTER_PATH), increment(1)).catch((writeError: unknown) =>
-      setError(toMessage(writeError)),
+      setError(toErrorMessage(writeError)),
     );
   }
 

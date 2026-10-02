@@ -150,7 +150,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 
 ### 6.6 Joueurs et connexion
 - **Nombre de joueurs** : 2 à 20, hôte compris. Cette limite est une constante, relevable plus tard. Elle protège la lisibilité du classement sur la TV et les coûts. **[À VALIDER]**
-- **Pseudo** : 2 à 12 caractères, unique dans la partie, filtre de base contre les mots interdits.
+- **Pseudo** : 2 à 12 caractères, sans espace au début ni à la fin (l'app le nettoie avec `trim()` avant l'envoi ; les règles de la base refusent un pseudo mal formé), unique dans la partie sans tenir compte de la casse, filtre de base contre les mots interdits. L'app joueur vérifie l'unicité avant l'inscription ; l'hôte la vérifie en plus et retire un joueur en double.
 - **Avatar** : choisi dans une liste prédéfinie d'environ 24. Pas d'envoi de photo.
 - **Rejoindre après le lancement** : impossible, sauf reconnexion d'un joueur déjà présent.
 - **Joueur déconnecté** : il garde son score, peut revenir avec le même pseudo et retrouve l'état en cours. Il obtient 0 point aux questions manquées.
