@@ -48,7 +48,7 @@ export const strings = {
     title: 'Choisis un quiz',
     loading: 'Chargement du catalogue…',
     errorPrefix: 'Erreur de chargement :',
-    emptyCatalog: 'Le catalogue est vide. Importe les quiz depuis content/ (voir content/README.md).',
+    emptyCatalog: 'Aucun quiz disponible.',
     noMatch: 'Aucun quiz ne correspond à ces filtres.',
     themeFilter: 'Thème',
     difficultyFilter: 'Difficulté',

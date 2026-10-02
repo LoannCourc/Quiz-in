@@ -8,9 +8,10 @@ import {
   withAnswerMode,
   type GameOption,
 } from '@shared/quizCatalog';
-import type { AnswerMode, QuizSummary, SessionSettings } from '@shared/types';
+import { parseQuizSummary } from '@shared/quizValidation';
+import type { AnswerMode, SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
@@ -23,6 +24,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
+import { warnIgnoredEntries } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
 
 const MODE_CHOICES: Choice<AnswerMode>[] = (['choice', 'free'] as const).map((mode) => ({
@@ -61,7 +63,14 @@ function disabledReason(settings: SessionSettings, option: GameOption): string |
 }
 
 function QuizSetup({ quizId }: { quizId: string }) {
-  const quiz = useLiveValue<QuizSummary>(`quizzes/${quizId}`);
+  const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
+  // Fiche absente ou mal formée : null, traitée comme introuvable.
+  const summary = useMemo(() => {
+    if (quiz.kind !== 'ready') return null;
+    const parsed = parseQuizSummary(quiz.value);
+    warnIgnoredEntries('Fiche du quiz', parsed === null && quiz.value !== null ? 1 : 0);
+    return parsed;
+  }, [quiz]);
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
@@ -88,9 +97,8 @@ function QuizSetup({ quizId }: { quizId: string }) {
   if (quiz.kind === 'error') {
     return <Text style={playerTextStyles.error}>{`${strings.catalog.errorPrefix} ${quiz.detail}`}</Text>;
   }
-  if (quiz.value === null) return <QuizNotFound />;
+  if (summary === null) return <QuizNotFound />;
 
-  const summary = quiz.value;
   const level = strings.catalog.difficultyLevels[difficultyLevel(summary.difficulty)];
 
   return (

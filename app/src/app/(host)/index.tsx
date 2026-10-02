@@ -1,7 +1,8 @@
 import { difficultyLevel } from '@shared/quizCatalog';
-import type { DifficultyLevel, QuizSummary } from '@shared/types';
+import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
+import type { DifficultyLevel } from '@shared/types';
 import { Link, Redirect, router } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
@@ -12,9 +13,8 @@ import { PlayerColors } from '@/constants/playerTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { warnIgnoredEntries } from '@/lib/devLog';
 import { isPublishedWeb } from '@/lib/platform';
-
-type CatalogEntry = QuizSummary & { id: string };
 
 // Accueil de l'hôte. Sur le site des joueurs (web publié), redirige vers la saisie du code.
 export default function HomeRoute() {
@@ -29,19 +29,22 @@ const LEVEL_CHOICES: Choice<DifficultyLevel | null>[] = [
   })),
 ];
 
-function toEntries(quizzes: Record<string, QuizSummary> | null): CatalogEntry[] {
-  return Object.entries(quizzes ?? {})
-    .map(([id, quiz]) => ({ id, ...quiz }))
-    .sort((a, b) => a.title.localeCompare(b.title, 'fr'));
+// Fiches valides triées par titre ; les entrées mal formées de la base sont ignorées.
+function toEntries(quizzes: unknown): QuizEntry[] {
+  const { valid, ignoredCount } = parseQuizCatalog(quizzes);
+  warnIgnoredEntries('Catalogue', ignoredCount);
+  return valid.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
 }
 
-function themeChoices(entries: CatalogEntry[]): Choice<string | null>[] {
+function themeChoices(entries: QuizEntry[]): Choice<string | null>[] {
   const themes = [...new Set(entries.map((entry) => entry.theme))].sort((a, b) => a.localeCompare(b, 'fr'));
   return [{ value: null, label: strings.catalog.all }, ...themes.map((theme) => ({ value: theme, label: theme }))];
 }
 
 function CatalogScreen() {
-  const catalog = useLiveValue<Record<string, QuizSummary>>('quizzes');
+  const catalog = useLiveValue<unknown>('quizzes');
+  // Recalculé seulement quand la base change, pas à chaque changement de filtre.
+  const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
   const [theme, setTheme] = useState<string | null>(null);
   const [level, setLevel] = useState<DifficultyLevel | null>(null);
 
@@ -55,7 +58,7 @@ function CatalogScreen() {
         <Text style={playerTextStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>
       )}
       {catalog.kind === 'ready' && (
-        <CatalogList entries={toEntries(catalog.value)} theme={theme} level={level} onTheme={setTheme} onLevel={setLevel} />
+        <CatalogList entries={entries} theme={theme} level={level} onTheme={setTheme} onLevel={setLevel} />
       )}
 
       <Link href="/debug/counter" style={styles.debugLink}>
@@ -66,7 +69,7 @@ function CatalogScreen() {
 }
 
 interface CatalogListProps {
-  entries: CatalogEntry[];
+  entries: QuizEntry[];
   theme: string | null;
   level: DifficultyLevel | null;
   onTheme: (theme: string | null) => void;
