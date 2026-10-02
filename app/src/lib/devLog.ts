@@ -4,11 +4,3 @@ export function warnIgnoredEntries(source: string, ignoredCount: number) {
     console.warn(`${source} : ${ignoredCount} entrée(s) invalide(s) ignorée(s).`);
   }
 }
-
-// TEMPORAIRE (diagnostic du blocage « Connexion à la partie… ») : étapes de la connexion et des
-// lectures, en développement seulement. À retirer une fois le problème réglé.
-export function traceJoin(...details: unknown[]) {
-  if (__DEV__) {
-    console.log('[join]', ...details);
-  }
-}

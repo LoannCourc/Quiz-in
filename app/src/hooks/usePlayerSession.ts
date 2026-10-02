@@ -2,7 +2,6 @@ import type { GameStatus, PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref, type Unsubscribe } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
-import { traceJoin } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
 import { db, ensureSignedIn } from '@/lib/firebase';
 import type { LobbyPlayers } from '@/lib/joinGame';
@@ -79,16 +78,13 @@ export function usePlayerSession(code: string): PlayerSessionState {
       fail(`délai de ${LOADING_TIMEOUT_MS / 1000} s dépassé, champs sans réponse : ${missing.join(', ') || 'aucun'}`);
     }, LOADING_TIMEOUT_MS);
 
-    traceJoin('connexion anonyme : début');
     ensureSignedIn()
       .then((user) => {
         if (!isActive) return;
-        traceJoin('connexion anonyme : réussie', user.uid, 'anonyme =', user.isAnonymous);
         unsubscribers = PUBLIC_FIELDS.map((field) =>
           onValue(
             ref(db, `sessions/${code}/${field}`),
             (snapshot) => {
-              traceJoin('lecture reçue :', field);
               if (hasFailed) return;
               values[field] = snapshot.val() ?? undefined;
               received.add(field);
