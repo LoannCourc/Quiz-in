@@ -150,6 +150,32 @@ describe('Hôte et état de la partie', () => {
     await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null })))
   })
 
+  // Séquence exacte de app/src/lib/createGame.ts : lecture de hostUid, puis set de la session initiale.
+  const initialSession = () => ({
+    hostUid: HOST,
+    quizId: 'culture-generale-1',
+    status: 'lobby',
+    settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false },
+    currentIndex: 0,
+    phaseStartedAt: SERVER_TIME,
+    phaseEndsAt: 0,
+  })
+
+  test("lecture de hostUid d'un code libre autorisée (valeur nulle)", async () => {
+    const snapshot = await assertSucceeds(db(HOST).ref(`${SESSION}/hostUid`).once('value'))
+    expect(snapshot.val()).toBeNull()
+  })
+
+  test('création de la session initiale exacte acceptée', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(initialSession()))
+    expect(await readAsAdmin(`${SESSION}/status`)).toBe('lobby')
+  })
+
+  test("création sur un code déjà pris par un autre hôte refusée", async () => {
+    await seedSession({ hostUid: OTHER, status: 'lobby' })
+    await assertFails(db(HOST).ref(SESSION).set(initialSession()))
+  })
+
   test("création d'une session au nom d'un autre refusée", async () => {
     await assertFails(db(PLAYER).ref(SESSION).set(session({ players: null })))
   })

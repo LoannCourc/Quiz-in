@@ -1,0 +1,11 @@
+{
+  "name": "content",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsx scripts/buildImport.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

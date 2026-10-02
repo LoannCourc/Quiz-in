@@ -1,0 +1,97 @@
+{
+  "id": "culture-generale-1",
+  "title": "Culture générale : les bases",
+  "theme": "Culture générale",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "cg1-01",
+      "text": "Quelle planète est la plus proche du Soleil ?",
+      "options": ["Mars", "Mercure", "Vénus", "La Terre"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["mercure"],
+      "difficulty": 1,
+      "explanation": "Mercure orbite à environ 58 millions de km du Soleil."
+    },
+    {
+      "id": "cg1-02",
+      "text": "Combien de pattes a une araignée ?",
+      "options": ["6", "8", "10", "12"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["8", "huit"],
+      "difficulty": 1,
+      "explanation": "Les araignées ne sont pas des insectes (6 pattes) mais des arachnides."
+    },
+    {
+      "id": "cg1-03",
+      "text": "Quel est le plus long fleuve de France ?",
+      "options": ["La Seine", "La Loire", "Le Rhône", "La Garonne"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["loire"],
+      "difficulty": 1,
+      "explanation": "La Loire mesure environ 1 000 km, entièrement en France."
+    },
+    {
+      "id": "cg1-04",
+      "text": "Quelle est la capitale de l'Italie ?",
+      "options": ["Milan", "Rome", "Venise", "Naples"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["rome"],
+      "difficulty": 1
+    },
+    {
+      "id": "cg1-05",
+      "text": "Quel est le plus grand océan du monde ?",
+      "options": ["L'Atlantique", "L'océan Indien", "L'Arctique", "Le Pacifique"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["pacifique", "océan pacifique"],
+      "difficulty": 1,
+      "explanation": "Le Pacifique couvre environ un tiers de la surface de la Terre."
+    },
+    {
+      "id": "cg1-06",
+      "text": "Qui a peint La Joconde ?",
+      "options": ["Michel-Ange", "Léonard de Vinci", "Raphaël", "Botticelli"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["léonard de vinci", "de vinci", "vinci"],
+      "difficulty": 1,
+      "explanation": "Léonard de Vinci l'a peinte au début du XVIe siècle. Elle est exposée au Louvre."
+    },
+    {
+      "id": "cg1-07",
+      "text": "En quelle année un homme a-t-il marché sur la Lune pour la première fois ?",
+      "options": ["1959", "1969", "1979", "1989"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["1969"],
+      "difficulty": 2,
+      "explanation": "Neil Armstrong, commandant de la mission Apollo 11, en juillet 1969."
+    },
+    {
+      "id": "cg1-08",
+      "text": "Quel est le symbole chimique de l'or ?",
+      "options": ["Or", "Au", "Ag", "Fe"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["au"],
+      "difficulty": 2,
+      "explanation": "Au vient du latin aurum. Ag est l'argent, Fe le fer."
+    },
+    {
+      "id": "cg1-09",
+      "text": "Combien de joueurs une équipe de football a-t-elle sur le terrain ?",
+      "options": ["9", "10", "11", "12"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["11", "onze"],
+      "difficulty": 1,
+      "explanation": "Dix joueurs de champ et un gardien de but."
+    },
+    {
+      "id": "cg1-10",
+      "text": "Quel est le plus grand animal du monde ?",
+      "options": ["L'éléphant d'Afrique", "La baleine bleue", "La girafe", "Le requin-baleine"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["baleine bleue", "rorqual bleu", "baleine"],
+      "difficulty": 1,
+      "explanation": "La baleine bleue peut dépasser 25 mètres de long."
+    }
+  ]
+}

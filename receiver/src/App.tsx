@@ -1,3 +1,4 @@
+import { RECEIVER_CODE_PARAM } from '@shared/constants'
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode'
 
 import { DemoReceiver } from './demo/DemoReceiver'
@@ -5,11 +6,9 @@ import { LiveReceiver } from './LiveReceiver'
 import { StatusScreen } from './screens/StatusScreen'
 import { strings } from './strings'
 
-const ROOM_CODE_PARAM = 'code'
-
 // Avec ?code=XXXX dans l'URL : partie réelle. Sans code : mode démo.
 function App() {
-  const rawCode = new URLSearchParams(window.location.search).get(ROOM_CODE_PARAM)
+  const rawCode = new URLSearchParams(window.location.search).get(RECEIVER_CODE_PARAM)
   if (rawCode === null) {
     return <DemoReceiver />
   }

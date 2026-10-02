@@ -15,6 +15,21 @@ export type AnswerMode = 'free' | 'choice';
 // 1 = Facile, 2 = Moyen, 3 = Difficile.
 export type Difficulty = 1 | 2 | 3;
 
+// Niveau d'un quiz, déduit de la moyenne des difficultés de ses questions (spec 8).
+export type DifficultyLevel = 'easy' | 'medium' | 'hard';
+
+// Fiche d'un quiz dans le catalogue (nœud quizzes/{quizId}, spec 7).
+export interface QuizSummary {
+  title: string;
+  theme: string;
+  gameType: 'quiz';
+  language: 'fr';
+  difficulty: number;
+  difficultyLabel: string;
+  questionCount: number;
+  estimatedMinutes: number;
+}
+
 export type ChoiceOptions = [string, string, string, string];
 
 // Question complète, lisible uniquement par l'hôte.
