@@ -561,12 +561,13 @@ describe('hostControls', () => {
       canPause: false,
       canResume: true,
       canEnd: true,
+      canReplay: false,
     })
   })
 
-  test('LOBBY et END : aucun contrôle de partie', () => {
-    for (const status of ['lobby', 'ended'] as const) {
-      expect(hostControls(makeSession({ status }))).toEqual({ skip: null, canPause: false, canResume: false, canEnd: false })
-    }
+  test('LOBBY : aucun contrôle ; END : seulement Rejouer et Quitter', () => {
+    const none = { skip: null, canPause: false, canResume: false, canEnd: false }
+    expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canReplay: false })
+    expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canReplay: true })
   })
 })

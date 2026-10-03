@@ -338,4 +338,5 @@ sessions/{code}
 - Packs thématiques et de saison, modèle freemium pour l'hôte.
 - Blind test et « N'oubliez pas les paroles » (après étude des droits musicaux).
 - Mode bars et événements.
+- Option d'accessibilité « afficher la question sur le téléphone », pour les joueurs qui voient mal la TV (au MVP, l'énoncé n'est lu que sur la TV).
 - Option hôte pour ne pas afficher le classement entre les questions (classement tous les N tours, ou seulement à la fin). Demandera un champ dans `settings`, une vérification des règles et une mise à jour de la machine d'états.

@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
+import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { BigButton } from '@/components/ui/BigButton';
@@ -33,15 +34,17 @@ const SCENARIO_CHOICES: Choice<ScenarioId>[] = (Object.keys(SCENARIO_LABELS) as 
 
 // Démo des écrans du joueur, absente du site des joueurs (redirigé vers /join).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
-// bouton de démo (captures d'écran).
+// bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte.
 export default function PlayerDemoRoute() {
   return isPublishedWeb ? <Redirect href="/join" /> : <PlayerDemoScreen />;
 }
 
 function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
+  // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
+  const hostFooter = params.host === '1' ? <HostControlsBar onPress={() => {}} /> : undefined;
   const [scenarioId, setScenarioId] = useState<ScenarioId>(initialId);
   // Reconstruit à chaque choix (même scénario re-choisi) : les chronos repartent de maintenant.
   const [scenario, setScenario] = useState<Scenario>(() => buildScenario(initialId, Date.now()));
@@ -84,6 +87,7 @@ function PlayerDemoScreen() {
           serverOffsetMs={0}
           answer={scenario.answer}
           onAnswer={answer}
+          footer={hostFooter}
         />
       )}
 

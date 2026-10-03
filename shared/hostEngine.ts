@@ -350,10 +350,12 @@ export interface HostControls {
   canPause: boolean
   canResume: boolean
   canEnd: boolean
+  // Fin de partie : Rejouer et Quitter.
+  canReplay: boolean
 }
 
-// Contrôles disponibles pour l'hôte selon l'état de la partie (aucun en LOBBY ni en END :
-// le lancement et Rejouer / Quitter ont leurs propres boutons).
+// Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
+// son propre bouton) ; en END, seulement Rejouer et Quitter.
 export function hostControls(session: Session): HostControls {
   const canEnd = IN_PROGRESS.includes(session.status)
   const skip = skipTarget(session)
@@ -362,6 +364,7 @@ export function hostControls(session: Session): HostControls {
     canPause: PAUSABLE.includes(session.status),
     canResume: session.status === 'paused',
     canEnd,
+    canReplay: session.status === 'ended',
   }
 }
 

@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     maxWidth: AppSizes.contentMaxWidth,
     alignSelf: 'center',
     paddingHorizontal: Spacing.three,
+    paddingTop: Spacing.two,
     paddingBottom: Spacing.three,
   },
   column: {

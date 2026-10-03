@@ -31,6 +31,7 @@ export function PlayerLobby({ uid, players }: PlayerLobbyProps) {
       )}
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
       <Text style={[textStyles.label, styles.centered]}>{strings.lobby.waiting}</Text>
+      <Text style={styles.questionsOnTv}>{`📺 ${strings.lobby.questionsOnTv}`}</Text>
 
       <PlayerList players={players} highlightedUid={uid} />
     </View>
@@ -68,6 +69,12 @@ const styles = StyleSheet.create({
     lineHeight: Math.round(26 * DISPLAY_LINE_HEIGHT),
   },
   centered: {
+    textAlign: 'center',
+  },
+  questionsOnTv: {
+    color: AppColors.accent,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
     textAlign: 'center',
   },
 });

@@ -16,7 +16,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { HostControlsButton, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
+import { HostControlsBar, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
 import { OptionToggle } from '@/components/host/OptionToggle';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
@@ -161,13 +161,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
     }
   }
 
-  const actions: HostActions = {
-    skip: onSkip,
-    pause: () => void act(pauseUpdate),
-    resume: () => void act(resumeUpdate),
-    end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
-  };
-
   // Rejouer : même code, retour au lobby ; le code redevient « à reprendre » après une relance.
   async function replay() {
     await act(replayUpdate);
@@ -183,14 +176,23 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
     });
   }
 
+  const actions: HostActions = {
+    skip: onSkip,
+    pause: () => void act(pauseUpdate),
+    resume: () => void act(resumeUpdate),
+    end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
+    replay: () => void replay(),
+    quit,
+  };
+
   const footer = (
     <HostFooter
       status={session.status}
       error={actionError}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
-      onReplay={() => void replay()}
-      onQuit={quit}
+      onReplay={actions.replay}
+      onQuit={actions.quit}
     />
   );
   const overlay = isPanelOpen ? (
@@ -231,28 +233,24 @@ interface HostFooterProps {
   onQuit: () => void;
 }
 
-// Pied d'écran de l'hôte : fin de partie → Rejouer / Quitter ; pause → Reprendre en grand ;
-// sinon, le petit bouton « Hôte » qui ouvre le panneau des contrôles.
+// Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
+// (panneau), précédée de Reprendre en pause, et de Rejouer / Quitter en fin de partie.
 function HostFooter({ status, error, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
-  const errorText = error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
-  if (status === 'ended') {
-    return (
-      <View style={styles.footerStack}>
-        {errorText}
-        <BigButton label={strings.hostControls.replay} onPress={onReplay} />
-        <BigButton label={strings.hostControls.quit} variant="secondary" onPress={onQuit} />
-      </View>
-    );
-  }
   return (
     <View style={styles.footerStack}>
-      {errorText}
-      <View style={styles.footerRow}>
-        <View style={styles.fill}>
-          {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
+      {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
+      {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
+      {status === 'ended' && (
+        <View style={styles.footerRow}>
+          <View style={styles.fill}>
+            <BigButton label={strings.hostControls.replay} onPress={onReplay} />
+          </View>
+          <View style={styles.fill}>
+            <BigButton label={strings.hostControls.quit} variant="secondary" onPress={onQuit} />
+          </View>
         </View>
-        <HostControlsButton onPress={onOpenPanel} />
-      </View>
+      )}
+      <HostControlsBar onPress={onOpenPanel} />
     </View>
   );
 }

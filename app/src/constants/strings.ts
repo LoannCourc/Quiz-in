@@ -51,6 +51,7 @@ export const strings = {
     playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''} connecté${count > 1 ? 's' : ''}`,
     you: '(toi)',
     inLobbyTitle: 'Tu es dans la partie !',
+    questionsOnTv: 'Les questions s’affichent sur la télé',
     waiting: 'En attente du lancement…',
   },
   catalog: {
@@ -127,7 +128,7 @@ export const strings = {
     spectatorHint: 'Tu ne joues pas cette partie : suis-la sur la TV.',
   },
   hostControls: {
-    open: 'Hôte',
+    open: '⚙ Contrôles de l’hôte',
     title: 'Contrôles de l’hôte',
     close: 'Fermer',
     skip: {
@@ -183,7 +184,7 @@ export const strings = {
     ordinal: (rank: number) => (rank === 1 ? '1er' : `${rank}e`),
     starting: {
       title: 'Prêt ?',
-      subtitle: 'La première question arrive…',
+      subtitle: 'Les questions s’affichent sur la télé',
     },
     question: {
       sending: 'Envoi de ta réponse…',

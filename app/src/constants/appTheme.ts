@@ -99,6 +99,11 @@ export const AppSizes = {
   ringWidth: 12,
   timebarHeight: 15,
   timebarDigits: 40,
+  // Barre des contrôles de l'hôte (pied d'écran).
+  hostBarHeight: 52,
+  // Écran de question mobile : hauteur des pilules selon la place disponible (plancher, plafond).
+  choiceHeightLarge: 116,
+  choiceHeightMin: 72,
   coinSize: 224,
   coinBorder: 8,
   podiumWidth: 100,

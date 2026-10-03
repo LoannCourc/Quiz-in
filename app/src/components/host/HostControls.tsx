@@ -7,18 +7,15 @@ import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-const BUTTON_SIZE = 56;
-
-// Petit bouton rond et discret du pied d'écran : il ouvre le panneau des contrôles sans gêner
-// les réponses (le pied d'écran réserve sa place sous le contenu).
-export function HostControlsButton({ onPress }: { onPress: () => void }) {
+// Barre pleine largeur en bas de l'écran, dans le pied d'écran (qui réserve sa place sous le
+// contenu) : elle ouvre le panneau des contrôles de l'hôte.
+export function HostControlsBar({ onPress }: { onPress: () => void }) {
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={strings.hostControls.title}
       onPress={onPress}
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
-      <Text style={styles.buttonText}>{strings.hostControls.open}</Text>
+      style={({ pressed }) => [styles.bar, pressed && styles.pressed]}>
+      <Text style={styles.barText}>{strings.hostControls.open}</Text>
     </Pressable>
   );
 }
@@ -28,6 +25,8 @@ export interface HostActions {
   pause: () => void;
   resume: () => void;
   end: () => void;
+  replay: () => void;
+  quit: () => void;
 }
 
 interface HostControlsPanelProps {
@@ -36,8 +35,9 @@ interface HostControlsPanelProps {
   onClose: () => void;
 }
 
-// Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer.
-// Chaque action ferme le panneau. Appui en dehors : fermeture sans action.
+// Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer ;
+// en fin de partie, Rejouer / Quitter. Chaque action ferme le panneau. Appui en dehors :
+// fermeture sans action.
 export function HostControlsPanel({ controls, actions, onClose }: HostControlsPanelProps) {
   const run = (action: () => void) => () => {
     onClose();
@@ -53,6 +53,8 @@ export function HostControlsPanel({ controls, actions, onClose }: HostControlsPa
         {controls.canPause && <BigButton label={strings.hostControls.pause} variant="secondary" onPress={run(actions.pause)} />}
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}
+        {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
+        {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         <BigButton label={strings.hostControls.close} variant="secondary" onPress={onClose} />
       </View>
     </View>
@@ -60,23 +62,23 @@ export function HostControlsPanel({ controls, actions, onClose }: HostControlsPa
 }
 
 const styles = StyleSheet.create({
-  button: {
-    width: BUTTON_SIZE,
-    height: BUTTON_SIZE,
-    borderRadius: BUTTON_SIZE / 2,
+  bar: {
+    minHeight: AppSizes.hostBarHeight,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radiusPill,
     borderWidth: 2,
-    borderColor: AppColors.surface,
+    borderColor: AppColors.selection,
     backgroundColor: AppColors.inkSurface,
   },
   pressed: {
-    opacity: 0.7,
+    opacity: 0.8,
   },
-  buttonText: {
-    color: AppColors.textMuted,
+  barText: {
+    color: AppColors.text,
     fontFamily: AppFonts.black,
-    fontSize: 13,
+    fontSize: AppSizes.textBody,
   },
   overlay: {
     position: 'absolute',
