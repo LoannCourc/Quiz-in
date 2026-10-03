@@ -24,6 +24,7 @@ export type ScenarioId =
   | 'revealWrong'
   | 'revealNoAnswer'
   | 'scores'
+  | 'scoresAnnounce'
   | 'paused'
   | 'ended';
 
@@ -41,6 +42,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   revealWrong: 'Mauvaise réponse',
   revealNoAnswer: 'Pas de réponse',
   scores: 'Classement',
+  scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
   ended: 'Fin',
 };
@@ -180,7 +182,11 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
     case 'questionUrgent':
       return idle(questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit - 4));
     case 'answerSent':
-      return { session: questionScenario(now, SHORT_QUESTION, 8), answer: { kind: 'sent', choice: 1 } };
+      return {
+        // 4 des 5 joueurs connectés ont répondu (Sam est déconnecté, Inès n'a pas encore répondu).
+        session: { ...questionScenario(now, SHORT_QUESTION, 8), answeredBy: { 2: { lea: true, tom: true, noe: true, [DEMO_UID]: true } } },
+        answer: { kind: 'sent', choice: 1 },
+      };
     case 'answerRefused':
       return {
         session: questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit),
@@ -199,6 +205,14 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle(revealScenario(now, undefined));
     case 'scores':
       return idle({ ...baseSession(now, PLAYERS_AFTER), status: 'scores', reveal: REVEAL, ...phase(now, SCORES_DURATION_S) });
+    case 'scoresAnnounce':
+      // Dernières secondes du classement : annonce de la question suivante.
+      return idle({
+        ...baseSession(now, PLAYERS_AFTER),
+        status: 'scores',
+        reveal: REVEAL,
+        ...phase(now, SCORES_DURATION_S, SCORES_DURATION_S - 1.5),
+      });
     case 'paused':
       return idle({ ...baseSession(now, PLAYERS_BEFORE), status: 'paused', pausedFrom: 'question', remainingMs: 12_000 });
     case 'ended':

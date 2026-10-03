@@ -1,11 +1,11 @@
 .reveal {
-  grid-template-rows: auto auto auto 1fr;
-  row-gap: 1.4rem;
+  grid-template-rows: auto auto auto auto 1fr auto;
+  row-gap: 1rem;
   background: var(--background-celebration);
 }
 
 .reveal-title {
-  font-size: 3.2rem;
+  font-size: 2.8rem;
 }
 
 .reveal-options .choice {
@@ -38,8 +38,12 @@
   font-size: 1.4rem;
 }
 
+.reveal-explanation-slot {
+  display: grid;
+  align-content: start;
+}
+
 .reveal-explanation {
-  align-self: start;
   justify-self: center;
   max-width: 48rem;
   padding: 1rem 1.8rem;

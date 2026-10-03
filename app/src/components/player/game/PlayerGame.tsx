@@ -1,4 +1,6 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
+import { nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
+import { answeredProgress } from '@shared/players';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -21,7 +23,8 @@ import { Confetti } from './Confetti';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
 import { RevealView } from './RevealView';
-import { EndView, PausedView, ScoresView, StartingView, WaitingView } from './StatusViews';
+import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
+import { ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
 export interface PlayerGameProps {
   // Champs publics de la session (jamais answers) : mêmes données pour la démo et la vraie partie.
@@ -71,6 +74,11 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
   const me = ranked.find((player) => player.id === uid);
   const score = me?.score ?? 0;
   const { currentIndex: index, questionCount } = session;
+  const countdown = nextQuestionCountdown(session);
+  const wait: WaitInfo | null = countdown && {
+    timing: { phaseStartedAt: countdown.startsAt, phaseEndsAt: countdown.endsAt, serverOffsetMs },
+    isLastQuestion: countdown.isLastQuestion,
+  };
 
   switch (session.status) {
     case 'starting':
@@ -80,8 +88,9 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       if (!question) return <WaitingView />;
       const current = effectiveAnswer(session, uid, answer);
       const common = { question, index, questionCount, score, timing };
+      const progress = answeredProgress(session.players, session.answeredBy?.[index]);
       return current.kind === 'sent' ? (
-        <AnswerSentView {...common} choice={current.choice} />
+        <AnswerSentView {...common} choice={current.choice} progress={progress} />
       ) : (
         <QuestionView {...common} answer={current} onAnswer={onAnswer} />
       );
@@ -90,19 +99,34 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       if (!session.reveal) return <WaitingView />;
       const result = myResult(session, uid);
       return (
-        <RevealView
+        <>
+          {wait && <WaitHeader step={0} wait={wait} />}
+          <RevealView
           outcome={revealOutcome(result)}
           points={result?.points ?? 0}
           speedBonus={speedBonusOf(session, result)}
           correctAnswer={session.reveal.correctAnswer}
           correctChoice={correctChoiceIndex(session)}
           rank={me?.rank ?? ranked.length}
-          previousRank={previousRank(session, uid)}
-        />
+            previousRank={previousRank(session, uid)}
+          />
+        </>
       );
     }
     case 'scores':
-      return <ScoresView players={ranked} uid={uid} index={index} />;
+      if (!wait) return <WaitingView />;
+      return (
+        <ScoresPhase
+          key={`${session.phaseStartedAt}-${session.phaseEndsAt}`}
+          players={ranked}
+          uid={uid}
+          index={index}
+          phase={timing}
+          wait={wait}
+          upcoming={upcomingQuestionNumber(session)}
+          questionCount={questionCount}
+        />
+      );
     case 'paused':
       return <PausedView />;
     case 'ended':

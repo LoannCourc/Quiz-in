@@ -1,10 +1,11 @@
 import {
+  NEXT_QUESTION_ANNOUNCE_MS,
   QUESTION_DURATION_S,
   REVEAL_DURATION_S,
   SCORES_DURATION_S,
   STARTING_DURATION_S,
 } from './constants'
-import type { AnswerMode, GameStatus } from './types'
+import type { AnswerMode, GameStatus, PublicSession } from './types'
 
 // Enchaînement des états du MVP (spec 5), sans VALIDATION (option Contrôle, P1).
 // PAUSED n'a pas d'état suivant fixe : la reprise revient à pausedFrom avec remainingMs.
@@ -54,3 +55,49 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
       return null
   }
 }
+
+// Attente entre deux questions (révélation puis classement), calculée sur la session seule.
+export interface NextQuestionCountdown {
+  // Début de l'attente (début de la révélation) et heure de la question suivante (heure serveur).
+  startsAt: number
+  endsAt: number
+  // Après la dernière question, l'attente mène au classement final, pas à une question.
+  isLastQuestion: boolean
+}
+
+// Pendant REVEAL : fin de la révélation + durée du classement. Pendant SCORES : fin du classement.
+// null dans les autres états. Approximation si l'hôte a écourté une phase (« Passer »).
+export function nextQuestionCountdown(session: SessionTiming): NextQuestionCountdown | null {
+  const revealMs = REVEAL_DURATION_S[session.settings.answerMode] * 1000
+  const isLastQuestion = session.currentIndex + 1 >= (session.questionCount ?? 0)
+  if (session.status === 'reveal') {
+    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + SCORES_DURATION_S * 1000, isLastQuestion }
+  }
+  if (session.status === 'scores') {
+    return { startsAt: session.phaseStartedAt - revealMs, endsAt: session.phaseEndsAt, isLastQuestion }
+  }
+  return null
+}
+
+// Numéro (à partir de 1) de la question annoncée pendant le classement : la suivante. null après
+// la dernière question.
+export function upcomingQuestionNumber(session: SessionTiming): number | null {
+  const next = session.currentIndex + 1
+  return next < (session.questionCount ?? 0) ? next + 1 : null
+}
+
+// Annonce plein écran « QUESTION n/N » pendant les dernières secondes du classement, sans
+// allonger la phase.
+export function isAnnouncingNextQuestion(session: SessionTiming, nowServer: number): boolean {
+  return (
+    session.status === 'scores' &&
+    upcomingQuestionNumber(session) !== null &&
+    session.phaseEndsAt - nowServer <= NEXT_QUESTION_ANNOUNCE_MS
+  )
+}
+
+// Champs de la session utiles au déroulé (partie publique : lisible par les joueurs et la TV).
+type SessionTiming = Pick<
+  PublicSession,
+  'status' | 'settings' | 'currentIndex' | 'questionCount' | 'phaseStartedAt' | 'phaseEndsAt'
+>

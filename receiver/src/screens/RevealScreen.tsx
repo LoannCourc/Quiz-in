@@ -1,7 +1,9 @@
+import { nextQuestionCountdown } from '@shared/gameFlow'
 import type { ChoiceOptions, PublicSession } from '@shared/types'
 
 import { Confetti } from '../components/Confetti'
 import { GameHeader } from '../components/GameHeader'
+import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
 import { strings } from '../strings'
 import './RevealScreen.css'
 
@@ -13,11 +15,13 @@ interface RevealScreenProps {
 export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const { currentQuestion: question, reveal } = session
   if (!question || !reveal) return null
+  const countdown = nextQuestionCountdown(session)
 
   return (
     <main className="screen reveal">
       <Confetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
+      <TransitionSteps active={0} />
       <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
 
       {question.options && reveal.stats.choiceCounts ? (
@@ -30,7 +34,10 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
         <FreeAnswers session={session} />
       )}
 
-      {reveal.explanation && <p className="reveal-explanation">{reveal.explanation}</p>}
+      <div className="reveal-explanation-slot">
+        {reveal.explanation && <p className="reveal-explanation">{reveal.explanation}</p>}
+      </div>
+      {countdown && <NextQuestionLine countdown={countdown} />}
     </main>
   )
 }

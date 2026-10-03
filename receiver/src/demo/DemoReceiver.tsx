@@ -14,7 +14,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
   return value !== null && (DEMO_STATUSES as string[]).includes(value)
 }
 
-// Adresse : ?status=question pour ouvrir un état ; &capture=1 masque le panneau (captures d'écran).
+// Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
+// &capture=1 masque le panneau (captures d'écran).
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -22,7 +23,7 @@ function initialOptions(params: URLSearchParams): DemoOptions {
     answerMode: 'choice',
     answeredCount: INITIAL_ANSWERED_COUNT,
     isToggleablePlayerConnected: true,
-    startedAt: Date.now(),
+    startedAt: Date.now() - (Number(params.get('elapsed')) || 0) * 1000,
   }
 }
 

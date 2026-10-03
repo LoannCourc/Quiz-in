@@ -161,8 +161,17 @@ export const strings = {
         failed: 'Réseau coupé : ta réponse n’a pas été envoyée. Vérifie ta connexion et réessaie.',
       } satisfies Record<AnswerRefusal, string>,
     },
+    // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
+    transition: {
+      steps: ['Révélation', 'Classement', 'Question suivante'],
+      nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds}…`,
+      finalRankingIn: (seconds: number) => `Classement final dans ${seconds}…`,
+      announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
+      announceHint: 'Prépare-toi !',
+    },
     answerSent: {
       title: 'Réponse envoyée !',
+      answeredProgress: (answered: number, total: number) => `${answered}/${total} ont répondu`,
       unknownChoice: 'Ta réponse est bien enregistrée.',
       waiting: 'En attente des autres joueurs…',
     },

@@ -34,6 +34,14 @@ export const strings = {
     choiceCount: (count: number) => String(count),
     noAnswer: 'Personne n’a répondu',
   },
+  // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
+  transition: {
+    steps: ['Révélation', 'Classement', 'Question suivante'],
+    nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds}…`,
+    finalRankingIn: (seconds: number) => `Classement final dans ${seconds}…`,
+    announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
+    announceHint: 'Préparez-vous !',
+  },
   scores: {
     title: 'Classement',
     afterQuestion: (index: number) => `après la question ${index}`,

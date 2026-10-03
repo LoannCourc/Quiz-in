@@ -1,0 +1,100 @@
+/* Étapes entre deux questions : indication seulement, l'étape en cours en or. */
+.transition-steps {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  justify-content: center;
+  column-gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.transition-step {
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.transition-step.is-active {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* « Prochaine question dans N… » et sa fine barre. */
+.next-question {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1.2rem;
+}
+
+.next-question-label {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.next-question-track {
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background: var(--ring-track);
+}
+
+.next-question-fill {
+  display: block;
+  height: 100%;
+  background: var(--ring);
+  transform-origin: left center;
+  animation-name: next-question-drain;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes next-question-drain {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* Annonce plein écran de la question suivante (2 dernières secondes du classement). */
+.announce {
+  grid-template-rows: auto auto 1fr;
+  row-gap: 1rem;
+}
+
+.announce-center {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  row-gap: 1.2rem;
+}
+
+.announce-title {
+  font-size: 6rem;
+  color: var(--color-accent);
+  animation: announce-pop 500ms ease-out both;
+}
+
+.announce-hint {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+@keyframes announce-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

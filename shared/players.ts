@@ -50,3 +50,13 @@ export function ghostPlayersToRemove(
     })
     .map(([id]) => id)
 }
+
+// « x/N ont répondu » : parmi les joueurs connectés, ceux qui ont répondu à la question courante
+// (answeredBy, public : qui a répondu, jamais quoi).
+export function answeredProgress(
+  players: PresenceEntries,
+  answeredBy: Record<PlayerId, true> | undefined,
+): { answered: number; total: number } {
+  const connected = connectedPlayerIds(players)
+  return { answered: connected.filter((id) => answeredBy?.[id] === true).length, total: connected.length }
+}
