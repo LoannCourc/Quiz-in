@@ -51,12 +51,12 @@ export const strings = {
   },
   paused: {
     title: 'Pause',
-    subtitle: 'La partie reprendra dans un instant',
+    subtitle: 'La partie va reprendre.',
   },
   // Pendant l'absence de l'hôte (coupure), spec 6.6.
   waitingHost: {
     title: 'En attente de l’hôte…',
-    message: 'La partie reprendra dès qu’il sera de retour.',
+    message: 'La partie va reprendre.',
   },
   // Mode Cast : la TV attend le code envoyé par l’app de l’hôte.
   cast: {
@@ -67,7 +67,7 @@ export const strings = {
   },
   hostAway: {
     title: 'L’hôte a perdu la connexion…',
-    message: 'La partie reprendra à son retour.',
+    message: 'La partie va reprendre.',
     deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
   },
   status: {

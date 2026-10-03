@@ -22,6 +22,7 @@
     },
     "web": {
       "name": "Quiz'in",
+      "lang": "fr",
       "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
@@ -33,6 +34,13 @@
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      [
+        "react-native-google-cast",
+        {
+          "receiverAppId": "AA4E97E3",
+          "expandedController": false
         }
       ]
     ],

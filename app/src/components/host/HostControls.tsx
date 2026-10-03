@@ -27,18 +27,21 @@ export interface HostActions {
   end: () => void;
   replay: () => void;
   quit: () => void;
+  showTv: () => void;
 }
 
 interface HostControlsPanelProps {
   controls: AvailableControls;
   actions: HostActions;
+  // Faux sur le web : pas de Cast.
+  canShowTv: boolean;
   onClose: () => void;
 }
 
 // Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer ;
-// en fin de partie, Rejouer / Quitter. Chaque action ferme le panneau. Appui en dehors :
+// en fin de partie, Rejouer / Quitter ; Afficher sur la TV (reconnexion du Cast). Chaque action ferme le panneau. Appui en dehors :
 // fermeture sans action.
-export function HostControlsPanel({ controls, actions, onClose }: HostControlsPanelProps) {
+export function HostControlsPanel({ controls, actions, canShowTv, onClose }: HostControlsPanelProps) {
   const run = (action: () => void) => () => {
     onClose();
     action();
@@ -55,6 +58,7 @@ export function HostControlsPanel({ controls, actions, onClose }: HostControlsPa
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
+        {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
         <BigButton label={strings.hostControls.close} variant="secondary" onPress={onClose} />
       </View>
     </View>

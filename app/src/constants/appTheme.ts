@@ -101,6 +101,8 @@ export const AppSizes = {
   timebarDigits: 40,
   // Barre des contrôles de l'hôte (pied d'écran).
   hostBarHeight: 52,
+  // Icône Cast native de l'hôte (zone tactile).
+  castIconSize: 48,
   // Écran de question mobile : hauteur des pilules selon la place disponible (plancher, plafond).
   choiceHeightLarge: 116,
   choiceHeightMin: 72,

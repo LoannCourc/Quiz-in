@@ -100,7 +100,7 @@ export const strings = {
     loading: 'Chargement de la partie…',
     notHost: 'Partie introuvable, ou tu n’en es pas l’hôte.',
     codeLabel: 'Code de la partie',
-    receiverLabel: 'Écran TV : ouvre ce lien sur la TV ou un navigateur',
+    receiverLabel: 'Sans Cast : ouvre ce lien dans un navigateur en plein écran (TV ou PC branché en HDMI)',
     copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
@@ -123,24 +123,33 @@ export const strings = {
       hint: 'Développement uniquement, absent de l’app publiée.',
     },
   },
+  // Cast de l'hôte vers la TV (spec 4.1 et 6.6).
+  cast: {
+    title: 'Écran TV',
+    showButton: 'Afficher sur la TV',
+    iconLabel: 'Choisir la TV',
+    connected: 'TV connectée : le lobby s’affiche sur la TV.',
+    notConnected: 'Choisis ta TV dans la liste (même Wi-Fi que ton téléphone).',
+  },
   hostGame: {
     inProgressTitle: 'Partie en cours',
     spectatorHint: 'Tu ne joues pas cette partie : suis-la sur la TV.',
     returnedFromAbsence: 'Tu étais absent : la partie est en pause. Reprends quand tout le monde est prêt.',
     gameDeleted: 'La partie a été supprimée : tu as été absent trop longtemps.',
     connectionLost: 'Connexion perdue… la partie est en attente',
+    castInterrupted: 'Cast interrompu : reconnecte la TV, puis reprends',
     connectionLostHint: 'Elle sera mise en pause dès le retour du réseau.',
     backToCatalog: 'Retour au catalogue',
   },
   // Joueurs : phase bloquée depuis plus de 5 s (coupure de l'hôte pas encore détectée).
   waitingHost: {
     title: 'En attente de l’hôte…',
-    message: 'La partie reprendra dès qu’il sera de retour.',
+    message: 'La partie va reprendre.',
   },
   // Joueurs pendant l'absence de l'hôte (coupure), spec 6.6.
   hostAway: {
     title: 'L’hôte a perdu la connexion…',
-    message: 'La partie reprendra à son retour.',
+    message: 'La partie va reprendre.',
     deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
   },
   hostControls: {
@@ -244,7 +253,7 @@ export const strings = {
     },
     paused: {
       title: 'Pause',
-      message: 'L’hôte a mis la partie en pause. Elle reprendra là où elle s’est arrêtée.',
+      message: 'La partie va reprendre.',
     },
     ended: {
       title: 'Partie terminée !',

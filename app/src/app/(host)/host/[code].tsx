@@ -18,6 +18,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { HostControlsBar, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
 import { OptionToggle } from '@/components/host/OptionToggle';
+import { TvCastButton } from '@/components/host/TvCastButton';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { PlayerList } from '@/components/player/PlayerList';
@@ -28,6 +29,7 @@ import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useAnswer } from '@/hooks/useAnswer';
+import { useCastGame, type CastGame } from '@/hooks/useCastGame';
 import { useGameQuestions, type GameQuestionsState } from '@/hooks/useGameQuestions';
 import { useHostEngine } from '@/hooks/useHostEngine';
 import { useHostAbsence, type HostConnection } from '@/hooks/useHostAbsence';
@@ -120,6 +122,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   });
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
+  const cast = useCastGame(code, session, connection.canWrite, serverOffsetMs);
   // Départ volontaire confirmé : pause avant de quitter l'écran (pas hors ligne : elle partirait en retard).
   useLeaveGuard(inProgress, async () => {
     if (connection.canWrite) await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
@@ -136,7 +139,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
       {inProgress && <KeepScreenOn />}
       {session.status === 'lobby' ? (
         <Screen>
-          <LobbyContent code={code} session={session} questions={questions} serverOffsetMs={serverOffsetMs} />
+          <LobbyContent code={code} session={session} questions={questions} serverOffsetMs={serverOffsetMs} cast={cast} />
         </Screen>
       ) : (
         <HostInGame
@@ -146,6 +149,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           isRegistered={isRegistered}
           onSkip={engine.skip}
           connection={connection}
+          cast={cast}
         />
       )}
     </>
@@ -166,11 +170,12 @@ interface HostInGameProps {
   isRegistered: boolean;
   onSkip: () => void;
   connection: HostConnection;
+  cast: CastGame;
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
-function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, connection }: HostInGameProps) {
+function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
@@ -212,6 +217,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
     end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
     replay: () => void replay(),
     quit,
+    showTv: cast.showTvPicker,
   };
 
   // Hors ligne : seulement le message, aucun contrôle (rien ne doit partir en file d'attente).
@@ -221,7 +227,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
     <HostFooter
       status={session.status}
       error={actionError}
-      notice={connection.returnedFromAbsence ? strings.hostGame.returnedFromAbsence : null}
+      notice={hostNotice(connection, cast)}
+      showCastButton={cast.isAvailable}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
       onReplay={actions.replay}
@@ -229,7 +236,12 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
     />
   );
   const overlay = isPanelOpen && !connection.isOffline ? (
-    <HostControlsPanel controls={hostControls(session)} actions={actions} onClose={() => setIsPanelOpen(false)} />
+    <HostControlsPanel
+      controls={hostControls(session)}
+      actions={actions}
+      canShowTv={cast.isAvailable}
+      onClose={() => setIsPanelOpen(false)}
+    />
   ) : null;
 
   if (!isRegistered) {
@@ -257,6 +269,13 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
   );
 }
 
+// Message au-dessus des contrôles quand la partie est en pause pour une raison extérieure.
+function hostNotice(connection: HostConnection, cast: CastGame): string | null {
+  if (cast.castInterrupted) return strings.hostGame.castInterrupted;
+  if (connection.returnedFromAbsence) return strings.hostGame.returnedFromAbsence;
+  return null;
+}
+
 function ConnectionLostNotice() {
   return (
     <View style={styles.footerStack}>
@@ -270,6 +289,7 @@ interface HostFooterProps {
   status: Session['status'];
   error: string | null;
   notice: string | null;
+  showCastButton: boolean;
   onOpenPanel: () => void;
   onResume: () => void;
   onReplay: () => void;
@@ -278,7 +298,7 @@ interface HostFooterProps {
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
 // (panneau), précédée de Reprendre en pause, et de Rejouer / Quitter en fin de partie.
-function HostFooter({ status, error, notice, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
+function HostFooter({ status, error, notice, showCastButton, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
   return (
     <View style={styles.footerStack}>
       {notice && <Text style={[textStyles.body, styles.centered]}>{notice}</Text>}
@@ -294,7 +314,13 @@ function HostFooter({ status, error, notice, onOpenPanel, onResume, onReplay, on
           </View>
         </View>
       )}
-      <HostControlsBar onPress={onOpenPanel} />
+      <View style={styles.barRow}>
+        <View style={styles.fill}>
+          <HostControlsBar onPress={onOpenPanel} />
+        </View>
+        {/* Icône Cast : état de la TV, et cible de « Afficher sur la TV » dans le panneau. */}
+        {showCastButton && <TvCastButton />}
+      </View>
     </View>
   );
 }
@@ -304,9 +330,10 @@ interface LobbyContentProps {
   session: Session;
   questions: GameQuestionsState;
   serverOffsetMs: number;
+  cast: CastGame;
 }
 
-function LobbyContent({ code, session, questions, serverOffsetMs }: LobbyContentProps) {
+function LobbyContent({ code, session, questions, serverOffsetMs, cast }: LobbyContentProps) {
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -343,6 +370,7 @@ function LobbyContent({ code, session, questions, serverOffsetMs }: LobbyContent
         <Text style={styles.code}>{code}</Text>
       </View>
 
+      {cast.isAvailable && <TvSection cast={cast} />}
       <ReceiverLink code={code} />
 
       {!isRegistered || isEditing ? (
@@ -407,6 +435,28 @@ function LaunchHint({ questions, hasEnoughPlayers, error }: LaunchHintProps) {
   return null;
 }
 
+// « Afficher sur la TV » (spec 4.1) : notre bouton ouvre la liste des TV via l'icône Cast native,
+// qui doit être affichée à côté. Une fois la TV connectée, le bouton passe au second plan.
+function TvSection({ cast }: { cast: CastGame }) {
+  return (
+    <View style={styles.linkBlock}>
+      <Text style={textStyles.label}>{strings.cast.title}</Text>
+      <View style={styles.barRow}>
+        <View style={styles.fill}>
+          <BigButton
+            label={strings.cast.showButton}
+            size="compact"
+            variant={cast.isTvConnected ? 'secondary' : 'primary'}
+            onPress={cast.showTvPicker}
+          />
+        </View>
+        <TvCastButton />
+      </View>
+      <Text style={textStyles.muted}>{cast.isTvConnected ? strings.cast.connected : strings.cast.notConnected}</Text>
+    </View>
+  );
+}
+
 type CopyStatus = 'idle' | 'copied' | 'failed';
 
 function ReceiverLink({ code }: { code: string }) {
@@ -465,6 +515,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   footerStack: {
+    gap: Spacing.two,
+  },
+  barRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: Spacing.two,
   },
   footerRow: {
