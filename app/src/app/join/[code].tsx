@@ -1,6 +1,6 @@
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { useLocalSearchParams } from 'expo-router';
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
@@ -14,7 +14,7 @@ import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSess
 import { useAnswer } from '@/hooks/useAnswer';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
-import { getEntryRefusal } from '@/lib/joinGame';
+import { getEntryRefusal, rememberProfile } from '@/lib/joinGame';
 
 // Adresse encodée dans le QR code de la TV : /join/CODE (spec 6.6).
 export default function JoinRoomScreen() {
@@ -99,11 +99,15 @@ function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
   const serverOffsetMs = useServerTimeOffset();
   const { uid, status, players } = state;
   const { answer, onAnswer } = useAnswer(code, uid, state.session);
+  const me = players[uid];
+  // Mémorisé pour préremplir la réinscription si l'hôte retire ce joueur du lobby (fantôme).
+  useEffect(() => {
+    rememberProfile(code, me.name, me.avatar);
+  }, [code, me.name, me.avatar]);
 
   if (status !== 'lobby') {
     // Partie lancée pendant la modification : le formulaire disparaît (les règles refuseraient
     // l'écriture) et on rappelle le profil réellement enregistré.
-    const me = players[uid];
     return (
       <PlayerGame
         session={state.session}

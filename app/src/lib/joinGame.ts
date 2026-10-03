@@ -55,3 +55,15 @@ export function registerPlayer(code: string, uid: PlayerId, name: string, avatar
 export function updateProfile(code: string, uid: PlayerId, name: string, avatar: string): Promise<void> {
   return update(ref(db, `sessions/${code}/players/${uid}`), { name, avatar });
 }
+
+// Dernier profil connu de ce joueur, par partie, le temps que la page reste ouverte : si l'hôte
+// le retire du lobby (joueur fantôme), le formulaire de réinscription est prérempli.
+const knownProfiles = new Map<string, { name: string; avatar: string }>();
+
+export function rememberProfile(code: string, name: string, avatar: string): void {
+  knownProfiles.set(code, { name, avatar });
+}
+
+export function rememberedProfile(code: string): { name: string; avatar: string } | undefined {
+  return knownProfiles.get(code);
+}

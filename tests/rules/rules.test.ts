@@ -661,3 +661,31 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
     await assertFails(db(PLAYER).ref(SESSION).update(launch.ok ? launch.update : {}))
   })
 })
+
+// Joueurs fantômes : l'hôte retire de players/ un joueur déconnecté depuis plus de 30 s (lobby).
+describe('Retrait des joueurs fantômes en lobby', () => {
+  test("l'hôte supprime players/{uid} en lobby (un seul update multi-chemins)", async () => {
+    await seedSession({ status: 'lobby', players: { [PLAYER]: { name: 'Léa', avatar: '🦊', connected: false } } })
+    await assertSucceeds(db(HOST).ref(SESSION).update({ [`players/${PLAYER}`]: null }))
+    expect(await readAsAdmin(`${SESSION}/players/${PLAYER}`)).toBeNull()
+  })
+
+  test('un joueur ne peut pas supprimer un autre joueur', async () => {
+    await seedSession({ status: 'lobby', players: { [PLAYER]: { name: 'Léa', avatar: '🦊', connected: false } } })
+    await assertFails(db(OTHER).ref(`${SESSION}/players/${PLAYER}`).remove())
+  })
+
+  test('joueur retiré : sa présence ne recrée pas une entrée incomplète', async () => {
+    await seedSession({ status: 'lobby', players: null })
+    const connectedRef = db(PLAYER).ref(`${SESSION}/players/${PLAYER}/connected`)
+    await assertFails(connectedRef.set(true))
+    await assertFails(connectedRef.onDisconnect().set(false))
+  })
+
+  test('joueur retiré : il peut se réinscrire tant que la partie est en lobby', async () => {
+    await seedSession({ status: 'lobby', players: null })
+    await assertSucceeds(
+      db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update({ name: 'Léa', avatar: '🦊', connected: true }),
+    )
+  })
+})

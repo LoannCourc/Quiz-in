@@ -3,6 +3,8 @@ import type { AnswerMode, SessionSettings } from './types';
 
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 20;
+// Lobby : un joueur déconnecté depuis plus longtemps est retiré par l'hôte (joueur fantôme).
+export const LOBBY_GHOST_GRACE_MS = 30_000;
 export const QUESTIONS_PER_GAME = 10;
 // Partie courte proposée en développement seulement (tests manuels).
 export const DEV_SHORT_GAME_QUESTIONS = 3;

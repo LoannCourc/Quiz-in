@@ -8,7 +8,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { strings } from '@/constants/strings';
 import { AppColors } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
-import { getJoinRefusal, registerPlayer, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
+import { getJoinRefusal, registerPlayer, rememberedProfile, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
 
 import { AvatarPicker } from './AvatarPicker';
 import { BigButton } from '@/components/ui/BigButton';
@@ -30,7 +30,8 @@ function firstFreeAvatar(players: LobbyPlayers): string {
 }
 
 export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
-  const current = edit ? players[uid] : undefined;
+  // Modification : profil enregistré. Réinscription après un retrait du lobby : dernier profil connu.
+  const current = edit ? players[uid] : rememberedProfile(code);
   const [rawName, setRawName] = useState(current?.name ?? '');
   const [avatar, setAvatar] = useState(() => current?.avatar ?? firstFreeAvatar(players));
   const [error, setError] = useState<string | null>(null);

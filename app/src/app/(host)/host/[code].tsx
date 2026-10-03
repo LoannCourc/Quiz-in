@@ -23,6 +23,7 @@ import { useGameQuestions, type GameQuestionsState } from '@/hooks/useGameQuesti
 import { useHostEngine } from '@/hooks/useHostEngine';
 import { useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { useLobbyCleanup } from '@/hooks/useLobbyCleanup';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { receiverUrl } from '@/lib/createGame';
@@ -90,6 +91,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
   useLeaveGuard(inProgress);
+  useLobbyCleanup(code, session);
 
   // Partie terminée : plus rien à reprendre après une relance de l'app.
   useEffect(() => {
