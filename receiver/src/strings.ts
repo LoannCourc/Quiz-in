@@ -58,6 +58,13 @@ export const strings = {
     title: 'En attente de l’hôte…',
     message: 'La partie reprendra dès qu’il sera de retour.',
   },
+  // Mode Cast : la TV attend le code envoyé par l’app de l’hôte.
+  cast: {
+    waitingTitle: 'En attente de la partie…',
+    waitingHint: 'Sur le téléphone de l’hôte, appuyez sur « Afficher sur la TV ».',
+    errorTitle: 'Impossible de démarrer l’affichage',
+    errorHint: 'Relancez l’affichage depuis le téléphone de l’hôte.',
+  },
   hostAway: {
     title: 'L’hôte a perdu la connexion…',
     message: 'La partie reprendra à son retour.',

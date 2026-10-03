@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { ReceiverScreen } from '../screens/ReceiverScreen'
 import { DevPanel } from './DevPanel'
-import { buildDemoSession, DEMO_MAX_ANSWERS, DEMO_ROOM_CODE, type DemoOptions } from './demoSession'
+import { buildDemoSession, DEMO_MAX_ANSWERS, DEMO_ROOM_CODE, demoExtraPlayerCount, type DemoOptions } from './demoSession'
 
 const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'reveal', 'scores', 'paused', 'ended']
 
@@ -15,7 +15,7 @@ function isDemoStatus(value: string | null): value is GameStatus {
 }
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
-// &capture=1 masque le panneau (captures d'écran).
+// &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -24,6 +24,7 @@ function initialOptions(params: URLSearchParams): DemoOptions {
     answeredCount: INITIAL_ANSWERED_COUNT,
     isToggleablePlayerConnected: true,
     startedAt: Date.now() - (Number(params.get('elapsed')) || 0) * 1000,
+    extraPlayerCount: demoExtraPlayerCount(Number(params.get('players')) || 0),
   }
 }
 

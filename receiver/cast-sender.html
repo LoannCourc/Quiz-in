@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz'in – Émetteur Cast de test</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; }
+      google-cast-launcher { display: inline-block; width: 40px; height: 40px; cursor: pointer; }
+      input, button { font-size: 1.2rem; padding: 0.4rem 0.8rem; }
+      #status { margin-top: 1rem; white-space: pre-line; }
+    </style>
+  </head>
+  <body>
+    <!-- Outil de développement (npm run dev) : remplace l'app de l'hôte pour tester le récepteur
+         Cast sur la TV. Absent du site déployé (seul index.html est construit). -->
+    <h1>Émetteur Cast de test</h1>
+    <p>1. Connexion à la TV : <google-cast-launcher></google-cast-launcher></p>
+    <p>
+      2. Code de la partie :
+      <input id="code" maxlength="4" size="6" autocomplete="off" />
+      <button id="send">Envoyer le code</button>
+    </p>
+    <p id="status">Chargement du SDK Cast…</p>
+    <script type="module" src="/src/dev/castSender.ts"></script>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 import {
+  MAX_PLAYERS,
   QUESTION_DURATION_S,
   QUESTIONS_PER_GAME,
   REVEAL_DURATION_S,
@@ -124,13 +125,39 @@ export interface DemoOptions {
   answeredCount: number
   isToggleablePlayerConnected: boolean
   startedAt: number
+  // Joueurs ajoutés aux 9 de la démo (?players=20 : partie pleine, pour vérifier la mise en page).
+  extraPlayerCount: number
 }
 
-function buildPlayers(isToggleablePlayerConnected: boolean): Record<PlayerId, Player> {
+const DEMO_PLAYER_COUNT = Object.keys(DEMO_PLAYERS).length
+const EXTRA_AVATARS = ['🐨', '🦁', '🐰', '🐶', '🐱', '🦉', '🐢', '🐝', '🦋', '🐳', '🦒']
+
+export function demoExtraPlayerCount(requestedTotal: number): number {
+  return Math.min(Math.max(0, requestedTotal - DEMO_PLAYER_COUNT), MAX_PLAYERS - DEMO_PLAYER_COUNT)
+}
+
+function buildExtraPlayers(count: number): Record<PlayerId, Player> {
+  return Object.fromEntries(
+    Array.from({ length: count }, (_, index) => {
+      const rank = DEMO_PLAYER_COUNT + index + 1
+      const player: Player = {
+        name: `Joueur ${rank}`,
+        avatar: EXTRA_AVATARS[index % EXTRA_AVATARS.length],
+        score: Math.max(0, 280 - index * 20),
+        rank,
+        connected: true,
+      }
+      return [`extra${rank}`, player]
+    }),
+  )
+}
+
+function buildPlayers(isToggleablePlayerConnected: boolean, extraPlayerCount: number): Record<PlayerId, Player> {
   const toggleablePlayer = DEMO_PLAYERS[DEMO_TOGGLEABLE_PLAYER_ID]
   return {
     ...DEMO_PLAYERS,
     [DEMO_TOGGLEABLE_PLAYER_ID]: { ...toggleablePlayer, connected: isToggleablePlayerConnected },
+    ...buildExtraPlayers(extraPlayerCount),
   }
 }
 
@@ -142,6 +169,7 @@ export function buildDemoSession({
   answeredCount,
   isToggleablePlayerConnected,
   startedAt,
+  extraPlayerCount,
 }: DemoOptions): PublicSession {
   const answers = buildAnswers(answerMode, answeredCount)
   const isPaused = status === 'paused'
@@ -172,7 +200,7 @@ export function buildDemoSession({
           results: buildResults(answers),
         }
       : undefined,
-    players: buildPlayers(isToggleablePlayerConnected),
+    players: buildPlayers(isToggleablePlayerConnected, extraPlayerCount),
     answeredBy: { [DEMO_CURRENT_INDEX]: buildAnsweredBy(answers) },
   }
 }
