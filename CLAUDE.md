@@ -9,11 +9,13 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - Phase 3 (joueurs et moteur de partie) : en cours.
   - 3.1 règles de sécurité et leurs tests ; 3.2 rejoindre une partie et lobby joueur ; 3.3 modification du profil dans le lobby ; 3.4 site des joueurs (`quizin-play`) ; 3.5 fondations du moteur côté hôte (catalogue, fiche du quiz, création de partie, lobby hôte) : **terminées**.
   - 3.6 partie jouable en choix multiples, **en cours** :
-    - A (l'hôte s'inscrit comme joueur, « Lancer » à 2 joueurs connectés), B (écrans du joueur, composants purs + démo `/debug/player`), C (envoi de la réponse, un seul `update()` multi-chemins) : **terminées**.
-    - Ordre suivant, avec validation du développeur entre chaque bloc : **T** (test manuel de C), **DA** (direction artistique, DA1 → DA3), **D** (moteur de l'hôte, D1 → D4).
+    - A (l'hôte s'inscrit comme joueur, « Lancer » à 2 joueurs connectés), B (écrans du joueur, composants purs + démo `/debug/player`), C (envoi de la réponse, un seul `update()` multi-chemins), T (test manuel de C), champ public `questionCount`, DA1 à DA3 (direction artistique app et TV, barre de temps fine sur mobile) : **terminées**.
+    - **Prochaine étape : D1** (logique pure du moteur et tests dans `shared/`), puis D2 (lancement), D3 (boucle de jeu de l'hôte), D4 (écran hôte, contrôles Passer / Pause / Terminer, fin de partie). Validation du développeur entre chaque bloc.
+    - Démos sans Firebase : `/debug/player?s=<scénario>&capture=1` (app, développement seulement) et `receiver` sans code `?status=<état>&capture=1`.
   - Les questions (`questions/`) ne sont encore lues par aucun écran ; leur validation est prête dans `shared/quizValidation.ts`.
 - Mettre à jour cette section à chaque fin d'étape.
 - **À faire plus tard, seulement avec l'accord du développeur** : supprimer l'ancien site Hosting `quizin-jouer` une fois `quizin-play` testé ; exclure le code de démo (`/debug/*`, `app/src/debug/`) du bundle publié avant le lancement.
+- **À vérifier en phase 4 sur une vraie TV** : prise en charge de `gap` (flexbox) et `inset` en CSS sur un vieux Chromecast ; confettis du récepteur placés dans les marges de sécurité de 5 %, possiblement rognés par la TV.
 
 ## Stack
 - **App hôte + client joueur web** : Expo (React Native) + TypeScript, routes `expo-router`. Le même code est exporté en web pour les joueurs.
