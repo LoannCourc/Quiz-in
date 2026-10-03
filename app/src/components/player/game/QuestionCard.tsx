@@ -8,7 +8,7 @@ const LONG_TEXT_LENGTH = 80;
 
 // Carte blanche à contour rose, énoncé en Bowlby One couleur encre, centré (maquette mobile).
 export function QuestionCard({ text }: { text: string }) {
-  const fontSize = text.length > LONG_TEXT_LENGTH ? 19 : 24;
+  const fontSize = text.length > LONG_TEXT_LENGTH ? 21 : 24;
   return (
     <View style={styles.card}>
       <Text style={[styles.text, { fontSize, lineHeight: Math.round(fontSize * DISPLAY_LINE_HEIGHT) }]}>{text}</Text>

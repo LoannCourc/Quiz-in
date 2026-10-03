@@ -43,6 +43,8 @@ export const AppColors = {
   // Anneau du compte à rebours : temps restant en rose, temps écoulé en lavande translucide.
   ring: Palette.pink,
   ringTrack: Palette.track,
+  // Barre de temps mobile : même rose que l'anneau, sur blanc translucide.
+  timebarTrack: 'rgba(255, 255, 255, 0.18)',
   // Pastille « encre » : lettre des réponses, centre de l'anneau, bandeau « Ta place ».
   inkSurface: Palette.ink,
   confetti: [Palette.cyan, Palette.gold, Palette.green, Palette.white, Palette.pinkLight],
@@ -93,6 +95,8 @@ export const AppSizes = {
   cardBorder: 5,
   ringSize: 112,
   ringWidth: 12,
+  timebarHeight: 15,
+  timebarDigits: 40,
   coinSize: 224,
   coinBorder: 8,
   podiumWidth: 100,

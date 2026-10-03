@@ -16,6 +16,7 @@ export type ScenarioId =
   | 'questionShort'
   | 'questionLong'
   | 'questionUrgent'
+  | 'questionMax'
   | 'answerSent'
   | 'answerRefused'
   | 'answerNetworkError'
@@ -32,6 +33,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   questionShort: 'Question courte',
   questionLong: 'Question longue',
   questionUrgent: 'Chrono presque fini',
+  questionMax: 'Question maximale',
   answerSent: 'Réponse envoyée',
   answerRefused: 'Réponse refusée',
   answerNetworkError: 'Réseau coupé',
@@ -98,6 +100,12 @@ const LONG_QUESTION: PublicQuestion = {
   ],
   difficulty: 3,
   timeLimit: QUESTION_DURATION_S.choice,
+};
+
+// Pire cas de la spec : énoncé de près de 140 caractères et propositions de 60 caractères.
+const MAX_QUESTION: PublicQuestion = {
+  ...LONG_QUESTION,
+  text: 'Quel texte adopté par l’Assemblée nationale constituante le 26 août 1789 affirme que « les hommes naissent et demeurent libres et égaux » ?',
 };
 
 const REVEAL: Reveal = {
@@ -167,6 +175,8 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle(questionScenario(now, SHORT_QUESTION, 8));
     case 'questionLong':
       return idle(questionScenario(now, LONG_QUESTION));
+    case 'questionMax':
+      return idle(questionScenario(now, MAX_QUESTION));
     case 'questionUrgent':
       return idle(questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit - 4));
     case 'answerSent':

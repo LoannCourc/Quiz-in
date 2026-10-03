@@ -17,7 +17,7 @@ import {
 } from '@/lib/playerGame';
 
 import { AnswerSentView } from './AnswerSentView';
-import type { PhaseTiming } from './Countdown';
+import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
 import { RevealView } from './RevealView';
 import { EndView, PausedView, ScoresView, StartingView, WaitingView } from './StatusViews';

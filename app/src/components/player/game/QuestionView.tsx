@@ -7,9 +7,10 @@ import { Spacing } from '@/constants/theme';
 import type { AnswerState } from '@/lib/playerGame';
 
 import { ChoicePill } from './ChoicePill';
-import { Countdown, type PhaseTiming } from './Countdown';
+import type { PhaseTiming } from './phaseTiming';
 import { QuestionCard } from './QuestionCard';
 import { QuestionHeader } from './QuestionHeader';
+import { Timebar } from './Timebar';
 
 interface QuestionViewProps {
   question: PublicQuestion;
@@ -35,7 +36,7 @@ export function QuestionView({ question, index, questionCount, score, timing, an
   return (
     <View style={styles.container}>
       <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Countdown {...timing} />
+      <Timebar {...timing} />
       <QuestionCard text={question.text} />
 
       {question.options ? (

@@ -8,7 +8,8 @@ import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
 
 import { Confetti } from './Confetti';
-import { Countdown, type PhaseTiming } from './Countdown';
+import { Countdown } from './Countdown';
+import type { PhaseTiming } from './phaseTiming';
 import { Ranking } from './RankingList';
 
 // Écrans simples du joueur : démarrage, classement, pause, fin, attente.
