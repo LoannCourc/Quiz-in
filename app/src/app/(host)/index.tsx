@@ -70,14 +70,17 @@ function CatalogScreen() {
         <CatalogList entries={entries} theme={theme} level={level} onTheme={setTheme} onLevel={setLevel} />
       )}
 
-      <View style={styles.debugLinks}>
-        <Link href="/debug/player" style={styles.debugLink}>
-          {strings.catalog.playerDemoLink}
-        </Link>
-        <Link href="/debug/counter" style={styles.debugLink}>
-          {strings.catalog.debugLink}
-        </Link>
-      </View>
+      {/* Démos : en développement seulement (absentes de l'APK publié). */}
+      {__DEV__ && (
+        <View style={styles.debugLinks}>
+          <Link href="/debug/player" style={styles.debugLink}>
+            {strings.catalog.playerDemoLink}
+          </Link>
+          <Link href="/debug/counter" style={styles.debugLink}>
+            {strings.catalog.debugLink}
+          </Link>
+        </View>
+      )}
     </Screen>
   );
 }

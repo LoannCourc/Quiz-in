@@ -39,11 +39,6 @@ export async function launchGame(
   return { ok: true };
 }
 
-// toStatus : état atteint quand la transition a été écrite.
-export type TransitionOutcome =
-  | { result: 'applied'; toStatus: string }
-  | { result: 'ignored' | 'missing' };
-
 // Transition : on relit la session (pas l'instantané du rendu), on calcule l'update depuis
 // l'état attendu, puis un seul update() multi-chemins. null → transition déjà faite : ignorée.
 // canWrite est revérifié juste avant l'écriture : hors ligne, update() serait mis en file
@@ -54,15 +49,14 @@ export async function runTransition(
   expected: ExpectedPhase,
   nowServer: number,
   canWrite: () => boolean,
-): Promise<TransitionOutcome> {
+): Promise<void> {
   const snapshot = await get(ref(db, `sessions/${code}`));
-  if (!snapshot.exists()) return { result: 'missing' };
+  if (!snapshot.exists()) return;
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
   const session = snapshot.val() as Session;
   const changes = transitionUpdate({ ...session, players: session.players ?? {} }, questions, expected, nowServer);
-  if (!changes || !canWrite()) return { result: 'ignored' };
+  if (!changes || !canWrite()) return;
   await update(ref(db, `sessions/${code}`), changes);
-  return { result: 'applied', toStatus: String(changes.status) };
 }
 
 // Action ponctuelle de l'hôte (Pause, Reprise, Terminer, Rejouer) : on relit la session, on

@@ -9,7 +9,6 @@ import type { Question, Session } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
-import { logEngine } from '@/lib/devLog';
 import { runTransition } from '@/lib/hostGame';
 
 export interface HostEngine {
@@ -65,7 +64,7 @@ export function useHostEngine({ code, session, questions, serverOffsetMs, canWri
 
     const timeoutId = setTimeout(() => {
       const nowServer = Date.now() + serverOffsetMs;
-      void advance(code, questions, expected, nowServer, nowServer - deadline, lock, canWriteRef);
+      void advance(code, questions, expected, nowServer, lock, canWriteRef);
     }, delayMs);
     return () => clearTimeout(timeoutId);
   }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount]);
@@ -75,7 +74,7 @@ export function useHostEngine({ code, session, questions, serverOffsetMs, canWri
   function skip() {
     if (!questions || !canWriteRef.current) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
-    void advance(code, questions, expected, Date.now() + serverOffsetMs, 0, lock, canWriteRef);
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef);
   }
 
   return { skip };
@@ -89,27 +88,20 @@ async function advance(
   questions: readonly Question[],
   expected: ExpectedPhase,
   nowServer: number,
-  lateMs: number,
   lock: { current: TransitionLock | null },
   canWrite: { current: boolean },
 ): Promise<void> {
   const key = transitionKey(expected);
-  const from = `${expected.status} ${expected.currentIndex}`;
-  if (isTransitionLocked(lock.current, key, Date.now())) {
-    logEngine(from, '—', key, 'déjà en cours', lateMs);
-    return;
-  }
+  if (isTransitionLocked(lock.current, key, Date.now())) return;
   if (lock.current?.key === key) {
     console.warn(`[engine] Verrou relâché après une écriture en attente : ${key}`);
   }
   const current: TransitionLock = { key, since: Date.now() };
   lock.current = current;
   try {
-    const outcome = await runTransition(code, questions, expected, nowServer, () => canWrite.current);
-    logEngine(from, outcome.result === 'applied' ? outcome.toStatus : '—', key, outcome.result, lateMs);
+    await runTransition(code, questions, expected, nowServer, () => canWrite.current);
   } catch (error) {
     // Erreur d'écriture : on réessaiera à la prochaine valeur de la session ou au premier plan.
-    logEngine(from, '—', key, 'erreur', lateMs);
     console.error('[engine] Transition impossible', error);
   } finally {
     if (lock.current === current) lock.current = null;
