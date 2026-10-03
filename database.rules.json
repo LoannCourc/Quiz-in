@@ -13,7 +13,7 @@
     "sessions": {
       "$code": {
         ".read": "auth != null && data.child('hostUid').val() == auth.uid",
-        ".write": "auth != null && (data.exists() ? data.child('hostUid').val() == auth.uid : newData.child('hostUid').val() == auth.uid)",
+        ".write": "auth != null && (data.exists() ? (data.child('hostUid').val() == auth.uid || (!newData.exists() && data.child('hostLeftAt').isNumber() && now > data.child('hostLeftAt').val() + 300000)) : newData.child('hostUid').val() == auth.uid)",
         ".validate": "$code.matches(/^[A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9]$/) && newData.hasChildren(['hostUid', 'quizId', 'status'])",
 
         "hostUid": {
@@ -23,6 +23,10 @@
         "quizId": {
           ".read": "auth != null",
           ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64"
+        },
+        "hostLeftAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() <= now"
         },
         "questionCount": {
           ".read": "auth != null",

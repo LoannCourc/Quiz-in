@@ -26,6 +26,7 @@ const PUBLIC_FIELDS = [
   'phaseEndsAt',
   'pausedFrom',
   'remainingMs',
+  'hostLeftAt',
   'currentQuestion',
   'reveal',
   'players',

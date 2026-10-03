@@ -21,6 +21,8 @@ import {
   transitionUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
+import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
+import { hostReturnUpdate } from '../../shared/hostAbsence'
 import type { GameStatus, Session } from '../../shared/types'
 import { makeSession, QUESTIONS } from '../unit/engineFixtures'
 
@@ -748,6 +750,88 @@ describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
     await seedQuestion()
     await assertFails(db(PLAYER).ref(SESSION).remove())
     await assertSucceeds(db(HOST).ref(SESSION).remove())
+    expect(await readAsAdmin(SESSION)).toBeNull()
+  })
+})
+
+// D5 : hôte absent. hostLeftAt est écrit par l'onDisconnect de l'hôte ; au-delà du délai, un
+// joueur ou la TV peut supprimer toute la session (et rien d'autre).
+describe('Hôte absent : hostLeftAt et suppression après délai', () => {
+  const TIMEOUT_MS = HOST_DISCONNECT_TIMEOUT_S * 1000
+
+  async function waitForNumber(path: string): Promise<number> {
+    for (let attempt = 0; attempt < 50; attempt++) {
+      const value = await readAsAdmin(path)
+      if (typeof value === 'number') return value
+      await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+    throw new Error(`${path} n'a pas été écrit`)
+  }
+
+  test('hostLeftAt lisible par un joueur et par la TV, non modifiable par un joueur', async () => {
+    await seedSession({ hostLeftAt: Date.now() - 1_000 })
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/hostLeftAt`).once('value'))
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/hostLeftAt`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/hostLeftAt`).set(firebase.database.ServerValue.TIMESTAMP))
+  })
+
+  test("l'onDisconnect de l'hôte écrit hostLeftAt (heure du serveur) quand il se déconnecte", async () => {
+    await seedSession()
+    const hostDb = db(HOST)
+    await assertSucceeds(hostDb.ref(SESSION).onDisconnect().update({ hostLeftAt: SERVER_TIME }))
+    hostDb.goOffline()
+    const hostLeftAt = await waitForNumber(`${SESSION}/hostLeftAt`)
+    expect(Math.abs(hostLeftAt - Date.now())).toBeLessThan(10_000)
+  })
+
+  test('hostLeftAt dans le futur refusé, même pour l’hôte', async () => {
+    await seedSession()
+    await assertFails(db(HOST).ref(`${SESSION}/hostLeftAt`).set(Date.now() + 60_000))
+  })
+
+  test('suppression par un joueur refusée avant le délai (même valeur que la constante)', async () => {
+    await seedSession({ hostLeftAt: Date.now() - TIMEOUT_MS + 30_000 })
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+  })
+
+  test('suppression acceptée après le délai, par un joueur ou par la TV', async () => {
+    await seedSession({ hostLeftAt: Date.now() - TIMEOUT_MS - 5_000 })
+    await assertSucceeds(db(PLAYER).ref(SESSION).remove())
+    await seedSession({ status: 'ended', hostLeftAt: Date.now() - TIMEOUT_MS - 5_000 })
+    await assertSucceeds(db(OTHER).ref(SESSION).remove())
+  })
+
+  test('suppression refusée sans hostLeftAt (hôte présent ou revenu)', async () => {
+    await seedSession()
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+  })
+
+  test('après le délai, un joueur ne peut toujours rien écrire d’autre que la suppression', async () => {
+    await seedSession({ hostLeftAt: Date.now() - TIMEOUT_MS - 5_000 })
+    await assertFails(db(PLAYER).ref(`${SESSION}/status`).set('ended'))
+    await assertFails(db(PLAYER).ref(SESSION).update({ status: 'ended' }))
+    await assertFails(db(PLAYER).ref(`${SESSION}/players`).remove())
+  })
+
+  test("retour de l'hôte : pause recalculée et hostLeftAt effacé, accepté", async () => {
+    const hostLeftAt = Date.now() - 20_000
+    await seedSession({ hostLeftAt, phaseEndsAt: hostLeftAt + 12_000 })
+    const session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(HOST).ref(SESSION).update(hostReturnUpdate(session) ?? {}))
+    const after = (await readAsAdmin(SESSION)) as Session
+    expect(after).toMatchObject({ status: 'paused', pausedFrom: 'question', remainingMs: 12_000 })
+    expect(after.hostLeftAt).toBeUndefined()
+  })
+
+  test("Quitter : l'onDisconnect annulé ne recrée pas de hostLeftAt orphelin", async () => {
+    await seedSession()
+    const hostDb = db(HOST)
+    const sessionRef = hostDb.ref(SESSION)
+    await assertSucceeds(sessionRef.onDisconnect().update({ hostLeftAt: SERVER_TIME }))
+    await assertSucceeds(sessionRef.onDisconnect().cancel())
+    await assertSucceeds(sessionRef.remove())
+    hostDb.goOffline()
+    await new Promise((resolve) => setTimeout(resolve, 1_000))
     expect(await readAsAdmin(SESSION)).toBeNull()
   })
 })

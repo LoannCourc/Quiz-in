@@ -53,6 +53,16 @@ export const strings = {
     title: 'Pause',
     subtitle: 'La partie reprendra dans un instant',
   },
+  // Pendant l'absence de l'hôte (coupure), spec 6.6.
+  waitingHost: {
+    title: 'En attente de l’hôte…',
+    message: 'La partie reprendra dès qu’il sera de retour.',
+  },
+  hostAway: {
+    title: 'L’hôte a perdu la connexion…',
+    message: 'La partie reprendra à son retour.',
+    deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
+  },
   status: {
     loadingTitle: 'Connexion à la partie…',
     notFoundTitle: 'Partie introuvable',

@@ -117,6 +117,8 @@ export interface PublicSession {
   // Renseignés en PAUSED : état à reprendre et temps restant de la phase interrompue.
   pausedFrom?: GameStatus;
   remainingMs?: number;
+  // Heure serveur du départ de l'hôte (coupure), écrite par son onDisconnect ; effacée à son retour.
+  hostLeftAt?: number;
   currentQuestion?: PublicQuestion;
   reveal?: Reveal;
   players: Record<PlayerId, Player>;

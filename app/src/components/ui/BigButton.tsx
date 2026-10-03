@@ -8,11 +8,14 @@ interface BigButtonProps {
   onPress: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
+  // compact : texte plus petit, sur une seule ligne (deux boutons côte à côte).
+  size?: 'large' | 'compact';
 }
 
 // Grosse pilule à ombre dure : à l'appui, elle « s'enfonce » (décalage vers le bas, ombre réduite).
-export function BigButton({ label, onPress, disabled = false, variant = 'primary' }: BigButtonProps) {
+export function BigButton({ label, onPress, disabled = false, variant = 'primary', size = 'large' }: BigButtonProps) {
   const isPrimary = variant === 'primary';
+  const isCompact = size === 'compact';
   return (
     <Pressable
       accessibilityRole="button"
@@ -25,7 +28,15 @@ export function BigButton({ label, onPress, disabled = false, variant = 'primary
         pressed && styles.pressed,
         disabled && styles.disabled,
       ]}>
-      <Text style={[styles.label, isPrimary ? styles.primaryLabel : styles.secondaryLabel, disabled && styles.disabledLabel]}>
+      <Text
+        numberOfLines={isCompact ? 1 : undefined}
+        adjustsFontSizeToFit={isCompact}
+        style={[
+          styles.label,
+          isPrimary ? styles.primaryLabel : styles.secondaryLabel,
+          isCompact && (isPrimary ? styles.compactPrimaryLabel : styles.compactLabel),
+          disabled && styles.disabledLabel,
+        ]}>
         {label}
       </Text>
     </Pressable>
@@ -69,6 +80,13 @@ const styles = StyleSheet.create({
     fontSize: AppSizes.textLarge,
     lineHeight: Math.round(AppSizes.textLarge * DISPLAY_LINE_HEIGHT),
     textTransform: 'uppercase',
+  },
+  compactPrimaryLabel: {
+    fontSize: AppSizes.textBody,
+    lineHeight: Math.round(AppSizes.textBody * DISPLAY_LINE_HEIGHT),
+  },
+  compactLabel: {
+    fontSize: AppSizes.textBody,
   },
   secondaryLabel: {
     color: AppColors.text,

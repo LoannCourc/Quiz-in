@@ -1,9 +1,11 @@
+import { abandonedGameDeletableAt, isHostAway } from '@shared/hostAbsence';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
+import { HostAwayNotice, WaitingHostNotice } from '@/components/player/HostAwayNotice';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
@@ -11,7 +13,9 @@ import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { strings } from '@/constants/strings';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
+import { useAbandonedGameCleanup } from '@/hooks/useAbandonedGameCleanup';
 import { useAnswer } from '@/hooks/useAnswer';
+import { usePhaseStale } from '@/hooks/usePhaseStale';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { getEntryRefusal, rememberProfile } from '@/lib/joinGame';
@@ -56,6 +60,9 @@ function JoinRoom({ code }: { code: string }) {
   const state = usePlayerSession(code);
   const registered = isRegistered(state);
   usePresence(code, registered && state.kind === 'ready' ? state.uid : null);
+  const serverOffsetMs = useServerTimeOffset();
+  // Hôte parti depuis plus de 5 min : ce téléphone supprime la partie (nettoyage, spec 6.6).
+  useAbandonedGameCleanup(code, state.kind === 'ready' ? state.session : null, serverOffsetMs);
 
   switch (state.kind) {
     case 'loading':
@@ -77,7 +84,7 @@ function JoinRoom({ code }: { code: string }) {
 
   // Reprise : même session anonyme (même navigateur) = même uid, donc on retrouve son entrée.
   if (registered) {
-    return <RegisteredPlayer code={code} state={state} />;
+    return <RegisteredPlayer code={code} state={state} serverOffsetMs={serverOffsetMs} />;
   }
 
   const refusal = getEntryRefusal(state.status, state.players, state.uid);
@@ -95,19 +102,40 @@ function JoinRoom({ code }: { code: string }) {
 interface RegisteredPlayerProps {
   code: string;
   state: Extract<PlayerSessionState, { kind: 'ready' }>;
+  serverOffsetMs: number;
 }
 
 // Joueur déjà inscrit : lobby, modification du profil, ou partie en cours.
-function RegisteredPlayer({ code, state }: RegisteredPlayerProps) {
+function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const serverOffsetMs = useServerTimeOffset();
   const { uid, status, players } = state;
   const { answer, onAnswer } = useAnswer(code, uid, state.session);
   const me = players[uid];
+  const isPhaseStale = usePhaseStale(state.session, serverOffsetMs);
   // Mémorisé pour préremplir la réinscription si l'hôte retire ce joueur du lobby (fantôme).
   useEffect(() => {
     rememberProfile(code, me.name, me.avatar);
   }, [code, me.name, me.avatar]);
+
+  // Hôte absent (coupure) : un seul message, avec le temps avant suppression ; pas en fin de partie.
+  const deletableAt = abandonedGameDeletableAt(state.session);
+  if (isHostAway(state.session) && deletableAt !== null) {
+    return (
+      <WelcomeScreen code={code}>
+        <HostAwayNotice deletableAt={deletableAt} serverOffsetMs={serverOffsetMs} />
+      </WelcomeScreen>
+    );
+  }
+
+  // Phase figée depuis plus de 5 s (coupure de l'hôte pas encore connue du serveur) : à la place
+  // du chrono bloqué.
+  if (isPhaseStale) {
+    return (
+      <WelcomeScreen code={code}>
+        <WaitingHostNotice />
+      </WelcomeScreen>
+    );
+  }
 
   if (status !== 'lobby') {
     // Partie lancée pendant la modification : le formulaire disparaît (les règles refuseraient

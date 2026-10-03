@@ -18,12 +18,17 @@ export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 
 export const SCORES_DURATION_S = 5;
 // Fin du classement : annonce plein écran de la question suivante (comprise dans SCORES_DURATION_S).
 export const NEXT_QUESTION_ANNOUNCE_MS = 1_500;
-export const HOST_DISCONNECT_TIMEOUT_S = 120;
+// Hôte absent (coupure) : au-delà, joueurs ou TV suppriment la partie (spec 6.6).
+// Même valeur écrite en dur dans database.rules.json (300000 ms), vérifiée par les tests des règles.
+export const HOST_DISCONNECT_TIMEOUT_S = 300;
 // Marge avant la révélation, après la fin du chrono : laisse arriver les dernières réponses
 // (les règles acceptent submittedAt jusqu'à phaseEndsAt + 1 000 ms).
 export const REVEAL_GRACE_MS = 1200;
 // Durée maximale d'attente d'une transition de l'hôte avant de relâcher son verrou (écriture en attente).
 export const TRANSITION_LOCK_MAX_MS = 10_000;
+// Joueurs et TV : phase considérée comme bloquée (« En attente de l'hôte… ») au-delà de cette
+// marge après phaseEndsAt sans changement de phase (l'hôte avance normalement bien avant).
+export const STALE_PHASE_MARGIN_MS = 5_000;
 
 // Points : bonne réponse, plus bonus de rapidité jusqu'à MAX_SPEED_BONUS_POINTS.
 export const CORRECT_ANSWER_POINTS = 100;

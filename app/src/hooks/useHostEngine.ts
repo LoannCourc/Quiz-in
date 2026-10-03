@@ -24,6 +24,8 @@ interface HostEngineInput {
   // Questions de la partie ; null tant qu'elles ne sont pas chargées (aucune transition).
   questions: readonly Question[] | null;
   serverOffsetMs: number;
+  // Faux hors ligne (ou retour de coupure en cours) : aucune transition, aucune écriture.
+  canWrite: boolean;
 }
 
 // Compteur incrémenté à chaque retour de l'app au premier plan : force le recalcul de
@@ -44,12 +46,18 @@ function useForegroundCount(): number {
 // de l'effet annule le minuteur précédent : jamais deux minuteurs actifs, même en mode strict.
 // Rien n'est gardé en mémoire : après une relance, la boucle repart de la session stockée, et
 // une échéance déjà passée déclenche la transition aussitôt (rattrapage).
-export function useHostEngine({ code, session, questions, serverOffsetMs }: HostEngineInput): HostEngine {
+// Hors ligne, la boucle est gelée ; elle repart quand canWrite redevient vrai (partie en pause).
+export function useHostEngine({ code, session, questions, serverOffsetMs, canWrite }: HostEngineInput): HostEngine {
   const foregroundCount = useForegroundCount();
   const lock = useRef<TransitionLock | null>(null);
+  const canWriteRef = useRef(canWrite);
 
   useEffect(() => {
-    if (!questions) return;
+    canWriteRef.current = canWrite;
+  }, [canWrite]);
+
+  useEffect(() => {
+    if (!questions || !canWrite) return;
     const deadline = nextDeadline(session);
     if (deadline === null) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
@@ -57,17 +65,17 @@ export function useHostEngine({ code, session, questions, serverOffsetMs }: Host
 
     const timeoutId = setTimeout(() => {
       const nowServer = Date.now() + serverOffsetMs;
-      void advance(code, questions, expected, nowServer, nowServer - deadline, lock);
+      void advance(code, questions, expected, nowServer, nowServer - deadline, lock, canWriteRef);
     }, delayMs);
     return () => clearTimeout(timeoutId);
-  }, [code, session, questions, serverOffsetMs, foregroundCount]);
+  }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount]);
 
   // Passer : la transition suivante tout de suite, par le même chemin que le minuteur (même verrou,
   // même état attendu) : un double appui, ou un appui en même temps que le minuteur, est ignoré.
   function skip() {
-    if (!questions) return;
+    if (!questions || !canWriteRef.current) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
-    void advance(code, questions, expected, Date.now() + serverOffsetMs, 0, lock);
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, 0, lock, canWriteRef);
   }
 
   return { skip };
@@ -83,6 +91,7 @@ async function advance(
   nowServer: number,
   lateMs: number,
   lock: { current: TransitionLock | null },
+  canWrite: { current: boolean },
 ): Promise<void> {
   const key = transitionKey(expected);
   const from = `${expected.status} ${expected.currentIndex}`;
@@ -96,7 +105,7 @@ async function advance(
   const current: TransitionLock = { key, since: Date.now() };
   lock.current = current;
   try {
-    const outcome = await runTransition(code, questions, expected, nowServer);
+    const outcome = await runTransition(code, questions, expected, nowServer, () => canWrite.current);
     logEngine(from, outcome.result === 'applied' ? outcome.toStatus : '—', key, outcome.result, lateMs);
   } catch (error) {
     // Erreur d'écriture : on réessaiera à la prochaine valeur de la session ou au premier plan.

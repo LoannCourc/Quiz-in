@@ -155,7 +155,9 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Avatar** : choisi dans une liste prédéfinie d'environ 24. Pas d'envoi de photo.
 - **Rejoindre après le lancement** : impossible, sauf reconnexion d'un joueur déjà présent.
 - **Joueur déconnecté** : il garde son score, peut revenir avec le même pseudo et retrouve l'état en cours. Il obtient 0 point aux questions manquées.
-- **Hôte déconnecté** : la partie se met en pause automatiquement (la TV l'indique). Au-delà de 2 minutes, elle se termine.
+- **Hôte déconnecté** : s'il quitte l'écran de la partie ou met l'app en arrière-plan, la partie se met en pause. En cas de coupure (app fermée, réseau perdu), le serveur note l'heure de son départ ; joueurs et TV affichent « L'hôte a perdu la connexion… ». À son retour, la partie est en pause et l'hôte la reprend lui-même. S'il ne revient pas dans les 5 minutes, la partie est supprimée par un joueur ou la TV encore connecté (en fin de partie, sans message d'absence, ce nettoyage s'applique aussi).
+  - Le serveur peut mettre jusqu'à une minute à détecter la coupure. Dès qu'il perd la connexion, le téléphone de l'hôte gèle la partie (aucune transition, contrôles masqués, message « Connexion perdue… la partie est en attente »). Au retour du réseau, il met la partie en pause avec le temps qui restait au moment de la perte.
+  - Joueurs et TV : si une phase (3-2-1, question, révélation, classement) dépasse son échéance de plus de 5 s sans changer, ils affichent « En attente de l'hôte… » à la place du chrono figé. Le message d'absence ci-dessus reste prioritaire.
 - **Cast interrompu** : l'hôte relance le Cast et la TV reprend à l'état courant, car l'état est stocké sur le serveur.
 - **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://quizin-play.web.app/join/CODE` (site Firebase Hosting des joueurs, distinct de celui du récepteur TV). Une partie est supprimée automatiquement 24 heures après sa fin, ou dès que l'hôte quitte la partie.
 
@@ -189,6 +191,7 @@ sessions/{code}
   questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
   phaseStartedAt, phaseEndsAt         // horodatage serveur
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
+  hostLeftAt?                         // heure serveur du départ de l'hôte (écrite par onDisconnect), public ; effacée à son retour
   currentQuestion: { text, options?, difficulty, timeLimit }   // SANS la bonne réponse
   reveal: { correctAnswer, explanation, stats }                // publié à la révélation
     stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition

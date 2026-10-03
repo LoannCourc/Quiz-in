@@ -46,18 +46,21 @@ export type TransitionOutcome =
 
 // Transition : on relit la session (pas l'instantané du rendu), on calcule l'update depuis
 // l'état attendu, puis un seul update() multi-chemins. null → transition déjà faite : ignorée.
+// canWrite est revérifié juste avant l'écriture : hors ligne, update() serait mis en file
+// d'attente et partirait en retard au retour du réseau.
 export async function runTransition(
   code: string,
   questions: readonly Question[],
   expected: ExpectedPhase,
   nowServer: number,
+  canWrite: () => boolean,
 ): Promise<TransitionOutcome> {
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return { result: 'missing' };
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
   const session = snapshot.val() as Session;
   const changes = transitionUpdate({ ...session, players: session.players ?? {} }, questions, expected, nowServer);
-  if (!changes) return { result: 'ignored' };
+  if (!changes || !canWrite()) return { result: 'ignored' };
   await update(ref(db, `sessions/${code}`), changes);
   return { result: 'applied', toStatus: String(changes.status) };
 }

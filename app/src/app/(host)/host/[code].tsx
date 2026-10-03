@@ -30,6 +30,7 @@ import { Spacing } from '@/constants/theme';
 import { useAnswer } from '@/hooks/useAnswer';
 import { useGameQuestions, type GameQuestionsState } from '@/hooks/useGameQuestions';
 import { useHostEngine } from '@/hooks/useHostEngine';
+import { useHostAbsence, type HostConnection } from '@/hooks/useHostAbsence';
 import { useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useLobbyCleanup } from '@/hooks/useLobbyCleanup';
@@ -37,6 +38,7 @@ import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { receiverUrl } from '@/lib/createGame';
 import { confirmAction } from '@/lib/confirm';
+import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
 import { applyHostAction, deleteGame, launchGame } from '@/lib/hostGame';
 import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
 
@@ -62,11 +64,27 @@ function HostSession({ code }: { code: string }) {
   // Objet recréé seulement quand la session change (le moteur se recalcule sur ce changement).
   const value = session.kind === 'ready' ? session.value : null;
   const current = useMemo(() => value && { ...value, players: value.players ?? {} }, [value]);
+  const wasRemoved = session.kind === 'ready' && session.wasRemoved;
+
+  // Partie supprimée pendant l'absence de l'hôte : plus d'écriture de départ, plus de reprise.
+  useEffect(() => {
+    if (!wasRemoved) return;
+    cancelHostAbsenceMarker(code).catch((error: unknown) => console.warn('[absence] Annulation impossible', error));
+    void clearHostedGameCode();
+  }, [code, wasRemoved]);
 
   if (session.kind === 'loading') {
     return (
       <Screen>
         <Text style={textStyles.body}>{strings.hostLobby.loading}</Text>
+      </Screen>
+    );
+  }
+  if (current === null && wasRemoved) {
+    return (
+      <Screen>
+        <Text style={[textStyles.body, styles.centered]}>{strings.hostGame.gameDeleted}</Text>
+        <BigButton label={strings.hostGame.backToCatalog} onPress={() => router.replace('/')} />
       </Screen>
     );
   }
@@ -92,15 +110,20 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   const isRegistered = session.players[uid] !== undefined;
   const inProgress = isInProgress(session);
 
+  const connection = useHostAbsence(code, session, serverOffsetMs);
   const engine = useHostEngine({
     code,
     session,
     questions: questions.kind === 'ready' ? questions.questions : null,
     serverOffsetMs,
+    canWrite: connection.canWrite,
   });
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
-  useLeaveGuard(inProgress);
+  // Départ volontaire confirmé : pause avant de quitter l'écran (pas hors ligne : elle partirait en retard).
+  useLeaveGuard(inProgress, async () => {
+    if (connection.canWrite) await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
+  });
   useLobbyCleanup(code, session);
 
   // Partie terminée : plus rien à reprendre après une relance de l'app.
@@ -122,6 +145,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           serverOffsetMs={serverOffsetMs}
           isRegistered={isRegistered}
           onSkip={engine.skip}
+          connection={connection}
         />
       )}
     </>
@@ -141,11 +165,12 @@ interface HostInGameProps {
   serverOffsetMs: number;
   isRegistered: boolean;
   onSkip: () => void;
+  connection: HostConnection;
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
-function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: HostInGameProps) {
+function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, connection }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
@@ -153,6 +178,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
   // Une action = relire la session, calculer l'update (shared/hostEngine.ts), un seul update().
   async function act(buildUpdate: (current: Session, nowServer: number) => SessionUpdate | null) {
     setActionError(null);
+    if (!connection.canWrite) return;
     try {
       await applyHostAction(code, buildUpdate, Date.now() + serverOffsetMs);
     } catch (error) {
@@ -172,7 +198,10 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
     confirmAction(strings.hostControls.quitConfirm, () => {
       router.replace('/');
       void clearHostedGameCode();
-      deleteGame(code).catch((error: unknown) => console.error('[engine] Suppression de la partie impossible', error));
+      // D'abord annuler l'écriture de départ, sinon elle recréerait un hostLeftAt orphelin.
+      cancelHostAbsenceMarker(code)
+        .then(() => deleteGame(code))
+        .catch((error: unknown) => console.error('[engine] Suppression de la partie impossible', error));
     });
   }
 
@@ -185,17 +214,21 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
     quit,
   };
 
-  const footer = (
+  // Hors ligne : seulement le message, aucun contrôle (rien ne doit partir en file d'attente).
+  const footer = connection.isOffline ? (
+    <ConnectionLostNotice />
+  ) : (
     <HostFooter
       status={session.status}
       error={actionError}
+      notice={connection.returnedFromAbsence ? strings.hostGame.returnedFromAbsence : null}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
       onReplay={actions.replay}
       onQuit={actions.quit}
     />
   );
-  const overlay = isPanelOpen ? (
+  const overlay = isPanelOpen && !connection.isOffline ? (
     <HostControlsPanel controls={hostControls(session)} actions={actions} onClose={() => setIsPanelOpen(false)} />
   ) : null;
 
@@ -224,9 +257,19 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: Hos
   );
 }
 
+function ConnectionLostNotice() {
+  return (
+    <View style={styles.footerStack}>
+      <Text style={[textStyles.label, styles.centered]}>{strings.hostGame.connectionLost}</Text>
+      <Text style={[textStyles.muted, styles.centered]}>{strings.hostGame.connectionLostHint}</Text>
+    </View>
+  );
+}
+
 interface HostFooterProps {
   status: Session['status'];
   error: string | null;
+  notice: string | null;
   onOpenPanel: () => void;
   onResume: () => void;
   onReplay: () => void;
@@ -235,18 +278,19 @@ interface HostFooterProps {
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
 // (panneau), précédée de Reprendre en pause, et de Rejouer / Quitter en fin de partie.
-function HostFooter({ status, error, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
+function HostFooter({ status, error, notice, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
   return (
     <View style={styles.footerStack}>
+      {notice && <Text style={[textStyles.body, styles.centered]}>{notice}</Text>}
       {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
       {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
       {status === 'ended' && (
         <View style={styles.footerRow}>
           <View style={styles.fill}>
-            <BigButton label={strings.hostControls.replay} onPress={onReplay} />
+            <BigButton label={strings.hostControls.replay} size="compact" onPress={onReplay} />
           </View>
           <View style={styles.fill}>
-            <BigButton label={strings.hostControls.quit} variant="secondary" onPress={onQuit} />
+            <BigButton label={strings.hostControls.quit} variant="secondary" size="compact" onPress={onQuit} />
           </View>
         </View>
       )}
@@ -425,7 +469,7 @@ const styles = StyleSheet.create({
   },
   footerRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'stretch',
     gap: Spacing.three,
   },
 });
