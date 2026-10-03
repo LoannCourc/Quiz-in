@@ -13,6 +13,9 @@ export const ALL_ANSWERED_DELAY_S = 2;
 export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 8, free: 10 };
 export const SCORES_DURATION_S = 6;
 export const HOST_DISCONNECT_TIMEOUT_S = 120;
+// Marge avant la révélation, après la fin du chrono : laisse arriver les dernières réponses
+// (les règles acceptent submittedAt jusqu'à phaseEndsAt + 1 000 ms).
+export const REVEAL_GRACE_MS = 1200;
 
 // Points : bonne réponse, plus bonus de rapidité jusqu'à MAX_SPEED_BONUS_POINTS.
 export const CORRECT_ANSWER_POINTS = 100;

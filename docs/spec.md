@@ -134,6 +134,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Option Rapidité** : bonus proportionnel au temps restant. `points = 100 + arrondi(100 × temps restant / durée de la question)`, soit de 100 à 200 points.
 - **Mauvaise réponse ou absence de réponse** : 0 point.
 - Le temps de réponse est mesuré avec l'horodatage du **serveur**, pas celui du téléphone.
+- Pause pendant une question : le bonus de rapidité des réponses données avant la pause est légèrement surévalué, plafonné à 100 (approximation acceptée au MVP).
 
 ### 6.3 Validation des réponses libres
 - **Automatique (P0)** : la réponse du joueur est normalisée (minuscules, sans accents ni ponctuation, sans article initial) puis comparée à la liste des réponses acceptées de la question.

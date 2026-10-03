@@ -11,6 +11,17 @@ import 'firebase/compat/database'
 import { readFileSync } from 'node:fs'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 
+import {
+  launchUpdate,
+  pauseUpdate,
+  resumeUpdate,
+  selectGameQuestions,
+  transitionUpdate,
+  type SessionUpdate,
+} from '../../shared/hostEngine'
+import type { GameStatus, Session } from '../../shared/types'
+import { makeSession, QUESTIONS } from '../unit/engineFixtures'
+
 const PROJECT_ID = 'demo-quiz-in'
 const CODE = 'K7PX'
 const SESSION = `sessions/${CODE}`
@@ -558,5 +569,95 @@ describe('Présence (onDisconnect)', () => {
   test("onDisconnect sur la présence d'un autre joueur refusé", async () => {
     await seedSession()
     await assertFails(db(OTHER).ref(`${SESSION}/players/${PLAYER}/connected`).onDisconnect().set(false))
+  })
+})
+
+// Chaque update() produit par le moteur de l'hôte (shared/hostEngine.ts), exécuté avec l'identité
+// de l'hôte sur une session réaliste : les règles doivent l'accepter. La console Firebase
+// contourne les règles ; sans ces tests, un refus n'apparaîtrait qu'en pleine partie.
+describe("Moteur de l'hôte : updates acceptés par les règles", () => {
+  // Partie courte de 2 questions pour parcourir toutes les transitions jusqu'à la fin.
+  const gameQuestions = selectGameQuestions(QUESTIONS.slice(0, 2))
+
+  async function readSession(): Promise<Session> {
+    return (await readAsAdmin(SESSION)) as Session
+  }
+
+  async function applyAsHost(update: SessionUpdate | null): Promise<Session> {
+    expect(update).not.toBeNull()
+    await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    return readSession()
+  }
+
+  // Transition depuis l'état stocké, comme le fera le moteur.
+  async function advance(session: Session, expectedStatus: GameStatus): Promise<Session> {
+    expect(session.status).toBe(expectedStatus)
+    const expected = { status: session.status, currentIndex: session.currentIndex }
+    return applyAsHost(transitionUpdate(session, gameQuestions, expected, Date.now()))
+  }
+
+  async function seedLobby() {
+    const lobby = makeSession({ phaseStartedAt: Date.now() })
+    await seed({ sessions: { [CODE]: lobby } })
+    return readSession()
+  }
+
+  test('partie complète : lancement, questions, réponses, révélations, classements, fin', async () => {
+    let session = await seedLobby()
+
+    const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
+    expect(launch.ok).toBe(true)
+    session = await applyAsHost(launch.ok ? launch.update : null)
+    expect(session).toMatchObject({ status: 'starting', questionCount: 2 })
+
+    for (let index = 0; index < gameQuestions.length; index++) {
+      session = await advance(session, index === 0 ? 'starting' : 'scores')
+      expect(session).toMatchObject({ status: 'question', currentIndex: index })
+
+      // Réponses des joueurs, écrites comme le client joueur (même update multi-chemins).
+      await assertSucceeds(submitAnswer(PLAYER, index, 1))
+      await assertSucceeds(submitAnswer(HOST, index, 0))
+      session = await readSession()
+
+      session = await advance(session, 'question')
+      expect(session.status).toBe('reveal')
+      expect(session.answers?.[index]?.[PLAYER]).toMatchObject({ value: 1, correct: true })
+      expect(session.players[PLAYER].rank).toBe(1)
+
+      session = await advance(session, 'reveal')
+      expect(session.status).toBe('scores')
+    }
+
+    session = await advance(session, 'scores')
+    expect(session).toMatchObject({ status: 'ended' })
+    expect(session.currentQuestion).toBeUndefined()
+    expect(session.reveal).toBeUndefined()
+  })
+
+  test('pause et reprise dans chaque état où elles sont possibles', async () => {
+    let session = await seedLobby()
+    const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
+    session = await applyAsHost(launch.ok ? launch.update : null)
+
+    for (const status of ['starting', 'question', 'reveal', 'scores'] as const) {
+      expect(session.status).toBe(status)
+      session = await applyAsHost(pauseUpdate(session, Date.now()))
+      expect(session).toMatchObject({ status: 'paused', pausedFrom: status })
+
+      session = await applyAsHost(resumeUpdate(session, Date.now()))
+      expect(session.status).toBe(status)
+      expect(session.pausedFrom).toBeUndefined()
+      expect(session.remainingMs).toBeUndefined()
+
+      if (status === 'question') await assertSucceeds(submitAnswer(PLAYER, 0, 1))
+      session = await advance(await readSession(), status)
+    }
+  })
+
+  test('un joueur ne peut pas jouer le rôle du moteur', async () => {
+    const session = await seedLobby()
+    const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
+    expect(launch.ok).toBe(true)
+    await assertFails(db(PLAYER).ref(SESSION).update(launch.ok ? launch.update : {}))
   })
 })
