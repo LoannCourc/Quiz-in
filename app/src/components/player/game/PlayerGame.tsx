@@ -1,7 +1,7 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -17,6 +17,7 @@ import {
 } from '@/lib/playerGame';
 
 import { AnswerSentView } from './AnswerSentView';
+import { Confetti } from './Confetti';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
 import { RevealView } from './RevealView';
@@ -47,11 +48,16 @@ export function PlayerGame(props: PlayerGameProps) {
   const outcome = session.status === 'reveal' ? revealOutcome(myResult(session, uid)) : undefined;
   // Fond festif seulement pour une bonne réponse ; ton plus doux sinon.
   const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
+  // Confettis : une fois à la révélation d'une bonne réponse et à la fin de partie.
+  const showConfetti = outcome === 'correct' || session.status === 'ended';
   return (
-    <Screen background={background}>
-      {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
-      {renderView(props)}
-    </Screen>
+    <View style={styles.root}>
+      <Screen background={background}>
+        {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
+        {renderView(props)}
+      </Screen>
+      {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
+    </View>
   );
 }
 
@@ -108,6 +114,9 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   notice: {
     textAlign: 'center',
   },

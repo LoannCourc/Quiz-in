@@ -1,52 +1,97 @@
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Animated, Easing, Platform, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { AppColors } from '@/constants/appTheme';
 
-type Piece = { top: number; left?: `${number}%`; right?: `${number}%`; rotate: `${number}deg` };
+const FALL_DURATION_MS = 3_200;
+const PIECE_WIDTH = 12;
+const PIECE_HEIGHT = 24;
 
-// Confettis fixes (aucune animation), placés dans les marges latérales de chaque écran pour ne
-// jamais passer devant un texte ou un avatar. Repères : écran de 390 px de large.
-const LAYOUTS = {
-  // Révélation : côtés du titre et de la pièce (la pièce de 224 px laisse ~80 px de chaque côté).
-  reveal: [
-    { top: 18, left: '3%', rotate: '-25deg' },
-    { top: 10, right: '4%', rotate: '60deg' },
-    { top: 165, left: '5%', rotate: '-50deg' },
-    { top: 230, right: '4%', rotate: '30deg' },
-    { top: 310, left: '8%', rotate: '15deg' },
-  ],
-  // Fin : côtés du titre, au-dessus du bandeau de résultat.
-  end: [
-    { top: 8, left: '3%', rotate: '-25deg' },
-    { top: 14, right: '6%', rotate: '60deg' },
-    { top: 74, right: '2%', rotate: '30deg' },
-    { top: 90, left: '4%', rotate: '-50deg' },
-  ],
-} satisfies Record<string, Piece[]>;
+// 14 morceaux : position horizontale (%), départ décalé (part de la durée), tours effectués.
+const PIECES = [
+  { left: 4, start: 0, turns: 1.5 },
+  { left: 11, start: 0.12, turns: -1 },
+  { left: 18, start: 0.05, turns: 2 },
+  { left: 26, start: 0.2, turns: -1.5 },
+  { left: 33, start: 0.08, turns: 1 },
+  { left: 41, start: 0.24, turns: -2 },
+  { left: 48, start: 0.02, turns: 1.5 },
+  { left: 55, start: 0.16, turns: -1 },
+  { left: 62, start: 0.06, turns: 2 },
+  { left: 70, start: 0.22, turns: -1.5 },
+  { left: 77, start: 0.1, turns: 1 },
+  { left: 84, start: 0.18, turns: -2 },
+  { left: 90, start: 0.04, turns: 1.5 },
+  { left: 95, start: 0.14, turns: -1 },
+] as const;
 
-export function Confetti({ layout }: { layout: keyof typeof LAYOUTS }) {
+// Une seule chute, une seule valeur animée de 0 à 1 par le pilote natif (Android) : chaque
+// morceau en dérive sa descente, sa rotation et son opacité (transform et opacity seulement,
+// aucun calcul JavaScript par image). Par-dessus le contenu, sans bloquer les touches.
+// À monter une fois par événement (bonne réponse, fin de partie), avec une clé propre.
+export function Confetti() {
+  const { height } = useWindowDimensions();
+  const [progress] = useState(() => new Animated.Value(0));
+
+  useEffect(() => {
+    const fall = Animated.timing(progress, {
+      toValue: 1,
+      duration: FALL_DURATION_MS,
+      easing: Easing.in(Easing.quad),
+      useNativeDriver: Platform.OS !== 'web',
+    });
+    fall.start();
+    return () => fall.stop();
+  }, [progress]);
+
   return (
-    <>
-      {LAYOUTS[layout].map(({ rotate, ...position }: Piece, index) => (
-        <View
-          key={index}
-          pointerEvents="none"
-          style={[
-            styles.piece,
-            position,
-            { backgroundColor: AppColors.confetti[index % AppColors.confetti.length], transform: [{ rotate }] },
-          ]}
-        />
-      ))}
-    </>
+    <Animated.View pointerEvents="none" style={styles.overlay}>
+      {PIECES.map(({ left, start, turns }, index) => {
+        const translateY = progress.interpolate({
+          inputRange: [start, 1],
+          outputRange: [-PIECE_HEIGHT * 2, height + PIECE_HEIGHT],
+          extrapolate: 'clamp',
+        });
+        const rotate = progress.interpolate({
+          inputRange: [start, 1],
+          outputRange: ['0deg', `${turns * 360}deg`],
+          extrapolate: 'clamp',
+        });
+        // Invisible avant son départ, puis s'efface en fin de chute.
+        const opacity = progress.interpolate({
+          inputRange: [0, start, start + 0.01, 0.85, 1],
+          outputRange: [0, 0, 1, 1, 0],
+        });
+        return (
+          <Animated.View
+            key={index}
+            style={[
+              styles.piece,
+              {
+                left: `${left}%`,
+                backgroundColor: AppColors.confetti[index % AppColors.confetti.length],
+                opacity,
+                transform: [{ translateY }, { rotate }],
+              },
+            ]}
+          />
+        );
+      })}
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    position: 'absolute',
+    inset: 0,
+    overflow: 'hidden',
+  },
   piece: {
     position: 'absolute',
-    width: 14,
-    height: 28,
+    top: 0,
+    width: PIECE_WIDTH,
+    height: PIECE_HEIGHT,
     borderRadius: 3,
   },
 });

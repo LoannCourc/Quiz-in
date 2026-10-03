@@ -9,7 +9,6 @@ import type { RevealOutcome } from '@/lib/playerGame';
 import { gradientStyle } from '@/components/ui/gradient';
 
 import { ChoicePill } from './ChoicePill';
-import { Confetti } from './Confetti';
 
 interface RevealViewProps {
   outcome: RevealOutcome;
@@ -28,7 +27,6 @@ export function RevealView({ outcome, points, speedBonus, correctAnswer, correct
 
   return (
     <View style={styles.container}>
-      {isCorrect && <Confetti layout="reveal" />}
       <Text style={textStyles.hero}>{strings.game.reveal.titles[outcome]}</Text>
 
       {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}

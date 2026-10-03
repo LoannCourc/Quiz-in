@@ -7,7 +7,6 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
 
-import { Confetti } from './Confetti';
 import { Countdown } from './Countdown';
 import type { PhaseTiming } from './phaseTiming';
 import { Ranking } from './RankingList';
@@ -65,7 +64,6 @@ export function EndView({ players, uid }: { players: RankedPlayer[]; uid: Player
 
   return (
     <View style={styles.block}>
-      <Confetti layout="end" />
       <Text style={textStyles.hero}>{strings.game.ended.title}</Text>
       {me && (
         <View style={styles.resultBand}>
