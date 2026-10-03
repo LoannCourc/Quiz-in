@@ -36,6 +36,10 @@ export interface PlayerGameProps {
   onAnswer: (choice: number) => void;
   // Message affiché au-dessus de l'écran (profil modifié au moment du lancement).
   notice?: string;
+  // Hôte : pied d'écran fixe (bouton des contrôles, Reprendre, Rejouer / Quitter), qui réserve
+  // sa place sous le contenu, et calque par-dessus l'écran (panneau des contrôles).
+  footer?: ReactNode;
+  overlay?: ReactNode;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -55,11 +59,12 @@ export function PlayerGame(props: PlayerGameProps) {
   const showConfetti = outcome === 'correct' || session.status === 'ended';
   return (
     <View style={styles.root}>
-      <Screen background={background}>
+      <Screen background={background} footer={props.footer}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
         {renderView(props)}
       </Screen>
       {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
+      {props.overlay}
     </View>
   );
 }

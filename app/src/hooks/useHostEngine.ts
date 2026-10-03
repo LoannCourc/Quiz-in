@@ -12,6 +12,11 @@ import { AppState } from 'react-native';
 import { logEngine } from '@/lib/devLog';
 import { runTransition } from '@/lib/hostGame';
 
+export interface HostEngine {
+  // Contrôle « Passer » de l'hôte.
+  skip: () => void;
+}
+
 interface HostEngineInput {
   code: string;
   // Session complète lue en temps réel par l'hôte.
@@ -39,7 +44,7 @@ function useForegroundCount(): number {
 // de l'effet annule le minuteur précédent : jamais deux minuteurs actifs, même en mode strict.
 // Rien n'est gardé en mémoire : après une relance, la boucle repart de la session stockée, et
 // une échéance déjà passée déclenche la transition aussitôt (rattrapage).
-export function useHostEngine({ code, session, questions, serverOffsetMs }: HostEngineInput): void {
+export function useHostEngine({ code, session, questions, serverOffsetMs }: HostEngineInput): HostEngine {
   const foregroundCount = useForegroundCount();
   const lock = useRef<TransitionLock | null>(null);
 
@@ -56,6 +61,16 @@ export function useHostEngine({ code, session, questions, serverOffsetMs }: Host
     }, delayMs);
     return () => clearTimeout(timeoutId);
   }, [code, session, questions, serverOffsetMs, foregroundCount]);
+
+  // Passer : la transition suivante tout de suite, par le même chemin que le minuteur (même verrou,
+  // même état attendu) : un double appui, ou un appui en même temps que le minuteur, est ignoré.
+  function skip() {
+    if (!questions) return;
+    const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, 0, lock);
+  }
+
+  return { skip };
 }
 
 // Exécute une transition, sauf si la même est déjà en cours d'écriture depuis moins de

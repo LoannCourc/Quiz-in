@@ -8,7 +8,8 @@ export type LoadErrorKind = 'missingConfig' | 'permissionDenied' | 'other'
 
 export type LiveSessionState =
   | { kind: 'loading' }
-  | { kind: 'notFound' }
+  // wasRemoved : la partie existait puis a été supprimée (l'hôte a quitté).
+  | { kind: 'notFound'; wasRemoved: boolean }
   | { kind: 'error'; errorKind: LoadErrorKind; detail: string }
   | { kind: 'ready'; session: PublicSession }
 
@@ -52,7 +53,7 @@ type FieldValues = Partial<Record<PublicField, unknown>>
 // status est toujours écrit par l'hôte : s'il manque, la session n'existe pas.
 // La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
 function toSessionState(values: FieldValues): LiveSessionState {
-  if (values.status == null) return { kind: 'notFound' }
+  if (values.status == null) return { kind: 'notFound', wasRemoved: false }
   // Forme garantie par les règles de validation de la base (database.rules.json).
   const session = values as PublicSession
   const reveal = session.reveal && { ...session.reveal, stats: session.reveal.stats ?? {} }
@@ -66,6 +67,8 @@ function subscribeToFields(
 ): Unsubscribe[] {
   const values: FieldValues = {}
   const received = new Set<PublicField>()
+  // Vrai dès que la partie a été affichée : sa disparition ensuite signifie « supprimée par l'hôte ».
+  let hasSeenGame = false
 
   return PUBLIC_FIELDS.map((field) =>
     onValue(
@@ -74,7 +77,10 @@ function subscribeToFields(
         values[field] = snapshot.val() ?? undefined
         received.add(field)
         // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
-        if (received.size === PUBLIC_FIELDS.length) onChange(toSessionState(values))
+        if (received.size !== PUBLIC_FIELDS.length) return
+        const state = toSessionState(values)
+        if (state.kind === 'ready') hasSeenGame = true
+        onChange(state.kind === 'notFound' ? { ...state, wasRemoved: hasSeenGame } : state)
       },
       (error) => onChange(toErrorState(error)),
     ),

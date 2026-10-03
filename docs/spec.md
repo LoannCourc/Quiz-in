@@ -111,11 +111,11 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer » |
-| **REVEAL** (8 s en Choix multiples, 10 s en Réponse libre) | Automatique | Fin du délai. L'hôte peut avancer plus tôt |
+| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt |
 | **VALIDATION** *(P1, 15 s)* | Automatique | Fin du délai ou action de l'hôte |
-| **SCORES** (6 s) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
+| **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
-| **END** | Hôte | « Rejouer » (nouvelle partie) ou « Quitter » |
+| **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs, scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
 
 Les durées sont des constantes de configuration, ajustables après les tests.
 
@@ -127,7 +127,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Choix multiples** : 20 secondes par question.
 - **Réponse libre** : 30 secondes par question.
 - Chaque question peut surcharger sa durée.
-- **Durée d'une partie** : 10 questions représentent environ 8 à 12 minutes. L'objectif de 15 à 20 minutes demande 15 à 20 questions. **[À VALIDER]**
+- **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
 
 ### 6.2 Points
 - **Bonne réponse** : 100 points.
@@ -157,7 +157,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Joueur déconnecté** : il garde son score, peut revenir avec le même pseudo et retrouve l'état en cours. Il obtient 0 point aux questions manquées.
 - **Hôte déconnecté** : la partie se met en pause automatiquement (la TV l'indique). Au-delà de 2 minutes, elle se termine.
 - **Cast interrompu** : l'hôte relance le Cast et la TV reprend à l'état courant, car l'état est stocké sur le serveur.
-- **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://quizin-play.web.app/join/CODE` (site Firebase Hosting des joueurs, distinct de celui du récepteur TV). Une partie est supprimée automatiquement 24 heures après sa fin.
+- **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://quizin-play.web.app/join/CODE` (site Firebase Hosting des joueurs, distinct de celui du récepteur TV). Une partie est supprimée automatiquement 24 heures après sa fin, ou dès que l'hôte quitte la partie.
 
 ### 6.7 Animations et sons
 - **Pendant la question** : animations **discrètes** qui ne distraient pas ceux qui réfléchissent. Exemple : les avatars de ceux qui ont répondu s'illuminent, fond légèrement animé.
@@ -338,3 +338,4 @@ sessions/{code}
 - Packs thématiques et de saison, modèle freemium pour l'hôte.
 - Blind test et « N'oubliez pas les paroles » (après étude des droits musicaux).
 - Mode bars et événements.
+- Option hôte pour ne pas afficher le classement entre les questions (classement tous les N tours, ou seulement à la fin). Demandera un champ dans `settings`, une vérification des règles et une mise à jour de la machine d'états.

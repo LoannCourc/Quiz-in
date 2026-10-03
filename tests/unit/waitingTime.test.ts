@@ -75,3 +75,9 @@ describe('answeredProgress', () => {
     expect(answeredProgress({ a: { connected: true } }, undefined)).toEqual({ answered: 0, total: 1 })
   })
 })
+
+describe('durée du podium', () => {
+  test('classement de 5 s, dont 1,5 s d’annonce : 3,5 s de podium', () => {
+    expect(SCORES_DURATION_S * 1000 - NEXT_QUESTION_ANNOUNCE_MS).toBe(3_500)
+  })
+})

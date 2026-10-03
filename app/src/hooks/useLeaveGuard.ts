@@ -1,22 +1,15 @@
 import { router } from 'expo-router';
 import { useNavigation, usePreventRemove } from 'expo-router/react-navigation';
 import { useEffect } from 'react';
-import { Alert, BackHandler, Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 
 import { strings } from '@/constants/strings';
+import { confirmAction } from '@/lib/confirm';
 
-// Demande « Quitter la partie ? Elle sera interrompue » ; onLeave n'est appelé que si l'hôte confirme.
+// « Quitter la partie ? Elle sera interrompue » ; onLeave n'est appelé que si l'hôte confirme.
 function confirmLeave(onLeave: () => void): void {
   const { title, message, stay, leave } = strings.leaveGame;
-  if (Platform.OS === 'web') {
-    // Alert.alert ne fait rien sur le web (react-native-web) : boîte de confirmation du navigateur.
-    if (window.confirm(`${title} ${message}`)) onLeave();
-    return;
-  }
-  Alert.alert(title, message, [
-    { text: stay, style: 'cancel' },
-    { text: leave, style: 'destructive', onPress: onLeave },
-  ]);
+  confirmAction({ title, message, confirm: leave, cancel: stay }, onLeave);
 }
 
 // Pendant une partie en cours, toute sortie de l'écran hôte demande confirmation : retour,

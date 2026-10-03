@@ -299,3 +299,83 @@ export function isTransitionLocked(lock: TransitionLock | null, key: string, now
 export function isResumableBy(game: { hostUid?: PlayerId; status?: GameStatus } | null, uid: PlayerId): boolean {
   return game !== null && game.hostUid === uid && game.status !== undefined && game.status !== 'ended'
 }
+
+// États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).
+const IN_PROGRESS: readonly GameStatus[] = ['starting', 'question', 'reveal', 'scores', 'validation', 'paused']
+
+// Terminer (contrôle de l'hôte) : fin immédiate, avec le classement actuel. Une question en
+// cours n'est pas comptée (scores = ceux de la dernière révélation). Possible pendant la pause.
+export function endUpdate(session: Session, nowServer: number): SessionUpdate | null {
+  if (!IN_PROGRESS.includes(session.status)) return null
+  return {
+    status: 'ended',
+    phaseStartedAt: nowServer,
+    phaseEndsAt: 0,
+    currentQuestion: null,
+    reveal: null,
+    pausedFrom: null,
+    remainingMs: null,
+  }
+}
+
+// Rejouer (fin de partie) : retour au LOBBY avec le même code et les mêmes joueurs ; scores,
+// rangs, réponses et nombre de questions effacés. Les mêmes questions seront rejouées.
+export function replayUpdate(session: Session, nowServer: number): SessionUpdate | null {
+  if (session.status !== 'ended') return null
+  const update: SessionUpdate = {
+    status: 'lobby',
+    currentIndex: 0,
+    phaseStartedAt: nowServer,
+    phaseEndsAt: 0,
+    questionCount: null,
+    currentQuestion: null,
+    reveal: null,
+    answers: null,
+    answeredBy: null,
+    pausedFrom: null,
+    remainingMs: null,
+  }
+  for (const playerId of Object.keys(session.players)) {
+    update[`players/${playerId}/score`] = null
+    update[`players/${playerId}/rank`] = null
+  }
+  return update
+}
+
+// Ce que « Passer » va faire, pour un libellé explicite sur le bouton de l'hôte.
+export type SkipTarget = 'firstQuestion' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
+
+export interface HostControls {
+  skip: SkipTarget | null
+  canPause: boolean
+  canResume: boolean
+  canEnd: boolean
+}
+
+// Contrôles disponibles pour l'hôte selon l'état de la partie (aucun en LOBBY ni en END :
+// le lancement et Rejouer / Quitter ont leurs propres boutons).
+export function hostControls(session: Session): HostControls {
+  const canEnd = IN_PROGRESS.includes(session.status)
+  const skip = skipTarget(session)
+  return {
+    skip,
+    canPause: PAUSABLE.includes(session.status),
+    canResume: session.status === 'paused',
+    canEnd,
+  }
+}
+
+function skipTarget(session: Session): SkipTarget | null {
+  switch (session.status) {
+    case 'starting':
+      return 'firstQuestion'
+    case 'question':
+      return 'reveal'
+    case 'reveal':
+      return 'scores'
+    case 'scores':
+      return session.currentIndex + 1 < (session.questionCount ?? 0) ? 'nextQuestion' : 'finalRanking'
+    default:
+      return null
+  }
+}

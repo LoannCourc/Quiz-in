@@ -3,10 +3,11 @@ import {
   transitionUpdate,
   type ExpectedPhase,
   type LaunchRefusal,
+  type SessionUpdate,
 } from '@shared/hostEngine';
 import { parseQuestions } from '@shared/quizValidation';
 import type { Question, Session } from '@shared/types';
-import { get, ref, update } from 'firebase/database';
+import { get, ref, remove, update } from 'firebase/database';
 
 import { warnIgnoredEntries } from './devLog';
 import { db } from './firebase';
@@ -59,4 +60,28 @@ export async function runTransition(
   if (!changes) return { result: 'ignored' };
   await update(ref(db, `sessions/${code}`), changes);
   return { result: 'applied', toStatus: String(changes.status) };
+}
+
+// Action ponctuelle de l'hôte (Pause, Reprise, Terminer, Rejouer) : on relit la session, on
+// calcule l'update avec la fonction pure de shared/hostEngine.ts, puis un seul update().
+// Faux si l'action n'a plus de sens (session absente ou déjà dans un autre état).
+export async function applyHostAction(
+  code: string,
+  buildUpdate: (session: Session, nowServer: number) => SessionUpdate | null,
+  nowServer: number,
+): Promise<boolean> {
+  const snapshot = await get(ref(db, `sessions/${code}`));
+  if (!snapshot.exists()) return false;
+  // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
+  const session = snapshot.val() as Session;
+  const changes = buildUpdate({ ...session, players: session.players ?? {} }, nowServer);
+  if (!changes) return false;
+  await update(ref(db, `sessions/${code}`), changes);
+  return true;
+}
+
+// Quitter : suppression de toute la partie (réponses comprises). Joueurs et TV affichent alors
+// « La partie est terminée. Merci d'avoir joué ! ».
+export async function deleteGame(code: string): Promise<void> {
+  await remove(ref(db, `sessions/${code}`));
 }

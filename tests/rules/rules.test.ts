@@ -12,8 +12,10 @@ import { readFileSync } from 'node:fs'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 
 import {
+  endUpdate,
   launchUpdate,
   pauseUpdate,
+  replayUpdate,
   resumeUpdate,
   selectGameQuestions,
   transitionUpdate,
@@ -687,5 +689,65 @@ describe('Retrait des joueurs fantômes en lobby', () => {
     await assertSucceeds(
       db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update({ name: 'Léa', avatar: '🦊', connected: true }),
     )
+  })
+})
+
+// D4 : contrôles de l'hôte (Terminer, Rejouer, Quitter), exécutés avec l'identité de l'hôte.
+describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
+  const twoQuestions = QUESTIONS.slice(0, 2)
+
+  async function readSession(): Promise<Session> {
+    return (await readAsAdmin(SESSION)) as Session
+  }
+
+  async function applyAsHost(update: SessionUpdate | null): Promise<Session> {
+    expect(update).not.toBeNull()
+    await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    return readSession()
+  }
+
+  // Partie lancée puis amenée jusqu'à la question 0.
+  async function seedQuestion(): Promise<Session> {
+    await seed({ sessions: { [CODE]: makeSession({ phaseStartedAt: Date.now() }) } })
+    let session = await readSession()
+    const launch = launchUpdate(session, twoQuestions, Date.now())
+    session = await applyAsHost(launch.ok ? launch.update : null)
+    const game = selectGameQuestions(twoQuestions)
+    return applyAsHost(transitionUpdate(session, game, { status: 'starting', currentIndex: 0 }, Date.now()))
+  }
+
+  test('Terminer pendant une question : accepté, puis plus aucune réponse acceptée', async () => {
+    let session = await seedQuestion()
+    session = await applyAsHost(endUpdate(session, Date.now()))
+    expect(session.status).toBe('ended')
+    await assertFails(submitAnswer(PLAYER, 0, 1))
+  })
+
+  test('Terminer pendant la pause : accepté, état de pause effacé', async () => {
+    let session = await seedQuestion()
+    session = await applyAsHost(pauseUpdate(session, Date.now()))
+    session = await applyAsHost(endUpdate(session, Date.now()))
+    expect(session).toMatchObject({ status: 'ended' })
+    expect(session.pausedFrom).toBeUndefined()
+  })
+
+  test('Rejouer : retour au lobby accepté (questionCount effacé), profil modifiable, relance acceptée', async () => {
+    let session = await seedQuestion()
+    session = await applyAsHost(endUpdate(session, Date.now()))
+    session = await applyAsHost(replayUpdate(session, Date.now()))
+    expect(session.status).toBe('lobby')
+    expect(session.questionCount).toBeUndefined()
+    expect(session.players[PLAYER].score).toBeUndefined()
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/avatar`).set('🐼'))
+    const relaunch = launchUpdate(session, QUESTIONS.slice(0, 1), Date.now())
+    session = await applyAsHost(relaunch.ok ? relaunch.update : null)
+    expect(session).toMatchObject({ status: 'starting', questionCount: 1 })
+  })
+
+  test("Quitter : l'hôte supprime toute la session, un joueur ne le peut pas", async () => {
+    await seedQuestion()
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+    await assertSucceeds(db(HOST).ref(SESSION).remove())
+    expect(await readAsAdmin(SESSION)).toBeNull()
   })
 })

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { ROOM_CODE_ALPHABET } from '../../shared/constants'
+import { REVEAL_DURATION_S, ROOM_CODE_ALPHABET, SCORES_DURATION_S } from '../../shared/constants'
 import { nextPhase, type FlowContext } from '../../shared/gameFlow'
 import {
   areSettingsCompatible,
@@ -40,10 +40,11 @@ describe('nextPhase', () => {
     expect(nextPhase('starting', choice, 45)?.durationS).toBe(45)
   })
 
-  test('question → reveal (8 s en choix, 10 s en libre) → scores (6 s)', () => {
-    expect(nextPhase('question', choice)).toEqual({ status: 'reveal', currentIndex: 0, durationS: 8 })
-    expect(nextPhase('question', free)?.durationS).toBe(10)
-    expect(nextPhase('reveal', choice)).toEqual({ status: 'scores', currentIndex: 0, durationS: 6 })
+  test('question → reveal (6 s) → scores (5 s), durées lues dans shared/constants', () => {
+    expect(nextPhase('question', choice)).toEqual({ status: 'reveal', currentIndex: 0, durationS: REVEAL_DURATION_S.choice })
+    expect(nextPhase('question', free)?.durationS).toBe(REVEAL_DURATION_S.free)
+    expect(nextPhase('reveal', choice)).toEqual({ status: 'scores', currentIndex: 0, durationS: SCORES_DURATION_S })
+    expect([REVEAL_DURATION_S.choice, REVEAL_DURATION_S.free, SCORES_DURATION_S]).toEqual([6, 6, 5])
   })
 
   test('scores → question suivante, ou fin après la dernière', () => {
@@ -75,8 +76,9 @@ describe('catalogue', () => {
     expect(difficultyLevel(2.34)).toBe('hard')
   })
 
-  test('durée estimée de 10 questions : 8 minutes', () => {
-    expect(estimateQuizMinutes(10)).toBe(8)
+  // Mode le plus long (Réponse libre) : 3 + 10 × (30 + 6 + 4) = 403 s, arrondi à 7 minutes.
+  test('durée estimée de 10 questions : 7 minutes', () => {
+    expect(estimateQuizMinutes(10)).toBe(7)
   })
 })
 

@@ -56,6 +56,8 @@ export const strings = {
   status: {
     loadingTitle: 'Connexion à la partie…',
     notFoundTitle: 'Partie introuvable',
+    gameOverTitle: 'La partie est terminée',
+    gameOverHint: 'Merci d’avoir joué !',
     notFoundHint: (code: string) =>
       `Aucune partie en cours avec le code ${code}. Vérifiez le code affiché dans l’app de l’hôte.`,
     invalidCodeTitle: 'Code de salle invalide',

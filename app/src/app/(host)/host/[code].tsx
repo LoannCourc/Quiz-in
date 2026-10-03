@@ -1,13 +1,22 @@
 import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
+import {
+  endUpdate,
+  hostControls,
+  pauseUpdate,
+  replayUpdate,
+  resumeUpdate,
+  type SessionUpdate,
+} from '@shared/hostEngine';
 import { canLaunchGame } from '@shared/players';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import type { Session } from '@shared/types';
 import * as Clipboard from 'expo-clipboard';
 import { useKeepAwake } from 'expo-keep-awake';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { HostControlsButton, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
 import { OptionToggle } from '@/components/host/OptionToggle';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
@@ -27,8 +36,9 @@ import { useLobbyCleanup } from '@/hooks/useLobbyCleanup';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { receiverUrl } from '@/lib/createGame';
-import { launchGame } from '@/lib/hostGame';
-import { clearHostedGameCode } from '@/lib/hostedGameStorage';
+import { confirmAction } from '@/lib/confirm';
+import { applyHostAction, deleteGame, launchGame } from '@/lib/hostGame';
+import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
 
 // Écran de l'hôte : lobby (code, lien TV, joueurs, lancement), puis la partie, pilotée par le
 // moteur (useHostEngine) tant que cet écran est affiché.
@@ -82,7 +92,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   const isRegistered = session.players[uid] !== undefined;
   const inProgress = isInProgress(session);
 
-  useHostEngine({
+  const engine = useHostEngine({
     code,
     session,
     questions: questions.kind === 'ready' ? questions.questions : null,
@@ -106,7 +116,13 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           <LobbyContent code={code} session={session} questions={questions} serverOffsetMs={serverOffsetMs} />
         </Screen>
       ) : (
-        <HostInGame code={code} session={session} serverOffsetMs={serverOffsetMs} isRegistered={isRegistered} />
+        <HostInGame
+          code={code}
+          session={session}
+          serverOffsetMs={serverOffsetMs}
+          isRegistered={isRegistered}
+          onSkip={engine.skip}
+        />
       )}
     </>
   );
@@ -124,21 +140,120 @@ interface HostInGameProps {
   session: Session;
   serverOffsetMs: number;
   isRegistered: boolean;
+  onSkip: () => void;
 }
 
-// Pendant la partie, l'hôte inscrit joue comme les autres (contrôles de l'hôte : étape D4).
-function HostInGame({ code, session, serverOffsetMs, isRegistered }: HostInGameProps) {
+// Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
+// d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
+function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
+
+  // Une action = relire la session, calculer l'update (shared/hostEngine.ts), un seul update().
+  async function act(buildUpdate: (current: Session, nowServer: number) => SessionUpdate | null) {
+    setActionError(null);
+    try {
+      await applyHostAction(code, buildUpdate, Date.now() + serverOffsetMs);
+    } catch (error) {
+      console.error('[engine] Action de l’hôte impossible', error);
+      setActionError(strings.hostControls.actionFailed);
+    }
+  }
+
+  const actions: HostActions = {
+    skip: onSkip,
+    pause: () => void act(pauseUpdate),
+    resume: () => void act(resumeUpdate),
+    end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
+  };
+
+  // Rejouer : même code, retour au lobby ; le code redevient « à reprendre » après une relance.
+  async function replay() {
+    await act(replayUpdate);
+    await saveHostedGameCode(code);
+  }
+
+  // Quitter : suppression de toute la partie, puis retour au catalogue.
+  function quit() {
+    confirmAction(strings.hostControls.quitConfirm, () => {
+      router.replace('/');
+      void clearHostedGameCode();
+      deleteGame(code).catch((error: unknown) => console.error('[engine] Suppression de la partie impossible', error));
+    });
+  }
+
+  const footer = (
+    <HostFooter
+      status={session.status}
+      error={actionError}
+      onOpenPanel={() => setIsPanelOpen(true)}
+      onResume={actions.resume}
+      onReplay={() => void replay()}
+      onQuit={quit}
+    />
+  );
+  const overlay = isPanelOpen ? (
+    <HostControlsPanel controls={hostControls(session)} actions={actions} onClose={() => setIsPanelOpen(false)} />
+  ) : null;
+
   if (!isRegistered) {
+    const title = session.status === 'ended' ? strings.game.ended.title : strings.hostGame.inProgressTitle;
     return (
-      <Screen>
-        <Text style={textStyles.hero}>{strings.hostGame.inProgressTitle}</Text>
-        <Text style={[textStyles.body, styles.centered]}>{strings.hostGame.spectatorHint}</Text>
-      </Screen>
+      <View style={styles.fill}>
+        <Screen footer={footer}>
+          <Text style={textStyles.hero}>{title}</Text>
+          <Text style={[textStyles.body, styles.centered]}>{strings.hostGame.spectatorHint}</Text>
+        </Screen>
+        {overlay}
+      </View>
     );
   }
   return (
-    <PlayerGame session={session} uid={session.hostUid} serverOffsetMs={serverOffsetMs} answer={answer} onAnswer={onAnswer} />
+    <PlayerGame
+      session={session}
+      uid={session.hostUid}
+      serverOffsetMs={serverOffsetMs}
+      answer={answer}
+      onAnswer={onAnswer}
+      footer={footer}
+      overlay={overlay}
+    />
+  );
+}
+
+interface HostFooterProps {
+  status: Session['status'];
+  error: string | null;
+  onOpenPanel: () => void;
+  onResume: () => void;
+  onReplay: () => void;
+  onQuit: () => void;
+}
+
+// Pied d'écran de l'hôte : fin de partie → Rejouer / Quitter ; pause → Reprendre en grand ;
+// sinon, le petit bouton « Hôte » qui ouvre le panneau des contrôles.
+function HostFooter({ status, error, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
+  const errorText = error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
+  if (status === 'ended') {
+    return (
+      <View style={styles.footerStack}>
+        {errorText}
+        <BigButton label={strings.hostControls.replay} onPress={onReplay} />
+        <BigButton label={strings.hostControls.quit} variant="secondary" onPress={onQuit} />
+      </View>
+    );
+  }
+  return (
+    <View style={styles.footerStack}>
+      {errorText}
+      <View style={styles.footerRow}>
+        <View style={styles.fill}>
+          {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
+        </View>
+        <HostControlsButton onPress={onOpenPanel} />
+      </View>
+    </View>
   );
 }
 
@@ -303,5 +418,16 @@ const styles = StyleSheet.create({
   },
   centered: {
     textAlign: 'center',
+  },
+  fill: {
+    flex: 1,
+  },
+  footerStack: {
+    gap: Spacing.two,
+  },
+  footerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
   },
 });

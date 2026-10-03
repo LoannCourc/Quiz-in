@@ -83,3 +83,19 @@ export function usePulse(isActive: boolean): Animated.Value {
 
   return scale;
 }
+
+// Vrai dès qu'il reste thresholdMs ou moins avant la fin de la phase (heure du serveur).
+// Un seul minuteur, programmé au moment exact du basculement : précis à la milliseconde près,
+// sans rendu par seconde.
+export function useRemainingBelow(timing: PhaseTiming, thresholdMs: number): boolean {
+  const [isBelow, setIsBelow] = useState(() => remainingMs(timing) <= thresholdMs);
+
+  useEffect(() => {
+    const delayMs = remainingMs(timing) - thresholdMs;
+    if (delayMs <= 0) return;
+    const timeoutId = setTimeout(() => setIsBelow(true), delayMs);
+    return () => clearTimeout(timeoutId);
+  }, [timing, thresholdMs]);
+
+  return isBelow;
+}

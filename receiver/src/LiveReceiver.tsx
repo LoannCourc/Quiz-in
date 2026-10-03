@@ -14,7 +14,11 @@ export function LiveReceiver({ roomCode }: { roomCode: string }) {
     case 'loading':
       return <StatusScreen title={strings.status.loadingTitle} isLoading />
     case 'notFound':
-      return <StatusScreen title={strings.status.notFoundTitle} hint={strings.status.notFoundHint(roomCode)} />
+      return state.wasRemoved ? (
+        <StatusScreen title={strings.status.gameOverTitle} hint={strings.status.gameOverHint} />
+      ) : (
+        <StatusScreen title={strings.status.notFoundTitle} hint={strings.status.notFoundHint(roomCode)} />
+      )
     case 'error':
       return (
         <StatusScreen

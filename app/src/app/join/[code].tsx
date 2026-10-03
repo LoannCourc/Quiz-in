@@ -66,7 +66,11 @@ function JoinRoom({ code }: { code: string }) {
     case 'notFound':
       return (
         <WelcomeScreen code={code}>
-          <PlayerNotice message={strings.join.refusals.notFound} tone="error" showOtherCode />
+          <PlayerNotice
+            message={state.wasRemoved ? strings.join.gameOver : strings.join.refusals.notFound}
+            tone={state.wasRemoved ? 'info' : 'error'}
+            showOtherCode
+          />
         </WelcomeScreen>
       );
   }

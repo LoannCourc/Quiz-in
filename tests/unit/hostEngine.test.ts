@@ -1,14 +1,24 @@
 import { describe, expect, test } from 'vitest'
 
-import { ALL_ANSWERED_DELAY_S, QUESTIONS_PER_GAME, REVEAL_GRACE_MS, TRANSITION_LOCK_MAX_MS } from '../../shared/constants'
+import {
+  ALL_ANSWERED_DELAY_S,
+  QUESTIONS_PER_GAME,
+  REVEAL_DURATION_S,
+  REVEAL_GRACE_MS,
+  SCORES_DURATION_S,
+  TRANSITION_LOCK_MAX_MS,
+} from '../../shared/constants'
 import {
   buildReveal,
+  endUpdate,
   gradeAnswer,
+  hostControls,
   isResumableBy,
   isTransitionLocked,
   launchUpdate,
   nextDeadline,
   pauseUpdate,
+  replayUpdate,
   resumeUpdate,
   selectGameQuestions,
   toPublicQuestion,
@@ -317,7 +327,7 @@ describe('transitionUpdate', () => {
     const update = transitionUpdate(session, game, { status: 'question', currentIndex: 0 }, NOW + 1_200)
     expect(update).toMatchObject({
       status: 'reveal',
-      phaseEndsAt: NOW + 1_200 + 8_000,
+      phaseEndsAt: NOW + 1_200 + REVEAL_DURATION_S.choice * 1000,
       [`answers/0/${PLAYER}/correct`]: true,
       [`answers/0/${PLAYER}/points`]: 150,
       [`players/${PLAYER}/score`]: 150,
@@ -327,13 +337,13 @@ describe('transitionUpdate', () => {
     expect((update?.reveal as { correctAnswer: string }).correctAnswer).toBe('Juste 0')
   })
 
-  test('REVEAL → SCORES : 6 s, reveal conservé', () => {
+  test('REVEAL → SCORES : durée du classement, reveal conservé', () => {
     const session = makeSession({ status: 'reveal', questionCount: 10 })
     expect(transitionUpdate(session, game, { status: 'reveal', currentIndex: 0 }, NOW)).toEqual({
       status: 'scores',
       currentIndex: 0,
       phaseStartedAt: NOW,
-      phaseEndsAt: NOW + 6_000,
+      phaseEndsAt: NOW + SCORES_DURATION_S * 1000,
     })
   })
 
@@ -456,5 +466,107 @@ describe('isResumableBy', () => {
     expect(isResumableBy({}, HOST)).toBe(false)
     expect(isResumableBy({ hostUid: HOST, status: 'ended' }, HOST)).toBe(false)
     expect(isResumableBy({ hostUid: OTHER, status: 'question' }, HOST)).toBe(false)
+  })
+})
+
+describe('Passer (contrôle de l’hôte)', () => {
+  const game = selectGameQuestions(QUESTIONS)
+
+  test('pendant la question, avant la fin : réponses données notées avec le bonus d’origine', () => {
+    // Passer à mi-chrono : la réponse donnée 15 s avant la fin prévue garde 175 points.
+    const session = questionSession({ answers: { 0: { [PLAYER]: answer(1, NOW - 15_000) } } })
+    const update = transitionUpdate(session, game, { status: 'question', currentIndex: 0 }, NOW - 10_000)
+    expect(update).toMatchObject({ status: 'reveal', [`answers/0/${PLAYER}/points`]: 175 })
+  })
+
+  test('double Passer : la seconde transition est ignorée', () => {
+    const session = questionSession()
+    const expected = { status: 'question' as const, currentIndex: 0 }
+    const first = transitionUpdate(session, game, expected, NOW - 10_000)
+    expect(first).not.toBeNull()
+    // Session telle que relue après la première écriture : déjà en REVEAL.
+    const after = { ...session, status: 'reveal' as const }
+    expect(transitionUpdate(after, game, expected, NOW - 9_900)).toBeNull()
+  })
+})
+
+describe('endUpdate (Terminer)', () => {
+  test('depuis chaque état en cours : END, question et révélation effacées, scores conservés', () => {
+    for (const status of ['starting', 'question', 'reveal', 'scores'] as const) {
+      const update = endUpdate(questionSession({ status }), NOW)
+      expect(update).toEqual({
+        status: 'ended',
+        phaseStartedAt: NOW,
+        phaseEndsAt: 0,
+        currentQuestion: null,
+        reveal: null,
+        pausedFrom: null,
+        remainingMs: null,
+      })
+      expect(Object.keys(update ?? {}).some((key) => key.startsWith('players/') || key.startsWith('answers'))).toBe(false)
+    }
+  })
+
+  test('pendant la pause : accepté, état de pause effacé', () => {
+    const paused = questionSession({ status: 'paused', pausedFrom: 'question', remainingMs: 5_000 })
+    expect(endUpdate(paused, NOW)).toMatchObject({ status: 'ended', pausedFrom: null, remainingMs: null })
+  })
+
+  test('en LOBBY ou déjà terminée : rien à faire', () => {
+    expect(endUpdate(makeSession({ status: 'lobby' }), NOW)).toBeNull()
+    expect(endUpdate(makeSession({ status: 'ended' }), NOW)).toBeNull()
+  })
+})
+
+describe('replayUpdate (Rejouer)', () => {
+  test('depuis END : retour au LOBBY, mêmes joueurs, scores et réponses effacés', () => {
+    const ended = makeSession({ status: 'ended', currentIndex: 9, questionCount: 10, answers: {}, answeredBy: {} })
+    const update = replayUpdate(ended, NOW)
+    expect(update).toMatchObject({
+      status: 'lobby',
+      currentIndex: 0,
+      phaseStartedAt: NOW,
+      phaseEndsAt: 0,
+      questionCount: null,
+      currentQuestion: null,
+      reveal: null,
+      answers: null,
+      answeredBy: null,
+      [`players/${PLAYER}/score`]: null,
+      [`players/${PLAYER}/rank`]: null,
+    })
+    // Les joueurs eux-mêmes ne sont jamais supprimés.
+    expect(Object.keys(update ?? {})).not.toContain(`players/${PLAYER}`)
+  })
+
+  test('hors de END : refusé', () => {
+    for (const status of ['lobby', 'question', 'paused'] as const) {
+      expect(replayUpdate(makeSession({ status }), NOW)).toBeNull()
+    }
+  })
+})
+
+describe('hostControls', () => {
+  test('libellé de Passer selon la phase', () => {
+    expect(hostControls(makeSession({ status: 'starting' })).skip).toBe('firstQuestion')
+    expect(hostControls(questionSession()).skip).toBe('reveal')
+    expect(hostControls(makeSession({ status: 'reveal' })).skip).toBe('scores')
+    expect(hostControls(makeSession({ status: 'scores', currentIndex: 3, questionCount: 10 })).skip).toBe('nextQuestion')
+    expect(hostControls(makeSession({ status: 'scores', currentIndex: 9, questionCount: 10 })).skip).toBe('finalRanking')
+  })
+
+  test('pause : Reprendre et Terminer seulement, ni Passer ni Pause', () => {
+    expect(hostControls(makeSession({ status: 'paused', pausedFrom: 'question' }))).toEqual({
+      skip: null,
+      canPause: false,
+      canResume: true,
+      canEnd: true,
+    })
+  })
+
+  test('LOBBY et END : aucun contrôle de partie', () => {
+    for (const status of ['lobby', 'ended'] as const) {
+      expect(hostControls(makeSession({ status }))).toEqual({ skip: null, canPause: false, canResume: false, canEnd: false })
+    }
   })
 })

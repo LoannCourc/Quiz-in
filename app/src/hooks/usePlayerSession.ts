@@ -8,7 +8,8 @@ import type { LobbyPlayers } from '@/lib/joinGame';
 
 export type PlayerSessionState =
   | { kind: 'loading' }
-  | { kind: 'notFound' }
+  // wasRemoved : la partie existait puis a été supprimée (l'hôte a quitté).
+  | { kind: 'notFound'; wasRemoved: boolean }
   | { kind: 'error'; detail: string }
   | { kind: 'ready'; uid: PlayerId; status: GameStatus; players: LobbyPlayers; session: PublicSession };
 
@@ -41,7 +42,7 @@ function toState(uid: PlayerId, values: FieldValues, received: Set<PublicField>)
   // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
   if (received.size < PUBLIC_FIELDS.length) return { kind: 'loading' };
   // status est toujours écrit par l'hôte : s'il manque, la partie n'existe pas.
-  if (values.status == null) return { kind: 'notFound' };
+  if (values.status == null) return { kind: 'notFound', wasRemoved: false };
   // Forme garantie par les règles de validation de la base (database.rules.json).
   const raw = values as PublicSession;
   // La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
@@ -62,6 +63,8 @@ export function usePlayerSession(code: string): PlayerSessionState {
     // Une fois en erreur, on y reste : les champs reçus ensuite ne doivent pas remettre
     // l'écran en chargement (c'est ce qui masquait un refus de lecture).
     let hasFailed = false;
+    // Vrai dès que la partie a été vue : sa disparition ensuite signifie « supprimée par l'hôte ».
+    let hasSeenGame = false;
     const values: FieldValues = {};
     const received = new Set<PublicField>();
 
@@ -88,7 +91,9 @@ export function usePlayerSession(code: string): PlayerSessionState {
               if (hasFailed) return;
               values[field] = snapshot.val() ?? undefined;
               received.add(field);
-              const next = toState(user.uid, values, received);
+              const state = toState(user.uid, values, received);
+              if (state.kind === 'ready') hasSeenGame = true;
+              const next = state.kind === 'notFound' ? { ...state, wasRemoved: hasSeenGame } : state;
               if (next.kind !== 'loading') clearTimeout(timeoutId);
               setState(next);
             },

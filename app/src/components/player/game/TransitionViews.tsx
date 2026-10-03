@@ -10,7 +10,7 @@ import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
 
 import { NextQuestionBar } from './NextQuestionBar';
-import { useSecondsLeft, type PhaseTiming } from './phaseTiming';
+import { useRemainingBelow, type PhaseTiming } from './phaseTiming';
 import { ScoresView } from './StatusViews';
 import { TransitionSteps, type TransitionStep } from './TransitionSteps';
 
@@ -34,7 +34,7 @@ interface ScoresPhaseProps {
   players: RankedPlayer[];
   uid: PlayerId;
   index: number;
-  // Phase de classement elle-même (pour l'annonce des 2 dernières secondes).
+  // Phase de classement elle-même (pour l'annonce de fin de phase).
   phase: PhaseTiming;
   wait: WaitInfo;
   // Numéro de la question suivante, null après la dernière ; nombre de questions de la partie.
@@ -42,13 +42,13 @@ interface ScoresPhaseProps {
   questionCount?: number;
 }
 
-// Classement, puis annonce plein écran « QUESTION n/N » pendant les 2 dernières secondes de la
-// phase (sans l'allonger). Un rendu par seconde au plus. À monter avec une clé par phase.
+// Classement, puis annonce plein écran « QUESTION n/N » pendant les NEXT_QUESTION_ANNOUNCE_MS
+// dernières millisecondes de la phase (sans l'allonger). À monter avec une clé par phase.
 export function ScoresPhase({ players, uid, index, phase: phaseProps, wait, upcoming, questionCount }: ScoresPhaseProps) {
-  // Objet stable : le minuteur des secondes ne redémarre pas à chaque rendu du parent.
+  // Objet stable : le minuteur ne redémarre pas à chaque rendu du parent.
   const [phase] = useState(phaseProps);
-  const seconds = useSecondsLeft(phase);
-  const isAnnouncing = upcoming !== null && questionCount !== undefined && seconds * 1000 <= NEXT_QUESTION_ANNOUNCE_MS;
+  const isEndOfPhase = useRemainingBelow(phase, NEXT_QUESTION_ANNOUNCE_MS);
+  const isAnnouncing = upcoming !== null && questionCount !== undefined && isEndOfPhase;
 
   if (isAnnouncing) return <AnnounceView questionNumber={upcoming} questionCount={questionCount} />;
   return (

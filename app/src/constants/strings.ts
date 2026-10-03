@@ -5,7 +5,7 @@ import {
   PLAYER_NAME_MAX_LENGTH,
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
-import type { LaunchRefusal } from '@shared/hostEngine';
+import type { LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { AnswerMode, DifficultyLevel } from '@shared/types';
 
@@ -44,6 +44,7 @@ export const strings = {
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
     } satisfies Record<JoinRefusal, string>,
     joinFailed: 'Impossible de rejoindre la partie, réessaie.',
+    gameOver: 'La partie est terminée. Merci d’avoir joué !',
     submitFailed: 'L’inscription a échoué. Réessaie dans un instant.',
   },
   lobby: {
@@ -124,6 +125,36 @@ export const strings = {
   hostGame: {
     inProgressTitle: 'Partie en cours',
     spectatorHint: 'Tu ne joues pas cette partie : suis-la sur la TV.',
+  },
+  hostControls: {
+    open: 'Hôte',
+    title: 'Contrôles de l’hôte',
+    close: 'Fermer',
+    skip: {
+      firstQuestion: 'Passer à la question 1',
+      reveal: 'Révéler la réponse',
+      scores: 'Voir le classement',
+      nextQuestion: 'Question suivante',
+      finalRanking: 'Voir le classement final',
+    } satisfies Record<SkipTarget, string>,
+    pause: 'Pause',
+    resume: 'Reprendre',
+    end: 'Terminer la partie',
+    endConfirm: {
+      title: 'Terminer la partie ?',
+      message: 'Le classement actuel sera le classement final.',
+      confirm: 'Terminer',
+      cancel: 'Continuer',
+    },
+    replay: 'Rejouer',
+    quit: 'Quitter',
+    quitConfirm: {
+      title: 'Quitter la partie ?',
+      message: 'Elle sera supprimée pour tous les joueurs.',
+      confirm: 'Quitter',
+      cancel: 'Rester',
+    },
+    actionFailed: 'L’action n’a pas pu être enregistrée. Réessaie.',
   },
   leaveGame: {
     title: 'Quitter la partie ?',
