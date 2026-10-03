@@ -1,23 +1,27 @@
 import type { ChoiceOptions, PublicSession } from '@shared/types'
 
+import { Confetti } from '../components/Confetti'
+import { GameHeader } from '../components/GameHeader'
 import { strings } from '../strings'
 import './RevealScreen.css'
 
-export function RevealScreen({ session }: { session: PublicSession }) {
+interface RevealScreenProps {
+  session: PublicSession
+  roomCode: string
+}
+
+export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const { currentQuestion: question, reveal } = session
   if (!question || !reveal) return null
 
   return (
     <main className="screen reveal">
-      <p className="reveal-question">{question.text}</p>
-
-      <section className="reveal-answer">
-        <p className="reveal-label">{strings.reveal.title}</p>
-        <p className="reveal-correct">{reveal.correctAnswer}</p>
-      </section>
+      <Confetti />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
+      <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
 
       {question.options && reveal.stats.choiceCounts ? (
-        <ChoiceStats
+        <ChoiceResults
           options={question.options}
           counts={reveal.stats.choiceCounts}
           correctAnswer={reveal.correctAnswer}
@@ -31,28 +35,24 @@ export function RevealScreen({ session }: { session: PublicSession }) {
   )
 }
 
-interface ChoiceStatsProps {
+interface ChoiceResultsProps {
   options: ChoiceOptions
   counts: number[]
   correctAnswer: string
 }
 
-function ChoiceStats({ options, counts, correctAnswer }: ChoiceStatsProps) {
-  const maxCount = Math.max(1, ...counts)
-
+// Les 4 pilules : la bonne réponse avec contour blanc, les autres éteintes ; chacune indique
+// combien de joueurs l'ont choisie. La lettre accompagne toujours la couleur.
+function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
   return (
-    <ol className="reveal-stats">
+    <ol className="question-options reveal-options">
       {options.map((option, index) => {
-        const count = counts[index] ?? 0
         const isCorrect = option === correctAnswer
         return (
-          <li key={option} className={isCorrect ? 'stat is-correct' : 'stat'}>
-            <span className={`choice-letter choice-${index}`}>{strings.choiceLetters[index]}</span>
-            <span className="stat-option">{option}</span>
-            <span className="stat-bar">
-              <span className="stat-bar-fill" style={{ transform: `scaleX(${count / maxCount})` }} />
-            </span>
-            <span className="stat-count">{count}</span>
+          <li key={option} className={`choice choice-${index} ${isCorrect ? 'is-correct' : 'is-dimmed'}`}>
+            <span className="choice-letter">{strings.choiceLetters[index]}</span>
+            <span className="choice-text">{option}</span>
+            <span className="reveal-count">{strings.reveal.choiceCount(counts[index] ?? 0)}</span>
           </li>
         )
       })}

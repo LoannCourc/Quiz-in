@@ -21,11 +21,11 @@ export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
     case 'starting':
       return <StartingScreen session={session} />
     case 'question':
-      return <QuestionScreen session={session} />
+      return <QuestionScreen session={session} roomCode={roomCode} />
     case 'reveal':
-      return <RevealScreen session={session} />
+      return <RevealScreen session={session} roomCode={roomCode} />
     case 'scores':
-      return <ScoresScreen session={session} />
+      return <ScoresScreen session={session} roomCode={roomCode} />
     case 'paused':
       return <PausedScreen />
     case 'ended':

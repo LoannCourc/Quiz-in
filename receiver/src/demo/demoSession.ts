@@ -1,5 +1,6 @@
 import {
   QUESTION_DURATION_S,
+  QUESTIONS_PER_GAME,
   REVEAL_DURATION_S,
   SCORES_DURATION_S,
   STARTING_DURATION_S,
@@ -15,37 +16,44 @@ import type {
   Question,
 } from '@shared/types'
 
-export const DEMO_ROOM_CODE = 'K7PX'
+export const DEMO_ROOM_CODE = 'K7TM'
 
+// Données de la maquette docs/design/plateau-tv.png, pour pouvoir comparer.
 const DEMO_QUESTION: Question = {
-  id: 'q-0001',
-  text: 'Quelle planète est la plus proche du Soleil ?',
-  options: ['Mars', 'Mercure', 'Vénus', 'La Terre'],
+  id: 'q-0003',
+  text: "Quelle est la capitale de l'Australie ?",
+  options: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
   correctIndex: 1,
-  acceptedAnswers: ['mercure'],
-  difficulty: 1,
-  explanation: 'Mercure orbite à environ 58 millions de km du Soleil.',
+  acceptedAnswers: ['canberra'],
+  difficulty: 2,
+  explanation: 'Canberra a été construite pour départager Sydney et Melbourne.',
 }
 
-// Deux joueurs à égalité pour vérifier l'affichage des rangs partagés (1er, 1er, 3e).
+// 9 joueurs comme sur la maquette ; Noé et Sam à égalité pour vérifier les rangs partagés.
 const DEMO_PLAYERS: Record<PlayerId, Player> = {
-  lea: { name: 'Léa', avatar: '🦊', score: 450, rank: 1, connected: true },
-  tom: { name: 'Tom', avatar: '🐼', score: 450, rank: 1, connected: true },
-  jo: { name: 'Mamie Jo', avatar: '🦉', score: 320, rank: 3, connected: true },
-  hugo: { name: 'Hugo', avatar: '🐸', score: 200, rank: 4, connected: true },
-  ines: { name: 'Inès', avatar: '🦄', score: 150, rank: 5, connected: true },
-  papa: { name: 'Papa', avatar: '🐻', score: 100, rank: 6, connected: false },
+  lea: { name: 'Léa', avatar: '🦊', score: 1480, rank: 1, connected: true },
+  max: { name: 'Max', avatar: '🐸', score: 1410, rank: 2, connected: true },
+  tom: { name: 'Tom', avatar: '🐙', score: 1295, rank: 3, connected: true },
+  ines: { name: 'Inès', avatar: '🐼', score: 1250, rank: 4, connected: true },
+  noe: { name: 'Noé', avatar: '🦖', score: 980, rank: 5, connected: true },
+  sam: { name: 'Sam', avatar: '🦄', score: 980, rank: 5, connected: true },
+  hugo: { name: 'Hugo', avatar: '🐯', score: 860, rank: 7, connected: true },
+  jo: { name: 'Mamie Jo', avatar: '🐻', score: 640, rank: 8, connected: true },
+  papa: { name: 'Papa', avatar: '🐧', score: 300, rank: 9, connected: false },
 }
 
 // Réponses fictives, dans l'ordre d'arrivée : index de proposition et texte libre.
 const DEMO_ANSWERS: { playerId: PlayerId; choice: number; free: string; points: number }[] = [
-  { playerId: 'lea', choice: 1, free: 'Mercure', points: 180 },
-  { playerId: 'jo', choice: 1, free: 'mercure', points: 150 },
-  { playerId: 'tom', choice: 2, free: 'Vénus', points: 0 },
-  { playerId: 'hugo', choice: 1, free: 'Mercur', points: 120 },
-  { playerId: 'ines', choice: 0, free: 'Mars', points: 0 },
+  { playerId: 'lea', choice: 1, free: 'Canberra', points: 100 },
+  { playerId: 'max', choice: 1, free: 'canberra', points: 168 },
+  { playerId: 'tom', choice: 0, free: 'Sydney', points: 0 },
+  { playerId: 'ines', choice: 2, free: 'Melbourne', points: 0 },
+  { playerId: 'noe', choice: 1, free: 'Canbera', points: 120 },
+  { playerId: 'sam', choice: 0, free: 'Sydney', points: 0 },
+  { playerId: 'hugo', choice: 1, free: 'Canberra', points: 150 },
+  { playerId: 'jo', choice: 3, free: 'Perth', points: 0 },
   // Dernière réponse : celle de Papa, pour tester un joueur qui a répondu puis s'est déconnecté.
-  { playerId: 'papa', choice: 3, free: 'La Terre', points: 0 },
+  { playerId: 'papa', choice: 1, free: 'Canberra', points: 110 },
 ]
 
 // Joueur dont la connexion peut être basculée depuis le panneau de démo.
@@ -54,7 +62,7 @@ export const DEMO_TOGGLEABLE_PLAYER_NAME = DEMO_PLAYERS[DEMO_TOGGLEABLE_PLAYER_I
 
 export const DEMO_MAX_ANSWERS = DEMO_ANSWERS.length
 
-const DEMO_CURRENT_INDEX = 3
+const DEMO_CURRENT_INDEX = 2
 
 function phaseDurationS(status: GameStatus, answerMode: AnswerMode): number {
   switch (status) {
@@ -145,6 +153,7 @@ export function buildDemoSession({
     status,
     settings: { answerMode, speedBonus: true, control: false, teams: false },
     currentIndex: DEMO_CURRENT_INDEX,
+    questionCount: QUESTIONS_PER_GAME,
     phaseStartedAt: startedAt,
     phaseEndsAt: startedAt + phaseDurationS(status, answerMode) * 1000,
     pausedFrom: isPaused ? 'question' : undefined,

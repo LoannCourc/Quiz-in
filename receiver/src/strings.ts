@@ -6,15 +6,19 @@ export const strings = {
   lobby: {
     scanToJoin: 'Scannez pour rejoindre',
     orEnterCode: 'ou saisissez le code',
-    playerCount: (count: number, max: number) => `${count} / ${max} joueurs`,
+    playerCount: (count: number, max: number) => `${count}/${max} joueurs`,
     waitingForPlayers: 'En attente des joueurs…',
   },
+  header: {
+    joinAt: (host: string) => `${host} · code`,
+  },
   starting: {
-    getReady: 'Préparez-vous !',
+    getReady: 'Prêts ?',
+    firstQuestion: 'La première question arrive…',
   },
   question: {
-    progress: (index: number, total: number) => `Question ${index} / ${total}`,
-    answeredCount: (count: number, total: number) => `${count} / ${total} ont répondu`,
+    progress: (index: number, total: number | undefined) => (total ? `Question ${index}/${total}` : `Question ${index}`),
+    answeredCount: (count: number, total: number) => `${count}/${total} ont répondu`,
     noConnectedPlayers: '—',
     freeAnswerHint: 'Écrivez votre réponse sur votre téléphone',
   },
@@ -26,14 +30,16 @@ export const strings = {
   choiceLetters: ['A', 'B', 'C', 'D'],
   reveal: {
     title: 'La bonne réponse',
-    answerCount: (count: number) => (count > 1 ? `${count} réponses` : `${count} réponse`),
+    // Nombre de joueurs ayant choisi chaque proposition.
+    choiceCount: (count: number) => String(count),
     noAnswer: 'Personne n’a répondu',
   },
   scores: {
     title: 'Classement',
+    afterQuestion: (index: number) => `après la question ${index}`,
   },
   end: {
-    title: 'Classement final',
+    title: 'Partie terminée !',
   },
   paused: {
     title: 'Pause',
@@ -58,7 +64,6 @@ export const strings = {
   ranking: {
     points: (points: number) => `${points} pts`,
     gained: (points: number) => `+${points}`,
-    rank: (rank: number) => (rank === 1 ? '1er' : `${rank}e`),
   },
   dev: {
     title: 'Démo',

@@ -4,18 +4,28 @@
   row-gap: 2rem;
 }
 
-.starting-label {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
+/* Disque encre cerclé de rose, comme l'anneau de temps. */
+.starting-disc {
+  display: grid;
+  place-items: center;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  border: 0.8rem solid var(--ring);
+  background: var(--ink-surface);
 }
 
 .starting-number {
-  font-size: 16rem;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: 8rem;
   line-height: 1;
-  color: var(--color-accent);
+  color: var(--color-text);
   animation: starting-pop 900ms ease-out both;
+}
+
+.starting-hint {
+  font-size: 2rem;
+  font-weight: 900;
 }
 
 @keyframes starting-pop {
@@ -28,7 +38,7 @@
     transform: scale(1);
   }
   to {
-    opacity: 0.2;
-    transform: scale(0.9);
+    opacity: 1;
+    transform: scale(0.92);
   }
 }

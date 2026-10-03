@@ -1,69 +1,73 @@
 .question {
-  grid-template-rows: auto 1fr auto auto;
-  row-gap: 1.5rem;
+  grid-template-rows: auto auto auto 1fr auto;
+  row-gap: 1.4rem;
 }
 
-.question-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
+/* Anneau de temps à gauche, carte de question à droite (maquette TV). */
+.question-main {
+  display: flex;
   align-items: center;
+  column-gap: 1.4rem;
 }
 
-.question-progress {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
-}
-
-.question-text {
-  align-self: center;
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1.2;
-  text-align: center;
+.question-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 7.5rem;
+  padding: 1.2rem 2rem;
+  border: var(--card-border);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-hard);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: var(--display-line-height);
 }
 
 .question-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem 1.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.question-options .choice {
+  min-height: 5rem;
+}
+
 .question-free-hint {
-  font-size: 2.2rem;
+  font-size: 2rem;
   text-align: center;
   color: var(--color-text-muted);
 }
 
-.question-footer {
-  display: grid;
-  row-gap: 1.2rem;
-}
-
+/* « 7/9 ONT RÉPONDU » puis les avatars : allumés s'ils ont répondu, éteints sinon. */
 .question-answered {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-  column-gap: 2rem;
-}
-
-.question-avatars {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: start;
-  column-gap: 0.8rem;
-}
-
-.question-avatars .avatar-emoji {
-  width: 3.2rem;
-  height: 3.2rem;
-  font-size: 1.8rem;
+  column-gap: 1.2rem;
 }
 
 .question-answered-count {
-  font-size: 1.5rem;
-  color: var(--color-text-muted);
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: var(--display-line-height);
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.question-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.question-avatars .avatar {
+  --avatar-size: 3.5rem;
 }

@@ -6,13 +6,17 @@
 }
 
 .status-title {
-  font-size: 4rem;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 3.2rem;
+  line-height: var(--display-line-height);
+  text-transform: uppercase;
 }
 
 .status-hint {
   max-width: 40rem;
   font-size: 2rem;
+  font-weight: 900;
   color: var(--color-text-muted);
 }
 
@@ -26,8 +30,8 @@
 .status-spinner {
   width: 5rem;
   height: 5rem;
-  border: 0.6rem solid var(--color-surface);
-  border-top-color: var(--color-accent);
+  border: 0.6rem solid var(--ring-track);
+  border-top-color: var(--ring);
   border-radius: 50%;
   animation: status-spin 1s linear infinite;
 }

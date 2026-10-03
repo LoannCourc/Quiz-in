@@ -1,0 +1,83 @@
+.podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  column-gap: 0.8rem;
+}
+
+.podium-step {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.3rem;
+  animation: podium-rise 500ms ease-out both;
+}
+
+.podium-position-1 {
+  animation-delay: 400ms;
+}
+
+.podium-position-2 {
+  animation-delay: 200ms;
+}
+
+.podium-avatar {
+  font-size: 3.2rem;
+  line-height: 1.1;
+}
+
+.podium-name {
+  max-width: 100%;
+  font-size: 1.3rem;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.podium-block {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  width: 100%;
+  border-radius: 0.6rem 0.6rem 0 0;
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+}
+
+.podium-position-1 .podium-block {
+  height: 13rem;
+  background: var(--podium-1);
+}
+
+.podium-position-2 .podium-block {
+  height: 10rem;
+  background: var(--podium-2);
+}
+
+.podium-position-3 .podium-block {
+  height: 7.5rem;
+  background: var(--podium-3);
+}
+
+.podium-rank {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: var(--display-line-height);
+}
+
+.podium-score {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+/* Montée des marches : transform et opacity seulement. */
+@keyframes podium-rise {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

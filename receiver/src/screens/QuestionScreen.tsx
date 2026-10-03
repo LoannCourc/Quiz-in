@@ -1,14 +1,18 @@
-import { QUESTIONS_PER_GAME } from '@shared/constants'
 import type { PublicSession } from '@shared/types'
 
 import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
-import { DifficultyBadge } from '../components/DifficultyBadge'
+import { GameHeader } from '../components/GameHeader'
 import { countConnected, countConnectedAnswered, hasAnswered, sortByRank } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
 
-export function QuestionScreen({ session }: { session: PublicSession }) {
+interface QuestionScreenProps {
+  session: PublicSession
+  roomCode: string
+}
+
+export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
   const question = session.currentQuestion
   if (!question) return null
 
@@ -18,14 +22,17 @@ export function QuestionScreen({ session }: { session: PublicSession }) {
 
   return (
     <main className="screen question">
-      <header className="question-header">
-        <span className="question-progress">
-          {strings.question.progress(session.currentIndex + 1, QUESTIONS_PER_GAME)}
-        </span>
-        <DifficultyBadge difficulty={question.difficulty} />
-      </header>
+      <GameHeader
+        roomCode={roomCode}
+        questionIndex={session.currentIndex}
+        questionCount={session.questionCount}
+        difficulty={question.difficulty}
+      />
 
-      <h1 className="question-text">{question.text}</h1>
+      <section className="question-main">
+        <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
+        <h1 className="question-card">{question.text}</h1>
+      </section>
 
       {question.options ? (
         <ol className="question-options">
@@ -40,30 +47,23 @@ export function QuestionScreen({ session }: { session: PublicSession }) {
         <p className="question-free-hint">{strings.question.freeAnswerHint}</p>
       )}
 
-      <footer className="question-footer">
-        {/* Indicateur discret : on montre qui a répondu, jamais ce qu'il a répondu. */}
-        <div className="question-answered">
-          <div className="question-avatars">
-            {players.map((player) => (
-              <Avatar
-                key={player.id}
-                player={player}
-                state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
-                showName={false}
-              />
-            ))}
-          </div>
-          <span className="question-answered-count">
-            {connectedCount > 0
-              ? strings.question.answeredCount(answeredCount, connectedCount)
-              : strings.question.noConnectedPlayers}
-          </span>
+      {/* Indicateur discret : on montre qui a répondu, jamais ce qu'il a répondu. */}
+      <footer className="question-answered">
+        <span className="question-answered-count">
+          {connectedCount > 0
+            ? strings.question.answeredCount(answeredCount, connectedCount)
+            : strings.question.noConnectedPlayers}
+        </span>
+        <div className="question-avatars">
+          {players.map((player) => (
+            <Avatar
+              key={player.id}
+              player={player}
+              state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
+              showName={false}
+            />
+          ))}
         </div>
-        <Countdown
-          key={session.phaseStartedAt}
-          phaseStartedAt={session.phaseStartedAt}
-          phaseEndsAt={session.phaseEndsAt}
-        />
       </footer>
     </main>
   )

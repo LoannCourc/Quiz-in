@@ -1,47 +1,106 @@
-.countdown {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  column-gap: 1.5rem;
+/* Anneau de temps : piste lavande, arc rose qui se vide, centre encre. Taille réglable par --ring-size. */
+.countdown-ring {
+  --ring-size: 6.5rem;
+  --ring-width: 0.6rem;
+  position: relative;
+  flex: none;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border-radius: 50%;
+  border: var(--ring-width) solid var(--ring-track);
 }
 
-.countdown-track {
-  height: 1rem;
-  border-radius: 0.5rem;
-  background: var(--color-surface);
+.countdown-half {
+  position: absolute;
+  top: calc(-1 * var(--ring-width));
+  width: calc(var(--ring-size) / 2);
+  height: var(--ring-size);
   overflow: hidden;
 }
 
-.countdown-fill {
-  height: 100%;
-  background: var(--color-accent);
-  transform-origin: left center;
-  animation-name: countdown-shrink;
+.countdown-half-right {
+  left: calc(var(--ring-size) / 2 - var(--ring-width));
+}
+
+.countdown-half-left {
+  left: calc(-1 * var(--ring-width));
+}
+
+/* Demi-bordure colorée (deux côtés = 180°), tournée de 45° pour couvrir une moitié exacte. */
+.countdown-arc {
+  position: absolute;
+  top: 0;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border-radius: 50%;
+  border: var(--ring-width) solid transparent;
+  box-sizing: border-box;
   animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
+}
+
+.countdown-arc-right {
+  left: calc(-1 * var(--ring-size) / 2);
+  border-top-color: var(--ring);
+  border-right-color: var(--ring);
+  animation-name: countdown-right;
+}
+
+.countdown-arc-left {
+  left: 0;
+  border-bottom-color: var(--ring);
+  border-left-color: var(--ring);
+  animation-name: countdown-left;
+}
+
+/* Première moitié du temps : la moitié gauche se vide ; seconde moitié : la moitié droite. */
+@keyframes countdown-right {
+  0%,
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(-135deg);
+  }
+}
+
+@keyframes countdown-left {
+  0% {
+    transform: rotate(45deg);
+  }
+  50%,
+  100% {
+    transform: rotate(-135deg);
+  }
+}
+
+.countdown-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink-surface);
 }
 
 .countdown-seconds {
-  min-width: 3ch;
-  text-align: right;
-  font-size: 3rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: calc(var(--ring-size) * 0.38);
+  line-height: 1;
+  color: var(--color-text);
   font-variant-numeric: tabular-nums;
 }
 
-.countdown.is-urgent .countdown-fill {
-  background: var(--color-wrong);
+/* Dernières secondes : pulsation du chiffre, sans changement de couleur. */
+.countdown-seconds.is-urgent {
+  animation: countdown-pulse 500ms ease-in-out infinite alternate;
 }
 
-.countdown.is-urgent .countdown-seconds {
-  color: var(--color-wrong);
-}
-
-@keyframes countdown-shrink {
+@keyframes countdown-pulse {
   from {
-    transform: scaleX(1);
+    transform: scale(1);
   }
   to {
-    transform: scaleX(0);
+    transform: scale(1.12);
   }
 }

@@ -1,0 +1,24 @@
+.scores {
+  grid-template-rows: auto auto 1fr;
+  row-gap: 1.2rem;
+}
+
+.scores-title-row {
+  display: flex;
+  align-items: baseline;
+  column-gap: 1.2rem;
+}
+
+.scores-subtitle {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+}
+
+/* Podium à gauche, lignes suivantes à droite (écran 16:9). */
+.scores-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  column-gap: 3rem;
+}

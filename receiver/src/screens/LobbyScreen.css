@@ -4,54 +4,77 @@
   align-items: center;
 }
 
+/* À gauche : QR dans une carte blanche, adresse et code en or. */
 .lobby-join {
   display: grid;
   justify-items: center;
-  row-gap: 1rem;
+  row-gap: 0.8rem;
 }
 
 .lobby-label {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  font-weight: 900;
   color: var(--color-text-muted);
 }
 
 .lobby-qr {
   padding: 1rem;
-  border-radius: 1.5rem;
-  background: #ffffff;
+  border: var(--card-border);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+  box-shadow: var(--shadow-hard);
 }
 
 .lobby-qr svg {
   display: block;
-  width: 15rem;
-  height: 15rem;
+  width: 14rem;
+  height: 14rem;
+}
+
+.lobby-host {
+  font-size: 1.4rem;
+  font-weight: 900;
 }
 
 .lobby-code {
-  font-size: 5rem;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: 0.3em;
+  font-family: var(--font-display);
+  font-size: 4.6rem;
+  line-height: var(--display-line-height);
+  letter-spacing: 0.2em;
   /* Compense l'espacement ajouté après la dernière lettre. */
-  margin-right: -0.3em;
+  margin-right: -0.2em;
   color: var(--color-accent);
+  text-shadow: var(--text-shadow-hard);
 }
 
+/* À droite : logo, nombre de joueurs et avatars. */
 .lobby-players {
   display: grid;
   align-content: center;
-  row-gap: 1.5rem;
+  row-gap: 1.4rem;
+}
+
+.lobby-logo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: var(--display-line-height);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  text-shadow: var(--text-shadow-hard);
 }
 
 .lobby-count {
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: var(--display-line-height);
+  text-transform: uppercase;
 }
 
 .lobby-avatars {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-  gap: 1.5rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 1.2rem 0.8rem;
 }
 
 .lobby-avatars .avatar {
@@ -60,6 +83,7 @@
 
 .lobby-waiting {
   font-size: 1.6rem;
+  font-weight: 900;
   color: var(--color-text-muted);
   animation: lobby-breathe 2.4s ease-in-out infinite;
 }

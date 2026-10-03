@@ -1,106 +1,25 @@
 .end {
-  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  column-gap: 3rem;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
+  background: var(--background-celebration);
 }
 
-.end-title {
-  grid-column: 1 / -1;
-  text-align: center;
-}
-
-.end .ranking {
-  align-content: center;
-}
-
-.podium {
+/* Podium à gauche, reste du classement à droite (écran 16:9). */
+.end-body {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   align-items: end;
-  column-gap: 1rem;
+  column-gap: 3rem;
 }
 
-.podium-step {
-  display: grid;
-  justify-items: center;
-  row-gap: 0.5rem;
-  animation: podium-rise 700ms ease-out both;
+.end .podium-position-1 .podium-block {
+  height: 15rem;
 }
 
-.podium-avatar {
-  font-size: 4.5rem;
-  line-height: 1;
+.end .podium-position-2 .podium-block {
+  height: 11.5rem;
 }
 
-.podium-name {
-  max-width: 100%;
-  font-size: 1.8rem;
-  font-weight: 800;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.podium-block {
-  display: grid;
-  align-content: start;
-  justify-items: center;
-  width: 100%;
-  padding-top: 1rem;
-  border-radius: 1rem 1rem 0 0;
-  background: var(--color-surface);
-}
-
-.podium-rank {
-  font-size: 2.6rem;
-  font-weight: 900;
-}
-
-.podium-score {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
-}
-
-.podium-rank-1 .podium-block {
-  height: 12rem;
-  background: var(--color-accent);
-  color: var(--color-on-accent);
-}
-
-.podium-rank-1 .podium-score {
-  color: var(--color-on-accent);
-}
-
-.podium-rank-2 .podium-block {
-  height: 9rem;
-}
-
-.podium-rank-3 .podium-block {
-  height: 6.5rem;
-}
-
-/* Montée au podium : le 3e, puis le 2e, puis le 1er. */
-.podium-rank-3 {
-  animation-delay: 200ms;
-}
-
-.podium-rank-2 {
-  animation-delay: 600ms;
-}
-
-.podium-rank-1 {
-  animation-delay: 1000ms;
-}
-
-@keyframes podium-rise {
-  from {
-    opacity: 0;
-    transform: translateY(4rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.end .podium-position-3 .podium-block {
+  height: 8.5rem;
 }

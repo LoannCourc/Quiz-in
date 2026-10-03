@@ -45,6 +45,23 @@
   --choice-3: var(--green);
   --on-choice: var(--ink);
 
+  /* Podium (1er or, 2e cyan, 3e rose), anneau de temps, pastilles encre */
+  --podium-1: var(--gold);
+  --podium-2: var(--cyan);
+  --podium-3: var(--pink-light);
+  --ring: var(--pink);
+  --ring-track: rgba(201, 184, 255, 0.35);
+  --ink-surface: var(--ink);
+  --dimmed-opacity: 0.35;
+  --confetti-1: var(--cyan);
+  --confetti-2: var(--gold);
+  --confetti-3: var(--green);
+  --confetti-4: var(--white);
+  --confetti-5: var(--pink-light);
+
+  /* Fond de célébration (révélation, fin) : halo orangé et rose au centre. */
+  --background-celebration: radial-gradient(ellipse 80% 75% at 50% 40%, #f0884a 0%, #c42d8a 45%, var(--bg-middle) 100%);
+
   /* Polices */
   --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;
   --font-text: 'Nunito', system-ui, 'Segoe UI', sans-serif;
@@ -57,4 +74,7 @@
   /* Ombre dure décalée : pas de flou, peu coûteuse pour un vieux Chromecast. */
   --shadow-hard: 0 0.3rem 0 rgba(0, 0, 0, 0.35);
   --selection-outline: 0.2rem solid var(--color-selection);
+  --card-border: 0.25rem solid var(--color-highlight);
+  /* Ombre de texte dure, sans flou (titres sur fond sombre). */
+  --text-shadow-hard: 0 0.2rem 0 rgba(0, 0, 0, 0.35);
 }

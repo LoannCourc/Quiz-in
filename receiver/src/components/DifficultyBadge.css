@@ -1,13 +1,15 @@
+/* Difficulté de la question (spec 8), discrète à côté de la pastille de question. */
 .difficulty {
   display: inline-grid;
   grid-auto-flow: column;
   align-items: center;
-  column-gap: 0.6rem;
-  padding: 0.3rem 1rem;
-  border-radius: 2rem;
+  column-gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
   background: var(--color-surface);
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-text);
 }
 
 .difficulty-dots {

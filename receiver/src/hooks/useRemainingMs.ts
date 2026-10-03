@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
+import { useServerTimeOffset } from '../lib/serverTime'
 
 const TICK_MS = 250
 
@@ -17,9 +17,3 @@ export function useRemainingMs(phaseEndsAt: number): number {
   return Math.max(0, phaseEndsAt - (now + offsetMs))
 }
 
-export function useElapsedAtMountMs(phaseStartedAt: number): number {
-  const offsetMs = useServerTimeOffset()
-  // Mesuré une seule fois, au montage du composant.
-  const [elapsedMs] = useState(() => estimateServerNow(offsetMs) - phaseStartedAt)
-  return elapsedMs
-}

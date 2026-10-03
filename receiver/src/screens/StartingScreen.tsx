@@ -10,11 +10,14 @@ export function StartingScreen({ session }: { session: PublicSession }) {
 
   return (
     <main className="screen starting">
-      <p className="starting-label">{strings.starting.getReady}</p>
-      {/* La clé change à chaque seconde : React recrée l'élément et l'animation rejoue. */}
-      <p key={seconds} className="starting-number">
-        {seconds}
-      </p>
+      <h1 className="hero-title">{strings.starting.getReady}</h1>
+      <div className="starting-disc">
+        {/* La clé change à chaque seconde : React recrée l'élément et l'animation rejoue. */}
+        <span key={seconds} className="starting-number">
+          {seconds}
+        </span>
+      </div>
+      <p className="starting-hint">{strings.starting.firstQuestion}</p>
     </main>
   )
 }

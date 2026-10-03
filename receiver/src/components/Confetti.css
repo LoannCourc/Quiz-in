@@ -1,0 +1,52 @@
+/* Confettis dans les marges latérales de sécurité (5 % de chaque côté) et derrière le contenu :
+   ils ne croisent jamais un texte ou un avatar, même à travers un élément translucide. */
+.confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.screen > :not(.confetti) {
+  position: relative;
+  z-index: 1;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -2rem;
+  width: 0.6rem;
+  height: 1.2rem;
+  border-radius: 0.15rem;
+  opacity: 0;
+  animation: confetti-fall 3s linear both;
+}
+
+/* Une seule chute : du haut vers le bas de l'écran, avec rotation. */
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(110vh) rotate(540deg);
+  }
+}
+
+.confetti-piece-0 { left: 0.6%; background: var(--confetti-1); animation-delay: 0ms; }
+.confetti-piece-1 { left: 2%; background: var(--confetti-2); animation-delay: 400ms; animation-duration: 3.4s; }
+.confetti-piece-2 { left: 3.4%; background: var(--confetti-3); animation-delay: 150ms; }
+.confetti-piece-3 { left: 96.2%; background: var(--confetti-4); animation-delay: 650ms; animation-duration: 2.8s; }
+.confetti-piece-4 { left: 97.6%; background: var(--confetti-5); animation-delay: 250ms; animation-duration: 3.2s; }
+.confetti-piece-5 { left: 99%; background: var(--confetti-1); animation-delay: 800ms; }
+.confetti-piece-6 { left: 1.2%; background: var(--confetti-2); animation-delay: 100ms; animation-duration: 2.9s; }
+.confetti-piece-7 { left: 2.8%; background: var(--confetti-3); animation-delay: 550ms; animation-duration: 3.3s; }
+.confetti-piece-8 { left: 4%; background: var(--confetti-4); animation-delay: 300ms; }
+.confetti-piece-9 { left: 95.8%; background: var(--confetti-5); animation-delay: 700ms; animation-duration: 2.7s; }
+.confetti-piece-10 { left: 97%; background: var(--confetti-1); animation-delay: 200ms; animation-duration: 3.1s; }
+.confetti-piece-11 { left: 98.4%; background: var(--confetti-2); animation-delay: 500ms; }

@@ -10,7 +10,8 @@
   padding: 0.8rem 2rem;
   border-radius: 2rem;
   background: var(--color-wrong);
-  color: #1a0004;
+  color: var(--ink);
+  font-weight: 900;
   font-size: 1.6rem;
   transform: translateX(-50%);
   animation: connection-lost-pulse 2s ease-in-out infinite;

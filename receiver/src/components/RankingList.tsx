@@ -21,7 +21,7 @@ export function RankingList({ players, gainedPoints, columns = 1 }: RankingListP
             key={player.id}
             className="ranking-row"
             style={{ animationDelay: `${position * 80}ms` }}>
-            <span className="ranking-rank">{strings.ranking.rank(player.rank)}</span>
+            <span className="ranking-rank">{player.rank}</span>
             <span className="ranking-avatar">{player.avatar}</span>
             <span className="ranking-name">{player.name}</span>
             {gainedPoints && (
