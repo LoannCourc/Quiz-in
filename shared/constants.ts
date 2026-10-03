@@ -4,6 +4,8 @@ import type { AnswerMode, SessionSettings } from './types';
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 20;
 export const QUESTIONS_PER_GAME = 10;
+// Partie courte proposée en développement seulement (tests manuels).
+export const DEV_SHORT_GAME_QUESTIONS = 3;
 export const CHOICE_COUNT = 4;
 
 // Durées en secondes.
@@ -16,6 +18,8 @@ export const HOST_DISCONNECT_TIMEOUT_S = 120;
 // Marge avant la révélation, après la fin du chrono : laisse arriver les dernières réponses
 // (les règles acceptent submittedAt jusqu'à phaseEndsAt + 1 000 ms).
 export const REVEAL_GRACE_MS = 1200;
+// Durée maximale d'attente d'une transition de l'hôte avant de relâcher son verrou (écriture en attente).
+export const TRANSITION_LOCK_MAX_MS = 10_000;
 
 // Points : bonne réponse, plus bonus de rapidité jusqu'à MAX_SPEED_BONUS_POINTS.
 export const CORRECT_ANSWER_POINTS = 100;

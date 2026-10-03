@@ -10,11 +10,13 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
   - 3.1 règles de sécurité et leurs tests ; 3.2 rejoindre une partie et lobby joueur ; 3.3 modification du profil dans le lobby ; 3.4 site des joueurs (`quizin-play`) ; 3.5 fondations du moteur côté hôte (catalogue, fiche du quiz, création de partie, lobby hôte) : **terminées**.
   - 3.6 partie jouable en choix multiples, **en cours** :
     - A (l'hôte s'inscrit comme joueur, « Lancer » à 2 joueurs connectés), B (écrans du joueur, composants purs + démo `/debug/player`), C (envoi de la réponse, un seul `update()` multi-chemins), T (test manuel de C), champ public `questionCount`, DA1 à DA3 (direction artistique app et TV, barre de temps fine sur mobile) : **terminées**.
-    - **Prochaine étape : D1** (logique pure du moteur et tests dans `shared/`), puis D2 (lancement), D3 (boucle de jeu de l'hôte), D4 (écran hôte, contrôles Passer / Pause / Terminer, fin de partie). Validation du développeur entre chaque bloc.
+    - D1 (moteur pur `shared/hostEngine.ts` et tests de compatibilité avec les règles) : **terminée**. D2 (lancement) et D3 (boucle de jeu `useHostEngine`) : **écrites, en test manuel**. Ensuite D4 (écran hôte, contrôles Passer / Pause / Terminer, fin de partie, rejouer, quitter). Validation du développeur entre chaque bloc.
+    - Journal `[engine]` dans la console de l'hôte (développement seulement) : à retirer avant la phase 4 si le développeur le demande.
     - Démos sans Firebase : `/debug/player?s=<scénario>&capture=1` (app, développement seulement) et `receiver` sans code `?status=<état>&capture=1`.
-  - Les questions (`questions/`) ne sont encore lues par aucun écran ; leur validation est prête dans `shared/quizValidation.ts`.
+  - Les questions (`questions/`) ne sont lues que par l'hôte (`useGameQuestions`), validées par `shared/quizValidation.ts`.
 - Mettre à jour cette section à chaque fin d'étape.
 - **À faire plus tard, seulement avec l'accord du développeur** : supprimer l'ancien site Hosting `quizin-jouer` une fois `quizin-play` testé ; exclure le code de démo (`/debug/*`, `app/src/debug/`) du bundle publié avant le lancement.
+- **Limite connue** : pas de pause automatique si l'hôte se déconnecte (spec 6.6), reportée.
 - **À vérifier en phase 4 sur une vraie TV** : prise en charge de `gap` (flexbox) et `inset` en CSS sur un vieux Chromecast ; confettis du récepteur placés dans les marges de sécurité de 5 %, possiblement rognés par la TV.
 
 ## Stack
@@ -77,6 +79,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - Un joueur n'écrit que sa propre réponse, et seulement pendant l'état QUESTION.
 - Le temps de réponse (option Rapidité) se mesure avec l'horodatage du serveur.
 - **Limite connue acceptée au MVP** : le catalogue `questions/` (avec les bonnes réponses) est lisible par tout utilisateur connecté, car n'importe quel utilisateur anonyme peut devenir hôte. Correction possible plus tard via une Cloud Function (spec 7).
+- L'hôte doit garder l'app ouverte au premier plan pendant la partie : le moteur tourne sur son téléphone (écran maintenu allumé de STARTING à END, confirmation avant de quitter l'écran).
 - Le récepteur TV est une simple page d'affichage, sans interaction. Il se teste d'abord dans un navigateur, puis sur la vraie TV.
 - Animations TV légères (CSS) pour tourner sur de vieux Chromecast.
 

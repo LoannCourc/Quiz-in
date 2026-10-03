@@ -1,4 +1,11 @@
-import { MAX_PLAYERS, MIN_PLAYERS, PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from '@shared/constants';
+import {
+  DEV_SHORT_GAME_QUESTIONS,
+  MAX_PLAYERS,
+  MIN_PLAYERS,
+  PLAYER_NAME_MAX_LENGTH,
+  PLAYER_NAME_MIN_LENGTH,
+} from '@shared/constants';
+import type { LaunchRefusal } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { AnswerMode, DifficultyLevel } from '@shared/types';
 
@@ -59,6 +66,7 @@ export const strings = {
     details: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
     debugLink: 'Outils de développement : compteur partagé',
     playerDemoLink: 'Outils de développement : écrans du joueur',
+    resumeGame: (code: string) => `Reprendre la partie ${code}`,
   },
   quizSetup: {
     loading: 'Chargement du quiz…',
@@ -97,8 +105,31 @@ export const strings = {
     noPlayers: 'Aucun joueur pour l’instant. Ils rejoignent en scannant le QR code de la TV.',
     hostJoinTitle: 'Toi aussi, tu joues !',
     launchButton: 'Lancer la partie',
-    launchSoon: 'Le lancement arrivera à la prochaine étape.',
-    notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,
+    launching: 'Lancement…',
+    loadingQuestions: 'Chargement des questions…',
+    questionsError: 'Impossible de charger les questions du quiz. Vérifie ta connexion.',
+    launchFailed: 'Le lancement a échoué. Réessaie dans un instant.',
+    launchRefusals: {
+      notLobby: 'La partie est déjà lancée.',
+      freeAnswerSoon: 'Réponse libre : bientôt. Choisis Choix multiples pour jouer.',
+      notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,
+      tooManyPlayers: `${MAX_PLAYERS} joueurs au maximum dans une partie.`,
+      noQuestions: 'Ce quiz n’a pas de question jouable.',
+    } satisfies Record<LaunchRefusal, string>,
+    shortGame: {
+      title: `Partie courte (${DEV_SHORT_GAME_QUESTIONS} questions)`,
+      hint: 'Développement uniquement, absent de l’app publiée.',
+    },
+  },
+  hostGame: {
+    inProgressTitle: 'Partie en cours',
+    spectatorHint: 'Tu ne joues pas cette partie : suis-la sur la TV.',
+  },
+  leaveGame: {
+    title: 'Quitter la partie ?',
+    message: 'Elle sera interrompue.',
+    stay: 'Rester',
+    leave: 'Quitter',
   },
   profile: {
     editButton: 'Modifier mon profil',

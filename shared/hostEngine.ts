@@ -5,6 +5,7 @@ import {
   QUESTIONS_PER_GAME,
   REVEAL_GRACE_MS,
   STARTING_DURATION_S,
+  TRANSITION_LOCK_MAX_MS,
 } from './constants'
 import { nextPhase, questionDurationS } from './gameFlow'
 import { canLaunchGame, connectedPlayerIds } from './players'
@@ -32,8 +33,9 @@ import type {
 export type SessionUpdate = Record<string, unknown>
 
 // Partie limitée à QUESTIONS_PER_GAME questions, dans l'ordre du quiz (questions déjà validées).
-export function selectGameQuestions(questions: readonly Question[]): Question[] {
-  return questions.slice(0, QUESTIONS_PER_GAME)
+// limit : partie plus courte (réservée au développement), jamais plus que QUESTIONS_PER_GAME.
+export function selectGameQuestions(questions: readonly Question[], limit = QUESTIONS_PER_GAME): Question[] {
+  return questions.slice(0, Math.max(0, Math.min(limit, QUESTIONS_PER_GAME)))
 }
 
 // Question publiée pendant QUESTION : jamais correctIndex, acceptedAnswers ni explanation.
@@ -217,13 +219,18 @@ export type LaunchResult = { ok: true; update: SessionUpdate } | { ok: false; re
 
 // Lancement (LOBBY → STARTING) : questionCount fixé, scores remis à zéro, réponses effacées.
 // Refusé, avec la raison, si la partie ne peut pas commencer.
-export function launchUpdate(session: Session, questions: readonly Question[], nowServer: number): LaunchResult {
+export function launchUpdate(
+  session: Session,
+  questions: readonly Question[],
+  nowServer: number,
+  limit = QUESTIONS_PER_GAME,
+): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   // 3.6 : seul le mode Choix multiples est jouable.
   if (session.settings.answerMode === 'free') return { ok: false, reason: 'freeAnswerSoon' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
   if (Object.keys(session.players).length > MAX_PLAYERS) return { ok: false, reason: 'tooManyPlayers' }
-  const gameQuestions = selectGameQuestions(questions)
+  const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
 
   const update: SessionUpdate = {
@@ -270,4 +277,25 @@ export function resumeUpdate(session: Session, nowServer: number): SessionUpdate
     pausedFrom: null,
     remainingMs: null,
   }
+}
+
+// Verrou d'une transition en cours d'écriture. Une écriture hors ligne reste en attente dans
+// Firebase : au-delà de TRANSITION_LOCK_MAX_MS, le verrou est relâché pour ne pas bloquer la partie.
+export interface TransitionLock {
+  key: string
+  since: number
+}
+
+export function transitionKey(expected: ExpectedPhase): string {
+  return `${expected.status}/${expected.currentIndex}`
+}
+
+export function isTransitionLocked(lock: TransitionLock | null, key: string, nowMs: number): boolean {
+  return lock !== null && lock.key === key && nowMs - lock.since < TRANSITION_LOCK_MAX_MS
+}
+
+// Partie que l'hôte peut reprendre après une relance de l'app : elle existe, n'est pas terminée,
+// et il en est l'hôte. Sinon, le code mémorisé sur l'appareil doit être effacé.
+export function isResumableBy(game: { hostUid?: PlayerId; status?: GameStatus } | null, uid: PlayerId): boolean {
+  return game !== null && game.hostUid === uid && game.status !== undefined && game.status !== 'ended'
 }

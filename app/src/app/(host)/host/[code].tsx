@@ -1,12 +1,15 @@
+import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
 import { canLaunchGame } from '@shared/players';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import type { Session } from '@shared/types';
 import * as Clipboard from 'expo-clipboard';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { OptionToggle } from '@/components/host/OptionToggle';
+import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { PlayerList } from '@/components/player/PlayerList';
 import { BigButton } from '@/components/ui/BigButton';
@@ -15,47 +18,164 @@ import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useAnswer } from '@/hooks/useAnswer';
+import { useGameQuestions, type GameQuestionsState } from '@/hooks/useGameQuestions';
+import { useHostEngine } from '@/hooks/useHostEngine';
+import { useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { usePresence } from '@/hooks/usePresence';
+import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { receiverUrl } from '@/lib/createGame';
+import { launchGame } from '@/lib/hostGame';
+import { clearHostedGameCode } from '@/lib/hostedGameStorage';
 
-// Lobby de l'hôte : code, lien de l'écran TV, joueurs en direct. Servira aussi pendant la partie.
-export default function HostLobbyScreen() {
-  // L'hôte est l'autorité de la partie : son téléphone ne doit pas se mettre en veille (spec 7).
-  // L'écran reste allumé tant que cette page est affichée.
-  useKeepAwake();
+// Écran de l'hôte : lobby (code, lien TV, joueurs, lancement), puis la partie, pilotée par le
+// moteur (useHostEngine) tant que cet écran est affiché.
+export default function HostScreen() {
   const params = useLocalSearchParams<{ code: string }>();
   const code = normalizeRoomCode(params.code ?? '');
 
-  return (
+  return isValidRoomCode(code) ? (
+    <HostSession code={code} />
+  ) : (
     <Screen>
-      {isValidRoomCode(code) ? <HostLobby code={code} /> : <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>}
+      <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>
     </Screen>
   );
 }
 
-function HostLobby({ code }: { code: string }) {
+function HostSession({ code }: { code: string }) {
   // Seul l'hôte peut lire sa session d'un bloc : un refus signifie « pas l'hôte » ou « introuvable ».
   const session = useLiveValue<Session>(`sessions/${code}`);
+  // La base ne stocke pas les objets vides : players manque tant que personne n'a rejoint.
+  // Objet recréé seulement quand la session change (le moteur se recalcule sur ce changement).
+  const value = session.kind === 'ready' ? session.value : null;
+  const current = useMemo(() => value && { ...value, players: value.players ?? {} }, [value]);
 
-  if (session.kind === 'loading') return <Text style={textStyles.body}>{strings.hostLobby.loading}</Text>;
-  if (session.kind === 'error' || session.value === null) {
-    return <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>;
+  if (session.kind === 'loading') {
+    return (
+      <Screen>
+        <Text style={textStyles.body}>{strings.hostLobby.loading}</Text>
+      </Screen>
+    );
   }
-
-  return <LobbyContent code={code} session={session.value} />;
+  if (current === null) {
+    return (
+      <Screen>
+        <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>
+      </Screen>
+    );
+  }
+  return <HostGame code={code} session={current} />;
 }
 
-function LobbyContent({ code, session }: { code: string; session: Session }) {
-  // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
+// Partie en cours : de STARTING jusqu'avant END.
+function isInProgress(session: Session): boolean {
+  return session.status !== 'lobby' && session.status !== 'ended';
+}
+
+function HostGame({ code, session }: { code: string; session: Session }) {
+  const questions = useGameQuestions(session.quizId);
+  const serverOffsetMs = useServerTimeOffset();
   const uid = session.hostUid;
-  const players = session.players ?? {};
-  const isRegistered = players[uid] !== undefined;
-  const [isEditing, setIsEditing] = useState(false);
+  const isRegistered = session.players[uid] !== undefined;
+  const inProgress = isInProgress(session);
+
+  useHostEngine({
+    code,
+    session,
+    questions: questions.kind === 'ready' ? questions.questions : null,
+    serverOffsetMs,
+  });
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
+  useLeaveGuard(inProgress);
 
-  const canLaunch = canLaunchGame(players);
+  // Partie terminée : plus rien à reprendre après une relance de l'app.
+  useEffect(() => {
+    if (session.status === 'ended') void clearHostedGameCode();
+  }, [session.status]);
+
+  return (
+    <>
+      {inProgress && <KeepScreenOn />}
+      {session.status === 'lobby' ? (
+        <Screen>
+          <LobbyContent code={code} session={session} questions={questions} serverOffsetMs={serverOffsetMs} />
+        </Screen>
+      ) : (
+        <HostInGame code={code} session={session} serverOffsetMs={serverOffsetMs} isRegistered={isRegistered} />
+      )}
+    </>
+  );
+}
+
+// L'hôte est l'autorité de la partie : si son téléphone se verrouille, la partie se fige.
+// Écran maintenu allumé tant que ce composant est affiché (de STARTING à END).
+function KeepScreenOn() {
+  useKeepAwake();
+  return null;
+}
+
+interface HostInGameProps {
+  code: string;
+  session: Session;
+  serverOffsetMs: number;
+  isRegistered: boolean;
+}
+
+// Pendant la partie, l'hôte inscrit joue comme les autres (contrôles de l'hôte : étape D4).
+function HostInGame({ code, session, serverOffsetMs, isRegistered }: HostInGameProps) {
+  const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
+  if (!isRegistered) {
+    return (
+      <Screen>
+        <Text style={textStyles.hero}>{strings.hostGame.inProgressTitle}</Text>
+        <Text style={[textStyles.body, styles.centered]}>{strings.hostGame.spectatorHint}</Text>
+      </Screen>
+    );
+  }
+  return (
+    <PlayerGame session={session} uid={session.hostUid} serverOffsetMs={serverOffsetMs} answer={answer} onAnswer={onAnswer} />
+  );
+}
+
+interface LobbyContentProps {
+  code: string;
+  session: Session;
+  questions: GameQuestionsState;
+  serverOffsetMs: number;
+}
+
+function LobbyContent({ code, session, questions, serverOffsetMs }: LobbyContentProps) {
+  // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
+  const uid = session.hostUid;
+  const players = session.players;
+  const isRegistered = players[uid] !== undefined;
+  const [isEditing, setIsEditing] = useState(false);
+  const [isShortGame, setIsShortGame] = useState(false);
+  const [isLaunching, setIsLaunching] = useState(false);
+  const [launchError, setLaunchError] = useState<string | null>(null);
+
+  const hasEnoughPlayers = canLaunchGame(players);
+  const canLaunch = hasEnoughPlayers && questions.kind === 'ready' && !isLaunching;
+
+  // Lancement : un seul update() (LOBBY → STARTING) ; un refus affiche sa raison.
+  async function launch() {
+    if (questions.kind !== 'ready') return;
+    setIsLaunching(true);
+    setLaunchError(null);
+    try {
+      const limit = isShortGame ? DEV_SHORT_GAME_QUESTIONS : undefined;
+      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit);
+      if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
+    } catch (error) {
+      console.error('[engine] Lancement impossible', error);
+      setLaunchError(strings.hostLobby.launchFailed);
+    } finally {
+      setIsLaunching(false);
+    }
+  }
 
   return (
     <>
@@ -87,13 +207,45 @@ function LobbyContent({ code, session }: { code: string; session: Session }) {
         <PlayerList players={players} highlightedUid={isRegistered ? uid : undefined} />
       )}
 
-      {/* Le lancement lui-même arrive avec le moteur de partie (étape D). */}
-      <BigButton label={strings.hostLobby.launchButton} onPress={() => {}} disabled={!canLaunch} />
-      <Text style={[textStyles.muted, styles.centered]}>
-        {canLaunch ? strings.hostLobby.launchSoon : strings.hostLobby.notEnoughPlayers}
-      </Text>
+      {/* Partie courte : tests manuels, absente de l'app publiée (__DEV__ faux). */}
+      {__DEV__ && (
+        <OptionToggle
+          title={strings.hostLobby.shortGame.title}
+          hint={strings.hostLobby.shortGame.hint}
+          value={isShortGame}
+          onChange={setIsShortGame}
+        />
+      )}
+
+      <BigButton
+        label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
+        onPress={launch}
+        disabled={!canLaunch}
+      />
+      <LaunchHint questions={questions} hasEnoughPlayers={hasEnoughPlayers} error={launchError} />
     </>
   );
+}
+
+interface LaunchHintProps {
+  questions: GameQuestionsState;
+  hasEnoughPlayers: boolean;
+  error: string | null;
+}
+
+// Ce qui empêche le lancement, ou l'erreur du dernier essai.
+function LaunchHint({ questions, hasEnoughPlayers, error }: LaunchHintProps) {
+  if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
+  if (questions.kind === 'error') {
+    return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
+  }
+  if (questions.kind === 'loading') {
+    return <Text style={[textStyles.muted, styles.centered]}>{strings.hostLobby.loadingQuestions}</Text>;
+  }
+  if (!hasEnoughPlayers) {
+    return <Text style={[textStyles.muted, styles.centered]}>{strings.hostLobby.launchRefusals.notEnoughPlayers}</Text>;
+  }
+  return null;
 }
 
 type CopyStatus = 'idle' | 'copied' | 'failed';

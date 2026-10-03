@@ -1,15 +1,18 @@
 import { describe, expect, test } from 'vitest'
 
-import { ALL_ANSWERED_DELAY_S, QUESTIONS_PER_GAME, REVEAL_GRACE_MS } from '../../shared/constants'
+import { ALL_ANSWERED_DELAY_S, QUESTIONS_PER_GAME, REVEAL_GRACE_MS, TRANSITION_LOCK_MAX_MS } from '../../shared/constants'
 import {
   buildReveal,
   gradeAnswer,
+  isResumableBy,
+  isTransitionLocked,
   launchUpdate,
   nextDeadline,
   pauseUpdate,
   resumeUpdate,
   selectGameQuestions,
   toPublicQuestion,
+  transitionKey,
   transitionUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
@@ -63,6 +66,15 @@ describe('selectGameQuestions', () => {
   test('moins de questions disponibles : toutes ; aucune : liste vide', () => {
     expect(selectGameQuestions(QUESTIONS.slice(0, 3))).toHaveLength(3)
     expect(selectGameQuestions([])).toEqual([])
+  })
+
+  test('limite (partie courte de développement) : les premières questions seulement', () => {
+    expect(selectGameQuestions(QUESTIONS, 3).map((q) => q.id)).toEqual(['q-0', 'q-1', 'q-2'])
+  })
+
+  test('limite jamais au-delà de QUESTIONS_PER_GAME, ni négative', () => {
+    expect(selectGameQuestions(QUESTIONS, 50)).toHaveLength(QUESTIONS_PER_GAME)
+    expect(selectGameQuestions(QUESTIONS, -1)).toEqual([])
   })
 })
 
@@ -249,6 +261,13 @@ describe('launchUpdate', () => {
     })
   })
 
+  test('partie courte : questionCount = limite ; sans limite, 10 questions', () => {
+    const short = launchUpdate(makeSession(), QUESTIONS, NOW, 3)
+    expect(short.ok && short.update.questionCount).toBe(3)
+    const full = launchUpdate(makeSession(), QUESTIONS, NOW)
+    expect(full.ok && full.update.questionCount).toBe(QUESTIONS_PER_GAME)
+  })
+
   test('moins de 10 questions : questionCount = nombre disponible', () => {
     const result = launchUpdate(makeSession(), QUESTIONS.slice(0, 4), NOW)
     expect(result.ok && result.update.questionCount).toBe(4)
@@ -403,5 +422,39 @@ describe('Bonne réponse jamais publiée avant la révélation', () => {
   test('le détecteur repère bien une fuite (contrôle du test)', () => {
     const leaked = { currentQuestion: { ...toPublicQuestion(QUESTIONS[0], 'choice'), correctIndex: 1 } }
     expect(findSecrets(leaked, QUESTIONS[0], false)).not.toEqual([])
+  })
+})
+
+describe('verrou de transition', () => {
+  const key = transitionKey({ status: 'question', currentIndex: 2 })
+
+  test('aucun verrou : transition possible', () => {
+    expect(isTransitionLocked(null, key, NOW)).toBe(false)
+  })
+
+  test('même transition en cours depuis moins de 10 s : verrouillée', () => {
+    expect(isTransitionLocked({ key, since: NOW - 9_999 }, key, NOW)).toBe(true)
+  })
+
+  test('écriture en attente depuis 10 s ou plus : verrou relâché', () => {
+    expect(isTransitionLocked({ key, since: NOW - TRANSITION_LOCK_MAX_MS }, key, NOW)).toBe(false)
+  })
+
+  test('autre transition : jamais bloquée par un ancien verrou', () => {
+    expect(isTransitionLocked({ key: 'starting/0', since: NOW }, key, NOW)).toBe(false)
+  })
+})
+
+describe('isResumableBy', () => {
+  test('partie en cours dont je suis l’hôte : reprise possible', () => {
+    expect(isResumableBy({ hostUid: HOST, status: 'question' }, HOST)).toBe(true)
+    expect(isResumableBy({ hostUid: HOST, status: 'lobby' }, HOST)).toBe(true)
+  })
+
+  test('partie inexistante, terminée, ou d’un autre hôte : pas de reprise', () => {
+    expect(isResumableBy(null, HOST)).toBe(false)
+    expect(isResumableBy({}, HOST)).toBe(false)
+    expect(isResumableBy({ hostUid: HOST, status: 'ended' }, HOST)).toBe(false)
+    expect(isResumableBy({ hostUid: OTHER, status: 'question' }, HOST)).toBe(false)
   })
 })

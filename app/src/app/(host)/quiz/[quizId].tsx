@@ -24,6 +24,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
+import { saveHostedGameCode } from '@/lib/hostedGameStorage';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
 
@@ -81,6 +82,8 @@ function QuizSetup({ quizId }: { quizId: string }) {
     setCreateError(null);
     try {
       const code = await createGame(quizId, settings);
+      // Mémorisé sur l'appareil : « Reprendre la partie » si l'app est relancée en pleine partie.
+      await saveHostedGameCode(code);
       // replace : le retour arrière depuis le lobby ramène au catalogue, pas à cette fiche.
       router.replace({ pathname: '/host/[code]', params: { code } });
     } catch (error) {

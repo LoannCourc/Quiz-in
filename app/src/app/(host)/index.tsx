@@ -7,12 +7,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
 import { QuizCard } from '@/components/host/QuizCard';
+import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { useResumableGame } from '@/hooks/useResumableGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { isPublishedWeb } from '@/lib/platform';
 
@@ -47,10 +49,17 @@ function CatalogScreen() {
   const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
   const [theme, setTheme] = useState<string | null>(null);
   const [level, setLevel] = useState<DifficultyLevel | null>(null);
+  const resumableCode = useResumableGame();
 
   return (
     <Screen>
       <Text style={textStyles.title}>{strings.join.appName}</Text>
+      {resumableCode && (
+        <BigButton
+          label={strings.catalog.resumeGame(resumableCode)}
+          onPress={() => router.push({ pathname: '/host/[code]', params: { code: resumableCode } })}
+        />
+      )}
       <Text style={[textStyles.label, styles.centered]}>{strings.catalog.title}</Text>
 
       {catalog.kind === 'loading' && <Text style={textStyles.body}>{strings.catalog.loading}</Text>}
