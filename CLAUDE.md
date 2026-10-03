@@ -43,6 +43,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 ## Commandes
 - Lancer l'app (depuis `app/`) : `npx expo start`, puis ouvrir l'app de développement « Quiz'in » sur le téléphone (Expo Go ne fonctionne plus depuis l'ajout du Cast).
 - Build de développement Android (depuis `app/`) : `npx eas-cli build --profile development --platform android`, puis installer l'APK avec le lien ou le QR code donné. À refaire seulement après un ajout ou une mise à jour de dépendance native, une modification de `app.json` (plugins, identifiants, icônes) ou une montée de version d'Expo ; une modification de code TS/TSX se recharge à chaud.
+- Build autonome Android (depuis `app/`) : `npx eas-cli build --profile preview --platform android` : APK avec le code intégré, sans PC ni Metro. Variables Firebase lues dans l'environnement EAS « preview » (`app/.env` n'est jamais envoyé) : les envoyer ou les mettre à jour avec `npx eas-cli env:push preview --path .env`, vérifier avec `npx eas-cli env:list preview` (visibilité « plain text » ou « sensitive »). Même identifiant que le build de développement : installer l'un remplace l'autre.
 - Lancer le récepteur TV (depuis `receiver/`) : `npm run dev`, puis ouvrir l'adresse affichée. Session de test à importer : `npm run test-session -- [état] [mode] [durée]`.
 - Typage et style (dans `app/` ou `receiver/`) : `npm run typecheck`, `npm run lint`.
 - Export web du site des joueurs (dans `app/`) : `npm run export:web` (sortie `app/dist`).
