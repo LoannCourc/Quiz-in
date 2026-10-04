@@ -142,10 +142,11 @@ export function buildReveal(question: Question, session: Session): RevealResult 
 export function nextDeadline(session: Session): number | null {
   switch (session.status) {
     case 'reveal':
-      // Pas à pas : la révélation attend l'hôte, aucune transition automatique.
+      // Pas à pas : la révélation (et le classement) attend l'hôte, aucune transition automatique.
+      return isAwaitingHost(session) ? null : session.phaseEndsAt
+    case 'scores':
       return isAwaitingHost(session) ? null : session.phaseEndsAt
     case 'starting':
-    case 'scores':
       return session.phaseEndsAt
     case 'question':
       return questionDeadline(session)
@@ -321,9 +322,10 @@ export function pauseUpdate(session: Session, nowServer: number): SessionUpdate 
 // Le bonus de rapidité, lui, ne dépend que de phaseEndsAt (voir spec 6.2 pour la pause).
 export function resumeUpdate(session: Session, nowServer: number): SessionUpdate | null {
   if (session.status !== 'paused' || !session.pausedFrom) return null
-  // Pas à pas : une révélation en attente le reste (sans fin programmée) ; sinon elle repartirait aussitôt.
+  // Pas à pas : une révélation ou un classement en attente le reste (sans fin programmée) ;
+  // sinon il repartirait aussitôt.
   if (isAwaitingHost({ status: session.pausedFrom, settings: session.settings })) {
-    return { status: 'reveal', phaseEndsAt: 0, pausedFrom: null, remainingMs: null }
+    return { status: session.pausedFrom, phaseEndsAt: 0, pausedFrom: null, remainingMs: null }
   }
   const phaseEndsAt = nowServer + (session.remainingMs ?? 0)
   return {
@@ -402,6 +404,16 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
 // Ce que « Passer » va faire, pour un libellé explicite sur le bouton de l'hôte.
 export type SkipTarget = 'firstQuestion' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
 
+export type AwaitingNext = 'ranking' | 'nextQuestion' | 'finalRanking'
+
+// Destination du bouton de l'hôte en pas à pas : révélation → classement ; classement → question
+// suivante, ou classement final après la dernière question.
+function awaitingNextOf(session: Session): AwaitingNext | null {
+  if (!isAwaitingHost(session)) return null
+  if (session.status === 'reveal') return 'ranking'
+  return session.currentIndex + 1 < (session.questionCount ?? 0) ? 'nextQuestion' : 'finalRanking'
+}
+
 export interface HostControls {
   skip: SkipTarget | null
   canPause: boolean
@@ -409,9 +421,9 @@ export interface HostControls {
   canEnd: boolean
   // Fin de partie : Rejouer et Quitter.
   canReplay: boolean
-  // Pas à pas, révélation en attente : gros bouton « Question suivante » (ou « Voir le classement »
-  // à la dernière question). Il déclenche la même transition que Passer. null sinon (pause comprise).
-  awaitingNext: 'nextQuestion' | 'finalRanking' | null
+  // Pas à pas, phase en attente : gros bouton nommé d'après sa destination (classement, question
+  // suivante, classement final). Même transition que Passer. null sinon (pause comprise).
+  awaitingNext: AwaitingNext | null
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
@@ -425,11 +437,7 @@ export function hostControls(session: Session): HostControls {
     canResume: session.status === 'paused',
     canEnd,
     canReplay: session.status === 'ended',
-    awaitingNext: isAwaitingHost(session)
-      ? session.currentIndex + 1 < (session.questionCount ?? 0)
-        ? 'nextQuestion'
-        : 'finalRanking'
-      : null,
+    awaitingNext: awaitingNextOf(session),
   }
 }
 

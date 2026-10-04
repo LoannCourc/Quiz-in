@@ -43,7 +43,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
         {reveal.music && <p className="reveal-credit">{strings.blindTest.credits[reveal.music.source]}</p>}
       </div>
       {countdown && <NextQuestionLine countdown={countdown} />}
-      {isAwaitingHost(session) && <p className="next-question-label reveal-awaiting">{strings.reveal.awaitingHost}</p>}
+      {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>
   )
 }

@@ -6,7 +6,7 @@ import {
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
 import type { CatalogRowId } from '@shared/catalogRows';
-import type { LaunchRefusal, SkipTarget } from '@shared/hostEngine';
+import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { AnswerMode, DifficultyLevel, QuizAudience } from '@shared/types';
 
@@ -220,8 +220,12 @@ export const strings = {
       nextQuestion: 'Question suivante',
       finalRanking: 'Voir le classement final',
     } satisfies Record<SkipTarget, string>,
-    // Pas à pas : gros bouton pendant l'attente après la révélation (même action que Passer).
-    next: { nextQuestion: 'Question suivante', finalRanking: 'Voir le classement' },
+    // Pas à pas : gros bouton pendant l'attente, nommé d'après sa destination (même action que Passer).
+    next: {
+      ranking: 'Voir le classement',
+      nextQuestion: 'Question suivante',
+      finalRanking: 'Classement final',
+    } satisfies Record<AwaitingNext, string>,
     pause: 'Pause',
     resume: 'Reprendre',
     end: 'Terminer la partie',

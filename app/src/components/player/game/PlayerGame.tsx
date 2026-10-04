@@ -25,7 +25,7 @@ import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
 import { RevealView } from './RevealView';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
-import { ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
+import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
 export interface PlayerGameProps {
   // Champs publics de la session (jamais answers) : mêmes données pour la démo et la vraie partie.
@@ -124,6 +124,8 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       );
     }
     case 'scores':
+      // Pas à pas : classement en attente de l'hôte (aussi après une reconnexion).
+      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} />;
       if (!wait) return <WaitingView />;
       return (
         <ScoresPhase

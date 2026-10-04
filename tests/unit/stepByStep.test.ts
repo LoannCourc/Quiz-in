@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
-import { REVEAL_DURATION_S, SCORES_DURATION_S } from '../../shared/constants'
-import { isAwaitingHost, nextPhase, nextQuestionCountdown } from '../../shared/gameFlow'
+import { REVEAL_DURATION_S } from '../../shared/constants'
+import { isAnnouncingNextQuestion, isAwaitingHost, nextPhase, nextQuestionCountdown } from '../../shared/gameFlow'
 import { isPhaseStale } from '../../shared/hostAbsence'
 import {
   buildReveal,
@@ -44,6 +44,13 @@ function questionSession(stepByStep: boolean, overrides: Partial<Session> = {}):
   })
 }
 
+// Classement en attente : après « Voir le classement » depuis la révélation.
+function awaitingScores(overrides: Partial<Session> = {}): Session {
+  const reveal = awaitingReveal(overrides)
+  const expected = { status: 'reveal' as const, currentIndex: reveal.currentIndex }
+  return apply(reveal, transitionUpdate(reveal, GAME, expected, NOW + 30_000))
+}
+
 // Révélation en attente, telle que l'écrit le moteur à la fin de la question.
 function awaitingReveal(overrides: Partial<Session> = {}): Session {
   const session = questionSession(true, overrides)
@@ -51,7 +58,7 @@ function awaitingReveal(overrides: Partial<Session> = {}): Session {
   return apply(session, transitionUpdate(session, GAME, expected, NOW))
 }
 
-describe('Pas à pas : attente après la révélation', () => {
+describe('Pas à pas : attente après la révélation et après le classement', () => {
   test('la révélation n’a pas de durée, seule l’action de l’hôte fait avancer', () => {
     expect(nextPhase('question', { answerMode: 'choice', currentIndex: 0, questionCount: 3, stepByStep: true })).toEqual({
       status: 'reveal',
@@ -78,11 +85,47 @@ describe('Pas à pas : attente après la révélation', () => {
     expect(isAwaitingHost({ status: 'reveal', settings: oldSettings })).toBe(false)
   })
 
-  test('« Question suivante » : passage au classement de 5 s, puis question suivante automatique', () => {
-    const reveal = awaitingReveal()
-    const scores = apply(reveal, transitionUpdate(reveal, GAME, { status: 'reveal', currentIndex: 0 }, NOW + 60_000))
-    expect(scores).toMatchObject({ status: 'scores', phaseEndsAt: NOW + 60_000 + SCORES_DURATION_S * 1000 })
-    expect(nextDeadline(scores)).toBe(scores.phaseEndsAt)
+  test('« Voir le classement » : le classement attend lui aussi l’hôte', () => {
+    const scores = awaitingScores()
+    expect(scores).toMatchObject({ status: 'scores', phaseEndsAt: 0 })
+    expect(isAwaitingHost(scores)).toBe(true)
+    expect(nextDeadline(scores)).toBeNull()
+  })
+
+  test('« Question suivante » depuis le classement : la question démarre avec son timer', () => {
+    const scores = awaitingScores()
+    const next = apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: 0 }, NOW + 90_000))
+    expect(next).toMatchObject({ status: 'question', currentIndex: 1 })
+    expect(next.phaseEndsAt).toBeGreaterThan(NOW + 90_000)
+  })
+
+  test('dernière question : révélation, classement, puis « Classement final » termine la partie', () => {
+    const scores = awaitingScores({ currentIndex: 2, answers: { 2: {} } })
+    const ended = apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: 2 }, NOW + 90_000))
+    expect(ended.status).toBe('ended')
+  })
+
+  test('double appui sur le classement : un seul passage', () => {
+    const scores = awaitingScores()
+    const expected = { status: 'scores' as const, currentIndex: 0 }
+    const next = apply(scores, transitionUpdate(scores, GAME, expected, NOW + 1_000))
+    expect(transitionUpdate(next, GAME, expected, NOW + 1_050)).toBeNull()
+  })
+
+  test('pause puis reprise pendant l’attente du classement : il reste en attente et ne repart pas', () => {
+    const scores = awaitingScores()
+    const paused = apply(scores, pauseUpdate(scores, NOW + 5_000))
+    expect(paused).toMatchObject({ status: 'paused', pausedFrom: 'scores', remainingMs: 0 })
+    const resumed = apply(paused, resumeUpdate(paused, NOW + 600_000))
+    expect(resumed).toMatchObject({ status: 'scores', phaseEndsAt: 0 })
+    expect(nextDeadline(resumed)).toBeNull()
+    expect(hostControls(resumed).awaitingNext).toBe('nextQuestion')
+  })
+
+  test('joueur qui se reconnecte pendant l’attente du classement : l’état suffit à afficher l’attente', () => {
+    const scores = awaitingScores()
+    // Le téléphone ne garde rien en mémoire : il relit status et settings, et isAwaitingHost suffit.
+    expect(isAwaitingHost({ status: scores.status, settings: scores.settings })).toBe(true)
   })
 
   test('double appui : un seul passage (le second ne correspond plus à l’état attendu)', () => {
@@ -92,10 +135,12 @@ describe('Pas à pas : attente après la révélation', () => {
     expect(transitionUpdate(scores, GAME, expected, NOW + 1_050)).toBeNull()
   })
 
-  test('bouton de l’hôte : « Question suivante », puis « Voir le classement » à la dernière question', () => {
-    expect(hostControls(awaitingReveal()).awaitingNext).toBe('nextQuestion')
-    const last = awaitingReveal({ currentIndex: 2, answers: { 2: {} } })
-    expect(hostControls(last).awaitingNext).toBe('finalRanking')
+  test('bouton de l’hôte nommé d’après sa destination : classement, question suivante, classement final', () => {
+    expect(hostControls(awaitingReveal()).awaitingNext).toBe('ranking')
+    expect(hostControls(awaitingScores()).awaitingNext).toBe('nextQuestion')
+    const lastReveal = awaitingReveal({ currentIndex: 2, answers: { 2: {} } })
+    expect(hostControls(lastReveal).awaitingNext).toBe('ranking')
+    expect(hostControls(awaitingScores({ currentIndex: 2, answers: { 2: {} } })).awaitingNext).toBe('finalRanking')
   })
 
   test('pause puis reprise pendant l’attente : la révélation reste en attente et ne repart pas', () => {
@@ -106,7 +151,7 @@ describe('Pas à pas : attente après la révélation', () => {
     expect(resumed).toMatchObject({ status: 'reveal', phaseEndsAt: 0 })
     expect(resumed.pausedFrom).toBeUndefined()
     expect(nextDeadline(resumed)).toBeNull()
-    expect(hostControls(resumed).awaitingNext).toBe('nextQuestion')
+    expect(hostControls(resumed).awaitingNext).toBe('ranking')
   })
 
   test('appui pendant la pause : aucun bouton proposé, et la transition est ignorée', () => {
@@ -122,10 +167,11 @@ describe('Pas à pas : attente après la révélation', () => {
     expect(nextQuestionCountdown(reveal)).toBeNull()
   })
 
-  test('classement après l’attente : compte à rebours de ses seules 5 s', () => {
-    const reveal = awaitingReveal()
-    const scores = apply(reveal, transitionUpdate(reveal, GAME, { status: 'reveal', currentIndex: 0 }, NOW + 60_000))
-    expect(nextQuestionCountdown(scores)).toMatchObject({ startsAt: scores.phaseStartedAt, endsAt: scores.phaseEndsAt })
+  test('classement en attente : ni compte à rebours, ni annonce « Question N », ni phase bloquée', () => {
+    const scores = awaitingScores()
+    expect(nextQuestionCountdown(scores)).toBeNull()
+    expect(isAnnouncingNextQuestion(scores, NOW + 3_600_000)).toBe(false)
+    expect(isPhaseStale(scores, NOW + 3_600_000)).toBe(false)
   })
 
   test('bonus de rapidité inchangé : calculé à la fin de la question, pas pendant l’attente', () => {

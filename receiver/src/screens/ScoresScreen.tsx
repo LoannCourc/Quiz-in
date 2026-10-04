@@ -1,5 +1,5 @@
 import { SCORES_TOP_COUNT } from '@shared/constants'
-import { isAnnouncingNextQuestion, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow'
+import { isAnnouncingNextQuestion, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow'
 import type { PlayerId, PublicSession } from '@shared/types'
 
 import { GameHeader } from '../components/GameHeader'
@@ -62,6 +62,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
         <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} />
       </div>
       {countdown && <NextQuestionLine countdown={countdown} />}
+      {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>
   )
 }

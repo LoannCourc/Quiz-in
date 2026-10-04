@@ -47,12 +47,6 @@
   row-gap: 0.8rem;
 }
 
-/* Pas à pas : à la place du compte à rebours, en bas de l'écran. */
-.reveal-awaiting {
-  justify-self: center;
-  color: var(--color-text-muted);
-}
-
 .reveal-credit {
   justify-self: center;
   font-size: 1.1rem;

@@ -24,6 +24,7 @@ export type ScenarioId =
   | 'revealWrong'
   | 'revealNoAnswer'
   | 'revealAwaiting'
+  | 'scoresAwaiting'
   | 'scores'
   | 'scoresAnnounce'
   | 'paused'
@@ -43,6 +44,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   revealWrong: 'Mauvaise réponse',
   revealNoAnswer: 'Pas de réponse',
   revealAwaiting: 'Pas à pas : attente de l’hôte',
+  scoresAwaiting: 'Pas à pas : classement en attente',
   scores: 'Classement',
   scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
@@ -212,6 +214,11 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle(revealScenario(now, undefined));
     case 'scores':
       return idle({ ...baseSession(now, PLAYERS_AFTER), status: 'scores', reveal: REVEAL, ...phase(now, SCORES_DURATION_S) });
+    case 'scoresAwaiting': {
+      // Pas à pas : classement sans fin programmée, en attente de « Question suivante ».
+      const scores = baseSession(now, PLAYERS_AFTER);
+      return idle({ ...scores, status: 'scores', reveal: REVEAL, settings: { ...scores.settings, stepByStep: true }, phaseStartedAt: now, phaseEndsAt: 0 });
+    }
     case 'scoresAnnounce':
       // Dernières secondes du classement : annonce de la question suivante.
       return idle({

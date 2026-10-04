@@ -107,6 +107,14 @@ p {
   font-weight: 400;
 }
 
+/* Pas à pas : à la place du compte à rebours, en bas de la révélation et du classement. */
+.awaiting-host {
+  justify-self: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+}
+
 /* Propositions longues : texte plus petit, même taille sur la question et la révélation (lib/optionsSize). */
 .options-size-long .choice-text {
   font-size: 1.5rem;

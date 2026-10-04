@@ -310,7 +310,13 @@ describe('Pas à pas (settings.stepByStep)', () => {
     await write(resumeUpdate(await read(), Date.now()))
     expect(await read()).toMatchObject({ status: 'reveal', phaseEndsAt: 0 })
     await write(transitionUpdate(await read(), gameQuestions, { status: 'reveal', currentIndex: 0 }, Date.now()))
-    expect((await read()).status).toBe('scores')
+    // Le classement attend lui aussi l'hôte ; pause et reprise le laissent en attente.
+    expect(await read()).toMatchObject({ status: 'scores', phaseEndsAt: 0 })
+    await write(pauseUpdate(await read(), Date.now()))
+    await write(resumeUpdate(await read(), Date.now()))
+    expect(await read()).toMatchObject({ status: 'scores', phaseEndsAt: 0 })
+    await write(transitionUpdate(await read(), gameQuestions, { status: 'scores', currentIndex: 0 }, Date.now()))
+    expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
   })
 })
 

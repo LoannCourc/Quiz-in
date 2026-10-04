@@ -30,6 +30,20 @@ export function WaitHeader({ step, wait }: { step: TransitionStep; wait: WaitInf
   );
 }
 
+// Pas à pas : classement sans barre de temps ni annonce, jusqu'à l'action de l'hôte.
+export function AwaitingScoresPhase({ players, uid, index }: { players: RankedPlayer[]; uid: PlayerId; index: number }) {
+  return (
+    <>
+      <View style={styles.header}>
+        <TransitionSteps active={1} />
+        {/* En haut, à la place de la barre de temps : visible sans faire défiler le classement. */}
+        <Text style={[textStyles.muted, styles.centered]}>{strings.game.awaitingHost}</Text>
+      </View>
+      <ScoresView players={players} uid={uid} index={index} />
+    </>
+  );
+}
+
 interface ScoresPhaseProps {
   players: RankedPlayer[];
   uid: PlayerId;

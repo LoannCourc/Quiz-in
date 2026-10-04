@@ -3,6 +3,8 @@ import type { AudioSourceId, Difficulty, GameStatus } from '@shared/types'
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
   appName: "Quiz'in",
+  // Pas à pas : révélation et classement restent affichés jusqu'à l'action de l'hôte.
+  awaitingHost: 'En attente de l’hôte pour la suite…',
   lobby: {
     scanToJoin: 'Scannez pour rejoindre',
     orEnterCode: 'ou saisissez le code',
@@ -33,8 +35,6 @@ export const strings = {
     // Nombre de joueurs ayant choisi chaque proposition.
     choiceCount: (count: number) => String(count),
     noAnswer: 'Personne n’a répondu',
-    // Pas à pas : la révélation reste affichée jusqu'à l'action de l'hôte.
-    awaitingHost: 'En attente de l’hôte pour la suite…',
   },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {
