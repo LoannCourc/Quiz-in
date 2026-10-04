@@ -7,7 +7,7 @@
     <style>
       body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; }
       google-cast-launcher { display: inline-block; width: 40px; height: 40px; cursor: pointer; }
-      input, button { font-size: 1.2rem; padding: 0.4rem 0.8rem; }
+      input, button { font-size: 1.2rem; padding: 0.4rem 0.8rem; max-width: 100%; }
       #status { margin-top: 1rem; white-space: pre-line; }
     </style>
   </head>
@@ -20,6 +20,11 @@
       2. Code de la partie :
       <input id="code" maxlength="4" size="6" autocomplete="off" />
       <button id="send">Envoyer le code</button>
+    </p>
+    <p>
+      3. Test du son (blind test) : adresse d'un extrait (valable environ 15 min)<br />
+      <input id="audio-url" size="40" autocomplete="off" placeholder="https://cdnt-preview.dzcdn.net/…" />
+      <button id="audio-test">Tester le son</button>
     </p>
     <p id="status">Chargement du SDK Cast…</p>
     <script type="module" src="/src/dev/castSender.ts"></script>

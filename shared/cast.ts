@@ -21,3 +21,16 @@ export function readCastRoomCode(data: unknown): string | null {
 // Récepteur personnalisé enregistré dans la console Cast (URL https://quiz-in-7dbd6.web.app/).
 // Même valeur dans app.json (receiverAppId du plugin react-native-google-cast).
 export const CAST_RECEIVER_APP_ID = 'AA4E97E3'
+
+// Diagnostic du son (outil de test cast-sender.html) : « joue cet extrait ». La TV le lit avec le
+// lecteur des blind tests et affiche si la lecture démarre sans geste de l'utilisateur.
+export interface CastAudioTestMessage {
+  audioTest: string
+}
+
+// Adresse https contenue dans un message de test du son, ou null (message ignoré).
+export function readCastAudioTest(data: unknown): string | null {
+  if (typeof data !== 'object' || data === null || !('audioTest' in data)) return null
+  const { audioTest } = data
+  return typeof audioTest === 'string' && audioTest.startsWith('https://') ? audioTest : null
+}

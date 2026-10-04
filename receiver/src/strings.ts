@@ -65,6 +65,15 @@ export const strings = {
     errorTitle: 'Impossible de démarrer l’affichage',
     errorHint: 'Relancez l’affichage depuis le téléphone de l’hôte.',
   },
+  // Diagnostic du son (cast-sender.html) : la lecture démarre-t-elle sans geste sur cette TV ?
+  audioTest: {
+    title: 'Test du son',
+    loading: 'Chargement de l’extrait…',
+    playing: (delayMs: number) => `Lecture en cours (démarrée en ${delayMs} ms)`,
+    finished: (seconds: number) => `Lecture terminée (${seconds} s)`,
+    blocked: 'Lecture bloquée : la TV demande un geste de l’utilisateur.',
+    failed: 'Lecture impossible : adresse expirée, réseau ou format.',
+  },
   hostAway: {
     title: 'L’hôte a perdu la connexion…',
     message: 'La partie va reprendre.',

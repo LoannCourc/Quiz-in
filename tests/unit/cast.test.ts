@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { CAST_NAMESPACE, readCastRoomCode } from '../../shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode } from '../../shared/cast'
 import { pauseUpdate } from '../../shared/hostEngine'
 import { makeSession } from './engineFixtures'
 
@@ -23,6 +23,15 @@ describe('canal Cast', () => {
 
 // Pause automatique quand la session Cast se termine sans demande de l'hôte (spec 6.6) : même
 // fonction que le bouton Pause, appliquée seulement si la partie avance.
+describe('test du son par le canal Cast', () => {
+  test('adresse https acceptée, tout le reste ignoré', () => {
+    expect(readCastAudioTest({ audioTest: 'https://exemple.fr/a.mp3' })).toBe('https://exemple.fr/a.mp3')
+    expect(readCastAudioTest({ audioTest: 'http://exemple.fr/a.mp3' })).toBeNull()
+    expect(readCastAudioTest({ code: 'ABCD' })).toBeNull()
+    expect(readCastAudioTest('audioTest')).toBeNull()
+  })
+})
+
 describe('pause « Cast interrompu »', () => {
   const NOW = 5_000_000
 

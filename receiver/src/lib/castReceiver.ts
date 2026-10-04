@@ -1,4 +1,4 @@
-import { CAST_NAMESPACE, readCastRoomCode } from '@shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode } from '@shared/cast'
 
 // SDK Web Receiver de Google : toujours chargé depuis gstatic (Google interdit de l'héberger
 // soi-même), et seulement en mode Cast, pour que le navigateur du plan B n'en dépende pas.
@@ -33,8 +33,10 @@ declare global {
 }
 
 type CodeListener = (code: string) => void
+type AudioTestListener = (url: string) => void
 
 const listeners = new Set<CodeListener>()
+const audioTestListeners = new Set<AudioTestListener>()
 let lastCode: string | null = null
 let started: Promise<void> | null = null
 
@@ -53,6 +55,11 @@ function loadCastSdk(): Promise<CastFramework> {
 }
 
 function receiveMessage(event: CustomMessageEvent): void {
+  const audioTestUrl = readCastAudioTest(event.data)
+  if (audioTestUrl !== null) {
+    audioTestListeners.forEach((listener) => listener(audioTestUrl))
+    return
+  }
   const code = readCastRoomCode(event.data)
   if (code === null) {
     console.warn('[cast] Message ignoré', event.data)
@@ -85,4 +92,10 @@ export function lastCastCode(): string | null {
 export function onCastCode(listener: CodeListener): () => void {
   listeners.add(listener)
   return () => listeners.delete(listener)
+}
+
+// Diagnostic du son envoyé par cast-sender.html (adresse d'un extrait à jouer).
+export function onCastAudioTest(listener: AudioTestListener): () => void {
+  audioTestListeners.add(listener)
+  return () => audioTestListeners.delete(listener)
 }
