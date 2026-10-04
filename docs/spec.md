@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.5 — 4 octobre 2026
+Version 0.6 — 4 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -69,17 +69,18 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 
 ### 4.1 Hôte
 1. Ouvre l'app et arrive sur le **catalogue** de quiz (maquette « S2 ») : « QUIZ'IN » et une recherche par titre ; un sélecteur de type de jeu (seul « Quiz » est actif au MVP ; « Blind test » et « Paroles » sont visibles, marqués « bientôt », non cliquables) ; des puces de thème (« Tout » puis un thème par thème présent) qui filtrent les rangées ; des rangées d'affiches qui défilent horizontalement : « Top 10 cette semaine » (ordre choisi à la main, gros chiffres), « Nouveautés », « Faciles, pour tout le monde », « Pour les experts ». Une rangée vide n'est pas affichée. Les affiches portent la couleur du quiz et son titre, sans emoji.
-2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs », pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
-3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité ») ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
+2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs » (durée estimée d'après les réglages choisis, section 6.1 ; « à votre rythme » en Pas à pas), pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
+3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
    - **Mode de réponse** : *Choix multiples* (4 propositions) ou *Réponse libre* (les joueurs écrivent). Tant que la Réponse libre n'est pas jouable, sa tuile est marquée « bientôt ».
    - **Options** : Rapidité (P0), Contrôle (P1, « bientôt »), Groupe (P2, « bientôt »).
+   - **Rythme** : *Pas à pas* et *Suspense* (« Classement à la fin »), désactivés par défaut, combinables entre eux et avec toutes les options (section 5.1).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
 4. Arrive dans le **salon** : titre et méta du quiz, carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast ; une fois connectée, le bouton passe au second plan et affiche « TV connectée »), lien discret **« Je n'ai pas de TV »** (masqué quand la TV est connectée), liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
    - Le lien des joueurs et le QR code ne sont **pas** affichés par défaut. « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** : QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager » (partage du téléphone), « Masquer », et le lien de l'écran pour le plan B (section 6.6). Ce bloc est replié à chaque ouverture du salon.
 5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
 6. L'hôte choisit son propre pseudo et avatar (formulaire au-dessus de la liste, puis lien « Modifier » sur sa ligne) : il rejoint comme joueur. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
 7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris).
-8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**.
+8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1).
 9. À la fin : classement final, puis **Rejouer** (même quiz) ou **Retour au catalogue**.
 
 ### 4.2 Joueur
@@ -90,18 +91,20 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
    - en *Réponse libre* : un champ de saisie et un bouton « Valider » ;
    - en *Choix multiples* : les 4 propositions, en texte lisible, sous forme de gros boutons.
 5. Une fois validée, la réponse est **définitive**. Le téléphone affiche « Réponse envoyée ».
-6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang.
+6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang (« Ta place », avec la progression « 4e → 2e ▲ » ; pas de rang en Suspense).
 7. À la fin, il voit le classement final.
 
 ### 4.3 Écran TV (séquence des écrans)
 1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés.
 2. **Démarrage** : compte à rebours 3-2-1.
-3. **Question** : énoncé, difficulté, propositions (en Choix multiples), compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses).
+3. **Question** : énoncé, difficulté, propositions (en Choix multiples), compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement).
 4. **Révélation** : bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou liste des réponses (en Réponse libre).
 5. **Validation** *(P1, option Contrôle)* : vote des joueurs sur les réponses libres.
-6. **Classement** : top 5 et progression après chaque question.
+6. **Classement** : top 5 et progression après chaque question (absent en Suspense).
 7. **Fin** : podium et classement complet.
 8. **États spéciaux** : pause, « l'hôte se reconnecte… », partie terminée.
+
+Entre deux questions, des onglets d'étapes (Révélation, Classement, Question suivante ; sans Classement en Suspense) indiquent où en est la partie, sur la TV comme sur les téléphones, avec le temps restant (« Prochaine question dans N s ») ou, en Pas à pas, « En attente de l'hôte pour la suite… ».
 
 ---
 
@@ -112,13 +115,30 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer » |
-| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt |
+| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
 | **VALIDATION** *(P1, 15 s)* | Automatique | Fin du délai ou action de l'hôte |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
 | **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs, scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
 
 Les durées sont des constantes de configuration, ajustables après les tests.
+
+### 5.1 Rythme : Pas à pas et Suspense
+
+Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), désactivés par défaut et combinables.
+
+**Pas à pas** : l'hôte décide quand la partie avance après chaque question.
+- REVEAL et SCORES n'ont **pas d'échéance** (`phaseEndsAt = 0`) : seule une action de l'hôte les fait sortir. QUESTION garde son chrono.
+- Un gros bouton jaune (même action que « Passer ») est nommé d'après sa destination : **Voir le classement** (pendant la révélation), **Question suivante** (pendant le classement, ou pendant la révélation en Suspense), **Classement final** (après la dernière question). Un verrou évite qu'un double appui saute une étape ; le bouton est absent pendant la pause.
+- Pause puis reprise pendant l'attente : la partie revient à l'état attendu, toujours sans échéance (elle ne repart pas seule).
+- Joueurs et TV affichent « En attente de l'hôte pour la suite… » à la place du compte à rebours, et jamais l'annonce plein écran « Question N ». Un joueur qui se reconnecte pendant l'attente retrouve le même écran.
+
+**Suspense** : pas de classement en cours de partie, seulement à la fin.
+- REVEAL mène directement à la QUESTION suivante, ou au podium (END) après la dernière question ; SCORES n'est jamais affiché.
+- Révélation sans rang chez les joueurs (seulement les points gagnés) ; onglets d'étapes sans Classement ; avatars de la TV triés par pseudo pendant la question.
+- **Limite acceptée** : l'hôte continue d'écrire `score` et `rank` de chaque joueur après chaque question (lisibles par tout utilisateur connecté) ; seul l'affichage les masque. Un joueur averti pourrait les consulter.
+
+**Combinaison** : en Pas à pas + Suspense, la révélation attend l'hôte, puis « Question suivante » (ou « Classement final ») mène directement à la suite.
 
 ---
 
@@ -129,6 +149,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 - **Réponse libre** : 30 secondes par question.
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
+- **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
 
 ### 6.2 Points
 - **Bonne réponse** : 100 points.
@@ -149,6 +170,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 ### 6.5 Classement
 - En cas d'égalité, les joueurs partagent le même rang et le suivant est sauté (1er, 1er, 3e).
 - Le classement est mis à jour **après chaque révélation**, pas pendant la question, pour ne pas influencer les joueurs.
+- En Suspense, il n'est affiché qu'à la fin (section 5.1).
 
 ### 6.6 Joueurs et connexion
 - **Nombre de joueurs** : 2 à 20, hôte compris. Cette limite est une constante, relevable plus tard. Elle protège la lisibilité du classement sur la TV et les coûts. **[À VALIDER]**
@@ -197,10 +219,10 @@ config/blindTestEnabled               // interrupteur à distance du blind test 
 sessions/{code}
   hostUid, quizId
   status: "lobby|starting|question|reveal|validation|scores|paused|ended"
-  settings: { answerMode: "free|choice", speedBonus, control, teams }
+  settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense? }   // rythme (section 5.1) : absent = désactivé
   currentIndex
   questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
-  phaseStartedAt, phaseEndsAt         // horodatage serveur
+  phaseStartedAt, phaseEndsAt         // horodatage serveur ; phaseEndsAt = 0 : phase sans échéance (Pas à pas)
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   hostLeftAt?                         // heure serveur du départ de l'hôte (écrite par onDisconnect), public ; effacée à son retour
   currentQuestion: { text, options?, difficulty, timeLimit, audio? }   // SANS la bonne réponse
@@ -236,6 +258,7 @@ sessions/{code}
 - **Catalogue lisible** : `questions/` doit être lu par l'hôte, et n'importe quel utilisateur anonyme peut devenir hôte. Le catalogue (avec les bonnes réponses) est donc lisible par tout utilisateur connecté. Un joueur averti pourrait le consulter ; c'est accepté pour une soirée entre amis. Correction possible plus tard : servir les questions par une Cloud Function.
 - Les règles ne peuvent ni compter les joueurs (`MAX_PLAYERS`) ni garantir l'unicité du pseudo : c'est l'hôte qui le vérifie et retire un joueur en trop.
 - **Écrans de l'hôte sur le web** : le site des joueurs est construit à partir du même code que l'app hôte. L'accueil (catalogue) et l'écran de test redirigent vers `/join`, mais les écrans de l'hôte (`/quiz/...`, `/host/...`) restent atteignables par leur adresse directe. L'app hôte est prévue pour Android ; la protection contre la création de parties en masse (Firebase App Check) viendra après le MVP.
+- **Suspense** : les scores et rangs restent écrits dans la base pendant la partie ; seul l'affichage les masque (section 5.1).
 - **Reprise d'un joueur** : elle repose sur sa session anonyme Firebase, conservée par le navigateur. Le joueur retrouve sa place en revenant depuis le même navigateur sur le même appareil. Changer d'appareil ou de navigateur, ou effacer les données du site, crée un nouvel uid : il ne peut pas reprendre sa place.
 
 **Principes**
@@ -293,6 +316,8 @@ sessions/{code}
 - **Réseau** : Internet requis pour tous. L'hôte et la TV doivent être sur le **même réseau local** pour le Cast. Les joueurs peuvent être sur n'importe quel réseau, y compris en 4G/5G.
 - **Latence** : un changement d'état doit apparaître sur tous les écrans en moins d'une seconde.
 - **Lisibilité TV** : texte très grand et fort contraste, lisible à 3 mètres, marges de sécurité autour de l'écran.
+- **Taille du texte des propositions** : toutes les propositions d'une même question partagent la même taille, celle qu'exige la plus longue (80 caractères au plus) ; jamais de réduction proposition par proposition. Seuils propres à chaque écran (TV : 22 et 40 caractères ; téléphone : 30 et 60), même taille sur la question, la réponse envoyée et la révélation. Rien ne déborde du cadre ; la TV passe en révélation compacte pour les très longues propositions.
+- **Polices** : Bowlby One et Nunito sont hébergées avec chaque site (aucune dépendance réseau). Sur le site des joueurs, l'export Expo les range sous `assets/node_modules/` : la règle d'exclusion de l'hébergement `players` ne doit pas exclure `node_modules`. Repli sans-serif sur le web si une police ne charge pas.
 - **Langues** : français au MVP, mais tous les textes dans un fichier dédié pour faciliter les traductions.
 - **Confidentialité** : uniquement pseudo et avatar, aucun compte, aucun e-mail. Données de partie supprimées sous 24 h. Une politique de confidentialité sera nécessaire pour publier sur les stores. Pas de chat ni d'envoi d'images, car la cible inclut des mineurs.
 - **Réponses libres affichées sur la TV** : filtre de base, et l'hôte peut masquer une réponse (P1).
@@ -330,6 +355,9 @@ sessions/{code}
 9. Le client joueur ne lit jamais `questions/` ; la bonne réponse n'est publiée qu'à la révélation (dans `reveal`). La lisibilité du catalogue par un utilisateur connecté est une limite acceptée au MVP (section 7).
 10. Réponse libre : 60 caractères maximum.
 11. Le nom reste « Quiz'in ». Logo retenu : variante C (anneau doré, queue rose en diagonale), fichier source `docs/design/logo-1024.png` ; il sert d'icône d'application, d'écran de démarrage, de favicon et d'icône Cast (`docs/design/cast-icon-512.png`).
+12. **Pas à pas** : révélation et classement attendent l'hôte, sans échéance ; bouton nommé d'après sa destination (section 5.1).
+13. **Suspense** : classement seulement à la fin ; avatars triés par pseudo ; scores et rangs restent écrits dans la base (limite acceptée, section 5.1).
+14. Propositions d'une question : une seule taille de texte, celle de la plus longue (section 9).
 
 ---
 
@@ -356,7 +384,7 @@ sessions/{code}
 - Blind test (voir 14, chantier c) et « N'oubliez pas les paroles » (après étude des droits musicaux).
 - Mode bars et événements.
 - Option d'accessibilité « afficher la question sur le téléphone », pour les joueurs qui voient mal la TV (au MVP, l'énoncé n'est lu que sur la TV).
-- Option hôte pour ne pas afficher le classement entre les questions (classement tous les N tours, ou seulement à la fin). Demandera un champ dans `settings`, une vérification des règles et une mise à jour de la machine d'états.
+- Option hôte pour afficher le classement tous les N tours (le classement seulement à la fin existe : Suspense, section 5.1).
 
 ---
 
@@ -383,7 +411,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 **Lecture sur la TV.**
 - Pendant QUESTION : l'extrait joue **pendant tout le timer** (20 s, celui des Choix multiples), à partir d'un début propre à chaque morceau (de 0 à 10 s : début + timer ≤ 30 s, durée de la preview). Il démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
-- Fin du timer : le son s'éteint avec lui, par un fondu court. Tous les joueurs ont répondu avant : le son s'arrête aussitôt, par un fondu très court. **Pas de musique pendant la révélation** (une musique originale rythmera la partie plus tard).
+- Fin du timer : le son s'éteint avec lui, par un fondu court (0,4 s). Tous les joueurs ont répondu avant : le son s'arrête aussitôt, par un fondu très court (0,15 s). Chaque démarrage ou reprise part d'un volume nul (fondu de 0,08 s) : pas d'à-coup. **Pas de musique pendant la révélation** (une musique originale rythmera la partie plus tard).
 - Pause : le son s'arrête ; reprise à la même position.
 - Rien ne révèle le morceau avant la révélation : pas de titre, d'artiste, de pochette ni de lecteur visible ; la TV affiche « Quel est ce morceau ? », les propositions et un indicateur d'écoute.
 - Extrait illisible après un nouvel essai : « Extrait indisponible », l'hôte peut passer la question.
