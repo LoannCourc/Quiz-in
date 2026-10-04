@@ -24,12 +24,6 @@ function disabledReason(settings: SessionSettings, option: GameOption): string |
   return undefined;
 }
 
-// Résumé affiché dans le lien « Réglages » de la fiche : mode, puis options actives.
-export function settingsSummary(settings: SessionSettings): string {
-  const options = OPTIONS.filter((option) => settings[option]).map((option) => strings.quizSetup.options[option].title);
-  return [strings.quizSetup.answerModes[settings.answerMode], ...options].join(' · ');
-}
-
 interface GameSettingsSheetProps {
   visible: boolean;
   settings: SessionSettings;

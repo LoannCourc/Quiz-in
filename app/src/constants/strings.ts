@@ -108,8 +108,10 @@ export const strings = {
     meta: (questionCount: number, minutes: number) =>
       `${questionCount} questions · environ ${minutes} min · jusqu’à ${MAX_PLAYERS} joueurs`,
     audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
-    settingsLink: (summary: string) => `Réglages : ${summary}`,
     settingsTitle: 'Réglages de la partie',
+    speedBonusOn: 'Rapidité activée',
+    speedBonusOff: 'sans Rapidité',
+    settingsCardLabel: (summary: string) => `Réglages de la partie : ${summary}. Modifier`,
     settingsDone: 'OK',
     createButton: 'Choisir ce quiz',
     creating: 'Création…',

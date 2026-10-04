@@ -2,7 +2,7 @@ import { QUESTIONS_PER_GAME } from '@shared/constants';
 import { difficultyLevel } from '@shared/quizCatalog';
 import type { QuizSummary, SessionSettings } from '@shared/types';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
@@ -11,7 +11,8 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-import { GameSettingsSheet, settingsSummary } from './GameSettingsSheet';
+import { GameSettingsCard } from './GameSettingsCard';
+import { GameSettingsSheet } from './GameSettingsSheet';
 import { QuizPoster } from './QuizPoster';
 
 // Hauteur de la grande affiche : environ un quart de l'écran, pour que la fiche tienne sans défiler.
@@ -33,8 +34,8 @@ function posterWidthFor(screenHeight: number): number {
   return Math.round(height / AppSizes.posterRatio);
 }
 
-// Fiche d'un quiz (maquette S2) : grande affiche, informations et « Choisir ce quiz », fixé en bas
-// de l'écran pour être atteint sans défiler. Les réglages s'ouvrent dans une feuille.
+// Fiche d'un quiz (maquettes S2 et R2) : grande affiche, informations, puis « Choisir ce quiz » et la
+// carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
 export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error }: QuizDetailsProps) {
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -44,14 +45,12 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
   const footer = (
     <View style={styles.footer}>
       {error && <Text style={textStyles.error}>{error}</Text>}
-      <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsSettingsOpen(true)}>
-        <Text style={styles.settingsLink}>{strings.quizSetup.settingsLink(settingsSummary(settings))}</Text>
-      </Pressable>
       <BigButton
         label={isCreating ? strings.quizSetup.creating : strings.quizSetup.createButton}
         onPress={onChoose}
         disabled={isCreating}
       />
+      <GameSettingsCard settings={settings} onPress={() => setIsSettingsOpen(true)} />
     </View>
   );
 
@@ -135,12 +134,5 @@ const styles = StyleSheet.create({
   },
   footer: {
     gap: Spacing.three,
-  },
-  settingsLink: {
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.extraBold,
-    fontSize: 15,
-    textAlign: 'center',
-    textDecorationLine: 'underline',
   },
 });
