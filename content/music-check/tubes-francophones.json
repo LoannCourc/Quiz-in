@@ -47,7 +47,7 @@
           "link": "https://www.deezer.com/track/4775332"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-02",
@@ -93,7 +93,7 @@
           "link": "https://www.deezer.com/track/70494054"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-03",
@@ -139,7 +139,7 @@
           "link": "https://www.deezer.com/track/743761362"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-04",
@@ -185,7 +185,7 @@
           "link": "https://www.deezer.com/track/2326186075"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-05",
@@ -231,7 +231,7 @@
           "link": "https://www.deezer.com/track/819503312"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-06",
@@ -277,7 +277,7 @@
           "link": "https://www.deezer.com/track/77913138"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-07",
@@ -323,7 +323,7 @@
           "link": "https://www.deezer.com/track/7046192"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-08",
@@ -369,7 +369,7 @@
           "link": "https://www.deezer.com/track/17199997"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-09",
@@ -415,7 +415,7 @@
           "link": "https://www.deezer.com/track/3950572641"
         }
       ],
-      "verified": false
+      "verified": true
     },
     {
       "questionId": "tf-10",
@@ -461,7 +461,7 @@
           "link": "https://www.deezer.com/track/1431434932"
         }
       ],
-      "verified": false
+      "verified": true
     }
   ]
 }
