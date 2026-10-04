@@ -33,6 +33,8 @@ export const strings = {
     // Nombre de joueurs ayant choisi chaque proposition.
     choiceCount: (count: number) => String(count),
     noAnswer: 'Personne n’a répondu',
+    // Pas à pas : la révélation reste affichée jusqu'à l'action de l'hôte.
+    awaitingHost: 'En attente de l’hôte pour la suite…',
   },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {

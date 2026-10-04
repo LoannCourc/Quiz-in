@@ -1,5 +1,5 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
-import { nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
+import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress } from '@shared/players';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
@@ -8,6 +8,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import type { AppBackgroundName } from '@/constants/appTheme';
+import { strings } from '@/constants/strings';
 import {
   correctChoiceIndex,
   effectiveAnswer,
@@ -115,6 +116,10 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
           rank={me?.rank ?? ranked.length}
             previousRank={previousRank(session, uid)}
           />
+          {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}
+          {isAwaitingHost(session) && (
+            <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>
+          )}
         </>
       );
     }

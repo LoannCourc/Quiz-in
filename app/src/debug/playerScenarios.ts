@@ -23,6 +23,7 @@ export type ScenarioId =
   | 'revealCorrect'
   | 'revealWrong'
   | 'revealNoAnswer'
+  | 'revealAwaiting'
   | 'scores'
   | 'scoresAnnounce'
   | 'paused'
@@ -41,6 +42,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   revealCorrect: 'Bonne réponse',
   revealWrong: 'Mauvaise réponse',
   revealNoAnswer: 'Pas de réponse',
+  revealAwaiting: 'Pas à pas : attente de l’hôte',
   scores: 'Classement',
   scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
@@ -199,6 +201,11 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       };
     case 'revealCorrect':
       return idle(revealScenario(now, RESULTS[DEMO_UID]));
+    case 'revealAwaiting': {
+      // Pas à pas : révélation sans fin programmée, en attente de « Question suivante ».
+      const reveal = revealScenario(now, RESULTS[DEMO_UID]);
+      return idle({ ...reveal, settings: { ...reveal.settings, stepByStep: true }, phaseEndsAt: 0 });
+    }
     case 'revealWrong':
       return idle(revealScenario(now, { correct: false, points: 0 }));
     case 'revealNoAnswer':

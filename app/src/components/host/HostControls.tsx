@@ -52,7 +52,14 @@ export function HostControlsPanel({ controls, actions, canShowTv, onClose }: Hos
       <Pressable accessibilityRole="button" accessibilityLabel={strings.hostControls.close} style={styles.backdrop} onPress={onClose} />
       <View style={styles.sheet}>
         <Text style={[textStyles.label, styles.centered]}>{strings.hostControls.title}</Text>
-        {controls.skip && <BigButton label={strings.hostControls.skip[controls.skip]} onPress={run(actions.skip)} />}
+        {controls.skip && (
+          <BigButton
+            label={
+              controls.awaitingNext ? strings.hostControls.next[controls.awaitingNext] : strings.hostControls.skip[controls.skip]
+            }
+            onPress={run(actions.skip)}
+          />
+        )}
         {controls.canPause && <BigButton label={strings.hostControls.pause} variant="secondary" onPress={run(actions.pause)} />}
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}

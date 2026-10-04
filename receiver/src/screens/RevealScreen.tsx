@@ -1,4 +1,4 @@
-import { nextQuestionCountdown } from '@shared/gameFlow'
+import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
 import type { ChoiceOptions, PublicSession } from '@shared/types'
 
 import { Confetti } from '../components/Confetti'
@@ -43,6 +43,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
         {reveal.music && <p className="reveal-credit">{strings.blindTest.credits[reveal.music.source]}</p>}
       </div>
       {countdown && <NextQuestionLine countdown={countdown} />}
+      {isAwaitingHost(session) && <p className="next-question-label reveal-awaiting">{strings.reveal.awaitingHost}</p>}
     </main>
   )
 }

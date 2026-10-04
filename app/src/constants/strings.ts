@@ -220,6 +220,8 @@ export const strings = {
       nextQuestion: 'Question suivante',
       finalRanking: 'Voir le classement final',
     } satisfies Record<SkipTarget, string>,
+    // Pas à pas : gros bouton pendant l'attente après la révélation (même action que Passer).
+    next: { nextQuestion: 'Question suivante', finalRanking: 'Voir le classement' },
     pause: 'Pause',
     resume: 'Reprendre',
     end: 'Terminer la partie',
@@ -256,6 +258,7 @@ export const strings = {
       `La partie a été lancée pendant la modification. Tu joues en tant que ${avatar} ${name}.`,
   },
   game: {
+    awaitingHost: 'En attente de l’hôte pour la suite…',
     choiceLetters: ['A', 'B', 'C', 'D'],
     questionPill: (index: number, count: number | undefined) =>
       count ? `Question ${index + 1}/${count}` : `Question ${index + 1}`,

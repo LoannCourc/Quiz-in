@@ -4,6 +4,7 @@ import {
   pauseUpdate,
   replayUpdate,
   resumeUpdate,
+  type HostControls,
   type SessionUpdate,
 } from '@shared/hostEngine';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
@@ -246,6 +247,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
       onResume={actions.resume}
       onReplay={actions.replay}
       onQuit={actions.quit}
+      awaitingNext={hostControls(session).awaitingNext}
+      onNext={actions.skip}
     />
   );
   const overlay = isPanelOpen && !connection.isOffline ? (
@@ -307,16 +310,31 @@ interface HostFooterProps {
   onResume: () => void;
   onReplay: () => void;
   onQuit: () => void;
+  // Pas à pas : la révélation attend l'hôte ; même action que Passer (verrou contre le double appui).
+  awaitingNext: HostControls['awaitingNext'];
+  onNext: () => void;
 }
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
 // (panneau), précédée de Reprendre en pause, et de Rejouer / Quitter en fin de partie.
-function HostFooter({ status, error, notice, showCastButton, onOpenPanel, onResume, onReplay, onQuit }: HostFooterProps) {
+function HostFooter({
+  status,
+  error,
+  notice,
+  showCastButton,
+  onOpenPanel,
+  onResume,
+  onReplay,
+  onQuit,
+  awaitingNext,
+  onNext,
+}: HostFooterProps) {
   return (
     <View style={styles.footerStack}>
       {notice && <Text style={[textStyles.body, styles.centered]}>{notice}</Text>}
       {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
       {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
+      {awaitingNext && <BigButton label={strings.hostControls.next[awaitingNext]} onPress={onNext} />}
       {status === 'ended' && (
         <View style={styles.footerRow}>
           <View style={styles.fill}>
