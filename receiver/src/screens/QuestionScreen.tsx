@@ -5,7 +5,7 @@ import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
 import { optionsSizeClass } from '../lib/optionsSize'
-import { countConnected, countConnectedAnswered, hasAnswered, sortByRank } from '../lib/players'
+import { countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
 
@@ -18,7 +18,7 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
   const question = session.currentQuestion
   if (!question) return null
 
-  const players = sortByRank(session.players)
+  const players = sortForGame(session)
   const connectedCount = countConnected(players)
   const answeredCount = countConnectedAnswered(session, players)
 

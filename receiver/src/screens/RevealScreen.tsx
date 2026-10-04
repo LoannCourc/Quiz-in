@@ -24,7 +24,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
     <main className={isCompact ? "screen reveal reveal-compact" : "screen reveal"}>
       <Confetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
-      <TransitionSteps active={0} />
+      <TransitionSteps active={0} withRanking={!session.settings.suspense} />
       <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
 
       {question.options && reveal.stats.choiceCounts ? (

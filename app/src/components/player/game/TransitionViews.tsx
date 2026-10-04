@@ -21,10 +21,10 @@ export interface WaitInfo {
 }
 
 // En haut des écrans de transition : l'étape en cours et le temps avant la question suivante.
-export function WaitHeader({ step, wait }: { step: TransitionStep; wait: WaitInfo }) {
+export function WaitHeader({ step, wait, withRanking = true }: { step: TransitionStep; wait: WaitInfo; withRanking?: boolean }) {
   return (
     <View style={styles.header}>
-      <TransitionSteps active={step} />
+      <TransitionSteps active={step} withRanking={withRanking} />
       <NextQuestionBar timing={wait.timing} isLastQuestion={wait.isLastQuestion} />
     </View>
   );

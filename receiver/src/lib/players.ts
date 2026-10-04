@@ -11,6 +11,14 @@ export function sortByRank(players: Record<PlayerId, Player>): RankedPlayer[] {
     .sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'))
 }
 
+// Suspense : aucun ordre ne doit trahir le classement en cours de partie, tri par pseudo.
+export function sortForGame(session: PublicSession): RankedPlayer[] {
+  if (!session.settings.suspense) return sortByRank(session.players)
+  return Object.entries(session.players)
+    .map(([id, player]) => ({ id, ...player }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
+}
+
 // La TV sait qui a répondu (answeredBy), jamais ce qui a été répondu.
 export function hasAnswered(session: PublicSession, playerId: PlayerId): boolean {
   return session.answeredBy?.[session.currentIndex]?.[playerId] === true

@@ -81,6 +81,8 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
   const score = me?.score ?? 0;
   const { currentIndex: index, questionCount } = session;
   const countdown = nextQuestionCountdown(session);
+  // Suspense : ni rang ni étape Classement en cours de partie, seulement les points gagnés.
+  const isSuspense = session.settings.suspense === true;
   const wait: WaitInfo | null = countdown && {
     timing: { phaseStartedAt: countdown.startsAt, phaseEndsAt: countdown.endsAt, serverOffsetMs },
     isLastQuestion: countdown.isLastQuestion,
@@ -106,14 +108,14 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       const result = myResult(session, uid);
       return (
         <>
-          {wait && <WaitHeader step={0} wait={wait} />}
+          {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}
           <RevealView
           outcome={revealOutcome(result)}
           points={result?.points ?? 0}
           speedBonus={speedBonusOf(session, result)}
           correctAnswer={session.reveal.correctAnswer}
           correctChoice={correctChoiceIndex(session)}
-          rank={me?.rank ?? ranked.length}
+          rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
             previousRank={previousRank(session, uid)}
           />
           {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}

@@ -26,7 +26,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
 // &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
-// &long=1 : propositions longues (mise en page) ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte).
+// &long=1 : propositions longues (mise en page) ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
+// &suspense=1 : Suspense (pas de classement en cours de partie).
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -49,13 +50,16 @@ export function DemoReceiver() {
   const withLong = params.get('long') === '1' ? withLongOptions(baseSession, isBlindTest) : baseSession
   // Pas à pas (&step=1) : la révélation et le classement attendent l'hôte, sans fin programmée.
   const isStepByStep = params.get('step') === '1'
-  const session = isStepByStep
+  const stepped = isStepByStep
     ? {
         ...withLong,
         settings: { ...withLong.settings, stepByStep: true },
         phaseEndsAt: withLong.status === 'reveal' || withLong.status === 'scores' ? 0 : withLong.phaseEndsAt,
       }
     : withLong
+  // Suspense (&suspense=1) : avatars triés par pseudo, étapes sans Classement.
+  const session =
+    params.get('suspense') === '1' ? { ...stepped, settings: { ...stepped.settings, suspense: true } } : stepped
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
 

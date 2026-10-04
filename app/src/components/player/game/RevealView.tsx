@@ -18,7 +18,8 @@ interface RevealViewProps {
   correctAnswer: string;
   // Position de la bonne réponse (lettre et couleur) ; undefined si introuvable.
   correctChoice?: number;
-  rank: number;
+  // Absent en Suspense : pas de rang en cours de partie (seulement les points gagnés).
+  rank?: number;
   previousRank?: number;
 }
 
@@ -42,7 +43,7 @@ export function RevealView({ outcome, points, speedBonus, correctAnswer, correct
         <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>
       )}
 
-      <PlaceBand rank={rank} previousRank={previousRank} />
+      {rank !== undefined && <PlaceBand rank={rank} previousRank={previousRank} />}
     </View>
   );
 }

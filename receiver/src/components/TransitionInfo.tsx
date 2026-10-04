@@ -9,11 +9,14 @@ import './TransitionInfo.css'
 export type TransitionStep = 0 | 1 | 2
 
 // Étapes entre deux questions : Révélation, Classement, Question suivante (l'étape en cours en or).
-export function TransitionSteps({ active }: { active: TransitionStep }) {
+// Suspense (withRanking faux) : sans l'étape Classement, qui n'a pas lieu.
+export function TransitionSteps({ active, withRanking = true }: { active: TransitionStep; withRanking?: boolean }) {
+  const activeLabel = strings.transition.steps[active]
+  const steps = withRanking ? strings.transition.steps : strings.transition.steps.filter((_, index) => index !== 1)
   return (
     <ol className="transition-steps">
-      {strings.transition.steps.map((label, index) => (
-        <li key={label} className={index === active ? 'transition-step is-active' : 'transition-step'}>
+      {steps.map((label) => (
+        <li key={label} className={label === activeLabel ? 'transition-step is-active' : 'transition-step'}>
           {label}
         </li>
       ))}
