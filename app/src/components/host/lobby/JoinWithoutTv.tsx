@@ -7,6 +7,15 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { joinUrl, receiverUrl } from '@/lib/createGame';
 
+import { QrCode } from './QrCode';
+
+// « quizin-play.web.app » puis « /join/CODE ».
+function displayLines(url: string): [string, string] {
+  const withoutScheme = url.replace(/^https:\/\//, '');
+  const slash = withoutScheme.indexOf('/');
+  return [withoutScheme.slice(0, slash), withoutScheme.slice(slash)];
+}
+
 type CopyStatus = 'idle' | 'joinCopied' | 'receiverCopied' | 'failed';
 
 interface JoinWithoutTvProps {
@@ -46,14 +55,15 @@ export function JoinWithoutTv({ code, onHide }: JoinWithoutTvProps) {
           <Text style={styles.link}>{strings.hostLobby.noTv.hide}</Text>
         </Pressable>
       </View>
-      <Text style={styles.hint}>{strings.hostLobby.noTv.hint}</Text>
 
       <View style={styles.body}>
+        <QrCode value={url} accessibilityLabel={strings.hostLobby.noTv.qrLabel(url)} />
         <View style={styles.side}>
           <View>
             <Text style={styles.linkLabel}>{strings.hostLobby.noTv.linkLabel}</Text>
+            {/* Domaine et chemin sur deux lignes : le lien n'est jamais coupé au milieu du code. */}
             <Text selectable style={styles.url}>
-              {url.replace(/^https:\/\//, '')}
+              {displayLines(url).join('\n')}
             </Text>
           </View>
           <SmallPill
@@ -119,12 +129,6 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.extraBold,
     fontSize: 15,
     textDecorationLine: 'underline',
-  },
-  hint: {
-    marginTop: -Spacing.one,
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.bold,
-    fontSize: 13,
   },
   body: {
     flexDirection: 'row',

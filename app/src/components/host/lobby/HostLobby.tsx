@@ -203,7 +203,8 @@ const styles = StyleSheet.create({
   },
   playersContent: {
     gap: Spacing.three,
-    padding: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
   },
   joinForm: {
     gap: Spacing.three,

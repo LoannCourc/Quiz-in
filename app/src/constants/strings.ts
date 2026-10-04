@@ -129,7 +129,6 @@ export const strings = {
     codeAccessibility: (code: string) => `Code de la partie : ${code.split('').join(' ')}`,
     noTv: {
       title: 'Rejoindre sans TV',
-      hint: 'Scannez le QR code ou ouvrez le lien.',
       hide: 'Masquer',
       linkLabel: 'Lien',
       shareButton: 'Partager',
