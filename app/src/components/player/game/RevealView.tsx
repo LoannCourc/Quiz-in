@@ -8,7 +8,7 @@ import type { RevealOutcome } from '@/lib/playerGame';
 
 import { gradientStyle } from '@/components/ui/gradient';
 
-import { ChoicePill } from './ChoicePill';
+import { ChoicePill, choiceTextSize } from './ChoicePill';
 
 interface RevealViewProps {
   outcome: RevealOutcome;
@@ -18,12 +18,14 @@ interface RevealViewProps {
   correctAnswer: string;
   // Position de la bonne réponse (lettre et couleur) ; undefined si introuvable.
   correctChoice?: number;
+  // Propositions de la question : la bonne réponse garde la taille de texte de l'écran de question.
+  options?: readonly string[];
   // Absent en Suspense : pas de rang en cours de partie (seulement les points gagnés).
   rank?: number;
   previousRank?: number;
 }
 
-export function RevealView({ outcome, points, speedBonus, correctAnswer, correctChoice, rank, previousRank }: RevealViewProps) {
+export function RevealView({ outcome, points, speedBonus, correctAnswer, correctChoice, options = [], rank, previousRank }: RevealViewProps) {
   const isCorrect = outcome === 'correct';
 
   return (
@@ -37,7 +39,7 @@ export function RevealView({ outcome, points, speedBonus, correctAnswer, correct
       {correctChoice === undefined ? (
         <Text style={[textStyles.label, styles.centered]}>{correctAnswer}</Text>
       ) : (
-        <ChoicePill choice={correctChoice} text={correctAnswer} />
+        <ChoicePill choice={correctChoice} text={correctAnswer} textSize={choiceTextSize(options)} />
       )}
       {isCorrect && speedBonus !== undefined && speedBonus > 0 && (
         <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>

@@ -1,3 +1,4 @@
+import { optionsTextSize, type OptionsTextSize } from '@shared/optionsText';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -8,16 +9,19 @@ import { Spacing } from '@/constants/theme';
 // la taille suit la hauteur disponible pour chaque pilule (voir pillSizeForHeight).
 export type PillSize = 'large' | 'medium' | 'small';
 
-const SIZES: Record<PillSize, { letter: number; letterFont: number; text: number; longText: number }> = {
-  large: { letter: 68, letterFont: 30, text: 27, longText: 20 },
-  medium: { letter: AppSizes.choiceLetter, letterFont: 24, text: 22, longText: 17 },
-  small: { letter: 46, letterFont: 20, text: 19, longText: 15 },
+const SIZES: Record<PillSize, { letter: number; letterFont: number; text: Record<OptionsTextSize, number> }> = {
+  large: { letter: 68, letterFont: 30, text: { normal: 27, long: 20, veryLong: 17 } },
+  medium: { letter: AppSizes.choiceLetter, letterFont: 24, text: { normal: 22, long: 17, veryLong: 15 } },
+  small: { letter: 46, letterFont: 20, text: { normal: 19, long: 15, veryLong: 13 } },
 };
 
-// Au-delà, la proposition (60 caractères au plus) passe en taille réduite.
-const LONG_TEXT_LENGTH = 30;
+// Taille du texte commune à toutes les propositions d'une question, d'après la plus longue
+// (80 caractères au plus) : jamais de réduction proposition par proposition.
+export function choiceTextSize(options: readonly string[]): OptionsTextSize {
+  return optionsTextSize(options, { normalMax: 30, longMax: 60 });
+}
 
-// Taille la plus grande qui laisse tenir une proposition de 60 caractères (3 lignes) dans une
+// Taille la plus grande qui laisse tenir une proposition de 80 caractères (4 lignes) dans une
 // pilule de cette hauteur.
 export function pillSizeForHeight(height: number): PillSize {
   if (height >= 108) return 'large';
@@ -34,6 +38,8 @@ interface ChoicePillProps {
   isDimmed?: boolean;
   disabled?: boolean;
   size?: PillSize;
+  // Taille du texte, la même pour toutes les propositions de la question (choiceTextSize).
+  textSize?: OptionsTextSize;
   // Remplissage : la pilule prend sa part de la hauteur disponible (72 à 116 px).
   fill?: boolean;
   onPress?: () => void;
@@ -48,12 +54,13 @@ export function ChoicePill({
   isDimmed = false,
   disabled = false,
   size = 'medium',
+  textSize = 'normal',
   fill = false,
   onPress,
 }: ChoicePillProps) {
   const letter = strings.game.choiceLetters[choice];
-  const { letter: letterSize, letterFont, text: textSize, longText } = SIZES[size];
-  const fontSize = text.length > LONG_TEXT_LENGTH ? longText : textSize;
+  const { letter: letterSize, letterFont, text: textFonts } = SIZES[size];
+  const fontSize = textFonts[textSize];
   return (
     // Anneau extérieur toujours présent (transparent sinon) : la sélection ne décale rien.
     <View style={[styles.selectionRing, isSelected && styles.selected, fill && styles.fillRing]}>

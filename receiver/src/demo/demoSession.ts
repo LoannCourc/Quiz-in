@@ -249,8 +249,25 @@ const LONG_SONGS: ChoiceOptions = [
   'Est-ce que tu m’aimes ? – Maître Gims',
 ]
 
-export function withLongOptions(session: PublicSession, isBlindTest: boolean): PublicSession {
-  const options = isBlindTest ? LONG_SONGS : LONG_OPTIONS
+// Une proposition de 80 caractères parmi trois courtes : toutes prennent la taille de la plus longue.
+const ONE_LONG_OPTIONS: ChoiceOptions = [
+  'Sydney',
+  'Canberra',
+  'Melbourne, grande ville du Victoria, capitale fédérale provisoire de 1901 à 1927',
+  'Perth',
+]
+const ONE_LONG_SONGS: ChoiceOptions = [
+  'Papaoutai – Stromae',
+  'Alors on danse – Stromae',
+  'Il est cinq heures, Paris s’éveille (live, Palais des Sports, 1975) – J. Dutronc',
+  'Formidable – Stromae',
+]
+
+export type LongOptionsKind = 'all' | 'one'
+
+export function withLongOptions(session: PublicSession, isBlindTest: boolean, kind: LongOptionsKind = 'all'): PublicSession {
+  const options =
+    kind === 'one' ? (isBlindTest ? ONE_LONG_SONGS : ONE_LONG_OPTIONS) : isBlindTest ? LONG_SONGS : LONG_OPTIONS
   const question = session.currentQuestion
   return {
     ...session,

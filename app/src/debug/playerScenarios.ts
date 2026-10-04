@@ -17,12 +17,14 @@ export type ScenarioId =
   | 'questionLong'
   | 'questionUrgent'
   | 'questionMax'
+  | 'questionOneLong'
   | 'answerSent'
   | 'answerRefused'
   | 'answerNetworkError'
   | 'revealCorrect'
   | 'revealWrong'
   | 'revealNoAnswer'
+  | 'revealOneLong'
   | 'revealAwaiting'
   | 'scoresAwaiting'
   | 'revealSuspense'
@@ -38,12 +40,14 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   questionLong: 'Question longue',
   questionUrgent: 'Chrono presque fini',
   questionMax: 'Question maximale',
+  questionOneLong: 'Une proposition de 80 caractères',
   answerSent: 'Réponse envoyée',
   answerRefused: 'Réponse refusée',
   answerNetworkError: 'Réseau coupé',
   revealCorrect: 'Bonne réponse',
   revealWrong: 'Mauvaise réponse',
   revealNoAnswer: 'Pas de réponse',
+  revealOneLong: 'Révélation, une proposition de 80 caractères',
   revealAwaiting: 'Pas à pas : attente de l’hôte',
   scoresAwaiting: 'Pas à pas : classement en attente',
   revealSuspense: 'Suspense : révélation sans rang',
@@ -116,6 +120,12 @@ const MAX_QUESTION: PublicQuestion = {
   text: 'Quel texte adopté par l’Assemblée nationale constituante le 26 août 1789 affirme que « les hommes naissent et demeurent libres et égaux » ?',
 };
 
+// Une proposition de 80 caractères parmi trois courtes : les quatre prennent la taille de la plus longue.
+const ONE_LONG_QUESTION: PublicQuestion = {
+  ...SHORT_QUESTION,
+  options: ['Sydney', 'Canberra', 'Melbourne, grande ville du Victoria, capitale fédérale provisoire de 1901 à 1927', 'Perth'],
+};
+
 const REVEAL: Reveal = {
   correctAnswer: 'Canberra',
   explanation: 'Canberra a été construite pour départager Sydney et Melbourne.',
@@ -185,6 +195,8 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle(questionScenario(now, LONG_QUESTION));
     case 'questionMax':
       return idle(questionScenario(now, MAX_QUESTION));
+    case 'questionOneLong':
+      return idle(questionScenario(now, ONE_LONG_QUESTION));
     case 'questionUrgent':
       return idle(questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit - 4));
     case 'answerSent':
@@ -210,6 +222,8 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       const reveal = revealScenario(now, RESULTS[DEMO_UID]);
       return idle({ ...reveal, settings: { ...reveal.settings, stepByStep: true }, phaseEndsAt: 0 });
     }
+    case 'revealOneLong':
+      return idle({ ...revealScenario(now, RESULTS[DEMO_UID]), currentQuestion: ONE_LONG_QUESTION });
     case 'revealWrong':
       return idle(revealScenario(now, { correct: false, points: 0 }));
     case 'revealNoAnswer':

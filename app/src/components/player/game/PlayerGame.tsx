@@ -115,6 +115,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
             speedBonus={speedBonusOf(session, result)}
             correctAnswer={session.reveal.correctAnswer}
             correctChoice={correctChoiceIndex(session)}
+            options={session.currentQuestion?.options}
             rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
             previousRank={previousRank(session, uid)}
           />

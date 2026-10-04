@@ -7,7 +7,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { AnswerState } from '@/lib/playerGame';
 
-import { ChoicePill, pillSizeForHeight, type PillSize } from './ChoicePill';
+import { ChoicePill, choiceTextSize, pillSizeForHeight, type PillSize } from './ChoicePill';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { Timebar } from './Timebar';
@@ -38,6 +38,8 @@ export function QuestionView({ question, index, questionCount, score, timing, an
   const locked = isLocked(answer);
   const chosen = answer.kind === 'idle' ? null : answer.choice;
   const [pillSize, setPillSize] = useState<PillSize>('medium');
+  // Même taille de texte pour les 4 propositions, d'après la plus longue.
+  const textSize = choiceTextSize(question.options ?? []);
 
   // Hauteur de la zone des réponses → hauteur d'une pilule → taille du texte (un rendu de plus).
   function measureChoices(event: LayoutChangeEvent) {
@@ -61,6 +63,7 @@ export function QuestionView({ question, index, questionCount, score, timing, an
               isDimmed={locked && choice !== chosen}
               disabled={locked}
               size={pillSize}
+              textSize={textSize}
               fill
               onPress={() => onAnswer(choice)}
             />

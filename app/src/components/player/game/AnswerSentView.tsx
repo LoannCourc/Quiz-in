@@ -6,7 +6,7 @@ import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-import { ChoicePill } from './ChoicePill';
+import { ChoicePill, choiceTextSize } from './ChoicePill';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { Timebar } from './Timebar';
@@ -34,7 +34,7 @@ export function AnswerSentView({ question, index, questionCount, score, timing, 
       <Timebar {...timing} />
       <Text style={textStyles.hero}>{strings.game.answerSent.title}</Text>
       {option !== undefined && choice !== null ? (
-        <ChoicePill choice={choice} text={option} isSelected />
+        <ChoicePill choice={choice} text={option} textSize={choiceTextSize(question.options ?? [])} isSelected />
       ) : (
         <Text style={[textStyles.body, styles.centered]}>{strings.game.answerSent.unknownChoice}</Text>
       )}
