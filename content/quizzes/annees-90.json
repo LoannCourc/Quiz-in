@@ -1,0 +1,104 @@
+{
+  "id": "annees-90",
+  "gameType": "blindTest",
+  "title": "Années 90",
+  "theme": "Musique",
+  "description": "Dance, boys bands et grandes ballades : dix tubes des années 90. Saurez-vous retrouver le titre ou l'artiste ?",
+  "audience": "all",
+  "poster": "cyan",
+  "addedAt": "2026-10-04",
+  "featuredRank": 6,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "a90-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Rhythm Is a Dancer", "What Is Love", "The Rhythm of the Night", "Mr. Vain"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["What Is Love"],
+      "difficulty": 2,
+      "music": { "artist": "Haddaway", "title": "What Is Love" }
+    },
+    {
+      "id": "a90-02",
+      "text": "Quel artiste ?",
+      "options": ["All Saints", "TLC", "Eternal", "Spice Girls"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Spice Girls"],
+      "difficulty": 2,
+      "music": { "artist": "Spice Girls", "title": "Wannabe" }
+    },
+    {
+      "id": "a90-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Samba de Janeiro", "Bailamos", "Livin' la Vida Loca", "Mi chico latino"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Livin' la Vida Loca"],
+      "difficulty": 2,
+      "music": { "artist": "Ricky Martin", "title": "Livin' la Vida Loca" }
+    },
+    {
+      "id": "a90-04",
+      "text": "Quel artiste ?",
+      "options": ["Cher", "Madonna", "Tina Turner", "Céline Dion"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Cher"],
+      "difficulty": 2,
+      "music": { "artist": "Cher", "title": "Believe" }
+    },
+    {
+      "id": "a90-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Saturday Night", "Coco Jamboo", "No Limit", "The Sign"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["The Sign"],
+      "difficulty": 2,
+      "music": { "artist": "Ace of Base", "title": "The Sign" }
+    },
+    {
+      "id": "a90-06",
+      "text": "Quel artiste ?",
+      "options": ["Lara Fabian", "Larusso", "Hélène Ségara", "Natasha St-Pier"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Larusso"],
+      "difficulty": 2,
+      "music": { "artist": "Larusso", "title": "Tu m'oublieras" }
+    },
+    {
+      "id": "a90-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Wonderwall", "Bitter Sweet Symphony", "Song 2", "Common People"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Wonderwall"],
+      "difficulty": 2,
+      "music": { "artist": "Oasis", "title": "Wonderwall" }
+    },
+    {
+      "id": "a90-08",
+      "text": "Quel artiste ?",
+      "options": ["Mariah Carey", "Toni Braxton", "Whitney Houston", "Céline Dion"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Whitney Houston"],
+      "difficulty": 2,
+      "music": { "artist": "Whitney Houston", "title": "I Will Always Love You" }
+    },
+    {
+      "id": "a90-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Tearin' Up My Heart", "I Want It That Way", "Back for Good", "Flying Without Wings"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["I Want It That Way"],
+      "difficulty": 2,
+      "music": { "artist": "Backstreet Boys", "title": "I Want It That Way" }
+    },
+    {
+      "id": "a90-10",
+      "text": "Quel artiste ?",
+      "options": ["Corona", "Whigfield", "Alice Deejay", "Gala"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Gala"],
+      "difficulty": 2,
+      "music": { "artist": "Gala", "title": "Freed from Desire" }
+    }
+  ]
+}

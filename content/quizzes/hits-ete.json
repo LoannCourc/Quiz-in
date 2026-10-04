@@ -1,0 +1,104 @@
+{
+  "id": "hits-ete",
+  "gameType": "blindTest",
+  "title": "Hits de l'été",
+  "theme": "Musique",
+  "description": "Les tubes qui ont fait danser les plages et les campings : dix hits de l'été, d'hier et d'aujourd'hui.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-10-04",
+  "featuredRank": 3,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "ete-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Tic Tic Tac", "Lambada", "Le Bal masqué", "Saga Africa"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Lambada"],
+      "difficulty": 1,
+      "music": { "artist": "Kaoma", "title": "Lambada" }
+    },
+    {
+      "id": "ete-02",
+      "text": "Quel artiste ?",
+      "options": ["Gipsy Kings", "Las Ketchup", "Los Lobos", "Los del Río"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Los del Río"],
+      "difficulty": 1,
+      "music": { "artist": "Los del Río", "title": "Macarena" }
+    },
+    {
+      "id": "ete-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Tacata", "Ai se eu te pego", "Dragostea din tei", "Waka Waka (This Time for Africa)"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Dragostea din tei"],
+      "difficulty": 1,
+      "music": { "artist": "O-Zone", "title": "Dragostea din tei" }
+    },
+    {
+      "id": "ete-04",
+      "text": "Quel artiste ?",
+      "options": ["Lou Bega", "Ricky Martin", "Enrique Iglesias", "Marc Anthony"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Lou Bega"],
+      "difficulty": 1,
+      "music": { "artist": "Lou Bega", "title": "Mambo No. 5" }
+    },
+    {
+      "id": "ete-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Laisse parler les gens", "Femme like U", "Zouk la sé sèl médikaman nou ni", "Premier Gaou"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Premier Gaou"],
+      "difficulty": 1,
+      "music": { "artist": "Magic System", "title": "Premier Gaou" }
+    },
+    {
+      "id": "ete-06",
+      "text": "Quel artiste ?",
+      "options": ["Shaggy", "OMI", "Sean Paul", "Kungs"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["OMI"],
+      "difficulty": 1,
+      "music": { "artist": "OMI", "title": "Cheerleader" }
+    },
+    {
+      "id": "ete-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Makeba", "Prayer in C", "Lean On", "Jerusalema"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Makeba"],
+      "difficulty": 1,
+      "music": { "artist": "Jain", "title": "Makeba" }
+    },
+    {
+      "id": "ete-08",
+      "text": "Quel artiste ?",
+      "options": ["The Beach Boys", "The Lovin' Spoonful", "Mungo Jerry", "Creedence Clearwater Revival"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Mungo Jerry"],
+      "difficulty": 1,
+      "music": { "artist": "Mungo Jerry", "title": "In the Summertime" }
+    },
+    {
+      "id": "ete-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Cheap Thrills", "Summer", "Faded", "Stole the Show"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Summer"],
+      "difficulty": 1,
+      "music": { "artist": "Calvin Harris", "title": "Summer" }
+    },
+    {
+      "id": "ete-10",
+      "text": "Quel artiste ?",
+      "options": ["Bob Sinclar", "David Guetta", "Antoine Clamaran", "Martin Solveig"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Martin Solveig"],
+      "difficulty": 1,
+      "music": { "artist": "Martin Solveig", "title": "Hello" }
+    }
+  ]
+}

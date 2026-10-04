@@ -1,0 +1,104 @@
+{
+  "id": "annees-80",
+  "gameType": "blindTest",
+  "title": "Années 80",
+  "theme": "Musique",
+  "description": "Synthés, brushings et refrains cultes : dix tubes des années 80 à reconnaître dès les premières notes.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-04",
+  "featuredRank": 2,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "a80-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Billie Jean", "Every Breath You Take", "Sweet Dreams (Are Made of This)", "Smalltown Boy"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Billie Jean"],
+      "difficulty": 1,
+      "music": { "artist": "Michael Jackson", "title": "Billie Jean" }
+    },
+    {
+      "id": "a80-02",
+      "text": "Quel artiste ?",
+      "options": ["Duran Duran", "Tears for Fears", "a-ha", "Spandau Ballet"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["a-ha"],
+      "difficulty": 1,
+      "music": { "artist": "a-ha", "title": "Take On Me" }
+    },
+    {
+      "id": "a80-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Walking on Sunshine", "Girls Just Want to Have Fun", "Don't You (Forget About Me)", "Karma Chameleon"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Girls Just Want to Have Fun"],
+      "difficulty": 1,
+      "music": { "artist": "Cyndi Lauper", "title": "Girls Just Want to Have Fun" }
+    },
+    {
+      "id": "a80-04",
+      "text": "Quel artiste ?",
+      "options": ["Bon Jovi", "Scorpions", "Def Leppard", "Europe"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Europe"],
+      "difficulty": 1,
+      "music": { "artist": "Europe", "title": "The Final Countdown" }
+    },
+    {
+      "id": "a80-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Self Control", "Words", "La Isla Bonita", "Flashdance... What a Feeling"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["La Isla Bonita"],
+      "difficulty": 1,
+      "music": { "artist": "Madonna", "title": "La Isla Bonita" }
+    },
+    {
+      "id": "a80-06",
+      "text": "Quel artiste ?",
+      "options": ["Wham!", "Culture Club", "Frankie Goes to Hollywood", "Kajagoogoo"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Wham!"],
+      "difficulty": 1,
+      "music": { "artist": "Wham!", "title": "Wake Me Up Before You Go-Go" }
+    },
+    {
+      "id": "a80-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Toute première fois", "Ouragan", "Les Démons de minuit", "Voyage, voyage"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Voyage, voyage"],
+      "difficulty": 1,
+      "music": { "artist": "Desireless", "title": "Voyage, voyage" }
+    },
+    {
+      "id": "a80-08",
+      "text": "Quel artiste ?",
+      "options": ["Daniel Balavoine", "Jean-Jacques Goldman", "Michel Berger", "Francis Cabrel"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Jean-Jacques Goldman"],
+      "difficulty": 1,
+      "music": { "artist": "Jean-Jacques Goldman", "title": "Quand la musique est bonne" }
+    },
+    {
+      "id": "a80-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Africa", "Owner of a Lonely Heart", "Don't Stop Believin'", "In the Air Tonight"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Africa"],
+      "difficulty": 1,
+      "music": { "artist": "Toto", "title": "Africa" }
+    },
+    {
+      "id": "a80-10",
+      "text": "Quel artiste ?",
+      "options": ["Journey", "Foreigner", "Survivor", "REO Speedwagon"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Survivor"],
+      "difficulty": 1,
+      "music": { "artist": "Survivor", "title": "Eye of the Tiger" }
+    }
+  ]
+}

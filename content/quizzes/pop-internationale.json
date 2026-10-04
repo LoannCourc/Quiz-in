@@ -1,0 +1,104 @@
+{
+  "id": "pop-internationale",
+  "gameType": "blindTest",
+  "title": "Pop internationale",
+  "theme": "Musique",
+  "description": "Des années 70 à aujourd'hui, dix tubes de la pop internationale : retrouvez le titre ou l'artiste.",
+  "audience": "all",
+  "poster": "blue",
+  "addedAt": "2026-10-04",
+  "featuredRank": 7,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "pop-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Don't Go Breaking My Heart", "Sugar Baby Love", "Dancing Queen", "Love Is in the Air"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Dancing Queen"],
+      "difficulty": 2,
+      "music": { "artist": "ABBA", "title": "Dancing Queen" }
+    },
+    {
+      "id": "pop-02",
+      "text": "Quel artiste ?",
+      "options": ["Elton John", "Billy Joel", "Phil Collins", "Rod Stewart"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Elton John"],
+      "difficulty": 2,
+      "music": { "artist": "Elton John", "title": "I'm Still Standing" }
+    },
+    {
+      "id": "pop-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Perfect", "All of Me", "Love Yourself", "Just the Way You Are"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Just the Way You Are"],
+      "difficulty": 2,
+      "music": { "artist": "Bruno Mars", "title": "Just the Way You Are" }
+    },
+    {
+      "id": "pop-04",
+      "text": "Quel artiste ?",
+      "options": ["Kesha", "Katy Perry", "Demi Lovato", "Selena Gomez"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Katy Perry"],
+      "difficulty": 2,
+      "music": { "artist": "Katy Perry", "title": "Roar" }
+    },
+    {
+      "id": "pop-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Shake It Off", "Problem", "Royals", "Love Me Like You Do"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Shake It Off"],
+      "difficulty": 2,
+      "music": { "artist": "Taylor Swift", "title": "Shake It Off" }
+    },
+    {
+      "id": "pop-06",
+      "text": "Quel artiste ?",
+      "options": ["Rita Ora", "Anne-Marie", "Dua Lipa", "Ava Max"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Dua Lipa"],
+      "difficulty": 2,
+      "music": { "artist": "Dua Lipa", "title": "Don't Start Now" }
+    },
+    {
+      "id": "pop-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Watermelon Sugar", "Blinding Lights", "Dance Monkey", "Señorita"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Blinding Lights"],
+      "difficulty": 2,
+      "music": { "artist": "The Weeknd", "title": "Blinding Lights" }
+    },
+    {
+      "id": "pop-08",
+      "text": "Quel artiste ?",
+      "options": ["Kylie Minogue", "Gwen Stefani", "Nelly Furtado", "Madonna"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Madonna"],
+      "difficulty": 2,
+      "music": { "artist": "Madonna", "title": "Hung Up" }
+    },
+    {
+      "id": "pop-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Torn", "You're Beautiful", "Angels", "Iris"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Angels"],
+      "difficulty": 2,
+      "music": { "artist": "Robbie Williams", "title": "Angels" }
+    },
+    {
+      "id": "pop-10",
+      "text": "Quel artiste ?",
+      "options": ["Lewis Capaldi", "James Arthur", "Sam Smith", "Tom Odell"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Lewis Capaldi"],
+      "difficulty": 2,
+      "music": { "artist": "Lewis Capaldi", "title": "Someone You Loved" }
+    }
+  ]
+}

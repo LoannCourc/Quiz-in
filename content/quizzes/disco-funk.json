@@ -1,0 +1,104 @@
+{
+  "id": "disco-funk",
+  "gameType": "blindTest",
+  "title": "Disco et funk",
+  "theme": "Musique",
+  "description": "Boules à facettes et basses qui groovent : dix classiques du disco et du funk pour enflammer la piste.",
+  "audience": "all",
+  "poster": "gold",
+  "addedAt": "2026-10-04",
+  "featuredRank": 8,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "dsc-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Don't Leave Me This Way", "Ring My Bell", "Got to Be Real", "I Will Survive"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["I Will Survive"],
+      "difficulty": 2,
+      "music": { "artist": "Gloria Gaynor", "title": "I Will Survive" }
+    },
+    {
+      "id": "dsc-02",
+      "text": "Quel artiste ?",
+      "options": ["The Trammps", "Bee Gees", "Heatwave", "Tavares"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Bee Gees"],
+      "difficulty": 2,
+      "music": { "artist": "Bee Gees", "title": "Stayin' Alive" }
+    },
+    {
+      "id": "dsc-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Le Freak", "Disco Inferno", "Car Wash", "Boogie Oogie Oogie"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Le Freak"],
+      "difficulty": 2,
+      "music": { "artist": "Chic", "title": "Le Freak" }
+    },
+    {
+      "id": "dsc-04",
+      "text": "Quel artiste ?",
+      "options": ["Kool & the Gang", "Commodores", "Earth, Wind & Fire", "The Gap Band"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Earth, Wind & Fire"],
+      "difficulty": 2,
+      "music": { "artist": "Earth, Wind & Fire", "title": "September" }
+    },
+    {
+      "id": "dsc-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Y.M.C.A.", "Born to Be Alive", "Daddy Cool", "D.I.S.C.O."],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Born to Be Alive"],
+      "difficulty": 2,
+      "music": { "artist": "Patrick Hernandez", "title": "Born to Be Alive" }
+    },
+    {
+      "id": "dsc-06",
+      "text": "Quel artiste ?",
+      "options": ["The Pointer Sisters", "The Three Degrees", "The Emotions", "Sister Sledge"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Sister Sledge"],
+      "difficulty": 2,
+      "music": { "artist": "Sister Sledge", "title": "We Are Family" }
+    },
+    {
+      "id": "dsc-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Play That Funky Music", "Jungle Boogie", "Superstition", "Pick Up the Pieces"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Superstition"],
+      "difficulty": 2,
+      "music": { "artist": "Stevie Wonder", "title": "Superstition" }
+    },
+    {
+      "id": "dsc-08",
+      "text": "Quel artiste ?",
+      "options": ["Lipps Inc.", "Ottawan", "Boney M.", "Village People"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Lipps Inc."],
+      "difficulty": 2,
+      "music": { "artist": "Lipps Inc.", "title": "Funkytown" }
+    },
+    {
+      "id": "dsc-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Get Down On It", "Shake Your Groove Thing", "Boogie Nights", "Don't Stop 'Til You Get Enough"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Don't Stop 'Til You Get Enough"],
+      "difficulty": 2,
+      "music": { "artist": "Michael Jackson", "title": "Don't Stop 'Til You Get Enough" }
+    },
+    {
+      "id": "dsc-10",
+      "text": "Quel artiste ?",
+      "options": ["Diana Ross", "Donna Summer", "Grace Jones", "Amii Stewart"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Donna Summer"],
+      "difficulty": 2,
+      "music": { "artist": "Donna Summer", "title": "I Feel Love" }
+    }
+  ]
+}

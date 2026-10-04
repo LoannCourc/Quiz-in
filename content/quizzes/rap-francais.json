@@ -1,0 +1,103 @@
+{
+  "id": "rap-francais",
+  "gameType": "blindTest",
+  "title": "Rap français",
+  "theme": "Musique",
+  "description": "Trente ans de rap français, des pionniers aux succès d'aujourd'hui : un blind test pour les connaisseurs.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-10-04",
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "rap-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Bye Bye", "Caroline", "Les Princes de la ville", "Laisse pas traîner ton fils"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Caroline"],
+      "difficulty": 3,
+      "music": { "artist": "MC Solaar", "title": "Caroline" }
+    },
+    {
+      "id": "rap-02",
+      "text": "Quel artiste ?",
+      "options": ["Alliance Ethnik", "Fonky Family", "Ministère A.M.E.R.", "IAM"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["IAM"],
+      "difficulty": 3,
+      "music": { "artist": "IAM", "title": "Je danse le Mia" }
+    },
+    {
+      "id": "rap-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Simple et funky", "Tonton du bled", "Angela", "Gravé dans la roche"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Angela"],
+      "difficulty": 3,
+      "music": { "artist": "Saïan Supa Crew", "title": "Angela" }
+    },
+    {
+      "id": "rap-04",
+      "text": "Quel artiste ?",
+      "options": ["Diam's", "Keny Arkana", "Kenza Farah", "Lady Laistee"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Diam's"],
+      "difficulty": 3,
+      "music": { "artist": "Diam's", "title": "Ma France à moi" }
+    },
+    {
+      "id": "rap-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Saint-Denis", "Banlieusards", "Ego", "Gibraltar"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Gibraltar"],
+      "difficulty": 3,
+      "music": { "artist": "Abd al Malik", "title": "Gibraltar" }
+    },
+    {
+      "id": "rap-06",
+      "text": "Quel artiste ?",
+      "options": ["Casseurs Flowters", "Bigflo & Oli", "Nekfeu", "Lomepal"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Bigflo & Oli"],
+      "difficulty": 3,
+      "music": { "artist": "Bigflo & Oli", "title": "Dommage" }
+    },
+    {
+      "id": "rap-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Cosmo", "Bella", "Je te pardonne", "Ego"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Cosmo"],
+      "difficulty": 3,
+      "music": { "artist": "Soprano", "title": "Cosmo" }
+    },
+    {
+      "id": "rap-08",
+      "text": "Quel artiste ?",
+      "options": ["Psy 4 de la Rime", "113", "Sexion d'Assaut", "Fonky Family"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Sexion d'Assaut"],
+      "difficulty": 3,
+      "music": { "artist": "Sexion d'Assaut", "title": "Avant qu'elle parte" }
+    },
+    {
+      "id": "rap-09",
+      "text": "Quel est ce titre ?",
+      "options": ["On verra", "La terre est ronde", "Papaoutai", "Tonton du bled"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["La terre est ronde"],
+      "difficulty": 3,
+      "music": { "artist": "Orelsan", "title": "La terre est ronde" }
+    },
+    {
+      "id": "rap-10",
+      "text": "Quel artiste ?",
+      "options": ["Lartiste", "Keblack", "Naza", "Black M"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Black M"],
+      "difficulty": 3,
+      "music": { "artist": "Black M", "title": "Sur ma route" }
+    }
+  ]
+}

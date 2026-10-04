@@ -1,0 +1,104 @@
+{
+  "id": "chansons-francaises",
+  "gameType": "blindTest",
+  "title": "Chanson française",
+  "theme": "Musique",
+  "description": "Les grandes voix de la chanson française, des années 50 aux années 80 : un blind test pour les fins connaisseurs.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-10-04",
+  "featuredRank": 10,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "chf-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Les Copains d'abord", "La Mer", "Le Petit Bal perdu", "Avec le temps"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Les Copains d'abord"],
+      "difficulty": 3,
+      "music": { "artist": "Georges Brassens", "title": "Les Copains d'abord" }
+    },
+    {
+      "id": "chf-02",
+      "text": "Quel artiste ?",
+      "options": ["Léo Ferré", "Gilbert Bécaud", "Jacques Brel", "Claude Nougaro"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Jacques Brel"],
+      "difficulty": 3,
+      "music": { "artist": "Jacques Brel", "title": "Ne me quitte pas" }
+    },
+    {
+      "id": "chf-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Les Feuilles mortes", "L'Aigle noir", "Syracuse", "La Maritza"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["L'Aigle noir"],
+      "difficulty": 3,
+      "music": { "artist": "Barbara", "title": "L'Aigle noir" }
+    },
+    {
+      "id": "chf-04",
+      "text": "Quel artiste ?",
+      "options": ["Serge Reggiani", "Yves Montand", "Gilbert Bécaud", "Charles Aznavour"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Charles Aznavour"],
+      "difficulty": 3,
+      "music": { "artist": "Charles Aznavour", "title": "Emmenez-moi" }
+    },
+    {
+      "id": "chf-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Le Déserteur", "Les Petits Papiers", "Le Poinçonneur des Lilas", "Le Tourbillon"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Le Poinçonneur des Lilas"],
+      "difficulty": 3,
+      "music": { "artist": "Serge Gainsbourg", "title": "Le Poinçonneur des Lilas" }
+    },
+    {
+      "id": "chf-06",
+      "text": "Quel artiste ?",
+      "options": ["Jean Ferrat", "Maxime Le Forestier", "Hugues Aufray", "Georges Moustaki"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Jean Ferrat"],
+      "difficulty": 3,
+      "music": { "artist": "Jean Ferrat", "title": "La Montagne" }
+    },
+    {
+      "id": "chf-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Le Lac Majeur", "Capri c'est fini", "Une belle histoire", "Les Lacs du Connemara"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Les Lacs du Connemara"],
+      "difficulty": 3,
+      "music": { "artist": "Michel Sardou", "title": "Les Lacs du Connemara" }
+    },
+    {
+      "id": "chf-08",
+      "text": "Quel artiste ?",
+      "options": ["Sheila", "Dalida", "Mireille Mathieu", "Nana Mouskouri"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Dalida"],
+      "difficulty": 3,
+      "music": { "artist": "Dalida", "title": "Paroles, paroles" }
+    },
+    {
+      "id": "chf-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Mistral gagnant", "La Ballade des gens heureux", "L'Été indien", "Les Mots bleus"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Mistral gagnant"],
+      "difficulty": 3,
+      "music": { "artist": "Renaud", "title": "Mistral gagnant" }
+    },
+    {
+      "id": "chf-10",
+      "text": "Quel artiste ?",
+      "options": ["Juliette Gréco", "Patachou", "Édith Piaf", "Mistinguett"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Édith Piaf"],
+      "difficulty": 3,
+      "music": { "artist": "Édith Piaf", "title": "Non, je ne regrette rien" }
+    }
+  ]
+}

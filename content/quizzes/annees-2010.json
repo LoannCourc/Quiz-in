@@ -1,0 +1,104 @@
+{
+  "id": "annees-2010",
+  "gameType": "blindTest",
+  "title": "Années 2010",
+  "theme": "Musique",
+  "description": "Dix tubes des années 2010, des stades aux réseaux sociaux : le titre ou l'artiste, à vous de jouer.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-10-04",
+  "featuredRank": 5,
+  "reviewStatus": "provisoire, morceaux à vérifier (music-check)",
+  "questions": [
+    {
+      "id": "a10-01",
+      "text": "Quel est ce titre ?",
+      "options": ["Can't Stop the Feeling!", "Sugar", "Treasure", "Happy"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Happy"],
+      "difficulty": 1,
+      "music": { "artist": "Pharrell Williams", "title": "Happy" }
+    },
+    {
+      "id": "a10-02",
+      "text": "Quel artiste ?",
+      "options": ["Duffy", "Adele", "Sia", "Birdy"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Adele"],
+      "difficulty": 1,
+      "music": { "artist": "Adele", "title": "Rolling in the Deep" }
+    },
+    {
+      "id": "a10-03",
+      "text": "Quel est ce titre ?",
+      "options": ["Despacito", "Bailando", "Danza Kuduro", "Mi Gente"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Despacito"],
+      "difficulty": 1,
+      "music": { "artist": "Luis Fonsi", "title": "Despacito" }
+    },
+    {
+      "id": "a10-04",
+      "text": "Quel artiste ?",
+      "options": ["Shawn Mendes", "James Arthur", "Ed Sheeran", "Lewis Capaldi"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Ed Sheeran"],
+      "difficulty": 1,
+      "music": { "artist": "Ed Sheeran", "title": "Shape of You" }
+    },
+    {
+      "id": "a10-05",
+      "text": "Quel est ce titre ?",
+      "options": ["Lean On", "Wake Me Up", "Titanium", "Faded"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Wake Me Up"],
+      "difficulty": 1,
+      "music": { "artist": "Avicii", "title": "Wake Me Up" }
+    },
+    {
+      "id": "a10-06",
+      "text": "Quel artiste ?",
+      "options": ["Soprano", "Black M", "Kendji Girac", "Maître Gims"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Maître Gims", "Gims"],
+      "difficulty": 1,
+      "music": { "artist": "Maître Gims", "title": "Est-ce que tu m'aimes ?" }
+    },
+    {
+      "id": "a10-07",
+      "text": "Quel est ce titre ?",
+      "options": ["Call Me Maybe", "Moves Like Jagger", "Gangnam Style", "Somebody That I Used to Know"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["Gangnam Style"],
+      "difficulty": 1,
+      "music": { "artist": "PSY", "title": "Gangnam Style" }
+    },
+    {
+      "id": "a10-08",
+      "text": "Quel artiste ?",
+      "options": ["Louane", "Amel Bent", "Jenifer", "Nolwenn Leroy"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Louane"],
+      "difficulty": 1,
+      "music": { "artist": "Louane", "title": "Jour 1" }
+    },
+    {
+      "id": "a10-09",
+      "text": "Quel est ce titre ?",
+      "options": ["Counting Stars", "Pompeii", "Shut Up and Dance", "Believer"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Believer"],
+      "difficulty": 1,
+      "music": { "artist": "Imagine Dragons", "title": "Believer" }
+    },
+    {
+      "id": "a10-10",
+      "text": "Quel artiste ?",
+      "options": ["Justice", "Daft Punk", "Kavinsky", "Disclosure"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Daft Punk"],
+      "difficulty": 1,
+      "music": { "artist": "Daft Punk", "title": "Get Lucky" }
+    }
+  ]
+}
