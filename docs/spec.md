@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.4 — 2 octobre 2026
+Version 0.5 — 4 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -317,12 +317,13 @@ sessions/{code}
 8. Classement mis à jour après chaque révélation.
 9. Le client joueur ne lit jamais `questions/` ; la bonne réponse n'est publiée qu'à la révélation (dans `reveal`). La lisibilité du catalogue par un utilisateur connecté est une limite acceptée au MVP (section 7).
 10. Réponse libre : 60 caractères maximum.
+11. Le nom reste « Quiz'in ». Logo retenu : variante C (anneau doré, queue rose en diagonale), fichier source `docs/design/logo-1024.png` ; il sert d'icône d'application, d'écran de démarrage, de favicon et d'icône Cast (`docs/design/cast-icon-512.png`).
 
 ---
 
 ## 12. Questions ouvertes
 
-1. **Quiz'In**
+1. **Quiz'In** -> Le nom reste « Quiz'in » (logo : décision 11).
 2. **Joueurs sans limite ou plafonnés à 20 ?** Proposition : 20 au MVP. -> 20 est la limite du nombre de joueurs pour le MVP.
 3. **iOS** : confirmer que l'app hôte iOS est reportée et que les joueurs iPhone passent par le web -> Confirmé. 
 4. **Redirection du QR code vers l'app** pour ceux qui l'ont installée : proposition de la reporter après le MVP, car elle demande des liens profonds (Android App Links / iOS Universal Links) et un domaine configuré -> Confirmé.
@@ -340,7 +341,18 @@ sessions/{code}
 - App hôte iOS et redirection du QR code vers l'app joueur.
 - Quiz créés par l'hôte (anniversaires, mariages, réunions de famille).
 - Packs thématiques et de saison, modèle freemium pour l'hôte.
-- Blind test et « N'oubliez pas les paroles » (après étude des droits musicaux).
+- Blind test (voir 14, chantier c) et « N'oubliez pas les paroles » (après étude des droits musicaux).
 - Mode bars et événements.
 - Option d'accessibilité « afficher la question sur le téléphone », pour les joueurs qui voient mal la TV (au MVP, l'énoncé n'est lu que sur la TV).
 - Option hôte pour ne pas afficher le classement entre les questions (classement tous les N tours, ou seulement à la fin). Demandera un champ dans `settings`, une vérification des règles et une mise à jour de la machine d'états.
+
+---
+
+## 14. Prochains chantiers validés
+
+À traiter dans cet ordre. Aucun ne se code sans un message dédié du développeur pour ce chantier.
+
+a. **Nouveau catalogue de l'hôte** (maquette « S2 ») : sélecteur de jeux en haut (Quiz actif ; Blind test et Paroles marqués « bientôt ») ; puces de thème ; Top 10 de la semaine avec gros chiffres ; rangées d'affiches par thème ; fiche du quiz avec un bouton « Choisir ce quiz ».
+b. **Salon de l'hôte** : le lien et le QR code des joueurs sont masqués par défaut sur le téléphone de l'hôte et n'apparaissent qu'après un appui sur « Je n'ai pas de TV » (la TV reste le moyen normal de rejoindre).
+c. **Mode blind test** (plus tard) : extraits de 30 secondes fournis par l'API Deezer, usage gratuit et non commercial, avec mention de Deezer. La source audio doit être interchangeable (pas de dépendance directe à Deezer dans le moteur de jeu). **En attente de la réponse écrite de Deezer avant toute publication.**
+d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de test enregistrés).
