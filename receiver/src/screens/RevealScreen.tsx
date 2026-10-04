@@ -36,6 +36,8 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
 
       <div className="reveal-explanation-slot">
         {reveal.explanation && <p className="reveal-explanation">{reveal.explanation}</p>}
+        {/* Blind test : mention obligatoire de la source des extraits. */}
+        {reveal.music && <p className="reveal-credit">{strings.blindTest.credits[reveal.music.source]}</p>}
       </div>
       {countdown && <NextQuestionLine countdown={countdown} />}
     </main>

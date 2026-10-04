@@ -40,6 +40,6 @@ export function CastReceiver() {
     case 'error':
       return <StatusScreen title={strings.cast.errorTitle} hint={strings.cast.errorHint} detail={cast.detail} />
     case 'ready':
-      return <LiveReceiver key={cast.roomCode} roomCode={cast.roomCode} />
+      return <LiveReceiver key={cast.roomCode} roomCode={cast.roomCode} isCastMode />
   }
 }

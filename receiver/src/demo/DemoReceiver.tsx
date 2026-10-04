@@ -1,9 +1,17 @@
 import type { AnswerMode, GameStatus } from '@shared/types'
 import { useState } from 'react'
 
+import { GameAudioStateContext, type GameAudioState } from '../hooks/useGameAudio'
 import { ReceiverScreen } from '../screens/ReceiverScreen'
 import { DevPanel } from './DevPanel'
-import { buildDemoSession, DEMO_MAX_ANSWERS, DEMO_ROOM_CODE, demoExtraPlayerCount, type DemoOptions } from './demoSession'
+import {
+  buildDemoSession,
+  DEMO_MAX_ANSWERS,
+  DEMO_ROOM_CODE,
+  demoExtraPlayerCount,
+  toDemoBlindTest,
+  type DemoOptions,
+} from './demoSession'
 
 const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'reveal', 'scores', 'paused', 'ended']
 
@@ -16,6 +24,7 @@ function isDemoStatus(value: string | null): value is GameStatus {
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
 // &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
+// &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible ».
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -32,7 +41,9 @@ function initialOptions(params: URLSearchParams): DemoOptions {
 export function DemoReceiver() {
   const [params] = useState(() => new URLSearchParams(window.location.search))
   const [options, setOptions] = useState<DemoOptions>(() => initialOptions(params))
-  const session = buildDemoSession(options)
+  const demoSession = buildDemoSession(options)
+  const session = params.get('blindtest') === '1' ? toDemoBlindTest(demoSession) : demoSession
+  const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
 
   // Changer d'état relance le chrono de la phase, comme le ferait l'hôte.
@@ -62,7 +73,9 @@ export function DemoReceiver() {
 
   return (
     <>
-      <ReceiverScreen session={session} roomCode={DEMO_ROOM_CODE} />
+      <GameAudioStateContext value={audioState}>
+        <ReceiverScreen session={session} roomCode={DEMO_ROOM_CODE} />
+      </GameAudioStateContext>
       {!isCapture && (
         <DevPanel
           status={options.status}

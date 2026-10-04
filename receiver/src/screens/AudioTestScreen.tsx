@@ -37,8 +37,11 @@ export function AudioTestScreen({ url }: { url: string }) {
 
   useEffect(() => {
     let stopTimer: ReturnType<typeof setTimeout> | undefined
+    // Écran remplacé (nouveau test) avant la fin du chargement : on ignore le résultat.
+    let isCurrent = true
     const startedAt = performance.now()
     void tvAudioPlayer.play(url, TEST_START_S, 1).then((result) => {
+      if (!isCurrent || result === 'superseded') return
       if (result !== 'playing') {
         setState({ kind: result })
         return
@@ -50,6 +53,7 @@ export function AudioTestScreen({ url }: { url: string }) {
       }, AUDIO_EXTRACT_S * 1000)
     })
     return () => {
+      isCurrent = false
       clearTimeout(stopTimer)
       tvAudioPlayer.stop()
     }

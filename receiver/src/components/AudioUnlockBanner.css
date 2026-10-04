@@ -1,0 +1,27 @@
+/* Bandeau fixé en bas, au-dessus de l'écran en cours : ne cache ni le QR code ni la question. */
+.audio-unlock {
+  position: fixed;
+  left: 50%;
+  bottom: 4vh;
+  z-index: 20;
+  display: grid;
+  justify-items: center;
+  row-gap: 0.3rem;
+  padding: 1rem 2.4rem;
+  border-radius: var(--radius-card);
+  background: var(--color-highlight);
+  box-shadow: var(--shadow-hard);
+  transform: translateX(-50%);
+  text-align: center;
+  cursor: pointer;
+}
+
+.audio-unlock-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.audio-unlock-hint {
+  font-size: 1.2rem;
+  font-weight: 800;
+}

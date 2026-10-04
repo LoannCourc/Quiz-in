@@ -9,6 +9,7 @@ import {
 import type {
   Answer,
   AnswerMode,
+  ChoiceOptions,
   GameStatus,
   Player,
   PlayerId,
@@ -202,5 +203,33 @@ export function buildDemoSession({
       : undefined,
     players: buildPlayers(isToggleablePlayerConnected, extraPlayerCount),
     answeredBy: { [DEMO_CURRENT_INDEX]: buildAnsweredBy(answers) },
+  }
+}
+
+// Blind test (?blindtest=1) : même session, question musicale. L'adresse ne mène à rien : la démo ne
+// joue aucun son, elle montre seulement les écrans (indicateur d'écoute, mention à la révélation).
+const DEMO_SONGS: ChoiceOptions = [
+  'Papaoutai – Stromae',
+  'Alors on danse – Stromae',
+  'Formidable – Stromae',
+  'Tous les mêmes – Stromae',
+]
+
+export function toDemoBlindTest(session: PublicSession): PublicSession {
+  const question = session.currentQuestion
+  return {
+    ...session,
+    currentQuestion: question && {
+      ...question,
+      text: 'Quel est ce morceau ?',
+      options: question.options && DEMO_SONGS,
+      audio: { url: 'https://exemple.invalid/demo.mp3', startS: 0, durationS: 12 },
+    },
+    reveal: session.reveal && {
+      ...session.reveal,
+      correctAnswer: DEMO_SONGS[DEMO_QUESTION.correctIndex],
+      explanation: undefined,
+      music: { title: 'Alors on danse', artist: 'Stromae', source: 'deezer' },
+    },
   }
 }

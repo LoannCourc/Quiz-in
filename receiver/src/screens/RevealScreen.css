@@ -41,6 +41,14 @@
 .reveal-explanation-slot {
   display: grid;
   align-content: start;
+  row-gap: 0.8rem;
+}
+
+.reveal-credit {
+  justify-self: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
 }
 
 .reveal-explanation {

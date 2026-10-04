@@ -1,5 +1,6 @@
 import type { PublicSession } from '@shared/types'
 
+import { AudioStatus } from '../components/AudioStatus'
 import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
@@ -31,7 +32,15 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
 
       <section className="question-main">
         <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
-        <h1 className="question-card">{question.text}</h1>
+        {question.audio ? (
+          // Blind test : seul l'indicateur d'écoute s'ajoute, jamais le titre ni la pochette.
+          <div className="question-card-column">
+            <h1 className="question-card">{question.text}</h1>
+            <AudioStatus />
+          </div>
+        ) : (
+          <h1 className="question-card">{question.text}</h1>
+        )}
       </section>
 
       {question.options ? (

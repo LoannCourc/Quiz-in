@@ -1,4 +1,4 @@
-import type { Difficulty, GameStatus } from '@shared/types'
+import type { AudioSourceId, Difficulty, GameStatus } from '@shared/types'
 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -64,6 +64,15 @@ export const strings = {
     waitingHint: 'Sur le téléphone de l’hôte, appuyez sur « Afficher sur la TV ».',
     errorTitle: 'Impossible de démarrer l’affichage',
     errorHint: 'Relancez l’affichage depuis le téléphone de l’hôte.',
+  },
+  // Blind test : le son n'est joué que par la TV ; rien ne révèle le morceau avant la révélation.
+  blindTest: {
+    listening: 'Écoutez bien…',
+    unavailable: 'Extrait indisponible',
+    unavailableHint: 'L’hôte peut passer la question.',
+    unlockTitle: 'Cliquez sur cet écran pour activer le son',
+    unlockHint: 'Un seul clic suffit pour toute la partie.',
+    credits: { deezer: 'Extrait audio et informations : Deezer' } satisfies Record<AudioSourceId, string>,
   },
   // Diagnostic du son (cast-sender.html) : la lecture démarre-t-elle sans geste sur cette TV ?
   audioTest: {

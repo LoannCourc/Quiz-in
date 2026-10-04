@@ -1,9 +1,13 @@
 import { isHostAway } from '@shared/hostAbsence'
 import type { PublicSession } from '@shared/types'
+import type { ReactNode } from 'react'
 
+import { AudioUnlockBanner } from './components/AudioUnlockBanner'
 import { ConnectionLostBanner } from './components/ConnectionLostBanner'
 import { HostAwayStatus } from './components/HostAwayStatus'
 import { useAbandonedGameCleanup } from './hooks/useAbandonedGameCleanup'
+import { useBlindTestInfo } from './hooks/useBlindTestInfo'
+import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePhaseStale } from './hooks/usePhaseStale'
 import { ServerTimeOffsetContext } from './lib/serverTime'
@@ -11,8 +15,14 @@ import { ReceiverScreen } from './screens/ReceiverScreen'
 import { StatusScreen } from './screens/StatusScreen'
 import { strings } from './strings'
 
+interface LiveReceiverProps {
+  roomCode: string
+  // Mode Cast : la box joue le son sans geste. Sinon (plan B, navigateur d'un PC), un clic est demandé.
+  isCastMode?: boolean
+}
+
 // Mode réel : affiche la partie sessions/{code} lue en temps réel dans Firebase.
-export function LiveReceiver({ roomCode }: { roomCode: string }) {
+export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps) {
   const { state, hasConnectedOnce, isConnected, serverTimeOffsetMs } = useLiveSession(roomCode)
   const isConnectionLost = hasConnectedOnce && !isConnected
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
@@ -37,11 +47,35 @@ export function LiveReceiver({ roomCode }: { roomCode: string }) {
     case 'ready':
       return (
         <ServerTimeOffsetContext value={serverTimeOffsetMs}>
-          <LiveSessionScreen session={state.session} roomCode={roomCode} />
+          <GameAudio session={state.session} serverOffsetMs={serverTimeOffsetMs} isCastMode={isCastMode}>
+            <LiveSessionScreen session={state.session} roomCode={roomCode} />
+          </GameAudio>
           {isConnectionLost && <ConnectionLostBanner />}
         </ServerTimeOffsetContext>
       )
   }
+}
+
+interface GameAudioProps {
+  session: PublicSession
+  serverOffsetMs: number
+  isCastMode: boolean
+  children: ReactNode
+}
+
+// Blind test : son joué par la TV, monté pour toute la partie (il continue d'un écran à l'autre).
+// Plan B : bandeau « Cliquez pour activer le son » avant la partie, ou si le navigateur bloque.
+function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioProps) {
+  const { isEnabled, isBlindTest } = useBlindTestInfo(session.quizId)
+  const audioState = useGameAudio(session, isEnabled, serverOffsetMs)
+  const isBeforeGame = session.status === 'lobby' || session.status === 'starting'
+  const needsUnlock = !isCastMode && isEnabled && ((isBlindTest && isBeforeGame) || audioState === 'blocked')
+  return (
+    <GameAudioStateContext value={audioState}>
+      {children}
+      {needsUnlock && <AudioUnlockBanner />}
+    </GameAudioStateContext>
+  )
 }
 
 // Hôte absent (hostLeftAt, avec le temps avant suppression) en priorité ; sinon, phase bloquée

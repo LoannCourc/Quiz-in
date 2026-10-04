@@ -3,6 +3,20 @@
   row-gap: 1.4rem;
 }
 
+/* Blind test : carte de question puis indicateur d'écoute. */
+.question-card-column {
+  flex: 1;
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+/* Question courte et propositions souvent sur deux lignes (« Titre – Artiste ») : carte plus basse. */
+.question-card-column .question-card {
+  min-height: 4.5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
 /* Anneau de temps à gauche, carte de question à droite (maquette TV). */
 .question-main {
   display: flex;
