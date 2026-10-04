@@ -58,6 +58,20 @@ export const strings = {
     questionsOnTv: 'Les questions s’affichent sur la télé',
     waiting: 'En attente du lancement…',
   },
+  about: {
+    link: 'À propos et crédits',
+    title: 'À propos',
+    version: (version: string) => `Quiz’in, version ${version}`,
+    tagline: 'Le quiz des soirées entre amis et en famille : l’hôte affiche la partie sur la TV, chacun répond sur son téléphone.',
+    creditsTitle: 'Crédits',
+    credits: [
+      'Questions et quiz : originaux, rédigés pour Quiz’in.',
+      'Blind test : extraits audio de 30 s et informations sur les morceaux fournis par Deezer (deezer.com). Extrait audio et informations : Deezer.',
+      'Polices : Bowlby One et Nunito, sous licence SIL Open Font License.',
+      'Avatars : emojis du système de l’appareil.',
+    ],
+    back: 'Retour au catalogue',
+  },
   catalog: {
     loading: 'Chargement du catalogue…',
     errorPrefix: 'Erreur de chargement :',
@@ -109,6 +123,8 @@ export const strings = {
       `${questionCount} questions · environ ${minutes} min · jusqu’à ${MAX_PLAYERS} joueurs`,
     audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
     settingsTitle: 'Réglages de la partie',
+    audioCredit: 'Extrait audio et informations : Deezer',
+    blindTestUnavailable: 'Le blind test n’est pas disponible pour le moment.',
     speedBonusOn: 'Rapidité activée',
     speedBonusOff: 'sans Rapidité',
     settingsCardLabel: (summary: string) => `Réglages de la partie : ${summary}. Modifier`,
@@ -147,6 +163,7 @@ export const strings = {
     launchButton: 'Lancer la partie',
     launching: 'Lancement…',
     loadingQuestions: 'Chargement des questions…',
+    preparingAudio: 'Préparation des extraits audio…',
     questionsError: 'Impossible de charger les questions du quiz. Vérifie ta connexion.',
     launchFailed: 'Le lancement a échoué. Réessaie dans un instant.',
     launchRefusals: {

@@ -2,6 +2,7 @@ import {
   isTransitionLocked,
   nextDeadline,
   transitionKey,
+  type AudioUrls,
   type ExpectedPhase,
   type TransitionLock,
 } from '@shared/hostEngine';
@@ -25,7 +26,11 @@ interface HostEngineInput {
   serverOffsetMs: number;
   // Faux hors ligne (ou retour de coupure en cours) : aucune transition, aucune écriture.
   canWrite: boolean;
+  // Blind test : adresses des extraits, renouvelées en continu (lues au moment de chaque transition).
+  audioUrls?: AudioUrls;
 }
+
+const NO_AUDIO_URLS: AudioUrls = {};
 
 // Compteur incrémenté à chaque retour de l'app au premier plan : force le recalcul de
 // l'échéance (les minuteurs JavaScript peuvent être suspendus en arrière-plan).
@@ -46,14 +51,27 @@ function useForegroundCount(): number {
 // Rien n'est gardé en mémoire : après une relance, la boucle repart de la session stockée, et
 // une échéance déjà passée déclenche la transition aussitôt (rattrapage).
 // Hors ligne, la boucle est gelée ; elle repart quand canWrite redevient vrai (partie en pause).
-export function useHostEngine({ code, session, questions, serverOffsetMs, canWrite }: HostEngineInput): HostEngine {
+export function useHostEngine({
+  code,
+  session,
+  questions,
+  serverOffsetMs,
+  canWrite,
+  audioUrls = NO_AUDIO_URLS,
+}: HostEngineInput): HostEngine {
   const foregroundCount = useForegroundCount();
   const lock = useRef<TransitionLock | null>(null);
   const canWriteRef = useRef(canWrite);
+  // Référence : un renouvellement d'adresse ne doit pas reprogrammer le minuteur de la partie.
+  const audioUrlsRef = useRef(audioUrls);
 
   useEffect(() => {
     canWriteRef.current = canWrite;
   }, [canWrite]);
+
+  useEffect(() => {
+    audioUrlsRef.current = audioUrls;
+  }, [audioUrls]);
 
   useEffect(() => {
     if (!questions || !canWrite) return;
@@ -64,7 +82,7 @@ export function useHostEngine({ code, session, questions, serverOffsetMs, canWri
 
     const timeoutId = setTimeout(() => {
       const nowServer = Date.now() + serverOffsetMs;
-      void advance(code, questions, expected, nowServer, lock, canWriteRef);
+      void advance(code, questions, expected, nowServer, lock, canWriteRef, audioUrlsRef);
     }, delayMs);
     return () => clearTimeout(timeoutId);
   }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount]);
@@ -74,7 +92,7 @@ export function useHostEngine({ code, session, questions, serverOffsetMs, canWri
   function skip() {
     if (!questions || !canWriteRef.current) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
-    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef);
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef, audioUrlsRef);
   }
 
   return { skip };
@@ -90,6 +108,7 @@ async function advance(
   nowServer: number,
   lock: { current: TransitionLock | null },
   canWrite: { current: boolean },
+  audioUrls: { current: AudioUrls },
 ): Promise<void> {
   const key = transitionKey(expected);
   if (isTransitionLocked(lock.current, key, Date.now())) return;
@@ -99,7 +118,7 @@ async function advance(
   const current: TransitionLock = { key, since: Date.now() };
   lock.current = current;
   try {
-    await runTransition(code, questions, expected, nowServer, () => canWrite.current);
+    await runTransition(code, questions, expected, nowServer, () => canWrite.current, audioUrls.current);
   } catch (error) {
     // Erreur d'écriture : on réessaiera à la prochaine valeur de la session ou au premier plan.
     console.error('[engine] Transition impossible', error);

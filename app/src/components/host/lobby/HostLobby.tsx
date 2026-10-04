@@ -13,6 +13,7 @@ import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { CastGame } from '@/hooks/useCastGame';
+import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { launchGame } from '@/lib/hostGame';
 
@@ -31,11 +32,17 @@ interface HostLobbyProps {
   // Démo (/debug/lobby) : en-tête fourni sans lecture de la base, bloc « sans TV » déjà ouvert.
   header?: ReactNode;
   initialNoTvOpen?: boolean;
+  // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
+  audio?: LobbyAudio;
 }
+
+export type LobbyAudio = GameAudioUrls & { isEnabled: boolean };
+
+const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined, isEnabled: false };
 
 // Salon de l'hôte : quiz, code, TV (ou « Je n'ai pas de TV »), joueurs, et « Lancer la partie » fixé
 // en bas. La page ne défile pas : seule la liste des joueurs défile, le bouton reste toujours visible.
-export function HostLobby({ code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false }: HostLobbyProps) {
+export function HostLobby({ code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO }: HostLobbyProps) {
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -49,7 +56,7 @@ export function HostLobby({ code, session, questions, serverOffsetMs, cast, head
 
   // Un hôte qui ne s'inscrit pas peut quand même lancer : seuls les joueurs connectés comptent.
   const hasEnoughPlayers = canLaunchGame(players);
-  const canLaunch = hasEnoughPlayers && questions.kind === 'ready' && !isLaunching;
+  const canLaunch = hasEnoughPlayers && questions.kind === 'ready' && audio.status !== 'loading' && !isLaunching;
   const connectedCount = connectedPlayerIds(players).length;
 
   // Lancement : un seul update() (LOBBY → STARTING) ; un refus affiche sa raison.
@@ -59,8 +66,11 @@ export function HostLobby({ code, session, questions, serverOffsetMs, cast, head
     setLaunchError(null);
     try {
       const limit = isShortGame ? DEV_SHORT_GAME_QUESTIONS : undefined;
-      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit);
+      const launchAudio = { enabled: audio.isEnabled, urls: audio.urls };
+      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
+      // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
+      if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
     } catch (error) {
       console.error('[engine] Lancement impossible', error);
       setLaunchError(strings.hostLobby.launchFailed);
@@ -71,7 +81,7 @@ export function HostLobby({ code, session, questions, serverOffsetMs, cast, head
 
   const footer = (
     <View style={styles.footer}>
-      <LaunchHint questions={questions} hasEnoughPlayers={hasEnoughPlayers} error={launchError} />
+      <LaunchHint questions={questions} hasEnoughPlayers={hasEnoughPlayers} error={launchError} audioStatus={audio.status} />
       <BigButton
         label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
         onPress={launch}
@@ -145,13 +155,20 @@ interface LaunchHintProps {
   questions: GameQuestionsState;
   hasEnoughPlayers: boolean;
   error: string | null;
+  audioStatus: AudioUrlsStatus;
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
-function LaunchHint({ questions, hasEnoughPlayers, error }: LaunchHintProps) {
+function LaunchHint({ questions, hasEnoughPlayers, error, audioStatus }: LaunchHintProps) {
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
+  }
+  if (audioStatus === 'loading') {
+    return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.preparingAudio}</Text>;
+  }
+  if (audioStatus === 'missing') {
+    return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.launchRefusals.audioUnavailable}</Text>;
   }
   if (questions.kind === 'loading') {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.loadingQuestions}</Text>;

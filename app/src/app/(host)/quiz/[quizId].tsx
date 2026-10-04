@@ -11,6 +11,7 @@ import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
+import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
@@ -46,9 +47,13 @@ function QuizScreen({ quizId }: { quizId: string }) {
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
+  const isBlindTestEnabled = useBlindTestEnabled();
+  // Blind test avec l'interrupteur coupé : fiche visible (lien direct), mais pas de partie.
+  const unavailableReason =
+    summary?.gameType === 'blindTest' && !isBlindTestEnabled ? strings.quizSetup.blindTestUnavailable : undefined;
 
   async function create() {
-    if (!areSettingsCompatible(settings)) return;
+    if (!areSettingsCompatible(settings) || unavailableReason) return;
     setIsCreating(true);
     setCreateError(null);
     try {
@@ -91,6 +96,7 @@ function QuizScreen({ quizId }: { quizId: string }) {
       onChoose={create}
       isCreating={isCreating}
       error={createError}
+      unavailableReason={unavailableReason}
     />
   );
 }

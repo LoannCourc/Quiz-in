@@ -6,6 +6,7 @@ import {
   easyQuizzes,
   expertQuizzes,
   featuredQuizzes,
+  filterByGameType,
   newestQuizzes,
   searchByTitle,
 } from '../../shared/catalogRows'
@@ -33,6 +34,12 @@ function quiz(id: string, fields: Partial<QuizEntry> = {}): QuizEntry {
 const ids = (entries: QuizEntry[]) => entries.map((entry) => entry.id)
 
 describe('catalogue', () => {
+  test('onglets : quiz classiques et blind tests séparés', () => {
+    const entries = [quiz('a'), quiz('b', { gameType: 'blindTest' })]
+    expect(ids(filterByGameType(entries, 'quiz'))).toEqual(['a'])
+    expect(ids(filterByGameType(entries, 'blindTest'))).toEqual(['b'])
+  })
+
   test('thèmes distincts, triés', () => {
     const entries = [quiz('a', { theme: 'Sport' }), quiz('b', { theme: 'Cinéma' }), quiz('c', { theme: 'Sport' })]
     expect(catalogThemes(entries)).toEqual(['Cinéma', 'Sport'])

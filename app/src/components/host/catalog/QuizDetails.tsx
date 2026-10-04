@@ -27,6 +27,8 @@ interface QuizDetailsProps {
   onChoose: () => void;
   isCreating?: boolean;
   error?: string | null;
+  // Raison pour laquelle le quiz ne peut pas être choisi (blind test désactivé) : bouton bloqué.
+  unavailableReason?: string;
   // Démo (/debug/catalog) : feuille des réglages déjà ouverte.
   initialSettingsOpen?: boolean;
 }
@@ -38,7 +40,7 @@ function posterWidthFor(screenHeight: number): number {
 
 // Fiche d'un quiz (maquettes S2 et R2) : grande affiche, informations, puis « Choisir ce quiz » et la
 // carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
-export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error, initialSettingsOpen = false }: QuizDetailsProps) {
+export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error, unavailableReason, initialSettingsOpen = false }: QuizDetailsProps) {
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const level = difficultyLevel(quiz.difficulty);
@@ -47,10 +49,11 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
   const footer = (
     <View style={styles.footer}>
       {error && <Text style={textStyles.error}>{error}</Text>}
+      {unavailableReason && <Text style={textStyles.error}>{unavailableReason}</Text>}
       <BigButton
         label={isCreating ? strings.quizSetup.creating : strings.quizSetup.createButton}
         onPress={onChoose}
-        disabled={isCreating}
+        disabled={isCreating || unavailableReason !== undefined}
       />
       <GameSettingsCard settings={settings} onPress={() => setIsSettingsOpen(true)} />
     </View>
@@ -69,13 +72,15 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
         <View style={styles.tags}>
           <Tag label={strings.catalog.difficultyLevels[level]} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />
-          <Tag label={strings.catalog.gameTypes.quiz} color={AppColors.tags.gameType} />
+          <Tag label={strings.catalog.gameTypes[quiz.gameType]} color={AppColors.tags.gameType} />
         </View>
         {quiz.description !== '' && (
           <Text style={styles.description} numberOfLines={4}>
             {quiz.description}
           </Text>
         )}
+        {/* Blind test : mention de la source des extraits (aussi à chaque révélation sur la TV). */}
+        {quiz.gameType === 'blindTest' && <Text style={styles.credit}>{strings.quizSetup.audioCredit}</Text>}
       </View>
 
       <GameSettingsSheet
@@ -136,5 +141,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     gap: Spacing.three,
+  },
+  credit: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
   },
 });

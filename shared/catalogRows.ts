@@ -2,6 +2,7 @@ import { normalizeAnswer } from './answerMatching'
 import { FEATURED_QUIZ_COUNT, NEW_QUIZ_COUNT } from './constants'
 import { difficultyLevel } from './quizCatalog'
 import type { QuizEntry } from './quizValidation'
+import type { QuizGameType } from './types'
 
 // Rangées et filtres du catalogue de l'hôte (spec 4.1). Logique pure : l'écran ne fait qu'afficher.
 
@@ -19,6 +20,11 @@ function byTitle(a: QuizEntry, b: QuizEntry): number {
 // Thèmes présents, triés par ordre alphabétique : une puce par thème.
 export function catalogThemes(entries: readonly QuizEntry[]): string[] {
   return [...new Set(entries.map((entry) => entry.theme))].sort((a, b) => a.localeCompare(b, 'fr'))
+}
+
+// Onglet du catalogue : quiz classiques ou blind tests.
+export function filterByGameType(entries: readonly QuizEntry[], gameType: QuizGameType): QuizEntry[] {
+  return entries.filter((entry) => entry.gameType === gameType)
 }
 
 // theme null : tous les thèmes.

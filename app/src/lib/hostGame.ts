@@ -1,7 +1,10 @@
 import {
+  audioUrlUpdate,
   launchUpdate,
   transitionUpdate,
+  type AudioUrls,
   type ExpectedPhase,
+  type LaunchAudio,
   type LaunchRefusal,
   type SessionUpdate,
 } from '@shared/hostEngine';
@@ -32,8 +35,9 @@ export async function launchGame(
   questions: readonly Question[],
   nowServer: number,
   limit?: number,
+  audio?: LaunchAudio,
 ): Promise<LaunchOutcome> {
-  const result = launchUpdate(session, questions, nowServer, limit);
+  const result = launchUpdate(session, questions, nowServer, limit, audio);
   if (!result.ok) return result;
   await update(ref(db, `sessions/${code}`), result.update);
   return { ok: true };
@@ -49,14 +53,30 @@ export async function runTransition(
   expected: ExpectedPhase,
   nowServer: number,
   canWrite: () => boolean,
+  audioUrls: AudioUrls = {},
 ): Promise<void> {
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return;
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
   const session = snapshot.val() as Session;
-  const changes = transitionUpdate({ ...session, players: session.players ?? {} }, questions, expected, nowServer);
+  const changes = transitionUpdate(
+    { ...session, players: session.players ?? {} },
+    questions,
+    expected,
+    nowServer,
+    audioUrls,
+  );
   if (!changes || !canWrite()) return;
   await update(ref(db, `sessions/${code}`), changes);
+}
+
+// Blind test : republie l'adresse renouvelée de l'extrait en cours (question, révélation, pause),
+// pour que la TV ne tombe jamais sur une adresse expirée, même après une longue pause.
+export async function publishAudioUrl(code: string, questions: readonly Question[], audioUrls: AudioUrls): Promise<void> {
+  const snapshot = await get(ref(db, `sessions/${code}`));
+  if (!snapshot.exists()) return;
+  const changes = audioUrlUpdate(snapshot.val() as Session, questions, audioUrls);
+  if (changes) await update(ref(db, `sessions/${code}`), changes);
 }
 
 // Action ponctuelle de l'hôte (Pause, Reprise, Terminer, Rejouer) : on relit la session, on

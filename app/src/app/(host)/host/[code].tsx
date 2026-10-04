@@ -23,6 +23,8 @@ import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useAnswer } from '@/hooks/useAnswer';
+import { useAudioUrls } from '@/hooks/useAudioUrls';
+import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useCastGame, type CastGame } from '@/hooks/useCastGame';
 import { useGameQuestions } from '@/hooks/useGameQuestions';
 import { useHostEngine } from '@/hooks/useHostEngine';
@@ -34,7 +36,7 @@ import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { confirmAction } from '@/lib/confirm';
 import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
-import { applyHostAction, deleteGame } from '@/lib/hostGame';
+import { applyHostAction, deleteGame, publishAudioUrl } from '@/lib/hostGame';
 import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
 
 // Écran de l'hôte : salon (HostLobby), puis la partie, pilotée par le
@@ -106,12 +108,17 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   const inProgress = isInProgress(session);
 
   const connection = useHostAbsence(code, session, serverOffsetMs);
+  const gameQuestions = questions.kind === 'ready' ? questions.questions : null;
+  // Blind test : adresses des extraits, récupérées dès le salon et renouvelées avant expiration.
+  const isBlindTestEnabled = useBlindTestEnabled();
+  const audio = useAudioUrls(gameQuestions, isBlindTestEnabled);
   const engine = useHostEngine({
     code,
     session,
-    questions: questions.kind === 'ready' ? questions.questions : null,
+    questions: gameQuestions,
     serverOffsetMs,
     canWrite: connection.canWrite,
+    audioUrls: audio.urls,
   });
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
@@ -122,6 +129,14 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   });
   useLobbyCleanup(code, session);
 
+  // Adresse renouvelée pendant la partie : republiée pour l'extrait en cours (aussi pendant une pause).
+  useEffect(() => {
+    if (!gameQuestions || !connection.canWrite || !inProgress) return;
+    publishAudioUrl(code, gameQuestions, audio.urls).catch((error: unknown) =>
+      console.warn('[audio] Adresse non republiée', error),
+    );
+  }, [code, gameQuestions, audio.urls, connection.canWrite, inProgress]);
+
   // Partie terminée : plus rien à reprendre après une relance de l'app.
   useEffect(() => {
     if (session.status === 'ended') void clearHostedGameCode();
@@ -131,7 +146,14 @@ function HostGame({ code, session }: { code: string; session: Session }) {
     <>
       {inProgress && <KeepScreenOn />}
       {session.status === 'lobby' ? (
-        <HostLobby code={code} session={session} questions={questions} serverOffsetMs={serverOffsetMs} cast={cast} />
+        <HostLobby
+          code={code}
+          session={session}
+          questions={questions}
+          serverOffsetMs={serverOffsetMs}
+          cast={cast}
+          audio={{ ...audio, isEnabled: isBlindTestEnabled }}
+        />
       ) : (
         <HostInGame
           code={code}

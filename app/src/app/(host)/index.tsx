@@ -11,6 +11,7 @@ import { AppColors } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useResumableGame } from '@/hooks/useResumableGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { isPublishedWeb } from '@/lib/platform';
@@ -35,6 +36,7 @@ function CatalogScreen() {
   const catalog = useLiveValue<unknown>('quizzes');
   const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
   const resumableCode = useResumableGame();
+  const isBlindTestEnabled = useBlindTestEnabled();
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
@@ -48,11 +50,22 @@ function CatalogScreen() {
       {catalog.kind === 'error' && (
         <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>
       )}
-      {catalog.kind === 'ready' && <CatalogView entries={entries} onOpenQuiz={openQuiz} banner={resumeButton} />}
+      {catalog.kind === 'ready' && (
+        <CatalogView
+          entries={entries}
+          onOpenQuiz={openQuiz}
+          banner={resumeButton}
+          isBlindTestEnabled={isBlindTestEnabled}
+        />
+      )}
 
-      {/* Démos : en développement seulement (absentes de l'APK publié). */}
-      {__DEV__ && (
-        <View style={styles.debugLinks}>
+      <View style={styles.footerLinks}>
+        <Link href="/about" style={styles.footerLink}>
+          {strings.about.link}
+        </Link>
+        {/* Démos : en développement seulement (absentes de l'APK publié). */}
+        {__DEV__ && (
+          <>
           <Link href="/debug/catalog" style={styles.debugLink}>
             {strings.catalog.demoCatalogLink}
           </Link>
@@ -62,15 +75,22 @@ function CatalogScreen() {
           <Link href="/debug/counter" style={styles.debugLink}>
             {strings.catalog.debugLink}
           </Link>
-        </View>
-      )}
+          </>
+        )}
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  debugLinks: {
+  footerLinks: {
     marginTop: 'auto',
+  },
+  footerLink: {
+    paddingVertical: Spacing.three,
+    color: AppColors.textMuted,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
   debugLink: {
     paddingVertical: Spacing.three,

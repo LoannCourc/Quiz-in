@@ -32,6 +32,7 @@ export default function CatalogDemoScreen() {
     <Screen>
       <CatalogView
         entries={DEMO_CATALOG}
+        isBlindTestEnabled
         onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
       />
     </Screen>
