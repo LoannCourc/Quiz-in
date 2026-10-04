@@ -8,7 +8,7 @@ import {
 import type { CatalogRowId } from '@shared/catalogRows';
 import type { LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
-import type { AnswerMode, DifficultyLevel } from '@shared/types';
+import type { AnswerMode, DifficultyLevel, QuizAudience } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
@@ -107,7 +107,13 @@ export const strings = {
     } satisfies Record<GameOption, { title: string; hint: string }>,
     comingSoon: 'bientôt',
     incompatible: 'incompatible avec ces réglages',
-    createButton: 'Créer la partie',
+    meta: (questionCount: number, minutes: number) =>
+      `${questionCount} questions · environ ${minutes} min · jusqu’à ${MAX_PLAYERS} joueurs`,
+    audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
+    settingsLink: (summary: string) => `Réglages : ${summary}`,
+    settingsTitle: 'Réglages de la partie',
+    settingsDone: 'OK',
+    createButton: 'Choisir ce quiz',
     creating: 'Création…',
     noFreeCode: 'Impossible de trouver un code de partie libre. Réessaie.',
     createFailed: 'La partie n’a pas pu être créée :',
