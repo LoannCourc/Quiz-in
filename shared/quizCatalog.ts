@@ -43,6 +43,9 @@ export type GameOption = 'speedBonus' | 'control' | 'teams'
 // Options développées au MVP : Contrôle (P1) et Groupe (P2) sont affichées mais désactivées.
 export const AVAILABLE_OPTIONS: readonly GameOption[] = ['speedBonus']
 
+// Modes de réponse jouables : la Réponse libre est affichée « bientôt » tant que son lancement est refusé.
+export const AVAILABLE_ANSWER_MODES: readonly AnswerMode[] = ['choice']
+
 // Règles de compatibilité (spec 4.1) : Contrôle seulement en Réponse libre ; en Choix multiples,
 // deux options actives au maximum ; en Réponse libre, les trois peuvent l'être.
 export function areSettingsCompatible(settings: SessionSettings): boolean {

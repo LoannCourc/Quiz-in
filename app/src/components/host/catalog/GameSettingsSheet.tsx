@@ -1,27 +1,40 @@
-import { AVAILABLE_OPTIONS, canEnableOption, withAnswerMode, type GameOption } from '@shared/quizCatalog';
+import {
+  AVAILABLE_ANSWER_MODES,
+  AVAILABLE_OPTIONS,
+  canEnableOption,
+  withAnswerMode,
+  type GameOption,
+} from '@shared/quizCatalog';
 import type { AnswerMode, SessionSettings } from '@shared/types';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
-import { OptionToggle } from '@/components/host/OptionToggle';
+import type { SettingsIconName } from '@/components/host/settings/SettingsIcon';
+import { SettingTile, type SettingTileState } from '@/components/host/settings/SettingTile';
 import { BigButton } from '@/components/ui/BigButton';
-import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-const MODE_CHOICES: Choice<AnswerMode>[] = (['choice', 'free'] as const).map((mode) => ({
-  value: mode,
-  label: strings.quizSetup.answerModes[mode],
-}));
+const ANSWER_MODES: readonly { mode: AnswerMode; icon: SettingsIconName }[] = [
+  { mode: 'choice', icon: 'grid' },
+  { mode: 'free', icon: 'keyboard' },
+];
 
-const OPTIONS: readonly GameOption[] = ['speedBonus', 'control', 'teams'];
+const OPTIONS: readonly { option: GameOption; icon: SettingsIconName }[] = [
+  { option: 'speedBonus', icon: 'bolt' },
+  { option: 'control', icon: 'check' },
+  { option: 'teams', icon: 'group' },
+];
 
-// Raison affichée à côté d'une option qu'on ne peut pas activer, sinon undefined.
-function disabledReason(settings: SessionSettings, option: GameOption): string | undefined {
-  if (!AVAILABLE_OPTIONS.includes(option)) return strings.quizSetup.comingSoon;
-  if (!settings[option] && !canEnableOption(settings, option)) return strings.quizSetup.incompatible;
-  return undefined;
+function answerModeState(settings: SessionSettings, mode: AnswerMode): SettingTileState {
+  if (!AVAILABLE_ANSWER_MODES.includes(mode)) return 'soon';
+  return settings.answerMode === mode ? 'active' : 'idle';
+}
+
+function optionState(settings: SessionSettings, option: GameOption): SettingTileState {
+  if (!AVAILABLE_OPTIONS.includes(option)) return 'soon';
+  if (settings[option]) return 'active';
+  return canEnableOption(settings, option) ? 'idle' : 'blocked';
 }
 
 interface GameSettingsSheetProps {
@@ -31,45 +44,60 @@ interface GameSettingsSheetProps {
   onClose: () => void;
 }
 
-// Feuille des réglages de la partie (mode de réponse, options), ouverte depuis la fiche du quiz.
+// Feuille des réglages de la partie (maquette R2) : tuiles à toucher, « Terminé » fixé en bas (seules
+// les tuiles défilent sur un petit écran). Fermeture aussi par un appui à côté ou le bouton retour.
+// Changer de mode coupe les options devenues incompatibles (withAnswerMode).
 export function GameSettingsSheet({ visible, settings, onChange, onClose }: GameSettingsSheetProps) {
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
         <Pressable accessibilityRole="button" accessibilityLabel={strings.quizSetup.settingsDone} style={styles.backdrop} onPress={onClose} />
-        <ScrollView style={styles.sheet} contentContainerStyle={styles.sheetContent}>
-          <Text style={[textStyles.label, styles.centered]}>{strings.quizSetup.settingsTitle}</Text>
+        <View style={styles.sheet}>
+          <View style={styles.handle} />
+          <Text style={styles.title}>{strings.quizSetup.settingsTitle}</Text>
 
-          <View style={styles.section}>
-            <Text style={textStyles.label}>{strings.quizSetup.answerModeLabel}</Text>
-            <ChoiceChips
-              choices={MODE_CHOICES}
-              selected={settings.answerMode}
-              onSelect={(mode) => onChange(withAnswerMode(settings, mode))}
-            />
-            <Text style={textStyles.muted}>{strings.quizSetup.answerModeHints[settings.answerMode]}</Text>
-          </View>
+          <ScrollView style={styles.scroll} contentContainerStyle={styles.sections}>
+            <Text style={styles.sectionLabel}>{strings.quizSetup.answerModeLabel}</Text>
+            <View style={styles.grid}>
+              {ANSWER_MODES.map(({ mode, icon }) => (
+                <SettingTile
+                  key={mode}
+                  icon={icon}
+                  title={strings.quizSetup.answerModes[mode]}
+                  hint={strings.quizSetup.answerModeHints[mode]}
+                  state={answerModeState(settings, mode)}
+                  role="radio"
+                  onPress={() => onChange(withAnswerMode(settings, mode))}
+                />
+              ))}
+            </View>
 
-          <View style={styles.section}>
-            <Text style={textStyles.label}>{strings.quizSetup.optionsLabel}</Text>
-            {OPTIONS.map((option) => (
-              <OptionToggle
-                key={option}
-                title={strings.quizSetup.options[option].title}
-                hint={strings.quizSetup.options[option].hint}
-                value={settings[option]}
-                disabledReason={disabledReason(settings, option)}
-                onChange={(value) => onChange({ ...settings, [option]: value })}
-              />
-            ))}
-          </View>
+            <Text style={styles.sectionLabel}>{strings.quizSetup.optionsLabel}</Text>
+            <View style={styles.grid}>
+              {OPTIONS.map(({ option, icon }) => (
+                <SettingTile
+                  key={option}
+                  icon={icon}
+                  title={strings.quizSetup.options[option].title}
+                  hint={strings.quizSetup.options[option].hint}
+                  state={optionState(settings, option)}
+                  role="checkbox"
+                  onPress={() => onChange({ ...settings, [option]: !settings[option] })}
+                />
+              ))}
+              {/* Nombre impair de tuiles : la dernière garde une demi-largeur. */}
+              {OPTIONS.length % 2 === 1 && <View style={styles.filler} />}
+            </View>
+          </ScrollView>
 
           <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />
-        </ScrollView>
+        </View>
       </View>
     </Modal>
   );
 }
+
+const TITLE_SIZE = 20;
 
 const styles = StyleSheet.create({
   overlay: {
@@ -82,22 +110,54 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.backdrop,
   },
   sheet: {
-    flexGrow: 0,
+    maxHeight: '92%',
     width: '100%',
     maxWidth: AppSizes.contentMaxWidth,
     alignSelf: 'center',
+    gap: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    paddingTop: Spacing.two,
+    paddingBottom: Spacing.three,
     borderTopLeftRadius: AppSizes.radiusCard,
     borderTopRightRadius: AppSizes.radiusCard,
     backgroundColor: AppColors.inkSurface,
   },
-  sheetContent: {
-    gap: Spacing.four,
-    padding: Spacing.four,
+  handle: {
+    alignSelf: 'center',
+    width: 44,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: AppColors.textMuted,
   },
-  centered: {
-    textAlign: 'center',
+  title: {
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
+    fontSize: TITLE_SIZE,
+    lineHeight: Math.round(TITLE_SIZE * DISPLAY_LINE_HEIGHT),
+    textTransform: 'uppercase',
   },
-  section: {
+  scroll: {
+    flexGrow: 0,
+    flexShrink: 1,
+  },
+  sections: {
     gap: Spacing.two,
+  },
+  sectionLabel: {
+    marginTop: Spacing.one,
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.black,
+    fontSize: 12,
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.two,
+  },
+  filler: {
+    flexBasis: '47%',
+    flexGrow: 1,
   },
 });

@@ -10,14 +10,23 @@ import { Screen } from '@/components/ui/Screen';
 import { DEMO_CATALOG } from './demoCatalog';
 
 // Démo du catalogue et des fiches avec des quiz fictifs (développement uniquement).
-// /debug/catalog?quiz=<id> ouvre une fiche ; « Choisir ce quiz » revient au catalogue sans créer de partie.
+// /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
+// « Choisir ce quiz » revient au catalogue sans créer de partie.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId } = useLocalSearchParams<{ quiz?: string }>();
+  const { quiz: quizId, settings: openSettings } = useLocalSearchParams<{ quiz?: string; settings?: string }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const quiz = DEMO_CATALOG.find((entry) => entry.id === quizId);
 
   if (quiz) {
-    return <QuizDetails quiz={quiz} settings={settings} onSettingsChange={setSettings} onChoose={() => router.back()} />;
+    return (
+      <QuizDetails
+        quiz={quiz}
+        settings={settings}
+        onSettingsChange={setSettings}
+        onChoose={() => router.back()}
+        initialSettingsOpen={openSettings === '1'}
+      />
+    );
   }
   return (
     <Screen>

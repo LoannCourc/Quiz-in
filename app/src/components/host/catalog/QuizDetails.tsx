@@ -27,6 +27,8 @@ interface QuizDetailsProps {
   onChoose: () => void;
   isCreating?: boolean;
   error?: string | null;
+  // Démo (/debug/catalog) : feuille des réglages déjà ouverte.
+  initialSettingsOpen?: boolean;
 }
 
 function posterWidthFor(screenHeight: number): number {
@@ -36,9 +38,9 @@ function posterWidthFor(screenHeight: number): number {
 
 // Fiche d'un quiz (maquettes S2 et R2) : grande affiche, informations, puis « Choisir ce quiz » et la
 // carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
-export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error }: QuizDetailsProps) {
+export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error, initialSettingsOpen = false }: QuizDetailsProps) {
   const { height } = useWindowDimensions();
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const level = difficultyLevel(quiz.difficulty);
   const questionCount = Math.min(quiz.questionCount, QUESTIONS_PER_GAME);
 

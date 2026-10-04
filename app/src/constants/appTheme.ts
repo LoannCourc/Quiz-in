@@ -78,6 +78,8 @@ export const AppColors = {
   onTag: Palette.ink,
   // Salon de l'hôte : panneaux sombres (carte du code, liste des joueurs), liens et bloc « sans TV ».
   panel: 'rgba(23, 6, 70, 0.55)',
+  // Tuile de réglage inactive (l'active est en accent, texte encre).
+  tileIdle: 'rgba(255, 255, 255, 0.08)',
   link: Palette.cyan,
   // Fond du QR code et de ses marges : contraste maximal avec les modules encre.
   qrBackground: Palette.white,
