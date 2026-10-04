@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 // Icônes des réglages, dessinées avec des formes simples dans un carré de 24 (aucune dépendance,
 // même rendu sur Android et le web) : curseurs, grille, clavier, éclair, coche, groupe, chevron.
-export type SettingsIconName = 'sliders' | 'grid' | 'keyboard' | 'bolt' | 'check' | 'group' | 'chevron';
+export type SettingsIconName = 'sliders' | 'grid' | 'keyboard' | 'bolt' | 'check' | 'group' | 'next' | 'chevron';
 
 const SIZE = 24;
 const STROKE = 2.5;
@@ -69,6 +69,14 @@ function renderIcon(name: SettingsIconName, color: string) {
           <View style={[styles.shoulders, { left: 0 }, line]} />
           <View style={[styles.head, { left: 14 }, line]} />
           <View style={[styles.shoulders, { left: 11 }, line]} />
+        </>
+      );
+    case 'next':
+      // « Suivant » : triangle vers la droite (bordures) suivi d'une barre verticale.
+      return (
+        <>
+          <View style={[styles.nextTriangle, { borderLeftColor: color }]} />
+          <View style={[styles.nextBar, fill]} />
         </>
       );
     case 'chevron':
@@ -184,6 +192,27 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 6.5,
     borderWidth: 2,
     borderBottomWidth: 0,
+  },
+  // Triangle plein pointant à droite : sommets (4, 4), (4, 20), (17, 12).
+  nextTriangle: {
+    position: 'absolute',
+    left: 4,
+    top: 4,
+    width: 0,
+    height: 0,
+    borderLeftWidth: 13,
+    borderTopWidth: 8,
+    borderBottomWidth: 8,
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+  },
+  nextBar: {
+    position: 'absolute',
+    left: 18,
+    top: 4,
+    width: 3,
+    height: 16,
+    borderRadius: 1.5,
   },
   // Carré dont on garde deux côtés, tourné de 45° : « › ».
   chevron: {

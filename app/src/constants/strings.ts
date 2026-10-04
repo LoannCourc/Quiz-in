@@ -112,6 +112,8 @@ export const strings = {
       free: 'On tape la réponse',
     } satisfies Record<AnswerMode, string>,
     optionsLabel: 'Options',
+    rhythmLabel: 'Rythme',
+    stepByStep: { title: 'Pas à pas', hint: 'Tu passes à la suite' },
     options: {
       speedBonus: { title: 'Rapidité', hint: 'Points bonus' },
       control: { title: 'Contrôle', hint: 'Valider' },

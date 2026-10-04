@@ -88,6 +88,20 @@ export function GameSettingsSheet({ visible, settings, onChange, onClose }: Game
               {/* Nombre impair de tuiles : la dernière garde une demi-largeur. */}
               {OPTIONS.length % 2 === 1 && <View style={styles.filler} />}
             </View>
+
+            {/* Rythme : hors des options (ne compte pas dans la limite de deux en Choix multiples). */}
+            <Text style={styles.sectionLabel}>{strings.quizSetup.rhythmLabel}</Text>
+            <View style={styles.grid}>
+              <SettingTile
+                icon="next"
+                title={strings.quizSetup.stepByStep.title}
+                hint={strings.quizSetup.stepByStep.hint}
+                state={settings.stepByStep ? 'active' : 'idle'}
+                role="checkbox"
+                onPress={() => onChange({ ...settings, stepByStep: !settings.stepByStep })}
+              />
+              <View style={styles.filler} />
+            </View>
           </ScrollView>
 
           <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />

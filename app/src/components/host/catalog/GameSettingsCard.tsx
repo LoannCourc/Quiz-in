@@ -6,11 +6,13 @@ import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-// Résumé des réglages : « Choix multiples · Rapidité activée » ou « … · sans Rapidité ».
-// Contrôle et Groupe ne sont pas encore disponibles : ils n'apparaissent pas.
+// Résumé des réglages : « Choix multiples · Rapidité activée » ou « … · sans Rapidité », puis
+// « · Pas à pas » s'il est activé. Contrôle et Groupe ne sont pas encore disponibles : ils n'apparaissent pas.
 export function settingsSummary(settings: SessionSettings): string {
   const speedBonus = settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff;
-  return `${strings.quizSetup.answerModes[settings.answerMode]} · ${speedBonus}`;
+  const parts = [strings.quizSetup.answerModes[settings.answerMode], speedBonus];
+  if (settings.stepByStep) parts.push(strings.quizSetup.stepByStep.title);
+  return parts.join(' · ');
 }
 
 interface GameSettingsCardProps {
