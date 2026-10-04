@@ -167,8 +167,10 @@ const styles = StyleSheet.create({
   iconButton: {
     width: 48,
     height: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: AppColors.surface,
   },
   grid: {
     flexDirection: 'row',

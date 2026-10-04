@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
@@ -7,9 +7,16 @@ import { Spacing } from '@/constants/theme';
 // Seul le quiz est jouable au MVP : les autres types sont visibles, marqués « bientôt », non cliquables.
 const SOON_TYPES: readonly GameType[] = ['blindTest', 'lyrics'];
 
+// Une seule ligne, jamais de retour à la ligne : tient en 320 de large ; sur un écran plus étroit
+// (ou avec une police agrandie dans les réglages du téléphone), la rangée défile horizontalement.
 export function GameTypeTabs() {
   return (
-    <View style={styles.row} accessibilityRole="tablist">
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.scroll}
+      contentContainerStyle={styles.row}
+      accessibilityRole="tablist">
       <View accessibilityRole="tab" accessibilityState={{ selected: true }} style={[styles.tab, styles.activeTab]}>
         <Text style={styles.activeLabel}>{strings.catalog.gameTypes.quiz}</Text>
       </View>
@@ -20,22 +27,28 @@ export function GameTypeTabs() {
           accessibilityRole="tab"
           accessibilityState={{ disabled: true }}
           accessibilityLabel={strings.catalog.gameTypeSoon(strings.catalog.gameTypes[type])}
-          style={[styles.tab, styles.soonTab]}>
+          style={styles.tab}>
           <Text style={styles.soonLabel}>{strings.catalog.gameTypes[type]}</Text>
           <Text style={styles.badge}>{strings.catalog.soon}</Text>
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
+const LABEL_SIZE = 15;
+
 const styles = StyleSheet.create({
+  // Défile jusqu'aux bords de l'écran (même principe que les puces de thème) ; flexGrow 0 : sur le
+  // web, une ScrollView horizontale s'étire sinon en hauteur.
+  scroll: {
+    flexGrow: 0,
+    marginHorizontal: -Spacing.three,
+  },
   row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     alignItems: 'flex-end',
-    columnGap: Spacing.four,
-    rowGap: Spacing.two,
+    gap: Spacing.three,
+    paddingHorizontal: Spacing.three,
   },
   tab: {
     flexDirection: 'row',
@@ -48,27 +61,27 @@ const styles = StyleSheet.create({
   activeTab: {
     borderBottomColor: AppColors.accent,
   },
-  soonTab: {
-    opacity: 0.8,
-  },
   activeLabel: {
     color: AppColors.text,
     fontFamily: AppFonts.black,
-    fontSize: AppSizes.textBody,
+    fontSize: LABEL_SIZE,
   },
   soonLabel: {
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
-    fontSize: AppSizes.textBody,
+    fontSize: LABEL_SIZE,
   },
+  // Étiquette discrète : petite, contour cyan plutôt qu'un aplat.
   badge: {
-    paddingHorizontal: Spacing.one,
-    borderRadius: 6,
+    paddingHorizontal: 3,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: AppColors.soonBadge,
     overflow: 'hidden',
-    backgroundColor: AppColors.soonBadge,
-    color: AppColors.onSoonBadge,
+    color: AppColors.soonBadge,
     fontFamily: AppFonts.black,
-    fontSize: 10,
+    fontSize: 8,
+    letterSpacing: 0.3,
     textTransform: 'uppercase',
   },
 });
