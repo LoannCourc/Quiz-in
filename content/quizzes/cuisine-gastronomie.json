@@ -1,0 +1,99 @@
+{
+  "id": "cuisine-gastronomie",
+  "title": "Cuisine et gastronomie",
+  "theme": "Loisirs",
+  "description": "Spécialités régionales, sauces, épices et gestes du chef : un quiz qui donne faim, à faire avant le dîner.",
+  "audience": "all",
+  "poster": "red",
+  "addedAt": "2026-09-02",
+  "featuredRank": 9,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "cui-01",
+      "text": "Quel est l'ingrédient principal du guacamole ?",
+      "options": ["L'avocat", "La tomate", "Le concombre", "Le poivron"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["avocat", "l'avocat", "avocats"],
+      "difficulty": 1,
+      "explanation": "Une recette d'origine mexicaine, avec du citron vert, de l'oignon et de la coriandre."
+    },
+    {
+      "id": "cui-02",
+      "text": "De quelle région française la choucroute est-elle la grande spécialité ?",
+      "options": ["La Bretagne", "La Provence", "L'Alsace", "L'Auvergne"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["alsace", "l'alsace"],
+      "difficulty": 1
+    },
+    {
+      "id": "cui-03",
+      "text": "Quel fromage est indispensable à une tartiflette ?",
+      "options": ["Le comté", "Le reblochon", "Le roquefort", "Le camembert"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["reblochon", "le reblochon"],
+      "difficulty": 2,
+      "explanation": "Un fromage de Haute-Savoie, fondu sur des pommes de terre, des lardons et des oignons."
+    },
+    {
+      "id": "cui-04",
+      "text": "Quelle épice, l'une des plus chères au monde, provient d'une fleur de crocus ?",
+      "options": ["Le cumin", "Le curcuma", "Le paprika", "Le safran"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["safran", "le safran"],
+      "difficulty": 2,
+      "explanation": "On récolte à la main les stigmates de la fleur : il en faut des milliers pour quelques grammes."
+    },
+    {
+      "id": "cui-05",
+      "text": "Quelle sauce associe jaunes d'œufs, beurre, échalote, vinaigre et estragon ?",
+      "options": ["La béarnaise", "La hollandaise", "La mayonnaise", "La béchamel"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["béarnaise", "sauce béarnaise", "la béarnaise"],
+      "difficulty": 3,
+      "explanation": "La hollandaise lui ressemble, mais se fait au jus de citron, sans échalote ni estragon."
+    },
+    {
+      "id": "cui-06",
+      "text": "De quel pays les sushis sont-ils la spécialité emblématique ?",
+      "options": ["La Chine", "La Corée", "Le Japon", "La Thaïlande"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["japon", "le japon"],
+      "difficulty": 1
+    },
+    {
+      "id": "cui-07",
+      "text": "En cuisine, que désigne une « julienne » ?",
+      "options": ["Une sauce au vin blanc", "Des légumes taillés en fins bâtonnets", "Un gâteau roulé", "Une soupe froide"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["légumes en bâtonnets", "des légumes taillés en fins bâtonnets", "fins bâtonnets", "bâtonnets"],
+      "difficulty": 2
+    },
+    {
+      "id": "cui-08",
+      "text": "Quel gâteau breton porte un nom qui signifie « gâteau au beurre » ?",
+      "options": ["Le clafoutis", "Le canelé", "Le baba", "Le kouign-amann"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["kouign-amann", "kouign amann"],
+      "difficulty": 2,
+      "explanation": "En breton, « kouign » veut dire gâteau et « amann » beurre."
+    },
+    {
+      "id": "cui-09",
+      "text": "Le canelé, petit gâteau parfumé au rhum et à la vanille, est une spécialité de quelle ville ?",
+      "options": ["Lyon", "Nantes", "Bordeaux", "Lille"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["bordeaux"],
+      "difficulty": 2
+    },
+    {
+      "id": "cui-10",
+      "text": "Quel légume donne au bortsch sa couleur rouge ?",
+      "options": ["La tomate", "La betterave", "Le poivron", "Le radis"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["betterave", "la betterave"],
+      "difficulty": 3,
+      "explanation": "Le bortsch est une soupe très répandue en Europe de l'Est."
+    }
+  ]
+}

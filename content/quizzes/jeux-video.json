@@ -1,0 +1,100 @@
+{
+  "id": "jeux-video",
+  "title": "Jeux vidéo",
+  "theme": "Loisirs",
+  "description": "Mario, Pikachu, Lara Croft et les Creepers : un quiz pour les joueurs de toutes les générations de consoles.",
+  "audience": "all",
+  "poster": "cyan",
+  "addedAt": "2026-10-03",
+  "featuredRank": 6,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "jv-01",
+      "text": "Quel plombier moustachu est la mascotte de Nintendo ?",
+      "options": ["Mario", "Luigi", "Yoshi", "Toad"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["mario", "super mario"],
+      "difficulty": 1,
+      "explanation": "Luigi est son frère, Yoshi son fidèle dinosaure."
+    },
+    {
+      "id": "jv-02",
+      "text": "Dans « Pac-Man », que mange le héros en parcourant le labyrinthe ?",
+      "options": ["Des pièces d'or", "Des pac-gommes", "Des champignons", "Des étoiles"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["pac-gommes", "des pac-gommes", "pac-gomme", "gommes", "pastilles"],
+      "difficulty": 2,
+      "explanation": "Les super pac-gommes lui permettent un moment de manger les fantômes."
+    },
+    {
+      "id": "jv-03",
+      "text": "Dans « Tetris », de combien de carrés chaque pièce est-elle formée ?",
+      "options": ["3", "4", "5", "6"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["4", "quatre"],
+      "difficulty": 3,
+      "explanation": "Le nom du jeu vient de « tétra », quatre en grec, et de « tennis », le sport préféré de son créateur."
+    },
+    {
+      "id": "jv-04",
+      "text": "Dans « The Legend of Zelda », comment s'appelle le héros que l'on dirige ?",
+      "options": ["Zelda", "Ganon", "Epona", "Link"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["link"],
+      "difficulty": 2,
+      "explanation": "Zelda est la princesse, Ganon le grand méchant et Epona la jument de Link."
+    },
+    {
+      "id": "jv-05",
+      "text": "Dans « Minecraft », quelle créature verte explose quand elle s'approche du joueur ?",
+      "options": ["Le zombie", "L'Enderman", "Le Creeper", "Le squelette"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["creeper", "le creeper"],
+      "difficulty": 1
+    },
+    {
+      "id": "jv-06",
+      "text": "Dans « Pokémon », de quel type est Pikachu ?",
+      "options": ["Électrik", "Feu", "Plante", "Eau"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["électrik", "électrique"],
+      "difficulty": 2
+    },
+    {
+      "id": "jv-07",
+      "text": "Quelle princesse Mario doit-il souvent sauver des griffes de Bowser ?",
+      "options": ["Daisy", "Zelda", "Peach", "Harmonie"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["peach", "princesse peach"],
+      "difficulty": 2,
+      "explanation": "La princesse Peach règne sur le Royaume Champignon."
+    },
+    {
+      "id": "jv-08",
+      "text": "Dans quelle série de jeux incarne-t-on l'aventurière Lara Croft ?",
+      "options": ["Uncharted", "Prince of Persia", "Resident Evil", "Tomb Raider"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["tomb raider"],
+      "difficulty": 2
+    },
+    {
+      "id": "jv-09",
+      "text": "En quelle année la première Game Boy est-elle sortie au Japon ?",
+      "options": ["1985", "1989", "1993", "1996"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["1989"],
+      "difficulty": 3,
+      "explanation": "Elle était vendue avec « Tetris » en Amérique du Nord et en Europe."
+    },
+    {
+      "id": "jv-10",
+      "text": "Quelle entreprise française est à l'origine de la série « Assassin's Creed » ?",
+      "options": ["Activision", "Electronic Arts", "Ubisoft", "Square Enix"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["ubisoft"],
+      "difficulty": 2,
+      "explanation": "Le premier épisode a été développé par son studio de Montréal et est sorti en 2007."
+    }
+  ]
+}

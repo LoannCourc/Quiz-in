@@ -1,0 +1,102 @@
+{
+  "id": "culture-pointue",
+  "title": "Pour les experts : culture pointue",
+  "theme": "Culture générale",
+  "description": "Littérature, art, sciences et géographie : dix questions corsées pour départager les grosses têtes de la soirée.",
+  "audience": "experts",
+  "poster": "violet",
+  "addedAt": "2026-08-25",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "cpt-01",
+      "text": "Quel est le plus petit État du monde par sa superficie ?",
+      "options": ["Le Vatican", "Monaco", "Saint-Marin", "Le Liechtenstein"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["vatican", "le vatican", "cité du vatican"],
+      "difficulty": 2,
+      "explanation": "Moins d'un demi-kilomètre carré, enclavé dans Rome."
+    },
+    {
+      "id": "cpt-02",
+      "text": "Qui a écrit « À la recherche du temps perdu » ?",
+      "options": ["Gustave Flaubert", "Émile Zola", "Marcel Proust", "Honoré de Balzac"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["marcel proust", "proust"],
+      "difficulty": 2,
+      "explanation": "Un cycle de sept romans, célèbre notamment pour l'épisode de la madeleine."
+    },
+    {
+      "id": "cpt-03",
+      "text": "Quel peintre a réalisé « La Persistance de la mémoire », le tableau aux montres molles ?",
+      "options": ["René Magritte", "Salvador Dalí", "Joan Miró", "Max Ernst"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["salvador dalí", "dalí"],
+      "difficulty": 3,
+      "explanation": "Une œuvre surréaliste de 1931, conservée au MoMA de New York."
+    },
+    {
+      "id": "cpt-04",
+      "text": "Quelle est la capitale de la Mongolie ?",
+      "options": ["Almaty", "Bichkek", "Tachkent", "Oulan-Bator"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["oulan-bator", "oulan bator", "ulaanbaatar"],
+      "difficulty": 3,
+      "explanation": "Almaty est au Kazakhstan, Bichkek au Kirghizistan, Tachkent en Ouzbékistan."
+    },
+    {
+      "id": "cpt-05",
+      "text": "Combien de faces possède un icosaèdre ?",
+      "options": ["12", "16", "20", "24"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["20", "vingt"],
+      "difficulty": 3,
+      "explanation": "Vingt faces triangulaires : c'est la forme du dé à vingt faces des jeux de rôle."
+    },
+    {
+      "id": "cpt-06",
+      "text": "Quel philosophe grec fut le précepteur d'Alexandre le Grand ?",
+      "options": ["Aristote", "Platon", "Socrate", "Diogène"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["aristote"],
+      "difficulty": 3,
+      "explanation": "Aristote avait lui-même été l'élève de Platon, lui-même disciple de Socrate."
+    },
+    {
+      "id": "cpt-07",
+      "text": "Quel compositeur français a écrit le « Boléro » ?",
+      "options": ["Claude Debussy", "Maurice Ravel", "Erik Satie", "Georges Bizet"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["maurice ravel", "ravel"],
+      "difficulty": 2,
+      "explanation": "Créé en 1928, il répète le même thème en montant peu à peu en puissance."
+    },
+    {
+      "id": "cpt-08",
+      "text": "En quelle année le mur de Berlin est-il tombé ?",
+      "options": ["1985", "1987", "1989", "1991"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["1989"],
+      "difficulty": 1,
+      "explanation": "Dans la nuit du 9 au 10 novembre 1989."
+    },
+    {
+      "id": "cpt-09",
+      "text": "Quel élément chimique a pour symbole la lettre W ?",
+      "options": ["Le vanadium", "Le xénon", "Le tellure", "Le tungstène"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["tungstène", "le tungstène", "wolfram"],
+      "difficulty": 3,
+      "explanation": "W vient de « wolfram », son autre nom, encore utilisé en allemand."
+    },
+    {
+      "id": "cpt-10",
+      "text": "Quel écrivain colombien a écrit « Cent ans de solitude » ?",
+      "options": ["Jorge Luis Borges", "Gabriel García Márquez", "Pablo Neruda", "Mario Vargas Llosa"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["gabriel garcía márquez", "garcía márquez", "márquez"],
+      "difficulty": 3,
+      "explanation": "Prix Nobel de littérature en 1982 ; le roman se déroule dans le village imaginaire de Macondo."
+    }
+  ]
+}

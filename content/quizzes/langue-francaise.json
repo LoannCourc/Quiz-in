@@ -1,0 +1,99 @@
+{
+  "id": "langue-francaise",
+  "title": "Langue française : expressions et orthographe",
+  "theme": "Culture générale",
+  "description": "Expressions imagées, mots rares, pluriels et pièges d'orthographe : un quiz pour les amoureux de la langue.",
+  "audience": "experts",
+  "poster": "gold",
+  "addedAt": "2026-10-02",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "lfr-01",
+      "text": "Que signifie l'expression « poser un lapin » ?",
+      "options": ["Faire une blague", "Ne pas venir à un rendez-vous", "Partir très vite", "Dire un mensonge"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["ne pas venir à un rendez-vous", "ne pas venir", "faire faux bond"],
+      "difficulty": 1
+    },
+    {
+      "id": "lfr-02",
+      "text": "Que désigne le mot « thuriféraire » au sens figuré ?",
+      "options": ["Un flatteur, un admirateur zélé", "Un marchand de tissus", "Un soldat romain", "Un guérisseur"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["un flatteur, un admirateur zélé", "flatteur", "un flatteur", "admirateur", "adulateur"],
+      "difficulty": 3,
+      "explanation": "Au sens propre, le thuriféraire porte l'encensoir ; au figuré, il « encense » quelqu'un."
+    },
+    {
+      "id": "lfr-03",
+      "text": "Que signifie « tirer les vers du nez » à quelqu'un ?",
+      "options": ["Le soigner", "Le faire rire", "Le faire parler pour obtenir des secrets", "Le punir"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["le faire parler pour obtenir des secrets", "le faire parler", "faire parler", "obtenir des secrets", "soutirer des informations"],
+      "difficulty": 2
+    },
+    {
+      "id": "lfr-04",
+      "text": "Quel est le pluriel de « cheval » ?",
+      "options": ["Des chevals", "Des chevails", "Des chevales", "Des chevaux"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["chevaux", "des chevaux"],
+      "difficulty": 2,
+      "explanation": "La plupart des noms en -al font leur pluriel en -aux. Exceptions : bals, carnavals, festivals…"
+    },
+    {
+      "id": "lfr-05",
+      "text": "Lequel de ces noms d'animaux est correctement orthographié ?",
+      "options": ["Rhinocéros", "Hipopotame", "Crocrodile", "Giraphe"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["rhinocéros"],
+      "difficulty": 2,
+      "explanation": "On écrit hippopotame, crocodile et girafe."
+    },
+    {
+      "id": "lfr-06",
+      "text": "Lequel de ces mots est correctement orthographié ?",
+      "options": ["Aggrandir", "Dilemne", "Connexion", "Bizzare"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["connexion"],
+      "difficulty": 3,
+      "explanation": "On écrit agrandir, dilemme et bizarre."
+    },
+    {
+      "id": "lfr-07",
+      "text": "Que signifie l'adjectif « sibyllin » ?",
+      "options": ["Très rapide", "Moqueur", "Généreux", "Obscur, difficile à comprendre"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["obscur, difficile à comprendre", "obscur", "énigmatique", "mystérieux", "difficile à comprendre"],
+      "difficulty": 3,
+      "explanation": "Comme les oracles des sibylles, les prophétesses de l'Antiquité."
+    },
+    {
+      "id": "lfr-08",
+      "text": "Que signifie l'expression « faire chou blanc » ?",
+      "options": ["Réussir du premier coup", "Échouer, ne rien obtenir", "Rougir de honte", "Cuisiner pour rien"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["échouer, ne rien obtenir", "échouer", "ne rien obtenir", "rater", "échec"],
+      "difficulty": 3
+    },
+    {
+      "id": "lfr-09",
+      "text": "Quel est le féminin du nom « vengeur » ?",
+      "options": ["Vengeuse", "Vengeure", "Vengeresse", "Vengeante"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["vengeresse", "une vengeresse"],
+      "difficulty": 3,
+      "explanation": "Comme « enchanteur, enchanteresse » ou « pécheur, pécheresse »."
+    },
+    {
+      "id": "lfr-10",
+      "text": "Quelle figure de style consiste à exagérer volontairement, comme dans « mourir de rire » ?",
+      "options": ["L'hyperbole", "La litote", "La métaphore", "L'oxymore"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["hyperbole", "l'hyperbole"],
+      "difficulty": 3,
+      "explanation": "La litote fait l'inverse : elle dit moins pour suggérer plus (« ce n'est pas mauvais »)."
+    }
+  ]
+}
