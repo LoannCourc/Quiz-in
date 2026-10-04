@@ -47,8 +47,14 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
 
 ## Blind test (spec 15)
 
-Un blind test a `"gameType": "blindTest"`. Chaque question a le texte « Quel est ce morceau ? », quatre
-propositions « Titre – Artiste » et un champ `music` sans identifiant :
+Un blind test a `"gameType": "blindTest"`. Chaque question a l'un de ces énoncés, avec quatre propositions
+du même genre et de la même époque, et un champ `music` sans identifiant :
+
+- « Quel est ce titre ? » : propositions = titres ; la bonne proposition cite le titre ;
+- « Quel artiste ? » : propositions = artistes ; la bonne proposition cite l'artiste ;
+- « Quel est ce morceau ? » (« Tubes francophones ») : propositions « Titre – Artiste ».
+
+Dans un même quiz, alterner titre et artiste, et équilibrer les positions des bonnes réponses (A, B, C, D).
 
 ```json
 "music": { "artist": "Stromae", "title": "Alors on danse", "startS": 5 }
@@ -56,18 +62,23 @@ propositions « Titre – Artiste » et un champ `music` sans identifiant :
 
 - `startS` (facultatif, 0 par défaut) : début de l'extrait dans la preview de 30 s. L'extrait joue
   pendant tout le timer de la question (20 s) : `startS + timer` ≤ 30, soit `startS` de 0 à 10.
-- La bonne proposition doit citer le titre ; les `acceptedAnswers` contiennent le titre, et
-  « titre – artiste » pour que la bonne proposition soit acceptée en réponse libre.
-- Mauvaises propositions : tubes d'autres artistes de la même époque (au plus un titre du même
-  artiste), jamais la bonne réponse d'une autre question du quiz.
+- Les `acceptedAnswers` contiennent la bonne proposition (titre, artiste, ou « titre – artiste »), pour
+  qu'elle soit acceptée en réponse libre.
+- Mauvaises propositions : tubes ou artistes de la même époque (au plus un titre du même artiste), jamais
+  la bonne réponse d'une autre question du quiz ni l'artiste d'un autre morceau du quiz.
+- Un morceau n'apparaît que dans un seul blind test. Public familial : aucun morceau à paroles explicites.
 
 Les identifiants Deezer ne sont **jamais** écrits dans le quiz :
 
 1. `npm run music:lookup -- <quizId>` (réseau) : recherche chaque morceau dans l'API Deezer et écrit
    `music-check/<quizId>.json` (à cocher) et `music-check/<quizId>.md` (lecture, avec les liens).
-2. Écouter chaque lien, vérifier la version (pas de live, remix, reprise ni karaoké). Si une
-   alternative est meilleure, la copier dans `found`. Puis passer `verified` à `true`.
-3. `npm run build` : un blind test n'est importé que si tous ses morceaux sont vérifiés ; sinon il
+   Le morceau proposé a un extrait, n'est pas marqué explicite par Deezer et est choisi dans cet ordre :
+   le bon artiste, le titre exact, une version originale (pas de live, remix, reprise, karaoké ni
+   réenregistrement), puis la plus écoutée (popularité Deezer, indiquée dans le `.md`).
+2. Écouter chaque lien, vérifier la version et le passage joué (`startS`). Si une alternative est
+   meilleure, la copier dans `found`. Puis passer `verified` à `true`.
+3. `npm run build` : un blind test n'est importé que si tous ses morceaux sont vérifiés (et aucun
+   n'est explicite) ; sinon il
    est exclu, avec la liste de ce qui manque (les autres quiz sont importés normalement).
 
 Changer l'artiste ou le titre d'un morceau annule sa vérification : relancer `music:lookup`.

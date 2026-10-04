@@ -115,18 +115,32 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
 // error : contenu invalide (bloque la génération, comme toute autre erreur de format).
 type TrackCheck = { kind: 'track'; track: MusicTrack } | { kind: 'pending' | 'error'; reason: string }
 
+// Énoncés d'un blind test et ce que la bonne proposition doit citer (spec 15) : « Quel est ce titre ? »
+// (propositions : titres), « Quel artiste ? » (propositions : artistes), ou « Quel est ce morceau ? »
+// (propositions « Titre – Artiste »).
+const BLIND_TEST_PROMPTS: Record<string, 'title' | 'artist'> = {
+  'Quel est ce morceau ?': 'title',
+  'Quel est ce titre ?': 'title',
+  'Quel artiste ?': 'artist',
+}
+
 function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
   const { title, artist, startS } = question.music
-  // La bonne proposition doit citer le titre du morceau : évite d'associer le mauvais extrait.
+  const asked = BLIND_TEST_PROMPTS[question.text]
+  if (!asked) return { kind: 'error', reason: `énoncé de blind test attendu : ${Object.keys(BLIND_TEST_PROMPTS).join(' / ')}` }
+  // La bonne proposition doit citer le titre (ou l'artiste) du morceau : évite d'associer le mauvais extrait.
+  const cited = asked === 'title' ? title : artist
   const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
-  if (!correct.includes(normalizeAnswer(title))) {
-    return { kind: 'error', reason: `la bonne proposition ne cite pas « ${title} »` }
+  if (!correct.includes(normalizeAnswer(cited))) {
+    return { kind: 'error', reason: `la bonne proposition ne cite pas « ${cited} »` }
   }
   const entry = readMusicCheck(quizId)?.tracks.find((track) => track.questionId === question.id)
   if (!entry) return { kind: 'pending', reason: `jamais recherché : npm run music:lookup -- ${quizId}` }
   if (!sameQuery(entry, question.music)) return { kind: 'pending', reason: 'artiste ou titre modifié : relancer music:lookup' }
   if (!entry.found?.previewAvailable) return { kind: 'pending', reason: 'aucun morceau avec extrait trouvé' }
+  // Public familial : jamais de version marquée explicite par Deezer.
+  if (entry.found.explicit) return { kind: 'pending', reason: 'version marquée explicite : choisir une autre version ou un autre morceau' }
   if (!entry.verified) return { kind: 'pending', reason: 'non vérifié (verified: false)' }
   const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS })
   if (!track || !fitsBlindTestTimer(track, question.timeLimit)) {

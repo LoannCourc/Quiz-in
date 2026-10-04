@@ -401,7 +401,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 ## 15. Blind test
 
-**Principe.** Un quiz de type `blindTest` remplace l'énoncé par un extrait musical. Le son n'est joué **que par l'écran TV** (récepteur Cast, ou navigateur en plan B), jamais par les téléphones. Les joueurs répondent comme d'habitude, en Choix multiples (propositions « Titre – Artiste »). Le chronométrage, les points et le classement ne changent pas.
+**Principe.** Un quiz de type `blindTest` remplace l'énoncé par un extrait musical. Le son n'est joué **que par l'écran TV** (récepteur Cast, ou navigateur en plan B), jamais par les téléphones. Les joueurs répondent comme d'habitude, en Choix multiples. Énoncés : « Quel est ce titre ? » (propositions : titres) et « Quel artiste ? » (propositions : artistes), en alternance dans un même quiz ; « Quel est ce morceau ? » (propositions « Titre – Artiste ») reste accepté. Le chronométrage, les points et le classement ne changent pas.
 
 **Source des extraits.** Previews de 30 s de l'API publique Deezer, usage gratuit et non commercial, avec mention « Extrait audio et informations : Deezer » à chaque révélation sur la TV, sur la fiche d'un blind test et dans l'écran « À propos et crédits » de l'app. La source est interchangeable : seule l'app de l'hôte l'interroge (`app/src/lib/audio/`, interface `AudioSource`) ; la TV ne connaît qu'une adresse. **Aucune publication tant que Deezer n'a pas répondu par écrit.**
 
@@ -413,9 +413,9 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 - Pendant QUESTION : l'extrait joue **pendant tout le timer** (20 s, celui des Choix multiples), à partir d'un début propre à chaque morceau (de 0 à 10 s : début + timer ≤ 30 s, durée de la preview). Il démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
 - Fin du timer : le son s'éteint avec lui, par un fondu court (0,4 s). Tous les joueurs ont répondu avant : le son s'arrête aussitôt, par un fondu très court (0,15 s). Chaque démarrage ou reprise part d'un volume nul (fondu de 0,08 s) : pas d'à-coup. **Pas de musique pendant la révélation** (une musique originale rythmera la partie plus tard).
 - Pause : le son s'arrête ; reprise à la même position.
-- Rien ne révèle le morceau avant la révélation : pas de titre, d'artiste, de pochette ni de lecteur visible ; la TV affiche « Quel est ce morceau ? », les propositions et un indicateur d'écoute.
+- Rien ne révèle le morceau avant la révélation : pas de titre, d'artiste, de pochette ni de lecteur visible ; la TV affiche l'énoncé (« Quel est ce titre ? »…), les propositions et un indicateur d'écoute.
 - Extrait illisible après un nouvel essai : « Extrait indisponible », l'hôte peut passer la question.
 - Plan B (navigateur d'un PC) : le navigateur exige un geste ; la TV affiche « Cliquez sur cet écran pour activer le son », un clic suffit pour toute la partie. En Cast, le son démarre seul (vérifié sur la box de test, Chrome 92).
 
-**Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
+**Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). Public familial : aucun morceau marqué explicite par Deezer ; un morceau n'apparaît que dans un seul blind test. `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API (version originale de préférence, jamais une version explicite) et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
 

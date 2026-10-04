@@ -26,6 +26,10 @@ export interface FoundTrack {
   durationS: number
   previewAvailable: boolean
   link: string
+  // Paroles marquées explicites par Deezer (absent dans les fichiers antérieurs à ce champ).
+  explicit?: boolean
+  // Popularité Deezer (plus c'est haut, plus le morceau est écouté) : aide à choisir la difficulté.
+  rank?: number
 }
 
 export interface MusicCheckEntry {
