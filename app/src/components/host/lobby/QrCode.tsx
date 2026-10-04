@@ -1,4 +1,4 @@
-import qrcode from 'qrcode-generator';
+import createQrCode from 'qrcode-generator';
 import { useMemo } from 'react';
 import { PixelRatio, StyleSheet, View } from 'react-native';
 
@@ -13,7 +13,7 @@ interface DarkRun {
 // Modules sombres du QR code, regroupés en segments horizontaux (un View par segment).
 // Correction d'erreur M : bon compromis entre robustesse et taille des modules.
 function darkRuns(text: string): { count: number; runs: DarkRun[] } {
-  const qr = qrcode(0, 'M');
+  const qr = createQrCode(0, 'M');
   qr.addData(text);
   qr.make();
   const count = qr.getModuleCount();

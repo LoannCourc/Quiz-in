@@ -74,9 +74,10 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
    - **Mode de réponse** : *Réponse libre* (les joueurs écrivent) ou *Choix multiples* (4 propositions).
    - **Options** : Rapidité (P0), Contrôle (P1), Groupe (P2).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
-4. Appuie sur **« Afficher sur la TV »**, choisit sa TV dans la liste Cast.
+4. Arrive dans le **salon** : titre et méta du quiz, carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast ; une fois connectée, le bouton passe au second plan et affiche « TV connectée »), lien discret **« Je n'ai pas de TV »** (masqué quand la TV est connectée), liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
+   - Le lien des joueurs et le QR code ne sont **pas** affichés par défaut. « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** : QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager » (partage du téléphone), « Masquer », et le lien de l'écran pour le plan B (section 6.6). Ce bloc est replié à chaque ouverture du salon.
 5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
-6. L'hôte choisit son propre pseudo et avatar : il rejoint comme joueur.
+6. L'hôte choisit son propre pseudo et avatar (formulaire au-dessus de la liste, puis lien « Modifier » sur sa ligne) : il rejoint comme joueur. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
 7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris).
 8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**.
 9. À la fin : classement final, puis **Rejouer** (même quiz) ou **Retour au catalogue**.
@@ -159,7 +160,7 @@ Les durées sont des constantes de configuration, ajustables après les tests.
   - Le serveur peut mettre jusqu'à une minute à détecter la coupure. Dès qu'il perd la connexion, le téléphone de l'hôte gèle la partie (aucune transition, contrôles masqués, message « Connexion perdue… la partie est en attente »). Au retour du réseau, il met la partie en pause avec le temps qui restait au moment de la perte.
   - Joueurs et TV : si une phase (3-2-1, question, révélation, classement) dépasse son échéance de plus de 5 s sans changer, ils affichent « En attente de l'hôte… » à la place du chrono figé. Le message d'absence ci-dessus reste prioritaire.
 - **Cast interrompu** : la question ne s'affiche que sur la TV. Si la session Cast se termine sans que l'hôte l'ait demandé, la partie se met en pause (même pause que le bouton Pause) et l'hôte voit « Cast interrompu : reconnecte la TV, puis reprends ». Il relance le Cast : la TV reprend à l'état courant, car l'état est stocké sur le serveur. La reprise est manuelle.
-- **Affichage TV sans Cast (plan B)** : l'adresse du récepteur avec le code (`https://quiz-in-7dbd6.web.app/?code=CODE`, affichée dans le lobby de l'hôte) s'ouvre dans n'importe quel navigateur en plein écran, par exemple sur un PC branché en HDMI. L'affichage est identique à celui du Cast, de 1280×720 à 1920×1080.
+- **Affichage TV sans Cast (plan B)** : l'adresse du récepteur avec le code (`https://quiz-in-7dbd6.web.app/?code=CODE`, copiable depuis le bloc « Rejoindre sans TV » du salon de l'hôte) s'ouvre dans n'importe quel navigateur en plein écran, par exemple sur un PC branché en HDMI. L'affichage est identique à celui du Cast, de 1280×720 à 1920×1080.
 - **Code de salle** : 4 caractères, sans caractères ambigus (pas de O/0, I/1). Le QR code encode un lien du type `https://quizin-play.web.app/join/CODE` (site Firebase Hosting des joueurs, distinct de celui du récepteur TV). Une partie est supprimée automatiquement 24 heures après sa fin, ou dès que l'hôte quitte la partie.
 
 ### 6.7 Animations et sons

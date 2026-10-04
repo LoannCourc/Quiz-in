@@ -137,7 +137,6 @@ export const strings = {
       planBLink: 'Écran sur un PC : copier le lien de l’écran',
       planBCopied: 'Lien de l’écran copié : ouvre-le en plein écran sur le PC.',
     },
-    receiverLabel: 'Sans Cast : ouvre ce lien dans un navigateur en plein écran (TV ou PC branché en HDMI)',
     copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
@@ -162,12 +161,9 @@ export const strings = {
   },
   // Cast de l'hôte vers la TV (spec 4.1 et 6.6).
   cast: {
-    title: 'Écran TV',
     showButton: 'Afficher sur la TV',
     connectedButton: 'TV connectée',
     iconLabel: 'Choisir la TV',
-    connected: 'TV connectée : le lobby s’affiche sur la TV.',
-    notConnected: 'Choisis ta TV dans la liste (même Wi-Fi que ton téléphone).',
   },
   hostGame: {
     inProgressTitle: 'Partie en cours',
