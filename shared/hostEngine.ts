@@ -192,12 +192,16 @@ export function transitionUpdate(
   if (session.status !== expected.status || session.currentIndex !== expected.currentIndex) return null
   const { answerMode } = session.settings
   const questionCount = session.questionCount ?? questions.length
-  const upcoming = questions[session.status === 'scores' ? session.currentIndex + 1 : session.currentIndex]
+  const suspense = session.settings.suspense === true
+  // Question qui démarre ensuite : la suivante après le classement, ou après la révélation en Suspense.
+  const isBeforeNextQuestion = session.status === 'scores' || (session.status === 'reveal' && suspense)
+  const upcoming = questions[isBeforeNextQuestion ? session.currentIndex + 1 : session.currentIndex]
   const context = {
     answerMode,
     currentIndex: session.currentIndex,
     questionCount,
     stepByStep: session.settings.stepByStep === true,
+    suspense,
   }
   const phase = nextPhase(session.status, context, upcoming?.timeLimit)
   if (!phase || session.status === 'lobby') return null
@@ -410,7 +414,13 @@ export type AwaitingNext = 'ranking' | 'nextQuestion' | 'finalRanking'
 // suivante, ou classement final après la dernière question.
 function awaitingNextOf(session: Session): AwaitingNext | null {
   if (!isAwaitingHost(session)) return null
-  if (session.status === 'reveal') return 'ranking'
+  // Suspense : pas de classement intermédiaire, la révélation mène à la suite.
+  if (session.status === 'reveal' && !session.settings.suspense) return 'ranking'
+  return afterQuestionTarget(session)
+}
+
+// Après une question : question suivante, ou classement final après la dernière.
+function afterQuestionTarget(session: Session): 'nextQuestion' | 'finalRanking' {
   return session.currentIndex + 1 < (session.questionCount ?? 0) ? 'nextQuestion' : 'finalRanking'
 }
 
@@ -448,9 +458,9 @@ function skipTarget(session: Session): SkipTarget | null {
     case 'question':
       return 'reveal'
     case 'reveal':
-      return 'scores'
+      return session.settings.suspense ? afterQuestionTarget(session) : 'scores'
     case 'scores':
-      return session.currentIndex + 1 < (session.questionCount ?? 0) ? 'nextQuestion' : 'finalRanking'
+      return afterQuestionTarget(session)
     default:
       return null
   }

@@ -17,6 +17,8 @@ export interface FlowContext {
   questionCount: number
   // Pas à pas : la révélation et le classement n'ont pas de durée, seule l'action de l'hôte fait avancer.
   stepByStep?: boolean
+  // Suspense : pas de classement intermédiaire (révélation → question suivante, ou fin de partie).
+  suspense?: boolean
 }
 
 export interface Phase {
@@ -32,10 +34,18 @@ export function questionDurationS(answerMode: AnswerMode, timeLimitS?: number): 
   return timeLimitS ?? QUESTION_DURATION_S[answerMode]
 }
 
+// Après une question (classement, ou révélation en Suspense) : question suivante, ou fin de partie.
+function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext, timeLimitS?: number): Phase {
+  const nextIndex = currentIndex + 1
+  return nextIndex < questionCount
+    ? { status: 'question', currentIndex: nextIndex, durationS: questionDurationS(answerMode, timeLimitS) }
+    : { status: 'ended', currentIndex, durationS: null }
+}
+
 // Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED, états P1).
 // timeLimitS : durée propre à la question suivante, si elle en a une.
 export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?: number): Phase | null {
-  const { answerMode, currentIndex, questionCount, stepByStep = false } = context
+  const { answerMode, currentIndex, stepByStep = false, suspense = false } = context
   switch (status) {
     case 'lobby':
       return { status: 'starting', currentIndex: 0, durationS: STARTING_DURATION_S }
@@ -44,13 +54,11 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
     case 'question':
       return { status: 'reveal', currentIndex, durationS: stepByStep ? null : REVEAL_DURATION_S[answerMode] }
     case 'reveal':
-      return { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
-    case 'scores': {
-      const nextIndex = currentIndex + 1
-      return nextIndex < questionCount
-        ? { status: 'question', currentIndex: nextIndex, durationS: questionDurationS(answerMode, timeLimitS) }
-        : { status: 'ended', currentIndex, durationS: null }
-    }
+      return suspense
+        ? afterQuestion(context, timeLimitS)
+        : { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
+    case 'scores':
+      return afterQuestion(context, timeLimitS)
     case 'validation':
     case 'paused':
     case 'ended':
@@ -75,7 +83,9 @@ export function nextQuestionCountdown(session: SessionTiming): NextQuestionCount
   // Pas à pas : pas de compte à rebours pendant l'attente (révélation et classement).
   if (isAwaitingHost(session)) return null
   if (session.status === 'reveal') {
-    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + SCORES_DURATION_S * 1000, isLastQuestion }
+    // Suspense : pas de classement après la révélation, la question suivante arrive à sa fin.
+    const scoresMs = session.settings.suspense ? 0 : SCORES_DURATION_S * 1000
+    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + scoresMs, isLastQuestion }
   }
   if (session.status === 'scores') {
     return { startsAt: session.phaseStartedAt - revealMs, endsAt: session.phaseEndsAt, isLastQuestion }

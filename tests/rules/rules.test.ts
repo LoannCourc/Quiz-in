@@ -320,6 +320,32 @@ describe('Pas à pas (settings.stepByStep)', () => {
   })
 })
 
+describe('Suspense (settings.suspense)', () => {
+  const suspenseSettings = { answerMode: 'choice', speedBonus: true, control: false, teams: false, suspense: true }
+
+  test('réglage booléen accepté, valeur non booléenne refusée', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null, settings: suspenseSettings })))
+    await assertFails(db(HOST).ref(`${SESSION}/settings/suspense`).set(1))
+  })
+
+  test('moteur : révélation puis question suivante directement, accepté par les règles', async () => {
+    const gameQuestions = selectGameQuestions(QUESTIONS.slice(0, 2))
+    const start = makeSession({
+      status: 'reveal',
+      currentIndex: 0,
+      questionCount: 2,
+      phaseStartedAt: Date.now() - 5_000,
+      phaseEndsAt: Date.now() + 1_000,
+      settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false, suspense: true },
+    })
+    await seed({ sessions: { [CODE]: start } })
+    const current = (await readAsAdmin(SESSION)) as Session
+    const update = transitionUpdate(current, gameQuestions, { status: 'reveal', currentIndex: 0 }, Date.now())
+    await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    expect(await readAsAdmin(SESSION)).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+})
+
 describe('Nombre de questions (questionCount)', () => {
   // Écritures du lancement : un seul update() multi-chemins, comme le fera le moteur de l'hôte.
   function launch(uid: string, questionCount: unknown) {

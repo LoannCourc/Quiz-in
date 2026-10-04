@@ -47,6 +47,7 @@
           "control": { ".validate": "newData.isBoolean()" },
           "teams": { ".validate": "newData.isBoolean()" },
           "stepByStep": { ".validate": "newData.isBoolean()" },
+          "suspense": { ".validate": "newData.isBoolean()" },
           "$other": { ".validate": false }
         },
         "currentIndex": {

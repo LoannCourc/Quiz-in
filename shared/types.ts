@@ -136,6 +136,9 @@ export interface SessionSettings {
   // Pas à pas : après la révélation, la partie attend que l'hôte appuie sur « Question suivante ».
   // Absent dans les parties créées avant ce réglage : désactivé.
   stepByStep?: boolean;
+  // Suspense : pas de classement en cours de partie ; la révélation mène directement à la question
+  // suivante, et le classement n'apparaît qu'à la fin. Absent : désactivé.
+  suspense?: boolean;
 }
 
 export interface Player {

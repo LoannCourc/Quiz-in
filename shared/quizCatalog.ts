@@ -38,7 +38,17 @@ export function estimateQuizMinutes(
   return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
 }
 
-export type GameOption = 'speedBonus' | 'control' | 'teams'
+// Durée estimée d'une partie selon ses réglages, en minutes arrondies au-dessus : sans les classements
+// intermédiaires en Suspense ; null en Pas à pas (la durée dépend de l'hôte : « à votre rythme »).
+export function estimateGameMinutes(questionCount: number, settings: SessionSettings): number | null {
+  if (settings.stepByStep) return null
+  const { answerMode } = settings
+  const scoresS = settings.suspense ? 0 : SCORES_DURATION_S
+  const perQuestionS = QUESTION_DURATION_S[answerMode] + REVEAL_DURATION_S[answerMode] + scoresS
+  return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
+}
+
+export type GameOption ='speedBonus' | 'control' | 'teams'
 
 // Options développées au MVP : Contrôle (P1) et Groupe (P2) sont affichées mais désactivées.
 export const AVAILABLE_OPTIONS: readonly GameOption[] = ['speedBonus']

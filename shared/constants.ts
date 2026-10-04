@@ -50,6 +50,7 @@ export const DEFAULT_SESSION_SETTINGS: SessionSettings = {
   control: false,
   teams: false,
   stepByStep: false,
+  suspense: false,
 };
 
 // Réponse libre : une faute de frappe tolérée si la réponse attendue a au moins ce nombre de lettres.
