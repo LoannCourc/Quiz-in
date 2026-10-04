@@ -20,17 +20,25 @@ export function ScreenBackground({ children, background = 'main' }: BackgroundPr
 interface ScreenProps extends BackgroundProps {
   // Fixé en bas de l'écran, hors de la zone qui défile : toujours visible.
   footer?: ReactNode;
+  // false : la page ne défile pas, la colonne occupe la hauteur restante (une zone interne défile
+  // à sa place, comme la liste des joueurs du salon).
+  scrollable?: boolean;
 }
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Le défilement garde le formulaire
 // accessible quand le clavier du téléphone est ouvert.
-export function Screen({ children, background, footer }: ScreenProps) {
+export function Screen({ children, background, footer, scrollable = true }: ScreenProps) {
+  const column = <View style={[styles.column, !scrollable && styles.fixedColumn]}>{children}</View>;
   return (
     <ScreenBackground background={background}>
       <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-          <View style={styles.column}>{children}</View>
-        </ScrollView>
+        {scrollable ? (
+          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+            {column}
+          </ScrollView>
+        ) : (
+          <View style={[styles.scrollContent, styles.fixedContent]}>{column}</View>
+        )}
         {footer && <View style={styles.footer}>{footer}</View>}
       </SafeAreaView>
     </ScreenBackground>
@@ -49,6 +57,15 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     padding: Spacing.three,
+  },
+  // Sans défilement : hauteur bornée à l'écran (minHeight 0), le contenu ne la dépasse pas.
+  fixedContent: {
+    flex: 1,
+    minHeight: 0,
+  },
+  fixedColumn: {
+    flex: 1,
+    minHeight: 0,
   },
   footer: {
     width: '100%',

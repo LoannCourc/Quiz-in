@@ -76,6 +76,12 @@ export const AppColors = {
   onSoonBadge: Palette.ink,
   tags: { difficulty: Palette.gold, audience: Palette.green, gameType: Palette.cyan },
   onTag: Palette.ink,
+  // Salon de l'hôte : panneaux sombres (carte du code, liste des joueurs), liens et bloc « sans TV ».
+  panel: 'rgba(23, 6, 70, 0.55)',
+  link: Palette.cyan,
+  // Fond du QR code et de ses marges : contraste maximal avec les modules encre.
+  qrBackground: Palette.white,
+  qrModule: Palette.ink,
 } as const;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).
@@ -143,6 +149,11 @@ export const AppSizes = {
   featuredNumber: 108,
   chipHeight: 40,
   tabUnderline: 3,
+  // Salon : chiffres du code, avatars de la liste, QR code (scanné de près, de téléphone à téléphone).
+  lobbyCode: 56,
+  lobbyAvatar: 40,
+  qrSize: 152,
+  qrQuietZone: 4,
 } as const;
 
 // Ombre dure décalée, sans flou.

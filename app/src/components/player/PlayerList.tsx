@@ -13,7 +13,7 @@ interface PlayerListProps {
 }
 
 // Joueurs connectés, en direct : le joueur mis en évidence d'abord, puis par ordre alphabétique.
-function visiblePlayers(players: LobbyPlayers, highlightedUid?: PlayerId) {
+export function visiblePlayers(players: LobbyPlayers, highlightedUid?: PlayerId) {
   return Object.entries(players)
     .filter(([id, player]) => player.connected || id === highlightedUid)
     .map(([id, player]) => ({ id, ...player }))
