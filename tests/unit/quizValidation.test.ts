@@ -10,8 +10,23 @@ const summary = {
   difficulty: 1.8,
   difficultyLabel: 'Moyen',
   questionCount: 10,
-  estimatedMinutes: 8,
+  estimatedMinutes: 6,
+  description: 'Histoire, sciences et vie quotidienne.',
+  audience: 'all',
+  poster: 'pink',
+  addedAt: '2026-10-04',
+  featuredRank: 1,
 }
+
+// Fiche importée avant l'ajout des champs d'affichage du catalogue.
+const {
+  description: _description,
+  audience: _audience,
+  poster: _poster,
+  addedAt: _addedAt,
+  featuredRank: _featuredRank,
+  ...legacySummary
+} = summary
 
 const question = {
   id: 'q-0001',
@@ -35,6 +50,29 @@ describe('parseQuizSummary', () => {
     expect(parseQuizSummary({ ...summary, gameType: 'blindtest' })).toBeNull()
     expect(parseQuizSummary('quiz')).toBeNull()
     expect(parseQuizSummary(null)).toBeNull()
+  })
+
+  test('fiche sans champs d’affichage : valeurs par défaut, sans place dans le Top 10', () => {
+    expect(parseQuizSummary(legacySummary)).toEqual({
+      ...legacySummary,
+      description: '',
+      audience: 'all',
+      poster: 'violet',
+      addedAt: '',
+    })
+  })
+
+  test('champs d’affichage mal formés : valeurs par défaut, la fiche reste valide', () => {
+    const parsed = parseQuizSummary({
+      ...summary,
+      description: 'x'.repeat(161),
+      audience: 'adults',
+      poster: '#ff0000',
+      addedAt: '04/10/2026',
+      featuredRank: 11,
+    })
+    expect(parsed).toEqual({ ...legacySummary, description: '', audience: 'all', poster: 'violet', addedAt: '' })
+    expect(parseQuizSummary({ ...summary, featuredRank: 1.5 })).not.toHaveProperty('featuredRank')
   })
 })
 

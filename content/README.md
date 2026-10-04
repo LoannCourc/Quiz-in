@@ -9,6 +9,11 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
   "id": "culture-generale-1",
   "title": "Culture générale : les bases",
   "theme": "Culture générale",
+  "description": "Histoire, sciences, arts et vie quotidienne : un quiz pour tous les âges.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-04",
+  "featuredRank": 1,
   "reviewStatus": "provisoire, à vérifier",
   "questions": [
     {
@@ -26,6 +31,14 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
 ```
 
 - `id` : minuscules, chiffres et tirets ; identique au nom du fichier.
+- `theme` : texte court ; chaque thème distinct devient une puce de filtre du catalogue.
+- `description` : 160 caractères au plus, affichée sur la fiche du quiz.
+- `audience` : `all` (Tout public), `kids` (Enfants) ou `experts` (Experts).
+- `poster` : couleur de l'affiche, parmi `pink`, `blue`, `green`, `orange`, `red`, `cyan`, `violet`, `gold`.
+- `addedAt` : date d'ajout `AAAA-MM-JJ` (rangée « Nouveautés » : les plus récents d'abord).
+- `featuredRank` : facultatif, place de 1 à 10 dans le « Top 10 cette semaine », choisie à la main.
+  Une place ne peut être donnée qu'à un seul quiz. Pour changer le Top 10 : modifier les fichiers,
+  régénérer, puis réimporter `/quizzes`.
 - `reviewStatus` : note de relecture, jamais importée dans la base.
 - Au moins 10 questions. `explanation` et `timeLimit` (en secondes) sont facultatifs.
 - Chaque question doit marcher dans les deux modes : la bonne proposition doit être acceptée en

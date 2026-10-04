@@ -18,6 +18,12 @@ export type Difficulty = 1 | 2 | 3;
 // Niveau d'un quiz, déduit de la moyenne des difficultés de ses questions (spec 8).
 export type DifficultyLevel = 'easy' | 'medium' | 'hard';
 
+// Public visé par un quiz (pastille de la fiche, rangée « Pour les experts »).
+export type QuizAudience = 'all' | 'kids' | 'experts';
+
+// Palette du dégradé de l'affiche d'un quiz ; les couleurs sont définies par l'app (appTheme).
+export type PosterPalette = 'pink' | 'blue' | 'green' | 'orange' | 'red' | 'cyan' | 'violet' | 'gold';
+
 // Fiche d'un quiz dans le catalogue (nœud quizzes/{quizId}, spec 7).
 export interface QuizSummary {
   title: string;
@@ -28,6 +34,13 @@ export interface QuizSummary {
   difficultyLabel: string;
   questionCount: number;
   estimatedMinutes: number;
+  description: string;
+  audience: QuizAudience;
+  poster: PosterPalette;
+  // Date d'ajout AAAA-MM-JJ (rangée « Nouveautés ») ; vide si inconnue.
+  addedAt: string;
+  // Place dans le Top 10, choisie à la main (1 à 10) ; absente si le quiz n'y figure pas.
+  featuredRank?: number;
 }
 
 export type ChoiceOptions = [string, string, string, string];

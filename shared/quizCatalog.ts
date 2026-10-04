@@ -1,4 +1,5 @@
 import {
+  DEFAULT_SESSION_SETTINGS,
   DIFFICULTY_EASY_MAX,
   DIFFICULTY_MEDIUM_MAX,
   QUESTION_DURATION_S,
@@ -27,9 +28,13 @@ export function difficultyLevel(average: number): DifficultyLevel {
   return 'hard'
 }
 
-// Durée estimée en minutes, calculée sur le mode le plus long (Réponse libre), arrondie au-dessus.
-export function estimateQuizMinutes(questionCount: number): number {
-  const perQuestionS = QUESTION_DURATION_S.free + REVEAL_DURATION_S.free + SCORES_DURATION_S
+// Durée estimée en minutes, arrondie au-dessus. Par défaut, celle du mode proposé à la création
+// de la partie (Choix multiples).
+export function estimateQuizMinutes(
+  questionCount: number,
+  answerMode: AnswerMode = DEFAULT_SESSION_SETTINGS.answerMode,
+): number {
+  const perQuestionS = QUESTION_DURATION_S[answerMode] + REVEAL_DURATION_S[answerMode] + SCORES_DURATION_S
   return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
 }
 

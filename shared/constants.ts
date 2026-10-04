@@ -1,5 +1,5 @@
 // Constantes de jeu issues de la spec (sections 5 et 6), ajustables après les tests.
-import type { AnswerMode, SessionSettings } from './types';
+import type { AnswerMode, PosterPalette, QuizAudience, SessionSettings } from './types';
 
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 20;
@@ -9,6 +9,13 @@ export const QUESTIONS_PER_GAME = 10;
 // Partie courte proposée en développement seulement (tests manuels).
 export const DEV_SHORT_GAME_QUESTIONS = 3;
 export const CHOICE_COUNT = 4;
+
+// Catalogue de l'hôte (spec 4.1 et 7).
+export const QUIZ_DESCRIPTION_MAX_LENGTH = 160;
+export const FEATURED_QUIZ_COUNT = 10;
+export const NEW_QUIZ_COUNT = 10;
+export const QUIZ_AUDIENCES: readonly QuizAudience[] = ['all', 'kids', 'experts'];
+export const POSTER_PALETTES: readonly PosterPalette[] = ['pink', 'blue', 'green', 'orange', 'red', 'cyan', 'violet', 'gold'];
 
 // Durées en secondes.
 export const STARTING_DURATION_S = 3;

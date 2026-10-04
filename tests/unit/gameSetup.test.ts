@@ -76,9 +76,11 @@ describe('catalogue', () => {
     expect(difficultyLevel(2.34)).toBe('hard')
   })
 
-  // Mode le plus long (Réponse libre) : 3 + 10 × (30 + 6 + 4) = 403 s, arrondi à 7 minutes.
-  test('durée estimée de 10 questions : 7 minutes', () => {
-    expect(estimateQuizMinutes(10)).toBe(7)
+  // Choix multiples (par défaut) : 3 + 10 × (20 + 6 + 5) = 313 s, arrondi à 6 minutes.
+  // Réponse libre : 3 + 10 × (30 + 6 + 5) = 413 s, arrondi à 7 minutes.
+  test('durée estimée de 10 questions : 6 minutes, 7 en Réponse libre', () => {
+    expect(estimateQuizMinutes(10)).toBe(6)
+    expect(estimateQuizMinutes(10, 'free')).toBe(7)
   })
 })
 

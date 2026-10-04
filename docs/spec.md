@@ -179,7 +179,13 @@ quizzes/{quizId}                      // lisible par tout utilisateur connecté
   title, theme, gameType: "quiz", language: "fr"
   difficulty: 2.3                     // moyenne des questions
   difficultyLabel: "Moyen"
-  questionCount: 10, estimatedMinutes: 10
+  questionCount: 10, estimatedMinutes: 6     // durée estimée en Choix multiples (mode par défaut)
+  description                         // 160 caractères au plus
+  audience: "all|kids|experts"        // Tout public, Enfants, Experts
+  poster: "pink|blue|green|orange|red|cyan|violet|gold"   // palette du dégradé de l'affiche
+  addedAt: "AAAA-MM-JJ"               // rangée « Nouveautés »
+  featuredRank?: 1 à 10               // place dans le « Top 10 cette semaine », choisie à la main (pas de statistiques)
+  // Champs d'affichage facultatifs à la lecture : valeur par défaut si absents (fiches importées avant leur ajout)
 
 questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par tout utilisateur connecté au MVP (voir « Limites connues »)
   (voir section 8)

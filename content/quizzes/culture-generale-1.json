@@ -2,6 +2,11 @@
   "id": "culture-generale-1",
   "title": "Culture générale : les bases",
   "theme": "Culture générale",
+  "description": "Histoire, sciences, arts et vie quotidienne : un quiz pour tous les âges, idéal pour lancer la soirée.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-04",
+  "featuredRank": 1,
   "reviewStatus": "provisoire, à vérifier",
   "questions": [
     {

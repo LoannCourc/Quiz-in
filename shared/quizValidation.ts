@@ -1,6 +1,12 @@
-import { CHOICE_COUNT } from './constants'
+import {
+  CHOICE_COUNT,
+  FEATURED_QUIZ_COUNT,
+  POSTER_PALETTES,
+  QUIZ_AUDIENCES,
+  QUIZ_DESCRIPTION_MAX_LENGTH,
+} from './constants'
 import { isValidQuizId } from './quizCatalog'
-import type { ChoiceOptions, Difficulty, Question, QuizSummary } from './types'
+import type { ChoiceOptions, Difficulty, PosterPalette, Question, QuizAudience, QuizSummary } from './types'
 
 // Validation des lectures de quizzes/ et questions/ : la base peut contenir des données mal formées
 // (import manuel, ancien format). Les entrées invalides sont ignorées au lieu de faire planter l'écran.
@@ -40,6 +46,39 @@ function nodeEntries(value: unknown): { entries: [string, unknown][]; invalidRoo
   return { entries: Object.entries(value), invalidRoot: false }
 }
 
+function isQuizAudience(value: unknown): value is QuizAudience {
+  return QUIZ_AUDIENCES.includes(value as QuizAudience)
+}
+
+function isPosterPalette(value: unknown): value is PosterPalette {
+  return POSTER_PALETTES.includes(value as PosterPalette)
+}
+
+export function isQuizDate(value: unknown): value is string {
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
+}
+
+export function isFeaturedRank(value: unknown): value is number {
+  return Number.isInteger(value) && (value as number) >= 1 && (value as number) <= FEATURED_QUIZ_COUNT
+}
+
+// Champs d'affichage du catalogue : facultatifs à la lecture (fiches importées avant leur ajout).
+// Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
+function catalogDisplayFields(value: Record<string, unknown>): Pick<
+  QuizSummary,
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank'
+> {
+  const { description, audience, poster, addedAt, featuredRank } = value
+  return {
+    description:
+      typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
+    audience: isQuizAudience(audience) ? audience : 'all',
+    poster: isPosterPalette(poster) ? poster : 'violet',
+    addedAt: isQuizDate(addedAt) ? addedAt : '',
+    ...(isFeaturedRank(featuredRank) && { featuredRank }),
+  }
+}
+
 // Fiche d'un quiz (quizzes/{quizId}), ou null si elle est absente ou mal formée.
 export function parseQuizSummary(value: unknown): QuizSummary | null {
   if (!isRecord(value)) return null
@@ -47,7 +86,17 @@ export function parseQuizSummary(value: unknown): QuizSummary | null {
   if (!isNonEmptyString(title) || !isNonEmptyString(theme) || !isNonEmptyString(difficultyLabel)) return null
   if (gameType !== 'quiz' || language !== 'fr') return null
   if (!isFiniteNumber(difficulty) || !isFiniteNumber(questionCount) || !isFiniteNumber(estimatedMinutes)) return null
-  return { title, theme, gameType, language, difficulty, difficultyLabel, questionCount, estimatedMinutes }
+  return {
+    title,
+    theme,
+    gameType,
+    language,
+    difficulty,
+    difficultyLabel,
+    questionCount,
+    estimatedMinutes,
+    ...catalogDisplayFields(value),
+  }
 }
 
 // Catalogue complet (nœud quizzes) : fiches valides et nombre d'entrées ignorées.
