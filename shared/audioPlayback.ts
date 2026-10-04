@@ -33,6 +33,30 @@ export function audioPlan(audio: PublicAudio, clock: PhaseClock, nowServer: numb
   return { kind: 'play', positionS: audio.startS + elapsedS, volume: Math.min(1, remainingMs / AUDIO_FADE_OUT_MS) }
 }
 
+// Ordre à donner au lecteur de la TV, selon le plan et ce qu'il joue déjà :
+// - start : démarrer à la position voulue (première lecture, TV en retard, reprise après une pause) ;
+// - volume : il joue déjà cet extrait, on règle seulement le volume (jamais de déplacement en pleine
+//   lecture : un recalage produirait un saut audible) ;
+// - fadeOut : arrêter, avec un fondu très court (révélation, fin anticipée, pause) ;
+// - none : rien à faire.
+export type AudioCommand =
+  | { kind: 'start'; positionS: number; volume: number }
+  | { kind: 'volume'; volume: number }
+  | { kind: 'fadeOut' }
+  | { kind: 'none' }
+
+export interface PlayerSnapshot {
+  // Vrai si le son joue et n'est pas en train de s'éteindre.
+  isPlaying: boolean
+  url: string | null
+}
+
+export function audioCommand(plan: AudioPlan, player: PlayerSnapshot, url: string): AudioCommand {
+  if (plan.kind === 'silent') return player.isPlaying ? { kind: 'fadeOut' } : { kind: 'none' }
+  if (player.isPlaying && player.url === url) return { kind: 'volume', volume: plan.volume }
+  return { kind: 'start', positionS: plan.positionS, volume: plan.volume }
+}
+
 // Heure d'expiration (ms) d'une adresse de preview Deezer, lue dans son jeton « exp= » (en secondes),
 // ou null si l'adresse n'en contient pas.
 export function deezerPreviewExpiresAt(url: string): number | null {

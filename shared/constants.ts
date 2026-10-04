@@ -94,5 +94,9 @@ export const AUDIO_URL_MIN_VALIDITY_MS = 5 * 60_000;
 export const AUDIO_URL_REFRESH_INTERVAL_MS = 60_000;
 // Fondu de fin, sur les dernières millisecondes du timer (pas de musique pendant la révélation).
 export const AUDIO_FADE_OUT_MS = 400;
+// Fondus du lecteur de la TV : entrée au démarrage, sortie à tout arrêt (fin anticipée, pause…), jamais
+// de coupure sèche (elle produit un clic ou une bouffée de son sur certaines TV).
+export const AUDIO_FADE_IN_MS = 80;
+export const AUDIO_STOP_FADE_MS = 150;
 // Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).
 export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';

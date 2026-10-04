@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { audioPlan, deezerPreviewExpiresAt, extractOf } from '../../shared/audioPlayback'
+import { audioCommand, audioPlan, deezerPreviewExpiresAt, extractOf } from '../../shared/audioPlayback'
 import { AUDIO_FADE_OUT_MS, QUESTION_DURATION_S } from '../../shared/constants'
 import {
   audioUrlUpdate,
@@ -58,6 +58,56 @@ describe('extrait et lecture sur la TV (audioPlan)', () => {
   test('expiration lue dans le jeton de l’adresse Deezer', () => {
     expect(deezerPreviewExpiresAt(URL)).toBe(1_791_107_825_000)
     expect(deezerPreviewExpiresAt('https://exemple.fr/a.mp3')).toBeNull()
+  })
+})
+
+describe('ordres au lecteur de la TV (audioCommand)', () => {
+  const timerS = QUESTION_DURATION_S.choice
+  const audio: PublicAudio = { url: URL, startS: 5, durationS: timerS }
+  const start = 1_000_000
+  const question = { status: 'question' as const, phaseStartedAt: start, phaseEndsAt: start + timerS * 1000 }
+  const playing = { isPlaying: true, url: URL }
+  const stopped = { isPlaying: false, url: null }
+
+  test('début de question : démarrage à la position calée sur le serveur', () => {
+    expect(audioCommand(audioPlan(audio, question, start + 2_000), stopped, URL)).toEqual({
+      kind: 'start',
+      positionS: 7,
+      volume: 1,
+    })
+  })
+
+  test('en pleine lecture : volume seulement, jamais de déplacement (pas de saut audible)', () => {
+    expect(audioCommand(audioPlan(audio, question, start + 9_000), playing, URL)).toEqual({ kind: 'volume', volume: 1 })
+  })
+
+  test('tout le monde a répondu (passage à la révélation) : fondu de sortie, jamais de redémarrage', () => {
+    const reveal = { status: 'reveal' as const, phaseStartedAt: start + 8_000, phaseEndsAt: start + 14_000 }
+    expect(audioCommand(audioPlan(audio, reveal, start + 8_000), playing, URL)).toEqual({ kind: 'fadeOut' })
+    // Ensuite, pendant toute la révélation : plus rien (pas de relance).
+    expect(audioCommand(audioPlan(audio, reveal, start + 10_000), stopped, URL)).toEqual({ kind: 'none' })
+  })
+
+  test('timer écoulé : fondu sur la fin, puis arrêt ; pause : arrêt', () => {
+    const ended = audioPlan(audio, question, start + timerS * 1000)
+    expect(audioCommand(ended, playing, URL)).toEqual({ kind: 'fadeOut' })
+    const paused = { status: 'paused' as const, phaseStartedAt: start, phaseEndsAt: 0 }
+    expect(audioCommand(audioPlan(audio, paused, start + 3_000), playing, URL)).toEqual({ kind: 'fadeOut' })
+  })
+
+  test('reprise après une pause : redémarrage à la position calée', () => {
+    // La reprise décale phaseStartedAt de la durée de la pause : la position reste la bonne.
+    const resumed = { status: 'question' as const, phaseStartedAt: start + 60_000, phaseEndsAt: start + 80_000 }
+    expect(audioCommand(audioPlan(audio, resumed, start + 63_000), stopped, URL)).toMatchObject({
+      kind: 'start',
+      positionS: 8,
+    })
+  })
+
+  test('nouvelle question : démarrage du nouvel extrait, même si l’ancien joue encore', () => {
+    expect(audioCommand(audioPlan(audio, question, start), { isPlaying: true, url: 'https://autre.mp3' }, URL)).toMatchObject({
+      kind: 'start',
+    })
   })
 })
 
