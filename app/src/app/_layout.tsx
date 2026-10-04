@@ -10,16 +10,16 @@ import { useColorScheme } from 'react-native';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import { ScreenBackground } from '@/components/ui/Screen';
-import { AppColors, AppFonts } from '@/constants/appTheme';
+import { AppColors, AppFontNames } from '@/constants/appTheme';
 
 SplashScreen.preventAutoHideAsync();
 
 // Seules les graisses utilisées par la DA (import par graisse : les autres ne sont pas embarquées).
 const FONTS = {
-  [AppFonts.display]: BowlbyOne_400Regular,
-  [AppFonts.bold]: Nunito_700Bold,
-  [AppFonts.extraBold]: Nunito_800ExtraBold,
-  [AppFonts.black]: Nunito_900Black,
+  [AppFontNames.display]: BowlbyOne_400Regular,
+  [AppFontNames.bold]: Nunito_700Bold,
+  [AppFontNames.extraBold]: Nunito_800ExtraBold,
+  [AppFontNames.black]: Nunito_900Black,
 };
 
 // Racine : une pile d'écrans sans en-tête. Les onglets de l'hôte sont dans (host)/_layout.tsx,

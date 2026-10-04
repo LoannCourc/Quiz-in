@@ -1,4 +1,5 @@
 import type { PosterPalette } from '@shared/types';
+import { Platform } from 'react-native';
 
 // Direction artistique « Plateau TV » : seul endroit où l'app définit couleurs, polices et formes.
 // Mêmes valeurs que le récepteur TV (receiver/src/theme.css). Les écrans n'utilisent que ces tokens.
@@ -100,12 +101,25 @@ export type AppBackgroundName = keyof typeof AppBackgrounds;
 
 // Une famille par graisse : sur Android, fontWeight ne choisit pas la graisse d'une police
 // chargée à part. Les noms sont ceux enregistrés au chargement (app/_layout.tsx).
-export const AppFonts = {
+export const AppFontNames = {
   display: 'BowlbyOne',
   bold: 'Nunito-Bold',
   extraBold: 'Nunito-ExtraBold',
   black: 'Nunito-Black',
 } as const;
+
+// Famille utilisée par les écrans. Web : pile CSS avec repli sans-serif, si un fichier de police ne se
+// charge pas (sinon le navigateur affiche sa police à empattements). Android : le nom seul, obligatoire.
+function withWebFallback(name: string): string {
+  return Platform.OS === 'web' ? `${name}, sans-serif` : name;
+}
+
+export const AppFonts = {
+  display: withWebFallback(AppFontNames.display),
+  bold: withWebFallback(AppFontNames.bold),
+  extraBold: withWebFallback(AppFontNames.extraBold),
+  black: withWebFallback(AppFontNames.black),
+};
 
 // Bowlby One a des accents hauts : hauteur de ligne d'au moins 1,3 fois la taille.
 export const DISPLAY_LINE_HEIGHT = 1.3;

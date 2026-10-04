@@ -39,7 +39,7 @@
       "target": "players",
       "public": "app/dist",
       "predeploy": ["npm --prefix app run export:web"],
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "ignore": ["firebase.json", "**/.*"],
       "rewrites": [
         {
           "source": "**",
