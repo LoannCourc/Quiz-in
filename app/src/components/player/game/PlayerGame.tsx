@@ -110,12 +110,12 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
         <>
           {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}
           <RevealView
-          outcome={revealOutcome(result)}
-          points={result?.points ?? 0}
-          speedBonus={speedBonusOf(session, result)}
-          correctAnswer={session.reveal.correctAnswer}
-          correctChoice={correctChoiceIndex(session)}
-          rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
+            outcome={revealOutcome(result)}
+            points={result?.points ?? 0}
+            speedBonus={speedBonusOf(session, result)}
+            correctAnswer={session.reveal.correctAnswer}
+            correctChoice={correctChoiceIndex(session)}
+            rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
             previousRank={previousRank(session, uid)}
           />
           {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}

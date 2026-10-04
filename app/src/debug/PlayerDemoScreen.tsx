@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
+import { PlaceBand } from '@/components/player/game/RevealView';
 import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
@@ -33,9 +34,10 @@ const SCENARIO_CHOICES: Choice<ScenarioId>[] = (Object.keys(SCENARIO_LABELS) as 
 
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
-// bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte.
+// bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ;
+// ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang (mise en page).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
@@ -65,6 +67,8 @@ export default function PlayerDemoScreen() {
     );
     return () => clearTimeout(timeoutId);
   }, [sendingChoice]);
+
+  if (params.bands === '1') return <PlaceBandGallery />;
 
   return (
     <View style={styles.root}>
@@ -98,6 +102,25 @@ export default function PlayerDemoScreen() {
   );
 }
 
+// Rangs de 1 à 20, puis les changements les plus larges (« 20e → 19e ▲ »…).
+const BAND_RANKS = Array.from({ length: 20 }, (_, index) => index + 1);
+const BAND_CHANGES: [number, number][] = [[4, 2], [2, 1], [1, 2], [9, 10], [20, 19], [19, 20], [10, 20]];
+
+function PlaceBandGallery() {
+  return (
+    <Screen>
+      <View style={styles.gallery}>
+        {BAND_CHANGES.map(([before, after]) => (
+          <PlaceBand key={`${before}-${after}`} rank={after} previousRank={before} />
+        ))}
+        {BAND_RANKS.map((rank) => (
+          <PlaceBand key={rank} rank={rank} />
+        ))}
+      </View>
+    </Screen>
+  );
+}
+
 interface DemoPanelProps {
   isOpen: boolean;
   selected: ScenarioId;
@@ -128,6 +151,9 @@ function DemoPanel({ isOpen, selected, onToggle, onSelect }: DemoPanelProps) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  gallery: {
+    gap: Spacing.two,
   },
   panel: {
     position: 'absolute',

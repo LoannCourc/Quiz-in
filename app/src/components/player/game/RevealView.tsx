@@ -57,8 +57,10 @@ function PointsCoin({ points, isSoft }: { points: number; isSoft: boolean }) {
   );
 }
 
-// « TA PLACE 4e → 2e ▲ » : rang avant et après la question.
-function PlaceBand({ rank, previousRank }: { rank: number; previousRank?: number }) {
+// « TA PLACE 4e → 2e ▲ » : rang avant et après la question. Ni le libellé ni le rang ne
+// rétrécissent : s'ils ne tiennent pas sur une ligne (écran étroit, grande police), le rang passe
+// à la ligne, aligné à droite.
+export function PlaceBand({ rank, previousRank }: { rank: number; previousRank?: number }) {
   const { ordinal, reveal } = strings.game;
   // Rang inchangé (ou inconnu) : le rang seul, sans flèche.
   const value =
@@ -120,14 +122,17 @@ const styles = StyleSheet.create({
   band: {
     marginTop: 'auto',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
+    columnGap: Spacing.three,
     paddingHorizontal: Spacing.four,
     paddingVertical: Spacing.three,
     borderRadius: AppSizes.radiusCard,
     backgroundColor: AppColors.inkSurface,
   },
   bandLabel: {
+    flexShrink: 0,
     color: AppColors.text,
     fontFamily: AppFonts.display,
     fontSize: 17,
@@ -135,6 +140,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   bandValue: {
+    flexShrink: 0,
+    marginLeft: 'auto',
     color: AppColors.accent,
     fontFamily: AppFonts.display,
     fontSize: 26,
