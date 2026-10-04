@@ -19,7 +19,7 @@ import {
   QUIZ_DESCRIPTION_MAX_LENGTH,
 } from '../../shared/constants'
 import { averageDifficulty, difficultyLevel, estimateQuizMinutes, isValidQuizId } from '../../shared/quizCatalog'
-import { isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
+import { fitsBlindTestTimer, isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
 import type {
   DifficultyLevel,
   MusicTrack,
@@ -117,7 +117,7 @@ type TrackCheck = { kind: 'track'; track: MusicTrack } | { kind: 'pending' | 'er
 
 function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
-  const { title, artist, startS, durationS } = question.music
+  const { title, artist, startS } = question.music
   // La bonne proposition doit citer le titre du morceau : évite d'associer le mauvais extrait.
   const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
   if (!correct.includes(normalizeAnswer(title))) {
@@ -128,8 +128,11 @@ function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!sameQuery(entry, question.music)) return { kind: 'pending', reason: 'artiste ou titre modifié : relancer music:lookup' }
   if (!entry.found?.previewAvailable) return { kind: 'pending', reason: 'aucun morceau avec extrait trouvé' }
   if (!entry.verified) return { kind: 'pending', reason: 'non vérifié (verified: false)' }
-  const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS, durationS })
-  return track ? { kind: 'track', track } : { kind: 'error', reason: 'extrait invalide (startS + durationS ≤ 30, durationS de 10 à 15)' }
+  const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS })
+  if (!track || !fitsBlindTestTimer(track, question.timeLimit)) {
+    return { kind: 'error', reason: 'extrait invalide : startS + timer de la question ≤ 30 s (startS de 0 à 10 avec le timer de 20 s)' }
+  }
+  return { kind: 'track', track }
 }
 
 function musicIssues(quiz: QuizFile, kind: 'pending' | 'error'): string[] {

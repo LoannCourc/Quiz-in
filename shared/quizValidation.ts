@@ -1,6 +1,4 @@
 import {
-  AUDIO_EXTRACT_MAX_S,
-  AUDIO_EXTRACT_MIN_S,
   AUDIO_PREVIEW_S,
   AUDIO_SOURCES,
   CHOICE_COUNT,
@@ -11,6 +9,7 @@ import {
 } from './constants'
 import { isValidQuizId } from './quizCatalog'
 import { extractOf } from './audioPlayback'
+import { questionDurationS } from './gameFlow'
 import type {
   AudioSourceId,
   ChoiceOptions,
@@ -57,22 +56,24 @@ function isAudioSource(value: unknown): value is AudioSourceId {
   return AUDIO_SOURCES.includes(value as AudioSourceId)
 }
 
-// Morceau d'une question de blind test, ou null s'il est mal formé. L'extrait (début + durée) doit
-// tenir dans la preview, et durer de AUDIO_EXTRACT_MIN_S à AUDIO_EXTRACT_MAX_S.
+// Morceau d'une question de blind test, ou null s'il est mal formé. Le début de l'extrait doit être
+// dans la preview ; la durée (celle du timer) est vérifiée avec la question (fitsBlindTestTimer).
 export function parseMusicTrack(value: unknown): MusicTrack | null {
   if (!isRecord(value)) return null
-  const { source, id, title, artist, startS, durationS } = value
+  const { source, id, title, artist, startS } = value
   if (!isAudioSource(source) || !isNonEmptyString(id) || !isNonEmptyString(title) || !isNonEmptyString(artist)) return null
-  if (startS !== undefined && !(isFiniteNumber(startS) && startS >= 0)) return null
-  if (durationS !== undefined && !isFiniteNumber(durationS)) return null
-  const extract = extractOf({ startS: startS as number | undefined, durationS: durationS as number | undefined })
-  if (extract.durationS < AUDIO_EXTRACT_MIN_S || extract.durationS > AUDIO_EXTRACT_MAX_S) return null
-  if (extract.startS + extract.durationS > AUDIO_PREVIEW_S) return null
+  if (startS !== undefined && !(isFiniteNumber(startS) && startS >= 0 && startS < AUDIO_PREVIEW_S)) return null
 
   const track: MusicTrack = { source, id, title, artist }
   if (startS !== undefined) track.startS = startS as number
-  if (durationS !== undefined) track.durationS = durationS as number
   return track
+}
+
+// L'extrait doit couvrir tout le timer de la question (Choix multiples, seul mode des blind tests) :
+// début + timer ≤ 30 s.
+export function fitsBlindTestTimer(track: Pick<MusicTrack, 'startS'>, timeLimit?: number): boolean {
+  const timerS = questionDurationS('choice', timeLimit)
+  return extractOf(track, timerS).durationS === timerS
 }
 
 function isChoiceOptions(value: unknown): value is ChoiceOptions {
@@ -169,6 +170,7 @@ export function parseQuestion(value: unknown): Question | null {
   if (timeLimit !== undefined && !(isFiniteNumber(timeLimit) && timeLimit > 0)) return null
   const track = music === undefined ? undefined : parseMusicTrack(music)
   if (track === null) return null
+  if (track && !fitsBlindTestTimer(track, timeLimit as number | undefined)) return null
 
   const question: Question = { id, text, options, correctIndex: correctIndex as number, acceptedAnswers, difficulty }
   if (explanation !== undefined) question.explanation = explanation

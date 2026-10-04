@@ -82,7 +82,7 @@
             ".validate": "newData.hasChildren(['url', 'startS', 'durationS']) && newData.child('startS').val() + newData.child('durationS').val() <= 30",
             "url": { ".validate": "newData.isString() && newData.val().beginsWith('https://') && newData.val().length <= 2048" },
             "startS": { ".validate": "newData.isNumber() && newData.val() >= 0" },
-            "durationS": { ".validate": "newData.isNumber() && newData.val() >= 10 && newData.val() <= 15" },
+            "durationS": { ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= newData.parent().parent().child('timeLimit').val()" },
             "$other": { ".validate": false }
           },
           "$other": { ".validate": false }

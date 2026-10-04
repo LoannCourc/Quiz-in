@@ -223,7 +223,7 @@ export function toDemoBlindTest(session: PublicSession): PublicSession {
       ...question,
       text: 'Quel est ce morceau ?',
       options: question.options && DEMO_SONGS,
-      audio: { url: 'https://exemple.invalid/demo.mp3', startS: 0, durationS: 12 },
+      audio: { url: 'https://exemple.invalid/demo.mp3', startS: 0, durationS: question.timeLimit },
     },
     reveal: session.reveal && {
       ...session.reveal,

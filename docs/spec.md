@@ -190,7 +190,7 @@ quizzes/{quizId}                      // lisible par tout utilisateur connecté
 
 questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par tout utilisateur connecté au MVP (voir « Limites connues »)
   (voir section 8)
-  music?: { source: "deezer", id, title, artist, startS?, durationS? }   // blind test (section 15)
+  music?: { source: "deezer", id, title, artist, startS? }   // blind test (section 15) ; startS + timer de la question ≤ 30 s
 
 config/blindTestEnabled               // interrupteur à distance du blind test : absent ou false = désactivé ; lisible connecté, modifiable dans la console seulement
 
@@ -204,7 +204,7 @@ sessions/{code}
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   hostLeftAt?                         // heure serveur du départ de l'hôte (écrite par onDisconnect), public ; effacée à son retour
   currentQuestion: { text, options?, difficulty, timeLimit, audio? }   // SANS la bonne réponse
-    audio?: { url, startS, durationS }                         // blind test : adresse temporaire de l'extrait, jamais l'identifiant ni le titre
+    audio?: { url, startS, durationS }                         // blind test : adresse temporaire, jamais l'identifiant ni le titre ; durationS ≤ timeLimit
   reveal: { correctAnswer, explanation, music?, stats }        // publié à la révélation
     music?: { title, artist, source }                          // blind test : affiché avec la mention de la source
     stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition
@@ -382,8 +382,8 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 **Adresses des extraits.** Elles expirent environ 15 min après leur obtention. L'hôte les récupère dès le salon (l'API refuse les appels depuis un navigateur), les renouvelle quand il leur reste moins de 5 min et republie celle de l'extrait en cours (y compris pendant une pause). Le lancement est refusé tant qu'un extrait manque (« Extraits audio indisponibles »).
 
 **Lecture sur la TV.**
-- Pendant QUESTION : l'extrait (12 s par défaut, de 10 à 15 s, début propre à chaque morceau) démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
-- Pendant REVEAL : le morceau continue, puis s'éteint en fondu sur la fin de la révélation, sans dépasser la preview.
+- Pendant QUESTION : l'extrait joue **pendant tout le timer** (20 s, celui des Choix multiples), à partir d'un début propre à chaque morceau (de 0 à 10 s : début + timer ≤ 30 s, durée de la preview). Il démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
+- Fin du timer : le son s'éteint avec lui, par un fondu court. Tous les joueurs ont répondu avant : le son s'arrête aussitôt, par un fondu très court. **Pas de musique pendant la révélation** (une musique originale rythmera la partie plus tard).
 - Pause : le son s'arrête ; reprise à la même position.
 - Rien ne révèle le morceau avant la révélation : pas de titre, d'artiste, de pochette ni de lecteur visible ; la TV affiche « Quel est ce morceau ? », les propositions et un indicateur d'écoute.
 - Extrait illisible après un nouvel essai : « Extrait indisponible », l'hôte peut passer la question.

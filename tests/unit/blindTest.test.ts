@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { audioPlan, deezerPreviewExpiresAt, extractOf } from '../../shared/audioPlayback'
-import { AUDIO_EXTRACT_S, AUDIO_FADE_OUT_MS } from '../../shared/constants'
+import { AUDIO_FADE_OUT_MS, QUESTION_DURATION_S } from '../../shared/constants'
 import {
   audioUrlUpdate,
   buildReveal,
@@ -9,7 +9,7 @@ import {
   toPublicQuestion,
   transitionUpdate,
 } from '../../shared/hostEngine'
-import { parseMusicTrack, parseQuestion, parseQuizSummary } from '../../shared/quizValidation'
+import { fitsBlindTestTimer, parseMusicTrack, parseQuestion, parseQuizSummary } from '../../shared/quizValidation'
 import type { MusicTrack, PublicAudio, Question } from '../../shared/types'
 import { makeQuestion, makeSession, PLAYER } from './engineFixtures'
 
@@ -24,36 +24,32 @@ const MUSIC_QUESTIONS = [musicQuestion(0), musicQuestion(1, { id: '42' })]
 const URLS = { 'q-0': URL, 'q-1': `${URL}&b` }
 
 describe('extrait et lecture sur la TV (audioPlan)', () => {
-  const audio: PublicAudio = { url: URL, startS: 5, durationS: 12 }
+  const timerS = QUESTION_DURATION_S.choice
+  const audio: PublicAudio = { url: URL, startS: 5, durationS: timerS }
   const start = 1_000_000
 
-  test('extrait par défaut : début 0, durée AUDIO_EXTRACT_S', () => {
-    expect(extractOf({})).toEqual({ startS: 0, durationS: AUDIO_EXTRACT_S })
+  test('extrait : début du morceau (0 par défaut), durée du timer, jamais au-delà de la preview', () => {
+    expect(extractOf({}, 20)).toEqual({ startS: 0, durationS: 20 })
+    expect(extractOf({ startS: 8 }, 20)).toEqual({ startS: 8, durationS: 20 })
+    expect(extractOf({ startS: 15 }, 20)).toEqual({ startS: 15, durationS: 15 })
   })
 
-  test('question : position calée sur le temps écoulé, silence après la fin de l’extrait', () => {
-    const clock = { status: 'question' as const, phaseStartedAt: start, phaseEndsAt: start + 20_000 }
-    expect(audioPlan(audio, clock, start)).toEqual({ kind: 'play', positionS: 5, volume: 1, keepIfPlaying: false })
-    expect(audioPlan(audio, clock, start + 3_500)).toMatchObject({ kind: 'play', positionS: 8.5 })
-    expect(audioPlan(audio, clock, start + 12_000)).toEqual({ kind: 'silent' })
+  test('question : position calée sur le temps écoulé, pendant tout le timer', () => {
+    const clock = { status: 'question' as const, phaseStartedAt: start, phaseEndsAt: start + timerS * 1000 }
+    expect(audioPlan(audio, clock, start)).toEqual({ kind: 'play', positionS: 5, volume: 1 })
+    expect(audioPlan(audio, clock, start + 12_500)).toEqual({ kind: 'play', positionS: 17.5, volume: 1 })
+    expect(audioPlan(audio, clock, start + timerS * 1000)).toEqual({ kind: 'silent' })
   })
 
-  test('révélation : le morceau continue après l’extrait, fondu sur la fin', () => {
-    const clock = { status: 'reveal' as const, phaseStartedAt: start, phaseEndsAt: start + 6_000 }
-    expect(audioPlan(audio, clock, start)).toEqual({ kind: 'play', positionS: 17, volume: 1, keepIfPlaying: true })
-    expect(audioPlan(audio, clock, start + 6_000 - AUDIO_FADE_OUT_MS / 2)).toMatchObject({ volume: 0.5 })
-    expect(audioPlan(audio, clock, start + 6_000)).toEqual({ kind: 'silent' })
+  test('fin du timer : fondu court sur les dernières millisecondes', () => {
+    const clock = { status: 'question' as const, phaseStartedAt: start, phaseEndsAt: start + timerS * 1000 }
+    const plan = audioPlan(audio, clock, start + timerS * 1000 - AUDIO_FADE_OUT_MS / 2)
+    expect(plan.kind === 'play' && plan.volume).toBeCloseTo(0.5)
   })
 
-  test('révélation : jamais au-delà de la preview de 30 s', () => {
-    const late: PublicAudio = { url: URL, startS: 18, durationS: 12 }
-    const clock = { status: 'reveal' as const, phaseStartedAt: start, phaseEndsAt: start + 6_000 }
-    expect(audioPlan(late, clock, start)).toEqual({ kind: 'silent' })
-  })
-
-  test('pause, classement, fin : silence', () => {
-    for (const status of ['paused', 'scores', 'ended', 'starting'] as const) {
-      expect(audioPlan(audio, { status, phaseStartedAt: start, phaseEndsAt: start + 5_000 }, start + 1_000)).toEqual({
+  test('révélation (fin anticipée ou timer écoulé), pause, classement, fin : silence', () => {
+    for (const status of ['reveal', 'paused', 'scores', 'ended', 'starting'] as const) {
+      expect(audioPlan(audio, { status, phaseStartedAt: start, phaseEndsAt: start + 6_000 }, start + 1_000)).toEqual({
         kind: 'silent',
       })
     }
@@ -66,7 +62,7 @@ describe('extrait et lecture sur la TV (audioPlan)', () => {
 })
 
 describe('validation des données du blind test', () => {
-  test('morceau valide, avec ou sans début et durée', () => {
+  test('morceau valide, avec ou sans début', () => {
     expect(parseMusicTrack(TRACK)).toEqual(TRACK)
     expect(parseMusicTrack({ source: 'deezer', id: '1', title: 'T', artist: 'A' })).toEqual({
       source: 'deezer',
@@ -76,12 +72,18 @@ describe('validation des données du blind test', () => {
     })
   })
 
-  test('morceau refusé : source inconnue, identifiant vide, extrait hors de la preview ou de la bonne durée', () => {
+  test('morceau refusé : source inconnue, identifiant vide, début hors de la preview', () => {
     expect(parseMusicTrack({ ...TRACK, source: 'spotify' })).toBeNull()
     expect(parseMusicTrack({ ...TRACK, id: '' })).toBeNull()
-    expect(parseMusicTrack({ ...TRACK, startS: 20 })).toBeNull()
-    expect(parseMusicTrack({ ...TRACK, durationS: 9 })).toBeNull()
-    expect(parseMusicTrack({ ...TRACK, durationS: 16 })).toBeNull()
+    expect(parseMusicTrack({ ...TRACK, startS: -1 })).toBeNull()
+    expect(parseMusicTrack({ ...TRACK, startS: 30 })).toBeNull()
+  })
+
+  test('l’extrait doit couvrir tout le timer : début + timer ≤ 30 s', () => {
+    expect(fitsBlindTestTimer({ startS: 10 })).toBe(true)
+    expect(fitsBlindTestTimer({ startS: 11 })).toBe(false)
+    expect(fitsBlindTestTimer({ startS: 15 }, 15)).toBe(true)
+    expect(parseQuestion(musicQuestion(0, { startS: 11 }))).toBeNull()
   })
 
   test('question avec un morceau mal formé : refusée entière', () => {
@@ -108,7 +110,7 @@ describe('validation des données du blind test', () => {
 describe('moteur : blind test', () => {
   test('question publiée : adresse et extrait seulement, jamais l’identifiant, le titre ni l’artiste', () => {
     const published = toPublicQuestion(musicQuestion(0), 'choice', URL)
-    expect(published.audio).toEqual({ url: URL, startS: 5, durationS: AUDIO_EXTRACT_S })
+    expect(published.audio).toEqual({ url: URL, startS: 5, durationS: QUESTION_DURATION_S.choice })
     const text = JSON.stringify(published)
     expect(text).not.toContain(TRACK.id)
     expect(text).not.toContain('Stromae')

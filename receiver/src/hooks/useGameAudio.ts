@@ -68,7 +68,7 @@ export function useGameAudio(session: PublicSession, isEnabled: boolean, serverO
       if (tvAudioPlayer.isPlaying && tvAudioPlayer.currentUrl === audio.url) {
         tvAudioPlayer.setVolume(plan.volume)
         const drift = Math.abs(tvAudioPlayer.positionS - plan.positionS)
-        if (plan.keepIfPlaying || drift <= MAX_DRIFT_S) return
+        if (drift <= MAX_DRIFT_S) return
       }
       isBusy.current = true
       setState('loading')

@@ -85,15 +85,14 @@ export const DIFFICULTY_MEDIUM_MAX = 2.33;
 // Blind test (spec 15) : extrait joué par la TV, pris dans la preview de 30 s de la source audio.
 export const AUDIO_SOURCES: readonly AudioSourceId[] = ['deezer'];
 export const AUDIO_PREVIEW_S = 30;
-export const AUDIO_EXTRACT_S = 12;
-export const AUDIO_EXTRACT_MIN_S = 10;
-export const AUDIO_EXTRACT_MAX_S = 15;
+// L'extrait joue pendant tout le timer de la question : début + timer ≤ AUDIO_PREVIEW_S. Avec le timer
+// des Choix multiples (20 s), le début se choisit entre 0 et 10 s.
 export const AUDIO_EXTRACT_START_S = 0;
 // Les adresses des extraits expirent (Deezer : environ 15 min) : l'hôte renouvelle toute adresse à
 // laquelle il reste moins de AUDIO_URL_MIN_VALIDITY_MS, en vérifiant toutes les AUDIO_URL_REFRESH_INTERVAL_MS.
 export const AUDIO_URL_MIN_VALIDITY_MS = 5 * 60_000;
 export const AUDIO_URL_REFRESH_INTERVAL_MS = 60_000;
-// Le morceau continue pendant la révélation, puis s'éteint en fondu sur la fin de celle-ci.
-export const AUDIO_FADE_OUT_MS = 1_500;
+// Fondu de fin, sur les dernières millisecondes du timer (pas de musique pendant la révélation).
+export const AUDIO_FADE_OUT_MS = 400;
 // Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).
 export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';

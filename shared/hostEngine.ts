@@ -53,7 +53,7 @@ export function toPublicQuestion(question: Question, answerMode: AnswerMode, aud
     timeLimit: questionDurationS(answerMode, question.timeLimit),
   }
   if (answerMode === 'choice') published.options = [...question.options] as ChoiceOptions
-  if (question.music && audioUrl) published.audio = { url: audioUrl, ...extractOf(question.music) }
+  if (question.music && audioUrl) published.audio = { url: audioUrl, ...extractOf(question.music, published.timeLimit) }
   return published
 }
 

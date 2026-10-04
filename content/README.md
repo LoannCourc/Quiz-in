@@ -54,8 +54,8 @@ propositions « Titre – Artiste » et un champ `music` sans identifiant :
 "music": { "artist": "Stromae", "title": "Alors on danse", "startS": 5 }
 ```
 
-- `startS` (facultatif, 0 par défaut) : début de l'extrait dans la preview de 30 s ; `durationS`
-  (facultatif, 12 par défaut, de 10 à 15). `startS + durationS` ≤ 30.
+- `startS` (facultatif, 0 par défaut) : début de l'extrait dans la preview de 30 s. L'extrait joue
+  pendant tout le timer de la question (20 s) : `startS + timer` ≤ 30, soit `startS` de 0 à 10.
 - La bonne proposition doit citer le titre ; les `acceptedAnswers` contiennent le titre, et
   « titre – artiste » pour que la bonne proposition soit acceptée en réponse libre.
 - Mauvaises propositions : tubes d'autres artistes de la même époque (au plus un titre du même

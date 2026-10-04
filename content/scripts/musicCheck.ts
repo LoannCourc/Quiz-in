@@ -14,8 +14,8 @@ export const musicCheckDir = join(contentDir, 'music-check')
 export interface SourceMusic {
   artist: string
   title: string
+  // Début de l'extrait (0 par défaut) ; il dure le temps du timer : startS + timer ≤ 30 s.
   startS?: number
-  durationS?: number
 }
 
 export interface FoundTrack {

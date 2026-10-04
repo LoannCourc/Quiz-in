@@ -72,15 +72,16 @@ export interface MusicTrack {
   id: string;
   title: string;
   artist: string;
-  // Début et durée de l'extrait dans la preview, en secondes (défaut : AUDIO_EXTRACT_START_S et AUDIO_EXTRACT_S).
+  // Début de l'extrait dans la preview, en secondes (défaut : AUDIO_EXTRACT_START_S). L'extrait dure
+  // le temps du timer de la question : début + timer ≤ 30 s.
   startS?: number;
-  durationS?: number;
 }
 
 // Extrait publié pendant QUESTION : seulement une adresse temporaire, jamais l'identifiant ni le titre.
 export interface PublicAudio {
   url: string;
   startS: number;
+  // Durée de l'extrait : celle du timer de la question (sans jamais dépasser la preview).
   durationS: number;
 }
 

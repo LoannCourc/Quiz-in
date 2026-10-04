@@ -1,12 +1,12 @@
-import { AUDIO_EXTRACT_S } from '@shared/constants'
 import { useEffect, useState } from 'react'
 
 import { tvAudioPlayer } from '../lib/tvAudioPlayer'
 import { strings } from '../strings'
 import { StatusScreen } from './StatusScreen'
 
-// Début de l'extrait joué pendant le test (au milieu de la preview, comme un vrai blind test).
+// Extrait joué pendant le test : au milieu de la preview, pendant 12 s.
 const TEST_START_S = 5
+const TEST_DURATION_S = 12
 
 type TestState =
   | { kind: 'loading' }
@@ -22,7 +22,7 @@ function hint(state: TestState): string {
     case 'playing':
       return strings.audioTest.playing(state.delayMs)
     case 'finished':
-      return strings.audioTest.finished(AUDIO_EXTRACT_S)
+      return strings.audioTest.finished(TEST_DURATION_S)
     case 'blocked':
       return strings.audioTest.blocked
     case 'failed':
@@ -50,7 +50,7 @@ export function AudioTestScreen({ url }: { url: string }) {
       stopTimer = setTimeout(() => {
         tvAudioPlayer.stop()
         setState({ kind: 'finished' })
-      }, AUDIO_EXTRACT_S * 1000)
+      }, TEST_DURATION_S * 1000)
     })
     return () => {
       isCurrent = false

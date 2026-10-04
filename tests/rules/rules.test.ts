@@ -235,7 +235,8 @@ describe('Hôte et état de la partie', () => {
 describe('Blind test', () => {
   const URL = 'https://cdnt-preview.dzcdn.net/api/1/1/a.mp3?hdnea=exp=1791107825'
   const question = { text: 'Quel est ce morceau ?', difficulty: 1, timeLimit: 20 }
-  const audio = { url: URL, startS: 5, durationS: 12 }
+  // L'extrait dure tout le timer de la question (20 s) : début + timer ≤ 30 s.
+  const audio = { url: URL, startS: 5, durationS: 20 }
 
   test('interrupteur config/blindTestEnabled : lisible connecté, jamais modifiable depuis l’app', async () => {
     await seed({ config: { blindTestEnabled: false } })
@@ -249,12 +250,13 @@ describe('Blind test', () => {
     await assertSucceeds(db(HOST).ref(`${SESSION}/currentQuestion`).set({ ...question, audio }))
   })
 
-  test('extrait refusé : adresse non https, durée hors 10-15 s, dépassement de la preview, champ inconnu', async () => {
+  test('extrait refusé : adresse non https, plus long que le timer, dépassement de la preview, champ inconnu', async () => {
     await seedSession()
     const ref = db(HOST).ref(`${SESSION}/currentQuestion`)
     await assertFails(ref.set({ ...question, audio: { ...audio, url: 'http://exemple.fr/a.mp3' } }))
-    await assertFails(ref.set({ ...question, audio: { ...audio, durationS: 20 } }))
-    await assertFails(ref.set({ ...question, audio: { ...audio, startS: 20 } }))
+    await assertFails(ref.set({ ...question, audio: { ...audio, startS: 0, durationS: 25 } }))
+    await assertFails(ref.set({ ...question, audio: { ...audio, startS: 11 } }))
+    await assertSucceeds(ref.set({ ...question, audio: { ...audio, startS: 10 } }))
     await assertFails(ref.set({ ...question, audio: { ...audio, trackId: '6297555' } }))
   })
 
