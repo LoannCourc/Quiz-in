@@ -8,7 +8,7 @@ import {
   STARTING_DURATION_S,
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
-import { nextPhase, questionDurationS } from './gameFlow'
+import { isAwaitingHost, nextPhase, questionDurationS } from './gameFlow'
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
@@ -141,8 +141,10 @@ export function buildReveal(question: Question, session: Session): RevealResult 
 // il ne peut que retarder la fin jusqu'au chrono, jamais l'avancer.
 export function nextDeadline(session: Session): number | null {
   switch (session.status) {
-    case 'starting':
     case 'reveal':
+      // Pas à pas : la révélation attend l'hôte, aucune transition automatique.
+      return isAwaitingHost(session) ? null : session.phaseEndsAt
+    case 'starting':
     case 'scores':
       return session.phaseEndsAt
     case 'question':
@@ -190,7 +192,13 @@ export function transitionUpdate(
   const { answerMode } = session.settings
   const questionCount = session.questionCount ?? questions.length
   const upcoming = questions[session.status === 'scores' ? session.currentIndex + 1 : session.currentIndex]
-  const phase = nextPhase(session.status, { answerMode, currentIndex: session.currentIndex, questionCount }, upcoming?.timeLimit)
+  const context = {
+    answerMode,
+    currentIndex: session.currentIndex,
+    questionCount,
+    stepByStep: session.settings.stepByStep === true,
+  }
+  const phase = nextPhase(session.status, context, upcoming?.timeLimit)
   if (!phase || session.status === 'lobby') return null
 
   const base = { status: phase.status, currentIndex: phase.currentIndex, ...phaseTimes(nowServer, phase.durationS) }
@@ -313,6 +321,10 @@ export function pauseUpdate(session: Session, nowServer: number): SessionUpdate 
 // Le bonus de rapidité, lui, ne dépend que de phaseEndsAt (voir spec 6.2 pour la pause).
 export function resumeUpdate(session: Session, nowServer: number): SessionUpdate | null {
   if (session.status !== 'paused' || !session.pausedFrom) return null
+  // Pas à pas : une révélation en attente le reste (sans fin programmée) ; sinon elle repartirait aussitôt.
+  if (isAwaitingHost({ status: session.pausedFrom, settings: session.settings })) {
+    return { status: 'reveal', phaseEndsAt: 0, pausedFrom: null, remainingMs: null }
+  }
   const phaseEndsAt = nowServer + (session.remainingMs ?? 0)
   return {
     status: session.pausedFrom,
@@ -397,6 +409,9 @@ export interface HostControls {
   canEnd: boolean
   // Fin de partie : Rejouer et Quitter.
   canReplay: boolean
+  // Pas à pas, révélation en attente : gros bouton « Question suivante » (ou « Voir le classement »
+  // à la dernière question). Il déclenche la même transition que Passer. null sinon (pause comprise).
+  awaitingNext: 'nextQuestion' | 'finalRanking' | null
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
@@ -410,6 +425,11 @@ export function hostControls(session: Session): HostControls {
     canResume: session.status === 'paused',
     canEnd,
     canReplay: session.status === 'ended',
+    awaitingNext: isAwaitingHost(session)
+      ? session.currentIndex + 1 < (session.questionCount ?? 0)
+        ? 'nextQuestion'
+        : 'finalRanking'
+      : null,
   }
 }
 

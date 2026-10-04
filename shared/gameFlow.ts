@@ -15,6 +15,8 @@ export interface FlowContext {
   // Index de la question courante (0 pour la première) et nombre de questions de la partie.
   currentIndex: number
   questionCount: number
+  // Pas à pas : la révélation n'a pas de durée, seule l'action de l'hôte fait avancer.
+  stepByStep?: boolean
 }
 
 export interface Phase {
@@ -33,14 +35,14 @@ export function questionDurationS(answerMode: AnswerMode, timeLimitS?: number): 
 // Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED, états P1).
 // timeLimitS : durée propre à la question suivante, si elle en a une.
 export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?: number): Phase | null {
-  const { answerMode, currentIndex, questionCount } = context
+  const { answerMode, currentIndex, questionCount, stepByStep = false } = context
   switch (status) {
     case 'lobby':
       return { status: 'starting', currentIndex: 0, durationS: STARTING_DURATION_S }
     case 'starting':
       return { status: 'question', currentIndex: 0, durationS: questionDurationS(answerMode, timeLimitS) }
     case 'question':
-      return { status: 'reveal', currentIndex, durationS: REVEAL_DURATION_S[answerMode] }
+      return { status: 'reveal', currentIndex, durationS: stepByStep ? null : REVEAL_DURATION_S[answerMode] }
     case 'reveal':
       return { status: 'scores', currentIndex, durationS: SCORES_DURATION_S }
     case 'scores': {
@@ -70,6 +72,11 @@ export interface NextQuestionCountdown {
 export function nextQuestionCountdown(session: SessionTiming): NextQuestionCountdown | null {
   const revealMs = REVEAL_DURATION_S[session.settings.answerMode] * 1000
   const isLastQuestion = session.currentIndex + 1 >= (session.questionCount ?? 0)
+  // Pas à pas : pas de compte à rebours pendant l'attente ; le classement compte seulement ses 5 s.
+  if (isAwaitingHost(session)) return null
+  if (session.status === 'scores' && session.settings.stepByStep) {
+    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt, isLastQuestion }
+  }
   if (session.status === 'reveal') {
     return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + SCORES_DURATION_S * 1000, isLastQuestion }
   }
@@ -97,6 +104,11 @@ export function isAnnouncingNextQuestion(session: SessionTiming, nowServer: numb
 }
 
 // Champs de la session utiles au déroulé (partie publique : lisible par les joueurs et la TV).
+// Pas à pas : révélation en attente de l'hôte (« Question suivante »), sans fin programmée.
+export function isAwaitingHost(session: Pick<PublicSession, 'status' | 'settings'>): boolean {
+  return session.status === 'reveal' && session.settings.stepByStep === true
+}
+
 type SessionTiming = Pick<
   PublicSession,
   'status' | 'settings' | 'currentIndex' | 'questionCount' | 'phaseStartedAt' | 'phaseEndsAt'

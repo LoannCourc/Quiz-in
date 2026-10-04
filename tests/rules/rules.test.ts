@@ -275,6 +275,45 @@ describe('Blind test', () => {
   })
 })
 
+describe('Pas à pas (settings.stepByStep)', () => {
+  const stepSettings = { answerMode: 'choice', speedBonus: true, control: false, teams: false, stepByStep: true }
+
+  test('réglage booléen accepté à la création, valeur non booléenne refusée', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null, settings: stepSettings })))
+    await assertFails(db(HOST).ref(`${SESSION}/settings/stepByStep`).set('oui'))
+  })
+
+  test('partie sans le champ (créée avant ce réglage) : toujours valide', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null })))
+  })
+
+  test('moteur : révélation en attente, pause, reprise, puis « Question suivante » acceptés par les règles', async () => {
+    const gameQuestions = selectGameQuestions(QUESTIONS.slice(0, 2))
+    const start = makeSession({
+      status: 'question',
+      currentIndex: 0,
+      questionCount: 2,
+      phaseStartedAt: Date.now() - 5_000,
+      phaseEndsAt: Date.now() + 15_000,
+      settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false, stepByStep: true },
+    })
+    await seed({ sessions: { [CODE]: start } })
+    const read = async () => (await readAsAdmin(SESSION)) as Session
+    const write = (update: SessionUpdate | null) => {
+      expect(update).not.toBeNull()
+      return assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    }
+
+    await write(transitionUpdate(await read(), gameQuestions, { status: 'question', currentIndex: 0 }, Date.now()))
+    expect(await read()).toMatchObject({ status: 'reveal', phaseEndsAt: 0 })
+    await write(pauseUpdate(await read(), Date.now()))
+    await write(resumeUpdate(await read(), Date.now()))
+    expect(await read()).toMatchObject({ status: 'reveal', phaseEndsAt: 0 })
+    await write(transitionUpdate(await read(), gameQuestions, { status: 'reveal', currentIndex: 0 }, Date.now()))
+    expect((await read()).status).toBe('scores')
+  })
+})
+
 describe('Nombre de questions (questionCount)', () => {
   // Écritures du lancement : un seul update() multi-chemins, comme le fera le moteur de l'hôte.
   function launch(uid: string, questionCount: unknown) {

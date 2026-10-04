@@ -562,11 +562,12 @@ describe('hostControls', () => {
       canResume: true,
       canEnd: true,
       canReplay: false,
+      awaitingNext: null,
     })
   })
 
   test('LOBBY : aucun contrôle ; END : seulement Rejouer et Quitter', () => {
-    const none = { skip: null, canPause: false, canResume: false, canEnd: false }
+    const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null }
     expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canReplay: false })
     expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canReplay: true })
   })

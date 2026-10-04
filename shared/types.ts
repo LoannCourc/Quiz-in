@@ -133,6 +133,9 @@ export interface SessionSettings {
   speedBonus: boolean;
   control: boolean;
   teams: boolean;
+  // Pas à pas : après la révélation, la partie attend que l'hôte appuie sur « Question suivante ».
+  // Absent dans les parties créées avant ce réglage : désactivé.
+  stepByStep?: boolean;
 }
 
 export interface Player {
