@@ -37,13 +37,41 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
 - `poster` : couleur de l'affiche, parmi `pink`, `blue`, `green`, `orange`, `red`, `cyan`, `violet`, `gold`.
 - `addedAt` : date d'ajout `AAAA-MM-JJ` (rangée « Nouveautés » : les plus récents d'abord).
 - `featuredRank` : facultatif, place de 1 à 10 dans le « Top 10 cette semaine », choisie à la main.
-  Une place ne peut être donnée qu'à un seul quiz. Pour changer le Top 10 : modifier les fichiers,
-  régénérer, puis réimporter `/quizzes`.
+  Une place ne peut être donnée qu'à un seul quiz du même onglet (quiz ou blind test). Pour changer
+  le Top 10 : modifier les fichiers, régénérer, puis réimporter `/quizzes`.
 - `reviewStatus` : note de relecture, jamais importée dans la base.
 - Au moins 10 questions. `explanation` et `timeLimit` (en secondes) sont facultatifs.
 - Chaque question doit marcher dans les deux modes : la bonne proposition doit être acceptée en
   réponse libre, et aucune mauvaise proposition ne doit l'être. Le script le vérifie.
 - Règles de contenu : texte original, faits vérifiés auprès de deux sources, public familial.
+
+## Blind test (spec 15)
+
+Un blind test a `"gameType": "blindTest"`. Chaque question a le texte « Quel est ce morceau ? », quatre
+propositions « Titre – Artiste » et un champ `music` sans identifiant :
+
+```json
+"music": { "artist": "Stromae", "title": "Alors on danse", "startS": 5 }
+```
+
+- `startS` (facultatif, 0 par défaut) : début de l'extrait dans la preview de 30 s ; `durationS`
+  (facultatif, 12 par défaut, de 10 à 15). `startS + durationS` ≤ 30.
+- La bonne proposition doit citer le titre ; les `acceptedAnswers` contiennent le titre, et
+  « titre – artiste » pour que la bonne proposition soit acceptée en réponse libre.
+- Mauvaises propositions : tubes d'autres artistes de la même époque (au plus un titre du même
+  artiste), jamais la bonne réponse d'une autre question du quiz.
+
+Les identifiants Deezer ne sont **jamais** écrits dans le quiz :
+
+1. `npm run music:lookup -- <quizId>` (réseau) : recherche chaque morceau dans l'API Deezer et écrit
+   `music-check/<quizId>.json` (à cocher) et `music-check/<quizId>.md` (lecture, avec les liens).
+2. Écouter chaque lien, vérifier la version (pas de live, remix, reprise ni karaoké). Si une
+   alternative est meilleure, la copier dans `found`. Puis passer `verified` à `true`.
+3. `npm run build` : un blind test n'est importé que si tous ses morceaux sont vérifiés ; sinon il
+   est exclu, avec la liste de ce qui manque (les autres quiz sont importés normalement).
+
+Changer l'artiste ou le titre d'un morceau annule sa vérification : relancer `music:lookup`.
+Un morceau déjà vérifié et inchangé est conservé tel quel.
 
 ## Générer et importer
 

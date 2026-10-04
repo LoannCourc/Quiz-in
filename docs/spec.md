@@ -177,7 +177,7 @@ Base : Firebase Realtime Database.
 
 ```
 quizzes/{quizId}                      // lisible par tout utilisateur connecté
-  title, theme, gameType: "quiz", language: "fr"
+  title, theme, gameType: "quiz|blindTest", language: "fr"
   difficulty: 2.3                     // moyenne des questions
   difficultyLabel: "Moyen"
   questionCount: 10, estimatedMinutes: 6     // durée estimée en Choix multiples (mode par défaut)
@@ -185,11 +185,14 @@ quizzes/{quizId}                      // lisible par tout utilisateur connecté
   audience: "all|kids|experts"        // Tout public, Enfants, Experts
   poster: "pink|blue|green|orange|red|cyan|violet|gold"   // palette du dégradé de l'affiche
   addedAt: "AAAA-MM-JJ"               // rangée « Nouveautés »
-  featuredRank?: 1 à 10               // place dans le « Top 10 cette semaine », choisie à la main (pas de statistiques)
+  featuredRank?: 1 à 10               // place dans le « Top 10 cette semaine » de son onglet (quiz ou blind test), choisie à la main
   // Champs d'affichage facultatifs à la lecture : valeur par défaut si absents (fiches importées avant leur ajout)
 
 questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par tout utilisateur connecté au MVP (voir « Limites connues »)
   (voir section 8)
+  music?: { source: "deezer", id, title, artist, startS?, durationS? }   // blind test (section 15)
+
+config/blindTestEnabled               // interrupteur à distance du blind test : absent ou false = désactivé ; lisible connecté, modifiable dans la console seulement
 
 sessions/{code}
   hostUid, quizId
@@ -200,8 +203,10 @@ sessions/{code}
   phaseStartedAt, phaseEndsAt         // horodatage serveur
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   hostLeftAt?                         // heure serveur du départ de l'hôte (écrite par onDisconnect), public ; effacée à son retour
-  currentQuestion: { text, options?, difficulty, timeLimit }   // SANS la bonne réponse
-  reveal: { correctAnswer, explanation, stats }                // publié à la révélation
+  currentQuestion: { text, options?, difficulty, timeLimit, audio? }   // SANS la bonne réponse
+    audio?: { url, startS, durationS }                         // blind test : adresse temporaire de l'extrait, jamais l'identifiant ni le titre
+  reveal: { correctAnswer, explanation, music?, stats }        // publié à la révélation
+    music?: { title, artist, source }                          // blind test : affiché avec la mention de la source
     stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition
     stats.freeAnswers?: [{ playerId, value }]                  // Réponse libre : objets extensibles (masquage par l'hôte en P1)
     results?: { [uid]: { correct, points } }                   // résultat de chaque joueur ayant répondu (✓/✗, points gagnés)
@@ -361,5 +366,28 @@ sessions/{code}
 
 a. **Nouveau catalogue de l'hôte** (maquette « S2 ») : sélecteur de jeux en haut (Quiz actif ; Blind test et Paroles marqués « bientôt ») ; puces de thème ; Top 10 de la semaine avec gros chiffres ; rangées d'affiches par thème ; fiche du quiz avec un bouton « Choisir ce quiz ».
 b. **Salon de l'hôte** : le lien et le QR code des joueurs sont masqués par défaut sur le téléphone de l'hôte et n'apparaissent qu'après un appui sur « Je n'ai pas de TV » (la TV reste le moyen normal de rejoindre).
-c. **Mode blind test** (plus tard) : extraits de 30 secondes fournis par l'API Deezer, usage gratuit et non commercial, avec mention de Deezer. La source audio doit être interchangeable (pas de dépendance directe à Deezer dans le moteur de jeu). **En attente de la réponse écrite de Deezer avant toute publication.**
+c. **Mode blind test** : **codé** (voir section 15), désactivé par défaut par l'interrupteur `config/blindTestEnabled`. Extraits de 30 secondes fournis par l'API Deezer, usage gratuit et non commercial, avec mention de Deezer ; source audio interchangeable. **En attente de la réponse écrite de Deezer avant toute publication.**
 d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de test enregistrés).
+
+---
+
+## 15. Blind test
+
+**Principe.** Un quiz de type `blindTest` remplace l'énoncé par un extrait musical. Le son n'est joué **que par l'écran TV** (récepteur Cast, ou navigateur en plan B), jamais par les téléphones. Les joueurs répondent comme d'habitude, en Choix multiples (propositions « Titre – Artiste »). Le chronométrage, les points et le classement ne changent pas.
+
+**Source des extraits.** Previews de 30 s de l'API publique Deezer, usage gratuit et non commercial, avec mention « Extrait audio et informations : Deezer » à chaque révélation sur la TV, sur la fiche d'un blind test et dans l'écran « À propos et crédits » de l'app. La source est interchangeable : seule l'app de l'hôte l'interroge (`app/src/lib/audio/`, interface `AudioSource`) ; la TV ne connaît qu'une adresse. **Aucune publication tant que Deezer n'a pas répondu par écrit.**
+
+**Interrupteur à distance.** `config/blindTestEnabled` (absent ou false par défaut) : coupé, l'onglet Blind test reste « bientôt », les blind tests sont masqués, leur création et leur lancement sont refusés, et la TV ne joue aucun son. Il se modifie dans la console Firebase, sans nouveau build.
+
+**Adresses des extraits.** Elles expirent environ 15 min après leur obtention. L'hôte les récupère dès le salon (l'API refuse les appels depuis un navigateur), les renouvelle quand il leur reste moins de 5 min et republie celle de l'extrait en cours (y compris pendant une pause). Le lancement est refusé tant qu'un extrait manque (« Extraits audio indisponibles »).
+
+**Lecture sur la TV.**
+- Pendant QUESTION : l'extrait (12 s par défaut, de 10 à 15 s, début propre à chaque morceau) démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
+- Pendant REVEAL : le morceau continue, puis s'éteint en fondu sur la fin de la révélation, sans dépasser la preview.
+- Pause : le son s'arrête ; reprise à la même position.
+- Rien ne révèle le morceau avant la révélation : pas de titre, d'artiste, de pochette ni de lecteur visible ; la TV affiche « Quel est ce morceau ? », les propositions et un indicateur d'écoute.
+- Extrait illisible après un nouvel essai : « Extrait indisponible », l'hôte peut passer la question.
+- Plan B (navigateur d'un PC) : le navigateur exige un geste ; la TV affiche « Cliquez sur cet écran pour activer le son », un clic suffit pour toute la partie. En Cast, le son démarre seul (vérifié sur la box de test, Chrome 92).
+
+**Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
+
