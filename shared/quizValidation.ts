@@ -1,4 +1,8 @@
 import {
+  AUDIO_EXTRACT_MAX_S,
+  AUDIO_EXTRACT_MIN_S,
+  AUDIO_PREVIEW_S,
+  AUDIO_SOURCES,
   CHOICE_COUNT,
   FEATURED_QUIZ_COUNT,
   POSTER_PALETTES,
@@ -6,7 +10,18 @@ import {
   QUIZ_DESCRIPTION_MAX_LENGTH,
 } from './constants'
 import { isValidQuizId } from './quizCatalog'
-import type { ChoiceOptions, Difficulty, PosterPalette, Question, QuizAudience, QuizSummary } from './types'
+import { extractOf } from './audioPlayback'
+import type {
+  AudioSourceId,
+  ChoiceOptions,
+  Difficulty,
+  MusicTrack,
+  PosterPalette,
+  Question,
+  QuizAudience,
+  QuizGameType,
+  QuizSummary,
+} from './types'
 
 // Validation des lectures de quizzes/ et questions/ : la base peut contenir des données mal formées
 // (import manuel, ancien format). Les entrées invalides sont ignorées au lieu de faire planter l'écran.
@@ -32,6 +47,32 @@ function isFiniteNumber(value: unknown): value is number {
 
 function isDifficulty(value: unknown): value is Difficulty {
   return value === 1 || value === 2 || value === 3
+}
+
+function isQuizGameType(value: unknown): value is QuizGameType {
+  return value === 'quiz' || value === 'blindTest'
+}
+
+function isAudioSource(value: unknown): value is AudioSourceId {
+  return AUDIO_SOURCES.includes(value as AudioSourceId)
+}
+
+// Morceau d'une question de blind test, ou null s'il est mal formé. L'extrait (début + durée) doit
+// tenir dans la preview, et durer de AUDIO_EXTRACT_MIN_S à AUDIO_EXTRACT_MAX_S.
+export function parseMusicTrack(value: unknown): MusicTrack | null {
+  if (!isRecord(value)) return null
+  const { source, id, title, artist, startS, durationS } = value
+  if (!isAudioSource(source) || !isNonEmptyString(id) || !isNonEmptyString(title) || !isNonEmptyString(artist)) return null
+  if (startS !== undefined && !(isFiniteNumber(startS) && startS >= 0)) return null
+  if (durationS !== undefined && !isFiniteNumber(durationS)) return null
+  const extract = extractOf({ startS: startS as number | undefined, durationS: durationS as number | undefined })
+  if (extract.durationS < AUDIO_EXTRACT_MIN_S || extract.durationS > AUDIO_EXTRACT_MAX_S) return null
+  if (extract.startS + extract.durationS > AUDIO_PREVIEW_S) return null
+
+  const track: MusicTrack = { source, id, title, artist }
+  if (startS !== undefined) track.startS = startS as number
+  if (durationS !== undefined) track.durationS = durationS as number
+  return track
 }
 
 function isChoiceOptions(value: unknown): value is ChoiceOptions {
@@ -84,7 +125,7 @@ export function parseQuizSummary(value: unknown): QuizSummary | null {
   if (!isRecord(value)) return null
   const { title, theme, gameType, language, difficulty, difficultyLabel, questionCount, estimatedMinutes } = value
   if (!isNonEmptyString(title) || !isNonEmptyString(theme) || !isNonEmptyString(difficultyLabel)) return null
-  if (gameType !== 'quiz' || language !== 'fr') return null
+  if (!isQuizGameType(gameType) || language !== 'fr') return null
   if (!isFiniteNumber(difficulty) || !isFiniteNumber(questionCount) || !isFiniteNumber(estimatedMinutes)) return null
   return {
     title,
@@ -114,7 +155,7 @@ export function parseQuizCatalog(value: unknown): ParsedList<QuizEntry> {
 // Question complète (spec 8), ou null si elle est mal formée.
 export function parseQuestion(value: unknown): Question | null {
   if (!isRecord(value)) return null
-  const { id, text, options, correctIndex, acceptedAnswers, difficulty, explanation, timeLimit } = value
+  const { id, text, options, correctIndex, acceptedAnswers, difficulty, explanation, timeLimit, music } = value
   if (!isNonEmptyString(id) || !isNonEmptyString(text) || !isChoiceOptions(options) || !isDifficulty(difficulty)) {
     return null
   }
@@ -126,10 +167,13 @@ export function parseQuestion(value: unknown): Question | null {
   }
   if (explanation !== undefined && typeof explanation !== 'string') return null
   if (timeLimit !== undefined && !(isFiniteNumber(timeLimit) && timeLimit > 0)) return null
+  const track = music === undefined ? undefined : parseMusicTrack(music)
+  if (track === null) return null
 
   const question: Question = { id, text, options, correctIndex: correctIndex as number, acceptedAnswers, difficulty }
   if (explanation !== undefined) question.explanation = explanation
   if (timeLimit !== undefined) question.timeLimit = timeLimit
+  if (track) question.music = track
   return question
 }
 

@@ -232,6 +232,47 @@ describe('Hôte et état de la partie', () => {
   })
 })
 
+describe('Blind test', () => {
+  const URL = 'https://cdnt-preview.dzcdn.net/api/1/1/a.mp3?hdnea=exp=1791107825'
+  const question = { text: 'Quel est ce morceau ?', difficulty: 1, timeLimit: 20 }
+  const audio = { url: URL, startS: 5, durationS: 12 }
+
+  test('interrupteur config/blindTestEnabled : lisible connecté, jamais modifiable depuis l’app', async () => {
+    await seed({ config: { blindTestEnabled: false } })
+    await assertSucceeds(db(PLAYER).ref('config/blindTestEnabled').once('value'))
+    await assertFails(db(null).ref('config/blindTestEnabled').once('value'))
+    await assertFails(db(HOST).ref('config/blindTestEnabled').set(true))
+  })
+
+  test('currentQuestion accepte un extrait (adresse https, début et durée valides)', async () => {
+    await seedSession()
+    await assertSucceeds(db(HOST).ref(`${SESSION}/currentQuestion`).set({ ...question, audio }))
+  })
+
+  test('extrait refusé : adresse non https, durée hors 10-15 s, dépassement de la preview, champ inconnu', async () => {
+    await seedSession()
+    const ref = db(HOST).ref(`${SESSION}/currentQuestion`)
+    await assertFails(ref.set({ ...question, audio: { ...audio, url: 'http://exemple.fr/a.mp3' } }))
+    await assertFails(ref.set({ ...question, audio: { ...audio, durationS: 20 } }))
+    await assertFails(ref.set({ ...question, audio: { ...audio, startS: 20 } }))
+    await assertFails(ref.set({ ...question, audio: { ...audio, trackId: '6297555' } }))
+  })
+
+  test('adresse renouvelée seule par l’hôte, jamais par un joueur', async () => {
+    await seedSession({ currentQuestion: { ...question, audio } })
+    await assertSucceeds(db(HOST).ref(`${SESSION}/currentQuestion/audio/url`).set(`${URL}x`))
+    await assertFails(db(PLAYER).ref(`${SESSION}/currentQuestion/audio/url`).set(`${URL}y`))
+  })
+
+  test('reveal accepte titre, artiste et source ; source inconnue refusée', async () => {
+    await seedSession({ status: 'reveal' })
+    const ref = db(HOST).ref(`${SESSION}/reveal`)
+    const music = { title: 'Alors on danse', artist: 'Stromae', source: 'deezer' }
+    await assertSucceeds(ref.set({ correctAnswer: 'Alors on danse – Stromae', music }))
+    await assertFails(ref.set({ correctAnswer: 'X', music: { ...music, source: 'autre' } }))
+  })
+})
+
 describe('Nombre de questions (questionCount)', () => {
   // Écritures du lancement : un seul update() multi-chemins, comme le fera le moteur de l'hôte.
   function launch(uid: string, questionCount: unknown) {

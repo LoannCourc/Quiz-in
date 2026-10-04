@@ -155,6 +155,8 @@ export const strings = {
       notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,
       tooManyPlayers: `${MAX_PLAYERS} joueurs au maximum dans une partie.`,
       noQuestions: 'Ce quiz n’a pas de question jouable.',
+      blindTestDisabled: 'Le blind test n’est pas disponible pour le moment.',
+      audioUnavailable: 'Extraits audio indisponibles. Vérifie ta connexion, puis réessaie.',
     } satisfies Record<LaunchRefusal, string>,
     shortGame: {
       title: `Partie courte (${DEV_SHORT_GAME_QUESTIONS} questions)`,

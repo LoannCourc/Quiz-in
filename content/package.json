@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsx scripts/buildImport.ts"
+    "build": "tsx scripts/buildImport.ts",
+    "music:lookup": "tsx scripts/musicLookup.ts"
   },
   "devDependencies": {
     "tsx": "^4.23.15"

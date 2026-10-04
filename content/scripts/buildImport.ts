@@ -2,11 +2,11 @@
 //   import/quizzes.json   → à importer sur le nœud quizzes
 //   import/questions.json → à importer sur le nœud questions
 // Usage (depuis content/) : npm run build
+// Blind test : les identifiants des morceaux viennent de music-check/<quizId>.json, seulement s'ils sont vérifiés.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
 
-import { isAnswerCorrect } from '../../shared/answerMatching'
+import { isAnswerCorrect, normalizeAnswer } from '../../shared/answerMatching'
 import {
   CHOICE_COUNT,
   EXPLANATION_MAX_LENGTH,
@@ -19,12 +19,26 @@ import {
   QUIZ_DESCRIPTION_MAX_LENGTH,
 } from '../../shared/constants'
 import { averageDifficulty, difficultyLevel, estimateQuizMinutes, isValidQuizId } from '../../shared/quizCatalog'
-import { isFeaturedRank, isQuizDate } from '../../shared/quizValidation'
-import type { DifficultyLevel, PosterPalette, Question, QuizAudience, QuizSummary } from '../../shared/types'
+import { isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
+import type {
+  DifficultyLevel,
+  MusicTrack,
+  PosterPalette,
+  Question,
+  QuizAudience,
+  QuizGameType,
+  QuizSummary,
+} from '../../shared/types'
+import { contentDir, quizzesDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
+
+// Question du fichier source : un blind test donne l'artiste et le titre, pas l'identifiant du morceau.
+type SourceQuestion = Omit<Question, 'music'> & { music?: SourceMusic }
 
 // Fichier source d'un quiz (spec 8). reviewStatus n'est pas importé dans la base.
 interface QuizFile {
   id: string
+  // Absent : quiz classique.
+  gameType?: QuizGameType
   title: string
   theme: string
   description: string
@@ -33,16 +47,14 @@ interface QuizFile {
   addedAt: string
   featuredRank?: number
   reviewStatus?: string
-  questions: Question[]
+  questions: SourceQuestion[]
 }
 
 const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' }
 
-const contentDir = join(dirname(fileURLToPath(import.meta.url)), '..')
-const quizzesDir = join(contentDir, 'quizzes')
 const outputDir = join(contentDir, 'import')
 
-function questionErrors(question: Question): string[] {
+function questionErrors(question: SourceQuestion): string[] {
   const errors: string[] = []
   const { text, options, correctIndex, acceptedAnswers, difficulty, explanation, timeLimit } = question
   if (!question.id) errors.push('id manquant')
@@ -89,9 +101,45 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   const ids = quiz.questions.map((question) => question.id)
   if (new Set(ids).size !== ids.length) errors.push('ids de questions en double')
   quiz.questions.forEach((question, index) => {
-    questionErrors(question).forEach((error) => errors.push(`question ${index + 1} (${question.id}) : ${error}`))
+    const prefix = `question ${index + 1} (${question.id}) : `
+    questionErrors(question).forEach((error) => errors.push(prefix + error))
+    if (quiz.gameType !== 'blindTest' && question.music) errors.push(`${prefix}music réservé aux blind tests`)
   })
+  if (quiz.gameType === 'blindTest') errors.push(...musicErrors(quiz))
   return errors
+}
+
+// Morceau d'une question de blind test, pris dans le fichier de contrôle : vérifié, même artiste et même
+// titre que dans la source, avec un extrait disponible. Sinon, la raison du refus.
+function verifiedTrack(quizId: string, question: SourceQuestion): MusicTrack | string {
+  if (!question.music) return 'champ music (artist, title) manquant'
+  const entry = readMusicCheck(quizId)?.tracks.find((track) => track.questionId === question.id)
+  if (!entry) return 'morceau jamais recherché : lancer npm run music:lookup -- ' + quizId
+  if (!sameQuery(entry, question.music)) return 'artiste ou titre modifié depuis la recherche : relancer music:lookup'
+  if (!entry.found || !entry.found.previewAvailable) return 'aucun morceau avec extrait dans le fichier de contrôle'
+  if (!entry.verified) return 'morceau non vérifié dans music-check (verified: false)'
+  const { title, artist, startS, durationS } = question.music
+  const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS, durationS })
+  return track ?? 'extrait invalide (startS + durationS ≤ 30, durationS de 10 à 15)'
+}
+
+function musicErrors(quiz: QuizFile): string[] {
+  return quiz.questions.flatMap((question, index) => {
+    const prefix = `question ${index + 1} (${question.id}) : `
+    const track = verifiedTrack(quiz.id, question)
+    if (typeof track === 'string') return [prefix + track]
+    // La bonne proposition doit citer le titre du morceau : évite d'associer le mauvais extrait.
+    const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
+    return correct.includes(normalizeAnswer(track.title)) ? [] : [`${prefix}la bonne proposition ne cite pas « ${track.title} »`]
+  })
+}
+
+// Questions telles qu'importées : pour un blind test, le morceau vérifié (avec son identifiant).
+function toQuestions(quiz: QuizFile): Question[] {
+  return quiz.questions.map(({ music: _music, ...question }) => {
+    if (quiz.gameType !== 'blindTest') return question
+    return { ...question, music: verifiedTrack(quiz.id, { ...question, music: _music }) as MusicTrack }
+  })
 }
 
 function toSummary(quiz: QuizFile): QuizSummary {
@@ -99,7 +147,7 @@ function toSummary(quiz: QuizFile): QuizSummary {
   return {
     title: quiz.title,
     theme: quiz.theme,
-    gameType: 'quiz',
+    gameType: quiz.gameType ?? 'quiz',
     language: 'fr',
     difficulty,
     difficultyLabel: DIFFICULTY_LABELS[difficultyLevel(difficulty)],
@@ -136,7 +184,7 @@ if (allErrors.length > 0) {
 }
 
 const summaries = Object.fromEntries(quizzes.map(({ quiz }) => [quiz.id, toSummary(quiz)]))
-const questions = Object.fromEntries(quizzes.map(({ quiz }) => [quiz.id, quiz.questions]))
+const questions = Object.fromEntries(quizzes.map(({ quiz }) => [quiz.id, toQuestions(quiz)]))
 
 mkdirSync(outputDir, { recursive: true })
 writeFileSync(join(outputDir, 'quizzes.json'), `${JSON.stringify(summaries, null, 2)}\n`)

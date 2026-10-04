@@ -1,4 +1,5 @@
 import { isAnswerCorrect } from './answerMatching'
+import { extractOf } from './audioPlayback'
 import {
   ALL_ANSWERED_DELAY_S,
   MAX_PLAYERS,
@@ -38,15 +39,21 @@ export function selectGameQuestions(questions: readonly Question[], limit = QUES
   return questions.slice(0, Math.max(0, Math.min(limit, QUESTIONS_PER_GAME)))
 }
 
+// Blind test : adresses temporaires des extraits, par identifiant de question, fournies par l'hôte
+// (récupérées auprès de la source audio, renouvelées avant expiration).
+export type AudioUrls = Readonly<Record<string, string>>
+
 // Question publiée pendant QUESTION : jamais correctIndex, acceptedAnswers ni explanation.
 // En Réponse libre, les propositions ne sont pas envoyées (elles contiennent la bonne réponse).
-export function toPublicQuestion(question: Question, answerMode: AnswerMode): PublicQuestion {
+// Blind test : seulement l'adresse de l'extrait, jamais l'identifiant, le titre ni l'artiste.
+export function toPublicQuestion(question: Question, answerMode: AnswerMode, audioUrl?: string): PublicQuestion {
   const published: PublicQuestion = {
     text: question.text,
     difficulty: question.difficulty,
     timeLimit: questionDurationS(answerMode, question.timeLimit),
   }
   if (answerMode === 'choice') published.options = [...question.options] as ChoiceOptions
+  if (question.music && audioUrl) published.audio = { url: audioUrl, ...extractOf(question.music) }
   return published
 }
 
@@ -118,6 +125,10 @@ export function buildReveal(question: Question, session: Session): RevealResult 
     results,
   }
   if (question.explanation) reveal.explanation = question.explanation
+  if (question.music) {
+    const { title, artist, source } = question.music
+    reveal.music = { title, artist, source }
+  }
 
   return { reveal, results, scores, ranks: computeRanks(scores) }
 }
@@ -167,11 +178,13 @@ function phaseTimes(nowServer: number, durationS: number | null): SessionUpdate 
 // Contenu de l'update qui fait passer à l'état suivant (STARTING → QUESTION → REVEAL → SCORES →
 // QUESTION suivante ou END), ou null si la session n'est plus dans l'état attendu ou si aucune
 // transition automatique n'existe. questions : questions de la partie (selectGameQuestions).
+// audioUrls : adresses des extraits (blind test seulement).
 export function transitionUpdate(
   session: Session,
   questions: readonly Question[],
   expected: ExpectedPhase,
   nowServer: number,
+  audioUrls: AudioUrls = {},
 ): SessionUpdate | null {
   if (session.status !== expected.status || session.currentIndex !== expected.currentIndex) return null
   const { answerMode } = session.settings
@@ -186,7 +199,7 @@ export function transitionUpdate(
       const question = questions[phase.currentIndex]
       if (!question) return null
       // reveal est effacé au passage à la question suivante (spec 7).
-      return { ...base, currentQuestion: toPublicQuestion(question, answerMode), reveal: null }
+      return { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
     }
     case 'reveal': {
       const question = questions[session.currentIndex]
@@ -213,17 +226,46 @@ function revealPaths(session: Session, { reveal, results, scores, ranks }: Revea
   return update
 }
 
-export type LaunchRefusal = 'notLobby' | 'freeAnswerSoon' | 'notEnoughPlayers' | 'tooManyPlayers' | 'noQuestions'
+// Blind test : republie l'adresse renouvelée de l'extrait en cours (question, révélation ou pause,
+// par exemple à la reprise après une longue pause), ou null s'il n'y a rien à changer.
+export function audioUrlUpdate(
+  session: Session,
+  questions: readonly Question[],
+  audioUrls: AudioUrls,
+): SessionUpdate | null {
+  const published = session.currentQuestion?.audio
+  const question = questions[session.currentIndex]
+  const url = question ? audioUrls[question.id] : undefined
+  if (!published || !url || url === published.url) return null
+  return { 'currentQuestion/audio/url': url }
+}
+
+export type LaunchRefusal =
+  | 'notLobby'
+  | 'freeAnswerSoon'
+  | 'notEnoughPlayers'
+  | 'tooManyPlayers'
+  | 'noQuestions'
+  | 'blindTestDisabled'
+  | 'audioUnavailable'
+
+// Blind test : interrupteur à distance (config/blindTestEnabled) et adresses des extraits.
+export interface LaunchAudio {
+  enabled: boolean
+  urls: AudioUrls
+}
 
 export type LaunchResult = { ok: true; update: SessionUpdate } | { ok: false; reason: LaunchRefusal }
 
 // Lancement (LOBBY → STARTING) : questionCount fixé, scores remis à zéro, réponses effacées.
-// Refusé, avec la raison, si la partie ne peut pas commencer.
+// Refusé, avec la raison, si la partie ne peut pas commencer. Blind test : refusé si l'interrupteur
+// est coupé ou s'il manque l'adresse d'un extrait.
 export function launchUpdate(
   session: Session,
   questions: readonly Question[],
   nowServer: number,
   limit = QUESTIONS_PER_GAME,
+  audio: LaunchAudio = { enabled: false, urls: {} },
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   // 3.6 : seul le mode Choix multiples est jouable.
@@ -232,6 +274,9 @@ export function launchUpdate(
   if (Object.keys(session.players).length > MAX_PLAYERS) return { ok: false, reason: 'tooManyPlayers' }
   const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
+  const musicQuestions = gameQuestions.filter((question) => question.music)
+  if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }
+  if (musicQuestions.some((question) => !audio.urls[question.id])) return { ok: false, reason: 'audioUnavailable' }
 
   const update: SessionUpdate = {
     status: 'starting',

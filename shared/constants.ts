@@ -1,5 +1,5 @@
 // Constantes de jeu issues de la spec (sections 5 et 6), ajustables après les tests.
-import type { AnswerMode, PosterPalette, QuizAudience, SessionSettings } from './types';
+import type { AnswerMode, AudioSourceId, PosterPalette, QuizAudience, SessionSettings } from './types';
 
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 20;
@@ -81,3 +81,19 @@ export const RECEIVER_CODE_PARAM = 'code';
 // Seuils de la difficulté moyenne d'un quiz : en dessous = Facile, jusqu'à = Moyen, au-delà = Difficile.
 export const DIFFICULTY_EASY_MAX = 1.67;
 export const DIFFICULTY_MEDIUM_MAX = 2.33;
+
+// Blind test (spec 15) : extrait joué par la TV, pris dans la preview de 30 s de la source audio.
+export const AUDIO_SOURCES: readonly AudioSourceId[] = ['deezer'];
+export const AUDIO_PREVIEW_S = 30;
+export const AUDIO_EXTRACT_S = 12;
+export const AUDIO_EXTRACT_MIN_S = 10;
+export const AUDIO_EXTRACT_MAX_S = 15;
+export const AUDIO_EXTRACT_START_S = 0;
+// Les adresses des extraits expirent (Deezer : environ 15 min) : l'hôte renouvelle toute adresse à
+// laquelle il reste moins de AUDIO_URL_MIN_VALIDITY_MS, en vérifiant toutes les AUDIO_URL_REFRESH_INTERVAL_MS.
+export const AUDIO_URL_MIN_VALIDITY_MS = 5 * 60_000;
+export const AUDIO_URL_REFRESH_INTERVAL_MS = 60_000;
+// Le morceau continue pendant la révélation, puis s'éteint en fondu sur la fin de celle-ci.
+export const AUDIO_FADE_OUT_MS = 1_500;
+// Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).
+export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';
