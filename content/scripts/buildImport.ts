@@ -110,35 +110,47 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
 }
 
 // Morceau d'une question de blind test, pris dans le fichier de contrôle : vérifié, même artiste et même
-// titre que dans la source, avec un extrait disponible. Sinon, la raison du refus.
-function verifiedTrack(quizId: string, question: SourceQuestion): MusicTrack | string {
-  if (!question.music) return 'champ music (artist, title) manquant'
-  const entry = readMusicCheck(quizId)?.tracks.find((track) => track.questionId === question.id)
-  if (!entry) return 'morceau jamais recherché : lancer npm run music:lookup -- ' + quizId
-  if (!sameQuery(entry, question.music)) return 'artiste ou titre modifié depuis la recherche : relancer music:lookup'
-  if (!entry.found || !entry.found.previewAvailable) return 'aucun morceau avec extrait dans le fichier de contrôle'
-  if (!entry.verified) return 'morceau non vérifié dans music-check (verified: false)'
+// titre que dans la source, avec un extrait disponible.
+// pending : vérification à faire (le quiz est exclu de l'import, les autres quiz restent importables).
+// error : contenu invalide (bloque la génération, comme toute autre erreur de format).
+type TrackCheck = { kind: 'track'; track: MusicTrack } | { kind: 'pending' | 'error'; reason: string }
+
+function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
+  if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
   const { title, artist, startS, durationS } = question.music
+  // La bonne proposition doit citer le titre du morceau : évite d'associer le mauvais extrait.
+  const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
+  if (!correct.includes(normalizeAnswer(title))) {
+    return { kind: 'error', reason: `la bonne proposition ne cite pas « ${title} »` }
+  }
+  const entry = readMusicCheck(quizId)?.tracks.find((track) => track.questionId === question.id)
+  if (!entry) return { kind: 'pending', reason: `jamais recherché : npm run music:lookup -- ${quizId}` }
+  if (!sameQuery(entry, question.music)) return { kind: 'pending', reason: 'artiste ou titre modifié : relancer music:lookup' }
+  if (!entry.found?.previewAvailable) return { kind: 'pending', reason: 'aucun morceau avec extrait trouvé' }
+  if (!entry.verified) return { kind: 'pending', reason: 'non vérifié (verified: false)' }
   const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS, durationS })
-  return track ?? 'extrait invalide (startS + durationS ≤ 30, durationS de 10 à 15)'
+  return track ? { kind: 'track', track } : { kind: 'error', reason: 'extrait invalide (startS + durationS ≤ 30, durationS de 10 à 15)' }
+}
+
+function musicIssues(quiz: QuizFile, kind: 'pending' | 'error'): string[] {
+  if (quiz.gameType !== 'blindTest') return []
+  return quiz.questions.flatMap((question, index) => {
+    const check = checkTrack(quiz.id, question)
+    return check.kind === kind ? [`question ${index + 1} (${question.id}) : ${check.reason}`] : []
+  })
 }
 
 function musicErrors(quiz: QuizFile): string[] {
-  return quiz.questions.flatMap((question, index) => {
-    const prefix = `question ${index + 1} (${question.id}) : `
-    const track = verifiedTrack(quiz.id, question)
-    if (typeof track === 'string') return [prefix + track]
-    // La bonne proposition doit citer le titre du morceau : évite d'associer le mauvais extrait.
-    const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
-    return correct.includes(normalizeAnswer(track.title)) ? [] : [`${prefix}la bonne proposition ne cite pas « ${track.title} »`]
-  })
+  return musicIssues(quiz, 'error')
 }
 
 // Questions telles qu'importées : pour un blind test, le morceau vérifié (avec son identifiant).
 function toQuestions(quiz: QuizFile): Question[] {
-  return quiz.questions.map(({ music: _music, ...question }) => {
+  return quiz.questions.map(({ music, ...question }) => {
     if (quiz.gameType !== 'blindTest') return question
-    return { ...question, music: verifiedTrack(quiz.id, { ...question, music: _music }) as MusicTrack }
+    const check = checkTrack(quiz.id, { ...question, music })
+    if (check.kind !== 'track') throw new Error(`${quiz.id} : morceau non vérifié importé`)
+    return { ...question, music: check.track }
   })
 }
 
@@ -167,11 +179,17 @@ const quizzes = fileNames.map((fileName) => ({
   quiz: JSON.parse(readFileSync(join(quizzesDir, fileName), 'utf8')) as QuizFile,
 }))
 
-// Une place du Top 10 ne peut être donnée qu'à un seul quiz.
+// Une place du Top 10 ne peut être donnée qu'à un seul quiz du même onglet (quiz ou blind test).
 function featuredRankErrors(): string[] {
-  const ranks = quizzes.map(({ quiz }) => quiz.featuredRank).filter((rank) => rank !== undefined)
-  const duplicates = [...new Set(ranks.filter((rank, index) => ranks.indexOf(rank) !== index))]
-  return duplicates.map((rank) => `featuredRank ${rank} donné à plusieurs quiz`)
+  const gameTypes: QuizGameType[] = ['quiz', 'blindTest']
+  return gameTypes.flatMap((gameType) => {
+    const ranks = quizzes
+      .filter(({ quiz }) => (quiz.gameType ?? 'quiz') === gameType)
+      .map(({ quiz }) => quiz.featuredRank)
+      .filter((rank) => rank !== undefined)
+    const duplicates = [...new Set(ranks.filter((rank, index) => ranks.indexOf(rank) !== index))]
+    return duplicates.map((rank) => `featuredRank ${rank} donné à plusieurs quiz de type ${gameType}`)
+  })
 }
 
 const allErrors = [
@@ -183,14 +201,21 @@ if (allErrors.length > 0) {
   process.exit(1)
 }
 
-const summaries = Object.fromEntries(quizzes.map(({ quiz }) => [quiz.id, toSummary(quiz)]))
-const questions = Object.fromEntries(quizzes.map(({ quiz }) => [quiz.id, toQuestions(quiz)]))
+// Blind test dont un morceau n'est pas encore vérifié : exclu de l'import, avec la liste de ce qui manque.
+const pending = quizzes.map(({ quiz }) => ({ quiz, issues: musicIssues(quiz, 'pending') }))
+const imported = pending.filter(({ issues }) => issues.length === 0).map(({ quiz }) => ({ quiz }))
+for (const { quiz, issues } of pending.filter(({ issues }) => issues.length > 0)) {
+  console.warn(`⚠ ${quiz.id} non importé, morceaux à vérifier :\n  - ${issues.join('\n  - ')}`)
+}
+
+const summaries = Object.fromEntries(imported.map(({ quiz }) => [quiz.id, toSummary(quiz)]))
+const questions = Object.fromEntries(imported.map(({ quiz }) => [quiz.id, toQuestions(quiz)]))
 
 mkdirSync(outputDir, { recursive: true })
 writeFileSync(join(outputDir, 'quizzes.json'), `${JSON.stringify(summaries, null, 2)}\n`)
 writeFileSync(join(outputDir, 'questions.json'), `${JSON.stringify(questions, null, 2)}\n`)
 
-for (const { quiz } of quizzes) {
+for (const { quiz } of imported) {
   const note = quiz.reviewStatus ? ` [${quiz.reviewStatus}]` : ''
   console.log(`✓ ${quiz.id} : ${quiz.questions.length} questions, ${summaries[quiz.id].difficultyLabel}${note}`)
 }

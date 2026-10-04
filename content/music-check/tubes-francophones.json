@@ -1,0 +1,467 @@
+{
+  "quizId": "tubes-francophones",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "tf-01",
+      "query": {
+        "artist": "Édith Piaf",
+        "title": "La vie en rose"
+      },
+      "found": {
+        "id": "73693857",
+        "title": "La Vie en Rose",
+        "artist": "Edith Piaf",
+        "album": "La Vie en Rose",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/73693857"
+      },
+      "alternatives": [
+        {
+          "id": "94107292",
+          "title": "La vie en rose",
+          "artist": "Andrea Bocelli",
+          "album": "Passione (Remastered)",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/94107292"
+        },
+        {
+          "id": "4775333",
+          "title": "La Vie En Rose (Buddha Chill Remix)",
+          "artist": "Edith Piaf",
+          "album": "La Vie En Rose (Buddha Chill Remix)",
+          "durationS": 302,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4775333"
+        },
+        {
+          "id": "4775332",
+          "title": "La Vie En Rose (Buddha Lounge Remix)",
+          "artist": "Edith Piaf",
+          "album": "La Vie En Rose (Buddha Chill Remix)",
+          "durationS": 367,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4775332"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-02",
+      "query": {
+        "artist": "Joe Dassin",
+        "title": "Les Champs-Élysées"
+      },
+      "found": {
+        "id": "561685",
+        "title": "Les Champs-Elysées",
+        "artist": "Joe Dassin",
+        "album": "Joe Dassin Éternel...",
+        "durationS": 157,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/561685"
+      },
+      "alternatives": [
+        {
+          "id": "70494050",
+          "title": "Les Champs-Elysées",
+          "artist": "Joe Dassin",
+          "album": "Grandes Exitos",
+          "durationS": 145,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70494050"
+        },
+        {
+          "id": "2522619341",
+          "title": "Les Champs-Elysées (Version japonaise)",
+          "artist": "Joe Dassin",
+          "album": "Intégrale",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2522619341"
+        },
+        {
+          "id": "70494054",
+          "title": "Les Champs-Elysées (Version anglaise)",
+          "artist": "Joe Dassin",
+          "album": "Grandes Exitos",
+          "durationS": 144,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70494054"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-03",
+      "query": {
+        "artist": "Johnny Hallyday",
+        "title": "Que je t'aime"
+      },
+      "found": {
+        "id": "14113667",
+        "title": "Que je t'aime",
+        "artist": "Johnny Hallyday",
+        "album": "50 Ans / 50 Standards",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14113667"
+      },
+      "alternatives": [
+        {
+          "id": "559249382",
+          "title": "Que je t'aime (Live au Stade de France 2009)",
+          "artist": "Johnny Hallyday",
+          "album": "Tour 66 (Live au Stade de France 2009)",
+          "durationS": 318,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/559249382"
+        },
+        {
+          "id": "771039532",
+          "title": "Que je t'aime",
+          "artist": "Johnny Hallyday",
+          "album": "Johnny",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/771039532"
+        },
+        {
+          "id": "743761362",
+          "title": "Que je t'aime",
+          "artist": "Johnny Hallyday",
+          "album": "Que je t'aime (50ème anniversaire)",
+          "durationS": 207,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/743761362"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-04",
+      "query": {
+        "artist": "Claude François",
+        "title": "Alexandrie Alexandra"
+      },
+      "found": {
+        "id": "793796",
+        "title": "Alexandrie Alexandra",
+        "artist": "Claude François",
+        "album": "Intégrale des années Warner 1975-1978",
+        "durationS": 262,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/793796"
+      },
+      "alternatives": [
+        {
+          "id": "2248081027",
+          "title": "Alexandrie Alexandra (Greg Cerrone Classic Mix) (Radio Edit)",
+          "artist": "Claude François",
+          "album": "Alexandrie Alexandra (Greg Cerrone Classic Mix) (Radio Edit)",
+          "durationS": 184,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2248081027"
+        },
+        {
+          "id": "16580012",
+          "title": "Alexandrie Alexandra",
+          "artist": "Claude François",
+          "album": "Claude François 100% concert (Live)",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/16580012"
+        },
+        {
+          "id": "2326186075",
+          "title": "Alexandrie Alexandra (Dimitri From Paris Radio Edit)",
+          "artist": "Claude François",
+          "album": "Alexandrie Alexandra (Dimitri From Paris Radio Edit)",
+          "durationS": 180,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2326186075"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-05",
+      "query": {
+        "artist": "France Gall",
+        "title": "Ella, elle l'a"
+      },
+      "found": {
+        "id": "46251471",
+        "title": "Ella, elle l'a (Remasterisé en 2004)",
+        "artist": "France Gall",
+        "album": "Babacar (Remasterisé en 2004)",
+        "durationS": 291,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/46251471"
+      },
+      "alternatives": [
+        {
+          "id": "1014186232",
+          "title": "Ella, elle l'a (Remix Angleterre)",
+          "artist": "France Gall",
+          "album": "Ella, elle l'a (Remix Angleterre)",
+          "durationS": 374,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1014186232"
+        },
+        {
+          "id": "46318711",
+          "title": "Ella, elle l'a (Version 1996; Remasterisé en 2004)",
+          "artist": "France Gall",
+          "album": "France (Remasterisé en 2004)",
+          "durationS": 310,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/46318711"
+        },
+        {
+          "id": "819503312",
+          "title": "Ella, elle l'a (Acoustique; Live 1997)",
+          "artist": "France Gall",
+          "album": "Best of Live",
+          "durationS": 388,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/819503312"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-06",
+      "query": {
+        "artist": "Céline Dion",
+        "title": "Pour que tu m'aimes encore"
+      },
+      "found": {
+        "id": "4762933",
+        "title": "Pour que tu m'aimes encore",
+        "artist": "Céline Dion",
+        "album": "D'eux - Édition 15ème Anniversaire",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4762933"
+      },
+      "alternatives": [
+        {
+          "id": "4762945",
+          "title": "Pour que tu m'aimes encore (Demo Version)",
+          "artist": "Céline Dion",
+          "album": "D'eux - Édition 15ème Anniversaire",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4762945"
+        },
+        {
+          "id": "4762949",
+          "title": "Pour que tu m'aimes encore (PBO version) (Playback only version)",
+          "artist": "Céline Dion",
+          "album": "D'eux - Édition 15ème Anniversaire",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4762949"
+        },
+        {
+          "id": "77913138",
+          "title": "Pour que tu m'aimes encore (Live in Quebec City) (Live from Quebec City, Canada - July 2013)",
+          "artist": "Céline Dion",
+          "album": "Céline... Une seule fois / Live 2013",
+          "durationS": 308,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/77913138"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-07",
+      "query": {
+        "artist": "Stromae",
+        "title": "Alors on danse"
+      },
+      "found": {
+        "id": "6297555",
+        "title": "Alors on danse (Radio Edit)",
+        "artist": "Stromae",
+        "album": "Cheese",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6297555"
+      },
+      "alternatives": [
+        {
+          "id": "946177172",
+          "title": "Alors On Danse (feat. Stromae)",
+          "artist": "Dubdogz",
+          "album": "Alors On Danse (feat. Stromae)",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/946177172"
+        },
+        {
+          "id": "7293958",
+          "title": "Alors On Danse",
+          "artist": "Stromae",
+          "album": "Alors On Danse",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7293958"
+        },
+        {
+          "id": "7046192",
+          "title": "Alors On Danse (Featuring Erik Hassle)",
+          "artist": "Stromae",
+          "album": "Alors On Danse",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7046192"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-08",
+      "query": {
+        "artist": "Zaz",
+        "title": "Je veux"
+      },
+      "found": {
+        "id": "17199784",
+        "title": "Je veux",
+        "artist": "Zaz",
+        "album": "Zaz",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/17199784"
+      },
+      "alternatives": [
+        {
+          "id": "2655896272",
+          "title": "Zaz_Je Veux (slowed)",
+          "artist": "Darko Tunes",
+          "album": "Zaz_Je Veux (slowed)",
+          "durationS": 202,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2655896272"
+        },
+        {
+          "id": "110007514",
+          "title": "Je veux (Sur la route Live 2015)",
+          "artist": "Zaz",
+          "album": "Sur la route",
+          "durationS": 323,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/110007514"
+        },
+        {
+          "id": "17199997",
+          "title": "Je veux (Live)",
+          "artist": "Zaz",
+          "album": "Sans Tsu-Tsou",
+          "durationS": 480,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17199997"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-09",
+      "query": {
+        "artist": "Indila",
+        "title": "Dernière danse"
+      },
+      "found": {
+        "id": "74427067",
+        "title": "Dernière danse",
+        "artist": "Indila",
+        "album": "Mini World",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/74427067"
+      },
+      "alternatives": [
+        {
+          "id": "2626621412",
+          "title": "Dernière danse (Techno Mix)",
+          "artist": "Indila",
+          "album": "Dernière danse (Techno Mix)",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2626621412"
+        },
+        {
+          "id": "2663259742",
+          "title": "DERNIERE DANCE FUNK (feat. MC KRAKEN, YXUNGXROTICA)",
+          "artist": "ZODIVK",
+          "album": "DERNIERE DANCE FUNK (feat. MC KRAKEN, YXUNGXROTICA)",
+          "durationS": 92,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2663259742"
+        },
+        {
+          "id": "3950572641",
+          "title": "Dernière danse",
+          "artist": "LUCKY DEMON",
+          "album": "Dernière danse",
+          "durationS": 131,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3950572641"
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "tf-10",
+      "query": {
+        "artist": "Kendji Girac",
+        "title": "Andalouse"
+      },
+      "found": {
+        "id": "98356864",
+        "title": "Andalouse",
+        "artist": "Kendji Girac",
+        "album": "Kendji",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/98356864"
+      },
+      "alternatives": [
+        {
+          "id": "143782780",
+          "title": "Andalouse (Live)",
+          "artist": "Kendji Girac",
+          "album": "Ensemble, le live (Live)",
+          "durationS": 175,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/143782780"
+        },
+        {
+          "id": "98356862",
+          "title": "Color Gitano",
+          "artist": "Kendji Girac",
+          "album": "Kendji",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/98356862"
+        },
+        {
+          "id": "1431434932",
+          "title": "Bebeto (Remix)",
+          "artist": "Kendji Girac",
+          "album": "Bebeto (Remix)",
+          "durationS": 238,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1431434932"
+        }
+      ],
+      "verified": false
+    }
+  ]
+}
