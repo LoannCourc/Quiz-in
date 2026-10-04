@@ -1,3 +1,5 @@
+import type { PosterPalette } from '@shared/types';
+
 // Direction artistique « Plateau TV » : seul endroit où l'app définit couleurs, polices et formes.
 // Mêmes valeurs que le récepteur TV (receiver/src/theme.css). Les écrans n'utilisent que ces tokens.
 
@@ -19,6 +21,22 @@ const Palette = {
   glowMagenta: '#c42d8a',
   track: 'rgba(201, 184, 255, 0.35)',
 } as const;
+
+// Affiches du catalogue : début et fin du dégradé de chaque palette (fichiers de contenu, champ poster).
+const PosterColors: Record<PosterPalette, readonly [string, string]> = {
+  pink: ['#ff4f9a', '#a8268f'],
+  blue: ['#3f8cff', '#2b3fc4'],
+  green: ['#2fd08a', '#137a63'],
+  orange: ['#ffb02e', '#ff5a3d'],
+  red: ['#f0484f', '#8f1f4a'],
+  cyan: ['#22c8e8', '#1f5fd1'],
+  violet: ['#a56bff', '#5b2bd1'],
+  gold: ['#ffc53d', '#f0761c'],
+};
+
+export const AppPosterGradients = Object.fromEntries(
+  Object.entries(PosterColors).map(([palette, [from, to]]) => [palette, `linear-gradient(160deg, ${from} 0%, ${to} 100%)`]),
+) as Record<PosterPalette, string>;
 
 export const AppColors = {
   // Couleur unie sous le dégradé (avant son affichage, et partout où un dégradé n'a pas de sens).
@@ -50,6 +68,14 @@ export const AppColors = {
   // Voile derrière un panneau (contrôles de l'hôte).
   backdrop: 'rgba(23, 6, 70, 0.7)',
   confetti: [Palette.cyan, Palette.gold, Palette.green, Palette.white, Palette.pinkLight],
+  // Catalogue : puces de thème (contour, puce choisie en blanc), badge « bientôt », pastilles de la fiche.
+  chipBorder: 'rgba(201, 184, 255, 0.45)',
+  chipSelected: Palette.white,
+  onChipSelected: Palette.ink,
+  soonBadge: Palette.cyan,
+  onSoonBadge: Palette.ink,
+  tags: { difficulty: Palette.gold, audience: Palette.green, gameType: Palette.cyan },
+  onTag: Palette.ink,
 } as const;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).
@@ -109,6 +135,14 @@ export const AppSizes = {
   coinSize: 224,
   coinBorder: 8,
   podiumWidth: 100,
+  // Catalogue : affiches portrait (hauteur = largeur × ratio), gros chiffres du Top 10.
+  posterRatio: 1.5,
+  posterRadius: 14,
+  posterMinWidth: 96,
+  posterMaxWidth: 132,
+  featuredNumber: 108,
+  chipHeight: 40,
+  tabUnderline: 3,
 } as const;
 
 // Ombre dure décalée, sans flou.

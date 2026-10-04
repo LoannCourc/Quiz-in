@@ -5,12 +5,16 @@ import {
   PLAYER_NAME_MAX_LENGTH,
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
+import type { CatalogRowId } from '@shared/catalogRows';
 import type { LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { AnswerMode, DifficultyLevel } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
+
+// Types de jeu du sélecteur du catalogue : seul le quiz est jouable au MVP.
+export type GameType = 'quiz' | 'blindTest' | 'lyrics';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -55,14 +59,26 @@ export const strings = {
     waiting: 'En attente du lancement…',
   },
   catalog: {
-    title: 'Choisis un quiz',
     loading: 'Chargement du catalogue…',
     errorPrefix: 'Erreur de chargement :',
     emptyCatalog: 'Aucun quiz disponible.',
-    noMatch: 'Aucun quiz ne correspond à ces filtres.',
-    themeFilter: 'Thème',
-    difficultyFilter: 'Difficulté',
-    all: 'Tous',
+    noMatch: 'Aucun quiz pour ce thème.',
+    allThemes: 'Tout',
+    search: 'Rechercher un quiz',
+    searchPlaceholder: 'Titre du quiz',
+    closeSearch: 'Fermer la recherche',
+    noSearchResult: 'Aucun quiz ne porte ce titre.',
+    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', lyrics: 'Paroles' } satisfies Record<GameType, string>,
+    soon: 'bientôt',
+    gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
+    rows: {
+      featured: 'Top 10 cette semaine',
+      new: 'Nouveautés',
+      easy: 'Faciles, pour tout le monde',
+      experts: 'Pour les experts',
+    } satisfies Record<CatalogRowId, string>,
+    posterLabel: (title: string, rank?: number) => (rank === undefined ? title : `${rank}. ${title}`),
+    demoCatalogLink: 'Outils de développement : catalogue fictif',
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' } satisfies Record<DifficultyLevel, string>,
     difficulty: (level: string, average: number) => `${level} (${String(average).replace('.', ',')})`,
     details: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
