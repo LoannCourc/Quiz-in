@@ -1,0 +1,547 @@
+{
+  "quizId": "annees-2010",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "a10-01",
+      "query": {
+        "artist": "Pharrell Williams",
+        "title": "Happy"
+      },
+      "found": {
+        "id": "701326562",
+        "title": "Happy (From \"Despicable Me 2\")",
+        "artist": "Pharrell Williams",
+        "album": "G I R L",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/701326562",
+        "explicit": false,
+        "rank": 923864
+      },
+      "alternatives": [
+        {
+          "id": "84614941",
+          "title": "Happy (Live)",
+          "artist": "Pharrell Williams",
+          "album": "Happy (Live)",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/84614941",
+          "explicit": false,
+          "rank": 389836
+        },
+        {
+          "id": "85838607",
+          "title": "Happy (Oktoberfest Mix)",
+          "artist": "Pharrell Williams",
+          "album": "Happy (Oktoberfest Mix)",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/85838607",
+          "explicit": false,
+          "rank": 274613
+        },
+        {
+          "id": "1995783727",
+          "title": "Happy (Remix)",
+          "artist": "Pharrell Williams",
+          "album": "Rare RnB & New Jack 77",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1995783727",
+          "explicit": true,
+          "rank": 58686
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-02",
+      "query": {
+        "artist": "Adele",
+        "title": "Rolling in the Deep"
+      },
+      "found": {
+        "id": "8086126",
+        "title": "Rolling in the Deep",
+        "artist": "Adele",
+        "album": "21",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/8086126",
+        "explicit": false,
+        "rank": 937444
+      },
+      "alternatives": [
+        {
+          "id": "66539032",
+          "title": "Rolling in the Deep (Jamie xx Shuffle)",
+          "artist": "Adele",
+          "album": "Rolling in the Deep (Jamie xx Shuffle)",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/66539032",
+          "explicit": false,
+          "rank": 509562
+        },
+        {
+          "id": "346975901",
+          "title": "Rolling In The Deep",
+          "artist": "Hello I'm Adele",
+          "album": "Rolling In The Deep",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/346975901",
+          "explicit": false,
+          "rank": 92926
+        },
+        {
+          "id": "144602656",
+          "title": "Rolling In The Deep",
+          "artist": "Sing To Adele",
+          "album": "Rolling In The Deep",
+          "durationS": 133,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144602656",
+          "explicit": false,
+          "rank": 23171
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-03",
+      "query": {
+        "artist": "Luis Fonsi",
+        "title": "Despacito"
+      },
+      "found": {
+        "id": "623698142",
+        "title": "Despacito",
+        "artist": "Luis Fonsi",
+        "album": "VIDA",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623698142",
+        "explicit": false,
+        "rank": 843059
+      },
+      "alternatives": [
+        {
+          "id": "144389864",
+          "title": "Despacito",
+          "artist": "Luis Fonsi",
+          "album": "Despacito (Versión Pop)",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144389864",
+          "explicit": false,
+          "rank": 447182
+        },
+        {
+          "id": "144389810",
+          "title": "Despacito (Versión Salsa)",
+          "artist": "Luis Fonsi",
+          "album": "Despacito (Versión Salsa)",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144389810",
+          "explicit": false,
+          "rank": 364055
+        },
+        {
+          "id": "356004291",
+          "title": "Despacito (Versión Urbana/Sky)",
+          "artist": "Luis Fonsi",
+          "album": "Despacito (Versión Urbana/Sky)",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/356004291",
+          "explicit": false,
+          "rank": 287677
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-04",
+      "query": {
+        "artist": "Ed Sheeran",
+        "title": "Shape of You"
+      },
+      "found": {
+        "id": "139470659",
+        "title": "Shape of You",
+        "artist": "Ed Sheeran",
+        "album": "Shape of You",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/139470659",
+        "explicit": false,
+        "rank": 968208
+      },
+      "alternatives": [
+        {
+          "id": "2627039372",
+          "title": "Shape Of You (原曲歌手:Ed Sheeran)",
+          "artist": "歌っちゃ王",
+          "album": "Shape Of You(ガイド無しカラオケ)[原曲歌手:Ed Sheeran]",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2627039372",
+          "explicit": false,
+          "rank": 100000
+        },
+        {
+          "id": "141827557",
+          "title": "Shape of You (Acoustic)",
+          "artist": "Ed Sheeran",
+          "album": "Shape of You (Acoustic)",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/141827557",
+          "explicit": false,
+          "rank": 771378
+        },
+        {
+          "id": "144392352",
+          "title": "Shape of You (feat. Zion & Lennox) (Latin Remix)",
+          "artist": "Ed Sheeran",
+          "album": "Shape of You (feat. Zion & Lennox) (Latin Remix)",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144392352",
+          "explicit": false,
+          "rank": 569679
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-05",
+      "query": {
+        "artist": "Avicii",
+        "title": "Wake Me Up"
+      },
+      "found": {
+        "id": "70266756",
+        "title": "Wake Me Up",
+        "artist": "Avicii",
+        "album": "True",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70266756",
+        "explicit": false,
+        "rank": 921155
+      },
+      "alternatives": [
+        {
+          "id": "75717115",
+          "title": "Wake Me Up (Avicii By Avicii)",
+          "artist": "Avicii",
+          "album": "True: Avicii By Avicii",
+          "durationS": 424,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/75717115",
+          "explicit": false,
+          "rank": 537007
+        },
+        {
+          "id": "2980155621",
+          "title": "Wake Me Up",
+          "artist": "Avicii",
+          "album": "hopecore songs",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2980155621",
+          "explicit": false,
+          "rank": 446213
+        },
+        {
+          "id": "83920303",
+          "title": "Wake Me Up",
+          "artist": "Avicii",
+          "album": "Boys Of Summer",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/83920303",
+          "explicit": false,
+          "rank": 113327
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-06",
+      "query": {
+        "artist": "Maître Gims",
+        "title": "Est-ce que tu m'aimes ?"
+      },
+      "found": {
+        "id": "106095086",
+        "title": "Est-ce que tu m'aimes ? (Pilule bleue)",
+        "artist": "GIMS",
+        "album": "Mon coeur avait raison",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/106095086",
+        "explicit": false,
+        "rank": 944583
+      },
+      "alternatives": [
+        {
+          "id": "2925269351",
+          "title": "Est-ce que tu m'aimes ? (Slowed)",
+          "artist": "GIMS",
+          "album": "Est-ce que tu m'aimes ? (Sped up + Slowed)",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2925269351",
+          "explicit": false,
+          "rank": 427235
+        },
+        {
+          "id": "2925269341",
+          "title": "Est-ce que tu m'aimes ? (Sped up)",
+          "artist": "GIMS",
+          "album": "Est-ce que tu m'aimes ? (Sped up + Slowed)",
+          "durationS": 213,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2925269341",
+          "explicit": false,
+          "rank": 503885
+        },
+        {
+          "id": "118866138",
+          "title": "Est-ce que tu m'aimes? (Like radio cut)",
+          "artist": "Father White",
+          "album": "Est-ce que tu m'aimes? (Tribute to Maître Gims) (Special Like And Various Dance Remix 2016)",
+          "durationS": 235,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/118866138",
+          "explicit": false,
+          "rank": 76766
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-07",
+      "query": {
+        "artist": "PSY",
+        "title": "Gangnam Style"
+      },
+      "found": {
+        "id": "60726278",
+        "title": "Gangnam Style (강남스타일)",
+        "artist": "Psy",
+        "album": "Gangnam Style (강남스타일)",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60726278",
+        "explicit": false,
+        "rank": 763957
+      },
+      "alternatives": [
+        {
+          "id": "2153937227",
+          "title": "Gangnam Style (Sped Up)",
+          "artist": "Psy",
+          "album": "Sped Up Hits Vol. 1",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2153937227",
+          "explicit": false,
+          "rank": 280212
+        },
+        {
+          "id": "62439404",
+          "title": "Gangnam Style / 2 Legit 2 Quit Mashup",
+          "artist": "Psy",
+          "album": "Gangnam Style / 2 Legit 2 Quit Mashup",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62439404",
+          "explicit": false,
+          "rank": 440568
+        },
+        {
+          "id": "65020954",
+          "title": "Gangnam Style (강남스타일) (Diplo Remix Explicit Version)",
+          "artist": "Psy",
+          "album": "Gangnam Style (강남스타일) (Remix Style EP Explicit Version)",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/65020954",
+          "explicit": true,
+          "rank": 199949
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-08",
+      "query": {
+        "artist": "Louane",
+        "title": "Jour 1"
+      },
+      "found": {
+        "id": "3027762121",
+        "title": "Jour 1",
+        "artist": "Louane",
+        "album": "foudre",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3027762121",
+        "explicit": false,
+        "rank": 820321
+      },
+      "alternatives": [
+        {
+          "id": "2713571122",
+          "title": "Jour 1 (Birthday Party Version)",
+          "artist": "Louane",
+          "album": "Jour 1 (Birthday Party Version)",
+          "durationS": 179,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2713571122",
+          "explicit": false,
+          "rank": 425887
+        },
+        {
+          "id": "91018667",
+          "title": "Jour 1 (Dan Black Alternative)",
+          "artist": "Louane",
+          "album": "Avenir",
+          "durationS": 187,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/91018667",
+          "explicit": false,
+          "rank": 247229
+        },
+        {
+          "id": "87284637",
+          "title": "Jour 1 (Gostan Remix)",
+          "artist": "Louane",
+          "album": "Jour 1 (Gostan Remix)",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/87284637",
+          "explicit": false,
+          "rank": 282487
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-09",
+      "query": {
+        "artist": "Imagine Dragons",
+        "title": "Believer"
+      },
+      "found": {
+        "id": "528330441",
+        "title": "Believer",
+        "artist": "Imagine Dragons",
+        "album": "Evolve",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/528330441",
+        "explicit": false,
+        "rank": 946141
+      },
+      "alternatives": [
+        {
+          "id": "613831892",
+          "title": "Believer",
+          "artist": "Imagine Dragons",
+          "album": "Believer",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/613831892",
+          "explicit": false,
+          "rank": 658556
+        },
+        {
+          "id": "389063211",
+          "title": "Believer (Live/Acoustic)",
+          "artist": "Imagine Dragons",
+          "album": "Live At AllSaints Studios",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/389063211",
+          "explicit": false,
+          "rank": 720144
+        },
+        {
+          "id": "2377630445",
+          "title": "Believer (Live in Vegas)",
+          "artist": "Imagine Dragons",
+          "album": "Imagine Dragons Live in Vegas",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2377630445",
+          "explicit": false,
+          "rank": 540606
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a10-10",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Get Lucky"
+      },
+      "found": {
+        "id": "66609426",
+        "title": "Get Lucky (Radio Edit - feat. Pharrell Williams and Nile Rodgers)",
+        "artist": "Daft Punk",
+        "album": "Get Lucky (Radio Edit - feat. Pharrell Williams and Nile Rodgers)",
+        "durationS": 248,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/66609426",
+        "explicit": false,
+        "rank": 954234
+      },
+      "alternatives": [
+        {
+          "id": "67238735",
+          "title": "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
+          "artist": "Daft Punk",
+          "album": "Random Access Memories",
+          "durationS": 367,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67238735",
+          "explicit": false,
+          "rank": 877635
+        },
+        {
+          "id": "1819285597",
+          "title": "Get Lucky",
+          "artist": "Daft Punk Experience",
+          "album": "Get Lucky",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1819285597",
+          "explicit": false,
+          "rank": 54986
+        },
+        {
+          "id": "68442505",
+          "title": "Get Lucky (Daft Punk Remix)",
+          "artist": "Daft Punk",
+          "album": "Get Lucky (feat. Pharrell Williams & Nile Rodgers)",
+          "durationS": 631,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68442505",
+          "explicit": false,
+          "rank": 489500
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

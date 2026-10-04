@@ -1,0 +1,547 @@
+{
+  "quizId": "pop-internationale",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "pop-01",
+      "query": {
+        "artist": "ABBA",
+        "title": "Dancing Queen"
+      },
+      "found": {
+        "id": "884025",
+        "title": "Dancing Queen",
+        "artist": "ABBA",
+        "album": "ABBA Gold",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/884025",
+        "explicit": false,
+        "rank": 912759
+      },
+      "alternatives": [
+        {
+          "id": "7491201",
+          "title": "Dancing Queen (Almighty Anthem Radio Edit)",
+          "artist": "Abbacadabra",
+          "album": "Almighty Presents: Dancing Queen",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7491201",
+          "explicit": false,
+          "rank": 150564
+        },
+        {
+          "id": "4318904",
+          "title": "Dancing Queen",
+          "artist": "ABBA Revival Band",
+          "album": "Pop Masters: Super Trouper",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4318904",
+          "explicit": false,
+          "rank": 37294
+        },
+        {
+          "id": "128136099",
+          "title": "Dancing Queen",
+          "artist": "Abbamania",
+          "album": "Dancing Queen",
+          "durationS": 305,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/128136099",
+          "explicit": false,
+          "rank": 86281
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-02",
+      "query": {
+        "artist": "Elton John",
+        "title": "I'm Still Standing"
+      },
+      "found": {
+        "id": "1171163",
+        "title": "I'm Still Standing",
+        "artist": "Elton John",
+        "album": "Too Low For Zero",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1171163",
+        "explicit": false,
+        "rank": 941588
+      },
+      "alternatives": [
+        {
+          "id": "62686787",
+          "title": "I'm Still Standing",
+          "artist": "Elton John",
+          "album": "Gregorian Elton John",
+          "durationS": 142,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62686787",
+          "explicit": false,
+          "rank": 22069
+        },
+        {
+          "id": "2378851",
+          "title": "I’m Still Standing (In The Style Of Elton John)",
+          "artist": "Simply The Best Sax: The Hits Of Elton John",
+          "album": "Simply The Best Sax: The Hits Of Elton John",
+          "durationS": 182,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2378851",
+          "explicit": false,
+          "rank": 62850
+        },
+        {
+          "id": "7596789",
+          "title": "I'm Still Standing (Live)",
+          "artist": "Elton John",
+          "album": "One Night Only",
+          "durationS": 184,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7596789",
+          "explicit": false,
+          "rank": 366205
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-03",
+      "query": {
+        "artist": "Bruno Mars",
+        "title": "Just the Way You Are"
+      },
+      "found": {
+        "id": "8011850",
+        "title": "Just the Way You Are",
+        "artist": "Bruno Mars",
+        "album": "Doo-Wops & Hooligans",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/8011850",
+        "explicit": false,
+        "rank": 917300
+      },
+      "alternatives": [
+        {
+          "id": "2978957001",
+          "title": "Just the Way You Are (原曲歌手:Bruno Mars)",
+          "artist": "歌っちゃ王",
+          "album": "Just the Way You Are(ガイド無しカラオケ)[原曲歌手Bruno Mars]",
+          "durationS": 217,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2978957001",
+          "explicit": false,
+          "rank": 100000
+        },
+        {
+          "id": "7786382",
+          "title": "Just the way you are",
+          "artist": "Made famous by Bruno Mars",
+          "album": "Just the way you are",
+          "durationS": 242,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7786382",
+          "explicit": false,
+          "rank": 24940
+        },
+        {
+          "id": "10201935",
+          "title": "Just the Way You Are (Steve Smart & Westfunk Club Mix)",
+          "artist": "Bruno Mars",
+          "album": "Just the Way You Are (Remix)",
+          "durationS": 426,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/10201935",
+          "explicit": false,
+          "rank": 360222
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-04",
+      "query": {
+        "artist": "Katy Perry",
+        "title": "Roar"
+      },
+      "found": {
+        "id": "71645431",
+        "title": "Roar",
+        "artist": "Katy Perry",
+        "album": "PRISM (Deluxe)",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71645431",
+        "explicit": false,
+        "rank": 927789
+      },
+      "alternatives": [
+        {
+          "id": "1461909492",
+          "title": "Roar (Jump Smokers Radio Edit)",
+          "artist": "Katy Perry",
+          "album": "Summer Dance 2021",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1461909492",
+          "explicit": false,
+          "rank": 38889
+        },
+        {
+          "id": "774198072",
+          "title": "Harleys In Hawaii",
+          "artist": "Katy Perry",
+          "album": "Harleys In Hawaii",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/774198072",
+          "explicit": false,
+          "rank": 770784
+        },
+        {
+          "id": "594590242",
+          "title": "Hot N Cold (Rock Version)",
+          "artist": "Katy Perry",
+          "album": "Hot N Cold",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/594590242",
+          "explicit": false,
+          "rank": 491197
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-05",
+      "query": {
+        "artist": "Taylor Swift",
+        "title": "Shake It Off"
+      },
+      "found": {
+        "id": "89077555",
+        "title": "Shake It Off",
+        "artist": "Taylor Swift",
+        "album": "1989 (Deluxe)",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/89077555",
+        "explicit": false,
+        "rank": 904784
+      },
+      "alternatives": [
+        {
+          "id": "2512293231",
+          "title": "Shake It Off (Taylor's Version)",
+          "artist": "Taylor Swift",
+          "album": "1989 (Taylor's Version)",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2512293231",
+          "explicit": false,
+          "rank": 696539
+        },
+        {
+          "id": "602092482",
+          "title": "Shake It Off (Commentary)",
+          "artist": "Taylor Swift",
+          "album": "1989 (Big Machine Radio Release Special)",
+          "durationS": 98,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/602092482",
+          "explicit": false,
+          "rank": 30324
+        },
+        {
+          "id": "132744476",
+          "title": "Shake It Off",
+          "artist": "Tonight i'm Taylor Swift",
+          "album": "Shake It Off",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/132744476",
+          "explicit": false,
+          "rank": 155515
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-06",
+      "query": {
+        "artist": "Dua Lipa",
+        "title": "Don't Start Now"
+      },
+      "found": {
+        "id": "1124841652",
+        "title": "Don't Start Now",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1124841652",
+        "explicit": false,
+        "rank": 782370
+      },
+      "alternatives": [
+        {
+          "id": "803342822",
+          "title": "Don't Start Now (Purple Disco Machine Remix)",
+          "artist": "Dua Lipa",
+          "album": "Don't Start Now (Purple Disco Machine Remix)",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/803342822",
+          "explicit": false,
+          "rank": 459825
+        },
+        {
+          "id": "3113200821",
+          "title": "Don’t Start Now (Live from the Royal Albert Hall)",
+          "artist": "Dua Lipa",
+          "album": "Dua Lipa - Live from the Royal Albert Hall",
+          "durationS": 265,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3113200821",
+          "explicit": false,
+          "rank": 462323
+        },
+        {
+          "id": "4038634641",
+          "title": "Don’t Start Now (Live From Mexico)",
+          "artist": "Dua Lipa",
+          "album": "Dua Lipa - Live From Mexico",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4038634641",
+          "explicit": false,
+          "rank": 379322
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-07",
+      "query": {
+        "artist": "The Weeknd",
+        "title": "Blinding Lights"
+      },
+      "found": {
+        "id": "908604612",
+        "title": "Blinding Lights",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/908604612",
+        "explicit": false,
+        "rank": 984833
+      },
+      "alternatives": [
+        {
+          "id": "1161752782",
+          "title": "Blinding Lights (Remix)",
+          "artist": "The Weeknd",
+          "album": "Blinding Lights (Remix)",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1161752782",
+          "explicit": false,
+          "rank": 468331
+        },
+        {
+          "id": "2166259437",
+          "title": "Blinding Lights (Live)",
+          "artist": "The Weeknd",
+          "album": "Live At SoFi Stadium",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2166259437",
+          "explicit": true,
+          "rank": 421035
+        },
+        {
+          "id": "1078622722",
+          "title": "Blinding Lights (Major Lazer Remix)",
+          "artist": "The Weeknd",
+          "album": "Blinding Lights",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1078622722",
+          "explicit": false,
+          "rank": 333250
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-08",
+      "query": {
+        "artist": "Madonna",
+        "title": "Hung Up"
+      },
+      "found": {
+        "id": "679217",
+        "title": "Hung Up",
+        "artist": "Madonna",
+        "album": "Confessions on a Dance Floor",
+        "durationS": 337,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/679217",
+        "explicit": false,
+        "rank": 917400
+      },
+      "alternatives": [
+        {
+          "id": "3641136272",
+          "title": "Hung Up",
+          "artist": "Madonna",
+          "album": "Confessions On A Dance Floor (Twenty Years Edition)",
+          "durationS": 336,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3641136272",
+          "explicit": false,
+          "rank": 337720
+        },
+        {
+          "id": "1855501147",
+          "title": "Hung Up (SDP Extended Vocal Edit) (2022 Remaster)",
+          "artist": "Madonna",
+          "album": "Finally Enough Love: 50 Number Ones",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1855501147",
+          "explicit": false,
+          "rank": 292663
+        },
+        {
+          "id": "3320601631",
+          "title": "Hung Up (SDP Extended Vocal)",
+          "artist": "Madonna",
+          "album": "LGBTQ+ Anthems",
+          "durationS": 478,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3320601631",
+          "explicit": false,
+          "rank": 15902
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-09",
+      "query": {
+        "artist": "Robbie Williams",
+        "title": "Angels"
+      },
+      "found": {
+        "id": "3138729",
+        "title": "Angels",
+        "artist": "Robbie Williams",
+        "album": "Angels",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3138729",
+        "explicit": false,
+        "rank": 832045
+      },
+      "alternatives": [
+        {
+          "id": "3148646771",
+          "title": "Angels (From Better Man: Original Motion Picture Soundtrack) (feat. Adam Tucker)",
+          "artist": "Robbie Williams",
+          "album": "Better Man (Original Motion Picture Soundtrack)",
+          "durationS": 329,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3148646771",
+          "explicit": false,
+          "rank": 374622
+        },
+        {
+          "id": "1765304867",
+          "title": "Angels (XXV)",
+          "artist": "Robbie Williams",
+          "album": "Angels (XXV)",
+          "durationS": 265,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1765304867",
+          "explicit": false,
+          "rank": 365763
+        },
+        {
+          "id": "1904409927",
+          "title": "Angels (Beethoven AI) (XXV)",
+          "artist": "Robbie Williams",
+          "album": "XXV (Deluxe Edition)",
+          "durationS": 292,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1904409927",
+          "explicit": false,
+          "rank": 247603
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "pop-10",
+      "query": {
+        "artist": "Lewis Capaldi",
+        "title": "Someone You Loved"
+      },
+      "found": {
+        "id": "582143242",
+        "title": "Someone You Loved",
+        "artist": "Lewis Capaldi",
+        "album": "Breach",
+        "durationS": 182,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/582143242",
+        "explicit": false,
+        "rank": 961885
+      },
+      "alternatives": [
+        {
+          "id": "3419249571",
+          "title": "Someone You Loved (Sped Up)",
+          "artist": "Lewis Capaldi",
+          "album": "Someone You Loved (Sped Up)",
+          "durationS": 130,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3419249571",
+          "explicit": false,
+          "rank": 195885
+        },
+        {
+          "id": "2497506891",
+          "title": "Someone You Loved (Originally performed by Lewis Capaldi)",
+          "artist": "The Lewis Capaldi Cover Band",
+          "album": "Someone You Loved (Originally performed by Lewis Capaldi)",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2497506891",
+          "explicit": false,
+          "rank": 67910
+        },
+        {
+          "id": "642089172",
+          "title": "Someone You Loved (Future Humans Remix)",
+          "artist": "Lewis Capaldi",
+          "album": "Someone You Loved (Future Humans Remix)",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/642089172",
+          "explicit": false,
+          "rank": 487205
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

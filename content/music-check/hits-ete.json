@@ -1,0 +1,547 @@
+{
+  "quizId": "hits-ete",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "ete-01",
+      "query": {
+        "artist": "Kaoma",
+        "title": "Lambada"
+      },
+      "found": {
+        "id": "309174",
+        "title": "Lambada (Original Version 1989)",
+        "artist": "Kaoma",
+        "album": "Lambada - Les originaux No. 1 de l'été (Original 1989)",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/309174",
+        "explicit": false,
+        "rank": 743718
+      },
+      "alternatives": [
+        {
+          "id": "2481098211",
+          "title": "Lambada (Slowed 10 %) (Remastered 2023)",
+          "artist": "Kaoma",
+          "album": "Lambada (Slowed 10 %) (Remastered 2023)",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2481098211",
+          "explicit": false,
+          "rank": 9013
+        },
+        {
+          "id": "2364224845",
+          "title": "Lambada",
+          "artist": "Kaoma",
+          "album": "Movida Latina 3",
+          "durationS": 159,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2364224845",
+          "explicit": false,
+          "rank": 133282
+        },
+        {
+          "id": "2410868575",
+          "title": "Lambada (Sped Up 10 %) (Remastered 2023)",
+          "artist": "Kaoma",
+          "album": "Lambada (Sped Up 10 %) (Remastered 2023)",
+          "durationS": 187,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2410868575",
+          "explicit": false,
+          "rank": 67729
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-02",
+      "query": {
+        "artist": "Los del Río",
+        "title": "Macarena"
+      },
+      "found": {
+        "id": "994491",
+        "title": "Macarena",
+        "artist": "Los Del Río",
+        "album": "Hits Of The 90s",
+        "durationS": 252,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/994491",
+        "explicit": false,
+        "rank": 768367
+      },
+      "alternatives": [
+        {
+          "id": "990761",
+          "title": "Macarena",
+          "artist": "Los Del Río",
+          "album": "Fiesta Macarena",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/990761",
+          "explicit": false,
+          "rank": 610792
+        },
+        {
+          "id": "1049061",
+          "title": "Macarena",
+          "artist": "Los Del Río",
+          "album": "Fiesta Macarena",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1049061",
+          "explicit": false,
+          "rank": 466495
+        },
+        {
+          "id": "1049065",
+          "title": "Macarena",
+          "artist": "Los Del Río",
+          "album": "Fiesta Macarena",
+          "durationS": 302,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1049065",
+          "explicit": false,
+          "rank": 342198
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-03",
+      "query": {
+        "artist": "O-Zone",
+        "title": "Dragostea din tei"
+      },
+      "found": {
+        "id": "1411240392",
+        "title": "Dragostea din tei",
+        "artist": "O-Zone",
+        "album": "DiscO-Zone",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1411240392",
+        "explicit": false,
+        "rank": 850893
+      },
+      "alternatives": [
+        {
+          "id": "1538974072",
+          "title": "Dragostea din tei (Original Italian version)",
+          "artist": "O-Zone",
+          "album": "Dragostea din tei",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1538974072",
+          "explicit": false,
+          "rank": 476326
+        },
+        {
+          "id": "1538974082",
+          "title": "Dragostea din tei (Dj Ross Radio RMX)",
+          "artist": "O-Zone",
+          "album": "Dragostea din tei",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1538974082",
+          "explicit": false,
+          "rank": 513479
+        },
+        {
+          "id": "1538974122",
+          "title": "Dragostea din tei (DJ ROSS EXTENDED RMX)",
+          "artist": "O-Zone",
+          "album": "Dragostea din tei",
+          "durationS": 384,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1538974122",
+          "explicit": false,
+          "rank": 220701
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-04",
+      "query": {
+        "artist": "Lou Bega",
+        "title": "Mambo No. 5"
+      },
+      "found": {
+        "id": "434625962",
+        "title": "Mambo No. 5 (a Little Bit of...)",
+        "artist": "Lou Bega",
+        "album": "A Little Bit of Mambo",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/434625962",
+        "explicit": false,
+        "rank": 822197
+      },
+      "alternatives": [
+        {
+          "id": "2833188762",
+          "title": "Mambo No. 5 (A Little Bit Of...) (Short Edit)",
+          "artist": "Lou Bega",
+          "album": "Mambo No. 5 (A Little Bit of...) (Short Edit)",
+          "durationS": 163,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2833188762",
+          "explicit": false,
+          "rank": 185872
+        },
+        {
+          "id": "6079875",
+          "title": "Mambo No. 5 (A Little Bit of...) (Radio Edit)",
+          "artist": "Lou Bega",
+          "album": "Essential - Summer Breeze",
+          "durationS": 193,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6079875",
+          "explicit": false,
+          "rank": 72287
+        },
+        {
+          "id": "434626352",
+          "title": "Mambo No. 5 (A Little Bit Of...) (Extended Mix)",
+          "artist": "Lou Bega",
+          "album": "Mambo No. 5 (A Little Bit Of...)",
+          "durationS": 317,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/434626352",
+          "explicit": false,
+          "rank": 194836
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-05",
+      "query": {
+        "artist": "Magic System",
+        "title": "Premier Gaou"
+      },
+      "found": {
+        "id": "482681822",
+        "title": "Premier Gaou (Original Radio Edit)",
+        "artist": "Magic System",
+        "album": "Premier Gaou, The Remixes",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/482681822",
+        "explicit": false,
+        "rank": 813613
+      },
+      "alternatives": [
+        {
+          "id": "482681812",
+          "title": "Premier Gaou",
+          "artist": "Magic System",
+          "album": "Premier Gaou, The Remixes",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/482681812",
+          "explicit": false,
+          "rank": 314220
+        },
+        {
+          "id": "482681782",
+          "title": "Premier Gaou (Bob Sinclar Radio Edit - Le Bisou Edit)",
+          "artist": "Magic System",
+          "album": "Premier Gaou, The Remixes",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/482681782",
+          "explicit": false,
+          "rank": 152619
+        },
+        {
+          "id": "482681792",
+          "title": "Premier Gaou (Bob Sinclar Full Vocal - Le Bisou Mix)",
+          "artist": "Magic System",
+          "album": "Premier Gaou, The Remixes",
+          "durationS": 423,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/482681792",
+          "explicit": false,
+          "rank": 146133
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-06",
+      "query": {
+        "artist": "OMI",
+        "title": "Cheerleader"
+      },
+      "found": {
+        "id": "76500485",
+        "title": "Cheerleader",
+        "artist": "OMI",
+        "album": "Cheerleader (Remixes)",
+        "durationS": 174,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/76500485",
+        "explicit": false,
+        "rank": 570355
+      },
+      "alternatives": [
+        {
+          "id": "104011554",
+          "title": "Cheerleader (feat. Kid Ink) (Felix Jaehn vs Salaam Remi Remix)",
+          "artist": "OMI",
+          "album": "Cheerleader (feat. Kid Ink) (Felix Jaehn vs Salaam Remi Remix)",
+          "durationS": 181,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/104011554",
+          "explicit": true,
+          "rank": 370092
+        },
+        {
+          "id": "76500484",
+          "title": "Cheerleader (Ricky Blaze Remix)",
+          "artist": "OMI",
+          "album": "Cheerleader (Remixes)",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/76500484",
+          "explicit": false,
+          "rank": 123739
+        },
+        {
+          "id": "493422782",
+          "title": "Cheerleader",
+          "artist": "HIT-Bande",
+          "album": "Sommerhits für Kids",
+          "durationS": 181,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/493422782",
+          "explicit": false,
+          "rank": 648674
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-07",
+      "query": {
+        "artist": "Jain",
+        "title": "Makeba"
+      },
+      "found": {
+        "id": "109176426",
+        "title": "Makeba",
+        "artist": "Jain",
+        "album": "Zanaka",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/109176426",
+        "explicit": false,
+        "rank": 823909
+      },
+      "alternatives": [
+        {
+          "id": "2370741815",
+          "title": "Makeba (Ian Asher Remix)",
+          "artist": "Jain",
+          "album": "Makeba (Ian Asher Remix)",
+          "durationS": 125,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2370741815",
+          "explicit": false,
+          "rank": 735516
+        },
+        {
+          "id": "136799464",
+          "title": "Makeba (Dirty Ridin' Remix)",
+          "artist": "Jain",
+          "album": "Zanaka - EP",
+          "durationS": 243,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136799464",
+          "explicit": false,
+          "rank": 351323
+        },
+        {
+          "id": "2151341467",
+          "title": "Take a Chance",
+          "artist": "Jain",
+          "album": "The Fool",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2151341467",
+          "explicit": false,
+          "rank": 462639
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-08",
+      "query": {
+        "artist": "Mungo Jerry",
+        "title": "In the Summertime"
+      },
+      "found": {
+        "id": "1164759652",
+        "title": "In the Summertime",
+        "artist": "Mungo Jerry",
+        "album": "In the Summertime with Mungo Jerry",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1164759652",
+        "explicit": false,
+        "rank": 654844
+      },
+      "alternatives": [
+        {
+          "id": "2036977",
+          "title": "In The Summertime",
+          "artist": "Mungo Jerry",
+          "album": "The Best Of In The Summertime",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2036977",
+          "explicit": false,
+          "rank": 626114
+        },
+        {
+          "id": "92700248",
+          "title": "In the Summertime (Remastered)",
+          "artist": "Mungo Jerry",
+          "album": "In the Summertime (Remastered)",
+          "durationS": 213,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92700248",
+          "explicit": false,
+          "rank": 370923
+        },
+        {
+          "id": "2847466442",
+          "title": "In the Summertime (BH 2024)",
+          "artist": "Mungo Jerry",
+          "album": "In the Summertime (BH 2024)",
+          "durationS": 207,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2847466442",
+          "explicit": false,
+          "rank": 123080
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-09",
+      "query": {
+        "artist": "Calvin Harris",
+        "title": "Summer"
+      },
+      "found": {
+        "id": "88936747",
+        "title": "Summer",
+        "artist": "Calvin Harris",
+        "album": "Motion",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/88936747",
+        "explicit": false,
+        "rank": 932591
+      },
+      "alternatives": [
+        {
+          "id": "79476052",
+          "title": "Summer (Extended Mix)",
+          "artist": "Calvin Harris",
+          "album": "Summer (Remixes)",
+          "durationS": 293,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/79476052",
+          "explicit": false,
+          "rank": 438159
+        },
+        {
+          "id": "79476054",
+          "title": "Summer (Diplo & Grandtheft Remix)",
+          "artist": "Calvin Harris",
+          "album": "Summer (Remixes)",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/79476054",
+          "explicit": false,
+          "rank": 203200
+        },
+        {
+          "id": "79476058",
+          "title": "Summer (twoloud Remix)",
+          "artist": "Calvin Harris",
+          "album": "Summer (Remixes)",
+          "durationS": 321,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/79476058",
+          "explicit": false,
+          "rank": 183528
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "ete-10",
+      "query": {
+        "artist": "Martin Solveig",
+        "title": "Hello"
+      },
+      "found": {
+        "id": "3803035232",
+        "title": "Hello (Single Edit)",
+        "artist": "Martin Solveig",
+        "album": "Smash",
+        "durationS": 282,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3803035232",
+        "explicit": false,
+        "rank": 828963
+      },
+      "alternatives": [
+        {
+          "id": "3794072912",
+          "title": "Hello (Super Edit)",
+          "artist": "Martin Solveig",
+          "album": "Hello (Super Edit)",
+          "durationS": 159,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3794072912",
+          "explicit": false,
+          "rank": 546228
+        },
+        {
+          "id": "3690734252",
+          "title": "Hello (Dance Version)",
+          "artist": "Martin Solveig",
+          "album": "Hello (Dance Version)",
+          "durationS": 131,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3690734252",
+          "explicit": false,
+          "rank": 145712
+        },
+        {
+          "id": "3803546572",
+          "title": "Hello (Why Are We Whispering Remix)",
+          "artist": "Martin Solveig",
+          "album": "The Night Out",
+          "durationS": 184,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3803546572",
+          "explicit": false,
+          "rank": 202729
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

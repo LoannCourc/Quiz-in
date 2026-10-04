@@ -1,0 +1,481 @@
+{
+  "quizId": "rap-francais",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "rap-01",
+      "query": {
+        "artist": "MC Solaar",
+        "title": "Caroline"
+      },
+      "found": {
+        "id": "1421656882",
+        "title": "Caroline",
+        "artist": "MC Solaar",
+        "album": "Qui sème le vent récolte le tempo",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1421656882",
+        "explicit": false,
+        "rank": 756885
+      },
+      "alternatives": [
+        {
+          "id": "249485",
+          "title": "Caroline",
+          "artist": "MC Solaar",
+          "album": "Le tour de la question",
+          "durationS": 312,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/249485",
+          "explicit": false,
+          "rank": 635661
+        },
+        {
+          "id": "3611165442",
+          "title": "Caroline (Live)",
+          "artist": "MC Solaar",
+          "album": "Caroline (Live)",
+          "durationS": 280,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3611165442",
+          "explicit": false,
+          "rank": 303738
+        },
+        {
+          "id": "3814069442",
+          "title": "Comme Caroline (feat. MC Solaar)",
+          "artist": "Zaho",
+          "album": "Comme Caroline (feat. MC Solaar)",
+          "durationS": 185,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3814069442",
+          "explicit": false,
+          "rank": 987968
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-02",
+      "query": {
+        "artist": "IAM",
+        "title": "Je danse le Mia"
+      },
+      "found": {
+        "id": "91045659",
+        "title": "Je danse le Mia",
+        "artist": "IAM",
+        "album": "Ombre est Lumière (Réédition 2014)",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/91045659",
+        "explicit": false,
+        "rank": 809070
+      },
+      "alternatives": [
+        {
+          "id": "883210",
+          "title": "Je Danse Le Mia (Live Retour Aux Pyramides 14/03/2008)",
+          "artist": "IAM",
+          "album": "Live Retour Aux Pyramides",
+          "durationS": 267,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/883210",
+          "explicit": false,
+          "rank": 447825
+        },
+        {
+          "id": "3492958",
+          "title": "Je danse le mia (Le Terrible Funk Remix; Radio Edit)",
+          "artist": "IAM",
+          "album": "Ombre Est Lumiere",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3492958",
+          "explicit": false,
+          "rank": 360672
+        },
+        {
+          "id": "2434732625",
+          "title": "Je danse le mia (Live Studio)",
+          "artist": "IAM",
+          "album": "Warrior Tour (Live Studio)",
+          "durationS": 278,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2434732625",
+          "explicit": true,
+          "rank": 213691
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-03",
+      "query": {
+        "artist": "Saïan Supa Crew",
+        "title": "Angela"
+      },
+      "found": {
+        "id": "3135183",
+        "title": "Angela",
+        "artist": "Saïan Supa Crew",
+        "album": "Klr",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135183",
+        "explicit": false,
+        "rank": 805742
+      },
+      "alternatives": [
+        {
+          "id": "3285945",
+          "title": "Angela (Version 2)",
+          "artist": "Saïan Supa Crew",
+          "album": "Saian Supa Crew",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3285945",
+          "explicit": false,
+          "rank": 637995
+        },
+        {
+          "id": "1014276912",
+          "title": "Angela (Version EP)",
+          "artist": "Saïan Supa Crew",
+          "album": "Angela",
+          "durationS": 112,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1014276912",
+          "explicit": false,
+          "rank": 189311
+        },
+        {
+          "id": "1014276952",
+          "title": "Angela (Acapella)",
+          "artist": "Saïan Supa Crew",
+          "album": "Angela",
+          "durationS": 201,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1014276952",
+          "explicit": false,
+          "rank": 167542
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-04",
+      "query": {
+        "artist": "Diam's",
+        "title": "Ma France à moi"
+      },
+      "found": {
+        "id": "14597831",
+        "title": "Ma France à Moi",
+        "artist": "Diam's",
+        "album": "Dans Ma Bulle",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14597831",
+        "explicit": false,
+        "rank": 797403
+      },
+      "alternatives": [
+        {
+          "id": "3437270",
+          "title": "Ma France à Moi (Version Instrumentale)",
+          "artist": "Diam's",
+          "album": "Ma France À Moi / Par Amour",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3437270",
+          "explicit": false,
+          "rank": 238727
+        },
+        {
+          "id": "3359816",
+          "title": "Ma France à Moi (Live 2006)",
+          "artist": "Diam's",
+          "album": "Au Tour De Ma Bulle",
+          "durationS": 315,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3359816",
+          "explicit": false,
+          "rank": 319783
+        },
+        {
+          "id": "3437271",
+          "title": "Par Amour (Radio Edit)",
+          "artist": "Diam's",
+          "album": "Ma France À Moi / Par Amour",
+          "durationS": 355,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3437271",
+          "explicit": false,
+          "rank": 401522
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-05",
+      "query": {
+        "artist": "Abd al Malik",
+        "title": "Gibraltar"
+      },
+      "found": {
+        "id": "910774",
+        "title": "Gibraltar",
+        "artist": "Abd Al Malik",
+        "album": "Gibraltar (Deluxe Digital)",
+        "durationS": 232,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/910774",
+        "explicit": false,
+        "rank": 565736
+      },
+      "alternatives": [
+        {
+          "id": "4305275372",
+          "title": "Gibraltar (Live à la Cité nationale de l'Histoire de L'Immigration / 14 Juillet 2009)",
+          "artist": "Abd Al Malik",
+          "album": "Live à la Cité nationale de l'histoire de l'Immigration, le 14 juillet 2009",
+          "durationS": 511,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4305275372",
+          "explicit": false,
+          "rank": 140666
+        },
+        {
+          "id": "910775",
+          "title": "12 Septembre 2001",
+          "artist": "Abd Al Malik",
+          "album": "Gibraltar (Deluxe Digital)",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/910775",
+          "explicit": false,
+          "rank": 525063
+        },
+        {
+          "id": "910791",
+          "title": "M'Effacer",
+          "artist": "Abd Al Malik",
+          "album": "Gibraltar (Deluxe Digital)",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/910791",
+          "explicit": false,
+          "rank": 419225
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-06",
+      "query": {
+        "artist": "Bigflo & Oli",
+        "title": "Dommage"
+      },
+      "found": {
+        "id": "422283402",
+        "title": "Dommage",
+        "artist": "Bigflo & Oli",
+        "album": "La vraie vie",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/422283402",
+        "explicit": false,
+        "rank": 902097
+      },
+      "alternatives": [
+        {
+          "id": "416328422",
+          "title": "Dommage (Acoustic)",
+          "artist": "Bigflo & Oli",
+          "album": "Dommage (Acoustic)",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/416328422",
+          "explicit": false,
+          "rank": 533013
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-07",
+      "query": {
+        "artist": "Soprano",
+        "title": "Cosmo"
+      },
+      "found": {
+        "id": "576822202",
+        "title": "Cosmo",
+        "artist": "Soprano",
+        "album": "Cosmopolitanie (Deluxe Edition)",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/576822202",
+        "explicit": false,
+        "rank": 904313
+      },
+      "alternatives": [
+        {
+          "id": "2512790501",
+          "title": "Cosmo (Live au Stade de France, 2023)",
+          "artist": "Soprano",
+          "album": "Un peu plus près du Stade de France (Live au Stade de France, 2023)",
+          "durationS": 313,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2512790501",
+          "explicit": false,
+          "rank": 331521
+        },
+        {
+          "id": "452733962",
+          "title": "Cosmo (L'Everest à l'Orange Vélodrome; Live)",
+          "artist": "Soprano",
+          "album": "L'Everest à l'Orange Vélodrome (Live)",
+          "durationS": 263,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/452733962",
+          "explicit": false,
+          "rank": 298629
+        },
+        {
+          "id": "576822322",
+          "title": "Luna",
+          "artist": "Soprano",
+          "album": "Cosmopolitanie (Deluxe Edition)",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/576822322",
+          "explicit": false,
+          "rank": 608229
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-08",
+      "query": {
+        "artist": "Sexion d'Assaut",
+        "title": "Avant qu'elle parte"
+      },
+      "found": {
+        "id": "16186932",
+        "title": "Avant qu'elle parte",
+        "artist": "Sexion d'Assaut",
+        "album": "Avant qu'elle parte",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/16186932",
+        "explicit": false,
+        "rank": 817466
+      },
+      "alternatives": [
+        {
+          "id": "62028660",
+          "title": "Avant qu'elle parte (Live à Bercy 2012)",
+          "artist": "Sexion d'Assaut",
+          "album": "L'Apogée à Bercy",
+          "durationS": 323,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62028660",
+          "explicit": false,
+          "rank": 299956
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-09",
+      "query": {
+        "artist": "Orelsan",
+        "title": "La terre est ronde"
+      },
+      "found": {
+        "id": "13789085",
+        "title": "La terre est ronde",
+        "artist": "Orelsan",
+        "album": "Le Chant des sirènes",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13789085",
+        "explicit": false,
+        "rank": 882736
+      },
+      "alternatives": [
+        {
+          "id": "1137961522",
+          "title": "La Terre est ronde (From \"Orelsan\")",
+          "artist": "Anjer",
+          "album": "Orelsan Covers",
+          "durationS": 206,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1137961522",
+          "explicit": false,
+          "rank": 60626
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rap-10",
+      "query": {
+        "artist": "Black M",
+        "title": "Sur ma route"
+      },
+      "found": {
+        "id": "76395840",
+        "title": "Sur ma route",
+        "artist": "Black M",
+        "album": "Les yeux plus gros que le monde",
+        "durationS": 252,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/76395840",
+        "explicit": false,
+        "rank": 862276
+      },
+      "alternatives": [
+        {
+          "id": "89860919",
+          "title": "Sur ma route (Deezer session)",
+          "artist": "Black M",
+          "album": "Le monde plus gros que mes yeux",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/89860919",
+          "explicit": false,
+          "rank": 261737
+        },
+        {
+          "id": "101294188",
+          "title": "Sur ma route (Live)",
+          "artist": "Black M",
+          "album": "Les yeux plus gros que l'Olympia (Live)",
+          "durationS": 466,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/101294188",
+          "explicit": false,
+          "rank": 239152
+        },
+        {
+          "id": "129926472",
+          "title": "Sur ma route (feat. Black M)",
+          "artist": "Kids United",
+          "album": "Tout le bonheur du monde",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/129926472",
+          "explicit": false,
+          "rank": 499227
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

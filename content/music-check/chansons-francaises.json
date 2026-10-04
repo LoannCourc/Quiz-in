@@ -1,0 +1,547 @@
+{
+  "quizId": "chansons-francaises",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "chf-01",
+      "query": {
+        "artist": "Georges Brassens",
+        "title": "Les Copains d'abord"
+      },
+      "found": {
+        "id": "2420855",
+        "title": "Les copains d'abord",
+        "artist": "Georges Brassens",
+        "album": "Les Copains D'Abord",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2420855",
+        "explicit": false,
+        "rank": 812689
+      },
+      "alternatives": [
+        {
+          "id": "9955818",
+          "title": "Les Copains D'Abord",
+          "artist": "Georges Brassens",
+          "album": "Brassens Et Le Jazz",
+          "durationS": 135,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/9955818",
+          "explicit": false,
+          "rank": 438387
+        },
+        {
+          "id": "2424412",
+          "title": "Les Copains D'Abord",
+          "artist": "Georges Brassens",
+          "album": "Les Copains D'Abord-Volume 8",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2424412",
+          "explicit": false,
+          "rank": 245330
+        },
+        {
+          "id": "2186037",
+          "title": "Les Copains D'Abord (Bobino 64)",
+          "artist": "Georges Brassens",
+          "album": "Bobino 64-Volume 14",
+          "durationS": 163,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2186037",
+          "explicit": false,
+          "rank": 174595
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-02",
+      "query": {
+        "artist": "Jacques Brel",
+        "title": "Ne me quitte pas"
+      },
+      "found": {
+        "id": "2296855",
+        "title": "Ne me quitte pas",
+        "artist": "Jacques Brel",
+        "album": "La Valse A Mille Temps (Vol.4)",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2296855",
+        "explicit": false,
+        "rank": 726349
+      },
+      "alternatives": [
+        {
+          "id": "70780755",
+          "title": "Ne me quitte pas (Ré-enregistrement 1972)",
+          "artist": "Jacques Brel",
+          "album": "50 Plus Belles Chansons",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70780755",
+          "explicit": false,
+          "rank": 570169
+        },
+        {
+          "id": "659532932",
+          "title": "Ne me quitte pas",
+          "artist": "Jacques Brel",
+          "album": "AMSTERDAM (Edition limitée maxi 45 t)",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/659532932",
+          "explicit": false,
+          "rank": 173356
+        },
+        {
+          "id": "837040072",
+          "title": "Ne Me Quitte Pas (Remastered)",
+          "artist": "Jacques Brel",
+          "album": "La Valse A Mille Temps (Remastered)",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/837040072",
+          "explicit": false,
+          "rank": 145640
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-03",
+      "query": {
+        "artist": "Barbara",
+        "title": "L'Aigle noir"
+      },
+      "found": {
+        "id": "65707466",
+        "title": "L'aigle noir (Version 1970 avec couplet supplémentaire)",
+        "artist": "Barbara",
+        "album": "L'Aigle Noir",
+        "durationS": 288,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/65707466",
+        "explicit": false,
+        "rank": 766855
+      },
+      "alternatives": [
+        {
+          "id": "916112",
+          "title": "L'Aigle Noir",
+          "artist": "Barbara",
+          "album": "Voyageuse",
+          "durationS": 294,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/916112",
+          "explicit": false,
+          "rank": 718661
+        },
+        {
+          "id": "85080188",
+          "title": "L'aigle Noir (Version Piano) (Original Mix)",
+          "artist": "Barbara",
+          "album": "La Joconde",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/85080188",
+          "explicit": false,
+          "rank": 61872
+        },
+        {
+          "id": "7441455",
+          "title": "L'aigle noir",
+          "artist": "Barbara Fiorino",
+          "album": "Il sole nero",
+          "durationS": 285,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7441455",
+          "explicit": false,
+          "rank": 32148
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-04",
+      "query": {
+        "artist": "Charles Aznavour",
+        "title": "Emmenez-moi"
+      },
+      "found": {
+        "id": "89572411",
+        "title": "Emmenez-moi",
+        "artist": "Charles Aznavour",
+        "album": "Entre deux rêves (Remastered 2014)",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/89572411",
+        "explicit": false,
+        "rank": 942714
+      },
+      "alternatives": [
+        {
+          "id": "3562776221",
+          "title": "Emmenez-moi",
+          "artist": "Charles Aznavour",
+          "album": "Les plus belles chansons",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3562776221",
+          "explicit": false,
+          "rank": 385522
+        },
+        {
+          "id": "115033696",
+          "title": "Emmenez-moi (Live)",
+          "artist": "Charles Aznavour",
+          "album": "Aznavour Live - Palais des Sports 2015",
+          "durationS": 338,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/115033696",
+          "explicit": false,
+          "rank": 251808
+        },
+        {
+          "id": "2767487231",
+          "title": "Emmenez-moi (Instrumental)",
+          "artist": "Charles Aznavour",
+          "album": "Instrumental Hits Versions",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2767487231",
+          "explicit": false,
+          "rank": 216431
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-05",
+      "query": {
+        "artist": "Serge Gainsbourg",
+        "title": "Le Poinçonneur des Lilas"
+      },
+      "found": {
+        "id": "14405450",
+        "title": "Le poinçonneur des Lilas",
+        "artist": "Serge Gainsbourg",
+        "album": "L'Essentiel Des Albums Studio",
+        "durationS": 160,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14405450",
+        "explicit": false,
+        "rank": 518728
+      },
+      "alternatives": [
+        {
+          "id": "869275642",
+          "title": "Le Poinconneur Des Lilas",
+          "artist": "Serge Gainsbourg",
+          "album": "Gainsbourg, Gainsbourg",
+          "durationS": 167,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/869275642",
+          "explicit": false,
+          "rank": 455660
+        },
+        {
+          "id": "111025562",
+          "title": "Le poinçonneur des Lilas",
+          "artist": "Serge Gainsbourg",
+          "album": "Du chant à la une !",
+          "durationS": 161,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/111025562",
+          "explicit": false,
+          "rank": 273730
+        },
+        {
+          "id": "427996362",
+          "title": "Le poinçonneur des Lilas",
+          "artist": "Serge Gainsbourg",
+          "album": "Du Chant A La Une !",
+          "durationS": 164,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/427996362",
+          "explicit": false,
+          "rank": 64769
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-06",
+      "query": {
+        "artist": "Jean Ferrat",
+        "title": "La Montagne"
+      },
+      "found": {
+        "id": "6683159",
+        "title": "La montagne",
+        "artist": "Jean Ferrat",
+        "album": "La Montagne",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6683159",
+        "explicit": false,
+        "rank": 773506
+      },
+      "alternatives": [
+        {
+          "id": "95961166",
+          "title": "La montagne",
+          "artist": "Jean Ferrat",
+          "album": "La montagne",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/95961166",
+          "explicit": false,
+          "rank": 657869
+        },
+        {
+          "id": "1820871617",
+          "title": "La montagne",
+          "artist": "Jean Ferrat",
+          "album": "Best Of",
+          "durationS": 185,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1820871617",
+          "explicit": false,
+          "rank": 502686
+        },
+        {
+          "id": "96461686",
+          "title": "Les enfants terribles",
+          "artist": "Jean Ferrat",
+          "album": "1963-1964 : Nuit et brouillard - La montagne, Vol. 2",
+          "durationS": 143,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/96461686",
+          "explicit": false,
+          "rank": 137932
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-07",
+      "query": {
+        "artist": "Michel Sardou",
+        "title": "Les Lacs du Connemara"
+      },
+      "found": {
+        "id": "882920",
+        "title": "Les lacs du Connemara",
+        "artist": "Michel Sardou",
+        "album": "Les Lacs Du Connemara",
+        "durationS": 362,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/882920",
+        "explicit": false,
+        "rank": 849300
+      },
+      "alternatives": [
+        {
+          "id": "2694092682",
+          "title": "Les lacs du Connemara (Live au Zénith d'Amiens / 2023)",
+          "artist": "Michel Sardou",
+          "album": "Je me souviens d'un adieu (Live)",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2694092682",
+          "explicit": false,
+          "rank": 355425
+        },
+        {
+          "id": "72787678",
+          "title": "Les Lacs Du Connemara (Live A L'Olympia 2013)",
+          "artist": "Michel Sardou",
+          "album": "Les Grands Moments Live (Live A L’Olympia 2013)",
+          "durationS": 427,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/72787678",
+          "explicit": false,
+          "rank": 283984
+        },
+        {
+          "id": "3092828031",
+          "title": "Les lacs du Connemara (Live à La Défense Arena / 2024)",
+          "artist": "Michel Sardou",
+          "album": "Je me souviens d'un adieu (Live à Paris La Défense Arena / 2024)",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3092828031",
+          "explicit": false,
+          "rank": 258196
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-08",
+      "query": {
+        "artist": "Dalida",
+        "title": "Paroles, paroles"
+      },
+      "found": {
+        "id": "71560063",
+        "title": "Paroles… paroles…",
+        "artist": "Dalida",
+        "album": "L'Intégrale Des Enregistrements Orlando",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71560063",
+        "explicit": false,
+        "rank": 869683
+      },
+      "alternatives": [
+        {
+          "id": "4051559151",
+          "title": "Paroles Paroles",
+          "artist": "Dalida",
+          "album": "Paroles Paroles",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4051559151",
+          "explicit": false,
+          "rank": 464610
+        },
+        {
+          "id": "2716145552",
+          "title": "Parle plus bas (Thème du film \"Le Parrain\")",
+          "artist": "Dalida",
+          "album": "Parle plus bas",
+          "durationS": 180,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2716145552",
+          "explicit": false,
+          "rank": 113911
+        },
+        {
+          "id": "1352297852",
+          "title": "Parlez-moi de lui",
+          "artist": "Dalida",
+          "album": "Dans la ville endormie",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1352297852",
+          "explicit": false,
+          "rank": 108663
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-09",
+      "query": {
+        "artist": "Renaud",
+        "title": "Mistral gagnant"
+      },
+      "found": {
+        "id": "5151905",
+        "title": "Mistral gagnant",
+        "artist": "Renaud",
+        "album": "Mistral gagnant",
+        "durationS": 165,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/5151905",
+        "explicit": false,
+        "rank": 916841
+      },
+      "alternatives": [
+        {
+          "id": "2662638502",
+          "title": "Mistral gagnant",
+          "artist": "David chante Renaud",
+          "album": "David chante Renaud",
+          "durationS": 169,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2662638502",
+          "explicit": false,
+          "rank": 75000
+        },
+        {
+          "id": "5151922",
+          "title": "Mistral gagnant (Live 1989)",
+          "artist": "Renaud",
+          "album": "Visage pâle rencontrer public (Live)",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5151922",
+          "explicit": false,
+          "rank": 292115
+        },
+        {
+          "id": "429698212",
+          "title": "Mistral gagnant (Phénix Tour) (Live)",
+          "artist": "Renaud",
+          "album": "Phénix Tour (Live)",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/429698212",
+          "explicit": false,
+          "rank": 213456
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "chf-10",
+      "query": {
+        "artist": "Édith Piaf",
+        "title": "Non, je ne regrette rien"
+      },
+      "found": {
+        "id": "3156614",
+        "title": "Non, je ne regrette rien",
+        "artist": "Edith Piaf",
+        "album": "milord",
+        "durationS": 142,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3156614",
+        "explicit": false,
+        "rank": 665399
+      },
+      "alternatives": [
+        {
+          "id": "64550206",
+          "title": "Non, Je ne regrette rien",
+          "artist": "Edith Piaf",
+          "album": "Edith Piaf",
+          "durationS": 140,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/64550206",
+          "explicit": false,
+          "rank": 595561
+        },
+        {
+          "id": "78269012",
+          "title": "Non je ne regrette rien",
+          "artist": "Edith Piaf",
+          "album": "30 Grandes",
+          "durationS": 141,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/78269012",
+          "explicit": false,
+          "rank": 261992
+        },
+        {
+          "id": "73693866",
+          "title": "Non, Je Ne Regrette Rien",
+          "artist": "Edith Piaf",
+          "album": "La Vie en Rose",
+          "durationS": 148,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73693866",
+          "explicit": false,
+          "rank": 361183
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,547 @@
+{
+  "quizId": "annees-80",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "a80-01",
+      "query": {
+        "artist": "Michael Jackson",
+        "title": "Billie Jean"
+      },
+      "found": {
+        "id": "4603408",
+        "title": "Billie Jean",
+        "artist": "Michael Jackson",
+        "album": "Michael Jackson's This Is It",
+        "durationS": 293,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4603408",
+        "explicit": false,
+        "rank": 971418
+      },
+      "alternatives": [
+        {
+          "id": "2015880647",
+          "title": "Billie Jean (Long Version)",
+          "artist": "Michael Jackson",
+          "album": "Thriller 40",
+          "durationS": 380,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2015880647",
+          "explicit": false,
+          "rank": 446635
+        },
+        {
+          "id": "5724503",
+          "title": "Billie Jean (In The Style Of Michael Jackson)",
+          "artist": "Simply The Best Sax: The Hits Of Michael Jackson",
+          "album": "Simply The Best Sax: The Hits Of Michael Jackson",
+          "durationS": 267,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5724503",
+          "explicit": false,
+          "rank": 32705
+        },
+        {
+          "id": "555650",
+          "title": "Billie Jean (2008 Kanye West Mix) (feat. Kanye West) (Thriller 25th Anniversary Remix)",
+          "artist": "Michael Jackson",
+          "album": "Thriller 25 Super Deluxe Edition",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/555650",
+          "explicit": false,
+          "rank": 396859
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-02",
+      "query": {
+        "artist": "a-ha",
+        "title": "Take On Me"
+      },
+      "found": {
+        "id": "664107",
+        "title": "Take on Me",
+        "artist": "a-ha",
+        "album": "Hunting High and Low",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/664107",
+        "explicit": false,
+        "rank": 988080
+      },
+      "alternatives": [
+        {
+          "id": "565208182",
+          "title": "Take on Me (Symphonic Version)",
+          "artist": "a-ha",
+          "album": "Take on Me (Symphonic Version)",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/565208182",
+          "explicit": false,
+          "rank": 424527
+        },
+        {
+          "id": "6592999",
+          "title": "Take on Me (Single Version)",
+          "artist": "a-ha",
+          "album": "Hunting High and Low (Deluxe Edition)",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6592999",
+          "explicit": false,
+          "rank": 347633
+        },
+        {
+          "id": "2497505321",
+          "title": "TAKE ON ME (原曲歌手:A-HA)",
+          "artist": "歌っちゃ王",
+          "album": "TAKE ON ME(ガイド無しカラオケ)[原曲歌手:A-HA]",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2497505321",
+          "explicit": false,
+          "rank": 7255
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-03",
+      "query": {
+        "artist": "Cyndi Lauper",
+        "title": "Girls Just Want to Have Fun"
+      },
+      "found": {
+        "id": "72194071",
+        "title": "Girls Just Want to Have Fun",
+        "artist": "Cyndi Lauper",
+        "album": "She's So Unusual",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72194071",
+        "explicit": false,
+        "rank": 945998
+      },
+      "alternatives": [
+        {
+          "id": "71605812",
+          "title": "Girls Just Want to Have Fun",
+          "artist": "Cyndi Lauper",
+          "album": "Girls Night In",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/71605812",
+          "explicit": false,
+          "rank": 142112
+        },
+        {
+          "id": "75344998",
+          "title": "Girls Just Want to Have Fun (12\" Version)",
+          "artist": "Cyndi Lauper",
+          "album": "80s: 100 Remixes",
+          "durationS": 365,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/75344998",
+          "explicit": false,
+          "rank": 400114
+        },
+        {
+          "id": "86876547",
+          "title": "Girls Just Want to Have Fun (2013 Alternate Yolanda Be Cool Remix)",
+          "artist": "Cyndi Lauper",
+          "album": "She's So Unusual: REMiXED",
+          "durationS": 319,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/86876547",
+          "explicit": false,
+          "rank": 173156
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-04",
+      "query": {
+        "artist": "Europe",
+        "title": "The Final Countdown"
+      },
+      "found": {
+        "id": "858371",
+        "title": "The Final Countdown",
+        "artist": "Europe",
+        "album": "The Final Countdown (Expanded Edition)",
+        "durationS": 310,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/858371",
+        "explicit": false,
+        "rank": 847358
+      },
+      "alternatives": [
+        {
+          "id": "5404529",
+          "title": "The Final Countdown",
+          "artist": "Europe",
+          "album": "80s 100 Hits",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5404529",
+          "explicit": false,
+          "rank": 682338
+        },
+        {
+          "id": "855506",
+          "title": "The Final Countdown (Live Version)",
+          "artist": "Europe",
+          "album": "The Final Countdown (Expanded Edition)",
+          "durationS": 312,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/855506",
+          "explicit": false,
+          "rank": 366278
+        },
+        {
+          "id": "382893071",
+          "title": "The Final Countdown (Live)",
+          "artist": "Europe",
+          "album": "The Final Countdown 30th Anniversary Show (Live At The Roundhouse)",
+          "durationS": 375,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/382893071",
+          "explicit": false,
+          "rank": 304350
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-05",
+      "query": {
+        "artist": "Madonna",
+        "title": "La Isla Bonita"
+      },
+      "found": {
+        "id": "678372",
+        "title": "La Isla Bonita",
+        "artist": "Madonna",
+        "album": "True Blue",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/678372",
+        "explicit": false,
+        "rank": 943913
+      },
+      "alternatives": [
+        {
+          "id": "723882",
+          "title": "La Isla Bonita",
+          "artist": "Madonna",
+          "album": "The Immaculate Collection",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/723882",
+          "explicit": false,
+          "rank": 494096
+        },
+        {
+          "id": "892960252",
+          "title": "La Isla Bonita",
+          "artist": "Madonna",
+          "album": "Australia",
+          "durationS": 445,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/892960252",
+          "explicit": false,
+          "rank": 64864
+        },
+        {
+          "id": "678385",
+          "title": "La Isla Bonita (Extended Remix)",
+          "artist": "Madonna",
+          "album": "True Blue",
+          "durationS": 325,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/678385",
+          "explicit": false,
+          "rank": 460976
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-06",
+      "query": {
+        "artist": "Wham!",
+        "title": "Wake Me Up Before You Go-Go"
+      },
+      "found": {
+        "id": "15194531",
+        "title": "Wake Me Up Before You Go-Go",
+        "artist": "Wham!",
+        "album": "Make It Big",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15194531",
+        "explicit": false,
+        "rank": 844994
+      },
+      "alternatives": [
+        {
+          "id": "2694885382",
+          "title": "Wake Me Up Before You Go-Go(カラオケ)[原曲歌手:WHAM!]",
+          "artist": "歌っちゃ王",
+          "album": "Wake Me Up Before You Go-Go(カラオケ)[原曲歌手:WHAM!]",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2694885382",
+          "explicit": false,
+          "rank": 2349
+        },
+        {
+          "id": "2248097007",
+          "title": "Wake Me Up Before You Go-Go (Instrumental)",
+          "artist": "Wham!",
+          "album": "The Singles: Echoes from the Edge of Heaven (Expanded)",
+          "durationS": 243,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2248097007",
+          "explicit": false,
+          "rank": 179536
+        },
+        {
+          "id": "65330712",
+          "title": "Wake Me Up Before You Go Go (Professional Backing Track) (In the Style of Wham!)",
+          "artist": "You Entertain",
+          "album": "80's No.1's - Professional backing Tracks, Vol. 1",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/65330712",
+          "explicit": false,
+          "rank": 0
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-07",
+      "query": {
+        "artist": "Desireless",
+        "title": "Voyage, voyage"
+      },
+      "found": {
+        "id": "4298172",
+        "title": "Voyage voyage",
+        "artist": "Desireless",
+        "album": "François",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4298172",
+        "explicit": false,
+        "rank": 882158
+      },
+      "alternatives": [
+        {
+          "id": "290383",
+          "title": "Voyage, voyage",
+          "artist": "Desireless",
+          "album": "More Love & Good Vibrations",
+          "durationS": 265,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/290383",
+          "explicit": false,
+          "rank": 368643
+        },
+        {
+          "id": "2046063817",
+          "title": "Voyage, Voyage (2016)",
+          "artist": "Desireless",
+          "album": "Voyage avec Operation Of The Sun",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2046063817",
+          "explicit": false,
+          "rank": 115453
+        },
+        {
+          "id": "472657892",
+          "title": "Voyage voyage (PWL - Britmix)",
+          "artist": "Desireless",
+          "album": "Voyage voyage (PWL - Britmix)",
+          "durationS": 425,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/472657892",
+          "explicit": false,
+          "rank": 311692
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-08",
+      "query": {
+        "artist": "Jean-Jacques Goldman",
+        "title": "Quand la musique est bonne"
+      },
+      "found": {
+        "id": "7120489",
+        "title": "Quand la musique est bonne",
+        "artist": "Jean-Jacques Goldman",
+        "album": "Quand la musique est bonne",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7120489",
+        "explicit": false,
+        "rank": 919283
+      },
+      "alternatives": [
+        {
+          "id": "730182982",
+          "title": "Quand la musique est bonne (Live En public 1986)",
+          "artist": "Jean-Jacques Goldman",
+          "album": "En public (Live)",
+          "durationS": 306,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/730182982",
+          "explicit": false,
+          "rank": 285336
+        },
+        {
+          "id": "7120485",
+          "title": "Comme toi",
+          "artist": "Jean-Jacques Goldman",
+          "album": "Quand la musique est bonne",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7120485",
+          "explicit": false,
+          "rank": 841580
+        },
+        {
+          "id": "7120488",
+          "title": "Veiller tard",
+          "artist": "Jean-Jacques Goldman",
+          "album": "Quand la musique est bonne",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7120488",
+          "explicit": false,
+          "rank": 537160
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-09",
+      "query": {
+        "artist": "Toto",
+        "title": "Africa"
+      },
+      "found": {
+        "id": "1079668",
+        "title": "Africa",
+        "artist": "Toto",
+        "album": "Toto IV",
+        "durationS": 296,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1079668",
+        "explicit": false,
+        "rank": 964180
+      },
+      "alternatives": [
+        {
+          "id": "15603342",
+          "title": "Africa",
+          "artist": "Toto",
+          "album": "Toto",
+          "durationS": 263,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15603342",
+          "explicit": false,
+          "rank": 682160
+        },
+        {
+          "id": "371097541",
+          "title": "Africa",
+          "artist": "Toto",
+          "album": "Classic Rock Instrumentals by the Bands Who Made the Hits",
+          "durationS": 307,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/371097541",
+          "explicit": false,
+          "rank": 117855
+        },
+        {
+          "id": "13130271",
+          "title": "Africa",
+          "artist": "Toto",
+          "album": "Haynes DAD - Ultimate Guide To Rock",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13130271",
+          "explicit": false,
+          "rank": 227590
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a80-10",
+      "query": {
+        "artist": "Survivor",
+        "title": "Eye of the Tiger"
+      },
+      "found": {
+        "id": "576431",
+        "title": "Eye of the Tiger",
+        "artist": "Survivor",
+        "album": "Rocky IV",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/576431",
+        "explicit": false,
+        "rank": 898987
+      },
+      "alternatives": [
+        {
+          "id": "632868",
+          "title": "Eye of the Tiger",
+          "artist": "Survivor",
+          "album": "The Rocky Story",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/632868",
+          "explicit": false,
+          "rank": 685136
+        },
+        {
+          "id": "8479099",
+          "title": "Eye of the Tiger - 2006 Master",
+          "artist": "Survivor",
+          "album": "Eye Of The Tiger 2006 Master",
+          "durationS": 255,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/8479099",
+          "explicit": false,
+          "rank": 344390
+        },
+        {
+          "id": "3169795",
+          "title": "Eye Of The Tiger",
+          "artist": "Survivor",
+          "album": "Rocky III (Original Motion Picture Score)",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3169795",
+          "explicit": false,
+          "rank": 386745
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

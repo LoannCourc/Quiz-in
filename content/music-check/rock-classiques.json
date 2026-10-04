@@ -1,0 +1,547 @@
+{
+  "quizId": "rock-classiques",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "rck-01",
+      "query": {
+        "artist": "Queen",
+        "title": "We Will Rock You"
+      },
+      "found": {
+        "id": "4092312801",
+        "title": "We Will Rock You",
+        "artist": "Queen",
+        "album": "News Of The World",
+        "durationS": 123,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4092312801",
+        "explicit": false,
+        "rank": 851674
+      },
+      "alternatives": [
+        {
+          "id": "4097051281",
+          "title": "We Will Rock You (Fast) (BBC Session / October 28th 1977, Maida Vale 4 Studio)",
+          "artist": "Queen",
+          "album": "We Will Rock You (Fast) (BBC Session / October 28th 1977, Maida Vale 4 Studio)",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4097051281",
+          "explicit": false,
+          "rank": 363158
+        },
+        {
+          "id": "3569841391",
+          "title": "We Will Rock You (Version 2)",
+          "artist": "Queen",
+          "album": "Sun City 1984",
+          "durationS": 147,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3569841391",
+          "explicit": false,
+          "rank": 324905
+        },
+        {
+          "id": "4092335041",
+          "title": "We Will Rock You (Raw Sessions Version)",
+          "artist": "Queen",
+          "album": "We Will Rock You (Raw Sessions Version)",
+          "durationS": 149,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4092335041",
+          "explicit": false,
+          "rank": 209778
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-02",
+      "query": {
+        "artist": "AC/DC",
+        "title": "Back in Black"
+      },
+      "found": {
+        "id": "92720046",
+        "title": "Back In Black",
+        "artist": "AC/DC",
+        "album": "Back In Black",
+        "durationS": 253,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92720046",
+        "explicit": false,
+        "rank": 966294
+      },
+      "alternatives": [
+        {
+          "id": "3105946021",
+          "title": "Back in Black",
+          "artist": "AC/DC",
+          "album": "Greatest Hits Broadcast Collection",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3105946021",
+          "explicit": false,
+          "rank": 147480
+        },
+        {
+          "id": "92722924",
+          "title": "Back In Black (Live - 1991)",
+          "artist": "AC/DC",
+          "album": "Live (Collector's Edition)",
+          "durationS": 268,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92722924",
+          "explicit": false,
+          "rank": 473384
+        },
+        {
+          "id": "92720188",
+          "title": "Back In Black (Live at River Plate Stadium, Buenos Aires, Argentina - December 2009)",
+          "artist": "AC/DC",
+          "album": "Live at River Plate",
+          "durationS": 255,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92720188",
+          "explicit": false,
+          "rank": 462406
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-03",
+      "query": {
+        "artist": "The Rolling Stones",
+        "title": "(I Can't Get No) Satisfaction"
+      },
+      "found": {
+        "id": "7677778",
+        "title": "(I Can't Get No) Satisfaction (Mono)",
+        "artist": "The Rolling Stones",
+        "album": "Singles 1965-1967",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7677778",
+        "explicit": false,
+        "rank": 824477
+      },
+      "alternatives": [
+        {
+          "id": "9938395",
+          "title": "(I Can't Get No) Satisfaction (Mono)",
+          "artist": "The Rolling Stones",
+          "album": "Big Hits (High Tide And Green Grass) (US Version)",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/9938395",
+          "explicit": false,
+          "rank": 496652
+        },
+        {
+          "id": "432902582",
+          "title": "(I Can't Get No) Satisfaction (Saturday Club / 1965)",
+          "artist": "The Rolling Stones",
+          "album": "On Air (Deluxe)",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/432902582",
+          "explicit": false,
+          "rank": 571334
+        },
+        {
+          "id": "4619095",
+          "title": "(I Can't Get No) Satisfaction (Live / Remastered 2009)",
+          "artist": "The Rolling Stones",
+          "album": "Flashpoint (2009 Re-Mastered Digital Version)",
+          "durationS": 369,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4619095",
+          "explicit": false,
+          "rank": 243155
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-04",
+      "query": {
+        "artist": "Deep Purple",
+        "title": "Smoke on the Water"
+      },
+      "found": {
+        "id": "60840057",
+        "title": "Smoke On The Water (Remastered 2012)",
+        "artist": "Deep Purple",
+        "album": "Machine Head (Remastered)",
+        "durationS": 340,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60840057",
+        "explicit": false,
+        "rank": 868151
+      },
+      "alternatives": [
+        {
+          "id": "3158168",
+          "title": "Smoke on the Water (US Edit)",
+          "artist": "Deep Purple",
+          "album": "Driving",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3158168",
+          "explicit": false,
+          "rank": 517706
+        },
+        {
+          "id": "71494375",
+          "title": "Smoke On The Water",
+          "artist": "Deep Purple",
+          "album": "The Collection",
+          "durationS": 589,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/71494375",
+          "explicit": false,
+          "rank": 129963
+        },
+        {
+          "id": "77901300",
+          "title": "Smoke On The Water (Live In Osaka, Japan / 15th August 1972 / 2014 Remaster)",
+          "artist": "Deep Purple",
+          "album": "Made In Japan (Deluxe / 2014 Remaster)",
+          "durationS": 438,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/77901300",
+          "explicit": false,
+          "rank": 418229
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-05",
+      "query": {
+        "artist": "The Beatles",
+        "title": "Hey Jude"
+      },
+      "found": {
+        "id": "116348632",
+        "title": "Hey Jude (Remastered 2015)",
+        "artist": "The Beatles",
+        "album": "1 (Remastered 2015)",
+        "durationS": 429,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/116348632",
+        "explicit": false,
+        "rank": 859208
+      },
+      "alternatives": [
+        {
+          "id": "126848613",
+          "title": "Hey Jude",
+          "artist": "The Beatles",
+          "album": "Love",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/126848613",
+          "explicit": false,
+          "rank": 674633
+        },
+        {
+          "id": "116348108",
+          "title": "Hey Jude (Remastered 2009)",
+          "artist": "The Beatles",
+          "album": "The Beatles 1967 - 1970 (Remastered)",
+          "durationS": 429,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/116348108",
+          "explicit": false,
+          "rank": 606588
+        },
+        {
+          "id": "122172010",
+          "title": "Hey Jude (Take 2)",
+          "artist": "The Beatles",
+          "album": "Anthology 3",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/122172010",
+          "explicit": false,
+          "rank": 204639
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-06",
+      "query": {
+        "artist": "Dire Straits",
+        "title": "Sultans of Swing"
+      },
+      "found": {
+        "id": "2263033",
+        "title": "Sultans Of Swing",
+        "artist": "Dire Straits",
+        "album": "Dire Straits",
+        "durationS": 350,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2263033",
+        "explicit": false,
+        "rank": 958351
+      },
+      "alternatives": [
+        {
+          "id": "942221102",
+          "title": "Sultans Of Swing",
+          "artist": "Dire Straits",
+          "album": "Sultans Of Swing / Eastbound Train",
+          "durationS": 350,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/942221102",
+          "explicit": false,
+          "rank": 285419
+        },
+        {
+          "id": "2647209352",
+          "title": "Sultans Of Swing",
+          "artist": "Dire Straits",
+          "album": "Down Under",
+          "durationS": 701,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2647209352",
+          "explicit": false,
+          "rank": 272084
+        },
+        {
+          "id": "2156629",
+          "title": "Sultans Of Swing (Live At Hammersmith Odeon, London/1983)",
+          "artist": "Dire Straits",
+          "album": "Alchemy: Dire Straits Live",
+          "durationS": 654,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2156629",
+          "explicit": false,
+          "rank": 660726
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-07",
+      "query": {
+        "artist": "Guns N' Roses",
+        "title": "Sweet Child O' Mine"
+      },
+      "found": {
+        "id": "518458172",
+        "title": "Sweet Child O' Mine",
+        "artist": "Guns N' Roses",
+        "album": "Appetite For Destruction (Super Deluxe Edition)",
+        "durationS": 355,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/518458172",
+        "explicit": false,
+        "rank": 934281
+      },
+      "alternatives": [
+        {
+          "id": "1152042",
+          "title": "Sweet Child O' Mine (Live In Paris / 1992)",
+          "artist": "Guns N' Roses",
+          "album": "Live Era '87-'93",
+          "durationS": 445,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1152042",
+          "explicit": false,
+          "rank": 430378
+        },
+        {
+          "id": "136212672",
+          "title": "Sweet Child O' Mine (Live at the Ritz, New York)",
+          "artist": "Guns N' Roses",
+          "album": "Greatest Hits Live on Air 1989-'91, Vol. 1",
+          "durationS": 423,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136212672",
+          "explicit": false,
+          "rank": 267197
+        },
+        {
+          "id": "2681795362",
+          "title": "Sweet Child O' Mine (Live 1988)",
+          "artist": "Guns N' Roses",
+          "album": "Take Me Down (Live)",
+          "durationS": 349,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2681795362",
+          "explicit": false,
+          "rank": 228168
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-08",
+      "query": {
+        "artist": "Nirvana",
+        "title": "Come as You Are"
+      },
+      "found": {
+        "id": "13791932",
+        "title": "Come As You Are",
+        "artist": "Nirvana",
+        "album": "Nevermind (Remastered)",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13791932",
+        "explicit": false,
+        "rank": 956254
+      },
+      "alternatives": [
+        {
+          "id": "1166335",
+          "title": "Come As You Are (Boom Box Version)",
+          "artist": "Nirvana",
+          "album": "Sliver - The Best Of The Box",
+          "durationS": 249,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1166335",
+          "explicit": false,
+          "rank": 225001
+        },
+        {
+          "id": "1105734",
+          "title": "Come As You Are (Live)",
+          "artist": "Nirvana",
+          "album": "MTV Unplugged In New York",
+          "durationS": 254,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1105734",
+          "explicit": false,
+          "rank": 636392
+        },
+        {
+          "id": "4601805",
+          "title": "Come As You Are (1992/Live at Reading)",
+          "artist": "Nirvana",
+          "album": "Live at Reading",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4601805",
+          "explicit": false,
+          "rank": 439038
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-09",
+      "query": {
+        "artist": "Lynyrd Skynyrd",
+        "title": "Sweet Home Alabama"
+      },
+      "found": {
+        "id": "24949681",
+        "title": "Sweet Home Alabama",
+        "artist": "Lynyrd Skynyrd",
+        "album": "Second Helping (Expanded Edition)",
+        "durationS": 284,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/24949681",
+        "explicit": false,
+        "rank": 917491
+      },
+      "alternatives": [
+        {
+          "id": "112665858",
+          "title": "Sweet Home Alabama",
+          "artist": "Lynyrd Skynyrd",
+          "album": "Endangered Species",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/112665858",
+          "explicit": false,
+          "rank": 272519
+        },
+        {
+          "id": "549279282",
+          "title": "Sweet Home Alabama (Edit)",
+          "artist": "Lynyrd Skynyrd",
+          "album": "20th Century Masters: The Millennium Collection: Best Of The '70s",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/549279282",
+          "explicit": false,
+          "rank": 250079
+        },
+        {
+          "id": "1228336892",
+          "title": "Sweet Home Alabama",
+          "artist": "Lynyrd Skynyrd",
+          "album": "Trouble In Texas",
+          "durationS": 392,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1228336892",
+          "explicit": false,
+          "rank": 15261
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "rck-10",
+      "query": {
+        "artist": "U2",
+        "title": "With or Without You"
+      },
+      "found": {
+        "id": "912486",
+        "title": "With Or Without You (Remastered 2007)",
+        "artist": "U2",
+        "album": "The Joshua Tree",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/912486",
+        "explicit": false,
+        "rank": 942091
+      },
+      "alternatives": [
+        {
+          "id": "2194817637",
+          "title": "With Or Without You (Songs Of Surrender)",
+          "artist": "U2",
+          "album": "Songs Of Surrender",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2194817637",
+          "explicit": false,
+          "rank": 525811
+        },
+        {
+          "id": "1579116",
+          "title": "With Or Without You (Live From Paris)",
+          "artist": "U2",
+          "album": "Live From Paris",
+          "durationS": 599,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1579116",
+          "explicit": false,
+          "rank": 554814
+        },
+        {
+          "id": "366440531",
+          "title": "With Or Without You (Live)",
+          "artist": "U2",
+          "album": "The Joshua Tree (Super Deluxe)",
+          "durationS": 327,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/366440531",
+          "explicit": false,
+          "rank": 418921
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

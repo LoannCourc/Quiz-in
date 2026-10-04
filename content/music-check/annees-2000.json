@@ -1,0 +1,547 @@
+{
+  "quizId": "annees-2000",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "a00-01",
+      "query": {
+        "artist": "Shakira",
+        "title": "Hips Don't Lie"
+      },
+      "found": {
+        "id": "88897841",
+        "title": "Hips Don't Lie (feat. Wyclef Jean)",
+        "artist": "Shakira",
+        "album": "Filtr presents R&B Party",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/88897841",
+        "explicit": false,
+        "rank": 918364
+      },
+      "alternatives": [
+        {
+          "id": "15643690",
+          "title": "Hips Don't Lie - Bamboo (feat. Wyclef Jean)",
+          "artist": "Shakira",
+          "album": "Hips Don't Lie - Bamboo (feat. Wyclef Jean)",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15643690",
+          "explicit": false,
+          "rank": 564706
+        },
+        {
+          "id": "3663852612",
+          "title": "Hips Don't Lie",
+          "artist": "Shakira",
+          "album": "Anniversary | Oral Fixation (20th) and Pies Descalzos (30th) LIVE",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3663852612",
+          "explicit": false,
+          "rank": 874825
+        },
+        {
+          "id": "799664982",
+          "title": "Hips Don't Lie (El Dorado World Tour Live)",
+          "artist": "Shakira",
+          "album": "Shakira In Concert: El Dorado World Tour",
+          "durationS": 382,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/799664982",
+          "explicit": false,
+          "rank": 364895
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-02",
+      "query": {
+        "artist": "Britney Spears",
+        "title": "Toxic"
+      },
+      "found": {
+        "id": "15391618",
+        "title": "Toxic",
+        "artist": "Britney Spears",
+        "album": "In The Zone",
+        "durationS": 201,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15391618",
+        "explicit": false,
+        "rank": 896147
+      },
+      "alternatives": [
+        {
+          "id": "15404524",
+          "title": "Toxic (Lenny Bertoldo Radio Edit)",
+          "artist": "Britney Spears",
+          "album": "In The Zone DVD Bonus Audio",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15404524",
+          "explicit": false,
+          "rank": 124824
+        },
+        {
+          "id": "863967332",
+          "title": "Toxic (Y2K & Alexander Lewis Remix)",
+          "artist": "Britney Spears",
+          "album": "Toxic (Y2K & Alexander Lewis Remix)",
+          "durationS": 106,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/863967332",
+          "explicit": false,
+          "rank": 368378
+        },
+        {
+          "id": "4763576",
+          "title": "Toxic (Bloodshy & Avant's Intoxicated Remix - 2009 Remaster)",
+          "artist": "Britney Spears",
+          "album": "The Singles Collection",
+          "durationS": 335,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4763576",
+          "explicit": false,
+          "rank": 234397
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-03",
+      "query": {
+        "artist": "The Black Eyed Peas",
+        "title": "I Gotta Feeling"
+      },
+      "found": {
+        "id": "4619466",
+        "title": "I Gotta Feeling",
+        "artist": "Black Eyed Peas",
+        "album": "THE E.N.D. (THE ENERGY NEVER DIES) (Deluxe Version)",
+        "durationS": 289,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4619466",
+        "explicit": false,
+        "rank": 962587
+      },
+      "alternatives": [
+        {
+          "id": "4124656",
+          "title": "I Gotta Feeling (Edit)",
+          "artist": "Black Eyed Peas",
+          "album": "I Gotta Feeling",
+          "durationS": 245,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4124656",
+          "explicit": false,
+          "rank": 722376
+        },
+        {
+          "id": "4255542",
+          "title": "I Gotta Feeling (Printz Board vs zuper blahq)",
+          "artist": "Black Eyed Peas",
+          "album": "Invasion Of I Gotta Feeling - Megamix E.P.",
+          "durationS": 304,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4255542",
+          "explicit": false,
+          "rank": 114706
+        },
+        {
+          "id": "2531104231",
+          "title": "I Gotta Feeling (FMIF Remix; Edit)",
+          "artist": "Black Eyed Peas",
+          "album": "One More Love",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2531104231",
+          "explicit": false,
+          "rank": 421282
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-04",
+      "query": {
+        "artist": "Coldplay",
+        "title": "Viva la Vida"
+      },
+      "found": {
+        "id": "3157972",
+        "title": "Viva La Vida",
+        "artist": "Coldplay",
+        "album": "Viva La Vida or Death and All His Friends",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3157972",
+        "explicit": false,
+        "rank": 951268
+      },
+      "alternatives": [
+        {
+          "id": "62031186",
+          "title": "Viva La Vida (Live)",
+          "artist": "Coldplay",
+          "album": "Live 2012",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62031186",
+          "explicit": false,
+          "rank": 519972
+        },
+        {
+          "id": "599314402",
+          "title": "Viva La Vida (Live in Buenos Aires)",
+          "artist": "Coldplay",
+          "album": "Live in Buenos Aires",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/599314402",
+          "explicit": false,
+          "rank": 462115
+        },
+        {
+          "id": "1455370342",
+          "title": "Viva La Vida (Live in Paris, 2008)",
+          "artist": "Coldplay",
+          "album": "LeftRightLeftRightLeft (Live)",
+          "durationS": 324,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1455370342",
+          "explicit": false,
+          "rank": 256954
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-05",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "One More Time"
+      },
+      "found": {
+        "id": "3135553",
+        "title": "One More Time",
+        "artist": "Daft Punk",
+        "album": "Discovery",
+        "durationS": 320,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135553",
+        "explicit": false,
+        "rank": 930849
+      },
+      "alternatives": [
+        {
+          "id": "3157685",
+          "title": "One More Time (Short Radio Edit)",
+          "artist": "Daft Punk",
+          "album": "One More Time",
+          "durationS": 235,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3157685",
+          "explicit": false,
+          "rank": 741283
+        },
+        {
+          "id": "3167846",
+          "title": "One More Time / Aerodynamic",
+          "artist": "Daft Punk",
+          "album": "Alive 2007",
+          "durationS": 370,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3167846",
+          "explicit": false,
+          "rank": 611851
+        },
+        {
+          "id": "3157687",
+          "title": "One More Time (12 Mix)",
+          "artist": "Daft Punk",
+          "album": "One More Time",
+          "durationS": 480,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3157687",
+          "explicit": false,
+          "rank": 369079
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-06",
+      "query": {
+        "artist": "Kylie Minogue",
+        "title": "Can't Get You Out of My Head"
+      },
+      "found": {
+        "id": "3098100",
+        "title": "Can't Get You out of My Head",
+        "artist": "Kylie Minogue",
+        "album": "Fever",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3098100",
+        "explicit": false,
+        "rank": 898595
+      },
+      "alternatives": [
+        {
+          "id": "61102359",
+          "title": "Can't Get You out of My Head",
+          "artist": "Kylie Minogue",
+          "album": "The Abbey Road Sessions",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/61102359",
+          "explicit": false,
+          "rank": 345251
+        },
+        {
+          "id": "3155740",
+          "title": "Can't Get You out of My Head (Deluxe's Dirty Dub)",
+          "artist": "Kylie Minogue",
+          "album": "Fever",
+          "durationS": 412,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3155740",
+          "explicit": false,
+          "rank": 245396
+        },
+        {
+          "id": "3155971",
+          "title": "Can't Get You out of My Head (Radio Slave Vocal Re-Edit)",
+          "artist": "Kylie Minogue",
+          "album": "Can't Get You out of My Head",
+          "durationS": 625,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3155971",
+          "explicit": false,
+          "rank": 166502
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-07",
+      "query": {
+        "artist": "Christophe Maé",
+        "title": "On s'attache"
+      },
+      "found": {
+        "id": "790933",
+        "title": "On s'attache",
+        "artist": "Christophe Maé",
+        "album": "Mon paradis",
+        "durationS": 191,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/790933",
+        "explicit": false,
+        "rank": 924953
+      },
+      "alternatives": [
+        {
+          "id": "721785",
+          "title": "On s'attache",
+          "artist": "Christophe Maé",
+          "album": "On S'Attache",
+          "durationS": 171,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/721785",
+          "explicit": false,
+          "rank": 571003
+        },
+        {
+          "id": "2164904",
+          "title": "On s'attache (Comme à la maison)",
+          "artist": "Christophe Maé",
+          "album": "Comme à la maison",
+          "durationS": 345,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2164904",
+          "explicit": false,
+          "rank": 373715
+        },
+        {
+          "id": "1652727112",
+          "title": "On s'attache (Live au Cirque d'Hiver, 2019)",
+          "artist": "Christophe Maé",
+          "album": "Live au Cirque d'Hiver (2019)",
+          "durationS": 315,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1652727112",
+          "explicit": false,
+          "rank": 399724
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-08",
+      "query": {
+        "artist": "Rihanna",
+        "title": "Umbrella"
+      },
+      "found": {
+        "id": "1171629",
+        "title": "Umbrella (Radio Edit)",
+        "artist": "Rihanna",
+        "album": "Umbrella",
+        "durationS": 256,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1171629",
+        "explicit": false,
+        "rank": 825458
+      },
+      "alternatives": [
+        {
+          "id": "466734732",
+          "title": "Umbrella (feat. Jayme Claire)",
+          "artist": "Rihanna",
+          "album": "Umbrella (feat. Jayme Claire)",
+          "durationS": 280,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/466734732",
+          "explicit": false,
+          "rank": 180235
+        },
+        {
+          "id": "925106",
+          "title": "Umbrella",
+          "artist": "Rihanna",
+          "album": "Good Girl Gone Bad: Reloaded",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/925106",
+          "explicit": false,
+          "rank": 958984
+        },
+        {
+          "id": "2953525",
+          "title": "Umbrella (Seamus Haji & Paul Emanuel)",
+          "artist": "Rihanna",
+          "album": "Good Girl Gone Bad: The Remixes",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2953525",
+          "explicit": false,
+          "rank": 302340
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-09",
+      "query": {
+        "artist": "Las Ketchup",
+        "title": "Aserejé"
+      },
+      "found": {
+        "id": "476739462",
+        "title": "The Ketchup Song (Aserejé) (Spanish Version)",
+        "artist": "Las Ketchup",
+        "album": "Aserejé (The Ketchup Song)",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/476739462",
+        "explicit": false,
+        "rank": 779219
+      },
+      "alternatives": [
+        {
+          "id": "476739482",
+          "title": "The Ketchup Song (Aserejé) (Hippy)",
+          "artist": "Las Ketchup",
+          "album": "Aserejé (The Ketchup Song)",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/476739482",
+          "explicit": false,
+          "rank": 395566
+        },
+        {
+          "id": "578032122",
+          "title": "Aserejé (2018 Radio Mix)",
+          "artist": "Las Ketchup",
+          "album": "Aserejé (2018 Radio Mix)",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/578032122",
+          "explicit": false,
+          "rank": 245846
+        },
+        {
+          "id": "2666609522",
+          "title": "ASEREJE (TH3OS Remix)",
+          "artist": "Las Ketchup",
+          "album": "TH3OS",
+          "durationS": 218,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2666609522",
+          "explicit": false,
+          "rank": 156523
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a00-10",
+      "query": {
+        "artist": "Gnarls Barkley",
+        "title": "Crazy"
+      },
+      "found": {
+        "id": "2794160",
+        "title": "Crazy",
+        "artist": "Gnarls Barkley",
+        "album": "St. Elsewhere",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2794160",
+        "explicit": false,
+        "rank": 931349
+      },
+      "alternatives": [
+        {
+          "id": "2129329",
+          "title": "Crazy (Live from Soho)",
+          "artist": "Gnarls Barkley",
+          "album": "Live From Soho",
+          "durationS": 305,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2129329",
+          "explicit": false,
+          "rank": 220104
+        },
+        {
+          "id": "693514",
+          "title": "Crazy (Instrumental)",
+          "artist": "Gnarls Barkley",
+          "album": "Crazy (12\" Version)",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/693514",
+          "explicit": false,
+          "rank": 215229
+        },
+        {
+          "id": "845630",
+          "title": "Going On (Radio Edit)",
+          "artist": "Gnarls Barkley",
+          "album": "Going On",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/845630",
+          "explicit": false,
+          "rank": 358510
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

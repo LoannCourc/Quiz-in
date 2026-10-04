@@ -1,0 +1,547 @@
+{
+  "quizId": "annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "a90-01",
+      "query": {
+        "artist": "Haddaway",
+        "title": "What Is Love"
+      },
+      "found": {
+        "id": "3786149242",
+        "title": "What Is Love (7” Mix)",
+        "artist": "Haddaway",
+        "album": "All the Best - His Greatest Hits",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3786149242",
+        "explicit": false,
+        "rank": 908164
+      },
+      "alternatives": [
+        {
+          "id": "3803445032",
+          "title": "What Is Love (7\" Mix) (Remastered 2025) (7\" Mix / Remastered 2025)",
+          "artist": "Haddaway",
+          "album": "What Is Love (7\" Mix / Remastered 2025)",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3803445032",
+          "explicit": false,
+          "rank": 439152
+        },
+        {
+          "id": "3786814882",
+          "title": "What Is Love (Alternative Original 7\" Mix)",
+          "artist": "Haddaway",
+          "album": "What Is Love (Alternative Original Version)",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786814882",
+          "explicit": false,
+          "rank": 172559
+        },
+        {
+          "id": "3786814892",
+          "title": "What Is Love (Alternative Original 12\" Mix)",
+          "artist": "Haddaway",
+          "album": "What Is Love (Alternative Original Version)",
+          "durationS": 391,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786814892",
+          "explicit": false,
+          "rank": 140312
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-02",
+      "query": {
+        "artist": "Spice Girls",
+        "title": "Wannabe"
+      },
+      "found": {
+        "id": "3133738",
+        "title": "Wannabe",
+        "artist": "Spice Girls",
+        "album": "Spice",
+        "durationS": 172,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3133738",
+        "explicit": false,
+        "rank": 902147
+      },
+      "alternatives": [
+        {
+          "id": "4135538721",
+          "title": "Wannabe",
+          "artist": "Spice Girls",
+          "album": "Wannabe",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4135538721",
+          "explicit": false,
+          "rank": 220814
+        },
+        {
+          "id": "4135538801",
+          "title": "Wannabe (Junior Vasquez 7” Single Edit)",
+          "artist": "Spice Girls",
+          "album": "Wannabe",
+          "durationS": 174,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4135538801",
+          "explicit": false,
+          "rank": 92287
+        },
+        {
+          "id": "4135538841",
+          "title": "Wannabe (No Rap)",
+          "artist": "Spice Girls",
+          "album": "Wannabe",
+          "durationS": 130,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4135538841",
+          "explicit": false,
+          "rank": 33210
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-03",
+      "query": {
+        "artist": "Ricky Martin",
+        "title": "Livin' la Vida Loca"
+      },
+      "found": {
+        "id": "13704591",
+        "title": "Livin' la Vida Loca",
+        "artist": "Ricky Martin",
+        "album": "Ricky Martin",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13704591",
+        "explicit": false,
+        "rank": 700972
+      },
+      "alternatives": [
+        {
+          "id": "2789651922",
+          "title": "Livin' la Vida Loca",
+          "artist": "Ricky Martin",
+          "album": "Livin' la Vida Loca",
+          "durationS": 243,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2789651922",
+          "explicit": false,
+          "rank": 215386
+        },
+        {
+          "id": "2789651812",
+          "title": "Livin' la Vida Loca (Orbital Audio)",
+          "artist": "Ricky Martin",
+          "album": "Livin' la Vida Loca (Orbital Audio)",
+          "durationS": 243,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2789651812",
+          "explicit": false,
+          "rank": 85311
+        },
+        {
+          "id": "2854897872",
+          "title": "Livin' la Vida Loca (原曲歌手:RICKY MARTIN)",
+          "artist": "歌っちゃ王",
+          "album": "Livin' la Vida Loca(ガイド無しカラオケ)[原曲歌手:RICKY MARTIN]",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2854897872",
+          "explicit": false,
+          "rank": 100000
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-04",
+      "query": {
+        "artist": "Cher",
+        "title": "Believe"
+      },
+      "found": {
+        "id": "786717",
+        "title": "Believe",
+        "artist": "Cher",
+        "album": "Believe",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/786717",
+        "explicit": false,
+        "rank": 863082
+      },
+      "alternatives": [
+        {
+          "id": "2492447851",
+          "title": "Believe",
+          "artist": "Eagle-Eye Cherry",
+          "album": "Så mycket bättre 2023 - Tolkningarna",
+          "durationS": 193,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2492447851",
+          "explicit": false,
+          "rank": 37088
+        },
+        {
+          "id": "2213126337",
+          "title": "Believe (feat. Lift The Curse) (Nightcore)",
+          "artist": "Cherry 葵 Nightcore",
+          "album": "Believe (feat. Lift The Curse) [Nightcore]",
+          "durationS": 171,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2213126337",
+          "explicit": false,
+          "rank": 26015
+        },
+        {
+          "id": "70716876",
+          "title": "Believe (Almighty Definitive Mix)",
+          "artist": "Cher",
+          "album": "Believe (Remixes)",
+          "durationS": 455,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70716876",
+          "explicit": false,
+          "rank": 260381
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-05",
+      "query": {
+        "artist": "Ace of Base",
+        "title": "The Sign"
+      },
+      "found": {
+        "id": "93851026",
+        "title": "The Sign",
+        "artist": "Ace of Base",
+        "album": "The Sign",
+        "durationS": 191,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/93851026",
+        "explicit": false,
+        "rank": 767813
+      },
+      "alternatives": [
+        {
+          "id": "2233852787",
+          "title": "The Sign (Luca Debonaire & Xenia Ghali Radio Edit)",
+          "artist": "Ace of Base",
+          "album": "Beautiful Life - The Singles Box",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2233852787",
+          "explicit": false,
+          "rank": 74010
+        },
+        {
+          "id": "19278211",
+          "title": "The Sign (Long Version)",
+          "artist": "Ace of Base",
+          "album": "The Sign (The Remixes)",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/19278211",
+          "explicit": false,
+          "rank": 298802
+        },
+        {
+          "id": "19278241",
+          "title": "The Sign (Ultimix)",
+          "artist": "Ace of Base",
+          "album": "The Sign (The Remixes)",
+          "durationS": 408,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/19278241",
+          "explicit": false,
+          "rank": 247954
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-06",
+      "query": {
+        "artist": "Larusso",
+        "title": "Tu m'oublieras"
+      },
+      "found": {
+        "id": "3528163",
+        "title": "Tu m'oublieras",
+        "artist": "Larusso",
+        "album": "Simplement",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3528163",
+        "explicit": false,
+        "rank": 843812
+      },
+      "alternatives": [
+        {
+          "id": "929468622",
+          "title": "Tu m'oublieras (Hip Hop Mix)",
+          "artist": "Larusso",
+          "album": "Simplement (Edition Deluxe)",
+          "durationS": 300,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/929468622",
+          "explicit": false,
+          "rank": 359791
+        },
+        {
+          "id": "929468652",
+          "title": "Tu m'oublieras (Unforgetable Mix)",
+          "artist": "Larusso",
+          "album": "Simplement (Edition Deluxe)",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/929468652",
+          "explicit": false,
+          "rank": 261294
+        },
+        {
+          "id": "929468662",
+          "title": "Tu m'oublieras (Acoustic Extented)",
+          "artist": "Larusso",
+          "album": "Simplement (Edition Deluxe)",
+          "durationS": 248,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/929468662",
+          "explicit": false,
+          "rank": 182359
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-07",
+      "query": {
+        "artist": "Oasis",
+        "title": "Wonderwall"
+      },
+      "found": {
+        "id": "985745702",
+        "title": "Wonderwall",
+        "artist": "Oasis",
+        "album": "(What's The Story) Morning Glory?",
+        "durationS": 258,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/985745702",
+        "explicit": false,
+        "rank": 988464
+      },
+      "alternatives": [
+        {
+          "id": "985985832",
+          "title": "Wonderwall",
+          "artist": "Oasis",
+          "album": "Stop The Clocks",
+          "durationS": 258,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/985985832",
+          "explicit": false,
+          "rank": 903026
+        },
+        {
+          "id": "3418942591",
+          "title": "Wonderwall (Unplugged)",
+          "artist": "Oasis",
+          "album": "(What's The Story) Morning Glory? (30th Anniversary Deluxe Edition)",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3418942591",
+          "explicit": false,
+          "rank": 537867
+        },
+        {
+          "id": "3537756951",
+          "title": "Wonderwall (Live from Dublin, 16 August '25)",
+          "artist": "Oasis",
+          "album": "Wonderwall (Live from Dublin, 16 August '25)",
+          "durationS": 261,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3537756951",
+          "explicit": true,
+          "rank": 455664
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-08",
+      "query": {
+        "artist": "Whitney Houston",
+        "title": "I Will Always Love You"
+      },
+      "found": {
+        "id": "7675403",
+        "title": "I Will Always Love You",
+        "artist": "Whitney Houston",
+        "album": "The Bodyguard - Original Soundtrack Album",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7675403",
+        "explicit": false,
+        "rank": 889692
+      },
+      "alternatives": [
+        {
+          "id": "426976362",
+          "title": "I Will Always Love You (Film Version)",
+          "artist": "Whitney Houston",
+          "album": "I Wish You Love: More From The Bodyguard",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/426976362",
+          "explicit": false,
+          "rank": 365026
+        },
+        {
+          "id": "88897369",
+          "title": "I Will Always Love You (Live from The Concert for a New South Africa)",
+          "artist": "Whitney Houston",
+          "album": "Whitney Houston Live: Her Greatest Performances",
+          "durationS": 359,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/88897369",
+          "explicit": false,
+          "rank": 301172
+        },
+        {
+          "id": "426976292",
+          "title": "I Will Always Love You (Alternate Mix)",
+          "artist": "Whitney Houston",
+          "album": "I Wish You Love: More From The Bodyguard",
+          "durationS": 304,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/426976292",
+          "explicit": false,
+          "rank": 346746
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-09",
+      "query": {
+        "artist": "Backstreet Boys",
+        "title": "I Want It That Way"
+      },
+      "found": {
+        "id": "13141170",
+        "title": "I Want It That Way",
+        "artist": "Backstreet Boys",
+        "album": "Millennium",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13141170",
+        "explicit": false,
+        "rank": 900741
+      },
+      "alternatives": [
+        {
+          "id": "675969442",
+          "title": "I Want It That Way (Reimagined)",
+          "artist": "Backstreet Boys",
+          "album": "I Want It That Way",
+          "durationS": 201,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/675969442",
+          "explicit": false,
+          "rank": 464861
+        },
+        {
+          "id": "3444560571",
+          "title": "I Want It That Way (Alternate Lyrics)",
+          "artist": "Backstreet Boys",
+          "album": "Millennium 2.0",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3444560571",
+          "explicit": false,
+          "rank": 399279
+        },
+        {
+          "id": "3663767062",
+          "title": "I Want It That Way",
+          "artist": "Backstreet Boys",
+          "album": "I Want It That Way",
+          "durationS": 143,
+          "previewAvailable": false,
+          "link": "https://www.deezer.com/track/3663767062",
+          "explicit": false,
+          "rank": 31411
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "a90-10",
+      "query": {
+        "artist": "Gala",
+        "title": "Freed from Desire"
+      },
+      "found": {
+        "id": "6907156",
+        "title": "Freed From Desire",
+        "artist": "Gala",
+        "album": "Come Into My Life (The Album)",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6907156",
+        "explicit": false,
+        "rank": 955813
+      },
+      "alternatives": [
+        {
+          "id": "2855541182",
+          "title": "Freed From Desire (2024 Version) (Diplo Edit)",
+          "artist": "Gala",
+          "album": "Freed From Desire (2024 Version) (Diplo Edit)",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2855541182",
+          "explicit": false,
+          "rank": 668808
+        },
+        {
+          "id": "2855541192",
+          "title": "Freed From Desire (2024 Version)",
+          "artist": "Gala",
+          "album": "Freed From Desire (2024 Version) (Diplo Edit)",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2855541192",
+          "explicit": false,
+          "rank": 320247
+        },
+        {
+          "id": "35063831",
+          "title": "Freed From Desire",
+          "artist": "Gala",
+          "album": "Tough Love (Deluxe Version)",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/35063831",
+          "explicit": false,
+          "rank": 235548
+        }
+      ],
+      "verified": false
+    }
+  ]
+}

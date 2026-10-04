@@ -1,0 +1,547 @@
+{
+  "quizId": "disco-funk",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-04",
+  "tracks": [
+    {
+      "questionId": "dsc-01",
+      "query": {
+        "artist": "Gloria Gaynor",
+        "title": "I Will Survive"
+      },
+      "found": {
+        "id": "1421635422",
+        "title": "I Will Survive (Original 7\" Version)",
+        "artist": "Gloria Gaynor",
+        "album": "I Will Survive (Phil Kelsey Remix)",
+        "durationS": 198,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1421635422",
+        "explicit": false,
+        "rank": 754337
+      },
+      "alternatives": [
+        {
+          "id": "725634462",
+          "title": "I Will Survive",
+          "artist": "Gloria Gaynor",
+          "album": "Love Tracks (Deluxe Edition)",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/725634462",
+          "explicit": false,
+          "rank": 496074
+        },
+        {
+          "id": "18235563",
+          "title": "I Will Survive",
+          "artist": "Gloria Gaynor",
+          "album": "Gloria Gaynor",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/18235563",
+          "explicit": false,
+          "rank": 443907
+        },
+        {
+          "id": "96723376",
+          "title": "I Will Survive",
+          "artist": "Gloria Gaynor",
+          "album": "Gloria Gaynor: I Will Survive",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/96723376",
+          "explicit": false,
+          "rank": 418442
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-02",
+      "query": {
+        "artist": "Bee Gees",
+        "title": "Stayin' Alive"
+      },
+      "found": {
+        "id": "427219162",
+        "title": "Stayin' Alive (From \"Saturday Night Fever\" Soundtrack)",
+        "artist": "Bee Gees",
+        "album": "Saturday Night Fever (The Original Movie Soundtrack Deluxe Edition)",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/427219162",
+        "explicit": false,
+        "rank": 705816
+      },
+      "alternatives": [
+        {
+          "id": "406815322",
+          "title": "Stayin' Alive",
+          "artist": "Bee Gees",
+          "album": "Staying Alive (Original Motion Picture Soundtrack)",
+          "durationS": 90,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/406815322",
+          "explicit": false,
+          "rank": 645432
+        },
+        {
+          "id": "139138639",
+          "title": "Stayin' Alive (Promo 12\" Version)",
+          "artist": "Bee Gees",
+          "album": "Greatest",
+          "durationS": 419,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/139138639",
+          "explicit": false,
+          "rank": 375473
+        },
+        {
+          "id": "5893404",
+          "title": "Stayin' Alive",
+          "artist": "The Bee Gees (Karaoke)",
+          "album": "Zoom Platinum Artists - Volume 28",
+          "durationS": 264,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5893404",
+          "explicit": false,
+          "rank": 30606
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-03",
+      "query": {
+        "artist": "Chic",
+        "title": "Le Freak"
+      },
+      "found": {
+        "id": "72060062",
+        "title": "Le Freak",
+        "artist": "Chic",
+        "album": "The Studio Album Collection 1977-1992",
+        "durationS": 327,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72060062",
+        "explicit": false,
+        "rank": 735820
+      },
+      "alternatives": [
+        {
+          "id": "684172",
+          "title": "Le Freak (Edit)",
+          "artist": "Chic",
+          "album": "Les Plus Grands Success De Chic - Chic's Greatest Hits",
+          "durationS": 215,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/684172",
+          "explicit": false,
+          "rank": 713443
+        },
+        {
+          "id": "594335342",
+          "title": "Le Freak",
+          "artist": "Chic",
+          "album": "Le Freak - C'est Chic",
+          "durationS": 314,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/594335342",
+          "explicit": false,
+          "rank": 369529
+        },
+        {
+          "id": "36041341",
+          "title": "Le Freak",
+          "artist": "Chic",
+          "album": "Good Times",
+          "durationS": 305,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/36041341",
+          "explicit": false,
+          "rank": 260486
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-04",
+      "query": {
+        "artist": "Earth, Wind & Fire",
+        "title": "September"
+      },
+      "found": {
+        "id": "487484142",
+        "title": "September",
+        "artist": "Earth, Wind & Fire",
+        "album": "September",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/487484142",
+        "explicit": false,
+        "rank": 934544
+      },
+      "alternatives": [
+        {
+          "id": "2169002597",
+          "title": "September (sped up)",
+          "artist": "Earth, Wind & Fire",
+          "album": "September (sped up + slowed)",
+          "durationS": 179,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2169002597",
+          "explicit": false,
+          "rank": 246907
+        },
+        {
+          "id": "2169002607",
+          "title": "September (slowed + reverb)",
+          "artist": "Earth, Wind & Fire",
+          "album": "September (sped up + slowed)",
+          "durationS": 268,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2169002607",
+          "explicit": false,
+          "rank": 207120
+        },
+        {
+          "id": "1643547922",
+          "title": "September (原曲歌手: EARTH WIND & FIRE)",
+          "artist": "歌っちゃ王",
+          "album": "September(ガイド無しカラオケ)[原曲歌手:EARTH WIND & FIRE]",
+          "durationS": 218,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1643547922",
+          "explicit": false,
+          "rank": 100000
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-05",
+      "query": {
+        "artist": "Patrick Hernandez",
+        "title": "Born to Be Alive"
+      },
+      "found": {
+        "id": "4077573",
+        "title": "Born to Be Alive (The Original)",
+        "artist": "Patrick Hernandez",
+        "album": "Born to Be Alive (The Original)",
+        "durationS": 188,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4077573",
+        "explicit": false,
+        "rank": 830692
+      },
+      "alternatives": [
+        {
+          "id": "7675919",
+          "title": "Born to Be Alive (Extended Version)",
+          "artist": "Patrick Hernandez",
+          "album": "Born to Be Alive (Extended Version)",
+          "durationS": 354,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7675919",
+          "explicit": false,
+          "rank": 547983
+        },
+        {
+          "id": "1725994697",
+          "title": "Born to Be Alive (The Original Instrumental Version)",
+          "artist": "Patrick Hernandez",
+          "album": "Born to Be Alive (The Original Instrumental Version)",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1725994697",
+          "explicit": false,
+          "rank": 135443
+        },
+        {
+          "id": "1390815902",
+          "title": "Born to Be Alive (Reborn Version)",
+          "artist": "Patrick Hernandez",
+          "album": "Born to Be Alive (Unplugged & Reborn Versions)",
+          "durationS": 201,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1390815902",
+          "explicit": false,
+          "rank": 420904
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-06",
+      "query": {
+        "artist": "Sister Sledge",
+        "title": "We Are Family"
+      },
+      "found": {
+        "id": "846327",
+        "title": "We Are Family (1995 Remaster)",
+        "artist": "Sister Sledge",
+        "album": "The Best of Sister Sledge (1973-1985)",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/846327",
+        "explicit": false,
+        "rank": 751426
+      },
+      "alternatives": [
+        {
+          "id": "691622",
+          "title": "We Are Family (2006 Remaster)",
+          "artist": "Sister Sledge",
+          "album": "Definitive Groove: Sister Sledge",
+          "durationS": 500,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/691622",
+          "explicit": false,
+          "rank": 471084
+        },
+        {
+          "id": "67649299",
+          "title": "We Are Family (Single Version)",
+          "artist": "Sister Sledge",
+          "album": "We Are Family - The Essential Sister Sledge",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67649299",
+          "explicit": false,
+          "rank": 412483
+        },
+        {
+          "id": "4898930",
+          "title": "We Are Family",
+          "artist": "Sister Sledge",
+          "album": "We Are Family",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4898930",
+          "explicit": false,
+          "rank": 174244
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-07",
+      "query": {
+        "artist": "Stevie Wonder",
+        "title": "Superstition"
+      },
+      "found": {
+        "id": "596034702",
+        "title": "Superstition",
+        "artist": "Stevie Wonder",
+        "album": "Number 1's",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/596034702",
+        "explicit": false,
+        "rank": 801654
+      },
+      "alternatives": [
+        {
+          "id": "2505668",
+          "title": "Superstition",
+          "artist": "Stevie Wonder",
+          "album": "Talking Book",
+          "durationS": 268,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2505668",
+          "explicit": false,
+          "rank": 736361
+        },
+        {
+          "id": "61720755",
+          "title": "Superstition",
+          "artist": "Stevie Wonder",
+          "album": "Rock & Pop Vol. 3",
+          "durationS": 213,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/61720755",
+          "explicit": false,
+          "rank": 24909
+        },
+        {
+          "id": "358277221",
+          "title": "Superstition",
+          "artist": "Stevie Wonder",
+          "album": "Live In London (Live)",
+          "durationS": 375,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/358277221",
+          "explicit": false,
+          "rank": 278236
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-08",
+      "query": {
+        "artist": "Lipps Inc.",
+        "title": "Funkytown"
+      },
+      "found": {
+        "id": "906566",
+        "title": "Funkytown (Single Version)",
+        "artist": "Lipps Inc.",
+        "album": "Dance #1's",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/906566",
+        "explicit": false,
+        "rank": 717174
+      },
+      "alternatives": [
+        {
+          "id": "1241609712",
+          "title": "Funkytown",
+          "artist": "Lipps Inc.",
+          "album": "Mouth To Mouth",
+          "durationS": 471,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1241609712",
+          "explicit": false,
+          "rank": 658472
+        },
+        {
+          "id": "72221964",
+          "title": "Funkytown",
+          "artist": "Lipps Inc.",
+          "album": "D.J. Disco Mix, Vol. 2",
+          "durationS": 309,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/72221964",
+          "explicit": false,
+          "rank": 361674
+        },
+        {
+          "id": "2318324225",
+          "title": "Funkytown (Domy R Informal Remix)",
+          "artist": "Lipps Inc.",
+          "album": "Funkytown (Domy R Informal Remix)",
+          "durationS": 351,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2318324225",
+          "explicit": false,
+          "rank": 187446
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-09",
+      "query": {
+        "artist": "Michael Jackson",
+        "title": "Don't Stop 'Til You Get Enough"
+      },
+      "found": {
+        "id": "15586296",
+        "title": "Don't Stop 'Til You Get Enough",
+        "artist": "Michael Jackson",
+        "album": "Off the Wall",
+        "durationS": 365,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15586296",
+        "explicit": false,
+        "rank": 926325
+      },
+      "alternatives": [
+        {
+          "id": "13129197",
+          "title": "Don't Stop 'Til You Get Enough (2003 Edit)",
+          "artist": "Michael Jackson",
+          "album": "Number Ones",
+          "durationS": 235,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13129197",
+          "explicit": false,
+          "rank": 789421
+        },
+        {
+          "id": "14552224",
+          "title": "Immortal Megamix: Can You Feel It / Don't Stop 'Til You Get Enough / Billie Jean/Black or White (Immortal Version)",
+          "artist": "Michael Jackson",
+          "album": "Immortal",
+          "durationS": 550,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14552224",
+          "explicit": false,
+          "rank": 513909
+        },
+        {
+          "id": "5724500",
+          "title": "Don't Stop Till You Get Enough (In The Style Of Michael Jackson)",
+          "artist": "Simply The Best Sax: The Hits Of Michael Jackson",
+          "album": "Simply The Best Sax: The Hits Of Michael Jackson",
+          "durationS": 285,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5724500",
+          "explicit": false,
+          "rank": 37116
+        }
+      ],
+      "verified": false
+    },
+    {
+      "questionId": "dsc-10",
+      "query": {
+        "artist": "Donna Summer",
+        "title": "I Feel Love"
+      },
+      "found": {
+        "id": "1560033",
+        "title": "I Feel Love",
+        "artist": "Donna Summer",
+        "album": "I Remember Yesterday",
+        "durationS": 353,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1560033",
+        "explicit": false,
+        "rank": 670624
+      },
+      "alternatives": [
+        {
+          "id": "487042352",
+          "title": "I Feel Love (Edit)",
+          "artist": "Donna Summer",
+          "album": "Summer: The Original Hits",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/487042352",
+          "explicit": false,
+          "rank": 620507
+        },
+        {
+          "id": "1175274",
+          "title": "I Feel Love",
+          "artist": "Donna Summer",
+          "album": "The Dance Collection",
+          "durationS": 494,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1175274",
+          "explicit": false,
+          "rank": 486565
+        },
+        {
+          "id": "538708792",
+          "title": "I Feel Love",
+          "artist": "Donna Summer",
+          "album": "On The Radio: Greatest Hits Volumes I & II",
+          "durationS": 350,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/538708792",
+          "explicit": false,
+          "rank": 231162
+        }
+      ],
+      "verified": false
+    }
+  ]
+}
