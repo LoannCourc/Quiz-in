@@ -100,7 +100,14 @@ export function GameSettingsSheet({ visible, settings, onChange, onClose }: Game
                 role="checkbox"
                 onPress={() => onChange({ ...settings, stepByStep: !settings.stepByStep })}
               />
-              <View style={styles.filler} />
+              <SettingTile
+                icon="podium"
+                title={strings.quizSetup.suspense.title}
+                hint={strings.quizSetup.suspense.hint}
+                state={settings.suspense ? 'active' : 'idle'}
+                role="checkbox"
+                onPress={() => onChange({ ...settings, suspense: !settings.suspense })}
+              />
             </View>
           </ScrollView>
 

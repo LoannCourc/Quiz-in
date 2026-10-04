@@ -114,6 +114,7 @@ export const strings = {
     optionsLabel: 'Options',
     rhythmLabel: 'Rythme',
     stepByStep: { title: 'Pas à pas', hint: 'Tu passes à la suite' },
+    suspense: { title: 'Suspense', hint: 'Classement à la fin' },
     options: {
       speedBonus: { title: 'Rapidité', hint: 'Points bonus' },
       control: { title: 'Contrôle', hint: 'Valider' },
@@ -121,8 +122,9 @@ export const strings = {
     } satisfies Record<GameOption, { title: string; hint: string }>,
     comingSoon: 'bientôt',
     incompatible: 'incompatible avec ces réglages',
-    meta: (questionCount: number, minutes: number) =>
-      `${questionCount} questions · environ ${minutes} min · jusqu’à ${MAX_PLAYERS} joueurs`,
+    // minutes null : Pas à pas, la durée dépend de l'hôte.
+    meta: (questionCount: number, minutes: number | null) =>
+      `${questionCount} questions · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · jusqu’à ${MAX_PLAYERS} joueurs`,
     audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
     settingsTitle: 'Réglages de la partie',
     audioCredit: 'Extrait audio et informations : Deezer',

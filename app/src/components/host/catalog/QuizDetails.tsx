@@ -1,5 +1,5 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
-import { difficultyLevel } from '@shared/quizCatalog';
+import { difficultyLevel, estimateGameMinutes } from '@shared/quizCatalog';
 import type { QuizSummary, SessionSettings } from '@shared/types';
 import { useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
@@ -68,7 +68,7 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
         <Text style={styles.title} numberOfLines={3}>
           {quiz.title}
         </Text>
-        <Text style={styles.meta}>{strings.quizSetup.meta(questionCount, quiz.estimatedMinutes)}</Text>
+        <Text style={styles.meta}>{strings.quizSetup.meta(questionCount, estimateGameMinutes(questionCount, settings))}</Text>
         <View style={styles.tags}>
           <Tag label={strings.catalog.difficultyLevels[level]} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />

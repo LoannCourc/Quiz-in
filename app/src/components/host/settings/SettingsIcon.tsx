@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 // Icônes des réglages, dessinées avec des formes simples dans un carré de 24 (aucune dépendance,
 // même rendu sur Android et le web) : curseurs, grille, clavier, éclair, coche, groupe, chevron.
-export type SettingsIconName = 'sliders' | 'grid' | 'keyboard' | 'bolt' | 'check' | 'group' | 'next' | 'chevron';
+export type SettingsIconName = 'sliders' | 'grid' | 'keyboard' | 'bolt' | 'check' | 'group' | 'next' | 'podium' | 'chevron';
 
 const SIZE = 24;
 const STROKE = 2.5;
@@ -77,6 +77,15 @@ function renderIcon(name: SettingsIconName, color: string) {
         <>
           <View style={[styles.nextTriangle, { borderLeftColor: color }]} />
           <View style={[styles.nextBar, fill]} />
+        </>
+      );
+    case 'podium':
+      // Podium : trois marches (2e, 1re, 3e), le classement réservé à la fin.
+      return (
+        <>
+          <View style={[styles.step, { left: 1, height: 10 }, fill]} />
+          <View style={[styles.step, { left: 9, height: 16 }, fill]} />
+          <View style={[styles.step, { left: 17, height: 7 }, fill]} />
         </>
       );
     case 'chevron':
@@ -205,6 +214,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 8,
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
+  },
+  step: {
+    position: 'absolute',
+    bottom: 3,
+    width: 6,
+    borderTopLeftRadius: 1.5,
+    borderTopRightRadius: 1.5,
   },
   nextBar: {
     position: 'absolute',
