@@ -1,0 +1,102 @@
+{
+  "id": "cinema-films-cultes",
+  "title": "Cinéma : les films cultes",
+  "theme": "Cinéma et séries",
+  "description": "Répliques, acteurs et scènes inoubliables : dix questions sur les films que tout le monde a vus (ou croit avoir vus).",
+  "audience": "all",
+  "poster": "red",
+  "addedAt": "2026-09-12",
+  "featuredRank": 2,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "cin-01",
+      "text": "Dans « Titanic » (1997), quel acteur incarne Jack Dawson ?",
+      "options": ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Johnny Depp"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["leonardo dicaprio", "dicaprio"],
+      "difficulty": 1,
+      "explanation": "Leonardo DiCaprio donne la réplique à Kate Winslet, qui joue Rose."
+    },
+    {
+      "id": "cin-02",
+      "text": "Quel réalisateur a signé « Les Dents de la mer » (1975) ?",
+      "options": ["Steven Spielberg", "George Lucas", "Ridley Scott", "James Cameron"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["steven spielberg", "spielberg"],
+      "difficulty": 2,
+      "explanation": "Steven Spielberg n'avait pas 30 ans lors de la sortie du film."
+    },
+    {
+      "id": "cin-03",
+      "text": "Dans « Le Fabuleux Destin d'Amélie Poulain », dans quel quartier de Paris vit Amélie ?",
+      "options": ["Le Marais", "Belleville", "Montmartre", "Saint-Germain-des-Prés"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["montmartre"],
+      "difficulty": 2,
+      "explanation": "Amélie habite et travaille à Montmartre, au café des Deux Moulins."
+    },
+    {
+      "id": "cin-04",
+      "text": "Dans « Retour vers le futur », quelle voiture sert de machine à remonter le temps ?",
+      "options": ["Une Ford Mustang", "Une Chevrolet Camaro", "Une Porsche 911", "Une DeLorean"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["delorean", "de lorean", "dmc delorean"],
+      "difficulty": 2,
+      "explanation": "Doc Brown a transformé une DeLorean DMC-12 : il faut atteindre 88 miles à l'heure."
+    },
+    {
+      "id": "cin-05",
+      "text": "Dans « Le Seigneur des anneaux », quel hobbit porte l'Anneau jusqu'au Mordor ?",
+      "options": ["Frodon", "Bilbon", "Pippin", "Merry"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["frodon", "frodo", "frodon sacquet"],
+      "difficulty": 2,
+      "explanation": "Frodon Sacquet, aidé de son fidèle ami Sam."
+    },
+    {
+      "id": "cin-06",
+      "text": "Quel film français de 2011 raconte l'amitié entre un riche tétraplégique et son aide à domicile ?",
+      "options": ["Bienvenue chez les Ch'tis", "Intouchables", "Le Dîner de cons", "La Grande Vadrouille"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["intouchables", "les intouchables"],
+      "difficulty": 2,
+      "explanation": "Avec François Cluzet et Omar Sy, réalisé par Olivier Nakache et Éric Toledano."
+    },
+    {
+      "id": "cin-07",
+      "text": "Dans quel film de la saga « Star Wars » Dark Vador révèle-t-il à Luke qu'il est son père ?",
+      "options": ["Un nouvel espoir", "Le Retour du Jedi", "L'Empire contre-attaque", "La Menace fantôme"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["l'empire contre-attaque", "empire contre-attaque", "episode 5", "episode v"],
+      "difficulty": 3,
+      "explanation": "Sorti en 1980, c'est le cinquième épisode de la saga et le deuxième tourné."
+    },
+    {
+      "id": "cin-08",
+      "text": "Quel acteur incarne Hannibal Lecter dans « Le Silence des agneaux » (1991) ?",
+      "options": ["Jack Nicholson", "Robert De Niro", "Al Pacino", "Anthony Hopkins"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["anthony hopkins", "hopkins"],
+      "difficulty": 2,
+      "explanation": "Le rôle lui a valu l'Oscar du meilleur acteur."
+    },
+    {
+      "id": "cin-09",
+      "text": "Combien d'Oscars le film « Titanic » a-t-il remportés ?",
+      "options": ["7", "9", "11", "13"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["11", "onze"],
+      "difficulty": 3,
+      "explanation": "Onze statuettes, dont celle du meilleur film : un record partagé avec « Ben-Hur »."
+    },
+    {
+      "id": "cin-10",
+      "text": "Qui joue le capitaine Jack Sparrow dans « Pirates des Caraïbes » ?",
+      "options": ["Johnny Depp", "Orlando Bloom", "Geoffrey Rush", "Javier Bardem"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["johnny depp", "depp"],
+      "difficulty": 1
+    }
+  ]
+}

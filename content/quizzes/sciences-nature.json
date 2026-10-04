@@ -1,0 +1,100 @@
+{
+  "id": "sciences-nature",
+  "title": "Sciences et nature",
+  "theme": "Sciences et nature",
+  "description": "Corps humain, planètes, chimie et grandes découvertes : de quoi briller avec quelques souvenirs de cours.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-09-29",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "sci-01",
+      "text": "Quel gaz les plantes absorbent-elles pour réaliser la photosynthèse ?",
+      "options": ["L'oxygène", "Le dioxyde de carbone", "L'azote", "L'hélium"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["dioxyde de carbone", "co2", "gaz carbonique"],
+      "difficulty": 1,
+      "explanation": "Avec la lumière et l'eau, elles en font des sucres et rejettent de l'oxygène."
+    },
+    {
+      "id": "sci-02",
+      "text": "Quel gaz forme la couche qui protège la Terre d'une grande partie des rayons ultraviolets ?",
+      "options": ["L'azote", "L'argon", "Le méthane", "L'ozone"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["ozone", "l'ozone"],
+      "difficulty": 2
+    },
+    {
+      "id": "sci-03",
+      "text": "Combien d'os compte le squelette d'un adulte ?",
+      "options": ["106", "206", "306", "406"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["206"],
+      "difficulty": 2,
+      "explanation": "Un nouveau-né en a davantage : certains os se soudent pendant la croissance."
+    },
+    {
+      "id": "sci-04",
+      "text": "Quelle est la plus grande planète du système solaire ?",
+      "options": ["Jupiter", "Saturne", "Neptune", "Uranus"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["jupiter"],
+      "difficulty": 1
+    },
+    {
+      "id": "sci-05",
+      "text": "Combien de chromosomes contient une cellule humaine ordinaire (hors cellules reproductrices) ?",
+      "options": ["23", "46", "48", "64"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["46", "quarante-six"],
+      "difficulty": 3,
+      "explanation": "46 chromosomes, soit 23 paires. Les ovules et spermatozoïdes n'en ont que 23."
+    },
+    {
+      "id": "sci-06",
+      "text": "Quel organe du corps humain produit l'insuline ?",
+      "options": ["Le pancréas", "Le foie", "Les reins", "La rate"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["pancréas", "le pancréas"],
+      "difficulty": 2,
+      "explanation": "L'insuline fait baisser le taux de sucre dans le sang."
+    },
+    {
+      "id": "sci-07",
+      "text": "À quelle vitesse la lumière se déplace-t-elle dans le vide, environ ?",
+      "options": ["1 000 km/s", "150 000 km/s", "300 000 km/s", "1 million de km/s"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["300 000 km/s", "300 000", "300000"],
+      "difficulty": 2,
+      "explanation": "Environ 300 000 km par seconde : la lumière du Soleil met un peu plus de 8 minutes à nous parvenir."
+    },
+    {
+      "id": "sci-08",
+      "text": "Quel scientifique a découvert la pénicilline, le premier antibiotique ?",
+      "options": ["Louis Pasteur", "Marie Curie", "Robert Koch", "Alexander Fleming"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["alexander fleming", "fleming"],
+      "difficulty": 2,
+      "explanation": "En 1928, en remarquant qu'une moisissure empêchait des bactéries de se développer."
+    },
+    {
+      "id": "sci-09",
+      "text": "Quel est l'élément chimique le plus abondant dans l'Univers ?",
+      "options": ["L'hélium", "L'oxygène", "L'hydrogène", "Le carbone"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["hydrogène", "l'hydrogène"],
+      "difficulty": 3,
+      "explanation": "L'hydrogène représente environ les trois quarts de la masse de la matière ordinaire."
+    },
+    {
+      "id": "sci-10",
+      "text": "Comment appelle-t-on un animal qui se nourrit à la fois de plantes et de viande ?",
+      "options": ["Un omnivore", "Un herbivore", "Un carnivore", "Un insectivore"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["omnivore", "un omnivore"],
+      "difficulty": 1,
+      "explanation": "L'être humain, l'ours ou le cochon sont omnivores."
+    }
+  ]
+}

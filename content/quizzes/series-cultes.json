@@ -1,0 +1,103 @@
+{
+  "id": "series-cultes",
+  "title": "Séries cultes",
+  "theme": "Cinéma et séries",
+  "description": "Des Simpson à Kaamelott en passant par Friends : avez-vous bien regardé toutes les saisons ?",
+  "audience": "all",
+  "poster": "blue",
+  "addedAt": "2026-09-19",
+  "featuredRank": 3,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "ser-01",
+      "text": "Dans « Friends », dans quelle ville vivent les six amis ?",
+      "options": ["Los Angeles", "Chicago", "New York", "Boston"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["new york", "manhattan"],
+      "difficulty": 1,
+      "explanation": "Ils se retrouvent au Central Perk, un café de Manhattan."
+    },
+    {
+      "id": "ser-02",
+      "text": "Dans « Game of Thrones », comment s'appelle le trône que se disputent les grandes familles ?",
+      "options": ["Le Trône de fer", "Le Trône d'or", "Le Trône de pierre", "Le Trône de glace"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["trône de fer", "le trône de fer"],
+      "difficulty": 2,
+      "explanation": "Il a été forgé avec les épées des ennemis vaincus. C'est aussi le titre français des romans."
+    },
+    {
+      "id": "ser-03",
+      "text": "Dans « Breaking Bad », quel métier exerce Walter White au début de la série ?",
+      "options": ["Pharmacien", "Professeur de chimie", "Médecin", "Avocat"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["professeur de chimie", "prof de chimie", "professeur"],
+      "difficulty": 2,
+      "explanation": "Il enseigne la chimie dans un lycée d'Albuquerque, au Nouveau-Mexique."
+    },
+    {
+      "id": "ser-04",
+      "text": "Dans « Les Simpson », quel est le prénom du père de famille ?",
+      "options": ["Bart", "Ned", "Abraham", "Homer"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["homer", "homer simpson"],
+      "difficulty": 1,
+      "explanation": "Homer travaille à la centrale nucléaire de Springfield."
+    },
+    {
+      "id": "ser-05",
+      "text": "Dans « Kaamelott », quel personnage est le roi de Bretagne ?",
+      "options": ["Perceval", "Arthur", "Karadoc", "Léodagan"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["arthur", "le roi arthur"],
+      "difficulty": 2,
+      "explanation": "Arthur Pendragon, joué par Alexandre Astier, créateur de la série. Léodagan est roi de Carmélide."
+    },
+    {
+      "id": "ser-06",
+      "text": "Dans la série « Lupin » (2021), quel acteur incarne Assane Diop ?",
+      "options": ["Omar Sy", "Jamel Debbouze", "Ahmed Sylla", "Vincent Cassel"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["omar sy"],
+      "difficulty": 2,
+      "explanation": "Assane Diop s'inspire du gentleman cambrioleur Arsène Lupin, héros de Maurice Leblanc."
+    },
+    {
+      "id": "ser-07",
+      "text": "Dans la version américaine de « The Office », dans quelle ville se trouve l'agence Dunder Mifflin ?",
+      "options": ["Pittsburgh", "Stamford", "Scranton", "Philadelphie"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["scranton"],
+      "difficulty": 3,
+      "explanation": "Scranton, en Pennsylvanie. L'agence de Stamford fusionne avec elle dans la saison 3."
+    },
+    {
+      "id": "ser-08",
+      "text": "Quelle série britannique suit le gang des Shelby à Birmingham, après la Première Guerre mondiale ?",
+      "options": ["Downton Abbey", "Sherlock", "The Crown", "Peaky Blinders"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["peaky blinders"],
+      "difficulty": 2,
+      "explanation": "Tommy Shelby y est joué par Cillian Murphy."
+    },
+    {
+      "id": "ser-09",
+      "text": "Dans la série « Sherlock » de la BBC, quel acteur joue Sherlock Holmes ?",
+      "options": ["Martin Freeman", "Benedict Cumberbatch", "Tom Hiddleston", "Matt Smith"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["benedict cumberbatch", "cumberbatch"],
+      "difficulty": 2,
+      "explanation": "Martin Freeman y joue le docteur Watson."
+    },
+    {
+      "id": "ser-10",
+      "text": "Combien de saisons compte la série « Friends » ?",
+      "options": ["8", "9", "10", "12"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["10", "dix"],
+      "difficulty": 3,
+      "explanation": "Dix saisons, diffusées aux États-Unis de 1994 à 2004."
+    }
+  ]
+}

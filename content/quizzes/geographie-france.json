@@ -1,0 +1,99 @@
+{
+  "id": "geographie-france",
+  "title": "Géographie de la France",
+  "theme": "Géographie",
+  "description": "Montagnes, fleuves, villes et régions : un tour de France en dix questions, accessible à tous.",
+  "audience": "all",
+  "poster": "green",
+  "addedAt": "2026-09-05",
+  "featuredRank": 10,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "gfr-01",
+      "text": "Quelle est la plus haute montagne de France ?",
+      "options": ["Le mont Ventoux", "Le mont Blanc", "Le puy de Dôme", "Le Vignemale"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["mont blanc", "le mont blanc"],
+      "difficulty": 1,
+      "explanation": "Le mont Blanc culmine à environ 4 800 m, à la frontière franco-italienne."
+    },
+    {
+      "id": "gfr-02",
+      "text": "Quelle ville est surnommée la « Ville rose » ?",
+      "options": ["Toulouse", "Lyon", "Bordeaux", "Montpellier"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["toulouse"],
+      "difficulty": 1,
+      "explanation": "À cause de la brique rose de nombreux bâtiments."
+    },
+    {
+      "id": "gfr-03",
+      "text": "Quelle mer borde la ville de Marseille ?",
+      "options": ["La Manche", "La mer du Nord", "La mer Méditerranée", "La mer Baltique"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["méditerranée", "mer méditerranée", "la méditerranée"],
+      "difficulty": 1
+    },
+    {
+      "id": "gfr-04",
+      "text": "Quel fleuve traverse Paris ?",
+      "options": ["La Loire", "Le Rhône", "La Garonne", "La Seine"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["seine", "la seine"],
+      "difficulty": 1
+    },
+    {
+      "id": "gfr-05",
+      "text": "Quelle ville est le chef-lieu de la région Bretagne ?",
+      "options": ["Rennes", "Brest", "Nantes", "Quimper"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["rennes"],
+      "difficulty": 2,
+      "explanation": "Nantes, souvent citée, est en Pays de la Loire depuis la création des régions."
+    },
+    {
+      "id": "gfr-06",
+      "text": "Dans quelle région se trouve le Mont-Saint-Michel ?",
+      "options": ["La Bretagne", "La Normandie", "Les Pays de la Loire", "Les Hauts-de-France"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["normandie", "la normandie"],
+      "difficulty": 2,
+      "explanation": "Il se trouve dans la Manche, tout près de la limite avec la Bretagne."
+    },
+    {
+      "id": "gfr-07",
+      "text": "Quelle chaîne de montagnes sépare la France de l'Espagne ?",
+      "options": ["Les Alpes", "Le Jura", "Les Pyrénées", "Les Vosges"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["pyrénées", "les pyrénées"],
+      "difficulty": 2
+    },
+    {
+      "id": "gfr-08",
+      "text": "Quelle île est surnommée l'« île de Beauté » ?",
+      "options": ["L'île de Ré", "L'île d'Oléron", "Belle-Île-en-Mer", "La Corse"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["corse", "la corse"],
+      "difficulty": 1
+    },
+    {
+      "id": "gfr-09",
+      "text": "Avec combien de pays la France métropolitaine partage-t-elle une frontière terrestre ?",
+      "options": ["5", "6", "8", "10"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["8", "huit"],
+      "difficulty": 2,
+      "explanation": "Belgique, Luxembourg, Allemagne, Suisse, Italie, Monaco, Andorre et Espagne."
+    },
+    {
+      "id": "gfr-10",
+      "text": "Après Paris, quelle est la ville la plus peuplée de France ?",
+      "options": ["Lyon", "Marseille", "Toulouse", "Nice"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["marseille"],
+      "difficulty": 2,
+      "explanation": "En nombre d'habitants de la commune. Lyon passe devant si l'on compte toute l'agglomération."
+    }
+  ]
+}

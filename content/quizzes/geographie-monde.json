@@ -1,0 +1,101 @@
+{
+  "id": "geographie-monde",
+  "title": "Géographie du monde",
+  "theme": "Géographie",
+  "description": "Capitales trompeuses, fleuves géants et déserts immenses : le tour du monde sans quitter le canapé.",
+  "audience": "all",
+  "poster": "cyan",
+  "addedAt": "2026-09-08",
+  "featuredRank": 5,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "gmo-01",
+      "text": "Quel est le plus long fleuve d'Afrique ?",
+      "options": ["Le Congo", "Le Niger", "Le Nil", "Le Zambèze"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["nil", "le nil"],
+      "difficulty": 2,
+      "explanation": "Le Nil mesure environ 6 650 km et se jette dans la Méditerranée en Égypte."
+    },
+    {
+      "id": "gmo-02",
+      "text": "Quelle est la capitale de l'Australie ?",
+      "options": ["Canberra", "Sydney", "Melbourne", "Perth"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["canberra"],
+      "difficulty": 2,
+      "explanation": "Canberra a été choisie comme compromis entre Sydney et Melbourne, les deux grandes rivales."
+    },
+    {
+      "id": "gmo-03",
+      "text": "Dans quel pays se trouve le site inca du Machu Picchu ?",
+      "options": ["Le Mexique", "Le Pérou", "La Bolivie", "Le Chili"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["pérou", "le pérou"],
+      "difficulty": 2
+    },
+    {
+      "id": "gmo-04",
+      "text": "Quelle est la capitale du Canada ?",
+      "options": ["Toronto", "Montréal", "Vancouver", "Ottawa"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["ottawa"],
+      "difficulty": 2,
+      "explanation": "Ottawa est en Ontario, à la limite du Québec."
+    },
+    {
+      "id": "gmo-05",
+      "text": "Quel est le plus haut sommet du monde ?",
+      "options": ["L'Everest", "Le K2", "Le Kilimandjaro", "L'Aconcagua"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["everest", "l'everest", "mont everest"],
+      "difficulty": 1,
+      "explanation": "Environ 8 850 m, à la frontière entre le Népal et la Chine."
+    },
+    {
+      "id": "gmo-06",
+      "text": "Quel est le plus grand désert chaud du monde ?",
+      "options": ["Le désert de Gobi", "Le Kalahari", "Le Sahara", "L'Atacama"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["sahara", "le sahara"],
+      "difficulty": 2,
+      "explanation": "« Chaud » car l'Antarctique, désert froid, est encore plus vaste."
+    },
+    {
+      "id": "gmo-07",
+      "text": "Quelle est la capitale de la Nouvelle-Zélande ?",
+      "options": ["Auckland", "Wellington", "Christchurch", "Queenstown"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["wellington"],
+      "difficulty": 3,
+      "explanation": "Auckland est la plus grande ville, mais la capitale est Wellington."
+    },
+    {
+      "id": "gmo-08",
+      "text": "Quel détroit sépare l'Espagne du Maroc ?",
+      "options": ["Le Bosphore", "Le détroit d'Ormuz", "Le détroit de Magellan", "Le détroit de Gibraltar"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["gibraltar", "détroit de gibraltar"],
+      "difficulty": 2
+    },
+    {
+      "id": "gmo-09",
+      "text": "Quel est le plus grand pays du monde par sa superficie ?",
+      "options": ["Le Canada", "La Chine", "La Russie", "Les États-Unis"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["russie", "la russie"],
+      "difficulty": 1,
+      "explanation": "Environ 17 millions de km², près de deux fois le Canada."
+    },
+    {
+      "id": "gmo-10",
+      "text": "Dans quel pays se trouve la ville de Tombouctou ?",
+      "options": ["Le Mali", "Le Niger", "La Mauritanie", "Le Sénégal"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["mali", "le mali"],
+      "difficulty": 3,
+      "explanation": "Ancienne cité caravanière au bord du Sahara, inscrite au patrimoine mondial de l'Unesco."
+    }
+  ]
+}
