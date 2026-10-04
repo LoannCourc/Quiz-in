@@ -1,0 +1,102 @@
+{
+  "id": "histoire-de-france",
+  "title": "Histoire de France",
+  "theme": "Histoire",
+  "description": "Rois, batailles, traités et grandes dates : un quiz exigeant pour les passionnés d'histoire.",
+  "audience": "experts",
+  "poster": "gold",
+  "addedAt": "2026-08-29",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "hfr-01",
+      "text": "En quelle année a eu lieu la prise de la Bastille ?",
+      "options": ["1789", "1776", "1792", "1799"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["1789"],
+      "difficulty": 1,
+      "explanation": "Le 14 juillet 1789, date devenue la fête nationale."
+    },
+    {
+      "id": "hfr-02",
+      "text": "Quel roi de France était surnommé le « Roi-Soleil » ?",
+      "options": ["Louis XIII", "Henri IV", "Louis XIV", "François Ier"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["louis xiv", "louis 14", "louis quatorze"],
+      "difficulty": 1,
+      "explanation": "Louis XIV a régné 72 ans, de 1643 à 1715, et a fait de Versailles le siège du pouvoir."
+    },
+    {
+      "id": "hfr-03",
+      "text": "En quelle année Jeanne d'Arc a-t-elle été brûlée à Rouen ?",
+      "options": ["1415", "1431", "1453", "1429"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["1431"],
+      "difficulty": 3,
+      "explanation": "Le 30 mai 1431, deux ans après avoir fait lever le siège d'Orléans (1429)."
+    },
+    {
+      "id": "hfr-04",
+      "text": "Quel traité, signé en 1919, met fin à la Première Guerre mondiale entre les Alliés et l'Allemagne ?",
+      "options": ["Le traité de Paris", "Le traité de Francfort", "Le traité de Westphalie", "Le traité de Versailles"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["traité de versailles", "versailles"],
+      "difficulty": 2,
+      "explanation": "Signé le 28 juin 1919 dans la galerie des Glaces du château de Versailles."
+    },
+    {
+      "id": "hfr-05",
+      "text": "Quel roi de France remporte la bataille de Marignan en 1515 ?",
+      "options": ["François Ier", "Louis XII", "Henri II", "Charles VIII"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["françois ier", "françois 1er", "françois premier", "françois 1"],
+      "difficulty": 3,
+      "explanation": "Victoire en Italie, au début de son règne, contre les Suisses alliés du duc de Milan."
+    },
+    {
+      "id": "hfr-06",
+      "text": "Quel édit, signé par Henri IV en 1598, accorde des droits aux protestants ?",
+      "options": ["L'édit de Fontainebleau", "L'édit de Saint-Germain", "L'édit de Nantes", "L'édit de Villers-Cotterêts"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["édit de nantes", "nantes"],
+      "difficulty": 3,
+      "explanation": "Il met fin aux guerres de Religion. Louis XIV le révoque en 1685 par l'édit de Fontainebleau."
+    },
+    {
+      "id": "hfr-07",
+      "text": "Quelle ordonnance de 1539 impose l'usage du français dans les actes officiels ?",
+      "options": ["L'ordonnance de Blois", "L'ordonnance de Villers-Cotterêts", "L'ordonnance de Moulins", "L'ordonnance d'Amboise"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["villers-cotterêts", "ordonnance de villers-cotterêts"],
+      "difficulty": 3,
+      "explanation": "Signée par François Ier, c'est l'un des plus anciens textes encore en vigueur en France."
+    },
+    {
+      "id": "hfr-08",
+      "text": "En quelle année les Françaises ont-elles voté pour la première fois ?",
+      "options": ["1919", "1936", "1958", "1945"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["1945"],
+      "difficulty": 3,
+      "explanation": "Le droit de vote est accordé en avril 1944 ; elles votent pour la première fois aux municipales d'avril 1945."
+    },
+    {
+      "id": "hfr-09",
+      "text": "Quelle victoire de Philippe Auguste, en 1214, renforce le pouvoir royal ?",
+      "options": ["Crécy", "Azincourt", "Bouvines", "Poitiers"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["bouvines", "bataille de bouvines"],
+      "difficulty": 3,
+      "explanation": "Il y bat une coalition menée par l'empereur germanique Otton IV."
+    },
+    {
+      "id": "hfr-10",
+      "text": "En quelle année Napoléon Bonaparte est-il sacré empereur ?",
+      "options": ["1804", "1799", "1810", "1815"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["1804"],
+      "difficulty": 2,
+      "explanation": "Le 2 décembre 1804, à Notre-Dame de Paris. En 1799, il devient Premier consul."
+    }
+  ]
+}

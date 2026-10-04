@@ -1,0 +1,99 @@
+{
+  "id": "dessins-animes-disney",
+  "title": "Dessins animés et Disney",
+  "theme": "Cinéma et séries",
+  "description": "Simba, Olaf, Woody et les Minions : un quiz pour les petits (et les grands qui connaissent les chansons par cœur).",
+  "audience": "kids",
+  "poster": "orange",
+  "addedAt": "2026-09-26",
+  "featuredRank": 4,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "dad-01",
+      "text": "Dans « Le Roi lion », comment s'appelle le jeune lion ?",
+      "options": ["Simba", "Mufasa", "Scar", "Nala"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["simba"],
+      "difficulty": 1,
+      "explanation": "Mufasa est son papa, Scar son méchant oncle et Nala son amie."
+    },
+    {
+      "id": "dad-02",
+      "text": "Quelle petite fée accompagne Peter Pan ?",
+      "options": ["La fée Marraine", "La fée Carabosse", "La fée Clochette", "La fée Mélusine"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["clochette", "fée clochette", "la fée clochette"],
+      "difficulty": 1
+    },
+    {
+      "id": "dad-03",
+      "text": "Dans « La Reine des neiges », comment s'appelle le bonhomme de neige ?",
+      "options": ["Sven", "Olaf", "Kristoff", "Hans"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["olaf"],
+      "difficulty": 1,
+      "explanation": "Sven est le renne de Kristoff."
+    },
+    {
+      "id": "dad-04",
+      "text": "Quel animal est Dumbo ?",
+      "options": ["Une souris", "Un ourson", "Un chiot", "Un éléphant"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["éléphant", "un éléphant", "éléphanteau", "un éléphanteau"],
+      "difficulty": 1,
+      "explanation": "Un petit éléphant qui vole grâce à ses très grandes oreilles."
+    },
+    {
+      "id": "dad-05",
+      "text": "Dans « Toy Story », comment s'appelle le cow-boy ?",
+      "options": ["Woody", "Buzz", "Rex", "Zigzag"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["woody", "shérif woody"],
+      "difficulty": 1,
+      "explanation": "Buzz l'Éclair est son ami astronaute."
+    },
+    {
+      "id": "dad-06",
+      "text": "Dans « Le Monde de Nemo », quel poisson est Nemo ?",
+      "options": ["Un poisson-chirurgien", "Un poisson-clown", "Un poisson rouge", "Un poisson-lune"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["poisson-clown", "un poisson-clown"],
+      "difficulty": 2,
+      "explanation": "Orange avec des bandes blanches. Son amie Dory est un poisson-chirurgien bleu."
+    },
+    {
+      "id": "dad-07",
+      "text": "Comment s'appelle la souris la plus célèbre de Disney ?",
+      "options": ["Jerry", "Speedy", "Mickey", "Stuart"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["mickey", "mickey mouse"],
+      "difficulty": 1
+    },
+    {
+      "id": "dad-08",
+      "text": "Dans « Cendrillon », en quoi la fée transforme-t-elle la citrouille ?",
+      "options": ["En château", "En robe de bal", "En cheval", "En carrosse"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["carrosse", "un carrosse", "en carrosse"],
+      "difficulty": 2
+    },
+    {
+      "id": "dad-09",
+      "text": "Dans « Aladdin », comment s'appelle le petit singe d'Aladdin ?",
+      "options": ["Iago", "Abu", "Rajah", "Zazu"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["abu"],
+      "difficulty": 2,
+      "explanation": "Iago est le perroquet de Jafar, Rajah le tigre de Jasmine."
+    },
+    {
+      "id": "dad-10",
+      "text": "Comment s'appellent les petits personnages jaunes de « Moi, moche et méchant » ?",
+      "options": ["Les Schtroumpfs", "Les Trolls", "Les Minions", "Les Gremlins"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["minions", "les minions"],
+      "difficulty": 1
+    }
+  ]
+}

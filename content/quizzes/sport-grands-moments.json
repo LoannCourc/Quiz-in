@@ -1,0 +1,103 @@
+{
+  "id": "sport-grands-moments",
+  "title": "Sport : grands moments",
+  "theme": "Sport",
+  "description": "Jeux olympiques, Coupe du monde, Tour de France et légendes du sport : les exploits qui ont marqué l'histoire.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-09-15",
+  "featuredRank": 8,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "spo-01",
+      "text": "Tous les combien d'années ont lieu les Jeux olympiques d'été ?",
+      "options": ["2 ans", "3 ans", "4 ans", "5 ans"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["4 ans", "4", "quatre ans", "quatre"],
+      "difficulty": 1,
+      "explanation": "Une période de quatre ans s'appelle une olympiade."
+    },
+    {
+      "id": "spo-02",
+      "text": "En quelle année la France a-t-elle remporté sa première Coupe du monde de football ?",
+      "options": ["1998", "1984", "2006", "2018"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["1998"],
+      "difficulty": 1,
+      "explanation": "Victoire 3-0 contre le Brésil au Stade de France, le 12 juillet 1998."
+    },
+    {
+      "id": "spo-03",
+      "text": "Dans quel sport parle-t-on d'« albatros » pour un coup réussi ?",
+      "options": ["Le tennis", "Le cricket", "Le bowling", "Le golf"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["golf", "le golf"],
+      "difficulty": 2,
+      "explanation": "Un albatros, c'est finir un trou en trois coups de moins que le par."
+    },
+    {
+      "id": "spo-04",
+      "text": "Quel tournoi du Grand Chelem de tennis se joue sur terre battue ?",
+      "options": ["Wimbledon", "Roland-Garros", "L'US Open", "L'Open d'Australie"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["roland-garros", "roland garros"],
+      "difficulty": 1,
+      "explanation": "Il se dispute chaque printemps à Paris. Wimbledon se joue sur gazon."
+    },
+    {
+      "id": "spo-05",
+      "text": "Quelle couleur de maillot porte le leader du classement général du Tour de France ?",
+      "options": ["Le jaune", "Le vert", "Le blanc à pois rouges", "Le blanc"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["jaune", "maillot jaune", "le jaune"],
+      "difficulty": 1,
+      "explanation": "Le vert récompense le meilleur sprinteur, le maillot à pois le meilleur grimpeur."
+    },
+    {
+      "id": "spo-06",
+      "text": "Quel athlète jamaïcain remporte le 100 mètres aux Jeux olympiques de Pékin, en 2008 ?",
+      "options": ["Asafa Powell", "Yohan Blake", "Usain Bolt", "Tyson Gay"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["usain bolt", "bolt"],
+      "difficulty": 2,
+      "explanation": "Il remporte aussi le 100 m aux Jeux de Londres (2012) et de Rio (2016)."
+    },
+    {
+      "id": "spo-07",
+      "text": "Combien de points vaut un essai au rugby à XV ?",
+      "options": ["3", "4", "5", "7"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["5", "cinq"],
+      "difficulty": 2,
+      "explanation": "Cinq points, plus deux si la transformation est réussie."
+    },
+    {
+      "id": "spo-08",
+      "text": "Quel nageur américain remporte huit médailles d'or aux Jeux olympiques de Pékin, en 2008 ?",
+      "options": ["Ryan Lochte", "Michael Phelps", "Mark Spitz", "Matt Biondi"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["michael phelps", "phelps"],
+      "difficulty": 2,
+      "explanation": "Il bat le record de sept titres en une édition, établi par Mark Spitz en 1972."
+    },
+    {
+      "id": "spo-09",
+      "text": "En quelle année ont eu lieu les premiers Jeux olympiques modernes, à Athènes ?",
+      "options": ["1896", "1900", "1912", "1924"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["1896"],
+      "difficulty": 3,
+      "explanation": "Ils sont relancés à l'initiative du Français Pierre de Coubertin."
+    },
+    {
+      "id": "spo-10",
+      "text": "Quel pilote français a été quatre fois champion du monde de Formule 1 ?",
+      "options": ["Jean Alesi", "René Arnoux", "Didier Pironi", "Alain Prost"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["alain prost", "prost"],
+      "difficulty": 3,
+      "explanation": "Alain Prost a été sacré en 1985, 1986, 1989 et 1993."
+    }
+  ]
+}

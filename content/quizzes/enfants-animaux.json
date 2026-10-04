@@ -1,0 +1,98 @@
+{
+  "id": "enfants-animaux",
+  "title": "Spécial enfants : les animaux",
+  "theme": "Sciences et nature",
+  "description": "Bébés animaux, cris de la ferme et champions de la nature : un quiz tout doux pour les plus jeunes.",
+  "audience": "kids",
+  "poster": "green",
+  "addedAt": "2026-10-01",
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "ani-01",
+      "text": "Quel animal fait « meuh » ?",
+      "options": ["La vache", "Le mouton", "Le cochon", "La chèvre"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["vache", "la vache"],
+      "difficulty": 1
+    },
+    {
+      "id": "ani-02",
+      "text": "Comment appelle-t-on le bébé de la poule ?",
+      "options": ["Le caneton", "Le poussin", "Le chaton", "L'agneau"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["poussin", "le poussin"],
+      "difficulty": 1
+    },
+    {
+      "id": "ani-03",
+      "text": "Quel est l'animal le plus rapide à la course ?",
+      "options": ["Le lion", "Le cheval", "Le guépard", "Le lièvre"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["guépard", "le guépard"],
+      "difficulty": 1,
+      "explanation": "Le guépard peut dépasser 100 km/h, mais seulement sur une courte distance."
+    },
+    {
+      "id": "ani-04",
+      "text": "Quel petit animal à coquille laisse une trace brillante derrière lui ?",
+      "options": ["La coccinelle", "La fourmi", "La sauterelle", "L'escargot"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["escargot", "l'escargot"],
+      "difficulty": 1,
+      "explanation": "Il avance en glissant sur du mucus, une sorte de bave qui le protège."
+    },
+    {
+      "id": "ani-05",
+      "text": "Combien de pattes a un insecte ?",
+      "options": ["4", "6", "8", "10"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["6", "six"],
+      "difficulty": 2,
+      "explanation": "Les araignées en ont 8 : ce ne sont pas des insectes."
+    },
+    {
+      "id": "ani-06",
+      "text": "Où vit le manchot empereur ?",
+      "options": ["En Antarctique", "Au pôle Nord", "En Afrique", "En Amazonie"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["antarctique", "en antarctique", "pôle sud", "au pôle sud"],
+      "difficulty": 2,
+      "explanation": "Il vit tout près du pôle Sud. Il n'y a pas de manchots au pôle Nord."
+    },
+    {
+      "id": "ani-07",
+      "text": "Comment appelle-t-on le bébé du cheval ?",
+      "options": ["Le veau", "Le chiot", "Le poulain", "Le faon"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["poulain", "le poulain"],
+      "difficulty": 2,
+      "explanation": "Le veau est le bébé de la vache, le faon celui de la biche."
+    },
+    {
+      "id": "ani-08",
+      "text": "Comment s'appelle la maison des abeilles ?",
+      "options": ["Le nid", "Le terrier", "La tanière", "La ruche"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["ruche", "la ruche"],
+      "difficulty": 1
+    },
+    {
+      "id": "ani-09",
+      "text": "Quel reptile peut changer de couleur ?",
+      "options": ["Le crocodile", "Le caméléon", "La tortue", "Le serpent"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["caméléon", "le caméléon"],
+      "difficulty": 1
+    },
+    {
+      "id": "ani-10",
+      "text": "Quel mammifère sait voler comme un oiseau ?",
+      "options": ["Le hérisson", "La taupe", "La chauve-souris", "Le castor"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["chauve-souris", "la chauve-souris"],
+      "difficulty": 1,
+      "explanation": "C'est le seul mammifère capable de vraiment voler."
+    }
+  ]
+}

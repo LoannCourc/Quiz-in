@@ -1,0 +1,99 @@
+{
+  "id": "musique-culture",
+  "title": "Musique : culture et histoire",
+  "theme": "Musique",
+  "description": "Instruments, compositeurs et légendes de la chanson : un quiz musical où l'on n'écoute rien, on réfléchit.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-09-22",
+  "featuredRank": 7,
+  "reviewStatus": "provisoire, à vérifier",
+  "questions": [
+    {
+      "id": "mus-01",
+      "text": "Combien de cordes compte une guitare classique ?",
+      "options": ["4", "6", "7", "12"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["6", "six"],
+      "difficulty": 1
+    },
+    {
+      "id": "mus-02",
+      "text": "Quel groupe britannique réunissait John, Paul, George et Ringo ?",
+      "options": ["Les Beatles", "Les Rolling Stones", "Queen", "The Who"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["beatles", "les beatles", "the beatles"],
+      "difficulty": 1,
+      "explanation": "John Lennon, Paul McCartney, George Harrison et Ringo Starr, originaires de Liverpool."
+    },
+    {
+      "id": "mus-03",
+      "text": "Quel compositeur, devenu sourd, a écrit la Neuvième Symphonie et son « Ode à la joie » ?",
+      "options": ["Mozart", "Bach", "Beethoven", "Chopin"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["beethoven", "ludwig van beethoven"],
+      "difficulty": 2,
+      "explanation": "L'« Ode à la joie » est devenue l'hymne de l'Union européenne."
+    },
+    {
+      "id": "mus-04",
+      "text": "Combien de touches compte un piano classique moderne ?",
+      "options": ["66", "76", "88", "96"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["88", "quatre-vingt-huit"],
+      "difficulty": 2,
+      "explanation": "52 touches blanches et 36 noires."
+    },
+    {
+      "id": "mus-05",
+      "text": "Quelle chanteuse française était surnommée « la Môme » ?",
+      "options": ["Barbara", "Dalida", "Juliette Gréco", "Édith Piaf"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["édith piaf", "piaf"],
+      "difficulty": 2,
+      "explanation": "Ses débuts lui valent le surnom de « la Môme Piaf » ; « piaf » veut dire moineau en argot."
+    },
+    {
+      "id": "mus-06",
+      "text": "Combien de lignes compte une portée de musique ?",
+      "options": ["4", "5", "6", "7"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["5", "cinq"],
+      "difficulty": 2
+    },
+    {
+      "id": "mus-07",
+      "text": "De quel pays le compositeur Frédéric Chopin était-il originaire ?",
+      "options": ["L'Autriche", "La Hongrie", "La Russie", "La Pologne"],
+      "correctIndex": 3,
+      "acceptedAnswers": ["pologne", "la pologne"],
+      "difficulty": 2,
+      "explanation": "Né près de Varsovie en 1810, il a passé la seconde moitié de sa vie à Paris."
+    },
+    {
+      "id": "mus-08",
+      "text": "Quel chanteur américain était surnommé le « King » du rock'n'roll ?",
+      "options": ["Elvis Presley", "Chuck Berry", "Johnny Cash", "Buddy Holly"],
+      "correctIndex": 0,
+      "acceptedAnswers": ["elvis presley", "elvis", "presley"],
+      "difficulty": 1
+    },
+    {
+      "id": "mus-09",
+      "text": "De quel instrument jouait principalement le jazzman Miles Davis ?",
+      "options": ["Le saxophone", "La trompette", "Le piano", "La contrebasse"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["trompette", "la trompette"],
+      "difficulty": 3
+    },
+    {
+      "id": "mus-10",
+      "text": "Qui a composé « La Marseillaise » ?",
+      "options": ["Hector Berlioz", "Charles Gounod", "Rouget de Lisle", "Jean-Baptiste Lully"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["rouget de lisle", "claude joseph rouget de lisle"],
+      "difficulty": 3,
+      "explanation": "Écrite à Strasbourg en 1792 sous le titre « Chant de guerre pour l'armée du Rhin »."
+    }
+  ]
+}
