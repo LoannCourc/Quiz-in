@@ -68,9 +68,9 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 ## 4. Parcours
 
 ### 4.1 Hôte
-1. Ouvre l'app et arrive sur le **catalogue** de quiz, rangés par thème, difficulté et type de jeu. Au MVP, seul le type « Quiz » est actif ; « Blind test » et « Paroles » sont visibles mais grisés (« bientôt »).
-2. Ouvre la **fiche d'un quiz** : titre, thème, difficulté moyenne, nombre de questions, durée estimée.
-3. **Configure la partie** :
+1. Ouvre l'app et arrive sur le **catalogue** de quiz (maquette « S2 ») : « QUIZ'IN » et une recherche par titre ; un sélecteur de type de jeu (seul « Quiz » est actif au MVP ; « Blind test » et « Paroles » sont visibles, marqués « bientôt », non cliquables) ; des puces de thème (« Tout » puis un thème par thème présent) qui filtrent les rangées ; des rangées d'affiches qui défilent horizontalement : « Top 10 cette semaine » (ordre choisi à la main, gros chiffres), « Nouveautés », « Faciles, pour tout le monde », « Pour les experts ». Une rangée vide n'est pas affichée. Les affiches portent la couleur du quiz et son titre, sans emoji.
+2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs », pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
+3. **Réglages de la partie** (facultatif) : un lien discret « Réglages » de la fiche ouvre une feuille :
    - **Mode de réponse** : *Réponse libre* (les joueurs écrivent) ou *Choix multiples* (4 propositions).
    - **Options** : Rapidité (P0), Contrôle (P1), Groupe (P2).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.

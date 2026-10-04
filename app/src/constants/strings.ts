@@ -80,8 +80,6 @@ export const strings = {
     posterLabel: (title: string, rank?: number) => (rank === undefined ? title : `${rank}. ${title}`),
     demoCatalogLink: 'Outils de développement : catalogue fictif',
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' } satisfies Record<DifficultyLevel, string>,
-    difficulty: (level: string, average: number) => `${level} (${String(average).replace('.', ',')})`,
-    details: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
     debugLink: 'Outils de développement : compteur partagé',
     playerDemoLink: 'Outils de développement : écrans du joueur',
     resumeGame: (code: string) => `Reprendre la partie ${code}`,
