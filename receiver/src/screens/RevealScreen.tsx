@@ -4,6 +4,7 @@ import type { ChoiceOptions, PublicSession } from '@shared/types'
 import { Confetti } from '../components/Confetti'
 import { GameHeader } from '../components/GameHeader'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
+import { optionsSizeClass } from '../lib/optionsSize'
 import { strings } from '../strings'
 import './RevealScreen.css'
 
@@ -16,9 +17,11 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const { currentQuestion: question, reveal } = session
   if (!question || !reveal) return null
   const countdown = nextQuestionCountdown(session)
+  // Propositions très longues : révélation compacte, pour que tout tienne (sans :has(), absent de Chrome 92).
+  const isCompact = question.options !== undefined && optionsSizeClass(question.options) === "options-size-very-long"
 
   return (
-    <main className="screen reveal">
+    <main className={isCompact ? "screen reveal reveal-compact" : "screen reveal"}>
       <Confetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
       <TransitionSteps active={0} />
@@ -54,7 +57,7 @@ interface ChoiceResultsProps {
 // combien de joueurs l'ont choisie. La lettre accompagne toujours la couleur.
 function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
   return (
-    <ol className="question-options reveal-options">
+    <ol className={`question-options reveal-options ${optionsSizeClass(options)}`}>
       {options.map((option, index) => {
         const isCorrect = option === correctAnswer
         return (

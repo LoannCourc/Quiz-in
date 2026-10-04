@@ -10,6 +10,7 @@ import {
   DEMO_ROOM_CODE,
   demoExtraPlayerCount,
   toDemoBlindTest,
+  withLongOptions,
   type DemoOptions,
 } from './demoSession'
 
@@ -24,7 +25,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
 // &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
-// &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible ».
+// &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
+// &long=1 : propositions longues (mise en page).
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -42,7 +44,9 @@ export function DemoReceiver() {
   const [params] = useState(() => new URLSearchParams(window.location.search))
   const [options, setOptions] = useState<DemoOptions>(() => initialOptions(params))
   const demoSession = buildDemoSession(options)
-  const session = params.get('blindtest') === '1' ? toDemoBlindTest(demoSession) : demoSession
+  const isBlindTest = params.get('blindtest') === '1'
+  const baseSession = isBlindTest ? toDemoBlindTest(demoSession) : demoSession
+  const session = params.get('long') === '1' ? withLongOptions(baseSession, isBlindTest) : baseSession
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
 

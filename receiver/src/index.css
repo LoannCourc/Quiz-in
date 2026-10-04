@@ -107,6 +107,15 @@ p {
   font-weight: 400;
 }
 
+/* Propositions longues : texte plus petit, même taille sur la question et la révélation (lib/optionsSize). */
+.options-size-long .choice-text {
+  font-size: 1.5rem;
+}
+
+.options-size-very-long .choice-text {
+  font-size: 1.2rem;
+}
+
 /* Dans une pilule : pastille sombre, lettre blanche (maquette). */
 .choice .choice-letter {
   background: var(--color-on-accent);

@@ -4,6 +4,7 @@ import { AudioStatus } from '../components/AudioStatus'
 import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
+import { optionsSizeClass } from '../lib/optionsSize'
 import { countConnected, countConnectedAnswered, hasAnswered, sortByRank } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
@@ -44,7 +45,7 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
       </section>
 
       {question.options ? (
-        <ol className="question-options">
+        <ol className={`question-options ${optionsSizeClass(question.options)}`}>
           {question.options.map((option, index) => (
             <li key={option} className={`choice choice-${index}`}>
               <span className="choice-letter">{strings.choiceLetters[index]}</span>

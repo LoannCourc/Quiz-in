@@ -1,5 +1,6 @@
+/* Zone d'explication compressible (minmax 0) : le compte à rebours du bas reste toujours dans le cadre. */
 .reveal {
-  grid-template-rows: auto auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
   row-gap: 1rem;
   background: var(--background-celebration);
 }
@@ -41,6 +42,8 @@
 .reveal-explanation-slot {
   display: grid;
   align-content: start;
+  min-height: 0;
+  overflow: hidden;
   row-gap: 0.8rem;
 }
 
@@ -60,6 +63,24 @@
   font-size: 1.5rem;
   font-weight: 800;
   text-align: center;
+}
+
+/* Propositions très longues : titre et espacements réduits, explication sur deux lignes au plus. */
+.reveal-compact {
+  row-gap: 0.6rem;
+}
+
+.reveal-compact .reveal-title {
+  font-size: 2.1rem;
+}
+
+.reveal-compact .reveal-explanation {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.2rem;
 }
 
 /* Réponse libre (hors périmètre de la 3.6, conservée) */

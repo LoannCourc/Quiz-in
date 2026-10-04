@@ -233,3 +233,28 @@ export function toDemoBlindTest(session: PublicSession): PublicSession {
     },
   }
 }
+
+// Propositions longues (?long=1), pour vérifier la mise en page : la plus longue fait 80 caractères,
+// le maximum autorisé. En blind test, les titres les plus longs du premier quiz.
+const LONG_OPTIONS: ChoiceOptions = [
+  'Le traité de Paris, signé après la guerre de Sept Ans entre la France et l’Angleterre',
+  'Le traité de Versailles, signé dans la galerie des Glaces du château',
+  'Le traité de Francfort, qui met fin à la guerre franco-prussienne',
+  'Le traité de Westphalie',
+]
+const LONG_SONGS: ChoiceOptions = [
+  'Que je t’aime – Johnny Hallyday',
+  'Il est cinq heures, Paris s’éveille – Jacques Dutronc',
+  'Avec le temps – Léo Ferré',
+  'Est-ce que tu m’aimes ? – Maître Gims',
+]
+
+export function withLongOptions(session: PublicSession, isBlindTest: boolean): PublicSession {
+  const options = isBlindTest ? LONG_SONGS : LONG_OPTIONS
+  const question = session.currentQuestion
+  return {
+    ...session,
+    currentQuestion: question && { ...question, options: question.options && options },
+    reveal: session.reveal && { ...session.reveal, correctAnswer: options[DEMO_QUESTION.correctIndex] },
+  }
+}
