@@ -23,8 +23,11 @@ function at(pen: Pen, x: number, y: number) {
   return { x: (x + (pen.dx ?? 0)) * pen.k, y: (y + (pen.dy ?? 0)) * pen.k };
 }
 
-// Trait arrondi d'un point à un autre : barre centrée sur le milieu, tournée selon l'angle.
+// Trait arrondi d'un point à un autre : barre centrée sur le milieu, tournée selon l'angle. Un trait
+// vertical ou horizontal est une barre droite, sans rotation : sur Android, une barre tournée de 90° est
+// arrondie au pixel avant d'être tournée et peut se décaler d'un pixel par rapport aux autres formes.
 function line(pen: Pen, key: string, x1: number, y1: number, x2: number, y2: number): ReactNode {
+  if (x1 === x2 || y1 === y2) return straight(pen, key, x1, y1, x2, y2);
   const length = Math.hypot(x2 - x1, y2 - y1) + STROKE;
   const middle = at(pen, (x1 + x2) / 2, (y1 + y2) / 2);
   const width = length * pen.k;
@@ -39,6 +42,20 @@ function line(pen: Pen, key: string, x1: number, y1: number, x2: number, y2: num
     borderRadius: height / 2,
     backgroundColor: pen.color,
     transform: [{ rotate: `${angle}deg` }],
+  };
+  return <View key={key} style={style} />;
+}
+
+function straight(pen: Pen, key: string, x1: number, y1: number, x2: number, y2: number): ReactNode {
+  const corner = at(pen, Math.min(x1, x2) - STROKE / 2, Math.min(y1, y2) - STROKE / 2);
+  const style: ViewStyle = {
+    position: 'absolute',
+    left: corner.x,
+    top: corner.y,
+    width: (Math.abs(x2 - x1) + STROKE) * pen.k,
+    height: (Math.abs(y2 - y1) + STROKE) * pen.k,
+    borderRadius: (STROKE / 2) * pen.k,
+    backgroundColor: pen.color,
   };
   return <View key={key} style={style} />;
 }
@@ -143,13 +160,19 @@ function gamepad(pen: Pen): ReactNode[] {
   ];
 }
 
+const NOTE_HEAD = 6.5;
+// Hampe posée sur le trait de la tête (bord droit du cercle, moins un demi-trait) : elles se rejoignent.
+const NOTE_STEM_SHIFT = NOTE_HEAD / 2 - STROKE / 2;
+
 function note(pen: Pen): ReactNode[] {
+  const stem1 = 6.5 + NOTE_STEM_SHIFT;
+  const stem2 = 16.5 + NOTE_STEM_SHIFT;
   return [
-    ring(pen, 'head1', 6.5, 18, 6.5, 6.5),
-    ring(pen, 'head2', 16.5, 16, 6.5, 6.5),
-    line(pen, 'stem1', 9.6, 18, 9.6, 5.5),
-    line(pen, 'stem2', 19.6, 16, 19.6, 3.5),
-    line(pen, 'beam', 9.6, 5.5, 19.6, 3.5),
+    ring(pen, 'head1', 6.5, 18, NOTE_HEAD, NOTE_HEAD),
+    ring(pen, 'head2', 16.5, 16, NOTE_HEAD, NOTE_HEAD),
+    line(pen, 'stem1', stem1, 18, stem1, 5.5),
+    line(pen, 'stem2', stem2, 16, stem2, 3.5),
+    line(pen, 'beam', stem1, 5.5, stem2, 3.5),
   ];
 }
 
