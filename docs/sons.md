@@ -56,17 +56,17 @@ Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/pu
 | Phase | Musique | Type | Volume | Remarque |
 |---|---|---|---|---|
 | Salon, tirage des équipes, 3-2-1 | `Waiting_sound.ogg` (34 s) | boucle | 1 | aussi dans une partie de blind test |
-| Question et révélation, choix multiples | `Salon_music.ogg` (137 s) | boucle | 0,5 | jamais en blind test |
-| Question, validation et révélation, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais en blind test |
+| Question, révélation et classement, choix multiples | `Salon_music.ogg` (137 s) | boucle | 0,5 | sans interruption d'une phase à l'autre |
+| Classement d'un blind test | `Salon_music.ogg` | boucle | 0,5 | revient en fondu, se tait avant l'extrait suivant |
+| Question, validation, révélation et classement, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais pendant la question d'un blind test |
 | Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | 0,8 | |
-| Bluff, vote et révélation | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
-| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | 1 | dès le début du classement ; écourté par la phase suivante (fondu de sortie de 600 ms), dont la musique démarre à temps |
+| Bluff, vote, révélation et classement | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
 | Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | en entier, après le roulement en Suspense ; puis silence |
 | Question et révélation d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1 ou du classement) |
 
 Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : 30 %.
 
-**Mémoire de la TV.** Pistes décodées en mono à 32 kHz (`MUSIC_SAMPLE_RATE`), 32 Mo au plus en mémoire (`MUSIC_MEMORY_BUDGET_BYTES`), les moins récemment utilisées libérées au-delà ; fichiers compressés gardés (4,7 Mo). Mesures (Chrome du PC) : `Salon_music` 16,7 Mo décodée (au lieu d'environ 50 Mo en stéréo 48 kHz) ; partie de choix multiples environ 24 Mo, partie de Bluff environ 28 Mo. Pendant le décodage de `Salon_music`, le navigateur occupe brièvement environ 33 Mo de plus (stéréo avant le passage en mono).
+**Mémoire de la TV.** Pistes décodées en mono à 32 kHz (`MUSIC_SAMPLE_RATE`), 32 Mo au plus en mémoire (`MUSIC_MEMORY_BUDGET_BYTES`), les moins récemment utilisées libérées au-delà ; fichiers compressés gardés (4,7 Mo). Mesures (Chrome du PC) : `Salon_music` 16,7 Mo décodée (au lieu d'environ 50 Mo en stéréo 48 kHz) ; partie de choix multiples environ 23 Mo, partie de Bluff environ 26 Mo. Pendant le décodage de `Salon_music`, le navigateur occupe brièvement environ 33 Mo de plus (stéréo avant le passage en mono).
 
 **Tailles** (5 octobre 2026) : 4,7 Mo en tout (limite 5 Mo). `Salon_music.ogg` 1,87 Mo, au-delà de la limite de 1,5 Mo par fichier : le build l'avertit, sans bloquer.
 

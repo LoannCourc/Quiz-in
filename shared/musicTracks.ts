@@ -2,7 +2,7 @@
 // receiver/public/music/ (jamais versionnés : dépôt public, licences de tiers). Sans import : lu aussi
 // par vite.config.ts (avertissements du build).
 
-export type MusicTrackId = 'waiting' | 'game' | 'writing' | 'vote' | 'ranking' | 'final'
+export type MusicTrackId = 'waiting' | 'game' | 'writing' | 'vote' | 'final'
 
 export interface MusicTrack {
   file: string
@@ -15,14 +15,12 @@ export interface MusicTrack {
 export const MUSIC_TRACKS: Record<MusicTrackId, MusicTrack> = {
   // Salon et tirage des équipes.
   waiting: { file: 'Waiting_sound.ogg', volume: 1, loop: true },
-  // Question et révélation d'un quiz à choix multiples (volume bas).
+  // Question, révélation et classement d'un quiz à choix multiples (volume bas) ; classement d'un blind test.
   game: { file: 'Salon_music.ogg', volume: 0.5, loop: true },
-  // Écriture du Bluff, question et révélation en saisie libre (Contrôle compris).
+  // Écriture du Bluff ; question, révélation et classement en saisie libre (Contrôle compris).
   writing: { file: 'Bluffecriture_sound.ogg', volume: 0.8, loop: true },
-  // Vote et révélation du Bluff.
+  // Vote, révélation et classement du Bluff.
   vote: { file: 'Bluffvote_sound.ogg', volume: 0.8, loop: true },
-  // Classement entre les questions : une fois.
-  ranking: { file: 'Classement_sound.ogg', volume: 1, loop: false },
   // Classement final : une fois.
   final: { file: 'Findepartie_sound.ogg', volume: 1, loop: false },
 }

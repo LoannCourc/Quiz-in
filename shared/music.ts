@@ -7,7 +7,7 @@ import type { AnswerMode, PublicSession } from './types'
 // Passage d'une musique à l'autre (fondu enchaîné), et arrêt rapide avant l'extrait d'un blind test.
 export const MUSIC_CROSSFADE_MS = 800
 export const MUSIC_FAST_STOP_MS = 300
-// Jingle du classement écourté par la phase suivante : fondu de sortie, la nouvelle musique démarre à temps.
+// Jingle interrompu (Rejouer pendant le jingle de fin) : fondu de sortie, la nouvelle musique démarre à temps.
 export const MUSIC_JINGLE_FADE_OUT_MS = 600
 // Pause : la musique continue, baissée à ce niveau.
 export const MUSIC_PAUSE_LEVEL = 0.3
@@ -55,7 +55,11 @@ export function musicPlan(session: PublicSession, isBlindTestGame: boolean): Mus
       if (isBlindTest) return silence
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'scores':
-      return { ...play('ranking'), startAt: session.phaseStartedAt, stopBy }
+      // La musique de la question continue à travers le classement ; blind test : la musique de jeu revient,
+      // puis se tait avant l'extrait suivant.
+      if (mode === 'bluff') return play('vote')
+      if (isBlindTest) return { ...play('game'), stopBy }
+      return play(mode === 'choice' ? 'game' : 'writing')
     case 'ended':
       // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium.
       return { ...play('final'), startAt: session.phaseStartedAt + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0) }
@@ -68,6 +72,6 @@ export function musicPlan(session: PublicSession, isBlindTestGame: boolean): Mus
 // dans la limite de mémoire de la TV.
 export function musicTracksFor(mode: AnswerMode, isBlindTestGame: boolean): MusicTrackId[] {
   const loops: MusicTrackId[] =
-    mode === 'bluff' ? ['writing', 'vote'] : isBlindTestGame ? [] : mode === 'choice' ? ['game'] : ['writing']
-  return ['waiting', ...loops, 'ranking', 'final']
+    mode === 'bluff' ? ['writing', 'vote'] : isBlindTestGame || mode === 'choice' ? ['game'] : ['writing']
+  return ['waiting', ...loops, 'final']
 }

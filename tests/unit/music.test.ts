@@ -38,8 +38,10 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('reveal', 'bluff'), false).track).toBe('vote')
   })
 
-  test('classement : jingle une fois, dès le début de la phase ; fin : jingle final, après le roulement en Suspense', () => {
-    expect(musicPlan(inPhase('scores'), false)).toMatchObject({ track: 'ranking', startAt: NOW })
+  test('classement : la musique de la question continue ; fin : jingle final, après le roulement en Suspense', () => {
+    expect(musicPlan(inPhase('scores'), false)).toMatchObject({ track: 'game' })
+    expect(musicPlan(inPhase('scores', 'free'), false).track).toBe('writing')
+    expect(musicPlan(inPhase('scores', 'bluff'), false).track).toBe('vote')
     expect(musicPlan(inPhase('ended'), false)).toMatchObject({ track: 'final', startAt: NOW })
     const suspense = inPhase('ended', 'choice', { settings: { ...makeSession().settings, suspense: true } })
     expect(musicPlan(suspense, false)).toMatchObject({ track: 'final', startAt: NOW + SUSPENSE_DRUMROLL_MS })
@@ -55,7 +57,8 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
 
   test('blind test : la musique se tait à la fin du 3-2-1 et du classement, avant l’extrait', () => {
     expect(musicPlan(inPhase('starting'), true)).toMatchObject({ track: 'waiting', stopBy: NOW + 20_000 })
-    expect(musicPlan(inPhase('scores'), true)).toMatchObject({ track: 'ranking', stopBy: NOW + 20_000 })
+    expect(musicPlan(inPhase('scores'), true)).toMatchObject({ track: 'game', stopBy: NOW + 20_000 })
+    expect(musicPlan(inPhase('scores', 'free'), true).track).toBe('game')
     // Pas à pas : pas d'échéance, la question suivante coupera la musique.
     expect(musicPlan(inPhase('scores', 'choice', { phaseEndsAt: 0 }), true).stopBy).toBeUndefined()
   })
@@ -68,13 +71,14 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
   })
 
   test('pistes à préparer selon le mode, dans l’ordre d’utilisation', () => {
-    expect(musicTracksFor('choice', false)).toEqual(['waiting', 'game', 'ranking', 'final'])
-    expect(musicTracksFor('bluff', false)).toEqual(['waiting', 'writing', 'vote', 'ranking', 'final'])
-    expect(musicTracksFor('choice', true)).toEqual(['waiting', 'ranking', 'final'])
+    expect(musicTracksFor('choice', false)).toEqual(['waiting', 'game', 'final'])
+    expect(musicTracksFor('bluff', false)).toEqual(['waiting', 'writing', 'vote', 'final'])
+    expect(musicTracksFor('free', false)).toEqual(['waiting', 'writing', 'final'])
+    expect(musicTracksFor('free', true)).toEqual(['waiting', 'game', 'final'])
   })
 
-  test('manifeste : boucles et jingles de la spec 17', () => {
-    expect(MUSIC_TRACK_IDS.filter((id) => !MUSIC_TRACKS[id].loop)).toEqual(['ranking', 'final'])
+  test('manifeste : boucles et jingle de fin de la spec 17 (plus de jingle au classement)', () => {
+    expect(MUSIC_TRACK_IDS.filter((id) => !MUSIC_TRACKS[id].loop)).toEqual(['final'])
     expect(MUSIC_TRACKS.game.volume).toBeLessThan(MUSIC_TRACKS.waiting.volume)
   })
 })
