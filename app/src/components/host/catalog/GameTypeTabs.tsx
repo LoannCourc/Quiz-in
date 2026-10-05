@@ -6,8 +6,8 @@ import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 // Types de jeu du sélecteur. Le blind test n'est jouable que si l'interrupteur à distance est ouvert
-// (config/blindTestEnabled) ; sinon il reste « bientôt », comme les paroles : visible, non cliquable.
-const TAB_ORDER: readonly GameType[] = ['quiz', 'blindTest', 'lyrics'];
+// (config/blindTestEnabled) ; sinon il reste « bientôt » : visible, non cliquable.
+const TAB_ORDER: readonly GameType[] = ['quiz', 'blindTest'];
 
 export type PlayableGameType = Extract<GameType, QuizGameType>;
 

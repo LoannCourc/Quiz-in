@@ -17,7 +17,7 @@ import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 
 // Types de jeu du sélecteur du catalogue : seul le quiz est jouable au MVP.
-export type GameType = 'quiz' | 'blindTest' | 'lyrics';
+export type GameType = 'quiz' | 'blindTest';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -82,7 +82,7 @@ export const strings = {
     searchPlaceholder: 'Titre du quiz',
     closeSearch: 'Fermer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
-    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', lyrics: 'Paroles' } satisfies Record<GameType, string>,
+    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
     rows: {
