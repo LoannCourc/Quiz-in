@@ -24,6 +24,7 @@ import {
 } from '../../shared/hostEngine'
 import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
+import { teamDrawUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
 import { makeSession, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1043,5 +1044,80 @@ describe('Réponse libre et Contrôle', () => {
 
     const toScores = transitionUpdate(session, questions, { status: 'reveal', currentIndex: 0 }, Date.now())
     await assertSucceeds(hostRef.update(toScores ?? {}))
+  })
+})
+
+describe('Groupe (équipes)', () => {
+  const TEAM_SETTINGS = { answerMode: 'choice', speedBonus: true, control: false, teams: true, teamMode: 'players', teamCount: 2 }
+  const lobbyPlayers = {
+    [HOST]: { name: 'Hôte', avatar: '🐸', connected: true },
+    [PLAYER]: { name: 'Léa', avatar: '🦊', connected: true },
+    [OTHER]: { name: 'Tom', avatar: '🐼', connected: true },
+  }
+
+  function seedTeamLobby(settings: Data = {}) {
+    return seedSession({ status: 'lobby', phaseEndsAt: 0, settings: { ...TEAM_SETTINGS, ...settings }, players: lobbyPlayers })
+  }
+
+  test('« Ils choisissent » : un joueur choisit sa propre équipe en lobby, et la change', async () => {
+    await seedTeamLobby()
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('pink'))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('cyan'))
+  })
+
+  test('jamais l’équipe d’un autre joueur, ni hors du mode « Ils choisissent »', async () => {
+    await seedTeamLobby()
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${OTHER}/team`).set('pink'))
+    await seedTeamLobby({ teamMode: 'random' })
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('pink'))
+  })
+
+  test('équipe inconnue, ou au-delà du nombre d’équipes (Or dès 3, Vert à 4), refusée', async () => {
+    await seedTeamLobby()
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('purple'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('gold'))
+    await seedTeamLobby({ teamCount: 3 })
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('gold'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('green'))
+  })
+
+  test('après le lancement, personne ne change d’équipe, pas même l’hôte', async () => {
+    await seedSession({ settings: TEAM_SETTINGS, players: { [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true, team: 'pink' } } })
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/team`).set('cyan'))
+    await assertFails(db(HOST).ref(`${SESSION}/players/${PLAYER}/team`).set('cyan'))
+  })
+
+  test('classement des équipes : forme vérifiée, lisible par les joueurs, écrit par l’hôte seul', async () => {
+    await seedSession({ settings: TEAM_SETTINGS })
+    await assertSucceeds(db(HOST).ref(`${SESSION}/teams/pink`).set({ score: 75.5, rank: 1 }))
+    await assertFails(db(HOST).ref(`${SESSION}/teams/purple`).set({ score: 1, rank: 1 }))
+    await assertFails(db(PLAYER).ref(`${SESSION}/teams/pink`).set({ score: 999, rank: 1 }))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/teams`).once('value'))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/teamPoints`).once('value'))
+  })
+
+  test('moteur : tirage, lancement, réponses et révélation avec équipes, acceptés par les règles', async () => {
+    await seedSession({ status: 'lobby', phaseEndsAt: 0, settings: { ...TEAM_SETTINGS, teamMode: 'random' }, players: {
+      ...lobbyPlayers,
+      'p4-uid': { name: 'Noé', avatar: '🦖', connected: true },
+    } })
+    const hostRef = db(HOST).ref(SESSION)
+    let session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(teamDrawUpdate(session, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
+    expect(launch.ok).toBe(true)
+    await assertSucceeds(hostRef.update(launch.ok ? launch.update : {}))
+
+    session = (await readAsAdmin(SESSION)) as Session
+    const questions = selectGameQuestions(QUESTIONS.slice(0, 2))
+    await assertSucceeds(hostRef.update(transitionUpdate(session, questions, { status: 'starting', currentIndex: 0 }, Date.now()) ?? {}))
+    await assertSucceeds(submitAnswer(PLAYER, 0, 1))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(transitionUpdate(session, questions, { status: 'question', currentIndex: 0 }, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session.status).toBe('reveal')
+    expect(Object.keys(session.teams ?? {}).sort()).toEqual(['cyan', 'pink'])
+    expect(session.teamPresence?.[0]).toBeDefined()
   })
 })

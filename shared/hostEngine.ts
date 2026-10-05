@@ -21,6 +21,15 @@ import { hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, question
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
+import {
+  activeTeams,
+  teamCountOf,
+  teamLaunchRefusal,
+  teamPresenceSnapshot,
+  teamQuestionPoints,
+  teamStandings,
+  type TeamRefusal,
+} from './teams'
 import type {
   Answer,
   AnswerMode,
@@ -271,19 +280,42 @@ export function transitionUpdate(
       // Correction automatique écrite dès la fin de la question (Rapidité calculée sur cette fin).
       const question = questions[session.currentIndex]
       if (!question) return null
-      return { ...base, ...gradingPaths(session, question) }
+      return { ...base, ...gradingPaths(session, question), ...teamPresencePaths(session) }
     }
     case 'reveal': {
       const question = questions[session.currentIndex]
       if (!question) return null
       const reviewed = session.status === 'validation' ? decisions : undefined
-      return { ...base, ...revealPaths(session, buildReveal(question, session, reviewed)) }
+      const result = buildReveal(question, session, reviewed)
+      // Joueurs comptés pour les équipes : figés à la fin de la question (avant une validation éventuelle).
+      const presence = reviewed ? {} : teamPresencePaths(session)
+      return { ...base, ...revealPaths(session, result), ...presence, ...teamPaths(session, result.results) }
     }
     case 'ended':
       return { ...base, currentQuestion: null, reveal: null }
     default:
       return base
   }
+}
+
+// Groupe : joueurs comptés pour les équipes à la fin de la question (connectés et dans une équipe).
+function teamPresencePaths(session: Session): SessionUpdate {
+  if (!session.settings.teams) return {}
+  return { [`teamPresence/${session.currentIndex}`]: teamPresenceSnapshot(session.players) }
+}
+
+// Groupe : points d'équipe de la question (moyenne des joueurs comptés), puis score et rang de
+// chaque équipe, recalculés depuis le début : rejouer la révélation ne compte rien deux fois.
+function teamPaths(session: Session, results: Record<PlayerId, PlayerResult>): SessionUpdate {
+  if (!session.settings.teams) return {}
+  const index = session.currentIndex
+  const teams = activeTeams(teamCountOf(session.settings, Object.keys(session.players).length))
+  const presence = session.teamPresence?.[index] ?? teamPresenceSnapshot(session.players)
+  const points = teamQuestionPoints(session.players, presence, results, teams)
+  const standings = teamStandings({ ...session.teamPoints, [index]: points }, teams, index)
+  const update: SessionUpdate = { [`teamPoints/${index}`]: points }
+  for (const team of teams) update[`teams/${team}`] = standings[team]
+  return update
 }
 
 // « Valider » (Contrôle) : révélation avec les décisions de l'hôte, ou null hors de VALIDATION.
@@ -352,6 +384,7 @@ export type LaunchRefusal =
   | 'noQuestions'
   | 'blindTestDisabled'
   | 'audioUnavailable'
+  | TeamRefusal
 
 // Blind test : interrupteur à distance (config/blindTestEnabled) et adresses des extraits.
 export interface LaunchAudio {
@@ -374,6 +407,8 @@ export function launchUpdate(
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
   if (Object.keys(session.players).length > MAX_PLAYERS) return { ok: false, reason: 'tooManyPlayers' }
+  const teamRefusal = teamLaunchRefusal(session)
+  if (teamRefusal) return { ok: false, reason: teamRefusal }
   const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
   const musicQuestions = gameQuestions.filter((question) => question.music)
@@ -389,10 +424,17 @@ export function launchUpdate(
     reveal: null,
     answers: null,
     answeredBy: null,
+    teams: null,
+    teamPoints: null,
+    teamPresence: null,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = 0
     update[`players/${playerId}/rank`] = 1
+  }
+  // Groupe : nombre d'équipes figé au lancement (les joueurs ne changent plus).
+  if (session.settings.teams) {
+    update['settings/teamCount'] = teamCountOf(session.settings, Object.keys(session.players).length)
   }
   return { ok: true, update }
 }
@@ -472,6 +514,7 @@ export function endUpdate(session: Session, nowServer: number): SessionUpdate | 
 
 // Rejouer (fin de partie) : retour au LOBBY avec le même code et les mêmes joueurs ; scores,
 // rangs, réponses et nombre de questions effacés. Les mêmes questions seront rejouées.
+// Groupe : les équipes sont gardées (seuls leurs scores sont effacés).
 export function replayUpdate(session: Session, nowServer: number): SessionUpdate | null {
   if (session.status !== 'ended') return null
   const update: SessionUpdate = {
@@ -486,6 +529,9 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
     answeredBy: null,
     pausedFrom: null,
     remainingMs: null,
+    teams: null,
+    teamPoints: null,
+    teamPresence: null,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = null

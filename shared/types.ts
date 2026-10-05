@@ -159,6 +159,22 @@ export interface SessionSettings {
   // Suspense : pas de classement en cours de partie ; la révélation mène directement à la question
   // suivante, et le classement n'apparaît qu'à la fin. Absent : désactivé.
   suspense?: boolean;
+  // Groupe (teams) : formation des équipes (tirage, placement par l'hôte, choix des joueurs) et nombre
+  // d'équipes (2 à 4). Absents : tirage au sort, nombre suggéré d'après les joueurs.
+  teamMode?: TeamMode;
+  teamCount?: number;
+}
+
+// Groupe : 4 équipes fixes (Rose, Cyan, Or, Vert), chacune avec un symbole dessiné (étoile, rond,
+// triangle, carré) pour que la couleur ne porte jamais seule l'information.
+export type TeamId = 'pink' | 'cyan' | 'gold' | 'green';
+export type TeamMode = 'random' | 'host' | 'players';
+
+// Score d'une équipe (somme, question par question, de la moyenne des points de ses joueurs
+// présents) et son rang (égalités comme pour les joueurs).
+export interface TeamStanding {
+  score: number;
+  rank: number;
 }
 
 export interface Player {
@@ -167,6 +183,8 @@ export interface Player {
   score: number;
   rank: number;
   connected: boolean;
+  // Groupe : équipe du joueur, modifiable en LOBBY seulement.
+  team?: TeamId;
 }
 
 export interface Answer {
@@ -208,6 +226,12 @@ export interface PublicSession {
   players: Record<PlayerId, Player>;
   // Qui a répondu à chaque question, jamais quoi.
   answeredBy?: Record<number, Record<PlayerId, true>>;
+  // Groupe : classement des équipes, points d'équipe de chaque question (moyenne des joueurs
+  // présents), joueurs comptés à la fin de chaque question, et heure du dernier tirage (animation TV).
+  teams?: Partial<Record<TeamId, TeamStanding>>;
+  teamPoints?: Record<number, Partial<Record<TeamId, number>>>;
+  teamPresence?: Record<number, Record<PlayerId, true>>;
+  teamDrawAt?: number;
 }
 
 // Session complète, lisible uniquement par l'hôte.

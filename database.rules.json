@@ -48,6 +48,8 @@
           "teams": { ".validate": "newData.isBoolean()" },
           "stepByStep": { ".validate": "newData.isBoolean()" },
           "suspense": { ".validate": "newData.isBoolean()" },
+          "teamMode": { ".validate": "newData.isString() && newData.val().matches(/^(random|host|players)$/)" },
+          "teamCount": { ".validate": "newData.isNumber() && (newData.val() == 2 || newData.val() == 3 || newData.val() == 4)" },
           "$other": { ".validate": false }
         },
         "currentIndex": {
@@ -154,8 +156,37 @@
             },
             "score": { ".validate": "newData.isNumber() && newData.val() >= 0" },
             "rank": { ".validate": "newData.isNumber() && newData.val() >= 1" },
+            "team": {
+              ".write": "auth != null && auth.uid == $uid && data.parent().child('name').exists() && root.child('sessions/' + $code + '/status').val() == 'lobby' && root.child('sessions/' + $code + '/settings/teams').val() == true && root.child('sessions/' + $code + '/settings/teamMode').val() == 'players'",
+              ".validate": "newData.isString() && newData.val().matches(/^(pink|cyan|gold|green)$/) && (newData.parent().parent().parent().child('status').val() == 'lobby' || newData.val() == data.val()) && (newData.val() != 'gold' || newData.parent().parent().parent().child('settings/teamCount').val() >= 3) && (newData.val() != 'green' || newData.parent().parent().parent().child('settings/teamCount').val() == 4)"
+            },
             "$other": { ".validate": false }
           }
+        },
+        "teams": {
+          ".read": "auth != null",
+          "$team": {
+            ".validate": "$team.matches(/^(pink|cyan|gold|green)$/) && newData.hasChildren(['score', 'rank'])",
+            "score": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+            "rank": { ".validate": "newData.isNumber() && newData.val() >= 1" },
+            "$other": { ".validate": false }
+          }
+        },
+        "teamPoints": {
+          ".read": "auth != null",
+          "$index": {
+            "$team": { ".validate": "$team.matches(/^(pink|cyan|gold|green)$/) && newData.isNumber() && newData.val() >= 0" }
+          }
+        },
+        "teamPresence": {
+          ".read": "auth != null",
+          "$index": {
+            "$uid": { ".validate": "newData.val() == true" }
+          }
+        },
+        "teamDrawAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber()"
         },
         "answers": {
           "$index": {

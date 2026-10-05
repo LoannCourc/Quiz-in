@@ -44,6 +44,14 @@ export const MAX_SPEED_BONUS_POINTS = 100;
 
 export const SCORES_TOP_COUNT = 5;
 
+// Groupe (équipes) : à partir de 4 joueurs, 2 à 4 équipes, au moins 2 joueurs par équipe.
+export const MIN_TEAM_GAME_PLAYERS = 4;
+export const MIN_TEAMS = 2;
+export const MAX_TEAMS = 4;
+export const MIN_TEAM_SIZE = 2;
+// TV : durée de l'écran de tirage après un « Tirer au sort » (les avatars arrivent un à un).
+export const TEAM_DRAW_SHOW_MS = 8_000;
+
 // Réglages proposés par défaut sur la fiche d'un quiz.
 export const DEFAULT_SESSION_SETTINGS: SessionSettings = {
   answerMode: 'choice',

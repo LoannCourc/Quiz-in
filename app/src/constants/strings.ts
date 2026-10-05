@@ -2,6 +2,8 @@ import {
   DEV_SHORT_GAME_QUESTIONS,
   MAX_PLAYERS,
   MIN_PLAYERS,
+  MIN_TEAM_GAME_PLAYERS,
+  MIN_TEAM_SIZE,
   PLAYER_NAME_MAX_LENGTH,
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
@@ -178,6 +180,9 @@ export const strings = {
       noQuestions: 'Ce quiz n’a pas de question jouable.',
       blindTestDisabled: 'Le blind test n’est pas disponible pour le moment.',
       audioUnavailable: 'Extraits audio indisponibles. Vérifie ta connexion, puis réessaie.',
+      teamsTooFewPlayers: `Il faut au moins ${MIN_TEAM_GAME_PLAYERS} joueurs pour jouer par équipes.`,
+      teamsUnassigned: 'Chaque joueur doit être dans une équipe.',
+      teamTooSmall: `Il faut au moins ${MIN_TEAM_SIZE} joueurs par équipe.`,
     } satisfies Record<LaunchRefusal, string>,
     shortGame: {
       title: `Partie courte (${DEV_SHORT_GAME_QUESTIONS} questions)`,
