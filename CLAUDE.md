@@ -50,6 +50,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
   - TV : moteur Web Audio `receiver/src/lib/sound/` (`soundEngine`, effets synthétisés `effects.ts`, boucles `musicLoop.ts`), `hooks/useTvSound.ts`, bandeau de clic en plan B dès que le son est activé. Test sur la box : `cast-sender.html` étape 4 (message `{ "soundTest": "effects" }` ou `{ "soundTest": "music/Salon_music.ogg" }`, écran `SoundTestScreen`). Galerie `?sounds=1` (développement, boucle témoin synthétisée) ; `&selftest=1` : chaque effet calculé hors ligne (erreurs, saturation, niveaux).
   - Hôte : `SoundSettingsSection` dans la feuille des réglages et le panneau des contrôles, accès rapide `SoundQuickAccess` dans le salon ; préférences sur le téléphone (`lib/soundPreferences.ts`). Crédits des musiques dans « À propos et crédits ».
   - Musiques (lot 3) : fichiers jamais versionnés dans `receiver/public/music/` (ignoré par Git sauf `.gitkeep`), manifeste `shared/musicTracks.ts` (sans import : lu par `vite.config.ts`, qui avertit au build : piste absente, trop lourde, total, fichier inattendu), plan selon la phase `musicPlan` (`shared/music.ts`), lecteur `lib/sound/musicPlayer.ts` (décodage mono 32 kHz, 32 Mo au plus, boucles, jingle de fin, fondus de 800 ms, arrêt avant l'extrait d'un blind test, pause : musique d'attente, puis reprise à la position gardée, boucle témoin en développement), `hooks/useTvMusic.ts`. `Salon_music.ogg` dépasse 1,5 Mo (1,87 Mo, 16,7 Mo décodée) ; total 4,7 Mo. Plus de jingle au classement : la musique de la question continue à travers la révélation et le classement ; jingle de fin en entier. Cache de `/music/**` : un jour (`firebase.json`) ; pour remplacer un fichier sans attendre, le renommer (et `shared/musicTracks.ts`).
+  - Danse de fin de partie (TV) : `screens/EndDance.css`, props `dance` de `Podium`, `RankingList`, `TeamPodium`, couronne en formes, projecteur `--spotlight`, pluie `ConfettiRain`. Mise en page de la fin au-delà de 12 joueurs : déborde (backlog).
   - À venir : lot 4 (téléphones), puis le son de série (plan validé, après le lot 3).
 - **Prochains chantiers validés** (détail : spec 14). **Ne rien coder avant le message dédié du développeur pour chaque chantier.**
   - (d) Publication de l'application Cast.
@@ -141,7 +142,7 @@ Références : `docs/design/` (maquettes mobile et TV). Esprit plateau de jeu t�
   - Pas de bandeau d'ampoules, de bordure décorative haut/bas ni de bandeau « scotch » : tout ce qui n'informe pas est supprimé.
   - Titres Bowlby One accentués (RÉPONSE, RÉVÉLATION…) : `line-height` ≥ 1,3 et marge suffisante ; un accent ne touche jamais la ligne du dessus.
   - Un écran = un seul message principal, très gros.
-  - TV : animations CSS uniquement (`transform`, `opacity`), pas d'ombre floue ni de `blur`. Confettis : 10 à 15 éléments CSS maximum, seulement à la révélation et à la fin.
+  - TV : animations CSS uniquement (`transform`, `opacity`), pas d'ombre floue ni de `blur`. Confettis : 10 à 15 éléments CSS maximum, seulement à la révélation et à la fin ; fin de partie : salve, puis pluie continue de 30 confettis au plus (spec 17).
   - La DA ne change aucune logique de jeu.
 
 ## Règles de travail

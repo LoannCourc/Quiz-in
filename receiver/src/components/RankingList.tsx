@@ -12,9 +12,21 @@ interface RankingListProps {
   // Délai CSS d'arrivée de chaque ligne (classement : de la dernière à la première, avec un son) ;
   // sinon, les lignes glissent l'une après l'autre de haut en bas.
   delays?: readonly string[]
+  // Fin de partie (spec 17) : les avatars rebondissent, de moins en moins fort avec le rang ; les
+  // derniers se balancent lentement (EndDance.css).
+  dance?: boolean
 }
 
-export function RankingList({ players, gainedPoints, columns = 1, delays }: RankingListProps) {
+// Énergie de l'avatar selon la position dans la liste : 1 (fort), 2 (moyen), 3 (balancement lent).
+function energyOf(position: number, count: number): 1 | 2 | 3 {
+  if (position < count / 3) return 1
+  return position < (2 * count) / 3 ? 2 : 3
+}
+
+// Décalage des rebonds d'une ligne à l'autre, pour qu'ils ne battent pas tous ensemble.
+const DANCE_OFFSET_S = 0.17
+
+export function RankingList({ players, gainedPoints, columns = 1, delays, dance = false }: RankingListProps) {
   return (
     <ol className={`ranking ranking-columns-${columns}`}>
       {players.map((player, position) => {
@@ -25,7 +37,11 @@ export function RankingList({ players, gainedPoints, columns = 1, delays }: Rank
             className="ranking-row"
             style={{ animationDelay: delays?.[position] ?? `${position * 80}ms` }}>
             <span className="ranking-rank">{player.rank}</span>
-            <span className="ranking-avatar">{player.avatar}</span>
+            <span
+              className={dance ? `ranking-avatar energy-${energyOf(position, players.length)}` : 'ranking-avatar'}
+              style={dance ? { animationDelay: `${-(position % 6) * DANCE_OFFSET_S}s` } : undefined}>
+              {player.avatar}
+            </span>
             <span className="ranking-name">{player.name}</span>
             {gainedPoints && (
               <span className="ranking-gained">{gained > 0 ? strings.ranking.gained(gained) : ''}</span>

@@ -50,3 +50,13 @@
 .confetti-piece-9 { left: 95.8%; background: var(--confetti-5); animation-delay: 700ms; animation-duration: 2.7s; }
 .confetti-piece-10 { left: 97%; background: var(--confetti-1); animation-delay: 200ms; animation-duration: 3.1s; }
 .confetti-piece-11 { left: 98.4%; background: var(--confetti-2); animation-delay: 500ms; }
+
+/* Fin de partie : pluie continue, plus petite et plus lente, chaque pièce retombe en boucle. */
+.confetti-rain-piece {
+  width: 0.45rem;
+  height: 0.9rem;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}

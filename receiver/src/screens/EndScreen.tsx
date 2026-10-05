@@ -3,7 +3,7 @@ import { SUSPENSE_DRUMROLL_MS } from '@shared/sound'
 import type { PublicSession } from '@shared/types'
 import { useEffect, useState } from 'react'
 
-import { Confetti } from '../components/Confetti'
+import { Confetti, ConfettiRain } from '../components/Confetti'
 import { Podium } from '../components/Podium'
 import { RankingList } from '../components/RankingList'
 import { TeamPodium } from '../components/TeamBoards'
@@ -12,11 +12,14 @@ import { sortByRank } from '../lib/players'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { teamEndTitle } from '../lib/teamTitles'
 import { strings } from '../strings'
+import './EndDance.css'
 import './EndScreen.css'
 
 const PODIUM_SIZE = 3
 // Au-delà, les lignes suivant le podium passent sur deux colonnes pour tenir à l'écran.
 const SINGLE_COLUMN_MAX_ROWS = 6
+// La danse de fin commence quand le 1er a fini de monter sur le podium (animation d'arrivée de 500 ms).
+const DANCE_START_DELAY_MS = 500
 
 // Vrai une fois passé delayMs après startedAt (heure du serveur) : un seul minuteur, pas de
 // rafraîchissement continu sur la box. Après un rechargement de la TV, le délai déjà écoulé compte.
@@ -56,8 +59,15 @@ export function EndScreen({ session }: { session: PublicSession }) {
 function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumStartMs: number }) {
   const entryDelay = useEntryDelay(session.phaseStartedAt)
   const delays = [0, 1, 2].map((place) => entryDelay(podiumEntryMs(place, podiumStartMs)))
-  // Confettis à l'arrivée du 1er, avec le tada.
+  // Confettis à l'arrivée du 1er, avec le tada, puis pluie légère ; la danse commence une fois le 1er posé.
   const isFirstIn = useDelayPassed(session.phaseStartedAt, podiumEntryMs(0, podiumStartMs))
+  const isDancing = useDelayPassed(session.phaseStartedAt, podiumEntryMs(0, podiumStartMs) + DANCE_START_DELAY_MS)
+  const confetti = isFirstIn && (
+    <>
+      <Confetti />
+      <ConfettiRain />
+    </>
+  )
   const players = sortByRank(session.players)
   const others = players.slice(PODIUM_SIZE)
 
@@ -65,20 +75,20 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
   if (session.settings.teams) {
     return (
       <main className="screen end">
-        {isFirstIn && <Confetti />}
+        {confetti}
         <h1 className="hero-title end-team-title">{teamEndTitle(session)}</h1>
-        <TeamPodium session={session} delays={delays} />
+        <TeamPodium session={session} delays={delays} dance={isDancing} />
       </main>
     )
   }
 
   return (
     <main className="screen end">
-      {isFirstIn && <Confetti />}
+      {confetti}
       <h1 className="hero-title">{strings.end.title}</h1>
       <div className="end-body">
-        <Podium players={players.slice(0, PODIUM_SIZE)} delays={delays} />
-        <RankingList players={others} columns={others.length > SINGLE_COLUMN_MAX_ROWS ? 2 : 1} />
+        <Podium players={players.slice(0, PODIUM_SIZE)} delays={delays} dance={isDancing} />
+        <RankingList players={others} columns={others.length > SINGLE_COLUMN_MAX_ROWS ? 2 : 1} dance={isDancing} />
       </div>
     </main>
   )

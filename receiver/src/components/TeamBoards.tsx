@@ -82,18 +82,33 @@ const BEST_PLAYERS_COUNT = 3
 
 // Fin de partie (G3) : podium des équipes, puis les meilleurs joueurs de la partie.
 // delays : délai CSS d'arrivée de chaque marche, par place (0 : première équipe).
-export function TeamPodium({ session, delays }: { session: PublicSession; delays?: readonly string[] }) {
+// dance : fin de partie (spec 17), les symboles d'équipe dansent selon le rang et les membres de l'équipe
+// gagnante sautent avec elle (EndDance.css).
+export function TeamPodium({ session, delays, dance = false }: { session: PublicSession; delays?: readonly string[]; dance?: boolean }) {
   const rows = teamRanking(session)
+  const winners = rows[0] ? sortByRank(session.players).filter((player) => player.team === rows[0].team) : []
   const best = sortByRank(session.players).slice(0, BEST_PLAYERS_COUNT)
   return (
     <div className="team-final">
-      <div className="team-podium">
+      <div className={dance ? 'team-podium is-dancing' : 'team-podium'}>
         {PODIUM_ORDER.map((position) => {
           const row: TeamRow | undefined = rows[position]
           if (!row) return <div key={position} />
           return (
             <div key={row.team} className={`team-podium-step team-${row.team} place-${position + 1}`} style={{ animationDelay: delays?.[position] }}>
-              <TeamTile team={row.team} />
+              {dance && position === 0 && <span className="podium-spotlight" aria-hidden="true" />}
+              <span className="team-dancer">
+                <TeamTile team={row.team} />
+              </span>
+              {position === 0 && (
+                <span className="team-podium-members">
+                  {winners.map((player, index) => (
+                    <span key={player.id} className="team-member-avatar" style={{ animationDelay: `${-index * 0.12}s` }}>
+                      {player.avatar}
+                    </span>
+                  ))}
+                </span>
+              )}
               <span className="team-podium-name">{strings.teams.names[row.team]}</span>
               <span className="team-podium-score">{strings.teams.averagePoints(Math.round(row.score))}</span>
               <span className="team-podium-block">{row.rank}</span>

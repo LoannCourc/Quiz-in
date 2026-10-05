@@ -64,6 +64,8 @@
   --confetti-3: var(--green);
   --confetti-4: var(--white);
   --confetti-5: var(--pink-light);
+  /* Fin de partie : projecteur doux sur le 1er (dégradé radial, intensité animée par l'opacité). */
+  --spotlight: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 236, 170, 0.6) 0%, rgba(255, 236, 170, 0.18) 45%, rgba(255, 236, 170, 0) 70%);
 
   /* Fond de célébration (révélation, fin) : halo orangé et rose au centre. */
   --background-celebration: radial-gradient(ellipse 80% 75% at 50% 40%, #f0884a 0%, #c42d8a 45%, var(--bg-middle) 100%);

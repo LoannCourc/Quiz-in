@@ -1,0 +1,267 @@
+/* Fin de partie (spec 17) : après l'arrivée du podium, les avatars dansent selon leur rang. Box Chrome 92 :
+   animations CSS sur transform et opacity seulement (pas de filter ni de blur), boucles infinies qui
+   s'arrêtent avec l'écran ; will-change sur les trois avatars du podium seulement. Rythme commun : 0,9 s. */
+
+/* Podium : le 1er saute le plus haut (écrasement à la réception), le 2e moins, le 3e encore moins,
+   avec un balancement de ±4° décalé entre eux. */
+.podium.is-dancing .podium-step,
+.team-podium.is-dancing .team-podium-step {
+  position: relative;
+}
+
+.podium.is-dancing .podium-avatar {
+  position: relative;
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform;
+  animation: end-hop-3 0.9s ease-in-out infinite;
+  animation-delay: -0.6s;
+}
+
+.podium.is-dancing .podium-position-1 .podium-avatar {
+  animation-name: end-hop-1;
+  animation-delay: 0s;
+}
+
+.podium.is-dancing .podium-position-2 .podium-avatar {
+  animation-name: end-hop-2;
+  animation-delay: -0.3s;
+}
+
+/* Marches : légère pulsation, au rythme des sauts de leur avatar. */
+.podium.is-dancing .podium-block,
+.team-podium.is-dancing .team-podium-block {
+  transform-origin: 50% 100%;
+  animation: end-step-pulse 0.9s ease-in-out infinite;
+  animation-delay: -0.6s;
+}
+
+.podium.is-dancing .podium-position-1 .podium-block,
+.team-podium.is-dancing .place-1 .team-podium-block {
+  animation-delay: 0s;
+}
+
+.podium.is-dancing .podium-position-2 .podium-block,
+.team-podium.is-dancing .place-2 .team-podium-block {
+  animation-delay: -0.3s;
+}
+
+/* Projecteur doux derrière le 1er : dégradé fixe, seule son opacité pulse. */
+.podium-spotlight {
+  position: absolute;
+  left: 50%;
+  bottom: 3rem;
+  z-index: -1;
+  width: 24rem;
+  height: 28rem;
+  margin-left: -12rem;
+  background: var(--spotlight);
+  pointer-events: none;
+  animation: end-spotlight 1.8s ease-in-out infinite alternate;
+}
+
+/* Couronne dessinée : trois pointes (triangles en bordures) sur un bandeau, posée sur l'avatar du 1er. */
+.crown {
+  position: absolute;
+  left: 50%;
+  top: -1.7rem;
+  width: 2.4rem;
+  height: 1.5rem;
+  margin-left: -1.2rem;
+  transform-origin: 50% 100%;
+  animation: end-crown 0.9s ease-in-out infinite;
+}
+
+.crown-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.5rem;
+  border-radius: 0.15rem;
+  background: var(--color-accent);
+}
+
+.crown-point {
+  position: absolute;
+  bottom: 0.4rem;
+  width: 0;
+  height: 0;
+  border-left: 0.4rem solid transparent;
+  border-right: 0.4rem solid transparent;
+  border-bottom: 0.95rem solid var(--color-accent);
+}
+
+.crown-point-left {
+  left: 0;
+}
+
+.crown-point-middle {
+  left: 0.8rem;
+  border-bottom-width: 1.1rem;
+}
+
+.crown-point-right {
+  right: 0;
+}
+
+/* Liste : rebond de moins en moins fort avec le rang ; les derniers se balancent lentement. */
+.ranking-avatar.energy-1,
+.ranking-avatar.energy-2,
+.ranking-avatar.energy-3 {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.ranking-avatar.energy-1 {
+  animation: end-bounce-strong 0.9s ease-in-out infinite;
+}
+
+.ranking-avatar.energy-2 {
+  animation: end-bounce-soft 1.1s ease-in-out infinite;
+}
+
+.ranking-avatar.energy-3 {
+  animation: end-sway 2.4s ease-in-out infinite;
+}
+
+/* Groupe : les symboles d'équipe dansent selon le rang ; les membres de l'équipe gagnante sautent avec elle. */
+.team-dancer {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.team-podium.is-dancing .team-dancer {
+  animation: end-hop-3 0.9s ease-in-out infinite;
+  animation-delay: -0.6s;
+}
+
+.team-podium.is-dancing .place-1 .team-dancer {
+  animation-name: end-hop-1;
+  animation-delay: 0s;
+}
+
+.team-podium.is-dancing .place-2 .team-dancer {
+  animation-name: end-hop-2;
+  animation-delay: -0.3s;
+}
+
+.team-podium-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem;
+  max-width: 14rem;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.team-member-avatar {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.team-podium.is-dancing .team-member-avatar {
+  animation: end-bounce-strong 0.9s ease-in-out infinite;
+}
+
+@keyframes end-hop-1 {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.14, 0.86) rotate(0deg);
+  }
+  12% {
+    transform: translateY(-0.6rem) scale(0.92, 1.1) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-2.6rem) scale(1, 1) rotate(4deg);
+  }
+  88% {
+    transform: translateY(-0.6rem) scale(0.95, 1.06) rotate(-2deg);
+  }
+}
+
+@keyframes end-hop-2 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-0.9rem) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-1.6rem) rotate(4deg);
+  }
+  75% {
+    transform: translateY(-0.9rem) rotate(-2deg);
+  }
+}
+
+@keyframes end-hop-3 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-0.9rem) rotate(-4deg);
+  }
+}
+
+@keyframes end-step-pulse {
+  0%,
+  100% {
+    transform: scale(1.02, 0.98);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes end-spotlight {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes end-crown {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg) translateY(-0.2rem);
+  }
+}
+
+@keyframes end-bounce-strong {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-0.6rem) rotate(4deg);
+  }
+}
+
+@keyframes end-bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3rem);
+  }
+}
+
+@keyframes end-sway {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
