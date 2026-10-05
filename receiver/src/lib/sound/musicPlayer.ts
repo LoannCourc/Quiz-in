@@ -1,4 +1,11 @@
-import { JINGLE_LATE_MS, MUSIC_CROSSFADE_MS, MUSIC_FAST_STOP_MS, MUSIC_PAUSE_LEVEL, type MusicPlan } from '@shared/music'
+import {
+  JINGLE_LATE_MS,
+  MUSIC_CROSSFADE_MS,
+  MUSIC_FAST_STOP_MS,
+  MUSIC_JINGLE_FADE_OUT_MS,
+  MUSIC_PAUSE_LEVEL,
+  type MusicPlan,
+} from '@shared/music'
 import { MUSIC_DIRECTORY, MUSIC_TRACKS, type MusicTrackId } from '@shared/musicTracks'
 
 import { decodedBytes } from './musicLoop'
@@ -37,6 +44,7 @@ interface Playing {
   key: string
   source: AudioBufferSourceNode
   gain: GainNode
+  isJingle: boolean
 }
 
 function musicUrl(track: MusicTrackId): string {
@@ -103,7 +111,7 @@ class MusicPlayer {
     this.planKey = key
     // Un démarrage encore en cours de décodage (phase précédente) est abandonné.
     const generation = ++this.generation
-    this.stop(plan.fastStop ? MUSIC_FAST_STOP_MS : MUSIC_CROSSFADE_MS)
+    this.stop(plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isJingle ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS)
     if (plan.track === null) return
     const delayMs = plan.startAt === undefined ? 0 : plan.startAt - nowServer
     // Jingle déjà bien entamé (TV ouverte en retard) : pas joué.
@@ -144,7 +152,7 @@ class MusicPlayer {
     source.connect(gain)
     gain.connect(output.pause)
     source.start(startAt)
-    const playing: Playing = { key, source, gain }
+    const playing: Playing = { key, source, gain, isJingle: !spec.loop }
     source.onended = () => {
       gain.disconnect()
       if (this.current === playing) this.current = null

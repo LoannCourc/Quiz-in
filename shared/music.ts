@@ -7,6 +7,8 @@ import type { AnswerMode, PublicSession } from './types'
 // Passage d'une musique à l'autre (fondu enchaîné), et arrêt rapide avant l'extrait d'un blind test.
 export const MUSIC_CROSSFADE_MS = 800
 export const MUSIC_FAST_STOP_MS = 300
+// Jingle du classement écourté par la phase suivante : fondu de sortie, la nouvelle musique démarre à temps.
+export const MUSIC_JINGLE_FADE_OUT_MS = 600
 // Pause : la musique continue, baissée à ce niveau.
 export const MUSIC_PAUSE_LEVEL = 0.3
 // Jingle dont le début est passé de plus de JINGLE_LATE_MS (TV ouverte en retard) : pas joué.

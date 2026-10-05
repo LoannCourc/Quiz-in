@@ -580,7 +580,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - Salon, tirage des équipes, 3-2-1 : musique d'attente (boucle).
 - Question et révélation d'un quiz à choix multiples : musique de jeu (boucle, volume bas). Question et révélation en saisie libre (Contrôle compris) : musique d'écriture (boucle).
 - Bluff : musique d'écriture, puis musique du vote (boucles), qui continue pendant la révélation.
-- Classement entre les questions : jingle joué une fois dès le début du classement ; la phase suivante enchaîne sur sa musique par un fondu (le jingle peut donc être écourté). Classement final : jingle de fin joué une fois (en Suspense, après le roulement de tambour), puis silence.
+- Classement entre les questions : jingle joué une fois dès le début du classement ; s'il dure plus que le classement, la phase suivante l'écourte par un fondu de sortie de 600 ms et sa musique démarre à temps. Classement final : jingle de fin joué une fois en entier (en Suspense, après le roulement de tambour), puis silence.
 - Passage d'une musique à l'autre : fondu enchaîné de 800 ms ; une même musique d'une phase à l'autre continue sans reprendre au début.
 - Blind test : aucune musique pendant la question et la révélation (l'extrait joue seul). La musique se tait par un fondu de 300 ms qui se termine à la fin du 3-2-1 ou du classement, avant l'extrait (en Pas à pas, au début de la question). Elle revient au salon, au classement et à la fin.
 - Jingle entamé depuis plus de 1,5 s quand la TV s'ouvre : pas joué.

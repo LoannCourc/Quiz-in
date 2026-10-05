@@ -60,8 +60,8 @@ Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/pu
 | Question, validation et révélation, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais en blind test |
 | Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | 0,8 | |
 | Bluff, vote et révélation | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
-| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | 1 | dès le début du classement ; la phase suivante enchaîne sur sa musique (fondu) |
-| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | après le roulement en Suspense ; puis silence |
+| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | 1 | dès le début du classement ; écourté par la phase suivante (fondu de sortie de 600 ms), dont la musique démarre à temps |
+| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | en entier, après le roulement en Suspense ; puis silence |
 | Question et révélation d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1 ou du classement) |
 
 Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : 30 %.
