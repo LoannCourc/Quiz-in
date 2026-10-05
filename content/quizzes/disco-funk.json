@@ -6,6 +6,7 @@
   "description": "Boules à facettes et basses qui groovent : dix classiques du disco et du funk pour enflammer la piste.",
   "audience": "all",
   "poster": "gold",
+  "icon": "discoBall",
   "addedAt": "2026-10-04",
   "featuredRank": 8,
   "reviewStatus": "provisoire, morceaux vérifiés",

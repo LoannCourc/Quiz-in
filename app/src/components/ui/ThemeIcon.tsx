@@ -1,130 +1,15 @@
-import type { ThemeIconName } from '@shared/themeIcons';
+import type { QuizIconName } from '@shared/themeIcons';
 import type { ReactNode } from 'react';
-import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts } from '@/constants/appTheme';
 
-// Icônes de thème (maquette I2) dessinées avec des View, comme SettingsIcon : aucune image ni
-// bibliothèque, même rendu sur Android et le web. Traits blancs arrondis, ombre dure bleu nuit.
-// Tracés sur une grille de 24 unités, mis à l'échelle de la taille demandée (18 à 64 px).
+import { GENRE_DRAWINGS } from './genreIcons';
+import { box, clipped, dot, GRID, line, ring, roof, STROKE, type Pen } from './iconShapes';
 
-const GRID = 24;
-const STROKE = 2.2;
-
-// Crayon : échelle (pixels par unité de grille), couleur, décalage d'une zone découpée (ballon).
-interface Pen {
-  k: number;
-  color: string;
-  dx?: number;
-  dy?: number;
-}
-
-function at(pen: Pen, x: number, y: number) {
-  return { x: (x + (pen.dx ?? 0)) * pen.k, y: (y + (pen.dy ?? 0)) * pen.k };
-}
-
-// Trait arrondi d'un point à un autre : barre centrée sur le milieu, tournée selon l'angle. Un trait
-// vertical ou horizontal est une barre droite, sans rotation : sur Android, une barre tournée de 90° est
-// arrondie au pixel avant d'être tournée et peut se décaler d'un pixel par rapport aux autres formes.
-function line(pen: Pen, key: string, x1: number, y1: number, x2: number, y2: number): ReactNode {
-  if (x1 === x2 || y1 === y2) return straight(pen, key, x1, y1, x2, y2);
-  const length = Math.hypot(x2 - x1, y2 - y1) + STROKE;
-  const middle = at(pen, (x1 + x2) / 2, (y1 + y2) / 2);
-  const width = length * pen.k;
-  const height = STROKE * pen.k;
-  const angle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: middle.x - width / 2,
-    top: middle.y - height / 2,
-    width,
-    height,
-    borderRadius: height / 2,
-    backgroundColor: pen.color,
-    transform: [{ rotate: `${angle}deg` }],
-  };
-  return <View key={key} style={style} />;
-}
-
-function straight(pen: Pen, key: string, x1: number, y1: number, x2: number, y2: number): ReactNode {
-  const corner = at(pen, Math.min(x1, x2) - STROKE / 2, Math.min(y1, y2) - STROKE / 2);
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: corner.x,
-    top: corner.y,
-    width: (Math.abs(x2 - x1) + STROKE) * pen.k,
-    height: (Math.abs(y2 - y1) + STROKE) * pen.k,
-    borderRadius: (STROKE / 2) * pen.k,
-    backgroundColor: pen.color,
-  };
-  return <View key={key} style={style} />;
-}
-
-// Contour d'ellipse (ou de cercle) centré en (cx, cy).
-function ring(pen: Pen, key: string, cx: number, cy: number, w: number, h: number): ReactNode {
-  const corner = at(pen, cx - w / 2, cy - h / 2);
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: corner.x,
-    top: corner.y,
-    width: w * pen.k,
-    height: h * pen.k,
-    borderRadius: (Math.max(w, h) / 2) * pen.k,
-    borderWidth: STROKE * pen.k,
-    borderColor: pen.color,
-  };
-  return <View key={key} style={style} />;
-}
-
-// Contour de rectangle arrondi.
-function box(pen: Pen, key: string, x: number, y: number, w: number, h: number, radius: number): ReactNode {
-  const corner = at(pen, x, y);
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: corner.x,
-    top: corner.y,
-    width: w * pen.k,
-    height: h * pen.k,
-    borderRadius: radius * pen.k,
-    borderWidth: STROKE * pen.k,
-    borderColor: pen.color,
-  };
-  return <View key={key} style={style} />;
-}
-
-// Disque plein.
-function dot(pen: Pen, key: string, cx: number, cy: number, d: number): ReactNode {
-  const corner = at(pen, cx - d / 2, cy - d / 2);
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: corner.x,
-    top: corner.y,
-    width: d * pen.k,
-    height: d * pen.k,
-    borderRadius: (d / 2) * pen.k,
-    backgroundColor: pen.color,
-  };
-  return <View key={key} style={style} />;
-}
-
-// Triangle plein pointe en haut (fronton), par l'astuce des bordures.
-function roof(pen: Pen, key: string, x: number, y: number, w: number, h: number): ReactNode {
-  const corner = at(pen, x, y);
-  const style: ViewStyle = {
-    position: 'absolute',
-    left: corner.x,
-    top: corner.y,
-    width: 0,
-    height: 0,
-    borderLeftWidth: (w / 2) * pen.k,
-    borderRightWidth: (w / 2) * pen.k,
-    borderBottomWidth: h * pen.k,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderBottomColor: pen.color,
-  };
-  return <View key={key} style={style} />;
-}
+// Icônes des quiz : thèmes (maquette I2) et genres de blind test (I3, genreIcons), dessinées avec des
+// View comme SettingsIcon : aucune image ni bibliothèque, même rendu sur Android et le web. Traits
+// blancs arrondis, ombre dure bleu nuit. Grille de 24 unités, mise à l'échelle (18 à 64 px).
 
 function clapper(pen: Pen): ReactNode[] {
   return [
@@ -188,32 +73,22 @@ function flask(pen: Pen): ReactNode[] {
   ];
 }
 
-const BALL = { x: 2.5, y: 2.5, d: 19 };
+const BALL = { x: 2.5, y: 2.5, w: 19, h: 19, radius: 9.5 };
 
-// Ballon : contour, puis les coutures dans un disque qui les découpe (overflow hidden).
+// Ballon : contour, puis les coutures dans un disque qui les découpe.
 function ball(pen: Pen): ReactNode[] {
-  const seams: Pen = { ...pen, dx: -BALL.x, dy: -BALL.y };
-  const clip: ViewStyle = {
-    position: 'absolute',
-    left: BALL.x * pen.k,
-    top: BALL.y * pen.k,
-    width: BALL.d * pen.k,
-    height: BALL.d * pen.k,
-    borderRadius: (BALL.d / 2) * pen.k,
-    overflow: 'hidden',
-  };
   return [
-    <View key="seams" style={clip}>
-      {line(seams, 'vertical', 12, 1, 12, 23)}
-      {line(seams, 'horizontal', 1, 12, 23, 12)}
-      {ring(seams, 'left', 2.5, 12, 12, 17)}
-      {ring(seams, 'right', 21.5, 12, 12, 17)}
-    </View>,
-    ring(pen, 'outer', 12, 12, BALL.d, BALL.d),
+    clipped(pen, 'seams', BALL, (seams) => [
+      line(seams, 'vertical', 12, 1, 12, 23),
+      line(seams, 'horizontal', 1, 12, 23, 12),
+      ring(seams, 'left', 2.5, 12, 12, 17),
+      ring(seams, 'right', 21.5, 12, 12, 17),
+    ]),
+    ring(pen, 'outer', 12, 12, BALL.w, BALL.h),
   ];
 }
 
-const DRAWINGS: Record<Exclude<ThemeIconName, 'question'>, (pen: Pen) => ReactNode[]> = {
+const DRAWINGS: Record<Exclude<QuizIconName, 'question'>, (pen: Pen) => ReactNode[]> = {
   clapper,
   globe,
   columns,
@@ -221,10 +96,11 @@ const DRAWINGS: Record<Exclude<ThemeIconName, 'question'>, (pen: Pen) => ReactNo
   note,
   flask,
   ball,
+  ...GENRE_DRAWINGS,
 };
 
 interface ThemeIconProps {
-  name: ThemeIconName;
+  name: QuizIconName;
   // Côté de l'icône en pixels (18 dans les puces, jusqu'à 64 sur les affiches).
   size: number;
 }

@@ -1,4 +1,5 @@
 // Types communs à l'app hôte, au client joueur et au récepteur TV (spec, sections 5, 7 et 8).
+import type { QuizIconName } from './themeIcons';
 
 export type GameStatus =
   | 'lobby'
@@ -51,6 +52,8 @@ export interface QuizSummary {
   addedAt: string;
   // Place dans le Top 10, choisie à la main (1 à 10) ; absente si le quiz n'y figure pas.
   featuredRank?: number;
+  // Icône propre au quiz (affiches) ; absente : celle de son thème.
+  icon?: QuizIconName;
 }
 
 export type ChoiceOptions = [string, string, string, string];

@@ -10,6 +10,7 @@ import {
 import { isValidQuizId } from './quizCatalog'
 import { extractOf } from './audioPlayback'
 import { questionDurationS } from './gameFlow'
+import { isQuizIconName } from './themeIcons'
 import type {
   AudioSourceId,
   BlindTestAsk,
@@ -123,9 +124,9 @@ export function isFeaturedRank(value: unknown): value is number {
 // Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
 function catalogDisplayFields(value: Record<string, unknown>): Pick<
   QuizSummary,
-  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank'
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon'
 > {
-  const { description, audience, poster, addedAt, featuredRank } = value
+  const { description, audience, poster, addedAt, featuredRank, icon } = value
   return {
     description:
       typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
@@ -133,6 +134,7 @@ function catalogDisplayFields(value: Record<string, unknown>): Pick<
     poster: isPosterPalette(poster) ? poster : 'violet',
     addedAt: isQuizDate(addedAt) ? addedAt : '',
     ...(isFeaturedRank(featuredRank) && { featuredRank }),
+    ...(isQuizIconName(icon) && { icon }),
   }
 }
 

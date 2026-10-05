@@ -6,6 +6,7 @@
   "description": "Trente ans de rap français, des pionniers aux succès d'aujourd'hui : un blind test pour les connaisseurs.",
   "audience": "all",
   "poster": "orange",
+  "icon": "microphone",
   "addedAt": "2026-10-04",
   "reviewStatus": "provisoire, morceaux vérifiés",
   "questions": [

@@ -1,4 +1,4 @@
-import { themeIconOf } from '@shared/themeIcons';
+import { quizIconOf, type QuizIconName } from '@shared/themeIcons';
 import type { PosterPalette } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -10,8 +10,10 @@ import { Spacing } from '@/constants/theme';
 interface QuizPosterProps {
   title: string;
   poster: PosterPalette;
-  // Thème du quiz : son icône remplace le « ? » (Culture générale et thème inconnu gardent le « ? »).
+  // Icône du quiz (la sienne, sinon celle de son thème) à la place du « ? » ; Culture générale et un
+  // thème inconnu gardent le « ? ».
   theme: string;
+  icon?: QuizIconName;
   width: number;
   // Lu par les lecteurs d'écran ; par défaut, le titre.
   accessibilityLabel?: string;
@@ -35,10 +37,10 @@ function titleSizeFor(title: string, width: number): number {
 // Côté maximal de l'icône de thème sur une affiche.
 const ICON_MAX_SIZE = 64;
 
-// Affiche portrait d'un quiz : dégradé propre au quiz (champ poster), icône du thème (ou grand « ? »)
+// Affiche portrait d'un quiz : dégradé propre au quiz (champ poster), icône du quiz (ou grand « ? »)
 // et titre en bas.
-export function QuizPoster({ title, poster, theme, width, accessibilityLabel, onPress }: QuizPosterProps) {
-  const icon = themeIconOf(theme);
+export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress }: QuizPosterProps) {
+  const icon = quizIconOf({ theme, icon: ownIcon });
   const height = Math.round(width * AppSizes.posterRatio);
   const markSize = Math.round(width * 0.5);
   const titleSize = titleSizeFor(title, width);

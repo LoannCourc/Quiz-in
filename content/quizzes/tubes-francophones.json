@@ -6,6 +6,7 @@
   "description": "Dix tubes que tout le monde a fredonnés, d'Édith Piaf à Kendji Girac : reconnaissez-les dès les premières notes.",
   "audience": "all",
   "poster": "gold",
+  "icon": "speechBubble",
   "addedAt": "2026-10-04",
   "featuredRank": 1,
   "reviewStatus": "provisoire, morceaux vérifiés",

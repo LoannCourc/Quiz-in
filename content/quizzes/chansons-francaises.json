@@ -6,6 +6,7 @@
   "description": "Les grandes voix de la chanson française, des années 50 aux années 80 : un blind test pour les fins connaisseurs.",
   "audience": "all",
   "poster": "violet",
+  "icon": "accordion",
   "addedAt": "2026-10-04",
   "featuredRank": 10,
   "reviewStatus": "provisoire, morceaux vérifiés",

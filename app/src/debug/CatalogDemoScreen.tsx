@@ -1,5 +1,5 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
-import { ICON_THEMES, themeIconOf } from '@shared/themeIcons';
+import { GENRE_ICONS, ICON_THEMES, themeIconOf, type GenreIconName, type QuizIconName } from '@shared/themeIcons';
 import type { SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -16,14 +16,14 @@ import { DEMO_CATALOG } from './demoCatalog';
 
 // Démo du catalogue et des fiches avec des quiz fictifs (développement uniquement).
 // /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
-// « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 : icônes de
-// thème de 18 à 64 px, sur la couleur de leur pastille.
+// « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
+// thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
   const { quiz: quizId, settings: openSettings, icons } = useLocalSearchParams<{ quiz?: string; settings?: string; icons?: string }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const quiz = DEMO_CATALOG.find((entry) => entry.id === quizId);
 
-  if (icons === '1') return <ThemeIconGallery />;
+  if (icons === '1' || icons === 'genres') return <ThemeIconGallery onlyGenres={icons === 'genres'} />;
   if (quiz) {
     return (
       <QuizDetails
@@ -48,22 +48,25 @@ export default function CatalogDemoScreen() {
 
 const GALLERY_SIZES = [18, 28, 44, 64];
 
-function ThemeIconGallery() {
+// Genres de blind test : couleur de la pastille Musique (les puces restent sur les thèmes).
+const GALLERY_ROWS: { label: string; name: QuizIconName; color: string }[] = [
+  ...ICON_THEMES.map((theme) => ({ label: theme, name: themeIconOf(theme), color: AppColors.themeChips[themeIconOf(theme)] })),
+  ...GENRE_ICONS.map((name) => ({ label: name, name, color: AppColors.themeChips.note })),
+];
+
+function ThemeIconGallery({ onlyGenres }: { onlyGenres: boolean }) {
   return (
     <Screen>
-      {ICON_THEMES.map((theme) => {
-        const name = themeIconOf(theme);
-        return (
-          <View key={theme} style={styles.galleryRow}>
-            {GALLERY_SIZES.map((size) => (
-              <View key={size} style={[styles.galleryTile, { backgroundColor: AppColors.themeChips[name], padding: size / 4 }]}>
-                <ThemeIcon name={name} size={size} />
-              </View>
-            ))}
-            <Text style={styles.galleryLabel}>{theme}</Text>
-          </View>
-        );
-      })}
+      {GALLERY_ROWS.filter((row) => !onlyGenres || GENRE_ICONS.includes(row.name as GenreIconName)).map(({ label, name, color }) => (
+        <View key={label} style={styles.galleryRow}>
+          {GALLERY_SIZES.map((size) => (
+            <View key={size} style={[styles.galleryTile, { backgroundColor: color, padding: size / 4 }]}>
+              <ThemeIcon name={name} size={size} />
+            </View>
+          ))}
+          <Text style={styles.galleryLabel}>{label}</Text>
+        </View>
+      ))}
     </Screen>
   );
 }

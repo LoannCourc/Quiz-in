@@ -24,6 +24,7 @@ import {
 import { answerTargets } from '../../shared/freeAnswers'
 import { averageDifficulty, difficultyLevel, estimateQuizMinutes, isValidQuizId } from '../../shared/quizCatalog'
 import { fitsBlindTestTimer, isBlindTestAsk, isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
+import { isQuizIconName } from '../../shared/themeIcons'
 import type {
   BlindTestAsk,
   DifficultyLevel,
@@ -51,6 +52,8 @@ interface QuizFile {
   poster: PosterPalette
   addedAt: string
   featuredRank?: number
+  // Icône propre au quiz (identifiant de shared/themeIcons.ts) ; absente : celle du thème.
+  icon?: string
   reviewStatus?: string
   questions: SourceQuestion[]
 }
@@ -102,6 +105,7 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (!POSTER_PALETTES.includes(quiz.poster)) errors.push(`poster : ${POSTER_PALETTES.join(', ')}`)
   if (!isQuizDate(quiz.addedAt)) errors.push('addedAt : date AAAA-MM-JJ')
   if (quiz.featuredRank !== undefined && !isFeaturedRank(quiz.featuredRank)) errors.push('featuredRank : entier de 1 à 10')
+  if (quiz.icon !== undefined && !isQuizIconName(quiz.icon)) errors.push(`icon « ${quiz.icon} » inconnue (shared/themeIcons.ts)`)
   if (quiz.questions.length < QUESTIONS_PER_GAME) errors.push(`au moins ${QUESTIONS_PER_GAME} questions`)
   const ids = quiz.questions.map((question) => question.id)
   if (new Set(ids).size !== ids.length) errors.push('ids de questions en double')
@@ -248,6 +252,7 @@ function toSummary(quiz: QuizFile): QuizSummary {
     poster: quiz.poster,
     addedAt: quiz.addedAt,
     ...(quiz.featuredRank !== undefined && { featuredRank: quiz.featuredRank }),
+    ...(isQuizIconName(quiz.icon) && { icon: quiz.icon }),
   }
 }
 

@@ -6,6 +6,7 @@
   "description": "Dance, boys bands et grandes ballades : dix tubes des années 90. Saurez-vous retrouver le titre ou l'artiste ?",
   "audience": "all",
   "poster": "cyan",
+  "icon": "cd",
   "addedAt": "2026-10-04",
   "featuredRank": 6,
   "reviewStatus": "provisoire, morceaux vérifiés",

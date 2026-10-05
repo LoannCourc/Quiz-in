@@ -6,6 +6,7 @@
   "description": "Des années 70 à aujourd'hui, dix tubes de la pop internationale : retrouvez le titre ou l'artiste.",
   "audience": "all",
   "poster": "blue",
+  "icon": "star",
   "addedAt": "2026-10-04",
   "featuredRank": 7,
   "reviewStatus": "provisoire, morceaux vérifiés",

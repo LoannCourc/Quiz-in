@@ -141,6 +141,7 @@ function SearchResults({ quizzes, posterWidth, onOpenQuiz }: SearchResultsProps)
           title={quiz.title}
           poster={quiz.poster}
           theme={quiz.theme}
+          icon={quiz.icon}
           width={posterWidth}
           onPress={() => onOpenQuiz(quiz.id)}
         />

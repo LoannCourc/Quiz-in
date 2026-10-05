@@ -1,6 +1,7 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
 import { difficultyLevel, estimateQuizMinutes } from '@shared/quizCatalog';
 import type { QuizEntry } from '@shared/quizValidation';
+import type { QuizIconName } from '@shared/themeIcons';
 import type { PosterPalette, QuizAudience, QuizGameType } from '@shared/types';
 
 import { strings } from '@/constants/strings';
@@ -19,6 +20,7 @@ interface DemoQuiz {
   featuredRank?: number;
   description: string;
   gameType?: QuizGameType;
+  icon?: QuizIconName;
 }
 
 const DEMO_QUIZZES: DemoQuiz[] = [
@@ -34,8 +36,8 @@ const DEMO_QUIZZES: DemoQuiz[] = [
   { id: 'demo-sciences-pointues', title: 'Sciences pointues', theme: 'Sciences et nature', difficulty: 2.8, audience: 'experts', poster: 'violet', addedAt: '2026-09-05', featuredRank: 7, description: 'Physique, chimie et biologie : pour celles et ceux qui ont gardé leurs cours.' },
   { id: 'demo-espace', title: 'L’espace et les étoiles', theme: 'Sciences et nature', difficulty: 2.0, audience: 'all', poster: 'blue', addedAt: '2026-06-18', description: 'Planètes, missions et astronautes : un quiz la tête dans les étoiles.' },
   { id: 'demo-capitales-expert', title: 'Capitales impossibles avec un titre très long pour tester', theme: 'Géographie', difficulty: 2.9, audience: 'experts', poster: 'gold', addedAt: '2026-05-02', description: 'Les capitales que personne ne connaît. Titre volontairement long pour vérifier la coupure sur trois lignes.' },
-  { id: 'demo-bt-tubes', title: 'Tubes francophones', theme: 'Musique', difficulty: 1.2, audience: 'all', poster: 'pink', addedAt: '2026-10-03', featuredRank: 8, gameType: 'blindTest', description: 'Dix tubes que tout le monde a fredonnés : reconnaissez-les dès les premières notes.' },
-  { id: 'demo-bt-annees-80', title: 'Années 80', theme: 'Musique', difficulty: 2.1, audience: 'all', poster: 'cyan', addedAt: '2026-09-20', gameType: 'blindTest', description: 'Synthés, refrains et tubes de la décennie : un blind test pour les nostalgiques.' },
+  { id: 'demo-bt-tubes', title: 'Tubes francophones', theme: 'Musique', difficulty: 1.2, audience: 'all', poster: 'pink', addedAt: '2026-10-03', featuredRank: 8, gameType: 'blindTest', icon: 'speechBubble', description: 'Dix tubes que tout le monde a fredonnés : reconnaissez-les dès les premières notes.' },
+  { id: 'demo-bt-annees-80', title: 'Années 80', theme: 'Musique', difficulty: 2.1, audience: 'all', poster: 'cyan', addedAt: '2026-09-20', gameType: 'blindTest', icon: 'cassette', description: 'Synthés, refrains et tubes de la décennie : un blind test pour les nostalgiques.' },
 ];
 
 export const DEMO_CATALOG: QuizEntry[] = DEMO_QUIZZES.map(({ featuredRank, gameType = 'quiz', ...quiz }) => ({
