@@ -1,4 +1,7 @@
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { themeIconOf } from '@shared/themeIcons';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+
+import { ThemeIcon } from '@/components/ui/ThemeIcon';
 
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -11,7 +14,8 @@ interface ThemeChipsProps {
   onSelect: (theme: string | null) => void;
 }
 
-// Puces de thème du catalogue, sur une ligne qui défile horizontalement.
+// Puces de thème du catalogue, sur une ligne qui défile horizontalement : pastille ronde à la couleur
+// du thème avec son icône (maquette I2), puis le libellé ; « Tout » sans pastille.
 export function ThemeChips({ themes, selected, onSelect }: ThemeChipsProps) {
   const choices: { value: string | null; label: string }[] = [
     { value: null, label: strings.catalog.allThemes },
@@ -27,7 +31,8 @@ export function ThemeChips({ themes, selected, onSelect }: ThemeChipsProps) {
             accessibilityRole="radio"
             accessibilityState={{ selected: isSelected }}
             onPress={() => onSelect(choice.value)}
-            style={[styles.chip, isSelected && styles.selectedChip]}>
+            style={[styles.chip, choice.value !== null && styles.chipWithIcon, isSelected && styles.selectedChip]}>
+            {choice.value !== null && <ThemeDisc theme={choice.value} />}
             <Text style={[styles.label, isSelected && styles.selectedLabel]}>{choice.label}</Text>
           </Pressable>
         );
@@ -35,6 +40,18 @@ export function ThemeChips({ themes, selected, onSelect }: ThemeChipsProps) {
     </ScrollView>
   );
 }
+
+function ThemeDisc({ theme }: { theme: string }) {
+  const name = themeIconOf(theme);
+  return (
+    <View style={[styles.disc, { backgroundColor: AppColors.themeChips[name] }]}>
+      <ThemeIcon name={name} size={ICON_SIZE} />
+    </View>
+  );
+}
+
+const ICON_SIZE = 18;
+const DISC_SIZE = 28;
 
 const styles = StyleSheet.create({
   // flexGrow 0 : sur le web, une ScrollView horizontale s'étire sinon en hauteur.
@@ -48,11 +65,23 @@ const styles = StyleSheet.create({
   },
   chip: {
     height: AppSizes.chipHeight,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
     paddingHorizontal: Spacing.three,
     borderRadius: AppSizes.radiusPill,
     borderWidth: 2,
     borderColor: AppColors.chipBorder,
+  },
+  chipWithIcon: {
+    paddingLeft: Spacing.one,
+  },
+  disc: {
+    width: DISC_SIZE,
+    height: DISC_SIZE,
+    borderRadius: DISC_SIZE / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   selectedChip: {
     borderColor: AppColors.chipSelected,
