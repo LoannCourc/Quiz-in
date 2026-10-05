@@ -70,6 +70,7 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
   )
   const players = sortByRank(session.players)
   const others = players.slice(PODIUM_SIZE)
+  const isCrowded = others.length > SINGLE_COLUMN_MAX_ROWS
 
   // Groupe : podium des équipes, puis les meilleurs joueurs (maquette G3).
   if (session.settings.teams) {
@@ -86,9 +87,9 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
     <main className="screen end">
       {confetti}
       <h1 className="hero-title">{strings.end.title}</h1>
-      <div className="end-body">
+      <div className={isCrowded ? 'end-body is-crowded' : 'end-body'}>
         <Podium players={players.slice(0, PODIUM_SIZE)} delays={delays} dance={isDancing} />
-        <RankingList players={others} columns={others.length > SINGLE_COLUMN_MAX_ROWS ? 2 : 1} dance={isDancing} />
+        <RankingList players={others} columns={isCrowded ? 2 : 1} dance={isDancing} />
       </div>
     </main>
   )

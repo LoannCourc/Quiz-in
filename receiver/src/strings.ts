@@ -192,6 +192,8 @@ export const strings = {
   },
   ranking: {
     points: (points: number) => `${points} pts`,
+    // Liste compacte (fin de partie à 13 joueurs et plus) : le nombre seul, le nom garde la place.
+    compactPoints: (points: number) => `${points}`,
     gained: (points: number) => `+${points}`,
   },
   dev: {

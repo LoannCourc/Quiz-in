@@ -28,7 +28,10 @@ const DANCE_OFFSET_S = 0.17
 
 export function RankingList({ players, gainedPoints, columns = 1, delays, dance = false }: RankingListProps) {
   return (
-    <ol className={`ranking ranking-columns-${columns}`}>
+    <ol
+      className={`ranking ranking-columns-${columns}`}
+      // Deux colonnes : la première se remplit d'abord, autant de lignes que nécessaire.
+      style={columns === 2 ? { gridTemplateRows: `repeat(${Math.ceil(players.length / 2)}, auto)` } : undefined}>
       {players.map((player, position) => {
         const gained = gainedPoints?.[player.id] ?? 0
         return (
@@ -46,7 +49,9 @@ export function RankingList({ players, gainedPoints, columns = 1, delays, dance 
             {gainedPoints && (
               <span className="ranking-gained">{gained > 0 ? strings.ranking.gained(gained) : ''}</span>
             )}
-            <span className="ranking-score">{strings.ranking.points(player.score)}</span>
+            <span className="ranking-score">
+              {columns === 2 ? strings.ranking.compactPoints(player.score) : strings.ranking.points(player.score)}
+            </span>
           </li>
         )
       })}

@@ -12,6 +12,11 @@
   column-gap: 3rem;
 }
 
+/* Beaucoup de joueurs : la liste passe sur deux colonnes compactes ; le podium garde sa taille. */
+.end-body.is-crowded {
+  column-gap: 2rem;
+}
+
 .end .podium-position-1 .podium-block {
   height: 15rem;
 }
