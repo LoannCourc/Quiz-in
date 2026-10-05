@@ -1181,11 +1181,12 @@ describe('Bluff', () => {
     bluffOwn: { 0: { [PLAYER]: 1 } },
   }
 
-  test('un joueur écrit sa proposition pendant l’écriture d’un Bluff, jamais celle d’un autre ni au-delà de 40 caractères', async () => {
+  test('un joueur écrit sa proposition pendant l’écriture d’un Bluff, jamais celle d’un autre ni au-delà de 100 caractères', async () => {
     await seedWriting()
     await assertSucceeds(writeBluff(PLAYER, 'Monopolis'))
     await assertFails(db(PLAYER).ref(`${SESSION}/bluffs/0/${OTHER}`).set({ text: 'Usurpée', submittedAt: SERVER_TIME }))
-    await assertFails(writeBluff(OTHER, 'x'.repeat(41)))
+    await assertFails(writeBluff(OTHER, 'x'.repeat(101)))
+    await assertSucceeds(writeBluff(OTHER, 'Il a fini sa vie en vendant des parapluies sur les quais de Seine, ruiné par un pari stupide.'))
     await assertFails(writeBluff(OTHER, 'Mauvaise question', 1))
   })
 

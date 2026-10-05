@@ -120,9 +120,9 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 |---|---|---|
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs ; en Groupe, conditions de la section 6.4 |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
-| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (45 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
+| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (60 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
 | **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
-| **VOTE** (Bluff seulement, 20 s) | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont voté (délai de 2 s). L'hôte peut avancer. Toujours suivi de REVEAL (section 16) |
+| **VOTE** (Bluff seulement, 30 s) | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont voté (délai de 2 s). L'hôte peut avancer. Toujours suivi de REVEAL (section 16) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
@@ -166,7 +166,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 ### 6.1 Durées
 - **Choix multiples** : 20 secondes par question.
 - **Réponse libre** : 30 secondes par question, quiz comme blind test (l'extrait joue alors toute la preview de 30 s).
-- **Bluff** : écriture 45 s, vote 20 s, révélation 4 s plus 2 s par fausse proposition (section 16).
+- **Bluff** : écriture 60 s, vote 30 s, révélation 4 s plus 2 s par fausse proposition (section 16).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
 - **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
@@ -376,7 +376,7 @@ sessions/{code}
 }
 ```
 
-- `answer` et chaque leurre : 40 caractères au plus (ils s'affichent parmi les choix du vote), sans mot interdit.
+- `answer` et chaque leurre : des phrases de 100 caractères au plus (ils s'affichent parmi les choix du vote), même ton et même longueur, sans mot interdit.
 - `acceptedAnswers` : autres écritures de la vraie réponse (une proposition qui les vaut est refusée), éventuellement vide.
 - `decoys` : 2 ou 3 leurres crédibles et faux, distincts entre eux ; un leurre qui vaudrait la vraie réponse (exact ou à une faute près) est une erreur du build, un leurre très ressemblant un avertissement.
 - Pas de `options`, `correctIndex`, `music` ni `ask`. Une bonne question de Bluff a une réponse courte et peu connue, que personne ne peut deviner à coup sûr.
@@ -519,12 +519,12 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
-**Déroulé.** QUESTION (écriture, 45 s) → VOTE (20 s) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture et le vote gardent leur chrono.
+**Déroulé.** QUESTION (écriture, 60 s) → VOTE (30 s) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture et le vote gardent leur chrono.
 
-**Joueurs.** 2 au minimum. Bluff : pas de limite propre, limite générale de l'app (`MAX_PLAYERS`, 20). La TV adapte la grille des choix à leur nombre (plus de colonnes et un texte plus petit, toujours lisible en 720p) ; sur le téléphone, la liste défile.
+**Joueurs.** 2 au minimum. Bluff : pas de limite propre, limite générale de l'app (`MAX_PLAYERS`, 20). Sur la TV, les choix sont des cartes en une ou deux colonnes selon leur nombre et la longueur de leur texte (des phrases), avec une taille de texte adaptée, toujours lisible en 720p ; sur le téléphone, la liste défile.
 
 **Écriture.**
-- 40 caractères au plus. L'hôte vérifie chaque proposition (le téléphone du joueur ne connaît jamais la vraie réponse) :
+- **Des phrases**, pas des mots : 100 caractères au plus (vraie réponse, leurres et propositions des joueurs). Champ de saisie sur plusieurs lignes, avec un compteur « n / 100 » ; les retours à la ligne et espaces superflus sont retirés à l'affichage. L'hôte vérifie chaque proposition (le téléphone du joueur ne connaît jamais la vraie réponse) :
   - **la vraie réponse** (ou une autre écriture acceptée), exacte ou à une faute de frappe près (mêmes tolérances que la Réponse libre, section 6.3 ; majuscules, accents et ponctuation ignorés) : refusée avec « Tu as trouvé la vraie réponse ! Invente-en une fausse ». Le niveau « proche » ne compte pas : un mot de la vraie réponse seul, ou une réponse seulement ressemblante, est accepté ;
   - **mot interdit** (même liste qu'en Réponse libre) : refusée, jamais masquée ;
   - **vide** (que des espaces ou de la ponctuation) : refusée.

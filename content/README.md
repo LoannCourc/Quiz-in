@@ -54,8 +54,8 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
 ## Bluff (spec 16)
 
 Un quiz Bluff a `"gameType": "bluff"`. Ses questions n'ont pas de propositions : `answer` (la vraie réponse,
-40 caractères au plus), `acceptedAnswers` (ses autres écritures, éventuellement vide) et `decoys` (2 ou 3 leurres
-crédibles et faux, 40 caractères au plus). Pas de `options`, `correctIndex`, `music` ni `ask`.
+une phrase de 100 caractères au plus), `acceptedAnswers` (ses autres écritures, éventuellement vide) et `decoys`
+(2 ou 3 leurres crédibles et faux, des phrases de même ton et de même longueur, 100 caractères au plus). Pas de `options`, `correctIndex`, `music` ni `ask`.
 
 - Le build refuse un leurre qui vaudrait la vraie réponse (exact ou à une faute près), un leurre en double ou
   un mot interdit ; il signale un leurre très ressemblant.

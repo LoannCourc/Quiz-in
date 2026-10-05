@@ -249,7 +249,7 @@ describe('Bluff : votes et points', () => {
 })
 
 describe('Bluff : déroulé et moteur', () => {
-  test('question (écriture, 45 s) → vote (20 s) → révélation (4 s + 2 s par fausse proposition)', () => {
+  test('question (écriture, 60 s) → vote (30 s) → révélation (4 s + 2 s par fausse proposition)', () => {
     const context = { answerMode: 'bluff' as const, currentIndex: 0, questionCount: 3 }
     expect(nextPhase('question', context)).toEqual({ status: 'vote', currentIndex: 0, durationS: BLUFF_VOTE_DURATION_S })
     expect(nextPhase('vote', { ...context, choiceCount: 6 })).toEqual({ status: 'reveal', currentIndex: 0, durationS: 14 })

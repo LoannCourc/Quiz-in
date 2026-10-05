@@ -20,10 +20,10 @@ describe('Bluff : contrôles du contenu (build)', () => {
     expect(bluffQuestionErrors(makeBluffQuestion(0))).toEqual([])
   })
 
-  test('2 ou 3 leurres, 40 caractères au plus, pas de champ des questions classiques', () => {
+  test('2 ou 3 leurres, 100 caractères au plus, pas de champ des questions classiques', () => {
     expect(bluffQuestionErrors(makeBluffQuestion(0, { decoys: ['Seul'] }))).toContain('decoys : de 2 à 3 leurres')
     expect(bluffQuestionErrors(makeBluffQuestion(0, { decoys: ['A', 'B', 'C', 'D'] }))).toContain('decoys : de 2 à 3 leurres')
-    expect(bluffQuestionErrors(makeBluffQuestion(0, { answer: 'x'.repeat(41) }))).toContain('answer vide ou > 40 caractères')
+    expect(bluffQuestionErrors(makeBluffQuestion(0, { answer: 'x'.repeat(101) }))).toContain('answer vide ou > 100 caractères')
     const withOptions = { ...makeBluffQuestion(0), options: ['a', 'b', 'c', 'd'] } as unknown as BluffQuestion
     expect(bluffQuestionErrors(withOptions)).toContain("options : champ des questions classiques, absent d'un Bluff")
   })
@@ -53,7 +53,7 @@ describe('Bluff : lecture depuis la base', () => {
 
   test('mal formée (leurres manquants ou trop nombreux, réponse trop longue) : ignorée', () => {
     expect(parseBluffQuestion({ ...makeBluffQuestion(0), decoys: ['Seul'] })).toBeNull()
-    expect(parseBluffQuestion({ ...makeBluffQuestion(0), answer: 'x'.repeat(41) })).toBeNull()
+    expect(parseBluffQuestion({ ...makeBluffQuestion(0), answer: 'x'.repeat(101) })).toBeNull()
     expect(parseBluffQuestions([makeBluffQuestion(0), { text: 'incomplète' }])).toEqual({ valid: [makeBluffQuestion(0)], ignoredCount: 1 })
   })
 
