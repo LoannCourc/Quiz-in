@@ -1,4 +1,5 @@
 import { extractOf } from './audioPlayback'
+import { bluffRevealData, buildVoteChoices, isBluffQuestion, voteDeadline, writingDeadline } from './bluff'
 import {
   ALL_ANSWERED_DELAY_S,
   CORRECT_ANSWER_POINTS,
@@ -33,7 +34,9 @@ import {
 import type {
   Answer,
   AnswerMode,
+  BluffQuestion,
   ChoiceOptions,
+  GameQuestion,
   GameStatus,
   PlayerId,
   PlayerResult,
@@ -53,7 +56,7 @@ export type SessionUpdate = Record<string, unknown>
 
 // Partie limitée à QUESTIONS_PER_GAME questions, dans l'ordre du quiz (questions déjà validées).
 // limit : partie plus courte (réservée au développement), jamais plus que QUESTIONS_PER_GAME.
-export function selectGameQuestions(questions: readonly Question[], limit = QUESTIONS_PER_GAME): Question[] {
+export function selectGameQuestions<T extends GameQuestion>(questions: readonly T[], limit = QUESTIONS_PER_GAME): T[] {
   return questions.slice(0, Math.max(0, Math.min(limit, QUESTIONS_PER_GAME)))
 }
 
@@ -65,12 +68,14 @@ export type AudioUrls = Readonly<Record<string, string>>
 // En Réponse libre, les propositions ne sont pas envoyées (elles contiennent la bonne réponse) ;
 // un blind test publie ce qu'il faut écrire (ask : titre, artiste ou les deux).
 // Blind test : seulement l'adresse de l'extrait, jamais l'identifiant, le titre ni l'artiste.
-export function toPublicQuestion(question: Question, answerMode: AnswerMode, audioUrl?: string): PublicQuestion {
+// Bluff : l'énoncé seul (les choix sont publiés au début du vote, sans la vraie réponse désignée).
+export function toPublicQuestion(question: GameQuestion, answerMode: AnswerMode, audioUrl?: string): PublicQuestion {
   const published: PublicQuestion = {
     text: question.text,
     difficulty: question.difficulty,
     timeLimit: questionDurationS(answerMode, question.timeLimit),
   }
+  if (isBluffQuestion(question)) return published
   if (answerMode === 'choice') published.options = [...question.options] as ChoiceOptions
   if (answerMode === 'free' && question.music && question.ask) published.ask = question.ask
   if (question.music && audioUrl) published.audio = { url: audioUrl, ...extractOf(question.music, published.timeLimit) }
@@ -129,14 +134,27 @@ export interface RevealResult {
   ranks: Record<PlayerId, number>
 }
 
-// Score = somme des points stockés dans answers pour les questions précédentes, plus ceux de la
-// question révélée : rejouer la révélation ne compte jamais deux fois les mêmes points.
+// Score = somme des points stockés pour les questions précédentes (answers, ou bluffPoints en Bluff),
+// plus ceux de la question révélée : rejouer la révélation ne compte jamais deux fois les mêmes points.
 function totalScore(session: Session, playerId: PlayerId, current: PlayerResult | undefined): number {
   let total = current?.points ?? 0
   for (let index = 0; index < session.currentIndex; index++) {
-    total += session.answers?.[index]?.[playerId]?.points ?? 0
+    total += session.answers?.[index]?.[playerId]?.points ?? session.bluffPoints?.[index]?.[playerId] ?? 0
   }
   return total
+}
+
+function withScores(session: Session, reveal: Reveal, results: Record<PlayerId, PlayerResult>): RevealResult {
+  const scores = Object.fromEntries(Object.keys(session.players).map((id) => [id, totalScore(session, id, results[id])]))
+  return { reveal, results, scores, ranks: computeRanks(scores) }
+}
+
+// Bluff : révélation de la question courante (vraie réponse, choix avec auteurs et votants, points).
+export function buildBluffReveal(question: BluffQuestion, session: Session): RevealResult {
+  const { choices, results } = bluffRevealData(session)
+  const reveal: Reveal = { correctAnswer: question.answer, stats: { bluffChoices: choices }, results }
+  if (question.explanation) reveal.explanation = question.explanation
+  return withScores(session, reveal, results)
 }
 
 // Résultat de chaque joueur ayant répondu : correction automatique à la fin de la question, ou,
@@ -166,7 +184,6 @@ export function buildReveal(question: Question, session: Session, decisions?: Va
   const answers = session.answers?.[session.currentIndex] ?? {}
   const playerIds = Object.keys(session.players)
   const results = questionResults(question, session, decisions)
-  const scores = Object.fromEntries(playerIds.map((id) => [id, totalScore(session, id, results[id])]))
   const answered = Object.entries(answers).filter(([playerId]) => playerId in session.players)
 
   const reveal: Reveal = {
@@ -189,7 +206,7 @@ export function buildReveal(question: Question, session: Session, decisions?: Va
     reveal.music = { title, artist, source }
   }
 
-  return { reveal, results, scores, ranks: computeRanks(scores) }
+  return withScores(session, reveal, results)
 }
 
 // Heure du serveur à laquelle l'hôte doit faire avancer la partie, ou null (LOBBY, PAUSED, END :
@@ -208,7 +225,10 @@ export function nextDeadline(session: Session): number | null {
     case 'starting':
       return session.phaseEndsAt
     case 'question':
-      return questionDeadline(session)
+      // Bluff : écriture des fausses réponses.
+      return session.settings.answerMode === 'bluff' ? writingDeadline(session) : questionDeadline(session)
+    case 'vote':
+      return voteDeadline(session)
     case 'lobby':
     case 'validation':
     case 'paused':
@@ -244,11 +264,12 @@ function phaseTimes(nowServer: number, durationS: number | null): SessionUpdate 
 // la sortie de VALIDATION (voir validateUpdate).
 export function transitionUpdate(
   session: Session,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   expected: ExpectedPhase,
   nowServer: number,
   audioUrls: AudioUrls = {},
   decisions: ValidationDecisions = {},
+  random: () => number = Math.random,
 ): SessionUpdate | null {
   if (session.status !== expected.status || session.currentIndex !== expected.currentIndex) return null
   const { answerMode } = session.settings
@@ -264,6 +285,7 @@ export function transitionUpdate(
     stepByStep: session.settings.stepByStep === true,
     suspense,
     validation: hasValidationPhase(session.settings),
+    choiceCount: session.currentQuestion?.choices?.length,
   }
   const phase = nextPhase(session.status, context, upcoming?.timeLimit)
   if (!phase || session.status === 'lobby') return null
@@ -276,15 +298,25 @@ export function transitionUpdate(
       // reveal est effacé au passage à la question suivante (spec 7).
       return { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
     }
+    case 'vote': {
+      // Bluff : choix publiés sans auteur ni type ; auteurs et index de chacun gardés pour la suite.
+      const question = questions[session.currentIndex]
+      if (!question || !isBluffQuestion(question)) return null
+      return { ...base, ...votePaths(session, question, random) }
+    }
     case 'validation': {
       // Correction automatique écrite dès la fin de la question (Rapidité calculée sur cette fin).
       const question = questions[session.currentIndex]
-      if (!question) return null
+      if (!question || isBluffQuestion(question)) return null
       return { ...base, ...gradingPaths(session, question), ...teamPresencePaths(session) }
     }
     case 'reveal': {
       const question = questions[session.currentIndex]
       if (!question) return null
+      if (isBluffQuestion(question)) {
+        const result = buildBluffReveal(question, session)
+        return { ...base, ...revealPaths(session, result), ...teamPresencePaths(session), ...teamPaths(session, result.results) }
+      }
       const reviewed = session.status === 'validation' ? decisions : undefined
       const result = buildReveal(question, session, reviewed)
       // Joueurs comptés pour les équipes : figés à la fin de la question (avant une validation éventuelle).
@@ -295,6 +327,19 @@ export function transitionUpdate(
       return { ...base, currentQuestion: null, reveal: null }
     default:
       return base
+  }
+}
+
+// Bluff, début du vote : choix mélangés publiés dans currentQuestion (textes seuls) ; types et auteurs
+// gardés par l'hôte (bluffChoices) ; index de son propre choix pour chaque auteur (bluffOwn, lisible
+// par lui seul : son écran le grise et les règles refusent ce vote).
+function votePaths(session: Session, question: BluffQuestion, random: () => number): SessionUpdate {
+  const index = session.currentIndex
+  const { choices, own } = buildVoteChoices(question, session, random)
+  return {
+    'currentQuestion/choices': choices.map((choice) => choice.text),
+    [`bluffChoices/${index}`]: choices,
+    [`bluffOwn/${index}`]: Object.keys(own).length > 0 ? own : null,
   }
 }
 
@@ -353,9 +398,15 @@ function gradingPaths(session: Session, question: Question): SessionUpdate {
   return update
 }
 
+// Points de la question : dans answers, ou dans bluffPoints en Bluff (un joueur peut y marquer des
+// points sans avoir voté, grâce à sa proposition).
 function revealPaths(session: Session, { reveal, results, scores, ranks }: RevealResult): SessionUpdate {
   const update: SessionUpdate = { reveal }
-  for (const [playerId, result] of Object.entries(results)) Object.assign(update, resultPaths(session, playerId, result))
+  const isBluff = session.settings.answerMode === 'bluff'
+  for (const [playerId, result] of Object.entries(results)) {
+    if (isBluff) update[`bluffPoints/${session.currentIndex}/${playerId}`] = result.points
+    else Object.assign(update, resultPaths(session, playerId, result))
+  }
   for (const playerId of Object.keys(scores)) {
     update[`players/${playerId}/score`] = scores[playerId]
     update[`players/${playerId}/rank`] = ranks[playerId]
@@ -367,7 +418,7 @@ function revealPaths(session: Session, { reveal, results, scores, ranks }: Revea
 // par exemple à la reprise après une longue pause), ou null s'il n'y a rien à changer.
 export function audioUrlUpdate(
   session: Session,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   audioUrls: AudioUrls,
 ): SessionUpdate | null {
   const published = session.currentQuestion?.audio
@@ -399,7 +450,7 @@ export type LaunchResult = { ok: true; update: SessionUpdate } | { ok: false; re
 // est coupé ou s'il manque l'adresse d'un extrait.
 export function launchUpdate(
   session: Session,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   nowServer: number,
   limit = QUESTIONS_PER_GAME,
   audio: LaunchAudio = { enabled: false, urls: {} },
@@ -411,7 +462,7 @@ export function launchUpdate(
   if (teamRefusal) return { ok: false, reason: teamRefusal }
   const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
-  const musicQuestions = gameQuestions.filter((question) => question.music)
+  const musicQuestions = gameQuestions.filter((question) => !isBluffQuestion(question) && question.music)
   if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }
   if (musicQuestions.some((question) => !audio.urls[question.id])) return { ok: false, reason: 'audioUnavailable' }
 
@@ -427,6 +478,7 @@ export function launchUpdate(
     teams: null,
     teamPoints: null,
     teamPresence: null,
+    ...BLUFF_RESET,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = 0
@@ -439,7 +491,19 @@ export function launchUpdate(
   return { ok: true, update }
 }
 
-const PAUSABLE: readonly GameStatus[] = ['starting', 'question', 'validation', 'reveal', 'scores']
+// Bluff : nœuds effacés au lancement et à « Rejouer ».
+const BLUFF_RESET: SessionUpdate = {
+  bluffs: null,
+  bluffChecks: null,
+  bluffedBy: null,
+  bluffChoices: null,
+  bluffOwn: null,
+  votes: null,
+  votedBy: null,
+  bluffPoints: null,
+}
+
+const PAUSABLE: readonly GameStatus[] = ['starting', 'question', 'vote', 'validation', 'reveal', 'scores']
 
 // Pause : on mémorise l'état et le temps restant de la phase (jamais négatif).
 export function pauseUpdate(session: Session, nowServer: number): SessionUpdate | null {
@@ -495,7 +559,7 @@ export function isResumableBy(game: { hostUid?: PlayerId; status?: GameStatus } 
 }
 
 // États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).
-const IN_PROGRESS: readonly GameStatus[] = ['starting', 'question', 'reveal', 'scores', 'validation', 'paused']
+const IN_PROGRESS: readonly GameStatus[] = ['starting', 'question', 'vote', 'reveal', 'scores', 'validation', 'paused']
 
 // Terminer (contrôle de l'hôte) : fin immédiate, avec le classement actuel. Une question en
 // cours n'est pas comptée (scores = ceux de la dernière révélation). Possible pendant la pause.
@@ -532,6 +596,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
     teams: null,
     teamPoints: null,
     teamPresence: null,
+    ...BLUFF_RESET,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = null
@@ -541,7 +606,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
 }
 
 // Ce que « Passer » va faire, pour un libellé explicite sur le bouton de l'hôte.
-export type SkipTarget = 'firstQuestion' | 'validation' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
+export type SkipTarget = 'firstQuestion' | 'vote' | 'validation' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
 
 export type AwaitingNext = 'ranking' | 'nextQuestion' | 'finalRanking'
 
@@ -594,7 +659,10 @@ function skipTarget(session: Session): SkipTarget | null {
     case 'starting':
       return 'firstQuestion'
     case 'question':
+      if (session.settings.answerMode === 'bluff') return 'vote'
       return hasValidationPhase(session.settings) ? 'validation' : 'reveal'
+    case 'vote':
+      return 'reveal'
     case 'validation':
       // Même chose que « Valider les réponses » avec les décisions automatiques.
       return 'reveal'

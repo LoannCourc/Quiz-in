@@ -43,6 +43,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
   - Démos : `/debug/lobby?teams=random|host|players&drawn=1&page=teams`, joueur `lobbyTeams*`, `revealTeams`, `scoresTeams`, `endTeams` ; TV `&teams=1&draw=1`.
 - **Une fonction par écran** (spec 4) : la révélation n'affiche aucun rang (ni « Ta place », ni rang d'équipe) ; le rang n'apparaît qu'au Classement et à la fin.
 - **Champs publics de la session** : liste unique `shared/publicFields.ts` (exhaustive par le typage), lue par `usePlayerSession` et la TV (`useLiveSession`). Un champ ajouté à `PublicSession` y est obligatoire ; ses règles de lecture doivent être déployées avant les sites.
+- **Bluff : lot 1 codé** (spec 16, maquettes `docs/design/bluff/` B1 à B5) : types (`answerMode` et `gameType` `bluff`, état `vote`), logique pure `shared/bluff.ts` (vérification des propositions par l'hôte, choix du vote avec leurres, points), moteur (`hostEngine` : écriture → vote → révélation, `bluffPoints`), règles de la base et tests. À venir : lot 2 (contenu et validation), lot 3 (TV), lot 4 (téléphones et boucle de l'hôte, qui appellera `bluffChecksUpdate`), lot 5 (docs).
 - **Prochains chantiers validés** (détail : spec 14). **Ne rien coder avant le message dédié du développeur pour chaque chantier.**
   - (d) Publication de l'application Cast.
 - Les questions (`questions/`) ne sont lues que par l'hôte (`useGameQuestions`), validées par `shared/quizValidation.ts`.
@@ -110,7 +111,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 
 ## Règles d'architecture et de sécurité (issues de la spec, à ne pas défaire)
 - **L'hôte est l'autorité de la partie** : il fait avancer les états, valide les réponses et calcule les points.
-- **La bonne réponse n'est jamais publiée avant la révélation.** `currentQuestion` n'accepte que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio` ; la bonne réponse n'apparaît que dans `reveal`. Le client joueur ne lit jamais `questions/`.
+- **La bonne réponse n'est jamais publiée avant la révélation.** `currentQuestion` n'accepte que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio`, `choices` ; la bonne réponse n'apparaît que dans `reveal` (en Bluff, `choices` la contient mélangée, sans la désigner). Le client joueur ne lit jamais `questions/`.
 - **`answers` n'est lisible que par l'hôte.** Les autres savent seulement qui a répondu (`answeredBy`), jamais quoi.
 - `sessions` n'est jamais lisible en entier ; seul l'hôte lit `sessions/{code}` d'un bloc, les autres lisent champ par champ.
 - Un joueur n'écrit que sa propre réponse, et seulement pendant l'état QUESTION.

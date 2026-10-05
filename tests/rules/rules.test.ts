@@ -22,12 +22,13 @@ import {
   validateUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
-import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
+import { bluffChecksUpdate } from '../../shared/bluff'
+import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
 import { launchTeamDraw, teamDrawUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
-import { makeSession, QUESTIONS } from '../unit/engineFixtures'
+import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
 
 const PROJECT_ID = 'demo-quiz-in'
 const CODE = 'K7PX'
@@ -1146,5 +1147,122 @@ describe('Groupe (équipes)', () => {
     expect(session.status).toBe('reveal')
     expect(Object.keys(session.teams ?? {}).sort()).toEqual(['cyan', 'pink'])
     expect(session.teamPresence?.[0]).toBeDefined()
+  })
+})
+
+describe('Bluff', () => {
+  const BLUFF_SETTINGS = { answerMode: 'bluff', speedBonus: true, control: false, teams: false }
+  const bluffPlayers = {
+    [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true },
+    [OTHER]: { name: 'Tom', avatar: '🐼', score: 0, rank: 1, connected: true },
+  }
+
+  function seedWriting(extra: Data = {}) {
+    return seedSession({ settings: BLUFF_SETTINGS, players: bluffPlayers, ...extra })
+  }
+
+  function writeBluff(uid: string, text: string, index = 0) {
+    return db(uid).ref(`${SESSION}/bluffs/${index}/${uid}`).set({ text, submittedAt: SERVER_TIME })
+  }
+
+  // Vote et votedBy écrits ensemble, comme le fera le client joueur.
+  function castVote(uid: string, value: number, index = 0) {
+    return db(uid)
+      .ref(SESSION)
+      .update({ [`votes/${index}/${uid}`]: { value, submittedAt: SERVER_TIME }, [`votedBy/${index}/${uid}`]: true })
+  }
+
+  const voting = {
+    status: 'vote',
+    settings: BLUFF_SETTINGS,
+    players: bluffPlayers,
+    currentQuestion: { text: 'Question ?', difficulty: 2, timeLimit: 45, choices: ['Vraie', 'Monopolis', 'Leurre'] },
+    bluffChoices: { 0: [{ text: 'Vraie', kind: 'truth' }, { text: 'Monopolis', kind: 'bluff', authors: [PLAYER] }, { text: 'Leurre', kind: 'decoy' }] },
+    bluffOwn: { 0: { [PLAYER]: 1 } },
+  }
+
+  test('un joueur écrit sa proposition pendant l’écriture d’un Bluff, jamais celle d’un autre ni au-delà de 40 caractères', async () => {
+    await seedWriting()
+    await assertSucceeds(writeBluff(PLAYER, 'Monopolis'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/bluffs/0/${OTHER}`).set({ text: 'Usurpée', submittedAt: SERVER_TIME }))
+    await assertFails(writeBluff(OTHER, 'x'.repeat(41)))
+    await assertFails(writeBluff(OTHER, 'Mauvaise question', 1))
+  })
+
+  test('hors de l’écriture, ou hors d’un Bluff : refusé', async () => {
+    await seedWriting({ status: 'vote' })
+    await assertFails(writeBluff(PLAYER, 'Monopolis'))
+    await seedSession({ players: bluffPlayers })
+    await assertFails(writeBluff(PLAYER, 'Monopolis'))
+  })
+
+  test('réécriture permise après un refus, jamais après l’acceptation ni après ' + BLUFF_MAX_ATTEMPTS + ' refus', async () => {
+    await seedWriting({ bluffChecks: { 0: { [PLAYER]: { verdict: 'truth', refusals: 1, submittedAt: 1 }, [OTHER]: { verdict: 'ok', refusals: 0, submittedAt: 1 } } } })
+    await assertSucceeds(writeBluff(PLAYER, 'Monopolis'))
+    await assertFails(writeBluff(OTHER, 'Autre idée'))
+    await seedWriting({ bluffChecks: { 0: { [PLAYER]: { verdict: 'truth', refusals: BLUFF_MAX_ATTEMPTS, submittedAt: 1 } } } })
+    await assertFails(writeBluff(PLAYER, 'Monopolis'))
+  })
+
+  test('chacun ne lit que sa proposition, son verdict et son propre choix ; auteurs et votes réservés à l’hôte', async () => {
+    await seedSession({
+      ...voting,
+      bluffs: { 0: { [PLAYER]: { text: 'Monopolis', submittedAt: 1 } } },
+      bluffChecks: { 0: { [PLAYER]: { verdict: 'ok', refusals: 0, submittedAt: 1 } } },
+      bluffedBy: { 0: { [PLAYER]: true } },
+      votes: { 0: { [OTHER]: { value: 1, submittedAt: 1 } } },
+      bluffPoints: { 0: { [PLAYER]: 500 } },
+    })
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/bluffs/0/${PLAYER}`).once('value'))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/bluffChecks/0/${PLAYER}`).once('value'))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/bluffOwn/0/${PLAYER}`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/bluffs/0/${PLAYER}`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/bluffChecks/0/${PLAYER}`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/bluffOwn/0/${PLAYER}`).once('value'))
+    for (const node of ['bluffs', 'bluffChecks', 'bluffOwn', 'bluffChoices', 'votes', 'bluffPoints']) {
+      await assertFails(db(PLAYER).ref(`${SESSION}/${node}`).once('value'))
+    }
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/bluffedBy`).once('value'))
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/votedBy`).once('value'))
+  })
+
+  test('vote : une fois, pendant le vote, pour un choix qui existe et jamais pour sa propre proposition', async () => {
+    await seedSession(voting)
+    await assertFails(castVote(PLAYER, 1))
+    await assertFails(castVote(PLAYER, 7))
+    await assertSucceeds(castVote(PLAYER, 0))
+    await assertFails(castVote(PLAYER, 2))
+    await assertSucceeds(castVote(OTHER, 1))
+    await seedSession({ ...voting, status: 'reveal' })
+    await assertFails(castVote(OTHER, 0))
+  })
+
+  test('moteur : vérification, vote et révélation d’un Bluff acceptés par les règles', async () => {
+    await seedSession({ status: 'lobby', phaseEndsAt: 0, settings: BLUFF_SETTINGS, players: bluffPlayers })
+    const hostRef = db(HOST).ref(SESSION)
+    let session = (await readAsAdmin(SESSION)) as Session
+    const launch = launchUpdate(session, BLUFF_QUESTIONS, Date.now())
+    await assertSucceeds(hostRef.update(launch.ok ? launch.update : {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(transitionUpdate(session, BLUFF_QUESTIONS, { status: 'starting', currentIndex: 0 }, Date.now()) ?? {}))
+    await assertSucceeds(writeBluff(PLAYER, 'Monopolis'))
+    await assertSucceeds(writeBluff(OTHER, "The Landlord's Game"))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(bluffChecksUpdate(session, BLUFF_QUESTIONS[0]) ?? {}))
+    await assertSucceeds(writeBluff(OTHER, 'Rue Royale'))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(bluffChecksUpdate(session, BLUFF_QUESTIONS[0]) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(transitionUpdate(session, BLUFF_QUESTIONS, { status: 'question', currentIndex: 0 }, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session.status).toBe('vote')
+    const own = session.bluffOwn?.[0] ?? {}
+    await assertSucceeds(castVote(PLAYER, own[OTHER]))
+    await assertSucceeds(castVote(OTHER, own[PLAYER]))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(transitionUpdate(session, BLUFF_QUESTIONS, { status: 'vote', currentIndex: 0 }, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session.status).toBe('reveal')
+    expect(session.bluffPoints?.[0]).toEqual({ [PLAYER]: 500, [OTHER]: 500 })
   })
 })

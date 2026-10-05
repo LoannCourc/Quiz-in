@@ -1,4 +1,6 @@
 import {
+  BLUFF_REVEAL_PER_CHOICE_S,
+  BLUFF_VOTE_DURATION_S,
   NEXT_QUESTION_ANNOUNCE_MS,
   QUESTION_DURATION_S,
   REVEAL_DURATION_S,
@@ -7,7 +9,8 @@ import {
 } from './constants'
 import type { AnswerMode, GameStatus, PublicSession, SessionSettings } from './types'
 
-// Enchaînement des états (spec 5) ; VALIDATION seulement en Réponse libre avec Contrôle.
+// Enchaînement des états (spec 5) ; VALIDATION seulement en Réponse libre avec Contrôle ; VOTE
+// seulement en Bluff (QUESTION est alors l'écriture des fausses réponses).
 // PAUSED n'a pas d'état suivant fixe : la reprise revient à pausedFrom avec remainingMs.
 
 export interface FlowContext {
@@ -21,6 +24,8 @@ export interface FlowContext {
   suspense?: boolean
   // Contrôle en Réponse libre : l'hôte valide les réponses entre la question et la révélation.
   validation?: boolean
+  // Bluff : nombre de choix du vote (durée de la révélation).
+  choiceCount?: number
 }
 
 // Phase VALIDATION : seulement en Réponse libre avec l'option Contrôle (spec 6.3).
@@ -41,6 +46,13 @@ export function questionDurationS(answerMode: AnswerMode, timeLimitS?: number): 
   return timeLimitS ?? QUESTION_DURATION_S[answerMode]
 }
 
+// Durée de la révélation : fixe, sauf en Bluff où chaque fausse proposition se retourne l'une après
+// l'autre (BLUFF_REVEAL_PER_CHOICE_S chacune, la vraie réponse comprise dans la durée de base).
+export function revealDurationS(answerMode: AnswerMode, choiceCount = 0): number {
+  const base = REVEAL_DURATION_S[answerMode]
+  return answerMode === 'bluff' ? base + BLUFF_REVEAL_PER_CHOICE_S * Math.max(0, choiceCount - 1) : base
+}
+
 // Après une question (classement, ou révélation en Suspense) : question suivante, ou fin de partie.
 function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext, timeLimitS?: number): Phase {
   const nextIndex = currentIndex + 1
@@ -52,17 +64,21 @@ function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext,
 // Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED).
 // timeLimitS : durée propre à la question suivante, si elle en a une.
 export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?: number): Phase | null {
-  const { answerMode, currentIndex, stepByStep = false, suspense = false, validation = false } = context
-  const reveal: Phase = { status: 'reveal', currentIndex, durationS: stepByStep ? null : REVEAL_DURATION_S[answerMode] }
+  const { answerMode, currentIndex, stepByStep = false, suspense = false, validation = false, choiceCount } = context
+  const revealS = revealDurationS(answerMode, choiceCount)
+  const reveal: Phase = { status: 'reveal', currentIndex, durationS: stepByStep ? null : revealS }
   switch (status) {
     case 'lobby':
       return { status: 'starting', currentIndex: 0, durationS: STARTING_DURATION_S }
     case 'starting':
       return { status: 'question', currentIndex: 0, durationS: questionDurationS(answerMode, timeLimitS) }
     case 'question':
+      // Bluff : après l'écriture, le vote.
+      if (answerMode === 'bluff') return { status: 'vote', currentIndex, durationS: BLUFF_VOTE_DURATION_S }
       // Contrôle : validation par l'hôte, sans durée (seul « Valider » fait avancer).
       return validation ? { status: 'validation', currentIndex, durationS: null } : reveal
     case 'validation':
+    case 'vote':
       return reveal
     case 'reveal':
       return suspense
@@ -88,7 +104,7 @@ export interface NextQuestionCountdown {
 // Pendant REVEAL : fin de la révélation + durée du classement. Pendant SCORES : fin du classement.
 // null dans les autres états. Approximation si l'hôte a écourté une phase (« Passer »).
 export function nextQuestionCountdown(session: SessionTiming): NextQuestionCountdown | null {
-  const revealMs = REVEAL_DURATION_S[session.settings.answerMode] * 1000
+  const revealMs = revealDurationS(session.settings.answerMode, session.currentQuestion?.choices?.length) * 1000
   const isLastQuestion = session.currentIndex + 1 >= (session.questionCount ?? 0)
   // Pas à pas : pas de compte à rebours pendant l'attente (révélation et classement).
   if (isAwaitingHost(session)) return null
@@ -136,5 +152,5 @@ export function isUntimedPhase(session: Pick<PublicSession, 'status' | 'settings
 
 type SessionTiming = Pick<
   PublicSession,
-  'status' | 'settings' | 'currentIndex' | 'questionCount' | 'phaseStartedAt' | 'phaseEndsAt'
+  'status' | 'settings' | 'currentIndex' | 'questionCount' | 'phaseStartedAt' | 'phaseEndsAt' | 'currentQuestion'
 >

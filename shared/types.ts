@@ -4,13 +4,16 @@ export type GameStatus =
   | 'lobby'
   | 'starting'
   | 'question'
+  // Bluff : vote pour la proposition que l'on croit vraie (spec 16).
+  | 'vote'
   | 'reveal'
   | 'validation'
   | 'scores'
   | 'paused'
   | 'ended';
 
-export type AnswerMode = 'free' | 'choice';
+// bluff : chaque joueur invente une fausse réponse, puis vote (spec 16) ; imposé par un quiz Bluff.
+export type AnswerMode = 'free' | 'choice' | 'bluff';
 
 // 1 = Facile, 2 = Moyen, 3 = Difficile.
 export type Difficulty = 1 | 2 | 3;
@@ -18,8 +21,9 @@ export type Difficulty = 1 | 2 | 3;
 // Niveau d'un quiz, déduit de la moyenne des difficultés de ses questions (spec 8).
 export type DifficultyLevel = 'easy' | 'medium' | 'hard';
 
-// Type de jeu d'un quiz : questions classiques, ou blind test (extraits musicaux joués par la TV).
-export type QuizGameType = 'quiz' | 'blindTest';
+// Type de jeu d'un quiz : questions classiques, blind test (extraits musicaux joués par la TV), ou
+// Bluff (fausses réponses inventées par les joueurs, spec 16).
+export type QuizGameType = 'quiz' | 'blindTest' | 'bluff';
 
 // Source des extraits audio (interchangeable : seule l'app de l'hôte sait l'interroger).
 export type AudioSourceId = 'deezer';
@@ -71,6 +75,22 @@ export interface Question {
   ask?: BlindTestAsk;
 }
 
+// Question de Bluff (spec 16), lisible uniquement par l'hôte : réponse courte, ses autres écritures
+// (une proposition qui s'en approche est refusée) et 2 ou 3 leurres écrits d'avance.
+export interface BluffQuestion {
+  id: string;
+  text: string;
+  answer: string;
+  acceptedAnswers: string[];
+  decoys: string[];
+  difficulty: Difficulty;
+  explanation?: string;
+  timeLimit?: number;
+}
+
+// Question d'une partie : toutes classiques, ou toutes de Bluff.
+export type GameQuestion = Question | BluffQuestion;
+
 // Morceau d'une question de blind test (lisible uniquement par l'hôte, comme toute la question).
 export interface MusicTrack {
   source: AudioSourceId;
@@ -103,6 +123,9 @@ export interface PublicQuestion {
   audio?: PublicAudio;
   // Blind test en Réponse libre : ce qu'il faut écrire (titre, artiste, ou les deux).
   ask?: BlindTestAsk;
+  // Bluff, pendant VOTE : propositions mélangées (vraie réponse, propositions des joueurs, leurres),
+  // sans auteur ni type.
+  choices?: string[];
 }
 
 // Résultat d'un joueur ou d'un groupe de réponses : juste, à moitié juste (blind test « both »), faux.
@@ -116,11 +139,28 @@ export interface FreeAnswerGroup {
   verdict: AnswerVerdict;
 }
 
+// Bluff : un choix du vote. authors : joueurs dont la proposition a été retenue (plusieurs si elles
+// étaient identiques) ; vide pour la vraie réponse et les leurres.
+export type BluffChoiceKind = 'truth' | 'bluff' | 'decoy';
+
+export interface BluffChoice {
+  text: string;
+  kind: BluffChoiceKind;
+  authors?: PlayerId[];
+}
+
+// Bluff, à la révélation : chaque choix avec ses auteurs et ses votants.
+export interface RevealedBluffChoice extends BluffChoice {
+  voters?: PlayerId[];
+}
+
 export interface RevealStats {
   // Choix multiples : nombre de réponses par proposition (même ordre que options).
   choiceCounts?: number[];
   // Réponse libre : groupes de réponses, les plus nombreux d'abord (FREE_ANSWER_GROUPS_MAX au plus).
   freeAnswers?: FreeAnswerGroup[];
+  // Bluff : les choix du vote, dans leur ordre (lettres A, B, C…), avec auteurs et votants.
+  bluffChoices?: RevealedBluffChoice[];
 }
 
 export interface Reveal {
@@ -205,6 +245,28 @@ export interface Answer {
 
 export type PlayerId = string;
 
+// Bluff : proposition d'un joueur (réécrite après un refus, 3 essais au plus).
+export interface BluffEntry {
+  text: string;
+  submittedAt: number;
+}
+
+// Bluff : verdict de l'hôte sur la dernière proposition (submittedAt l'identifie). truth : trop proche
+// de la vraie réponse ; forbidden : mot interdit ; empty : rien d'écrit. refusals : refus déjà reçus.
+export type BluffVerdict = 'ok' | 'truth' | 'forbidden' | 'empty';
+
+export interface BluffCheck {
+  verdict: BluffVerdict;
+  refusals: number;
+  submittedAt: number;
+}
+
+// Bluff : vote d'un joueur (index du choix dans currentQuestion.choices).
+export interface BluffVote {
+  value: number;
+  submittedAt: number;
+}
+
 // Partie de la session lisible par les joueurs et la TV : tout sauf answers.
 export interface PublicSession {
   hostUid: PlayerId;
@@ -232,9 +294,21 @@ export interface PublicSession {
   teamPoints?: Record<number, Partial<Record<TeamId, number>>>;
   teamPresence?: Record<number, Record<PlayerId, true>>;
   teamDrawAt?: number;
+  // Bluff : qui a une proposition acceptée, et qui a voté (jamais quoi).
+  bluffedBy?: Record<number, Record<PlayerId, true>>;
+  votedBy?: Record<number, Record<PlayerId, true>>;
 }
 
 // Session complète, lisible uniquement par l'hôte.
 export interface Session extends PublicSession {
   answers?: Record<number, Record<PlayerId, Answer>>;
+  // Bluff (spec 16). bluffChecks et bluffOwn sont lisibles aussi par le joueur concerné, pour lui seul.
+  bluffs?: Record<number, Record<PlayerId, BluffEntry>>;
+  bluffChecks?: Record<number, Record<PlayerId, BluffCheck>>;
+  // Choix du vote avec leurs auteurs, et index du choix de chaque auteur (il ne peut pas le voter).
+  bluffChoices?: Record<number, BluffChoice[]>;
+  bluffOwn?: Record<number, Record<PlayerId, number>>;
+  votes?: Record<number, Record<PlayerId, BluffVote>>;
+  // Points de chaque joueur à chaque question (les réponses classiques les gardent dans answers).
+  bluffPoints?: Record<number, Record<PlayerId, number>>;
 }

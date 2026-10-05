@@ -1,5 +1,5 @@
 // Données de test du moteur de l'hôte, partagées par les tests unitaires et les tests des règles.
-import type { Player, PlayerId, Question, Session } from '../../shared/types'
+import type { BluffQuestion, Player, PlayerId, Question, Session } from '../../shared/types'
 
 export const HOST = 'host-uid'
 export const PLAYER = 'player-uid'
@@ -19,6 +19,22 @@ export function makeQuestion(index: number, overrides: Partial<Question> = {}): 
 }
 
 export const QUESTIONS: Question[] = Array.from({ length: 12 }, (_, index) => makeQuestion(index))
+
+// Bluff : réponse courte et peu connue, deux autres écritures acceptées, trois leurres.
+export function makeBluffQuestion(index: number, overrides: Partial<BluffQuestion> = {}): BluffQuestion {
+  return {
+    id: `b-${index}`,
+    text: 'Quel était le tout premier nom du jeu Monopoly ?',
+    answer: "The Landlord's Game",
+    acceptedAnswers: ['Landlords Game', 'Landlord Game'],
+    decoys: ['Magie Immobilière', 'Capital Express', 'Rue de la Paix'],
+    difficulty: 3,
+    explanation: 'Inventé en 1904 par Elizabeth Magie.',
+    ...overrides,
+  }
+}
+
+export const BLUFF_QUESTIONS: BluffQuestion[] = Array.from({ length: 3 }, (_, index) => makeBluffQuestion(index))
 
 export function player(name: string, overrides: Partial<Player> = {}): Player {
   return { name, avatar: '🦊', score: 0, rank: 1, connected: true, ...overrides }

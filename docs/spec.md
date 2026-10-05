@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.8 — 5 octobre 2026
+Version 0.9 — 5 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -48,6 +48,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | | Animations TV enrichies, sons |
 | | Exclure un joueur depuis l'app hôte |
 | **P2** (après le MVP) | Option **Groupe** (équipes) (**livrée**, section 6.4) |
+| | Mini-jeu **Bluff** (fausses réponses inventées par les joueurs, section 16 ; en cours) |
 | | App hôte iOS, redirection QR vers l'app joueur |
 | | Blind test, « N'oubliez pas les paroles » |
 | | Quiz créés par l'hôte, paiement, abonnement |
@@ -119,8 +120,9 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 |---|---|---|
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs ; en Groupe, conditions de la section 6.4 |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
-| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL |
+| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (45 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
 | **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
+| **VOTE** (Bluff seulement, 20 s) | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont voté (délai de 2 s). L'hôte peut avancer. Toujours suivi de REVEAL (section 16) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
@@ -164,6 +166,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 ### 6.1 Durées
 - **Choix multiples** : 20 secondes par question.
 - **Réponse libre** : 30 secondes par question, quiz comme blind test (l'extrait joue alors toute la preview de 30 s).
+- **Bluff** : écriture 45 s, vote 20 s, révélation 4 s plus 2 s par fausse proposition (section 16).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
 - **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
@@ -173,6 +176,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 - **Option Rapidité** : bonus proportionnel au temps restant. `points = 100 + arrondi(100 × temps restant / durée de la question)`, soit de 100 à 200 points.
 - **Mauvaise réponse ou absence de réponse** : 0 point.
 - **Blind test « les deux » en Réponse libre** : le titre et l'artiste rapportent chacun la moitié des points (Rapidité comprise) ; résultat ✓ (les deux), ½ (un des deux) ou ✗.
+- **Bluff** : 1000 points pour un vote sur la vraie réponse, 500 par joueur piégé pour chaque auteur de la proposition ; pas de bonus de rapidité (section 16).
 - Le temps de réponse est mesuré avec l'horodatage du **serveur**, pas celui du téléphone.
 - Pause pendant une question : le bonus de rapidité des réponses données avant la pause est légèrement surévalué, plafonné à 100 (approximation acceptée au MVP).
 
@@ -281,6 +285,17 @@ sessions/{code}
     // correct, points, partial, fullPoints : écrits par l'hôte (fullPoints : points d'une réponse entièrement juste, pour Contrôle)
   answeredBy/{index}/{uid}: true      // lisible par tout utilisateur connecté
     // écrit par le joueur en même temps que sa réponse : indique QUI a répondu, jamais QUOI
+  // Bluff (section 16) :
+  bluffs/{index}/{uid}: { text, submittedAt }        // écrit par le joueur pendant l'écriture (réécrit après un refus) ; lu par lui et l'hôte
+  bluffChecks/{index}/{uid}: { verdict, refusals, submittedAt }   // verdict de l'hôte (ok|truth|forbidden|empty) ; lu par le joueur concerné et l'hôte
+  bluffedBy/{index}/{uid}: true       // proposition acceptée (qui, jamais quoi) ; public
+  bluffChoices/{index}: [{ text, kind, authors? }]   // choix du vote avec type (truth|bluff|decoy) et auteurs ; hôte seul
+  bluffOwn/{index}/{uid}: n           // index du choix du joueur (il ne peut pas le voter) ; lu par lui seul et l'hôte
+  votes/{index}/{uid}: { value, submittedAt }        // vote, écrit une fois pendant VOTE ; hôte seul
+  votedBy/{index}/{uid}: true         // a voté (jamais pour quoi) ; public
+  bluffPoints/{index}/{uid}: n        // points de la question ; hôte seul
+  // currentQuestion.choices (pendant VOTE) : textes des choix mélangés, sans type ni auteur
+  // reveal.stats.bluffChoices : les choix avec auteurs et votants, publiés à la révélation
   // Groupe (section 6.4), écrits par l'hôte, lisibles par tout utilisateur connecté :
   teams/{team}: { score, rank }        // classement des équipes
   teamPoints/{index}/{team}: n        // moyenne de l'équipe à la question index
@@ -291,7 +306,8 @@ sessions/{code}
 **Accès** (règles de sécurité dans `database.rules.json`)
 - `sessions` n'est jamais lisible en entier. Seul l'hôte (`hostUid`) peut lire `sessions/{code}` d'un bloc. Les autres (joueurs, TV) lisent chaque champ séparément ; tous sauf `answers` sont lisibles par un utilisateur connecté. Joueurs et TV s'abonnent à la même liste de champs (`shared/publicFields.ts`), qui suit le type de la session : un nouveau champ ne peut pas être oublié d'un côté.
 - L'hôte écrit tout le reste de la session. `hostUid` est fixé à la création et ne change plus.
-- `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio` : la bonne réponse ne peut pas y être publiée par erreur.
+- `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio`, `choices` : la bonne réponse ne peut pas y être publiée par erreur (en Bluff, `choices` la contient, mélangée, sans la désigner).
+- Bluff : un joueur écrit sa proposition seulement pendant l'écriture d'un Bluff, tant qu'elle n'est pas acceptée et qu'il lui reste un essai (3 refus au plus) ; il vote une fois, pendant VOTE, pour un choix existant qui n'est pas le sien (`bluffOwn`). Il ne lit que sa proposition, son verdict et son propre choix.
 - Un joueur n'écrit ni `correct`, ni `points`, ni `partial`, ni `fullPoints`, et aucune réponse hors de QUESTION (donc pas pendant VALIDATION).
 
 **Présence**
@@ -413,6 +429,7 @@ sessions/{code}
 19. **Groupe** : 4 équipes fixes avec symbole ; score d'équipe = somme des moyennes par question des joueurs connectés (présent sans réponse = 0) ; trois façons de former les équipes, l'hôte peut toujours déplacer un joueur ; « Au hasard » tire au lancement si l'hôte n'a pas tiré ; Rejouer garde les équipes (section 6.4).
 20. **Une fonction par écran** : la révélation n'affiche aucun rang ; le rang (joueur, équipe, rang dans l'équipe) n'apparaît qu'au Classement et à la fin (section 4).
 21. **Salon allégé** : barre « TV connectée » repliable, carte « Je joue aussi » pour l'hôte, équipes sur une ligne et page « Équipes » plein écran (section 4.1).
+22. **Bluff** (section 16) : mode de jeu à part (type de quiz `bluff`), 2 joueurs au minimum, pas de limite propre ; vérification des propositions par l'hôte (message façon Fibbage, 3 essais) ; leurres selon le nombre de joueurs ; 1000 / 500 points, sans Rapidité ; Contrôle désactivé ; une proposition acceptée est définitive.
 
 ---
 
@@ -475,3 +492,51 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 **Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). Public familial : aucun morceau marqué explicite par Deezer ; un morceau n'apparaît que dans un seul blind test. `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API (version originale de préférence, jamais une version explicite) et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
 
+---
+
+## 16. Bluff
+
+Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) codé ; écrans et contenu à venir.
+
+**Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
+
+**Déroulé.** QUESTION (écriture, 45 s) → VOTE (20 s) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture et le vote gardent leur chrono.
+
+**Joueurs.** 2 au minimum. Pas de limite propre au Bluff : la limite générale (`MAX_PLAYERS`, 20) s'applique. La TV adapte la grille des choix à leur nombre (plus de colonnes et un texte plus petit, toujours lisible en 720p) ; sur le téléphone, la liste défile.
+
+**Écriture.**
+- 40 caractères au plus. L'hôte vérifie chaque proposition (le téléphone du joueur ne connaît jamais la vraie réponse) :
+  - **trop proche de la vraie réponse** (exacte, à une faute près, ou proche, mêmes niveaux que la Réponse libre, section 6.3, en comptant les autres écritures acceptées) : refusée avec « Tu as trouvé la vraie réponse ! Invente-en une fausse » ;
+  - **mot interdit** (même liste qu'en Réponse libre) : refusée, jamais masquée ;
+  - **vide** (que des espaces ou de la ponctuation) : refusée.
+- **3 essais au plus** : après trois refus, le joueur n'a pas de proposition pour cette question. Le message de refus indique les essais restants.
+- **Une proposition acceptée est définitive.** Son avatar s'allume sur la TV ; rien ne dit qui a écrit quoi avant la révélation.
+- Fin anticipée : quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai (2 s après la dernière).
+
+**Choix du vote.**
+- La vraie réponse, les propositions acceptées et des leurres, mélangés au hasard. Chaque question du contenu a **2 ou 3 leurres** écrits d'avance (section 8, à venir).
+- **Doublons** : les propositions identiques après normalisation (majuscules, accents, ponctuation, article initial) n'en font qu'une, avec tous leurs auteurs ; le texte affiché est celui de la première arrivée. Une proposition identique à un leurre remplace ce leurre et reste celle du joueur.
+- **Leurres** : on vise 6 choix au total. Leurres utilisés = max(0, 6 − (1 + nombre de propositions distinctes)), dans la limite des leurres de la question, tirés au hasard. Garantie : chaque joueur a au moins **3 choix votables** hors sa propre proposition ; sinon, d'autres leurres sont ajoutés tant qu'il en reste.
+- Les choix sont publiés sans auteur ni type. Chaque auteur sait seulement lequel est le sien (grisé, « Ta proposition ») : il ne peut pas voter pour lui.
+- Fin anticipée du vote quand tous les joueurs connectés ont voté (2 s après le dernier vote).
+
+**Points.** 1000 pour un vote sur la vraie réponse ; 500 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
+
+**Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre, chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants ; puis la vraie réponse et ses votants, et le résumé des points. Téléphone (B3) : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
+
+**Options.**
+- **Rapidité** : sans effet en Bluff.
+- **Contrôle** : désactivé en Bluff.
+- **Groupe** : points individuels, puis moyenne d'équipe comme d'habitude (section 6.4).
+- **Pas à pas, Suspense** : comme d'habitude.
+
+**Cas limites.**
+- **2 joueurs** : vraie réponse, 2 propositions et jusqu'à 3 leurres (6 choix si la question en a 3).
+- **Un joueur n'écrit rien** (ou épuise ses essais) : pas de proposition à lui ; il vote quand même ; les leurres complètent.
+- **Personne n'écrit** : vraie réponse et tous les leurres (au moins 3 choix).
+- **Tous écrivent la même chose** : un seul choix avec tous comme auteurs, qu'aucun ne peut voter ; vraie réponse et leurres (au moins 3 choix votables chacun).
+- **Beaucoup de joueurs** (20, ou 30 si la limite générale est relevée un jour) : plus de leurre ; autant de choix que de propositions distinctes, plus la vraie réponse ; révélation plus longue (2 s par fausse proposition).
+- **Déconnexion pendant l'écriture** : une proposition acceptée reste en jeu et rapporte à son auteur. **Pendant le vote** : pas de vote, mais les points de piège restent.
+- **Proposition proche d'une autre écriture de la vraie réponse** (« Landlords Game ») : refusée comme la vraie réponse. Un mot de la vraie réponse seul (« Game ») est aussi refusé (niveau « proche »).
+
+**Sécurité.** La vraie réponse n'est jamais publiée désignée avant la révélation : pendant le vote, elle n'est qu'un texte parmi d'autres, à une place tirée au hasard. Propositions, verdicts, auteurs, votes et points sont réservés à l'hôte, sauf ce qui concerne le joueur lui-même (section 7). Même limite qu'ailleurs : le catalogue `questions/` reste lisible par tout utilisateur connecté.

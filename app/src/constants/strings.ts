@@ -17,7 +17,7 @@ import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 
 // Types de jeu du sélecteur du catalogue : seul le quiz est jouable au MVP.
-export type GameType = 'quiz' | 'blindTest';
+export type GameType = 'quiz' | 'blindTest' | 'bluff';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -82,7 +82,7 @@ export const strings = {
     searchPlaceholder: 'Titre du quiz',
     closeSearch: 'Fermer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
-    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test' } satisfies Record<GameType, string>,
+    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
     rows: {
@@ -106,10 +106,12 @@ export const strings = {
     answerModes: {
       choice: 'Choix multiples',
       free: 'Réponse libre',
+      bluff: 'Bluff',
     } satisfies Record<AnswerMode, string>,
     answerModeHints: {
       choice: '4 propositions',
       free: 'On tape la réponse',
+      bluff: 'On invente une fausse réponse',
     } satisfies Record<AnswerMode, string>,
     optionsLabel: 'Options',
     rhythmLabel: 'Rythme',
@@ -344,6 +346,7 @@ export const strings = {
     close: 'Fermer',
     skip: {
       firstQuestion: 'Passer à la question 1',
+      vote: 'Passer au vote',
       validation: 'Passer à la validation',
       reveal: 'Révéler la réponse',
       scores: 'Voir le classement',

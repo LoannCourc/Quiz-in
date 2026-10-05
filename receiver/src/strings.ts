@@ -151,6 +151,7 @@ export const strings = {
       lobby: 'Lobby',
       starting: '3-2-1',
       question: 'Question',
+      vote: 'Vote',
       validation: 'Validation',
       reveal: 'Révélation',
       scores: 'Classement',

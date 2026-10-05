@@ -19,9 +19,10 @@ export const POSTER_PALETTES: readonly PosterPalette[] = ['pink', 'blue', 'green
 
 // Durées en secondes.
 export const STARTING_DURATION_S = 3;
-export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30 };
+export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 45 };
 export const ALL_ANSWERED_DELAY_S = 2;
-export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6 };
+// Bluff : durée de base, plus BLUFF_REVEAL_PER_CHOICE_S par fausse proposition (revealDurationS).
+export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4 };
 export const SCORES_DURATION_S = 5;
 // Fin du classement : annonce plein écran de la question suivante (comprise dans SCORES_DURATION_S).
 export const NEXT_QUESTION_ANNOUNCE_MS = 1_500;
@@ -77,6 +78,24 @@ export const FREE_ANSWER_GROUPS_MAX = 8;
 export const HIDDEN_ANSWER_TEXT = '•••';
 // Estimation de la durée d'une validation par l'hôte (Contrôle), pour la durée affichée sur la fiche.
 export const VALIDATION_ESTIMATE_S = 15;
+
+// Bluff (spec 16) : vote de 20 s ; révélation allongée de 2 s par fausse proposition retournée.
+export const BLUFF_VOTE_DURATION_S = 20;
+export const BLUFF_REVEAL_PER_CHOICE_S = 2;
+// Longueur maximale d'une proposition (identique à database.rules.json), et essais au plus quand une
+// proposition est refusée (même valeur écrite en dur dans database.rules.json).
+export const BLUFF_MAX_LENGTH = 40;
+export const BLUFF_MAX_ATTEMPTS = 3;
+// Choix visés au vote (leurres ajoutés tant qu'il en manque), et choix votables garantis à chaque joueur
+// (hors sa propre proposition).
+export const BLUFF_TARGET_CHOICES = 6;
+export const BLUFF_MIN_VOTABLE = 3;
+// Leurres d'une question, écrits dans content/.
+export const BLUFF_MIN_DECOYS = 2;
+export const BLUFF_MAX_DECOYS = 3;
+// Points : vote pour la vraie réponse, et chaque joueur piégé par sa proposition (pas de bonus de rapidité).
+export const BLUFF_TRUTH_POINTS = 1000;
+export const BLUFF_TRAP_POINTS = 500;
 
 export const PLAYER_NAME_MIN_LENGTH = 2;
 export const PLAYER_NAME_MAX_LENGTH = 12;
