@@ -1,7 +1,7 @@
 import type { PlayerId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 44,
   },
   podiumName: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.card,
   },
   meTagText: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
@@ -127,12 +129,14 @@ const styles = StyleSheet.create({
     borderColor: AppColors.selection,
   },
   blockRank: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.display,
     fontSize: 40,
     lineHeight: Math.round(40 * DISPLAY_LINE_HEIGHT),
   },
   blockScore: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.black,
     fontSize: 15,
@@ -155,6 +159,7 @@ const styles = StyleSheet.create({
     borderColor: AppColors.selection,
   },
   rowRank: {
+    ...TEXT_FIT_SAFETY,
     minWidth: 24,
     color: AppColors.text,
     fontFamily: AppFonts.display,
@@ -171,6 +176,7 @@ const styles = StyleSheet.create({
     fontSize: AppSizes.textBody,
   },
   rowScore: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,

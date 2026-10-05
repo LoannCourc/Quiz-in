@@ -125,6 +125,13 @@ export const AppFonts = {
 export const DISPLAY_LINE_HEIGHT = 1.3;
 
 // Tailles pensées pour un téléphone tenu à une main.
+// Android 15+ avec React Native 0.86 : un texte dimensionné à son contenu (pastille, bande, badge,
+// bouton) est mesuré par la somme des avances de ses glyphes, mais dessiné selon leurs contours
+// visibles, parfois une fraction de pixel plus larges (useBoundsForWidth, Android 15). Son dernier mot
+// passe alors sur une ligne que la boîte masque (« TA » au lieu de « TA PLACE »). Correctif React Native
+// pas encore publié (PR #57117) : marge de fin d'un point, sur Android seulement, sur ces textes.
+export const TEXT_FIT_SAFETY = Platform.OS === 'android' ? { paddingRight: 1 } : {};
+
 export const AppSizes = {
   contentMaxWidth: 480,
   buttonHeight: 64,

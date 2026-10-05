@@ -2,7 +2,7 @@ import type { Player, PlayerId } from '@shared/types';
 import type { ReviewBadge, ReviewGroup } from '@shared/validationReview';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   count: {
+    ...TEXT_FIT_SAFETY,
     marginLeft: Spacing.one,
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
@@ -187,6 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: AppSizes.radiusPill,
   },
   badgeText: {
+    ...TEXT_FIT_SAFETY,
     fontFamily: AppFonts.black,
     fontSize: 11,
     textTransform: 'uppercase',

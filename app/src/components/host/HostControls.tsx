@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   barText: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,

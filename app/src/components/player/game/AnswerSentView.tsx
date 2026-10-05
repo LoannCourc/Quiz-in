@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { isFreeText, type FreeText, type GivenAnswer } from '@/lib/playerGame';
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.surface,
   },
   answerLabel: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.textMuted,
     fontFamily: AppFonts.black,
     fontSize: 13,
@@ -139,6 +140,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   answerText: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textLarge,

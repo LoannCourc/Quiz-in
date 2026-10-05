@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.accent,
   },
   label: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.textMuted,
     fontFamily: AppFonts.black,
     fontSize: 11,

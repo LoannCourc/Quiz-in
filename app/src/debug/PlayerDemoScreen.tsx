@@ -4,7 +4,11 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceChips, type Choice } from '@/components/host/ChoiceChips';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
+import { NextQuestionBar } from '@/components/player/game/NextQuestionBar';
+import type { PhaseTiming } from '@/components/player/game/phaseTiming';
+import { QuestionHeader } from '@/components/player/game/QuestionHeader';
 import { PlaceBand } from '@/components/player/game/RevealView';
+import { TransitionSteps } from '@/components/player/game/TransitionSteps';
 import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
@@ -36,7 +40,8 @@ const SCENARIO_CHOICES: Choice<ScenarioId>[] = (Object.keys(SCENARIO_LABELS) as 
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ;
-// ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang (mise en page).
+// ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
+// rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
   const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
@@ -107,10 +112,23 @@ export default function PlayerDemoScreen() {
 const BAND_RANKS = Array.from({ length: 20 }, (_, index) => index + 1);
 const BAND_CHANGES: [number, number][] = [[4, 2], [2, 1], [1, 2], [9, 10], [20, 19], [19, 20], [10, 20]];
 
+// Textes qui épousent leur contenu, tous au même endroit : sur Android 15+, le dernier mot de l'un
+// d'eux pouvait disparaître (« TA » au lieu de « TA PLACE », voir TEXT_FIT_SAFETY). Page à ouvrir sur
+// le téléphone (build de développement), aussi avec une taille de police système agrandie.
 function PlaceBandGallery() {
+  // Compte à rebours de 9 s, fixé au premier affichage.
+  const [countdown] = useState<PhaseTiming>(() => {
+    const now = Date.now();
+    return { phaseStartedAt: now, phaseEndsAt: now + 9_000, serverOffsetMs: 0 };
+  });
   return (
     <Screen>
       <View style={styles.gallery}>
+        <QuestionHeader index={2} questionCount={10} score={1242} />
+        <TransitionSteps active={0} />
+        <TransitionSteps active={1} />
+        <TransitionSteps active={0} withRanking={false} />
+        <NextQuestionBar timing={countdown} isLastQuestion={false} />
         {BAND_CHANGES.map(([before, after]) => (
           <PlaceBand key={`${before}-${after}`} rank={after} previousRank={before} />
         ))}

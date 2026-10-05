@@ -5,7 +5,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppShadows, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { isFreeText, type AnswerState, type FreeText } from '@/lib/playerGame';
@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.link,
   },
   askText: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.black,
     fontSize: 14,
@@ -245,6 +246,7 @@ const styles = StyleSheet.create({
     outlineColor: 'transparent',
   },
   counter: {
+    ...TEXT_FIT_SAFETY,
     marginLeft: Spacing.two,
     color: AppColors.textMuted,
     fontFamily: AppFonts.black,

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { TransitionSteps } from '@/components/player/game/TransitionSteps';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   listTitle: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.textMuted,
     fontFamily: AppFonts.black,
     fontSize: 13,
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   listCount: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
     fontSize: 13,

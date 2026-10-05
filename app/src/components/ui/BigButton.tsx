@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 interface BigButtonProps {
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     color: AppColors.textMuted,
   },
   label: {
+    ...TEXT_FIT_SAFETY,
     textAlign: 'center',
   },
   primaryLabel: {

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.accent,
   },
   pillText: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.onAccent,
     fontFamily: AppFonts.display,
     fontSize: 15,
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   score: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.accent,
     fontFamily: AppFonts.display,
     fontSize: 17,

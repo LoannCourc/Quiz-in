@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     gap: Spacing.three,
   },
   seconds: {
+    ...TEXT_FIT_SAFETY,
     minWidth: AppSizes.timebarDigits * 1.3,
     color: AppColors.text,
     fontFamily: AppFonts.display,

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppCoinGradient, AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppCoinGradient, AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { FreeText, RevealOutcome } from '@/lib/playerGame';
@@ -161,7 +161,8 @@ function PointsCoin({ points, isSoft }: { points: number; isSoft: boolean }) {
 
 // « TA PLACE 4e → 2e ▲ » : rang avant et après la question. Ni le libellé ni le rang ne
 // rétrécissent : s'ils ne tiennent pas sur une ligne (écran étroit, grande police), le rang passe
-// à la ligne, aligné à droite.
+// à la ligne, aligné à droite. Le libellé prend en plus la place libre : sa boîte n'est jamais réduite
+// à sa largeur mesurée, trop juste sur Android 15+ (voir TEXT_FIT_SAFETY).
 export function PlaceBand({ rank, previousRank }: { rank: number; previousRank?: number }) {
   const { ordinal, reveal } = strings.game;
   // Rang inchangé (ou inconnu) : le rang seul, sans flèche.
@@ -214,12 +215,14 @@ const styles = StyleSheet.create({
     color: AppColors.text,
   },
   coinPoints: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.display,
     fontSize: 54,
     lineHeight: Math.round(54 * DISPLAY_LINE_HEIGHT),
   },
   coinLabel: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.ink,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
@@ -267,6 +270,7 @@ const styles = StyleSheet.create({
     fontSize: AppSizes.textBody,
   },
   partPoints: {
+    ...TEXT_FIT_SAFETY,
     color: AppColors.textMuted,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
@@ -292,6 +296,8 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.inkSurface,
   },
   bandLabel: {
+    ...TEXT_FIT_SAFETY,
+    flexGrow: 1,
     flexShrink: 0,
     color: AppColors.text,
     fontFamily: AppFonts.display,
@@ -300,6 +306,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   bandValue: {
+    ...TEXT_FIT_SAFETY,
     flexShrink: 0,
     marginLeft: 'auto',
     color: AppColors.accent,
