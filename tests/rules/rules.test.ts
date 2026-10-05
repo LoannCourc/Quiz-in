@@ -24,6 +24,7 @@ import {
 } from '../../shared/hostEngine'
 import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
+import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
 import { teamDrawUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
 import { makeSession, QUESTIONS } from '../unit/engineFixtures'
@@ -1094,6 +1095,16 @@ describe('Groupe (équipes)', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/teams/pink`).set({ score: 999, rank: 1 }))
     await assertSucceeds(db(PLAYER).ref(`${SESSION}/teams`).once('value'))
     await assertSucceeds(db(PLAYER).ref(`${SESSION}/teamPoints`).once('value'))
+  })
+
+  // TV et joueurs lisent la partie champ par champ (PUBLIC_SESSION_FIELDS) : chaque champ doit être
+  // lisible par un utilisateur connecté qui n'est pas dans la partie (la TV), sinon son écran reste vide.
+  test('chaque champ public, équipes comprises, est lisible par la TV', async () => {
+    await seedSession({ settings: TEAM_SETTINGS, teams: { pink: { score: 442, rank: 1 } }, teamPoints: { 0: { pink: 442 } }, teamPresence: { 0: { [PLAYER]: true } }, teamDrawAt: 1 })
+    for (const field of PUBLIC_SESSION_FIELDS) {
+      await assertSucceeds(db('tv-uid').ref(`${SESSION}/${field}`).once('value'))
+    }
+    expect(((await db('tv-uid').ref(`${SESSION}/teams/pink`).once('value')).val() as Data).score).toBe(442)
   })
 
   test('moteur : tirage, lancement, réponses et révélation avec équipes, acceptés par les règles', async () => {

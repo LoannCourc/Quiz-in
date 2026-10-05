@@ -1,3 +1,4 @@
+import { PUBLIC_SESSION_FIELDS, type PublicField } from '@shared/publicFields';
 import type { GameStatus, PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref, type Unsubscribe } from 'firebase/database';
 import { useEffect, useState } from 'react';
@@ -13,30 +14,8 @@ export type PlayerSessionState =
   | { kind: 'error'; detail: string }
   | { kind: 'ready'; uid: PlayerId; status: GameStatus; players: LobbyPlayers; session: PublicSession };
 
-// Champs lisibles par un joueur : tous sauf answers (réservé à l'hôte). Les règles interdisent
-// de lire sessions/{code} d'un bloc : on s'abonne à chaque champ séparément, comme la TV.
-const PUBLIC_FIELDS = [
-  'hostUid',
-  'quizId',
-  'status',
-  'settings',
-  'currentIndex',
-  'questionCount',
-  'phaseStartedAt',
-  'phaseEndsAt',
-  'pausedFrom',
-  'remainingMs',
-  'hostLeftAt',
-  'currentQuestion',
-  'reveal',
-  'players',
-  'answeredBy',
-  // Groupe : classement des équipes et points d'équipe de chaque question (règles à déployer avant).
-  'teams',
-  'teamPoints',
-] as const satisfies readonly (keyof PublicSession)[];
-
-type PublicField = (typeof PUBLIC_FIELDS)[number];
+// Champs lisibles par un joueur : tous sauf answers (réservé à l'hôte), un abonnement par champ.
+const PUBLIC_FIELDS = PUBLIC_SESSION_FIELDS;
 
 // Au-delà, on remplace l'écran de chargement par un message d'erreur.
 const LOADING_TIMEOUT_MS = 10_000;

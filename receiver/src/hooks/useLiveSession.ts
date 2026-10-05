@@ -1,3 +1,4 @@
+import { PUBLIC_SESSION_FIELDS, type PublicField } from '@shared/publicFields'
 import type { PublicSession } from '@shared/types'
 import { onValue, ref, type Database, type Unsubscribe } from 'firebase/database'
 import { useEffect, useState } from 'react'
@@ -28,27 +29,9 @@ function toErrorState(error: unknown): LiveSessionState {
   return { kind: 'error', errorKind: 'other', detail }
 }
 
-// Champs lisibles par la TV. Les règles interdisent de lire sessions/{code} d'un bloc
-// (answers est réservé à l'hôte) : on s'abonne donc à chaque champ séparément.
-const PUBLIC_FIELDS = [
-  'hostUid',
-  'quizId',
-  'status',
-  'settings',
-  'currentIndex',
-  'questionCount',
-  'phaseStartedAt',
-  'phaseEndsAt',
-  'pausedFrom',
-  'remainingMs',
-  'hostLeftAt',
-  'currentQuestion',
-  'reveal',
-  'players',
-  'answeredBy',
-] as const satisfies readonly (keyof PublicSession)[]
-
-type PublicField = (typeof PUBLIC_FIELDS)[number]
+// Champs lisibles par la TV : liste commune avec les joueurs (shared/publicFields.ts), un abonnement
+// par champ (les règles interdisent de lire sessions/{code} d'un bloc).
+const PUBLIC_FIELDS = PUBLIC_SESSION_FIELDS
 type FieldValues = Partial<Record<PublicField, unknown>>
 
 // status est toujours écrit par l'hôte : s'il manque, la session n'existe pas.
