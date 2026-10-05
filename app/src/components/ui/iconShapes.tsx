@@ -103,6 +103,21 @@ export function dot(pen: Pen, key: string, cx: number, cy: number, d: number): R
   return <View key={key} style={style} />;
 }
 
+// Rectangle plein d'une couleur donnée (par défaut celle du crayon) : les carrés évidés de la boule
+// disco prennent la couleur de l'ombre, lisible sur toutes les couleurs d'affiche.
+export function tile(pen: Pen, key: string, x: number, y: number, w: number, h: number, color = pen.color): ReactNode {
+  const corner = at(pen, x, y);
+  const style: ViewStyle = {
+    position: 'absolute',
+    left: corner.x,
+    top: corner.y,
+    width: w * pen.k,
+    height: h * pen.k,
+    backgroundColor: color,
+  };
+  return <View key={key} style={style} />;
+}
+
 // Triangle plein pointe en haut (fronton), par l'astuce des bordures.
 export function roof(pen: Pen, key: string, x: number, y: number, w: number, h: number): ReactNode {
   const corner = at(pen, x, y);

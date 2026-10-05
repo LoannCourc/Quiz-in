@@ -1,7 +1,9 @@
 import type { GenreIconName } from '@shared/themeIcons';
 import type { ReactNode } from 'react';
 
-import { box, clipped, dot, line, ring, type Pen } from './iconShapes';
+import { AppColors } from '@/constants/appTheme';
+
+import { box, clipped, dot, line, ring, tile, type Pen } from './iconShapes';
 
 // Icônes des genres de blind test (maquette I3), sur la grille de 24 unités de ThemeIcon. Dessins
 // volontairement simples : ils doivent rester lisibles à 18 px.
@@ -34,30 +36,49 @@ function smartphone(pen: Pen): ReactNode[] {
   return [box(pen, 'body', 6.5, 2, 11, 20, 2.5), line(pen, 'home', 10.5, 18, 13.5, 18)];
 }
 
-// Accordéon : soufflet (rectangle et plis verticaux) entre deux poignées.
+// Accordéon : deux poignées et, entre elles, le soufflet (bords haut et bas, plis en zigzag).
+const BELLOWS_TOP = 6;
+const BELLOWS_BOTTOM = 18;
+const BELLOWS_X: readonly number[] = [6.8, 8.53, 10.27, 12, 13.73, 15.47, 17.2];
+
 function accordion(pen: Pen): ReactNode[] {
+  const folds = BELLOWS_X.slice(1).map((x, index) => {
+    const from = BELLOWS_X[index];
+    const [y1, y2] = index % 2 === 0 ? [BELLOWS_TOP, BELLOWS_BOTTOM] : [BELLOWS_BOTTOM, BELLOWS_TOP];
+    return line(pen, `fold${index}`, from, y1, x, y2);
+  });
   return [
-    box(pen, 'bellows', 4, 5.5, 16, 13, 1.5),
-    line(pen, 'fold1', 9, 7.5, 9, 16.5),
-    line(pen, 'fold2', 12, 7.5, 12, 16.5),
-    line(pen, 'fold3', 15, 7.5, 15, 16.5),
-    line(pen, 'handleL', 1.8, 8, 1.8, 16),
-    line(pen, 'handleR', 22.2, 8, 22.2, 16),
+    box(pen, 'handleL', 1.5, 3.5, 4.5, 17, 1.5),
+    box(pen, 'handleR', 18, 3.5, 4.5, 17, 1.5),
+    line(pen, 'top', 6.8, BELLOWS_TOP, 17.2, BELLOWS_TOP),
+    line(pen, 'bottom', 6.8, BELLOWS_BOTTOM, 17.2, BELLOWS_BOTTOM),
+    ...folds,
   ];
 }
 
-const DISCO = { x: 3.5, y: 5, w: 17, h: 17, radius: 8.5 };
+// Boule disco : fil, puis boule pleine avec des carrés évidés en damier (couleur de l'ombre), découpés
+// par la boule.
+const DISCO = { x: 3, y: 4.5, w: 18, h: 18, radius: 9 };
+const DISCO_CELL = 3.6;
+const DISCO_SQUARE = 2.6;
+const DISCO_GRID = 5;
 
-// Boule disco : fil, contour, et facettes (un méridien et deux parallèles) découpées par la boule.
 function discoBall(pen: Pen): ReactNode[] {
+  const origin = { x: 12 - (DISCO_GRID * DISCO_CELL) / 2, y: 13.5 - (DISCO_GRID * DISCO_CELL) / 2 };
+  const squares: { key: string; x: number; y: number }[] = [];
+  for (let row = 0; row < DISCO_GRID; row++) {
+    for (let column = row % 2; column < DISCO_GRID; column += 2) {
+      const x = origin.x + column * DISCO_CELL + (DISCO_CELL - DISCO_SQUARE) / 2;
+      const y = origin.y + row * DISCO_CELL + (DISCO_CELL - DISCO_SQUARE) / 2;
+      squares.push({ key: `facet${row}-${column}`, x, y });
+    }
+  }
   return [
-    line(pen, 'string', 12, 1.2, 12, 4),
-    clipped(pen, 'facets', DISCO, (facets) => [
-      ring(facets, 'meridian', 12, 13.5, 8, 17),
-      line(facets, 'upper', 3, 10.5, 21, 10.5),
-      line(facets, 'lower', 3, 16.5, 21, 16.5),
+    line(pen, 'string', 12, 1.2, 12, 3.5),
+    clipped(pen, 'ball', DISCO, (inner) => [
+      tile(inner, 'fill', DISCO.x, DISCO.y, DISCO.w, DISCO.h),
+      ...squares.map(({ key, x, y }) => tile(inner, key, x, y, DISCO_SQUARE, DISCO_SQUARE, AppColors.themeIconShadow)),
     ]),
-    ring(pen, 'ball', 12, 13.5, DISCO.w, DISCO.h),
   ];
 }
 
