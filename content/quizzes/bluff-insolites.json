@@ -35,13 +35,13 @@
     },
     {
       "id": "bin-03",
-      "text": "Quelle drôle de manie avait le roi Farouk d'Égypte avec ses invités ?",
-      "answer": "Il leur volait discrètement montres et bibelots, en vrai pickpocket.",
+      "text": "Quel exploit a réalisé le jockey Frank Hayes à Belmont Park, en 1923 ?",
+      "answer": "Il a gagné la course alors qu'il était mort d'une crise cardiaque en plein parcours.",
       "acceptedAnswers": [],
       "decoys": [
-        "Il leur faisait goûter chaque plat avant lui, par peur du poison.",
-        "Il les obligeait à jouer aux cartes jusqu'à ce qu'il gagne.",
-        "Il leur offrait un chameau qu'ils devaient garder à vie."
+        "Il a gagné en montant à l'envers, face à la queue de son cheval.",
+        "Il a gagné trois courses le même jour sur trois chevaux aveugles.",
+        "Il a gagné après être tombé, en finissant la course à pied."
       ],
       "difficulty": 2
     },
@@ -71,13 +71,13 @@
     },
     {
       "id": "bin-06",
-      "text": "Quel était le rôle du « Groom of the Stool » à la cour d'Angleterre ?",
-      "answer": "Assister le roi quand il allait aux toilettes, et l'essuyer.",
+      "text": "Quel record unique détient l'ingénieur japonais Tsutomu Yamaguchi ?",
+      "answer": "Il a survécu à la bombe atomique d'Hiroshima, puis à celle de Nagasaki trois jours après.",
       "acceptedAnswers": [],
       "decoys": [
-        "Porter un tabouret pour que le roi puisse s'asseoir partout.",
-        "Goûter les plats du roi pour vérifier qu'ils n'étaient pas empoisonnés.",
-        "Réchauffer le lit du roi en s'y couchant avant lui."
+        "Il a survécu à trois naufrages de navires qu'il avait lui-même conçus.",
+        "Il a été le seul rescapé de deux accidents de train la même année.",
+        "Il a survécu à deux tsunamis en restant accroché au même arbre."
       ],
       "difficulty": 2
     },

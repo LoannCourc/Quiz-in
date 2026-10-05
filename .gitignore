@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # Journaux des émulateurs Firebase (database-debug.log, firestore-debug.log, ui-debug.log…)
 *-debug.log
+
+# Sources brutes du contenu (banques de questions de tiers) : jamais versionnées, le dépôt est public.
+content/sources/
