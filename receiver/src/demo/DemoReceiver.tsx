@@ -11,12 +11,13 @@ import {
   DEMO_ROOM_CODE,
   demoExtraPlayerCount,
   toDemoBlindTest,
+  withDemoBluff,
   withDemoTeams,
   withLongOptions,
   type DemoOptions,
 } from './demoSession'
 
-const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'validation', 'reveal', 'scores', 'paused', 'ended']
+const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'vote', 'validation', 'reveal', 'scores', 'paused', 'ended']
 
 // Comme la maquette : 7 réponses sur 9 joueurs connectés.
 const INITIAL_ANSWERED_COUNT = 7
@@ -32,11 +33,13 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
 // &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues ;
 // &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes.
+// &mode=bluff : Bluff (status=question : écriture, status=vote, status=reveal) ; &choices=21 : nombre de
+// choix (avec &players=20) ; &long=1 : phrases de 100 caractères.
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
     status: isDemoStatus(status) ? status : 'lobby',
-    answerMode: params.get('mode') === 'free' ? 'free' : 'choice',
+    answerMode: params.get('mode') === 'free' ? 'free' : params.get('mode') === 'bluff' ? 'bluff' : 'choice',
     answeredCount: Math.min(Number(params.get('answered')) || INITIAL_ANSWERED_COUNT, DEMO_MAX_ANSWERS),
     isToggleablePlayerConnected: true,
     startedAt: Date.now() - (Number(params.get('elapsed')) || 0) * 1000,
@@ -52,8 +55,17 @@ export function DemoReceiver() {
   const isBlindTest = params.get('blindtest') === '1'
   const baseSession = isBlindTest ? toDemoBlindTest(demoSession) : demoSession
   const long = params.get('long')
-  const withLong =
-    long === '1' || long === 'one' ? withLongOptions(baseSession, isBlindTest, long === 'one' ? 'one' : 'all') : baseSession
+  const isBluff = options.answerMode === 'bluff'
+  const choiceParam = Number(params.get('choices'))
+  const withLong = isBluff
+    ? withDemoBluff(baseSession, {
+        choiceCount: choiceParam > 0 ? choiceParam : undefined,
+        long: long === '1',
+        answeredCount: options.answeredCount,
+      })
+    : long === '1' || long === 'one'
+      ? withLongOptions(baseSession, isBlindTest, long === 'one' ? 'one' : 'all')
+      : baseSession
   // Pas à pas (&step=1) : la révélation et le classement attendent l'hôte, sans fin programmée.
   const isStepByStep = params.get('step') === '1'
   const stepped = isStepByStep

@@ -1,7 +1,9 @@
+import { bluffChoicesLayout } from '@shared/bluffLayout'
 import type { PublicSession } from '@shared/types'
 
 import { AudioStatus } from '../components/AudioStatus'
 import { Avatar } from '../components/Avatar'
+import { BluffVoteChoices } from '../components/BluffChoices'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
 import { TeamAvatarGroups } from '../components/TeamBoards'
@@ -24,9 +26,21 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
   const players = sortForGame(session)
   const connectedCount = countConnected(players)
   const answeredCount = countConnectedAnswered(session, players)
+  // Bluff (maquette B4) : écriture des fausses réponses, puis vote parmi les choix publiés.
+  const isBluff = session.settings.answerMode === 'bluff'
+  const isVote = isBluff && session.status === 'vote'
+  // Beaucoup de choix (petit texte) : question plus basse, sans pastille ni consigne, pour leur laisser la place.
+  const voteLayout = bluffChoicesLayout(question.choices ?? [])
+  const isCrowded = isVote && voteLayout.crowded
+  const answeredLabel = isVote
+    ? strings.bluff.votedCount(answeredCount, connectedCount)
+    : isBluff
+      ? strings.bluff.writtenCount(answeredCount, connectedCount)
+      : strings.question.answeredCount(answeredCount, connectedCount)
+  const questionCard = <h1 className={isVote ? 'question-card is-compact' : 'question-card'}>{question.text}</h1>
 
   return (
-    <main className="screen question">
+    <main className={isVote ? `screen question question-vote${isCrowded ? ' is-crowded' : ''}` : 'screen question'}>
       <GameHeader
         roomCode={roomCode}
         questionIndex={session.currentIndex}
@@ -39,15 +53,30 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
         {question.audio ? (
           // Blind test : seul l'indicateur d'écoute s'ajoute, jamais le titre ni la pochette.
           <div className="question-card-column">
-            <h1 className="question-card">{question.text}</h1>
+            {questionCard}
             <AudioStatus />
           </div>
+        ) : isBluff ? (
+          <div className="question-card-column">
+            <span className="bluff-badge">{strings.bluff.badge}</span>
+            {questionCard}
+          </div>
         ) : (
-          <h1 className="question-card">{question.text}</h1>
+          questionCard
         )}
       </section>
 
-      {isValidation ? (
+      {isVote ? (
+        <>
+          <p className="bluff-hint">{strings.bluff.voteHint}</p>
+          <BluffVoteChoices choices={question.choices ?? []} layout={voteLayout} />
+        </>
+      ) : isBluff ? (
+        // Écriture : rien des propositions des joueurs n'apparaît avant le vote.
+        <div className="question-options free-prompt">
+          <p className="free-prompt-text">{strings.bluff.writeHint}</p>
+        </div>
+      ) : isValidation ? (
         <div className="question-options free-prompt validation-prompt">
           <p className="free-prompt-text">{strings.validation.title}</p>
           <p className="validation-received">{strings.validation.received(answeredByCount(session))}</p>
@@ -72,9 +101,7 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
       {!isValidation && (
         <footer className="question-answered">
           <span className="question-answered-count">
-            {connectedCount > 0
-              ? strings.question.answeredCount(answeredCount, connectedCount)
-              : strings.question.noConnectedPlayers}
+            {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
           </span>
           {session.settings.teams ? (
             // Groupe : avatars regroupés par équipe (maquette G2).

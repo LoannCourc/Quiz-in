@@ -24,9 +24,17 @@ export function sortForGame(session: PublicSession): RankedPlayer[] {
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
 
-// La TV sait qui a répondu (answeredBy), jamais ce qui a été répondu.
+// Qui a agi pendant la phase en cours (jamais quoi) : qui a répondu ; en Bluff, qui a une proposition
+// acceptée pendant l'écriture, puis qui a voté.
+function actedBy(session: PublicSession): Record<PlayerId, true> | undefined {
+  const index = session.currentIndex
+  if (session.settings.answerMode !== 'bluff') return session.answeredBy?.[index]
+  return session.status === 'vote' ? session.votedBy?.[index] : session.bluffedBy?.[index]
+}
+
+// La TV sait qui a répondu, jamais ce qui a été répondu.
 export function hasAnswered(session: PublicSession, playerId: PlayerId): boolean {
-  return session.answeredBy?.[session.currentIndex]?.[playerId] === true
+  return actedBy(session)?.[playerId] === true
 }
 
 // Comme la règle de passage automatique (spec 5), on ne compte que les joueurs connectés.

@@ -1,0 +1,173 @@
+/* Bluff : cartes de choix (vote, maquette B4) et lignes de révélation (B5). Les choix sont des phrases
+   de 100 caractères au plus : une ou deux colonnes et une seule taille de texte (bluffChoicesLayout),
+   lisibles en 720p comme en 1080p (la mise en page est proportionnelle à l'écran). */
+.bluff-choices {
+  --bluff-font: 1.5rem;
+  display: grid;
+  /* Jamais plus basse que son texte : une rangée ne se comprime pas, la taille du texte suffit à tout faire tenir. */
+  grid-auto-rows: auto;
+  align-content: start;
+  gap: 0.7rem 1rem;
+  min-height: 0;
+  /* Garde-fou : la zone des choix ne déborde jamais sur les avatars. */
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--bluff-font);
+}
+
+.bluff-columns-1 {
+  grid-template-columns: 1fr;
+}
+
+/* Deux colonnes remplies ligne par ligne : A B, C D… comme la maquette. */
+.bluff-columns-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.bluff-size-xl {
+  --bluff-font: 1.6rem;
+}
+
+.bluff-size-l {
+  --bluff-font: 1.35rem;
+}
+
+.bluff-size-m {
+  --bluff-font: 1.15rem;
+  gap: 0.55rem 0.9rem;
+}
+
+.bluff-size-s {
+  --bluff-font: 0.95rem;
+  gap: 0.4rem 0.8rem;
+}
+
+/* Jusqu'à 21 phrases de 100 caractères (20 joueurs) : texte le plus petit, cartes plus serrées. */
+.bluff-size-xs {
+  --bluff-font: 0.66rem;
+  gap: 0.15rem 0.6rem;
+}
+
+.bluff-size-s .bluff-choice {
+  padding: 0.35em 0.8em;
+}
+
+.bluff-size-xs .bluff-choice {
+  padding: 0.12em 0.7em;
+  line-height: 1.12;
+}
+
+.bluff-choice {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.8em;
+  padding: 0.55em 1em;
+  border-radius: var(--radius-card);
+  background: var(--ink-surface);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.bluff-letter {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.25em;
+  line-height: var(--display-line-height);
+  color: var(--color-accent);
+}
+
+.bluff-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Révélation : texte et étiquette à gauche, votants à droite. Chaque ligne arrive en glissant
+   (transform et opacity seulement, léger pour la TV). */
+.bluff-row {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  animation: bluff-row-in 450ms ease-out both;
+}
+
+@keyframes bluff-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bluff-row-main {
+  display: grid;
+  row-gap: 0.15em;
+  min-width: 0;
+}
+
+.bluff-row.is-truth {
+  background: var(--color-correct);
+  color: var(--color-on-correct);
+}
+
+.bluff-row.is-truth .bluff-letter {
+  color: var(--color-on-correct);
+}
+
+.bluff-tag {
+  justify-self: start;
+  padding: 0.1em 0.6em;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.6em;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bluff-tag.is-truth {
+  background: var(--ink-surface);
+  color: var(--color-correct);
+}
+
+.bluff-author {
+  font-size: 0.65em;
+  font-weight: 900;
+  color: var(--color-accent);
+}
+
+.bluff-voters {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25em;
+}
+
+.bluff-voter {
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: var(--color-card);
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.bluff-more {
+  font-size: 0.7em;
+  font-weight: 900;
+}
+
+.bluff-no-vote {
+  font-size: 0.65em;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
+.bluff-row.is-truth .bluff-no-vote {
+  color: var(--color-on-correct);
+}

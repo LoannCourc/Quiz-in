@@ -115,3 +115,71 @@
 .question-avatars .avatar {
   --avatar-size: 3.5rem;
 }
+
+/* Bluff (maquette B4) : pastille « BLUFF » au-dessus de la question. */
+.bluff-badge {
+  justify-self: center;
+  padding: 0.2rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Vote : la question rétrécit, les choix prennent toute la place restante (jusqu'à 21 phrases). */
+.question-vote {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  row-gap: 0.8rem;
+}
+
+.question-card.is-compact {
+  min-height: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  font-size: 1.5rem;
+}
+
+.bluff-hint {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* Vote : avatars sur une seule ligne, même à 20 joueurs, pour laisser la hauteur aux choix. */
+.question-vote .question-avatars {
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+}
+
+.question-vote .question-avatars .avatar {
+  --avatar-size: 2rem;
+}
+
+/* Vote avec beaucoup de choix : chaque rem compte pour les cartes. */
+/* Pastille et consigne retirées : une rangée de grille de moins. */
+.question-vote.is-crowded {
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  row-gap: 0.5rem;
+}
+
+.question-vote.is-crowded .bluff-badge,
+.question-vote.is-crowded .bluff-hint {
+  display: none;
+}
+
+.question-vote.is-crowded .question-card.is-compact {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  font-size: 1.2rem;
+}
+
+.question-vote.is-crowded .countdown-ring {
+  --ring-size: 3.6rem;
+  --ring-width: 0.35rem;
+}
+

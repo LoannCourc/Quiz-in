@@ -1,0 +1,67 @@
+/* Révélation du Bluff (maquette B5) : titre, lignes des choix (zone compressible), résumé des points. */
+.bluff-reveal {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
+  row-gap: 0.8rem;
+}
+
+.bluff-reveal.is-truth-shown {
+  background: var(--background-celebration);
+}
+
+.bluff-reveal-title {
+  font-size: 2.4rem;
+}
+
+.bluff-reveal-body {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  row-gap: 0.7rem;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Place de la vraie réponse, en attendant qu'elle arrive. */
+.bluff-suspense {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border: 0.2rem dashed var(--color-text-muted);
+  border-radius: var(--radius-card);
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* Résumé des points : deux lignes au plus, jamais coupé en plein mot. */
+.bluff-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.bluff-hidden {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* Beaucoup de choix : sans les étapes, titre plus petit, pour laisser la place aux lignes. */
+.bluff-reveal.is-crowded {
+  row-gap: 0.5rem;
+}
+
+.bluff-reveal.is-crowded .transition-steps {
+  display: none;
+}
+
+.bluff-reveal.is-crowded .bluff-reveal-title {
+  font-size: 1.7rem;
+}

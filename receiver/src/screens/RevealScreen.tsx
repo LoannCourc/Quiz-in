@@ -6,6 +6,7 @@ import { GameHeader } from '../components/GameHeader'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { strings } from '../strings'
+import { BluffRevealScreen } from './BluffRevealScreen'
 import './RevealScreen.css'
 
 interface RevealScreenProps {
@@ -16,6 +17,8 @@ interface RevealScreenProps {
 export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const { currentQuestion: question, reveal } = session
   if (!question || !reveal) return null
+  // Bluff : révélation en deux étapes (fausses propositions, puis la vraie réponse).
+  if (reveal.stats.bluffChoices) return <BluffRevealScreen session={session} roomCode={roomCode} choices={reveal.stats.bluffChoices} />
   const countdown = nextQuestionCountdown(session)
   // Propositions très longues : révélation compacte, pour que tout tienne (sans :has(), absent de Chrome 92).
   const isCompact = question.options !== undefined && optionsSizeClass(question.options) === "options-size-very-long"

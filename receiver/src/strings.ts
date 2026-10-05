@@ -69,6 +69,32 @@ export const strings = {
     freeAnswersTitle: 'Vos réponses',
     verdictMarks: { correct: '✓', partial: '½', wrong: '✕' } satisfies Record<AnswerVerdict, string>,
   },
+  // Bluff (maquettes B4 et B5) : écriture des fausses réponses, vote, révélation.
+  bluff: {
+    badge: 'Bluff',
+    writeHint: 'Inventez une fausse réponse sur votre téléphone !',
+    voteHint: 'Votez pour la vraie réponse !',
+    writtenCount: (count: number, total: number) => `${count}/${total} ont écrit`,
+    votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
+    revealTitle: 'Les propositions se retournent…',
+    truthTitle: 'La vraie réponse',
+    suspense: 'Suspense… la vraie réponse arrive',
+    truthTag: 'Vraie réponse',
+    decoyTag: 'Leurre',
+    writtenBy: (names: string) => `écrite par ${names}`,
+    noVote: 'aucun vote',
+    otherChoices: (count: number) => `+ ${count} autre${count > 1 ? 's' : ''} proposition${count > 1 ? 's' : ''} sans vote`,
+    moreVoters: (count: number) => `+${count}`,
+    // Liste de pseudos : « Léa », « Léa et Tom », « Léa, Tom et Max », puis « et N autres ».
+    names: (names: string[]) => {
+      const shown = names.length > 3 ? [...names.slice(0, 2), `${names.length - 2} autres`] : names
+      return shown.length > 1 ? `${shown.slice(0, -1).join(', ')} et ${shown[shown.length - 1]}` : (shown[0] ?? '')
+    },
+    finders: (names: string, points: number) => `Vraie réponse trouvée : ${names} (+${points})`,
+    nobodyFound: 'Personne n’a trouvé la vraie réponse',
+    trapper: (name: string, points: number, trapped: number) =>
+      `${name} : +${points} (${trapped} piégé${trapped > 1 ? 's' : ''})`,
+  },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {
     steps: ['Révélation', 'Classement', 'Question suivante'],

@@ -1,4 +1,7 @@
 import {
+  BLUFF_TRAP_POINTS,
+  BLUFF_TRUTH_POINTS,
+  BLUFF_VOTE_DURATION_S,
   MAX_PLAYERS,
   QUESTION_DURATION_S,
   QUESTIONS_PER_GAME,
@@ -7,6 +10,7 @@ import {
   STARTING_DURATION_S,
 } from '@shared/constants'
 import { groupFreeAnswers, publicFreeAnswerGroups } from '@shared/freeAnswers'
+import { revealDurationS } from '@shared/gameFlow'
 import { computeRanks } from '@shared/ranking'
 import { activeTeams } from '@shared/teams'
 import type {
@@ -19,6 +23,7 @@ import type {
   PlayerResult,
   PublicSession,
   Question,
+  RevealedBluffChoice,
 } from '@shared/types'
 
 export const DEMO_ROOM_CODE = 'K7TM'
@@ -75,6 +80,8 @@ function phaseDurationS(status: GameStatus, answerMode: AnswerMode): number {
       return STARTING_DURATION_S
     case 'question':
       return DEMO_QUESTION.timeLimit ?? QUESTION_DURATION_S[answerMode]
+    case 'vote':
+      return BLUFF_VOTE_DURATION_S
     case 'reveal':
       return REVEAL_DURATION_S[answerMode]
     case 'scores':
@@ -301,5 +308,95 @@ export function withDemoTeams(session: PublicSession, drawAt?: number): PublicSe
     players,
     teams: Object.fromEntries(teams.map((team) => [team, { score: scores[team], rank: ranks[team] }])),
     ...(drawAt !== undefined && { teamDrawAt: drawAt }),
+  }
+}
+
+// Bluff (&mode=bluff) : la question et les choix de la maquette B4/B5 (Monopoly), ou &choices=N choix
+// (2 à 21 : la vraie réponse et N - 1 propositions de joueurs, avec &players=20), &long=1 : phrases de
+// 100 caractères, pour vérifier la mise en page la plus chargée.
+const BLUFF_QUESTION_TEXT = 'Quel était le tout premier nom du jeu Monopoly, avant 1935 ?'
+const BLUFF_TRUTH = "The Landlord's Game"
+
+const MOCKUP_CHOICES: RevealedBluffChoice[] = [
+  { text: 'Magie Immobilière', kind: 'decoy', voters: ['tom'] },
+  { text: 'Le Jeu du Propriétaire', kind: 'bluff', authors: ['lea'], voters: ['max', 'ines'] },
+  { text: BLUFF_TRUTH, kind: 'truth', voters: ['noe', 'sam'] },
+  { text: 'Capital Express', kind: 'bluff', authors: ['hugo'] },
+  { text: 'Rue de la Paix', kind: 'decoy', voters: ['jo'] },
+  { text: 'Monopolis', kind: 'bluff', authors: ['tom'] },
+]
+
+const DEMO_SENTENCE = 'Il était vendu en kit avec un plateau en bois peint à la main et des billets imprimés par la poste'
+
+function demoSentence(index: number, long: boolean): string {
+  const text = `${DEMO_SENTENCE} (${index})`
+  return long ? text.padEnd(100, '.').slice(0, 100) : `Un jeu de plateau inventé en ${1900 + index}`
+}
+
+// N choix : la vraie réponse au milieu, puis une proposition par joueur ; chacun vote pour un autre choix.
+function generatedChoices(count: number, long: boolean, playerIds: string[]): RevealedBluffChoice[] {
+  const authors = playerIds.slice(0, count - 1)
+  const truthAt = Math.floor(count / 2)
+  const choices: RevealedBluffChoice[] = authors.map((author, index) => ({
+    text: demoSentence(index + 1, long),
+    kind: 'bluff',
+    authors: [author],
+  }))
+  choices.splice(truthAt, 0, { text: long ? demoSentence(0, true) : BLUFF_TRUTH, kind: 'truth' })
+  playerIds.forEach((id, index) => {
+    let target = (index * 7 + 3) % count
+    if (choices[target].authors?.includes(id)) target = (target + 1) % count
+    const choice = choices[target]
+    choice.voters = [...(choice.voters ?? []), id]
+  })
+  return choices
+}
+
+function bluffResults(choices: RevealedBluffChoice[]): Record<PlayerId, PlayerResult> {
+  const results: Record<PlayerId, PlayerResult> = {}
+  for (const choice of choices) {
+    for (const voter of choice.voters ?? []) {
+      const correct = choice.kind === 'truth'
+      results[voter] = { correct, points: (results[voter]?.points ?? 0) + (correct ? BLUFF_TRUTH_POINTS : 0) }
+    }
+    for (const author of choice.authors ?? []) {
+      const trap = (choice.voters?.length ?? 0) * BLUFF_TRAP_POINTS
+      results[author] = { correct: results[author]?.correct ?? false, points: (results[author]?.points ?? 0) + trap }
+    }
+  }
+  return results
+}
+
+export interface DemoBluffOptions {
+  // Nombre de choix (2 à 21) ; absent : les 6 choix de la maquette.
+  choiceCount?: number
+  long: boolean
+  answeredCount: number
+}
+
+export function withDemoBluff(session: PublicSession, { choiceCount, long, answeredCount }: DemoBluffOptions): PublicSession {
+  const playerIds = Object.keys(session.players)
+  const count = choiceCount === undefined ? undefined : Math.min(Math.max(2, choiceCount), playerIds.length + 1)
+  const choices = count === undefined ? MOCKUP_CHOICES : generatedChoices(count, long, playerIds)
+  const acted = Object.fromEntries(playerIds.slice(0, answeredCount).map((id) => [id, true as const]))
+  const index = session.currentIndex
+  const hasReveal = session.status === 'reveal' || session.status === 'scores'
+  const revealEnd = session.phaseStartedAt + revealDurationS('bluff', choices.length) * 1000
+  return {
+    ...session,
+    settings: { ...session.settings, answerMode: 'bluff' },
+    phaseEndsAt: session.status === 'reveal' && session.phaseEndsAt !== 0 ? revealEnd : session.phaseEndsAt,
+    currentQuestion: session.currentQuestion && {
+      text: BLUFF_QUESTION_TEXT,
+      difficulty: 3,
+      timeLimit: session.currentQuestion.timeLimit,
+      ...((session.status === 'vote' || hasReveal) && { choices: choices.map((choice) => choice.text) }),
+    },
+    reveal: hasReveal
+      ? { correctAnswer: BLUFF_TRUTH, stats: { bluffChoices: choices }, results: bluffResults(choices) }
+      : undefined,
+    answeredBy: undefined,
+    bluffedBy: { [index]: acted },
+    votedBy: session.status === 'vote' ? { [index]: acted } : undefined,
   }
 }

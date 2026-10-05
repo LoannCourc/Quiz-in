@@ -515,7 +515,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 ## 16. Bluff
 
-Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 10 quiz de 10 questions tirés de la banque de questions de JAJA, en relecture avec `docs/relecture-bluff.md`) codés ; écrans à venir.
+Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 10 quiz de 10 questions tirés de la banque de questions de JAJA, en relecture avec `docs/relecture-bluff.md`) codés ; lot 3 (écrans de la TV) codé ; téléphones à venir.
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
@@ -541,7 +541,9 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Points.** 1000 pour un vote sur la vraie réponse ; 500 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
 
-**Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre, chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants ; puis la vraie réponse et ses votants, et le résumé des points. Téléphone (B3) : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
+**Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre (2 s chacune), chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants (6 avatars au plus, puis « +N ») ; puis la vraie réponse en tête, en vert, avec ses votants, et le résumé des points (qui a trouvé la vraie réponse, qui a piégé combien de joueurs). Au-delà de 8 choix, seuls les 8 derniers retournés restent à l'écran ; à la vraie réponse, on montre la vraie réponse et les propositions qui ont reçu des votes, les plus votées d'abord, et « + N autres propositions sans vote ».
+
+**Mise en page TV.** Écriture : l'énoncé, « Inventez une fausse réponse sur votre téléphone ! » et les avatars qui s'allument quand une proposition est acceptée. Vote : les choix en cartes lettrées, en une colonne (3 phrases longues au plus) ou deux, avec une seule taille de texte pour tous : la plus grande dont la hauteur estimée tient à l'écran (`shared/bluffLayout.ts`). Si elle ne tient qu'en libérant de la place, l'écran est « serré » : question réduite, sans pastille ni consigne au vote, sans les étapes à la révélation. Avatars sur une seule ligne. Jusqu'à 21 phrases de 100 caractères tiennent au vote, en 720p comme en 1080p ; le texte est alors petit (environ 13 px en 720p). Téléphone (B3) : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
 
 **Options.**
 - **Rapidité** : sans effet en Bluff.

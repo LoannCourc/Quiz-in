@@ -21,6 +21,8 @@ export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
     case 'starting':
       return <StartingScreen session={session} />
     case 'question':
+    case 'vote':
+      // Bluff : l'écriture des fausses réponses, puis le vote, sur le même écran que la question.
       return <QuestionScreen session={session} roomCode={roomCode} />
     case 'reveal':
       return <RevealScreen session={session} roomCode={roomCode} />
