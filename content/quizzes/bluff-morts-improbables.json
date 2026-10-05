@@ -1,0 +1,133 @@
+{
+  "id": "bluff-morts-improbables",
+  "gameType": "bluff",
+  "title": "Bluff : des morts vraiment improbables",
+  "theme": "Culture générale",
+  "description": "Une barbe trop longue, une écharpe, un coffre-fort… Inventez des fins absurdes, et repérez la vraie, encore plus folle.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bmi-01",
+      "text": "Comment le compositeur Lully s'est-il blessé à mort, en 1687 ?",
+      "answer": "En battant la mesure, il s'est frappé le pied avec son lourd bâton de direction.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En tombant de la scène pendant un ballet dansé avec Louis XIV.",
+        "En se coinçant la main dans le couvercle de son clavecin.",
+        "Écrasé par un décor de théâtre qui s'est décroché."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-02",
+      "text": "Selon le récit de l'époque, pourquoi l'astronome Tycho Brahe est-il mort, en 1601 ?",
+      "answer": "Par politesse, il n'a pas quitté un banquet pour aller uriner, et sa vessie aurait lâché.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a regardé le Soleil trop longtemps dans son instrument de mesure.",
+        "Il a avalé une lentille de verre en mangeant sa soupe.",
+        "Il est tombé de sa tour d'observation en suivant une comète."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-03",
+      "text": "Selon la légende, pourquoi le père de la musculation, Eugen Sandow, est-il mort ?",
+      "answer": "Il aurait voulu sortir seul sa voiture d'un fossé, à la force des bras.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il aurait soulevé un piano pour impressionner la reine Victoria.",
+        "Il aurait voulu arrêter à mains nues un cheval emballé.",
+        "Il aurait porté un bœuf sur ses épaules pour gagner un pari."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-04",
+      "text": "Selon une légende, quel livre aurait tué le compositeur Charles-Valentin Alkan, en 1888 ?",
+      "answer": "Le Talmud : sa bibliothèque serait tombée sur lui quand il a voulu l'attraper.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "La Bible : elle lui serait tombée sur la tête du haut d'un pupitre.",
+        "Ses propres partitions, si lourdes qu'elles ont fait céder l'étagère.",
+        "Un dictionnaire de musique lancé par un élève furieux."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bmi-05",
+      "text": "Qu'est-ce qui a tué la danseuse Isadora Duncan à Nice, en 1927 ?",
+      "answer": "Sa longue écharpe, prise dans une roue de la voiture où elle venait de monter.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un faux pas sur la promenade des Anglais, pendant une danse improvisée.",
+        "Une chute de son balcon en saluant ses admirateurs.",
+        "Un plongeon dans une mer glacée après un spectacle."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bmi-06",
+      "text": "Avec quoi le dramaturge Tennessee Williams s'est-il étouffé, en 1983 ?",
+      "answer": "Le bouchon d'un flacon de médicament qu'il tenait entre ses dents.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une olive de son martini, avalée de travers en riant.",
+        "Une pastille pour la gorge, avant une lecture publique.",
+        "Un morceau de crayon qu'il mâchonnait en écrivant."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-07",
+      "text": "Selon la légende, comment le fondateur du whisky Jack Daniel's s'est-il blessé à mort ?",
+      "answer": "Il a donné un coup de pied dans son coffre-fort, dont il avait oublié le code.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il est tombé dans une cuve de whisky en goûtant la cuvée.",
+        "Un tonneau a dévalé la colline et lui a écrasé le pied.",
+        "Il s'est coupé avec un tesson en débouchant une bouteille."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-08",
+      "text": "Comment le maire de Braunau, Hans Steininger, est-il mort en 1567 ?",
+      "answer": "Il a trébuché sur sa propre barbe, longue de 1,40 m, en fuyant un incendie.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sa perruque a pris feu quand il éteignait les bougies de la mairie.",
+        "Il est tombé dans le puits de la ville en comptant les impôts.",
+        "Il s'est étranglé avec la chaîne de sa médaille de maire."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bmi-09",
+      "text": "Comment l'inventeur Thomas Midgley est-il mort, en 1944 ?",
+      "answer": "Étranglé par le système de cordes et de poulies qu'il avait inventé pour sortir du lit.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Électrocuté par le réveil automatique qu'il venait de breveter.",
+        "Écrasé par la porte d'un réfrigérateur de sa conception.",
+        "Asphyxié dans le garage où il essayait un nouveau carburant."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bmi-10",
+      "text": "Comment le propriétaire de l'entreprise Segway est-il mort, en 2010 ?",
+      "answer": "Il est tombé d'une falaise en roulant sur un Segway tout-terrain.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a été percuté par une voiture électrique de sa propre marque.",
+        "Il a été renversé par un employé pendant une démonstration.",
+        "Il a dévalé l'escalier de son siège social en Segway."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

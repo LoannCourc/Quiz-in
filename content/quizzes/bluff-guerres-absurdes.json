@@ -1,0 +1,133 @@
+{
+  "id": "bluff-guerres-absurdes",
+  "gameType": "bluff",
+  "title": "Bluff : les guerres les plus absurdes",
+  "theme": "Histoire",
+  "description": "Un seau, un cochon, une oreille… Des conflits nés de presque rien : inventez la cause la plus crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bga-01",
+      "text": "Qu'a montré le capitaine Jenkins au Parlement anglais, déclenchant une guerre contre l'Espagne en 1739 ?",
+      "answer": "Son oreille, coupée par des garde-côtes espagnols et conservée dans un bocal.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sa jambe de bois, brisée par des soldats espagnols.",
+        "Son chapeau, percé d'une balle espagnole.",
+        "Sa barbe, rasée de force par des douaniers espagnols."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-02",
+      "text": "Qu'a déclenché la « guerre du chien errant » entre la Grèce et la Bulgarie, en 1925 ?",
+      "answer": "Un soldat grec a couru après son chien qui avait passé la frontière, et a été abattu.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un chien bulgare avait volé le repas d'un général grec.",
+        "Les deux pays se disputaient un chien de berger champion.",
+        "Un chien de douane avait mordu un ministre en visite."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-03",
+      "text": "Pourquoi la France a-t-elle attaqué le Mexique en 1838, lors de la « guerre des Pâtisseries » ?",
+      "answer": "Un pâtissier français réclamait des dédommagements : sa boutique avait été pillée.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le Mexique refusait d'acheter des croissants français.",
+        "Un chef mexicain avait copié la recette de l'éclair au chocolat.",
+        "Un ambassadeur français avait été empoisonné par un gâteau."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-04",
+      "text": "Qu'a déclenché la « guerre du cochon » entre les États-Unis et le Royaume-Uni, en 1859 ?",
+      "answer": "Un fermier américain a abattu un cochon anglais qui mangeait ses pommes de terre.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un cochon anglais avait traversé la frontière à la nage.",
+        "Les deux pays se disputaient un cochon primé à une foire.",
+        "Un cochon américain avait mangé un drapeau britannique."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-05",
+      "text": "Quel animal a déclenché la première guerre entre les Sioux et l'armée américaine, en 1854 ?",
+      "answer": "Une vache égarée, abattue par un guerrier sioux près d'un fort de l'armée.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un cheval de l'armée, volé pendant une nuit d'orage.",
+        "Un bison sacré, tué par des chasseurs de fourrure.",
+        "Un chien de garde, qui avait mordu le fils d'un chef."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bga-06",
+      "text": "Qu'ont volé des soldats de Modène à Bologne, déclenchant une bataille en 1325 ?",
+      "answer": "Un seau en bois, toujours conservé à Modène comme trophée.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "La cloche de la cathédrale, fondue ensuite pour faire des canons.",
+        "Le pain de la fête du saint patron de la ville.",
+        "Une statue de lion, exposée depuis sur une place de Modène."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-07",
+      "text": "En 1932, contre quels ennemis l'armée australienne a-t-elle perdu une « guerre » ?",
+      "answer": "Des milliers d'émeus, qui ravageaient les champs de blé.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des kangourous, qui détruisaient les clôtures des fermes.",
+        "Des lapins, qui creusaient sous les voies ferrées.",
+        "Des perroquets, qui pillaient les vergers."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bga-08",
+      "text": "Selon un récit de l'époque, que s'est-il passé à Karánsebes, en 1788 ?",
+      "answer": "L'armée autrichienne s'est attaquée elle-même, après une dispute pour de l'alcool.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Deux armées se sont rendues l'une à l'autre au même moment.",
+        "Une armée entière s'est perdue un mois dans le brouillard.",
+        "Un régiment a déserté pour assister à un mariage."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bga-09",
+      "text": "Combien de temps a duré la guerre entre le Royaume-Uni et Zanzibar, en 1896 ?",
+      "answer": "Moins de 45 minutes : la plus courte guerre connue de l'histoire.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Trois jours, interrompus par une tempête de sable.",
+        "Douze heures exactement, de l'aube au coucher du soleil.",
+        "Deux semaines, sans un seul coup de feu tiré."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bga-10",
+      "text": "Selon la légende, que s'est-il passé au retour de l'armée du Liechtenstein, en 1866 ?",
+      "answer": "Partis à 80 soldats, ils sont revenus à 81, avec un nouvel ami rencontré en route.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils sont revenus sans uniformes, échangés contre du fromage.",
+        "Ils sont rentrés un an après la fin de la guerre, que personne ne leur avait annoncée.",
+        "Ils sont revenus à 79 : deux soldats avaient épousé des Italiennes."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { describe, expect, test } from 'vitest'
 
 import { bluffQuestionErrors, bluffQuestionWarnings, toBluffQuestion } from '../../content/scripts/bluffContent'
@@ -7,10 +7,16 @@ import { parseBluffQuestion, parseBluffQuestions, parseQuizSummary } from '../..
 import type { BluffQuestion } from '../../shared/types'
 import { makeBluffQuestion } from './engineFixtures'
 
-const BLUFF_QUIZZES = ['bluff-culture-generale', 'bluff-sciences-nature']
+const QUIZZES_DIR = new URL('../../content/quizzes/', import.meta.url)
+
+// Quiz Bluff du contenu actuel.
+const BLUFF_QUIZZES = readdirSync(QUIZZES_DIR)
+  .filter((file) => file.endsWith('.json'))
+  .map((file) => file.replace(/\.json$/, ''))
+  .filter((id) => JSON.parse(readFileSync(new URL(`${id}.json`, QUIZZES_DIR), 'utf8')).gameType === 'bluff')
 
 function contentQuestions(quizId: string): BluffQuestion[] {
-  const file = JSON.parse(readFileSync(new URL(`../../content/quizzes/${quizId}.json`, import.meta.url), 'utf8'))
+  const file = JSON.parse(readFileSync(new URL(`${quizId}.json`, QUIZZES_DIR), 'utf8'))
   expect(file.gameType).toBe('bluff')
   return file.questions as BluffQuestion[]
 }
@@ -64,6 +70,10 @@ describe('Bluff : lecture depuis la base', () => {
 })
 
 describe('Bluff : quiz du contenu', () => {
+  test('au moins un quiz Bluff dans le contenu', () => {
+    expect(BLUFF_QUIZZES.length).toBeGreaterThan(0)
+  })
+
   test.each(BLUFF_QUIZZES)('%s : 10 questions valides, dont chaque leurre est une proposition acceptable', (quizId) => {
     const questions = contentQuestions(quizId)
     expect(questions).toHaveLength(10)

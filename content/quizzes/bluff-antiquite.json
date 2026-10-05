@@ -1,0 +1,133 @@
+{
+  "id": "bluff-antiquite",
+  "gameType": "bluff",
+  "title": "Bluff : Antiquité, légendes et fins étranges",
+  "theme": "Histoire",
+  "description": "Philosophes, empereurs et poètes de l'Antiquité ont laissé des légendes à peine croyables : à vous de les démêler.",
+  "audience": "all",
+  "poster": "gold",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "ban-01",
+      "text": "Selon la légende, de quoi le philosophe grec Chrysippe est-il mort ?",
+      "answer": "De rire, en voyant un âne manger ses figues et boire son vin.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'avoir réfléchi trois jours entiers sans boire ni manger.",
+        "D'une piqûre d'abeille en plein discours sur l'agora.",
+        "En tombant de la colonne où il méditait depuis des semaines."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-02",
+      "text": "Selon la légende, quel objet tombé du ciel a tué le poète Eschyle ?",
+      "answer": "Une tortue, lâchée par un aigle qui prenait son crâne chauve pour un rocher.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une tuile arrachée par le vent au toit d'un temple d'Apollon.",
+        "Une figue géante tombée d'un arbre sacré.",
+        "Une lyre jetée par un spectateur mécontent de sa pièce."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-03",
+      "text": "Selon la légende, comment le philosophe Empédocle a-t-il voulu prouver qu'il était un dieu ?",
+      "answer": "En se jetant dans l'Etna ; le volcan aurait recraché une de ses sandales.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En marchant sur la mer jusqu'en Sicile ; il s'est noyé au bout de cent pas.",
+        "En jeûnant quarante jours ; il est mort au trente-neuvième.",
+        "En défiant la foudre au sommet de l'Olympe, une lance à la main."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-04",
+      "text": "Selon la légende, de quoi le peintre grec Zeuxis est-il mort ?",
+      "answer": "De rire, devant le portrait d'une vieille femme très laide qu'il venait de peindre.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Empoisonné par les pigments au plomb qu'il léchait sur ses pinceaux.",
+        "Écrasé par une fresque qui s'est détachée du mur d'un temple.",
+        "De chagrin, quand un élève a peint un tableau plus beau que le sien."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "ban-05",
+      "text": "Selon Plutarque, qui a tué le roi Pyrrhus dans les rues d'Argos ?",
+      "answer": "Une vieille femme, qui lui a lancé une tuile du haut d'un toit.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un enfant, qui l'a fait tomber de cheval avec une fronde.",
+        "Un boulanger, qui l'a assommé avec une pelle à pain.",
+        "Son propre éléphant, affolé par le son des trompettes."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-06",
+      "text": "Qui a fini par tuer l'empereur Commode en 192, après une tentative d'empoisonnement ratée ?",
+      "answer": "Son partenaire de lutte, Narcisse, qui l'a étranglé dans son bain.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un gladiateur qu'il avait gracié, d'un coup de trident dans l'arène.",
+        "Son cuisinier, qui l'a assommé avec une amphore d'huile.",
+        "Un lion de sa ménagerie, échappé pendant un banquet."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-07",
+      "text": "Qu'avalait l'empereur chinois Qin Shi Huang dans l'espoir de devenir immortel ?",
+      "answer": "Des pilules de mercure, qui l'auraient empoisonné.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "De la poudre de corne de rhinocéros mêlée à du thé.",
+        "Des œufs de tortue centenaire, crus, chaque matin.",
+        "De la rosée recueillie sur des feuilles de jade."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-08",
+      "text": "Selon la légende, comment le poète chinois Li Po s'est-il noyé ?",
+      "answer": "Ivre sur une barque, il a voulu embrasser le reflet de la lune dans l'eau.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En plongeant chercher un pinceau d'or tombé dans le fleuve.",
+        "En voulant traverser un lac gelé pour rejoindre une danseuse.",
+        "En pêchant une carpe géante qui l'a entraîné au fond."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "ban-09",
+      "text": "Qu'a fait le pape Étienne VI du corps de son prédécesseur Formose, en 897 ?",
+      "answer": "Il l'a fait déterrer, habiller en pape et juger lors d'un procès.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il l'a fait embaumer et asseoir sur son trône pendant un an.",
+        "Il l'a fait enterrer debout pour qu'il ne repose jamais en paix.",
+        "Il l'a vendu à des pèlerins comme relique, morceau par morceau."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "ban-10",
+      "text": "Selon Tite-Live, qui a sauvé Rome d'une attaque gauloise nocturne ?",
+      "answer": "Les oies sacrées du Capitole, dont les cris ont réveillé les défenseurs.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un berger aveugle, qui avait entendu les pas des Gaulois.",
+        "Les chiens de garde du temple de Junon, qui ont aboyé.",
+        "Une vestale qui veillait le feu sacré et a sonné l'alarme."
+      ],
+      "difficulty": 1
+    }
+  ]
+}

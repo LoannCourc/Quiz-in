@@ -515,7 +515,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 ## 16. Bluff
 
-Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 2 quiz en relecture, `docs/relecture-bluff.md`) codés ; écrans à venir.
+Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 10 quiz de 10 questions tirés de la banque de questions de JAJA, en relecture avec `docs/relecture-bluff.md`) codés ; écrans à venir.
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 

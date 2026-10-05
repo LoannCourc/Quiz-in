@@ -1,0 +1,133 @@
+{
+  "id": "bluff-betes",
+  "gameType": "bluff",
+  "title": "Bluff : bêtes de science",
+  "theme": "Sciences et nature",
+  "description": "Des animaux aux records fous et des phénomènes à peine croyables : inventez une réponse crédible, démasquez la vraie.",
+  "audience": "all",
+  "poster": "green",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bbe-01",
+      "text": "Quelle forme ont les crottes du wombat, un marsupial australien ?",
+      "answer": "Des cubes : elles ne roulent pas et lui servent à marquer son territoire.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des spirales, qu'il enterre pour garder son terrier propre.",
+        "Des boules parfaites, qu'il roule jusqu'à son terrier.",
+        "Des triangles, que les kangourous évitent soigneusement."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-02",
+      "text": "Quel animal a des empreintes digitales presque impossibles à distinguer des nôtres ?",
+      "answer": "Le koala : elles pourraient tromper la police scientifique.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le raton laveur, qui ouvre les poubelles comme nous.",
+        "Le paresseux, qui passe sa vie suspendu aux branches.",
+        "La loutre de mer, qui tient la patte de ses voisines en dormant."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-03",
+      "text": "Quel animal microscopique a survécu dix jours dans le vide spatial, en 2007 ?",
+      "answer": "Le tardigrade, ou ourson d'eau, accroché à l'extérieur d'une capsule.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une puce d'eau, cachée dans une goutte de glace sur un hublot.",
+        "Une fourmi de laboratoire, enfermée dans une boîte de résine.",
+        "Un ver de terre, endormi dans une capsule de terre gelée."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-04",
+      "text": "Quel record détient Mike, un poulet américain des années 1940 ?",
+      "answer": "Il a vécu 18 mois sans tête : la hache avait épargné le tronc cérébral.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a pondu un œuf alors que c'était un coq.",
+        "Il a parcouru 300 km pour retrouver sa ferme.",
+        "Il savait compter jusqu'à cinq en picorant des graines."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-05",
+      "text": "Quel oiseau peut rester en l'air dix mois d'affilée, sans jamais se poser ?",
+      "answer": "Le martinet noir : il mange, boit et dort même en volant.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "L'albatros hurleur, qui ne se pose que pour pondre.",
+        "L'hirondelle rustique, portée par les vents d'Afrique.",
+        "Le goéland argenté, qui plane au-dessus des océans."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-06",
+      "text": "Combien de dents peut avoir un escargot de jardin ?",
+      "answer": "Environ 14 000, minuscules, alignées sur une sorte de langue râpeuse.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Aucune : il aspire sa nourriture grâce à une petite trompe.",
+        "Exactement 32, comme un humain adulte.",
+        "Une seule, qui repousse chaque semaine."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-07",
+      "text": "Quelle est la particularité de la méduse Turritopsis dohrnii ?",
+      "answer": "Elle peut rajeunir et redevenir un polype : on la dit biologiquement immortelle.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle brille dans le noir quand elle entend de la musique.",
+        "Elle se clone en se coupant elle-même en deux chaque printemps.",
+        "Elle ne vit qu'une journée, de l'aube au coucher du soleil."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bbe-08",
+      "text": "Qu'y a-t-il de surprenant dans l'âge des requins ?",
+      "answer": "Ils sont apparus avant les arbres : il y a environ 450 millions d'années, contre 385.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils sont plus jeunes que les fourmis, apparues avant les poissons.",
+        "Ils sont apparus à peu près en même temps que les dinosaures.",
+        "Ils descendent de dauphins préhistoriques."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bbe-09",
+      "text": "Qu'ont découvert des archéologues dans des tombes égyptiennes vieilles de 3 000 ans ?",
+      "answer": "Du miel, encore comestible : il ne se gâte quasiment jamais.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du pain levé, encore moelleux sous sa croûte.",
+        "Des graines de melon qui ont germé une fois plantées.",
+        "Des œufs de crocodile, prêts à éclore."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bbe-10",
+      "text": "Qu'est-il tombé du ciel dans le Kentucky, en mars 1876 ?",
+      "answer": "Des morceaux de viande, probablement régurgités par des vautours en vol.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des milliers de grenouilles vivantes, aspirées par une tornade.",
+        "Des poissons d'eau douce, gelés dans des grêlons.",
+        "Une pluie de petites pierres noires venues d'un volcan."
+      ],
+      "difficulty": 3
+    }
+  ]
+}

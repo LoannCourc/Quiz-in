@@ -1,0 +1,133 @@
+{
+  "id": "bluff-insolites",
+  "gameType": "bluff",
+  "title": "Bluff : escrocs, records et coups de génie",
+  "theme": "Culture générale",
+  "description": "Des escrocs culottés, des records fous et des secrets bien gardés : faites croire à vos histoires, démasquez la vraie.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bin-01",
+      "text": "Qu'a réussi à vendre l'escroc Victor Lustig, en 1925 ?",
+      "answer": "La tour Eiffel, à un ferrailleur, en se faisant passer pour un haut fonctionnaire.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "L'Arc de triomphe, à un milliardaire américain qui voulait l'emporter.",
+        "La Joconde, à trois collectionneurs différents la même semaine.",
+        "Le métro de Paris, à une compagnie de tramways belge."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-02",
+      "text": "Comment l'Américain Steven Russell s'est-il évadé de prison, en 1998 ?",
+      "answer": "Il a fait croire à sa propre mort en falsifiant son dossier médical.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il s'est caché trois jours dans un chariot de linge sale.",
+        "Il a creusé un tunnel avec une cuillère pendant six ans.",
+        "Il s'est fait expédier dehors dans une caisse de livres."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bin-03",
+      "text": "Quelle drôle de manie avait le roi Farouk d'Égypte avec ses invités ?",
+      "answer": "Il leur volait discrètement montres et bibelots, en vrai pickpocket.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il leur faisait goûter chaque plat avant lui, par peur du poison.",
+        "Il les obligeait à jouer aux cartes jusqu'à ce qu'il gagne.",
+        "Il leur offrait un chameau qu'ils devaient garder à vie."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-04",
+      "text": "Comment Larry Walters s'est-il envolé à près de 5 000 mètres, en 1982 ?",
+      "answer": "Assis sur une chaise de jardin attachée à 45 ballons météo gonflés à l'hélium.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Accroché à un cerf-volant géant tiré par un bateau à moteur.",
+        "Dans une baignoire équipée de deux moteurs de tondeuse.",
+        "Sous un parapluie géant renforcé avec des bambous."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-05",
+      "text": "Quel record détient le garde forestier américain Roy Sullivan ?",
+      "answer": "Il a été frappé sept fois par la foudre au cours de sa vie, et a survécu.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a été piqué par plus de 2 000 abeilles en une seule journée.",
+        "Il a été mordu par trois ours différents la même année.",
+        "Il est resté coincé onze jours dans un arbre après une tempête."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-06",
+      "text": "Quel était le rôle du « Groom of the Stool » à la cour d'Angleterre ?",
+      "answer": "Assister le roi quand il allait aux toilettes, et l'essuyer.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Porter un tabouret pour que le roi puisse s'asseoir partout.",
+        "Goûter les plats du roi pour vérifier qu'ils n'étaient pas empoisonnés.",
+        "Réchauffer le lit du roi en s'y couchant avant lui."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-07",
+      "text": "Quel record détient le pape Benoît IX, au XIe siècle ?",
+      "answer": "Il a été pape trois fois, et a même vendu sa charge avant de la reprendre.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il n'a été pape que pendant une seule heure.",
+        "Il a été élu pape sans même être baptisé.",
+        "Il a gouverné l'Église depuis un bateau pendant trois ans."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bin-08",
+      "text": "Quel secret cache « Le Cri », le célèbre tableau d'Edvard Munch ?",
+      "answer": "Une petite phrase au crayon : « Ne peut avoir été peint que par un fou ».",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un autoportrait de Munch, caché sous la peinture.",
+        "L'empreinte d'un chat, laissée dans la peinture encore fraîche.",
+        "Le nom de son médecin, écrit à l'envers dans le ciel."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bin-09",
+      "text": "Avec quoi l'écrivain Roald Dahl a-t-il été enterré ?",
+      "answer": "Des queues de billard, du vin, des chocolats, des crayons et une scie électrique.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un exemplaire de chacun de ses livres et une tablette de chocolat.",
+        "Sa machine à écrire, un parapluie et un pot de bonbons.",
+        "Une pêche géante en bois, sculptée par son petit-fils."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bin-10",
+      "text": "Pourquoi Arthur Conan Doyle, le père de Sherlock Holmes, a-t-il cru aux fées ?",
+      "answer": "Deux cousines l'ont berné avec des photos de fées découpées dans du papier.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il disait en avoir vu une dans son jardin, un soir de brouillard.",
+        "Un médium lui avait fait entendre leur chant pendant une séance.",
+        "Il avait trouvé une aile minuscule entre deux pages d'un vieux livre."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

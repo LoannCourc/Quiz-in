@@ -1,0 +1,133 @@
+{
+  "id": "bluff-objets",
+  "gameType": "bluff",
+  "title": "Bluff : objets du quotidien, leur histoire cachée",
+  "theme": "Loisirs",
+  "description": "Pâte à modeler, papier bulle, chips et Scrabble cachent des origines inattendues : inventez-en une, démasquez la vraie.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bob-01",
+      "text": "Comment le Slinky, le ressort qui descend les escaliers, est-il né ?",
+      "answer": "Un ingénieur de la marine a fait tomber un ressort destiné aux instruments d'un navire.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un horloger cherchait un ressort pour une pendule géante.",
+        "Une fillette avait joué avec le ressort d'un vieux matelas.",
+        "Un dentiste cherchait un fil pour redresser les dents."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-02",
+      "text": "À quoi servait la pâte Play-Doh avant de devenir un jouet ?",
+      "answer": "À nettoyer la suie du charbon sur les papiers peints.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "À boucher les fissures des bateaux en bois.",
+        "À prendre l'empreinte des clés dans les commissariats.",
+        "À fabriquer des moules pour les dentistes."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-03",
+      "text": "Qu'était censé être le papier bulle lors de son invention, en 1957 ?",
+      "answer": "Un papier peint moderne, en relief : ce fut un échec complet.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un isolant pour les combinaisons des futurs astronautes.",
+        "Un tapis de jeu pour les enfants trop agités.",
+        "Une semelle de chaussure amortissante."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-04",
+      "text": "Selon la tradition de la marque, que représentent les dents et les trous du Petit Beurre ?",
+      "answer": "52 dents pour les semaines, 24 trous pour les heures, 4 coins pour les saisons.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "52 dents pour les cartes d'un jeu, 24 trous pour les lettres de l'alphabet.",
+        "Une dent par employé de l'usine, un trou par année d'ouverture.",
+        "24 heures de pétrissage et 52 grammes de beurre par paquet."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-05",
+      "text": "Quel était le métier de l'un des inventeurs de la barbe à papa ?",
+      "answer": "Il était dentiste : un drôle de choix pour une friandise en sucre.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il était coiffeur, d'où le nom de « barbe ».",
+        "Il était filateur dans une usine de coton du Tennessee.",
+        "Il était pharmacien et vendait du sucre contre la toux."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-06",
+      "text": "Quel a été le tout premier article scanné grâce à un code-barres, en 1974 ?",
+      "answer": "Un paquet de chewing-gums Juicy Fruit, dans un supermarché de l'Ohio.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une boîte de soupe à la tomate Campbell.",
+        "Un pot de beurre de cacahuète.",
+        "Une bouteille de Coca-Cola en verre."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-07",
+      "text": "Selon la légende, pourquoi le cuisinier George Crum a-t-il inventé les chips ?",
+      "answer": "Pour se venger d'un client qui trouvait ses frites trop épaisses.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour utiliser des pommes de terre trop petites pour faire des frites.",
+        "Parce que sa friteuse ne chauffait plus assez.",
+        "Pour gagner un concours du snack le plus croustillant de New York."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bob-08",
+      "text": "Contre quoi vendait-on des pilules au ketchup en pharmacie, dans les années 1830 ?",
+      "answer": "Contre l'indigestion, la diarrhée et la jaunisse.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Contre les coups de soleil, en pommade.",
+        "Contre le mal de mer des marins.",
+        "Pour faire repousser les cheveux."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-09",
+      "text": "Comment l'inventeur du Scrabble a-t-il fixé la valeur de chaque lettre ?",
+      "answer": "En comptant les lettres une à une dans les pages d'un grand journal.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En demandant à des enfants quelles lettres ils préféraient.",
+        "En tirant les valeurs au hasard dans un chapeau.",
+        "En comptant les lettres de la Bible, page après page."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bob-10",
+      "text": "Combien l'inventeur du jeu Docteur Maboul a-t-il touché pour ses droits ?",
+      "answer": "500 dollars, alors que le jeu a rapporté des millions.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un exemplaire gratuit du jeu chaque année.",
+        "Une boîte de chocolats et une lettre de remerciement.",
+        "Un million de dollars, qu'il a tout perdu au casino."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

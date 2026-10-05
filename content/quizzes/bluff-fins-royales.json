@@ -1,0 +1,133 @@
+{
+  "id": "bluff-fins-royales",
+  "gameType": "bluff",
+  "title": "Bluff : rois et papes, des fins peu glorieuses",
+  "theme": "Histoire",
+  "description": "Ils régnaient sur des royaumes, ils sont partis de façon ridicule : inventez la fin la plus crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "red",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bfr-01",
+      "text": "En 1464, comment le pape Pie II est-il mort ?",
+      "answer": "Il est mort à Ancône, en attendant une flotte de croisés qui n'est jamais partie.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il s'est étouffé avec une hostie pendant la messe de Pâques.",
+        "Il est tombé du balcon de Saint-Pierre en bénissant la foule.",
+        "Il a été piétiné par sa mule blanche, effrayée par un chat."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfr-02",
+      "text": "Qu'est-il arrivé au roi Charles VIII au château d'Amboise, en 1498 ?",
+      "answer": "Il s'est cogné le front contre le linteau d'une porte trop basse, et en est mort.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il est tombé dans les douves en voulant cueillir une rose.",
+        "Il a été écrasé par une tapisserie décrochée pendant la nuit.",
+        "Il s'est noyé dans la Loire en jouant à la paume sur une barque."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfr-03",
+      "text": "Qu'a mangé le roi de Suède Adolphe-Frédéric lors de son dernier repas, en 1771 ?",
+      "answer": "Homard, caviar, choucroute, hareng fumé, champagne, puis 14 brioches à la crème.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un cochon de lait entier, trois oies rôties et un tonneau de bière brune.",
+        "Vingt-quatre douzaines d'huîtres et un pot entier de moutarde.",
+        "Un ragoût de renne et onze pots de confiture d'airelles."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfr-04",
+      "text": "Comment le roi Henri II a-t-il été mortellement blessé, en 1559 ?",
+      "answer": "Pendant un tournoi, un éclat de lance a traversé la visière de son casque.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En tombant de cheval pendant une chasse au cerf à Fontainebleau.",
+        "Piqué par une guêpe cachée dans son verre de vin.",
+        "Par un coup de canon tiré par erreur pour saluer son arrivée."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bfr-05",
+      "text": "Comment le jeune roi Louis III s'est-il tué, en 882 ?",
+      "answer": "À cheval, en poursuivant une jeune fille, il a heurté le linteau d'une porte.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il est tombé d'un pont-levis en saluant ses troupes.",
+        "Il a avalé une arête de brochet pendant un banquet.",
+        "Son cheval l'a désarçonné dans un marais en pleine bataille."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bfr-06",
+      "text": "Qu'aurait bu le roi Louis X le Hutin juste avant de tomber malade, en 1316 ?",
+      "answer": "Du vin glacé, après une partie de jeu de paume, l'ancêtre du tennis.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du lait de chèvre tiède offert par un moine guérisseur.",
+        "L'eau d'un puits sacré censée guérir la goutte.",
+        "Une infusion de gui cueilli par un vieil ermite."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bfr-07",
+      "text": "Selon les chroniques, comment le roi de Navarre Charles le Mauvais est-il mort, en 1387 ?",
+      "answer": "Ses draps, imbibés d'eau-de-vie pour le soigner, ont pris feu à cause d'une bougie.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il est tombé dans un chaudron de soupe pendant un banquet.",
+        "Un ours apprivoisé l'a serré trop fort dans ses bras.",
+        "Il s'est empoisonné en goûtant les plats destinés à son rival."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bfr-08",
+      "text": "Où le roi George II d'Angleterre a-t-il fait son malaise fatal, en 1760 ?",
+      "answer": "Sur ses toilettes, victime d'une rupture de l'aorte.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sur son trône, pendant un discours au Parlement.",
+        "Dans les écuries, en brossant son cheval préféré.",
+        "Au théâtre, en riant trop fort devant une comédie."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfr-09",
+      "text": "Selon la tradition, comment le duc de Clarence a-t-il été exécuté, en 1478 ?",
+      "answer": "Noyé dans un tonneau de vin de Malvoisie.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Décapité avec sa propre épée de chevalier.",
+        "Enfermé dans un cachot rempli de serpents.",
+        "Étouffé sous un matelas de plumes."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfr-10",
+      "text": "Pourquoi le médecin du roi George V a-t-il hâté sa mort, en 1936 ?",
+      "answer": "Pour que l'annonce paraisse dans le Times du matin, et non dans les journaux du soir.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour qu'il meure le jour de son anniversaire, comme il l'avait souhaité.",
+        "Pour lui éviter d'assister au mariage de son fils avec une Américaine.",
+        "Pour que la nouvelle ne gâche pas la finale de la Coupe d'Angleterre."
+      ],
+      "difficulty": 3
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "bluff-savants",
+  "gameType": "bluff",
+  "title": "Bluff : savants et inventeurs, drôles de destins",
+  "theme": "Sciences et nature",
+  "description": "Génies des sciences, inventions étranges et destins inattendus : inventez la réponse la plus scientifique, trouvez la vraie.",
+  "audience": "all",
+  "poster": "blue",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bsa-01",
+      "text": "Selon son biographe, quelle expérience a coûté la vie au philosophe Francis Bacon ?",
+      "answer": "Il a rempli un poulet de neige pour tester la conservation par le froid.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a dormi dehors toute une nuit pour mesurer la rosée.",
+        "Il a bu de l'eau de mer pendant une semaine pour en étudier les effets.",
+        "Il a plongé dans la Tamise gelée pour en mesurer la température."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-02",
+      "text": "Pourquoi René Descartes est-il tombé malade en Suède, en 1650 ?",
+      "answer": "Il devait donner ses cours à la reine Christine à 5 heures du matin, dans le froid.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il s'est perdu une nuit dans la neige en observant une comète.",
+        "Il a voulu prouver qu'on pouvait dormir dans une maison de glace.",
+        "Il a mangé des champignons qu'il croyait reconnaître."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-03",
+      "text": "Pourquoi le génial mathématicien Kurt Gödel est-il mort de faim ?",
+      "answer": "Par peur d'être empoisonné, il ne mangeait que ce que sa femme préparait.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il était persuadé que manger ralentissait sa pensée.",
+        "Il avait parié de ne plus manger avant d'avoir résolu un théorème.",
+        "Il n'acceptait que des aliments de forme parfaitement ronde."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-04",
+      "text": "Comment le physicien Pierre Curie est-il mort, en 1906 ?",
+      "answer": "Il a glissé sous une voiture à cheval, rue Dauphine, à Paris.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a été frappé par la foudre en observant un orage.",
+        "Il est tombé dans un escalier de la Sorbonne avec un microscope.",
+        "Il a été écrasé par une armoire de son laboratoire."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-05",
+      "text": "Que s'est-il passé avec Rudolf Diesel, l'inventeur du moteur, en 1913 ?",
+      "answer": "Il a disparu en pleine nuit d'un bateau qui traversait la Manche.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Son prototype a explosé lors d'une présentation devant l'empereur.",
+        "Il a été asphyxié en essayant son moteur dans un garage fermé.",
+        "Il a perdu toute sa fortune en pariant contre le pétrole."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-06",
+      "text": "Comment le mathématicien Évariste Galois est-il mort, à 20 ans ?",
+      "answer": "Lors d'un duel au pistolet, après avoir écrit ses théorèmes toute la nuit.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'une fièvre attrapée en dormant dans une bibliothèque glacée.",
+        "Renversé par une diligence en résolvant une équation dans la rue.",
+        "Empoisonné par un rival jaloux de ses découvertes."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-07",
+      "text": "Qu'est-il arrivé à l'astronome Chappe d'Auteroche en Basse-Californie, en 1769 ?",
+      "answer": "Il a observé le passage de Vénus devant le Soleil, puis est mort d'une épidémie.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il s'est perdu dans le désert en poursuivant une étoile filante.",
+        "Il a été capturé par des pirates qui voulaient sa lunette.",
+        "Un tremblement de terre a détruit son observatoire en pleine mesure."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bsa-08",
+      "text": "Quelles étaient les obsessions de l'inventeur Nikola Tesla ?",
+      "answer": "Le chiffre 3, et les pigeons : il disait en aimer un comme on aime une femme.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Les chaussettes rouges et les montres arrêtées à minuit.",
+        "Le chiffre 7, et les escargots qu'il élevait dans son laboratoire.",
+        "Les carrés parfaits, et les tortues de mer."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-09",
+      "text": "Que contenait le Radithor, une boisson « fortifiante » vendue dans les années 1920 ?",
+      "answer": "Du radium, radioactif, dilué dans de l'eau.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du venin de serpent et du sucre de canne.",
+        "Du mercure et de l'huile de foie de morue.",
+        "De la poudre d'or et de l'extrait de gingembre."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsa-10",
+      "text": "Qu'est-ce que la machine d'Anticythère, retrouvée dans une épave grecque ?",
+      "answer": "Un mécanisme à engrenages vieux de 2 000 ans, qui calculait la position des astres.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une pompe à eau en bronze qui alimentait les bains d'Athènes.",
+        "Un automate qui servait le vin pendant les banquets.",
+        "Un orgue à vapeur offert à un roi d'Égypte."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

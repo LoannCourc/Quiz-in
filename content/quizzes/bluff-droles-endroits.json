@@ -1,0 +1,133 @@
+{
+  "id": "bluff-droles-endroits",
+  "gameType": "bluff",
+  "title": "Bluff : drôles d'endroits",
+  "theme": "Géographie",
+  "description": "Une ville en feu, un village d'une seule habitante, un maire à quatre pattes : inventez un lieu crédible, trouvez le vrai.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bde-01",
+      "text": "Qu'a de particulier la ville de Centralia, en Pennsylvanie ?",
+      "answer": "Un incendie brûle dans la mine de charbon sous la ville depuis 1962.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il y fait plus chaud en hiver qu'en été, à cause d'une source chaude.",
+        "Toutes ses maisons ont été construites sans aucun clou.",
+        "Elle a été entièrement recouverte par un lac artificiel."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-02",
+      "text": "Qu'est-ce que la « porte de l'Enfer », au Turkménistan ?",
+      "answer": "Un cratère de gaz en feu, qui brûle sans arrêt depuis les années 1970.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un canyon où le vent hurle comme une foule en colère.",
+        "Une grotte où la température dépasse 80 °C.",
+        "Une porte de forteresse que personne n'a jamais pu ouvrir."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-03",
+      "text": "Qu'a d'étonnant le village de Baarle, à la frontière entre la Belgique et les Pays-Bas ?",
+      "answer": "La frontière traverse des maisons et des cafés, parfois en plein salon.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ses habitants changent de nationalité selon les saisons.",
+        "On y roule à gauche dans une rue sur deux.",
+        "Le village change de pays tous les cinquante ans."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-04",
+      "text": "Qu'a de particulier le village de Monowi, dans le Nebraska ?",
+      "answer": "Il n'a qu'une habitante, à la fois maire, bibliothécaire et patronne du bar.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il n'a jamais été habité que par des jumeaux.",
+        "Il est interdit d'y construire une maison de plus de trois mètres.",
+        "Tous ses habitants y portent le même prénom."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-05",
+      "text": "Pourquoi n'enterre-t-on plus personne à Longyearbyen, en Norvège ?",
+      "answer": "Dans le sol gelé, les corps ne se décomposent pas : on évacue les mourants.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "La ville est construite sur un ancien cimetière viking.",
+        "Les ours polaires déterraient les cercueils chaque printemps.",
+        "Une loi réserve toute la terre aux cultures sous serre."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bde-06",
+      "text": "Qu'était la cité murée de Kowloon, à Hong Kong ?",
+      "answer": "Un bloc d'immeubles sans police, le lieu le plus densément peuplé du monde.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une prison flottante construite sur des barges de bambou.",
+        "Un quartier interdit aux hommes pendant deux siècles.",
+        "Une ville souterraine creusée sous le port."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-07",
+      "text": "Que trouve-t-on sur une petite île des canaux de Xochimilco, au Mexique ?",
+      "answer": "Des centaines de poupées abîmées, pendues aux arbres par un ermite.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une forêt de cactus plantés en forme de calendrier aztèque.",
+        "Un cimetière de pirogues vieilles de 500 ans.",
+        "Une colonie de flamants roses qui ne vit nulle part ailleurs."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-08",
+      "text": "Pourquoi le pont de l'Øresund, entre le Danemark et la Suède, s'arrête-t-il en pleine mer ?",
+      "answer": "Il plonge dans un tunnel sous-marin, pour laisser passer avions et bateaux.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Les deux pays ne se sont jamais mis d'accord sur la fin du pont.",
+        "Le dernier tronçon s'est effondré pendant une tempête.",
+        "Les travaux ont été arrêtés pour protéger une colonie de phoques."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-09",
+      "text": "Qui est élu maire du village de Rabbit Hash, dans le Kentucky ?",
+      "answer": "Un chien : la tradition dure depuis 1998, avec une élection tous les quatre ans.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le plus vieil habitant, qui garde son poste jusqu'à sa mort.",
+        "Le gagnant d'un concours de lancer de lapins en peluche.",
+        "Un enfant tiré au sort parmi les élèves de l'école."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bde-10",
+      "text": "Quelle est la particularité du drapeau des Philippines ?",
+      "answer": "En temps de guerre, on le hisse à l'envers : la bande rouge passe en haut.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il change de couleur à chaque nouveau président.",
+        "Il ne doit jamais être hissé un jour de pluie.",
+        "Sa taille officielle dépend du nombre d'habitants."
+      ],
+      "difficulty": 2
+    }
+  ]
+}
