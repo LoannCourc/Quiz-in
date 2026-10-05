@@ -26,6 +26,7 @@ import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 
+import { CollapsedCodeBar } from './CollapsedCodeBar';
 import { HostJoinCard } from './HostJoinCard';
 import { JoinWithoutTv } from './JoinWithoutTv';
 import { LobbyCodeCard } from './LobbyCodeCard';
@@ -47,6 +48,7 @@ interface HostLobbyProps {
   initialNoTvOpen?: boolean;
   initialTvDetailsOpen?: boolean;
   initialTeamsOpen?: boolean;
+  initialCodeCollapsed?: boolean;
   // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
   audio?: LobbyAudio;
   // Démo : actions du salon (équipes) appliquées localement au lieu d'écrire dans la base.
@@ -64,7 +66,7 @@ const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined,
 // de l'hôte gardent une hauteur confortable, même avec une grande police.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
-  const { initialTvDetailsOpen = false, initialTeamsOpen = false } = props;
+  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialCodeCollapsed = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -75,6 +77,8 @@ export function HostLobby(props: HostLobbyProps) {
   // Replié à chaque ouverture du salon : état local, jamais mémorisé.
   const [isNoTvOpen, setIsNoTvOpen] = useState(initialNoTvOpen);
   const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
+  // Sans TV connectée : bloc du code réduit à une ligne, pour laisser la place aux joueurs.
+  const [isCodeCollapsed, setIsCodeCollapsed] = useState(initialCodeCollapsed);
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
@@ -160,10 +164,12 @@ export function HostLobby(props: HostLobbyProps) {
         {header ?? <LobbyHeader quizId={session.quizId} />}
         {cast.isTvConnected ? (
           <TvConnectedBar code={code} isOpen={isTvDetailsOpen} onToggle={() => setIsTvDetailsOpen((open) => !open)} />
+        ) : isCodeCollapsed ? (
+          <CollapsedCodeBar code={code} onExpand={() => setIsCodeCollapsed(false)} />
         ) : (
-          <LobbyCodeCard code={code} compact={isNoTvOpen} />
+          <LobbyCodeCard code={code} compact={isNoTvOpen} onCollapse={() => setIsCodeCollapsed(true)} />
         )}
-        {cast.isTvConnected ? null : isNoTvOpen ? (
+        {cast.isTvConnected || isCodeCollapsed ? null : isNoTvOpen ? (
           <JoinWithoutTv code={code} onHide={() => setIsNoTvOpen(false)} />
         ) : (
           <>

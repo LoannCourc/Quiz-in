@@ -1,11 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 import { TvCastButton } from '@/components/host/TvCastButton';
-import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
+import { DetailsToggle } from './DetailsToggle';
 import { JoinWithoutTv } from './JoinWithoutTv';
 
 interface TvConnectedBarProps {
@@ -30,17 +30,7 @@ export function TvConnectedBar({ code, isOpen, onToggle }: TvConnectedBarProps) 
           </Text>
         </View>
         <TvCastButton />
-        <Pressable
-          accessibilityRole="button"
-          accessibilityState={{ expanded: isOpen }}
-          onPress={onToggle}
-          style={styles.toggle}>
-          <Text style={styles.toggleLabel}>{isOpen ? tvBar.hide : tvBar.details}</Text>
-          {/* Chevron du réglage tourné : vers le bas pour déplier, vers le haut pour replier. */}
-          <View style={isOpen ? styles.chevronUp : styles.chevronDown}>
-            <SettingsIcon name="chevron" color={AppColors.link} />
-          </View>
-        </Pressable>
+        <DetailsToggle label={isOpen ? tvBar.hide : tvBar.details} isOpen={isOpen} onPress={onToggle} />
       </View>
       {isOpen && <JoinWithoutTv code={code} variant="details" />}
     </View>
@@ -86,27 +76,5 @@ const styles = StyleSheet.create({
     color: AppColors.text,
     fontFamily: AppFonts.black,
     letterSpacing: 1,
-  },
-  toggle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: Spacing.three,
-    paddingRight: Spacing.one,
-    paddingVertical: Spacing.one,
-    borderRadius: AppSizes.radiusPill,
-    borderWidth: 2,
-    borderColor: AppColors.link,
-  },
-  toggleLabel: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.link,
-    fontFamily: AppFonts.black,
-    fontSize: 14,
-  },
-  chevronDown: {
-    transform: [{ rotate: '90deg' }],
-  },
-  chevronUp: {
-    transform: [{ rotate: '-90deg' }],
   },
 });

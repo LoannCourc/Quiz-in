@@ -239,6 +239,9 @@ export const strings = {
       codeLabel: 'Code de la partie : ',
       details: 'Détails',
       hide: 'Masquer',
+      // Sans TV connectée : bloc du code réductible en une ligne « Code B9CX · Détails ».
+      collapse: 'Réduire',
+      codeShort: 'Code ',
       intro: 'Les joueurs scannent le QR code ou ouvrent le lien.',
     },
     // Hôte pas encore inscrit (maquette L1).

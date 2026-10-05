@@ -4,22 +4,31 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
+import { DetailsToggle } from './DetailsToggle';
+
 interface LobbyCodeCardProps {
   code: string;
-  // Sur une ligne, plus petit : quand le bloc « Rejoindre sans TV » est ouvert (le QR et le lien
-  // contiennent déjà le code), pour laisser la place à la liste des joueurs.
+  // Code plus petit : quand le bloc « Rejoindre sans TV » est ouvert (le QR et le lien contiennent
+  // déjà le code), pour laisser la place à la liste des joueurs.
   compact?: boolean;
+  // « Réduire ▴ » : le bloc devient la ligne « Code B9CX · Détails ▾ » (CollapsedCodeBar).
+  onCollapse: () => void;
 }
 
-// Carte « Code de la partie » : le code en très grand, ombre dure rose.
-export function LobbyCodeCard({ code, compact = false }: LobbyCodeCardProps) {
+// Carte « Code de la partie » : le libellé et « Réduire » sur une ligne, puis le code en très grand,
+// ombre dure rose.
+export function LobbyCodeCard({ code, compact = false, onCollapse }: LobbyCodeCardProps) {
   return (
-    <View
-      style={[styles.card, compact && styles.compactCard]}
-      accessible
-      accessibilityLabel={strings.hostLobby.codeAccessibility(code)}>
-      <Text style={styles.label}>{strings.hostLobby.codeLabel}</Text>
-      <Text style={[styles.code, compact && styles.compactCode]}>{code}</Text>
+    <View style={styles.card}>
+      <View style={styles.header}>
+        <Text style={styles.label}>{strings.hostLobby.codeLabel}</Text>
+        <DetailsToggle label={strings.hostLobby.tvBar.collapse} isOpen onPress={onCollapse} />
+      </View>
+      <Text
+        style={[styles.code, compact && styles.compactCode]}
+        accessibilityLabel={strings.hostLobby.codeAccessibility(code)}>
+        {code}
+      </Text>
     </View>
   );
 }
@@ -28,18 +37,20 @@ const COMPACT_CODE = 30;
 
 const styles = StyleSheet.create({
   card: {
-    alignItems: 'center',
-    paddingTop: Spacing.three,
+    gap: Spacing.one,
+    paddingTop: Spacing.two,
     paddingBottom: Spacing.two,
+    paddingHorizontal: Spacing.three,
     borderRadius: AppSizes.radius,
     backgroundColor: AppColors.panel,
   },
-  compactCard: {
+  // Sur un écran étroit ou avec une grande police, « Réduire » passe sous le libellé.
+  header: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: Spacing.one,
-    paddingBottom: Spacing.one,
-    paddingHorizontal: Spacing.three,
+    gap: Spacing.two,
   },
   label: {
     color: AppColors.textMuted,
@@ -54,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: AppSizes.lobbyCode,
     lineHeight: Math.round(AppSizes.lobbyCode * DISPLAY_LINE_HEIGHT),
     letterSpacing: 6,
+    textAlign: 'center',
     textShadowColor: AppColors.highlight,
     textShadowOffset: { width: 0, height: 4 },
     textShadowRadius: 0,
