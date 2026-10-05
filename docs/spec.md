@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.7 — 5 octobre 2026
+Version 0.8 — 5 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -47,7 +47,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | **P1** (si le temps le permet) | Option **Contrôle** : l'hôte valide les réponses libres avant la révélation (**livrée**, section 5.2) |
 | | Animations TV enrichies, sons |
 | | Exclure un joueur depuis l'app hôte |
-| **P2** (après le MVP) | Option **Groupe** (équipes) |
+| **P2** (après le MVP) | Option **Groupe** (équipes) (**livrée**, section 6.4) |
 | | App hôte iOS, redirection QR vers l'app joueur |
 | | Blind test, « N'oubliez pas les paroles » |
 | | Quiz créés par l'hôte, paiement, abonnement |
@@ -67,41 +67,46 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 
 ## 4. Parcours
 
+**Une fonction par écran** (tous modes, Groupe ou non) : l'écran Question sert à lire et répondre ; l'écran Réponse dit si c'est juste ou faux et combien de points on gagne ; l'écran Classement est le **seul** endroit où l'on parle de rang (maquette R).
+
 ### 4.1 Hôte
 1. Ouvre l'app et arrive sur le **catalogue** de quiz (maquette « S2 ») : « QUIZ'IN » et une recherche par titre ; un sélecteur de type de jeu (seul « Quiz » est actif au MVP ; « Blind test » et « Paroles » sont visibles, marqués « bientôt », non cliquables) ; des puces de thème (« Tout » puis un thème par thème présent) qui filtrent les rangées ; des rangées d'affiches qui défilent horizontalement : « Top 10 cette semaine » (ordre choisi à la main, gros chiffres), « Nouveautés », « Faciles, pour tout le monde », « Pour les experts ». Une rangée vide n'est pas affichée. Les affiches portent la couleur du quiz et son titre, sans emoji.
 2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs » (durée estimée d'après les réglages choisis, section 6.1 ; « à votre rythme » en Pas à pas), pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
-3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Contrôle », « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
+3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Contrôle », « · Groupe », « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
    - **Mode de réponse** : *Choix multiples* (4 propositions) ou *Réponse libre* (les joueurs écrivent leur réponse, section 6.3).
-   - **Options** : Rapidité, Contrôle (« Tu valides les réponses », Réponse libre seulement, section 5.2), Groupe (P2, « bientôt »).
+   - **Options** : Rapidité, Contrôle (« Tu valides les réponses », Réponse libre seulement, section 5.2), Groupe (équipes, section 6.4).
    - **Rythme** : *Pas à pas* et *Suspense* (« Classement à la fin »), désactivés par défaut, combinables entre eux et avec toutes les options (section 5.1).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
-4. Arrive dans le **salon** : titre et méta du quiz, carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast ; une fois connectée, le bouton passe au second plan et affiche « TV connectée »), lien discret **« Je n'ai pas de TV »** (masqué quand la TV est connectée), liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
-   - Le lien des joueurs et le QR code ne sont **pas** affichés par défaut. « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** : QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager » (partage du téléphone), « Masquer », et le lien de l'écran pour le plan B (section 6.6). Ce bloc est replié à chaque ouverture du salon.
+4. Arrive dans le **salon** (maquette L) : titre et méta du quiz, liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
+   - **TV pas encore connectée** : carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast) et lien discret **« Je n'ai pas de TV »**. Le lien des joueurs et le QR code ne sont **pas** affichés par défaut : « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** (QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager », « Masquer », et le lien de l'écran pour le plan B, section 6.6), replié à chaque ouverture du salon.
+   - **TV connectée** : tout cela se réduit à une barre « TV connectée · Code de la partie : XXXX » avec « Détails » ; un appui déplie le QR code, le lien, « Copier le lien » et « Partager » (« Masquer » les replie). L'icône Cast reste dans la barre pour changer de TV ou la déconnecter.
+   - **Groupe** : les équipes tiennent sur une ligne (« Équipes · Au hasard · 3 équipes · tirage au lancement › », ou « équipes prêtes », « à compléter »), qui ouvre la page « Équipes » (section 6.4).
 5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
-6. L'hôte choisit son propre pseudo et avatar (formulaire au-dessus de la liste, puis lien « Modifier » sur sa ligne) : il rejoint comme joueur. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
-7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris).
+6. Tant qu'il n'est pas inscrit, l'hôte voit une carte « Tu n'es pas dans la partie » avec **« Je joue aussi »**, qui ouvre le même formulaire que celui des joueurs (pseudo et avatar) ; ensuite, un lien « Modifier » sur sa ligne. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
+7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris ; en Groupe, conditions de la section 6.4). Ce qui manque est écrit au-dessus du bouton.
 8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1). Avec Contrôle, après chaque question, il valide les réponses (section 5.2).
 9. À la fin : classement final, puis **Rejouer** (même quiz) ou **Retour au catalogue**.
 
 ### 4.2 Joueur
 1. Scanne le **QR code** affiché sur la TV (ou ouvre l'adresse et saisit le code de salle).
 2. Une **page web** s'ouvre, sans installation. Il saisit un **pseudo** (2 à 12 caractères) et choisit un **avatar** dans une liste prédéfinie.
-3. Il attend dans le lobby et voit les autres arriver. Tant que la partie n'est pas lancée, il peut modifier son pseudo et son avatar (mêmes règles qu'à l'inscription).
+3. Il attend dans le lobby et voit les autres arriver. Tant que la partie n'est pas lancée, il peut modifier son pseudo et son avatar (mêmes règles qu'à l'inscription). En Groupe : « Choisis ton équipe » en mode « Ils choisissent », sinon l'équipe où l'hôte l'a placé (ou « L'hôte forme les équipes… »).
 4. À chaque **question**, son téléphone affiche le compte à rebours et :
    - en *Réponse libre* (maquette S1) : l'énoncé, un champ de saisie (deux, « Titre » et « Artiste », pour un blind test qui demande les deux ; un seul champ rempli suffit), un compteur de caractères (60 au plus), correction et majuscule automatiques désactivées, et « Valider » (la touche Entrée aussi) ;
    - en *Choix multiples* : les 4 propositions, en texte lisible, sous forme de gros boutons.
 5. Une fois validée, la réponse est **définitive**. Le téléphone affiche « Réponse envoyée », avec le rappel du choix ou de la réponse tapée (gardée sur l'appareil, même après un rechargement de la page). Avec Contrôle, il affiche ensuite « L'hôte valide les réponses… ».
-6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang (« Ta place », avec la progression « 4e → 2e ▲ » ; pas de rang en Suspense). En Réponse libre (maquette S2) : ✓, ½ (blind test « les deux » à moitié juste) ou ✗, la bonne réponse, ce qu'il a écrit s'il s'est trompé, et pour « les deux » le détail titre et artiste avec les points de chaque partie.
-7. À la fin, il voit le classement final.
+6. À la **révélation** (écran Réponse, maquette R1), il voit seulement si sa réponse est juste, la bonne réponse, les points gagnés et le bonus de rapidité ; **aucun rang** (ni le sien, ni celui de son équipe). En Groupe, la pastille de son équipe reste en haut. En Réponse libre (maquette S2) : ✓, ½ (blind test « les deux » à moitié juste) ou ✗, la bonne réponse, ce qu'il a écrit s'il s'est trompé, et pour « les deux » le détail titre et artiste avec les points de chaque partie.
+7. Au **classement** (entre deux questions, absent en Suspense) : le classement des joueurs ; en Groupe (maquette R2), le classement des équipes avec leur moyenne, la phrase « Le score d'une équipe est la moyenne des points de ses joueurs. » (uniquement sur cet écran) et « Toi · Dans ton équipe 1er sur 2 ».
+8. À la fin, il voit le classement final. En Groupe : la place de son équipe (« Votre équipe gagne ! »), le classement des équipes, sa carte (rang, points, « Meilleur joueur de ton équipe » s'il l'est), puis sur demande le classement des joueurs.
 
 ### 4.3 Écran TV (séquence des écrans)
-1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés.
+1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés ; en Groupe, une colonne par équipe. Après un tirage au sort de l'hôte, écran « Tirage des équipes » (joueurs qui arrivent un à un dans leur équipe, 8 s).
 2. **Démarrage** : compte à rebours 3-2-1.
-3. **Question** : énoncé, difficulté, propositions (en Choix multiples) ou, en Réponse libre, un grand cadre « Écrivez votre réponse sur votre téléphone » (« le titre », « l'artiste », « le titre et l'artiste » pour un blind test) à la place des propositions, compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement).
-4. **Révélation** : bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou, en Réponse libre, la bonne réponse à la place de la proposition gagnante et les réponses des joueurs regroupées à la place des autres (8 groupes au plus, filtrées, section 6.3).
+3. **Question** : énoncé, difficulté, propositions (en Choix multiples) ou, en Réponse libre, un grand cadre « Écrivez votre réponse sur votre téléphone » (« le titre », « l'artiste », « le titre et l'artiste » pour un blind test) à la place des propositions, compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement ; regroupés par équipe en Groupe).
+4. **Révélation** : aucun rang ; bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou, en Réponse libre, la bonne réponse à la place de la proposition gagnante et les réponses des joueurs regroupées à la place des autres (8 groupes au plus, filtrées, section 6.3).
 5. **Validation** *(option Contrôle)* : l'énoncé reste affiché, avec « L'hôte valide les réponses… » et le nombre de réponses reçues ; aucun texte de joueur avant la révélation.
-6. **Classement** : top 5 et progression après chaque question (absent en Suspense).
-7. **Fin** : podium et classement complet.
+6. **Classement** : top 5 et progression après chaque question (absent en Suspense). En Groupe, classement des équipes (maquette G3) : rang, pastille, barre proportionnelle au score, moyenne (« pts de moyenne »), meilleur joueur de l'équipe, et la phrase sur la moyenne.
+7. **Fin** : podium et classement complet. En Groupe : podium des équipes, puis les meilleurs joueurs de la partie.
 8. **États spéciaux** : pause, « l'hôte se reconnecte… », partie terminée.
 
 Entre deux questions, des onglets d'étapes (Révélation, Classement, Question suivante ; sans Classement en Suspense) indiquent où en est la partie, sur la TV comme sur les téléphones, avec le temps restant (« Prochaine question dans N s ») ou, en Pas à pas, « En attente de l'hôte pour la suite… ».
@@ -112,14 +117,14 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 
 | État | Sortie déclenchée par | Condition |
 |---|---|---|
-| **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs |
+| **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs ; en Groupe, conditions de la section 6.4 |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL |
 | **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
-| **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs, scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
+| **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs (et les mêmes équipes en Groupe), scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
 
 Les durées sont des constantes de configuration, ajustables après les tests.
 
@@ -183,13 +188,22 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 - **Contrôle** (section 5.2) : l'hôte a le dernier mot sur chaque réponse ; sans Contrôle, la correction automatique décide seule.
 - **Affichage sur la TV** : uniquement à la révélation, réponses identiques regroupées, 8 groupes au plus (les plus nombreux d'abord), filtrées par l'hôte avant publication : un mot interdit (liste courte, mots entiers, pluriels compris) ou un groupe masqué par l'hôte s'affiche « ••• ». Le texte brut des joueurs n'est jamais publié.
 
-### 6.4 Équipes (P2, option Groupe)
-- Les équipes sont formées dans le lobby. Chaque joueur répond toujours sur son téléphone.
-- Score d'équipe = **moyenne** des scores individuels (pour ne pas avantager les grandes équipes). **[À VALIDER]**
+### 6.4 Équipes (option Groupe)
+Maquettes `docs/design/groupe/` : G1 à G4, L, E, R. Compatible avec tous les modes et options. Chaque joueur répond toujours sur son téléphone et garde son score individuel.
+- **Équipes fixes** : Rose (étoile), Cyan (rond), Or (triangle), Vert (carré), de 2 à 4 dans cet ordre (avec 2 équipes, Rose et Cyan). Le symbole accompagne toujours la couleur. Nombre proposé : le plus grand qui laisse au moins 2 joueurs par équipe ; l'hôte le change de 2 à 4.
+- **Page « Équipes »** (maquette E1, ouverte depuis la ligne « Équipes » du salon) : retour, consigne d'une phrase en haut selon l'état (par exemple « Choisis comment former les équipes. », « Appuie sur TIRER AU SORT, puis VALIDER LES ÉQUIPES », ou ce qui manque, avec la raison et quoi faire), façon de former les équipes, nombre d'équipes, une grande carte par équipe, zone « Sans équipe », et deux boutons : **Tirer au sort** et **Valider les équipes**. Un seul est mis en avant (le gros bouton jaune) selon l'état, l'autre est discret. Les choix sont enregistrés tout de suite ; « Valider » et le retour ramènent au salon. Dans tous les modes, l'hôte peut déplacer un joueur : il le touche, puis touche une équipe (ou « Sans équipe »).
+- **Façons de former les équipes** :
+  - *Au hasard* (par défaut) : tirage équilibré (tailles égales à un joueur près). Si l'hôte n'a pas tiré au sort, le tirage se fait au lancement ; s'il a tiré, ses équipes sont gardées.
+  - *Je choisis* : l'hôte place chaque joueur.
+  - *Ils choisissent* : chaque joueur choisit son équipe sur son téléphone et peut en changer jusqu'au lancement (pas de tirage, il écraserait leurs choix).
+- **Lancement** : au moins 4 joueurs, chacun dans une équipe, au moins 2 joueurs par équipe (avec le tirage du lancement, la taille des équipes qu'il formera). Plus aucun changement d'équipe après le lancement.
+- **Score d'équipe** : à la fin de chaque question, **moyenne** des points des joueurs de l'équipe connectés à ce moment (un joueur présent sans réponse compte 0 ; un joueur déconnecté n'est pas compté). Avec Contrôle, la liste des présents est figée à la fin de la question, avant la validation. Le score d'une équipe est la somme de ces moyennes ; égalités comme pour les joueurs (section 6.5).
+- **Affichages** : rang de l'équipe, rang du joueur dans son équipe et meilleur joueur de chaque équipe, seulement au classement et à la fin (écrans des sections 4.2 et 4.3).
+- **Rejouer** garde les équipes.
 
 ### 6.5 Classement
 - En cas d'égalité, les joueurs partagent le même rang et le suivant est sauté (1er, 1er, 3e).
-- Le classement est mis à jour **après chaque révélation**, pas pendant la question, pour ne pas influencer les joueurs.
+- Le classement est mis à jour **après chaque révélation**, pas pendant la question, pour ne pas influencer les joueurs. Il ne s'affiche que sur l'écran Classement et à la fin, jamais à la révélation.
 - En Suspense, il n'est affiché qu'à la fin (section 5.1).
 
 ### 6.6 Joueurs et connexion
@@ -239,7 +253,8 @@ config/blindTestEnabled               // interrupteur à distance du blind test 
 sessions/{code}
   hostUid, quizId
   status: "lobby|starting|question|reveal|validation|scores|paused|ended"
-  settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense? }   // rythme (section 5.1) : absent = désactivé
+  settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense?, teamMode?, teamCount? }   // rythme (section 5.1) : absent = désactivé
+    // teamMode : "random|host|players" (absent = random) ; teamCount : 2 à 4, écrit avec chaque action d'équipe et figé au lancement
   currentIndex
   questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
   phaseStartedAt, phaseEndsAt         // horodatage serveur ; phaseEndsAt = 0 : phase sans échéance (Pas à pas, VALIDATION)
@@ -254,8 +269,9 @@ sessions/{code}
     stats.freeAnswers?: [{ value, playerIds, verdict }]        // Réponse libre : 8 groupes au plus, texte filtré (« ••• »), verdict correct|partial|wrong
     results?: { [uid]: { correct, points, partial?, parts? } } // résultat de chaque joueur ayant répondu ; partial et parts { title, artist } : blind test « les deux »
     // reveal reste en place pendant SCORES et est effacé au passage à la question suivante
-  players/{uid}: { name, avatar, score, rank, connected }
+  players/{uid}: { name, avatar, score, rank, connected, team? }
     // name, avatar : écrits par le joueur, dans le lobby uniquement
+    // team : "pink|cyan|gold|green", en lobby seulement : par le joueur lui-même en mode « Ils choisissent », sinon par l'hôte ; Or si teamCount ≥ 3, Vert si teamCount = 4
     // connected : écrit par le joueur (voir « Présence ») ; score, rank : écrits par l'hôte
   answers/{index}/{uid}: { value, artist?, submittedAt, correct, points, partial?, fullPoints? }   // lisible UNIQUEMENT par l'hôte
     // value, submittedAt : écrits une seule fois par le joueur, en QUESTION, pour la question courante
@@ -265,10 +281,15 @@ sessions/{code}
     // correct, points, partial, fullPoints : écrits par l'hôte (fullPoints : points d'une réponse entièrement juste, pour Contrôle)
   answeredBy/{index}/{uid}: true      // lisible par tout utilisateur connecté
     // écrit par le joueur en même temps que sa réponse : indique QUI a répondu, jamais QUOI
+  // Groupe (section 6.4), écrits par l'hôte, lisibles par tout utilisateur connecté :
+  teams/{team}: { score, rank }        // classement des équipes
+  teamPoints/{index}/{team}: n        // moyenne de l'équipe à la question index
+  teamPresence/{index}/{uid}: true    // joueurs comptés à la fin de la question
+  teamDrawAt                          // heure serveur du dernier tirage de l'hôte (écran « Tirage des équipes » de la TV)
 ```
 
 **Accès** (règles de sécurité dans `database.rules.json`)
-- `sessions` n'est jamais lisible en entier. Seul l'hôte (`hostUid`) peut lire `sessions/{code}` d'un bloc. Les autres (joueurs, TV) lisent chaque champ séparément ; tous sauf `answers` sont lisibles par un utilisateur connecté.
+- `sessions` n'est jamais lisible en entier. Seul l'hôte (`hostUid`) peut lire `sessions/{code}` d'un bloc. Les autres (joueurs, TV) lisent chaque champ séparément ; tous sauf `answers` sont lisibles par un utilisateur connecté. Joueurs et TV s'abonnent à la même liste de champs (`shared/publicFields.ts`), qui suit le type de la session : un nouveau champ ne peut pas être oublié d'un côté.
 - L'hôte écrit tout le reste de la session. `hostUid` est fixé à la création et ne change plus.
 - `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio` : la bonne réponse ne peut pas y être publiée par erreur.
 - Un joueur n'écrit ni `correct`, ni `points`, ni `partial`, ni `fullPoints`, et aucune réponse hors de QUESTION (donc pas pendant VALIDATION).
@@ -389,6 +410,9 @@ sessions/{code}
 16. **Contrôle** : validation par l'hôte (et non vote des joueurs, idée de départ), phase VALIDATION sans échéance, décisions gardées dans l'app jusqu'à « Valider » (section 5.2).
 17. **Blind test en Réponse libre** : champ `ask` ; « les deux » partage les points 50/50, résultat ✓ / ½ / ✗.
 18. **TV en Réponse libre** : réponses fausses affichées, filtrées et regroupées, 8 groupes au plus, masquables avec Contrôle.
+19. **Groupe** : 4 équipes fixes avec symbole ; score d'équipe = somme des moyennes par question des joueurs connectés (présent sans réponse = 0) ; trois façons de former les équipes, l'hôte peut toujours déplacer un joueur ; « Au hasard » tire au lancement si l'hôte n'a pas tiré ; Rejouer garde les équipes (section 6.4).
+20. **Une fonction par écran** : la révélation n'affiche aucun rang ; le rang (joueur, équipe, rang dans l'équipe) n'apparaît qu'au Classement et à la fin (section 4).
+21. **Salon allégé** : barre « TV connectée » repliable, carte « Je joue aussi » pour l'hôte, équipes sur une ligne et page « Équipes » plein écran (section 4.1).
 
 ---
 
@@ -400,7 +424,7 @@ sessions/{code}
 4. **Redirection du QR code vers l'app** pour ceux qui l'ont installée : proposition de la reporter après le MVP, car elle demande des liens profonds (Android App Links / iOS Universal Links) et un domaine configuré -> Confirmé.
 5. **Durée de partie** : rester à 10 questions (environ 10 minutes) ou viser 15 à 20 questions pour atteindre 15 à 20 minutes ? -> Pour le MVP, rester à 10 questions. 
 6. **Contrôle** : valider le vote à la majorité, ou une autre règle ? -> Les joueurs décident eux mêmes, pas besoin de faire de règles spécifiques. -> Remplacé : c'est l'hôte qui valide (décision 16).
-7. **Groupe** : score d'équipe en moyenne ou en somme ? Équipes choisies par les joueurs ou assignées aléatoirement ? -> En moyenne + les équipes peuvent soit être choisies par les joueurs soient assignées aléatoirement
+7. **Groupe** : score d'équipe en moyenne ou en somme ? Équipes choisies par les joueurs ou assignées aléatoirement ? -> En moyenne + les équipes peuvent soit être choisies par les joueurs soient assignées aléatoirement. -> Livré (décision 19).
 8. **Priorités** : valider que Contrôle (P1) et Groupe (P2) sortent du premier MVP. -> Validé.
 9. **Quiz de lancement** : quels thèmes pour les 10 premiers quiz ? -> Culture G classique
 
@@ -408,7 +432,6 @@ sessions/{code}
 
 ## 13. Après le MVP (feuille de route indicative)
 
-- Option Groupe (équipes).
 - App hôte iOS et redirection du QR code vers l'app joueur.
 - Quiz créés par l'hôte (anniversaires, mariages, réunions de famille).
 - Packs thématiques et de saison, modèle freemium pour l'hôte.
