@@ -8,9 +8,10 @@ import { Spacing } from '@/constants/theme';
 
 // Résumé des réglages : « Choix multiples · Rapidité activée » ou « … · sans Rapidité », puis
 // « · Contrôle » (Réponse libre), « · Groupe », « · Pas à pas » et « · Suspense » s'ils sont activés.
+// Bluff : « Bluff », sans mention de la Rapidité (sans effet).
 export function settingsSummary(settings: SessionSettings): string {
-  const speedBonus = settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff;
-  const parts = [strings.quizSetup.answerModes[settings.answerMode], speedBonus];
+  const parts = [strings.quizSetup.answerModes[settings.answerMode]];
+  if (settings.answerMode !== 'bluff') parts.push(settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff);
   if (settings.control) parts.push(strings.quizSetup.options.control.title);
   if (settings.teams) parts.push(strings.quizSetup.options.teams.title);
   if (settings.stepByStep) parts.push(strings.quizSetup.stepByStep.title);

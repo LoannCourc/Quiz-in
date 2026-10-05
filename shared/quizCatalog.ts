@@ -10,7 +10,7 @@ import {
   VALIDATION_ESTIMATE_S,
 } from './constants'
 import { hasValidationPhase, revealDurationS } from './gameFlow'
-import type { AnswerMode, Difficulty, DifficultyLevel, SessionSettings } from './types'
+import type { AnswerMode, Difficulty, DifficultyLevel, QuizGameType, SessionSettings } from './types'
 
 // Identifiant de quiz : minuscules, chiffres et tirets (aussi utilisé comme clé dans la base).
 export function isValidQuizId(quizId: string): boolean {
@@ -83,4 +83,14 @@ export function canEnableOption(settings: SessionSettings, option: GameOption): 
 export function withAnswerMode(settings: SessionSettings, answerMode: AnswerMode): SessionSettings {
   const next = { ...settings, answerMode }
   return areSettingsCompatible(next) ? next : { ...next, control: false }
+}
+
+// Options sans objet en Bluff (spec 16) : pas de mode de réponse à choisir, ni Contrôle ni Rapidité.
+export const BLUFF_HIDDEN_OPTIONS: readonly GameOption[] = ['speedBonus', 'control']
+
+// Réglages adaptés au type du quiz : un Bluff se joue toujours en mode bluff, sans Contrôle ni Rapidité ;
+// un autre quiz ne garde jamais le mode bluff (retour au mode par défaut).
+export function settingsForGameType(settings: SessionSettings, gameType: QuizGameType): SessionSettings {
+  if (gameType === 'bluff') return { ...settings, answerMode: 'bluff', speedBonus: false, control: false }
+  return settings.answerMode === 'bluff' ? { ...settings, answerMode: DEFAULT_SESSION_SETTINGS.answerMode } : settings
 }

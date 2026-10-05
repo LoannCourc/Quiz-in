@@ -1,6 +1,6 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
-import { answeredProgress } from '@shared/players';
+import { answeredProgress, connectedPlayerIds } from '@shared/players';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
@@ -10,6 +10,7 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import type { AppBackgroundName } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import type { PlayerBluff } from '@/lib/playerBluff';
 import {
   correctChoiceIndex,
   effectiveAnswer,
@@ -22,6 +23,7 @@ import {
 } from '@/lib/playerGame';
 
 import { AnswerSentView, ValidationWaitView } from './AnswerSentView';
+import { BluffRevealView, BluffVoteView, BluffWriteView, type BluffProgressPlayer } from './BluffViews';
 import { Confetti } from './Confetti';
 import { FreeQuestionView } from './FreeQuestionView';
 import type { PhaseTiming } from './phaseTiming';
@@ -46,6 +48,8 @@ export interface PlayerGameProps {
   // sa place sous le contenu, et calque par-dessus l'écran (panneau des contrôles).
   footer?: ReactNode;
   overlay?: ReactNode;
+  // Bluff : proposition, verdict et vote du joueur (useBluff) ; absent hors d'une partie de Bluff.
+  bluff?: PlayerBluff | null;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -97,7 +101,12 @@ function teamInfoOf(session: PublicSession, uid: PlayerId): TeamGameInfo | undef
   return { team, rows: teamRanking(session), inTeam: rankInTeam(session.players, uid) };
 }
 
-function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps): ReactNode {
+// Bluff : joueurs connectés, allumés quand ils ont fini (proposition acceptée, ou vote).
+function bluffProgress(session: PublicSession, done: Record<PlayerId, true> | undefined): BluffProgressPlayer[] {
+  return connectedPlayerIds(session.players).map((id) => ({ id, avatar: session.players[id].avatar, done: done?.[id] === true }));
+}
+
+function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
     phaseEndsAt: session.phaseEndsAt,
@@ -122,6 +131,10 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
     case 'question': {
       const question = session.currentQuestion;
       if (!question) return <WaitingView />;
+      if (bluff) {
+        const progress = bluffProgress(session, session.bluffedBy?.[index]);
+        return <BluffWriteView key={index} {...{ question, index, questionCount, score, timing, bluff, progress }} />;
+      }
       const current = effectiveAnswer(session, uid, answer);
       const common = { question, index, questionCount, score, timing };
       const progress = answeredProgress(session.players, session.answeredBy?.[index]);
@@ -133,9 +146,25 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
         <FreeQuestionView key={index} {...common} answer={current} onAnswer={onAnswer} />
       );
     }
+    case 'vote': {
+      const question = session.currentQuestion;
+      if (!question?.choices || !bluff) return <WaitingView />;
+      const progress = bluffProgress(session, session.votedBy?.[index]);
+      return <BluffVoteView key={index} {...{ question, index, questionCount, score, timing, bluff, progress }} />;
+    }
     case 'reveal': {
       if (!session.reveal) return <WaitingView />;
       const result = myResult(session, uid);
+      const bluffChoices = session.reveal.stats.bluffChoices;
+      if (bluffChoices) {
+        return (
+          <>
+            {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}
+            <BluffRevealView choices={bluffChoices} result={result} uid={uid} players={session.players} />
+            {isAwaitingHost(session) && <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>}
+          </>
+        );
+      }
       return (
         <>
           {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}

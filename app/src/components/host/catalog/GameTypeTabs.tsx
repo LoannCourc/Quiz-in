@@ -6,8 +6,8 @@ import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 // Types de jeu du sélecteur. Le blind test n'est jouable que si l'interrupteur à distance est ouvert
-// (config/blindTestEnabled) ; sinon il reste « bientôt » : visible, non cliquable.
-const TAB_ORDER: readonly GameType[] = ['quiz', 'blindTest'];
+// (config/blindTestEnabled) ; sinon il reste « bientôt » : visible, non cliquable. Bluff : toujours jouable.
+const TAB_ORDER: readonly GameType[] = ['quiz', 'blindTest', 'bluff'];
 
 export type PlayableGameType = Extract<GameType, QuizGameType>;
 
@@ -18,7 +18,7 @@ interface GameTypeTabsProps {
 }
 
 function isPlayable(type: GameType, isBlindTestEnabled: boolean): type is PlayableGameType {
-  return type === 'quiz' || (type === 'blindTest' && isBlindTestEnabled);
+  return type === 'quiz' || type === 'bluff' || (type === 'blindTest' && isBlindTestEnabled);
 }
 
 // Une seule ligne, jamais de retour à la ligne : tient en 320 de large ; sur un écran plus étroit

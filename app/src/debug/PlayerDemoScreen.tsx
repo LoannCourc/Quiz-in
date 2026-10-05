@@ -17,6 +17,7 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import type { PlayerBluff } from '@/lib/playerBluff';
 import type { GivenAnswer } from '@/lib/playerGame';
 import { Spacing } from '@/constants/theme';
 import {
@@ -74,6 +75,27 @@ export default function PlayerDemoScreen() {
     return () => clearTimeout(timeoutId);
   }, [sendingGiven]);
 
+  // Bluff : proposition acceptée et vote confirmé après le même délai simulé.
+  function updateBluff(change: Partial<NonNullable<Scenario['bluff']>>) {
+    setScenario((current) => (current.bluff ? { ...current, bluff: { ...current.bluff, ...change } } : current));
+  }
+  const bluff: PlayerBluff | null = scenario.bluff
+    ? {
+        ...scenario.bluff,
+        onSubmit: (text) => {
+          updateBluff({ send: { kind: 'sending', text } });
+          setTimeout(() => {
+            const submittedAt = Date.now();
+            updateBluff({ send: { kind: 'idle' }, entry: { text, submittedAt }, check: { verdict: 'ok', refusals: 0, submittedAt } });
+          }, SIMULATED_WRITE_MS);
+        },
+        onVote: (choice) => {
+          updateBluff({ vote: { kind: 'sending', choice } });
+          setTimeout(() => updateBluff({ vote: { kind: 'sent', choice } }), SIMULATED_WRITE_MS);
+        },
+      }
+    : null;
+
   if (params.bands === '1') return <PlaceBandGallery />;
 
   return (
@@ -112,6 +134,7 @@ export default function PlayerDemoScreen() {
           serverOffsetMs={0}
           answer={scenario.answer}
           onAnswer={answer}
+          bluff={bluff}
           footer={hostFooter}
         />
       )}

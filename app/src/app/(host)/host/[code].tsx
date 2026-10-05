@@ -1,3 +1,4 @@
+import { isBluffQuestion } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   endUpdate,
@@ -9,7 +10,7 @@ import {
   type SessionUpdate,
 } from '@shared/hostEngine';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
-import type { Question, Session } from '@shared/types';
+import type { GameQuestion, Question, Session } from '@shared/types';
 import { expectedAnswer, reviewCounts, reviewGroups, type ReviewGroup } from '@shared/validationReview';
 import { useKeepAwake } from 'expo-keep-awake';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -27,6 +28,7 @@ import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useAnswer } from '@/hooks/useAnswer';
+import { useBluff } from '@/hooks/useBluff';
 import { useAudioUrls } from '@/hooks/useAudioUrls';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useCastGame, type CastGame } from '@/hooks/useCastGame';
@@ -99,13 +101,18 @@ function HostSession({ code }: { code: string }) {
   return <HostGame code={code} session={current} />;
 }
 
+// Question à choix ou à saisie (validation du Contrôle) ; jamais une question de Bluff.
+function classicQuestion(question: GameQuestion | undefined): Question | undefined {
+  return question && !isBluffQuestion(question) ? question : undefined;
+}
+
 // Partie en cours : de STARTING jusqu'avant END.
 function isInProgress(session: Session): boolean {
   return session.status !== 'lobby' && session.status !== 'ended';
 }
 
 function HostGame({ code, session }: { code: string; session: Session }) {
-  const questions = useGameQuestions(session.quizId);
+  const questions = useGameQuestions(session.quizId, session.settings.answerMode === 'bluff');
   const serverOffsetMs = useServerTimeOffset();
   const uid = session.hostUid;
   const isRegistered = session.players[uid] !== undefined;
@@ -164,7 +171,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           session={session}
           serverOffsetMs={serverOffsetMs}
           isRegistered={isRegistered}
-          question={gameQuestions?.[session.currentIndex]}
+          question={classicQuestion(gameQuestions?.[session.currentIndex])}
           onSkip={engine.skip}
           connection={connection}
           cast={cast}
@@ -197,6 +204,7 @@ interface HostInGameProps {
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
 function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
+  const bluff = useBluff(code, session.hostUid, session);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   // Contrôle : coches de l'hôte pour la question en cours, gardées dans l'app jusqu'à « Valider »
@@ -314,6 +322,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       serverOffsetMs={serverOffsetMs}
       answer={answer}
       onAnswer={onAnswer}
+      bluff={bluff}
       footer={footer}
       overlay={overlay}
     />

@@ -9,9 +9,9 @@ import {
   type LaunchRefusal,
   type SessionUpdate,
 } from '@shared/hostEngine';
-import { parseQuestions } from '@shared/quizValidation';
+import { parseBluffQuestions, parseQuestions } from '@shared/quizValidation';
 import { launchTeamDraw } from '@shared/teams';
-import type { Question, Session } from '@shared/types';
+import type { GameQuestion, Session } from '@shared/types';
 import { get, ref, remove, update } from 'firebase/database';
 
 import { warnIgnoredEntries } from './devLog';
@@ -21,9 +21,10 @@ import { db } from './firebase';
 // ici, seulement la lecture et l'écriture dans Firebase.
 
 // Questions du quiz, validées (les entrées mal formées sont ignorées). Lues par l'hôte seul.
-export async function loadQuizQuestions(quizId: string): Promise<Question[]> {
+// isBluff : partie de Bluff (vraie réponse et leurres au lieu de propositions).
+export async function loadQuizQuestions(quizId: string, isBluff: boolean): Promise<GameQuestion[]> {
   const snapshot = await get(ref(db, `questions/${quizId}`));
-  const { valid, ignoredCount } = parseQuestions(snapshot.val());
+  const { valid, ignoredCount } = isBluff ? parseBluffQuestions(snapshot.val()) : parseQuestions(snapshot.val());
   warnIgnoredEntries('Questions du quiz', ignoredCount);
   return valid;
 }
@@ -34,7 +35,7 @@ export type LaunchOutcome = { ok: true } | { ok: false; reason: LaunchRefusal };
 export async function launchGame(
   code: string,
   session: Session,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   nowServer: number,
   limit?: number,
   audio?: LaunchAudio,
@@ -54,7 +55,7 @@ export async function launchGame(
 // d'attente et partirait en retard au retour du réseau.
 export async function runTransition(
   code: string,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   expected: ExpectedPhase,
   nowServer: number,
   canWrite: () => boolean,
@@ -79,7 +80,7 @@ export async function runTransition(
 
 // Blind test : republie l'adresse renouvelée de l'extrait en cours (question, révélation, pause),
 // pour que la TV ne tombe jamais sur une adresse expirée, même après une longue pause.
-export async function publishAudioUrl(code: string, questions: readonly Question[], audioUrls: AudioUrls): Promise<void> {
+export async function publishAudioUrl(code: string, questions: readonly GameQuestion[], audioUrls: AudioUrls): Promise<void> {
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return;
   const changes = audioUrlUpdate(snapshot.val() as Session, questions, audioUrls);

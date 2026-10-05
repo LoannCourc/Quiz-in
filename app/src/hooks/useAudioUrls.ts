@@ -1,6 +1,7 @@
 import { AUDIO_URL_MIN_VALIDITY_MS, AUDIO_URL_REFRESH_INTERVAL_MS } from '@shared/constants';
 import { selectGameQuestions, type AudioUrls } from '@shared/hostEngine';
-import type { Question } from '@shared/types';
+import { isBluffQuestion } from '@shared/bluff';
+import type { GameQuestion, Question } from '@shared/types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { resolveAudio, type ResolvedAudio } from '@/lib/audio/audioSource';
@@ -19,12 +20,12 @@ export interface GameAudioUrls {
 // Blind test, côté hôte : récupère auprès de la source audio l'adresse de chaque extrait de la partie,
 // dès le salon, puis la renouvelle avant qu'elle expire (Deezer : environ 15 min). Toute adresse publiée
 // garde ainsi au moins AUDIO_URL_MIN_VALIDITY_MS de validité, quelle que soit la durée des pauses.
-export function useAudioUrls(questions: readonly Question[] | null, isEnabled: boolean): GameAudioUrls {
+export function useAudioUrls(questions: readonly GameQuestion[] | null, isEnabled: boolean): GameAudioUrls {
   const [resolved, setResolved] = useState<Record<string, ResolvedAudio>>({});
   const [failedIds, setFailedIds] = useState<readonly string[]>([]);
   const inFlight = useRef(new Set<string>());
   const tracks = useMemo(
-    () => (isEnabled && questions ? selectGameQuestions(questions).filter((question) => question.music) : []),
+    () => (isEnabled && questions ? selectGameQuestions(questions).filter((question): question is Question => !isBluffQuestion(question) && question.music !== undefined) : []),
     [questions, isEnabled],
   );
 

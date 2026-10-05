@@ -4,6 +4,8 @@ import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Rev
 
 import { IDLE_ANSWER, type AnswerState, type FreeText } from '@/lib/playerGame';
 
+import { BLUFF_SCENARIO_LABELS, buildBluffScenario, type BluffScenarioId, type DemoBluff } from './bluffScenarios';
+
 // Données factices de l'écran /debug/player (développement uniquement), du même type que la
 // vraie session : les écrans testés dans la démo sont exactement ceux de la partie.
 // Les valeurs reprennent la maquette docs/design/plateau-mobile.png pour pouvoir comparer.
@@ -45,7 +47,8 @@ export type ScenarioId =
   | 'scores'
   | 'scoresAnnounce'
   | 'paused'
-  | 'ended';
+  | 'ended'
+  | BluffScenarioId;
 
 export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   lobby: 'Lobby',
@@ -82,6 +85,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
   ended: 'Fin',
+  ...BLUFF_SCENARIO_LABELS,
 };
 
 export function isScenarioId(value: string | undefined): value is ScenarioId {
@@ -91,6 +95,12 @@ export function isScenarioId(value: string | undefined): value is ScenarioId {
 export interface Scenario {
   session: PublicSession;
   answer: AnswerState;
+  // Bluff : proposition, verdict et vote du joueur (absent hors Bluff).
+  bluff?: DemoBluff;
+}
+
+function isBluffScenarioId(id: ScenarioId): id is BluffScenarioId {
+  return id in BLUFF_SCENARIO_LABELS;
 }
 
 function player(name: string, avatar: string, score: number, rank: number, connected = true): Player {
@@ -266,6 +276,7 @@ function freeRevealScenario(now: number, myResult: PlayerResult, given: FreeText
 // Construit le scénario au moment où on le choisit, pour que les chronos partent de « maintenant ».
 export function buildScenario(id: ScenarioId, now: number): Scenario {
   const idle = (session: PublicSession): Scenario => ({ session, answer: IDLE_ANSWER });
+  if (isBluffScenarioId(id)) return { ...buildBluffScenario(id, baseSession(now, PLAYERS_BEFORE), now), answer: IDLE_ANSWER };
 
   switch (id) {
     case 'lobby':

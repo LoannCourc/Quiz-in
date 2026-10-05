@@ -1,5 +1,5 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
-import { areSettingsCompatible, isValidQuizId } from '@shared/quizCatalog';
+import { areSettingsCompatible, isValidQuizId, settingsForGameType } from '@shared/quizCatalog';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -44,7 +44,9 @@ function QuizScreen({ quizId }: { quizId: string }) {
     warnIgnoredEntries('Fiche du quiz', parsed === null && quiz.value !== null ? 1 : 0);
     return parsed;
   }, [quiz]);
-  const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
+  const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
+  // Bluff : mode bluff imposé, sans Contrôle ni Rapidité (spec 16).
+  const settings = summary ? settingsForGameType(chosenSettings, summary.gameType) : chosenSettings;
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const isBlindTestEnabled = useBlindTestEnabled();

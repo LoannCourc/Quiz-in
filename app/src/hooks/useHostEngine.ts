@@ -1,3 +1,4 @@
+import { bluffChecksUpdate, isBluffQuestion } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   isTransitionLocked,
@@ -7,11 +8,11 @@ import {
   type ExpectedPhase,
   type TransitionLock,
 } from '@shared/hostEngine';
-import type { Question, Session } from '@shared/types';
+import type { GameQuestion, Session } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
-import { runTransition } from '@/lib/hostGame';
+import { applyHostAction, runTransition } from '@/lib/hostGame';
 
 export interface HostEngine {
   // Contrôle « Passer » de l'hôte ; decisions : pendant la validation (Contrôle), ses coches.
@@ -23,7 +24,7 @@ interface HostEngineInput {
   // Session complète lue en temps réel par l'hôte.
   session: Session;
   // Questions de la partie ; null tant qu'elles ne sont pas chargées (aucune transition).
-  questions: readonly Question[] | null;
+  questions: readonly GameQuestion[] | null;
   serverOffsetMs: number;
   // Faux hors ligne (ou retour de coupure en cours) : aucune transition, aucune écriture.
   canWrite: boolean;
@@ -88,6 +89,8 @@ export function useHostEngine({
     return () => clearTimeout(timeoutId);
   }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount]);
 
+  useBluffChecks(code, session, questions, serverOffsetMs, canWrite);
+
   // Passer : la transition suivante tout de suite, par le même chemin que le minuteur (même verrou,
   // même état attendu) : un double appui, ou un appui en même temps que le minuteur, est ignoré.
   // decisions : pendant la validation (Contrôle), les coches de l'hôte (« Valider les réponses »).
@@ -100,12 +103,40 @@ export function useHostEngine({
   return { skip };
 }
 
+// Bluff (spec 16) : pendant l'écriture, l'hôte juge chaque nouvelle proposition (vraie réponse, mot
+// interdit, vide) et écrit son verdict dans bluffChecks (et bluffedBy si elle est acceptée). Une seule
+// écriture à la fois ; la session est relue avant d'écrire. Un échec sera réessayé à la valeur suivante.
+function useBluffChecks(
+  code: string,
+  session: Session,
+  questions: readonly GameQuestion[] | null,
+  serverOffsetMs: number,
+  canWrite: boolean,
+): void {
+  const isWriting = useRef(false);
+  // Relance après chaque écriture : une proposition arrivée pendant l'écriture est jugée aussitôt.
+  const [writeCount, setWriteCount] = useState(0);
+  const question = questions?.[session.currentIndex];
+
+  useEffect(() => {
+    if (!canWrite || isWriting.current || !question || !isBluffQuestion(question)) return;
+    if (bluffChecksUpdate(session, question) === null) return;
+    isWriting.current = true;
+    applyHostAction(code, (current) => bluffChecksUpdate(current, question), Date.now() + serverOffsetMs)
+      .catch((error: unknown) => console.error('[engine] Vérification des propositions impossible', error))
+      .finally(() => {
+        isWriting.current = false;
+        setWriteCount((count) => count + 1);
+      });
+  }, [code, session, question, serverOffsetMs, canWrite, writeCount]);
+}
+
 // Exécute une transition, sauf si la même est déjà en cours d'écriture depuis moins de
 // TRANSITION_LOCK_MAX_MS (une écriture hors ligne peut rester en attente : le verrou finit
 // par être relâché pour ne jamais bloquer la partie).
 async function advance(
   code: string,
-  questions: readonly Question[],
+  questions: readonly GameQuestion[],
   expected: ExpectedPhase,
   nowServer: number,
   lock: { current: TransitionLock | null },

@@ -16,6 +16,7 @@ import { strings } from '@/constants/strings';
 import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
 import { useAbandonedGameCleanup } from '@/hooks/useAbandonedGameCleanup';
 import { useAnswer } from '@/hooks/useAnswer';
+import { useBluff } from '@/hooks/useBluff';
 import { usePhaseStale } from '@/hooks/usePhaseStale';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
@@ -112,6 +113,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
   const [teamError, setTeamError] = useState<string | null>(null);
   const { uid, status, players } = state;
   const { answer, onAnswer } = useAnswer(code, uid, state.session);
+  const bluff = useBluff(code, uid, state.session);
   const me = players[uid];
   const isPhaseStale = usePhaseStale(state.session, serverOffsetMs);
 
@@ -160,6 +162,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
         serverOffsetMs={serverOffsetMs}
         answer={answer}
         onAnswer={onAnswer}
+        bluff={bluff}
         notice={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : undefined}
       />
     );

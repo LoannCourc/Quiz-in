@@ -1,7 +1,10 @@
 import { describe, expect, test } from 'vitest'
 
 import {
+  bluffAttemptsLeft,
   bluffChecksUpdate,
+  bluffPlayerOutcome,
+  bluffWriteStatus,
   bluffRevealData,
   buildVoteChoices,
   checkBluff,
@@ -13,6 +16,7 @@ import {
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
   BLUFF_VOTE_DURATION_S,
+  DEFAULT_SESSION_SETTINGS,
   QUESTION_DURATION_S,
   REVEAL_GRACE_MS,
 } from '../../shared/constants'
@@ -26,6 +30,7 @@ import {
   transitionUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
+import { settingsForGameType } from '../../shared/quizCatalog'
 import type { BluffChoice, BluffEntry, Player, PlayerId, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeBluffQuestion, makeSession, player } from './engineFixtures'
 
@@ -317,5 +322,51 @@ describe('Bluff : déroulé et moteur', () => {
     const launch = launchUpdate(makeSession({ settings: BLUFF }), BLUFF_QUESTIONS, NOW)
     expect(launch.ok && launch.update).toMatchObject({ bluffs: null, votes: null, bluffPoints: null, bluffOwn: null })
     expect(replayUpdate(makeSession({ status: 'ended', settings: BLUFF }), NOW)).toMatchObject({ bluffChecks: null, votedBy: null })
+  })
+})
+
+describe('Bluff : téléphone du joueur', () => {
+  const entry = { text: 'Monopolis', submittedAt: 10 }
+  test('état de l’écriture : rien, en vérification, refusée, acceptée, plus d’essai', () => {
+    expect(bluffWriteStatus(null, null)).toBe('writing')
+    expect(bluffWriteStatus(entry, null)).toBe('checking')
+    expect(bluffWriteStatus(entry, { verdict: 'truth', refusals: 1, submittedAt: 10 })).toBe('refused')
+    // Réécrite après un refus : de nouveau en vérification.
+    expect(bluffWriteStatus({ ...entry, submittedAt: 20 }, { verdict: 'truth', refusals: 1, submittedAt: 10 })).toBe('checking')
+    expect(bluffWriteStatus(entry, { verdict: 'ok', refusals: 1, submittedAt: 10 })).toBe('accepted')
+    expect(bluffWriteStatus(entry, { verdict: 'forbidden', refusals: 3, submittedAt: 10 })).toBe('exhausted')
+    expect(bluffAttemptsLeft({ verdict: 'truth', refusals: 1, submittedAt: 10 })).toBe(2)
+    expect(bluffAttemptsLeft(null)).toBe(3)
+  })
+
+  test('résultat : choix voté, propre proposition et points', () => {
+    const choices = [
+      { text: 'Vraie', kind: 'truth' as const, voters: ['a'] },
+      { text: 'Monopolis', kind: 'bluff' as const, authors: ['me'], voters: ['b', 'c'] },
+      { text: 'Leurre', kind: 'decoy' as const, voters: ['me'] },
+    ]
+    const outcome = bluffPlayerOutcome(choices, { correct: false, points: 1000 }, 'me')
+    expect(outcome.voted?.text).toBe('Leurre')
+    expect(outcome.own?.voters).toEqual(['b', 'c'])
+    expect(outcome.points).toBe(1000)
+    expect(bluffPlayerOutcome(choices, undefined, 'x')).toEqual({ voted: null, own: null, points: 0 })
+  })
+})
+
+describe('settingsForGameType', () => {
+  const settings: SessionSettings = { ...DEFAULT_SESSION_SETTINGS, speedBonus: true, teams: true, suspense: true }
+
+  test('Bluff : mode bluff, sans Contrôle ni Rapidité, Groupe et rythme gardés', () => {
+    expect(settingsForGameType({ ...settings, answerMode: 'free', control: true }, 'bluff')).toEqual({
+      ...settings,
+      answerMode: 'bluff',
+      speedBonus: false,
+      control: false,
+    })
+  })
+
+  test('autre quiz : le mode bluff revient au mode par défaut, le reste ne change pas', () => {
+    expect(settingsForGameType({ ...settings, answerMode: 'bluff' }, 'quiz').answerMode).toBe(DEFAULT_SESSION_SETTINGS.answerMode)
+    expect(settingsForGameType({ ...settings, answerMode: 'free' }, 'blindTest')).toEqual({ ...settings, answerMode: 'free' })
   })
 })

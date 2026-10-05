@@ -41,7 +41,7 @@ export function CatalogView({ entries: allEntries, onOpenQuiz, banner, isBlindTe
   const [columnWidth, setColumnWidth] = useState(0);
   const posterWidth = posterWidthFor(columnWidth);
   // Interrupteur coupé en cours de route : retour aux quiz, les blind tests disparaissent.
-  const visibleType = isBlindTestEnabled ? gameType : 'quiz';
+  const visibleType = gameType === 'blindTest' && !isBlindTestEnabled ? 'quiz' : gameType;
   const entries = useMemo(() => filterByGameType(allEntries, visibleType), [allEntries, visibleType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
 

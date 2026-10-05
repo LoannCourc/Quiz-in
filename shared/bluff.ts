@@ -13,6 +13,7 @@ import { connectedPlayerIds } from './players'
 import type {
   BluffCheck,
   BluffChoice,
+  BluffEntry,
   BluffQuestion,
   BluffVerdict,
   GameQuestion,
@@ -198,4 +199,36 @@ export function bluffRevealData(session: Session): BluffRevealData {
     results[playerId] = { correct, points: (correct ? BLUFF_TRUTH_POINTS : 0) + trapped * BLUFF_TRAP_POINTS }
   }
   return { choices, results }
+}
+
+// Téléphone du joueur, pendant l'écriture : sa dernière proposition et le verdict de l'hôte.
+// writing : rien d'envoyé ; checking : envoyée, pas encore vérifiée ; refused : refusée, il reste des
+// essais ; accepted : acceptée (définitive) ; exhausted : refusée et plus aucun essai.
+export type BluffWriteStatus = 'writing' | 'checking' | 'refused' | 'accepted' | 'exhausted'
+
+export function bluffWriteStatus(entry: BluffEntry | null, check: BluffCheck | null): BluffWriteStatus {
+  if (check?.verdict === 'ok') return 'accepted'
+  if (check && check.refusals >= BLUFF_MAX_ATTEMPTS) return 'exhausted'
+  if (entry && (!check || check.submittedAt !== entry.submittedAt)) return 'checking'
+  return check ? 'refused' : 'writing'
+}
+
+export function bluffAttemptsLeft(check: BluffCheck | null): number {
+  return Math.max(0, BLUFF_MAX_ATTEMPTS - (check?.refusals ?? 0))
+}
+
+// Résultat du joueur à la révélation, d'après les choix publiés : le choix pour lequel il a voté,
+// sa propre proposition (avec ceux qu'elle a piégés), et ses points.
+export interface BluffPlayerOutcome {
+  voted: RevealedBluffChoice | null
+  own: RevealedBluffChoice | null
+  points: number
+}
+
+export function bluffPlayerOutcome(choices: readonly RevealedBluffChoice[], result: PlayerResult | undefined, uid: PlayerId): BluffPlayerOutcome {
+  return {
+    voted: choices.find((choice) => choice.voters?.includes(uid)) ?? null,
+    own: choices.find((choice) => choice.authors?.includes(uid)) ?? null,
+    points: result?.points ?? 0,
+  }
 }

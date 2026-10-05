@@ -11,7 +11,7 @@ import type { CatalogRowId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
-import type { AnswerMode, BlindTestAsk, DifficultyLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
+import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
@@ -442,6 +442,53 @@ export const strings = {
       finalRankingIn: (seconds: number) => `Classement final dans ${seconds} s`,
       announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
       announceHint: 'Prépare-toi !',
+    },
+    // Bluff (maquettes B1, B2, B3) : écrire une fausse réponse, attendre, voter, résultat.
+    bluff: {
+      writeBadge: 'Bluff · Invente une fausse réponse',
+      voteBadge: 'Bluff · Quelle est la vraie réponse ?',
+      fieldLabel: 'Ta fausse réponse',
+      placeholder: 'Une réponse crédible…',
+      counter: (length: number, max: number) => `${length} / ${max}`,
+      hint: 'Rends-la crédible : chaque joueur qui la choisira te rapporte des points.',
+      send: 'Envoyer',
+      sending: 'Envoi…',
+      checking: 'Vérification de ta proposition…',
+      refusals: {
+        truth: 'Tu as trouvé la vraie réponse !',
+        forbidden: 'Ce mot n’est pas autorisé.',
+        empty: 'Écris une vraie réponse.',
+      } satisfies Record<Exclude<BluffVerdict, 'ok'>, string>,
+      retry: (left: number) => `Invente-en une fausse à la place. Il te reste ${left} essai${left > 1 ? 's' : ''}.`,
+      sendFailed: 'Envoi impossible. Vérifie ta connexion, puis réessaie.',
+      tooLate: 'Trop tard : le temps d’écriture est écoulé.',
+      sentTitle: 'Proposition envoyée',
+      exhaustedTitle: 'Plus d’essai',
+      exhaustedText: 'Pas de proposition pour toi à cette question, mais tu pourras voter.',
+      waiting: 'En attente des autres joueurs…',
+      quoted: (text: string) => `« ${text} »`,
+      mine: 'Ta proposition',
+      voteButton: 'Je vote pour celle-ci',
+      pickHint: 'Touche la réponse que tu crois vraie.',
+      voteSentTitle: 'Vote envoyé',
+      voteRefusals: {
+        tooLate: 'Trop tard : le vote est terminé.',
+        failed: 'Vote non envoyé. Vérifie ta connexion, puis réessaie.',
+      } satisfies Record<AnswerRefusal, string>,
+      found: 'Bien vu !',
+      trapped: 'Piégé !',
+      noVote: 'Pas de vote',
+      points: (points: number) => `+${formatNumber(points)}`,
+      foundText: 'Tu as trouvé la vraie réponse.',
+      votedFor: (name: string) => `Tu as voté pour la proposition de ${name}.`,
+      votedDecoy: 'Tu as voté pour un leurre.',
+      noVoteText: 'Tu n’as pas voté.',
+      butTrapped: (count: number) => `Mais ta proposition a piégé ${count} joueur${count > 1 ? 's' : ''}.`,
+      truthLabel: 'La vraie réponse',
+      ownTrappedStart: (text: string) => `Ta proposition « ${text} » a piégé `,
+      ownTrappedEnd: (points: number) => ` : +${formatNumber(points)}`,
+      ownNobody: 'Personne n’a voté pour ta proposition.',
+      names: (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} et ${names[names.length - 1]}` : (names[0] ?? '')),
     },
     answerSent: {
       title: 'Réponse envoyée !',

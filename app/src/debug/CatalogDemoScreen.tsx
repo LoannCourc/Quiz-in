@@ -1,4 +1,5 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
+import { settingsForGameType } from '@shared/quizCatalog';
 import { GENRE_ICONS, ICON_THEMES, themeIconOf, type GenreIconName, type QuizIconName } from '@shared/themeIcons';
 import type { SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -28,7 +29,7 @@ export default function CatalogDemoScreen() {
     return (
       <QuizDetails
         quiz={quiz}
-        settings={settings}
+        settings={settingsForGameType(settings, quiz.gameType)}
         onSettingsChange={setSettings}
         onChoose={() => router.back()}
         initialSettingsOpen={openSettings === '1'}

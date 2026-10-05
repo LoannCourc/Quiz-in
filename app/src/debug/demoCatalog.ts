@@ -38,6 +38,9 @@ const DEMO_QUIZZES: DemoQuiz[] = [
   { id: 'demo-capitales-expert', title: 'Capitales impossibles avec un titre très long pour tester', theme: 'Géographie', difficulty: 2.9, audience: 'experts', poster: 'gold', addedAt: '2026-05-02', description: 'Les capitales que personne ne connaît. Titre volontairement long pour vérifier la coupure sur trois lignes.' },
   { id: 'demo-bt-tubes', title: 'Tubes francophones', theme: 'Musique', difficulty: 1.2, audience: 'all', poster: 'pink', addedAt: '2026-10-03', featuredRank: 8, gameType: 'blindTest', icon: 'speechBubble', description: 'Dix tubes que tout le monde a fredonnés : reconnaissez-les dès les premières notes.' },
   { id: 'demo-bt-annees-80', title: 'Années 80', theme: 'Musique', difficulty: 2.1, audience: 'all', poster: 'cyan', addedAt: '2026-09-20', gameType: 'blindTest', icon: 'cassette', description: 'Synthés, refrains et tubes de la décennie : un blind test pour les nostalgiques.' },
+  { id: 'demo-bluff-royal', title: 'Fins royales', theme: 'Histoire', difficulty: 2.0, audience: 'all', poster: 'gold', addedAt: '2026-10-04', gameType: 'bluff', description: 'Des rois et des reines aux fins improbables : inventez des réponses assez crédibles pour piéger les autres.' },
+  { id: 'demo-bluff-betes', title: 'Drôles de bêtes', theme: 'Sciences et nature', difficulty: 1.8, audience: 'all', poster: 'green', addedAt: '2026-10-03', gameType: 'bluff', description: 'Animaux étonnants : la vraie réponse est souvent plus folle que vos inventions.' },
+  { id: 'demo-bluff-objets', title: 'Objets du quotidien', theme: 'Culture générale', difficulty: 1.6, audience: 'all', poster: 'violet', addedAt: '2026-09-28', gameType: 'bluff', description: 'L’origine surprenante des objets de tous les jours.' },
 ];
 
 export const DEMO_CATALOG: QuizEntry[] = DEMO_QUIZZES.map(({ featuredRank, gameType = 'quiz', ...quiz }) => ({

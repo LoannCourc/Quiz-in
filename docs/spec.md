@@ -515,7 +515,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 ## 16. Bluff
 
-Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 10 quiz de 10 questions tirés de la banque de questions de JAJA, en relecture avec `docs/relecture-bluff.md`) codés ; lot 3 (écrans de la TV) codé ; téléphones à venir.
+Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 10 quiz de 10 questions tirés de la banque de questions de JAJA, en relecture avec `docs/relecture-bluff.md`) codés ; lot 3 (écrans de la TV) codé ; lot 4 (catalogue, réglages, téléphones, boucle de l'hôte) codé, à tester en vraie partie.
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
@@ -545,9 +545,13 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Mise en page TV.** Écriture : l'énoncé, « Inventez une fausse réponse sur votre téléphone ! » et les avatars qui s'allument quand une proposition est acceptée. Vote : les choix en cartes lettrées, en une colonne (3 phrases longues au plus) ou deux, avec une seule taille de texte pour tous : la plus grande dont la hauteur estimée tient à l'écran (`shared/bluffLayout.ts`). Si elle ne tient qu'en libérant de la place, l'écran est « serré » : question réduite, sans pastille ni consigne au vote, sans les étapes à la révélation. Avatars sur une seule ligne. Jusqu'à 21 phrases de 100 caractères tiennent au vote, en 720p comme en 1080p ; le texte est alors petit (environ 13 px en 720p). Téléphone (B3) : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
 
+**Téléphone (B1 à B3).** Écriture : la question, le champ sur plusieurs lignes avec son compteur, ENVOYER ; après un refus, le texte reste dans le champ, avec le motif et les essais restants ; « Vérification de ta proposition… » tant que l'hôte n'a pas jugé. Attente : « Proposition envoyée », la proposition rappelée, les avatars des joueurs qui ont fini (ou « Plus d'essai » après trois refus). Vote : la question et les choix lettrés, le sien grisé en pointillés avec « Ta proposition » ; un appui sélectionne, « Je vote pour celle-ci » envoie ; puis « Vote envoyé ». Révélation : « Bien vu ! » (vraie réponse), « Piégé ! » ou « Pas de vote », les points de la question, une phrase d'explication, la vraie réponse, puis qui sa proposition a piégé. L'hôte inscrit joue avec les mêmes écrans.
+
+**Catalogue et réglages.** Onglet « Bluff » du catalogue, toujours jouable, avec les mêmes puces de thème que les quiz ; les affiches gardent l'icône de leur thème. Feuille des réglages d'un Bluff : ni mode de réponse, ni Contrôle, ni Rapidité ; Groupe, Pas à pas et Suspense disponibles. Résumé : « Bluff · … ».
+
 **Options.**
-- **Rapidité** : sans effet en Bluff.
-- **Contrôle** : désactivé en Bluff.
+- **Rapidité** : sans effet en Bluff (masquée, toujours désactivée).
+- **Contrôle** : désactivé en Bluff (masqué).
 - **Groupe** : points individuels, puis moyenne d'équipe comme d'habitude (section 6.4).
 - **Pas à pas, Suspense** : comme d'habitude.
 

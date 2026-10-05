@@ -1,6 +1,7 @@
 import {
   AVAILABLE_ANSWER_MODES,
   AVAILABLE_OPTIONS,
+  BLUFF_HIDDEN_OPTIONS,
   canEnableOption,
   withAnswerMode,
   type GameOption,
@@ -47,7 +48,10 @@ interface GameSettingsSheetProps {
 // Feuille des réglages de la partie (maquette R2) : tuiles à toucher, « Terminé » fixé en bas (seules
 // les tuiles défilent sur un petit écran). Fermeture aussi par un appui à côté ou le bouton retour.
 // Changer de mode coupe les options devenues incompatibles (withAnswerMode).
+// Bluff : ni mode de réponse ni Contrôle ou Rapidité, seulement Groupe et le rythme.
 export function GameSettingsSheet({ visible, settings, onChange, onClose }: GameSettingsSheetProps) {
+  const isBluff = settings.answerMode === 'bluff';
+  const options = isBluff ? OPTIONS.filter(({ option }) => !BLUFF_HIDDEN_OPTIONS.includes(option)) : OPTIONS;
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
@@ -57,24 +61,28 @@ export function GameSettingsSheet({ visible, settings, onChange, onClose }: Game
           <Text style={styles.title}>{strings.quizSetup.settingsTitle}</Text>
 
           <ScrollView style={styles.scroll} contentContainerStyle={styles.sections}>
-            <Text style={styles.sectionLabel}>{strings.quizSetup.answerModeLabel}</Text>
-            <View style={styles.grid}>
-              {ANSWER_MODES.map(({ mode, icon }) => (
-                <SettingTile
-                  key={mode}
-                  icon={icon}
-                  title={strings.quizSetup.answerModes[mode]}
-                  hint={strings.quizSetup.answerModeHints[mode]}
-                  state={answerModeState(settings, mode)}
-                  role="radio"
-                  onPress={() => onChange(withAnswerMode(settings, mode))}
-                />
-              ))}
-            </View>
+            {!isBluff && (
+              <>
+                <Text style={styles.sectionLabel}>{strings.quizSetup.answerModeLabel}</Text>
+                <View style={styles.grid}>
+                  {ANSWER_MODES.map(({ mode, icon }) => (
+                    <SettingTile
+                      key={mode}
+                      icon={icon}
+                      title={strings.quizSetup.answerModes[mode]}
+                      hint={strings.quizSetup.answerModeHints[mode]}
+                      state={answerModeState(settings, mode)}
+                      role="radio"
+                      onPress={() => onChange(withAnswerMode(settings, mode))}
+                    />
+                  ))}
+                </View>
+              </>
+            )}
 
             <Text style={styles.sectionLabel}>{strings.quizSetup.optionsLabel}</Text>
             <View style={styles.grid}>
-              {OPTIONS.map(({ option, icon }) => (
+              {options.map(({ option, icon }) => (
                 <SettingTile
                   key={option}
                   icon={icon}
@@ -86,7 +94,7 @@ export function GameSettingsSheet({ visible, settings, onChange, onClose }: Game
                 />
               ))}
               {/* Nombre impair de tuiles : la dernière garde une demi-largeur. */}
-              {OPTIONS.length % 2 === 1 && <View style={styles.filler} />}
+              {options.length % 2 === 1 && <View style={styles.filler} />}
             </View>
 
             {/* Rythme : hors des options (ne compte pas dans la limite de deux en Choix multiples). */}
