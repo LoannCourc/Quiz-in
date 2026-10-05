@@ -7,7 +7,6 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
-import { PlayerList } from './PlayerList';
 import { PlayerTeamLobby } from './PlayerTeamLobby';
 
 interface PlayerLobbyProps {
@@ -17,8 +16,8 @@ interface PlayerLobbyProps {
   teams?: { settings: SessionSettings; onChoose: (team: TeamId) => void; error: string | null };
 }
 
-// Lobby du joueur : son avatar en grand, le message principal, puis les autres joueurs.
-// Le bouton « Modifier mon profil » est fourni à part, en pied d'écran (toujours visible).
+// Lobby du joueur : son avatar en grand et le message principal, rien d'autre (la TV montre déjà
+// les joueurs et les équipes). Le bouton « Modifier mon profil » est fourni à part, en pied d'écran.
 export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
   const me = players[uid];
   // Groupe, mode « Ils choisissent » : le choix de l'équipe remplace le lobby (maquette G1).
@@ -38,10 +37,6 @@ export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
       )}
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
       <Text style={[textStyles.label, styles.centered]}>{strings.lobby.waiting}</Text>
-      <Text style={styles.questionsOnTv}>{`📺 ${strings.lobby.questionsOnTv}`}</Text>
-      {teams && <PlayerTeamLobby uid={uid} players={players} {...teams} />}
-
-      <PlayerList players={players} highlightedUid={uid} />
     </View>
   );
 }
@@ -77,12 +72,6 @@ const styles = StyleSheet.create({
     lineHeight: Math.round(26 * DISPLAY_LINE_HEIGHT),
   },
   centered: {
-    textAlign: 'center',
-  },
-  questionsOnTv: {
-    color: AppColors.accent,
-    fontFamily: AppFonts.black,
-    fontSize: AppSizes.textBody,
     textAlign: 'center',
   },
 });

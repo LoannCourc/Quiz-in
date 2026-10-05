@@ -55,10 +55,7 @@ export const strings = {
     submitFailed: 'L’inscription a échoué. Réessaie dans un instant.',
   },
   lobby: {
-    playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''} connecté${count > 1 ? 's' : ''}`,
-    you: '(toi)',
     inLobbyTitle: 'Tu es dans la partie !',
-    questionsOnTv: 'Les questions s’affichent sur la télé',
     waiting: 'En attente du lancement…',
   },
   about: {
@@ -189,7 +186,6 @@ export const strings = {
       unused: (name: string) => `Équipe ${name} non utilisée`,
       waiting: 'En attente du lancement de la partie…',
       hostCanMove: 'L’hôte peut aussi te placer dans une autre équipe.',
-      notAssigned: 'L’hôte forme les équipes…',
       chooseFailed: 'Ton choix n’a pas été enregistré. Réessaie.',
     },
     // Pendant la partie (maquette G4).

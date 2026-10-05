@@ -1,9 +1,9 @@
-import { activeTeams, TEAM_IDS, teamCountOf, teamMembers, teamModeOf } from '@shared/teams';
+import { activeTeams, TEAM_IDS, teamCountOf, teamMembers } from '@shared/teams';
 import type { PlayerId, SessionSettings, TeamId } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { textStyles } from '@/components/ui/textStyles';
-import { TeamSymbol, TeamTile } from '@/components/ui/TeamSymbol';
+import { TeamSymbol } from '@/components/ui/TeamSymbol';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -18,27 +18,11 @@ interface PlayerTeamLobbyProps {
   error: string | null;
 }
 
-// Groupe, lobby du joueur (maquette G1) : en mode « Ils choisissent », les équipes en grandes cartes à
-// toucher ; sinon, l'équipe où l'hôte l'a placé (ou « L'hôte forme les équipes… »).
+// Groupe, mode « Ils choisissent » (maquette G1) : les équipes en grandes cartes à toucher.
 export function PlayerTeamLobby({ uid, players, settings, onChoose, error }: PlayerTeamLobbyProps) {
   const { picker } = strings.teams;
   const teams = activeTeams(teamCountOf(settings, Object.keys(players).length));
   const myTeam = players[uid]?.team;
-
-  if (teamModeOf(settings) !== 'players') {
-    return (
-      <View style={styles.container}>
-        {myTeam ? (
-          <View style={styles.myTeam}>
-            <Text style={styles.label}>{picker.yourTeam}</Text>
-            <TeamCard team={myTeam} players={players} isMine onPress={undefined} />
-          </View>
-        ) : (
-          <Text style={[textStyles.label, styles.centered]}>{picker.notAssigned}</Text>
-        )}
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
@@ -66,8 +50,7 @@ interface TeamCardProps {
   team: TeamId;
   players: LobbyPlayers;
   isMine: boolean;
-  // Absent : carte d'information (l'équipe a été choisie par l'hôte).
-  onPress: (() => void) | undefined;
+  onPress: () => void;
 }
 
 // Carte d'équipe à sa couleur : symbole, nom, nombre de joueurs, avatars ; contour blanc et
@@ -77,10 +60,9 @@ function TeamCard({ team, players, isMine, onPress }: TeamCardProps) {
   const name = strings.teams.names[team];
   return (
     <Pressable
-      accessibilityRole={onPress ? 'button' : undefined}
+      accessibilityRole="button"
       accessibilityLabel={strings.teams.teamLabel(name)}
       accessibilityState={{ selected: isMine }}
-      disabled={!onPress}
       onPress={onPress}
       style={[styles.card, { backgroundColor: AppColors.teams[team] }, isMine && styles.myCard]}>
       <View style={styles.cardTop}>
@@ -104,11 +86,6 @@ function TeamCard({ team, players, isMine, onPress }: TeamCardProps) {
   );
 }
 
-// Pastille d'équipe à côté d'un pseudo (liste des joueurs, en-tête de partie).
-export function TeamBadge({ team }: { team: TeamId }) {
-  return <TeamTile team={team} size={22} />;
-}
-
 const AVATAR = 26;
 
 const styles = StyleSheet.create({
@@ -122,14 +99,6 @@ const styles = StyleSheet.create({
     lineHeight: Math.round(26 * DISPLAY_LINE_HEIGHT),
     textTransform: 'uppercase',
   },
-  label: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.black,
-    fontSize: 12,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-  },
   note: {
     color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
@@ -137,9 +106,6 @@ const styles = StyleSheet.create({
   },
   centered: {
     textAlign: 'center',
-  },
-  myTeam: {
-    gap: Spacing.two,
   },
   grid: {
     flexDirection: 'row',
