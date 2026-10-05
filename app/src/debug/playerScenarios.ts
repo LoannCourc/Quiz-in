@@ -48,6 +48,7 @@ export type ScenarioId =
   | 'scoresAnnounce'
   | 'paused'
   | 'ended'
+  | 'endedSuspense'
   | BluffScenarioId;
 
 export const SCENARIO_LABELS: Record<ScenarioId, string> = {
@@ -85,6 +86,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
   ended: 'Fin',
+  endedSuspense: 'Suspense : fin (3 s d’attente, puis classement)',
   ...BLUFF_SCENARIO_LABELS,
 };
 
@@ -392,5 +394,9 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle({ ...baseSession(now, PLAYERS_BEFORE), status: 'paused', pausedFrom: 'question', remainingMs: 12_000 });
     case 'ended':
       return idle({ ...baseSession(now, PLAYERS_AFTER), status: 'ended' });
+    case 'endedSuspense': {
+      const ended = baseSession(now, PLAYERS_AFTER);
+      return idle({ ...ended, status: 'ended', settings: { ...ended.settings, suspense: true } });
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
+import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
@@ -10,6 +11,8 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import type { AppBackgroundName } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import { Spacing } from '@/constants/theme';
+import { useDelayPassed } from '@/hooks/useDelayPassed';
 import type { PlayerBluff } from '@/lib/playerBluff';
 import {
   correctChoiceIndex,
@@ -62,19 +65,33 @@ function speedBonusOf(session: PublicSession, result: PlayerResult | undefined):
 // Aucun accès à Firebase : la page parente fournit les données.
 export function PlayerGame(props: PlayerGameProps) {
   const { session, uid } = props;
+  // Suspense : le classement final attend la fin du roulement de tambour de la TV (spec 17).
+  const isSuspenseEnd = session.status === 'ended' && session.settings.suspense === true;
+  const isEndShown = useDelayPassed(session.phaseStartedAt, isSuspenseEnd ? SUSPENSE_DRUMROLL_MS : 0, props.serverOffsetMs);
   const outcome = session.status === 'reveal' ? revealOutcome(myResult(session, uid)) : undefined;
   // Fond festif seulement pour une bonne réponse ; ton plus doux sinon.
   const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
   // Confettis : une fois à la révélation d'une bonne réponse et à la fin de partie.
-  const showConfetti = outcome === 'correct' || session.status === 'ended';
+  const showConfetti = outcome === 'correct' || (session.status === 'ended' && isEndShown);
   return (
     <View style={styles.root}>
       <Screen background={background} footer={props.footer}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
-        {renderView(props)}
+        {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
       {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
       {props.overlay}
+    </View>
+  );
+}
+
+// Suspense : « Et le grand gagnant est… » sur le téléphone aussi, pour ne rien révéler avant la TV.
+function SuspenseEndView({ isTeams }: { isTeams: boolean }) {
+  const texts = strings.game.ended;
+  return (
+    <View style={styles.suspense}>
+      <Text style={[textStyles.hero, styles.notice]}>{isTeams ? texts.suspenseTeams : texts.suspense}</Text>
+      <Text style={[textStyles.muted, styles.notice]}>{texts.suspenseHint}</Text>
     </View>
   );
 }
@@ -223,5 +240,10 @@ const styles = StyleSheet.create({
   },
   notice: {
     textAlign: 'center',
+  },
+  suspense: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    gap: Spacing.three,
   },
 });

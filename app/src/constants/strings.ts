@@ -558,6 +558,10 @@ export const strings = {
       title: 'Partie terminée !',
       myResult: 'Tu termines',
       finalRanking: 'Classement final',
+      // Suspense : pendant le roulement de tambour de la TV, avant le classement final.
+      suspense: 'Et le grand gagnant est…',
+      suspenseTeams: 'Et l’équipe gagnante est…',
+      suspenseHint: 'Regarde la TV !',
     },
     // Contrôle : pendant que l'hôte valide les réponses.
     validation: {
