@@ -1,4 +1,4 @@
-import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode } from '@shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode, readCastSoundTest } from '@shared/cast'
 
 // SDK Web Receiver de Google : toujours chargé depuis gstatic (Google interdit de l'héberger
 // soi-même), et seulement en mode Cast, pour que le navigateur du plan B n'en dépende pas.
@@ -34,9 +34,11 @@ declare global {
 
 type CodeListener = (code: string) => void
 type AudioTestListener = (url: string) => void
+type SoundTestListener = (target: string) => void
 
 const listeners = new Set<CodeListener>()
 const audioTestListeners = new Set<AudioTestListener>()
+const soundTestListeners = new Set<SoundTestListener>()
 let lastCode: string | null = null
 let started: Promise<void> | null = null
 
@@ -55,6 +57,11 @@ function loadCastSdk(): Promise<CastFramework> {
 }
 
 function receiveMessage(event: CustomMessageEvent): void {
+  const soundTest = readCastSoundTest(event.data)
+  if (soundTest !== null) {
+    soundTestListeners.forEach((listener) => listener(soundTest))
+    return
+  }
   const audioTestUrl = readCastAudioTest(event.data)
   if (audioTestUrl !== null) {
     audioTestListeners.forEach((listener) => listener(audioTestUrl))
@@ -98,4 +105,10 @@ export function onCastCode(listener: CodeListener): () => void {
 export function onCastAudioTest(listener: AudioTestListener): () => void {
   audioTestListeners.add(listener)
   return () => audioTestListeners.delete(listener)
+}
+
+// Test du son de la TV envoyé par cast-sender.html : « effects », ou fichier de musique à décoder.
+export function onCastSoundTest(listener: SoundTestListener): () => void {
+  soundTestListeners.add(listener)
+  return () => soundTestListeners.delete(listener)
 }

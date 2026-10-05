@@ -13,6 +13,7 @@ import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { useSoundPreferences } from '@/hooks/useSoundPreferences';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
@@ -50,6 +51,7 @@ function QuizScreen({ quizId }: { quizId: string }) {
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const isBlindTestEnabled = useBlindTestEnabled();
+  const [sound, setSound] = useSoundPreferences();
   // Blind test avec l'interrupteur coupé : fiche visible (lien direct), mais pas de partie.
   const unavailableReason =
     summary?.gameType === 'blindTest' && !isBlindTestEnabled ? strings.quizSetup.blindTestUnavailable : undefined;
@@ -59,7 +61,7 @@ function QuizScreen({ quizId }: { quizId: string }) {
     setIsCreating(true);
     setCreateError(null);
     try {
-      const code = await createGame(quizId, settings);
+      const code = await createGame(quizId, settings, sound);
       // Mémorisé sur l'appareil : « Reprendre la partie » si l'app est relancée en pleine partie.
       await saveHostedGameCode(code);
       // replace : le retour arrière depuis le lobby ramène au catalogue, pas à cette fiche.
@@ -95,6 +97,8 @@ function QuizScreen({ quizId }: { quizId: string }) {
       quiz={summary}
       settings={settings}
       onSettingsChange={setSettings}
+      sound={sound}
+      onSoundChange={setSound}
       onChoose={create}
       isCreating={isCreating}
       error={createError}

@@ -10,6 +10,7 @@ import { useBlindTestInfo } from './hooks/useBlindTestInfo'
 import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePhaseStale } from './hooks/usePhaseStale'
+import { useTvSound } from './hooks/useTvSound'
 import { ServerTimeOffsetContext } from './lib/serverTime'
 import { ReceiverScreen } from './screens/ReceiverScreen'
 import { StatusScreen } from './screens/StatusScreen'
@@ -63,13 +64,16 @@ interface GameAudioProps {
   children: ReactNode
 }
 
-// Blind test : son joué par la TV, monté pour toute la partie (il continue d'un écran à l'autre).
-// Plan B : bandeau « Cliquez pour activer le son » avant la partie, ou si le navigateur bloque.
+// Son de la TV, monté pour toute la partie (il continue d'un écran à l'autre) : extrait du blind test,
+// effets et musiques (spec 17). Plan B : bandeau « Cliquez pour activer le son » tant que le navigateur
+// n'a pas autorisé le son (avant un blind test, ou dès que l'hôte a activé musique ou effets).
 function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioProps) {
   const { isEnabled, isBlindTest } = useBlindTestInfo(session.quizId)
   const audioState = useGameAudio(session, isEnabled, serverOffsetMs)
+  const sound = useTvSound(session, serverOffsetMs)
   const isBeforeGame = session.status === 'lobby' || session.status === 'starting'
-  const needsUnlock = !isCastMode && isEnabled && ((isBlindTest && isBeforeGame) || audioState === 'blocked')
+  const needsBlindTestUnlock = isEnabled && ((isBlindTest && isBeforeGame) || audioState === 'blocked')
+  const needsUnlock = !isCastMode && (needsBlindTestUnlock || (sound.isWanted && sound.state === 'suspended'))
   return (
     <GameAudioStateContext value={audioState}>
       {children}

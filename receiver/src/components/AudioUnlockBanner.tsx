@@ -4,7 +4,7 @@ import { isAudioUnlocked, onAudioUnlock } from '../lib/audioUnlock'
 import { strings } from '../strings'
 import './AudioUnlockBanner.css'
 
-// Plan B (navigateur d'un PC), blind test seulement : invite à cliquer une fois sur l'écran pour
+// Plan B (navigateur d'un PC) : invite à cliquer une fois sur l'écran pour
 // que le navigateur autorise le son. Disparaît au premier clic (ou à la première touche).
 export function AudioUnlockBanner() {
   const [isUnlocked, setIsUnlocked] = useState(isAudioUnlocked)

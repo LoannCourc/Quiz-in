@@ -10,7 +10,8 @@ import {
   type SessionUpdate,
 } from '@shared/hostEngine';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
-import type { GameQuestion, Question, Session } from '@shared/types';
+import { soundSettingsOf } from '@shared/sound';
+import type { GameQuestion, Question, Session, SoundSettings } from '@shared/types';
 import { expectedAnswer, reviewCounts, reviewGroups, type ReviewGroup } from '@shared/validationReview';
 import { useKeepAwake } from 'expo-keep-awake';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -44,6 +45,7 @@ import { confirmAction } from '@/lib/confirm';
 import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
 import { applyHostAction, deleteGame, publishAudioUrl } from '@/lib/hostGame';
 import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
+import { publishSound, saveSoundPreferences } from '@/lib/soundPreferences';
 
 // Écran de l'hôte : salon (HostLobby), puis la partie, pilotée par le
 // moteur (useHostEngine) tant que cet écran est affiché.
@@ -276,11 +278,26 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       validation={isValidation ? { counts: reviewCounts(groups), onValidate: actions.skip } : null}
     />
   );
+  // Son de la TV : mémorisé sur le téléphone et publié dans la partie, que la TV applique aussitôt.
+  async function changeSound(next: SoundSettings) {
+    setActionError(null);
+    if (!connection.canWrite) return;
+    void saveSoundPreferences(next);
+    try {
+      await publishSound(code, next);
+    } catch (error) {
+      console.warn('[son] Réglage non publié', error);
+      setActionError(strings.sound.publishFailed);
+    }
+  }
+
   const overlay = isPanelOpen && !connection.isOffline ? (
     <HostControlsPanel
       controls={hostControls(session)}
       actions={actions}
       canShowTv={cast.isAvailable}
+      sound={soundSettingsOf(session)}
+      onSoundChange={changeSound}
       onClose={() => setIsPanelOpen(false)}
     />
   ) : null;

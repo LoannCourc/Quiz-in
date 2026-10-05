@@ -147,3 +147,8 @@ vite.config.ts.timestamp-*
 
 # Sources brutes du contenu (banques de questions de tiers) : jamais versionnées, le dépôt est public.
 content/sources/
+
+# Musiques de la TV (spec 17) : jamais versionnées (dépôt public, licences de tiers). Le développeur les
+# dépose dans ce dossier avant `firebase deploy --only hosting:tv` ; voir docs/sons.md.
+receiver/public/music/*
+!receiver/public/music/.gitkeep

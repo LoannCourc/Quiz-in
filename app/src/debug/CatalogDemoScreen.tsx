@@ -1,7 +1,8 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
 import { settingsForGameType } from '@shared/quizCatalog';
 import { GENRE_ICONS, ICON_THEMES, themeIconOf, type GenreIconName, type QuizIconName } from '@shared/themeIcons';
-import type { SessionSettings } from '@shared/types';
+import { DEFAULT_SOUND_SETTINGS } from '@shared/sound';
+import type { SessionSettings, SoundSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -22,6 +23,7 @@ import { DEMO_CATALOG } from './demoCatalog';
 export default function CatalogDemoScreen() {
   const { quiz: quizId, settings: openSettings, icons } = useLocalSearchParams<{ quiz?: string; settings?: string; icons?: string }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
+  const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
   const quiz = DEMO_CATALOG.find((entry) => entry.id === quizId);
 
   if (icons === '1' || icons === 'genres') return <ThemeIconGallery onlyGenres={icons === 'genres'} />;
@@ -31,6 +33,8 @@ export default function CatalogDemoScreen() {
         quiz={quiz}
         settings={settingsForGameType(settings, quiz.gameType)}
         onSettingsChange={setSettings}
+        sound={sound}
+        onSoundChange={setSound}
         onChoose={() => router.back()}
         initialSettingsOpen={openSettings === '1'}
       />

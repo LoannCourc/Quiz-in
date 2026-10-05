@@ -1,6 +1,6 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
 import { difficultyLevel, estimateGameMinutes } from '@shared/quizCatalog';
-import type { QuizSummary, SessionSettings } from '@shared/types';
+import type { QuizSummary, SessionSettings, SoundSettings } from '@shared/types';
 import { useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
@@ -24,6 +24,9 @@ interface QuizDetailsProps {
   quiz: QuizSummary;
   settings: SessionSettings;
   onSettingsChange: (settings: SessionSettings) => void;
+  // Son de la TV, réglé dans la même feuille (mémorisé sur le téléphone).
+  sound: SoundSettings;
+  onSoundChange: (sound: SoundSettings) => void;
   onChoose: () => void;
   isCreating?: boolean;
   error?: string | null;
@@ -40,7 +43,9 @@ function posterWidthFor(screenHeight: number): number {
 
 // Fiche d'un quiz (maquettes S2 et R2) : grande affiche, informations, puis « Choisir ce quiz » et la
 // carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
-export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCreating = false, error, unavailableReason, initialSettingsOpen = false }: QuizDetailsProps) {
+export function QuizDetails(props: QuizDetailsProps) {
+  const { quiz, settings, onSettingsChange, sound, onSoundChange, onChoose, isCreating = false, error, unavailableReason } = props;
+  const { initialSettingsOpen = false } = props;
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const level = difficultyLevel(quiz.difficulty);
@@ -87,6 +92,8 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
         visible={isSettingsOpen}
         settings={settings}
         onChange={onSettingsChange}
+        sound={sound}
+        onSoundChange={onSoundChange}
         onClose={() => setIsSettingsOpen(false)}
       />
     </Screen>

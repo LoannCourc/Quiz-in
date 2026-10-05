@@ -41,3 +41,15 @@
     transform: rotate(360deg);
   }
 }
+
+.status-lines {
+  display: grid;
+  row-gap: 0.4rem;
+  max-width: 60rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: left;
+}

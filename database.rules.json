@@ -202,6 +202,14 @@
           ".read": "auth != null",
           ".validate": "newData.isNumber()"
         },
+        "sound": {
+          ".read": "auth != null",
+          ".validate": "newData.hasChildren(['music', 'effects', 'volume'])",
+          "music": { ".validate": "newData.isBoolean()" },
+          "effects": { ".validate": "newData.isBoolean()" },
+          "volume": { ".validate": "newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 0 && newData.val() <= 100" },
+          "$other": { ".validate": false }
+        },
         "bluffs": {
           "$index": {
             "$uid": {

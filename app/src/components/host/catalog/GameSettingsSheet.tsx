@@ -6,11 +6,12 @@ import {
   withAnswerMode,
   type GameOption,
 } from '@shared/quizCatalog';
-import type { AnswerMode, SessionSettings } from '@shared/types';
+import type { AnswerMode, SessionSettings, SoundSettings } from '@shared/types';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import type { SettingsIconName } from '@/components/host/settings/SettingsIcon';
 import { SettingTile, type SettingTileState } from '@/components/host/settings/SettingTile';
+import { SoundSettingsSection } from '@/components/host/settings/SoundSettingsSection';
 import { BigButton } from '@/components/ui/BigButton';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -42,6 +43,8 @@ interface GameSettingsSheetProps {
   visible: boolean;
   settings: SessionSettings;
   onChange: (settings: SessionSettings) => void;
+  sound: SoundSettings;
+  onSoundChange: (sound: SoundSettings) => void;
   onClose: () => void;
 }
 
@@ -49,7 +52,7 @@ interface GameSettingsSheetProps {
 // les tuiles défilent sur un petit écran). Fermeture aussi par un appui à côté ou le bouton retour.
 // Changer de mode coupe les options devenues incompatibles (withAnswerMode).
 // Bluff : ni mode de réponse ni Contrôle ou Rapidité, seulement Groupe et le rythme.
-export function GameSettingsSheet({ visible, settings, onChange, onClose }: GameSettingsSheetProps) {
+export function GameSettingsSheet({ visible, settings, onChange, sound, onSoundChange, onClose }: GameSettingsSheetProps) {
   const isBluff = settings.answerMode === 'bluff';
   const options = isBluff ? OPTIONS.filter(({ option }) => !BLUFF_HIDDEN_OPTIONS.includes(option)) : OPTIONS;
   return (
@@ -117,6 +120,8 @@ export function GameSettingsSheet({ visible, settings, onChange, onClose }: Game
                 onPress={() => onChange({ ...settings, suspense: !settings.suspense })}
               />
             </View>
+
+            <SoundSettingsSection sound={sound} onChange={onSoundChange} />
           </ScrollView>
 
           <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />

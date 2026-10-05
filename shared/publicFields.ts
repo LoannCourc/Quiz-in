@@ -25,6 +25,7 @@ const PUBLIC_FIELD_SET: Record<keyof PublicSession, true> = {
   teamDrawAt: true,
   bluffedBy: true,
   votedBy: true,
+  sound: true,
 }
 
 export type PublicField = keyof PublicSession

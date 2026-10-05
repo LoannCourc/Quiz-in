@@ -1267,3 +1267,32 @@ describe('Bluff', () => {
     expect(session.bluffPoints?.[0]).toEqual({ [PLAYER]: 500, [OTHER]: 500 })
   })
 })
+
+describe('Son de la TV (sound)', () => {
+  const sound = { music: true, effects: false, volume: 60 }
+
+  test('écrit par l’hôte à la création et en pleine partie, lisible par la TV', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null, sound })))
+    await assertSucceeds(db(HOST).ref(`${SESSION}/sound`).set({ ...sound, volume: 100 }))
+    expect(((await db('tv-uid').ref(`${SESSION}/sound`).once('value')).val() as Data).volume).toBe(100)
+  })
+
+  test('ni joueur ni autre utilisateur ne peut le modifier', async () => {
+    await seedSession({ sound })
+    await assertFails(db(PLAYER).ref(`${SESSION}/sound`).set({ ...sound, volume: 0 }))
+    await assertFails(db(OTHER).ref(`${SESSION}/sound/music`).set(false))
+  })
+
+  test('forme invalide refusée', async () => {
+    await seedSession({ sound })
+    await assertFails(db(HOST).ref(`${SESSION}/sound`).set({ ...sound, volume: 101 }))
+    await assertFails(db(HOST).ref(`${SESSION}/sound`).set({ ...sound, volume: 50.5 }))
+    await assertFails(db(HOST).ref(`${SESSION}/sound`).set({ music: true, effects: true }))
+    await assertFails(db(HOST).ref(`${SESSION}/sound`).set({ ...sound, extra: 1 }))
+    await assertFails(db(HOST).ref(`${SESSION}/sound/music`).set('oui'))
+  })
+
+  test('partie sans réglage du son (créée avant) : toujours valide', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null })))
+  })
+})

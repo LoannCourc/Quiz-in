@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode } from '../../shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode, readCastSoundTest } from '../../shared/cast'
 import { pauseUpdate } from '../../shared/hostEngine'
 import { makeSession } from './engineFixtures'
 
@@ -46,5 +46,23 @@ describe('pause « Cast interrompu »', () => {
     for (const status of ['lobby', 'ended', 'paused'] as const) {
       expect(pauseUpdate(makeSession({ status, phaseEndsAt: NOW + 4_000 }), NOW)).toBeNull()
     }
+  })
+})
+
+describe('readCastSoundTest', () => {
+  test('effets, fichier de music/ ou adresse https', () => {
+    expect(readCastSoundTest({ soundTest: 'effects' })).toBe('effects')
+    expect(readCastSoundTest({ soundTest: ' music/essai.ogg ' })).toBe('music/essai.ogg')
+    expect(readCastSoundTest({ soundTest: 'music/essai.m4a' })).toBe('music/essai.m4a')
+    expect(readCastSoundTest({ soundTest: 'https://exemple.fr/a.ogg' })).toBe('https://exemple.fr/a.ogg')
+  })
+
+  test('tout le reste est ignoré', () => {
+    expect(readCastSoundTest({ soundTest: '../secret.ogg' })).toBeNull()
+    expect(readCastSoundTest({ soundTest: 'music/../x.ogg' })).toBeNull()
+    expect(readCastSoundTest({ soundTest: 'music/essai.exe' })).toBeNull()
+    expect(readCastSoundTest({ soundTest: 'http://exemple.fr/a.ogg' })).toBeNull()
+    expect(readCastSoundTest({ soundTest: 3 })).toBeNull()
+    expect(readCastSoundTest({ code: 'ABCD' })).toBeNull()
   })
 })

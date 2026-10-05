@@ -340,6 +340,16 @@ export const strings = {
     show: 'Afficher sur la TV',
     filtered: 'Masquée automatiquement : mot interdit',
   },
+  // Son de la TV (spec 17) : réglages de l'hôte, avant la partie et pendant.
+  sound: {
+    sectionLabel: 'Son de la TV',
+    music: { title: 'Musique', hint: 'Ambiance en boucle' },
+    effects: { title: 'Effets', hint: 'Bruitages du jeu' },
+    volumeLabel: 'Volume',
+    volumeA11y: 'Volume du son de la TV',
+    volumeValue: (volume: number) => `${volume} sur 100`,
+    publishFailed: 'Réglage du son non transmis à la TV. Vérifie la connexion.',
+  },
   hostControls: {
     open: '⚙ Contrôles de l’hôte',
     title: 'Contrôles de l’hôte',

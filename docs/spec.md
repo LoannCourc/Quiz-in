@@ -565,3 +565,27 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - **Autre écriture de la vraie réponse** (« Landlords Game ») : refusée comme la vraie réponse. **Un mot de la vraie réponse seul** (« Game ») : accepté.
 
 **Sécurité.** La vraie réponse n'est jamais publiée désignée avant la révélation : pendant le vote, elle n'est qu'un texte parmi d'autres, à une place tirée au hasard. Propositions, verdicts, auteurs, votes et points sont réservés à l'hôte, sauf ce qui concerne le joueur lui-même (section 7). Même limite qu'ailleurs : le catalogue `questions/` reste lisible par tout utilisateur connecté.
+
+## 17. Son
+
+**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, trois effets témoins, test sur la box) codé ; lot 2 (tous les effets de la TV), lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
+
+**Principe.** La TV anime la soirée : musiques d'ambiance en boucle et effets sonores. Les téléphones des joueurs peuvent jouer quelques effets discrets, désactivés par défaut. Aucun envoi supplémentaire de l'hôte : la TV déduit chaque son de l'état de la partie qu'elle reçoit déjà, sauf les réglages du son.
+
+**Réglages de l'hôte.** Interrupteurs Musique et Effets, et volume général en cinq crans (20 à 100, 60 par défaut). Réglés dans la feuille des réglages avant la partie, et à tout moment dans le panneau des contrôles de l'hôte. Mémorisés sur le téléphone de l'hôte (repris à chaque nouvelle partie) et publiés dans `sessions/{code}/sound` (`music`, `effects`, `volume`), écrit par l'hôte seul, lisible par tous ; la TV les applique aussitôt. Partie sans ce champ (créée avant) : musique et effets activés, volume 60.
+
+**Canaux de la TV.** Un seul moteur Web Audio : canal musique (35 % du volume général) et canal effets (80 %). Effets synthétisés dans le code, sans fichier ; 6 effets au plus en même temps ; un même effet pas plus d'une fois toutes les 150 ms. **Ducking** : un effet important baisse la musique à 30 % en 150 ms, puis elle remonte en 600 ms. L'extrait d'un blind test garde son propre lecteur.
+
+**Musique, chrono et extrait.** Jamais deux sources en même temps, jamais de coupure sèche (fondus) :
+- Salon, tirage des équipes : musique du salon. Bluff : musique d'écriture, puis musique du vote. Classement : musique du classement. Fin : musique du classement final.
+- Question d'un quiz classique, révélation : pas de musique. Question d'un blind test : pas de musique (elle revient au salon, au classement et à la fin).
+- Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
+- Pause : la musique baisse à 30 %, le chrono et l'extrait s'arrêtent.
+
+**Déclenchement.** Chaque son est déduit par comparaison de l'état précédent et du nouvel état (`shared/sound.ts`). Le premier état reçu (TV ouverte ou reconnectée en pleine partie) ne joue aucun son ; un changement de phase ne sonne que si elle a commencé il y a moins de 2 s. **Bonne ou mauvaise réponse** (écran commun) : fanfare si au moins un joueur a trouvé, « raté » si personne n'a trouvé.
+
+**Démarrage du son.** Mode Cast : la box doit jouer sans geste (à vérifier sur la box pour Web Audio, comme pour l'extrait). Plan B (navigateur d'un PC) : bandeau « Cliquez sur cet écran pour activer le son » tant que le navigateur n'a pas autorisé le son, dès que musique ou effets sont activés.
+
+**Musiques.** Fichiers fournis par le développeur (OGG Vorbis de préférence ; AAC possible avec ses points de boucle), boucles sans coupure, moins de 1,5 Mo chacune et 5 Mo en tout. Jamais versionnées (dépôt public) : déposées dans `receiver/public/music/` avant le déploiement de la TV. Une fois déployées, elles sont téléchargeables depuis le site public de la TV : leur licence doit autoriser la diffusion sur le web. Fichier absent ou illisible : silence. En développement, une boucle de remplacement synthétisée.
+
+**Téléphones (lot 4).** Chaque joueur active les effets sur son téléphone (désactivés par défaut) : proposition envoyée, refus, vote envoyé, « Bien vu ! », « Piégé ! », avec une légère vibration (Android ; Safari ne vibre pas). Aucun son de téléphone pendant un blind test. L'hôte (app Android) : vibration seule, sans dépendance.

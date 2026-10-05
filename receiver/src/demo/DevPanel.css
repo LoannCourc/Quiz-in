@@ -44,3 +44,11 @@
   border-color: #ffd23f;
   color: #ffd23f;
 }
+
+/* Galerie des sons (?sounds=1) : panneau dans la page, toujours lisible. */
+.dev-panel.sound-gallery {
+  position: static;
+  max-width: 720px;
+  justify-content: center;
+  opacity: 1;
+}

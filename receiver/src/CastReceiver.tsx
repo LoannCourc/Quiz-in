@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 
 import { useCastRoomCode } from './hooks/useCastRoomCode'
-import { onCastAudioTest, onCastCode } from './lib/castReceiver'
+import { onCastAudioTest, onCastCode, onCastSoundTest } from './lib/castReceiver'
 import { LiveReceiver } from './LiveReceiver'
 import { AudioTestScreen } from './screens/AudioTestScreen'
+import { SoundTestScreen } from './screens/SoundTestScreen'
 import { StatusScreen } from './screens/StatusScreen'
 import { strings } from './strings'
 
-// Diagnostic du son en cours : id change à chaque envoi, pour rejouer la même adresse.
+// Diagnostic du son en cours : id change à chaque envoi, pour rejouer le même test. extract : extrait
+// d'un blind test (lecteur des blind tests) ; engine : moteur des effets et musiques (spec 17).
 interface AudioTest {
+  kind: 'extract' | 'engine'
   url: string
   id: number
 }
@@ -17,10 +20,13 @@ interface AudioTest {
 function useCastAudioTest(): AudioTest | null {
   const [test, setTest] = useState<AudioTest | null>(null)
   useEffect(() => {
-    const stopTests = onCastAudioTest((url) => setTest((previous) => ({ url, id: (previous?.id ?? 0) + 1 })))
+    const start = (kind: AudioTest['kind'], url: string) => setTest((previous) => ({ kind, url, id: (previous?.id ?? 0) + 1 }))
+    const stopTests = onCastAudioTest((url) => start('extract', url))
+    const stopSoundTests = onCastSoundTest((target) => start('engine', target))
     const stopCodes = onCastCode(() => setTest(null))
     return () => {
       stopTests()
+      stopSoundTests()
       stopCodes()
     }
   }, [])
@@ -32,6 +38,7 @@ function useCastAudioTest(): AudioTest | null {
 export function CastReceiver() {
   const cast = useCastRoomCode()
   const audioTest = useCastAudioTest()
+  if (audioTest?.kind === 'engine') return <SoundTestScreen key={audioTest.id} target={audioTest.url} />
   if (audioTest) return <AudioTestScreen key={audioTest.id} url={audioTest.url} />
   switch (cast.kind) {
     case 'starting':

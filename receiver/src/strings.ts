@@ -1,3 +1,4 @@
+import type { SoundEngineState } from './lib/sound/soundEngine'
 import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, GameStatus, TeamId } from '@shared/types'
 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
@@ -144,6 +145,25 @@ export const strings = {
     blocked: 'Lecture bloquée : la TV demande un geste de l’utilisateur.',
     failed: 'Lecture impossible : adresse expirée, réseau ou format.',
   },
+  // Test du son de la TV (cast-sender.html, spec 17) : moteur des effets et des musiques.
+  soundTest: {
+    title: 'Test des effets et musiques',
+    engineState: (state: SoundEngineState) =>
+      state === 'running'
+        ? 'Son démarré sans geste : oui'
+        : state === 'suspended'
+          ? 'Son démarré sans geste : non (le navigateur attend un geste)'
+          : `Son indisponible (${state})`,
+    effect: (id: string, isPlayed: boolean) => `Effet ${id} : ${isPlayed ? 'joué' : 'non joué'}`,
+    canPlay: (mimeType: string, answer: string) => `${mimeType} : ${answer === '' ? 'non pris en charge' : answer}`,
+    decoded: (ms: number, bytes: number, durationS: number, sampleRate: number, channels: number, memory: number) =>
+      `Décodé en ${ms} ms : ${Math.round(bytes / 1024)} Ko, ${durationS.toFixed(1)} s, ${sampleRate} Hz, ${channels} canal(aux), ${(memory / 1_048_576).toFixed(1)} Mo en mémoire`,
+    decodeFailed: (detail: string) => `Fichier illisible : ${detail}`,
+    looping: (seconds: number) => `Boucle en cours pendant ${seconds} s : écoutez le raccord à chaque tour`,
+    ducking: (seconds: number) => `Ducking : musique baissée pendant ${seconds} s, avec un effet`,
+    loopDone: 'Boucle arrêtée (fondu de sortie)',
+    done: 'Test terminé.',
+  },
   hostAway: {
     title: 'L’hôte a perdu la connexion…',
     message: 'La partie va reprendre.',
@@ -190,5 +210,16 @@ export const strings = {
     resetAnswers: 'Réinitialiser les réponses',
     playerConnection: (name: string, isConnected: boolean) =>
       `${name} : ${isConnected ? 'connecté' : 'déconnecté'}`,
+    // Galerie des sons (?sounds=1).
+    sounds: {
+      title: 'Sons de la TV',
+      hint: 'Cliquez une fois dans la page pour autoriser le son.',
+      state: (state: SoundEngineState) => `Moteur : ${state}`,
+      music: (isOn: boolean) => `Musique : ${isOn ? 'oui' : 'non'}`,
+      effects: (isOn: boolean) => `Effets : ${isOn ? 'oui' : 'non'}`,
+      volume: (volume: number) => `Volume ${volume}`,
+      loop: (isPlaying: boolean) => (isPlaying ? 'Arrêter la boucle témoin' : 'Boucle témoin (musique)'),
+      duck: 'Ducking 2 s',
+    },
   },
 }

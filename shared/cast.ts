@@ -34,3 +34,20 @@ export function readCastAudioTest(data: unknown): string | null {
   const { audioTest } = data
   return typeof audioTest === 'string' && audioTest.startsWith('https://') ? audioTest : null
 }
+
+// Test du son de la TV (spec 17, outil cast-sender.html) : « effects » joue chaque effet synthétisé ;
+// un chemin de music/ (fichier déployé avec la TV) ou une adresse https est décodé puis joué en boucle.
+export interface CastSoundTestMessage {
+  soundTest: string
+}
+
+const SOUND_TEST_FILE = /^music\/[\w.-]+\.(ogg|oga|m4a|aac|mp3)$/
+
+// Cible du test contenue dans un message, ou null (message ignoré).
+export function readCastSoundTest(data: unknown): string | null {
+  if (typeof data !== 'object' || data === null || !('soundTest' in data)) return null
+  const { soundTest } = data
+  if (typeof soundTest !== 'string') return null
+  const target = soundTest.trim()
+  return target === 'effects' || SOUND_TEST_FILE.test(target) || target.startsWith('https://') ? target : null
+}

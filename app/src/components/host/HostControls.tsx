@@ -1,6 +1,8 @@
 import type { HostControls as AvailableControls } from '@shared/hostEngine';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import type { SoundSettings } from '@shared/types';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { SoundSettingsSection } from '@/components/host/settings/SoundSettingsSection';
 import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -35,13 +37,16 @@ interface HostControlsPanelProps {
   actions: HostActions;
   // Faux sur le web : pas de Cast.
   canShowTv: boolean;
+  // Son de la TV, réglable à tout moment (le panneau reste ouvert).
+  sound: SoundSettings;
+  onSoundChange: (sound: SoundSettings) => void;
   onClose: () => void;
 }
 
 // Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer ;
-// en fin de partie, Rejouer / Quitter ; Afficher sur la TV (reconnexion du Cast). Chaque action ferme le panneau. Appui en dehors :
-// fermeture sans action.
-export function HostControlsPanel({ controls, actions, canShowTv, onClose }: HostControlsPanelProps) {
+// en fin de partie, Rejouer / Quitter ; Afficher sur la TV (reconnexion du Cast) ; son de la TV. Chaque action ferme le
+// panneau, sauf les réglages du son. Appui en dehors : fermeture sans action. Le contenu défile sur un petit écran.
+export function HostControlsPanel({ controls, actions, canShowTv, sound, onSoundChange, onClose }: HostControlsPanelProps) {
   const run = (action: () => void) => () => {
     onClose();
     action();
@@ -50,7 +55,7 @@ export function HostControlsPanel({ controls, actions, canShowTv, onClose }: Hos
   return (
     <View style={styles.overlay}>
       <Pressable accessibilityRole="button" accessibilityLabel={strings.hostControls.close} style={styles.backdrop} onPress={onClose} />
-      <View style={styles.sheet}>
+      <ScrollView style={styles.sheet} contentContainerStyle={styles.sheetContent}>
         <Text style={[textStyles.label, styles.centered]}>{strings.hostControls.title}</Text>
         {controls.skip && (
           <BigButton
@@ -66,8 +71,9 @@ export function HostControlsPanel({ controls, actions, canShowTv, onClose }: Hos
         {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
+        <SoundSettingsSection sound={sound} onChange={onSoundChange} />
         <BigButton label={strings.hostControls.close} variant="secondary" onPress={onClose} />
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -103,11 +109,15 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.backdrop,
   },
   sheet: {
-    gap: Spacing.three,
-    padding: Spacing.four,
+    flexGrow: 0,
+    maxHeight: '92%',
     borderTopLeftRadius: AppSizes.radiusCard,
     borderTopRightRadius: AppSizes.radiusCard,
     backgroundColor: AppColors.inkSurface,
+  },
+  sheetContent: {
+    gap: Spacing.three,
+    padding: Spacing.four,
   },
   centered: {
     textAlign: 'center',

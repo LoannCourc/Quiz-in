@@ -1,8 +1,20 @@
 import { StyleSheet, View } from 'react-native';
 
 // Icônes des réglages, dessinées avec des formes simples dans un carré de 24 (aucune dépendance,
-// même rendu sur Android et le web) : curseurs, grille, clavier, éclair, coche, groupe, chevron.
-export type SettingsIconName = 'sliders' | 'grid' | 'keyboard' | 'bolt' | 'check' | 'group' | 'next' | 'podium' | 'chevron';
+// même rendu sur Android et le web) : curseurs, grille, clavier, éclair, coche, groupe, chevron, notes de
+// musique, haut-parleur.
+export type SettingsIconName =
+  | 'sliders'
+  | 'grid'
+  | 'keyboard'
+  | 'bolt'
+  | 'check'
+  | 'group'
+  | 'next'
+  | 'podium'
+  | 'chevron'
+  | 'music'
+  | 'speaker';
 
 const SIZE = 24;
 const STROKE = 2.5;
@@ -90,6 +102,27 @@ function renderIcon(name: SettingsIconName, color: string) {
       );
     case 'chevron':
       return <View style={[styles.chevron, line]} />;
+    case 'music':
+      // Deux croches reliées : têtes ovales, hampes, barre penchée.
+      return (
+        <>
+          <View style={[styles.noteHead, { left: 2, top: 15 }, fill]} />
+          <View style={[styles.noteHead, { left: 13, top: 12 }, fill]} />
+          <View style={[styles.noteStem, { left: 7.5, top: 5, height: 13 }, fill]} />
+          <View style={[styles.noteStem, { left: 18.5, top: 2, height: 13 }, fill]} />
+          <View style={[styles.noteBeam, fill]} />
+        </>
+      );
+    case 'speaker':
+      // Haut-parleur : petit corps, pavillon en triangle, deux ondes.
+      return (
+        <>
+          <View style={[styles.speakerBody, fill]} />
+          <View style={[styles.speakerCone, { borderRightColor: color }]} />
+          <View style={[styles.wave, { left: 7, top: 7, width: 10, height: 10, borderRadius: 5, borderRightColor: color }]} />
+          <View style={[styles.wave, { left: 3, top: 3, width: 18, height: 18, borderRadius: 9, borderRightColor: color }]} />
+        </>
+      );
   }
 }
 
@@ -229,6 +262,53 @@ const styles = StyleSheet.create({
     width: 3,
     height: 16,
     borderRadius: 1.5,
+  },
+  noteHead: {
+    position: 'absolute',
+    width: 7,
+    height: 5.5,
+    borderRadius: 3,
+    transform: [{ rotate: '-20deg' }],
+  },
+  noteStem: {
+    position: 'absolute',
+    width: 2,
+  },
+  // Barre de 12 de long entre le haut des deux hampes (de (8, 5) à (20, 2)).
+  noteBeam: {
+    position: 'absolute',
+    left: 8,
+    top: 2.5,
+    width: 12.5,
+    height: 3,
+    transform: [{ rotate: '-14deg' }],
+  },
+  speakerBody: {
+    position: 'absolute',
+    left: 1,
+    top: 9,
+    width: 4,
+    height: 6,
+    borderRadius: 1,
+  },
+  // Triangle pointant à gauche, côté droit vertical de 16 : le pavillon.
+  speakerCone: {
+    position: 'absolute',
+    left: 3,
+    top: 4,
+    width: 0,
+    height: 0,
+    borderRightWidth: 8,
+    borderTopWidth: 8,
+    borderBottomWidth: 8,
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+  },
+  // Cercle dont seul le côté droit est visible : une onde.
+  wave: {
+    position: 'absolute',
+    borderWidth: 2,
+    borderColor: 'transparent',
   },
   // Carré dont on garde deux côtés, tourné de 45° : « › ».
   chevron: {

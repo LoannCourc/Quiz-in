@@ -3,8 +3,10 @@ import type { AnswerMode, GameStatus } from '@shared/types'
 import { useState } from 'react'
 
 import { GameAudioStateContext, type GameAudioState } from '../hooks/useGameAudio'
+import { useTvSound } from '../hooks/useTvSound'
 import { ReceiverScreen } from '../screens/ReceiverScreen'
 import { DevPanel } from './DevPanel'
+import { SoundGallery } from './SoundGallery'
 import {
   buildDemoSession,
   DEMO_MAX_ANSWERS,
@@ -47,9 +49,14 @@ function initialOptions(params: URLSearchParams): DemoOptions {
   }
 }
 
-// Mode démo (sans code dans l'URL) : session fictive pilotée par le panneau.
+// Mode démo (sans code dans l'URL) : session fictive pilotée par le panneau ; ?sounds=1 : galerie des sons.
 export function DemoReceiver() {
   const [params] = useState(() => new URLSearchParams(window.location.search))
+  return params.get('sounds') === '1' ? <SoundGallery /> : <DemoGame params={params} />
+}
+
+// Les effets sonores suivent aussi les changements d'état du panneau (après un premier clic).
+function DemoGame({ params }: { params: URLSearchParams }) {
   const [options, setOptions] = useState<DemoOptions>(() => initialOptions(params))
   const demoSession = buildDemoSession(options)
   const isBlindTest = params.get('blindtest') === '1'
@@ -88,6 +95,7 @@ export function DemoReceiver() {
   const session = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt) : withAsk
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
+  useTvSound(session, 0)
 
   // Changer d'état relance le chrono de la phase, comme le ferait l'hôte.
   function selectStatus(status: GameStatus) {

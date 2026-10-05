@@ -2,6 +2,7 @@ import {
   CAST_NAMESPACE,
   CAST_RECEIVER_APP_ID,
   type CastAudioTestMessage,
+  type CastSoundTestMessage,
   type CastShowGameMessage,
 } from '@shared/cast'
 
@@ -31,6 +32,7 @@ const globals = window as unknown as SenderGlobals
 const status = document.getElementById('status')!
 const codeInput = document.getElementById('code') as HTMLInputElement
 const audioUrlInput = document.getElementById('audio-url') as HTMLInputElement
+const musicFileInput = document.getElementById('music-file') as HTMLInputElement
 
 function show(message: string): void {
   status.textContent = message
@@ -53,7 +55,7 @@ globals.__onGCastApiAvailable = (isAvailable) => {
   show(`Prêt (récepteur ${CAST_RECEIVER_APP_ID}). Cliquez sur l’icône Cast et choisissez la TV.`)
 }
 
-function send(message: CastShowGameMessage | CastAudioTestMessage): void {
+function send(message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage): void {
   const session = context()?.getCurrentSession()
   if (!session) {
     show('Pas de session Cast : connectez-vous d’abord à la TV (étape 1).')
@@ -67,6 +69,8 @@ function send(message: CastShowGameMessage | CastAudioTestMessage): void {
 
 document.getElementById('send')!.addEventListener('click', () => send({ code: codeInput.value }))
 document.getElementById('audio-test')!.addEventListener('click', () => send({ audioTest: audioUrlInput.value.trim() }))
+document.getElementById('sound-effects')!.addEventListener('click', () => send({ soundTest: 'effects' }))
+document.getElementById('sound-music')!.addEventListener('click', () => send({ soundTest: musicFileInput.value.trim() }))
 
 const sdk = document.createElement('script')
 sdk.src = SENDER_SDK_URL

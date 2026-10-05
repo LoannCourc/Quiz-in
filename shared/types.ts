@@ -300,6 +300,15 @@ export interface PublicSession {
   // Bluff : qui a une proposition acceptée, et qui a voté (jamais quoi).
   bluffedBy?: Record<number, Record<PlayerId, true>>;
   votedBy?: Record<number, Record<PlayerId, true>>;
+  // Son de la TV (spec 17), réglé par l'hôte à tout moment ; absent dans les parties créées avant.
+  sound?: SoundSettings;
+}
+
+// Son de la TV : musique d'ambiance et effets activés ou non, volume général de 0 à 100.
+export interface SoundSettings {
+  music: boolean;
+  effects: boolean;
+  volume: number;
 }
 
 // Session complète, lisible uniquement par l'hôte.
