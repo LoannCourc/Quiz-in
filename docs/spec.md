@@ -577,8 +577,12 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 **Canaux de la TV.** Un seul moteur Web Audio : canal musique (35 % du volume général) et canal effets (80 %). Effets synthétisés dans le code, sans fichier ; 6 effets au plus en même temps ; un même effet pas plus d'une fois toutes les 150 ms. **Ducking** : un effet important baisse la musique à 30 % en 150 ms, puis elle remonte en 600 ms. L'extrait d'un blind test garde son propre lecteur.
 
 **Musique, chrono et extrait.** Jamais deux sources en même temps, jamais de coupure sèche (fondus) :
-- Salon, tirage des équipes : musique du salon. Bluff : musique d'écriture, puis musique du vote. Classement : musique du classement. Fin : musique du classement final.
-- Question d'un quiz classique, révélation : pas de musique. Question d'un blind test : pas de musique (elle revient au salon, au classement et à la fin).
+- Salon, tirage des équipes : musique d'attente (boucle).
+- Question et révélation d'un quiz à choix multiples : musique de jeu (boucle, volume bas). Question et révélation en saisie libre (Contrôle compris) : musique d'écriture (boucle).
+- Bluff : musique d'écriture, puis musique du vote (boucles).
+- Classement entre les questions : jingle joué une fois, puis la musique de la phase suivante. Classement final : jingle de fin joué une fois, puis silence.
+- Blind test : aucune musique pendant la question et la révélation (l'extrait joue seul) ; la musique revient au salon, au classement et à la fin.
+- Fichiers et durées : `docs/sons.md`.
 - Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
 - Pause : la musique baisse à 30 %, le chrono et l'extrait s'arrêtent.
 

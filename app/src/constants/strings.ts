@@ -70,6 +70,16 @@ export const strings = {
       'Polices : Bowlby One et Nunito, sous licence SIL Open Font License.',
       'Avatars : emojis du système de l’appareil.',
     ],
+    // Musiques de la TV (spec 17) : artistes de Pixabay (pixabay.com), détail dans docs/sons-licences.md.
+    musicTitle: 'Musiques',
+    music: [
+      'Attente du salon : CRUMBLE-AUX-POMMES05 (Pixabay).',
+      'Questions à choix multiples : lG_g (Pixabay).',
+      'Saisie libre et écriture du Bluff : Dvir Silverstone (Pixabay).',
+      'Vote du Bluff : Nikita Kondrashev (Pixabay).',
+      'Jingles du classement et de la fin : Bomb Sound (Pixabay).',
+      'Effets sonores : créés pour Quiz’in.',
+    ],
     back: 'Retour au catalogue',
   },
   catalog: {

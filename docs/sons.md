@@ -37,17 +37,20 @@ Synthétisés dans le code (`receiver/src/lib/sound/effects.ts`), sans fichier. 
 
 ## Musiques de la TV (lot 3)
 
-Fichiers du développeur, jamais versionnés : déposés dans `receiver/public/music/` avant `firebase deploy --only hosting:tv`. Noms proposés :
+Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/public/music/` avant `firebase deploy --only hosting:tv`. Crédits : `docs/sons-licences.md`.
 
-| Fichier | Quand | Remarque |
-|---|---|---|
-| `salon.ogg` | salon, tirage des équipes | aussi dans une partie de blind test |
-| `bluff-ecriture.ogg` | Bluff, écriture | |
-| `bluff-vote.ogg` | Bluff, vote | |
-| `classement.ogg` | classement entre les questions | aussi en blind test |
-| `fin.ogg` | classement final | aussi en blind test |
+| Phase | Musique | Type | Remarque |
+|---|---|---|---|
+| Salon, tirage des équipes | `Waiting_sound.ogg` (34 s) | boucle | aussi avant un blind test |
+| Question et révélation, choix multiples | `Salon_music.ogg` (137 s) | boucle | volume bas ; jamais en blind test |
+| Question et révélation, saisie libre (Contrôle compris) | `Bluffecriture_sound.ogg` (70 s) | boucle | jamais en blind test |
+| Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | |
+| Bluff, vote | `Bluffvote_sound.ogg` (96 s) | boucle | |
+| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | puis la musique de la phase suivante |
+| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | puis silence |
+| Question et révélation d'un blind test | aucune | | l'extrait Deezer joue seul |
 
-Contraintes : boucle sans coupure, OGG Vorbis de préférence (AAC possible, avec ses points de boucle), moins de 1,5 Mo par fichier, moins de 5 Mo en tout. Pas de musique pendant une question ni une révélation.
+Contraintes : boucles sans coupure, OGG Vorbis, moins de 1,5 Mo par fichier, moins de 5 Mo en tout. Mesures du 5 octobre 2026 : `Salon_music.ogg` 1,87 Mo (au-delà), environ 50 Mo une fois décodé (137 s, stéréo, 48 kHz) ; total 5,7 Mo (au-delà). À raccourcir avant le lot 3.
 
 ## Effets des téléphones (lot 4)
 

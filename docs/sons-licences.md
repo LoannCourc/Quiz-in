@@ -1,16 +1,19 @@
 # Sons : sources et licences
 
-À remplir par le développeur pour chaque musique, avant tout déploiement. Les musiques déployées sont téléchargeables par n'importe qui depuis le site public de la TV : la licence doit autoriser la **diffusion sur le web**, pas seulement l'usage privé. Si une licence exige une mention, l'ajouter aussi à l'écran « À propos et crédits » de l'app.
+Les musiques déployées sont téléchargeables par n'importe qui depuis le site public de la TV : la licence doit autoriser la **diffusion sur le web**, pas seulement l'usage privé. Les artistes sont aussi crédités dans l'écran « À propos et crédits » de l'app (`app/src/constants/strings.ts`, `about.music`).
 
 ## Musiques
 
-| Fichier | Titre | Auteur | Source (lien) | Licence | Diffusion web autorisée | Mention à afficher | Obtenue le |
+Fichiers du développeur dans `receiver/public/music/`, jamais versionnés.
+
+| Fichier | Rôle | Auteur | Source | Licence | Diffusion web autorisée | Mention à afficher | Obtenue le |
 |---|---|---|---|---|---|---|---|
-| `salon.ogg` | | | | | | | |
-| `bluff-ecriture.ogg` | | | | | | | |
-| `bluff-vote.ogg` | | | | | | | |
-| `classement.ogg` | | | | | | | |
-| `fin.ogg` | | | | | | | |
+| `Waiting_sound.ogg` | salon, tirage des équipes (boucle) | CRUMBLE-AUX-POMMES05 | pixabay.com/fr/users/crumble-aux-pommes05-57633013 | Pixabay | à vérifier, licence Pixabay | | |
+| `Salon_music.ogg` | question et révélation, choix multiples (boucle) | lG_g | pixabay.com/fr/users/lg_g-55926399 | Pixabay | à vérifier, licence Pixabay | | |
+| `Bluffecriture_sound.ogg` | saisie libre, écriture du Bluff (boucle) | Dvir Silverstone | pixabay.com/fr/users/sonican-38947841 | Pixabay | à vérifier, licence Pixabay | | |
+| `Bluffvote_sound.ogg` | vote du Bluff (boucle) | Nikita Kondrashev | pixabay.com/fr/users/leberch-42823964 | Pixabay | à vérifier, licence Pixabay | | |
+| `Classement_sound.ogg` | classement entre les questions (jingle) | Bomb Sound | pixabay.com/fr/users/bombinsound-54782632 | Pixabay | à vérifier, licence Pixabay | | |
+| `Findepartie_sound.ogg` | classement final (jingle) | Bomb Sound | pixabay.com/fr/users/bombinsound-54782632 | Pixabay | à vérifier, licence Pixabay | | |
 
 ## Effets
 

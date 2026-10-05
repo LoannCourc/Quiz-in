@@ -18,7 +18,7 @@ function backToCatalog() {
 }
 
 // « À propos et crédits », ouvert depuis le bas du catalogue : version, crédits, dont la mention
-// obligatoire de Deezer pour les extraits du blind test.
+// obligatoire de Deezer pour les extraits du blind test, et artistes des musiques de la TV.
 export default function AboutRoute() {
   if (isPublishedWeb) return <Redirect href="/join" />;
   return (
@@ -31,6 +31,14 @@ export default function AboutRoute() {
       <View style={styles.section}>
         <Text style={textStyles.label}>{strings.about.creditsTitle}</Text>
         {strings.about.credits.map((credit) => (
+          <Text key={credit} style={textStyles.body}>
+            {credit}
+          </Text>
+        ))}
+      </View>
+      <View style={styles.section}>
+        <Text style={textStyles.label}>{strings.about.musicTitle}</Text>
+        {strings.about.music.map((credit) => (
           <Text key={credit} style={textStyles.body}>
             {credit}
           </Text>
