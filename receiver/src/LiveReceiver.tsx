@@ -10,6 +10,7 @@ import { useBlindTestInfo } from './hooks/useBlindTestInfo'
 import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePhaseStale } from './hooks/usePhaseStale'
+import { useTvMusic } from './hooks/useTvMusic'
 import { useTvSound } from './hooks/useTvSound'
 import { ServerTimeOffsetContext } from './lib/serverTime'
 import { ReceiverScreen } from './screens/ReceiverScreen'
@@ -71,6 +72,7 @@ function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioP
   const { isEnabled, isBlindTest } = useBlindTestInfo(session.quizId)
   const audioState = useGameAudio(session, isEnabled, serverOffsetMs)
   const sound = useTvSound(session, serverOffsetMs)
+  useTvMusic(session, isBlindTest, serverOffsetMs)
   const isBeforeGame = session.status === 'lobby' || session.status === 'starting'
   const needsBlindTestUnlock = isEnabled && ((isBlindTest && isBeforeGame) || audioState === 'blocked')
   const needsUnlock = !isCastMode && (needsBlindTestUnlock || (sound.isWanted && sound.state === 'suspended'))

@@ -568,7 +568,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 ## 17. Son
 
-**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, y compris dans le salon, test sur la box), lot 2 et lot 2 bis (tous les effets de la TV) codés ; lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
+**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, y compris dans le salon, test sur la box), lot 2 et lot 2 bis (tous les effets de la TV), lot 3 (musiques de la TV) codés ; lot 4 (téléphones) et son de série à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
 
 **Principe.** La TV anime la soirée : musiques d'ambiance en boucle et effets sonores. Les téléphones des joueurs peuvent jouer quelques effets discrets, désactivés par défaut. Aucun envoi supplémentaire de l'hôte : la TV déduit chaque son de l'état de la partie qu'elle reçoit déjà, sauf les réglages du son.
 
@@ -577,11 +577,13 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 **Canaux de la TV.** Un seul moteur Web Audio : canal musique (35 % du volume général) et canal effets (80 %). Effets synthétisés dans le code, sans fichier ; 6 effets au plus en même temps ; un même effet pas plus d'une fois toutes les 150 ms. **Ducking** : un effet important baisse la musique à 30 % en 150 ms, puis elle remonte en 600 ms. L'extrait d'un blind test garde son propre lecteur.
 
 **Musique, chrono et extrait.** Jamais deux sources en même temps, jamais de coupure sèche (fondus) :
-- Salon, tirage des équipes : musique d'attente (boucle).
+- Salon, tirage des équipes, 3-2-1 : musique d'attente (boucle).
 - Question et révélation d'un quiz à choix multiples : musique de jeu (boucle, volume bas). Question et révélation en saisie libre (Contrôle compris) : musique d'écriture (boucle).
-- Bluff : musique d'écriture, puis musique du vote (boucles).
-- Classement entre les questions : jingle joué une fois, puis la musique de la phase suivante. Classement final : jingle de fin joué une fois, puis silence.
-- Blind test : aucune musique pendant la question et la révélation (l'extrait joue seul) ; la musique revient au salon, au classement et à la fin.
+- Bluff : musique d'écriture, puis musique du vote (boucles), qui continue pendant la révélation.
+- Classement entre les questions : jingle joué une fois dès le début du classement ; la phase suivante enchaîne sur sa musique par un fondu (le jingle peut donc être écourté). Classement final : jingle de fin joué une fois (en Suspense, après le roulement de tambour), puis silence.
+- Passage d'une musique à l'autre : fondu enchaîné de 800 ms ; une même musique d'une phase à l'autre continue sans reprendre au début.
+- Blind test : aucune musique pendant la question et la révélation (l'extrait joue seul). La musique se tait par un fondu de 300 ms qui se termine à la fin du 3-2-1 ou du classement, avant l'extrait (en Pas à pas, au début de la question). Elle revient au salon, au classement et à la fin.
+- Jingle entamé depuis plus de 1,5 s quand la TV s'ouvre : pas joué.
 - Fichiers et durées : `docs/sons.md`.
 - Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
 - Pause : la musique baisse à 30 %, le chrono et l'extrait s'arrêtent.
@@ -590,7 +592,9 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Démarrage du son.** Mode Cast : la box doit jouer sans geste (à vérifier sur la box pour Web Audio, comme pour l'extrait). Plan B (navigateur d'un PC) : bandeau « Cliquez sur cet écran pour activer le son » tant que le navigateur n'a pas autorisé le son, dès que musique ou effets sont activés.
 
-**Musiques.** Fichiers fournis par le développeur (OGG Vorbis de préférence ; AAC possible avec ses points de boucle), boucles sans coupure, moins de 1,5 Mo chacune et 5 Mo en tout. Jamais versionnées (dépôt public) : déposées dans `receiver/public/music/` avant le déploiement de la TV. Une fois déployées, elles sont téléchargeables depuis le site public de la TV : leur licence doit autoriser la diffusion sur le web. Fichier absent ou illisible : silence. En développement, une boucle de remplacement synthétisée.
+**Musiques.** Fichiers fournis par le développeur (OGG Vorbis de préférence ; AAC possible avec ses points de boucle), boucles sans coupure, moins de 1,5 Mo chacune et 5 Mo en tout. Jamais versionnées (dépôt public) : déposées dans `receiver/public/music/` avant le déploiement de la TV. Une fois déployées, elles sont téléchargeables depuis le site public de la TV : leur licence doit autoriser la diffusion sur le web. Fichier absent ou illisible : silence. En développement, une boucle de remplacement synthétisée. Le build de la TV avertit (sans bloquer) : piste absente, fichier de plus de 1,5 Mo, total de plus de 5 Mo, fichier inattendu dans le dossier (il serait publié).
+
+**Chargement et mémoire de la TV.** Rien n'est chargé avant le premier affichage ; les pistes du mode de jeu sont téléchargées puis décodées une par une en arrière-plan. Chaque piste est décodée en mono à 32 kHz (une piste décodée occupe 4 octets par échantillon : `Salon_music`, 137 s, environ 17 Mo au lieu de 50 en stéréo 48 kHz) ; les pistes décodées ne dépassent pas 32 Mo, les moins récemment utilisées sont libérées au-delà (le fichier compressé reste en mémoire pour les redécoder). Une partie de choix multiples occupe environ 24 Mo, une partie de Bluff environ 28 Mo. À vérifier sur la box : si c'est encore trop, baisser la fréquence (24 kHz) ou le budget.
 
 **Arrivée du classement et du podium (TV).** Classement entre les questions : les lignes arrivent de la dernière à la première (à 400 ms, puis toutes les 250 ms), chacune avec une note de plus en plus aiguë. Fin de partie : le 3e, le 2e, puis le 1er arrivent sur le podium à 0,8 s d'écart, chacun avec son son, le 1er avec le tada, les applaudissements et les confettis ; en Suspense, après le roulement de tambour. Calendrier commun à l'écran et aux sons (`shared/rankingTimeline.ts`).
 

@@ -1,8 +1,10 @@
+import { MUSIC_TRACK_IDS } from '@shared/musicTracks'
 import { DEFAULT_SOUND_SETTINGS, SOUND_EFFECT_IDS, SOUND_VOLUME_STEPS } from '@shared/sound'
 import type { SoundSettings } from '@shared/types'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { playLoop } from '../lib/sound/musicLoop'
+import { musicPlayer } from '../lib/sound/musicPlayer'
 import { soundEngine } from '../lib/sound/soundEngine'
 import { strings } from '../strings'
 import './DevPanel.css'
@@ -72,6 +74,15 @@ export function SoundGallery({ withSelfTest = false }: { withSelfTest?: boolean 
         <button type="button" onClick={() => soundEngine.duck(2)}>
           {texts.duck}
         </button>
+        {MUSIC_TRACK_IDS.map((id) => (
+          <button key={id} type="button" onClick={() => musicPlayer.preview(id)}>
+            {texts.track(id)}
+          </button>
+        ))}
+        <button type="button" onClick={() => musicPlayer.preview(null)}>
+          {texts.stopMusic}
+        </button>
+        <MusicMemory />
         {SOUND_EFFECT_IDS.map((id) => (
           <button key={id} type="button" onClick={() => soundEngine.playEffect(id)}>
             {id}
@@ -95,4 +106,14 @@ export function SoundGallery({ withSelfTest = false }: { withSelfTest?: boolean 
       )}
     </main>
   )
+}
+
+// Mémoire occupée par les musiques décodées, relevée chaque seconde.
+function MusicMemory() {
+  const [bytes, setBytes] = useState(0)
+  useEffect(() => {
+    const intervalId = setInterval(() => setBytes(musicPlayer.decodedMemory), 1_000)
+    return () => clearInterval(intervalId)
+  }, [])
+  return <span>{strings.dev.sounds.musicMemory(bytes)}</span>
 }

@@ -223,6 +223,9 @@ export const strings = {
       volume: (volume: number) => `Volume ${volume}`,
       loop: (isPlaying: boolean) => (isPlaying ? 'Arrêter la boucle témoin' : 'Boucle témoin (musique)'),
       duck: 'Ducking 2 s',
+      track: (id: string) => `Musique : ${id}`,
+      stopMusic: 'Couper la musique',
+      musicMemory: (bytes: number) => `Musiques décodées : ${(bytes / 1_048_576).toFixed(1)} Mo`,
       selfTestRunning: 'Auto-test en cours…',
       selfTestRow: (id: string, durationS: number, peak: number, rms: number) =>
         `${id} : ${durationS.toFixed(2)} s, crête ${peak.toFixed(2)}, moyenne ${rms.toFixed(3)}${peak > 1 ? ' — SATURÉ' : peak < 0.01 ? ' — MUET' : ''}`,

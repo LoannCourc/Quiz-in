@@ -2,7 +2,8 @@ import { SOUND_EFFECT_IDS } from '@shared/sound'
 import type { SoundSettings } from '@shared/types'
 import { useEffect, useState } from 'react'
 
-import { decodedBytes, loadMusic, playLoop } from '../lib/sound/musicLoop'
+import { decodedBytes, playLoop } from '../lib/sound/musicLoop'
+import { decodeMusic } from '../lib/sound/musicPlayer'
 import { soundEngine } from '../lib/sound/soundEngine'
 import { strings } from '../strings'
 import { StatusScreen } from './StatusScreen'
@@ -59,7 +60,12 @@ export function SoundTestScreen({ target }: { target: string }) {
       if (mimeType) add(texts.canPlay(mimeType, new Audio().canPlayType(mimeType)))
       const startedAt = performance.now()
       try {
-        const { buffer, bytes } = await loadMusic(music.context, target)
+        // Même décodage que pendant la partie (mono, MUSIC_SAMPLE_RATE) : la mémoire affichée est la vraie.
+        const response = await fetch(target)
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const data = await response.arrayBuffer()
+        const bytes = data.byteLength
+        const buffer = await decodeMusic(data)
         add(texts.decoded(Math.round(performance.now() - startedAt), bytes, buffer.duration, buffer.sampleRate, buffer.numberOfChannels, decodedBytes(buffer)))
         stopLoop = playLoop(music.context, music.input, buffer, 1)
       } catch (error) {

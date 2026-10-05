@@ -51,20 +51,24 @@ Niveaux mesurés par l'auto-test (`?sounds=1&selftest=1`, volume 100) : crête d
 
 ## Musiques de la TV (lot 3)
 
-Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/public/music/` avant `firebase deploy --only hosting:tv`. Crédits : `docs/sons-licences.md`.
+Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/public/music/` avant `firebase deploy --only hosting:tv`. Crédits : `docs/sons-licences.md`. Manifeste (fichier, volume, boucle ou jingle) : `shared/musicTracks.ts` ; choix de la musique selon la phase : `musicPlan` de `shared/music.ts` ; lecture : `receiver/src/lib/sound/musicPlayer.ts`.
 
-| Phase | Musique | Type | Remarque |
-|---|---|---|---|
-| Salon, tirage des équipes | `Waiting_sound.ogg` (34 s) | boucle | aussi avant un blind test |
-| Question et révélation, choix multiples | `Salon_music.ogg` (137 s) | boucle | volume bas ; jamais en blind test |
-| Question et révélation, saisie libre (Contrôle compris) | `Bluffecriture_sound.ogg` (70 s) | boucle | jamais en blind test |
-| Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | |
-| Bluff, vote | `Bluffvote_sound.ogg` (96 s) | boucle | |
-| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | puis la musique de la phase suivante |
-| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | puis silence |
-| Question et révélation d'un blind test | aucune | | l'extrait Deezer joue seul |
+| Phase | Musique | Type | Volume | Remarque |
+|---|---|---|---|---|
+| Salon, tirage des équipes, 3-2-1 | `Waiting_sound.ogg` (34 s) | boucle | 1 | aussi dans une partie de blind test |
+| Question et révélation, choix multiples | `Salon_music.ogg` (137 s) | boucle | 0,5 | jamais en blind test |
+| Question, validation et révélation, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais en blind test |
+| Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | 0,8 | |
+| Bluff, vote et révélation | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
+| Classement entre les questions | `Classement_sound.ogg` (10 s) | jingle, une fois | 1 | dès le début du classement ; la phase suivante enchaîne sur sa musique (fondu) |
+| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | après le roulement en Suspense ; puis silence |
+| Question et révélation d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1 ou du classement) |
 
-Contraintes : boucles sans coupure, OGG Vorbis, moins de 1,5 Mo par fichier, moins de 5 Mo en tout. Mesures du 5 octobre 2026 : `Salon_music.ogg` 1,87 Mo (au-delà), environ 50 Mo une fois décodé (137 s, stéréo, 48 kHz) ; total 5,7 Mo (au-delà). À raccourcir avant le lot 3.
+Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : 30 %.
+
+**Mémoire de la TV.** Pistes décodées en mono à 32 kHz (`MUSIC_SAMPLE_RATE`), 32 Mo au plus en mémoire (`MUSIC_MEMORY_BUDGET_BYTES`), les moins récemment utilisées libérées au-delà ; fichiers compressés gardés (4,7 Mo). Mesures (Chrome du PC) : `Salon_music` 16,7 Mo décodée (au lieu d'environ 50 Mo en stéréo 48 kHz) ; partie de choix multiples environ 24 Mo, partie de Bluff environ 28 Mo. Pendant le décodage de `Salon_music`, le navigateur occupe brièvement environ 33 Mo de plus (stéréo avant le passage en mono).
+
+**Tailles** (5 octobre 2026) : 4,7 Mo en tout (limite 5 Mo). `Salon_music.ogg` 1,87 Mo, au-delà de la limite de 1,5 Mo par fichier : le build l'avertit, sans bloquer.
 
 ## Effets des téléphones (lot 4)
 
@@ -84,5 +88,5 @@ Avec une vibration de 30 à 50 ms (Android ; Safari ne vibre pas). Hôte (app An
 
 ## Tester
 
-- **Navigateur** (dans `receiver/`, `npm run dev`) : galerie `http://localhost:5173/?sounds=1` (chaque effet, réglages, boucle témoin, ducking) ; `?sounds=1&selftest=1` calcule chaque effet hors ligne et affiche sa durée, sa crête et son niveau moyen (« SATURÉ » au-delà de 1, « MUET » si rien ne sort). La démo `?status=lobby` joue aussi les effets quand on change d'état dans le panneau (après un premier clic).
-- **Box** (mode Cast) : `receiver/cast-sender.html`, étape 4. « Tester les effets » affiche si le son démarre sans geste et joue chaque effet. « Tester la musique » télécharge un fichier déployé avec la TV (`music/essai.ogg`), le décode (durée, taille, mémoire), le joue en boucle 20 s et baisse la musique à 8 s (ducking).
+- **Navigateur** (dans `receiver/`, `npm run dev`) : galerie `http://localhost:5173/?sounds=1` (chaque effet, réglages, boucle témoin, ducking) ; `?sounds=1&selftest=1` calcule chaque effet hors ligne et affiche sa durée, sa crête et son niveau moyen (« SATURÉ » au-delà de 1, « MUET » si rien ne sort). Boutons « Musique : … » : chaque piste seule (boucle ou jingle), avec la mémoire des musiques décodées. La démo `?status=lobby` joue aussi les effets et les musiques quand on change d'état dans le panneau (après un premier clic) ; un fichier absent y est remplacé par la boucle témoin.
+- **Box** (mode Cast) : `receiver/cast-sender.html`, étape 4. « Tester les effets » affiche si le son démarre sans geste et joue chaque effet. « Tester la musique » télécharge un fichier déployé avec la TV (par exemple `music/Salon_music.ogg`), le décode comme pendant la partie (mono, 32 kHz : durée, taille, mémoire), le joue en boucle 20 s et baisse la musique à 8 s (ducking).

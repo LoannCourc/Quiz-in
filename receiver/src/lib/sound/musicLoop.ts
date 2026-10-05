@@ -1,20 +1,5 @@
-// Musiques de la TV (spec 17) : fichier téléchargé et décodé une fois, puis joué en boucle par Web Audio,
-// à l'échantillon près (la balise <audio loop> laisse un blanc à chaque tour).
-
-export interface LoadedMusic {
-  buffer: AudioBuffer
-  // Taille du fichier téléchargé, en octets.
-  bytes: number
-}
-
-export async function loadMusic(context: AudioContext, url: string): Promise<LoadedMusic> {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`HTTP ${response.status}`)
-  const data = await response.arrayBuffer()
-  const bytes = data.byteLength
-  // decodeAudioData consomme le tampon : la taille est relevée avant.
-  return { buffer: await context.decodeAudioData(data), bytes }
-}
+// Musiques de la TV (spec 17) : boucle jouée par Web Audio, à l'échantillon près (la balise <audio loop>
+// laisse un blanc à chaque tour). Téléchargement et décodage : musicPlayer.ts.
 
 // Mémoire occupée par la musique décodée (échantillons en 32 bits).
 export function decodedBytes(buffer: AudioBuffer): number {

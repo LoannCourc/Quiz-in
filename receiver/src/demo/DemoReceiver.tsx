@@ -3,6 +3,7 @@ import type { AnswerMode, GameStatus } from '@shared/types'
 import { useState } from 'react'
 
 import { GameAudioStateContext, type GameAudioState } from '../hooks/useGameAudio'
+import { useTvMusic } from '../hooks/useTvMusic'
 import { useTvSound } from '../hooks/useTvSound'
 import { ReceiverScreen } from '../screens/ReceiverScreen'
 import { DevPanel } from './DevPanel'
@@ -96,6 +97,7 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
+  useTvMusic(session, isBlindTest, 0)
 
   // Changer d'état relance le chrono de la phase, comme le ferait l'hôte.
   function selectStatus(status: GameStatus) {
