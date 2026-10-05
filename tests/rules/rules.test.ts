@@ -25,7 +25,7 @@ import {
 import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
-import { teamDrawUpdate } from '../../shared/teams'
+import { launchTeamDraw, teamDrawUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
 import { makeSession, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1105,6 +1105,22 @@ describe('Groupe (équipes)', () => {
       await assertSucceeds(db('tv-uid').ref(`${SESSION}/${field}`).once('value'))
     }
     expect(((await db('tv-uid').ref(`${SESSION}/teams/pink`).once('value')).val() as Data).score).toBe(442)
+  })
+
+  test('« Au hasard » sans tirage : équipes écrites en lobby, puis lancement, acceptés par les règles', async () => {
+    await seedSession({ status: 'lobby', phaseEndsAt: 0, settings: { ...TEAM_SETTINGS, teamMode: 'random' }, players: {
+      ...lobbyPlayers,
+      'p4-uid': { name: 'Noé', avatar: '🦖', connected: true },
+    } })
+    const hostRef = db(HOST).ref(SESSION)
+    const session = (await readAsAdmin(SESSION)) as Session
+    const draw = launchTeamDraw(session)
+    expect(draw).not.toBeNull()
+    const launch = launchUpdate(draw?.session ?? session, QUESTIONS.slice(0, 2), Date.now())
+    expect(launch.ok).toBe(true)
+    await assertSucceeds(hostRef.update(draw?.update ?? {}))
+    await assertSucceeds(hostRef.update(launch.ok ? launch.update : {}))
+    expect(await readAsAdmin(`${SESSION}/players/p4-uid/team`)).toMatch(/^(pink|cyan)$/)
   })
 
   test('moteur : tirage, lancement, réponses et révélation avec équipes, acceptés par les règles', async () => {

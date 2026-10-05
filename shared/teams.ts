@@ -69,14 +69,41 @@ function countPath(session: Session): SessionUpdate {
   return { 'settings/teamCount': teamCountOf(session.settings, Object.keys(session.players).length) }
 }
 
+function drawSession(session: Session, random: () => number): Record<PlayerId, TeamId> {
+  const playerIds = Object.keys(session.players)
+  return drawTeams(playerIds, teamCountOf(session.settings, playerIds.length), random)
+}
+
+function drawPaths(session: Session, draw: Record<PlayerId, TeamId>): SessionUpdate {
+  const update: SessionUpdate = countPath(session)
+  for (const [id, team] of Object.entries(draw)) update[`players/${id}/team`] = team
+  return update
+}
+
 // « Tirer au sort » : nouvelles équipes pour tous les joueurs, et heure du tirage (animation TV).
 export function teamDrawUpdate(session: Session, nowServer: number, random: () => number = Math.random): SessionUpdate | null {
   if (!isTeamLobby(session)) return null
-  const playerIds = Object.keys(session.players)
-  const draw = drawTeams(playerIds, teamCountOf(session.settings, playerIds.length), random)
-  const update: SessionUpdate = { ...countPath(session), teamDrawAt: nowServer }
-  for (const [id, team] of Object.entries(draw)) update[`players/${id}/team`] = team
-  return update
+  return { ...drawPaths(session, drawSession(session, random)), teamDrawAt: nowServer }
+}
+
+// « Au hasard » sans tirage de l'hôte : les équipes seront tirées au lancement.
+export function drawsAtLaunch(session: Pick<Session, 'status' | 'settings' | 'players'>): boolean {
+  return (
+    session.status === 'lobby' &&
+    session.settings.teams === true &&
+    teamModeOf(session.settings) === 'random' &&
+    Object.values(session.players).every((player) => player.team === undefined)
+  )
+}
+
+// Tirage du lancement : la session avec ses équipes (pour vérifier et calculer le lancement) et
+// l'update à écrire avant lui, encore en lobby (les règles refusent l'équipe d'un joueur après).
+// Pas d'heure de tirage : la TV passe directement au lancement. null : aucun tirage à faire.
+export function launchTeamDraw(session: Session, random: () => number = Math.random): { session: Session; update: SessionUpdate } | null {
+  if (!drawsAtLaunch(session)) return null
+  const draw = drawSession(session, random)
+  const players = Object.fromEntries(Object.entries(session.players).map(([id, player]) => [id, { ...player, team: draw[id] }]))
+  return { session: { ...session, players }, update: drawPaths(session, draw) }
 }
 
 // L'hôte place un joueur dans une équipe (ou le retire de son équipe avec null).
@@ -113,6 +140,12 @@ export function teamLaunchRefusal(session: Pick<PublicSession, 'settings' | 'pla
   if (playerIds.some((id) => !teams.includes(session.players[id].team as TeamId))) return 'teamsUnassigned'
   if (teams.some((team) => teamMembers(session.players, team).length < MIN_TEAM_SIZE)) return 'teamTooSmall'
   return null
+}
+
+// Ce qui empêcherait le lancement, vu du salon : avec un tirage au lancement, les équipes qu'il
+// formera (toujours équilibrées, la taille seule compte).
+export function lobbyTeamRefusal(session: Session): TeamRefusal | null {
+  return teamLaunchRefusal(launchTeamDraw(session, () => 0)?.session ?? session)
 }
 
 // Joueurs comptés pour les équipes à la fin d'une question : ceux qui ont une équipe et sont connectés.

@@ -10,6 +10,7 @@ import {
   type SessionUpdate,
 } from '@shared/hostEngine';
 import { parseQuestions } from '@shared/quizValidation';
+import { launchTeamDraw } from '@shared/teams';
 import type { Question, Session } from '@shared/types';
 import { get, ref, remove, update } from 'firebase/database';
 
@@ -38,8 +39,11 @@ export async function launchGame(
   limit?: number,
   audio?: LaunchAudio,
 ): Promise<LaunchOutcome> {
-  const result = launchUpdate(session, questions, nowServer, limit, audio);
+  // Groupe « Au hasard » sans tirage de l'hôte : équipes tirées d'abord (écrites encore en lobby).
+  const draw = launchTeamDraw(session);
+  const result = launchUpdate(draw?.session ?? session, questions, nowServer, limit, audio);
   if (!result.ok) return result;
+  if (draw) await update(ref(db, `sessions/${code}`), draw.update);
   await update(ref(db, `sessions/${code}`), result.update);
   return { ok: true };
 }

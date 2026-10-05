@@ -19,9 +19,9 @@ interface TeamComposerProps {
 
 const TEAM_COUNTS = Array.from({ length: MAX_TEAMS - MIN_TEAMS + 1 }, (_, index) => MIN_TEAMS + index);
 
-// Composition des équipes dans le salon de l'hôte (maquette G1) : façon de former les équipes,
+// Composition des équipes, sur la page « Équipes » de l'hôte (maquette E1) : façon de former les équipes,
 // nombre d'équipes, équipes et joueurs sans équipe. Dans tous les modes, l'hôte peut déplacer un
-// joueur : il le touche, puis touche son équipe (ou « Sans équipe »). Le tirage est dans le pied.
+// joueur : il le touche, puis touche son équipe (ou « Sans équipe »). Consigne et boutons : TeamsPage.
 export function TeamComposer({ settings, players, onMode, onCount, onAssign }: TeamComposerProps) {
   const { composer } = strings.teams;
   const playerIds = Object.keys(players);
@@ -56,7 +56,6 @@ export function TeamComposer({ settings, players, onMode, onCount, onAssign }: T
           </Pressable>
         ))}
       </View>
-      <Text style={styles.hint}>{composer.modeHints[mode]}</Text>
 
       <View style={styles.countRow}>
         <Text style={styles.sectionLabel}>{composer.countLabel}</Text>
@@ -89,7 +88,7 @@ export function TeamComposer({ settings, players, onMode, onCount, onAssign }: T
 
       {unassigned.length > 0 && (
         <View {...pressTarget(() => place(null))} style={styles.unassigned}>
-          <Text style={styles.sectionLabel}>{composer.unassigned(unassigned.length)}</Text>
+          <Text style={styles.sectionLabel}>{composer.unassigned}</Text>
           <View style={styles.chips}>
             {unassigned.map((id) => (
               <PlayerChip key={id} player={players[id]} isSelected={selected === id} onPress={() => toggle(id)} />
@@ -98,7 +97,6 @@ export function TeamComposer({ settings, players, onMode, onCount, onAssign }: T
           <Text style={styles.hint}>{composer.placeHint}</Text>
         </View>
       )}
-      <Text style={[styles.hint, styles.centered]}>{strings.teams.averageNote}</Text>
     </View>
   );
 }
@@ -131,7 +129,7 @@ function TeamCard({ team, members, players, selected, showSizeWarning, onPress, 
       {...pressTarget(onPress)}
       style={[styles.card, { borderColor: AppColors.teams[team] }, selected !== null && styles.cardTarget]}>
       <View style={styles.cardHeader}>
-        <TeamTile team={team} size={28} />
+        <TeamTile team={team} size={36} />
         <Text style={styles.cardName}>{name}</Text>
         <Text style={styles.cardCount}>{strings.teams.playerCount(members.length)}</Text>
       </View>
@@ -194,9 +192,6 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.bold,
     fontSize: 13,
   },
-  centered: {
-    textAlign: 'center',
-  },
   countRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -255,7 +250,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: AppColors.text,
     fontFamily: AppFonts.black,
-    fontSize: 16,
+    fontSize: 19,
   },
   cardCount: {
     ...TEXT_FIT_SAFETY,

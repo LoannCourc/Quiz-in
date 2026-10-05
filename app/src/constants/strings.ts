@@ -150,17 +150,37 @@ export const strings = {
     composer: {
       title: 'Équipes',
       modes: { random: 'Au hasard', host: 'Je choisis', players: 'Ils choisissent' } satisfies Record<TeamMode, string>,
-      modeHints: {
-        random: 'Tire au sort ; tu peux ensuite déplacer un joueur : touche-le, puis son équipe.',
-        host: 'Touche un joueur, puis l’équipe où le placer.',
-        players: 'Chacun choisit son équipe sur son téléphone ; tu peux encore déplacer un joueur.',
-      } satisfies Record<TeamMode, string>,
       countLabel: 'Nombre d’équipes',
       tooSmall: `Il faut au moins ${MIN_TEAM_SIZE} joueurs par équipe`,
-      unassigned: (count: number) => `Sans équipe · ${count}`,
-      placeHint: 'Touche une équipe pour l’y placer',
+      unassigned: 'Sans équipe',
+      placeHint: 'touche une équipe',
       draw: 'Tirer au sort',
       redraw: 'Retirer au sort',
+    },
+    // Ligne « Équipes » du salon (maquette L1).
+    row: {
+      title: 'Équipes',
+      teamCount: (count: number) => `${count} équipes`,
+      summary: (parts: string[]) => parts.join(' · '),
+      drawAtLaunch: 'tirage au lancement',
+      ready: 'équipes prêtes',
+      incomplete: 'à compléter',
+    },
+    // Page « Équipes » plein écran (maquette E1) : une consigne d'une phrase en haut, selon l'état.
+    page: {
+      back: 'Retour au salon',
+      validate: 'Valider les équipes',
+      instructions: {
+        chooseMode: 'Choisis comment former les équipes.',
+        tooFewPlayers: `Il faut au moins ${MIN_TEAM_GAME_PLAYERS} joueurs pour jouer par équipes : attends que d’autres joueurs rejoignent la partie.`,
+        drawFirst: 'Appuie sur TIRER AU SORT, puis VALIDER LES ÉQUIPES (sans tirage, il se fera au lancement).',
+        drawn: 'Équipes tirées : appuie sur VALIDER LES ÉQUIPES, ou RETIRER AU SORT pour en changer.',
+        lateJoiner: 'Un joueur est arrivé après le tirage : appuie sur RETIRER AU SORT, ou touche-le puis une équipe.',
+        hostPlace: 'Touche un joueur, puis l’équipe où le placer.',
+        playersChoose: 'Les joueurs choisissent leur équipe sur leur téléphone ; tu peux aussi en déplacer un.',
+        tooSmall: `Une équipe a moins de ${MIN_TEAM_SIZE} joueurs : déplace un joueur, ou choisis moins d’équipes.`,
+        ready: 'Équipes prêtes : appuie sur VALIDER LES ÉQUIPES.',
+      },
     },
     picker: {
       title: 'Choisis ton équipe',
@@ -215,6 +235,20 @@ export const strings = {
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
     noPlayers: 'Aucun joueur pour l’instant. Ils rejoignent en scannant le QR code de la TV.',
     hostJoinTitle: 'Toi aussi, tu joues !',
+    // TV connectée : le bloc code, QR et lien se réduit à une barre (maquette L1).
+    tvBar: {
+      connected: 'TV connectée',
+      codeLabel: 'Code de la partie : ',
+      details: 'Détails',
+      hide: 'Masquer',
+      intro: 'Les joueurs scannent le QR code ou ouvrent le lien.',
+    },
+    // Hôte pas encore inscrit (maquette L1).
+    hostCard: {
+      title: 'Tu n’es pas dans la partie',
+      hint: 'Pseudo et avatar, comme les autres joueurs',
+      button: 'Je joue aussi',
+    },
     launchButton: 'Lancer la partie',
     launching: 'Lancement…',
     loadingQuestions: 'Chargement des questions…',
@@ -240,7 +274,6 @@ export const strings = {
   // Cast de l'hôte vers la TV (spec 4.1 et 6.6).
   cast: {
     showButton: 'Afficher sur la TV',
-    connectedButton: 'TV connectée',
     iconLabel: 'Choisir la TV',
   },
   hostGame: {

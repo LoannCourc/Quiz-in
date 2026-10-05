@@ -3,15 +3,14 @@ import type { SessionUpdate } from '@shared/hostEngine';
 import { canLaunchGame, connectedPlayerIds } from '@shared/players';
 import {
   assignTeamUpdate,
+  lobbyTeamRefusal,
   teamCountUpdate,
   teamDrawUpdate,
-  teamLaunchRefusal,
-  teamModeOf,
   teamModeUpdate,
   type TeamRefusal,
 } from '@shared/teams';
 import type { Session } from '@shared/types';
-import { useState, type ReactNode } from 'react';
+import { useCallback, useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { OptionToggle } from '@/components/host/OptionToggle';
@@ -27,12 +26,15 @@ import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 
+import { HostJoinCard } from './HostJoinCard';
 import { JoinWithoutTv } from './JoinWithoutTv';
 import { LobbyCodeCard } from './LobbyCodeCard';
 import { LobbyHeader } from './LobbyHeader';
 import { LobbyPlayerRows } from './LobbyPlayerRows';
-import { TeamComposer } from './TeamComposer';
+import { TeamsPage } from './TeamsPage';
+import { TeamsSummaryRow } from './TeamsSummaryRow';
 import { TvCastPill } from './TvCastPill';
+import { TvConnectedBar } from './TvConnectedBar';
 
 interface HostLobbyProps {
   code: string;
@@ -40,9 +42,11 @@ interface HostLobbyProps {
   questions: GameQuestionsState;
   serverOffsetMs: number;
   cast: CastGame;
-  // Démo (/debug/lobby) : en-tête fourni sans lecture de la base, bloc « sans TV » déjà ouvert.
+  // Démo (/debug/lobby) : en-tête fourni sans lecture de la base, blocs déjà ouverts.
   header?: ReactNode;
   initialNoTvOpen?: boolean;
+  initialTvDetailsOpen?: boolean;
+  initialTeamsOpen?: boolean;
   // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
   audio?: LobbyAudio;
   // Démo : actions du salon (équipes) appliquées localement au lieu d'écrire dans la base.
@@ -59,24 +63,29 @@ const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined,
 // en bas. La page ne défile pas : seule la liste des joueurs défile, le bouton reste toujours visible.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
+  const { initialTvDetailsOpen = false, initialTeamsOpen = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
   const isRegistered = players[uid] !== undefined;
   const [isEditing, setIsEditing] = useState(false);
+  // « Je joue aussi » : l'hôte ouvre le formulaire des joueurs.
+  const [isHostJoining, setIsHostJoining] = useState(false);
   // Replié à chaque ouverture du salon : état local, jamais mémorisé.
   const [isNoTvOpen, setIsNoTvOpen] = useState(initialNoTvOpen);
+  const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
+  const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
+  const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
   const [launchError, setLaunchError] = useState<string | null>(null);
 
   // Un hôte qui ne s'inscrit pas peut quand même lancer : seuls les joueurs connectés comptent.
   const hasEnoughPlayers = canLaunchGame(players);
-  // Groupe : lancement possible seulement avec des équipes valides (le moteur le vérifie aussi).
-  const teamRefusal = teamLaunchRefusal(session);
+  // Groupe : lancement possible seulement avec des équipes valides, ou tirées au lancement « Au
+  // hasard » (le moteur vérifie aussi).
+  const teamRefusal = lobbyTeamRefusal(session);
   const canLaunch = hasEnoughPlayers && teamRefusal === null && questions.kind === 'ready' && audio.status !== 'loading' && !isLaunching;
-  const isTeamDraw = session.settings.teams && teamModeOf(session.settings) === 'random';
-  const hasTeams = Object.values(players).some((player) => player.team !== undefined);
 
   // Actions du salon (équipes) : même chemin que les contrôles de l'hôte (relire, calculer, un update).
   function teamAction(build: LobbyUpdate) {
@@ -120,50 +129,47 @@ export function HostLobby(props: HostLobbyProps) {
         error={launchError}
         audioStatus={audio.status}
       />
-      {isTeamDraw ? (
-        <View style={styles.footerRow}>
-          <View style={styles.fill}>
-            <BigButton
-              label={hasTeams ? strings.teams.composer.redraw : strings.teams.composer.draw}
-              variant="secondary"
-              size="compact"
-              onPress={() => teamAction(teamDrawUpdate)}
-            />
-          </View>
-          <View style={styles.fill}>
-            <BigButton
-              label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
-              size="compact"
-              onPress={launch}
-              disabled={!canLaunch}
-            />
-          </View>
-        </View>
-      ) : (
-        <BigButton
-          label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
-          onPress={launch}
-          disabled={!canLaunch}
-        />
-      )}
+      <BigButton
+        label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
+        onPress={launch}
+        disabled={!canLaunch}
+      />
     </View>
   );
+
+  // Groupe : la page « Équipes » remplace le salon tant qu'elle est ouverte.
+  if (isTeamsOpen && session.settings.teams) {
+    return (
+      <TeamsPage
+        session={session}
+        onMode={(mode) => teamAction((current) => teamModeUpdate(current, mode))}
+        onCount={(count) => teamAction((current) => teamCountUpdate(current, count))}
+        onAssign={(playerId, team) => teamAction((current) => assignTeamUpdate(current, playerId, team))}
+        onDraw={() => teamAction(teamDrawUpdate)}
+        onClose={closeTeams}
+      />
+    );
+  }
+
+  const showJoinForm = isEditing || (!isRegistered && isHostJoining);
 
   return (
     <Screen scrollable={false} footer={footer}>
       <View style={styles.top}>
         {header ?? <LobbyHeader quizId={session.quizId} />}
-        <LobbyCodeCard code={code} compact={isNoTvOpen} />
-        {isNoTvOpen ? (
+        {cast.isTvConnected ? (
+          <TvConnectedBar code={code} isOpen={isTvDetailsOpen} onToggle={() => setIsTvDetailsOpen((open) => !open)} />
+        ) : (
+          <LobbyCodeCard code={code} compact={isNoTvOpen} />
+        )}
+        {cast.isTvConnected ? null : isNoTvOpen ? (
           <JoinWithoutTv code={code} onHide={() => setIsNoTvOpen(false)} />
         ) : (
           <>
             {cast.isAvailable && <TvCastPill cast={cast} />}
-            {!cast.isTvConnected && (
-              <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsNoTvOpen(true)}>
-                <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
-              </Pressable>
-            )}
+            <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsNoTvOpen(true)}>
+              <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
+            </Pressable>
           </>
         )}
       </View>
@@ -174,7 +180,7 @@ export function HostLobby(props: HostLobbyProps) {
           <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
         </View>
         <ScrollView style={styles.playersPanel} contentContainerStyle={styles.playersContent} keyboardShouldPersistTaps="handled">
-          {(!isRegistered || isEditing) && (
+          {showJoinForm && (
             <View style={styles.joinForm}>
               <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
               <JoinForm
@@ -188,14 +194,6 @@ export function HostLobby(props: HostLobbyProps) {
           )}
           {Object.keys(players).length === 0 ? (
             <Text style={textStyles.muted}>{strings.hostLobby.noPlayers}</Text>
-          ) : session.settings.teams ? (
-            <TeamComposer
-              settings={session.settings}
-              players={players}
-              onMode={(mode) => teamAction((current) => teamModeUpdate(current, mode))}
-              onCount={(count) => teamAction((current) => teamCountUpdate(current, count))}
-              onAssign={(playerId, team) => teamAction((current) => assignTeamUpdate(current, playerId, team))}
-            />
           ) : (
             <LobbyPlayerRows
               players={players}
@@ -214,6 +212,8 @@ export function HostLobby(props: HostLobbyProps) {
           )}
         </ScrollView>
       </View>
+      {!isRegistered && !showJoinForm && <HostJoinCard onJoin={() => setIsHostJoining(true)} />}
+      {session.settings.teams && <TeamsSummaryRow session={session} onPress={() => setIsTeamsOpen(true)} />}
     </Screen>
   );
 }
@@ -299,13 +299,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     gap: Spacing.two,
-  },
-  footerRow: {
-    flexDirection: 'row',
-    gap: Spacing.three,
-  },
-  fill: {
-    flex: 1,
   },
   hint: {
     color: AppColors.textMuted,

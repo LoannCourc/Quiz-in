@@ -4,7 +4,10 @@ import { launchUpdate, replayUpdate, transitionUpdate, validateUpdate, type Sess
 import {
   assignTeamUpdate,
   bestPlayerByTeam,
+  drawsAtLaunch,
   drawTeams,
+  launchTeamDraw,
+  lobbyTeamRefusal,
   rankInTeam,
   suggestedTeamCount,
   teamCountUpdate,
@@ -107,6 +110,37 @@ describe('Lancement en Groupe', () => {
     expect(launch).toMatchObject({ ok: true, update: { 'settings/teamCount': 2, teams: null, teamPoints: null, teamPresence: null } })
     const alone = makeSession({ settings: TEAMS, players: players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', undefined]]) })
     expect(launchUpdate(alone, [makeQuestion(0)], NOW)).toEqual({ ok: false, reason: 'teamsUnassigned' })
+  })
+})
+
+describe('Au hasard : tirage au lancement', () => {
+  const lobby = (entries: [PlayerId, TeamId | undefined][], settings: Partial<SessionSettings> = {}): Session =>
+    ({ ...makeSession({ status: 'lobby', players: players(entries) }), settings: { ...TEAMS, teamMode: 'random', ...settings } })
+  const four: [PlayerId, TeamId | undefined][] = [['a', undefined], ['b', undefined], ['c', undefined], ['d', undefined]]
+
+  test('seulement en « Au hasard », en lobby, tant que personne n’a d’équipe', () => {
+    expect(drawsAtLaunch(lobby(four))).toBe(true)
+    expect(drawsAtLaunch(lobby(four, { teamMode: undefined }))).toBe(true)
+    expect(drawsAtLaunch(lobby(four, { teamMode: 'host' }))).toBe(false)
+    expect(drawsAtLaunch(lobby([...four.slice(1), ['a', 'pink']]))).toBe(false)
+    expect(drawsAtLaunch({ ...lobby(four), status: 'starting' })).toBe(false)
+  })
+
+  test('tirage équilibré, écrit avant le lancement ; le lancement accepte la session tirée', () => {
+    const draw = launchTeamDraw(lobby(four), sequence([0.3, 0.7]))
+    expect(draw).not.toBeNull()
+    expect(teamLaunchRefusal(draw!.session)).toBeNull()
+    expect(Object.keys(draw!.update).filter((path) => path.endsWith('/team'))).toHaveLength(4)
+    expect(draw!.update.teamDrawAt).toBeUndefined()
+    expect(launchUpdate(draw!.session, [makeQuestion(0)], NOW).ok).toBe(true)
+    expect(launchTeamDraw(lobby(four, { teamMode: 'host' }))).toBeNull()
+  })
+
+  test('salon : refus calculé sur les équipes que tirera le lancement', () => {
+    expect(lobbyTeamRefusal(lobby(four))).toBeNull()
+    expect(lobbyTeamRefusal(lobby(four.slice(1)))).toBe('teamsTooFewPlayers')
+    expect(lobbyTeamRefusal(lobby(four, { teamCount: 3 }))).toBe('teamTooSmall')
+    expect(lobbyTeamRefusal(lobby(four, { teamMode: 'host' }))).toBe('teamsUnassigned')
   })
 })
 
