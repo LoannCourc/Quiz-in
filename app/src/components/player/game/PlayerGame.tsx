@@ -1,7 +1,7 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress } from '@shared/players';
-import { bestPlayerByTeam, previousTeamRank, rankInTeam, teamRanking } from '@shared/teams';
+import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -15,7 +15,6 @@ import {
   effectiveAnswer,
   isFreeText,
   myResult,
-  previousRank,
   rankedPlayers,
   revealOutcome,
   type AnswerState,
@@ -95,10 +94,7 @@ function freeRevealInfo(session: PublicSession, result: PlayerResult | undefined
 function teamInfoOf(session: PublicSession, uid: PlayerId): TeamGameInfo | undefined {
   const team = session.players[uid]?.team;
   if (!session.settings.teams || !team) return undefined;
-  const info: TeamGameInfo = { team, rows: teamRanking(session), inTeam: rankInTeam(session.players, uid) };
-  const previousRank = previousTeamRank(session, team);
-  if (previousRank !== undefined) info.previousRank = previousRank;
-  return info;
+  return { team, rows: teamRanking(session), inTeam: rankInTeam(session.players, uid) };
 }
 
 function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps): ReactNode {
@@ -151,10 +147,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
             correctChoice={correctChoiceIndex(session)}
             options={session.currentQuestion?.options}
             free={freeRevealInfo(session, result, answer)}
-            // Groupe : rangs d'équipe à la place de « Ta place » (rien en Suspense, comme le rang).
-            team={isSuspense ? undefined : team}
-            rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
-            previousRank={previousRank(session, uid)}
+            team={team?.team}
           />
           {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}
           {isAwaitingHost(session) && (

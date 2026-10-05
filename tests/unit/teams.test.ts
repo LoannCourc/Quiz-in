@@ -5,7 +5,6 @@ import {
   assignTeamUpdate,
   bestPlayerByTeam,
   drawTeams,
-  previousTeamRank,
   rankInTeam,
   suggestedTeamCount,
   teamCountUpdate,
@@ -202,7 +201,7 @@ describe('Moteur : équipes pendant la partie', () => {
 })
 
 describe('Classements d’équipe (écrans)', () => {
-  test('lignes triées par rang, avec le meilleur joueur ; rang avant la question', () => {
+  test('lignes triées par rang, avec le meilleur joueur', () => {
     const session = {
       players: players([['a', 'pink', 300], ['b', 'pink', 100], ['c', 'cyan', 250], ['d', 'cyan', 250]]),
       teams: { pink: { score: 200, rank: 2 }, cyan: { score: 250, rank: 1 } },
@@ -213,7 +212,5 @@ describe('Classements d’équipe (écrans)', () => {
       { team: 'cyan', score: 250, rank: 1, bestPlayerId: 'c' },
       { team: 'pink', score: 200, rank: 2, bestPlayerId: 'a' },
     ])
-    expect(previousTeamRank(session, 'cyan')).toBe(2)
-    expect(previousTeamRank({ ...session, currentIndex: 0 }, 'cyan')).toBeUndefined()
   })
 })

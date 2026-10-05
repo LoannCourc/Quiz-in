@@ -36,7 +36,6 @@ export function PlayerTeamLobby({ uid, players, settings, onChoose, error }: Pla
         ) : (
           <Text style={[textStyles.label, styles.centered]}>{picker.notAssigned}</Text>
         )}
-        <Text style={[styles.note, styles.centered]}>{strings.teams.averageNote}</Text>
       </View>
     );
   }

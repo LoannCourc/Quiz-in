@@ -128,9 +128,8 @@ export default function PlayerDemoScreen() {
   );
 }
 
-// Rangs de 1 à 20, puis les changements les plus larges (« 20e → 19e ▲ »…).
-const BAND_RANKS = Array.from({ length: 20 }, (_, index) => index + 1);
-const BAND_CHANGES: [number, number][] = [[4, 2], [2, 1], [1, 2], [9, 10], [20, 19], [19, 20], [10, 20]];
+// Rangs dans l'équipe de 1 à 10 (au plus 20 joueurs en 2 équipes).
+const BAND_RANKS = Array.from({ length: 10 }, (_, index) => index + 1);
 
 // Textes qui épousent leur contenu, tous au même endroit : sur Android 15+, le dernier mot de l'un
 // d'eux pouvait disparaître (« TA » au lieu de « TA PLACE », voir TEXT_FIT_SAFETY). Page à ouvrir sur
@@ -149,11 +148,8 @@ function PlaceBandGallery() {
         <TransitionSteps active={1} />
         <TransitionSteps active={0} withRanking={false} />
         <NextQuestionBar timing={countdown} isLastQuestion={false} />
-        {BAND_CHANGES.map(([before, after]) => (
-          <PlaceBand key={`${before}-${after}`} rank={after} previousRank={before} />
-        ))}
         {BAND_RANKS.map((rank) => (
-          <PlaceBand key={rank} rank={rank} />
+          <PlaceBand key={rank} label={strings.teams.game.inYourTeam} rank={rank} suffix={strings.teams.game.outOf(10)} />
         ))}
       </View>
     </Screen>

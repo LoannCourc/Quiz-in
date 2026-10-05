@@ -1,3 +1,4 @@
+import type { TeamId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { MarkIcon } from '@/components/ui/MarkIcon';
@@ -10,8 +11,7 @@ import type { FreeText, RevealOutcome } from '@/lib/playerGame';
 import { gradientStyle } from '@/components/ui/gradient';
 
 import { ChoicePill, choiceTextSize } from './ChoicePill';
-import { PlaceBand } from './PlaceBand';
-import { TeamChip, TeamRevealBands, type TeamGameInfo } from './TeamViews';
+import { TeamChip } from './TeamViews';
 
 // Réponse libre (maquette S2) : bonne réponse (titre et artiste pour un blind test « both »), parties
 // jugées justes en « both », réponse tapée par le joueur (null si l'appareil ne l'a pas gardée).
@@ -34,22 +34,20 @@ interface RevealViewProps {
   correctChoice?: number;
   // Propositions de la question : la bonne réponse garde la taille de texte de l'écran de question.
   options?: readonly string[];
-  // Absent en Suspense : pas de rang en cours de partie (seulement les points gagnés).
-  rank?: number;
-  previousRank?: number;
   // Réponse libre : bonne réponse rappelée avec ce que le joueur a écrit, à la place de la pilule.
   free?: FreeRevealInfo;
-  // Groupe : pastille d'équipe, rang de l'équipe et rang dans l'équipe, à la place de « Ta place ».
-  team?: TeamGameInfo;
+  // Groupe : pastille de l'équipe du joueur.
+  team?: TeamId;
 }
 
+// Écran Réponse : juste ou faux, et les points gagnés. Aucun rang : il n'apparaît qu'au Classement.
 export function RevealView(props: RevealViewProps) {
-  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], rank, previousRank, free, team } = props;
+  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], free, team } = props;
   const isCorrect = outcome === 'correct';
 
   return (
     <View style={styles.container}>
-      {team && <TeamChip team={team.team} />}
+      {team && <TeamChip team={team} />}
       <Text style={[textStyles.hero, outcome === 'partial' && styles.partialTitle]}>{strings.game.reveal.titles[outcome]}</Text>
 
       {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}
@@ -62,8 +60,6 @@ export function RevealView(props: RevealViewProps) {
       {isCorrect && free?.artist === undefined && speedBonus !== undefined && speedBonus > 0 && (
         <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>
       )}
-
-      {team ? <TeamRevealBands info={team} /> : rank !== undefined && <PlaceBand rank={rank} previousRank={previousRank} />}
     </View>
   );
 }

@@ -215,13 +215,3 @@ export function teamRanking(session: Pick<PublicSession, 'teams' | 'players'>): 
     }))
     .sort((a, b) => a.rank - b.rank || TEAM_IDS.indexOf(a.team) - TEAM_IDS.indexOf(b.team))
 }
-
-// Rang d'une équipe avant la question en cours (« 3e → 2e ») ; undefined à la première question.
-export function previousTeamRank(
-  session: Pick<PublicSession, 'teamPoints' | 'players' | 'currentIndex'>,
-  team: TeamId,
-): number | undefined {
-  if (session.currentIndex === 0) return undefined
-  const standings = teamStandings(session.teamPoints ?? {}, teamsInGame(session.players), session.currentIndex - 1)
-  return standings[team]?.rank
-}

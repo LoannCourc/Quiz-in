@@ -21,8 +21,6 @@ export interface TeamGameInfo {
   team: TeamId;
   rows: TeamRow[];
   inTeam: { rank: number; size: number } | null;
-  // Rang de l'équipe avant la question (« 3e → 2e ») ; absent à la première question.
-  previousRank?: number;
 }
 
 export function teamRankOf(info: TeamGameInfo): number {
@@ -35,18 +33,6 @@ export function TeamChip({ team }: { team: TeamId }) {
     <View style={[styles.chip, { backgroundColor: AppColors.teams[team] }]}>
       <TeamSymbol team={team} size={14} color={AppColors.onTeam} />
       <Text style={styles.chipText}>{strings.teams.teamLabel(strings.teams.names[team])}</Text>
-    </View>
-  );
-}
-
-// Révélation : rang de l'équipe (avec sa progression) et rang du joueur dans son équipe.
-export function TeamRevealBands({ info }: { info: TeamGameInfo }) {
-  const { game } = strings.teams;
-  return (
-    <View style={styles.bands}>
-      <PlaceBand label={game.yourTeam} rank={teamRankOf(info)} previousRank={info.previousRank} />
-      {info.inTeam && <PlaceBand label={game.inYourTeam} rank={info.inTeam.rank} suffix={game.outOf(info.inTeam.size)} />}
-      <Text style={[styles.note, styles.centered]}>{strings.teams.averageNote}</Text>
     </View>
   );
 }
@@ -73,7 +59,8 @@ function TeamRows({ info }: { info: TeamGameInfo }) {
   );
 }
 
-// Entre deux questions : classement des équipes, puis le rang du joueur dans son équipe.
+// Écran Classement (maquette R2), seul endroit où l'on parle de rang : classement des équipes, ce
+// qu'est le score d'une équipe, puis le rang du joueur dans son équipe.
 export function TeamScoresView({ info }: { info: TeamGameInfo }) {
   const { game } = strings.teams;
   return (
@@ -81,7 +68,13 @@ export function TeamScoresView({ info }: { info: TeamGameInfo }) {
       <TeamChip team={info.team} />
       <Text style={styles.sectionTitle}>{game.rankingTitle}</Text>
       <TeamRows info={info} />
-      {info.inTeam && <PlaceBand label={game.inYourTeam} rank={info.inTeam.rank} suffix={game.outOf(info.inTeam.size)} />}
+      <Text style={styles.note}>{strings.teams.averageNote}</Text>
+      {info.inTeam && (
+        <View style={styles.youBlock}>
+          <Text style={styles.sectionLabel}>{game.you}</Text>
+          <PlaceBand label={game.inYourTeam} rank={info.inTeam.rank} suffix={game.outOf(info.inTeam.size)} />
+        </View>
+      )}
     </View>
   );
 }
@@ -177,17 +170,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textTransform: 'uppercase',
   },
-  bands: {
-    marginTop: 'auto',
-    gap: Spacing.two,
-  },
   note: {
     color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
     fontSize: 13,
   },
-  centered: {
-    textAlign: 'center',
+  youBlock: {
+    gap: Spacing.two,
   },
   block: {
     gap: Spacing.three,

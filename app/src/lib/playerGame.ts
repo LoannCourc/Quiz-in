@@ -1,4 +1,3 @@
-import { computeRanks } from '@shared/ranking';
 import type { Player, PlayerId, PlayerResult, PublicSession } from '@shared/types';
 
 // Pourquoi une réponse n'a pas été enregistrée : trop tard (définitif) ou erreur réseau (réessai possible).
@@ -49,16 +48,6 @@ export function revealOutcome(result: PlayerResult | undefined): RevealOutcome {
   if (!result) return 'noAnswer';
   if (result.correct) return 'correct';
   return result.partial ? 'partial' : 'wrong';
-}
-
-// Rang avant la question révélée : scores actuels moins les points qu'elle a rapportés,
-// classés avec la même règle d'égalités que l'hôte (shared/ranking). Aucun champ en plus.
-export function previousRank(session: PublicSession, uid: PlayerId): number | undefined {
-  const results = session.reveal?.results ?? {};
-  const previousScores = Object.fromEntries(
-    Object.entries(session.players).map(([id, player]) => [id, (player.score ?? 0) - (results[id]?.points ?? 0)]),
-  );
-  return computeRanks(previousScores)[uid];
 }
 
 // Position de la bonne réponse parmi les propositions (pour sa lettre et sa couleur).

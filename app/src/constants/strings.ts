@@ -433,9 +433,6 @@ export const strings = {
       coinPoints: (points: number) => `+${formatNumber(points)}`,
       coinLabel: 'points',
       speedBonus: (bonus: number) => `Bonus rapidité : +${bonus}`,
-      placeLabel: 'Ta place',
-      placeChange: (before: string, after: string, arrow: string) => `${before} → ${after} ${arrow}`,
-      arrows: { up: '▲', down: '▼' },
     },
     scores: {
       title: 'Classement',
