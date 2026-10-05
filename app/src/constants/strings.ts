@@ -65,7 +65,7 @@ export const strings = {
     tagline: 'Le quiz des soirées entre amis et en famille : l’hôte affiche la partie sur la TV, chacun répond sur son téléphone.',
     creditsTitle: 'Crédits',
     credits: [
-      'Questions et quiz : originaux, rédigés pour Quiz’in.',
+      'Questions et quiz : écrits par l’auteur de Quiz’in ; les questions de Bluff reprennent en partie celles de son jeu JAJA.',
       'Blind test : extraits audio de 30 s et informations sur les morceaux fournis par Deezer (deezer.com). Extrait audio et informations : Deezer.',
       'Polices : Bowlby One et Nunito, sous licence SIL Open Font License.',
       'Avatars : emojis du système de l’appareil.',
