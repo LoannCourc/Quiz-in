@@ -1,3 +1,4 @@
+import type { ThemeIconName } from '@shared/themeIcons';
 import type { PosterPalette, TeamId } from '@shared/types';
 import { Platform } from 'react-native';
 
@@ -88,6 +89,20 @@ export const AppColors = {
   // Groupe : couleur de chaque équipe (toujours accompagnée de son symbole), symbole en encre.
   teams: { pink: Palette.pink, cyan: Palette.cyan, gold: Palette.gold, green: Palette.green } satisfies Record<TeamId, string>,
   onTeam: Palette.ink,
+  // Icônes de thème (maquette I2) : traits blancs, ombre bleu nuit ; pastille de couleur fixe par thème
+  // dans les puces de filtre (Culture générale, ou thème inconnu, sur « ? »).
+  themeIcon: Palette.white,
+  themeIconShadow: Palette.ink,
+  themeChips: {
+    question: Palette.pink,
+    clapper: '#3a9cff',
+    globe: '#22b573',
+    columns: '#ff9a3d',
+    gamepad: Palette.pinkLight,
+    note: Palette.cyan,
+    flask: '#9b5cff',
+    ball: Palette.pink,
+  } satisfies Record<ThemeIconName, string>,
 } as const;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).
