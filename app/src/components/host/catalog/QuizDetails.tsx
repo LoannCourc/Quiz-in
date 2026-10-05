@@ -63,7 +63,7 @@ export function QuizDetails({ quiz, settings, onSettingsChange, onChoose, isCrea
     <Screen footer={footer}>
       <View style={styles.content}>
         <View style={styles.posterBox}>
-          <QuizPoster title={quiz.title} poster={quiz.poster} width={posterWidthFor(height)} />
+          <QuizPoster title={quiz.title} poster={quiz.poster} theme={quiz.theme} width={posterWidthFor(height)} />
         </View>
         <Text style={styles.title} numberOfLines={3}>
           {quiz.title}

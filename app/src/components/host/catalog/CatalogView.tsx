@@ -140,6 +140,7 @@ function SearchResults({ quizzes, posterWidth, onOpenQuiz }: SearchResultsProps)
           key={quiz.id}
           title={quiz.title}
           poster={quiz.poster}
+          theme={quiz.theme}
           width={posterWidth}
           onPress={() => onOpenQuiz(quiz.id)}
         />

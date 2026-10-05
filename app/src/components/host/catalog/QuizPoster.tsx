@@ -1,13 +1,17 @@
+import { themeIconOf } from '@shared/themeIcons';
 import type { PosterPalette } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { gradientStyle } from '@/components/ui/gradient';
+import { ThemeIcon } from '@/components/ui/ThemeIcon';
 import { AppColors, AppFonts, AppPosterGradients, AppShadows, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
 interface QuizPosterProps {
   title: string;
   poster: PosterPalette;
+  // Thème du quiz : son icône remplace le « ? » (Culture générale et thème inconnu gardent le « ? »).
+  theme: string;
   width: number;
   // Lu par les lecteurs d'écran ; par défaut, le titre.
   accessibilityLabel?: string;
@@ -28,14 +32,25 @@ function titleSizeFor(title: string, width: number): number {
   return Math.max(TITLE_MIN_SIZE, Math.min(Math.max(12, Math.round(width * 0.11)), fitting));
 }
 
-// Affiche portrait d'un quiz : dégradé propre au quiz, grand « ? » et titre en bas.
-export function QuizPoster({ title, poster, width, accessibilityLabel, onPress }: QuizPosterProps) {
+// Côté maximal de l'icône de thème sur une affiche.
+const ICON_MAX_SIZE = 64;
+
+// Affiche portrait d'un quiz : dégradé propre au quiz (champ poster), icône du thème (ou grand « ? »)
+// et titre en bas.
+export function QuizPoster({ title, poster, theme, width, accessibilityLabel, onPress }: QuizPosterProps) {
+  const icon = themeIconOf(theme);
   const height = Math.round(width * AppSizes.posterRatio);
   const markSize = Math.round(width * 0.5);
   const titleSize = titleSizeFor(title, width);
   const content = (
     <>
-      <Text style={[styles.mark, { fontSize: markSize, lineHeight: Math.round(markSize * 1.3) }]}>?</Text>
+      {icon === 'question' ? (
+        <Text style={[styles.mark, { fontSize: markSize, lineHeight: Math.round(markSize * 1.3) }]}>?</Text>
+      ) : (
+        <View style={styles.icon}>
+          <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
+        </View>
+      )}
       <Text numberOfLines={3} style={[styles.title, { fontSize: titleSize, lineHeight: Math.round(titleSize * 1.15) }]}>
         {title}
       </Text>
@@ -81,6 +96,10 @@ const styles = StyleSheet.create({
     textShadowColor: AppShadows.textColor,
     textShadowOffset: { width: 0, height: 4 },
     textShadowRadius: 0,
+  },
+  icon: {
+    alignItems: 'center',
+    marginTop: Spacing.three,
   },
   title: {
     color: AppColors.text,

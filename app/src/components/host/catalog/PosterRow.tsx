@@ -28,6 +28,7 @@ export function PosterRow({ title, quizzes, posterWidth, ranked = false, onOpenQ
             <QuizPoster
               title={quiz.title}
               poster={quiz.poster}
+              theme={quiz.theme}
               width={posterWidth}
               accessibilityLabel={strings.catalog.posterLabel(quiz.title, ranked ? quiz.featuredRank : undefined)}
               onPress={() => onOpenQuiz(quiz.id)}
