@@ -568,7 +568,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 ## 17. Son
 
-**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, y compris dans le salon, test sur la box) et lot 2 (tous les effets de la TV) codés ; lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
+**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, y compris dans le salon, test sur la box), lot 2 et lot 2 bis (tous les effets de la TV) codés ; lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
 
 **Principe.** La TV anime la soirée : musiques d'ambiance en boucle et effets sonores. Les téléphones des joueurs peuvent jouer quelques effets discrets, désactivés par défaut. Aucun envoi supplémentaire de l'hôte : la TV déduit chaque son de l'état de la partie qu'elle reçoit déjà, sauf les réglages du son.
 
@@ -592,4 +592,8 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Musiques.** Fichiers fournis par le développeur (OGG Vorbis de préférence ; AAC possible avec ses points de boucle), boucles sans coupure, moins de 1,5 Mo chacune et 5 Mo en tout. Jamais versionnées (dépôt public) : déposées dans `receiver/public/music/` avant le déploiement de la TV. Une fois déployées, elles sont téléchargeables depuis le site public de la TV : leur licence doit autoriser la diffusion sur le web. Fichier absent ou illisible : silence. En développement, une boucle de remplacement synthétisée.
 
-**Téléphones (lot 4).** Chaque joueur active les effets sur son téléphone (désactivés par défaut) : proposition envoyée, refus, vote envoyé, « Bien vu ! », « Piégé ! », avec une légère vibration (Android ; Safari ne vibre pas). Aucun son de téléphone pendant un blind test. L'hôte (app Android) : vibration seule, sans dépendance.
+**Arrivée du classement et du podium (TV).** Classement entre les questions : les lignes arrivent de la dernière à la première (à 400 ms, puis toutes les 250 ms), chacune avec une note de plus en plus aiguë. Fin de partie : le 3e, le 2e, puis le 1er arrivent sur le podium à 0,8 s d'écart, chacun avec son son, le 1er avec le tada et les applaudissements ; en Suspense, après le roulement de tambour. Calendrier commun à l'écran et aux sons (`shared/rankingTimeline.ts`).
+
+**Autres moments sonores (TV).** « GO » à la première question de la partie (à la place du son de question) ; départ d'un joueur du salon ; Contrôle : un son quand la validation commence, un « validé » quand les résultats sont publiés, suivi de la fanfare ou du « raté » ; Rejouer : retour au salon. Équipes validées : pas encore (rien n'est publié quand l'hôte valide les équipes ; voir `docs/sons.md`).
+
+**Téléphones (lot 4).** Sons **activés par défaut, très discrets**, avec un interrupteur sur l'écran de saisie du pseudo et en jeu (gardé sur le téléphone) ; sur iPhone, rien ne sort en mode silencieux. Sons : bienvenue (pseudo et avatar validés), clic d'envoi (réponse, proposition de Bluff), proposition envoyée, refus, vote envoyé, « Bien vu ! », « Piégé ! », avec une légère vibration (Android ; Safari ne vibre pas). Aucun son de téléphone pendant un blind test. L'hôte (app Android) : vibration seule, sans dépendance.

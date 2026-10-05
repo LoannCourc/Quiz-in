@@ -9,9 +9,12 @@ interface RankingListProps {
   // Points gagnés à la dernière question, affichés comme progression.
   gainedPoints?: Record<PlayerId, number>
   columns?: 1 | 2
+  // Délai CSS d'arrivée de chaque ligne (classement : de la dernière à la première, avec un son) ;
+  // sinon, les lignes glissent l'une après l'autre de haut en bas.
+  delays?: readonly string[]
 }
 
-export function RankingList({ players, gainedPoints, columns = 1 }: RankingListProps) {
+export function RankingList({ players, gainedPoints, columns = 1, delays }: RankingListProps) {
   return (
     <ol className={`ranking ranking-columns-${columns}`}>
       {players.map((player, position) => {
@@ -20,7 +23,7 @@ export function RankingList({ players, gainedPoints, columns = 1 }: RankingListP
           <li
             key={player.id}
             className="ranking-row"
-            style={{ animationDelay: `${position * 80}ms` }}>
+            style={{ animationDelay: delays?.[position] ?? `${position * 80}ms` }}>
             <span className="ranking-rank">{player.rank}</span>
             <span className="ranking-avatar">{player.avatar}</span>
             <span className="ranking-name">{player.name}</span>

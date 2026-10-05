@@ -12,14 +12,6 @@
   animation: podium-rise 500ms ease-out both;
 }
 
-.podium-position-1 {
-  animation-delay: 400ms;
-}
-
-.podium-position-2 {
-  animation-delay: 200ms;
-}
-
 .podium-avatar {
   font-size: 3.2rem;
   line-height: 1.1;

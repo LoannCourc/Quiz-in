@@ -50,7 +50,7 @@ export function useTvSound(session: PublicSession, serverOffsetMs: number): TvSo
       .map((cue) =>
         setTimeout(() => {
           keys.add(`${cue.id}@${cue.at}`)
-          soundEngine.playEffect(cue.id)
+          soundEngine.playEffect(cue.id, cue.step)
         }, Math.max(0, cue.at - now)),
       )
     return () => timers.forEach(clearTimeout)

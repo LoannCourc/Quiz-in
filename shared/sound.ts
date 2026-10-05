@@ -1,6 +1,7 @@
 import { bluffRevealTimeline } from './bluff'
 import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
+import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
 import type { PlayerId, PublicSession, SoundSettings } from './types'
 
 // Son de la TV (spec 17) : réglages de l'hôte, mélange des canaux, table des effets et sons déduits de
@@ -34,12 +35,14 @@ export const CUE_LATE_TOLERANCE_MS = 400
 export const CLOCK_TICK_COUNT = 5
 // Décompte du 3-2-1 : un bip par seconde.
 export const COUNTDOWN_BEEPS = 3
-// Classement : le glissement suit les points qui montent.
-export const RANK_SHUFFLE_DELAY_MS = 700
+// Classement : le glissement suit l'arrivée de la dernière ligne (la première place).
+export const RANK_SHUFFLE_DELAY_MS = 400
 // Bluff : le « piégé » suit de peu la carte retournée.
 export const TRAPPED_DELAY_MS = 350
-// Suspense : roulement de tambour, puis tada ; la TV retarde le podium d'autant (EndScreen).
+// Suspense : roulement de tambour ; la TV et les téléphones retardent le podium d'autant.
 export const SUSPENSE_DRUMROLL_MS = 3_000
+// Contrôle : la fanfare (ou le « raté ») suit de peu le « validé ».
+export const VALIDATED_RESULT_DELAY_MS = 500
 
 // Effets synthétisés par la TV. volume : relatif au canal des effets ; ducks : baisse la musique.
 // Table reprise telle quelle dans docs/sons.md.
@@ -63,6 +66,14 @@ export type SoundEffectId =
   | 'drumroll'
   | 'tada'
   | 'teamDraw'
+  | 'playerLeft'
+  | 'go'
+  | 'validationStart'
+  | 'validated'
+  | 'rowEnter'
+  | 'podiumThird'
+  | 'podiumSecond'
+  | 'replay'
 
 export interface SoundEffectSpec {
   volume: number
@@ -89,6 +100,14 @@ export const SOUND_EFFECTS: Record<SoundEffectId, SoundEffectSpec> = {
   drumroll: { volume: 0.8, ducks: true },
   tada: { volume: 1, ducks: true },
   teamDraw: { volume: 0.8, ducks: true },
+  playerLeft: { volume: 0.4, ducks: false },
+  go: { volume: 0.9, ducks: true },
+  validationStart: { volume: 0.5, ducks: false },
+  validated: { volume: 0.7, ducks: false },
+  rowEnter: { volume: 0.45, ducks: false },
+  podiumThird: { volume: 0.7, ducks: true },
+  podiumSecond: { volume: 0.8, ducks: true },
+  replay: { volume: 0.6, ducks: false },
 }
 
 export const SOUND_EFFECT_IDS = Object.keys(SOUND_EFFECTS) as readonly SoundEffectId[]
@@ -160,25 +179,35 @@ export function ranksChanged(session: Pick<PublicSession, 'players' | 'reveal'>)
   return Object.entries(session.players).some(([id, player]) => previousRanks[id] !== player.rank)
 }
 
-// Son de la révélation d'une question (hors Bluff) : fanfare si au moins un joueur a trouvé.
-function revealCue(session: PublicSession): SoundEffectId | null {
+
+// Résultat d'une question (hors Bluff) : fanfare si au moins un joueur a trouvé, « raté » sinon.
+function resultCue(session: PublicSession): SoundEffectId | null {
   if (session.reveal?.stats.bluffChoices) return null
   const results = Object.values(session.reveal?.results ?? {})
   return results.some((result) => result.correct) ? 'fanfare' : 'miss'
 }
 
 // Sons d'entrée dans une phase (jamais à une reprise après pause : seul le son de reprise joue).
-function phaseEntryCue(session: PublicSession): SoundEffectId | null {
-  switch (session.status) {
+function phaseEntryCue(previous: PublicSession, next: PublicSession): SoundEffectId | null {
+  switch (next.status) {
+    case 'lobby':
+      // Rejouer : retour au salon depuis la fin de partie.
+      return previous.status === 'ended' ? 'replay' : null
     case 'question':
+      // Tout début de la partie : le « GO » remplace le son de la question.
+      return previous.status === 'starting' && next.currentIndex === 0 ? 'go' : 'questionShown'
     case 'vote':
       return 'questionShown'
+    case 'validation':
+      return 'validationStart'
     case 'reveal':
-      return revealCue(session)
+      // Contrôle : « validé », puis le résultat (programmé, VALIDATED_RESULT_DELAY_MS plus tard).
+      return previous.status === 'validation' ? 'validated' : resultCue(next)
     case 'scores':
       return 'pointsUp'
     case 'ended':
-      return session.settings.suspense ? 'drumroll' : 'tada'
+      // Le podium arrive ensuite (sons programmés) ; en Suspense, après le roulement de tambour.
+      return next.settings.suspense ? 'drumroll' : null
     default:
       return null
   }
@@ -192,7 +221,10 @@ export function soundCues(previous: PublicSession | null, next: PublicSession, n
   const isRecent = nowServer - next.phaseStartedAt < CUE_MAX_AGE_MS
   const isNewPhase = previous.status !== next.status || previous.currentIndex !== next.currentIndex
 
-  if (next.status === 'lobby' && Object.keys(next.players).some((id) => !(id in previous.players))) cues.push('playerJoined')
+  if (next.status === 'lobby' && previous.status === 'lobby') {
+    if (Object.keys(next.players).some((id) => !(id in previous.players))) cues.push('playerJoined')
+    if (Object.keys(previous.players).some((id) => !(id in next.players))) cues.push('playerLeft')
+  }
   if (next.teamDrawAt !== undefined && next.teamDrawAt !== previous.teamDrawAt && nowServer - next.teamDrawAt < CUE_MAX_AGE_MS) {
     cues.push('teamDraw')
   }
@@ -200,7 +232,7 @@ export function soundCues(previous: PublicSession | null, next: PublicSession, n
   if (next.status === 'paused' && previous.status !== 'paused') cues.push('paused')
   if (previous.status === 'paused' && next.status !== 'paused' && next.status !== 'ended') cues.push('resumed')
   if (isNewPhase && previous.status !== 'paused' && isRecent) {
-    const entry = phaseEntryCue(next)
+    const entry = phaseEntryCue(previous, next)
     if (entry) cues.push(entry)
   }
 
@@ -213,10 +245,11 @@ export function soundCues(previous: PublicSession | null, next: PublicSession, n
   return cues
 }
 
-// Son programmé à une heure du serveur (ms).
+// Son programmé à une heure du serveur (ms). step : hauteur de l'arrivée d'une ligne (0 : la plus grave).
 export interface TimedCue {
   id: SoundEffectId
   at: number
+  step?: number
 }
 
 // Phase en cours : un changement de clé remet à zéro les sons programmés déjà joués.
@@ -225,7 +258,7 @@ export function phaseKey(session: PublicSession): string {
 }
 
 // Sons programmés de la phase en cours, d'après l'horloge du serveur : 3-2-1, tic et buzzer du chrono,
-// cartes du Bluff, glissement du classement, tada après le roulement de tambour du Suspense.
+// résultat après « validé », cartes du Bluff, lignes du classement, arrivée sur le podium.
 export function timedCues(session: PublicSession): TimedCue[] {
   const { status, phaseStartedAt: start, phaseEndsAt: end } = session
   switch (status) {
@@ -236,11 +269,11 @@ export function timedCues(session: PublicSession): TimedCue[] {
       if (end <= 0 || isBlindTestQuestion(session) || isEveryoneDone(session)) return []
       return [...beforeEnd(end, CLOCK_TICK_COUNT, 'clockTick').filter((cue) => cue.at >= start), { id: 'buzzer', at: end }]
     case 'reveal':
-      return bluffRevealCues(session)
+      return session.reveal?.stats.bluffChoices ? bluffRevealCues(session) : controlResultCues(session)
     case 'scores':
-      return ranksChanged(session) ? [{ id: 'rankShuffle', at: start + RANK_SHUFFLE_DELAY_MS }] : []
+      return scoresCues(session)
     case 'ended':
-      return session.settings.suspense ? [{ id: 'tada', at: start + SUSPENSE_DRUMROLL_MS }] : []
+      return podiumCues(session)
     default:
       return []
   }
@@ -249,6 +282,12 @@ export function timedCues(session: PublicSession): TimedCue[] {
 // count sons, un par seconde, la dernière seconde finissant à end.
 function beforeEnd(end: number, count: number, id: SoundEffectId): TimedCue[] {
   return Array.from({ length: count }, (_, step) => ({ id, at: end - (count - step) * 1000 }))
+}
+
+// Contrôle : le résultat suit le « validé » joué à l'entrée de la révélation.
+function controlResultCues(session: PublicSession): TimedCue[] {
+  const cue = session.settings.control ? resultCue(session) : null
+  return cue ? [{ id: cue, at: session.phaseStartedAt + VALIDATED_RESULT_DELAY_MS }] : []
 }
 
 function bluffRevealCues(session: PublicSession): TimedCue[] {
@@ -263,4 +302,33 @@ function bluffRevealCues(session: PublicSession): TimedCue[] {
   }
   cues.push({ id: 'bluffTruth', at: start + timeline.truthAtMs })
   return cues
+}
+
+// Classement : une ligne après l'autre, de la dernière à la première, de plus en plus aiguë ; puis le
+// glissement si un rang de joueur a changé (pas en Groupe : l'écran montre les équipes).
+function scoresCues(session: PublicSession): TimedCue[] {
+  const start = session.phaseStartedAt
+  const count = scoresRowCount(session)
+  const cues: TimedCue[] = Array.from({ length: count }, (_, step) => ({
+    id: 'rowEnter' as const,
+    at: start + scoresEntryMs(count - 1 - step, count),
+    step,
+  }))
+  if (!session.settings.teams && ranksChanged(session)) {
+    cues.push({ id: 'rankShuffle', at: start + scoresEntryMs(0, count) + RANK_SHUFFLE_DELAY_MS })
+  }
+  return cues
+}
+
+// Fin de partie : le 3e, le 2e, puis le 1er arrivent sur le podium (le 1er avec le tada) ; en Suspense,
+// après le roulement de tambour.
+const PODIUM_CUES: readonly SoundEffectId[] = ['tada', 'podiumSecond', 'podiumThird']
+
+function podiumCues(session: PublicSession): TimedCue[] {
+  const podiumStartMs = session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0
+  const places = podiumPlaceCount(session)
+  return Array.from({ length: places }, (_, offset) => places - 1 - offset).map((place) => ({
+    id: PODIUM_CUES[place],
+    at: session.phaseStartedAt + podiumEntryMs(place, podiumStartMs),
+  }))
 }

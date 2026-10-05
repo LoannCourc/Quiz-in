@@ -100,8 +100,9 @@ class SoundEngine {
   }
 
   // Joue un effet s'il est autorisé : effets activés, son démarré, pas trop d'effets en même temps,
-  // et pas le même effet il y a moins de EFFECT_REPEAT_MIN_MS. Vrai s'il a été joué.
-  playEffect(id: SoundEffectId): boolean {
+  // et pas le même effet il y a moins de EFFECT_REPEAT_MIN_MS. Vrai s'il a été joué. step : hauteur
+  // de l'arrivée d'une ligne du classement.
+  playEffect(id: SoundEffectId, step?: number): boolean {
     const graph = this.graph
     if (!graph || graph.context.state !== 'running' || !this.settings.effects) return false
     const nowMs = performance.now()
@@ -114,7 +115,7 @@ class SoundEngine {
     const output = context.createGain()
     output.gain.value = spec.volume
     output.connect(graph.effects)
-    const durationS = synthesize(id, context, output, context.currentTime + SCHEDULE_AHEAD_S)
+    const durationS = synthesize(id, context, output, context.currentTime + SCHEDULE_AHEAD_S, step)
     if (spec.ducks) this.duck(durationS)
     this.activeVoices += 1
     setTimeout(() => {

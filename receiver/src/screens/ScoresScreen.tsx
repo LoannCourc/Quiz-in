@@ -1,5 +1,6 @@
 import { SCORES_TOP_COUNT } from '@shared/constants'
 import { isAnnouncingNextQuestion, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow'
+import { scoresEntryMs, scoresRowCount } from '@shared/rankingTimeline'
 import type { PlayerId, PublicSession } from '@shared/types'
 
 import { GameHeader } from '../components/GameHeader'
@@ -7,6 +8,7 @@ import { Podium } from '../components/Podium'
 import { RankingList } from '../components/RankingList'
 import { TeamRankingBoard } from '../components/TeamBoards'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
+import { useEntryDelay } from '../hooks/useEntryDelay'
 import { useRemainingMs } from '../hooks/useRemainingMs'
 import { sortByRank } from '../lib/players'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
@@ -27,6 +29,10 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
   // Rafraîchi plusieurs fois par seconde : bascule vers l'annonce au bon moment.
   useRemainingMs(session.phaseEndsAt)
   const upcoming = upcomingQuestionNumber(session)
+  // Lignes de la dernière à la première, chacune avec son son (shared/rankingTimeline.ts).
+  const entryDelay = useEntryDelay(session.phaseStartedAt)
+  const rowCount = scoresRowCount(session)
+  const delays = Array.from({ length: rowCount }, (_, position) => entryDelay(scoresEntryMs(position, rowCount)))
 
   if (upcoming !== null && session.questionCount && isAnnouncingNextQuestion(session, estimateServerNow(offsetMs))) {
     return (
@@ -61,7 +67,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
             <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
           </div>
-          <TeamRankingBoard session={session} />
+          <TeamRankingBoard session={session} delays={delays} />
         </>
       ) : (
         <>
@@ -70,8 +76,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
           </div>
           <div className="scores-body">
-            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} />
-            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} />
+            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} />
+            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} />
           </div>
         </>
       )}

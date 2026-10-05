@@ -6,6 +6,7 @@ import {
   CUE_MAX_AGE_MS,
   DEFAULT_SOUND_SETTINGS,
   RANK_SHUFFLE_DELAY_MS,
+  VALIDATED_RESULT_DELAY_MS,
   SOUND_MIX,
   SUSPENSE_DRUMROLL_MS,
   TRAPPED_DELAY_MS,
@@ -18,6 +19,13 @@ import {
   soundSettingsOf,
   timedCues,
 } from '../../shared/sound'
+import {
+  PODIUM_ENTRY_STEP_MS,
+  SCORES_ENTRY_STEP_MS,
+  SCORES_FIRST_ENTRY_MS,
+  podiumEntryMs,
+  scoresEntryMs,
+} from '../../shared/rankingTimeline'
 import type { RevealedBluffChoice, Session } from '../../shared/types'
 import { HOST, OTHER, PLAYER, makeSession, player } from './engineFixtures'
 
@@ -59,12 +67,21 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(null, question, NOW)).toEqual([])
   })
 
-  test('un joueur rejoint le salon', () => {
+  test('un joueur rejoint le salon, un joueur le quitte', () => {
     const lobby = makeSession({ status: 'lobby', players: { [HOST]: player('Hôte') } })
     const joined = { ...lobby, players: { ...lobby.players, [PLAYER]: player('Léa') } }
     expect(soundCues(lobby, joined, NOW)).toEqual(['playerJoined'])
-    expect(soundCues(joined, lobby, NOW)).toEqual([])
+    expect(soundCues(joined, lobby, NOW)).toEqual(['playerLeft'])
     expect(soundCues(lobby, lobby, NOW)).toEqual([])
+    // Hors du salon : ni arrivée ni départ.
+    const question = inPhase({ status: 'question', players: lobby.players })
+    expect(soundCues(question, { ...question, players: joined.players }, NOW)).toEqual([])
+  })
+
+  test('Rejouer : retour au salon depuis la fin de partie', () => {
+    const ended = makeSession({ status: 'ended' })
+    expect(soundCues(ended, makeSession({ status: 'lobby', phaseStartedAt: NOW - 200 }), NOW)).toEqual(['replay'])
+    expect(soundCues(ended, makeSession({ status: 'lobby', phaseStartedAt: NOW - CUE_MAX_AGE_MS }), NOW)).toEqual([])
   })
 
   test('tirage des équipes : à chaque nouveau tirage récent', () => {
@@ -74,12 +91,24 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(lobby, { ...lobby, teamDrawAt: NOW - CUE_MAX_AGE_MS }, NOW)).toEqual([])
   })
 
-  test('question qui apparaît (et début du vote), seulement si la phase est récente', () => {
+  test('« GO » à la première question, puis question qui apparaît (et début du vote), si la phase est récente', () => {
     const starting = makeSession({ status: 'starting' })
-    expect(soundCues(starting, question, NOW)).toEqual(['questionShown'])
+    expect(soundCues(starting, question, NOW)).toEqual(['go'])
     expect(soundCues(question, { ...question, currentIndex: 1 }, NOW)).toEqual(['questionShown'])
+    expect(soundCues(inPhase({ status: 'scores' }), { ...question, currentIndex: 1 }, NOW)).toEqual(['questionShown'])
     expect(soundCues(question, inPhase({ status: 'vote' }), NOW)).toEqual(['questionShown'])
     expect(soundCues(starting, question, NOW + CUE_MAX_AGE_MS)).toEqual([])
+  })
+
+  test('Contrôle : début de la validation, puis « validé » à la révélation (le résultat suit, programmé)', () => {
+    const control = { ...question.settings, answerMode: 'free' as const, control: true }
+    const validation = inPhase({ status: 'validation', phaseEndsAt: 0, settings: control })
+    expect(soundCues(inPhase({ status: 'question', settings: control }), validation, NOW)).toEqual(['validationStart'])
+    const reveal = inPhase({ status: 'reveal', settings: control, phaseStartedAt: NOW, reveal: { correctAnswer: 'A', stats: {}, results: { [PLAYER]: { correct: true, points: 100 } } } })
+    expect(soundCues(validation, reveal, NOW)).toEqual(['validated'])
+    expect(timedCues(reveal)).toEqual([{ id: 'fanfare', at: NOW + VALIDATED_RESULT_DELAY_MS }])
+    // Sans Contrôle : le résultat joue tout de suite, rien n'est programmé.
+    expect(timedCues({ ...reveal, settings: question.settings })).toEqual([])
   })
 
   test('pause, puis reprise sans rejouer l’entrée de la phase', () => {
@@ -119,9 +148,9 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(inPhase({ status: 'vote' }), bluff, NOW)).toEqual([])
   })
 
-  test('classement : points qui montent ; fin : tada, ou roulement de tambour en Suspense', () => {
+  test('classement : points qui montent ; fin : rien d’emblée (podium programmé), roulement de tambour en Suspense', () => {
     expect(soundCues(question, inPhase({ status: 'scores' }), NOW)).toEqual(['pointsUp'])
-    expect(soundCues(question, inPhase({ status: 'ended', phaseEndsAt: 0 }), NOW)).toEqual(['tada'])
+    expect(soundCues(question, inPhase({ status: 'ended', phaseEndsAt: 0 }), NOW)).toEqual([])
     const suspense = inPhase({ status: 'ended', phaseEndsAt: 0, settings: { ...question.settings, suspense: true } })
     expect(soundCues(question, suspense, NOW)).toEqual(['drumroll'])
   })
@@ -171,7 +200,17 @@ describe('Sons programmés de la phase', () => {
     expect(bluffRevealTimeline(choices).flips.map((flip) => flip.index)).toEqual([0, 2])
   })
 
-  test('classement : glissement seulement si un rang a changé', () => {
+  test('classement : une ligne après l’autre, de la dernière à la première, de plus en plus aiguë', () => {
+    const scores = inPhase({ status: 'scores', phaseStartedAt: NOW })
+    // Trois joueurs : 3e, 2e puis 1er.
+    expect(timedCues(scores)).toEqual([0, 1, 2].map((step) => ({ id: 'rowEnter', at: NOW + scoresEntryMs(2 - step, 3), step })))
+    expect(scoresEntryMs(2, 3)).toBe(SCORES_FIRST_ENTRY_MS)
+    expect(scoresEntryMs(1, 3) - scoresEntryMs(2, 3)).toBe(SCORES_ENTRY_STEP_MS)
+    // Au plus un son de ligne tous les 120 ms.
+    expect(SCORES_ENTRY_STEP_MS).toBeGreaterThanOrEqual(120)
+  })
+
+  test('classement : glissement après la dernière ligne, seulement si un rang a changé (pas en Groupe)', () => {
     const players = {
       [PLAYER]: player('Léa', { score: 200, rank: 1 }),
       [OTHER]: player('Tom', { score: 150, rank: 2 }),
@@ -179,16 +218,26 @@ describe('Sons programmés de la phase', () => {
     // Avant la question : Léa 100, Tom 150 → Tom 1er, Léa 2e ; après : Léa passe devant.
     const moved = inPhase({ status: 'scores', phaseStartedAt: NOW, players, reveal: { correctAnswer: 'A', stats: {}, results: { [PLAYER]: { correct: true, points: 100 } } } })
     expect(ranksChanged(moved)).toBe(true)
-    expect(timedCues(moved)).toEqual([{ id: 'rankShuffle', at: NOW + RANK_SHUFFLE_DELAY_MS }])
+    expect(timedCues(moved).at(-1)).toEqual({ id: 'rankShuffle', at: NOW + scoresEntryMs(0, 2) + RANK_SHUFFLE_DELAY_MS })
     const same = { ...moved, reveal: { correctAnswer: 'A', stats: {}, results: { [PLAYER]: { correct: true, points: 10 } } } }
     expect(ranksChanged(same)).toBe(false)
-    expect(timedCues(same)).toEqual([])
+    expect(timedCues(same).map((cue) => cue.id)).toEqual(['rowEnter', 'rowEnter'])
+    expect(timedCues({ ...moved, settings: { ...moved.settings, teams: true } }).some((cue) => cue.id === 'rankShuffle')).toBe(false)
   })
 
-  test('Suspense : tada après le roulement de tambour', () => {
-    const ended = inPhase({ status: 'ended', phaseStartedAt: NOW, phaseEndsAt: 0, settings: { ...makeSession().settings, suspense: true } })
-    expect(timedCues(ended)).toEqual([{ id: 'tada', at: NOW + SUSPENSE_DRUMROLL_MS }])
-    expect(timedCues({ ...ended, settings: { ...ended.settings, suspense: false } })).toEqual([])
+  test('fin : le 3e, le 2e puis le 1er arrivent sur le podium (le 1er avec le tada), après le roulement en Suspense', () => {
+    const ended = inPhase({ status: 'ended', phaseStartedAt: NOW, phaseEndsAt: 0 })
+    expect(timedCues(ended)).toEqual([
+      { id: 'podiumThird', at: NOW + podiumEntryMs(2, 0) },
+      { id: 'podiumSecond', at: NOW + podiumEntryMs(1, 0) },
+      { id: 'tada', at: NOW + podiumEntryMs(0, 0) },
+    ])
+    expect(podiumEntryMs(1, 0) - podiumEntryMs(2, 0)).toBe(PODIUM_ENTRY_STEP_MS)
+    const suspense = { ...ended, settings: { ...ended.settings, suspense: true } }
+    expect(timedCues(suspense)[0]).toEqual({ id: 'podiumThird', at: NOW + SUSPENSE_DRUMROLL_MS + podiumEntryMs(2, 0) })
+    // Deux joueurs : pas de 3e marche.
+    const two = { ...ended, players: { [PLAYER]: player('Léa'), [OTHER]: player('Tom') } }
+    expect(timedCues(two).map((cue) => cue.id)).toEqual(['podiumSecond', 'tada'])
   })
 
   test('clé de phase : change avec l’état, la question et le début de phase', () => {

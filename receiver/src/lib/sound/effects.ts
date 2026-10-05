@@ -5,7 +5,8 @@ import { SUSPENSE_DRUMROLL_MS, type SoundEffectId } from '@shared/sound'
 // en secondes. Le contexte peut être hors ligne (auto-test de la galerie, rendu sans haut-parleur). Les volumes relatifs sont dans shared/sound.ts (SOUND_EFFECTS). Esprit plateau de jeu
 // télévisé : cuivres synthétiques, bips francs, quelques touches funky.
 
-type Synth = (context: BaseAudioContext, out: AudioNode, at: number) => number
+// step : variante de hauteur (arrivée des lignes du classement), ignorée par les autres effets.
+type Synth = (context: BaseAudioContext, out: AudioNode, at: number, step?: number) => number
 
 // Notes utilisées (Hz).
 const E2 = 82.41
@@ -272,8 +273,64 @@ const SYNTHS: Record<SoundEffectId, Synth> = {
     tone(context, out, { type: 'sine', from: E2 * 8.9, at: time, duration: 0.7, peak: 0.1, attack: 0.01 })
     return time - at + 1.6
   },
+  // « Bloop » descendant, plus discret que l'arrivée : quelqu'un quitte le salon.
+  playerLeft: (context, out, at) => {
+    tone(context, out, { type: 'triangle', from: G5, to: G5 * 0.94, at, duration: 0.1, peak: 0.4 })
+    tone(context, out, { type: 'triangle', from: C5, to: C5 * 0.94, at: at + 0.08, duration: 0.16, peak: 0.4 })
+    return 0.24
+  },
+  // « GO » : bip une octave au-dessus du 3-2-1, plus long, sur un accord de cuivres et un coup grave.
+  go: (context, out, at) => {
+    tone(context, out, { type: 'sine', from: 160, to: 45, at, duration: 0.25, peak: 0.5, attack: 0.004 })
+    tone(context, out, { type: 'square', from: A4 * 4, at, duration: 0.45, peak: 0.12 })
+    tone(context, out, { type: 'sine', from: A4 * 4, at, duration: 0.5, peak: 0.25 })
+    brass(context, out, [C5, E5, G5, C6], at + 0.02, 0.55, 0.22)
+    return 0.6
+  },
+  // L'hôte vérifie les réponses : trois petits bips montants, comme un scanner.
+  validationStart: (context, out, at) => {
+    const notes = [E5, G5, C6]
+    for (const [index, frequency] of notes.entries()) {
+      tone(context, out, { type: 'sine', from: frequency, at: at + index * 0.12, duration: 0.09, peak: 0.45 })
+      tone(context, out, { type: 'sine', from: frequency * 1.5, at: at + index * 0.12 + 0.04, duration: 0.07, peak: 0.2 })
+    }
+    return 0.45
+  },
+  // « Validé » : coup de tampon sourd, puis tintement clair.
+  validated: (context, out, at) => {
+    tone(context, out, { type: 'sine', from: 130, to: 55, at, duration: 0.14, peak: 0.8, attack: 0.003 })
+    noise(context, out, { at, duration: 0.06, peak: 0.4, filter: 'lowpass', frequency: 900 })
+    tone(context, out, { type: 'sine', from: E6, at: at + 0.08, duration: 0.35, peak: 0.35 })
+    return 0.43
+  },
+  // Une ligne du classement entre : note pincée, de plus en plus aiguë (step : gamme majeure depuis C5).
+  rowEnter: (context, out, at, step = 0) => {
+    const frequency = C5 * 2 ** (MAJOR_SCALE[step % MAJOR_SCALE.length] / 12 + Math.floor(step / MAJOR_SCALE.length))
+    tone(context, out, { type: 'triangle', from: frequency, at, duration: 0.18, peak: 0.6 })
+    tone(context, out, { type: 'sine', from: frequency * 2, at, duration: 0.1, peak: 0.2 })
+    return 0.18
+  },
+  // 3e sur le podium : accord court et grave.
+  podiumThird: (context, out, at) => {
+    brass(context, out, [E4, G4, C5], at, 0.35, 0.3)
+    return 0.35
+  },
+  // 2e sur le podium : accord plus haut, un peu plus long.
+  podiumSecond: (context, out, at) => {
+    brass(context, out, [G4, C5, E5], at, 0.45, 0.3)
+    return 0.45
+  },
+  // Rejouer : souffle qui monte, puis petit « ping ».
+  replay: (context, out, at) => {
+    whoosh(context, out, at, 0.4, 0.4)
+    tone(context, out, { type: 'sine', from: C6 * 2, at: at + 0.36, duration: 0.3, peak: 0.4 })
+    return 0.66
+  },
 }
 
-export function synthesize(id: SoundEffectId, context: BaseAudioContext, out: AudioNode, at: number): number {
-  return SYNTHS[id](context, out, at)
+// Degrés de la gamme majeure, en demi-tons (arrivée des lignes du classement).
+const MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11]
+
+export function synthesize(id: SoundEffectId, context: BaseAudioContext, out: AudioNode, at: number, step?: number): number {
+  return SYNTHS[id](context, out, at, step)
 }

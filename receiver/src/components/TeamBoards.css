@@ -44,6 +44,7 @@
 }
 
 .team-row {
+  animation: team-enter 450ms ease-out both;
   display: grid;
   grid-template-columns: 2.4rem auto 1fr 15rem;
   align-items: center;
@@ -172,6 +173,7 @@
 }
 
 .team-podium-step {
+  animation: team-enter 500ms ease-out both;
   display: grid;
   justify-items: center;
   row-gap: 0.4rem;
@@ -247,4 +249,16 @@
   width: 2rem;
   height: 2rem;
   font-size: 1.1rem;
+}
+
+/* Arrivée des lignes et des marches, l'une après l'autre (délais calés sur les sons). */
+@keyframes team-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

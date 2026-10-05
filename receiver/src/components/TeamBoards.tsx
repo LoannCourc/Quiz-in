@@ -45,14 +45,15 @@ function BestPlayer({ player }: { player: Player | undefined }) {
 
 // Classement des équipes entre deux questions (G3) : rang, pastille, barre proportionnelle au score,
 // moyenne, meilleur joueur de l'équipe.
-export function TeamRankingBoard({ session }: { session: PublicSession }) {
+// delays : délai CSS d'arrivée de chaque ligne, par position (0 : première équipe).
+export function TeamRankingBoard({ session, delays }: { session: PublicSession; delays?: readonly string[] }) {
   const rows = teamRanking(session)
   const maxScore = Math.max(1, ...rows.map((row) => row.score))
   return (
     <div className="team-board">
       <ol className="team-rows">
-        {rows.map((row) => (
-          <li key={row.team} className={`team-row team-${row.team}`}>
+        {rows.map((row, position) => (
+          <li key={row.team} className={`team-row team-${row.team}`} style={{ animationDelay: delays?.[position] }}>
             <span className={row.rank === 1 ? 'team-row-rank is-first' : 'team-row-rank'}>{row.rank}</span>
             <TeamTile team={row.team} />
             <span className="team-row-main">
@@ -80,7 +81,8 @@ const PODIUM_ORDER = [1, 0, 2]
 const BEST_PLAYERS_COUNT = 3
 
 // Fin de partie (G3) : podium des équipes, puis les meilleurs joueurs de la partie.
-export function TeamPodium({ session }: { session: PublicSession }) {
+// delays : délai CSS d'arrivée de chaque marche, par place (0 : première équipe).
+export function TeamPodium({ session, delays }: { session: PublicSession; delays?: readonly string[] }) {
   const rows = teamRanking(session)
   const best = sortByRank(session.players).slice(0, BEST_PLAYERS_COUNT)
   return (
@@ -90,7 +92,7 @@ export function TeamPodium({ session }: { session: PublicSession }) {
           const row: TeamRow | undefined = rows[position]
           if (!row) return <div key={position} />
           return (
-            <div key={row.team} className={`team-podium-step team-${row.team} place-${position + 1}`}>
+            <div key={row.team} className={`team-podium-step team-${row.team} place-${position + 1}`} style={{ animationDelay: delays?.[position] }}>
               <TeamTile team={row.team} />
               <span className="team-podium-name">{strings.teams.names[row.team]}</span>
               <span className="team-podium-score">{strings.teams.averagePoints(Math.round(row.score))}</span>
