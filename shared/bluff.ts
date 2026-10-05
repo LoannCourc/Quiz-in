@@ -1,5 +1,5 @@
 import { containsForbiddenWord } from './answerFilter'
-import { matchAnswer, normalizeAnswer } from './answerMatching'
+import { isAcceptedLevel, matchAnswer, normalizeAnswer } from './answerMatching'
 import {
   ALL_ANSWERED_DELAY_S,
   BLUFF_MAX_ATTEMPTS,
@@ -38,11 +38,13 @@ export function cleanBluffText(text: string): string {
   return text.trim().replace(/\s+/g, ' ')
 }
 
-// Verdict de l'hôte sur une proposition. truth : exacte, à une faute près ou proche de la vraie
-// réponse (mêmes niveaux que la Réponse libre) ; le joueur apprend alors qu'il l'a trouvée.
+// Verdict de l'hôte sur une proposition. truth : la vraie réponse (ou une autre écriture acceptée),
+// exacte ou à une faute de frappe près (majuscules, accents et ponctuation ignorés) ; le joueur apprend
+// alors qu'il l'a trouvée. Le niveau « proche » de la Réponse libre ne compte pas : un mot de la vraie
+// réponse seul (« Game » pour « The Landlord's Game ») reste une proposition valable.
 export function checkBluff(text: string, question: BluffQuestion): BluffVerdict {
   if (normalizeAnswer(text) === '') return 'empty'
-  if (matchAnswer(text, [question.answer, ...question.acceptedAnswers]) !== 'wrong') return 'truth'
+  if (isAcceptedLevel(matchAnswer(text, [question.answer, ...question.acceptedAnswers]))) return 'truth'
   return containsForbiddenWord(text) ? 'forbidden' : 'ok'
 }
 

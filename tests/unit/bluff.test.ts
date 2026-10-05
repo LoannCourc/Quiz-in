@@ -87,11 +87,17 @@ function kinds(choices: BluffChoice[]): string[] {
 }
 
 describe('Bluff : vérification des propositions', () => {
-  test('trop proche de la vraie réponse (exacte, une faute, proche) : refusée comme « vraie réponse »', () => {
-    expect(checkBluff("the landlord's game", QUESTION)).toBe('truth')
+  test('vraie réponse exacte ou à une faute près (casse, accents, ponctuation ignorés) : refusée', () => {
+    expect(checkBluff("THE LANDLORD'S GAME !", QUESTION)).toBe('truth')
     expect(checkBluff('Landlord Gaem', QUESTION)).toBe('truth')
-    expect(checkBluff('Landlords', QUESTION)).toBe('truth')
+    expect(checkBluff('landlords game', QUESTION)).toBe('truth')
     expect(checkBluff('Le Jeu du Propriétaire', QUESTION)).toBe('ok')
+  })
+
+  test('un seul mot de la vraie réponse, ou une réponse seulement proche : acceptée', () => {
+    expect(checkBluff('Game', QUESTION)).toBe('ok')
+    expect(checkBluff('Landlords', QUESTION)).toBe('ok')
+    expect(checkBluff('The Landlady Game', QUESTION)).toBe('ok')
   })
 
   test('mot interdit refusé, proposition vide refusée', () => {
@@ -188,7 +194,7 @@ describe('Bluff : choix du vote', () => {
     const withChecks = apply({ ...session, players: players(3) }, bluffChecksUpdate({ ...session, players: players(3) }, QUESTION))
     const unchecked = apply(withChecks, { 'bluffs/0/p3': { text: 'Arrivée trop tard', submittedAt: NOW + 60 } })
     const { choices } = buildVoteChoices(QUESTION, { ...unchecked, players: players(4) })
-    expect(choices.filter((choice) => choice.kind === 'bluff').map((choice) => choice.text)).toEqual(['Monopolis', 'Pas encore vue'])
+    expect(choices.filter((choice) => choice.kind === 'bluff').map((choice) => choice.text).sort()).toEqual(['Monopolis', 'Pas encore vue'])
   })
 })
 

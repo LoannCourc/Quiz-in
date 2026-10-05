@@ -502,11 +502,11 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Déroulé.** QUESTION (écriture, 45 s) → VOTE (20 s) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture et le vote gardent leur chrono.
 
-**Joueurs.** 2 au minimum. Pas de limite propre au Bluff : la limite générale (`MAX_PLAYERS`, 20) s'applique. La TV adapte la grille des choix à leur nombre (plus de colonnes et un texte plus petit, toujours lisible en 720p) ; sur le téléphone, la liste défile.
+**Joueurs.** 2 au minimum. Bluff : pas de limite propre, limite générale de l'app (`MAX_PLAYERS`, 20). La TV adapte la grille des choix à leur nombre (plus de colonnes et un texte plus petit, toujours lisible en 720p) ; sur le téléphone, la liste défile.
 
 **Écriture.**
 - 40 caractères au plus. L'hôte vérifie chaque proposition (le téléphone du joueur ne connaît jamais la vraie réponse) :
-  - **trop proche de la vraie réponse** (exacte, à une faute près, ou proche, mêmes niveaux que la Réponse libre, section 6.3, en comptant les autres écritures acceptées) : refusée avec « Tu as trouvé la vraie réponse ! Invente-en une fausse » ;
+  - **la vraie réponse** (ou une autre écriture acceptée), exacte ou à une faute de frappe près (mêmes tolérances que la Réponse libre, section 6.3 ; majuscules, accents et ponctuation ignorés) : refusée avec « Tu as trouvé la vraie réponse ! Invente-en une fausse ». Le niveau « proche » ne compte pas : un mot de la vraie réponse seul, ou une réponse seulement ressemblante, est accepté ;
   - **mot interdit** (même liste qu'en Réponse libre) : refusée, jamais masquée ;
   - **vide** (que des espaces ou de la ponctuation) : refusée.
 - **3 essais au plus** : après trois refus, le joueur n'a pas de proposition pour cette question. Le message de refus indique les essais restants.
@@ -535,8 +535,8 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - **Un joueur n'écrit rien** (ou épuise ses essais) : pas de proposition à lui ; il vote quand même ; les leurres complètent.
 - **Personne n'écrit** : vraie réponse et tous les leurres (au moins 3 choix).
 - **Tous écrivent la même chose** : un seul choix avec tous comme auteurs, qu'aucun ne peut voter ; vraie réponse et leurres (au moins 3 choix votables chacun).
-- **Beaucoup de joueurs** (20, ou 30 si la limite générale est relevée un jour) : plus de leurre ; autant de choix que de propositions distinctes, plus la vraie réponse ; révélation plus longue (2 s par fausse proposition).
+- **Beaucoup de joueurs** (jusqu'à 20, la limite générale) : plus de leurre ; autant de choix que de propositions distinctes, plus la vraie réponse ; révélation plus longue (2 s par fausse proposition).
 - **Déconnexion pendant l'écriture** : une proposition acceptée reste en jeu et rapporte à son auteur. **Pendant le vote** : pas de vote, mais les points de piège restent.
-- **Proposition proche d'une autre écriture de la vraie réponse** (« Landlords Game ») : refusée comme la vraie réponse. Un mot de la vraie réponse seul (« Game ») est aussi refusé (niveau « proche »).
+- **Autre écriture de la vraie réponse** (« Landlords Game ») : refusée comme la vraie réponse. **Un mot de la vraie réponse seul** (« Game ») : accepté.
 
 **Sécurité.** La vraie réponse n'est jamais publiée désignée avant la révélation : pendant le vote, elle n'est qu'un texte parmi d'autres, à une place tirée au hasard. Propositions, verdicts, auteurs, votes et points sont réservés à l'hôte, sauf ce qui concerne le joueur lui-même (section 7). Même limite qu'ailleurs : le catalogue `questions/` reste lisible par tout utilisateur connecté.
