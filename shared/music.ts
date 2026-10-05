@@ -1,6 +1,6 @@
 import type { MusicTrackId } from './musicTracks'
 import { SUSPENSE_DRUMROLL_MS } from './sound'
-import type { AnswerMode, PublicSession } from './types'
+import type { AnswerMode, GameStatus, PublicSession } from './types'
 
 // Musique de la TV selon l'état de la partie (spec 17). Logique pure : la TV ne fait qu'appliquer le plan.
 
@@ -9,8 +9,10 @@ export const MUSIC_CROSSFADE_MS = 800
 export const MUSIC_FAST_STOP_MS = 300
 // Jingle interrompu (Rejouer pendant le jingle de fin) : fondu de sortie, la nouvelle musique démarre à temps.
 export const MUSIC_JINGLE_FADE_OUT_MS = 600
-// Pause : la musique continue, baissée à ce niveau.
-export const MUSIC_PAUSE_LEVEL = 0.3
+// Pause : la musique en cours s'arrête en MUSIC_PAUSE_FADE_MS (sa position est gardée) et la musique
+// d'attente joue ; à la reprise, fondu enchaîné de MUSIC_RESUME_CROSSFADE_MS, là où elle s'était arrêtée.
+export const MUSIC_PAUSE_FADE_MS = 300
+export const MUSIC_RESUME_CROSSFADE_MS = 600
 // Jingle dont le début est passé de plus de JINGLE_LATE_MS (TV ouverte en retard) : pas joué.
 export const JINGLE_LATE_MS = 1_500
 
@@ -24,18 +26,27 @@ export interface MusicPlan {
   // Silence imposé par l'extrait d'un blind test : arrêt rapide plutôt qu'un fondu enchaîné.
   fastStop: boolean
   isPaused: boolean
+  // Pause : musique de la phase interrompue, reprise là où elle s'était arrêtée (null : silence, blind test).
+  heldTrack?: MusicTrackId | null
 }
 
 // isBlindTestGame : le quiz de la partie est un blind test (l'extrait de chaque question joue seul).
+// Pause : la musique d'attente joue, la musique de la phase est retenue pour la reprise (une pause
+// pendant la musique d'attente ne change rien).
 export function musicPlan(session: PublicSession, isBlindTestGame: boolean): MusicPlan {
-  const isPaused = session.status === 'paused'
-  const status = isPaused ? (session.pausedFrom ?? 'question') : session.status
+  if (session.status !== 'paused') return phaseMusic(session, session.status, isBlindTestGame)
+  const held = phaseMusic(session, session.pausedFrom ?? 'question', isBlindTestGame)
+  if (held.track === 'waiting') return { track: 'waiting', fastStop: false, isPaused: true }
+  return { track: 'waiting', heldTrack: held.track, fastStop: false, isPaused: true }
+}
+
+function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame: boolean): MusicPlan {
   const isBlindTest = isBlindTestGame || session.currentQuestion?.audio !== undefined
   const mode = session.settings.answerMode
-  const play = (track: MusicTrackId): MusicPlan => ({ track, fastStop: false, isPaused })
-  const silence: MusicPlan = { track: null, fastStop: isBlindTest, isPaused }
+  const play = (track: MusicTrackId): MusicPlan => ({ track, fastStop: false, isPaused: false })
+  const silence: MusicPlan = { track: null, fastStop: isBlindTest, isPaused: false }
   // Blind test : la musique se tait avant la question suivante (fin du 3-2-1 ou du classement).
-  const stopBy = isBlindTest && !isPaused && session.phaseEndsAt > 0 ? session.phaseEndsAt : undefined
+  const stopBy = isBlindTest && session.status !== 'paused' && session.phaseEndsAt > 0 ? session.phaseEndsAt : undefined
 
   switch (status) {
     case 'lobby':
@@ -64,7 +75,7 @@ export function musicPlan(session: PublicSession, isBlindTestGame: boolean): Mus
       // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium.
       return { ...play('final'), startAt: session.phaseStartedAt + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0) }
     default:
-      return { track: null, fastStop: false, isPaused }
+      return { track: null, fastStop: false, isPaused: false }
   }
 }
 

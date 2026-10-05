@@ -63,11 +63,16 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('scores', 'choice', { phaseEndsAt: 0 }), true).stopBy).toBeUndefined()
   })
 
-  test('pause : même musique que la phase interrompue, baissée', () => {
+  test('pause : musique d’attente, la musique de la phase est retenue pour la reprise', () => {
     const paused = inPhase('paused', 'choice', { pausedFrom: 'question', remainingMs: 5_000 })
-    expect(musicPlan(paused, false)).toMatchObject({ track: 'game', isPaused: true })
+    expect(musicPlan(paused, false)).toEqual({ track: 'waiting', heldTrack: 'game', fastStop: false, isPaused: true })
     const bluff = inPhase('paused', 'bluff', { pausedFrom: 'vote', remainingMs: 5_000 })
-    expect(musicPlan(bluff, false)).toMatchObject({ track: 'vote', isPaused: true })
+    expect(musicPlan(bluff, false)).toMatchObject({ track: 'waiting', heldTrack: 'vote' })
+    // Blind test : rien à reprendre (l'extrait reprend de lui-même), mais la musique d'attente joue aussi.
+    const blindTest = inPhase('paused', 'choice', { pausedFrom: 'question', currentQuestion: BLIND_TEST_QUESTION })
+    expect(musicPlan(blindTest, false)).toMatchObject({ track: 'waiting', heldTrack: null })
+    // Pause pendant la musique d'attente (3-2-1) : rien ne change, ni arrêt avant l'extrait pendant la pause.
+    expect(musicPlan(inPhase('paused', 'choice', { pausedFrom: 'starting' }), true)).toEqual({ track: 'waiting', fastStop: false, isPaused: true })
   })
 
   test('pistes à préparer selon le mode, dans l’ordre d’utilisation', () => {

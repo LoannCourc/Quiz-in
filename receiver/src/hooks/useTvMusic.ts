@@ -13,7 +13,7 @@ export function useTvMusic(session: PublicSession, isBlindTestGame: boolean, ser
   const isMusicOn = soundSettingsOf(session).music
   const { answerMode } = session.settings
   const plan = musicPlan(session, isBlindTestGame)
-  const { track, startAt, stopBy, fastStop, isPaused } = plan
+  const { track, startAt, stopBy, fastStop, isPaused, heldTrack } = plan
 
   useEffect(() => () => musicPlayer.reset(), [])
 
@@ -26,6 +26,6 @@ export function useTvMusic(session: PublicSession, isBlindTestGame: boolean, ser
   }, [answerMode, isBlindTestGame, isMusicOn])
 
   useEffect(() => {
-    musicPlayer.apply({ track, startAt, stopBy, fastStop, isPaused }, estimateServerNow(serverOffsetMs))
-  }, [track, startAt, stopBy, fastStop, isPaused, isMusicOn, serverOffsetMs])
+    musicPlayer.apply({ track, startAt, stopBy, fastStop, isPaused, heldTrack }, estimateServerNow(serverOffsetMs))
+  }, [track, startAt, stopBy, fastStop, isPaused, heldTrack, isMusicOn, serverOffsetMs])
 }

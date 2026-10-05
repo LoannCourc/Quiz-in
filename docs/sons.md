@@ -64,7 +64,7 @@ Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/pu
 | Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | en entier, après le roulement en Suspense ; puis silence |
 | Question et révélation d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1 ou du classement) |
 
-Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : 30 %.
+Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : la musique en cours s'arrête (fondu de 300 ms, position gardée) et `Waiting_sound.ogg` joue en boucle ; à la reprise, fondu enchaîné de 600 ms, la musique repart où elle s'était arrêtée (aussi en blind test, où rien n'est à reprendre).
 
 **Mémoire de la TV.** Pistes décodées en mono à 32 kHz (`MUSIC_SAMPLE_RATE`), 32 Mo au plus en mémoire (`MUSIC_MEMORY_BUDGET_BYTES`), les moins récemment utilisées libérées au-delà ; fichiers compressés gardés (4,7 Mo). Mesures (Chrome du PC) : `Salon_music` 16,7 Mo décodée (au lieu d'environ 50 Mo en stéréo 48 kHz) ; partie de choix multiples environ 23 Mo, partie de Bluff environ 26 Mo. Pendant le décodage de `Salon_music`, le navigateur occupe brièvement environ 33 Mo de plus (stéréo avant le passage en mono).
 

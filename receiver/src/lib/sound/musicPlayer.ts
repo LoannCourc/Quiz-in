@@ -3,7 +3,8 @@ import {
   MUSIC_CROSSFADE_MS,
   MUSIC_FAST_STOP_MS,
   MUSIC_JINGLE_FADE_OUT_MS,
-  MUSIC_PAUSE_LEVEL,
+  MUSIC_PAUSE_FADE_MS,
+  MUSIC_RESUME_CROSSFADE_MS,
   type MusicPlan,
 } from '@shared/music'
 import { MUSIC_DIRECTORY, MUSIC_TRACKS, type MusicTrackId } from '@shared/musicTracks'
@@ -42,9 +43,13 @@ export async function decodeMusic(data: ArrayBuffer): Promise<AudioBuffer> {
 
 interface Playing {
   key: string
+  track: MusicTrackId
   source: AudioBufferSourceNode
   gain: GainNode
   isJingle: boolean
+  // Heure du contexte à laquelle la lecture a commencé, et position de départ (s) : position actuelle.
+  startedAt: number
+  offsetS: number
 }
 
 function musicUrl(track: MusicTrackId): string {
@@ -62,8 +67,10 @@ class MusicPlayer {
   // Fichiers absents ou illisibles : jamais redemandés au serveur.
   private readonly missing = new Set<MusicTrackId>()
   private placeholderBuffer: AudioBuffer | null = null
-  private output: { context: AudioContext; pause: GainNode } | null = null
+  private output: { context: AudioContext; input: AudioNode } | null = null
   private current: Playing | null = null
+  // Pause : musique de la phase retenue et sa position, reprise au même endroit.
+  private held: { track: MusicTrackId; offsetS: number } | null = null
   // Clé du dernier plan appliqué : le même plan (mise à jour de la session) ne relance rien.
   private planKey: string | null = null
   // Numéro du dernier ordre : un démarrage dépassé pendant son décodage s'abandonne.
@@ -85,6 +92,7 @@ class MusicPlayer {
     this.scheduleStopBy(undefined, 0)
     this.stop(MUSIC_FAST_STOP_MS)
     this.planKey = null
+    this.held = null
   }
 
   setEnabled(isEnabled: boolean): void {
@@ -94,29 +102,62 @@ class MusicPlayer {
       this.generation += 1
       this.stop(MUSIC_FAST_STOP_MS)
       this.planKey = null
+      this.held = null
     }
   }
 
   // Applique le plan de la phase (shared/music.ts) : fondu enchaîné vers la nouvelle piste, jingle à son
-  // heure, arrêt avant l'extrait d'un blind test, niveau de pause.
+  // heure, arrêt avant l'extrait d'un blind test. Pause : la musique en cours est retenue (sa position est
+  // gardée) et la musique d'attente joue ; à la reprise, elle repart là où elle s'était arrêtée.
   apply(plan: MusicPlan, nowServer: number): void {
-    const output = this.ensureOutput()
-    if (!output || !this.isEnabled) return
-    const pauseLevel = plan.isPaused ? MUSIC_PAUSE_LEVEL : 1
-    output.pause.gain.setTargetAtTime(pauseLevel, output.context.currentTime, 0.1)
+    if (!this.ensureOutput() || !this.isEnabled) return
     this.scheduleStopBy(plan.stopBy, nowServer)
 
-    const key = plan.track === null ? 'silence' : `${plan.track}@${plan.startAt ?? ''}`
+    const key = plan.isPaused ? 'pause' : plan.track === null ? 'silence' : `${plan.track}@${plan.startAt ?? ''}`
     if (key === this.planKey) return
+    // La boucle demandée joue déjà (pause pendant la musique d'attente, ou reprise vers elle) : rien ne change.
+    const playing = this.current
+    if (playing && !playing.isJingle && playing.track === plan.track && !plan.heldTrack) {
+      this.planKey = key
+      if (!plan.isPaused) this.held = null
+      return
+    }
+    const wasPaused = this.planKey === 'pause'
     this.planKey = key
     // Un démarrage encore en cours de décodage (phase précédente) est abandonné.
     const generation = ++this.generation
-    this.stop(plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isJingle ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS)
+    const transition = this.transition(plan, wasPaused)
+    this.stop(transition.fadeOutMs)
     if (plan.track === null) return
     const delayMs = plan.startAt === undefined ? 0 : plan.startAt - nowServer
     // Jingle déjà bien entamé (TV ouverte en retard) : pas joué.
     if (delayMs < -JINGLE_LATE_MS) return
-    void this.start(plan.track, key, Math.max(0, delayMs), generation)
+    void this.start(plan.track, key, Math.max(0, delayMs), generation, transition.fadeInMs, transition.offsetS)
+  }
+
+  // Durées des fondus et position de départ du passage vers ce plan. Entrée en pause : la musique en
+  // cours est retenue si c'est celle de la phase. Sortie de pause : la musique retenue reprend à sa position.
+  private transition(plan: MusicPlan, wasPaused: boolean): { fadeOutMs: number; fadeInMs: number; offsetS: number } {
+    if (plan.isPaused) {
+      const playing = this.current
+      this.held = playing && !playing.isJingle && playing.track === plan.heldTrack ? { track: playing.track, offsetS: this.positionOf(playing) } : null
+      return { fadeOutMs: MUSIC_PAUSE_FADE_MS, fadeInMs: MUSIC_PAUSE_FADE_MS, offsetS: 0 }
+    }
+    if (wasPaused) {
+      const offsetS = this.held && this.held.track === plan.track ? this.held.offsetS : 0
+      this.held = null
+      return { fadeOutMs: plan.fastStop ? MUSIC_FAST_STOP_MS : MUSIC_RESUME_CROSSFADE_MS, fadeInMs: MUSIC_RESUME_CROSSFADE_MS, offsetS }
+    }
+    const fadeOutMs = plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isJingle ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS
+    return { fadeOutMs, fadeInMs: MUSIC_CROSSFADE_MS, offsetS: 0 }
+  }
+
+  // Position actuelle d'une boucle (s), pour la reprendre au même endroit.
+  private positionOf(playing: Playing): number {
+    const elapsedS = this.output ? this.output.context.currentTime - playing.startedAt : 0
+    const duration = playing.source.buffer?.duration ?? 0
+    if (elapsedS <= 0 || duration <= 0) return playing.offsetS
+    return (playing.offsetS + elapsedS) % duration
   }
 
   // Galerie de développement : écouter une piste seule.
@@ -124,18 +165,15 @@ class MusicPlayer {
     this.apply({ track, startAt: track && !MUSIC_TRACKS[track].loop ? Date.now() : undefined, fastStop: false, isPaused: false }, Date.now())
   }
 
-  private ensureOutput(): { context: AudioContext; pause: GainNode } | null {
+  private ensureOutput(): { context: AudioContext; input: AudioNode } | null {
     if (this.output) return this.output
     soundEngine.start()
-    const music = soundEngine.musicInput
-    if (!music) return null
-    const pause = music.context.createGain()
-    pause.connect(music.input)
-    this.output = { context: music.context, pause }
+    this.output = soundEngine.musicInput
     return this.output
   }
 
-  private async start(track: MusicTrackId, key: string, delayMs: number, generation: number): Promise<void> {
+  // fadeInMs : fondu d'entrée d'une boucle (un jingle démarre presque net) ; offsetS : position de départ.
+  private async start(track: MusicTrackId, key: string, delayMs: number, generation: number, fadeInMs: number, offsetS: number): Promise<void> {
     const buffer = await this.buffer(track)
     const output = this.output
     if (!buffer || !output || generation !== this.generation) return
@@ -146,13 +184,13 @@ class MusicPlayer {
     source.loop = spec.loop
     const gain = context.createGain()
     const startAt = context.currentTime + delayMs / 1000
-    const fadeS = spec.loop ? MUSIC_CROSSFADE_MS / 1000 : JINGLE_FADE_IN_S
+    const fadeS = spec.loop ? fadeInMs / 1000 : JINGLE_FADE_IN_S
     gain.gain.setValueAtTime(0, startAt)
     gain.gain.linearRampToValueAtTime(spec.volume, startAt + fadeS)
     source.connect(gain)
-    gain.connect(output.pause)
-    source.start(startAt)
-    const playing: Playing = { key, source, gain, isJingle: !spec.loop }
+    gain.connect(output.input)
+    source.start(startAt, offsetS)
+    const playing: Playing = { key, track, source, gain, isJingle: !spec.loop, startedAt: startAt, offsetS }
     source.onended = () => {
       gain.disconnect()
       if (this.current === playing) this.current = null
