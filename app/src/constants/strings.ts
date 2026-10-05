@@ -348,6 +348,13 @@ export const strings = {
     volumeLabel: 'Volume',
     volumeA11y: 'Volume du son de la TV',
     volumeValue: (volume: number) => `${volume} sur 100`,
+    quickTitle: 'Son',
+    // Ligne du salon : « Musique, effets · 60 », « Effets · 60 », « Son coupé ».
+    summary: (music: boolean, effects: boolean, volume: number) => {
+      if (!music && !effects) return 'Son coupé';
+      const parts = music && effects ? 'Musique, effets' : music ? 'Musique seule' : 'Effets seuls';
+      return `${parts} · ${volume}`;
+    },
     publishFailed: 'Réglage du son non transmis à la TV. Vérifie la connexion.',
   },
   hostControls: {

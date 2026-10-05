@@ -9,11 +9,13 @@ import {
   teamModeUpdate,
   type TeamRefusal,
 } from '@shared/teams';
-import type { Session } from '@shared/types';
+import { soundSettingsOf } from '@shared/sound';
+import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { OptionToggle } from '@/components/host/OptionToggle';
+import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
 import { JoinForm } from '@/components/player/JoinForm';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
@@ -25,6 +27,7 @@ import type { CastGame } from '@/hooks/useCastGame';
 import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
+import { saveSoundPreferences } from '@/lib/soundPreferences';
 
 import { CollapsedCodeBar } from './CollapsedCodeBar';
 import { HostJoinCard } from './HostJoinCard';
@@ -92,18 +95,25 @@ export function HostLobby(props: HostLobbyProps) {
   const teamRefusal = lobbyTeamRefusal(session);
   const canLaunch = hasEnoughPlayers && teamRefusal === null && questions.kind === 'ready' && audio.status !== 'loading' && !isLaunching;
 
-  // Actions du salon (équipes) : même chemin que les contrôles de l'hôte (relire, calculer, un update).
-  function teamAction(build: LobbyUpdate) {
+  // Actions du salon (équipes, son de la TV) : même chemin que les contrôles de l'hôte (relire, calculer,
+  // un update).
+  function lobbyAction(build: LobbyUpdate) {
     if (applyUpdate) {
       applyUpdate(build);
       return;
     }
     applyHostAction(code, build, Date.now() + serverOffsetMs).catch((error: unknown) => {
-      console.error('[teams] Action impossible', error);
+      console.error('[lobby] Action impossible', error);
       setLaunchError(strings.hostControls.actionFailed);
     });
   }
   const connectedCount = connectedPlayerIds(players).length;
+
+  // Son de la TV : mémorisé sur le téléphone et publié dans la partie (la TV l'applique aussitôt).
+  function changeSound(sound: SoundSettings) {
+    void saveSoundPreferences(sound);
+    lobbyAction(() => ({ sound }));
+  }
 
   // Lancement : un seul update() (LOBBY → STARTING) ; un refus affiche sa raison.
   async function launch() {
@@ -147,10 +157,10 @@ export function HostLobby(props: HostLobbyProps) {
     return (
       <TeamsPage
         session={session}
-        onMode={(mode) => teamAction((current) => teamModeUpdate(current, mode))}
-        onCount={(count) => teamAction((current) => teamCountUpdate(current, count))}
-        onAssign={(playerId, team) => teamAction((current) => assignTeamUpdate(current, playerId, team))}
-        onDraw={() => teamAction(teamDrawUpdate)}
+        onMode={(mode) => lobbyAction((current) => teamModeUpdate(current, mode))}
+        onCount={(count) => lobbyAction((current) => teamCountUpdate(current, count))}
+        onAssign={(playerId, team) => lobbyAction((current) => assignTeamUpdate(current, playerId, team))}
+        onDraw={() => lobbyAction(teamDrawUpdate)}
         onClose={closeTeams}
       />
     );
@@ -179,6 +189,7 @@ export function HostLobby(props: HostLobbyProps) {
             </Pressable>
           </>
         )}
+        <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
       </View>
 
       <View style={styles.players}>
