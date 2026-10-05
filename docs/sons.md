@@ -47,7 +47,7 @@ Arrivée du classement et du podium : calendrier commun à l'écran et aux sons,
 
 Niveaux mesurés par l'auto-test (`?sounds=1&selftest=1`, volume 100) : crête de 0,12 à 0,73, aucun effet saturé.
 
-**Pas encore possible : « équipes validées ».** « Valider les équipes » ne fait aujourd'hui que fermer la page de l'hôte : rien n'est écrit dans la partie, la TV ne peut pas le voir. Il faudrait publier un champ `teamsValidatedAt` (heure du serveur, écrit par l'hôte, lisible par tous, comme `teamDrawAt`), avec une règle de la base et ses tests.
+**Équipes validées** (`teamsValidated`, clic de verrou puis scintillement qui monte, volume 0,7, sans ducking) : « Valider les équipes » publie `teamsValidatedAt` (heure, écrit par l'hôte seul, lisible par tous, `teamsValidatedUpdate` de `shared/teams.ts`, seulement avec des équipes complètes) ; la TV joue le son à chaque nouvelle validation récente.
 
 ## Musiques de la TV (lot 3)
 

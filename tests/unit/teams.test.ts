@@ -12,6 +12,7 @@ import {
   suggestedTeamCount,
   teamCountUpdate,
   teamDrawUpdate,
+  teamsValidatedUpdate,
   teamLaunchRefusal,
   teamMembers,
   teamModeUpdate,
@@ -76,6 +77,16 @@ describe('Formation des équipes', () => {
     expect(Object.keys(update ?? {}).filter((path) => path.endsWith('/team'))).toHaveLength(4)
     expect(teamDrawUpdate({ ...session, status: 'question' }, NOW)).toBeNull()
     expect(teamDrawUpdate({ ...session, settings: { ...TEAMS, teams: false } }, NOW)).toBeNull()
+  })
+
+  test('« Valider les équipes » : heure publiée seulement en lobby avec Groupe et des équipes complètes', () => {
+    const ready = makeSession({ settings: { ...TEAMS, teamMode: 'host', teamCount: 2 }, players: players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', 'cyan']]) })
+    expect(teamsValidatedUpdate(ready, NOW)).toEqual({ teamsValidatedAt: NOW })
+    expect(teamsValidatedUpdate({ ...ready, status: 'question' }, NOW)).toBeNull()
+    expect(teamsValidatedUpdate({ ...ready, settings: { ...ready.settings, teams: false } }, NOW)).toBeNull()
+    // Une équipe d'un seul joueur : pas de validation.
+    const incomplete = { ...ready, players: players([['a', 'pink'], ['b', 'pink'], ['c', 'pink'], ['d', 'cyan']]) }
+    expect(teamsValidatedUpdate(incomplete, NOW)).toBeNull()
   })
 
   test('placement par l’hôte : seulement dans une équipe de la partie, ou retrait avec null', () => {

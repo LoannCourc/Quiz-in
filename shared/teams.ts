@@ -86,6 +86,12 @@ export function teamDrawUpdate(session: Session, nowServer: number, random: () =
   return { ...drawPaths(session, drawSession(session, random)), teamDrawAt: nowServer }
 }
 
+// « Valider les équipes » (salon, équipes complètes) : l'heure est publiée pour le son de la TV.
+export function teamsValidatedUpdate(session: Session, nowServer: number): SessionUpdate | null {
+  if (!isTeamLobby(session) || lobbyTeamRefusal(session) !== null) return null
+  return { teamsValidatedAt: nowServer }
+}
+
 // « Au hasard » sans tirage de l'hôte : les équipes seront tirées au lancement.
 export function drawsAtLaunch(session: Pick<Session, 'status' | 'settings' | 'players'>): boolean {
   return (

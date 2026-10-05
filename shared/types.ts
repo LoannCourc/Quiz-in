@@ -297,6 +297,8 @@ export interface PublicSession {
   teamPoints?: Record<number, Partial<Record<TeamId, number>>>;
   teamPresence?: Record<number, Record<PlayerId, true>>;
   teamDrawAt?: number;
+  // Groupe : heure à laquelle l'hôte a validé les équipes (son « équipes validées » de la TV).
+  teamsValidatedAt?: number;
   // Bluff : qui a une proposition acceptée, et qui a voté (jamais quoi).
   bluffedBy?: Record<number, Record<PlayerId, true>>;
   votedBy?: Record<number, Record<PlayerId, true>>;

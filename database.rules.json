@@ -202,6 +202,10 @@
           ".read": "auth != null",
           ".validate": "newData.isNumber()"
         },
+        "teamsValidatedAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber()"
+        },
         "sound": {
           ".read": "auth != null",
           ".validate": "newData.hasChildren(['music', 'effects', 'volume'])",

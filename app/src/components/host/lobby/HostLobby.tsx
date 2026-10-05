@@ -7,6 +7,7 @@ import {
   teamCountUpdate,
   teamDrawUpdate,
   teamModeUpdate,
+  teamsValidatedUpdate,
   type TeamRefusal,
 } from '@shared/teams';
 import { soundSettingsOf } from '@shared/sound';
@@ -162,6 +163,10 @@ export function HostLobby(props: HostLobbyProps) {
         onAssign={(playerId, team) => lobbyAction((current) => assignTeamUpdate(current, playerId, team))}
         onDraw={() => lobbyAction(teamDrawUpdate)}
         onClose={closeTeams}
+        onValidate={() => {
+          lobbyAction(teamsValidatedUpdate);
+          closeTeams();
+        }}
       />
     );
   }

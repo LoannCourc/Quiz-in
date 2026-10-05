@@ -320,6 +320,13 @@ const SYNTHS: Record<SoundEffectId, Synth> = {
     brass(context, out, [G4, C5, E5], at, 0.45, 0.3)
     return 0.45
   },
+  // Équipes validées : clic de verrou, puis scintillement qui monte (distinct du gong du tirage).
+  teamsValidated: (context, out, at) => {
+    noise(context, out, { at, duration: 0.04, peak: 0.6, filter: 'highpass', frequency: 2_500 })
+    tone(context, out, { type: 'square', from: 220, to: 160, at, duration: 0.06, peak: 0.25 })
+    arpeggio(context, out, [C6, E6, G6, C6 * 2], at + 0.08, 0.05, 'sine', 0.3)
+    return 0.4
+  },
   // Rejouer : souffle qui monte, puis petit « ping ».
   replay: (context, out, at) => {
     whoosh(context, out, at, 0.4, 0.4)

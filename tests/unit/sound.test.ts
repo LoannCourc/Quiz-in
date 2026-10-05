@@ -91,6 +91,13 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(lobby, { ...lobby, teamDrawAt: NOW - CUE_MAX_AGE_MS }, NOW)).toEqual([])
   })
 
+  test('équipes validées : à chaque nouvelle validation récente', () => {
+    const lobby = makeSession({ status: 'lobby' })
+    expect(soundCues(lobby, { ...lobby, teamsValidatedAt: NOW - 100 }, NOW)).toEqual(['teamsValidated'])
+    expect(soundCues({ ...lobby, teamsValidatedAt: NOW - 100 }, { ...lobby, teamsValidatedAt: NOW - 100 }, NOW)).toEqual([])
+    expect(soundCues(lobby, { ...lobby, teamsValidatedAt: NOW - CUE_MAX_AGE_MS }, NOW)).toEqual([])
+  })
+
   test('« GO » à la première question, puis question qui apparaît (et début du vote), si la phase est récente', () => {
     const starting = makeSession({ status: 'starting' })
     expect(soundCues(starting, question, NOW)).toEqual(['go'])

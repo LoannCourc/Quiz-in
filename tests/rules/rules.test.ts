@@ -26,7 +26,7 @@ import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
-import { launchTeamDraw, teamDrawUpdate } from '../../shared/teams'
+import { launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1133,6 +1133,12 @@ describe('Groupe (équipes)', () => {
     let session = (await readAsAdmin(SESSION)) as Session
     await assertSucceeds(hostRef.update(teamDrawUpdate(session, Date.now()) ?? {}))
     session = (await readAsAdmin(SESSION)) as Session
+    // « Valider les équipes » : l'heure de validation est publiée (son de la TV), lisible par la TV.
+    const validated = teamsValidatedUpdate(session, Date.now())
+    expect(validated).not.toBeNull()
+    await assertSucceeds(hostRef.update(validated ?? {}))
+    await assertSucceeds(db('tv-uid').ref(`${SESSION}/teamsValidatedAt`).once('value'))
+    session = (await readAsAdmin(SESSION)) as Session
     const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
     expect(launch.ok).toBe(true)
     await assertSucceeds(hostRef.update(launch.ok ? launch.update : {}))
@@ -1294,5 +1300,14 @@ describe('Son de la TV (sound)', () => {
 
   test('partie sans réglage du son (créée avant) : toujours valide', async () => {
     await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null })))
+  })
+})
+
+describe('Groupe : validation des équipes (teamsValidatedAt)', () => {
+  test('écrit par l’hôte, nombre seulement ; jamais par un joueur', async () => {
+    await seedSession({ status: 'lobby', phaseEndsAt: 0 })
+    await assertSucceeds(db(HOST).ref(`${SESSION}/teamsValidatedAt`).set(Date.now()))
+    await assertFails(db(HOST).ref(`${SESSION}/teamsValidatedAt`).set('maintenant'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/teamsValidatedAt`).set(Date.now()))
   })
 })

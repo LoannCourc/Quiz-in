@@ -74,6 +74,7 @@ export type SoundEffectId =
   | 'podiumThird'
   | 'podiumSecond'
   | 'replay'
+  | 'teamsValidated'
 
 export interface SoundEffectSpec {
   volume: number
@@ -108,6 +109,7 @@ export const SOUND_EFFECTS: Record<SoundEffectId, SoundEffectSpec> = {
   podiumThird: { volume: 0.7, ducks: true },
   podiumSecond: { volume: 0.8, ducks: true },
   replay: { volume: 0.6, ducks: false },
+  teamsValidated: { volume: 0.7, ducks: false },
 }
 
 export const SOUND_EFFECT_IDS = Object.keys(SOUND_EFFECTS) as readonly SoundEffectId[]
@@ -227,6 +229,10 @@ export function soundCues(previous: PublicSession | null, next: PublicSession, n
   }
   if (next.teamDrawAt !== undefined && next.teamDrawAt !== previous.teamDrawAt && nowServer - next.teamDrawAt < CUE_MAX_AGE_MS) {
     cues.push('teamDraw')
+  }
+  const validatedAt = next.teamsValidatedAt
+  if (validatedAt !== undefined && validatedAt !== previous.teamsValidatedAt && nowServer - validatedAt < CUE_MAX_AGE_MS) {
+    cues.push('teamsValidated')
   }
 
   if (next.status === 'paused' && previous.status !== 'paused') cues.push('paused')

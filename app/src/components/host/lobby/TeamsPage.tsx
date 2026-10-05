@@ -46,12 +46,14 @@ interface TeamsPageProps {
   onAssign: (playerId: PlayerId, team: TeamId | null) => void;
   onDraw: () => void;
   onClose: () => void;
+  // « Valider les équipes » : publie l'heure de validation (son de la TV), puis ferme la page.
+  onValidate: () => void;
 }
 
 // Page « Équipes » plein écran (maquette E1), ouverte depuis la ligne « Équipes » du salon : consigne,
 // façon de former les équipes, nombre d'équipes, cartes d'équipe, « Sans équipe ». Les choix sont
 // écrits tout de suite ; « Valider les équipes » et le retour ramènent simplement au salon.
-export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose }: TeamsPageProps) {
+export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose, onValidate }: TeamsPageProps) {
   const { page, composer } = strings.teams;
   const step = pageStep(session);
   const playerCount = Object.keys(session.players).length;
@@ -71,7 +73,7 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose 
 
   // Un seul bouton mis en avant (le gros bouton jaune), l'autre action en pilule discrète au-dessus.
   const draw = { label: hasTeams ? composer.redraw : composer.draw, onPress: onDraw, disabled: false };
-  const validate = { label: page.validate, onPress: onClose, disabled: !canValidate };
+  const validate = { label: page.validate, onPress: onValidate, disabled: !canValidate };
   const isDrawPrimary = canDraw && step.primary === 'draw';
   const primary = isDrawPrimary ? draw : validate;
   const secondary = isDrawPrimary ? validate : canDraw ? draw : null;
