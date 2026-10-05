@@ -7,6 +7,7 @@ import {
   STARTING_DURATION_S,
 } from '@shared/constants'
 import { groupFreeAnswers, publicFreeAnswerGroups } from '@shared/freeAnswers'
+import { activeTeams } from '@shared/teams'
 import type {
   Answer,
   AnswerMode,
@@ -275,5 +276,20 @@ export function withLongOptions(session: PublicSession, isBlindTest: boolean, ki
     ...session,
     currentQuestion: question && { ...question, options: question.options && options },
     reveal: session.reveal && { ...session.reveal, correctAnswer: options[DEMO_QUESTION.correctIndex] },
+  }
+}
+
+// Groupe (&teams=1) : joueurs répartis à tour de rôle en 3 équipes ; drawAt : heure du tirage (écran
+// « Tirage des équipes » de la TV pendant quelques secondes).
+export function withDemoTeams(session: PublicSession, drawAt?: number): PublicSession {
+  const teams = activeTeams(3)
+  const players = Object.fromEntries(
+    Object.entries(session.players).map(([id, player], index) => [id, { ...player, team: teams[index % teams.length] }]),
+  )
+  return {
+    ...session,
+    settings: { ...session.settings, teams: true, teamMode: 'random', teamCount: teams.length },
+    players,
+    ...(drawAt !== undefined && { teamDrawAt: drawAt }),
   }
 }

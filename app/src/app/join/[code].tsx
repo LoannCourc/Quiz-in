@@ -1,5 +1,6 @@
 import { abandonedGameDeletableAt, isHostAway } from '@shared/hostAbsence';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
+import type { TeamId } from '@shared/types';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
@@ -18,7 +19,7 @@ import { useAnswer } from '@/hooks/useAnswer';
 import { usePhaseStale } from '@/hooks/usePhaseStale';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
-import { getEntryRefusal, rememberProfile } from '@/lib/joinGame';
+import { chooseTeam, getEntryRefusal, rememberProfile } from '@/lib/joinGame';
 
 // Adresse encodée dans le QR code de la TV : /join/CODE (spec 6.6).
 export default function JoinRoomScreen() {
@@ -108,10 +109,22 @@ interface RegisteredPlayerProps {
 // Joueur déjà inscrit : lobby, modification du profil, ou partie en cours.
 function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const [teamError, setTeamError] = useState<string | null>(null);
   const { uid, status, players } = state;
   const { answer, onAnswer } = useAnswer(code, uid, state.session);
   const me = players[uid];
   const isPhaseStale = usePhaseStale(state.session, serverOffsetMs);
+
+  // Groupe, mode « Ils choisissent » : choix de l'équipe (refusé par les règles hors du lobby).
+  async function choose(team: TeamId) {
+    setTeamError(null);
+    try {
+      await chooseTeam(code, uid, team);
+    } catch (error) {
+      console.warn('[teams] Choix de l’équipe refusé', error);
+      setTeamError(strings.teams.picker.chooseFailed);
+    }
+  }
   // Mémorisé pour préremplir la réinscription si l'hôte retire ce joueur du lobby (fantôme).
   useEffect(() => {
     rememberProfile(code, me.name, me.avatar);
@@ -163,7 +176,15 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
     <WelcomeScreen
       code={code}
       footer={<BigButton label={strings.profile.editButton} variant="secondary" onPress={() => setIsEditing(true)} />}>
-      <PlayerLobby uid={uid} players={players} />
+      <PlayerLobby
+        uid={uid}
+        players={players}
+        teams={
+          state.session.settings.teams
+            ? { settings: state.session.settings, onChoose: (team) => void choose(team), error: teamError }
+            : undefined
+        }
+      />
     </WelcomeScreen>
   );
 }

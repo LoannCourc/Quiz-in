@@ -78,10 +78,30 @@ export default function PlayerDemoScreen() {
 
   return (
     <View style={styles.root}>
-      {scenarioId === 'lobby' ? (
+      {scenario.session.status === 'lobby' ? (
         <Screen footer={<BigButton label={strings.profile.editButton} variant="secondary" onPress={() => {}} />}>
           <JoinHeader code={DEMO_CODE} />
-          <PlayerLobby uid={DEMO_UID} players={scenario.session.players} />
+          <PlayerLobby
+            uid={DEMO_UID}
+            players={scenario.session.players}
+            teams={
+              scenario.session.settings.teams
+                ? {
+                    settings: scenario.session.settings,
+                    // Démo : le choix s'applique sur place.
+                    onChoose: (team) =>
+                      setScenario((current) => ({
+                        ...current,
+                        session: {
+                          ...current.session,
+                          players: { ...current.session.players, [DEMO_UID]: { ...current.session.players[DEMO_UID], team } },
+                        },
+                      })),
+                    error: null,
+                  }
+                : undefined
+            }
+          />
         </Screen>
       ) : (
         <PlayerGame

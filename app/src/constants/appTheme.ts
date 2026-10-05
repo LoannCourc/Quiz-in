@@ -1,4 +1,4 @@
-import type { PosterPalette } from '@shared/types';
+import type { PosterPalette, TeamId } from '@shared/types';
 import { Platform } from 'react-native';
 
 // Direction artistique « Plateau TV » : seul endroit où l'app définit couleurs, polices et formes.
@@ -85,6 +85,9 @@ export const AppColors = {
   // Fond du QR code et de ses marges : contraste maximal avec les modules encre.
   qrBackground: Palette.white,
   qrModule: Palette.ink,
+  // Groupe : couleur de chaque équipe (toujours accompagnée de son symbole), symbole en encre.
+  teams: { pink: Palette.pink, cyan: Palette.cyan, gold: Palette.gold, green: Palette.green } satisfies Record<TeamId, string>,
+  onTeam: Palette.ink,
 } as const;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).

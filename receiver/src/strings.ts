@@ -1,4 +1,4 @@
-import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, GameStatus } from '@shared/types'
+import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, GameStatus, TeamId } from '@shared/types'
 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -10,6 +10,14 @@ export const strings = {
     orEnterCode: 'ou saisissez le code',
     playerCount: (count: number, max: number) => `${count}/${max} joueurs`,
     waitingForPlayers: 'En attente des joueurs…',
+  },
+  // Groupe : équipes Rose, Cyan, Or, Vert (maquettes G2 et G3).
+  teams: {
+    names: { pink: 'Rose', cyan: 'Cyan', gold: 'Or', green: 'Vert' } satisfies Record<TeamId, string>,
+    drawTitle: 'Tirage des équipes',
+    drawSummary: (players: number, teams: number) => `${players} joueurs · ${teams} équipes`,
+    drawFooter: 'Les joueurs rejoignent leur équipe…',
+    unassigned: 'Sans équipe',
   },
   header: {
     joinAt: (host: string) => `${host} · code`,

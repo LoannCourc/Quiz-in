@@ -1,5 +1,5 @@
 import { QUESTION_DURATION_S, REVEAL_DURATION_S, SCORES_DURATION_S, STARTING_DURATION_S } from '@shared/constants';
-import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Reveal } from '@shared/types';
+import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Reveal, TeamId } from '@shared/types';
 
 import { IDLE_ANSWER, type AnswerState, type FreeText } from '@/lib/playerGame';
 
@@ -12,6 +12,8 @@ export const DEMO_CODE = 'K7TM';
 
 export type ScenarioId =
   | 'lobby'
+  | 'lobbyTeamsChoose'
+  | 'lobbyTeamsHost'
   | 'starting'
   | 'questionShort'
   | 'questionLong'
@@ -43,6 +45,8 @@ export type ScenarioId =
 
 export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   lobby: 'Lobby',
+  lobbyTeamsChoose: 'Groupe : choix de l’équipe',
+  lobbyTeamsHost: 'Groupe : équipe choisie par l’hôte',
   starting: 'Démarrage',
   questionShort: 'Question courte',
   questionLong: 'Question longue',
@@ -95,6 +99,13 @@ const PLAYERS_AFTER: Record<PlayerId, Player> = {
   noe: player('Noé', '🦖', 980, 5),
   sam: player('Sam', '🦄', 980, 5, false),
 };
+
+// Groupe : Rose (Léa, Tom), Cyan (moi, Inès, Sam), Or (Noé).
+export const TEAM_OF: Record<PlayerId, TeamId> = { lea: 'pink', tom: 'pink', [DEMO_UID]: 'cyan', ines: 'cyan', sam: 'cyan', noe: 'gold' };
+
+export function withTeams(players: Record<PlayerId, Player>): Record<PlayerId, Player> {
+  return Object.fromEntries(Object.entries(players).map(([id, entry]) => [id, { ...entry, team: TEAM_OF[id] }]));
+}
 
 // Résultats de la question 3 : avant elle, j'étais 4e avec 1 242 points.
 const RESULTS: Record<PlayerId, PlayerResult> = {
@@ -239,6 +250,12 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
   switch (id) {
     case 'lobby':
       return idle(baseSession(now, PLAYERS_BEFORE));
+    case 'lobbyTeamsChoose':
+    case 'lobbyTeamsHost': {
+      const teamMode = id === 'lobbyTeamsChoose' ? 'players' : 'host';
+      const lobby = baseSession(now, withTeams(PLAYERS_BEFORE));
+      return idle({ ...lobby, settings: { ...lobby.settings, teams: true, teamMode, teamCount: 3 } });
+    }
     case 'starting':
       return idle({ ...baseSession(now, PLAYERS_BEFORE), status: 'starting', currentIndex: 0, ...phase(now, STARTING_DURATION_S) });
     case 'questionShort':

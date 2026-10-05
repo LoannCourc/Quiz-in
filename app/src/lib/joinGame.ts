@@ -1,13 +1,13 @@
 import { MAX_PLAYERS } from '@shared/constants';
 import { isSamePlayerName } from '@shared/playerName';
-import type { GameStatus, Player, PlayerId } from '@shared/types';
-import { ref, update } from 'firebase/database';
+import type { GameStatus, Player, PlayerId, TeamId } from '@shared/types';
+import { ref, set, update } from 'firebase/database';
 
 import { db } from './firebase';
 
 // En lobby, l'entrée d'un joueur ne contient que ce qu'il a écrit lui-même :
 // score et rank n'apparaissent qu'une fois écrits par l'hôte.
-export type LobbyPlayer = Pick<Player, 'name' | 'avatar' | 'connected'>;
+export type LobbyPlayer = Pick<Player, 'name' | 'avatar' | 'connected' | 'team'>;
 export type LobbyPlayers = Record<PlayerId, LobbyPlayer>;
 
 export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken';
@@ -47,6 +47,11 @@ export function getJoinRefusal(
 
 // update() et non set() : les droits du joueur portent sur chaque champ (name, avatar,
 // connected), pas sur l'entrée entière, que set() remplacerait d'un bloc.
+// Groupe, mode « Ils choisissent » : le joueur choisit son équipe (en lobby seulement, règles).
+export function chooseTeam(code: string, uid: PlayerId, team: TeamId): Promise<void> {
+  return set(ref(db, `sessions/${code}/players/${uid}/team`), team);
+}
+
 export function registerPlayer(code: string, uid: PlayerId, name: string, avatar: string): Promise<void> {
   return update(ref(db, `sessions/${code}/players/${uid}`), { name, avatar, connected: true });
 }

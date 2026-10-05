@@ -11,6 +11,7 @@ import {
   DEMO_ROOM_CODE,
   demoExtraPlayerCount,
   toDemoBlindTest,
+  withDemoTeams,
   withLongOptions,
   type DemoOptions,
 } from './demoSession'
@@ -29,7 +30,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
 // &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
-// &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues.
+// &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues ;
+// &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes.
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
@@ -65,10 +67,13 @@ export function DemoReceiver() {
   const withSuspense =
     params.get('suspense') === '1' ? { ...stepped, settings: { ...stepped.settings, suspense: true } } : stepped
   const ask = params.get('ask')
-  const session =
+  const withAsk =
     isBlindTestAsk(ask) && withSuspense.currentQuestion
       ? { ...withSuspense, currentQuestion: { ...withSuspense.currentQuestion, ask } }
       : withSuspense
+  // Groupe (&teams=1) ; &draw=1 : tirage à l'ouverture de la page.
+  const [drawAt] = useState(() => (params.get('draw') === '1' ? Date.now() : undefined))
+  const session = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt) : withAsk
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
 

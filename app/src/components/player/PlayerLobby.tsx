@@ -1,4 +1,4 @@
-import type { PlayerId } from '@shared/types';
+import type { PlayerId, SessionSettings, TeamId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { textStyles } from '@/components/ui/textStyles';
@@ -8,16 +8,23 @@ import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
 import { PlayerList } from './PlayerList';
+import { PlayerTeamLobby } from './PlayerTeamLobby';
 
 interface PlayerLobbyProps {
   uid: PlayerId;
   players: LobbyPlayers;
+  // Groupe : réglages de la partie et choix de l'équipe (mode « Ils choisissent »).
+  teams?: { settings: SessionSettings; onChoose: (team: TeamId) => void; error: string | null };
 }
 
 // Lobby du joueur : son avatar en grand, le message principal, puis les autres joueurs.
 // Le bouton « Modifier mon profil » est fourni à part, en pied d'écran (toujours visible).
-export function PlayerLobby({ uid, players }: PlayerLobbyProps) {
+export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
   const me = players[uid];
+  // Groupe, mode « Ils choisissent » : le choix de l'équipe remplace le lobby (maquette G1).
+  if (teams && teams.settings.teamMode === 'players') {
+    return <PlayerTeamLobby uid={uid} players={players} {...teams} />;
+  }
 
   return (
     <View style={styles.lobby}>
@@ -32,6 +39,7 @@ export function PlayerLobby({ uid, players }: PlayerLobbyProps) {
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
       <Text style={[textStyles.label, styles.centered]}>{strings.lobby.waiting}</Text>
       <Text style={styles.questionsOnTv}>{`📺 ${strings.lobby.questionsOnTv}`}</Text>
+      {teams && <PlayerTeamLobby uid={uid} players={players} {...teams} />}
 
       <PlayerList players={players} highlightedUid={uid} />
     </View>

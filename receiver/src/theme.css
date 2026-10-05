@@ -43,6 +43,12 @@
   --choice-1: var(--cyan);
   --choice-2: var(--gold);
   --choice-3: var(--green);
+  /* Groupe : couleur de chaque équipe (toujours avec son symbole), symbole en encre. */
+  --team-pink: var(--pink);
+  --team-cyan: var(--cyan);
+  --team-gold: var(--gold);
+  --team-green: var(--green);
+  --on-team: var(--ink);
   --on-choice: var(--ink);
 
   /* Podium (1er or, 2e cyan, 3e rose), anneau de temps, pastilles encre */

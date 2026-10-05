@@ -11,7 +11,7 @@ import type { CatalogRowId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
-import type { AnswerMode, BlindTestAsk, DifficultyLevel, QuizAudience } from '@shared/types';
+import type { AnswerMode, BlindTestAsk, DifficultyLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
@@ -140,6 +140,38 @@ export const strings = {
     creating: 'Création…',
     noFreeCode: 'Impossible de trouver un code de partie libre. Réessaie.',
     createFailed: 'La partie n’a pas pu être créée :',
+  },
+  // Groupe (maquettes G1 à G4) : équipes Rose, Cyan, Or, Vert.
+  teams: {
+    names: { pink: 'Rose', cyan: 'Cyan', gold: 'Or', green: 'Vert' } satisfies Record<TeamId, string>,
+    teamLabel: (name: string) => `Équipe ${name}`,
+    playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''}`,
+    averageNote: 'Le score d’une équipe est la moyenne des points de ses joueurs.',
+    composer: {
+      title: 'Équipes',
+      modes: { random: 'Au hasard', host: 'Je choisis', players: 'Ils choisissent' } satisfies Record<TeamMode, string>,
+      modeHints: {
+        random: 'Tire au sort ; tu peux ensuite déplacer un joueur : touche-le, puis son équipe.',
+        host: 'Touche un joueur, puis l’équipe où le placer.',
+        players: 'Chacun choisit son équipe sur son téléphone ; tu peux encore déplacer un joueur.',
+      } satisfies Record<TeamMode, string>,
+      countLabel: 'Nombre d’équipes',
+      tooSmall: `Il faut au moins ${MIN_TEAM_SIZE} joueurs par équipe`,
+      unassigned: (count: number) => `Sans équipe · ${count}`,
+      placeHint: 'Touche une équipe pour l’y placer',
+      draw: 'Tirer au sort',
+      redraw: 'Retirer au sort',
+    },
+    picker: {
+      title: 'Choisis ton équipe',
+      hint: 'Tu peux changer jusqu’au lancement de la partie.',
+      yourTeam: 'Ton équipe',
+      unused: (name: string) => `Équipe ${name} non utilisée`,
+      waiting: 'En attente du lancement de la partie…',
+      hostCanMove: 'L’hôte peut aussi te placer dans une autre équipe.',
+      notAssigned: 'L’hôte forme les équipes…',
+      chooseFailed: 'Ton choix n’a pas été enregistré. Réessaie.',
+    },
   },
   hostLobby: {
     loading: 'Chargement de la partie…',

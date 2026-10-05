@@ -1,0 +1,110 @@
+.team-columns-wrap {
+  display: grid;
+  row-gap: 1rem;
+  min-height: 0;
+}
+
+.team-columns {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.team-columns.columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.team-columns.columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.team-columns.columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.team-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 12rem;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--ink-surface);
+  box-shadow: var(--shadow-hard);
+}
+
+.team-column-head {
+  display: flex;
+  align-items: center;
+  column-gap: 0.6rem;
+  margin: 0;
+  padding: 0.7rem 1.2rem;
+  background: var(--team-color);
+  color: var(--on-team);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: var(--display-line-height);
+  text-transform: uppercase;
+}
+
+.team-column-members {
+  display: grid;
+  align-content: start;
+  row-gap: 0.5rem;
+  margin: 0;
+  padding: 0.8rem;
+  list-style: none;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  column-gap: 0.6rem;
+  padding: 0.3rem 0.8rem 0.3rem 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.team-member-avatar {
+  font-size: 1.6rem;
+}
+
+.team-member-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Tirage : chaque joueur glisse dans sa colonne, l'un après l'autre (délai posé par le composant). */
+.team-member.is-arriving {
+  opacity: 0;
+  animation: team-member-arrive 0.5s ease-out forwards;
+}
+
+@keyframes team-member-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-1.5rem) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.team-unassigned {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
+.team-unassigned-label {
+  font-weight: 900;
+  text-transform: uppercase;
+}

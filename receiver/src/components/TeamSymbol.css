@@ -1,0 +1,55 @@
+/* Couleur de chaque équipe, reprise par les écrans (fond, contour, symbole). */
+.team-pink {
+  --team-color: var(--team-pink);
+}
+
+.team-cyan {
+  --team-color: var(--team-cyan);
+}
+
+.team-gold {
+  --team-color: var(--team-gold);
+}
+
+.team-green {
+  --team-color: var(--team-green);
+}
+
+/* Symbole : une forme pleine de la couleur du texte (clip-path : Chrome 55 et plus, donc la box). */
+.team-symbol {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+}
+
+.team-symbol-pink {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.team-symbol-cyan {
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 50%;
+}
+
+.team-symbol-gold {
+  clip-path: polygon(50% 6%, 100% 92%, 0% 92%);
+}
+
+.team-symbol-green {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 0.1em;
+}
+
+.team-tile {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 0.45em;
+  background: var(--team-color);
+  color: var(--on-team);
+}

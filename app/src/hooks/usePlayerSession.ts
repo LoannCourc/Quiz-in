@@ -31,6 +31,9 @@ const PUBLIC_FIELDS = [
   'reveal',
   'players',
   'answeredBy',
+  // Groupe : classement des équipes et points d'équipe de chaque question (règles à déployer avant).
+  'teams',
+  'teamPoints',
 ] as const satisfies readonly (keyof PublicSession)[];
 
 type PublicField = (typeof PUBLIC_FIELDS)[number];

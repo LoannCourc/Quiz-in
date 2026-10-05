@@ -1,0 +1,32 @@
+.team-draw {
+  grid-template-rows: auto 1fr auto;
+  row-gap: 1.6rem;
+}
+
+.team-draw-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 2rem;
+}
+
+.team-draw-title {
+  font-size: 3rem;
+  color: var(--color-accent);
+}
+
+.team-draw-summary {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+}
+
+.team-draw .team-column {
+  min-height: 0;
+}
+
+.team-draw-footer {
+  justify-self: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
