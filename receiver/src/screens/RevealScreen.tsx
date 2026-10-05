@@ -73,27 +73,28 @@ function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
   )
 }
 
-function FreeAnswers({ session }: { session: PublicSession }) {
-  const entries = session.reveal?.stats.freeAnswers ?? []
-  const results = session.reveal?.results ?? {}
+const VERDICT_MARKS = { correct: '✓', partial: '½', wrong: '✗' } as const
 
-  if (entries.length === 0) {
+// Réponse libre : groupes de réponses identiques, déjà filtrés par l'hôte (mise en page définitive
+// avec les maquettes de la saisie libre).
+function FreeAnswers({ session }: { session: PublicSession }) {
+  const groups = session.reveal?.stats.freeAnswers ?? []
+
+  if (groups.length === 0) {
     return <p className="reveal-empty">{strings.reveal.noAnswer}</p>
   }
 
   return (
     <ul className="reveal-free">
-      {entries.map((entry) => {
-        const player = session.players[entry.playerId]
-        const isCorrect = results[entry.playerId]?.correct === true
-        return (
-          <li key={entry.playerId} className={isCorrect ? 'free-answer is-correct' : 'free-answer'}>
-            <span className="free-answer-avatar">{player?.avatar}</span>
-            <span className="free-answer-value">{entry.value}</span>
-            <span className="free-answer-mark">{isCorrect ? '✓' : '✗'}</span>
-          </li>
-        )
-      })}
+      {groups.map((group) => (
+        <li key={group.playerIds.join()} className={group.verdict === 'correct' ? 'free-answer is-correct' : 'free-answer'}>
+          <span className="free-answer-avatar">
+            {group.playerIds.map((playerId) => session.players[playerId]?.avatar).join('')}
+          </span>
+          <span className="free-answer-value">{group.value}</span>
+          <span className="free-answer-mark">{VERDICT_MARKS[group.verdict]}</span>
+        </li>
+      ))}
     </ul>
   )
 }

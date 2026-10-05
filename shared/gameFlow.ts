@@ -5,9 +5,9 @@ import {
   SCORES_DURATION_S,
   STARTING_DURATION_S,
 } from './constants'
-import type { AnswerMode, GameStatus, PublicSession } from './types'
+import type { AnswerMode, GameStatus, PublicSession, SessionSettings } from './types'
 
-// Enchaînement des états du MVP (spec 5), sans VALIDATION (option Contrôle, P1).
+// Enchaînement des états (spec 5) ; VALIDATION seulement en Réponse libre avec Contrôle.
 // PAUSED n'a pas d'état suivant fixe : la reprise revient à pausedFrom avec remainingMs.
 
 export interface FlowContext {
@@ -19,6 +19,13 @@ export interface FlowContext {
   stepByStep?: boolean
   // Suspense : pas de classement intermédiaire (révélation → question suivante, ou fin de partie).
   suspense?: boolean
+  // Contrôle en Réponse libre : l'hôte valide les réponses entre la question et la révélation.
+  validation?: boolean
+}
+
+// Phase VALIDATION : seulement en Réponse libre avec l'option Contrôle (spec 6.3).
+export function hasValidationPhase(settings: Pick<SessionSettings, 'answerMode' | 'control'>): boolean {
+  return settings.answerMode === 'free' && settings.control
 }
 
 export interface Phase {
@@ -42,24 +49,27 @@ function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext,
     : { status: 'ended', currentIndex, durationS: null }
 }
 
-// Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED, états P1).
+// Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED).
 // timeLimitS : durée propre à la question suivante, si elle en a une.
 export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?: number): Phase | null {
-  const { answerMode, currentIndex, stepByStep = false, suspense = false } = context
+  const { answerMode, currentIndex, stepByStep = false, suspense = false, validation = false } = context
+  const reveal: Phase = { status: 'reveal', currentIndex, durationS: stepByStep ? null : REVEAL_DURATION_S[answerMode] }
   switch (status) {
     case 'lobby':
       return { status: 'starting', currentIndex: 0, durationS: STARTING_DURATION_S }
     case 'starting':
       return { status: 'question', currentIndex: 0, durationS: questionDurationS(answerMode, timeLimitS) }
     case 'question':
-      return { status: 'reveal', currentIndex, durationS: stepByStep ? null : REVEAL_DURATION_S[answerMode] }
+      // Contrôle : validation par l'hôte, sans durée (seul « Valider » fait avancer).
+      return validation ? { status: 'validation', currentIndex, durationS: null } : reveal
+    case 'validation':
+      return reveal
     case 'reveal':
       return suspense
         ? afterQuestion(context, timeLimitS)
         : { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
     case 'scores':
       return afterQuestion(context, timeLimitS)
-    case 'validation':
     case 'paused':
     case 'ended':
       return null
@@ -116,6 +126,12 @@ export function isAnnouncingNextQuestion(session: SessionTiming, nowServer: numb
 // Pas à pas : révélation ou classement en attente de l'hôte, sans fin programmée.
 export function isAwaitingHost(session: Pick<PublicSession, 'status' | 'settings'>): boolean {
   return (session.status === 'reveal' || session.status === 'scores') && session.settings.stepByStep === true
+}
+
+// Phase sans échéance (phaseEndsAt = 0) : attente de l'hôte en Pas à pas, ou validation (Contrôle).
+// Une reprise après une pause la laisse sans échéance.
+export function isUntimedPhase(session: Pick<PublicSession, 'status' | 'settings'>): boolean {
+  return session.status === 'validation' || isAwaitingHost(session)
 }
 
 type SessionTiming = Pick<

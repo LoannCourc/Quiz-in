@@ -6,7 +6,9 @@ import {
   REVEAL_DURATION_S,
   SCORES_DURATION_S,
   STARTING_DURATION_S,
+  VALIDATION_ESTIMATE_S,
 } from './constants'
+import { hasValidationPhase } from './gameFlow'
 import type { AnswerMode, Difficulty, DifficultyLevel, SessionSettings } from './types'
 
 // Identifiant de quiz : minuscules, chiffres et tirets (aussi utilisé comme clé dans la base).
@@ -39,12 +41,14 @@ export function estimateQuizMinutes(
 }
 
 // Durée estimée d'une partie selon ses réglages, en minutes arrondies au-dessus : sans les classements
-// intermédiaires en Suspense ; null en Pas à pas (la durée dépend de l'hôte : « à votre rythme »).
+// intermédiaires en Suspense, avec une validation estimée en Contrôle ; null en Pas à pas (la durée
+// dépend de l'hôte : « à votre rythme »).
 export function estimateGameMinutes(questionCount: number, settings: SessionSettings): number | null {
   if (settings.stepByStep) return null
   const { answerMode } = settings
   const scoresS = settings.suspense ? 0 : SCORES_DURATION_S
-  const perQuestionS = QUESTION_DURATION_S[answerMode] + REVEAL_DURATION_S[answerMode] + scoresS
+  const validationS = hasValidationPhase(settings) ? VALIDATION_ESTIMATE_S : 0
+  const perQuestionS = QUESTION_DURATION_S[answerMode] + validationS + REVEAL_DURATION_S[answerMode] + scoresS
   return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
 }
 

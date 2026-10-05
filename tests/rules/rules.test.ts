@@ -19,6 +19,7 @@ import {
   resumeUpdate,
   selectGameQuestions,
   transitionUpdate,
+  validateUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
 import { HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
@@ -947,5 +948,98 @@ describe('Hôte absent : hostLeftAt et suppression après délai', () => {
     hostDb.goOffline()
     await new Promise((resolve) => setTimeout(resolve, 1_000))
     expect(await readAsAdmin(SESSION)).toBeNull()
+  })
+})
+
+describe('Réponse libre et Contrôle', () => {
+  const FREE_SETTINGS = { answerMode: 'free', speedBonus: true, control: false, teams: false }
+  const CONTROL_SETTINGS = { ...FREE_SETTINGS, control: true }
+
+  test('saisie de 1 à 60 caractères acceptée, au-delà refusée', async () => {
+    await seedSession({ settings: FREE_SETTINGS })
+    await assertFails(submitAnswer(PLAYER, 0, 'x'.repeat(61)))
+    await assertFails(submitAnswer(PLAYER, 0, ''))
+    await assertSucceeds(submitAnswer(PLAYER, 0, 'x'.repeat(60)))
+  })
+
+  test('blind test « both » : titre et artiste, ou artiste seul ; pas d’artiste sans texte', async () => {
+    await seedSession({ settings: FREE_SETTINGS })
+    await assertFails(submitAnswer(PLAYER, 0, 'Satisfaction', { artist: 'y'.repeat(61) }))
+    await assertFails(submitAnswer(PLAYER, 0, 1, { artist: 'Stones' }))
+    await assertSucceeds(submitAnswer(PLAYER, 0, '', { artist: 'Stones' }))
+    expect(await readAsAdmin(`${SESSION}/answers/0/${PLAYER}/artist`)).toBe('Stones')
+  })
+
+  test('un joueur ne peut écrire ni correct, ni points, ni partial, ni fullPoints', async () => {
+    await seedSession({ settings: FREE_SETTINGS })
+    for (const field of [{ partial: true }, { fullPoints: 200 }, { correct: true }, { points: 100 }]) {
+      await assertFails(submitAnswer(PLAYER, 0, 'Canberra', field))
+    }
+  })
+
+  test('aucune réponse pendant la validation', async () => {
+    await seedSession({ settings: CONTROL_SETTINGS, status: 'validation', phaseEndsAt: 0 })
+    await assertFails(submitAnswer(PLAYER, 0, 'Canberra'))
+  })
+
+  test('currentQuestion.ask : titre, artiste ou les deux seulement', async () => {
+    await seedSession({ settings: FREE_SETTINGS })
+    const ref = db(HOST).ref(`${SESSION}/currentQuestion`)
+    const question = { text: 'Quel est ce morceau ?', difficulty: 1, timeLimit: 30 }
+    await assertSucceeds(ref.set({ ...question, ask: 'both' }))
+    await assertFails(ref.set({ ...question, ask: 'album' }))
+  })
+
+  test('révélation : groupes de réponses bien formés seulement, 8 au plus', async () => {
+    await seedSession({ settings: FREE_SETTINGS, status: 'reveal' })
+    const ref = db(HOST).ref(`${SESSION}/reveal`)
+    const group = { value: 'Canberra', playerIds: [PLAYER], verdict: 'correct' }
+    await assertSucceeds(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: [group] } }))
+    await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: [{ ...group, verdict: 'maybe' }] } }))
+    await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: [{ playerId: PLAYER, value: 'x' }] } }))
+    await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: Array(9).fill(group) } }))
+    await assertSucceeds(ref.set({ correctAnswer: 'Canberra', stats: {}, results: { [PLAYER]: { correct: false, points: 75, partial: true } } }))
+  })
+
+  test('moteur : question → validation → révélation → classement, accepté par les règles', async () => {
+    const questions = selectGameQuestions(QUESTIONS.slice(0, 2))
+    const start = Date.now()
+    await seed({
+      sessions: {
+        [CODE]: makeSession({
+          status: 'question',
+          settings: { answerMode: 'free', speedBonus: true, control: true, teams: false },
+          questionCount: 2,
+          phaseStartedAt: start - 5_000,
+          phaseEndsAt: start + 25_000,
+        }),
+      },
+    })
+    await assertSucceeds(submitAnswer(PLAYER, 0, 'Juste 0'))
+    await assertSucceeds(submitAnswer(HOST, 0, 'Juste O'))
+    const hostRef = db(HOST).ref(SESSION)
+
+    let session = (await readAsAdmin(SESSION)) as Session
+    const toValidation = transitionUpdate(session, questions, { status: 'question', currentIndex: 0 }, Date.now())
+    await assertSucceeds(hostRef.update(toValidation ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session).toMatchObject({ status: 'validation', phaseEndsAt: 0 })
+    expect(session.answers?.[0]?.[PLAYER]?.fullPoints).toBeGreaterThan(100)
+
+    await assertSucceeds(hostRef.update(pauseUpdate(session, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(resumeUpdate(session, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session).toMatchObject({ status: 'validation', phaseEndsAt: 0 })
+
+    await assertSucceeds(hostRef.update(validateUpdate(session, questions, { main: { 'juste o': false } }, Date.now()) ?? {}))
+    session = (await readAsAdmin(SESSION)) as Session
+    expect(session.status).toBe('reveal')
+    expect(session.reveal?.results?.[PLAYER]?.correct).toBe(true)
+    expect(session.reveal?.results?.[HOST]).toEqual({ correct: false, points: 0 })
+    expect(session.reveal?.stats.freeAnswers).toHaveLength(2)
+
+    const toScores = transitionUpdate(session, questions, { status: 'reveal', currentIndex: 0 }, Date.now())
+    await assertSucceeds(hostRef.update(toScores ?? {}))
   })
 })

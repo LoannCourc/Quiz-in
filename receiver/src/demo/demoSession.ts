@@ -6,6 +6,7 @@ import {
   SCORES_DURATION_S,
   STARTING_DURATION_S,
 } from '@shared/constants'
+import { groupFreeAnswers, publicFreeAnswerGroups } from '@shared/freeAnswers'
 import type {
   Answer,
   AnswerMode,
@@ -102,9 +103,9 @@ function buildRevealStats(answerMode: AnswerMode, answers: Record<PlayerId, Answ
     )
     return { choiceCounts }
   }
-  return {
-    freeAnswers: entries.map(([playerId, answer]) => ({ playerId, value: String(answer.value) })),
-  }
+  // Mêmes groupes que ceux publiés par l'hôte (réponses identiques regroupées, texte filtré).
+  const groups = groupFreeAnswers(DEMO_QUESTION, answers, Object.keys(answers))
+  return { freeAnswers: publicFreeAnswerGroups(groups, buildResults(answers)) }
 }
 
 function buildResults(answers: Record<PlayerId, Answer>): Record<PlayerId, PlayerResult> {

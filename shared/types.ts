@@ -51,6 +51,10 @@ export interface QuizSummary {
 
 export type ChoiceOptions = [string, string, string, string];
 
+// Blind test : ce que la question demande (spec 15). En Réponse libre, « both » demande deux champs
+// (titre et artiste), chacun rapportant la moitié des points.
+export type BlindTestAsk = 'title' | 'artist' | 'both';
+
 // Question complète, lisible uniquement par l'hôte.
 export interface Question {
   id: string;
@@ -63,6 +67,8 @@ export interface Question {
   timeLimit?: number;
   // Blind test : morceau dont un extrait est joué par la TV pendant la question.
   music?: MusicTrack;
+  // Blind test : ce que la question demande (obligatoire dans content/ pour un blind test).
+  ask?: BlindTestAsk;
 }
 
 // Morceau d'une question de blind test (lisible uniquement par l'hôte, comme toute la question).
@@ -75,6 +81,9 @@ export interface MusicTrack {
   // Début de l'extrait dans la preview, en secondes (défaut : AUDIO_EXTRACT_START_S). L'extrait dure
   // le temps du timer de la question : début + timer ≤ 30 s.
   startS?: number;
+  // Réponse libre : autres écritures acceptées du titre (« Satisfaction ») et de l'artiste (« Gims »).
+  titleAliases?: string[];
+  artistAliases?: string[];
 }
 
 // Extrait publié pendant QUESTION : seulement une adresse temporaire, jamais l'identifiant ni le titre.
@@ -92,19 +101,26 @@ export interface PublicQuestion {
   difficulty: Difficulty;
   timeLimit: number;
   audio?: PublicAudio;
+  // Blind test en Réponse libre : ce qu'il faut écrire (titre, artiste, ou les deux).
+  ask?: BlindTestAsk;
 }
 
-// Objet plutôt que simple texte, pour pouvoir ajouter des champs (masquage par l'hôte en P1).
-export interface FreeAnswerEntry {
-  playerId: PlayerId;
+// Résultat d'un joueur ou d'un groupe de réponses : juste, à moitié juste (blind test « both »), faux.
+export type AnswerVerdict = 'correct' | 'partial' | 'wrong';
+
+// Réponse libre : réponses identiques (après normalisation) regroupées pour la TV. Le texte est
+// filtré par l'hôte avant publication (« ••• » pour un mot interdit ou un groupe masqué).
+export interface FreeAnswerGroup {
   value: string;
+  playerIds: PlayerId[];
+  verdict: AnswerVerdict;
 }
 
 export interface RevealStats {
   // Choix multiples : nombre de réponses par proposition (même ordre que options).
   choiceCounts?: number[];
-  // Réponse libre : réponses données par les joueurs.
-  freeAnswers?: FreeAnswerEntry[];
+  // Réponse libre : groupes de réponses, les plus nombreux d'abord (FREE_ANSWER_GROUPS_MAX au plus).
+  freeAnswers?: FreeAnswerGroup[];
 }
 
 export interface Reveal {
@@ -126,6 +142,8 @@ export interface RevealMusic {
 export interface PlayerResult {
   correct: boolean;
   points: number;
+  // Blind test « both » : une seule des deux parties juste (la moitié des points). Absent sinon.
+  partial?: true;
 }
 
 export interface SessionSettings {
@@ -150,11 +168,19 @@ export interface Player {
 }
 
 export interface Answer {
-  // Texte saisi en Réponse libre, index de la proposition en Choix multiples.
+  // Texte saisi en Réponse libre (blind test « both » : le titre, éventuellement vide), index de la
+  // proposition en Choix multiples.
   value: string | number;
+  // Blind test « both » en Réponse libre : l'artiste saisi (absent si le joueur ne l'a pas écrit).
+  artist?: string;
   submittedAt: number;
+  // Écrits par l'hôte : à la fin de la question (correction automatique), puis à la révélation.
   correct?: boolean;
   points?: number;
+  partial?: true;
+  // Points d'une réponse entièrement juste, calculés à la fin de la question (Rapidité comprise) :
+  // l'hôte peut accepter une réponse pendant la validation sans connaître l'heure de fin.
+  fullPoints?: number;
 }
 
 export type PlayerId = string;

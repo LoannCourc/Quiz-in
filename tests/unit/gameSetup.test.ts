@@ -60,10 +60,9 @@ describe('nextPhase', () => {
     })
   })
 
-  test('pas d’état suivant automatique pour ended, paused et validation (P1)', () => {
+  test('pas d’état suivant automatique pour ended et paused', () => {
     expect(nextPhase('ended', choice)).toBeNull()
     expect(nextPhase('paused', choice)).toBeNull()
-    expect(nextPhase('validation', choice)).toBeNull()
   })
 })
 

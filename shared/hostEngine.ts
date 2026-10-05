@@ -1,14 +1,22 @@
-import { isAnswerCorrect } from './answerMatching'
 import { extractOf } from './audioPlayback'
 import {
   ALL_ANSWERED_DELAY_S,
+  CORRECT_ANSWER_POINTS,
   MAX_PLAYERS,
   QUESTIONS_PER_GAME,
   REVEAL_GRACE_MS,
   STARTING_DURATION_S,
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
-import { isAwaitingHost, nextPhase, questionDurationS } from './gameFlow'
+import {
+  acceptedFraction,
+  groupFreeAnswers,
+  matchFreeAnswer,
+  publicFreeAnswerGroups,
+  resultOf,
+  type ValidationDecisions,
+} from './freeAnswers'
+import { hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS } from './gameFlow'
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
@@ -44,7 +52,8 @@ export function selectGameQuestions(questions: readonly Question[], limit = QUES
 export type AudioUrls = Readonly<Record<string, string>>
 
 // Question publiée pendant QUESTION : jamais correctIndex, acceptedAnswers ni explanation.
-// En Réponse libre, les propositions ne sont pas envoyées (elles contiennent la bonne réponse).
+// En Réponse libre, les propositions ne sont pas envoyées (elles contiennent la bonne réponse) ;
+// un blind test publie ce qu'il faut écrire (ask : titre, artiste ou les deux).
 // Blind test : seulement l'adresse de l'extrait, jamais l'identifiant, le titre ni l'artiste.
 export function toPublicQuestion(question: Question, answerMode: AnswerMode, audioUrl?: string): PublicQuestion {
   const published: PublicQuestion = {
@@ -53,32 +62,52 @@ export function toPublicQuestion(question: Question, answerMode: AnswerMode, aud
     timeLimit: questionDurationS(answerMode, question.timeLimit),
   }
   if (answerMode === 'choice') published.options = [...question.options] as ChoiceOptions
+  if (answerMode === 'free' && question.music && question.ask) published.ask = question.ask
   if (question.music && audioUrl) published.audio = { url: audioUrl, ...extractOf(question.music, published.timeLimit) }
   return published
 }
 
-function isCorrect(question: Question, value: Answer['value'], answerMode: AnswerMode): boolean {
-  if (answerMode === 'choice') return typeof value === 'number' && value === question.correctIndex
-  return typeof value === 'string' && isAnswerCorrect(value, question.acceptedAnswers)
+// Part juste d'une réponse selon la correction automatique : 1 ou 0, ou 0,5 pour un blind test
+// « both » en Réponse libre (titre ou artiste seulement).
+function autoFraction(question: Question, answer: Answer, answerMode: AnswerMode): number {
+  if (answerMode === 'choice') return typeof answer.value === 'number' && answer.value === question.correctIndex ? 1 : 0
+  if (typeof answer.value !== 'string') return 0
+  return acceptedFraction(matchFreeAnswer(question, answer), answer)
 }
 
-// Validation et points d'une réponse. Le temps restant se mesure sur l'heure du serveur :
+// Réponse corrigée à la fin de la question : résultat automatique, et points d'une réponse
+// entièrement juste (pour une réponse acceptée plus tard par l'hôte, en Contrôle).
+export interface GradedAnswer extends PlayerResult {
+  fullPoints: number
+}
+
+// Correction et points d'une réponse. Le temps restant se mesure sur l'heure du serveur :
 // phaseEndsAt (fin de la question) moins submittedAt (écrit par le serveur).
 export function gradeAnswer(
   question: Question,
   answer: Answer,
   settings: { answerMode: AnswerMode; speedBonus: boolean },
   phaseEndsAt: number,
-): PlayerResult {
-  const correct = isCorrect(question, answer.value, settings.answerMode)
-  const durationMs = questionDurationS(settings.answerMode, question.timeLimit) * 1000
-  const points = computePoints({
-    correct,
+): GradedAnswer {
+  const fullPoints = computePoints({
+    correct: true,
     speedBonus: settings.speedBonus,
     remainingMs: phaseEndsAt - answer.submittedAt,
-    durationMs,
+    durationMs: questionDurationS(settings.answerMode, question.timeLimit) * 1000,
   })
-  return { correct, points }
+  return { ...resultOf(autoFraction(question, answer, settings.answerMode), fullPoints), fullPoints }
+}
+
+function publicResult({ correct, points, partial }: PlayerResult): PlayerResult {
+  return partial ? { correct, points, partial } : { correct, points }
+}
+
+// Après la validation (Contrôle) : correction écrite à la fin de la question, revue par l'hôte.
+// Une réponse sans fullPoints (écrite par une version précédente) vaut 100 points sans bonus.
+function validatedResult(question: Question, answer: Answer, decisions: ValidationDecisions): PlayerResult {
+  if (typeof answer.value !== 'string') return { correct: false, points: 0 }
+  const fraction = acceptedFraction(matchFreeAnswer(question, answer), answer, decisions)
+  return resultOf(fraction, answer.fullPoints ?? CORRECT_ANSWER_POINTS)
 }
 
 export interface RevealResult {
@@ -100,19 +129,33 @@ function totalScore(session: Session, playerId: PlayerId, current: PlayerResult 
   return total
 }
 
-// Révélation de la question courante : bonne réponse, répartition, résultats, scores et rangs.
-// Tous les joueurs sont classés, y compris les déconnectés (ils gardent leur score, spec 6.6).
-export function buildReveal(question: Question, session: Session): RevealResult {
+// Résultat de chaque joueur ayant répondu : correction automatique à la fin de la question, ou,
+// après une validation (decisions fourni), correction écrite à la fin de la question revue par l'hôte.
+function questionResults(
+  question: Question,
+  session: Session,
+  decisions?: ValidationDecisions,
+): Record<PlayerId, PlayerResult> {
+  const answers = session.answers?.[session.currentIndex] ?? {}
+  const results: Record<PlayerId, PlayerResult> = {}
+  for (const playerId of Object.keys(session.players)) {
+    const answer = answers[playerId]
+    if (!answer) continue
+    results[playerId] = decisions
+      ? validatedResult(question, answer, decisions)
+      : publicResult(gradeAnswer(question, answer, session.settings, session.phaseEndsAt))
+  }
+  return results
+}
+
+// Révélation de la question courante : bonne réponse, répartition (Choix multiples) ou groupes de
+// réponses filtrés (Réponse libre), résultats, scores et rangs. Tous les joueurs sont classés, y
+// compris les déconnectés (ils gardent leur score, spec 6.6). decisions : après une validation.
+export function buildReveal(question: Question, session: Session, decisions?: ValidationDecisions): RevealResult {
   const { answerMode } = session.settings
   const answers = session.answers?.[session.currentIndex] ?? {}
   const playerIds = Object.keys(session.players)
-
-  const results: Record<PlayerId, PlayerResult> = {}
-  for (const playerId of playerIds) {
-    const answer = answers[playerId]
-    if (answer) results[playerId] = gradeAnswer(question, answer, session.settings, session.phaseEndsAt)
-  }
-
+  const results = questionResults(question, session, decisions)
   const scores = Object.fromEntries(playerIds.map((id) => [id, totalScore(session, id, results[id])]))
   const answered = Object.entries(answers).filter(([playerId]) => playerId in session.players)
 
@@ -121,7 +164,13 @@ export function buildReveal(question: Question, session: Session): RevealResult 
     stats:
       answerMode === 'choice'
         ? { choiceCounts: question.options.map((_, index) => answered.filter(([, a]) => a.value === index).length) }
-        : { freeAnswers: answered.map(([playerId, a]) => ({ playerId, value: String(a.value) })) },
+        : {
+            freeAnswers: publicFreeAnswerGroups(
+              groupFreeAnswers(question, answers, playerIds),
+              results,
+              decisions?.hidden,
+            ),
+          },
     results,
   }
   if (question.explanation) reveal.explanation = question.explanation
@@ -178,16 +227,18 @@ function phaseTimes(nowServer: number, durationS: number | null): SessionUpdate 
   return { phaseStartedAt: nowServer, phaseEndsAt: durationS === null ? 0 : nowServer + durationS * 1000 }
 }
 
-// Contenu de l'update qui fait passer à l'état suivant (STARTING → QUESTION → REVEAL → SCORES →
-// QUESTION suivante ou END), ou null si la session n'est plus dans l'état attendu ou si aucune
-// transition automatique n'existe. questions : questions de la partie (selectGameQuestions).
-// audioUrls : adresses des extraits (blind test seulement).
+// Contenu de l'update qui fait passer à l'état suivant (STARTING → QUESTION → [VALIDATION →] REVEAL
+// → SCORES → QUESTION suivante ou END), ou null si la session n'est plus dans l'état attendu ou si
+// aucune transition automatique n'existe. questions : questions de la partie (selectGameQuestions).
+// audioUrls : adresses des extraits (blind test seulement). decisions : décisions de l'hôte, pour
+// la sortie de VALIDATION (voir validateUpdate).
 export function transitionUpdate(
   session: Session,
   questions: readonly Question[],
   expected: ExpectedPhase,
   nowServer: number,
   audioUrls: AudioUrls = {},
+  decisions: ValidationDecisions = {},
 ): SessionUpdate | null {
   if (session.status !== expected.status || session.currentIndex !== expected.currentIndex) return null
   const { answerMode } = session.settings
@@ -202,6 +253,7 @@ export function transitionUpdate(
     questionCount,
     stepByStep: session.settings.stepByStep === true,
     suspense,
+    validation: hasValidationPhase(session.settings),
   }
   const phase = nextPhase(session.status, context, upcoming?.timeLimit)
   if (!phase || session.status === 'lobby') return null
@@ -214,10 +266,17 @@ export function transitionUpdate(
       // reveal est effacé au passage à la question suivante (spec 7).
       return { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
     }
+    case 'validation': {
+      // Correction automatique écrite dès la fin de la question (Rapidité calculée sur cette fin).
+      const question = questions[session.currentIndex]
+      if (!question) return null
+      return { ...base, ...gradingPaths(session, question) }
+    }
     case 'reveal': {
       const question = questions[session.currentIndex]
       if (!question) return null
-      return { ...base, ...revealPaths(session, buildReveal(question, session)) }
+      const reviewed = session.status === 'validation' ? decisions : undefined
+      return { ...base, ...revealPaths(session, buildReveal(question, session, reviewed)) }
     }
     case 'ended':
       return { ...base, currentQuestion: null, reveal: null }
@@ -226,12 +285,44 @@ export function transitionUpdate(
   }
 }
 
+// « Valider » (Contrôle) : révélation avec les décisions de l'hôte, ou null hors de VALIDATION.
+export function validateUpdate(
+  session: Session,
+  questions: readonly Question[],
+  decisions: ValidationDecisions,
+  nowServer: number,
+): SessionUpdate | null {
+  if (session.status !== 'validation') return null
+  const expected = { status: session.status, currentIndex: session.currentIndex }
+  return transitionUpdate(session, questions, expected, nowServer, {}, decisions)
+}
+
+function resultPaths(session: Session, playerId: PlayerId, result: PlayerResult): SessionUpdate {
+  const path = `answers/${session.currentIndex}/${playerId}`
+  return {
+    [`${path}/correct`]: result.correct,
+    [`${path}/points`]: result.points,
+    [`${path}/partial`]: result.partial ?? null,
+  }
+}
+
+// Fin de la question avec Contrôle : correction automatique et points d'une réponse entièrement juste.
+function gradingPaths(session: Session, question: Question): SessionUpdate {
+  const answers = session.answers?.[session.currentIndex] ?? {}
+  const update: SessionUpdate = {}
+  for (const playerId of Object.keys(session.players)) {
+    const answer = answers[playerId]
+    if (!answer) continue
+    const graded = gradeAnswer(question, answer, session.settings, session.phaseEndsAt)
+    Object.assign(update, resultPaths(session, playerId, graded))
+    update[`answers/${session.currentIndex}/${playerId}/fullPoints`] = graded.fullPoints
+  }
+  return update
+}
+
 function revealPaths(session: Session, { reveal, results, scores, ranks }: RevealResult): SessionUpdate {
   const update: SessionUpdate = { reveal }
-  for (const [playerId, result] of Object.entries(results)) {
-    update[`answers/${session.currentIndex}/${playerId}/correct`] = result.correct
-    update[`answers/${session.currentIndex}/${playerId}/points`] = result.points
-  }
+  for (const [playerId, result] of Object.entries(results)) Object.assign(update, resultPaths(session, playerId, result))
   for (const playerId of Object.keys(scores)) {
     update[`players/${playerId}/score`] = scores[playerId]
     update[`players/${playerId}/rank`] = ranks[playerId]
@@ -308,7 +399,7 @@ export function launchUpdate(
   return { ok: true, update }
 }
 
-const PAUSABLE: readonly GameStatus[] = ['starting', 'question', 'reveal', 'scores']
+const PAUSABLE: readonly GameStatus[] = ['starting', 'question', 'validation', 'reveal', 'scores']
 
 // Pause : on mémorise l'état et le temps restant de la phase (jamais négatif).
 export function pauseUpdate(session: Session, nowServer: number): SessionUpdate | null {
@@ -326,9 +417,9 @@ export function pauseUpdate(session: Session, nowServer: number): SessionUpdate 
 // Le bonus de rapidité, lui, ne dépend que de phaseEndsAt (voir spec 6.2 pour la pause).
 export function resumeUpdate(session: Session, nowServer: number): SessionUpdate | null {
   if (session.status !== 'paused' || !session.pausedFrom) return null
-  // Pas à pas : une révélation ou un classement en attente le reste (sans fin programmée) ;
-  // sinon il repartirait aussitôt.
-  if (isAwaitingHost({ status: session.pausedFrom, settings: session.settings })) {
+  // Phase sans échéance (validation, attente du Pas à pas) : elle le reste ; sinon elle
+  // repartirait aussitôt.
+  if (isUntimedPhase({ status: session.pausedFrom, settings: session.settings })) {
     return { status: session.pausedFrom, phaseEndsAt: 0, pausedFrom: null, remainingMs: null }
   }
   const phaseEndsAt = nowServer + (session.remainingMs ?? 0)
@@ -406,7 +497,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
 }
 
 // Ce que « Passer » va faire, pour un libellé explicite sur le bouton de l'hôte.
-export type SkipTarget = 'firstQuestion' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
+export type SkipTarget = 'firstQuestion' | 'validation' | 'reveal' | 'scores' | 'nextQuestion' | 'finalRanking'
 
 export type AwaitingNext = 'ranking' | 'nextQuestion' | 'finalRanking'
 
@@ -434,6 +525,8 @@ export interface HostControls {
   // Pas à pas, phase en attente : gros bouton nommé d'après sa destination (classement, question
   // suivante, classement final). Même transition que Passer. null sinon (pause comprise).
   awaitingNext: AwaitingNext | null
+  // Contrôle, phase VALIDATION : gros bouton « Valider les réponses » (validateUpdate).
+  canValidate: boolean
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
@@ -448,6 +541,7 @@ export function hostControls(session: Session): HostControls {
     canEnd,
     canReplay: session.status === 'ended',
     awaitingNext: awaitingNextOf(session),
+    canValidate: session.status === 'validation',
   }
 }
 
@@ -456,6 +550,9 @@ function skipTarget(session: Session): SkipTarget | null {
     case 'starting':
       return 'firstQuestion'
     case 'question':
+      return hasValidationPhase(session.settings) ? 'validation' : 'reveal'
+    case 'validation':
+      // Même chose que « Valider les réponses » avec les décisions automatiques.
       return 'reveal'
     case 'reveal':
       return session.settings.suspense ? afterQuestionTarget(session) : 'scores'

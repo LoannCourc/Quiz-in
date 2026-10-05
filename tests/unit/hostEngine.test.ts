@@ -116,20 +116,20 @@ describe('gradeAnswer', () => {
   const question = QUESTIONS[0]
 
   test('bonne réponse à mi-temps avec Rapidité : 150 points', () => {
-    expect(gradeAnswer(question, answer(1, NOW - QUESTION_MS / 2), CHOICE, NOW)).toEqual({ correct: true, points: 150 })
+    expect(gradeAnswer(question, answer(1, NOW - QUESTION_MS / 2), CHOICE, NOW)).toEqual({ correct: true, points: 150, fullPoints: 150 })
   })
 
   test('bonne réponse à la dernière milliseconde : 100 points, bonus nul', () => {
-    expect(gradeAnswer(question, answer(1, NOW), CHOICE, NOW)).toEqual({ correct: true, points: 100 })
+    expect(gradeAnswer(question, answer(1, NOW), CHOICE, NOW)).toEqual({ correct: true, points: 100, fullPoints: 100 })
   })
 
   test('bonne réponse reçue dans la tolérance après la fin : juste, bonus nul', () => {
-    expect(gradeAnswer(question, answer(1, NOW + 800), CHOICE, NOW)).toEqual({ correct: true, points: 100 })
+    expect(gradeAnswer(question, answer(1, NOW + 800), CHOICE, NOW)).toEqual({ correct: true, points: 100, fullPoints: 100 })
   })
 
   test('mauvaise proposition, ou valeur du mauvais type : 0 point', () => {
-    expect(gradeAnswer(question, answer(2, NOW - 5_000), CHOICE, NOW)).toEqual({ correct: false, points: 0 })
-    expect(gradeAnswer(question, answer('1', NOW - 5_000), CHOICE, NOW)).toEqual({ correct: false, points: 0 })
+    expect(gradeAnswer(question, answer(2, NOW - 5_000), CHOICE, NOW)).toMatchObject({ correct: false, points: 0 })
+    expect(gradeAnswer(question, answer('1', NOW - 5_000), CHOICE, NOW)).toMatchObject({ correct: false, points: 0 })
   })
 
   test('Rapidité désactivée : 100 points quelle que soit la vitesse', () => {
@@ -563,11 +563,12 @@ describe('hostControls', () => {
       canEnd: true,
       canReplay: false,
       awaitingNext: null,
+      canValidate: false,
     })
   })
 
   test('LOBBY : aucun contrôle ; END : seulement Rejouer et Quitter', () => {
-    const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null }
+    const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null, canValidate: false }
     expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canReplay: false })
     expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canReplay: true })
   })

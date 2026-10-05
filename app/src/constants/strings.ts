@@ -217,6 +217,7 @@ export const strings = {
     close: 'Fermer',
     skip: {
       firstQuestion: 'Passer à la question 1',
+      validation: 'Valider les réponses',
       reveal: 'Révéler la réponse',
       scores: 'Voir le classement',
       nextQuestion: 'Question suivante',

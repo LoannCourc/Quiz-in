@@ -12,6 +12,7 @@ import { extractOf } from './audioPlayback'
 import { questionDurationS } from './gameFlow'
 import type {
   AudioSourceId,
+  BlindTestAsk,
   ChoiceOptions,
   Difficulty,
   MusicTrack,
@@ -40,6 +41,16 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.length > 0
 }
 
+function isStringList(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every(isNonEmptyString)
+}
+
+const BLIND_TEST_ASKS: readonly BlindTestAsk[] = ['title', 'artist', 'both']
+
+export function isBlindTestAsk(value: unknown): value is BlindTestAsk {
+  return BLIND_TEST_ASKS.includes(value as BlindTestAsk)
+}
+
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value)
 }
@@ -60,12 +71,16 @@ function isAudioSource(value: unknown): value is AudioSourceId {
 // dans la preview ; la durée (celle du timer) est vérifiée avec la question (fitsBlindTestTimer).
 export function parseMusicTrack(value: unknown): MusicTrack | null {
   if (!isRecord(value)) return null
-  const { source, id, title, artist, startS } = value
+  const { source, id, title, artist, startS, titleAliases, artistAliases } = value
   if (!isAudioSource(source) || !isNonEmptyString(id) || !isNonEmptyString(title) || !isNonEmptyString(artist)) return null
   if (startS !== undefined && !(isFiniteNumber(startS) && startS >= 0 && startS < AUDIO_PREVIEW_S)) return null
+  if (titleAliases !== undefined && !isStringList(titleAliases)) return null
+  if (artistAliases !== undefined && !isStringList(artistAliases)) return null
 
   const track: MusicTrack = { source, id, title, artist }
   if (startS !== undefined) track.startS = startS as number
+  if (titleAliases !== undefined) track.titleAliases = titleAliases
+  if (artistAliases !== undefined) track.artistAliases = artistAliases
   return track
 }
 
@@ -156,7 +171,7 @@ export function parseQuizCatalog(value: unknown): ParsedList<QuizEntry> {
 // Question complète (spec 8), ou null si elle est mal formée.
 export function parseQuestion(value: unknown): Question | null {
   if (!isRecord(value)) return null
-  const { id, text, options, correctIndex, acceptedAnswers, difficulty, explanation, timeLimit, music } = value
+  const { id, text, options, correctIndex, acceptedAnswers, difficulty, explanation, timeLimit, music, ask } = value
   if (!isNonEmptyString(id) || !isNonEmptyString(text) || !isChoiceOptions(options) || !isDifficulty(difficulty)) {
     return null
   }
@@ -171,11 +186,14 @@ export function parseQuestion(value: unknown): Question | null {
   const track = music === undefined ? undefined : parseMusicTrack(music)
   if (track === null) return null
   if (track && !fitsBlindTestTimer(track, timeLimit as number | undefined)) return null
+  // ask n'a de sens que pour un blind test ; une valeur inconnue écarte la question.
+  if (ask !== undefined && !(track && isBlindTestAsk(ask))) return null
 
   const question: Question = { id, text, options, correctIndex: correctIndex as number, acceptedAnswers, difficulty }
   if (explanation !== undefined) question.explanation = explanation
   if (timeLimit !== undefined) question.timeLimit = timeLimit
   if (track) question.music = track
+  if (ask !== undefined) question.ask = ask
   return question
 }
 

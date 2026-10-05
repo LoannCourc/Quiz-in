@@ -80,6 +80,7 @@
           },
           "difficulty": { ".validate": "newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
           "timeLimit": { ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 300" },
+          "ask": { ".validate": "newData.isString() && newData.val().matches(/^(title|artist|both)$/)" },
           "audio": {
             ".validate": "newData.hasChildren(['url', 'startS', 'durationS']) && newData.child('startS').val() + newData.child('durationS').val() <= 30",
             "url": { ".validate": "newData.isString() && newData.val().beginsWith('https://') && newData.val().length <= 2048" },
@@ -101,12 +102,29 @@
             "source": { ".validate": "newData.isString() && newData.val().matches(/^deezer$/)" },
             "$other": { ".validate": false }
           },
-          "stats": {},
+          "stats": {
+            "choiceCounts": {
+              "$choice": { ".validate": "$choice.matches(/^[0-3]$/) && newData.isNumber() && newData.val() >= 0" }
+            },
+            "freeAnswers": {
+              "$group": {
+                ".validate": "$group.matches(/^[0-7]$/) && newData.hasChildren(['value', 'playerIds', 'verdict'])",
+                "value": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 123" },
+                "playerIds": {
+                  "$i": { ".validate": "$i.matches(/^1?[0-9]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 128" }
+                },
+                "verdict": { ".validate": "newData.isString() && newData.val().matches(/^(correct|partial|wrong)$/)" },
+                "$other": { ".validate": false }
+              }
+            },
+            "$other": { ".validate": false }
+          },
           "results": {
             "$uid": {
               ".validate": "newData.hasChildren(['correct', 'points'])",
               "correct": { ".validate": "newData.isBoolean()" },
               "points": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+              "partial": { ".validate": "newData.val() == true" },
               "$other": { ".validate": false }
             }
           },
@@ -136,12 +154,15 @@
         "answers": {
           "$index": {
             "$uid": {
-              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && newData.child('submittedAt').val() <= root.child('sessions/' + $code + '/phaseEndsAt').val() + 1000 && !newData.hasChild('correct') && !newData.hasChild('points')",
+              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && newData.child('submittedAt').val() <= root.child('sessions/' + $code + '/phaseEndsAt').val() + 1000 && !newData.hasChild('correct') && !newData.hasChild('points') && !newData.hasChild('partial') && !newData.hasChild('fullPoints')",
               ".validate": "newData.hasChildren(['value', 'submittedAt'])",
-              "value": { ".validate": "(newData.isString() && newData.val().length >= 1 && newData.val().length <= 60) || newData.val() == 0 || newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
+              "value": { ".validate": "(newData.isString() && newData.val().length <= 60 && (newData.val().length >= 1 || newData.parent().child('artist').exists())) || newData.val() == 0 || newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
+              "artist": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 60 && newData.parent().child('value').isString()" },
               "submittedAt": { ".validate": "newData.isNumber() && (newData.val() == now || newData.val() == data.val())" },
               "correct": { ".validate": "newData.isBoolean()" },
               "points": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+              "partial": { ".validate": "newData.val() == true" },
+              "fullPoints": { ".validate": "newData.isNumber() && newData.val() >= 0" },
               "$other": { ".validate": false }
             }
           }

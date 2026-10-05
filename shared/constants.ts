@@ -37,7 +37,8 @@ export const TRANSITION_LOCK_MAX_MS = 10_000;
 // marge après phaseEndsAt sans changement de phase (l'hôte avance normalement bien avant).
 export const STALE_PHASE_MARGIN_MS = 5_000;
 
-// Points : bonne réponse, plus bonus de rapidité jusqu'à MAX_SPEED_BONUS_POINTS.
+// Points : bonne réponse, plus bonus de rapidité jusqu'à MAX_SPEED_BONUS_POINTS. Blind test « both »
+// en Réponse libre : la moitié pour le titre, la moitié pour l'artiste.
 export const CORRECT_ANSWER_POINTS = 100;
 export const MAX_SPEED_BONUS_POINTS = 100;
 
@@ -53,8 +54,21 @@ export const DEFAULT_SESSION_SETTINGS: SessionSettings = {
   suspense: false,
 };
 
-// Réponse libre : une faute de frappe tolérée si la réponse attendue a au moins ce nombre de lettres.
+// Réponse libre : une faute de frappe tolérée si la réponse attendue a au moins ce nombre de lettres,
+// deux à partir de TYPO_TOLERANCE_TWO_MIN_LETTERS (spec 6.3).
 export const TYPO_TOLERANCE_MIN_LETTERS = 5;
+export const TYPO_TOLERANCE_TWO_MIN_LETTERS = 10;
+// Réponse « proche » (à vérifier par l'hôte) : au moins ce nombre de lettres pour une réponse contenue
+// dans l'autre (« Hallyday » pour « Johnny Hallyday »).
+export const CLOSE_ANSWER_MIN_LETTERS = 3;
+// Longueur maximale d'une saisie (chaque champ), identique à database.rules.json.
+export const FREE_ANSWER_MAX_LENGTH = 60;
+// Révélation en Réponse libre : groupes de réponses publiés pour la TV, les plus nombreux d'abord.
+export const FREE_ANSWER_GROUPS_MAX = 8;
+// Texte affiché à la place d'une réponse filtrée (mot interdit) ou masquée par l'hôte.
+export const HIDDEN_ANSWER_TEXT = '•••';
+// Estimation de la durée d'une validation par l'hôte (Contrôle), pour la durée affichée sur la fiche.
+export const VALIDATION_ESTIMATE_S = 15;
 
 export const PLAYER_NAME_MIN_LENGTH = 2;
 export const PLAYER_NAME_MAX_LENGTH = 12;
