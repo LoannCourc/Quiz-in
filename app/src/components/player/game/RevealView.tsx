@@ -10,6 +10,8 @@ import type { FreeText, RevealOutcome } from '@/lib/playerGame';
 import { gradientStyle } from '@/components/ui/gradient';
 
 import { ChoicePill, choiceTextSize } from './ChoicePill';
+import { PlaceBand } from './PlaceBand';
+import { TeamChip, TeamRevealBands, type TeamGameInfo } from './TeamViews';
 
 // Réponse libre (maquette S2) : bonne réponse (titre et artiste pour un blind test « both »), parties
 // jugées justes en « both », réponse tapée par le joueur (null si l'appareil ne l'a pas gardée).
@@ -37,14 +39,17 @@ interface RevealViewProps {
   previousRank?: number;
   // Réponse libre : bonne réponse rappelée avec ce que le joueur a écrit, à la place de la pilule.
   free?: FreeRevealInfo;
+  // Groupe : pastille d'équipe, rang de l'équipe et rang dans l'équipe, à la place de « Ta place ».
+  team?: TeamGameInfo;
 }
 
 export function RevealView(props: RevealViewProps) {
-  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], rank, previousRank, free } = props;
+  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], rank, previousRank, free, team } = props;
   const isCorrect = outcome === 'correct';
 
   return (
     <View style={styles.container}>
+      {team && <TeamChip team={team.team} />}
       <Text style={[textStyles.hero, outcome === 'partial' && styles.partialTitle]}>{strings.game.reveal.titles[outcome]}</Text>
 
       {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}
@@ -58,7 +63,7 @@ export function RevealView(props: RevealViewProps) {
         <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>
       )}
 
-      {rank !== undefined && <PlaceBand rank={rank} previousRank={previousRank} />}
+      {team ? <TeamRevealBands info={team} /> : rank !== undefined && <PlaceBand rank={rank} previousRank={previousRank} />}
     </View>
   );
 }
@@ -155,26 +160,6 @@ function PointsCoin({ points, isSoft }: { points: number; isSoft: boolean }) {
     <View style={[styles.coin, isSoft ? styles.softCoin : COIN_GRADIENT]}>
       <Text style={[styles.coinPoints, isSoft && styles.softCoinText]}>{strings.game.reveal.coinPoints(points)}</Text>
       <Text style={[styles.coinLabel, isSoft && styles.softCoinText]}>{strings.game.reveal.coinLabel}</Text>
-    </View>
-  );
-}
-
-// « TA PLACE 4e → 2e ▲ » : rang avant et après la question. Ni le libellé ni le rang ne
-// rétrécissent : s'ils ne tiennent pas sur une ligne (écran étroit, grande police), le rang passe
-// à la ligne, aligné à droite. Le libellé prend en plus la place libre : sa boîte n'est jamais réduite
-// à sa largeur mesurée, trop juste sur Android 15+ (voir TEXT_FIT_SAFETY).
-export function PlaceBand({ rank, previousRank }: { rank: number; previousRank?: number }) {
-  const { ordinal, reveal } = strings.game;
-  // Rang inchangé (ou inconnu) : le rang seul, sans flèche.
-  const value =
-    previousRank === undefined || previousRank === rank
-      ? ordinal(rank)
-      : reveal.placeChange(ordinal(previousRank), ordinal(rank), rank < previousRank ? reveal.arrows.up : reveal.arrows.down);
-
-  return (
-    <View style={styles.band}>
-      <Text style={styles.bandLabel}>{reveal.placeLabel}</Text>
-      <Text style={styles.bandValue}>{value}</Text>
     </View>
   );
 }
@@ -282,36 +267,5 @@ const styles = StyleSheet.create({
     color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
     fontSize: 13,
-  },
-  band: {
-    marginTop: 'auto',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    columnGap: Spacing.three,
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.three,
-    borderRadius: AppSizes.radiusCard,
-    backgroundColor: AppColors.inkSurface,
-  },
-  bandLabel: {
-    ...TEXT_FIT_SAFETY,
-    flexGrow: 1,
-    flexShrink: 0,
-    color: AppColors.text,
-    fontFamily: AppFonts.display,
-    fontSize: 17,
-    lineHeight: 22,
-    textTransform: 'uppercase',
-  },
-  bandValue: {
-    ...TEXT_FIT_SAFETY,
-    flexShrink: 0,
-    marginLeft: 'auto',
-    color: AppColors.accent,
-    fontFamily: AppFonts.display,
-    fontSize: 26,
-    lineHeight: 34,
   },
 });

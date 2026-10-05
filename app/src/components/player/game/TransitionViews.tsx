@@ -12,6 +12,7 @@ import type { RankedPlayer } from '@/lib/playerGame';
 import { NextQuestionBar } from './NextQuestionBar';
 import { useRemainingBelow, type PhaseTiming } from './phaseTiming';
 import { ScoresView } from './StatusViews';
+import { TeamScoresView, type TeamGameInfo } from './TeamViews';
 import { TransitionSteps, type TransitionStep } from './TransitionSteps';
 
 // Attente avant la question suivante : temps total (révélation + classement).
@@ -31,7 +32,19 @@ export function WaitHeader({ step, wait, withRanking = true }: { step: Transitio
 }
 
 // Pas à pas : classement sans barre de temps ni annonce, jusqu'à l'action de l'hôte.
-export function AwaitingScoresPhase({ players, uid, index }: { players: RankedPlayer[]; uid: PlayerId; index: number }) {
+// Classement de la phase : celui des équipes en Groupe, sinon celui des joueurs.
+function PhaseRanking({ players, uid, index, team }: { players: RankedPlayer[]; uid: PlayerId; index: number; team?: TeamGameInfo }) {
+  return team ? <TeamScoresView info={team} /> : <ScoresView players={players} uid={uid} index={index} />;
+}
+
+interface AwaitingScoresPhaseProps {
+  players: RankedPlayer[];
+  uid: PlayerId;
+  index: number;
+  team?: TeamGameInfo;
+}
+
+export function AwaitingScoresPhase({ players, uid, index, team }: AwaitingScoresPhaseProps) {
   return (
     <>
       <View style={styles.header}>
@@ -39,7 +52,7 @@ export function AwaitingScoresPhase({ players, uid, index }: { players: RankedPl
         {/* En haut, à la place de la barre de temps : visible sans faire défiler le classement. */}
         <Text style={[textStyles.muted, styles.centered]}>{strings.game.awaitingHost}</Text>
       </View>
-      <ScoresView players={players} uid={uid} index={index} />
+      <PhaseRanking players={players} uid={uid} index={index} team={team} />
     </>
   );
 }
@@ -54,11 +67,13 @@ interface ScoresPhaseProps {
   // Numéro de la question suivante, null après la dernière ; nombre de questions de la partie.
   upcoming: number | null;
   questionCount?: number;
+  // Groupe : classement des équipes.
+  team?: TeamGameInfo;
 }
 
 // Classement, puis annonce plein écran « QUESTION n/N » pendant les NEXT_QUESTION_ANNOUNCE_MS
 // dernières millisecondes de la phase (sans l'allonger). À monter avec une clé par phase.
-export function ScoresPhase({ players, uid, index, phase: phaseProps, wait, upcoming, questionCount }: ScoresPhaseProps) {
+export function ScoresPhase({ players, uid, index, phase: phaseProps, wait, upcoming, questionCount, team }: ScoresPhaseProps) {
   // Objet stable : le minuteur ne redémarre pas à chaque rendu du parent.
   const [phase] = useState(phaseProps);
   const isEndOfPhase = useRemainingBelow(phase, NEXT_QUESTION_ANNOUNCE_MS);
@@ -68,7 +83,7 @@ export function ScoresPhase({ players, uid, index, phase: phaseProps, wait, upco
   return (
     <>
       <WaitHeader step={1} wait={wait} />
-      <ScoresView players={players} uid={uid} index={index} />
+      <PhaseRanking players={players} uid={uid} index={index} team={team} />
     </>
   );
 }

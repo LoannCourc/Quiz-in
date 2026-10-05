@@ -5,6 +5,7 @@ import {
   assignTeamUpdate,
   bestPlayerByTeam,
   drawTeams,
+  previousTeamRank,
   rankInTeam,
   suggestedTeamCount,
   teamCountUpdate,
@@ -13,6 +14,7 @@ import {
   teamMembers,
   teamModeUpdate,
   teamQuestionPoints,
+  teamRanking,
   teamStandings,
 } from '../../shared/teams'
 import type { Answer, Player, PlayerId, Session, SessionSettings, TeamId } from '../../shared/types'
@@ -196,5 +198,22 @@ describe('Moteur : équipes pendant la partie', () => {
     const session = questionSession({ ...TEAMS, teams: false }, {})
     const update = transitionUpdate(session, [question], { status: 'question', currentIndex: 0 }, NOW + 2_000) ?? {}
     expect(Object.keys(update).some((path) => path.startsWith('team'))).toBe(false)
+  })
+})
+
+describe('Classements d’équipe (écrans)', () => {
+  test('lignes triées par rang, avec le meilleur joueur ; rang avant la question', () => {
+    const session = {
+      players: players([['a', 'pink', 300], ['b', 'pink', 100], ['c', 'cyan', 250], ['d', 'cyan', 250]]),
+      teams: { pink: { score: 200, rank: 2 }, cyan: { score: 250, rank: 1 } },
+      teamPoints: { 0: { pink: 150, cyan: 100 }, 1: { pink: 50, cyan: 150 } },
+      currentIndex: 1,
+    }
+    expect(teamRanking(session)).toEqual([
+      { team: 'cyan', score: 250, rank: 1, bestPlayerId: 'c' },
+      { team: 'pink', score: 200, rank: 2, bestPlayerId: 'a' },
+    ])
+    expect(previousTeamRank(session, 'cyan')).toBe(2)
+    expect(previousTeamRank({ ...session, currentIndex: 0 }, 'cyan')).toBeUndefined()
   })
 })

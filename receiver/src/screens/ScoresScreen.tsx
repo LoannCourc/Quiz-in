@@ -5,6 +5,7 @@ import type { PlayerId, PublicSession } from '@shared/types'
 import { GameHeader } from '../components/GameHeader'
 import { Podium } from '../components/Podium'
 import { RankingList } from '../components/RankingList'
+import { TeamRankingBoard } from '../components/TeamBoards'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
 import { useRemainingMs } from '../hooks/useRemainingMs'
 import { sortByRank } from '../lib/players'
@@ -53,14 +54,27 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
     <main className="screen scores">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
       <TransitionSteps active={1} />
-      <div className="scores-title-row">
-        <h1 className="screen-title">{strings.scores.title}</h1>
-        <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
-      </div>
-      <div className="scores-body">
-        <Podium players={topPlayers.slice(0, PODIUM_SIZE)} />
-        <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} />
-      </div>
+      {session.settings.teams ? (
+        // Groupe : classement des équipes à la place du classement des joueurs (maquette G3).
+        <>
+          <div className="scores-title-row">
+            <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
+            <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
+          </div>
+          <TeamRankingBoard session={session} />
+        </>
+      ) : (
+        <>
+          <div className="scores-title-row">
+            <h1 className="screen-title">{strings.scores.title}</h1>
+            <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
+          </div>
+          <div className="scores-body">
+            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} />
+            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} />
+          </div>
+        </>
+      )}
       {countdown && <NextQuestionLine countdown={countdown} />}
       {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>

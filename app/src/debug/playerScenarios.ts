@@ -1,4 +1,5 @@
 import { QUESTION_DURATION_S, REVEAL_DURATION_S, SCORES_DURATION_S, STARTING_DURATION_S } from '@shared/constants';
+import { teamStandings } from '@shared/teams';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Reveal, TeamId } from '@shared/types';
 
 import { IDLE_ANSWER, type AnswerState, type FreeText } from '@/lib/playerGame';
@@ -14,6 +15,9 @@ export type ScenarioId =
   | 'lobby'
   | 'lobbyTeamsChoose'
   | 'lobbyTeamsHost'
+  | 'revealTeams'
+  | 'scoresTeams'
+  | 'endTeams'
   | 'starting'
   | 'questionShort'
   | 'questionLong'
@@ -47,6 +51,9 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   lobby: 'Lobby',
   lobbyTeamsChoose: 'Groupe : choix de l’équipe',
   lobbyTeamsHost: 'Groupe : équipe choisie par l’hôte',
+  revealTeams: 'Groupe : révélation',
+  scoresTeams: 'Groupe : classement des équipes',
+  endTeams: 'Groupe : fin de partie',
   starting: 'Démarrage',
   questionShort: 'Question courte',
   questionLong: 'Question longue',
@@ -105,6 +112,19 @@ export const TEAM_OF: Record<PlayerId, TeamId> = { lea: 'pink', tom: 'pink', [DE
 
 export function withTeams(players: Record<PlayerId, Player>): Record<PlayerId, Player> {
   return Object.fromEntries(Object.entries(players).map(([id, entry]) => [id, { ...entry, team: TEAM_OF[id] }]));
+}
+
+// Groupe : points d'équipe des trois premières questions ; Cyan (mon équipe) passe de 3e à 1re.
+const TEAM_POINTS = { 0: { pink: 400, cyan: 300, gold: 420 }, 1: { pink: 450, cyan: 400, gold: 350 }, 2: { pink: 30, cyan: 190, gold: 10 } };
+
+function withTeamGame(session: PublicSession): PublicSession {
+  return {
+    ...session,
+    settings: { ...session.settings, teams: true, teamMode: 'random', teamCount: 3 },
+    players: withTeams(session.players),
+    teamPoints: TEAM_POINTS,
+    teams: teamStandings(TEAM_POINTS, ['pink', 'cyan', 'gold'], session.currentIndex),
+  };
 }
 
 // Résultats de la question 3 : avant elle, j'étais 4e avec 1 242 points.
@@ -250,6 +270,13 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
   switch (id) {
     case 'lobby':
       return idle(baseSession(now, PLAYERS_BEFORE));
+    case 'revealTeams':
+      return idle(withTeamGame(revealScenario(now, RESULTS[DEMO_UID])));
+    case 'scoresTeams':
+      // Pas à pas : classement sans échéance, pour l'examiner (et les captures) sans l'annonce suivante.
+      return idle(withTeamGame({ ...baseSession(now, PLAYERS_AFTER), status: 'scores', reveal: REVEAL, phaseStartedAt: now, phaseEndsAt: 0, settings: { ...baseSession(now, PLAYERS_AFTER).settings, stepByStep: true } }));
+    case 'endTeams':
+      return idle(withTeamGame({ ...baseSession(now, PLAYERS_AFTER), status: 'ended' }));
     case 'lobbyTeamsChoose':
     case 'lobbyTeamsHost': {
       const teamMode = id === 'lobbyTeamsChoose' ? 'players' : 'host';

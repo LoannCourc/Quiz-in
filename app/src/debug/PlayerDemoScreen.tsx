@@ -7,7 +7,7 @@ import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { NextQuestionBar } from '@/components/player/game/NextQuestionBar';
 import type { PhaseTiming } from '@/components/player/game/phaseTiming';
 import { QuestionHeader } from '@/components/player/game/QuestionHeader';
-import { PlaceBand } from '@/components/player/game/RevealView';
+import { PlaceBand } from '@/components/player/game/PlaceBand';
 import { TransitionSteps } from '@/components/player/game/TransitionSteps';
 import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';

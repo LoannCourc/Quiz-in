@@ -194,3 +194,34 @@ export function bestPlayerByTeam(
   }
   return best
 }
+
+// Ligne du classement des équipes (TV et téléphone) : score, rang et meilleur joueur.
+export interface TeamRow {
+  team: TeamId
+  score: number
+  rank: number
+  bestPlayerId?: PlayerId
+}
+
+// Classement des équipes de la partie, du premier au dernier (à égalité, dans l'ordre fixe).
+export function teamRanking(session: Pick<PublicSession, 'teams' | 'players'>): TeamRow[] {
+  const best = bestPlayerByTeam(session.players)
+  return teamsInGame(session.players)
+    .map((team) => ({
+      team,
+      score: session.teams?.[team]?.score ?? 0,
+      rank: session.teams?.[team]?.rank ?? 1,
+      ...(best[team] !== undefined && { bestPlayerId: best[team] }),
+    }))
+    .sort((a, b) => a.rank - b.rank || TEAM_IDS.indexOf(a.team) - TEAM_IDS.indexOf(b.team))
+}
+
+// Rang d'une équipe avant la question en cours (« 3e → 2e ») ; undefined à la première question.
+export function previousTeamRank(
+  session: Pick<PublicSession, 'teamPoints' | 'players' | 'currentIndex'>,
+  team: TeamId,
+): number | undefined {
+  if (session.currentIndex === 0) return undefined
+  const standings = teamStandings(session.teamPoints ?? {}, teamsInGame(session.players), session.currentIndex - 1)
+  return standings[team]?.rank
+}

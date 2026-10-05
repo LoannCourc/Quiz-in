@@ -4,6 +4,7 @@ import { AudioStatus } from '../components/AudioStatus'
 import { Avatar } from '../components/Avatar'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
+import { TeamAvatarGroups } from '../components/TeamBoards'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { answeredByCount, countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
@@ -75,16 +76,21 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
               ? strings.question.answeredCount(answeredCount, connectedCount)
               : strings.question.noConnectedPlayers}
           </span>
-          <div className="question-avatars">
-            {players.map((player) => (
-              <Avatar
-                key={player.id}
-                player={player}
-                state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
-                showName={false}
-              />
-            ))}
-          </div>
+          {session.settings.teams ? (
+            // Groupe : avatars regroupés par équipe (maquette G2).
+            <TeamAvatarGroups session={session} players={players} />
+          ) : (
+            <div className="question-avatars">
+              {players.map((player) => (
+                <Avatar
+                  key={player.id}
+                  player={player}
+                  state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
+                  showName={false}
+                />
+              ))}
+            </div>
+          )}
         </footer>
       )}
     </main>

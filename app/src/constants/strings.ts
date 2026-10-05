@@ -172,6 +172,22 @@ export const strings = {
       notAssigned: 'L’hôte forme les équipes…',
       chooseFailed: 'Ton choix n’a pas été enregistré. Réessaie.',
     },
+    // Pendant la partie (maquette G4).
+    game: {
+      yourTeam: 'Ton équipe',
+      inYourTeam: 'Dans ton équipe',
+      outOf: (size: number) => `sur ${size}`,
+      rankingTitle: 'Classement des équipes',
+      mine: ' · ton équipe',
+      points: (points: number) => formatNumber(Math.round(points)),
+      endWinner: 'Votre équipe gagne !',
+      endPlace: (place: string) => `Votre équipe est ${place} !`,
+      you: 'Toi',
+      bestOfTeam: 'Meilleur joueur de ton équipe',
+      playerDetail: (total: number, points: number) => `sur ${total} · ${formatNumber(points)} pts`,
+      showPlayers: 'Classement des joueurs',
+      showTeams: 'Classement des équipes',
+    },
   },
   hostLobby: {
     loading: 'Chargement de la partie…',

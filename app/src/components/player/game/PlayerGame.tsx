@@ -1,6 +1,7 @@
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress } from '@shared/players';
+import { bestPlayerByTeam, previousTeamRank, rankInTeam, teamRanking } from '@shared/teams';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -28,6 +29,7 @@ import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
+import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
 export interface PlayerGameProps {
@@ -89,6 +91,16 @@ function freeRevealInfo(session: PublicSession, result: PlayerResult | undefined
   return info;
 }
 
+// Groupe : équipe du joueur, classement des équipes et rang dans l'équipe (données publiques).
+function teamInfoOf(session: PublicSession, uid: PlayerId): TeamGameInfo | undefined {
+  const team = session.players[uid]?.team;
+  if (!session.settings.teams || !team) return undefined;
+  const info: TeamGameInfo = { team, rows: teamRanking(session), inTeam: rankInTeam(session.players, uid) };
+  const previousRank = previousTeamRank(session, team);
+  if (previousRank !== undefined) info.previousRank = previousRank;
+  return info;
+}
+
 function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
@@ -102,6 +114,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
   const countdown = nextQuestionCountdown(session);
   // Suspense : ni rang ni étape Classement en cours de partie, seulement les points gagnés.
   const isSuspense = session.settings.suspense === true;
+  const team = teamInfoOf(session, uid);
   const wait: WaitInfo | null = countdown && {
     timing: { phaseStartedAt: countdown.startsAt, phaseEndsAt: countdown.endsAt, serverOffsetMs },
     isLastQuestion: countdown.isLastQuestion,
@@ -138,6 +151,8 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
             correctChoice={correctChoiceIndex(session)}
             options={session.currentQuestion?.options}
             free={freeRevealInfo(session, result, answer)}
+            // Groupe : rangs d'équipe à la place de « Ta place » (rien en Suspense, comme le rang).
+            team={isSuspense ? undefined : team}
             rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
             previousRank={previousRank(session, uid)}
           />
@@ -150,7 +165,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
     }
     case 'scores':
       // Pas à pas : classement en attente de l'hôte (aussi après une reconnexion).
-      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} />;
+      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} team={team} />;
       if (!wait) return <WaitingView />;
       return (
         <ScoresPhase
@@ -162,12 +177,17 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
           wait={wait}
           upcoming={upcomingQuestionNumber(session)}
           questionCount={questionCount}
+          team={team}
         />
       );
     case 'paused':
       return <PausedView />;
     case 'ended':
-      return <EndView players={ranked} uid={uid} />;
+      return team ? (
+        <TeamEndScreen info={team} players={ranked} uid={uid} isBestOfTeam={bestPlayerByTeam(session.players)[team.team] === uid} />
+      ) : (
+        <EndView players={ranked} uid={uid} />
+      );
     case 'validation':
       return <ValidationWaitView given={answer.kind === 'idle' ? null : answer.given} />;
     case 'lobby':

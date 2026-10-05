@@ -7,6 +7,7 @@ import {
   STARTING_DURATION_S,
 } from '@shared/constants'
 import { groupFreeAnswers, publicFreeAnswerGroups } from '@shared/freeAnswers'
+import { computeRanks } from '@shared/ranking'
 import { activeTeams } from '@shared/teams'
 import type {
   Answer,
@@ -286,10 +287,19 @@ export function withDemoTeams(session: PublicSession, drawAt?: number): PublicSe
   const players = Object.fromEntries(
     Object.entries(session.players).map(([id, player], index) => [id, { ...player, team: teams[index % teams.length] }]),
   )
+  // Score d'équipe de démonstration : moyenne des scores de ses joueurs.
+  const scores = Object.fromEntries(
+    teams.map((team) => {
+      const members = Object.values(players).filter((player) => player.team === team)
+      return [team, members.reduce((sum, player) => sum + (player.score ?? 0), 0) / Math.max(1, members.length)]
+    }),
+  )
+  const ranks = computeRanks(scores)
   return {
     ...session,
     settings: { ...session.settings, teams: true, teamMode: 'random', teamCount: teams.length },
     players,
+    teams: Object.fromEntries(teams.map((team) => [team, { score: scores[team], rank: ranks[team] }])),
     ...(drawAt !== undefined && { teamDrawAt: drawAt }),
   }
 }
