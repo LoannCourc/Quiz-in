@@ -38,8 +38,8 @@ export const COUNTDOWN_BEEPS = 3
 export const RANK_SHUFFLE_DELAY_MS = 700
 // Bluff : le « piégé » suit de peu la carte retournée.
 export const TRAPPED_DELAY_MS = 350
-// Suspense : roulement de tambour, puis tada.
-export const SUSPENSE_DRUMROLL_MS = 2_400
+// Suspense : roulement de tambour, puis tada ; la TV retarde le podium d'autant (EndScreen).
+export const SUSPENSE_DRUMROLL_MS = 3_000
 
 // Effets synthétisés par la TV. volume : relatif au canal des effets ; ducks : baisse la musique.
 // Table reprise telle quelle dans docs/sons.md.

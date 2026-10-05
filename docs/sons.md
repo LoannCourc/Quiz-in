@@ -30,7 +30,7 @@ Synthétisés dans le code (`receiver/src/lib/sound/effects.ts`), sans fichier. 
 | `bluffTruth` | accord éclatant et scintillement | révélation du Bluff : la vraie réponse | 0,9 | oui |
 | `pointsUp` | notes qui montent vite | entrée dans `scores` | 0,5 | non |
 | `rankShuffle` | glissement | 700 ms après l'entrée dans `scores`, si un rang a changé | 0,5 | non |
-| `drumroll` | roulement de caisse claire (2,4 s) | entrée dans `ended` en Suspense | 0,8 | oui |
+| `drumroll` | roulement de caisse claire (3 s) | entrée dans `ended` en Suspense (podium affiché à la fin du roulement) | 0,8 | oui |
 | `tada` | « ta-daa » puis applaudissements | entrée dans `ended` ; en Suspense, à la fin du roulement | 1 | oui |
 | `paused` | deux notes qui descendent | passage à `paused` | 0,7 | non |
 | `resumed` | deux notes qui montent | sortie de `paused` (sauf vers `ended`) | 0,7 | non |

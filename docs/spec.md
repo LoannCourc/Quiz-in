@@ -586,7 +586,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
 - Pause : la musique baisse à 30 %, le chrono et l'extrait s'arrêtent.
 
-**Déclenchement.** Chaque son est déduit par comparaison de l'état précédent et du nouvel état (`shared/sound.ts`). Le premier état reçu (TV ouverte ou reconnectée en pleine partie) ne joue aucun son ; un changement de phase ne sonne que si elle a commencé il y a moins de 2 s. **Bonne ou mauvaise réponse** (écran commun) : fanfare si au moins un joueur a trouvé, « raté » si personne n'a trouvé.
+**Déclenchement.** Chaque son est déduit par comparaison de l'état précédent et du nouvel état (`shared/sound.ts`). Le premier état reçu (TV ouverte ou reconnectée en pleine partie) ne joue aucun son ; un changement de phase ne sonne que si elle a commencé il y a moins de 2 s. **Fin de partie en Suspense** : la TV affiche « Et le grand gagnant est… » (« Et l'équipe gagnante est… » en Groupe) pendant le roulement de tambour (3 s), puis le podium avec le tada ; une TV ouverte après ces 3 s affiche directement le podium. Les téléphones ne sont pas retardés. **Bonne ou mauvaise réponse** (écran commun) : fanfare si au moins un joueur a trouvé, « raté » si personne n'a trouvé.
 
 **Démarrage du son.** Mode Cast : la box doit jouer sans geste (à vérifier sur la box pour Web Audio, comme pour l'extrait). Plan B (navigateur d'un PC) : bandeau « Cliquez sur cet écran pour activer le son » tant que le navigateur n'a pas autorisé le son, dès que musique ou effets sont activés.
 

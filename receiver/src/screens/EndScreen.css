@@ -23,3 +23,23 @@
 .end .podium-position-3 .podium-block {
   height: 8.5rem;
 }
+
+/* Suspense : le titre seul, qui bat au rythme du roulement de tambour (transform uniquement). */
+.end-suspense {
+  grid-template-rows: 1fr;
+  place-items: center;
+}
+
+.end-suspense-title {
+  font-size: 5rem;
+  animation: end-suspense-beat 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes end-suspense-beat {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}

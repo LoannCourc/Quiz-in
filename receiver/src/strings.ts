@@ -110,6 +110,9 @@ export const strings = {
   },
   end: {
     title: 'Partie terminée !',
+    // Suspense : pendant le roulement de tambour, avant le podium.
+    suspense: 'Et le grand gagnant est…',
+    suspenseTeams: 'Et l’équipe gagnante est…',
   },
   paused: {
     title: 'Pause',
