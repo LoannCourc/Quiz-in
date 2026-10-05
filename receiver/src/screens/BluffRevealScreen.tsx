@@ -1,5 +1,6 @@
+import { bluffRevealTimeline } from '@shared/bluff'
 import { BLUFF_REVEAL_WINDOW, bluffRevealLayout } from '@shared/bluffLayout'
-import { BLUFF_REVEAL_PER_CHOICE_S, BLUFF_TRAP_POINTS, BLUFF_TRUTH_POINTS } from '@shared/constants'
+import { BLUFF_TRAP_POINTS, BLUFF_TRUTH_POINTS } from '@shared/constants'
 import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession, RevealedBluffChoice } from '@shared/types'
 
@@ -54,9 +55,10 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
   const indexed: RevealRow[] = choices.map((choice, index) => ({ index, choice }))
   const falseRows = indexed.filter(({ choice }) => choice.kind !== 'truth')
   const truthRows = indexed.filter(({ choice }) => choice.kind === 'truth')
-  const stepMs = BLUFF_REVEAL_PER_CHOICE_S * 1000
-  const isTruthShown = elapsedMs >= falseRows.length * stepMs
-  const revealedCount = Math.min(falseRows.length, Math.floor(elapsedMs / stepMs) + 1)
+  // Même calendrier que les sons de la TV (cartes retournées, vraie réponse).
+  const timeline = bluffRevealTimeline(choices)
+  const isTruthShown = elapsedMs >= timeline.truthAtMs
+  const revealedCount = timeline.flips.filter((flip) => flip.atMs <= elapsedMs).length
   const layout = bluffRevealLayout(choices.map((choice) => choice.text))
   const rows = isTruthShown ? truthStepRows(truthRows, falseRows) : falseRows.slice(0, revealedCount).slice(-(BLUFF_REVEAL_WINDOW - 1))
   const hiddenCount = isTruthShown ? truthRows.length + falseRows.length - rows.length : 0

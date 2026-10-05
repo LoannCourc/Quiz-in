@@ -52,7 +52,7 @@ function initialOptions(params: URLSearchParams): DemoOptions {
 // Mode démo (sans code dans l'URL) : session fictive pilotée par le panneau ; ?sounds=1 : galerie des sons.
 export function DemoReceiver() {
   const [params] = useState(() => new URLSearchParams(window.location.search))
-  return params.get('sounds') === '1' ? <SoundGallery /> : <DemoGame params={params} />
+  return params.get('sounds') === '1' ? <SoundGallery withSelfTest={params.get('selftest') === '1'} /> : <DemoGame params={params} />
 }
 
 // Les effets sonores suivent aussi les changements d'état du panneau (après un premier clic).

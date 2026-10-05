@@ -220,6 +220,10 @@ export const strings = {
       volume: (volume: number) => `Volume ${volume}`,
       loop: (isPlaying: boolean) => (isPlaying ? 'Arrêter la boucle témoin' : 'Boucle témoin (musique)'),
       duck: 'Ducking 2 s',
+      selfTestRunning: 'Auto-test en cours…',
+      selfTestRow: (id: string, durationS: number, peak: number, rms: number) =>
+        `${id} : ${durationS.toFixed(2)} s, crête ${peak.toFixed(2)}, moyenne ${rms.toFixed(3)}${peak > 1 ? ' — SATURÉ' : peak < 0.01 ? ' — MUET' : ''}`,
+      selfTestError: (id: string, detail: string) => `${id} : ERREUR ${detail}`,
     },
   },
 }

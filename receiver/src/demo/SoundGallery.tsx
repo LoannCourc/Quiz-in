@@ -7,10 +7,12 @@ import { soundEngine } from '../lib/sound/soundEngine'
 import { strings } from '../strings'
 import './DevPanel.css'
 import { createPlaceholderLoop } from './placeholderLoop'
+import { runSoundSelfTest, type EffectReport } from './soundSelfTest'
 
 // Galerie des sons (?sounds=1, développement seulement) : chaque effet à la demande, les réglages de
 // l'hôte, une boucle témoin sur le canal musique et un ducking, pour régler les volumes à l'oreille.
-export function SoundGallery() {
+// &selftest=1 : auto-test de tous les effets, calculés hors ligne (erreurs, saturation, niveaux).
+export function SoundGallery({ withSelfTest = false }: { withSelfTest?: boolean }) {
   const state = useSyncExternalStore(
     (listener) => soundEngine.subscribe(listener),
     () => soundEngine.state,
@@ -19,6 +21,11 @@ export function SoundGallery() {
   const stopLoop = useRef<(() => void) | null>(null)
   const [isLooping, setIsLooping] = useState(false)
   const { sounds: texts } = strings.dev
+  const [reports, setReports] = useState<EffectReport[] | null>(null)
+
+  useEffect(() => {
+    if (withSelfTest) void runSoundSelfTest().then(setReports)
+  }, [withSelfTest])
 
   useEffect(() => {
     soundEngine.start()
@@ -71,6 +78,21 @@ export function SoundGallery() {
           </button>
         ))}
       </div>
+      {withSelfTest && (
+        <ul className="status-lines">
+          {reports === null ? (
+            <li>{texts.selfTestRunning}</li>
+          ) : (
+            reports.map((report) => (
+              <li key={report.id}>
+                {report.error
+                  ? texts.selfTestError(report.id, report.error)
+                  : texts.selfTestRow(report.id, report.durationS, report.peak, report.rms)}
+              </li>
+            ))
+          )}
+        </ul>
+      )}
     </main>
   )
 }

@@ -568,7 +568,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 ## 17. Son
 
-**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, trois effets témoins, test sur la box) codé ; lot 2 (tous les effets de la TV), lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
+**En cours** : lot 1 (moteur audio de la TV, réglages de l'hôte, y compris dans le salon, test sur la box) et lot 2 (tous les effets de la TV) codés ; lot 3 (musiques) et lot 4 (téléphones) à venir. Liste des sons, déclencheurs et volumes : `docs/sons.md` ; sources et licences des musiques : `docs/sons-licences.md`.
 
 **Principe.** La TV anime la soirée : musiques d'ambiance en boucle et effets sonores. Les téléphones des joueurs peuvent jouer quelques effets discrets, désactivés par défaut. Aucun envoi supplémentaire de l'hôte : la TV déduit chaque son de l'état de la partie qu'elle reçoit déjà, sauf les réglages du son.
 
