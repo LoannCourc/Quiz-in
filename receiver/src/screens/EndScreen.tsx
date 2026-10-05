@@ -51,10 +51,13 @@ export function EndScreen({ session }: { session: PublicSession }) {
 }
 
 // Podium final : le 3e, le 2e, puis le 1er arrivent l'un après l'autre (PODIUM_ENTRY_STEP_MS d'écart),
-// chacun avec son son ; le reste du classement est déjà là. Monté après le roulement en Suspense.
+// chacun avec son son ; le reste du classement est déjà là, les confettis partent avec le 1er. Monté
+// après le roulement en Suspense.
 function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumStartMs: number }) {
   const entryDelay = useEntryDelay(session.phaseStartedAt)
   const delays = [0, 1, 2].map((place) => entryDelay(podiumEntryMs(place, podiumStartMs)))
+  // Confettis à l'arrivée du 1er, avec le tada.
+  const isFirstIn = useDelayPassed(session.phaseStartedAt, podiumEntryMs(0, podiumStartMs))
   const players = sortByRank(session.players)
   const others = players.slice(PODIUM_SIZE)
 
@@ -62,7 +65,7 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
   if (session.settings.teams) {
     return (
       <main className="screen end">
-        <Confetti />
+        {isFirstIn && <Confetti />}
         <h1 className="hero-title end-team-title">{teamEndTitle(session)}</h1>
         <TeamPodium session={session} delays={delays} />
       </main>
@@ -71,7 +74,7 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
 
   return (
     <main className="screen end">
-      <Confetti />
+      {isFirstIn && <Confetti />}
       <h1 className="hero-title">{strings.end.title}</h1>
       <div className="end-body">
         <Podium players={players.slice(0, PODIUM_SIZE)} delays={delays} />
