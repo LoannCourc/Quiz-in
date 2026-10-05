@@ -9,11 +9,12 @@ import {
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
 import {
-  acceptedFraction,
+  acceptedParts,
   groupFreeAnswers,
   matchFreeAnswer,
   publicFreeAnswerGroups,
   resultOf,
+  type AcceptedParts,
   type ValidationDecisions,
 } from './freeAnswers'
 import { hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS } from './gameFlow'
@@ -67,12 +68,12 @@ export function toPublicQuestion(question: Question, answerMode: AnswerMode, aud
   return published
 }
 
-// Part juste d'une réponse selon la correction automatique : 1 ou 0, ou 0,5 pour un blind test
-// « both » en Réponse libre (titre ou artiste seulement).
-function autoFraction(question: Question, answer: Answer, answerMode: AnswerMode): number {
-  if (answerMode === 'choice') return typeof answer.value === 'number' && answer.value === question.correctIndex ? 1 : 0
-  if (typeof answer.value !== 'string') return 0
-  return acceptedFraction(matchFreeAnswer(question, answer), answer)
+// Parties justes d'une réponse selon la correction automatique (en Réponse libre, blind test « both » :
+// titre et artiste séparément).
+function autoParts(question: Question, answer: Answer, answerMode: AnswerMode): AcceptedParts {
+  if (answerMode === 'choice') return { main: typeof answer.value === 'number' && answer.value === question.correctIndex }
+  if (typeof answer.value !== 'string') return { main: false }
+  return acceptedParts(matchFreeAnswer(question, answer), answer)
 }
 
 // Réponse corrigée à la fin de la question : résultat automatique, et points d'une réponse
@@ -95,19 +96,19 @@ export function gradeAnswer(
     remainingMs: phaseEndsAt - answer.submittedAt,
     durationMs: questionDurationS(settings.answerMode, question.timeLimit) * 1000,
   })
-  return { ...resultOf(autoFraction(question, answer, settings.answerMode), fullPoints), fullPoints }
+  return { ...resultOf(autoParts(question, answer, settings.answerMode), fullPoints), fullPoints }
 }
 
-function publicResult({ correct, points, partial }: PlayerResult): PlayerResult {
-  return partial ? { correct, points, partial } : { correct, points }
+function publicResult({ correct, points, partial, parts }: PlayerResult): PlayerResult {
+  return { correct, points, ...(partial && { partial }), ...(parts && { parts }) }
 }
 
 // Après la validation (Contrôle) : correction écrite à la fin de la question, revue par l'hôte.
 // Une réponse sans fullPoints (écrite par une version précédente) vaut 100 points sans bonus.
 function validatedResult(question: Question, answer: Answer, decisions: ValidationDecisions): PlayerResult {
   if (typeof answer.value !== 'string') return { correct: false, points: 0 }
-  const fraction = acceptedFraction(matchFreeAnswer(question, answer), answer, decisions)
-  return resultOf(fraction, answer.fullPoints ?? CORRECT_ANSWER_POINTS)
+  const parts = acceptedParts(matchFreeAnswer(question, answer), answer, decisions)
+  return resultOf(parts, answer.fullPoints ?? CORRECT_ANSWER_POINTS)
 }
 
 export interface RevealResult {
@@ -346,7 +347,6 @@ export function audioUrlUpdate(
 
 export type LaunchRefusal =
   | 'notLobby'
-  | 'freeAnswerSoon'
   | 'notEnoughPlayers'
   | 'tooManyPlayers'
   | 'noQuestions'
@@ -372,8 +372,6 @@ export function launchUpdate(
   audio: LaunchAudio = { enabled: false, urls: {} },
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
-  // 3.6 : seul le mode Choix multiples est jouable.
-  if (session.settings.answerMode === 'free') return { ok: false, reason: 'freeAnswerSoon' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
   if (Object.keys(session.players).length > MAX_PLAYERS) return { ok: false, reason: 'tooManyPlayers' }
   const gameQuestions = selectGameQuestions(questions, limit)

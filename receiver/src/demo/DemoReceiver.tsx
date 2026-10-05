@@ -1,3 +1,4 @@
+import { isBlindTestAsk } from '@shared/quizValidation'
 import type { AnswerMode, GameStatus } from '@shared/types'
 import { useState } from 'react'
 
@@ -27,13 +28,14 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
-// &suspense=1 : Suspense (pas de classement en cours de partie).
+// &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
+// &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues.
 function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
     status: isDemoStatus(status) ? status : 'lobby',
-    answerMode: 'choice',
-    answeredCount: INITIAL_ANSWERED_COUNT,
+    answerMode: params.get('mode') === 'free' ? 'free' : 'choice',
+    answeredCount: Math.min(Number(params.get('answered')) || INITIAL_ANSWERED_COUNT, DEMO_MAX_ANSWERS),
     isToggleablePlayerConnected: true,
     startedAt: Date.now() - (Number(params.get('elapsed')) || 0) * 1000,
     extraPlayerCount: demoExtraPlayerCount(Number(params.get('players')) || 0),
@@ -60,8 +62,13 @@ export function DemoReceiver() {
       }
     : withLong
   // Suspense (&suspense=1) : avatars triés par pseudo, étapes sans Classement.
-  const session =
+  const withSuspense =
     params.get('suspense') === '1' ? { ...stepped, settings: { ...stepped.settings, suspense: true } } : stepped
+  const ask = params.get('ask')
+  const session =
+    isBlindTestAsk(ask) && withSuspense.currentQuestion
+      ? { ...withSuspense, currentQuestion: { ...withSuspense.currentQuestion, ask } }
+      : withSuspense
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
 

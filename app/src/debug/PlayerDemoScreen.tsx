@@ -13,6 +13,7 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import type { GivenAnswer } from '@/lib/playerGame';
 import { Spacing } from '@/constants/theme';
 import {
   buildScenario,
@@ -54,19 +55,19 @@ export default function PlayerDemoScreen() {
   }
 
   // Simule l'écriture : « envoi » immédiat, puis confirmation après un court délai.
-  function answer(choice: number) {
-    setScenario((current) => ({ ...current, answer: { kind: 'sending', choice } }));
+  function answer(given: GivenAnswer) {
+    setScenario((current) => ({ ...current, answer: { kind: 'sending', given } }));
   }
 
-  const sendingChoice = scenario.answer.kind === 'sending' ? scenario.answer.choice : null;
+  const sendingGiven = scenario.answer.kind === 'sending' ? scenario.answer.given : null;
   useEffect(() => {
-    if (sendingChoice === null) return;
+    if (sendingGiven === null) return;
     const timeoutId = setTimeout(
-      () => setScenario((current) => ({ ...current, answer: { kind: 'sent', choice: sendingChoice } })),
+      () => setScenario((current) => ({ ...current, answer: { kind: 'sent', given: sendingGiven } })),
       SIMULATED_WRITE_MS,
     );
     return () => clearTimeout(timeoutId);
-  }, [sendingChoice]);
+  }, [sendingGiven]);
 
   if (params.bands === '1') return <PlaceBandGallery />;
 

@@ -86,44 +86,130 @@
   font-size: 1.2rem;
 }
 
-/* Réponse libre (hors périmètre de la 3.6, conservée) */
+/* Réponse libre : la bonne réponse (à gauche, sur deux rangées) et les réponses regroupées (à droite). */
 .reveal-free {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  grid-template-rows: 1fr 1fr;
+}
+
+.reveal-free .free-correct {
+  grid-row: span 2;
+  outline-color: var(--color-selection);
+}
+
+.free-groups {
+  grid-row: span 2;
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 0.4rem 0.8rem;
+  min-height: 11rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.free-answer {
-  display: grid;
+.free-groups.is-two-columns {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   grid-auto-flow: column;
+}
+
+.free-group {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  column-gap: 0.8rem;
-  padding: 0.6rem 1.4rem;
+  column-gap: 0.6rem;
+  min-height: 2.4rem;
+  padding: 0.2rem 0.3rem 0.2rem 0.4rem;
   border-radius: var(--radius-pill);
   background: var(--color-surface);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 900;
 }
 
-.free-answer-avatar {
-  font-size: 2rem;
+.free-group-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.free-answer-mark {
-  color: var(--color-wrong);
+.free-group .reveal-count {
+  min-width: 2rem;
+  height: 2rem;
+  font-size: 1.1rem;
 }
 
-.free-answer.is-correct {
+.free-group-mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-wrong);
+  color: var(--ink);
+}
+
+.free-group.is-correct {
   background: var(--color-correct);
   color: var(--color-on-correct);
 }
 
-.free-answer.is-correct .free-answer-mark {
-  color: var(--color-on-correct);
+.free-group.is-correct .free-group-mark {
+  background: var(--ink-surface);
+  color: var(--color-text);
+}
+
+.free-group.is-partial {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.free-group.is-partial .free-group-mark {
+  background: var(--ink-surface);
+  color: var(--color-text);
+}
+
+.free-group.is-wrong .free-group-text {
+  color: var(--color-text-muted);
+}
+
+/* Coche et croix dessinées (même rendu sur toutes les TV). */
+.mark-check {
+  width: 0.45em;
+  height: 0.8em;
+  margin-top: -0.2em;
+  border-right: 0.18em solid currentColor;
+  border-bottom: 0.18em solid currentColor;
+  transform: rotate(45deg);
+}
+
+.mark-cross {
+  position: relative;
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.mark-cross::before,
+.mark-cross::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0.18em;
+  margin-top: -0.09em;
+  border-radius: 0.09em;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.mark-cross::after {
+  transform: rotate(-45deg);
+}
+
+.mark-half {
+  font-family: var(--font-display);
+  font-size: 0.9em;
+  line-height: 1;
 }
 
 .reveal-empty {

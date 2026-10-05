@@ -59,7 +59,7 @@
       "text": "Dans la série « Lupin » (2021), quel acteur incarne Assane Diop ?",
       "options": ["Omar Sy", "Jamel Debbouze", "Ahmed Sylla", "Vincent Cassel"],
       "correctIndex": 0,
-      "acceptedAnswers": ["omar sy"],
+      "acceptedAnswers": ["omar sy", "sy"],
       "difficulty": 2,
       "explanation": "Assane Diop s'inspire du gentleman cambrioleur Arsène Lupin, héros de Maurice Leblanc."
     },

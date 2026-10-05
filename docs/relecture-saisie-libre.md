@@ -20,7 +20,7 @@ Pour chaque question, la réponse attendue et les variantes acceptées quand les
 
 ## Signalements
 
-7 questions classiques sur 150 sont signalées :
+4 questions classiques sur 150 sont signalées :
 
 - **définition** : la réponse est une phrase (« Ne pas venir à un rendez-vous »). Des variantes courtes existent déjà
   (« ne pas venir », « faire faux bond ») : vérifier qu'elles couvrent ce que les joueurs taperont.
@@ -202,11 +202,11 @@ Pour chaque question, la réponse attendue et les variantes acceptées quand les
 |---|---|---|---|---|
 | 1 | Quel gaz les plantes absorbent-elles pour réaliser la photosynthèse ? | **Le dioxyde de carbone** | dioxyde de carbone · co2 · gaz carbonique |  |
 | 2 | Quel gaz forme la couche qui protège la Terre d'une grande partie des rayons ultraviolets ? | **L'ozone** | ozone · l'ozone |  |
-| 3 | Combien d'os compte le squelette d'un adulte ? | **206** | 206 | nombre : en lettres aussi ? |
+| 3 | Combien d'os compte le squelette d'un adulte ? | **206** | 206 · deux cent six |  |
 | 4 | Quelle est la plus grande planète du système solaire ? | **Jupiter** | jupiter |  |
 | 5 | Combien de chromosomes contient une cellule humaine ordinaire (hors cellules reproductrices) ? | **46** | 46 · quarante-six |  |
 | 6 | Quel organe du corps humain produit l'insuline ? | **Le pancréas** | pancréas · le pancréas |  |
-| 7 | À quelle vitesse la lumière se déplace-t-elle dans le vide, environ ? | **300 000 km/s** | 300 000 km/s · 300 000 · 300000 | nombre : en lettres aussi ? |
+| 7 | À quelle vitesse la lumière se déplace-t-elle dans le vide, environ ? | **300 000 km/s** | 300 000 km/s · 300 000 · 300000 · trois cent mille · trois cent mille km/s |  |
 | 8 | Quel scientifique a découvert la pénicilline, le premier antibiotique ? | **Alexander Fleming** | alexander fleming · fleming |  |
 | 9 | Quel est l'élément chimique le plus abondant dans l'Univers ? | **L'hydrogène** | hydrogène · l'hydrogène |  |
 | 10 | Comment appelle-t-on un animal qui se nourrit à la fois de plantes et de viande ? | **Un omnivore** | omnivore · un omnivore |  |
@@ -220,7 +220,7 @@ Pour chaque question, la réponse attendue et les variantes acceptées quand les
 | 3 | Dans « Breaking Bad », quel métier exerce Walter White au début de la série ? | **Professeur de chimie** | professeur de chimie · prof de chimie · professeur |  |
 | 4 | Dans « Les Simpson », quel est le prénom du père de famille ? | **Homer** | homer · homer simpson |  |
 | 5 | Dans « Kaamelott », quel personnage est le roi de Bretagne ? | **Arthur** | arthur · le roi arthur |  |
-| 6 | Dans la série « Lupin » (2021), quel acteur incarne Assane Diop ? | **Omar Sy** | omar sy | nom propre : nom seul ? |
+| 6 | Dans la série « Lupin » (2021), quel acteur incarne Assane Diop ? | **Omar Sy** | omar sy · sy |  |
 | 7 | Dans la version américaine de « The Office », dans quelle ville se trouve l'agence Dunder Mifflin ? | **Scranton** | scranton |  |
 | 8 | Quelle série britannique suit le gang des Shelby à Birmingham, après la Première Guerre mondiale ? | **Peaky Blinders** | peaky blinders |  |
 | 9 | Dans la série « Sherlock » de la BBC, quel acteur joue Sherlock Holmes ? | **Benedict Cumberbatch** | benedict cumberbatch · cumberbatch |  |

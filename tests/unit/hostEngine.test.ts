@@ -287,8 +287,6 @@ describe('launchUpdate', () => {
     const lonely = { [HOST]: player('Hôte') }
     const crowd = Object.fromEntries(Array.from({ length: 21 }, (_, i) => [`p${i}`, player(`J${i}`)]))
     expect(launchUpdate(makeSession({ status: 'question' }), QUESTIONS, NOW)).toEqual({ ok: false, reason: 'notLobby' })
-    const free = makeSession({ settings: { answerMode: 'free', speedBonus: true, control: false, teams: false } })
-    expect(launchUpdate(free, QUESTIONS, NOW)).toEqual({ ok: false, reason: 'freeAnswerSoon' })
     expect(launchUpdate(makeSession({ players: lonely }), QUESTIONS, NOW)).toEqual({ ok: false, reason: 'notEnoughPlayers' })
     expect(launchUpdate(makeSession({ players: crowd }), QUESTIONS, NOW)).toEqual({ ok: false, reason: 'tooManyPlayers' })
     expect(launchUpdate(makeSession(), [], NOW)).toEqual({ ok: false, reason: 'noQuestions' })

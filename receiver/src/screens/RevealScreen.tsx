@@ -1,5 +1,5 @@
 import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
-import type { ChoiceOptions, PublicSession } from '@shared/types'
+import type { AnswerVerdict, ChoiceOptions, FreeAnswerGroup, PublicSession } from '@shared/types'
 
 import { Confetti } from '../components/Confetti'
 import { GameHeader } from '../components/GameHeader'
@@ -34,7 +34,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
           correctAnswer={reveal.correctAnswer}
         />
       ) : (
-        <FreeAnswers session={session} />
+        <FreeResults correctAnswer={reveal.correctAnswer} groups={reveal.stats.freeAnswers ?? []} />
       )}
 
       <div className="reveal-explanation-slot">
@@ -73,28 +73,39 @@ function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
   )
 }
 
-const VERDICT_MARKS = { correct: '✓', partial: '½', wrong: '✗' } as const
-
-// Réponse libre : groupes de réponses identiques, déjà filtrés par l'hôte (mise en page définitive
-// avec les maquettes de la saisie libre).
-function FreeAnswers({ session }: { session: PublicSession }) {
-  const groups = session.reveal?.stats.freeAnswers ?? []
-
-  if (groups.length === 0) {
-    return <p className="reveal-empty">{strings.reveal.noAnswer}</p>
-  }
-
+// Réponse libre : même zone que les quatre pilules. À gauche, la bonne réponse à la place de la
+// proposition gagnante ; à droite, les réponses des joueurs regroupées (texte déjà filtré par l'hôte,
+// FREE_ANSWER_GROUPS_MAX au plus), sur deux colonnes au-delà de quatre groupes.
+function FreeResults({ correctAnswer, groups }: { correctAnswer: string; groups: FreeAnswerGroup[] }) {
   return (
-    <ul className="reveal-free">
-      {groups.map((group) => (
-        <li key={group.playerIds.join()} className={group.verdict === 'correct' ? 'free-answer is-correct' : 'free-answer'}>
-          <span className="free-answer-avatar">
-            {group.playerIds.map((playerId) => session.players[playerId]?.avatar).join('')}
-          </span>
-          <span className="free-answer-value">{group.value}</span>
-          <span className="free-answer-mark">{VERDICT_MARKS[group.verdict]}</span>
-        </li>
-      ))}
-    </ul>
+    <div className={`question-options reveal-options reveal-free ${optionsSizeClass([correctAnswer])}`}>
+      <div className="choice choice-1 is-correct free-correct">
+        <span className="choice-letter">
+          <VerdictMark verdict="correct" />
+        </span>
+        <span className="choice-text">{correctAnswer}</span>
+      </div>
+      {groups.length === 0 ? (
+        <p className="reveal-empty">{strings.reveal.noAnswer}</p>
+      ) : (
+        <ol className={groups.length > 4 ? 'free-groups is-two-columns' : 'free-groups'} aria-label={strings.reveal.freeAnswersTitle}>
+          {groups.map((group) => (
+            <li key={group.playerIds.join()} className={`free-group is-${group.verdict}`}>
+              <span className="free-group-mark">
+                <VerdictMark verdict={group.verdict} />
+              </span>
+              <span className="free-group-text">{group.value}</span>
+              <span className="reveal-count">{strings.reveal.choiceCount(group.playerIds.length)}</span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
   )
+}
+
+// Coche et croix dessinées en CSS (les polices du design n'ont pas ces signes) ; ½ en texte.
+function VerdictMark({ verdict }: { verdict: AnswerVerdict }) {
+  if (verdict === 'partial') return <span className="mark-half">{strings.reveal.verdictMarks.partial}</span>
+  return <span className={verdict === 'correct' ? 'mark-check' : 'mark-cross'} aria-label={strings.reveal.verdictMarks[verdict]} />
 }

@@ -36,7 +36,7 @@ function isLocked(answer: QuestionViewProps['answer']): boolean {
 // partagent la hauteur restante (72 à 116 px chacune) et la taille du texte suit leur hauteur.
 export function QuestionView({ question, index, questionCount, score, timing, answer, onAnswer }: QuestionViewProps) {
   const locked = isLocked(answer);
-  const chosen = answer.kind === 'idle' ? null : answer.choice;
+  const chosen = answer.kind === 'idle' || typeof answer.given !== 'number' ? null : answer.given;
   const [pillSize, setPillSize] = useState<PillSize>('medium');
   // Même taille de texte pour les 4 propositions, d'après la plus longue.
   const textSize = choiceTextSize(question.options ?? []);

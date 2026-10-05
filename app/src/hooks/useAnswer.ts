@@ -2,9 +2,9 @@ import type { PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
-import { loadChoice, saveChoice } from '@/lib/answerStorage';
+import { loadGiven, saveGiven } from '@/lib/answerStorage';
 import { db } from '@/lib/firebase';
-import { IDLE_ANSWER, type AnswerState } from '@/lib/playerGame';
+import { IDLE_ANSWER, type AnswerState, type GivenAnswer } from '@/lib/playerGame';
 import { submitAnswer } from '@/lib/submitAnswer';
 
 // État local rattaché à une question : il repart de « idle » dès que currentIndex change.
@@ -39,37 +39,38 @@ export function useAnswer(code: string, uid: PlayerId, session: PublicSession) {
   const { phaseEndsAt } = session;
   const answer = currentAnswer(local, index, phaseEndsAt);
 
-  // Après un rechargement : answeredBy dit qu'on a répondu ; on retrouve le choix sur l'appareil.
+  // Après un rechargement : answeredBy dit qu'on a répondu ; on retrouve la réponse sur l'appareil.
   const needsStoredChoice = session.answeredBy?.[index]?.[uid] === true && answer.kind === 'idle';
   useEffect(() => {
     if (!needsStoredChoice) return;
     let isActive = true;
-    loadChoice(code, index).then((choice) => {
-      if (isActive && choice !== null) setLocal({ index, phaseEndsAt, state: { kind: 'sent', choice } });
+    loadGiven(code, index).then((given) => {
+      if (isActive && given !== null) setLocal({ index, phaseEndsAt, state: { kind: 'sent', given } });
     });
     return () => {
       isActive = false;
     };
   }, [needsStoredChoice, code, index, phaseEndsAt]);
 
-  function onAnswer(choice: number) {
+  // given : index de la proposition, ou texte saisi en Réponse libre.
+  function onAnswer(given: GivenAnswer) {
     if (answer.kind === 'sending' || answer.kind === 'sent') return;
     if (session.status !== 'question') {
-      setLocal({ index, phaseEndsAt, state: { kind: 'refused', choice, reason: 'tooLate' } });
+      setLocal({ index, phaseEndsAt, state: { kind: 'refused', given, reason: 'tooLate' } });
       return;
     }
     // Hors connexion, Firebase garderait l'écriture en attente sans fin : on propose de réessayer.
     if (!isConnected) {
-      setLocal({ index, phaseEndsAt, state: { kind: 'refused', choice, reason: 'failed' } });
+      setLocal({ index, phaseEndsAt, state: { kind: 'refused', given, reason: 'failed' } });
       return;
     }
-    setLocal({ index, phaseEndsAt, state: { kind: 'sending', choice } });
-    void saveChoice(code, index, choice);
-    submitAnswer(code, uid, index, choice).then((outcome) =>
+    setLocal({ index, phaseEndsAt, state: { kind: 'sending', given } });
+    void saveGiven(code, index, given);
+    submitAnswer(code, uid, index, given).then((outcome) =>
       setLocal({
         index,
         phaseEndsAt,
-        state: outcome === 'sent' ? { kind: 'sent', choice } : { kind: 'refused', choice, reason: outcome },
+        state: outcome === 'sent' ? { kind: 'sent', given } : { kind: 'refused', given, reason: outcome },
       }),
     );
   }

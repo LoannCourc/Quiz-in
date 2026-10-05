@@ -1,4 +1,4 @@
-import type { AudioSourceId, Difficulty, GameStatus } from '@shared/types'
+import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, GameStatus } from '@shared/types'
 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -22,7 +22,13 @@ export const strings = {
     progress: (index: number, total: number | undefined) => (total ? `Question ${index}/${total}` : `Question ${index}`),
     answeredCount: (count: number, total: number) => `${count}/${total} ont répondu`,
     noConnectedPlayers: '—',
-    freeAnswerHint: 'Écrivez votre réponse sur votre téléphone',
+    // Réponse libre : à la place des propositions, ce qu'il faut écrire (blind test : selon ask).
+    freeAnswerHint: {
+      answer: 'Écrivez votre réponse sur votre téléphone',
+      title: 'Écrivez le titre sur votre téléphone',
+      artist: 'Écrivez l’artiste sur votre téléphone',
+      both: 'Écrivez le titre et l’artiste sur votre téléphone',
+    } satisfies Record<BlindTestAsk | 'answer', string>,
   },
   difficulty: {
     1: 'Facile',
@@ -35,6 +41,9 @@ export const strings = {
     // Nombre de joueurs ayant choisi chaque proposition.
     choiceCount: (count: number) => String(count),
     noAnswer: 'Personne n’a répondu',
+    // Réponse libre : réponses des joueurs regroupées, à côté de la bonne réponse.
+    freeAnswersTitle: 'Vos réponses',
+    verdictMarks: { correct: '✓', partial: '½', wrong: '✕' } satisfies Record<AnswerVerdict, string>,
   },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {

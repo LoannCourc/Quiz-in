@@ -54,10 +54,27 @@
   min-height: 5rem;
 }
 
-.question-free-hint {
-  font-size: 2rem;
+/* Réponse libre : un grand cadre à la place des quatre propositions, à la même hauteur (deux
+   rangées de pilules) ; rien d'autre ne change sur l'écran. */
+.free-prompt {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  min-height: 11rem;
+  padding: 1rem 2rem;
+  border: 0.25rem dashed var(--color-text-muted);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.free-prompt-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.2rem;
+  line-height: var(--display-line-height);
   text-align: center;
-  color: var(--color-text-muted);
+  text-shadow: var(--text-shadow-hard);
 }
 
 /* « 7/9 ONT RÉPONDU » puis les avatars : allumés s'ils ont répondu, éteints sinon. */

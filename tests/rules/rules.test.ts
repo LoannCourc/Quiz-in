@@ -998,7 +998,9 @@ describe('Réponse libre et Contrôle', () => {
     await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: [{ ...group, verdict: 'maybe' }] } }))
     await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: [{ playerId: PLAYER, value: 'x' }] } }))
     await assertFails(ref.set({ correctAnswer: 'Canberra', stats: { freeAnswers: Array(9).fill(group) } }))
-    await assertSucceeds(ref.set({ correctAnswer: 'Canberra', stats: {}, results: { [PLAYER]: { correct: false, points: 75, partial: true } } }))
+    const partial = { correct: false, points: 75, partial: true, parts: { title: true, artist: false } }
+    await assertSucceeds(ref.set({ correctAnswer: 'Canberra', stats: {}, results: { [PLAYER]: partial } }))
+    await assertFails(ref.set({ correctAnswer: 'Canberra', stats: {}, results: { [PLAYER]: { ...partial, parts: { title: true } } } }))
   })
 
   test('moteur : question → validation → révélation → classement, accepté par les règles', async () => {

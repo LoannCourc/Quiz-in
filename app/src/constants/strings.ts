@@ -8,7 +8,7 @@ import {
 import type { CatalogRowId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
-import type { AnswerMode, DifficultyLevel, QuizAudience } from '@shared/types';
+import type { AnswerMode, BlindTestAsk, DifficultyLevel, QuizAudience } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
@@ -172,7 +172,6 @@ export const strings = {
     launchFailed: 'Le lancement a échoué. Réessaie dans un instant.',
     launchRefusals: {
       notLobby: 'La partie est déjà lancée.',
-      freeAnswerSoon: 'Réponse libre : bientôt. Choisis Choix multiples pour jouer.',
       notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,
       tooManyPlayers: `${MAX_PLAYERS} joueurs au maximum dans une partie.`,
       noQuestions: 'Ce quiz n’a pas de question jouable.',
@@ -278,6 +277,24 @@ export const strings = {
       title: 'Prêt ?',
       subtitle: 'Les questions s’affichent sur la télé',
     },
+    // Réponse libre (S1) : un champ, ou deux (titre et artiste) pour un blind test « both ».
+    freeQuestion: {
+      answerLabel: 'Ta réponse',
+      titleLabel: 'Titre',
+      artistLabel: 'Artiste',
+      answerPlaceholder: 'Ta réponse ?',
+      titlePlaceholder: 'Le titre ?',
+      artistPlaceholder: 'L’artiste ?',
+      counter: (length: number, max: number) => `${length} / ${max}`,
+      hint: 'Un ou deux mots suffisent. Les majuscules et les accents n’ont pas d’importance.',
+      bothHint: 'Un seul champ rempli suffit : tu gagnes la moitié des points pour chaque bonne partie.',
+      asks: {
+        title: 'Trouve le titre',
+        artist: 'Trouve l’artiste',
+        both: 'Trouve le titre ET l’artiste',
+      } satisfies Record<BlindTestAsk, string>,
+      submit: 'Valider',
+    },
     question: {
       sending: 'Envoi de ta réponse…',
       refusals: {
@@ -298,14 +315,25 @@ export const strings = {
       answeredProgress: (answered: number, total: number) => `${answered}/${total} ont répondu`,
       unknownChoice: 'Ta réponse est bien enregistrée.',
       waiting: 'En attente des autres joueurs…',
+      // Réponse libre (S2) : rappel de la réponse tapée, qui ne peut plus changer.
+      yourAnswer: 'Ta réponse',
+      freeWaiting: 'Plus qu’à attendre les autres joueurs…',
+      locked: 'Tu ne peux plus la modifier.',
+      bothAnswer: (title: string, artist: string) => [title, artist].filter(Boolean).join(' – '),
     },
     reveal: {
       titles: {
         correct: 'Bonne réponse !',
+        partial: 'À moitié !',
         wrong: 'Raté…',
         noAnswer: 'Trop tard',
       } satisfies Record<RevealOutcome, string>,
       correctAnswerLabel: 'La bonne réponse',
+      // Réponse libre : bonne réponse et rappel de ce que le joueur a écrit (S2).
+      partLabels: { title: 'Titre', artist: 'Artiste' },
+      youWrote: (label: string, text: string) => `${label} · tu as écrit « ${text} »`,
+      partPoints: (points: number) => `+${formatNumber(points)}`,
+      speedIncluded: 'Bonus de rapidité compris dans les points.',
       coinPoints: (points: number) => `+${formatNumber(points)}`,
       coinLabel: 'points',
       speedBonus: (bonus: number) => `Bonus rapidité : +${bonus}`,

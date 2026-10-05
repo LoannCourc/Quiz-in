@@ -12,18 +12,21 @@ import { strings } from '@/constants/strings';
 import {
   correctChoiceIndex,
   effectiveAnswer,
+  isFreeText,
   myResult,
   previousRank,
   rankedPlayers,
   revealOutcome,
   type AnswerState,
+  type GivenAnswer,
 } from '@/lib/playerGame';
 
 import { AnswerSentView } from './AnswerSentView';
 import { Confetti } from './Confetti';
+import { FreeQuestionView } from './FreeQuestionView';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionView } from './QuestionView';
-import { RevealView } from './RevealView';
+import { RevealView, type FreeRevealInfo } from './RevealView';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
@@ -34,7 +37,8 @@ export interface PlayerGameProps {
   serverOffsetMs: number;
   // Réponse locale à la question courante (appui en cours, refus…).
   answer: AnswerState;
-  onAnswer: (choice: number) => void;
+  // Index de la proposition, ou texte saisi en Réponse libre.
+  onAnswer: (given: GivenAnswer) => void;
   // Message affiché au-dessus de l'écran (profil modifié au moment du lancement).
   notice?: string;
   // Hôte : pied d'écran fixe (bouton des contrôles, Reprendre, Rejouer / Quitter), qui réserve
@@ -70,6 +74,21 @@ export function PlayerGame(props: PlayerGameProps) {
   );
 }
 
+// Réponse libre : ce que la révélation du joueur rappelle (S2). undefined en Choix multiples.
+function freeRevealInfo(session: PublicSession, result: PlayerResult | undefined, answer: AnswerState): FreeRevealInfo | undefined {
+  const { currentQuestion: question, reveal } = session;
+  if (!question || question.options || !reveal) return undefined;
+  const given = answer.kind === 'idle' || !isFreeText(answer.given) ? null : answer.given;
+  const info: FreeRevealInfo = { title: reveal.correctAnswer, given, speedBonus: session.settings.speedBonus };
+  // Blind test « both » : titre et artiste séparés, chacun jugé à part.
+  if (question.ask === 'both' && reveal.music) {
+    info.title = reveal.music.title;
+    info.artist = reveal.music.artist;
+    info.parts = result?.parts ?? { title: false, artist: false };
+  }
+  return info;
+}
+
 function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
@@ -97,10 +116,12 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       const current = effectiveAnswer(session, uid, answer);
       const common = { question, index, questionCount, score, timing };
       const progress = answeredProgress(session.players, session.answeredBy?.[index]);
-      return current.kind === 'sent' ? (
-        <AnswerSentView {...common} choice={current.choice} progress={progress} />
-      ) : (
+      if (current.kind === 'sent') return <AnswerSentView {...common} given={current.given} progress={progress} />;
+      // Réponse libre : pas de propositions publiées, le joueur tape sa réponse.
+      return question.options ? (
         <QuestionView {...common} answer={current} onAnswer={onAnswer} />
+      ) : (
+        <FreeQuestionView key={index} {...common} answer={current} onAnswer={onAnswer} />
       );
     }
     case 'reveal': {
@@ -116,6 +137,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
             correctAnswer={session.reveal.correctAnswer}
             correctChoice={correctChoiceIndex(session)}
             options={session.currentQuestion?.options}
+            free={freeRevealInfo(session, result, answer)}
             rank={isSuspense ? undefined : (me?.rank ?? ranked.length)}
             previousRank={previousRank(session, uid)}
           />

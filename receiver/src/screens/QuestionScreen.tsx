@@ -54,7 +54,10 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
           ))}
         </ol>
       ) : (
-        <p className="question-free-hint">{strings.question.freeAnswerHint}</p>
+        // Réponse libre : un grand cadre à la place des propositions, jamais le texte d'un joueur.
+        <div className="question-options free-prompt">
+          <p className="free-prompt-text">{strings.question.freeAnswerHint[question.ask ?? 'answer']}</p>
+        </div>
       )}
 
       {/* Indicateur discret : on montre qui a répondu, jamais ce qu'il a répondu. */}

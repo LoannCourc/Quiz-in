@@ -30,7 +30,7 @@
       "text": "Combien d'os compte le squelette d'un adulte ?",
       "options": ["106", "206", "306", "406"],
       "correctIndex": 1,
-      "acceptedAnswers": ["206"],
+      "acceptedAnswers": ["206", "deux cent six"],
       "difficulty": 2,
       "explanation": "Un nouveau-né en a davantage : certains os se soudent pendant la croissance."
     },
@@ -65,7 +65,7 @@
       "text": "À quelle vitesse la lumière se déplace-t-elle dans le vide, environ ?",
       "options": ["1 000 km/s", "150 000 km/s", "300 000 km/s", "1 million de km/s"],
       "correctIndex": 2,
-      "acceptedAnswers": ["300 000 km/s", "300 000", "300000"],
+      "acceptedAnswers": ["300 000 km/s", "300 000", "300000", "trois cent mille", "trois cent mille km/s"],
       "difficulty": 2,
       "explanation": "Environ 300 000 km par seconde : la lumière du Soleil met un peu plus de 8 minutes à nous parvenir."
     },

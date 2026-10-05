@@ -67,16 +67,27 @@ export interface ValidationDecisions {
   hidden?: Readonly<Record<string, boolean>>
 }
 
-// Part de la réponse jugée juste : 1, 0,5 (une partie sur deux) ou 0.
-export function acceptedFraction(
+// Parties de la réponse jugées justes : main (la réponse, ou le titre en « both ») et artist (« both »).
+export interface AcceptedParts {
+  main: boolean
+  artist?: boolean
+}
+
+export function acceptedParts(
   match: AnswerMatch,
   answer: Pick<Answer, 'value' | 'artist'>,
   decisions: ValidationDecisions = {},
-): number {
-  const mainOk = decisions.main?.[normalizeAnswer(String(answer.value))] ?? isAcceptedLevel(match.main)
-  if (match.artist === undefined) return mainOk ? 1 : 0
-  const artistOk = decisions.artist?.[normalizeAnswer(answer.artist ?? '')] ?? isAcceptedLevel(match.artist)
-  return ((mainOk ? 1 : 0) + (artistOk ? 1 : 0)) / 2
+): AcceptedParts {
+  const main = decisions.main?.[normalizeAnswer(String(answer.value))] ?? isAcceptedLevel(match.main)
+  if (match.artist === undefined) return { main }
+  const artist = decisions.artist?.[normalizeAnswer(answer.artist ?? '')] ?? isAcceptedLevel(match.artist)
+  return { main, artist }
+}
+
+// Part de la réponse jugée juste : 1, 0,5 (une partie sur deux) ou 0.
+export function acceptedFraction(parts: AcceptedParts): number {
+  if (parts.artist === undefined) return parts.main ? 1 : 0
+  return ((parts.main ? 1 : 0) + (parts.artist ? 1 : 0)) / 2
 }
 
 export function verdictOf(fraction: number): AnswerVerdict {
@@ -84,10 +95,13 @@ export function verdictOf(fraction: number): AnswerVerdict {
   return fraction > 0 ? 'partial' : 'wrong'
 }
 
-// Résultat public à partir des points d'une réponse entièrement juste (Rapidité comprise).
-export function resultOf(fraction: number, fullPoints: number): PlayerResult {
+// Résultat public à partir des points d'une réponse entièrement juste (Rapidité comprise) ; en
+// « both », le détail par partie, pour l'écran du joueur.
+export function resultOf(parts: AcceptedParts, fullPoints: number): PlayerResult {
+  const fraction = acceptedFraction(parts)
   const result: PlayerResult = { correct: fraction >= 1, points: Math.round(fullPoints * fraction) }
   if (verdictOf(fraction) === 'partial') result.partial = true
+  if (parts.artist !== undefined) result.parts = { title: parts.main, artist: parts.artist }
   return result
 }
 

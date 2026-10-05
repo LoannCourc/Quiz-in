@@ -4,15 +4,28 @@ import type { Player, PlayerId, PlayerResult, PublicSession } from '@shared/type
 // Pourquoi une réponse n'a pas été enregistrée : trop tard (définitif) ou erreur réseau (réessai possible).
 export type AnswerRefusal = 'tooLate' | 'failed';
 
+// Réponse libre : texte saisi ; blind test « both » : titre dans value, artiste dans artist.
+export interface FreeText {
+  value: string;
+  artist?: string;
+}
+
+// Réponse donnée : index d'une proposition (Choix multiples) ou texte saisi (Réponse libre).
+export type GivenAnswer = number | FreeText;
+
+export function isFreeText(given: GivenAnswer | null): given is FreeText {
+  return typeof given === 'object' && given !== null;
+}
+
 // Réponse du joueur à la question courante, vue de son téléphone.
 export type AnswerState =
   | { kind: 'idle' }
-  // Appui fait, écriture en cours : boutons déjà désactivés.
-  | { kind: 'sending'; choice: number }
-  // choice vaut null si la réponse a été envoyée avant un rechargement de la page : answeredBy
-  // dit qu'on a répondu, mais answers (lisible par l'hôte seul) ne dit pas quoi.
-  | { kind: 'sent'; choice: number | null }
-  | { kind: 'refused'; choice: number; reason: AnswerRefusal };
+  // Appui fait, écriture en cours : boutons et champs déjà désactivés.
+  | { kind: 'sending'; given: GivenAnswer }
+  // given vaut null si la réponse a été envoyée avant un rechargement de la page et que l'appareil
+  // ne l'a pas gardée : answeredBy dit qu'on a répondu, mais answers (lisible par l'hôte seul) ne dit pas quoi.
+  | { kind: 'sent'; given: GivenAnswer | null }
+  | { kind: 'refused'; given: GivenAnswer; reason: AnswerRefusal };
 
 export const IDLE_ANSWER: AnswerState = { kind: 'idle' };
 
@@ -20,8 +33,8 @@ export const IDLE_ANSWER: AnswerState = { kind: 'idle' };
 export function effectiveAnswer(session: PublicSession, uid: PlayerId, local: AnswerState): AnswerState {
   const hasAnswered = session.answeredBy?.[session.currentIndex]?.[uid] === true;
   if (!hasAnswered) return local;
-  const choice = local.kind === 'sending' || local.kind === 'sent' ? local.choice : null;
-  return { kind: 'sent', choice };
+  const given = local.kind === 'sending' || local.kind === 'sent' ? local.given : null;
+  return { kind: 'sent', given };
 }
 
 // Résultat du joueur à la question révélée ; undefined s'il n'a pas répondu.
@@ -29,11 +42,13 @@ export function myResult(session: PublicSession, uid: PlayerId): PlayerResult | 
   return session.reveal?.results?.[uid];
 }
 
-export type RevealOutcome = 'correct' | 'wrong' | 'noAnswer';
+// partial : blind test « both » à moitié juste (titre ou artiste).
+export type RevealOutcome = 'correct' | 'partial' | 'wrong' | 'noAnswer';
 
 export function revealOutcome(result: PlayerResult | undefined): RevealOutcome {
   if (!result) return 'noAnswer';
-  return result.correct ? 'correct' : 'wrong';
+  if (result.correct) return 'correct';
+  return result.partial ? 'partial' : 'wrong';
 }
 
 // Rang avant la question révélée : scores actuels moins les points qu'elle a rapportés,

@@ -144,6 +144,8 @@ export interface PlayerResult {
   points: number;
   // Blind test « both » : une seule des deux parties juste (la moitié des points). Absent sinon.
   partial?: true;
+  // Blind test « both » en Réponse libre : titre et artiste jugés justes ou non (écran du joueur).
+  parts?: { title: boolean; artist: boolean };
 }
 
 export interface SessionSettings {

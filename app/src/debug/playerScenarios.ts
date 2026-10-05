@@ -1,7 +1,7 @@
 import { QUESTION_DURATION_S, REVEAL_DURATION_S, SCORES_DURATION_S, STARTING_DURATION_S } from '@shared/constants';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Reveal } from '@shared/types';
 
-import { IDLE_ANSWER, type AnswerState } from '@/lib/playerGame';
+import { IDLE_ANSWER, type AnswerState, type FreeText } from '@/lib/playerGame';
 
 // Données factices de l'écran /debug/player (développement uniquement), du même type que la
 // vraie session : les écrans testés dans la démo sont exactement ceux de la partie.
@@ -28,6 +28,13 @@ export type ScenarioId =
   | 'revealAwaiting'
   | 'scoresAwaiting'
   | 'revealSuspense'
+  | 'freeQuestion'
+  | 'freeQuestionTitle'
+  | 'freeQuestionBoth'
+  | 'freeSent'
+  | 'freeRevealCorrect'
+  | 'freeRevealWrong'
+  | 'freeRevealPartial'
   | 'scores'
   | 'scoresAnnounce'
   | 'paused'
@@ -51,6 +58,13 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   revealAwaiting: 'Pas à pas : attente de l’hôte',
   scoresAwaiting: 'Pas à pas : classement en attente',
   revealSuspense: 'Suspense : révélation sans rang',
+  freeQuestion: 'Réponse libre : question',
+  freeQuestionTitle: 'Réponse libre : blind test, titre',
+  freeQuestionBoth: 'Réponse libre : blind test, titre et artiste',
+  freeSent: 'Réponse libre : réponse envoyée',
+  freeRevealCorrect: 'Réponse libre : bonne réponse',
+  freeRevealWrong: 'Réponse libre : mauvaise réponse',
+  freeRevealPartial: 'Réponse libre : à moitié (titre et artiste)',
   scores: 'Classement',
   scoresAnnounce: 'Annonce question suivante',
   paused: 'Pause',
@@ -126,6 +140,20 @@ const ONE_LONG_QUESTION: PublicQuestion = {
   options: ['Sydney', 'Canberra', 'Melbourne, grande ville du Victoria, capitale fédérale provisoire de 1901 à 1927', 'Perth'],
 };
 
+// Réponse libre (maquettes S1 et S2) : pas de propositions publiées ; blind test : ce qu'il faut écrire.
+const FREE_SETTINGS = { answerMode: 'free' as const, speedBonus: true, control: false, teams: false };
+const FREE_QUESTION: PublicQuestion = {
+  text: 'Qui a perdu la bataille de Waterloo en 1815 ?',
+  difficulty: 2,
+  timeLimit: QUESTION_DURATION_S.free,
+};
+const blindTestQuestion = (ask: PublicQuestion['ask']): PublicQuestion => ({
+  text: ask === 'both' ? 'Quel est ce morceau ?' : 'Quel est ce titre ?',
+  difficulty: 1,
+  timeLimit: QUESTION_DURATION_S.free,
+  ask,
+});
+
 const REVEAL: Reveal = {
   correctAnswer: 'Canberra',
   explanation: 'Canberra a été construite pour départager Sydney et Melbourne.',
@@ -180,6 +208,28 @@ function revealScenario(now: number, myResult: PlayerResult | undefined): Public
   };
 }
 
+function freeQuestionScenario(now: number, question: PublicQuestion): PublicSession {
+  return { ...questionScenario(now, question, 8), settings: FREE_SETTINGS };
+}
+
+// Révélation en Réponse libre : mon résultat et ce que j'avais tapé (gardé sur l'appareil).
+function freeRevealScenario(now: number, myResult: PlayerResult, given: FreeText, both = false): Scenario {
+  const session = revealScenario(now, myResult);
+  const reveal: Reveal = both
+    ? {
+        ...session.reveal!,
+        correctAnswer: "(I Can't Get No) Satisfaction – The Rolling Stones",
+        explanation: undefined,
+        music: { title: "(I Can't Get No) Satisfaction", artist: 'The Rolling Stones', source: 'deezer' },
+        stats: {},
+      }
+    : { ...session.reveal!, correctAnswer: 'Napoléon Ier', explanation: 'Napoléon est battu le 18 juin 1815.', stats: {} };
+  return {
+    session: { ...session, settings: FREE_SETTINGS, currentQuestion: both ? blindTestQuestion('both') : FREE_QUESTION, reveal },
+    answer: { kind: 'sent', given },
+  };
+}
+
 // Construit le scénario au moment où on le choisit, pour que les chronos partent de « maintenant ».
 export function buildScenario(id: ScenarioId, now: number): Scenario {
   const idle = (session: PublicSession): Scenario => ({ session, answer: IDLE_ANSWER });
@@ -203,17 +253,17 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return {
         // 4 des 5 joueurs connectés ont répondu (Sam est déconnecté, Inès n'a pas encore répondu).
         session: { ...questionScenario(now, SHORT_QUESTION, 8), answeredBy: { 2: { lea: true, tom: true, noe: true, [DEMO_UID]: true } } },
-        answer: { kind: 'sent', choice: 1 },
+        answer: { kind: 'sent', given: 1 },
       };
     case 'answerRefused':
       return {
         session: questionScenario(now, SHORT_QUESTION, SHORT_QUESTION.timeLimit),
-        answer: { kind: 'refused', choice: 2, reason: 'tooLate' },
+        answer: { kind: 'refused', given: 2, reason: 'tooLate' },
       };
     case 'answerNetworkError':
       return {
         session: questionScenario(now, SHORT_QUESTION, 8),
-        answer: { kind: 'refused', choice: 0, reason: 'failed' },
+        answer: { kind: 'refused', given: 0, reason: 'failed' },
       };
     case 'revealCorrect':
       return idle(revealScenario(now, RESULTS[DEMO_UID]));
@@ -230,6 +280,28 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       return idle(revealScenario(now, undefined));
     case 'scores':
       return idle({ ...baseSession(now, PLAYERS_AFTER), status: 'scores', reveal: REVEAL, ...phase(now, SCORES_DURATION_S) });
+    case 'freeQuestion':
+      return idle(freeQuestionScenario(now, FREE_QUESTION));
+    case 'freeQuestionTitle':
+      return idle(freeQuestionScenario(now, blindTestQuestion('title')));
+    case 'freeQuestionBoth':
+      return idle(freeQuestionScenario(now, blindTestQuestion('both')));
+    case 'freeSent':
+      return {
+        session: { ...freeQuestionScenario(now, FREE_QUESTION), answeredBy: { 2: { lea: true, tom: true, [DEMO_UID]: true } } },
+        answer: { kind: 'sent', given: { value: 'Napoléon' } },
+      };
+    case 'freeRevealCorrect':
+      return freeRevealScenario(now, { correct: true, points: 168 }, { value: 'Napoléon' });
+    case 'freeRevealWrong':
+      return freeRevealScenario(now, { correct: false, points: 0 }, { value: 'Wellington' });
+    case 'freeRevealPartial':
+      return freeRevealScenario(
+        now,
+        { correct: false, partial: true, parts: { title: true, artist: false }, points: 60 },
+        { value: 'Satisfaction', artist: 'Rolling' },
+        true,
+      );
     case 'revealSuspense': {
       // Suspense : points gagnés, mais ni rang ni étape Classement.
       const reveal = revealScenario(now, RESULTS[DEMO_UID]);

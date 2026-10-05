@@ -5,6 +5,7 @@ import { isAnswerCorrect, matchAnswer, normalizeAnswer } from '../../shared/answ
 import { FREE_ANSWER_GROUPS_MAX, HIDDEN_ANSWER_TEXT, QUESTION_DURATION_S, REVEAL_DURATION_S } from '../../shared/constants'
 import {
   acceptedFraction,
+  acceptedParts,
   answerTargets,
   groupFreeAnswers,
   matchFreeAnswer,
@@ -15,6 +16,7 @@ import { hostReturnUpdate, isPhaseStale } from '../../shared/hostAbsence'
 import {
   buildReveal,
   gradeAnswer,
+  launchUpdate,
   hostControls,
   nextDeadline,
   pauseUpdate,
@@ -158,7 +160,7 @@ describe('Blind test en Réponse libre : ask et alias', () => {
     const question = blindTest('both')
     const fraction = (value: string, artist?: string) => {
       const given = answer(value, NOW, artist === undefined ? {} : { artist })
-      return acceptedFraction(matchFreeAnswer(question, given), given)
+      return acceptedFraction(acceptedParts(matchFreeAnswer(question, given), given))
     }
     expect(fraction('Satisfaction', 'The Rolling Stones')).toBe(1)
     expect(fraction('Satisfaction', 'Beatles')).toBe(0.5)
@@ -185,7 +187,7 @@ describe('Points en Réponse libre (gradeAnswer)', () => {
 
   test('both à moitié juste : la moitié des points, Rapidité comprise, et partial', () => {
     const graded = gradeAnswer(blindTest('both'), answer('Satisfaction', NOW - FREE_MS / 2, { artist: 'Queen' }), free, NOW)
-    expect(graded).toEqual({ correct: false, partial: true, points: 75, fullPoints: 150 })
+    expect(graded).toEqual({ correct: false, partial: true, parts: { title: true, artist: false }, points: 75, fullPoints: 150 })
   })
 })
 
@@ -365,7 +367,29 @@ describe('Phase VALIDATION (Contrôle)', () => {
   test('blind test both : résultat partiel publié dans results', () => {
     const question = blindTest('both')
     const session = questionSession(FREE, { [PLAYER]: answer('Satisfaction', NOW - FREE_MS / 2, { artist: 'Queen' }) })
-    expect(buildReveal(question, session).results[PLAYER]).toEqual({ correct: false, partial: true, points: 75 })
+    expect(buildReveal(question, session).results[PLAYER]).toEqual({
+      correct: false,
+      partial: true,
+      parts: { title: true, artist: false },
+      points: 75,
+    })
+  })
+})
+
+describe('Lancement en Réponse libre', () => {
+  test('accepté, avec ou sans Contrôle ; durée de la question : 30 s', () => {
+    for (const settings of [FREE, CONTROL]) {
+      const launch = launchUpdate(makeSession({ settings }), [CAPITAL, makeQuestion(1)], NOW)
+      expect(launch.ok).toBe(true)
+    }
+    const first = transitionUpdate(
+      makeSession({ status: 'starting', settings: FREE, questionCount: 2 }),
+      [CAPITAL],
+      { status: 'starting', currentIndex: 0 },
+      NOW,
+    )
+    expect(first).toMatchObject({ status: 'question', currentQuestion: { timeLimit: 30 } })
+    expect((first?.currentQuestion as object) ?? {}).not.toHaveProperty('options')
   })
 })
 

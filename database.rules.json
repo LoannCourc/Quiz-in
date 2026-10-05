@@ -125,6 +125,12 @@
               "correct": { ".validate": "newData.isBoolean()" },
               "points": { ".validate": "newData.isNumber() && newData.val() >= 0" },
               "partial": { ".validate": "newData.val() == true" },
+              "parts": {
+                ".validate": "newData.hasChildren(['title', 'artist'])",
+                "title": { ".validate": "newData.isBoolean()" },
+                "artist": { ".validate": "newData.isBoolean()" },
+                "$other": { ".validate": false }
+              },
               "$other": { ".validate": false }
             }
           },
