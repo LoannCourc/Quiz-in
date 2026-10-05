@@ -1,6 +1,9 @@
 import {
   AUDIO_PREVIEW_S,
   AUDIO_SOURCES,
+  BLUFF_MAX_DECOYS,
+  BLUFF_MAX_LENGTH,
+  BLUFF_MIN_DECOYS,
   CHOICE_COUNT,
   FEATURED_QUIZ_COUNT,
   POSTER_PALETTES,
@@ -14,6 +17,7 @@ import { isQuizIconName } from './themeIcons'
 import type {
   AudioSourceId,
   BlindTestAsk,
+  BluffQuestion,
   ChoiceOptions,
   Difficulty,
   MusicTrack,
@@ -61,7 +65,7 @@ function isDifficulty(value: unknown): value is Difficulty {
 }
 
 function isQuizGameType(value: unknown): value is QuizGameType {
-  return value === 'quiz' || value === 'blindTest'
+  return value === 'quiz' || value === 'blindTest' || value === 'bluff'
 }
 
 function isAudioSource(value: unknown): value is AudioSourceId {
@@ -199,14 +203,46 @@ export function parseQuestion(value: unknown): Question | null {
   return question
 }
 
+function isTextList(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every(isNonEmptyString)
+}
+
+// Question de Bluff (spec 8 et 16), ou null si elle est mal formée.
+export function parseBluffQuestion(value: unknown): BluffQuestion | null {
+  if (!isRecord(value)) return null
+  const { id, text, answer, acceptedAnswers, decoys, difficulty, explanation, timeLimit } = value
+  if (!isNonEmptyString(id) || !isNonEmptyString(text) || !isNonEmptyString(answer) || !isDifficulty(difficulty)) return null
+  if (answer.length > BLUFF_MAX_LENGTH) return null
+  // La base ne garde pas une liste vide : acceptedAnswers peut manquer.
+  const accepted = acceptedAnswers ?? []
+  if (!isTextList(accepted)) return null
+  if (!isTextList(decoys) || decoys.length < BLUFF_MIN_DECOYS || decoys.length > BLUFF_MAX_DECOYS) return null
+  if (decoys.some((decoy) => decoy.length > BLUFF_MAX_LENGTH)) return null
+  if (explanation !== undefined && typeof explanation !== 'string') return null
+  if (timeLimit !== undefined && !(isFiniteNumber(timeLimit) && timeLimit > 0)) return null
+  const question: BluffQuestion = { id, text, answer, acceptedAnswers: accepted, decoys, difficulty }
+  if (explanation !== undefined) question.explanation = explanation
+  if (timeLimit !== undefined) question.timeLimit = timeLimit
+  return question
+}
+
 // Questions d'un quiz (questions/{quizId}). La base renvoie un tableau, ou un objet à clés
 // numériques s'il a des trous : les questions sont remises dans l'ordre des index.
-export function parseQuestions(value: unknown): ParsedList<Question> {
+function parseQuestionList<T>(value: unknown, parse: (raw: unknown) => T | null): ParsedList<T> {
   const { entries, invalidRoot } = nodeEntries(value)
   const ordered = entries
     .filter(([key]) => /^\d+$/.test(key))
     .sort(([a], [b]) => Number(a) - Number(b))
-  const valid = ordered.map(([, raw]) => parseQuestion(raw)).filter((question) => question !== null)
+  const valid = ordered.map(([, raw]) => parse(raw)).filter((question) => question !== null)
   const ignoredCount = (invalidRoot ? 1 : 0) + entries.length - valid.length
   return { valid, ignoredCount }
+}
+
+export function parseQuestions(value: unknown): ParsedList<Question> {
+  return parseQuestionList(value, parseQuestion)
+}
+
+// Questions d'un quiz Bluff.
+export function parseBluffQuestions(value: unknown): ParsedList<BluffQuestion> {
+  return parseQuestionList(value, parseBluffQuestion)
 }

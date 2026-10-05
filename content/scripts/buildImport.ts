@@ -3,6 +3,7 @@
 //   import/questions.json → à importer sur le nœud questions
 // Usage (depuis content/) : npm run build
 // Blind test : les identifiants des morceaux viennent de music-check/<quizId>.json, seulement s'ils sont vérifiés.
+// Bluff : questions sans propositions (vraie réponse et leurres), contrôlées par bluffContent.ts.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -27,6 +28,7 @@ import { fitsBlindTestTimer, isBlindTestAsk, isFeaturedRank, isQuizDate, parseMu
 import { isQuizIconName } from '../../shared/themeIcons'
 import type {
   BlindTestAsk,
+  BluffQuestion,
   DifficultyLevel,
   MusicTrack,
   PosterPalette,
@@ -35,16 +37,15 @@ import type {
   QuizGameType,
   QuizSummary,
 } from '../../shared/types'
+import { bluffQuestionErrors, bluffQuestionWarnings, toBluffQuestion } from './bluffContent'
 import { contentDir, quizzesDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
 
 // Question du fichier source : un blind test donne l'artiste et le titre, pas l'identifiant du morceau.
 type SourceQuestion = Omit<Question, 'music'> & { music?: SourceMusic }
 
 // Fichier source d'un quiz (spec 8). reviewStatus n'est pas importé dans la base.
-interface QuizFile {
+interface QuizFileBase {
   id: string
-  // Absent : quiz classique.
-  gameType?: QuizGameType
   title: string
   theme: string
   description: string
@@ -55,8 +56,21 @@ interface QuizFile {
   // Icône propre au quiz (identifiant de shared/themeIcons.ts) ; absente : celle du thème.
   icon?: string
   reviewStatus?: string
+}
+
+// Quiz classique ou blind test (gameType absent : quiz classique).
+interface ClassicQuizFile extends QuizFileBase {
+  gameType?: Exclude<QuizGameType, 'bluff'>
   questions: SourceQuestion[]
 }
+
+// Bluff (spec 16) : vraie réponse et leurres, pas de propositions.
+interface BluffQuizFile extends QuizFileBase {
+  gameType: 'bluff'
+  questions: BluffQuestion[]
+}
+
+type QuizFile = ClassicQuizFile | BluffQuizFile
 
 const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' }
 
@@ -109,6 +123,12 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (quiz.questions.length < QUESTIONS_PER_GAME) errors.push(`au moins ${QUESTIONS_PER_GAME} questions`)
   const ids = quiz.questions.map((question) => question.id)
   if (new Set(ids).size !== ids.length) errors.push('ids de questions en double')
+  if (quiz.gameType === 'bluff') {
+    quiz.questions.forEach((question, index) => {
+      bluffQuestionErrors(question).forEach((error) => errors.push(`question ${index + 1} (${question.id}) : ${error}`))
+    })
+    return errors
+  }
   quiz.questions.forEach((question, index) => {
     const prefix = `question ${index + 1} (${question.id}) : `
     questionErrors(question).forEach((error) => errors.push(prefix + error))
@@ -180,6 +200,7 @@ function freeAnswerTargetErrors(question: SourceQuestion): string[] {
 const CHOICE_ONLY_WORDING = /\b(parmi|ci-dessous|lequel de ces|laquelle de ces|lesquels de ces|lesquelles de ces)\b/i
 
 function freeAnswerWarnings(quiz: QuizFile): string[] {
+  if (quiz.gameType === 'bluff') return []
   return quiz.questions.flatMap((question) => {
     const warnings: string[] = []
     if (CHOICE_ONLY_WORDING.test(question.text)) warnings.push(`${question.id} : énoncé à reformuler pour la Réponse libre`)
@@ -227,7 +248,8 @@ function musicErrors(quiz: QuizFile): string[] {
 }
 
 // Questions telles qu'importées : pour un blind test, le morceau vérifié (avec son identifiant).
-function toQuestions(quiz: QuizFile): Question[] {
+function toQuestions(quiz: QuizFile): (Question | BluffQuestion)[] {
+  if (quiz.gameType === 'bluff') return quiz.questions.map(toBluffQuestion)
   return quiz.questions.map(({ music, ...question }) => {
     if (quiz.gameType !== 'blindTest') return question
     const check = checkTrack(quiz.id, { ...question, music })
@@ -246,7 +268,10 @@ function toSummary(quiz: QuizFile): QuizSummary {
     difficulty,
     difficultyLabel: DIFFICULTY_LABELS[difficultyLevel(difficulty)],
     questionCount: quiz.questions.length,
-    estimatedMinutes: estimateQuizMinutes(Math.min(quiz.questions.length, QUESTIONS_PER_GAME)),
+    estimatedMinutes: estimateQuizMinutes(
+      Math.min(quiz.questions.length, QUESTIONS_PER_GAME),
+      quiz.gameType === 'bluff' ? 'bluff' : undefined,
+    ),
     description: quiz.description,
     audience: quiz.audience,
     poster: quiz.poster,
@@ -264,7 +289,7 @@ const quizzes = fileNames.map((fileName) => ({
 
 // Une place du Top 10 ne peut être donnée qu'à un seul quiz du même onglet (quiz ou blind test).
 function featuredRankErrors(): string[] {
-  const gameTypes: QuizGameType[] = ['quiz', 'blindTest']
+  const gameTypes: QuizGameType[] = ['quiz', 'blindTest', 'bluff']
   return gameTypes.flatMap((gameType) => {
     const ranks = quizzes
       .filter(({ quiz }) => (quiz.gameType ?? 'quiz') === gameType)
@@ -284,10 +309,13 @@ if (allErrors.length > 0) {
   process.exit(1)
 }
 
-// Avertissements (n'empêchent pas l'import) : questions à revoir pour la Réponse libre.
+// Avertissements (n'empêchent pas l'import) : questions à revoir pour la Réponse libre, leurres de Bluff
+// très ressemblants à la vraie réponse.
 for (const { quiz } of quizzes) {
   const warnings = freeAnswerWarnings(quiz)
   if (warnings.length > 0) console.warn(`⚠ ${quiz.id}, Réponse libre :\n  - ${warnings.join('\n  - ')}`)
+  const bluffWarnings = quiz.gameType === 'bluff' ? quiz.questions.flatMap(bluffQuestionWarnings) : []
+  if (bluffWarnings.length > 0) console.warn(`⚠ ${quiz.id}, Bluff :\n  - ${bluffWarnings.join('\n  - ')}`)
 }
 
 // Blind test dont un morceau n'est pas encore vérifié : exclu de l'import, avec la liste de ce qui manque.

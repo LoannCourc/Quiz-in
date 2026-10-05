@@ -51,6 +51,17 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
   l'affiche en avertissement. Relecture : `docs/relecture-saisie-libre.md`.
 - Règles de contenu : texte original, faits vérifiés auprès de deux sources, public familial.
 
+## Bluff (spec 16)
+
+Un quiz Bluff a `"gameType": "bluff"`. Ses questions n'ont pas de propositions : `answer` (la vraie réponse,
+40 caractères au plus), `acceptedAnswers` (ses autres écritures, éventuellement vide) et `decoys` (2 ou 3 leurres
+crédibles et faux, 40 caractères au plus). Pas de `options`, `correctIndex`, `music` ni `ask`.
+
+- Le build refuse un leurre qui vaudrait la vraie réponse (exact ou à une faute près), un leurre en double ou
+  un mot interdit ; il signale un leurre très ressemblant.
+- Une bonne question : réponse courte et peu connue, énoncé qui ne la trahit pas.
+- Relecture : `docs/relecture-bluff.md`.
+
 ## Blind test (spec 15)
 
 Un blind test a `"gameType": "blindTest"`. Chaque question a un champ `ask` (ce qu'elle demande) et

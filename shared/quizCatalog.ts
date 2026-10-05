@@ -1,14 +1,15 @@
 import {
+  BLUFF_TARGET_CHOICES,
+  BLUFF_VOTE_DURATION_S,
   DEFAULT_SESSION_SETTINGS,
   DIFFICULTY_EASY_MAX,
   DIFFICULTY_MEDIUM_MAX,
   QUESTION_DURATION_S,
-  REVEAL_DURATION_S,
   SCORES_DURATION_S,
   STARTING_DURATION_S,
   VALIDATION_ESTIMATE_S,
 } from './constants'
-import { hasValidationPhase } from './gameFlow'
+import { hasValidationPhase, revealDurationS } from './gameFlow'
 import type { AnswerMode, Difficulty, DifficultyLevel, SessionSettings } from './types'
 
 // Identifiant de quiz : minuscules, chiffres et tirets (aussi utilisé comme clé dans la base).
@@ -32,11 +33,17 @@ export function difficultyLevel(average: number): DifficultyLevel {
 
 // Durée estimée en minutes, arrondie au-dessus. Par défaut, celle du mode proposé à la création
 // de la partie (Choix multiples).
+// Phases de réponse d'une question : écriture et vote en Bluff (révélation estimée avec les choix visés).
+function answerPhasesS(answerMode: AnswerMode): number {
+  const voteS = answerMode === 'bluff' ? BLUFF_VOTE_DURATION_S : 0
+  return QUESTION_DURATION_S[answerMode] + voteS + revealDurationS(answerMode, BLUFF_TARGET_CHOICES)
+}
+
 export function estimateQuizMinutes(
   questionCount: number,
   answerMode: AnswerMode = DEFAULT_SESSION_SETTINGS.answerMode,
 ): number {
-  const perQuestionS = QUESTION_DURATION_S[answerMode] + REVEAL_DURATION_S[answerMode] + SCORES_DURATION_S
+  const perQuestionS = answerPhasesS(answerMode) + SCORES_DURATION_S
   return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
 }
 
@@ -48,7 +55,7 @@ export function estimateGameMinutes(questionCount: number, settings: SessionSett
   const { answerMode } = settings
   const scoresS = settings.suspense ? 0 : SCORES_DURATION_S
   const validationS = hasValidationPhase(settings) ? VALIDATION_ESTIMATE_S : 0
-  const perQuestionS = QUESTION_DURATION_S[answerMode] + validationS + REVEAL_DURATION_S[answerMode] + scoresS
+  const perQuestionS = answerPhasesS(answerMode) + validationS + scoresS
   return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
 }
 

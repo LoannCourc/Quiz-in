@@ -362,6 +362,25 @@ sessions/{code}
 }
 ```
 
+**Question de Bluff** (quiz de type `bluff`, section 16) : pas de propositions, mais la vraie réponse, ses autres écritures et 2 ou 3 leurres.
+
+```json
+{
+  "id": "bcg-02",
+  "text": "Quel était le tout premier nom du jeu qui a inspiré le Monopoly, breveté en 1904 ?",
+  "answer": "The Landlord's Game",
+  "acceptedAnswers": ["Landlord's Game", "Landlords Game"],
+  "decoys": ["Magie Immobilière", "Capital Express", "Rue de la Paix"],
+  "difficulty": 3,
+  "explanation": "Inventé par Elizabeth Magie pour dénoncer les excès des propriétaires fonciers."
+}
+```
+
+- `answer` et chaque leurre : 40 caractères au plus (ils s'affichent parmi les choix du vote), sans mot interdit.
+- `acceptedAnswers` : autres écritures de la vraie réponse (une proposition qui les vaut est refusée), éventuellement vide.
+- `decoys` : 2 ou 3 leurres crédibles et faux, distincts entre eux ; un leurre qui vaudrait la vraie réponse (exact ou à une faute près) est une erreur du build, un leurre très ressemblant un avertissement.
+- Pas de `options`, `correctIndex`, `music` ni `ask`. Une bonne question de Bluff a une réponse courte et peu connue, que personne ne peut deviner à coup sûr.
+
 **Difficulté**
 - La difficulté de chaque question est affichée à côté de l'énoncé.
 - Celle du quiz est la moyenne des difficultés de ses questions : moins de 1,67 → Facile, jusqu'à 2,33 → Moyen, au-delà → Difficile.
@@ -496,7 +515,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 ## 16. Bluff
 
-Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) codé ; écrans et contenu à venir.
+Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu, logique pure, règles de la base) et lot 2 (contenu : validation du build, 2 quiz en relecture, `docs/relecture-bluff.md`) codés ; écrans à venir.
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV **et sur les téléphones** ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
@@ -514,7 +533,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - Fin anticipée : quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai (2 s après la dernière).
 
 **Choix du vote.**
-- La vraie réponse, les propositions acceptées et des leurres, mélangés au hasard. Chaque question du contenu a **2 ou 3 leurres** écrits d'avance (section 8, à venir).
+- La vraie réponse, les propositions acceptées et des leurres, mélangés au hasard. Chaque question du contenu a **2 ou 3 leurres** écrits d'avance (section 8).
 - **Doublons** : les propositions identiques après normalisation (majuscules, accents, ponctuation, article initial) n'en font qu'une, avec tous leurs auteurs ; le texte affiché est celui de la première arrivée. Une proposition identique à un leurre remplace ce leurre et reste celle du joueur.
 - **Leurres** : on vise 6 choix au total. Leurres utilisés = max(0, 6 − (1 + nombre de propositions distinctes)), dans la limite des leurres de la question, tirés au hasard. Garantie : chaque joueur a au moins **3 choix votables** hors sa propre proposition ; sinon, d'autres leurres sont ajoutés tant qu'il en reste.
 - Les choix sont publiés sans auteur ni type. Chaque auteur sait seulement lequel est le sien (grisé, « Ta proposition ») : il ne peut pas voter pour lui.

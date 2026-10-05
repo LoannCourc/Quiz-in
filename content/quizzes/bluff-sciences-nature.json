@@ -1,0 +1,103 @@
+{
+  "id": "bluff-sciences-nature",
+  "gameType": "bluff",
+  "title": "Bluff : animaux et phénomènes surprenants",
+  "theme": "Sciences et nature",
+  "description": "Des animaux étonnants et des phénomènes à peine croyables : inventez une réponse crédible, et démasquez la vraie.",
+  "audience": "all",
+  "poster": "green",
+  "addedAt": "2026-10-05",
+  "reviewStatus": "provisoire, à relire",
+  "questions": [
+    {
+      "id": "bsn-01",
+      "text": "De quelle couleur est le sang du homard ?",
+      "answer": "Bleu",
+      "acceptedAnswers": ["Bleue", "Bleuté", "Bleutée"],
+      "decoys": ["Vert", "Jaune", "Violet"],
+      "difficulty": 2,
+      "explanation": "Son sang contient de l'hémocyanine, une protéine à base de cuivre qui bleuit au contact de l'oxygène."
+    },
+    {
+      "id": "bsn-02",
+      "text": "Combien de cœurs possède une pieuvre ?",
+      "answer": "Trois",
+      "acceptedAnswers": ["3", "Trois cœurs", "3 cœurs"],
+      "decoys": ["Deux", "Cinq", "Huit"],
+      "difficulty": 2,
+      "explanation": "Deux cœurs envoient le sang vers les branchies, le troisième vers le reste du corps."
+    },
+    {
+      "id": "bsn-03",
+      "text": "Quelle forme ont les crottes du wombat, un marsupial australien ?",
+      "answer": "Des cubes",
+      "acceptedAnswers": ["Cube", "Cubes", "Cubique", "Cubiques", "En cube", "En forme de cube"],
+      "decoys": ["Des spirales", "Des triangles", "Des anneaux"],
+      "difficulty": 3,
+      "explanation": "Ses crottes cubiques ne roulent pas : il s'en sert pour marquer son territoire, sur les rochers et les souches."
+    },
+    {
+      "id": "bsn-04",
+      "text": "Quel animal a des empreintes digitales presque impossibles à distinguer de celles d'un humain ?",
+      "answer": "Le koala",
+      "acceptedAnswers": ["Koala", "Koalas"],
+      "decoys": ["Le raton laveur", "Le paresseux", "La loutre"],
+      "difficulty": 3,
+      "explanation": "Même au microscope, ses empreintes ressemblent tant aux nôtres qu'elles pourraient semer le doute sur une scène de crime."
+    },
+    {
+      "id": "bsn-05",
+      "text": "Quel est le seul oiseau capable de voler en marche arrière ?",
+      "answer": "Le colibri",
+      "acceptedAnswers": ["Colibri", "Colibris", "Oiseau-mouche"],
+      "decoys": ["Le martinet", "L'hirondelle", "La mésange"],
+      "difficulty": 1,
+      "explanation": "Ses ailes battent jusqu'à 80 fois par seconde et pivotent à l'épaule : il peut voler sur place, et même reculer."
+    },
+    {
+      "id": "bsn-06",
+      "text": "Quel animal microscopique a survécu à dix jours dans le vide spatial, en 2007 ?",
+      "answer": "Le tardigrade",
+      "acceptedAnswers": ["Tardigrade", "Tardigrades", "Ourson d'eau", "Oursons d'eau"],
+      "decoys": ["Le rotifère géant", "La puce des glaces", "Le cafard des neiges"],
+      "difficulty": 2,
+      "explanation": "Accrochés à l'extérieur d'une capsule spatiale, certains ont survécu au vide et même aux rayons du Soleil."
+    },
+    {
+      "id": "bsn-07",
+      "text": "De quelle couleur est la peau de l'ours polaire, sous sa fourrure ?",
+      "answer": "Noire",
+      "acceptedAnswers": ["Noir"],
+      "decoys": ["Rose", "Grise", "Blanche"],
+      "difficulty": 2,
+      "explanation": "Sa peau noire absorbe la chaleur du soleil ; ses poils, eux, sont transparents et creux, et paraissent blancs."
+    },
+    {
+      "id": "bsn-08",
+      "text": "Comment appelle-t-on les « faux soleils » qui apparaissent parfois de chaque côté du Soleil ?",
+      "answer": "Des parhélies",
+      "acceptedAnswers": ["Parhélie", "Parhélies", "Parhelie", "Parhelies"],
+      "decoys": ["Des héliomirages", "Des gémellies", "Des solstices"],
+      "difficulty": 3,
+      "explanation": "La lumière traverse des cristaux de glace en forme de plaquettes et forme deux taches brillantes, à 22° du Soleil."
+    },
+    {
+      "id": "bsn-09",
+      "text": "Quels pigments, présents dans leur nourriture, donnent leur couleur rose aux flamants ?",
+      "answer": "Les caroténoïdes",
+      "acceptedAnswers": ["Caroténoïdes", "Caroténoïde", "Carotenoides", "Carotenoide"],
+      "decoys": ["Les anthocyanes", "Les xanthelles", "Les rosanines"],
+      "difficulty": 3,
+      "explanation": "Ces pigments viennent des algues et des petites crevettes qu'ils mangent. Privé de cette nourriture, un flamant pâlit."
+    },
+    {
+      "id": "bsn-10",
+      "text": "Quel animal possède les plus grands yeux du règne animal ?",
+      "answer": "Le calmar colossal",
+      "acceptedAnswers": ["Calmar colossal", "Calamar colossal", "Calmar géant", "Calamar géant"],
+      "decoys": ["La baleine bleue", "Le requin-baleine", "Le cachalot"],
+      "difficulty": 2,
+      "explanation": "Ses yeux mesurent environ 27 cm de diamètre, la taille d'un ballon de basket. Ceux du calmar géant sont à peine plus petits."
+    }
+  ]
+}
