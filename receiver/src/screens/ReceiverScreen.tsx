@@ -31,7 +31,7 @@ export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
     case 'ended':
       return <EndScreen session={session} />
     case 'validation':
-      // Option Contrôle (P1) : pas d'écran au MVP.
-      return null
+      // Contrôle : l'énoncé reste affiché pendant que l'hôte valide les réponses.
+      return <QuestionScreen session={session} roomCode={roomCode} isValidation />
   }
 }

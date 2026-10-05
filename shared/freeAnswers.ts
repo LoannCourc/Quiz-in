@@ -14,7 +14,7 @@ export interface AnswerTargets {
 }
 
 // « (I Can't Get No) Satisfaction » s'accepte aussi sans sa parenthèse.
-function withoutParentheses(title: string): string {
+export function withoutParentheses(title: string): string {
   return title.replace(/\s*[([].*?[)\]]/g, '').trim()
 }
 

@@ -54,8 +54,8 @@ export function estimateGameMinutes(questionCount: number, settings: SessionSett
 
 export type GameOption ='speedBonus' | 'control' | 'teams'
 
-// Options développées au MVP : Contrôle (P1) et Groupe (P2) sont affichées mais désactivées.
-export const AVAILABLE_OPTIONS: readonly GameOption[] = ['speedBonus']
+// Options développées : Groupe (P2) est affiché mais désactivé ; Contrôle seulement en Réponse libre.
+export const AVAILABLE_OPTIONS: readonly GameOption[] = ['speedBonus', 'control']
 
 // Modes de réponse jouables (un mode absent serait affiché « bientôt »).
 export const AVAILABLE_ANSWER_MODES: readonly AnswerMode[] = ['choice', 'free']

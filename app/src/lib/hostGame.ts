@@ -1,3 +1,4 @@
+import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   audioUrlUpdate,
   launchUpdate,
@@ -54,6 +55,7 @@ export async function runTransition(
   nowServer: number,
   canWrite: () => boolean,
   audioUrls: AudioUrls = {},
+  decisions: ValidationDecisions = {},
 ): Promise<void> {
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return;
@@ -65,6 +67,7 @@ export async function runTransition(
     expected,
     nowServer,
     audioUrls,
+    decisions,
   );
   if (!changes || !canWrite()) return;
   await update(ref(db, `sessions/${code}`), changes);

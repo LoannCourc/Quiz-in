@@ -12,6 +12,11 @@ export function sortByRank(players: Record<PlayerId, Player>): RankedPlayer[] {
 }
 
 // Suspense : aucun ordre ne doit trahir le classement en cours de partie, tri par pseudo.
+// Réponses reçues à la question en cours (answeredBy : qui, jamais quoi), joueurs déconnectés compris.
+export function answeredByCount(session: PublicSession): number {
+  return Object.keys(session.answeredBy?.[session.currentIndex] ?? {}).length
+}
+
 export function sortForGame(session: PublicSession): RankedPlayer[] {
   if (!session.settings.suspense) return sortByRank(session.players)
   return Object.entries(session.players)

@@ -185,7 +185,8 @@ export function buildDemoSession({
     currentIndex: DEMO_CURRENT_INDEX,
     questionCount: QUESTIONS_PER_GAME,
     phaseStartedAt: startedAt,
-    phaseEndsAt: startedAt + phaseDurationS(status, answerMode) * 1000,
+    // Validation (Contrôle) : sans échéance, comme dans une vraie partie.
+    phaseEndsAt: status === 'validation' ? 0 : startedAt + phaseDurationS(status, answerMode) * 1000,
     pausedFrom: isPaused ? 'question' : undefined,
     remainingMs: isPaused ? 12_000 : undefined,
     currentQuestion: {

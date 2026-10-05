@@ -21,7 +21,7 @@ import {
   type GivenAnswer,
 } from '@/lib/playerGame';
 
-import { AnswerSentView } from './AnswerSentView';
+import { AnswerSentView, ValidationWaitView } from './AnswerSentView';
 import { Confetti } from './Confetti';
 import { FreeQuestionView } from './FreeQuestionView';
 import type { PhaseTiming } from './phaseTiming';
@@ -168,8 +168,9 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer }: PlayerGa
       return <PausedView />;
     case 'ended':
       return <EndView players={ranked} uid={uid} />;
-    case 'lobby':
     case 'validation':
+      return <ValidationWaitView given={answer.kind === 'idle' ? null : answer.given} />;
+    case 'lobby':
       return <WaitingView />;
   }
 }

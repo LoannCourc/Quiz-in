@@ -4,16 +4,14 @@ import { strings } from '../strings'
 import { DEMO_MAX_ANSWERS, DEMO_TOGGLEABLE_PLAYER_NAME } from './demoSession'
 import './DevPanel.css'
 
-type DemoStatus = Exclude<GameStatus, 'validation'>
-
-const DEMO_STATUSES = Object.keys(strings.dev.statuses) as DemoStatus[]
+const DEMO_STATUSES = Object.keys(strings.dev.statuses) as GameStatus[]
 
 interface DevPanelProps {
   status: GameStatus
   answerMode: AnswerMode
   answeredCount: number
   isToggleablePlayerConnected: boolean
-  onSelectStatus: (status: DemoStatus) => void
+  onSelectStatus: (status: GameStatus) => void
   onToggleMode: () => void
   onAddAnswer: () => void
   onResetAnswers: () => void

@@ -32,6 +32,7 @@ export type ScenarioId =
   | 'freeQuestionTitle'
   | 'freeQuestionBoth'
   | 'freeSent'
+  | 'freeValidation'
   | 'freeRevealCorrect'
   | 'freeRevealWrong'
   | 'freeRevealPartial'
@@ -62,6 +63,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   freeQuestionTitle: 'Réponse libre : blind test, titre',
   freeQuestionBoth: 'Réponse libre : blind test, titre et artiste',
   freeSent: 'Réponse libre : réponse envoyée',
+  freeValidation: 'Contrôle : l’hôte valide les réponses',
   freeRevealCorrect: 'Réponse libre : bonne réponse',
   freeRevealWrong: 'Réponse libre : mauvaise réponse',
   freeRevealPartial: 'Réponse libre : à moitié (titre et artiste)',
@@ -289,6 +291,17 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
     case 'freeSent':
       return {
         session: { ...freeQuestionScenario(now, FREE_QUESTION), answeredBy: { 2: { lea: true, tom: true, [DEMO_UID]: true } } },
+        answer: { kind: 'sent', given: { value: 'Napoléon' } },
+      };
+    case 'freeValidation':
+      return {
+        session: {
+          ...freeQuestionScenario(now, FREE_QUESTION),
+          status: 'validation',
+          settings: { ...FREE_SETTINGS, control: true },
+          phaseStartedAt: now,
+          phaseEndsAt: 0,
+        },
         answer: { kind: 'sent', given: { value: 'Napoléon' } },
       };
     case 'freeRevealCorrect':

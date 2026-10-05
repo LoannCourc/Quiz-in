@@ -67,6 +67,19 @@
   background: var(--color-surface);
 }
 
+/* Validation : message principal et nombre de réponses reçues, l'un sous l'autre. */
+.validation-prompt {
+  row-gap: 0.6rem;
+  align-content: center;
+}
+
+.validation-received {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
 .free-prompt-text {
   margin: 0;
   font-family: var(--font-display);

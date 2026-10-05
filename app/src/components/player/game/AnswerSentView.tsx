@@ -81,6 +81,23 @@ function FreeSent({ given }: { given: FreeText | null }) {
   );
 }
 
+// Contrôle : l'hôte valide les réponses ; rappel de ce que le joueur a envoyé (s'il est connu).
+export function ValidationWaitView({ given }: { given: GivenAnswer | null }) {
+  const text = isFreeText(given) ? strings.game.answerSent.bothAnswer(given.value.trim(), given.artist?.trim() ?? '') : '';
+  return (
+    <View style={styles.freeSent}>
+      <Text style={textStyles.title}>{strings.game.validation.title}</Text>
+      {text !== '' && (
+        <View style={styles.answerCard}>
+          <Text style={styles.answerLabel}>{strings.game.answerSent.yourAnswer}</Text>
+          <Text style={styles.answerText}>{text}</Text>
+        </View>
+      )}
+      <Text style={[textStyles.muted, styles.centered]}>{strings.game.validation.hint}</Text>
+    </View>
+  );
+}
+
 const PROGRESS_SIZE = 22;
 const CHECK_SIZE = 96;
 

@@ -8,6 +8,7 @@ import {
 import type { CatalogRowId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
+import type { ReviewBadge } from '@shared/validationReview';
 import type { AnswerMode, BlindTestAsk, DifficultyLevel, QuizAudience } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
@@ -117,7 +118,7 @@ export const strings = {
     suspense: { title: 'Suspense', hint: 'Classement à la fin' },
     options: {
       speedBonus: { title: 'Rapidité', hint: 'Points bonus' },
-      control: { title: 'Contrôle', hint: 'Valider' },
+      control: { title: 'Contrôle', hint: 'Tu valides les réponses' },
       teams: { title: 'Groupe', hint: 'En équipes' },
     } satisfies Record<GameOption, { title: string; hint: string }>,
     comingSoon: 'bientôt',
@@ -210,19 +211,61 @@ export const strings = {
     message: 'La partie va reprendre.',
     deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
   },
+  // Contrôle (maquette V1) : validation des réponses libres par l'hôte avant la révélation.
+  hostValidation: {
+    steps: ['Question', 'Validation', 'Révélation'],
+    blindTest: {
+      title: 'Blind test · titre',
+      artist: 'Blind test · artiste',
+      both: 'Blind test · titre et artiste',
+    } satisfies Record<BlindTestAsk, string>,
+    expected: 'Réponse attendue',
+    alsoAccepted: (variants: string[]) => `Aussi acceptés : ${variants.join(', ')}`,
+    received: 'Réponses reçues',
+    receivedCount: (answered: number, total: number) => `${answered} joueur${answered > 1 ? 's' : ''} sur ${total}`,
+    playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''}`,
+    noAnswer: 'Aucune réponse reçue : personne ne marque de points.',
+    badges: {
+      exact: 'Exact',
+      alias: 'Alias',
+      typo: 'Faute de frappe ?',
+      close: 'À vérifier',
+      allInTitle: 'Tout dans le titre',
+      wrong: 'Faux',
+      hidden: 'Masqué',
+    } satisfies Record<ReviewBadge, string>,
+    parts: { title: 'Titre', artist: 'Artiste' },
+    emptyPart: '(vide)',
+    counts: ({ accepted, partial, refused }: { accepted: number; partial: number; refused: number }) =>
+      [
+        `${accepted} acceptée${accepted > 1 ? 's' : ''}`,
+        partial > 0 ? `${partial} à moitié` : null,
+        `${refused} refusée${refused > 1 ? 's' : ''}`,
+      ]
+        .filter(Boolean)
+        .join(' · '),
+    eyeHint: 'Un appui sur l’œil masque la réponse sur la TV.',
+    accept: 'Accepter',
+    refuse: 'Refuser',
+    hide: 'Masquer sur la TV',
+    show: 'Afficher sur la TV',
+    filtered: 'Masquée automatiquement : mot interdit',
+  },
   hostControls: {
     open: '⚙ Contrôles de l’hôte',
     title: 'Contrôles de l’hôte',
     close: 'Fermer',
     skip: {
       firstQuestion: 'Passer à la question 1',
-      validation: 'Valider les réponses',
+      validation: 'Passer à la validation',
       reveal: 'Révéler la réponse',
       scores: 'Voir le classement',
       nextQuestion: 'Question suivante',
       finalRanking: 'Voir le classement final',
     } satisfies Record<SkipTarget, string>,
     // Pas à pas : gros bouton pendant l'attente, nommé d'après sa destination (même action que Passer).
+    // Contrôle : gros bouton de la validation (avec les coches de l'hôte).
+    validate: 'Valider les réponses',
     next: {
       ranking: 'Voir le classement',
       nextQuestion: 'Question suivante',
@@ -355,7 +398,11 @@ export const strings = {
       myResult: 'Tu termines',
       finalRanking: 'Classement final',
     },
-    // État de l'option Contrôle (P1), pas encore développée.
+    // Contrôle : pendant que l'hôte valide les réponses.
+    validation: {
+      title: 'L’hôte valide les réponses…',
+      hint: 'Les points arrivent à la révélation.',
+    },
     waiting: 'Patiente un instant, la partie continue…',
   },
   playerDemo: {
@@ -363,6 +410,7 @@ export const strings = {
     hint: 'Données factices, sans Firebase. Les appuis sur les propositions sont simulés.',
     open: 'Démo',
     close: 'Fermer',
+    validated: 'Démo : réponses validées (rien n’est écrit dans la base).',
   },
 };
 

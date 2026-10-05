@@ -7,11 +7,12 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 // Résumé des réglages : « Choix multiples · Rapidité activée » ou « … · sans Rapidité », puis
-// « · Pas à pas » et « · Suspense » s'ils sont activés. Contrôle et Groupe ne sont pas encore
-// disponibles : ils n'apparaissent pas.
+// « · Contrôle » (Réponse libre), « · Pas à pas » et « · Suspense » s'ils sont activés. Groupe n'est
+// pas encore disponible : il n'apparaît pas.
 export function settingsSummary(settings: SessionSettings): string {
   const speedBonus = settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff;
   const parts = [strings.quizSetup.answerModes[settings.answerMode], speedBonus];
+  if (settings.control) parts.push(strings.quizSetup.options.control.title);
   if (settings.stepByStep) parts.push(strings.quizSetup.stepByStep.title);
   if (settings.suspense) parts.push(strings.quizSetup.suspense.title);
   return parts.join(' · ');

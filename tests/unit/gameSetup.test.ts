@@ -96,9 +96,10 @@ describe('compatibilité des réglages', () => {
     expect(areSettingsCompatible({ ...all, answerMode: 'choice', control: false })).toBe(true)
   })
 
-  test('au MVP, seule Rapidité peut être activée', () => {
+  test('Rapidité partout, Contrôle seulement en Réponse libre, Groupe pas encore', () => {
     expect(canEnableOption(settings, 'speedBonus')).toBe(true)
-    expect(canEnableOption(settings, 'control')).toBe(false)
+    expect(canEnableOption({ ...settings, answerMode: 'free' }, 'control')).toBe(true)
+    expect(canEnableOption({ ...settings, answerMode: 'choice' }, 'control')).toBe(false)
     expect(canEnableOption(settings, 'teams')).toBe(false)
   })
 

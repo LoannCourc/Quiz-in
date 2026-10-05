@@ -1,3 +1,4 @@
+import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   endUpdate,
   hostControls,
@@ -8,7 +9,8 @@ import {
   type SessionUpdate,
 } from '@shared/hostEngine';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
-import type { Session } from '@shared/types';
+import type { Question, Session } from '@shared/types';
+import { expectedAnswer, reviewCounts, reviewGroups, type ReviewGroup } from '@shared/validationReview';
 import { useKeepAwake } from 'expo-keep-awake';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
@@ -17,6 +19,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { HostControlsBar, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
 import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
+import { HostValidation } from '@/components/host/validation/HostValidation';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
@@ -161,6 +164,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           session={session}
           serverOffsetMs={serverOffsetMs}
           isRegistered={isRegistered}
+          question={gameQuestions?.[session.currentIndex]}
           onSkip={engine.skip}
           connection={connection}
           cast={cast}
@@ -182,17 +186,28 @@ interface HostInGameProps {
   session: Session;
   serverOffsetMs: number;
   isRegistered: boolean;
-  onSkip: () => void;
+  // Question en cours (questions de la partie lues par l'hôte) : pour la validation (Contrôle).
+  question: Question | undefined;
+  onSkip: (decisions?: ValidationDecisions) => void;
   connection: HostConnection;
   cast: CastGame;
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
-function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, connection, cast }: HostInGameProps) {
+function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
+  // Contrôle : coches de l'hôte pour la question en cours, gardées dans l'app jusqu'à « Valider »
+  // (perdues si l'app est tuée : la correction automatique reprend, limite acceptée).
+  const [review, setReview] = useState<{ index: number; decisions: ValidationDecisions }>({ index: -1, decisions: {} });
+  const decisions = review.index === session.currentIndex ? review.decisions : {};
+  const isValidation = session.status === 'validation' && question !== undefined;
+  const groups: ReviewGroup[] =
+    isValidation && question
+      ? reviewGroups(question, session.answers?.[session.currentIndex] ?? {}, Object.keys(session.players), decisions)
+      : [];
 
   // Une action = relire la session, calculer l'update (shared/hostEngine.ts), un seul update().
   async function act(buildUpdate: (current: Session, nowServer: number) => SessionUpdate | null) {
@@ -225,7 +240,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
   }
 
   const actions: HostActions = {
-    skip: onSkip,
+    // Pendant la validation, Passer valide avec les coches actuelles.
+    skip: () => onSkip(session.status === 'validation' ? decisions : undefined),
     pause: () => void act(pauseUpdate),
     resume: () => void act(resumeUpdate),
     end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
@@ -249,6 +265,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
       onQuit={actions.quit}
       awaitingNext={hostControls(session).awaitingNext}
       onNext={actions.skip}
+      validation={isValidation ? { counts: reviewCounts(groups), onValidate: actions.skip } : null}
     />
   );
   const overlay = isPanelOpen && !connection.isOffline ? (
@@ -260,6 +277,24 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, onSkip, conne
     />
   ) : null;
 
+  // Contrôle : l'hôte (joueur ou non) valide les réponses avant la révélation (maquette V1).
+  if (isValidation && question) {
+    return (
+      <View style={styles.fill}>
+        <Screen footer={footer}>
+          <HostValidation
+            session={session}
+            question={question}
+            expected={expectedAnswer(question)}
+            groups={groups}
+            decisions={decisions}
+            onChange={(next) => setReview({ index: session.currentIndex, decisions: next })}
+          />
+        </Screen>
+        {overlay}
+      </View>
+    );
+  }
   if (!isRegistered) {
     const title = session.status === 'ended' ? strings.game.ended.title : strings.hostGame.inProgressTitle;
     return (
@@ -313,6 +348,8 @@ interface HostFooterProps {
   // Pas à pas : la révélation attend l'hôte ; même action que Passer (verrou contre le double appui).
   awaitingNext: HostControls['awaitingNext'];
   onNext: () => void;
+  // Contrôle : bilan des coches et « Valider les réponses » (null hors de la validation).
+  validation: { counts: ReturnType<typeof reviewCounts>; onValidate: () => void } | null;
 }
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
@@ -328,6 +365,7 @@ function HostFooter({
   onQuit,
   awaitingNext,
   onNext,
+  validation,
 }: HostFooterProps) {
   return (
     <View style={styles.footerStack}>
@@ -335,6 +373,12 @@ function HostFooter({
       {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
       {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
       {awaitingNext && <BigButton label={strings.hostControls.next[awaitingNext]} onPress={onNext} />}
+      {validation && (
+        <>
+          <Text style={[textStyles.muted, styles.centered]}>{strings.hostValidation.counts(validation.counts)}</Text>
+          <BigButton label={strings.hostControls.validate} size="compact" onPress={validation.onValidate} />
+        </>
+      )}
       {status === 'ended' && (
         <View style={styles.footerRow}>
           <View style={styles.fill}>

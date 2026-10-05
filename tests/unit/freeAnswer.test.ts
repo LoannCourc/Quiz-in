@@ -28,6 +28,7 @@ import {
 } from '../../shared/hostEngine'
 import { estimateGameMinutes } from '../../shared/quizCatalog'
 import { parseQuestion } from '../../shared/quizValidation'
+import { expectedAnswer, reviewCounts, reviewGroups } from '../../shared/validationReview'
 import type { Answer, Question, Session, SessionSettings } from '../../shared/types'
 import { HOST, makeQuestion, makeSession, OTHER, PLAYER } from './engineFixtures'
 
@@ -417,5 +418,67 @@ describe('Question publiée, durée et lecture des données', () => {
     expect(parseQuestion({ ...raw, ask: 'album' })).toBeNull()
     expect(parseQuestion({ ...CAPITAL, ask: 'title' })).toBeNull()
     expect(parseQuestion({ ...raw, music: { ...raw.music, titleAliases: [''] } })).toBeNull()
+  })
+})
+
+describe('Écran de validation de l’hôte (validationReview)', () => {
+  const ids = [HOST, PLAYER, OTHER, 'p4', 'p5']
+
+  test('badges : exact, faute de frappe, à vérifier, faux ; pré-coches de la correction automatique', () => {
+    const question = makeQuestion(0, { options: ['Wellington', 'Napoléon Ier', 'Blücher', 'Nelson'], correctIndex: 1, acceptedAnswers: ['Napoléon Ier', 'Napoléon', 'Bonaparte'] })
+    const answers = {
+      [HOST]: answer('Napoléon'),
+      [PLAYER]: answer('napoleon'),
+      [OTHER]: answer('Napoléonn'),
+      p4: answer('Napoleon Bonaparte'),
+      p5: answer('Wellington'),
+    }
+    const groups = reviewGroups(question, answers, ids)
+    expect(groups.map((group) => [group.text, group.badge, group.main.accepted])).toEqual([
+      ['Napoléon', 'exact', true],
+      ['Napoléonn', 'typo', true],
+      ['Napoleon Bonaparte', 'close', false],
+      ['Wellington', 'wrong', false],
+    ])
+    expect(reviewCounts(groups)).toEqual({ accepted: 3, partial: 0, refused: 2 })
+  })
+
+  test('décisions de l’hôte : coche changée, groupe masqué ; un mot interdit reste masqué', () => {
+    const answers = { [HOST]: answer('Kangourou'), [PLAYER]: answer('Merde'), [OTHER]: answer('Canbeiro') }
+    const decisions = { main: { canbeiro: true }, hidden: { kangourou: true } }
+    const groups = reviewGroups(CAPITAL, answers, [HOST, PLAYER, OTHER], decisions)
+    const byText = Object.fromEntries(groups.map((group) => [group.text, group]))
+    expect(byText.Canbeiro.main.accepted).toBe(true)
+    expect(byText.Kangourou).toMatchObject({ badge: 'hidden', hidden: true, isFiltered: false })
+    expect(byText.Merde).toMatchObject({ badge: 'hidden', hidden: true, isFiltered: true })
+  })
+
+  test('blind test « both » : deux parties, alias, à moitié, tout dans le titre', () => {
+    const question = blindTest('both', { artistAliases: ['Stones'] })
+    const answers = {
+      [HOST]: answer('Satisfaction', NOW, { artist: 'Rolling Stones' }),
+      [PLAYER]: answer('Satisfaction', NOW, { artist: 'Stones' }),
+      [OTHER]: answer('Paint it black', NOW, { artist: 'Rolling Stones' }),
+      p4: answer('Satisfaction Rolling Stones'),
+    }
+    const groups = reviewGroups(question, answers, [HOST, PLAYER, OTHER, 'p4'])
+    const badges = Object.fromEntries(groups.map((group) => [group.text, [group.badge, group.main.accepted, group.artist?.accepted]]))
+    expect(badges).toEqual({
+      'Satisfaction – Rolling Stones': ['exact', true, true],
+      'Satisfaction – Stones': ['alias', true, true],
+      'Paint it black – Rolling Stones': ['close', false, true],
+      'Satisfaction Rolling Stones': ['allInTitle', false, false],
+    })
+    expect(reviewCounts(groups)).toEqual({ accepted: 2, partial: 1, refused: 1 })
+  })
+
+  test('réponse attendue et variantes acceptées, sans doublon', () => {
+    const question = makeQuestion(0, { options: ['Wellington', 'Napoléon Ier', 'Blücher', 'Nelson'], correctIndex: 1, acceptedAnswers: ['napoléon ier', 'Napoléon', 'Bonaparte'] })
+    expect(expectedAnswer(question)).toEqual({ title: 'Napoléon Ier', variants: ['Napoléon', 'Bonaparte'] })
+    expect(expectedAnswer(blindTest('both', { artistAliases: ['Stones'] }))).toEqual({
+      title: "(I Can't Get No) Satisfaction",
+      artist: 'The Rolling Stones',
+      variants: ['Satisfaction', 'Stones'],
+    })
   })
 })

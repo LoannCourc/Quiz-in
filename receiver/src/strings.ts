@@ -36,6 +36,11 @@ export const strings = {
     3: 'Difficile',
   } satisfies Record<Difficulty, string>,
   choiceLetters: ['A', 'B', 'C', 'D'],
+  // Contrôle : l'hôte valide les réponses (aucun texte de joueur avant la révélation).
+  validation: {
+    title: 'L’hôte valide les réponses…',
+    received: (count: number) => `${count} réponse${count > 1 ? 's' : ''} reçue${count > 1 ? 's' : ''}`,
+  },
   reveal: {
     title: 'La bonne réponse',
     // Nombre de joueurs ayant choisi chaque proposition.
@@ -127,11 +132,12 @@ export const strings = {
       lobby: 'Lobby',
       starting: '3-2-1',
       question: 'Question',
+      validation: 'Validation',
       reveal: 'Révélation',
       scores: 'Classement',
       paused: 'Pause',
       ended: 'Fin',
-    } satisfies Record<Exclude<GameStatus, 'validation'>, string>,
+    } satisfies Record<GameStatus, string>,
     modeChoice: 'Mode : choix multiples',
     modeFree: 'Mode : réponse libre',
     addAnswer: (count: number, max: number) => `+1 réponse (${count}/${max})`,

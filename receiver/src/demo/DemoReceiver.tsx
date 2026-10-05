@@ -15,7 +15,7 @@ import {
   type DemoOptions,
 } from './demoSession'
 
-const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'reveal', 'scores', 'paused', 'ended']
+const DEMO_STATUSES: GameStatus[] = ['lobby', 'starting', 'question', 'validation', 'reveal', 'scores', 'paused', 'ended']
 
 // Comme la maquette : 7 réponses sur 9 joueurs connectés.
 const INITIAL_ANSWERED_COUNT = 7

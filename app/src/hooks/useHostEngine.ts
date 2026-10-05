@@ -1,3 +1,4 @@
+import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   isTransitionLocked,
   nextDeadline,
@@ -13,8 +14,8 @@ import { AppState } from 'react-native';
 import { runTransition } from '@/lib/hostGame';
 
 export interface HostEngine {
-  // Contrôle « Passer » de l'hôte.
-  skip: () => void;
+  // Contrôle « Passer » de l'hôte ; decisions : pendant la validation (Contrôle), ses coches.
+  skip: (decisions?: ValidationDecisions) => void;
 }
 
 interface HostEngineInput {
@@ -89,10 +90,11 @@ export function useHostEngine({
 
   // Passer : la transition suivante tout de suite, par le même chemin que le minuteur (même verrou,
   // même état attendu) : un double appui, ou un appui en même temps que le minuteur, est ignoré.
-  function skip() {
+  // decisions : pendant la validation (Contrôle), les coches de l'hôte (« Valider les réponses »).
+  function skip(decisions: ValidationDecisions = {}) {
     if (!questions || !canWriteRef.current) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
-    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef, audioUrlsRef);
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef, audioUrlsRef, decisions);
   }
 
   return { skip };
@@ -109,6 +111,7 @@ async function advance(
   lock: { current: TransitionLock | null },
   canWrite: { current: boolean },
   audioUrls: { current: AudioUrls },
+  decisions: ValidationDecisions = {},
 ): Promise<void> {
   const key = transitionKey(expected);
   if (isTransitionLocked(lock.current, key, Date.now())) return;
@@ -118,7 +121,7 @@ async function advance(
   const current: TransitionLock = { key, since: Date.now() };
   lock.current = current;
   try {
-    await runTransition(code, questions, expected, nowServer, () => canWrite.current, audioUrls.current);
+    await runTransition(code, questions, expected, nowServer, () => canWrite.current, audioUrls.current, decisions);
   } catch (error) {
     // Erreur d'écriture : on réessaiera à la prochaine valeur de la session ou au premier plan.
     console.error('[engine] Transition impossible', error);
