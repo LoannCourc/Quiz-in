@@ -1,6 +1,6 @@
 # [Quiz'In] — Spécification du MVP
 
-Version 0.6 — 4 octobre 2026
+Version 0.7 — 5 octobre 2026
 Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des propositions à confirmer ; la section 12 les regroupe.
 
 ---
@@ -44,7 +44,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | | Validation automatique des réponses libres |
 | | Classement après chaque question et classement final |
 | | Reconnexion d'un joueur en cours de partie |
-| **P1** (si le temps le permet) | Option **Contrôle** (validation des réponses par les joueurs) |
+| **P1** (si le temps le permet) | Option **Contrôle** : l'hôte valide les réponses libres avant la révélation (**livrée**, section 5.2) |
 | | Animations TV enrichies, sons |
 | | Exclure un joueur depuis l'app hôte |
 | **P2** (après le MVP) | Option **Groupe** (équipes) |
@@ -70,9 +70,9 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 ### 4.1 Hôte
 1. Ouvre l'app et arrive sur le **catalogue** de quiz (maquette « S2 ») : « QUIZ'IN » et une recherche par titre ; un sélecteur de type de jeu (seul « Quiz » est actif au MVP ; « Blind test » et « Paroles » sont visibles, marqués « bientôt », non cliquables) ; des puces de thème (« Tout » puis un thème par thème présent) qui filtrent les rangées ; des rangées d'affiches qui défilent horizontalement : « Top 10 cette semaine » (ordre choisi à la main, gros chiffres), « Nouveautés », « Faciles, pour tout le monde », « Pour les experts ». Une rangée vide n'est pas affichée. Les affiches portent la couleur du quiz et son titre, sans emoji.
 2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs » (durée estimée d'après les réglages choisis, section 6.1 ; « à votre rythme » en Pas à pas), pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
-3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
-   - **Mode de réponse** : *Choix multiples* (4 propositions) ou *Réponse libre* (les joueurs écrivent). Tant que la Réponse libre n'est pas jouable, sa tuile est marquée « bientôt ».
-   - **Options** : Rapidité (P0), Contrôle (P1, « bientôt »), Groupe (P2, « bientôt »).
+3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Contrôle », « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
+   - **Mode de réponse** : *Choix multiples* (4 propositions) ou *Réponse libre* (les joueurs écrivent leur réponse, section 6.3).
+   - **Options** : Rapidité, Contrôle (« Tu valides les réponses », Réponse libre seulement, section 5.2), Groupe (P2, « bientôt »).
    - **Rythme** : *Pas à pas* et *Suspense* (« Classement à la fin »), désactivés par défaut, combinables entre eux et avec toutes les options (section 5.1).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
 4. Arrive dans le **salon** : titre et méta du quiz, carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast ; une fois connectée, le bouton passe au second plan et affiche « TV connectée »), lien discret **« Je n'ai pas de TV »** (masqué quand la TV est connectée), liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
@@ -80,7 +80,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
 6. L'hôte choisit son propre pseudo et avatar (formulaire au-dessus de la liste, puis lien « Modifier » sur sa ligne) : il rejoint comme joueur. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
 7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris).
-8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1).
+8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1). Avec Contrôle, après chaque question, il valide les réponses (section 5.2).
 9. À la fin : classement final, puis **Rejouer** (même quiz) ou **Retour au catalogue**.
 
 ### 4.2 Joueur
@@ -88,18 +88,18 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 2. Une **page web** s'ouvre, sans installation. Il saisit un **pseudo** (2 à 12 caractères) et choisit un **avatar** dans une liste prédéfinie.
 3. Il attend dans le lobby et voit les autres arriver. Tant que la partie n'est pas lancée, il peut modifier son pseudo et son avatar (mêmes règles qu'à l'inscription).
 4. À chaque **question**, son téléphone affiche le compte à rebours et :
-   - en *Réponse libre* : un champ de saisie et un bouton « Valider » ;
+   - en *Réponse libre* (maquette S1) : l'énoncé, un champ de saisie (deux, « Titre » et « Artiste », pour un blind test qui demande les deux ; un seul champ rempli suffit), un compteur de caractères (60 au plus), correction et majuscule automatiques désactivées, et « Valider » (la touche Entrée aussi) ;
    - en *Choix multiples* : les 4 propositions, en texte lisible, sous forme de gros boutons.
-5. Une fois validée, la réponse est **définitive**. Le téléphone affiche « Réponse envoyée ».
-6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang (« Ta place », avec la progression « 4e → 2e ▲ » ; pas de rang en Suspense).
+5. Une fois validée, la réponse est **définitive**. Le téléphone affiche « Réponse envoyée », avec le rappel du choix ou de la réponse tapée (gardée sur l'appareil, même après un rechargement de la page). Avec Contrôle, il affiche ensuite « L'hôte valide les réponses… ».
+6. À la **révélation**, il voit si sa réponse est juste, les points gagnés et son rang (« Ta place », avec la progression « 4e → 2e ▲ » ; pas de rang en Suspense). En Réponse libre (maquette S2) : ✓, ½ (blind test « les deux » à moitié juste) ou ✗, la bonne réponse, ce qu'il a écrit s'il s'est trompé, et pour « les deux » le détail titre et artiste avec les points de chaque partie.
 7. À la fin, il voit le classement final.
 
 ### 4.3 Écran TV (séquence des écrans)
 1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés.
 2. **Démarrage** : compte à rebours 3-2-1.
-3. **Question** : énoncé, difficulté, propositions (en Choix multiples), compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement).
-4. **Révélation** : bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou liste des réponses (en Réponse libre).
-5. **Validation** *(P1, option Contrôle)* : vote des joueurs sur les réponses libres.
+3. **Question** : énoncé, difficulté, propositions (en Choix multiples) ou, en Réponse libre, un grand cadre « Écrivez votre réponse sur votre téléphone » (« le titre », « l'artiste », « le titre et l'artiste » pour un blind test) à la place des propositions, compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement).
+4. **Révélation** : bonne réponse, explication si elle existe, répartition des réponses (en Choix multiples) ou, en Réponse libre, la bonne réponse à la place de la proposition gagnante et les réponses des joueurs regroupées à la place des autres (8 groupes au plus, filtrées, section 6.3).
+5. **Validation** *(option Contrôle)* : l'énoncé reste affiché, avec « L'hôte valide les réponses… » et le nombre de réponses reçues ; aucun texte de joueur avant la révélation.
 6. **Classement** : top 5 et progression après chaque question (absent en Suspense).
 7. **Fin** : podium et classement complet.
 8. **États spéciaux** : pause, « l'hôte se reconnecte… », partie terminée.
@@ -114,9 +114,9 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 |---|---|---|
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
-| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer » |
+| **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL |
 | **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
-| **VALIDATION** *(P1, 15 s)* | Automatique | Fin du délai ou action de l'hôte |
+| **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
 | **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs, scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
@@ -140,28 +140,48 @@ Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), désac
 
 **Combinaison** : en Pas à pas + Suspense, la révélation attend l'hôte, puis « Question suivante » (ou « Classement final ») mène directement à la suite.
 
+### 5.2 Contrôle : validation des réponses libres par l'hôte
+
+Option de la partie (`settings.control`), disponible seulement en Réponse libre.
+
+- **Fin de la question** : l'hôte corrige automatiquement chaque réponse (section 6.3) et écrit, dans `answers`, le résultat automatique et les points d'une réponse entièrement juste (`fullPoints`, Rapidité comprise, calculée sur la fin de la question). La partie passe en VALIDATION, **sans échéance** (`phaseEndsAt = 0`).
+- **Écran de l'hôte** (maquette V1) : étapes « Question / Validation / Révélation », l'énoncé, la réponse attendue et les autres écritures acceptées, puis les réponses **regroupées** quand elles sont identiques après normalisation : texte, badge (EXACT, ALIAS, FAUTE DE FRAPPE ?, À VÉRIFIER, TOUT DANS LE TITRE, FAUX, MASQUÉ), avatars et nombre de joueurs, œil pour masquer la réponse sur la TV, interrupteur ✓ / ✕ (deux, titre et artiste, pour un blind test « les deux »). Les coches suivent la correction automatique tant que l'hôte n'y touche pas ; une décision vaut pour toutes les réponses identiques. En bas : « N acceptées · N à moitié · N refusées » et **« Valider les réponses »**.
+- **« Valider les réponses »** (ou « Passer ») : révélation avec les décisions de l'hôte, qui ont le dernier mot ; une réponse acceptée rapporte ses `fullPoints` (la moitié par partie juste en « les deux »). Les décisions restent dans l'app de l'hôte jusqu'à ce moment : jamais écrites dans la base.
+- **TV** : l'énoncé, « L'hôte valide les réponses… » et le nombre de réponses reçues. **Joueurs** : « L'hôte valide les réponses… » avec le rappel de leur réponse.
+- **Sans Contrôle** : pas de VALIDATION, la correction automatique décide seule et la révélation suit directement la question.
+- **Interactions** : pause possible pendant la validation (reprise sans échéance, coches gardées) ; en Pas à pas, la révélation qui suit attend l'hôte ; en Suspense, la révélation mène à la question suivante ; hôte absent : le message d'absence s'affiche comme ailleurs, et la validation n'est jamais vue comme « bloquée » (pas d'échéance) ; un joueur qui se reconnecte retrouve l'écran d'attente.
+- **Limite acceptée** : si l'app de l'hôte est tuée pendant la validation, ses coches sont perdues ; à son retour, elles repartent de la correction automatique.
+
 ---
 
 ## 6. Règles du jeu
 
 ### 6.1 Durées
 - **Choix multiples** : 20 secondes par question.
-- **Réponse libre** : 30 secondes par question.
+- **Réponse libre** : 30 secondes par question, quiz comme blind test (l'extrait joue alors toute la preview de 30 s).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
-- **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
+- **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
 
 ### 6.2 Points
 - **Bonne réponse** : 100 points.
 - **Option Rapidité** : bonus proportionnel au temps restant. `points = 100 + arrondi(100 × temps restant / durée de la question)`, soit de 100 à 200 points.
 - **Mauvaise réponse ou absence de réponse** : 0 point.
+- **Blind test « les deux » en Réponse libre** : le titre et l'artiste rapportent chacun la moitié des points (Rapidité comprise) ; résultat ✓ (les deux), ½ (un des deux) ou ✗.
 - Le temps de réponse est mesuré avec l'horodatage du **serveur**, pas celui du téléphone.
 - Pause pendant une question : le bonus de rapidité des réponses données avant la pause est légèrement surévalué, plafonné à 100 (approximation acceptée au MVP).
 
 ### 6.3 Validation des réponses libres
-- **Automatique (P0)** : la réponse du joueur est normalisée (minuscules, sans accents ni ponctuation, sans article initial) puis comparée à la liste des réponses acceptées de la question.
-- **Tolérance aux fautes** : une faute de frappe est acceptée pour les réponses de 5 lettres ou plus. À affiner après les tests.
-- **Contrôle (P1)** : après la révélation, les réponses libres s'affichent sur la TV. Chaque joueur peut voter ✓ ou ✗ sur les réponses des autres. Une réponse est acceptée à la majorité des votes. En cas d'égalité, la décision est en faveur du joueur. Ce vote prime sur la validation automatique.
+- **Saisie** : 60 caractères au plus par champ ; un blind test « les deux » a deux champs (titre, artiste), un seul rempli suffit.
+- **Normalisation** : minuscules, sans accents, sans ponctuation ni espaces superflus, sans article initial (le, la, les, l', un, une, des, du, de la, the) ; « & », « and » et « et » sont équivalents.
+- **Réponses acceptées** : `acceptedAnswers` de la question (variantes : nom seul, nombre en chiffres et en lettres…) ; pour un blind test, aussi le titre (et le titre sans sa parenthèse), l'artiste et leurs alias selon `ask` (section 8).
+- **Correction automatique**, au meilleur niveau obtenu contre l'une des réponses acceptées :
+  - *exact* : identique après normalisation, acceptée ;
+  - *faute de frappe* : une faute (insertion, suppression, remplacement, inversion de deux lettres) dès 5 lettres, deux dès 10 lettres, acceptée ;
+  - *proche* : une faute de plus que permis, ou l'une contient l'autre (« Hallyday » pour « Johnny Hallyday »), **refusée** mais mise en évidence pour l'hôte en Contrôle ;
+  - *faux* : tout le reste.
+- **Contrôle** (section 5.2) : l'hôte a le dernier mot sur chaque réponse ; sans Contrôle, la correction automatique décide seule.
+- **Affichage sur la TV** : uniquement à la révélation, réponses identiques regroupées, 8 groupes au plus (les plus nombreux d'abord), filtrées par l'hôte avant publication : un mot interdit (liste courte, mots entiers, pluriels compris) ou un groupe masqué par l'hôte s'affiche « ••• ». Le texte brut des joueurs n'est jamais publié.
 
 ### 6.4 Équipes (P2, option Groupe)
 - Les équipes sont formées dans le lobby. Chaque joueur répond toujours sur son téléphone.
@@ -222,25 +242,27 @@ sessions/{code}
   settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense? }   // rythme (section 5.1) : absent = désactivé
   currentIndex
   questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
-  phaseStartedAt, phaseEndsAt         // horodatage serveur ; phaseEndsAt = 0 : phase sans échéance (Pas à pas)
+  phaseStartedAt, phaseEndsAt         // horodatage serveur ; phaseEndsAt = 0 : phase sans échéance (Pas à pas, VALIDATION)
   pausedFrom?, remainingMs?           // renseignés en PAUSED : état à reprendre et temps restant de la phase
   hostLeftAt?                         // heure serveur du départ de l'hôte (écrite par onDisconnect), public ; effacée à son retour
-  currentQuestion: { text, options?, difficulty, timeLimit, audio? }   // SANS la bonne réponse
+  currentQuestion: { text, options?, difficulty, timeLimit, ask?, audio? }   // SANS la bonne réponse
+    // options : Choix multiples seulement ; ask : blind test en Réponse libre (title|artist|both)
     audio?: { url, startS, durationS }                         // blind test : adresse temporaire, jamais l'identifiant ni le titre ; durationS ≤ timeLimit
   reveal: { correctAnswer, explanation, music?, stats }        // publié à la révélation
     music?: { title, artist, source }                          // blind test : affiché avec la mention de la source
     stats.choiceCounts?: [n0, n1, n2, n3]                      // Choix multiples : réponses par proposition
-    stats.freeAnswers?: [{ playerId, value }]                  // Réponse libre : objets extensibles (masquage par l'hôte en P1)
-    results?: { [uid]: { correct, points } }                   // résultat de chaque joueur ayant répondu (✓/✗, points gagnés)
+    stats.freeAnswers?: [{ value, playerIds, verdict }]        // Réponse libre : 8 groupes au plus, texte filtré (« ••• »), verdict correct|partial|wrong
+    results?: { [uid]: { correct, points, partial?, parts? } } // résultat de chaque joueur ayant répondu ; partial et parts { title, artist } : blind test « les deux »
     // reveal reste en place pendant SCORES et est effacé au passage à la question suivante
   players/{uid}: { name, avatar, score, rank, connected }
     // name, avatar : écrits par le joueur, dans le lobby uniquement
     // connected : écrit par le joueur (voir « Présence ») ; score, rank : écrits par l'hôte
-  answers/{index}/{uid}: { value, submittedAt, correct, points }   // lisible UNIQUEMENT par l'hôte
+  answers/{index}/{uid}: { value, artist?, submittedAt, correct, points, partial?, fullPoints? }   // lisible UNIQUEMENT par l'hôte
     // value, submittedAt : écrits une seule fois par le joueur, en QUESTION, pour la question courante
-    // value : texte de 1 à 60 caractères (Réponse libre) ou index 0 à 3 (Choix multiples)
+    // value : texte de 1 à 60 caractères (Réponse libre ; vide permis si artist est présent) ou index 0 à 3 (Choix multiples)
+    // artist : blind test « les deux », texte de 1 à 60 caractères
     // submittedAt : horodatage serveur, au plus phaseEndsAt + 1 000 ms (tolérance réseau)
-    // correct, points : écrits par l'hôte
+    // correct, points, partial, fullPoints : écrits par l'hôte (fullPoints : points d'une réponse entièrement juste, pour Contrôle)
   answeredBy/{index}/{uid}: true      // lisible par tout utilisateur connecté
     // écrit par le joueur en même temps que sa réponse : indique QUI a répondu, jamais QUOI
 ```
@@ -248,7 +270,8 @@ sessions/{code}
 **Accès** (règles de sécurité dans `database.rules.json`)
 - `sessions` n'est jamais lisible en entier. Seul l'hôte (`hostUid`) peut lire `sessions/{code}` d'un bloc. Les autres (joueurs, TV) lisent chaque champ séparément ; tous sauf `answers` sont lisibles par un utilisateur connecté.
 - L'hôte écrit tout le reste de la session. `hostUid` est fixé à la création et ne change plus.
-- `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit` : la bonne réponse ne peut pas y être publiée par erreur.
+- `currentQuestion` refuse tout champ autre que `text`, `options`, `difficulty`, `timeLimit`, `ask`, `audio` : la bonne réponse ne peut pas y être publiée par erreur.
+- Un joueur n'écrit ni `correct`, ni `points`, ni `partial`, ni `fullPoints`, et aucune réponse hors de QUESTION (donc pas pendant VALIDATION).
 
 **Présence**
 - Chaque joueur écrit `connected: true` à chaque connexion (détectée via `.info/connected`) et enregistre auprès du serveur une écriture `connected: false` à exécuter s'il se déconnecte (`onDisconnect`). C'est le serveur Firebase qui l'exécute : la présence se met à jour même si le téléphone se met en veille ou perd le réseau.
@@ -259,6 +282,8 @@ sessions/{code}
 - Les règles ne peuvent ni compter les joueurs (`MAX_PLAYERS`) ni garantir l'unicité du pseudo : c'est l'hôte qui le vérifie et retire un joueur en trop.
 - **Écrans de l'hôte sur le web** : le site des joueurs est construit à partir du même code que l'app hôte. L'accueil (catalogue) et l'écran de test redirigent vers `/join`, mais les écrans de l'hôte (`/quiz/...`, `/host/...`) restent atteignables par leur adresse directe. L'app hôte est prévue pour Android ; la protection contre la création de parties en masse (Firebase App Check) viendra après le MVP.
 - **Suspense** : les scores et rangs restent écrits dans la base pendant la partie ; seul l'affichage les masque (section 5.1).
+- **Contrôle** : les coches de l'hôte ne sont gardées que dans son app jusqu'à « Valider les réponses » (section 5.2).
+- **Filtre des réponses libres** : liste courte de mots interdits, mots entiers ; un mot légitime de la liste est masqué lui aussi. L'hôte peut masquer en plus n'importe quel groupe (Contrôle).
 - **Reprise d'un joueur** : elle repose sur sa session anonyme Firebase, conservée par le navigateur. Le joueur retrouve sa place en revenant depuis le même navigateur sur le même appareil. Changer d'appareil ou de navigateur, ou effacer les données du site, crée un nouvel uid : il ne peut pas reprendre sa place.
 
 **Principes**
@@ -281,9 +306,11 @@ sessions/{code}
 | `difficulty` | 1 (Facile), 2 (Moyen), 3 (Difficile) |
 | `explanation` | Optionnel, affichée à la révélation |
 | `timeLimit` | Optionnel, remplace la durée par défaut |
+| `ask` | Blind test, obligatoire : ce que la question demande, `title` (« Quel est ce titre ? »), `artist` (« Quel artiste ? ») ou `both` (« Quel est ce morceau ? » ; deux champs en Réponse libre) |
+| `music.titleAliases`, `music.artistAliases` | Blind test, facultatifs : autres écritures acceptées en Réponse libre (« Gims », « ACDC ») |
 | `media` | Réservé pour plus tard (image, audio, vidéo) |
 
-**Le mode de réponse est un réglage de la partie, pas du quiz.** Chaque question doit donc fonctionner dans les deux modes : une réponse courte et sans ambiguïté en libre, quatre propositions plausibles en choix multiples.
+**Le mode de réponse est un réglage de la partie, pas du quiz.** Chaque question doit donc fonctionner dans les deux modes : une réponse courte et sans ambiguïté en libre, quatre propositions plausibles en choix multiples. Pas d'énoncé qui suppose les propositions sous les yeux (« Lequel de ces… », « parmi ») ; le build vérifie que la bonne proposition est acceptée en réponse libre et qu'aucune mauvaise ne l'est (alias compris).
 
 **Exemple**
 ```json
@@ -320,7 +347,7 @@ sessions/{code}
 - **Polices** : Bowlby One et Nunito sont hébergées avec chaque site (aucune dépendance réseau). Sur le site des joueurs, l'export Expo les range sous `assets/node_modules/` : la règle d'exclusion de l'hébergement `players` ne doit pas exclure `node_modules`. Repli sans-serif sur le web si une police ne charge pas.
 - **Langues** : français au MVP, mais tous les textes dans un fichier dédié pour faciliter les traductions.
 - **Confidentialité** : uniquement pseudo et avatar, aucun compte, aucun e-mail. Données de partie supprimées sous 24 h. Une politique de confidentialité sera nécessaire pour publier sur les stores. Pas de chat ni d'envoi d'images, car la cible inclut des mineurs.
-- **Réponses libres affichées sur la TV** : filtre de base, et l'hôte peut masquer une réponse (P1).
+- **Réponses libres affichées sur la TV** : jamais avant la révélation ; filtre de mots interdits, et l'hôte peut masquer une réponse avec Contrôle (section 6.3).
 
 ---
 
@@ -358,6 +385,10 @@ sessions/{code}
 12. **Pas à pas** : révélation et classement attendent l'hôte, sans échéance ; bouton nommé d'après sa destination (section 5.1).
 13. **Suspense** : classement seulement à la fin ; avatars triés par pseudo ; scores et rangs restent écrits dans la base (limite acceptée, section 5.1).
 14. Propositions d'une question : une seule taille de texte, celle de la plus longue (section 9).
+15. **Réponse libre** : 30 s par question (quiz et blind test) ; correction automatique à quatre niveaux, une faute dès 5 lettres et deux dès 10 (section 6.3).
+16. **Contrôle** : validation par l'hôte (et non vote des joueurs, idée de départ), phase VALIDATION sans échéance, décisions gardées dans l'app jusqu'à « Valider » (section 5.2).
+17. **Blind test en Réponse libre** : champ `ask` ; « les deux » partage les points 50/50, résultat ✓ / ½ / ✗.
+18. **TV en Réponse libre** : réponses fausses affichées, filtrées et regroupées, 8 groupes au plus, masquables avec Contrôle.
 
 ---
 
@@ -368,7 +399,7 @@ sessions/{code}
 3. **iOS** : confirmer que l'app hôte iOS est reportée et que les joueurs iPhone passent par le web -> Confirmé. 
 4. **Redirection du QR code vers l'app** pour ceux qui l'ont installée : proposition de la reporter après le MVP, car elle demande des liens profonds (Android App Links / iOS Universal Links) et un domaine configuré -> Confirmé.
 5. **Durée de partie** : rester à 10 questions (environ 10 minutes) ou viser 15 à 20 questions pour atteindre 15 à 20 minutes ? -> Pour le MVP, rester à 10 questions. 
-6. **Contrôle** : valider le vote à la majorité, ou une autre règle ? -> Les joueurs décident eux mêmes, pas besoin de faire de règles spécifiques.
+6. **Contrôle** : valider le vote à la majorité, ou une autre règle ? -> Les joueurs décident eux mêmes, pas besoin de faire de règles spécifiques. -> Remplacé : c'est l'hôte qui valide (décision 16).
 7. **Groupe** : score d'équipe en moyenne ou en somme ? Équipes choisies par les joueurs ou assignées aléatoirement ? -> En moyenne + les équipes peuvent soit être choisies par les joueurs soient assignées aléatoirement
 8. **Priorités** : valider que Contrôle (P1) et Groupe (P2) sortent du premier MVP. -> Validé.
 9. **Quiz de lancement** : quels thèmes pour les 10 premiers quiz ? -> Culture G classique
@@ -408,6 +439,8 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 **Interrupteur à distance.** `config/blindTestEnabled` (absent ou false par défaut) : coupé, l'onglet Blind test reste « bientôt », les blind tests sont masqués, leur création et leur lancement sont refusés, et la TV ne joue aucun son. Il se modifie dans la console Firebase, sans nouveau build.
 
 **Adresses des extraits.** Elles expirent environ 15 min après leur obtention. L'hôte les récupère dès le salon (l'API refuse les appels depuis un navigateur), les renouvelle quand il leur reste moins de 5 min et republie celle de l'extrait en cours (y compris pendant une pause). Le lancement est refusé tant qu'un extrait manque (« Extraits audio indisponibles »).
+
+**Réponse libre.** Chaque question précise ce qu'il faut écrire (`ask`, section 8) : le titre, l'artiste, ou les deux (deux champs, la moitié des points chacun). Sont acceptés le titre, le titre sans sa parenthèse, l'artiste, leurs alias et `acceptedAnswers`. Le timer est de 30 s : l'extrait joue toute la preview (seul `startS` = 0 couvre tout le chrono ; au-delà, le build avertit).
 
 **Lecture sur la TV.**
 - Pendant QUESTION : l'extrait joue **pendant tout le timer** (20 s, celui des Choix multiples), à partir d'un début propre à chaque morceau (de 0 à 10 s : début + timer ≤ 30 s, durée de la preview). Il démarre avec la phase, calé sur `phaseStartedAt` (une TV qui arrive en retard se recale).
