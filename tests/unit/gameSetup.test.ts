@@ -96,11 +96,13 @@ describe('compatibilité des réglages', () => {
     expect(areSettingsCompatible({ ...all, answerMode: 'choice', control: false })).toBe(true)
   })
 
-  test('Rapidité partout, Contrôle seulement en Réponse libre, Groupe pas encore', () => {
+  test('Rapidité et Groupe partout, Contrôle seulement en Réponse libre', () => {
     expect(canEnableOption(settings, 'speedBonus')).toBe(true)
     expect(canEnableOption({ ...settings, answerMode: 'free' }, 'control')).toBe(true)
     expect(canEnableOption({ ...settings, answerMode: 'choice' }, 'control')).toBe(false)
-    expect(canEnableOption(settings, 'teams')).toBe(false)
+    expect(canEnableOption(settings, 'teams')).toBe(true)
+    // Choix multiples : deux options au plus (Rapidité + Groupe).
+    expect(canEnableOption({ ...settings, answerMode: 'choice', speedBonus: true }, 'teams')).toBe(true)
   })
 
   test('passer en Choix multiples coupe Contrôle', () => {
