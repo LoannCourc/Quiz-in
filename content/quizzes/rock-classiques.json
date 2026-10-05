@@ -13,6 +13,7 @@
     {
       "id": "rck-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["We Will Rock You", "Rock and Roll All Nite", "I Love Rock 'n' Roll", "Born to Be Wild"],
       "correctIndex": 0,
       "acceptedAnswers": ["We Will Rock You"],
@@ -22,15 +23,17 @@
     {
       "id": "rck-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Def Leppard", "Scorpions", "AC/DC", "Iron Maiden"],
       "correctIndex": 2,
       "acceptedAnswers": ["AC/DC"],
       "difficulty": 2,
-      "music": { "artist": "AC/DC", "title": "Back in Black" }
+      "music": { "artist": "AC/DC", "title": "Back in Black", "artistAliases": ["ACDC"] }
     },
     {
       "id": "rck-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["My Generation", "(I Can't Get No) Satisfaction", "You Really Got Me", "Oh, Pretty Woman"],
       "correctIndex": 1,
       "acceptedAnswers": ["(I Can't Get No) Satisfaction", "Satisfaction"],
@@ -40,6 +43,7 @@
     {
       "id": "rck-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Uriah Heep", "Thin Lizzy", "Rainbow", "Deep Purple"],
       "correctIndex": 3,
       "acceptedAnswers": ["Deep Purple"],
@@ -49,6 +53,7 @@
     {
       "id": "rck-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["A Whiter Shade of Pale", "Waterloo Sunset", "Hey Jude", "Nights in White Satin"],
       "correctIndex": 2,
       "acceptedAnswers": ["Hey Jude"],
@@ -58,6 +63,7 @@
     {
       "id": "rck-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Dire Straits", "The Police", "Eagles", "Fleetwood Mac"],
       "correctIndex": 0,
       "acceptedAnswers": ["Dire Straits"],
@@ -67,15 +73,17 @@
     {
       "id": "rck-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Livin' on a Prayer", "Here I Go Again", "Jump", "Sweet Child O' Mine"],
       "correctIndex": 3,
       "acceptedAnswers": ["Sweet Child O' Mine"],
       "difficulty": 2,
-      "music": { "artist": "Guns N' Roses", "title": "Sweet Child O' Mine" }
+      "music": { "artist": "Guns N' Roses", "title": "Sweet Child O' Mine", "artistAliases": ["Guns and Roses"] }
     },
     {
       "id": "rck-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Pearl Jam", "Nirvana", "Soundgarden", "Alice in Chains"],
       "correctIndex": 1,
       "acceptedAnswers": ["Nirvana"],
@@ -85,6 +93,7 @@
     {
       "id": "rck-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Sweet Home Alabama", "Born to Run", "More Than a Feeling", "Go Your Own Way"],
       "correctIndex": 0,
       "acceptedAnswers": ["Sweet Home Alabama"],
@@ -94,6 +103,7 @@
     {
       "id": "rck-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Simple Minds", "The Cure", "U2", "Depeche Mode"],
       "correctIndex": 2,
       "acceptedAnswers": ["U2"],

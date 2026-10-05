@@ -44,21 +44,21 @@
     },
     {
       "id": "lfr-05",
-      "text": "Lequel de ces noms d'animaux est correctement orthographié ?",
-      "options": ["Rhinocéros", "Hipopotame", "Crocrodile", "Giraphe"],
-      "correctIndex": 0,
-      "acceptedAnswers": ["rhinocéros"],
+      "text": "Combien de « p » faut-il pour écrire « hippopotame » ?",
+      "options": ["Un", "Deux", "Trois", "Quatre"],
+      "correctIndex": 2,
+      "acceptedAnswers": ["trois", "3"],
       "difficulty": 2,
-      "explanation": "On écrit hippopotame, crocodile et girafe."
+      "explanation": "Deux au début et un au milieu : hippopotame vient du grec hippos (cheval) et potamos (fleuve)."
     },
     {
       "id": "lfr-06",
-      "text": "Lequel de ces mots est correctement orthographié ?",
-      "options": ["Aggrandir", "Dilemne", "Connexion", "Bizzare"],
-      "correctIndex": 2,
-      "acceptedAnswers": ["connexion"],
+      "text": "Quel mot désigne l'obligation de choisir entre deux solutions aussi difficiles l'une que l'autre ?",
+      "options": ["Un paradoxe", "Un dilemme", "Un compromis", "Un ultimatum"],
+      "correctIndex": 1,
+      "acceptedAnswers": ["dilemme"],
       "difficulty": 3,
-      "explanation": "On écrit agrandir, dilemme et bizarre."
+      "explanation": "Il s'écrit avec deux m : dilemme, et non « dilemne »."
     },
     {
       "id": "lfr-07",

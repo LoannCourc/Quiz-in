@@ -43,25 +43,40 @@ Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-g
 - Au moins 10 questions. `explanation` et `timeLimit` (en secondes) sont facultatifs.
 - Chaque question doit marcher dans les deux modes : la bonne proposition doit être acceptée en
   réponse libre, et aucune mauvaise proposition ne doit l'être. Le script le vérifie.
+- Réponse libre (les joueurs tapent leur réponse) : `acceptedAnswers` liste les écritures acceptées en
+  plus de la bonne proposition (nom seul, nombre en chiffres et en lettres, forme courte d'une
+  définition). Inutile d'ajouter les variantes de casse, d'accents, de ponctuation, d'article initial
+  ou les petites fautes de frappe : la correction automatique les accepte déjà (spec 6.3).
+  Pas d'énoncé qui suppose les propositions sous les yeux (« Lequel de ces… », « parmi ») : le script
+  l'affiche en avertissement. Relecture : `docs/relecture-saisie-libre.md`.
 - Règles de contenu : texte original, faits vérifiés auprès de deux sources, public familial.
 
 ## Blind test (spec 15)
 
-Un blind test a `"gameType": "blindTest"`. Chaque question a l'un de ces énoncés, avec quatre propositions
-du même genre et de la même époque, et un champ `music` sans identifiant :
+Un blind test a `"gameType": "blindTest"`. Chaque question a un champ `ask` (ce qu'elle demande) et
+l'énoncé qui va avec, quatre propositions du même genre et de la même époque, et un champ `music` sans
+identifiant :
 
-- « Quel est ce titre ? » : propositions = titres ; la bonne proposition cite le titre ;
-- « Quel artiste ? » : propositions = artistes ; la bonne proposition cite l'artiste ;
-- « Quel est ce morceau ? » (« Tubes francophones ») : propositions « Titre – Artiste ».
+- `"ask": "title"`, « Quel est ce titre ? » : propositions = titres ; la bonne proposition cite le titre ;
+- `"ask": "artist"`, « Quel artiste ? » : propositions = artistes ; la bonne proposition cite l'artiste ;
+- `"ask": "both"`, « Quel est ce morceau ? » (« Tubes francophones ») : propositions « Titre – Artiste » ;
+  en Réponse libre, deux champs (titre et artiste), chacun rapporte la moitié des points.
 
 Dans un même quiz, alterner titre et artiste, et équilibrer les positions des bonnes réponses (A, B, C, D).
 
 ```json
-"music": { "artist": "Stromae", "title": "Alors on danse", "startS": 5 }
+"ask": "artist",
+"music": { "artist": "Maître Gims", "title": "Est-ce que tu m'aimes ?", "startS": 5, "artistAliases": ["Gims"] }
 ```
 
+- `titleAliases`, `artistAliases` (facultatifs) : autres écritures acceptées en Réponse libre (surnom, nom
+  seul, sigle collé : « Gims », « ACDC »). Le titre sans sa parenthèse est déjà accepté. Le script refuse
+  un alias qui ferait accepter une mauvaise proposition.
+
 - `startS` (facultatif, 0 par défaut) : début de l'extrait dans la preview de 30 s. L'extrait joue
-  pendant tout le timer de la question (20 s) : `startS + timer` ≤ 30, soit `startS` de 0 à 10.
+  pendant tout le timer de la question (20 s) : `startS + timer` ≤ 30, soit `startS` de 0 à 10. En
+  Réponse libre (timer de 30 s), seul `startS` = 0 couvre tout le chrono : au-delà, le script avertit
+  que l'extrait s'arrête avant la fin.
 - Les `acceptedAnswers` contiennent la bonne proposition (titre, artiste, ou « titre – artiste »), pour
   qu'elle soit acceptée en réponse libre.
 - Mauvaises propositions : tubes ou artistes de la même époque (au plus un titre du même artiste), jamais

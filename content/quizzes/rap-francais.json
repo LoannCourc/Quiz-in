@@ -12,6 +12,7 @@
     {
       "id": "rap-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Bye Bye", "Caroline", "Les Princes de la ville", "Laisse pas traîner ton fils"],
       "correctIndex": 1,
       "acceptedAnswers": ["Caroline"],
@@ -21,15 +22,17 @@
     {
       "id": "rap-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Alliance Ethnik", "Fonky Family", "Ministère A.M.E.R.", "IAM"],
       "correctIndex": 3,
       "acceptedAnswers": ["IAM"],
       "difficulty": 3,
-      "music": { "artist": "IAM", "title": "Je danse le Mia" }
+      "music": { "artist": "IAM", "title": "Je danse le Mia", "artistAliases": ["I Am"] }
     },
     {
       "id": "rap-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Simple et funky", "Tonton du bled", "Angela", "Gravé dans la roche"],
       "correctIndex": 2,
       "acceptedAnswers": ["Angela"],
@@ -39,15 +42,17 @@
     {
       "id": "rap-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Diam's", "Keny Arkana", "Kenza Farah", "Lady Laistee"],
       "correctIndex": 0,
       "acceptedAnswers": ["Diam's"],
       "difficulty": 3,
-      "music": { "artist": "Diam's", "title": "Ma France à moi" }
+      "music": { "artist": "Diam's", "title": "Ma France à moi", "artistAliases": ["Diams"] }
     },
     {
       "id": "rap-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Saint-Denis", "Banlieusards", "Ego", "Gibraltar"],
       "correctIndex": 3,
       "acceptedAnswers": ["Gibraltar"],
@@ -57,6 +62,7 @@
     {
       "id": "rap-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Casseurs Flowters", "Bigflo & Oli", "Nekfeu", "Lomepal"],
       "correctIndex": 1,
       "acceptedAnswers": ["Bigflo & Oli"],
@@ -66,6 +72,7 @@
     {
       "id": "rap-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Cosmo", "Bella", "Je te pardonne", "Ego"],
       "correctIndex": 0,
       "acceptedAnswers": ["Cosmo"],
@@ -75,6 +82,7 @@
     {
       "id": "rap-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Psy 4 de la Rime", "113", "Sexion d'Assaut", "Fonky Family"],
       "correctIndex": 2,
       "acceptedAnswers": ["Sexion d'Assaut"],
@@ -84,6 +92,7 @@
     {
       "id": "rap-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["On verra", "La terre est ronde", "Papaoutai", "Tonton du bled"],
       "correctIndex": 1,
       "acceptedAnswers": ["La terre est ronde"],
@@ -93,6 +102,7 @@
     {
       "id": "rap-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Lartiste", "Keblack", "Naza", "Black M"],
       "correctIndex": 3,
       "acceptedAnswers": ["Black M"],

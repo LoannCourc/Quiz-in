@@ -13,6 +13,7 @@
     {
       "id": "chf-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Les Copains d'abord", "La Mer", "Le Petit Bal perdu", "Avec le temps"],
       "correctIndex": 0,
       "acceptedAnswers": ["Les Copains d'abord"],
@@ -22,15 +23,17 @@
     {
       "id": "chf-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Léo Ferré", "Gilbert Bécaud", "Jacques Brel", "Claude Nougaro"],
       "correctIndex": 2,
       "acceptedAnswers": ["Jacques Brel"],
       "difficulty": 3,
-      "music": { "artist": "Jacques Brel", "title": "Ne me quitte pas" }
+      "music": { "artist": "Jacques Brel", "title": "Ne me quitte pas", "artistAliases": ["Brel"] }
     },
     {
       "id": "chf-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Les Feuilles mortes", "L'Aigle noir", "Syracuse", "La Maritza"],
       "correctIndex": 1,
       "acceptedAnswers": ["L'Aigle noir"],
@@ -40,15 +43,17 @@
     {
       "id": "chf-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Serge Reggiani", "Yves Montand", "Gilbert Bécaud", "Charles Aznavour"],
       "correctIndex": 3,
       "acceptedAnswers": ["Charles Aznavour"],
       "difficulty": 3,
-      "music": { "artist": "Charles Aznavour", "title": "Emmenez-moi" }
+      "music": { "artist": "Charles Aznavour", "title": "Emmenez-moi", "artistAliases": ["Aznavour"] }
     },
     {
       "id": "chf-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Le Déserteur", "Les Petits Papiers", "Le Poinçonneur des Lilas", "Le Tourbillon"],
       "correctIndex": 2,
       "acceptedAnswers": ["Le Poinçonneur des Lilas"],
@@ -58,15 +63,17 @@
     {
       "id": "chf-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Jean Ferrat", "Maxime Le Forestier", "Hugues Aufray", "Georges Moustaki"],
       "correctIndex": 0,
       "acceptedAnswers": ["Jean Ferrat"],
       "difficulty": 3,
-      "music": { "artist": "Jean Ferrat", "title": "La Montagne" }
+      "music": { "artist": "Jean Ferrat", "title": "La Montagne", "artistAliases": ["Ferrat"] }
     },
     {
       "id": "chf-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Le Lac Majeur", "Capri c'est fini", "Une belle histoire", "Les Lacs du Connemara"],
       "correctIndex": 3,
       "acceptedAnswers": ["Les Lacs du Connemara"],
@@ -76,6 +83,7 @@
     {
       "id": "chf-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Sheila", "Dalida", "Mireille Mathieu", "Nana Mouskouri"],
       "correctIndex": 1,
       "acceptedAnswers": ["Dalida"],
@@ -85,6 +93,7 @@
     {
       "id": "chf-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Mistral gagnant", "La Ballade des gens heureux", "L'Été indien", "Les Mots bleus"],
       "correctIndex": 0,
       "acceptedAnswers": ["Mistral gagnant"],
@@ -94,11 +103,12 @@
     {
       "id": "chf-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Juliette Gréco", "Patachou", "Édith Piaf", "Mistinguett"],
       "correctIndex": 2,
       "acceptedAnswers": ["Édith Piaf"],
       "difficulty": 3,
-      "music": { "artist": "Édith Piaf", "title": "Non, je ne regrette rien" }
+      "music": { "artist": "Édith Piaf", "title": "Non, je ne regrette rien", "artistAliases": ["Piaf"] }
     }
   ]
 }

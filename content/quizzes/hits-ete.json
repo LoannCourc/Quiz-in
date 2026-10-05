@@ -13,6 +13,7 @@
     {
       "id": "ete-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Tic Tic Tac", "Lambada", "Le Bal masqué", "Saga Africa"],
       "correctIndex": 1,
       "acceptedAnswers": ["Lambada"],
@@ -22,6 +23,7 @@
     {
       "id": "ete-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Gipsy Kings", "Las Ketchup", "Los Lobos", "Los del Río"],
       "correctIndex": 3,
       "acceptedAnswers": ["Los del Río"],
@@ -31,6 +33,7 @@
     {
       "id": "ete-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Tacata", "Ai se eu te pego", "Dragostea din tei", "Waka Waka (This Time for Africa)"],
       "correctIndex": 2,
       "acceptedAnswers": ["Dragostea din tei"],
@@ -40,6 +43,7 @@
     {
       "id": "ete-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Lou Bega", "Ricky Martin", "Enrique Iglesias", "Marc Anthony"],
       "correctIndex": 0,
       "acceptedAnswers": ["Lou Bega"],
@@ -49,6 +53,7 @@
     {
       "id": "ete-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Laisse parler les gens", "Femme like U", "Zouk la sé sèl médikaman nou ni", "Premier Gaou"],
       "correctIndex": 3,
       "acceptedAnswers": ["Premier Gaou"],
@@ -58,6 +63,7 @@
     {
       "id": "ete-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Shaggy", "OMI", "Sean Paul", "Kungs"],
       "correctIndex": 1,
       "acceptedAnswers": ["OMI"],
@@ -67,6 +73,7 @@
     {
       "id": "ete-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Makeba", "Prayer in C", "Lean On", "Jerusalema"],
       "correctIndex": 0,
       "acceptedAnswers": ["Makeba"],
@@ -76,6 +83,7 @@
     {
       "id": "ete-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["The Beach Boys", "The Lovin' Spoonful", "Mungo Jerry", "Creedence Clearwater Revival"],
       "correctIndex": 2,
       "acceptedAnswers": ["Mungo Jerry"],
@@ -85,6 +93,7 @@
     {
       "id": "ete-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Cheap Thrills", "Summer", "Faded", "Stole the Show"],
       "correctIndex": 1,
       "acceptedAnswers": ["Summer"],
@@ -94,6 +103,7 @@
     {
       "id": "ete-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Bob Sinclar", "David Guetta", "Antoine Clamaran", "Martin Solveig"],
       "correctIndex": 3,
       "acceptedAnswers": ["Martin Solveig"],

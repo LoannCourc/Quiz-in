@@ -13,6 +13,7 @@
     {
       "id": "a10-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Can't Stop the Feeling!", "Sugar", "Treasure", "Happy"],
       "correctIndex": 3,
       "acceptedAnswers": ["Happy"],
@@ -22,6 +23,7 @@
     {
       "id": "a10-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Duffy", "Adele", "Sia", "Birdy"],
       "correctIndex": 1,
       "acceptedAnswers": ["Adele"],
@@ -31,6 +33,7 @@
     {
       "id": "a10-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Despacito", "Bailando", "Danza Kuduro", "Mi Gente"],
       "correctIndex": 0,
       "acceptedAnswers": ["Despacito"],
@@ -40,6 +43,7 @@
     {
       "id": "a10-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Shawn Mendes", "James Arthur", "Ed Sheeran", "Lewis Capaldi"],
       "correctIndex": 2,
       "acceptedAnswers": ["Ed Sheeran"],
@@ -49,6 +53,7 @@
     {
       "id": "a10-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Lean On", "Wake Me Up", "Titanium", "Faded"],
       "correctIndex": 1,
       "acceptedAnswers": ["Wake Me Up"],
@@ -58,15 +63,17 @@
     {
       "id": "a10-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Soprano", "Black M", "Kendji Girac", "Maître Gims"],
       "correctIndex": 3,
       "acceptedAnswers": ["Maître Gims", "Gims"],
       "difficulty": 1,
-      "music": { "artist": "Maître Gims", "title": "Est-ce que tu m'aimes ?" }
+      "music": { "artist": "Maître Gims", "title": "Est-ce que tu m'aimes ?", "artistAliases": ["Gims"] }
     },
     {
       "id": "a10-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Call Me Maybe", "Moves Like Jagger", "Gangnam Style", "Somebody That I Used to Know"],
       "correctIndex": 2,
       "acceptedAnswers": ["Gangnam Style"],
@@ -76,6 +83,7 @@
     {
       "id": "a10-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Louane", "Amel Bent", "Jenifer", "Nolwenn Leroy"],
       "correctIndex": 0,
       "acceptedAnswers": ["Louane"],
@@ -85,6 +93,7 @@
     {
       "id": "a10-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Counting Stars", "Pompeii", "Shut Up and Dance", "Believer"],
       "correctIndex": 3,
       "acceptedAnswers": ["Believer"],
@@ -94,6 +103,7 @@
     {
       "id": "a10-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Justice", "Daft Punk", "Kavinsky", "Disclosure"],
       "correctIndex": 1,
       "acceptedAnswers": ["Daft Punk"],

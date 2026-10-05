@@ -16,6 +16,9 @@ export interface SourceMusic {
   title: string
   // Début de l'extrait (0 par défaut) ; il dure le temps du timer : startS + timer ≤ 30 s.
   startS?: number
+  // Réponse libre : autres écritures acceptées du titre et de l'artiste (« Satisfaction », « Gims »).
+  titleAliases?: string[]
+  artistAliases?: string[]
 }
 
 export interface FoundTrack {

@@ -13,6 +13,7 @@
     {
       "id": "dsc-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Don't Leave Me This Way", "Ring My Bell", "Got to Be Real", "I Will Survive"],
       "correctIndex": 3,
       "acceptedAnswers": ["I Will Survive"],
@@ -22,6 +23,7 @@
     {
       "id": "dsc-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["The Trammps", "Bee Gees", "Heatwave", "Tavares"],
       "correctIndex": 1,
       "acceptedAnswers": ["Bee Gees"],
@@ -31,6 +33,7 @@
     {
       "id": "dsc-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Le Freak", "Disco Inferno", "Car Wash", "Boogie Oogie Oogie"],
       "correctIndex": 0,
       "acceptedAnswers": ["Le Freak"],
@@ -40,15 +43,17 @@
     {
       "id": "dsc-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Kool & the Gang", "Commodores", "Earth, Wind & Fire", "The Gap Band"],
       "correctIndex": 2,
       "acceptedAnswers": ["Earth, Wind & Fire"],
       "difficulty": 2,
-      "music": { "artist": "Earth, Wind & Fire", "title": "September" }
+      "music": { "artist": "Earth, Wind & Fire", "title": "September", "artistAliases": ["EWF"] }
     },
     {
       "id": "dsc-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Y.M.C.A.", "Born to Be Alive", "Daddy Cool", "D.I.S.C.O."],
       "correctIndex": 1,
       "acceptedAnswers": ["Born to Be Alive"],
@@ -58,6 +63,7 @@
     {
       "id": "dsc-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["The Pointer Sisters", "The Three Degrees", "The Emotions", "Sister Sledge"],
       "correctIndex": 3,
       "acceptedAnswers": ["Sister Sledge"],
@@ -67,6 +73,7 @@
     {
       "id": "dsc-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Play That Funky Music", "Jungle Boogie", "Superstition", "Pick Up the Pieces"],
       "correctIndex": 2,
       "acceptedAnswers": ["Superstition"],
@@ -76,6 +83,7 @@
     {
       "id": "dsc-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Lipps Inc.", "Ottawan", "Boney M.", "Village People"],
       "correctIndex": 0,
       "acceptedAnswers": ["Lipps Inc."],
@@ -85,6 +93,7 @@
     {
       "id": "dsc-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Get Down On It", "Shake Your Groove Thing", "Boogie Nights", "Don't Stop 'Til You Get Enough"],
       "correctIndex": 3,
       "acceptedAnswers": ["Don't Stop 'Til You Get Enough"],
@@ -94,6 +103,7 @@
     {
       "id": "dsc-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Diana Ross", "Donna Summer", "Grace Jones", "Amii Stewart"],
       "correctIndex": 1,
       "acceptedAnswers": ["Donna Summer"],

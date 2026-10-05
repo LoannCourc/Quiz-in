@@ -13,6 +13,7 @@
     {
       "id": "pop-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Don't Go Breaking My Heart", "Sugar Baby Love", "Dancing Queen", "Love Is in the Air"],
       "correctIndex": 2,
       "acceptedAnswers": ["Dancing Queen"],
@@ -22,15 +23,17 @@
     {
       "id": "pop-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Elton John", "Billy Joel", "Phil Collins", "Rod Stewart"],
       "correctIndex": 0,
       "acceptedAnswers": ["Elton John"],
       "difficulty": 2,
-      "music": { "artist": "Elton John", "title": "I'm Still Standing" }
+      "music": { "artist": "Elton John", "title": "I'm Still Standing", "artistAliases": ["Elton"] }
     },
     {
       "id": "pop-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Perfect", "All of Me", "Love Yourself", "Just the Way You Are"],
       "correctIndex": 3,
       "acceptedAnswers": ["Just the Way You Are"],
@@ -40,6 +43,7 @@
     {
       "id": "pop-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Kesha", "Katy Perry", "Demi Lovato", "Selena Gomez"],
       "correctIndex": 1,
       "acceptedAnswers": ["Katy Perry"],
@@ -49,6 +53,7 @@
     {
       "id": "pop-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Shake It Off", "Problem", "Royals", "Love Me Like You Do"],
       "correctIndex": 0,
       "acceptedAnswers": ["Shake It Off"],
@@ -58,6 +63,7 @@
     {
       "id": "pop-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Rita Ora", "Anne-Marie", "Dua Lipa", "Ava Max"],
       "correctIndex": 2,
       "acceptedAnswers": ["Dua Lipa"],
@@ -67,6 +73,7 @@
     {
       "id": "pop-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Watermelon Sugar", "Blinding Lights", "Dance Monkey", "Señorita"],
       "correctIndex": 1,
       "acceptedAnswers": ["Blinding Lights"],
@@ -76,6 +83,7 @@
     {
       "id": "pop-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Kylie Minogue", "Gwen Stefani", "Nelly Furtado", "Madonna"],
       "correctIndex": 3,
       "acceptedAnswers": ["Madonna"],
@@ -85,6 +93,7 @@
     {
       "id": "pop-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Torn", "You're Beautiful", "Angels", "Iris"],
       "correctIndex": 2,
       "acceptedAnswers": ["Angels"],
@@ -94,6 +103,7 @@
     {
       "id": "pop-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Lewis Capaldi", "James Arthur", "Sam Smith", "Tom Odell"],
       "correctIndex": 0,
       "acceptedAnswers": ["Lewis Capaldi"],

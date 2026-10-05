@@ -13,6 +13,7 @@
     {
       "id": "a80-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Billie Jean", "Every Breath You Take", "Sweet Dreams (Are Made of This)", "Smalltown Boy"],
       "correctIndex": 0,
       "acceptedAnswers": ["Billie Jean"],
@@ -22,15 +23,17 @@
     {
       "id": "a80-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Duran Duran", "Tears for Fears", "a-ha", "Spandau Ballet"],
       "correctIndex": 2,
       "acceptedAnswers": ["a-ha"],
       "difficulty": 1,
-      "music": { "artist": "a-ha", "title": "Take On Me" }
+      "music": { "artist": "a-ha", "title": "Take On Me", "artistAliases": ["Aha"] }
     },
     {
       "id": "a80-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Walking on Sunshine", "Girls Just Want to Have Fun", "Don't You (Forget About Me)", "Karma Chameleon"],
       "correctIndex": 1,
       "acceptedAnswers": ["Girls Just Want to Have Fun"],
@@ -40,6 +43,7 @@
     {
       "id": "a80-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Bon Jovi", "Scorpions", "Def Leppard", "Europe"],
       "correctIndex": 3,
       "acceptedAnswers": ["Europe"],
@@ -49,6 +53,7 @@
     {
       "id": "a80-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Self Control", "Words", "La Isla Bonita", "Flashdance... What a Feeling"],
       "correctIndex": 2,
       "acceptedAnswers": ["La Isla Bonita"],
@@ -58,6 +63,7 @@
     {
       "id": "a80-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Wham!", "Culture Club", "Frankie Goes to Hollywood", "Kajagoogoo"],
       "correctIndex": 0,
       "acceptedAnswers": ["Wham!"],
@@ -67,6 +73,7 @@
     {
       "id": "a80-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Toute première fois", "Ouragan", "Les Démons de minuit", "Voyage, voyage"],
       "correctIndex": 3,
       "acceptedAnswers": ["Voyage, voyage"],
@@ -76,15 +83,17 @@
     {
       "id": "a80-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Daniel Balavoine", "Jean-Jacques Goldman", "Michel Berger", "Francis Cabrel"],
       "correctIndex": 1,
       "acceptedAnswers": ["Jean-Jacques Goldman"],
       "difficulty": 1,
-      "music": { "artist": "Jean-Jacques Goldman", "title": "Quand la musique est bonne" }
+      "music": { "artist": "Jean-Jacques Goldman", "title": "Quand la musique est bonne", "artistAliases": ["Goldman", "JJ Goldman"] }
     },
     {
       "id": "a80-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Africa", "Owner of a Lonely Heart", "Don't Stop Believin'", "In the Air Tonight"],
       "correctIndex": 0,
       "acceptedAnswers": ["Africa"],
@@ -94,6 +103,7 @@
     {
       "id": "a80-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Journey", "Foreigner", "Survivor", "REO Speedwagon"],
       "correctIndex": 2,
       "acceptedAnswers": ["Survivor"],

@@ -13,6 +13,7 @@
     {
       "id": "a00-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Can't Fight the Moonlight", "Complicated", "Hips Don't Lie", "Hey Ya!"],
       "correctIndex": 2,
       "acceptedAnswers": ["Hips Don't Lie"],
@@ -22,15 +23,17 @@
     {
       "id": "a00-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Britney Spears", "Christina Aguilera", "Jessica Simpson", "Mandy Moore"],
       "correctIndex": 0,
       "acceptedAnswers": ["Britney Spears"],
       "difficulty": 1,
-      "music": { "artist": "Britney Spears", "title": "Toxic" }
+      "music": { "artist": "Britney Spears", "title": "Toxic", "artistAliases": ["Britney"] }
     },
     {
       "id": "a00-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Hot n Cold", "When Love Takes Over", "Hey, Soul Sister", "I Gotta Feeling"],
       "correctIndex": 3,
       "acceptedAnswers": ["I Gotta Feeling"],
@@ -40,6 +43,7 @@
     {
       "id": "a00-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Keane", "Coldplay", "Snow Patrol", "The Killers"],
       "correctIndex": 1,
       "acceptedAnswers": ["Coldplay"],
@@ -49,6 +53,7 @@
     {
       "id": "a00-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["One More Time", "Lady (Hear Me Tonight)", "Call on Me", "The Logical Song"],
       "correctIndex": 0,
       "acceptedAnswers": ["One More Time"],
@@ -58,15 +63,17 @@
     {
       "id": "a00-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Sophie Ellis-Bextor", "Dido", "Kylie Minogue", "Nelly Furtado"],
       "correctIndex": 2,
       "acceptedAnswers": ["Kylie Minogue"],
       "difficulty": 1,
-      "music": { "artist": "Kylie Minogue", "title": "Can't Get You Out of My Head" }
+      "music": { "artist": "Kylie Minogue", "title": "Can't Get You Out of My Head", "artistAliases": ["Kylie"] }
     },
     {
       "id": "a00-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Tout le bonheur du monde", "On s'attache", "Toi + Moi", "Le Vent nous portera"],
       "correctIndex": 1,
       "acceptedAnswers": ["On s'attache"],
@@ -76,6 +83,7 @@
     {
       "id": "a00-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Beyoncé", "Alicia Keys", "Leona Lewis", "Rihanna"],
       "correctIndex": 3,
       "acceptedAnswers": ["Rihanna"],
@@ -85,6 +93,7 @@
     {
       "id": "a00-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Papi chulo", "Obsesión", "Aserejé", "La Bomba"],
       "correctIndex": 2,
       "acceptedAnswers": ["Aserejé"],
@@ -94,6 +103,7 @@
     {
       "id": "a00-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Gnarls Barkley", "Gorillaz", "Scissor Sisters", "Mika"],
       "correctIndex": 0,
       "acceptedAnswers": ["Gnarls Barkley"],

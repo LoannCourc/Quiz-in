@@ -13,6 +13,7 @@
     {
       "id": "a90-01",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Rhythm Is a Dancer", "What Is Love", "The Rhythm of the Night", "Mr. Vain"],
       "correctIndex": 1,
       "acceptedAnswers": ["What Is Love"],
@@ -22,6 +23,7 @@
     {
       "id": "a90-02",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["All Saints", "TLC", "Eternal", "Spice Girls"],
       "correctIndex": 3,
       "acceptedAnswers": ["Spice Girls"],
@@ -31,6 +33,7 @@
     {
       "id": "a90-03",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Samba de Janeiro", "Bailamos", "Livin' la Vida Loca", "Mi chico latino"],
       "correctIndex": 2,
       "acceptedAnswers": ["Livin' la Vida Loca"],
@@ -40,6 +43,7 @@
     {
       "id": "a90-04",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Cher", "Madonna", "Tina Turner", "Céline Dion"],
       "correctIndex": 0,
       "acceptedAnswers": ["Cher"],
@@ -49,6 +53,7 @@
     {
       "id": "a90-05",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Saturday Night", "Coco Jamboo", "No Limit", "The Sign"],
       "correctIndex": 3,
       "acceptedAnswers": ["The Sign"],
@@ -58,6 +63,7 @@
     {
       "id": "a90-06",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Lara Fabian", "Larusso", "Hélène Ségara", "Natasha St-Pier"],
       "correctIndex": 1,
       "acceptedAnswers": ["Larusso"],
@@ -67,6 +73,7 @@
     {
       "id": "a90-07",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Wonderwall", "Bitter Sweet Symphony", "Song 2", "Common People"],
       "correctIndex": 0,
       "acceptedAnswers": ["Wonderwall"],
@@ -76,15 +83,17 @@
     {
       "id": "a90-08",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Mariah Carey", "Toni Braxton", "Whitney Houston", "Céline Dion"],
       "correctIndex": 2,
       "acceptedAnswers": ["Whitney Houston"],
       "difficulty": 2,
-      "music": { "artist": "Whitney Houston", "title": "I Will Always Love You" }
+      "music": { "artist": "Whitney Houston", "title": "I Will Always Love You", "artistAliases": ["Whitney"] }
     },
     {
       "id": "a90-09",
       "text": "Quel est ce titre ?",
+      "ask": "title",
       "options": ["Tearin' Up My Heart", "I Want It That Way", "Back for Good", "Flying Without Wings"],
       "correctIndex": 1,
       "acceptedAnswers": ["I Want It That Way"],
@@ -94,6 +103,7 @@
     {
       "id": "a90-10",
       "text": "Quel artiste ?",
+      "ask": "artist",
       "options": ["Corona", "Whigfield", "Alice Deejay", "Gala"],
       "correctIndex": 3,
       "acceptedAnswers": ["Gala"],

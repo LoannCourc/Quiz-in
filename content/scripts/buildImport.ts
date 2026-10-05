@@ -7,20 +7,25 @@ import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { isAnswerCorrect, normalizeAnswer } from '../../shared/answerMatching'
+import { extractOf } from '../../shared/audioPlayback'
 import {
   CHOICE_COUNT,
   EXPLANATION_MAX_LENGTH,
+  FREE_ANSWER_MAX_LENGTH,
   OPTION_TEXT_MAX_LENGTH,
   POSTER_PALETTES,
+  QUESTION_DURATION_S,
   QUESTION_TEXT_MAX_LENGTH,
   QUESTION_TIME_LIMIT_MAX_S,
   QUESTIONS_PER_GAME,
   QUIZ_AUDIENCES,
   QUIZ_DESCRIPTION_MAX_LENGTH,
 } from '../../shared/constants'
+import { answerTargets } from '../../shared/freeAnswers'
 import { averageDifficulty, difficultyLevel, estimateQuizMinutes, isValidQuizId } from '../../shared/quizCatalog'
-import { fitsBlindTestTimer, isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
+import { fitsBlindTestTimer, isBlindTestAsk, isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
 import type {
+  BlindTestAsk,
   DifficultyLevel,
   MusicTrack,
   PosterPalette,
@@ -104,6 +109,11 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
     const prefix = `question ${index + 1} (${question.id}) : `
     questionErrors(question).forEach((error) => errors.push(prefix + error))
     if (quiz.gameType !== 'blindTest' && question.music) errors.push(`${prefix}music réservé aux blind tests`)
+    if (quiz.gameType !== 'blindTest' && question.ask !== undefined) errors.push(`${prefix}ask réservé aux blind tests`)
+    if (quiz.gameType === 'blindTest') {
+      askErrors(question).forEach((error) => errors.push(prefix + error))
+      freeAnswerTargetErrors(question).forEach((error) => errors.push(prefix + error))
+    }
   })
   if (quiz.gameType === 'blindTest') errors.push(...musicErrors(quiz))
   return errors
@@ -115,22 +125,73 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
 // error : contenu invalide (bloque la génération, comme toute autre erreur de format).
 type TrackCheck = { kind: 'track'; track: MusicTrack } | { kind: 'pending' | 'error'; reason: string }
 
-// Énoncés d'un blind test et ce que la bonne proposition doit citer (spec 15) : « Quel est ce titre ? »
-// (propositions : titres), « Quel artiste ? » (propositions : artistes), ou « Quel est ce morceau ? »
-// (propositions « Titre – Artiste »).
-const BLIND_TEST_PROMPTS: Record<string, 'title' | 'artist'> = {
-  'Quel est ce morceau ?': 'title',
-  'Quel est ce titre ?': 'title',
-  'Quel artiste ?': 'artist',
+// Énoncé de chaque type de question de blind test (spec 15) : « Quel est ce titre ? » (propositions :
+// titres), « Quel artiste ? » (propositions : artistes), « Quel est ce morceau ? » (propositions
+// « Titre – Artiste » ; en Réponse libre, deux champs).
+const ASK_PROMPTS: Record<BlindTestAsk, string> = {
+  title: 'Quel est ce titre ?',
+  artist: 'Quel artiste ?',
+  both: 'Quel est ce morceau ?',
+}
+
+function aliasErrors(aliases: unknown, field: string): string[] {
+  if (aliases === undefined) return []
+  const isValid =
+    Array.isArray(aliases) &&
+    aliases.every((alias) => typeof alias === 'string' && alias.trim() !== '' && alias.length <= FREE_ANSWER_MAX_LENGTH)
+  return isValid ? [] : [`${field} : liste de textes de 1 à ${FREE_ANSWER_MAX_LENGTH} caractères`]
+}
+
+// Énoncé, ask et alias d'une question de blind test.
+function askErrors(question: SourceQuestion): string[] {
+  if (!isBlindTestAsk(question.ask)) return [`ask obligatoire pour un blind test : ${Object.keys(ASK_PROMPTS).join(', ')}`]
+  const errors: string[] = []
+  const prompt = ASK_PROMPTS[question.ask]
+  if (question.text !== prompt) errors.push(`ask « ${question.ask} » : l'énoncé doit être « ${prompt} »`)
+  errors.push(...aliasErrors(question.music?.titleAliases, 'music.titleAliases'))
+  errors.push(...aliasErrors(question.music?.artistAliases, 'music.artistAliases'))
+  return errors
+}
+
+// Question telle qu'elle sera corrigée en Réponse libre (identifiant du morceau inutile ici).
+function asQuestion(question: SourceQuestion): Question {
+  const { music, ...rest } = question
+  return music ? { ...rest, music: { source: 'deezer', id: '', ...music } } : rest
+}
+
+// Blind test « titre » ou « artiste » : en Réponse libre, la question accepte aussi le titre, l'artiste
+// et leurs alias ; ils ne doivent jamais faire accepter une mauvaise proposition.
+function freeAnswerTargetErrors(question: SourceQuestion): string[] {
+  if (question.ask !== 'title' && question.ask !== 'artist') return []
+  const { main } = answerTargets(asQuestion(question))
+  return question.options.flatMap((option, index) => {
+    const accepted = isAnswerCorrect(option, main)
+    if (index === question.correctIndex && !accepted) return [`réponse libre : « ${option} » ne serait pas acceptée`]
+    if (index !== question.correctIndex && accepted) return [`réponse libre : la mauvaise proposition « ${option} » serait acceptée`]
+    return []
+  })
+}
+
+// Formulations qui supposent des propositions sous les yeux : à reformuler pour la Réponse libre.
+const CHOICE_ONLY_WORDING = /\b(parmi|ci-dessous|lequel de ces|laquelle de ces|lesquels de ces|lesquelles de ces)\b/i
+
+function freeAnswerWarnings(quiz: QuizFile): string[] {
+  return quiz.questions.flatMap((question) => {
+    const warnings: string[] = []
+    if (CHOICE_ONLY_WORDING.test(question.text)) warnings.push(`${question.id} : énoncé à reformuler pour la Réponse libre`)
+    const music = question.music ? { source: 'deezer' as const, id: '', ...question.music } : undefined
+    if (music && extractOf(music, QUESTION_DURATION_S.free).durationS < QUESTION_DURATION_S.free) {
+      warnings.push(`${question.id} : en Réponse libre, l'extrait (startS ${music.startS}) s'arrête avant la fin du chrono`)
+    }
+    return warnings
+  })
 }
 
 function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
-  const { title, artist, startS } = question.music
-  const asked = BLIND_TEST_PROMPTS[question.text]
-  if (!asked) return { kind: 'error', reason: `énoncé de blind test attendu : ${Object.keys(BLIND_TEST_PROMPTS).join(' / ')}` }
+  const { title, artist, startS, titleAliases, artistAliases } = question.music
   // La bonne proposition doit citer le titre (ou l'artiste) du morceau : évite d'associer le mauvais extrait.
-  const cited = asked === 'title' ? title : artist
+  const cited = question.ask === 'artist' ? artist : title
   const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')
   if (!correct.includes(normalizeAnswer(cited))) {
     return { kind: 'error', reason: `la bonne proposition ne cite pas « ${cited} »` }
@@ -142,7 +203,7 @@ function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   // Public familial : jamais de version marquée explicite par Deezer.
   if (entry.found.explicit) return { kind: 'pending', reason: 'version marquée explicite : choisir une autre version ou un autre morceau' }
   if (!entry.verified) return { kind: 'pending', reason: 'non vérifié (verified: false)' }
-  const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS })
+  const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS, titleAliases, artistAliases })
   if (!track || !fitsBlindTestTimer(track, question.timeLimit)) {
     return { kind: 'error', reason: 'extrait invalide : startS + timer de la question ≤ 30 s (startS de 0 à 10 avec le timer de 20 s)' }
   }
@@ -216,6 +277,12 @@ const allErrors = [
 if (allErrors.length > 0) {
   console.error(`Contenu invalide, aucun fichier généré :\n- ${allErrors.join('\n- ')}`)
   process.exit(1)
+}
+
+// Avertissements (n'empêchent pas l'import) : questions à revoir pour la Réponse libre.
+for (const { quiz } of quizzes) {
+  const warnings = freeAnswerWarnings(quiz)
+  if (warnings.length > 0) console.warn(`⚠ ${quiz.id}, Réponse libre :\n  - ${warnings.join('\n  - ')}`)
 }
 
 // Blind test dont un morceau n'est pas encore vérifié : exclu de l'import, avec la liste de ce qui manque.

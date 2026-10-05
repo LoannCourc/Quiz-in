@@ -13,15 +13,17 @@
     {
       "id": "tf-01",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Douce France – Charles Trenet", "La Vie en rose – Édith Piaf", "Les Feuilles mortes – Yves Montand", "Mon amant de Saint-Jean – Lucienne Delyle"],
       "correctIndex": 1,
       "acceptedAnswers": ["la vie en rose", "la vie en rose – édith piaf"],
       "difficulty": 1,
-      "music": { "artist": "Édith Piaf", "title": "La vie en rose" }
+      "music": { "artist": "Édith Piaf", "title": "La vie en rose", "artistAliases": ["Piaf"] }
     },
     {
       "id": "tf-02",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["La Bohème – Charles Aznavour", "Le Métèque – Georges Moustaki", "Comme d'habitude – Claude François", "Les Champs-Élysées – Joe Dassin"],
       "correctIndex": 3,
       "acceptedAnswers": ["les champs-élysées", "les champs-élysées – joe dassin"],
@@ -31,24 +33,27 @@
     {
       "id": "tf-03",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Que je t'aime – Johnny Hallyday", "Il est cinq heures, Paris s'éveille – Jacques Dutronc", "Avec le temps – Léo Ferré", "Le Sud – Nino Ferrer"],
       "correctIndex": 0,
       "acceptedAnswers": ["que je t'aime", "que je t'aime – johnny hallyday"],
       "difficulty": 1,
-      "music": { "artist": "Johnny Hallyday", "title": "Que je t'aime" }
+      "music": { "artist": "Johnny Hallyday", "title": "Que je t'aime", "artistAliases": ["Johnny"] }
     },
     {
       "id": "tf-04",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Le Chanteur – Daniel Balavoine", "Je l'aime à mourir – Francis Cabrel", "Alexandrie Alexandra – Claude François", "Il venait d'avoir 18 ans – Dalida"],
       "correctIndex": 2,
       "acceptedAnswers": ["alexandrie alexandra", "alexandrie alexandra – claude françois"],
       "difficulty": 1,
-      "music": { "artist": "Claude François", "title": "Alexandrie Alexandra" }
+      "music": { "artist": "Claude François", "title": "Alexandrie Alexandra", "artistAliases": ["Cloclo"] }
     },
     {
       "id": "tf-05",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Les Démons de minuit – Images", "Marcia Baila – Les Rita Mitsouko", "Ella, elle l'a – France Gall", "Femme libérée – Cookie Dingler"],
       "correctIndex": 2,
       "acceptedAnswers": ["ella elle l'a", "ella, elle l'a – france gall"],
@@ -58,15 +63,17 @@
     {
       "id": "tf-06",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Pour que tu m'aimes encore – Céline Dion", "Aïcha – Khaled", "Foule sentimentale – Alain Souchon", "Je danse le mia – IAM"],
       "correctIndex": 0,
       "acceptedAnswers": ["pour que tu m'aimes encore", "pour que tu m'aimes encore – céline dion"],
       "difficulty": 1,
-      "music": { "artist": "Céline Dion", "title": "Pour que tu m'aimes encore" }
+      "music": { "artist": "Céline Dion", "title": "Pour que tu m'aimes encore", "artistAliases": ["Céline"] }
     },
     {
       "id": "tf-07",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Comme des enfants – Cœur de pirate", "Elle me dit – Mika", "Le Sens de la vie – Tal", "Alors on danse – Stromae"],
       "correctIndex": 3,
       "acceptedAnswers": ["alors on danse", "alors on danse – stromae"],
@@ -76,6 +83,7 @@
     {
       "id": "tf-08",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["La Seine – Vanessa Paradis et -M-", "Je veux – Zaz", "Repenti – Renan Luce", "Ça m'énerve – Helmut Fritz"],
       "correctIndex": 1,
       "acceptedAnswers": ["je veux", "je veux – zaz"],
@@ -85,6 +93,7 @@
     {
       "id": "tf-09",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Dernière danse – Indila", "Bella – Maître Gims", "Je vole – Louane", "Papaoutai – Stromae"],
       "correctIndex": 0,
       "acceptedAnswers": ["dernière danse", "dernière danse – indila"],
@@ -94,11 +103,12 @@
     {
       "id": "tf-10",
       "text": "Quel est ce morceau ?",
+      "ask": "both",
       "options": ["Sur ma route – Black M", "Avenir – Louane", "Andalouse – Kendji Girac", "Est-ce que tu m'aimes ? – Maître Gims"],
       "correctIndex": 2,
       "acceptedAnswers": ["andalouse", "andalouse – kendji girac"],
       "difficulty": 1,
-      "music": { "artist": "Kendji Girac", "title": "Andalouse" }
+      "music": { "artist": "Kendji Girac", "title": "Andalouse", "artistAliases": ["Kendji"] }
     }
   ]
 }
