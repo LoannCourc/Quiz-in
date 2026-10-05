@@ -11,7 +11,7 @@ import {
 } from '@shared/teams';
 import type { Session } from '@shared/types';
 import { useCallback, useState, type ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { OptionToggle } from '@/components/host/OptionToggle';
 import { JoinForm } from '@/components/player/JoinForm';
@@ -60,7 +60,8 @@ export type LobbyAudio = GameAudioUrls & { isEnabled: boolean };
 const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined, isEnabled: false };
 
 // Salon de l'hôte : quiz, code, TV (ou « Je n'ai pas de TV »), joueurs, et « Lancer la partie » fixé
-// en bas. La page ne défile pas : seule la liste des joueurs défile, le bouton reste toujours visible.
+// en bas, toujours visible. La page défile : aucune hauteur fixe, la liste des joueurs et le formulaire
+// de l'hôte gardent une hauteur confortable, même avec une grande police.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
   const { initialTvDetailsOpen = false, initialTeamsOpen = false } = props;
@@ -154,7 +155,7 @@ export function HostLobby(props: HostLobbyProps) {
   const showJoinForm = isEditing || (!isRegistered && isHostJoining);
 
   return (
-    <Screen scrollable={false} footer={footer}>
+    <Screen footer={footer}>
       <View style={styles.top}>
         {header ?? <LobbyHeader quizId={session.quizId} />}
         {cast.isTvConnected ? (
@@ -179,7 +180,7 @@ export function HostLobby(props: HostLobbyProps) {
           <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
           <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
         </View>
-        <ScrollView style={styles.playersPanel} contentContainerStyle={styles.playersContent} keyboardShouldPersistTaps="handled">
+        <View style={styles.playersPanel}>
           {showJoinForm && (
             <View style={styles.joinForm}>
               <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
@@ -210,7 +211,7 @@ export function HostLobby(props: HostLobbyProps) {
               onChange={setIsShortGame}
             />
           )}
-        </ScrollView>
+        </View>
       </View>
       {!isRegistered && !showJoinForm && <HostJoinCard onJoin={() => setIsHostJoining(true)} />}
       {session.settings.teams && <TeamsSummaryRow session={session} onPress={() => setIsTeamsOpen(true)} />}
@@ -241,9 +242,8 @@ function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, error, audioStat
   if (questions.kind === 'loading') {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.loadingQuestions}</Text>;
   }
-  if (!hasEnoughPlayers) {
-    return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.launchRefusals.notEnoughPlayers}</Text>;
-  }
+  // Pas assez de joueurs : rien d'écrit, le bouton reste désactivé (attendre les joueurs est l'état normal).
+  if (!hasEnoughPlayers) return null;
   if (teamRefusal) {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.launchRefusals[teamRefusal]}</Text>;
   }
@@ -261,10 +261,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
-  // Occupe la hauteur restante ; la liste défile à l'intérieur.
   players: {
-    flex: 1,
-    minHeight: 0,
     gap: Spacing.two,
   },
   playersHeader: {
@@ -284,12 +281,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   playersPanel: {
-    flexGrow: 0,
-    flexShrink: 1,
     borderRadius: AppSizes.radius,
     backgroundColor: AppColors.panel,
-  },
-  playersContent: {
     gap: Spacing.three,
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,

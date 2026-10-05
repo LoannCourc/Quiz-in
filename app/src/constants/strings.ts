@@ -167,6 +167,8 @@ export const strings = {
     page: {
       back: 'Retour au salon',
       validate: 'Valider les équipes',
+      // Aide toujours visible sous la consigne, quel que soit le nombre de joueurs.
+      minimumHelp: `Le mode Groupe se joue à partir de ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
       instructions: {
         chooseMode: 'Choisis comment former les équipes.',
         tooFewPlayers: `Il faut au moins ${MIN_TEAM_GAME_PLAYERS} joueurs pour jouer par équipes : attends que d’autres joueurs rejoignent la partie.`,

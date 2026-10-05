@@ -102,7 +102,10 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose 
         <Text style={styles.title}>{composer.title}</Text>
         <Text style={styles.count}>{strings.teams.playerCount(playerCount)}</Text>
       </View>
-      <Text style={[styles.instruction, step.isWarning && styles.warning]}>{page.instructions[step.instruction]}</Text>
+      <View style={styles.guide}>
+        <Text style={[styles.instruction, step.isWarning && styles.warning]}>{page.instructions[step.instruction]}</Text>
+        <Text style={styles.help}>{page.minimumHelp}</Text>
+      </View>
       <TeamComposer settings={session.settings} players={session.players} onMode={onMode} onCount={onCount} onAssign={onAssign} />
     </Screen>
   );
@@ -142,6 +145,14 @@ const styles = StyleSheet.create({
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
     fontSize: 15,
+  },
+  guide: {
+    gap: Spacing.one,
+  },
+  help: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
   },
   instruction: {
     color: AppColors.text,
