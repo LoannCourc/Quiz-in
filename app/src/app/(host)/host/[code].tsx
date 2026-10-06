@@ -402,7 +402,7 @@ function HostFooter({
       {validation && (
         <>
           <Text style={[textStyles.muted, styles.centered]}>{strings.hostValidation.counts(validation.counts)}</Text>
-          <BigButton label={strings.hostControls.validate} size="compact" onPress={validation.onValidate} />
+          <BigButton label={strings.hostControls.validate} onPress={validation.onValidate} />
         </>
       )}
       {status === 'ended' && (

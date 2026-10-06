@@ -101,7 +101,7 @@ export default function ValidationDemoScreen() {
     <View style={styles.footer}>
       {validated && <Text style={[textStyles.muted, styles.centered]}>{strings.playerDemo.validated}</Text>}
       <Text style={[textStyles.muted, styles.centered]}>{strings.hostValidation.counts(reviewCounts(groups))}</Text>
-      <BigButton label={strings.hostControls.validate} size="compact" onPress={() => setValidated(true)} />
+      <BigButton label={strings.hostControls.validate} onPress={() => setValidated(true)} />
       <HostControlsBar onPress={() => {}} />
     </View>
   );
