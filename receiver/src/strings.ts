@@ -19,6 +19,8 @@ export const strings = {
     drawSummary: (players: number, teams: number) => `${players} joueurs · ${teams} équipes`,
     drawFooter: 'Les joueurs rejoignent leur équipe…',
     unassigned: 'Sans équipe',
+    // Membres d'une équipe qui ne tiennent pas dans sa colonne (garde-fou, nombre exact).
+    moreMembers: (count: number) => `+${count}`,
     rankingTitle: 'Classement des équipes',
     afterQuestion: (index: number, total: number | undefined) => (total ? `Après la question ${index} / ${total}` : `Après la question ${index}`),
     averagePoints: (points: number) => `${points} pts de moyenne`,
@@ -206,6 +208,9 @@ export const strings = {
     memory: (usedMb: number, limitMb: number) => `Mémoire JS : ${usedMb} / ${limitMb} Mo`,
     memoryUnknown: 'Mémoire JS : non mesurable',
     screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
+    // Groupe : équipe reçus/affichés (capacité) ; en rouge si un membre n'est pas affiché.
+    teamColumns: (scale: string, teams: { team: string; received: number; shown: number; capacity: number }[]) =>
+      `Équipes (échelle ${scale}) : ${teams.map((team) => `${team.team} ${team.received} reçus, ${team.shown} affichés, capacité ${team.capacity}`).join(' · ')}`,
     sound: (music: boolean, forcedOff: boolean, effects: boolean) =>
       `Musique : ${music ? 'ACTIVE' : forcedOff ? 'coupée par les mesures' : 'coupée'} · effets : ${effects ? 'oui' : 'non'}`,
     musicMemory: (tracks: number, decodedMb: number, fileMb: number, decoding: number) =>

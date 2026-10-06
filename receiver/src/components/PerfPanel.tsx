@@ -65,6 +65,11 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
       </div>
       <div>{texts.keepAwake(keepAwake.video, keepAwake.wakeLock)}</div>
       <div>{texts.screen(snapshot.screen, snapshot.chromeVersion)}</div>
+      {snapshot.teamColumns && (
+        <div className={snapshot.teamColumns.teams.some((team) => team.shown < team.received) ? 'perf-alert' : undefined}>
+          {texts.teamColumns(snapshot.teamColumns.scale, snapshot.teamColumns.teams)}
+        </div>
+      )}
     </>
   )
 }

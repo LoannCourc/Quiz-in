@@ -59,3 +59,8 @@
 .perf-info {
   color: var(--color-text-muted);
 }
+
+/* Groupe : un membre reçu mais pas affiché (défaut à signaler). */
+.perf-alert {
+  color: var(--color-wrong);
+}

@@ -1,6 +1,8 @@
 import { teamColumns } from '@shared/teamDraw'
-import type { PlayerId, PublicSession } from '@shared/types'
+import type { PlayerId, PublicSession, TeamId } from '@shared/types'
+import { useEffect, useState } from 'react'
 
+import { FIT_EVENT } from '../hooks/useFitScale'
 import { strings } from '../strings'
 import { TeamSymbol } from './TeamSymbol'
 import './TeamColumns.css'
@@ -17,12 +19,14 @@ interface TeamColumnsProps {
 export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
   const { columns, unassigned } = teamColumns(session)
   const teams = columns.map((column) => column.team)
+  const [wrap, setWrap] = useState<HTMLDivElement | null>(null)
+  const hidden = useHiddenMembers(wrap)
 
   return (
-    <div className="team-columns-wrap">
+    <div className="team-columns-wrap" ref={setWrap}>
       <div className={`team-columns columns-${teams.length}`}>
         {columns.map(({ team, members }) => (
-          <section key={team} className={`team-column team-${team}`}>
+          <section key={team} className={`team-column team-${team}`} data-team={team}>
             <h2 className="team-column-head">
               <TeamSymbol team={team} />
               {strings.teams.names[team]}
@@ -38,6 +42,8 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
                 </li>
               ))}
             </ul>
+            {/* Garde-fou : un membre qui ne tient toujours pas à la plus petite taille n'est jamais masqué en silence. */}
+            {(hidden[team] ?? 0) > 0 && <span className="team-column-more">{strings.teams.moreMembers(hidden[team] ?? 0)}</span>}
           </section>
         ))}
       </div>
@@ -53,4 +59,30 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
       )}
     </div>
   )
+}
+
+// Membres qui dépassent du bas de leur colonne, par équipe (après l'ajustement de la taille par
+// hooks/useFitScale.ts, qui envoie FIT_EVENT ; aussi au redimensionnement de la fenêtre).
+function useHiddenMembers(wrap: HTMLElement | null): Partial<Record<TeamId, number>> {
+  const [hidden, setHidden] = useState<Partial<Record<TeamId, number>>>({})
+  useEffect(() => {
+    if (!wrap) return
+    const measure = () => {
+      const next: Partial<Record<TeamId, number>> = {}
+      wrap.querySelectorAll<HTMLElement>('.team-column[data-team]').forEach((column) => {
+        const bottom = column.getBoundingClientRect().bottom
+        const count = [...column.querySelectorAll('.team-member')].filter((member) => member.getBoundingClientRect().bottom > bottom + 1).length
+        if (count > 0) next[column.dataset.team as TeamId] = count
+      })
+      setHidden((previous) => (JSON.stringify(previous) === JSON.stringify(next) ? previous : next))
+    }
+    measure()
+    document.addEventListener(FIT_EVENT, measure)
+    window.addEventListener('resize', measure)
+    return () => {
+      document.removeEventListener(FIT_EVENT, measure)
+      window.removeEventListener('resize', measure)
+    }
+  }, [wrap])
+  return hidden
 }

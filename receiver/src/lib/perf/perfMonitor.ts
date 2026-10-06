@@ -61,6 +61,13 @@ export interface MusicBucket {
   incidents: number
 }
 
+export interface TeamColumnStats {
+  team: string
+  received: number
+  shown: number
+  capacity: number
+}
+
 export interface PerfSnapshot {
   fps: number
   minFps: number | null
@@ -71,6 +78,9 @@ export interface PerfSnapshot {
   supportsLongTasks: boolean
   memory: { usedMb: number; limitMb: number } | null
   screen: string
+  // Groupe, salon ou tirage : par équipe, membres reçus (données), affichés (en entier dans la colonne) et
+  // capacité de la colonne (lignes qui y tiennent) ; échelle appliquée. null hors de ces écrans.
+  teamColumns: { scale: string; teams: TeamColumnStats[] } | null
   chromeVersion: string
   musicOn: boolean
   // Musique coupée par le panneau (et non par l'hôte).
@@ -139,6 +149,7 @@ class PerfMonitor {
   private buckets = { on: emptyBucket(), off: emptyBucket() }
   private incidents: PerfIncident[] = []
   // hostMusic : réglage de l'hôte ; la musique jouée tient compte aussi du panneau (isMusicOn).
+  private teamCounts: Record<string, number> = {}
   private context: { status: GameStatus | null; index: number | null; hostMusic: boolean; effects: boolean } = {
     status: null,
     index: null,
@@ -188,6 +199,8 @@ class PerfMonitor {
   noteSession(session: PublicSession): void {
     const sound = soundSettingsOf(session)
     this.context = { status: session.status, index: session.currentIndex, hostMusic: sound.music, effects: sound.effects }
+    this.teamCounts = {}
+    for (const player of Object.values(session.players)) if (player.team) this.teamCounts[player.team] = (this.teamCounts[player.team] ?? 0) + 1
     const previous = this.lastPhase
     if (this.isRunning && previous !== null && previous.startedAt !== session.phaseStartedAt) {
       this.pending = {
@@ -245,6 +258,7 @@ class PerfMonitor {
       supportsLongTasks: supportsLongTasks(),
       memory: memory ? { usedMb: Math.round(memory.usedJSHeapSize / MEGABYTE), limitMb: Math.round(memory.jsHeapSizeLimit / MEGABYTE) } : null,
       screen: `${innerWidth}×${innerHeight} ×${devicePixelRatio}`,
+      teamColumns: this.teamColumnStats(),
       chromeVersion: /Chrome\/(\d+)/.exec(navigator.userAgent)?.[1] ?? '?',
       musicOn: this.isMusicOn(),
       musicForcedOff: isPerfMusicForcedOff(),
@@ -255,6 +269,25 @@ class PerfMonitor {
       buckets: { on: { ...this.buckets.on }, off: { ...this.buckets.off } },
       incidents: [...this.incidents].reverse(),
     }
+  }
+
+  // Lu dans la page (colonnes d'équipes affichées) : ce que la TV montre vraiment, à comparer aux données.
+  private teamColumnStats(): PerfSnapshot['teamColumns'] {
+    const columns = [...document.querySelectorAll<HTMLElement>('.team-column[data-team]')]
+    if (columns.length === 0) return null
+    const teams = columns.map((column) => {
+      const team = column.dataset.team ?? '?'
+      const bottom = column.getBoundingClientRect().bottom
+      const members = [...column.querySelectorAll<HTMLElement>('.team-member')]
+      const shown = members.filter((member) => member.getBoundingClientRect().bottom <= bottom + 1).length
+      const first = members[0]?.getBoundingClientRect()
+      const gap = parseFloat(getComputedStyle(column.querySelector('.team-column-members') ?? column).rowGap) || 0
+      const capacity = first && first.height > 0 ? Math.floor((bottom - first.top + gap) / (first.height + gap)) : 0
+      return { team, received: this.teamCounts[team] ?? 0, shown, capacity }
+    })
+    const scaled = columns[0].closest<HTMLElement>('.lobby-players, .team-draw')
+    const scale = scaled ? getComputedStyle(scaled).getPropertyValue('--fit-scale').trim() || '1' : '?'
+    return { scale, teams }
   }
 
   private serverNow(): number {

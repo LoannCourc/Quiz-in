@@ -27,6 +27,7 @@
 }
 
 .team-column {
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 0;
@@ -116,4 +117,18 @@
 .team-unassigned-label {
   font-weight: 900;
   text-transform: uppercase;
+}
+
+/* Garde-fou : « +N » membres qui ne tiennent pas dans la colonne, en bas à droite, en couleur d'alerte. */
+.team-column-more {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-wrong);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: var(--display-line-height-tight);
 }
