@@ -127,7 +127,10 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
               {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
             </span>
           )}
-          {session.settings.teams ? (
+          {votes ? (
+            // Vote : une fine barre de progression suffit (le compte est en haut), la place va aux propositions.
+            <VoteProgressBar progress={votes} />
+          ) : session.settings.teams ? (
             // Groupe : avatars regroupés par équipe (maquette G2).
             <TeamAvatarGroups session={session} players={players} />
           ) : (
@@ -158,3 +161,12 @@ function VoteCount({ progress }: { progress: VoteProgress }) {
   )
 }
 
+// Bluff, vote : progression des votes en une fine barre, à la place des avatars.
+function VoteProgressBar({ progress }: { progress: VoteProgress }) {
+  const share = progress.expected > 0 ? progress.voted / progress.expected : 0
+  return (
+    <div className="vote-progress" role="progressbar" aria-valuenow={progress.voted} aria-valuemax={progress.expected}>
+      <span className="vote-progress-fill" style={{ transform: `scaleX(${share})` }} />
+    </div>
+  )
+}

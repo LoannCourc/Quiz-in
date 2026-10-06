@@ -175,6 +175,22 @@
   --avatar-size: calc(3rem * var(--bar-scale, 1));
 }
 
+/* Bluff, vote : fine barre de progression des votes, à la place des avatars. */
+.vote-progress {
+  flex: 1;
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+}
+
+.vote-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left center;
+  transition: transform 300ms ease-out;
+}
 
 /* Bluff (maquette B4) : pastille « BLUFF » au-dessus de la question. */
 .bluff-badge {

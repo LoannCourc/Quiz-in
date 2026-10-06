@@ -1,14 +1,17 @@
 // Bluff : mise en page des choix sur la TV (vote et révélation). Les choix sont des phrases de 100
-// caractères au plus, de 2 à 21 (20 joueurs et la vraie réponse) : une ou deux colonnes, et une seule
+// caractères au plus, de 2 à 21 (20 joueurs et la vraie réponse) : une à trois colonnes (trois au vote
+// seulement), et une seule
 // taille de texte pour tous. On garde la plus grande taille dont la hauteur estimée tient à l'écran ;
 // si elle ne tient qu'en libérant de la place, l'écran est « serré » (question ou titre réduits).
 // Toutes les mesures sont en rem : la TV mesure 36 rem de haut (1 rem = 30 px en 1080p, 20 px en 720p).
 
-export type BluffTextSize = 'xl' | 'l' | 'm' | 's' | 'xs'
+export type BluffTextSize = 'xl' | 'l' | 'm' | 's' | 'sm' | 'xs'
 export type BluffLayoutMode = 'vote' | 'reveal'
 
+export type BluffColumns = 1 | 2 | 3
+
 export interface BluffChoicesLayout {
-  columns: 1 | 2
+  columns: BluffColumns
   size: BluffTextSize
   // Écran serré : moins de décor autour des choix (voir les écrans de la TV).
   crowded: boolean
@@ -30,10 +33,12 @@ export const BLUFF_SIZE_METRICS: Record<BluffTextSize, SizeMetrics> = {
   l: { font: 1.35, lineHeight: 1.2, padY: 0.55, padX: 1, gap: 0.7 },
   m: { font: 1.15, lineHeight: 1.2, padY: 0.55, padX: 1, gap: 0.55 },
   s: { font: 0.95, lineHeight: 1.2, padY: 0.35, padX: 0.8, gap: 0.4 },
+  // Entre s et xs : 21 phrases de 100 caractères en trois colonnes au vote.
+  sm: { font: 0.8, lineHeight: 1.15, padY: 0.2, padX: 0.75, gap: 0.25 },
   xs: { font: 0.66, lineHeight: 1.12, padY: 0.12, padX: 0.7, gap: 0.15 },
 }
 
-const SIZES: readonly BluffTextSize[] = ['xl', 'l', 'm', 's', 'xs']
+const SIZES: readonly BluffTextSize[] = ['xl', 'l', 'm', 's', 'sm', 'xs']
 
 // Largeur utile de l'écran (16:9, marges de 5 %) et espace entre les deux colonnes.
 const CONTENT_WIDTH = 57.6
@@ -45,9 +50,10 @@ const LETTER_WIDTH = 1.8
 const REVEAL_VOTERS_WIDTH = 6
 const REVEAL_TAG_HEIGHT = 0.85
 
-// Hauteur disponible pour les choix, selon l'écran et s'il est serré.
+// Hauteur disponible pour les choix, selon l'écran et s'il est serré. Vote : une fine barre de progression
+// remplace les avatars (plus de place) ; la TV réduit ensuite le texte si la liste ne tient pas tout à fait.
 const BUDGETS: Record<BluffLayoutMode, { normal: number; crowded: number }> = {
-  vote: { normal: 15.5, crowded: 22 },
+  vote: { normal: 17, crowded: 24 },
   reveal: { normal: 15, crowded: 18.5 },
 }
 
@@ -55,7 +61,7 @@ const BUDGETS: Record<BluffLayoutMode, { normal: number; crowded: number }> = {
 const ONE_COLUMN_MAX_CHOICES = 3
 const ONE_COLUMN_MIN_LENGTH = 41
 
-export function estimatedHeight(texts: readonly string[], columns: 1 | 2, size: BluffTextSize, mode: BluffLayoutMode): number {
+export function estimatedHeight(texts: readonly string[], columns: BluffColumns, size: BluffTextSize, mode: BluffLayoutMode): number {
   const { font, lineHeight, padY, padX, gap } = BLUFF_SIZE_METRICS[size]
   const longest = Math.max(1, ...texts.map((text) => text.length))
   const columnWidth = (CONTENT_WIDTH - (columns - 1) * COLUMN_GAP) / columns
@@ -76,15 +82,24 @@ export function bluffRevealLayout(texts: readonly string[]): BluffChoicesLayout 
   return bluffChoicesLayout(longest, 'reveal')
 }
 
-export function bluffChoicesLayout(texts: readonly string[], mode: BluffLayoutMode = 'vote'): BluffChoicesLayout {
+// Colonnes possibles, de la préférée à la dernière : une seule pour peu de phrases longues ; au vote, trois
+// quand c'est la seule façon de garder un texte plus grand (beaucoup de propositions).
+function columnChoices(texts: readonly string[], mode: BluffLayoutMode): BluffColumns[] {
   const longest = Math.max(0, ...texts.map((text) => text.length))
-  const columns = texts.length <= ONE_COLUMN_MAX_CHOICES && longest >= ONE_COLUMN_MIN_LENGTH ? 1 : 2
+  if (texts.length <= ONE_COLUMN_MAX_CHOICES && longest >= ONE_COLUMN_MIN_LENGTH) return [1]
+  return mode === 'vote' ? [2, 3] : [2]
+}
+
+export function bluffChoicesLayout(texts: readonly string[], mode: BluffLayoutMode = 'vote'): BluffChoicesLayout {
+  const options = columnChoices(texts, mode)
   const budget = BUDGETS[mode]
-  // La plus grande taille qui tient : d'abord sans toucher à l'écran, sinon avec l'écran serré.
+  // La plus grande taille qui tient : d'abord sans toucher à l'écran, sinon avec l'écran serré ; à taille
+  // égale, le moins de colonnes possible.
   for (const size of SIZES) {
-    const height = estimatedHeight(texts, columns, size, mode)
-    if (height <= budget.normal) return { columns, size, crowded: false }
-    if (height <= budget.crowded) return { columns, size, crowded: true }
+    for (const [crowded, limit] of [[false, budget.normal], [true, budget.crowded]] as const) {
+      const columns = options.find((count) => estimatedHeight(texts, count, size, mode) <= limit)
+      if (columns !== undefined) return { columns, size, crowded }
+    }
   }
-  return { columns, size: 'xs', crowded: true }
+  return { columns: options[options.length - 1], size: 'xs', crowded: true }
 }

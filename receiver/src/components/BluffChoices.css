@@ -14,7 +14,8 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: var(--bluff-font);
+  /* Vote : réduit au besoin par hooks/useFitScale.ts pour que toute la liste tienne. */
+  font-size: calc(var(--bluff-font) * var(--text-scale, 1));
 }
 
 .bluff-columns-1 {
@@ -23,7 +24,12 @@
 
 /* Deux colonnes remplies ligne par ligne : A B, C D… comme la maquette. */
 .bluff-columns-2 {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Vote avec beaucoup de propositions : trois colonnes (A B C, D E F…). */
+.bluff-columns-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .bluff-size-xl {
@@ -44,7 +50,18 @@
   gap: 0.4rem 0.8rem;
 }
 
-/* Jusqu'à 21 phrases de 100 caractères (20 joueurs) : texte le plus petit, cartes plus serrées. */
+/* Entre s et xs : jusqu'à 21 phrases de 100 caractères en trois colonnes au vote. */
+.bluff-size-sm {
+  --bluff-font: 0.8rem;
+  gap: 0.25rem 0.75rem;
+}
+
+.bluff-size-sm .bluff-choice {
+  padding: 0.2em 0.75em;
+  line-height: 1.15;
+}
+
+/* Le plus serré : texte le plus petit, cartes plus serrées. */
 .bluff-size-xs {
   --bluff-font: 0.66rem;
   gap: 0.15rem 0.6rem;

@@ -21,18 +21,24 @@ describe('Bluff : mise en page des choix sur la TV', () => {
 
   test('plus il y a de phrases longues, plus le texte est petit, jusqu’à l’écran serré', () => {
     const sizes = [4, 6, 10, 14, 21].map((count) => bluffChoicesLayout(choices(count, LONG)).size)
-    const order = ['xl', 'l', 'm', 's', 'xs']
+    const order = ['xl', 'l', 'm', 's', 'sm', 'xs']
     for (let index = 1; index < sizes.length; index++) {
       expect(order.indexOf(sizes[index])).toBeGreaterThanOrEqual(order.indexOf(sizes[index - 1]))
     }
-    expect(bluffChoicesLayout(choices(21, LONG))).toEqual({ columns: 2, size: 'xs', crowded: true })
+    expect(bluffChoicesLayout(choices(21, LONG))).toEqual({ columns: 3, size: 'sm', crowded: true })
   })
 
-  test('vote : jusqu’à 21 phrases de 100 caractères tiennent dans la hauteur disponible', () => {
+  test('vote : jusqu’à 21 phrases de 100 caractères tiennent dans la hauteur disponible (barre des avatars remplacée par une barre de progression)', () => {
     for (const count of [2, 3, 4, 6, 10, 14, 21]) {
       const layout = bluffChoicesLayout(choices(count, LONG))
-      expect(estimatedHeight(choices(count, LONG), layout.columns, layout.size, 'vote')).toBeLessThanOrEqual(layout.crowded ? 22 : 15.5)
+      expect(estimatedHeight(choices(count, LONG), layout.columns, layout.size, 'vote')).toBeLessThanOrEqual(layout.crowded ? 24 : 17)
     }
+  })
+
+  test('vote : trois colonnes seulement quand elles gardent un texte plus grand ; jamais à la révélation', () => {
+    expect(bluffChoicesLayout(choices(21, LONG))).toMatchObject({ columns: 3 })
+    expect(bluffChoicesLayout(choices(6, LONG)).columns).toBe(2)
+    expect(bluffRevealLayout(choices(21, LONG)).columns).toBe(2)
   })
 
   test('révélation : la fenêtre de choix affichés tient, quel que soit le nombre de choix', () => {
