@@ -8,6 +8,7 @@ import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
 import { TeamAvatarGroups } from '../components/TeamBoards'
 import { optionsSizeClass } from '../lib/optionsSize'
+import { isTightQuestion, MANY_PLAYERS_MIN, questionSizeClass } from '../lib/questionSize'
 import { answeredByCount, countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
@@ -37,10 +38,16 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
     : isBluff
       ? strings.bluff.writtenCount(answeredCount, connectedCount)
       : strings.question.answeredCount(answeredCount, connectedCount)
-  const questionCard = <h1 className={isVote ? 'question-card is-compact' : 'question-card'}>{question.text}</h1>
+  const questionCard = (
+    <h1 className={['question-card', isVote ? 'is-compact' : questionSizeClass(question.text)].filter(Boolean).join(' ')}>{question.text}</h1>
+  )
+  // Énoncé long ou beaucoup de joueurs : marges et cadre réduits, pour que la barre des joueurs tienne.
+  const screenClass = isVote
+    ? `screen question question-vote${isCrowded ? ' is-crowded' : ''}`
+    : `screen question${isTightQuestion(question.text, players.length) ? ' is-tight' : ''}`
 
   return (
-    <main className={isVote ? `screen question question-vote${isCrowded ? ' is-crowded' : ''}` : 'screen question'}>
+    <main className={screenClass}>
       <GameHeader
         roomCode={roomCode}
         questionIndex={session.currentIndex}
@@ -107,7 +114,7 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
             // Groupe : avatars regroupés par équipe (maquette G2).
             <TeamAvatarGroups session={session} players={players} />
           ) : (
-            <div className="question-avatars">
+            <div className={players.length >= MANY_PLAYERS_MIN ? 'question-avatars is-many' : 'question-avatars'}>
               {players.map((player) => (
                 <Avatar
                   key={player.id}

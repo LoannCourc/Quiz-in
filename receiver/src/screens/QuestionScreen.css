@@ -1,6 +1,35 @@
+/* En-tête, question, propositions (qui peuvent se réduire), espace libre, puis la barre des joueurs,
+   toujours en bas de l'écran. */
 .question {
-  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-rows: auto auto minmax(0, auto) 1fr auto;
   row-gap: 1.4rem;
+}
+
+.question:not(.question-vote) .question-answered {
+  grid-row: 5;
+}
+
+/* Énoncé long ou beaucoup de joueurs : tout doit tenir, barre des joueurs comprise. */
+.question.is-tight {
+  row-gap: 1rem;
+}
+
+.question.is-tight .free-prompt {
+  min-height: 6.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.question.is-tight .question-card {
+  min-height: 0;
+}
+
+.question-card.is-long {
+  font-size: 1.7rem;
+}
+
+.question-card.is-very-long {
+  font-size: 1.45rem;
 }
 
 /* Blind test : carte de question puis indicateur d'écoute. */
@@ -114,6 +143,16 @@
 
 .question-avatars .avatar {
   --avatar-size: 3.5rem;
+}
+
+/* 13 joueurs et plus : avatars plus petits, sur une seule ligne. */
+.question-avatars.is-many {
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+}
+
+.question-avatars.is-many .avatar {
+  --avatar-size: 2.1rem;
 }
 
 /* Bluff (maquette B4) : pastille « BLUFF » au-dessus de la question. */

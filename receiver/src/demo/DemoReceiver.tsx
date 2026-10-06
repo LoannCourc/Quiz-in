@@ -35,7 +35,7 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
 // &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
 // &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues ;
-// &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes.
+// &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes ; &qlen=140 : énoncé de 140 caractères.
 // &mode=bluff : Bluff (status=question : écriture, status=vote, status=reveal) ; &choices=21 : nombre de
 // choix (avec &players=20) ; &long=1 : phrases de 100 caractères.
 function initialOptions(params: URLSearchParams): DemoOptions {
@@ -93,7 +93,13 @@ function DemoGame({ params }: { params: URLSearchParams }) {
       : withSuspense
   // Groupe (&teams=1) ; &draw=1 : tirage à l'ouverture de la page.
   const [drawAt] = useState(() => (params.get('draw') === '1' ? Date.now() : undefined))
-  const session = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt) : withAsk
+  const withTeams = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt) : withAsk
+  // &qlen=140 : énoncé de cette longueur (mise en page des questions longues, jusqu'à 4 lignes).
+  const questionLength = Number(params.get('qlen'))
+  const session =
+    questionLength > 0 && withTeams.currentQuestion
+      ? { ...withTeams, currentQuestion: { ...withTeams.currentQuestion, text: demoQuestionText(questionLength) } }
+      : withTeams
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
@@ -144,4 +150,12 @@ function DemoGame({ params }: { params: URLSearchParams }) {
       )}
     </>
   )
+}
+
+// Énoncé de démonstration d'exactement length caractères, en mots de longueur ordinaire.
+function demoQuestionText(length: number): string {
+  const words = 'Quel personnage célèbre a inventé ce drôle de jeu de société pendant une longue soirée familiale'.split(' ')
+  let text = ''
+  for (let index = 0; text.length < length; index++) text += (text ? ' ' : '') + words[index % words.length]
+  return text.slice(0, Math.max(1, length - 2)).trimEnd() + ' ?'
 }
