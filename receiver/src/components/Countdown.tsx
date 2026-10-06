@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import './Countdown.css'
@@ -56,15 +56,25 @@ function CountdownRing({ phaseStartedAt, phaseEndsAt }: CountdownProps) {
 
   return (
     <div className="countdown-ring">
+      <RingArcs timing={timing} />
+      <div className="countdown-center">
+        <span className={isUrgent ? 'countdown-seconds is-urgent' : 'countdown-seconds'}>{seconds}</span>
+      </div>
+    </div>
+  )
+}
+
+// Arc rose qui se vide en une durée donnée (timing : durée et délai de l'animation CSS), à poser dans un
+// élément .countdown-ring (taille par --ring-size et --ring-width). Aussi utilisé par le 3-2-1.
+export function RingArcs({ timing }: { timing: CSSProperties }) {
+  return (
+    <>
       <div className="countdown-half countdown-half-right">
         <div className="countdown-arc countdown-arc-right" style={timing} />
       </div>
       <div className="countdown-half countdown-half-left">
         <div className="countdown-arc countdown-arc-left" style={timing} />
       </div>
-      <div className="countdown-center">
-        <span className={isUrgent ? 'countdown-seconds is-urgent' : 'countdown-seconds'}>{seconds}</span>
-      </div>
-    </div>
+    </>
   )
 }

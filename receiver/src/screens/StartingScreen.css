@@ -4,15 +4,10 @@
   row-gap: 2rem;
 }
 
-/* Disque encre cerclé de rose, comme l'anneau de temps. */
+/* Disque encre et anneau rose qui se vide à chaque chiffre (même anneau que le chrono, Countdown.css). */
 .starting-disc {
-  display: grid;
-  place-items: center;
-  width: 14rem;
-  height: 14rem;
-  border-radius: 50%;
-  border: 0.8rem solid var(--ring);
-  background: var(--ink-surface);
+  --ring-size: 14rem;
+  --ring-width: 0.8rem;
 }
 
 .starting-number {
