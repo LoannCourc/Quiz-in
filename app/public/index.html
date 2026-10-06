@@ -7,6 +7,71 @@
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>%WEB_TITLE%</title>
+    <!-- Polices du site des joueurs : woff2 servis par le site (public/fonts/, licences OFL à côté),
+         préchargés dès la page pour ne pas attendre le JavaScript. font-display: swap : le texte
+         s'affiche tout de suite avec la police de repli, puis la vraie police la remplace dès qu'elle
+         arrive, même sur un réseau lent (avec « auto », Chrome peut garder la police système pour
+         toute la visite). Noms de famille : AppFontNames (src/constants/appTheme.ts). -->
+    <link rel="preload" href="/fonts/bowlby-one-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/nunito-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/nunito-800.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/nunito-900.woff2" as="font" type="font/woff2" crossorigin />
+    <style id="app-fonts">
+      @font-face {
+        font-family: 'BowlbyOne';
+        src: url('/fonts/bowlby-one-400.woff2') format('woff2');
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Nunito-Bold';
+        src: url('/fonts/nunito-700.woff2') format('woff2');
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Nunito-ExtraBold';
+        src: url('/fonts/nunito-800.woff2') format('woff2');
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Nunito-Black';
+        src: url('/fonts/nunito-900.woff2') format('woff2');
+        font-display: swap;
+      }
+      /* Polices de repli : Roboto Bold (Android) ou Arial Bold (ailleurs), mise à la
+         largeur et à la hauteur de la vraie police (mesurées sur un échantillon de texte français). */
+      @font-face {
+        font-family: 'BowlbyOne-fallback';
+        src: local('Roboto Bold'), local('Roboto-Bold'), local('Arial Bold'), local('Arial-BoldMT');
+        size-adjust: 119.4%;
+        ascent-override: 93.1%;
+        descent-override: 38.1%;
+        line-gap-override: 0%;
+      }
+      @font-face {
+        font-family: 'Nunito-Bold-fallback';
+        src: local('Roboto Bold'), local('Roboto-Bold'), local('Arial Bold'), local('Arial-BoldMT');
+        size-adjust: 96.8%;
+        ascent-override: 104.4%;
+        descent-override: 36.5%;
+        line-gap-override: 0%;
+      }
+      @font-face {
+        font-family: 'Nunito-ExtraBold-fallback';
+        src: local('Roboto Bold'), local('Roboto-Bold'), local('Arial Bold'), local('Arial-BoldMT');
+        size-adjust: 98.6%;
+        ascent-override: 102.6%;
+        descent-override: 35.8%;
+        line-gap-override: 0%;
+      }
+      @font-face {
+        font-family: 'Nunito-Black-fallback';
+        src: local('Roboto Bold'), local('Roboto-Bold'), local('Arial Bold'), local('Arial-BoldMT');
+        size-adjust: 100.4%;
+        ascent-override: 100.7%;
+        descent-override: 35.2%;
+        line-gap-override: 0%;
+      }
+    </style>
     <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
     <style id="expo-reset">
       /* These styles make the body full-height */

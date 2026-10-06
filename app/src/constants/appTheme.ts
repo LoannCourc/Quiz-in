@@ -118,7 +118,8 @@ export const AppCoinGradient = `radial-gradient(circle at 50% 40%, ${Palette.gol
 export type AppBackgroundName = keyof typeof AppBackgrounds;
 
 // Une famille par graisse : sur Android, fontWeight ne choisit pas la graisse d'une police
-// chargée à part. Les noms sont ceux enregistrés au chargement (app/_layout.tsx).
+// chargée à part. Les noms sont ceux enregistrés au chargement (hooks/useAppFonts.ts) et, sur le web,
+// ceux des @font-face de public/index.html.
 export const AppFontNames = {
   display: 'BowlbyOne',
   bold: 'Nunito-Bold',
@@ -126,10 +127,11 @@ export const AppFontNames = {
   black: 'Nunito-Black',
 } as const;
 
-// Famille utilisée par les écrans. Web : pile CSS avec repli sans-serif, si un fichier de police ne se
-// charge pas (sinon le navigateur affiche sa police à empattements). Android : le nom seul, obligatoire.
+// Famille utilisée par les écrans. Web : pile CSS ; en attendant la police (ou si elle manque), une
+// police système aux métriques ajustées sur la vraie (« -fallback », public/index.html) pour que le
+// texte ne change ni de largeur ni de hauteur, puis sans-serif. Android : le nom seul, obligatoire.
 function withWebFallback(name: string): string {
-  return Platform.OS === 'web' ? `${name}, sans-serif` : name;
+  return Platform.OS === 'web' ? `${name}, ${name}-fallback, sans-serif` : name;
 }
 
 export const AppFonts = {
