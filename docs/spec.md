@@ -166,7 +166,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 ### 6.1 Durées
 - **Choix multiples** : 20 secondes par question.
 - **Réponse libre** : 30 secondes par question, quiz comme blind test (l'extrait joue alors toute la preview de 30 s).
-- **Bluff** : écriture 60 s, vote sans minuteur, révélation 4 s plus 2 s par fausse proposition (section 16).
+- **Bluff** : écriture 60 s, vote sans minuteur, révélation : les fausses propositions se retournent (2 s chacune jusqu'à 6, puis de plus en plus vite, 0,4 s à partir de 12, 12 s au plus en tout), puis 4 s pour la vraie réponse (section 16).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
 - **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
@@ -519,7 +519,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV, et sur les téléphones seulement quand aucune TV n'est présente (voir plus bas) ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
-**Déroulé.** QUESTION (écriture, 60 s) → VOTE (sans minuteur) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture garde son chrono. Suspense : la révélation mène directement à la question suivante, comme d'habitude.
+**Déroulé.** QUESTION (écriture, 60 s) → VOTE (sans minuteur) → REVEAL (cartes retournées, puis 4 s pour la vraie réponse) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture garde son chrono. Suspense : la révélation mène directement à la question suivante, comme d'habitude.
 
 **Joueurs.** 2 au minimum. Bluff : pas de limite propre, limite générale de l'app (`MAX_PLAYERS`, 20). Sur la TV, les choix sont des cartes en une ou deux colonnes selon leur nombre et la longueur de leur texte (des phrases), avec une taille de texte adaptée, toujours lisible en 720p ; sur le téléphone, la liste défile.
 
@@ -547,7 +547,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Points.** 1000 pour un vote sur la vraie réponse ; 500 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
 
-**Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre (2 s chacune), chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants (6 avatars au plus, puis « +N ») ; puis la vraie réponse en tête, en vert, avec ses votants. Pas de résumé des points sur la TV : ils sont sur les téléphones, puis au classement. Au-delà de 8 choix, seuls les 8 derniers retournés restent à l'écran ; à la vraie réponse, on montre la vraie réponse et les propositions qui ont reçu des votes, les plus votées d'abord, et « + N autres propositions sans vote ».
+**Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre, d'autant plus vite qu'elles sont nombreuses (N fausses propositions : 2 s chacune jusqu'à N = 6 ; 0,4 s à partir de N = 12 ; entre les deux, de plus en plus vite ; jamais plus de 12 s de cartes en tout ; puis 4 s pour la vraie réponse : `bluffRevealStepMs`), chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants (6 avatars au plus, puis « +N ») ; puis la vraie réponse en tête, en vert, avec ses votants. Pas de résumé des points sur la TV : ils sont sur les téléphones, puis au classement. Au-delà de 8 choix, seuls les 8 derniers retournés restent à l'écran ; à la vraie réponse, on montre la vraie réponse et les propositions qui ont reçu des votes, les plus votées d'abord, et « + N autres propositions sans vote ».
 
 **Mise en page TV.** Écriture : l'énoncé, « Inventez une fausse réponse sur votre téléphone ! » et les avatars qui s'allument quand une proposition est acceptée. Vote : les choix en cartes lettrées, en une colonne (3 phrases longues au plus) ou deux, avec une seule taille de texte pour tous : la plus grande dont la hauteur estimée tient à l'écran (`shared/bluffLayout.ts`). Si elle ne tient qu'en libérant de la place, l'écran est « serré » : question réduite, sans pastille ni consigne au vote, sans les étapes à la révélation. Avatars sur une seule ligne. Jusqu'à 21 phrases de 100 caractères tiennent au vote, en 720p comme en 1080p ; le texte est alors petit (environ 13 px en 720p). Téléphone (B3) : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
 

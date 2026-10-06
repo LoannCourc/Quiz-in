@@ -207,6 +207,31 @@ describe('Sons programmés de la phase', () => {
     expect(bluffRevealTimeline(choices).flips.map((flip) => flip.index)).toEqual([0, 2])
   })
 
+  test('Bluff, 20 fausses propositions : cascade de « flip » toutes les 0,4 s, sans « piégé », puis l’accord de la vraie réponse', () => {
+    const fakes: RevealedBluffChoice[] = Array.from({ length: 20 }, (_, index) => ({
+      text: `Faux ${index}`,
+      kind: 'bluff',
+      authors: [PLAYER],
+      voters: [OTHER],
+    }))
+    const choices: RevealedBluffChoice[] = [...fakes, { text: 'Vrai', kind: 'truth', voters: [HOST] }]
+    const cues = timedCues(inPhase({ status: 'reveal', phaseStartedAt: NOW, reveal: { correctAnswer: 'Vrai', stats: { bluffChoices: choices }, results: {} } }))
+    const flips = cues.filter((cue) => cue.id === 'cardFlip')
+    expect(flips).toHaveLength(20)
+    expect(flips[1].at - flips[0].at).toBe(400)
+    expect(cues.some((cue) => cue.id === 'trapped')).toBe(false)
+    expect(cues.at(-1)).toEqual({ id: 'bluffTruth', at: NOW + 20 * 400 })
+    // Le « flip » dure 0,14 s : jamais deux à la fois.
+    expect(Math.min(...flips.slice(1).map((cue, index) => cue.at - flips[index].at))).toBeGreaterThan(140)
+  })
+
+  test('Bluff, 9 fausses propositions (1,2 s entre deux cartes) : le « piégé » reste', () => {
+    const fakes: RevealedBluffChoice[] = Array.from({ length: 9 }, (_, index) => ({ text: `Faux ${index}`, kind: 'bluff', voters: [OTHER] }))
+    const choices: RevealedBluffChoice[] = [...fakes, { text: 'Vrai', kind: 'truth' }]
+    const cues = timedCues(inPhase({ status: 'reveal', phaseStartedAt: NOW, reveal: { correctAnswer: 'Vrai', stats: { bluffChoices: choices }, results: {} } }))
+    expect(cues.filter((cue) => cue.id === 'trapped')).toHaveLength(9)
+  })
+
   test('classement : une ligne après l’autre, de la dernière à la première, de plus en plus aiguë', () => {
     const scores = inPhase({ status: 'scores', phaseStartedAt: NOW })
     // Trois joueurs : 3e, 2e puis 1er.

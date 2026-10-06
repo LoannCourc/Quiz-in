@@ -4,12 +4,12 @@ import {
   ALL_ANSWERED_DELAY_S,
   BLUFF_MAX_ATTEMPTS,
   BLUFF_MIN_VOTABLE,
-  BLUFF_REVEAL_PER_CHOICE_S,
   BLUFF_TARGET_CHOICES,
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
   REVEAL_GRACE_MS,
 } from './constants'
+import { bluffRevealStepMs } from './gameFlow'
 import { connectedPlayerIds } from './players'
 import type {
   BluffCheck,
@@ -275,19 +275,18 @@ export function bluffPlayerOutcome(choices: readonly RevealedBluffChoice[], resu
 }
 
 // Calendrier de la révélation (TV, spec 16) : les fausses propositions se retournent l'une après l'autre,
-// dans l'ordre des choix, la première dès le début de la phase, puis toutes les BLUFF_REVEAL_PER_CHOICE_S ;
-// la vraie réponse arrive quand toutes sont retournées. Instants en ms depuis le début de la phase.
-// L'écran et les sons de la TV lisent ce même calendrier.
+// dans l'ordre des choix, la première dès le début de la phase, puis toutes les stepMs (de 2 s à 0,4 s selon
+// leur nombre : bluffRevealStepMs) ; la vraie réponse arrive quand toutes sont retournées. Instants en ms
+// depuis le début de la phase. L'écran et les sons de la TV lisent ce même calendrier.
 export interface BluffRevealTimeline {
   flips: { index: number; atMs: number; choice: RevealedBluffChoice }[]
   truthAtMs: number
+  stepMs: number
 }
 
 export function bluffRevealTimeline(choices: readonly RevealedBluffChoice[]): BluffRevealTimeline {
-  const stepMs = BLUFF_REVEAL_PER_CHOICE_S * 1000
-  const flips = choices
-    .map((choice, index) => ({ index, choice }))
-    .filter(({ choice }) => choice.kind !== 'truth')
-    .map(({ index, choice }, order) => ({ index, choice, atMs: order * stepMs }))
-  return { flips, truthAtMs: flips.length * stepMs }
+  const falseChoices = choices.map((choice, index) => ({ index, choice })).filter(({ choice }) => choice.kind !== 'truth')
+  const stepMs = bluffRevealStepMs(falseChoices.length)
+  const flips = falseChoices.map(({ index, choice }, order) => ({ index, choice, atMs: order * stepMs }))
+  return { flips, truthAtMs: flips.length * stepMs, stepMs }
 }

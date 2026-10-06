@@ -1,5 +1,9 @@
 import {
-  BLUFF_REVEAL_PER_CHOICE_S,
+  BLUFF_REVEAL_FAST_MIN,
+  BLUFF_REVEAL_FAST_STEP_MS,
+  BLUFF_REVEAL_FLIPS_MAX_MS,
+  BLUFF_REVEAL_SLOW_MAX,
+  BLUFF_REVEAL_SLOW_STEP_MS,
   NEXT_QUESTION_ANNOUNCE_MS,
   QUESTION_DURATION_S,
   REVEAL_DURATION_S,
@@ -45,11 +49,23 @@ export function questionDurationS(answerMode: AnswerMode, timeLimitS?: number): 
   return timeLimitS ?? QUESTION_DURATION_S[answerMode]
 }
 
-// Durée de la révélation : fixe, sauf en Bluff où chaque fausse proposition se retourne l'une après
-// l'autre (BLUFF_REVEAL_PER_CHOICE_S chacune, la vraie réponse comprise dans la durée de base).
+// Révélation du Bluff : intervalle (ms) entre deux fausses propositions retournées, selon leur nombre.
+// Jusqu'à BLUFF_REVEAL_SLOW_MAX : 2 s ; à partir de BLUFF_REVEAL_FAST_MIN : 0,4 s ; entre les deux, de
+// plus en plus vite. Plafond : jamais plus de BLUFF_REVEAL_FLIPS_MAX_MS de retournements en tout.
+export function bluffRevealStepMs(falseCount: number): number {
+  if (falseCount <= BLUFF_REVEAL_SLOW_MAX) return BLUFF_REVEAL_SLOW_STEP_MS
+  const share = Math.min(1, (falseCount - BLUFF_REVEAL_SLOW_MAX) / (BLUFF_REVEAL_FAST_MIN - BLUFF_REVEAL_SLOW_MAX))
+  const step = BLUFF_REVEAL_SLOW_STEP_MS - share * (BLUFF_REVEAL_SLOW_STEP_MS - BLUFF_REVEAL_FAST_STEP_MS)
+  return Math.min(Math.round(step), Math.floor(BLUFF_REVEAL_FLIPS_MAX_MS / falseCount))
+}
+
+// Durée de la révélation : fixe, sauf en Bluff où les fausses propositions se retournent l'une après
+// l'autre (bluffRevealStepMs), avant la vraie réponse (durée de base).
 export function revealDurationS(answerMode: AnswerMode, choiceCount = 0): number {
   const base = REVEAL_DURATION_S[answerMode]
-  return answerMode === 'bluff' ? base + BLUFF_REVEAL_PER_CHOICE_S * Math.max(0, choiceCount - 1) : base
+  if (answerMode !== 'bluff') return base
+  const falseCount = Math.max(0, choiceCount - 1)
+  return base + (falseCount * bluffRevealStepMs(falseCount)) / 1000
 }
 
 // Après une question (classement, ou révélation en Suspense) : question suivante, ou fin de partie.

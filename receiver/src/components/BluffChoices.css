@@ -88,7 +88,7 @@
    (transform et opacity seulement, léger pour la TV). */
 .bluff-row {
   grid-template-columns: auto minmax(0, 1fr) auto;
-  animation: bluff-row-in 450ms ease-out both;
+  animation: bluff-row-in var(--bluff-row-in-ms, 450ms) ease-out both;
 }
 
 @keyframes bluff-row-in {

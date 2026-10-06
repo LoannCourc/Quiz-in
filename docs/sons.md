@@ -31,8 +31,8 @@ Arrivée du classement et du podium : calendrier commun à l'écran et aux sons,
 | `validated` | coup de tampon puis tintement | Contrôle : entrée dans `reveal` depuis `validation` (résultats publiés) ; la fanfare ou le « raté » suit 500 ms plus tard | 0,7 | non |
 | `fanfare` | trois notes puis accord tenu | entrée dans `reveal` (hors Bluff), au moins un joueur a trouvé ; en Contrôle, 500 ms après `validated` | 0,9 | oui |
 | `miss` | « wah-wah » qui descend | comme la fanfare, quand personne n'a trouvé | 0,8 | oui |
-| `cardFlip` | « flip » | révélation du Bluff : chaque fausse proposition retournée (toutes les 2 s, même calendrier que l'écran : `bluffRevealTimeline`) | 0,6 | non |
-| `trapped` | « pouet-pouet » de cuivres graves | 350 ms après une carte retournée qui a des votants | 0,7 | oui |
+| `cardFlip` | « flip » | révélation du Bluff : chaque fausse proposition retournée (toutes les 2 s, ou plus vite avec beaucoup de propositions : cascade toutes les 0,4 s à partir de 12 ; même calendrier que l'écran : `bluffRevealTimeline`) | 0,6 | non |
+| `trapped` | « pouet-pouet » de cuivres graves | 350 ms après une carte retournée qui a des votants, seulement si les cartes se suivent à 0,9 s ou plus (`TRAPPED_MIN_STEP_MS`) : à la vitesse de la cascade, il déborderait sur la carte suivante | 0,7 | oui |
 | `bluffTruth` | accord éclatant et scintillement | révélation du Bluff : la vraie réponse | 0,9 | oui |
 | `pointsUp` | notes qui montent vite | entrée dans `scores` | 0,5 | non |
 | `rowEnter` | note pincée, de plus en plus aiguë (gamme majeure) | `scores` : chaque ligne qui arrive, de la dernière à la première, à 400 ms puis toutes les 250 ms (5 joueurs au plus, ou les équipes) | 0,45 | non |

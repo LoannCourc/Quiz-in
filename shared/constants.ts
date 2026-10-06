@@ -22,7 +22,7 @@ export const STARTING_DURATION_S = 3;
 // Bluff : écriture d'une fausse réponse (une phrase).
 export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 60 };
 export const ALL_ANSWERED_DELAY_S = 2;
-// Bluff : durée de base, plus BLUFF_REVEAL_PER_CHOICE_S par fausse proposition (revealDurationS).
+// Bluff : durée de base (la vraie réponse), plus le retournement des fausses propositions (revealDurationS).
 export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4 };
 export const SCORES_DURATION_S = 5;
 // Fin du classement : annonce plein écran de la question suivante (comprise dans SCORES_DURATION_S).
@@ -84,7 +84,13 @@ export const VALIDATION_ESTIMATE_S = 15;
 // par « Clore le vote » de l'hôte) ; durée moyenne estimée pour la fiche du quiz. Révélation allongée
 // de 2 s par fausse proposition.
 export const BLUFF_VOTE_ESTIMATE_S = 30;
-export const BLUFF_REVEAL_PER_CHOICE_S = 2;
+// Révélation : une fausse proposition retournée toutes les 2 s jusqu'à 6, toutes les 0,4 s à partir de 12,
+// entre les deux de plus en plus vite ; jamais plus de 12 s de retournements (bluffRevealStepMs).
+export const BLUFF_REVEAL_SLOW_STEP_MS = 2_000;
+export const BLUFF_REVEAL_FAST_STEP_MS = 400;
+export const BLUFF_REVEAL_SLOW_MAX = 6;
+export const BLUFF_REVEAL_FAST_MIN = 12;
+export const BLUFF_REVEAL_FLIPS_MAX_MS = 12_000;
 // Longueur maximale d'une proposition, d'une vraie réponse et d'un leurre : des phrases (identique à
 // database.rules.json), et essais au plus quand une
 // proposition est refusée (même valeur écrite en dur dans database.rules.json).

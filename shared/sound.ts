@@ -39,6 +39,10 @@ export const COUNTDOWN_BEEPS = 3
 export const RANK_SHUFFLE_DELAY_MS = 400
 // Bluff : le « piégé » suit de peu la carte retournée.
 export const TRAPPED_DELAY_MS = 350
+// Cartes retournées vite (beaucoup de propositions) : plus de « pouet-pouet » à chaque carte, il
+// déborderait sur la suivante (350 ms d'attente + 460 ms de son) ; la cascade de « flip », très courts,
+// suffit. Gardé à partir de cet intervalle entre deux cartes.
+export const TRAPPED_MIN_STEP_MS = 900
 // Suspense : roulement de tambour ; la TV et les téléphones retardent le podium d'autant.
 export const SUSPENSE_DRUMROLL_MS = 3_000
 // Contrôle : la fanfare (ou le « raté ») suit de peu le « validé ».
@@ -301,10 +305,11 @@ function bluffRevealCues(session: PublicSession): TimedCue[] {
   if (!choices) return []
   const start = session.phaseStartedAt
   const timeline = bluffRevealTimeline(choices)
+  const withTrapped = timeline.stepMs >= TRAPPED_MIN_STEP_MS
   const cues: TimedCue[] = []
   for (const flip of timeline.flips) {
     cues.push({ id: 'cardFlip', at: start + flip.atMs })
-    if ((flip.choice.voters?.length ?? 0) > 0) cues.push({ id: 'trapped', at: start + flip.atMs + TRAPPED_DELAY_MS })
+    if (withTrapped && (flip.choice.voters?.length ?? 0) > 0) cues.push({ id: 'trapped', at: start + flip.atMs + TRAPPED_DELAY_MS })
   }
   cues.push({ id: 'bluffTruth', at: start + timeline.truthAtMs })
   return cues

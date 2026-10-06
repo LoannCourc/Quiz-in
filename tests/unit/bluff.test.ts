@@ -4,6 +4,7 @@ import {
   bluffAttemptsLeft,
   bluffChecksUpdate,
   bluffPlayerOutcome,
+  bluffRevealTimeline,
   bluffWriteStatus,
   bluffRevealData,
   buildVoteChoices,
@@ -20,7 +21,7 @@ import {
   QUESTION_DURATION_S,
   REVEAL_GRACE_MS,
 } from '../../shared/constants'
-import { isUntimedPhase, nextPhase, revealDurationS } from '../../shared/gameFlow'
+import { bluffRevealStepMs, isUntimedPhase, nextPhase, revealDurationS } from '../../shared/gameFlow'
 import {
   hostControls,
   launchUpdate,
@@ -33,7 +34,7 @@ import {
 } from '../../shared/hostEngine'
 import { settingsForGameType } from '../../shared/quizCatalog'
 import { timedCues } from '../../shared/sound'
-import type { BluffChoice, BluffEntry, Player, PlayerId, Session, SessionSettings } from '../../shared/types'
+import type { BluffChoice, BluffEntry, Player, PlayerId, RevealedBluffChoice, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeBluffQuestion, makeSession, player } from './engineFixtures'
 
 const NOW = 5_000_000
@@ -331,7 +332,8 @@ describe('Bluff : déroulé et moteur', () => {
     expect(nextPhase('question', context)).toEqual({ status: 'vote', currentIndex: 0, durationS: null })
     expect(nextPhase('question', { ...context, stepByStep: true, suspense: true })).toMatchObject({ status: 'vote', durationS: null })
     expect(nextPhase('vote', { ...context, choiceCount: 6 })).toEqual({ status: 'reveal', currentIndex: 0, durationS: 14 })
-    expect(revealDurationS('bluff', 31)).toBe(64)
+    // 30 fausses propositions : 0,4 s chacune (12 s, le plafond), puis 4 s pour la vraie réponse.
+    expect(revealDurationS('bluff', 31)).toBe(16)
     expect(revealDurationS('choice', 6)).toBe(6)
   })
 
@@ -500,5 +502,39 @@ describe('Bluff : proposition de l’hôte qui joue (heure corrigée par le serv
     const texts = (voting.bluffChoices?.[0] ?? []).filter((choice) => choice.kind === 'bluff').map((choice) => choice.text)
     expect(texts.sort()).toEqual(['Capitale Express', 'Monopolis', 'Rue Royale'])
     expect(new Set(Object.values(voting.bluffOwn?.[0] ?? {})).size).toBe(3)
+  })
+})
+
+describe('Bluff : vitesse de la révélation selon le nombre de fausses propositions', () => {
+  test('jusqu’à 6 : 2 s par carte, comme avant', () => {
+    for (const count of [0, 1, 3, 6]) expect(bluffRevealStepMs(count)).toBe(2000)
+    expect(revealDurationS('bluff', 7)).toBe(16)
+  })
+
+  test('à partir de 12 : entre 0,3 et 0,5 s par carte', () => {
+    for (const count of [12, 15, 20, 30]) {
+      expect(bluffRevealStepMs(count)).toBeGreaterThanOrEqual(300)
+      expect(bluffRevealStepMs(count)).toBeLessThanOrEqual(500)
+    }
+  })
+
+  test('entre 7 et 11 : de plus en plus vite, sans à-coup', () => {
+    const steps = [6, 7, 8, 9, 10, 11, 12].map(bluffRevealStepMs)
+    for (let index = 1; index < steps.length; index++) expect(steps[index]).toBeLessThan(steps[index - 1])
+    expect(steps).toEqual([2000, 1714, 1467, 1200, 933, 667, 400])
+  })
+
+  test('plafond : jamais plus de 12 s de cartes, puis 4 s pour la vraie réponse', () => {
+    for (let count = 0; count <= 40; count++) expect(count * bluffRevealStepMs(count)).toBeLessThanOrEqual(12_000)
+    // 20 fausses propositions (21 choix) : 8 s de cartes, 12 s en tout.
+    expect(revealDurationS('bluff', 21)).toBe(12)
+  })
+
+  test('calendrier de l’écran et des sons : mêmes instants, vraie réponse après la dernière carte', () => {
+    const fakes: RevealedBluffChoice[] = Array.from({ length: 12 }, (_, index) => ({ text: `Faux ${index}`, kind: 'decoy' }))
+    const timeline = bluffRevealTimeline([{ text: 'Vrai', kind: 'truth' }, ...fakes])
+    expect(timeline.stepMs).toBe(400)
+    expect(timeline.flips.map((flip) => flip.atMs)).toEqual(fakes.map((_, order) => order * 400))
+    expect(timeline.truthAtMs).toBe(12 * 400)
   })
 })
