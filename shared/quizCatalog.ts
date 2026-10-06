@@ -43,20 +43,21 @@ export function estimateQuizMinutes(
   questionCount: number,
   answerMode: AnswerMode = DEFAULT_SESSION_SETTINGS.answerMode,
 ): number {
-  const perQuestionS = answerPhasesS(answerMode) + SCORES_DURATION_S
-  return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
+  // Un classement après chaque question, sauf la dernière (l'écran de fin le remplace).
+  const totalS = STARTING_DURATION_S + questionCount * answerPhasesS(answerMode) + Math.max(0, questionCount - 1) * SCORES_DURATION_S
+  return Math.ceil(totalS / 60)
 }
 
 // Durée estimée d'une partie selon ses réglages, en minutes arrondies au-dessus : sans les classements
-// intermédiaires en Suspense, avec une validation estimée en Contrôle ; null en Pas à pas (la durée
+// intermédiaires en Suspense (ni après la dernière question), avec une validation estimée en Contrôle ; null en Pas à pas (la durée
 // dépend de l'hôte : « à votre rythme »).
 export function estimateGameMinutes(questionCount: number, settings: SessionSettings): number | null {
   if (settings.stepByStep) return null
   const { answerMode } = settings
   const scoresS = settings.suspense ? 0 : SCORES_DURATION_S
   const validationS = hasValidationPhase(settings) ? VALIDATION_ESTIMATE_S : 0
-  const perQuestionS = answerPhasesS(answerMode) + validationS + scoresS
-  return Math.ceil((STARTING_DURATION_S + questionCount * perQuestionS) / 60)
+  const totalS = STARTING_DURATION_S + questionCount * (answerPhasesS(answerMode) + validationS) + Math.max(0, questionCount - 1) * scoresS
+  return Math.ceil(totalS / 60)
 }
 
 export type GameOption ='speedBonus' | 'control' | 'teams'

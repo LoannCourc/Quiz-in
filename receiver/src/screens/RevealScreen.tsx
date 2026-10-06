@@ -1,4 +1,4 @@
-import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
+import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
 import type { AnswerVerdict, ChoiceOptions, FreeAnswerGroup, PublicSession } from '@shared/types'
 
 import { Confetti } from '../components/Confetti'
@@ -27,7 +27,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
     <main className={isCompact ? "screen reveal reveal-compact" : "screen reveal"}>
       <Confetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
-      <TransitionSteps active={0} withRanking={!session.settings.suspense} />
+      <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} />
       <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
 
       {question.options && reveal.stats.choiceCounts ? (

@@ -480,6 +480,8 @@ export const strings = {
     // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
     transition: {
       steps: ['Révélation', 'Classement', 'Question suivante'],
+      // Dernière question : la révélation mène directement au classement final.
+      finalStep: 'Classement final',
       nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds} s`,
       finalRankingIn: (seconds: number) => `Classement final dans ${seconds} s`,
       announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,

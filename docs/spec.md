@@ -42,7 +42,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 | | Rejoindre par QR code ou code, pseudo + avatar prédéfini |
 | | L'hôte joue aussi en tant que joueur |
 | | Validation automatique des réponses libres |
-| | Classement après chaque question et classement final |
+| | Classement après chaque question (sauf la dernière) et classement final |
 | | Reconnexion d'un joueur en cours de partie |
 | **P1** (si le temps le permet) | Option **Contrôle** : l'hôte valide les réponses libres avant la révélation (**livrée**, section 5.2) |
 | | Animations TV enrichies, sons |
@@ -121,10 +121,10 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs ; en Groupe, conditions de la section 6.4 |
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (60 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
-| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
+| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. Après la dernière question, passage direct à END (pas de classement intermédiaire : il ferait doublon avec le classement final). En Suspense, passage direct à QUESTION, ou à END après la dernière question |
 | **VOTE** (Bluff seulement, sans minuteur) | Automatique | Tous les joueurs connectés ont voté (délai de 2 s), **ou** l'hôte appuie sur « Clore le vote » (confirmation s'il manque des votes). Toujours suivi de REVEAL (section 16) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
-| **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
+| **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. Toujours suivi de la QUESTION suivante (jamais après la dernière question) |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
 | **END** | Hôte | « Rejouer » : retour au lobby avec le même code et les mêmes joueurs (et les mêmes équipes en Groupe), scores remis à zéro, mêmes questions. « Quitter » : suppression immédiate de la partie |
 
@@ -136,7 +136,7 @@ Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), désac
 
 **Pas à pas** : l'hôte décide quand la partie avance après chaque question.
 - REVEAL et SCORES n'ont **pas d'échéance** (`phaseEndsAt = 0`) : seule une action de l'hôte les fait sortir. QUESTION garde son chrono.
-- Un gros bouton jaune (même action que « Passer ») est nommé d'après sa destination : **Voir le classement** (pendant la révélation), **Question suivante** (pendant le classement, ou pendant la révélation en Suspense), **Classement final** (après la dernière question). Un verrou évite qu'un double appui saute une étape ; le bouton est absent pendant la pause.
+- Un gros bouton jaune (même action que « Passer ») est nommé d'après sa destination : **Voir le classement** (pendant la révélation), **Question suivante** (pendant le classement, ou pendant la révélation en Suspense), **Classement final** (pendant la révélation de la dernière question, qui mène directement à l'écran de fin). Un verrou évite qu'un double appui saute une étape ; le bouton est absent pendant la pause.
 - Pause puis reprise pendant l'attente : la partie revient à l'état attendu, toujours sans échéance (elle ne repart pas seule).
 - Joueurs et TV affichent « En attente de l'hôte pour la suite… » à la place du compte à rebours, et jamais l'annonce plein écran « Question N ». Un joueur qui se reconnecte pendant l'attente retrouve le même écran.
 

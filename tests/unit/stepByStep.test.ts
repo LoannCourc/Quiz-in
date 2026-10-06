@@ -99,9 +99,11 @@ describe('Pas à pas : attente après la révélation et après le classement', 
     expect(next.phaseEndsAt).toBeGreaterThan(NOW + 90_000)
   })
 
-  test('dernière question : révélation, classement, puis « Classement final » termine la partie', () => {
-    const scores = awaitingScores({ currentIndex: 2, answers: { 2: {} } })
-    const ended = apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: 2 }, NOW + 90_000))
+  test('dernière question : la révélation attend « Classement final », qui mène directement à la fin (pas de classement intermédiaire)', () => {
+    const lastReveal = awaitingReveal({ currentIndex: 2, answers: { 2: {} } })
+    expect(hostControls(lastReveal).awaitingNext).toBe('finalRanking')
+    expect(nextQuestionCountdown(lastReveal)).toBeNull()
+    const ended = apply(lastReveal, transitionUpdate(lastReveal, GAME, { status: 'reveal', currentIndex: 2 }, NOW + 90_000))
     expect(ended.status).toBe('ended')
   })
 
@@ -138,9 +140,10 @@ describe('Pas à pas : attente après la révélation et après le classement', 
   test('bouton de l’hôte nommé d’après sa destination : classement, question suivante, classement final', () => {
     expect(hostControls(awaitingReveal()).awaitingNext).toBe('ranking')
     expect(hostControls(awaitingScores()).awaitingNext).toBe('nextQuestion')
+    const beforeLast = awaitingScores({ currentIndex: 1, answers: { 1: {} } })
+    expect(hostControls(beforeLast).awaitingNext).toBe('nextQuestion')
     const lastReveal = awaitingReveal({ currentIndex: 2, answers: { 2: {} } })
-    expect(hostControls(lastReveal).awaitingNext).toBe('ranking')
-    expect(hostControls(awaitingScores({ currentIndex: 2, answers: { 2: {} } })).awaitingNext).toBe('finalRanking')
+    expect(hostControls(lastReveal).awaitingNext).toBe('finalRanking')
   })
 
   test('pause puis reprise pendant l’attente : la révélation reste en attente et ne repart pas', () => {
@@ -179,5 +182,32 @@ describe('Pas à pas : attente après la révélation et après le classement', 
     const without = buildReveal(GAME[0], questionSession(false)).results[PLAYER]
     expect(withStep).toEqual(without)
     expect(withStep.points).toBeGreaterThan(100)
+  })
+})
+
+describe('Après la dernière question : directement l’écran de fin', () => {
+  const context = { answerMode: 'choice' as const, questionCount: 3 }
+
+  test('mode automatique : révélation de la dernière question → fin, sans classement intermédiaire', () => {
+    expect(nextPhase('reveal', { ...context, currentIndex: 1 })).toMatchObject({ status: 'scores' })
+    expect(nextPhase('reveal', { ...context, currentIndex: 2 })).toEqual({ status: 'ended', currentIndex: 2, durationS: null })
+    // Suspense, Pas à pas, Bluff, blind test (mode choix) : même fin directe.
+    expect(nextPhase('reveal', { ...context, currentIndex: 2, suspense: true }).status).toBe('ended')
+    expect(nextPhase('reveal', { ...context, currentIndex: 2, stepByStep: true }).status).toBe('ended')
+    expect(nextPhase('reveal', { answerMode: 'bluff', questionCount: 3, currentIndex: 2, choiceCount: 5 }).status).toBe('ended')
+  })
+
+  test('compte à rebours de la dernière révélation : jusqu’à l’écran de fin, sans durée de classement', () => {
+    const reveal = makeSession({ status: 'reveal', currentIndex: 2, questionCount: 3, phaseStartedAt: NOW, phaseEndsAt: NOW + 6_000 })
+    expect(nextQuestionCountdown(reveal)).toEqual({ startsAt: NOW, endsAt: NOW + 6_000, isLastQuestion: true })
+  })
+
+  test('partie à une seule question : question → révélation → fin', () => {
+    const single = questionSession(false, { questionCount: 1 })
+    const reveal = apply(single, transitionUpdate(single, GAME.slice(0, 1), { status: 'question', currentIndex: 0 }, NOW))
+    expect(reveal.status).toBe('reveal')
+    expect(hostControls(reveal).skip).toBe('finalRanking')
+    const ended = apply(reveal, transitionUpdate(reveal, GAME.slice(0, 1), { status: 'reveal', currentIndex: 0 }, NOW + 10_000))
+    expect(ended.status).toBe('ended')
   })
 })

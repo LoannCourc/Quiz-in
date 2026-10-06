@@ -79,7 +79,7 @@ function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext,
 // Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED).
 // timeLimitS : durée propre à la question suivante, si elle en a une.
 export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?: number): Phase | null {
-  const { answerMode, currentIndex, stepByStep = false, suspense = false, validation = false, choiceCount } = context
+  const { answerMode, currentIndex, questionCount, stepByStep = false, suspense = false, validation = false, choiceCount } = context
   const revealS = revealDurationS(answerMode, choiceCount)
   const reveal: Phase = { status: 'reveal', currentIndex, durationS: stepByStep ? null : revealS }
   switch (status) {
@@ -96,7 +96,8 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
     case 'vote':
       return reveal
     case 'reveal':
-      return suspense
+      // Pas de classement intermédiaire en Suspense, ni après la dernière question (l'écran de fin le montre).
+      return suspense || currentIndex + 1 >= questionCount
         ? afterQuestion(context, timeLimitS)
         : { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
     case 'scores':
@@ -120,18 +121,29 @@ export interface NextQuestionCountdown {
 // null dans les autres états. Approximation si l'hôte a écourté une phase (« Passer »).
 export function nextQuestionCountdown(session: SessionTiming): NextQuestionCountdown | null {
   const revealMs = revealDurationS(session.settings.answerMode, session.currentQuestion?.choices?.length) * 1000
-  const isLastQuestion = session.currentIndex + 1 >= (session.questionCount ?? 0)
+  const isLast = isLastQuestion(session)
   // Pas à pas : pas de compte à rebours pendant l'attente (révélation et classement).
   if (isAwaitingHost(session)) return null
   if (session.status === 'reveal') {
-    // Suspense : pas de classement après la révélation, la question suivante arrive à sa fin.
-    const scoresMs = session.settings.suspense ? 0 : SCORES_DURATION_S * 1000
-    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + scoresMs, isLastQuestion }
+    // Suspense ou dernière question : pas de classement après la révélation, la suite arrive à sa fin.
+    const scoresMs = session.settings.suspense || isLast ? 0 : SCORES_DURATION_S * 1000
+    return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + scoresMs, isLastQuestion: isLast }
   }
   if (session.status === 'scores') {
-    return { startsAt: session.phaseStartedAt - revealMs, endsAt: session.phaseEndsAt, isLastQuestion }
+    return { startsAt: session.phaseStartedAt - revealMs, endsAt: session.phaseEndsAt, isLastQuestion: isLast }
   }
   return null
+}
+
+// Dernière question de la partie : sa révélation mène directement à l'écran de fin (pas de classement
+// intermédiaire, il ferait doublon avec le classement final).
+export function isLastQuestion(session: Pick<PublicSession, 'currentIndex' | 'questionCount'>): boolean {
+  return session.currentIndex + 1 >= (session.questionCount ?? 0)
+}
+
+// Étape « Classement » entre la révélation et la suite : ni en Suspense, ni après la dernière question.
+export function hasRankingStep(session: Pick<PublicSession, 'settings' | 'currentIndex' | 'questionCount'>): boolean {
+  return session.settings.suspense !== true && !isLastQuestion(session)
 }
 
 // Numéro (à partir de 1) de la question annoncée pendant le classement : la suivante. null après

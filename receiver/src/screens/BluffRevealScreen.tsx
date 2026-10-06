@@ -1,7 +1,7 @@
 import { bluffRevealTimeline } from '@shared/bluff'
 import type { CSSProperties } from 'react'
 import { BLUFF_REVEAL_WINDOW, bluffRevealLayout } from '@shared/bluffLayout'
-import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
+import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession, RevealedBluffChoice } from '@shared/types'
 
 import { BluffRevealRows, type RevealRow } from '../components/BluffChoices'
@@ -61,7 +61,7 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
     >
       {isTruthShown && <Confetti />}
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
-      <TransitionSteps active={0} withRanking={!session.settings.suspense} />
+      <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} />
       <h1 className="hero-title bluff-reveal-title">{isTruthShown ? strings.bluff.truthTitle : strings.bluff.revealTitle}</h1>
       <div className="bluff-reveal-body">
         <BluffRevealRows rows={rows} layout={layout} players={session.players} />

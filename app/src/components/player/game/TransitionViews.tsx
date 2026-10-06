@@ -25,7 +25,7 @@ export interface WaitInfo {
 export function WaitHeader({ step, wait, withRanking = true }: { step: TransitionStep; wait: WaitInfo; withRanking?: boolean }) {
   return (
     <View style={styles.header}>
-      <TransitionSteps active={step} withRanking={withRanking} />
+      <TransitionSteps active={step} withRanking={withRanking} isLastQuestion={wait.isLastQuestion} />
       <NextQuestionBar timing={wait.timing} isLastQuestion={wait.isLastQuestion} />
     </View>
   );

@@ -33,7 +33,7 @@ function isDemoStatus(value: string | null): value is GameStatus {
 }
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
-// &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie, &players=0 à 8 la vide
+// &capture=1 masque le panneau (captures d'écran) ; &last=1 : dernière question ; &players=20 remplit la partie, &players=0 à 8 la vide
 // (salon).
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
@@ -104,7 +104,9 @@ function DemoGame({ params }: { params: URLSearchParams }) {
     questionLength > 0 && withTeams.currentQuestion
       ? { ...withTeams, currentQuestion: { ...withTeams.currentQuestion, text: demoQuestionText(questionLength) } }
       : withTeams
-  const session = withPlayerLimit(withQuestion, params.get('players'))
+  const limited = withPlayerLimit(withQuestion, params.get('players'))
+  // &last=1 : dernière question de la partie (révélation suivie directement de l'écran de fin).
+  const session = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)

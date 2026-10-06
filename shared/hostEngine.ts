@@ -18,7 +18,7 @@ import {
   type AcceptedParts,
   type ValidationDecisions,
 } from './freeAnswers'
-import { hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS } from './gameFlow'
+import { hasRankingStep, hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS } from './gameFlow'
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
@@ -614,8 +614,8 @@ export type AwaitingNext = 'ranking' | 'nextQuestion' | 'finalRanking'
 // suivante, ou classement final après la dernière question.
 function awaitingNextOf(session: Session): AwaitingNext | null {
   if (!isAwaitingHost(session)) return null
-  // Suspense : pas de classement intermédiaire, la révélation mène à la suite.
-  if (session.status === 'reveal' && !session.settings.suspense) return 'ranking'
+  // Suspense, ou dernière question : pas de classement intermédiaire, la révélation mène à la suite.
+  if (session.status === 'reveal' && hasRankingStep(session)) return 'ranking'
   return afterQuestionTarget(session)
 }
 
@@ -672,7 +672,7 @@ function skipTarget(session: Session): SkipTarget | null {
       // Même chose que « Valider les réponses » avec les décisions automatiques.
       return 'reveal'
     case 'reveal':
-      return session.settings.suspense ? afterQuestionTarget(session) : 'scores'
+      return hasRankingStep(session) ? 'scores' : afterQuestionTarget(session)
     case 'scores':
       return afterQuestionTarget(session)
     default:

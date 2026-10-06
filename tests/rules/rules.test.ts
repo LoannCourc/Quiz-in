@@ -724,7 +724,7 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
     return readSession()
   }
 
-  test('partie complète : lancement, questions, réponses, révélations, classements, fin', async () => {
+  test('partie complète : lancement, questions, réponses, révélations, classements, fin (sans classement après la dernière question)', async () => {
     let session = await seedLobby()
 
     const launch = launchUpdate(session, QUESTIONS.slice(0, 2), Date.now())
@@ -746,11 +746,11 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
       expect(session.answers?.[index]?.[PLAYER]).toMatchObject({ value: 1, correct: true })
       expect(session.players[PLAYER].rank).toBe(1)
 
+      // Après la dernière question : directement la fin, sans classement intermédiaire.
       session = await advance(session, 'reveal')
-      expect(session.status).toBe('scores')
+      expect(session.status).toBe(index + 1 < gameQuestions.length ? 'scores' : 'ended')
     }
 
-    session = await advance(session, 'scores')
     expect(session).toMatchObject({ status: 'ended' })
     expect(session.currentQuestion).toBeUndefined()
     expect(session.reveal).toBeUndefined()

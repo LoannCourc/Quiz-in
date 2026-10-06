@@ -1,6 +1,6 @@
 import { voteProgress } from '@shared/bluff';
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
-import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
+import { hasRankingStep, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
 import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
@@ -158,8 +158,6 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
   const ranked = rankedPlayers(session.players);
   const { currentIndex: index, questionCount } = session;
   const countdown = nextQuestionCountdown(session);
-  // Suspense : ni rang ni étape Classement en cours de partie, seulement les points gagnés.
-  const isSuspense = session.settings.suspense === true;
   const team = teamInfoOf(session, uid);
   const wait: WaitInfo | null = countdown && {
     timing: { phaseStartedAt: countdown.startsAt, phaseEndsAt: countdown.endsAt, serverOffsetMs },
@@ -200,7 +198,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       if (bluffChoices) {
         return (
           <>
-            {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}
+            {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
             <BluffRevealView choices={bluffChoices} result={result} uid={uid} players={session.players} />
             {isAwaitingHost(session) && <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>}
           </>
@@ -208,7 +206,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       }
       return (
         <>
-          {wait && <WaitHeader step={0} wait={wait} withRanking={!isSuspense} />}
+          {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
           <RevealView
             outcome={revealOutcome(result)}
             points={result?.points ?? 0}

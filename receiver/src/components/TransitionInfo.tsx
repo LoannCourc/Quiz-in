@@ -9,10 +9,20 @@ import './TransitionInfo.css'
 export type TransitionStep = 0 | 1 | 2
 
 // Étapes entre deux questions : Révélation, Classement, Question suivante (l'étape en cours en or).
-// Suspense (withRanking faux) : sans l'étape Classement, qui n'a pas lieu.
-export function TransitionSteps({ active, withRanking = true }: { active: TransitionStep; withRanking?: boolean }) {
+// Suspense ou dernière question (withRanking faux) : sans l'étape Classement, qui n'a pas lieu ; dernière
+// question : « Classement final » à la place de « Question suivante ».
+export function TransitionSteps({
+  active,
+  withRanking = true,
+  isLastQuestion = false,
+}: {
+  active: TransitionStep
+  withRanking?: boolean
+  isLastQuestion?: boolean
+}) {
   const activeLabel = strings.transition.steps[active]
-  const steps = withRanking ? strings.transition.steps : strings.transition.steps.filter((_, index) => index !== 1)
+  const labels = isLastQuestion ? [...strings.transition.steps.slice(0, 2), strings.transition.finalStep] : strings.transition.steps
+  const steps = withRanking ? labels : labels.filter((_, index) => index !== 1)
   return (
     <ol className="transition-steps">
       {steps.map((label) => (

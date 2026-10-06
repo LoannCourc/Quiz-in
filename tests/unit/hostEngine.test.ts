@@ -548,7 +548,9 @@ describe('hostControls', () => {
   test('libellé de Passer selon la phase', () => {
     expect(hostControls(makeSession({ status: 'starting' })).skip).toBe('firstQuestion')
     expect(hostControls(questionSession()).skip).toBe('reveal')
-    expect(hostControls(makeSession({ status: 'reveal' })).skip).toBe('scores')
+    expect(hostControls(makeSession({ status: 'reveal', currentIndex: 3, questionCount: 10 })).skip).toBe('scores')
+    // Dernière question : pas de classement intermédiaire, directement le classement final.
+    expect(hostControls(makeSession({ status: 'reveal', currentIndex: 9, questionCount: 10 })).skip).toBe('finalRanking')
     expect(hostControls(makeSession({ status: 'scores', currentIndex: 3, questionCount: 10 })).skip).toBe('nextQuestion')
     expect(hostControls(makeSession({ status: 'scores', currentIndex: 9, questionCount: 10 })).skip).toBe('finalRanking')
   })

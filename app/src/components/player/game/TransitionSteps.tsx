@@ -7,20 +7,24 @@ import { Spacing } from '@/constants/theme';
 export type TransitionStep = 0 | 1 | 2;
 
 // Étapes entre deux questions : Révélation, Classement, Question suivante (l'étape en cours
-// en or). Indication seulement, sans interaction. Suspense (withRanking faux) : sans Classement.
+// en or). Indication seulement, sans interaction. Suspense ou dernière question (withRanking faux) : sans
+// Classement ; dernière question : « Classement final » à la place de « Question suivante ».
 // Étiquettes jamais tronquées : sur un écran trop étroit (ou en grande police), elles passent à la ligne.
 // labels : autres étapes, même présentation (validation de l'hôte : Question, Validation, Révélation).
 export function TransitionSteps({
   active,
   withRanking = true,
+  isLastQuestion = false,
   labels = strings.game.transition.steps,
 }: {
   active: TransitionStep;
   withRanking?: boolean;
+  isLastQuestion?: boolean;
   labels?: readonly string[];
 }) {
   const activeLabel = labels[active];
-  const steps = withRanking ? labels : labels.filter((_, index) => index !== 1);
+  const named = isLastQuestion ? [...labels.slice(0, 2), strings.game.transition.finalStep] : labels;
+  const steps = withRanking ? named : named.filter((_, index) => index !== 1);
   return (
     <View style={styles.row} accessibilityRole="progressbar" accessibilityLabel={activeLabel}>
       {steps.map((label) => {
