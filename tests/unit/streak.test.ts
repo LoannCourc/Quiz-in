@@ -4,7 +4,7 @@ import { QUESTION_DURATION_S } from '../../shared/constants'
 import { replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { bluffRevealTimeline } from '../../shared/bluff'
 import { STREAK_CUE_DELAY_MS, timedCues, VALIDATED_RESULT_DELAY_MS } from '../../shared/sound'
-import { hasStreakBadge, nextStreak, rankingStreakBadges, STREAK_MAX, streakSound } from '../../shared/streak'
+import { extraStreaks, hasStreakBadge, nextStreak, rankingStreakBadges, STREAK_MAX, streakSound } from '../../shared/streak'
 import type { Answer, BluffChoice, PlayerResult, RevealedBluffChoice, Player, PlayerId, Question, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, HOST, makeQuestion, makeSession, OTHER, player, PLAYER, QUESTIONS } from './engineFixtures'
 
@@ -257,5 +257,32 @@ describe('Série : badges du classement de la TV', () => {
     const settings: SessionSettings = { ...CHOICE, teams: true, teamCount: 3 }
     // Meilleurs joueurs : Ana (rose, 5), Ben (cyan, 0 : pas de badge, Céa 3 non affichée), Eva (or, sans série).
     expect(rankingStreakBadges({ players, settings })).toEqual({ a: 5 })
+  })
+})
+
+describe('Série : ligne « Aussi en série »', () => {
+  const ranked = (streaks: number[]): Record<PlayerId, Player> =>
+    Object.fromEntries(streaks.map((streak, index) => [`p${index + 1}`, player(`J${String(index + 1).padStart(2, '0')}`, { rank: index + 1, streak })]))
+
+  test('au-delà de la 5e place, série de 3 et plus, la plus longue d’abord, 3 au plus puis +N', () => {
+    const players = ranked([5, 0, 0, 0, 4, 3, 9, 2, 6, 3, 7])
+    expect(extraStreaks({ players, settings: CHOICE })).toEqual({
+      shown: [{ id: 'p7', streak: 9 }, { id: 'p11', streak: 7 }, { id: 'p9', streak: 6 }],
+      moreCount: 2,
+    })
+  })
+
+  test('personne au-delà de la 5e place : ligne vide ; Suspense : jamais', () => {
+    expect(extraStreaks({ players: ranked([5, 4, 3, 0, 0, 2]), settings: CHOICE })).toEqual({ shown: [], moreCount: 0 })
+    expect(extraStreaks({ players: ranked([0, 0, 0, 0, 0, 8]), settings: { ...CHOICE, suspense: true } })).toEqual({ shown: [], moreCount: 0 })
+  })
+
+  test('Groupe : tous les joueurs en série sauf les meilleurs joueurs affichés', () => {
+    const players: Record<PlayerId, Player> = {
+      a: player('Ana', { rank: 1, streak: 5, team: 'pink' }),
+      b: player('Ben', { rank: 2, streak: 4, team: 'pink' }),
+      c: player('Céa', { rank: 3, streak: 3, team: 'cyan' }),
+    }
+    expect(extraStreaks({ players, settings: { ...CHOICE, teams: true, teamCount: 2 } })).toEqual({ shown: [{ id: 'b', streak: 4 }], moreCount: 0 })
   })
 })

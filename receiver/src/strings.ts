@@ -201,6 +201,11 @@ export const strings = {
   },
   // Série de bonnes réponses d'affilée (spec 18) : badge flamme, lu par les lecteurs d'écran.
   streak: (count: number) => `Série de ${count}`,
+  // Séries des joueurs absents du classement affiché.
+  streakExtra: {
+    label: 'Aussi en série :',
+    more: (count: number) => `+${count}`,
+  },
   // Panneau de mesures (?perf=1, plan de fiabilité) : outil de diagnostic, affiché par-dessus la partie.
   perf: {
     title: 'Mesures de la TV',

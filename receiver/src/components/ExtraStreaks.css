@@ -1,0 +1,52 @@
+/* Ligne « Aussi en série » : discrète, sous le classement ; passe à la ligne entre deux joueurs plutôt que
+   de couper un pseudo. */
+.extra-streaks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.3rem;
+  min-width: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 900;
+  white-space: nowrap;
+  animation: extra-streaks-in 400ms ease-out both;
+}
+
+.extra-streaks .streak-badge {
+  font-size: 0.8em;
+}
+
+.extra-streaks-label {
+  flex: none;
+  color: var(--color-text-muted);
+}
+
+.extra-streak {
+  display: flex;
+  align-items: center;
+  column-gap: 0.35rem;
+}
+
+.extra-streak-avatar {
+  flex: none;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.extra-streaks-more {
+  flex: none;
+  color: var(--color-text-muted);
+}
+
+@keyframes extra-streaks-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

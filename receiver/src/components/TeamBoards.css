@@ -97,6 +97,49 @@
   background: var(--color-surface);
 }
 
+/* 3 équipes et plus : tout un peu plus petit et plus serré (même mise en page). */
+.team-board.is-compact {
+  row-gap: 0.6rem;
+}
+
+.team-board.is-compact .team-rows {
+  row-gap: 0.4rem;
+}
+
+.team-board.is-compact .team-row {
+  font-size: 1.2rem;
+}
+
+.team-board.is-compact .team-row-rank {
+  font-size: 1.6rem;
+}
+
+.team-board.is-compact .team-row .team-tile {
+  font-size: 1.1rem;
+}
+
+.team-board.is-compact .team-row-score {
+  font-size: 1.2rem;
+}
+
+.team-board.is-compact .team-row-track {
+  height: 1rem;
+}
+
+.team-board.is-compact .team-best-avatar {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.1rem;
+}
+
+.team-board.is-compact .team-best-label {
+  font-size: 0.8rem;
+}
+
+.team-board.is-compact .team-best-name {
+  font-size: 1rem;
+}
+
 /* Barre animée en largeur par transform (animation légère, sans recalcul de la mise en page). */
 .team-row-bar {
   display: block;

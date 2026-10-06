@@ -4,6 +4,7 @@ import { scoresEntryMs, scoresRowCount } from '@shared/rankingTimeline'
 import { rankingStreakBadges } from '@shared/streak'
 import type { PlayerId, PublicSession } from '@shared/types'
 
+import { ExtraStreaks } from '../components/ExtraStreaks'
 import { GameHeader } from '../components/GameHeader'
 import { Podium } from '../components/Podium'
 import { RankingList } from '../components/RankingList'
@@ -70,7 +71,10 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
             <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
           </div>
-          <TeamRankingBoard session={session} delays={delays} streaks={streaks} />
+          <div className="scores-side">
+            <TeamRankingBoard session={session} delays={delays} streaks={streaks} />
+            <ExtraStreaks session={session} delay={delays[0]} />
+          </div>
         </>
       ) : (
         <>
@@ -80,7 +84,10 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
           </div>
           <div className="scores-body">
             <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} streaks={streaks} />
-            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} streaks={streaks} />
+            <div className="scores-side">
+              <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} streaks={streaks} />
+              <ExtraStreaks session={session} delay={delays[0]} />
+            </div>
           </div>
         </>
       )}

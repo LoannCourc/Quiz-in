@@ -61,7 +61,8 @@ export function TeamRankingBoard({
   const rows = teamRanking(session)
   const maxScore = Math.max(1, ...rows.map((row) => row.score))
   return (
-    <div className="team-board">
+    // 3 équipes et plus : lignes resserrées, pour que le compte à rebours et « Aussi en série » tiennent dessous.
+    <div className={rows.length >= COMPACT_TEAM_COUNT ? 'team-board is-compact' : 'team-board'}>
       <ol className="team-rows">
         {rows.map((row, position) => (
           <li key={row.team} className={`team-row team-${row.team}`} style={{ animationDelay: delays?.[position] }}>
@@ -90,6 +91,8 @@ export function TeamRankingBoard({
     </div>
   )
 }
+
+const COMPACT_TEAM_COUNT = 3
 
 // Ordre d'affichage du podium, de gauche à droite : 2e, 1er, 3e (maquette G3).
 const PODIUM_ORDER = [1, 0, 2]

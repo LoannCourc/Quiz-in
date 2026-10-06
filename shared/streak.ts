@@ -45,18 +45,44 @@ export function streakSound(players: Record<PlayerId, Pick<Player, 'streak'>>, r
 // Groupe, le meilleur joueur de chaque équipe) dont la série vaut au moins 3. Aucun en Suspense : l'ordre
 // des séries trahirait le classement caché. L'écran du classement n'affiche que ce que renvoie cette
 // fonction.
-export function rankingStreakBadges(session: Pick<PublicSession, 'players' | 'settings' | 'teams'>): Record<PlayerId, number> {
+type RankingSession = Pick<PublicSession, 'players' | 'settings' | 'teams'>
+
+// Joueurs affichés dans le classement intermédiaire : les 5 premiers ; en Groupe, le meilleur joueur de
+// chaque équipe.
+function rankingShownIds(session: RankingSession): PlayerId[] {
+  if (session.settings.teams) return teamRanking(session).flatMap((row) => (row.bestPlayerId ? [row.bestPlayerId] : []))
+  return Object.entries(session.players)
+    .sort(([, a], [, b]) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'))
+    .slice(0, SCORES_TOP_COUNT)
+    .map(([id]) => id)
+}
+
+export function rankingStreakBadges(session: RankingSession): Record<PlayerId, number> {
   if (session.settings.suspense) return {}
-  const shown = session.settings.teams
-    ? teamRanking(session).flatMap((row) => (row.bestPlayerId ? [row.bestPlayerId] : []))
-    : Object.entries(session.players)
-        .sort(([, a], [, b]) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'))
-        .slice(0, SCORES_TOP_COUNT)
-        .map(([id]) => id)
   const badges: Record<PlayerId, number> = {}
-  for (const id of shown) {
+  for (const id of rankingShownIds(session)) {
     const streak = session.players[id]?.streak
     if (hasStreakBadge(streak)) badges[id] = streak ?? 0
   }
   return badges
+}
+
+// Ligne « Aussi en série » sous le classement intermédiaire : les autres joueurs avec une série de 3 et
+// plus (au-delà de la 5e place ; en Groupe, hors meilleurs joueurs), la plus longue d'abord, 3 au plus,
+// puis le nombre de ceux qui ne tiennent pas. Rien en Suspense.
+export const EXTRA_STREAKS_SHOWN = 3
+
+export interface ExtraStreaks {
+  shown: { id: PlayerId; streak: number }[]
+  moreCount: number
+}
+
+export function extraStreaks(session: RankingSession): ExtraStreaks {
+  if (session.settings.suspense) return { shown: [], moreCount: 0 }
+  const inRanking = new Set(rankingShownIds(session))
+  const others = Object.entries(session.players)
+    .filter(([id, player]) => !inRanking.has(id) && hasStreakBadge(player.streak))
+    .sort(([, a], [, b]) => (b.streak ?? 0) - (a.streak ?? 0) || a.name.localeCompare(b.name, 'fr'))
+    .map(([id, player]) => ({ id, streak: player.streak ?? 0 }))
+  return { shown: others.slice(0, EXTRA_STREAKS_SHOWN), moreCount: Math.max(0, others.length - EXTRA_STREAKS_SHOWN) }
 }
