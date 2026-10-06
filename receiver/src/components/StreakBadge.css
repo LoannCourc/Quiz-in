@@ -1,0 +1,71 @@
+/* Badge flamme (spec 18) : une goutte rose, une goutte or plus petite dedans, le nombre à l'encre.
+   Goutte = carré arrondi sauf un coin, tourné de 45° pour que la pointe monte. Pas d'ombre floue. */
+.streak-badge {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 1.5em;
+  height: 1.75em;
+  vertical-align: middle;
+  animation: streak-pop 450ms ease-out both;
+  animation-delay: 300ms;
+}
+
+.streak-flame {
+  position: absolute;
+  left: 50%;
+  border-radius: 50% 0 50% 50%;
+  transform: rotate(-45deg);
+}
+
+.streak-flame-outer {
+  bottom: 0.08em;
+  width: 1.22em;
+  height: 1.22em;
+  margin-left: -0.61em;
+  background: var(--streak-outer);
+  box-shadow: var(--shadow-hard);
+}
+
+.streak-flame-inner {
+  bottom: 0.2em;
+  width: 0.88em;
+  height: 0.88em;
+  margin-left: -0.44em;
+  background: var(--streak-inner);
+}
+
+.streak-count {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.3em;
+  color: var(--on-streak);
+  font-family: var(--font-display);
+  font-size: 0.62em;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.streak-count.is-wide {
+  bottom: 0.45em;
+  font-size: 0.5em;
+  letter-spacing: -0.04em;
+}
+
+/* Apparition : la flamme gonfle puis se pose (transform et opacity seulement). */
+@keyframes streak-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

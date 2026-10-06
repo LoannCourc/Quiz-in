@@ -13,8 +13,18 @@
 }
 
 .podium-avatar {
+  position: relative;
   font-size: 3.2rem;
   line-height: 1.1;
+}
+
+/* Badge de série posé au coin haut droit de l'avatar, à la taille du texte de la ligne. */
+.podium-streak {
+  position: absolute;
+  top: -0.2rem;
+  left: 85%;
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .podium-name {

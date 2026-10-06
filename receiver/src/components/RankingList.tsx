@@ -2,6 +2,7 @@ import type { PlayerId } from '@shared/types'
 
 import type { RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
+import { StreakBadge } from './StreakBadge'
 import './RankingList.css'
 
 interface RankingListProps {
@@ -15,6 +16,9 @@ interface RankingListProps {
   // Fin de partie (spec 17) : les avatars rebondissent, de moins en moins fort avec le rang ; les
   // derniers se balancent lentement (EndDance.css).
   dance?: boolean
+  // Classement en cours de partie (spec 18) : badge flamme des séries de 3 et plus, au coin de l'avatar
+  // (le pseudo garde toute sa place).
+  showStreaks?: boolean
 }
 
 // Énergie de l'avatar selon la position dans la liste : 1 (fort), 2 (moyen), 3 (balancement lent).
@@ -26,10 +30,10 @@ function energyOf(position: number, count: number): 1 | 2 | 3 {
 // Décalage des rebonds d'une ligne à l'autre, pour qu'ils ne battent pas tous ensemble.
 const DANCE_OFFSET_S = 0.17
 
-export function RankingList({ players, gainedPoints, columns = 1, delays, dance = false }: RankingListProps) {
+export function RankingList({ players, gainedPoints, columns = 1, delays, dance = false, showStreaks = false }: RankingListProps) {
   return (
     <ol
-      className={`ranking ranking-columns-${columns}`}
+      className={`ranking ranking-columns-${columns}${showStreaks ? ' ranking-with-streaks' : ''}`}
       // Deux colonnes : la première se remplit d'abord, autant de lignes que nécessaire.
       style={columns === 2 ? { gridTemplateRows: `repeat(${Math.ceil(players.length / 2)}, auto)` } : undefined}>
       {players.map((player, position) => {
@@ -44,6 +48,11 @@ export function RankingList({ players, gainedPoints, columns = 1, delays, dance 
               className={dance ? `ranking-avatar energy-${energyOf(position, players.length)}` : 'ranking-avatar'}
               style={dance ? { animationDelay: `${-(position % 6) * DANCE_OFFSET_S}s` } : undefined}>
               {player.avatar}
+              {showStreaks && (
+                <span className="ranking-streak">
+                  <StreakBadge streak={player.streak} delay={delays?.[position]} />
+                </span>
+              )}
             </span>
             <span className="ranking-name">{player.name}</span>
             {gainedPoints && (

@@ -47,8 +47,21 @@
 }
 
 .ranking-avatar {
+  position: relative;
   font-size: 1.2em;
   line-height: 1;
+}
+
+/* Séries affichées : colonne de l'avatar élargie pour le badge, posé à cheval sur son coin haut droit. */
+.ranking-with-streaks .ranking-row {
+  grid-template-columns: 2.4rem 4.4rem 1fr auto auto;
+}
+
+.ranking-streak {
+  position: absolute;
+  top: -0.5em;
+  left: 62%;
+  font-size: 0.72em;
 }
 
 .ranking-name {

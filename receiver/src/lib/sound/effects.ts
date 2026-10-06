@@ -327,6 +327,21 @@ const SYNTHS: Record<SoundEffectId, Synth> = {
     arpeggio(context, out, [C6, E6, G6, C6 * 2], at + 0.08, 0.05, 'sine', 0.3)
     return 0.4
   },
+  // Série de 3 : la flamme s'allume (souffle qui monte), puis trois notes vives qui grimpent.
+  streak: (context, out, at) => {
+    whoosh(context, out, at, 0.3, 0.45)
+    arpeggio(context, out, [G5, C6, E6], at + 0.22, 0.07, 'triangle', 0.4)
+    tone(context, out, { type: 'sine', from: G6, at: at + 0.43, duration: 0.25, peak: 0.2 })
+    return 0.68
+  },
+  // Série de 5 : même allumage, plus large et plus long, sur un coup grave et un accord de cuivres.
+  streakBig: (context, out, at) => {
+    whoosh(context, out, at, 0.4, 0.6)
+    tone(context, out, { type: 'sine', from: 150, to: 50, at: at + 0.32, duration: 0.25, peak: 0.5, attack: 0.004 })
+    brass(context, out, [C5, E5, G5, C6], at + 0.32, 0.6, 0.22)
+    arpeggio(context, out, [C6, E6, G6, C6 * 2], at + 0.36, 0.06, 'triangle', 0.35)
+    return 0.95
+  },
   // Rejouer : souffle qui monte, puis petit « ping ».
   replay: (context, out, at) => {
     whoosh(context, out, at, 0.4, 0.4)

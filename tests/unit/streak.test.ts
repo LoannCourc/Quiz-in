@@ -2,8 +2,10 @@ import { describe, expect, test } from 'vitest'
 
 import { QUESTION_DURATION_S } from '../../shared/constants'
 import { replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
-import { nextStreak, STREAK_MAX } from '../../shared/streak'
-import type { Answer, BluffChoice, Player, PlayerId, Question, Session, SessionSettings } from '../../shared/types'
+import { bluffRevealTimeline } from '../../shared/bluff'
+import { STREAK_CUE_DELAY_MS, timedCues, VALIDATED_RESULT_DELAY_MS } from '../../shared/sound'
+import { hasStreakBadge, nextStreak, STREAK_MAX, streakSound } from '../../shared/streak'
+import type { Answer, BluffChoice, PlayerResult, RevealedBluffChoice, Player, PlayerId, Question, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, HOST, makeQuestion, makeSession, OTHER, player, PLAYER, QUESTIONS } from './engineFixtures'
 
 const NOW = 2_000_000
@@ -168,5 +170,65 @@ describe('Série : écrite par le moteur à la révélation', () => {
     const replayed = apply(ended, replayUpdate(ended, NOW))
     expect(replayed.players[PLAYER].streak).toBeUndefined()
     expect(replayed.players[OTHER].streak).toBeUndefined()
+  })
+})
+
+describe('Série : badge et son de la TV', () => {
+  const right: PlayerResult = { correct: true, points: 100 }
+  const wrong: PlayerResult = { correct: false, points: 0 }
+
+  test('badge à partir de 3', () => {
+    expect(hasStreakBadge(undefined)).toBe(false)
+    expect(hasStreakBadge(2)).toBe(false)
+    expect(hasStreakBadge(3)).toBe(true)
+  })
+
+  test('son à 3 ou 5 tout juste, le plus fort l’emporte ; jamais pour une série gardée sans bonne réponse', () => {
+    expect(streakSound({ a: { streak: 3 } }, { a: right })).toBe('streak')
+    expect(streakSound({ a: { streak: 3 }, b: { streak: 5 } }, { a: right, b: right })).toBe('streakBig')
+    expect(streakSound({ a: { streak: 4 }, b: { streak: 6 } }, { a: right, b: right })).toBeNull()
+    // À moitié juste ou absent : la série reste à 3 sans son.
+    expect(streakSound({ a: { streak: 3 } }, { a: { correct: false, points: 50, partial: true } })).toBeNull()
+    expect(streakSound({ a: { streak: 3 } }, {})).toBeNull()
+    expect(streakSound({ a: { streak: 3 } }, { a: wrong })).toBeNull()
+  })
+
+  const streakCueOf = (session: Session) => timedCues(session).find((cue) => cue.id === 'streak' || cue.id === 'streakBig')
+
+  test('une fois par révélation, 1,2 s après la fanfare ; après le « validé » en Contrôle', () => {
+    const reveal = makeSession({
+      status: 'reveal',
+      settings: CHOICE,
+      phaseStartedAt: NOW,
+      players: { [PLAYER]: player('Léa', { streak: 3 }), [OTHER]: player('Tom', { streak: 3 }) },
+      reveal: { correctAnswer: 'B', stats: { counts: [0, 2] }, results: { [PLAYER]: right, [OTHER]: right } },
+    })
+    expect(timedCues(reveal).filter((cue) => cue.id === 'streak')).toEqual([{ id: 'streak', at: NOW + STREAK_CUE_DELAY_MS }])
+    const control = { ...reveal, settings: CONTROL }
+    expect(streakCueOf(control)?.at).toBe(NOW + VALIDATED_RESULT_DELAY_MS + STREAK_CUE_DELAY_MS)
+  })
+
+  test('Bluff : après la vraie réponse', () => {
+    const choices: RevealedBluffChoice[] = [{ text: 'Faux', kind: 'decoy', voters: [] }, { text: 'Vrai', kind: 'truth', voters: [PLAYER] }]
+    const reveal = makeSession({
+      status: 'reveal',
+      settings: BLUFF,
+      phaseStartedAt: NOW,
+      players: { [PLAYER]: player('Léa', { streak: 5 }) },
+      reveal: { correctAnswer: 'Vrai', stats: { bluffChoices: choices }, results: { [PLAYER]: right } },
+    })
+    expect(streakCueOf(reveal)).toEqual({ id: 'streakBig', at: NOW + bluffRevealTimeline(choices).truthAtMs + STREAK_CUE_DELAY_MS })
+  })
+
+  test('Suspense : le son joue aussi (il ne dit ni qui ni quel rang) ; pause : aucun son programmé', () => {
+    const reveal = makeSession({
+      status: 'reveal',
+      settings: { ...CHOICE, suspense: true },
+      phaseStartedAt: NOW,
+      players: { [PLAYER]: player('Léa', { streak: 3 }) },
+      reveal: { correctAnswer: 'B', stats: { counts: [0, 1] }, results: { [PLAYER]: right } },
+    })
+    expect(streakCueOf(reveal)?.id).toBe('streak')
+    expect(streakCueOf({ ...reveal, status: 'paused', pausedFrom: 'reveal' })).toBeUndefined()
   })
 })

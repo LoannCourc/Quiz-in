@@ -197,6 +197,8 @@ export const strings = {
     compactPoints: (points: number) => `${points}`,
     gained: (points: number) => `+${points}`,
   },
+  // Série de bonnes réponses d'affilée (spec 18) : badge flamme, lu par les lecteurs d'écran.
+  streak: (count: number) => `Série de ${count}`,
   // Panneau de mesures (?perf=1, plan de fiabilité) : outil de diagnostic, affiché par-dessus la partie.
   perf: {
     title: 'Mesures de la TV',

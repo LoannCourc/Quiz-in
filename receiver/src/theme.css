@@ -55,6 +55,9 @@
   --podium-1: var(--gold);
   --podium-2: var(--cyan);
   --podium-3: var(--pink-light);
+  --streak-outer: var(--pink);
+  --streak-inner: var(--gold);
+  --on-streak: var(--ink);
   --ring: var(--pink);
   --ring-track: rgba(201, 184, 255, 0.35);
   --ink-surface: var(--ink);

@@ -4,6 +4,7 @@ import type { Player, PublicSession } from '@shared/types'
 import { Avatar } from './Avatar'
 import { hasAnswered, sortByRank, type RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
+import { StreakBadge } from './StreakBadge'
 import { TeamSymbol, TeamTile } from './TeamSymbol'
 import './TeamBoards.css'
 
@@ -30,7 +31,8 @@ export function TeamAvatarGroups({ session, players }: { session: PublicSession;
   )
 }
 
-function BestPlayer({ player }: { player: Player | undefined }) {
+// showStreaks : classement en cours de partie (spec 18), badge flamme du meilleur joueur (série individuelle).
+function BestPlayer({ player, showStreaks = false, delay }: { player: Player | undefined; showStreaks?: boolean; delay?: string }) {
   if (!player) return <span />
   return (
     <span className="team-best">
@@ -39,6 +41,7 @@ function BestPlayer({ player }: { player: Player | undefined }) {
         <span className="team-best-label">{strings.teams.bestPlayer}</span>
         <span className="team-best-name">{strings.teams.bestPlayerScore(player.name, player.score ?? 0)}</span>
       </span>
+      {showStreaks && <StreakBadge streak={player.streak} delay={delay} />}
     </span>
   )
 }
@@ -46,7 +49,7 @@ function BestPlayer({ player }: { player: Player | undefined }) {
 // Classement des équipes entre deux questions (G3) : rang, pastille, barre proportionnelle au score,
 // moyenne, meilleur joueur de l'équipe.
 // delays : délai CSS d'arrivée de chaque ligne, par position (0 : première équipe).
-export function TeamRankingBoard({ session, delays }: { session: PublicSession; delays?: readonly string[] }) {
+export function TeamRankingBoard({ session, delays, showStreaks = false }: { session: PublicSession; delays?: readonly string[]; showStreaks?: boolean }) {
   const rows = teamRanking(session)
   const maxScore = Math.max(1, ...rows.map((row) => row.score))
   return (
@@ -67,7 +70,11 @@ export function TeamRankingBoard({ session, delays }: { session: PublicSession; 
                 <span className="team-row-bar" style={{ transform: `scaleX(${row.score / maxScore})` }} />
               </span>
             </span>
-            <BestPlayer player={row.bestPlayerId ? session.players[row.bestPlayerId] : undefined} />
+            <BestPlayer
+              player={row.bestPlayerId ? session.players[row.bestPlayerId] : undefined}
+              showStreaks={showStreaks}
+              delay={delays?.[position]}
+            />
           </li>
         ))}
       </ol>

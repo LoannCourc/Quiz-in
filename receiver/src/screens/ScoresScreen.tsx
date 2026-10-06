@@ -55,6 +55,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
     gainedPoints[playerId] = result.points
   }
   const countdown = nextQuestionCountdown(session)
+  // Séries (spec 18) : jamais en Suspense, où rien ne doit trahir le classement caché.
+  const showStreaks = !session.settings.suspense
 
   return (
     <main className="screen scores">
@@ -67,7 +69,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
             <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
           </div>
-          <TeamRankingBoard session={session} delays={delays} />
+          <TeamRankingBoard session={session} delays={delays} showStreaks={showStreaks} />
         </>
       ) : (
         <>
@@ -76,8 +78,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
           </div>
           <div className="scores-body">
-            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} />
-            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} />
+            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} showStreaks={showStreaks} />
+            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} showStreaks={showStreaks} />
           </div>
         </>
       )}

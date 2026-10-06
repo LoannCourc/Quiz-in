@@ -1,4 +1,5 @@
 import { isBlindTestAsk } from '@shared/quizValidation'
+import { STREAK_MAX } from '@shared/streak'
 import type { AnswerMode, GameStatus, PublicSession } from '@shared/types'
 import { useState } from 'react'
 
@@ -18,6 +19,7 @@ import {
   demoExtraPlayerCount,
   toDemoBlindTest,
   withDemoBluff,
+  withDemoStreaks,
   withDemoTeams,
   withLongOptions,
   type DemoOptions,
@@ -41,6 +43,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
 // &ask=title|artist|both : blind test en Réponse libre (ce qu'il faut écrire) ; &answered=10 : réponses reçues ;
 // &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes ; &qlen=140 : énoncé de 140 caractères.
+// &streaks=5,3,0,4 : séries des joueurs dans l'ordre du classement (badge flamme à partir de 3 ; son à la
+// révélation pour une série de 3 ou 5 tout juste).
 // &mode=bluff : Bluff (status=question : écriture, status=vote, status=reveal) ; &choices=21 : nombre de
 // choix (avec &players=20) ; &long=1 : phrases de 100 caractères.
 function initialOptions(params: URLSearchParams): DemoOptions {
@@ -107,7 +111,8 @@ function DemoGame({ params }: { params: URLSearchParams }) {
       : withTeams
   const limited = withUnassigned(withPlayerLimit(withQuestion, params.get('players')), Number(params.get('unassigned')) || 0)
   // &last=1 : dernière question de la partie (révélation suivie directement de l'écran de fin).
-  const session = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
+  const lastQuestion = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
+  const session = withDemoStreaks(lastQuestion, demoStreaks(params.get('streaks')))
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
@@ -178,6 +183,12 @@ function withPlayerLimit(session: PublicSession, requested: string | null): Publ
   const entries = Object.entries(session.players)
   const count = requested === null ? entries.length : Number(requested)
   return count < entries.length ? { ...session, players: Object.fromEntries(entries.slice(0, Math.max(0, count))) } : session
+}
+
+// &streaks=5,3,0,4 : liste de séries (entiers de 0 à 50), une par joueur dans l'ordre du classement.
+function demoStreaks(value: string | null): number[] {
+  if (!value) return []
+  return value.split(',').map((item) => Math.min(STREAK_MAX, Math.max(0, Math.round(Number(item)) || 0)))
 }
 
 // &teamcount=2 à 4 : nombre d'équipes de la démo (3 par défaut).

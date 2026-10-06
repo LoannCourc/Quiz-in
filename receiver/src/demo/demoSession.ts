@@ -398,3 +398,18 @@ export function withDemoBluff(session: PublicSession, { choiceCount, long, answe
     votedBy: session.status === 'vote' ? { [index]: acted } : undefined,
   }
 }
+
+// Séries (?streaks=5,3,0,4) : séries des joueurs dans l'ordre du classement (spec 18). Un joueur avec une
+// série a répondu juste à la question en cours : la révélation joue alors le son d'une série de 3 ou 5.
+export function withDemoStreaks(session: PublicSession, streaks: readonly number[]): PublicSession {
+  if (streaks.length === 0) return session
+  const ranked = Object.entries(session.players).sort(([, a], [, b]) => a.rank - b.rank)
+  const players = { ...session.players }
+  const results = { ...session.reveal?.results }
+  ranked.forEach(([id, player], position) => {
+    const streak = streaks[position] ?? 0
+    players[id] = { ...player, streak }
+    if (streak > 0) results[id] = { points: results[id]?.points ?? 100, correct: true }
+  })
+  return { ...session, players, reveal: session.reveal ? { ...session.reveal, results } : undefined }
+}

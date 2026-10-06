@@ -2,6 +2,7 @@ import { bluffRevealTimeline } from './bluff'
 import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
+import { streakSound } from './streak'
 import { teamDrawTimeline } from './teamDraw'
 import type { PlayerId, PublicSession, SoundSettings } from './types'
 
@@ -48,6 +49,8 @@ export const TRAPPED_MIN_STEP_MS = 900
 export const SUSPENSE_DRUMROLL_MS = 3_000
 // Contrôle : la fanfare (ou le « raté ») suit de peu le « validé ».
 export const VALIDATED_RESULT_DELAY_MS = 500
+// Série (spec 18) : le son de série suit le son du résultat (fanfare, ou vraie réponse au Bluff).
+export const STREAK_CUE_DELAY_MS = 1_200
 
 // Effets synthétisés par la TV. volume : relatif au canal des effets ; ducks : baisse la musique.
 // Table reprise telle quelle dans docs/sons.md.
@@ -81,6 +84,8 @@ export type SoundEffectId =
   | 'podiumSecond'
   | 'replay'
   | 'teamsValidated'
+  | 'streak'
+  | 'streakBig'
 
 export interface SoundEffectSpec {
   volume: number
@@ -117,6 +122,8 @@ export const SOUND_EFFECTS: Record<SoundEffectId, SoundEffectSpec> = {
   podiumSecond: { volume: 0.8, ducks: true },
   replay: { volume: 0.6, ducks: false },
   teamsValidated: { volume: 0.7, ducks: false },
+  streak: { volume: 0.75, ducks: true },
+  streakBig: { volume: 1, ducks: true },
 }
 
 export const SOUND_EFFECT_IDS = Object.keys(SOUND_EFFECTS) as readonly SoundEffectId[]
@@ -281,7 +288,7 @@ export function timedCues(session: PublicSession): TimedCue[] {
       if (end <= 0 || isBlindTestQuestion(session) || isEveryoneDone(session)) return []
       return [...beforeEnd(end, CLOCK_TICK_COUNT, 'clockTick').filter((cue) => cue.at >= start), { id: 'buzzer', at: end }]
     case 'reveal':
-      return session.reveal?.stats.bluffChoices ? bluffRevealCues(session) : controlResultCues(session)
+      return [...(session.reveal?.stats.bluffChoices ? bluffRevealCues(session) : controlResultCues(session)), ...streakCues(session)]
     case 'scores':
       return scoresCues(session)
     case 'ended':
@@ -310,6 +317,22 @@ function beforeEnd(end: number, count: number, id: SoundEffectId): TimedCue[] {
 function controlResultCues(session: PublicSession): TimedCue[] {
   const cue = session.settings.control ? resultCue(session) : null
   return cue ? [{ id: cue, at: session.phaseStartedAt + VALIDATED_RESULT_DELAY_MS }] : []
+}
+
+// Série : un joueur vient d'atteindre 3 (ou 5) ; une fois par question, après le son du résultat. Joué
+// aussi en Suspense : il ne dit ni qui, ni quel rang.
+function streakCues(session: PublicSession): TimedCue[] {
+  const id = streakSound(session.players, session.reveal?.results)
+  return id ? [{ id, at: resultSoundAt(session) + STREAK_CUE_DELAY_MS }] : []
+}
+
+// Heure du son du résultat de la révélation : à l'entrée, après le « validé » du Contrôle, ou à la vraie
+// réponse du Bluff.
+function resultSoundAt(session: PublicSession): number {
+  const start = session.phaseStartedAt
+  const choices = session.reveal?.stats.bluffChoices
+  if (choices) return start + bluffRevealTimeline(choices).truthAtMs
+  return session.settings.control ? start + VALIDATED_RESULT_DELAY_MS : start
 }
 
 function bluffRevealCues(session: PublicSession): TimedCue[] {

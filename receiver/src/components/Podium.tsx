@@ -1,5 +1,6 @@
 import type { RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
+import { StreakBadge } from './StreakBadge'
 import './Podium.css'
 
 // Ordre d'affichage de gauche à droite : 3e, 1er, 2e (maquette). Les égalités gardent leur rang.
@@ -12,10 +13,12 @@ interface PodiumProps {
   // Fin de partie (spec 17) : les avatars sautent selon leur place, couronne et projecteur sur le 1er,
   // marches qui pulsent au rythme des sauts (EndDance.css).
   dance?: boolean
+  // Classement en cours de partie (spec 18) : badge flamme des séries de 3 et plus, au coin de l'avatar.
+  showStreaks?: boolean
 }
 
 // Les trois premiers joueurs du classement trié ; marche colorée selon la position.
-export function Podium({ players, delays, dance = false }: PodiumProps) {
+export function Podium({ players, delays, dance = false, showStreaks = false }: PodiumProps) {
   return (
     <section className={dance ? 'podium is-dancing' : 'podium'}>
       {DISPLAY_ORDER.map((position) => {
@@ -27,6 +30,11 @@ export function Podium({ players, delays, dance = false }: PodiumProps) {
             <span className="podium-avatar">
               {dance && position === 0 && <Crown />}
               {player.avatar}
+              {showStreaks && (
+                <span className="podium-streak">
+                  <StreakBadge streak={player.streak} delay={delays?.[position]} />
+                </span>
+              )}
             </span>
             <span className="podium-name">{player.name}</span>
             <div className="podium-block">

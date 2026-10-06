@@ -35,6 +35,8 @@ Arrivée du classement et du podium : calendrier commun à l'écran et aux sons,
 | `cardFlip` | « flip » | révélation du Bluff : chaque fausse proposition retournée (toutes les 2 s, ou plus vite avec beaucoup de propositions : cascade toutes les 0,4 s à partir de 12 ; même calendrier que l'écran : `bluffRevealTimeline`) | 0,6 | non |
 | `trapped` | « pouet-pouet » de cuivres graves | 350 ms après une carte retournée qui a des votants, seulement si les cartes se suivent à 0,9 s ou plus (`TRAPPED_MIN_STEP_MS`) : à la vitesse de la cascade, il déborderait sur la carte suivante | 0,7 | oui |
 | `bluffTruth` | accord éclatant et scintillement | révélation du Bluff : la vraie réponse | 0,9 | oui |
+| `streak` | souffle qui s'allume, puis trois notes vives qui grimpent | révélation : un joueur qui vient de répondre juste atteint tout juste une série de 3 (spec 18) ; 1,2 s après le son du résultat (fanfare, « validé » + 500 ms en Contrôle, vraie réponse au Bluff) ; une fois par question, joué aussi en Suspense | 0,75 | oui |
+| `streakBig` | même allumage, plus large : coup grave, cuivres, arpège | comme `streak`, pour une série de 5 tout juste (l'emporte sur `streak`) | 1 | oui |
 | `pointsUp` | notes qui montent vite | entrée dans `scores` | 0,5 | non |
 | `rowEnter` | note pincée, de plus en plus aiguë (gamme majeure) | `scores` : chaque ligne qui arrive, de la dernière à la première, à 400 ms puis toutes les 250 ms (5 joueurs au plus, ou les équipes) | 0,45 | non |
 | `rankShuffle` | glissement | 400 ms après l'arrivée de la première place, si un rang de joueur a changé (pas en Groupe) | 0,5 | non |
@@ -46,7 +48,7 @@ Arrivée du classement et du podium : calendrier commun à l'écran et aux sons,
 | `paused` | deux notes qui descendent | passage à `paused` | 0,7 | non |
 | `resumed` | deux notes qui montent | sortie de `paused` (sauf vers `ended`) | 0,7 | non |
 
-Niveaux mesurés par l'auto-test (`?sounds=1&selftest=1`, volume 100) : crête de 0,12 à 0,73, aucun effet saturé.
+Niveaux mesurés par l'auto-test (`?sounds=1&selftest=1`, volume 100) : crête de 0,12 à 0,73, aucun effet saturé (`streak` 0,23, `streakBig` 0,68).
 
 **Équipes validées** (`teamsValidated`, clic de verrou puis scintillement qui monte, volume 0,7, sans ducking) : « Valider les équipes » publie `teamsValidatedAt` (heure, écrit par l'hôte seul, lisible par tous, `teamsValidatedUpdate` de `shared/teams.ts`, seulement avec des équipes complètes) ; la TV joue le son à chaque nouvelle validation récente.
 
