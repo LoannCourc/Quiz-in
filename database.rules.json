@@ -214,6 +214,13 @@
           "volume": { ".validate": "newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 0 && newData.val() <= 100" },
           "$other": { ".validate": false }
         },
+        "tvPresence": {
+          ".read": "auth != null",
+          "$tvUid": {
+            ".write": "auth != null && auth.uid == $tvUid",
+            ".validate": "newData.val() == true && newData.parent().parent().child('hostUid').val() != $tvUid && !newData.parent().parent().child('players/' + $tvUid).exists()"
+          }
+        },
         "bluffs": {
           "$index": {
             "$uid": {

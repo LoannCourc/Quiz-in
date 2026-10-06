@@ -1373,3 +1373,62 @@ describe('Bluff : hôte qui joue, 2 joueurs', () => {
     expect(stamps.length).toBeGreaterThanOrEqual(1)
   })
 })
+
+describe('Présence de la TV (tvPresence)', () => {
+  const TV = 'tv-uid'
+  const presence = (uid: string) => `${SESSION}/tvPresence/${uid}`
+
+  test('la TV écrit puis retire son propre nœud ; lecture par les joueurs', async () => {
+    await seedSession()
+    await assertSucceeds(db(TV).ref(presence(TV)).set(true))
+    expect((await db(PLAYER).ref(`${SESSION}/tvPresence`).once('value')).val()).toEqual({ [TV]: true })
+    await assertSucceeds(db(TV).ref(presence(TV)).remove())
+  })
+
+  test('retrait automatique à la déconnexion (onDisconnect) autorisé', async () => {
+    await seedSession()
+    await assertSucceeds(db(TV).ref(presence(TV)).onDisconnect().remove())
+  })
+
+  test("écriture du nœud d'une autre TV refusée, y compris son retrait", async () => {
+    await seedSession({ tvPresence: { [OTHER]: true } })
+    await assertFails(db(TV).ref(presence(OTHER)).set(true))
+    await assertFails(db(TV).ref(presence(OTHER)).remove())
+    await assertFails(db(PLAYER).ref(`${SESSION}/tvPresence`).set({ [PLAYER]: true }))
+  })
+
+  test('un joueur inscrit ou l’hôte ne se déclarent pas TV', async () => {
+    await seedSession()
+    await assertFails(db(PLAYER).ref(presence(PLAYER)).set(true))
+    await assertFails(db(HOST).ref(presence(HOST)).set(true))
+    await assertFails(db(HOST).ref(presence(TV)).set(false))
+    // L'hôte, autorité de la partie, peut écrire tout nœud valide de sa session (comme partout ailleurs).
+    await assertSucceeds(db(HOST).ref(presence(TV)).set(true))
+  })
+
+  test('valeur autre que true refusée ; non connecté refusé', async () => {
+    await seedSession()
+    await assertFails(db(TV).ref(presence(TV)).set('oui'))
+    await assertFails(db(TV).ref(presence(TV)).set({ since: 1 }))
+    await assertFails(db(null).ref(presence(TV)).set(true))
+    await assertFails(db(null).ref(`${SESSION}/tvPresence`).once('value'))
+  })
+
+  test('pas de présence sur une partie inexistante (la session n’est pas recréée)', async () => {
+    await assertFails(db(TV).ref(presence(TV)).set(true))
+    expect(await readAsAdmin(SESSION)).toBeNull()
+  })
+
+  test('partie supprimée par l’hôte : le retrait tardif de la TV reste accepté', async () => {
+    await seedSession({ tvPresence: { [TV]: true } })
+    await assertSucceeds(db(HOST).ref(SESSION).remove())
+    await assertSucceeds(db(TV).ref(presence(TV)).remove())
+    expect(await readAsAdmin(SESSION)).toBeNull()
+  })
+
+  test('les champs publics, tvPresence compris, restent lisibles un par un par la TV', async () => {
+    await seedSession({ tvPresence: { [TV]: true } })
+    expect(PUBLIC_SESSION_FIELDS).toContain('tvPresence')
+    for (const field of PUBLIC_SESSION_FIELDS) await assertSucceeds(db(TV).ref(`${SESSION}/${field}`).once('value'))
+  })
+})

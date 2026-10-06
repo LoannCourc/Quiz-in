@@ -3,6 +3,7 @@ import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
 import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
+import { isTvPresent } from '@shared/tvPresence';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -166,7 +167,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       if (!question) return <WaitingView />;
       if (bluff) {
         const progress = bluffProgress(session, session.bluffedBy?.[index]);
-        return <BluffWriteView key={index} {...{ question, bluff, progress }} />;
+        return <BluffWriteView key={index} {...{ question, bluff, progress }} showQuestion={!isTvPresent(session)} />;
       }
       const current = effectiveAnswer(session, uid, answer);
       const common = { question };
@@ -183,7 +184,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       const question = session.currentQuestion;
       if (!question?.choices || !bluff) return <WaitingView />;
       const progress = bluffProgress(session, session.votedBy?.[index]);
-      return <BluffVoteView key={index} {...{ question, bluff, progress }} />;
+      return <BluffVoteView key={index} {...{ question, bluff, progress }} showQuestion={!isTvPresent(session)} />;
     }
     case 'reveal': {
       if (!session.reveal) return <WaitingView />;

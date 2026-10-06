@@ -304,6 +304,9 @@ export interface PublicSession {
   votedBy?: Record<number, Record<PlayerId, true>>;
   // Son de la TV (spec 17), réglé par l'hôte à tout moment ; absent dans les parties créées avant.
   sound?: SoundSettings;
+  // TV ouvertes sur la partie (Cast ou plan B) : chaque TV écrit son propre nœud, retiré par son
+  // onDisconnect. Absent : aucune TV, ou partie créée avant ce champ.
+  tvPresence?: Record<string, true>;
 }
 
 // Son de la TV : musique d'ambiance et effets activés ou non, volume général de 0 à 100.

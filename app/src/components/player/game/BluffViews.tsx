@@ -27,6 +27,8 @@ interface PhaseProps {
   question: PublicQuestion;
   bluff: PlayerBluff;
   progress: BluffProgressPlayer[];
+  // Faux quand une TV affiche la partie : l'énoncé se lit sur la TV, le téléphone garde le reste.
+  showQuestion: boolean;
 }
 
 const { bluff: texts } = strings.game;
@@ -39,10 +41,10 @@ function Badge({ label, tone }: { label: string; tone: 'write' | 'vote' }) {
   );
 }
 
-// B1 : la question (aussi sur le téléphone, pour écrire tranquillement), un champ sur plusieurs lignes
+// B1 : la question (sur le téléphone seulement sans TV), un champ sur plusieurs lignes
 // avec son compteur, puis ENVOYER. Après un refus, le texte reste dans le champ pour être modifié.
 export function BluffWriteView(props: PhaseProps) {
-  const { question, bluff, progress } = props;
+  const { question, bluff, progress, showQuestion } = props;
   const status = bluffWriteStatus(bluff.entry, bluff.check);
   const [text, setText] = useState(() => (bluff.send.kind !== 'idle' ? bluff.send.text : (bluff.entry?.text ?? '')));
 
@@ -63,7 +65,7 @@ export function BluffWriteView(props: PhaseProps) {
   return (
     <View style={styles.container}>
       <Badge label={texts.writeBadge} tone="write" />
-      <Text style={styles.questionText}>{question.text}</Text>
+      {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <View style={styles.field}>
         <Text style={styles.fieldLabel}>{texts.fieldLabel}</Text>
         <View style={[styles.inputBox, verdict !== undefined && verdict !== 'ok' && styles.inputRefused, isBusy && styles.inputBusy]}>
@@ -144,7 +146,7 @@ function ProgressRow({ progress }: { progress: BluffProgressPlayer[] }) {
 // B2, à droite : les choix (le sien grisé, « Ta proposition »), un appui sélectionne, puis
 // « Je vote pour celle-ci ». La liste défile avec la page quand les choix sont nombreux.
 export function BluffVoteView(props: PhaseProps) {
-  const { question, bluff, progress } = props;
+  const { question, bluff, progress, showQuestion } = props;
   const choices = question.choices ?? [];
   const { vote, ownChoice } = bluff;
   const [selected, setSelected] = useState<number | null>(vote.kind === 'refused' ? vote.choice : null);
@@ -158,7 +160,7 @@ export function BluffVoteView(props: PhaseProps) {
   return (
     <View style={styles.container}>
       <Badge label={texts.voteBadge} tone="vote" />
-      <Text style={styles.questionText}>{question.text}</Text>
+      {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <View style={styles.choices}>
         {choices.map((choice, choiceIndex) => {
           const isOwn = choiceIndex === ownChoice;

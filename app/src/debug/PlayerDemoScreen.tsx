@@ -38,13 +38,16 @@ const SCENARIO_CHOICES: Choice<ScenarioId>[] = (Object.keys(SCENARIO_LABELS) as 
   label: SCENARIO_LABELS[id],
 }));
 
+const DEMO_TV_UID = 'demo-tv';
+
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
-// bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ;
+// bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
+// TV est présente (Bluff : pas d'énoncé sur le téléphone) ;
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
@@ -129,7 +132,7 @@ export default function PlayerDemoScreen() {
         <PlayerGame
           // Nouvelle clé à chaque scénario : les écrans repartent de leur état initial.
           key={scenario.session.phaseStartedAt}
-          session={scenario.session}
+          session={params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session}
           uid={DEMO_UID}
           serverOffsetMs={0}
           answer={scenario.answer}

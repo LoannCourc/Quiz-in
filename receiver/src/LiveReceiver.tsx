@@ -11,6 +11,7 @@ import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePhaseStale } from './hooks/usePhaseStale'
 import { useTvMusic } from './hooks/useTvMusic'
+import { useTvPresence } from './hooks/useTvPresence'
 import { useTvSound } from './hooks/useTvSound'
 import { ServerTimeOffsetContext } from './lib/serverTime'
 import { ReceiverScreen } from './screens/ReceiverScreen'
@@ -28,6 +29,7 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
   const { state, hasConnectedOnce, isConnected, serverTimeOffsetMs } = useLiveSession(roomCode)
   const isConnectionLost = hasConnectedOnce && !isConnected
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
+  useTvPresence(roomCode, state.kind === 'ready' && isConnected)
 
   switch (state.kind) {
     case 'loading':
