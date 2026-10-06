@@ -1,6 +1,5 @@
 import { bluffRevealTimeline } from '@shared/bluff'
 import { BLUFF_REVEAL_WINDOW, bluffRevealLayout } from '@shared/bluffLayout'
-import { BLUFF_TRAP_POINTS, BLUFF_TRUTH_POINTS } from '@shared/constants'
 import { isAwaitingHost, nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession, RevealedBluffChoice } from '@shared/types'
 
@@ -18,21 +17,6 @@ interface BluffRevealScreenProps {
   choices: RevealedBluffChoice[]
 }
 
-// Résumé des points : qui a trouvé la vraie réponse, et qui a piégé combien de joueurs.
-function pointsSummary(session: PublicSession, choices: RevealedBluffChoice[]): string {
-  const { bluff } = strings
-  const nameOf = (id: string) => session.players[id]?.name ?? '?'
-  const results = session.reveal?.results ?? {}
-  const finders = Object.keys(results).filter((id) => results[id].correct).map(nameOf)
-  const parts = [finders.length > 0 ? bluff.finders(bluff.names(finders), BLUFF_TRUTH_POINTS) : bluff.nobodyFound]
-  for (const choice of choices) {
-    const trapped = choice.voters?.length ?? 0
-    if (choice.kind !== 'bluff' || trapped === 0) continue
-    for (const author of choice.authors ?? []) parts.push(bluff.trapper(nameOf(author), trapped * BLUFF_TRAP_POINTS, trapped))
-  }
-  return parts.join(' · ')
-}
-
 // Étape 2 : tout tient à l'écran, ou la vraie réponse puis les choix votés, les plus votés d'abord.
 function truthStepRows(truthRows: RevealRow[], falseRows: RevealRow[]): RevealRow[] {
   const all = [...truthRows, ...falseRows]
@@ -45,8 +29,8 @@ function truthStepRows(truthRows: RevealRow[], falseRows: RevealRow[]): RevealRo
 
 // Révélation du Bluff (maquette B5). Étape 1 : les fausses propositions se retournent l'une après l'autre
 // (BLUFF_REVEAL_PER_CHOICE_S chacune), avec leur auteur ou « Leurre » et leurs votants. Étape 2 : la
-// vraie réponse en tête, en vert, puis les autres, et le résumé des points. La durée de la phase suit ce
-// déroulé (revealDurationS) ; en Pas à pas, l'écran reste sur l'étape 2.
+// vraie réponse en tête, en vert, puis les autres (les points sont sur les téléphones, puis au classement).
+// La durée de la phase suit ce déroulé (revealDurationS) ; en Pas à pas, l'écran reste sur l'étape 2.
 // Beaucoup de choix : au plus BLUFF_REVEAL_WINDOW à l'écran. Étape 1 : les derniers retournés (les plus
 // anciens laissent la place). Étape 2 : la vraie réponse, puis les choix qui ont reçu des votes, les plus
 // votés d'abord, et le nombre de ceux qui n'en ont reçu aucun.
@@ -75,7 +59,6 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
         {!isTruthShown && <p className="bluff-suspense">{strings.bluff.suspense}</p>}
         {hiddenCount > 0 && <p className="bluff-hidden">{strings.bluff.otherChoices(hiddenCount)}</p>}
       </div>
-      {isTruthShown ? <p className="bluff-summary">{pointsSummary(session, choices)}</p> : <span />}
       {countdown && <NextQuestionLine countdown={countdown} />}
       {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>

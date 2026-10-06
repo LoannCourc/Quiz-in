@@ -1,6 +1,6 @@
-/* Révélation du Bluff (maquette B5) : titre, lignes des choix (zone compressible), résumé des points. */
+/* Révélation du Bluff (maquette B5) : titre, lignes des choix (zone compressible), suite de la partie. */
 .bluff-reveal {
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
   row-gap: 0.8rem;
 }
 
@@ -31,18 +31,6 @@
   font-weight: 900;
   text-align: center;
   color: var(--color-text-muted);
-}
-
-/* Résumé des points : deux lignes au plus, jamais coupé en plein mot. */
-.bluff-summary {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 900;
-  text-align: center;
 }
 
 .bluff-hidden {

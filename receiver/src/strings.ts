@@ -91,10 +91,6 @@ export const strings = {
       const shown = names.length > 3 ? [...names.slice(0, 2), `${names.length - 2} autres`] : names
       return shown.length > 1 ? `${shown.slice(0, -1).join(', ')} et ${shown[shown.length - 1]}` : (shown[0] ?? '')
     },
-    finders: (names: string, points: number) => `Vraie réponse trouvée : ${names} (+${points})`,
-    nobodyFound: 'Personne n’a trouvé la vraie réponse',
-    trapper: (name: string, points: number, trapped: number) =>
-      `${name} : +${points} (${trapped} piégé${trapped > 1 ? 's' : ''})`,
   },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {
