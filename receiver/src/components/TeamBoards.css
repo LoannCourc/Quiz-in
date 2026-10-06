@@ -55,7 +55,7 @@
 .team-row-rank {
   font-family: var(--font-display);
   font-size: 2rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
   text-align: center;
 }
 
@@ -86,7 +86,7 @@
 .team-row-score {
   font-family: var(--font-display);
   font-size: 1.4rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
 }
 
 .team-row-track {
@@ -161,7 +161,7 @@
 /* Fin de partie : podium des équipes, puis meilleurs joueurs. */
 .team-final {
   display: grid;
-  row-gap: 1.2rem;
+  row-gap: 0.8rem;
   align-content: end;
 }
 
@@ -203,7 +203,7 @@
   color: var(--on-team);
   font-family: var(--font-display);
   font-size: 3rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
 }
 
 .team-podium-step.place-1 .team-podium-block {

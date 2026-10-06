@@ -139,8 +139,11 @@ export const AppFonts = {
   black: withWebFallback(AppFontNames.black),
 };
 
-// Bowlby One a des accents hauts : hauteur de ligne d'au moins 1,3 fois la taille.
-export const DISPLAY_LINE_HEIGHT = 1.3;
+// Bowlby One a des accents hauts : la police déclare 1,11 em au-dessus de la ligne de base et 0,46 em
+// en dessous (1,57 em en tout), le « É » monte à 1,10 em. Avec une hauteur de ligne plus petite, le
+// manque est retiré à parts égales en haut et en bas (web, et Android depuis React Native 0.86) : le
+// haut des accents dépasse de la ligne et Android le rogne. 1,58 contient tous les accents.
+export const DISPLAY_LINE_HEIGHT = 1.58;
 
 // Tailles pensées pour un téléphone tenu à une main.
 // Android 15+ avec React Native 0.86 : un texte dimensionné à son contenu (pastille, bande, badge,

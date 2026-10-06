@@ -39,7 +39,7 @@
 .lobby-code {
   font-family: var(--font-display);
   font-size: 4.6rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
   letter-spacing: 0.2em;
   /* Compense l'espacement ajouté après la dernière lettre. */
   margin-right: -0.2em;
@@ -58,7 +58,7 @@
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 5rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
   color: var(--color-accent);
   text-transform: uppercase;
   text-shadow: var(--text-shadow-hard);
@@ -67,7 +67,7 @@
 .lobby-count {
   font-family: var(--font-display);
   font-size: 1.8rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
   text-transform: uppercase;
 }
 

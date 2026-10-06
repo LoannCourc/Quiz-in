@@ -75,7 +75,7 @@
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 1.25em;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
   color: var(--color-accent);
 }
 

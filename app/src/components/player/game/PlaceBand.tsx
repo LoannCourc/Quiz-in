@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     color: AppColors.text,
     fontFamily: AppFonts.display,
     fontSize: 17,
-    lineHeight: 22,
+    lineHeight: Math.round(17 * DISPLAY_LINE_HEIGHT),
     textTransform: 'uppercase',
   },
   bandValue: {

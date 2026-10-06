@@ -73,8 +73,12 @@
   /* Polices */
   --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;
   --font-text: 'Nunito', system-ui, 'Segoe UI', sans-serif;
-  /* Bowlby One a des accents hauts : jamais moins de 1.3 pour un titre sur plusieurs lignes. */
-  --display-line-height: 1.3;
+  /* Bowlby One a des accents hauts (1,11 em au-dessus de la ligne de base, « É » à 1,10 em ; 1,57 em en
+     tout avec le bas) : en dessous de 1,57, le haut des accents dépasse de la ligne et peut être rogné. */
+  --display-line-height: 1.58;
+  /* Textes d'affichage qui ne contiennent jamais d'accent (logo, code de la partie, chiffres, lettres,
+     noms d'équipe, « QUESTION 3/10 ») : les capitales sans accent tiennent largement dans 1,2. */
+  --display-line-height-tight: 1.2;
 
   /* Formes (1 rem = 30 px en 1080p) */
   --radius-pill: 2.2rem;

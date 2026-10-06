@@ -54,7 +54,7 @@
 .podium-rank {
   font-family: var(--font-display);
   font-size: 3rem;
-  line-height: var(--display-line-height);
+  line-height: var(--display-line-height-tight);
 }
 
 .podium-score {
