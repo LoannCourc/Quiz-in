@@ -49,7 +49,7 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
       </div>
       {unassigned.length > 0 && (
         <p className="team-unassigned">
-          <span className="team-unassigned-label">{strings.teams.unassigned}</span>
+          <span className="team-unassigned-label">{strings.teams.unassigned(unassigned.length)}</span>
           {unassigned.map((id) => (
             <span key={id} className="team-unassigned-player">
               {session.players[id].avatar} {session.players[id].name}

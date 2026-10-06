@@ -174,6 +174,7 @@ export const strings = {
       drawAtLaunch: 'tirage au lancement',
       ready: 'équipes prêtes',
       incomplete: 'à compléter',
+      unassigned: (count: number) => `${count} sans équipe`,
     },
     // Page « Équipes » plein écran (maquette E1) : une consigne d'une phrase en haut, selon l'état.
     page: {
@@ -181,6 +182,12 @@ export const strings = {
       validate: 'Valider les équipes',
       // Pendant l'animation du tirage sur la TV (bouton grisé jusqu'au gong).
       drawing: 'Tirage en cours…',
+      // Joueurs placés et sans équipe, toujours visibles en tête de page.
+      toAssign: (count: number) => `${count} joueur${count > 1 ? 's' : ''} à répartir`,
+      assignment: (placed: number, unassigned: number) => `${placed} placé${placed > 1 ? 's' : ''} · ${unassigned} sans équipe`,
+      unassignedAlert: (count: number) =>
+        `${count} joueur${count > 1 ? 's n’ont' : ' n’a'} pas d’équipe : impossible de lancer la partie tant qu’ils ne sont pas placés.`,
+      redrawNow: 'Refaire le tirage',
       // Aide toujours visible sous la consigne, quel que soit le nombre de joueurs.
       minimumHelp: `Le mode Groupe se joue à partir de ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
       instructions: {
@@ -270,6 +277,8 @@ export const strings = {
     preparingAudio: 'Préparation des extraits audio…',
     questionsError: 'Impossible de charger les questions du quiz. Vérifie ta connexion.',
     launchFailed: 'Le lancement a échoué. Réessaie dans un instant.',
+    // Joueurs sans équipe, avec le nombre exact (à la place du motif général du refus).
+    unassignedLaunch: (count: number) => `${count} joueur${count > 1 ? 's' : ''} sans équipe : ouvre Équipes et refais le tirage.`,
     launchRefusals: {
       notLobby: 'La partie est déjà lancée.',
       notEnoughPlayers: `Il faut au moins ${MIN_PLAYERS} joueurs connectés, toi compris.`,

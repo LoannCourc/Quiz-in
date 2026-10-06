@@ -39,6 +39,15 @@ export function isTeamId(value: unknown): value is TeamId {
 
 type TeamPlayers = Record<PlayerId, Pick<Player, 'team'>>
 
+// Joueurs placés dans une équipe de la partie, et joueurs sans équipe (arrivés après le tirage, ou dans
+// une équipe supprimée) : affichés à l'hôte et sur la TV, jamais masqués.
+export function teamAssignment(session: Pick<PublicSession, 'players' | 'settings'>): { placed: number; unassigned: number } {
+  const ids = Object.keys(session.players)
+  const teams = activeTeams(teamCountOf(session.settings, ids.length))
+  const placed = ids.filter((id) => teams.includes(session.players[id].team as TeamId)).length
+  return { placed, unassigned: ids.length - placed }
+}
+
 export function teamMembers(players: TeamPlayers, team: TeamId): PlayerId[] {
   return Object.keys(players).filter((id) => players[id].team === team)
 }

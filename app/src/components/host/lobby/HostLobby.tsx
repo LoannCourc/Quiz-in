@@ -4,6 +4,7 @@ import { canLaunchGame, connectedPlayerIds } from '@shared/players';
 import {
   assignTeamUpdate,
   lobbyTeamRefusal,
+  teamAssignment,
   teamCountUpdate,
   teamDrawUpdate,
   teamModeUpdate,
@@ -142,6 +143,7 @@ export function HostLobby(props: HostLobbyProps) {
         questions={questions}
         hasEnoughPlayers={hasEnoughPlayers}
         teamRefusal={teamRefusal}
+        unassignedCount={teamAssignment(session).unassigned}
         error={launchError}
         audioStatus={audio.status}
       />
@@ -245,12 +247,14 @@ interface LaunchHintProps {
   questions: GameQuestionsState;
   hasEnoughPlayers: boolean;
   teamRefusal: TeamRefusal | null;
+  // Joueurs sans équipe (nombre exact, dans le motif du refus).
+  unassignedCount: number;
   error: string | null;
   audioStatus: AudioUrlsStatus;
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
-function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, error, audioStatus }: LaunchHintProps) {
+function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus }: LaunchHintProps) {
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
@@ -266,6 +270,9 @@ function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, error, audioStat
   }
   // Pas assez de joueurs : rien d'écrit, le bouton reste désactivé (attendre les joueurs est l'état normal).
   if (!hasEnoughPlayers) return null;
+  if (teamRefusal === 'teamsUnassigned' && unassignedCount > 0) {
+    return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.unassignedLaunch(unassignedCount)}</Text>;
+  }
   if (teamRefusal) {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.launchRefusals[teamRefusal]}</Text>;
   }

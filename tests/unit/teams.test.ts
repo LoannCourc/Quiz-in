@@ -9,6 +9,7 @@ import {
   launchTeamDraw,
   lobbyTeamRefusal,
   rankInTeam,
+  teamAssignment,
   suggestedTeamCount,
   teamCountUpdate,
   teamDrawUpdate,
@@ -272,5 +273,42 @@ describe('Tirage : tous les joueurs placés, équipes équilibrées', () => {
       expect(Object.keys(draw)).toHaveLength(20)
       expect(Object.values(sizes(draw)).sort((a, b) => b - a)).toEqual(expected)
     }
+  })
+})
+
+describe('Joueurs sans équipe : toujours comptés, lancement refusé', () => {
+  const TEAM_SETTINGS: SessionSettings = { answerMode: 'choice', speedBonus: true, control: false, teams: true, teamMode: 'random', teamCount: 4 }
+  // 20 joueurs tirés au sort, puis des arrivées tardives (sans équipe).
+  function drawnLobby(lateCount: number): Session {
+    const ids = Array.from({ length: 20 }, (_, index) => `p${index}`)
+    const draw = drawTeams(ids, 4)
+    const players: Record<PlayerId, Player> = Object.fromEntries(ids.map((id) => [id, player(id, { team: draw[id] })]))
+    for (let index = 0; index < lateCount; index++) players[`late${index}`] = player(`late${index}`)
+    return makeSession({ status: 'lobby', settings: TEAM_SETTINGS, players })
+  }
+
+  for (const late of [1, 3, 10]) {
+    test(`${late} joueur(s) arrivé(s) après le tirage : ${late} sans équipe, lancement refusé, pas de nouveau tirage automatique`, () => {
+      const session = drawnLobby(late)
+      expect(teamAssignment(session)).toEqual({ placed: 20, unassigned: late })
+      expect(lobbyTeamRefusal(session)).toBe('teamsUnassigned')
+      expect(drawsAtLaunch(session)).toBe(false)
+    })
+  }
+
+  test('départ d’un joueur après le tirage : il n’est plus compté, les autres restent placés', () => {
+    const session = drawnLobby(0)
+    const [leaving] = Object.keys(session.players)
+    const players = { ...session.players }
+    delete players[leaving]
+    expect(teamAssignment({ ...session, players })).toEqual({ placed: 19, unassigned: 0 })
+    expect(lobbyTeamRefusal({ ...session, players })).toBeNull()
+  })
+
+  test('avant tout tirage : tous à répartir, tirage au lancement possible', () => {
+    const players = Object.fromEntries(Array.from({ length: 8 }, (_, index) => [`p${index}`, player(`p${index}`)]))
+    const session = makeSession({ status: 'lobby', settings: TEAM_SETTINGS, players })
+    expect(teamAssignment(session)).toEqual({ placed: 0, unassigned: 8 })
+    expect(drawsAtLaunch(session)).toBe(true)
   })
 })

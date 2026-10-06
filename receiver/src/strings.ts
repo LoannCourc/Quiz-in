@@ -18,7 +18,7 @@ export const strings = {
     drawTitle: 'Tirage des équipes',
     drawSummary: (players: number, teams: number) => `${players} joueurs · ${teams} équipes`,
     drawFooter: 'Les joueurs rejoignent leur équipe…',
-    unassigned: 'Sans équipe',
+    unassigned: (count: number) => `Sans équipe (${count})`,
     // Membres d'une équipe qui ne tiennent pas dans sa colonne (garde-fou, nombre exact).
     moreMembers: (count: number) => `+${count}`,
     rankingTitle: 'Classement des équipes',

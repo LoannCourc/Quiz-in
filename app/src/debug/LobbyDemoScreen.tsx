@@ -17,7 +17,7 @@ import { DEMO_CODE } from './playerScenarios';
 // /debug/lobby?players=<0 à 20>&tv=<none|connected|unavailable>&host=<1|0>&notv=<0|1>
 // host=0 : l'hôte n'a pas encore choisi son pseudo (formulaire au-dessus de la liste).
 // &teams=random|host|players : Groupe (composition des équipes, actions appliquées sur place) ;
-// &drawn=1 : équipes déjà tirées au sort ; &page=teams : page « Équipes » ouverte ;
+// &drawn=1 : équipes déjà tirées au sort ; &late=3 : 3 joueurs arrivés après le tirage (sans équipe) ; &page=teams : page « Équipes » ouverte ;
 // &details=1 (avec tv=connected) : QR et lien dépliés sous la barre « TV connectée » ;
 // &collapsed=1 (sans TV connectée) : bloc du code réduit à une ligne.
 // Les actions (lancer, s'inscrire) écrivent dans la base : elles échouent ici, c'est attendu.
@@ -61,13 +61,14 @@ function demoCast(tv: string | undefined): CastGame {
 }
 
 export default function LobbyDemoScreen() {
-  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; page?: string; details?: string; collapsed?: string }>();
+  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; collapsed?: string }>();
   const playerCount = Math.min(20, Math.max(0, Number(params.players ?? 4) || 0));
   const teamMode = isTeamMode(params.teams) ? params.teams : undefined;
   // Session en mémoire : les actions du salon (équipes) s'y appliquent, rien n'est écrit dans la base.
   const [session, setSession] = useState(() => {
     const initial = demoSession(playerCount, params.host !== '0', teamMode);
-    return params.drawn === '1' ? applyLocalUpdate(initial, teamDrawUpdate(initial, Date.now())) : initial;
+    const drawn = params.drawn === '1' ? applyLocalUpdate(initial, teamDrawUpdate(initial, Date.now() - 60_000)) : initial;
+    return withLateJoiners(drawn, Number(params.late) || 0);
   });
   return (
     <HostLobby
@@ -84,4 +85,12 @@ export default function LobbyDemoScreen() {
       initialCodeCollapsed={params.collapsed === '1'}
     />
   );
+}
+
+// &late=N : les N derniers joueurs perdent leur équipe (arrivés après le tirage).
+function withLateJoiners(session: Session, count: number): Session {
+  const ids = Object.keys(session.players)
+  const late = new Set(ids.slice(Math.max(0, ids.length - count)))
+  const players = Object.fromEntries(ids.map((id) => [id, late.has(id) ? { ...session.players[id], team: undefined } : session.players[id]]))
+  return { ...session, players }
 }

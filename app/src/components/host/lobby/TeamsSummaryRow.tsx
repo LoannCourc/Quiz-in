@@ -1,4 +1,4 @@
-import { activeTeams, drawsAtLaunch, lobbyTeamRefusal, teamCountOf, teamModeOf } from '@shared/teams';
+import { activeTeams, drawsAtLaunch, lobbyTeamRefusal, teamAssignment, teamCountOf, teamModeOf } from '@shared/teams';
 import type { Session } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -12,7 +12,9 @@ import { Spacing } from '@/constants/theme';
 // sous « Lancer la partie » et sur la page « Équipes »).
 function teamsStatus(session: Session): string {
   const { row } = strings.teams;
-  if (lobbyTeamRefusal(session) !== null) return row.incomplete;
+  const refusal = lobbyTeamRefusal(session);
+  if (refusal === 'teamsUnassigned') return row.unassigned(teamAssignment(session).unassigned);
+  if (refusal !== null) return row.incomplete;
   return drawsAtLaunch(session) ? row.drawAtLaunch : row.ready;
 }
 

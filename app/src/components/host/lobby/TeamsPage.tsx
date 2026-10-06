@@ -1,5 +1,5 @@
 import { teamDrawTimeline } from '@shared/teamDraw';
-import { drawsAtLaunch, lobbyTeamRefusal, teamModeOf } from '@shared/teams';
+import { drawsAtLaunch, lobbyTeamRefusal, teamAssignment, teamModeOf } from '@shared/teams';
 import type { PlayerId, Session, TeamId, TeamMode } from '@shared/types';
 import { useEffect } from 'react';
 import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -67,6 +67,8 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
   // « Ils choisissent » : pas de tirage, il écraserait les choix des joueurs.
   const canDraw = teamModeOf(session.settings) !== 'players' && step.instruction !== 'tooFewPlayers';
   const hasTeams = Object.values(session.players).some((player) => player.team !== undefined);
+  // Jamais de joueur sans équipe sans que l'hôte le voie : compte en tête, alerte au-delà de zéro.
+  const { placed, unassigned } = teamAssignment(session);
 
   // Bouton retour d'Android : ferme la page au lieu de quitter le salon.
   useEffect(() => {
@@ -110,6 +112,13 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
         <Text style={styles.title}>{composer.title}</Text>
         <Text style={styles.count}>{strings.teams.playerCount(playerCount)}</Text>
       </View>
+      <Text style={styles.assignment}>{hasTeams ? page.assignment(placed, unassigned) : page.toAssign(playerCount)}</Text>
+      {hasTeams && unassigned > 0 && (
+        <View style={styles.alert}>
+          <Text style={styles.alertText}>{page.unassignedAlert(unassigned)}</Text>
+          {canDraw && <BigButton label={page.redrawNow} size="compact" onPress={onDraw} />}
+        </View>
+      )}
       <View style={styles.guide}>
         <Text style={[styles.instruction, step.isWarning && styles.warning]}>{page.instructions[step.instruction]}</Text>
         <Text style={styles.help}>{page.minimumHelp}</Text>
@@ -169,6 +178,24 @@ const styles = StyleSheet.create({
   },
   warning: {
     color: AppColors.accent,
+  },
+  assignment: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.extraBold,
+    fontSize: 15,
+  },
+  alert: {
+    gap: Spacing.two,
+    padding: Spacing.three,
+    borderRadius: AppSizes.radius,
+    borderWidth: 2,
+    borderColor: AppColors.wrong,
+    backgroundColor: AppColors.panel,
+  },
+  alertText: {
+    color: AppColors.wrong,
+    fontFamily: AppFonts.black,
+    fontSize: 16,
   },
   footer: {
     gap: Spacing.two,
