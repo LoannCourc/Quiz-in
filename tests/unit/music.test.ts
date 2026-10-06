@@ -38,7 +38,7 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('reveal', 'bluff'), false).track).toBe('vote')
   })
 
-  test('classement : la musique de la question continue ; fin : jingle final, après le roulement en Suspense', () => {
+  test('classement : la musique de la question continue ; fin : musique de fin, après le roulement en Suspense', () => {
     expect(musicPlan(inPhase('scores'), false)).toMatchObject({ track: 'game' })
     expect(musicPlan(inPhase('scores', 'free'), false).track).toBe('writing')
     expect(musicPlan(inPhase('scores', 'bluff'), false).track).toBe('vote')
@@ -55,6 +55,11 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('question', 'free'), true).track).toBeNull()
     expect(musicPlan(inPhase('lobby'), true).track).toBe('waiting')
     expect(musicPlan(inPhase('ended'), true).track).toBe('final')
+  })
+
+  test('Rejouer : la musique de fin cède la place à celle du salon ; pause impossible en fin de partie', () => {
+    expect(musicPlan(inPhase('lobby'), false)).toMatchObject({ track: 'waiting', isPaused: false })
+    expect(musicPlan(inPhase('ended'), false).isPaused).toBe(false)
   })
 
   test('blind test : la musique se tait à la fin du 3-2-1, de la révélation et du classement, avant l’extrait', () => {
@@ -90,8 +95,12 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicTracksFor('free', true)).toEqual(['waiting', 'game', 'final'])
   })
 
-  test('manifeste : boucles et jingle de fin de la spec 17 (plus de jingle au classement)', () => {
-    expect(MUSIC_TRACK_IDS.filter((id) => !MUSIC_TRACKS[id].loop)).toEqual(['final'])
+  test('manifeste : toutes les musiques bouclent ; la musique de fin démarre net, et boucle sur son début', () => {
+    expect(MUSIC_TRACK_IDS.filter((id) => !MUSIC_TRACKS[id].loop)).toEqual([])
+    expect(MUSIC_TRACK_IDS.filter((id) => MUSIC_TRACKS[id].cue)).toEqual(['final'])
+    // Fichier de 16,7 s : la boucle (8,348 s) et son raccord tiennent dedans.
+    expect(MUSIC_TRACKS.final.loopEndS).toBeGreaterThan(8)
+    expect(MUSIC_TRACKS.final.loopEndS).toBeLessThan(16)
     expect(MUSIC_TRACKS.game.volume).toBeLessThan(MUSIC_TRACKS.waiting.volume)
   })
 })

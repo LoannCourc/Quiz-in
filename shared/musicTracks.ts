@@ -8,8 +8,14 @@ export interface MusicTrack {
   file: string
   // Volume relatif, dans le canal musique (1 : volume du fichier).
   volume: number
-  // Boucle à l'échantillon près, ou jingle joué une seule fois.
+  // Boucle à l'échantillon près, ou jouée une seule fois.
   loop: boolean
+  // Démarre net, à une heure précise (arrivée sur l'écran de fin, après le roulement de tambour en
+  // Suspense), au lieu d'un fondu enchaîné.
+  cue?: boolean
+  // Boucle sur le début du fichier seulement, jusqu'à cet instant (s) : la fin du fichier ne raccorde pas
+  // avec son début. Raccord adouci par un court fondu enchaîné (shared/loopSeam.ts).
+  loopEndS?: number
 }
 
 export const MUSIC_TRACKS: Record<MusicTrackId, MusicTrack> = {
@@ -21,8 +27,10 @@ export const MUSIC_TRACKS: Record<MusicTrackId, MusicTrack> = {
   writing: { file: 'Bluffecriture_sound.ogg', volume: 0.8, loop: true },
   // Vote, révélation et classement du Bluff.
   vote: { file: 'Bluffvote_sound.ogg', volume: 0.8, loop: true },
-  // Classement final : une fois.
-  final: { file: 'Findepartie_sound.ogg', volume: 1, loop: false },
+  // Écran de fin : démarre à l'arrivée du podium, puis boucle tant que l'écran est affiché. Le fichier
+  // (16,7 s) répète deux phrases musicales de 4,17 s et finit par un fondu : boucle sur les 8,348 premières
+  // secondes, là où la 3e phrase reprend la 1re (corrélation 0,95 au raccord).
+  final: { file: 'Findepartie_sound.ogg', volume: 1, loop: true, cue: true, loopEndS: 8.348 },
 }
 
 export const MUSIC_TRACK_IDS = Object.keys(MUSIC_TRACKS) as readonly MusicTrackId[]

@@ -7,13 +7,14 @@ import type { AnswerMode, GameStatus, PublicSession } from './types'
 // Passage d'une musique à l'autre (fondu enchaîné), et arrêt rapide avant l'extrait d'un blind test.
 export const MUSIC_CROSSFADE_MS = 800
 export const MUSIC_FAST_STOP_MS = 300
-// Jingle interrompu (Rejouer pendant le jingle de fin) : fondu de sortie, la nouvelle musique démarre à temps.
+// Musique de fin interrompue (Rejouer) : fondu de sortie, la musique du salon démarre à temps.
 export const MUSIC_JINGLE_FADE_OUT_MS = 600
 // Pause : la musique en cours s'arrête en MUSIC_PAUSE_FADE_MS (sa position est gardée) et la musique
 // d'attente joue ; à la reprise, fondu enchaîné de MUSIC_RESUME_CROSSFADE_MS, là où elle s'était arrêtée.
 export const MUSIC_PAUSE_FADE_MS = 300
 export const MUSIC_RESUME_CROSSFADE_MS = 600
-// Jingle dont le début est passé de plus de JINGLE_LATE_MS (TV ouverte en retard) : pas joué.
+// Piste jouée une seule fois dont le début est passé de plus de JINGLE_LATE_MS (TV ouverte en retard) :
+// pas jouée. Une boucle (musique de fin comprise) démarre aussitôt.
 export const JINGLE_LATE_MS = 1_500
 
 export interface MusicPlan {
@@ -74,7 +75,8 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
       if (isBlindTest) return { ...play('game'), stopBy }
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'ended':
-      // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium.
+      // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium ; puis en boucle
+      // tant que l'écran de fin est affiché (shared/musicTracks.ts), jusqu'à Rejouer ou la fin de la partie.
       return { ...play('final'), startAt: session.phaseStartedAt + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0) }
     default:
       return { track: null, fastStop: false, isPaused: false }

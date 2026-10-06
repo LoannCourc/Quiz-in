@@ -7,6 +7,7 @@ import {
   MUSIC_RESUME_CROSSFADE_MS,
   type MusicPlan,
 } from '@shared/music'
+import { bakeLoopSeam, type LoopRegion } from '@shared/loopSeam'
 import { MUSIC_DIRECTORY, MUSIC_TRACKS, type MusicTrackId } from '@shared/musicTracks'
 
 import { decodedBytes } from './musicLoop'
@@ -14,7 +15,8 @@ import { soundEngine } from './soundEngine'
 
 // Lecteur des musiques de la TV (spec 17). Les fichiers sont téléchargés un par un en arrière-plan
 // (jamais avant le premier affichage), décodés une fois, puis joués par Web Audio : boucles à
-// l'échantillon près, jingles une seule fois, fondus enchaînés, baisse pendant la pause. Le canal
+// l'échantillon près (musique de fin : sur le début du fichier, raccord adouci), démarrage net à l'heure
+// de l'écran de fin, fondus enchaînés, baisse pendant la pause. Le canal
 // musique du moteur applique le volume de l'hôte et le ducking des effets.
 //
 // Mémoire de la box : une piste décodée est stockée en échantillons bruts (4 octets chacun). Pour la
@@ -24,8 +26,10 @@ import { soundEngine } from './soundEngine'
 // compressé, en mémoire).
 export const MUSIC_SAMPLE_RATE = 32_000
 export const MUSIC_MEMORY_BUDGET_BYTES = 32 * 1024 * 1024
-// Démarrage d'un jingle : fondu très court, pour éviter un clic.
+// Démarrage net (musique de fin, à l'arrivée du podium) : fondu très court, pour éviter un clic.
 const JINGLE_FADE_IN_S = 0.02
+// Raccord d'une boucle sur le début d'un fichier (loopEndS) : fondu enchaîné de la fin dans le début.
+const LOOP_SEAM_FADE_S = 0.04
 
 // Décodage d'un fichier de musique en mono, à MUSIC_SAMPLE_RATE (le navigateur rééchantillonne).
 export async function decodeMusic(data: ArrayBuffer): Promise<AudioBuffer> {
@@ -58,7 +62,8 @@ interface Playing {
   track: MusicTrackId
   source: AudioBufferSourceNode
   gain: GainNode
-  isJingle: boolean
+  // Démarrée net à son heure (MusicTrack.cue) : jamais retenue en pause, fondu de sortie plus long.
+  isCue: boolean
   // Heure du contexte à laquelle la lecture a commencé, et position de départ (s) : position actuelle.
   startedAt: number
   offsetS: number
@@ -80,6 +85,8 @@ class MusicPlayer {
   private readonly missing = new Set<MusicTrackId>()
   private placeholderBuffer: AudioBuffer | null = null
   private output: { context: AudioContext; input: AudioNode } | null = null
+  // Zones à boucler des pistes qui bouclent sur le début du fichier (raccord adouci au décodage).
+  private readonly loopRegions = new Map<MusicTrackId, LoopRegion>()
   private lastDecode: MusicStats['lastDecode'] = null
   private decodeCount = 0
   private current: Playing | null = null
@@ -120,8 +127,8 @@ class MusicPlayer {
     }
   }
 
-  // Applique le plan de la phase (shared/music.ts) : fondu enchaîné vers la nouvelle piste, jingle à son
-  // heure, arrêt avant l'extrait d'un blind test. Pause : la musique en cours est retenue (sa position est
+  // Applique le plan de la phase (shared/music.ts) : fondu enchaîné vers la nouvelle piste, musique de fin à
+  // son heure, arrêt avant l'extrait d'un blind test. Pause : la musique en cours est retenue (sa position est
   // gardée) et la musique d'attente joue ; à la reprise, elle repart là où elle s'était arrêtée.
   apply(plan: MusicPlan, nowServer: number): void {
     if (!this.ensureOutput() || !this.isEnabled) return
@@ -131,7 +138,7 @@ class MusicPlayer {
     if (key === this.planKey) return
     // La boucle demandée joue déjà (pause pendant la musique d'attente, ou reprise vers elle) : rien ne change.
     const playing = this.current
-    if (playing && !playing.isJingle && playing.track === plan.track && !plan.heldTrack) {
+    if (playing && !playing.isCue && playing.track === plan.track && !plan.heldTrack) {
       this.planKey = key
       if (!plan.isPaused) this.held = null
       return
@@ -144,8 +151,8 @@ class MusicPlayer {
     this.stop(transition.fadeOutMs)
     if (plan.track === null) return
     const delayMs = plan.startAt === undefined ? 0 : plan.startAt - nowServer
-    // Jingle déjà bien entamé (TV ouverte en retard) : pas joué.
-    if (delayMs < -JINGLE_LATE_MS) return
+    // Piste jouée une fois déjà bien entamée (TV ouverte en retard) : pas jouée ; une boucle démarre aussitôt.
+    if (delayMs < -JINGLE_LATE_MS && !MUSIC_TRACKS[plan.track].loop) return
     void this.start(plan.track, key, Math.max(0, delayMs), generation, transition.fadeInMs, transition.offsetS)
   }
 
@@ -154,7 +161,7 @@ class MusicPlayer {
   private transition(plan: MusicPlan, wasPaused: boolean): { fadeOutMs: number; fadeInMs: number; offsetS: number } {
     if (plan.isPaused) {
       const playing = this.current
-      this.held = playing && !playing.isJingle && playing.track === plan.heldTrack ? { track: playing.track, offsetS: this.positionOf(playing) } : null
+      this.held = playing && !playing.isCue && playing.track === plan.heldTrack ? { track: playing.track, offsetS: this.positionOf(playing) } : null
       return { fadeOutMs: MUSIC_PAUSE_FADE_MS, fadeInMs: MUSIC_PAUSE_FADE_MS, offsetS: 0 }
     }
     if (wasPaused) {
@@ -162,7 +169,7 @@ class MusicPlayer {
       this.held = null
       return { fadeOutMs: plan.fastStop ? MUSIC_FAST_STOP_MS : MUSIC_RESUME_CROSSFADE_MS, fadeInMs: MUSIC_RESUME_CROSSFADE_MS, offsetS }
     }
-    const fadeOutMs = plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isJingle ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS
+    const fadeOutMs = plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isCue ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS
     return { fadeOutMs, fadeInMs: MUSIC_CROSSFADE_MS, offsetS: 0 }
   }
 
@@ -176,7 +183,7 @@ class MusicPlayer {
 
   // Galerie de développement : écouter une piste seule.
   preview(track: MusicTrackId | null): void {
-    this.apply({ track, startAt: track && !MUSIC_TRACKS[track].loop ? Date.now() : undefined, fastStop: false, isPaused: false }, Date.now())
+    this.apply({ track, startAt: track && MUSIC_TRACKS[track].cue ? Date.now() : undefined, fastStop: false, isPaused: false }, Date.now())
   }
 
   private ensureOutput(): { context: AudioContext; input: AudioNode } | null {
@@ -186,7 +193,7 @@ class MusicPlayer {
     return this.output
   }
 
-  // fadeInMs : fondu d'entrée d'une boucle (un jingle démarre presque net) ; offsetS : position de départ.
+  // fadeInMs : fondu d'entrée d'une boucle (une piste « cue » démarre presque net) ; offsetS : position de départ.
   private async start(track: MusicTrackId, key: string, delayMs: number, generation: number, fadeInMs: number, offsetS: number): Promise<void> {
     const buffer = await this.buffer(track)
     const output = this.output
@@ -196,15 +203,20 @@ class MusicPlayer {
     const source = context.createBufferSource()
     source.buffer = buffer
     source.loop = spec.loop
+    const region = this.loopRegions.get(track)
+    if (region) {
+      source.loopStart = region.startS
+      source.loopEnd = region.endS
+    }
     const gain = context.createGain()
     const startAt = context.currentTime + delayMs / 1000
-    const fadeS = spec.loop ? fadeInMs / 1000 : JINGLE_FADE_IN_S
+    const fadeS = spec.cue ? JINGLE_FADE_IN_S : fadeInMs / 1000
     gain.gain.setValueAtTime(0, startAt)
     gain.gain.linearRampToValueAtTime(spec.volume, startAt + fadeS)
     source.connect(gain)
     gain.connect(output.input)
     source.start(startAt, offsetS)
-    const playing: Playing = { key, track, source, gain, isJingle: !spec.loop, startedAt: startAt, offsetS }
+    const playing: Playing = { key, track, source, gain, isCue: spec.cue === true, startedAt: startAt, offsetS }
     source.onended = () => {
       gain.disconnect()
       if (this.current === playing) this.current = null
@@ -265,6 +277,8 @@ class MusicPlayer {
       // decodeAudioData consomme le tampon : on décode une copie, le fichier reste disponible.
       const decodeStartedAt = performance.now()
       const buffer = await decodeMusic(file.slice(0))
+      const { loopEndS } = MUSIC_TRACKS[track]
+      if (loopEndS !== undefined) this.loopRegions.set(track, bakeLoopSeam(buffer.getChannelData(0), buffer.sampleRate, loopEndS, LOOP_SEAM_FADE_S))
       this.lastDecode = { track, ms: Math.round(performance.now() - decodeStartedAt), at: Date.now() }
       this.decodeCount++
       this.keep(track, buffer)

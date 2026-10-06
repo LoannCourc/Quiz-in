@@ -61,7 +61,7 @@ Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/pu
 | Question, validation, révélation et classement, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais pendant la question d'un blind test |
 | Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | 0,8 | |
 | Bluff, vote, révélation et classement | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
-| Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | en entier, après le roulement en Suspense ; puis silence |
+| Écran de fin | `Findepartie_sound.ogg` (17 s) | démarre net à l'arrivée du podium, puis boucle | 1 | après le roulement en Suspense ; boucle tant que l'écran de fin est affiché, sur les 8,348 premières secondes (le fichier répète deux phrases de 4,17 s puis finit en fondu ; la 3e phrase reprend la 1re à 0,95 de corrélation), raccord adouci par un fondu enchaîné de 40 ms (`shared/loopSeam.ts`) ; s'arrête en fondu de 600 ms à « Rejouer », de 300 ms quand la partie est quittée |
 | Question d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1, du classement, ou de la révélation en Suspense) |
 
 Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : la musique en cours s'arrête (fondu de 300 ms, position gardée) et `Waiting_sound.ogg` joue en boucle ; à la reprise, fondu enchaîné de 600 ms, la musique repart où elle s'était arrêtée (aussi en blind test, où rien n'est à reprendre).
