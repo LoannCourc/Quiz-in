@@ -69,7 +69,8 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
         {hiddenCount > 0 && <p className="bluff-hidden">{strings.bluff.otherChoices(hiddenCount)}</p>}
       </div>
       {countdown && <NextQuestionLine countdown={countdown} />}
-      {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
+      {/* Pas à pas : seulement une fois les cartes retournées et la vraie réponse montrée, rien pendant l'animation. */}
+      {isTruthShown && isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>
   )
 }
