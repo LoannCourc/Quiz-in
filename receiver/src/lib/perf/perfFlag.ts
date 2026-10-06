@@ -2,14 +2,18 @@
 // Allumé par l'adresse (?perf=1, plan B ; ?perf=0 l'éteint) ou par le message Cast { "perf": true }
 // envoyé depuis cast-sender.html, même en pleine partie. Le choix est gardé par la TV (localStorage) :
 // une fois allumé, il le reste aux parties suivantes jusqu'à { "perf": false }.
+// Musique coupée pour comparer sur une même partie (seulement panneau allumé, jamais gardée) :
+// ?perfmusic=0, ou le message Cast { "perfMusic": false } ; { "perfMusic": true } rend la main à l'hôte.
 
 const STORAGE_KEY = 'quizin.perf'
 const PARAM = 'perf'
+const MUSIC_PARAM = 'perfmusic'
 
-type PerfListener = (isEnabled: boolean) => void
+type PerfListener = () => void
 
 const listeners = new Set<PerfListener>()
 let isEnabled = readInitialFlag()
+let isMusicForcedOff = new URLSearchParams(window.location.search).get(MUSIC_PARAM) === '0'
 
 function store(value: boolean): void {
   try {
@@ -41,7 +45,18 @@ export function setPerfEnabled(value: boolean): void {
   store(value)
   if (value === isEnabled) return
   isEnabled = value
-  listeners.forEach((listener) => listener(value))
+  listeners.forEach((listener) => listener())
+}
+
+// Musique coupée par le panneau, quel que soit le réglage de l'hôte (panneau allumé seulement).
+export function isPerfMusicForcedOff(): boolean {
+  return isEnabled && isMusicForcedOff
+}
+
+export function setPerfMusicForcedOff(value: boolean): void {
+  if (value === isMusicForcedOff) return
+  isMusicForcedOff = value
+  listeners.forEach((listener) => listener())
 }
 
 export function onPerfChange(listener: PerfListener): () => void {

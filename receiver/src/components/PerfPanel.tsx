@@ -50,7 +50,7 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
   const { music, memory, lastTransition, keepAwake } = snapshot
   return (
     <>
-      <div className={snapshot.musicOn ? 'perf-strong' : undefined}>{texts.sound(snapshot.musicOn, snapshot.effectsOn)}</div>
+      <div className={snapshot.musicOn ? 'perf-strong' : undefined}>{texts.sound(snapshot.musicOn, snapshot.musicForcedOff, snapshot.effectsOn)}</div>
       <div>{texts.fps(snapshot.fps, snapshot.minFps)}</div>
       <div>{texts.longTasks(snapshot.longTasks, snapshot.longTaskMaxMs, snapshot.supportsLongTasks)}</div>
       <div>{texts.tickGap(snapshot.tickGapMaxMs)}</div>

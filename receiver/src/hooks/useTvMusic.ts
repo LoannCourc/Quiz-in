@@ -4,13 +4,16 @@ import type { PublicSession } from '@shared/types'
 import { useEffect } from 'react'
 
 import { estimateServerNow } from '../lib/serverTime'
+import { usePerfMusicForcedOff } from './usePerfEnabled'
 import { musicPlayer } from '../lib/sound/musicPlayer'
 
 // Musique de la TV pendant la partie (spec 17) : prépare les pistes du mode de jeu, puis applique à
 // chaque changement le plan de shared/music.ts (piste, jingle, arrêt avant l'extrait, pause).
 // isBlindTestGame : le quiz est un blind test (pas de musique pendant la question).
 export function useTvMusic(session: PublicSession, isBlindTestGame: boolean, serverOffsetMs: number): void {
-  const isMusicOn = soundSettingsOf(session).music
+  // Panneau de mesures : musique coupée sur la TV seule, pour comparer (sinon, réglage de l'hôte).
+  const isForcedOff = usePerfMusicForcedOff()
+  const isMusicOn = soundSettingsOf(session).music && !isForcedOff
   const { answerMode } = session.settings
   const plan = musicPlan(session, isBlindTestGame)
   const { track, startAt, stopBy, fastStop, isPaused, heldTrack } = plan

@@ -63,3 +63,14 @@ export function readCastPerf(data: unknown): boolean | null {
   const { perf } = data
   return typeof perf === 'boolean' ? perf : null
 }
+
+// Panneau de mesures : musique coupée sur la TV (false) ou rendue au réglage de l'hôte (true).
+export interface CastPerfMusicMessage {
+  perfMusic: boolean
+}
+
+export function readCastPerfMusic(data: unknown): boolean | null {
+  if (typeof data !== 'object' || data === null || !('perfMusic' in data)) return null
+  const { perfMusic } = data
+  return typeof perfMusic === 'boolean' ? perfMusic : null
+}

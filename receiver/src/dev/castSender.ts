@@ -3,6 +3,7 @@ import {
   CAST_RECEIVER_APP_ID,
   type CastAudioTestMessage,
   type CastPerfMessage,
+  type CastPerfMusicMessage,
   type CastSoundTestMessage,
   type CastShowGameMessage,
 } from '@shared/cast'
@@ -56,7 +57,7 @@ globals.__onGCastApiAvailable = (isAvailable) => {
   show(`Prêt (récepteur ${CAST_RECEIVER_APP_ID}). Cliquez sur l’icône Cast et choisissez la TV.`)
 }
 
-function send(message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage): void {
+function send(message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage | CastPerfMusicMessage): void {
   const session = context()?.getCurrentSession()
   if (!session) {
     show('Pas de session Cast : connectez-vous d’abord à la TV (étape 1).')
@@ -74,6 +75,8 @@ document.getElementById('sound-effects')!.addEventListener('click', () => send({
 document.getElementById('sound-music')!.addEventListener('click', () => send({ soundTest: musicFileInput.value.trim() }))
 document.getElementById('perf-on')!.addEventListener('click', () => send({ perf: true }))
 document.getElementById('perf-off')!.addEventListener('click', () => send({ perf: false }))
+document.getElementById('perf-music-off')!.addEventListener('click', () => send({ perfMusic: false }))
+document.getElementById('perf-music-on')!.addEventListener('click', () => send({ perfMusic: true }))
 
 const sdk = document.createElement('script')
 sdk.src = SENDER_SDK_URL

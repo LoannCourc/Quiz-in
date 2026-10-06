@@ -207,7 +207,8 @@ export const strings = {
     memory: (usedMb: number, limitMb: number) => `Mémoire JS : ${usedMb} / ${limitMb} Mo`,
     memoryUnknown: 'Mémoire JS : non mesurable',
     screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
-    sound: (music: boolean, effects: boolean) => `Musique : ${music ? 'ACTIVE' : 'coupée'} · effets : ${effects ? 'oui' : 'non'}`,
+    sound: (music: boolean, forcedOff: boolean, effects: boolean) =>
+      `Musique : ${music ? 'ACTIVE' : forcedOff ? 'coupée par les mesures' : 'coupée'} · effets : ${effects ? 'oui' : 'non'}`,
     musicMemory: (tracks: number, decodedMb: number, fileMb: number, decoding: number) =>
       `Pistes décodées : ${tracks} (${decodedMb.toFixed(1)} Mo ; fichiers ${fileMb.toFixed(1)} Mo)${decoding > 0 ? ` · décodage en cours` : ''}`,
     lastDecode: (track: string, ms: number) => `Dernier décodage : ${track}, ${ms} ms`,

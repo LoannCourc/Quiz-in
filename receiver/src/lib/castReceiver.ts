@@ -1,6 +1,6 @@
-import { CAST_NAMESPACE, readCastAudioTest, readCastPerf, readCastRoomCode, readCastSoundTest } from '@shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastPerf, readCastPerfMusic, readCastRoomCode, readCastSoundTest } from '@shared/cast'
 
-import { setPerfEnabled } from './perf/perfFlag'
+import { setPerfEnabled, setPerfMusicForcedOff } from './perf/perfFlag'
 
 // SDK Web Receiver de Google : toujours chargé depuis gstatic (Google interdit de l'héberger
 // soi-même), et seulement en mode Cast, pour que le navigateur du plan B n'en dépende pas.
@@ -63,6 +63,11 @@ function receiveMessage(event: CustomMessageEvent): void {
   const perf = readCastPerf(event.data)
   if (perf !== null) {
     setPerfEnabled(perf)
+    return
+  }
+  const perfMusic = readCastPerfMusic(event.data)
+  if (perfMusic !== null) {
+    setPerfMusicForcedOff(!perfMusic)
     return
   }
   const soundTest = readCastSoundTest(event.data)

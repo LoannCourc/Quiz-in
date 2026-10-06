@@ -3,6 +3,7 @@ import { soundSettingsOf } from '@shared/sound'
 import type { GameStatus, PublicSession } from '@shared/types'
 
 import { keepAwakeStatus, type KeepAwakeStatus } from '../keepAwake'
+import { isPerfMusicForcedOff } from './perfFlag'
 import { musicPlayer, type MusicStats } from '../sound/musicPlayer'
 
 // Mesures de la TV pour le plan de fiabilité (docs/plan-fiabilite-tv.md), affichées par le panneau
@@ -72,6 +73,8 @@ export interface PerfSnapshot {
   screen: string
   chromeVersion: string
   musicOn: boolean
+  // Musique coupée par le panneau (et non par l'hôte).
+  musicForcedOff: boolean
   effectsOn: boolean
   music: MusicStats
   keepAwake: KeepAwakeStatus
@@ -135,10 +138,11 @@ class PerfMonitor {
   private observer: PerformanceObserver | null = null
   private buckets = { on: emptyBucket(), off: emptyBucket() }
   private incidents: PerfIncident[] = []
-  private context: { status: GameStatus | null; index: number | null; music: boolean; effects: boolean } = {
+  // hostMusic : réglage de l'hôte ; la musique jouée tient compte aussi du panneau (isMusicOn).
+  private context: { status: GameStatus | null; index: number | null; hostMusic: boolean; effects: boolean } = {
     status: null,
     index: null,
-    music: false,
+    hostMusic: false,
     effects: false,
   }
   private lastPhase: { startedAt: number; endsAt: number } | null = null
@@ -180,12 +184,12 @@ class PerfMonitor {
   }
 
   // Appelé à chaque état reçu de la base, avant tout rendu : heure de réception d'une nouvelle phase.
+  // L'état est retenu même panneau éteint (léger) : allumé en pleine partie, il sait déjà où elle en est.
   noteSession(session: PublicSession): void {
-    if (!this.isRunning) return
     const sound = soundSettingsOf(session)
-    this.context = { status: session.status, index: session.currentIndex, music: sound.music, effects: sound.effects }
+    this.context = { status: session.status, index: session.currentIndex, hostMusic: sound.music, effects: sound.effects }
     const previous = this.lastPhase
-    if (previous?.startedAt !== session.phaseStartedAt && previous !== null) {
+    if (this.isRunning && previous !== null && previous.startedAt !== session.phaseStartedAt) {
       this.pending = {
         phaseStartedAt: session.phaseStartedAt,
         previousEndsAt: previous.endsAt,
@@ -242,7 +246,8 @@ class PerfMonitor {
       memory: memory ? { usedMb: Math.round(memory.usedJSHeapSize / MEGABYTE), limitMb: Math.round(memory.jsHeapSizeLimit / MEGABYTE) } : null,
       screen: `${innerWidth}×${innerHeight} ×${devicePixelRatio}`,
       chromeVersion: /Chrome\/(\d+)/.exec(navigator.userAgent)?.[1] ?? '?',
-      musicOn: this.context.music,
+      musicOn: this.isMusicOn(),
+      musicForcedOff: isPerfMusicForcedOff(),
       effectsOn: this.context.effects,
       music: musicPlayer.stats,
       keepAwake: keepAwakeStatus(),
@@ -256,8 +261,12 @@ class PerfMonitor {
     return Date.now() + this.serverOffsetMs
   }
 
+  private isMusicOn(): boolean {
+    return this.context.hostMusic && !isPerfMusicForcedOff()
+  }
+
   private bucket(): MusicBucket {
-    return this.context.music ? this.buckets.on : this.buckets.off
+    return this.isMusicOn() ? this.buckets.on : this.buckets.off
   }
 
   private tick(): void {
@@ -309,7 +318,7 @@ class PerfMonitor {
       detail,
       status: this.context.status,
       index: this.context.index,
-      music: this.context.music,
+      music: this.isMusicOn(),
       decoding: musicPlayer.stats.decodingCount > 0,
     }
     this.incidents = [...this.incidents, incident].slice(-MAX_INCIDENTS)
