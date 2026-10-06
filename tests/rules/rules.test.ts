@@ -26,7 +26,7 @@ import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '../../shared/publicFields'
-import { rankingStreakBadges } from '../../shared/streak'
+import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
@@ -771,7 +771,7 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
     return publicSession as PublicSession
   }
 
-  test('séries : écrites par l’hôte qui joue, reçues par la TV et les joueurs, badge au classement dès 3', async () => {
+  test('séries : écrites par l’hôte qui joue, reçues par la TV, les joueurs et l’hôte, badge au résultat et au classement dès 3', async () => {
     const questions = QUESTIONS.slice(0, 6)
     const gameQuestions6 = selectGameQuestions(questions)
     let session = await seedLobby()
@@ -783,19 +783,29 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
     }
     session = await step('starting')
     for (let index = 0; index < 5; index++) {
-      // L'hôte joue et répond juste (1) ; Léa se trompe (0).
+      // L'hôte joue et répond juste (1) à chaque fois ; Léa se trompe à la première (0), puis répond juste.
       await assertSucceeds(submitAnswer(HOST, index, 1))
-      await assertSucceeds(submitAnswer(PLAYER, index, 0))
+      await assertSucceeds(submitAnswer(PLAYER, index, index === 0 ? 0 : 1))
       session = await readSession()
       session = await step('question')
+      expect(session.status).toBe('reveal')
+      const hostStreak = index + 1
+      const playerStreak = index
+      const badge = (streak: number) => (streak >= 3 ? streak : null)
+      // Écran de résultat : le joueur lit les champs un par un (site des joueurs), l'hôte qui joue lit sa
+      // session d'un bloc (son app).
+      expect(revealStreak(await readPublicSession(PLAYER), PLAYER)).toBe(badge(playerStreak))
+      expect(revealStreak(await readSession(), HOST)).toBe(badge(hostStreak))
       session = await step('reveal')
       expect(session.status).toBe('scores')
-      const streak = index + 1
       for (const reader of ['tv-uid', PLAYER]) {
         const seen = await readPublicSession(reader)
-        expect(seen.players[HOST].streak).toBe(streak)
-        expect(seen.players[PLAYER].streak).toBe(0)
-        expect(rankingStreakBadges(seen)).toEqual(streak >= 3 ? { [HOST]: streak } : {})
+        expect(seen.players[HOST].streak).toBe(hostStreak)
+        expect(seen.players[PLAYER].streak).toBe(playerStreak)
+        const expected: Record<string, number> = {}
+        if (hostStreak >= 3) expected[HOST] = hostStreak
+        if (playerStreak >= 3) expected[PLAYER] = playerStreak
+        expect(rankingStreakBadges(seen)).toEqual(expected)
       }
       session = await step('scores')
     }

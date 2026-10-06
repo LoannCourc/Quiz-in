@@ -3,6 +3,7 @@ import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { hasRankingStep, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
 import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
+import { revealStreak } from '@shared/streak';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import { isTvPresent } from '@shared/tvPresence';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
@@ -199,7 +200,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
         return (
           <>
             {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
-            <BluffRevealView choices={bluffChoices} result={result} uid={uid} players={session.players} />
+            <BluffRevealView choices={bluffChoices} result={result} uid={uid} players={session.players} streak={revealStreak(session, uid)} />
             {isAwaitingHost(session) && <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>}
           </>
         );
@@ -216,6 +217,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
             options={session.currentQuestion?.options}
             free={freeRevealInfo(session, result, answer)}
             team={team?.team}
+            streak={revealStreak(session, uid)}
           />
           {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}
           {isAwaitingHost(session) && (

@@ -12,6 +12,8 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { PlayerBluff } from '@/lib/playerBluff';
 
+import { StreakNotice } from './StreakNotice';
+
 
 // Bluff (spec 16), téléphone du joueur : écrire sa fausse réponse (B1), attendre et voter (B2),
 // résultat (B3). Aucun accès à Firebase : la page fournit l'état (useBluff) et les actions.
@@ -202,6 +204,8 @@ interface BluffRevealViewProps {
   result: PlayerResult | undefined;
   uid: PlayerId;
   players: Record<PlayerId, Player>;
+  // Série du joueur à montrer (3 et plus, vraie réponse trouvée) : badge flamme et « Série de 4 ! ».
+  streak?: number | null;
 }
 
 function namesOf(ids: readonly PlayerId[] | undefined, players: Record<PlayerId, Player>): string[] {
@@ -209,7 +213,7 @@ function namesOf(ids: readonly PlayerId[] | undefined, players: Record<PlayerId,
 }
 
 // B3 : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
-export function BluffRevealView({ choices, result, uid, players }: BluffRevealViewProps) {
+export function BluffRevealView({ choices, result, uid, players, streak }: BluffRevealViewProps) {
   const { voted, own, points } = bluffPlayerOutcome(choices, result, uid);
   const truth = choices.find((choice) => choice.kind === 'truth');
   const isFound = voted?.kind === 'truth';
@@ -232,6 +236,7 @@ export function BluffRevealView({ choices, result, uid, players }: BluffRevealVi
         {title}
       </Text>
       <Text style={styles.revealPoints}>{texts.points(points)}</Text>
+      {streak != null && <StreakNotice streak={streak} />}
       <Text style={styles.revealText}>{lines.join(' ')}</Text>
       {truth && (
         <View style={styles.card}>

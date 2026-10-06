@@ -1,3 +1,4 @@
+import type { PublicSession } from '@shared/types';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -40,14 +41,22 @@ const SCENARIO_CHOICES: Choice<ScenarioId>[] = (Object.keys(SCENARIO_LABELS) as 
 
 const DEMO_TV_UID = 'demo-tv';
 
+// &streak=N : série du joueur de la démo (spec 18).
+function withDemoStreak(session: PublicSession, streak: number): PublicSession {
+  const me = session.players[DEMO_UID];
+  if (streak <= 0 || !me) return session;
+  return { ...session, players: { ...session.players, [DEMO_UID]: { ...me, streak } } };
+}
+
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
-// TV est présente (Bluff : pas d'énoncé sur le téléphone) ;
+// TV est présente (Bluff : pas d'énoncé sur le téléphone) ; &streak=4 : série du joueur (badge flamme sur
+// l'écran de résultat à partir de 3, après une bonne réponse) ;
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
@@ -132,7 +141,7 @@ export default function PlayerDemoScreen() {
         <PlayerGame
           // Nouvelle clé à chaque scénario : les écrans repartent de leur état initial.
           key={scenario.session.phaseStartedAt}
-          session={params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session}
+          session={withDemoStreak(params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session, Number(params.streak) || 0)}
           uid={DEMO_UID}
           serverOffsetMs={0}
           answer={scenario.answer}

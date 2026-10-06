@@ -563,6 +563,11 @@ export const strings = {
       locked: 'Tu ne peux plus la modifier.',
       bothAnswer: (title: string, artist: string) => [title, artist].filter(Boolean).join(' – '),
     },
+    // Série de bonnes réponses d'affilée (spec 18), sur l'écran de résultat, à partir de 3.
+    streak: {
+      notice: (count: number) => `Série de ${count} !`,
+      badge: (count: number) => `Série de ${count}`,
+    },
     reveal: {
       titles: {
         correct: 'Bonne réponse !',

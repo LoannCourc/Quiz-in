@@ -86,3 +86,11 @@ export function extraStreaks(session: RankingSession): ExtraStreaks {
     .map(([id, player]) => ({ id, streak: player.streak ?? 0 }))
   return { shown: others.slice(0, EXTRA_STREAKS_SHOWN), moreCount: Math.max(0, others.length - EXTRA_STREAKS_SHOWN) }
 }
+
+// Écran de résultat du téléphone (joueur, et hôte qui joue) : sa série, à partir de 3, quand il vient de
+// répondre juste (une série gardée sans bonne réponse, à moitié juste par exemple, ne s'affiche pas). Aussi
+// en Suspense : sa propre série ne dit rien de son rang. null : rien à afficher.
+export function revealStreak(session: Pick<PublicSession, 'players' | 'reveal'>, uid: PlayerId): number | null {
+  const streak = session.players[uid]?.streak
+  return session.reveal?.results?.[uid]?.correct === true && hasStreakBadge(streak) ? (streak ?? 0) : null
+}

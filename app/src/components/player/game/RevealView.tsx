@@ -11,6 +11,7 @@ import type { FreeText, RevealOutcome } from '@/lib/playerGame';
 import { gradientStyle } from '@/components/ui/gradient';
 
 import { ChoicePill, choiceTextSize } from './ChoicePill';
+import { StreakNotice } from './StreakNotice';
 import { TeamChip } from './TeamViews';
 
 // Réponse libre (maquette S2) : bonne réponse (titre et artiste pour un blind test « both »), parties
@@ -38,11 +39,13 @@ interface RevealViewProps {
   free?: FreeRevealInfo;
   // Groupe : pastille de l'équipe du joueur.
   team?: TeamId;
+  // Série du joueur à montrer (3 et plus, bonne réponse) : badge flamme et « Série de 4 ! ».
+  streak?: number | null;
 }
 
 // Écran Réponse : juste ou faux, et les points gagnés. Aucun rang : il n'apparaît qu'au Classement.
 export function RevealView(props: RevealViewProps) {
-  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], free, team } = props;
+  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], free, team, streak } = props;
   const isCorrect = outcome === 'correct';
 
   return (
@@ -52,6 +55,7 @@ export function RevealView(props: RevealViewProps) {
 
       {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}
       <PointsCoin points={points} isSoft={!isCorrect} />
+      {streak != null && <StreakNotice streak={streak} />}
       {free ? (
         <FreeResult free={free} isCorrect={isCorrect} points={points} />
       ) : (

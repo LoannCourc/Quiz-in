@@ -4,7 +4,7 @@ import { QUESTION_DURATION_S } from '../../shared/constants'
 import { replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { bluffRevealTimeline } from '../../shared/bluff'
 import { STREAK_CUE_DELAY_MS, timedCues, VALIDATED_RESULT_DELAY_MS } from '../../shared/sound'
-import { extraStreaks, hasStreakBadge, nextStreak, rankingStreakBadges, STREAK_MAX, streakSound } from '../../shared/streak'
+import { extraStreaks, hasStreakBadge, nextStreak, rankingStreakBadges, revealStreak, STREAK_MAX, streakSound } from '../../shared/streak'
 import type { Answer, BluffChoice, PlayerResult, RevealedBluffChoice, Player, PlayerId, Question, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, HOST, makeQuestion, makeSession, OTHER, player, PLAYER, QUESTIONS } from './engineFixtures'
 
@@ -284,5 +284,21 @@ describe('Série : ligne « Aussi en série »', () => {
       c: player('Céa', { rank: 3, streak: 3, team: 'cyan' }),
     }
     expect(extraStreaks({ players, settings: { ...CHOICE, teams: true, teamCount: 2 } })).toEqual({ shown: [{ id: 'b', streak: 4 }], moreCount: 0 })
+  })
+})
+
+describe('Série : écran de résultat du téléphone', () => {
+  const session = (streak: number | undefined, result?: PlayerResult) => ({
+    players: { [PLAYER]: player('Léa', { streak }) },
+    reveal: { correctAnswer: 'B', stats: {}, results: result ? { [PLAYER]: result } : {} },
+  })
+
+  test('à partir de 3, seulement après une bonne réponse', () => {
+    expect(revealStreak(session(4, { correct: true, points: 100 }), PLAYER)).toBe(4)
+    expect(revealStreak(session(2, { correct: true, points: 100 }), PLAYER)).toBeNull()
+    // À moitié juste : la série reste à 4, mais rien ne s'affiche (elle n'a pas grandi).
+    expect(revealStreak(session(4, { correct: false, points: 50, partial: true }), PLAYER)).toBeNull()
+    expect(revealStreak(session(0, { correct: false, points: 0 }), PLAYER)).toBeNull()
+    expect(revealStreak(session(4), PLAYER)).toBeNull()
   })
 })

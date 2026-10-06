@@ -67,6 +67,10 @@ export const AppColors = {
   timebarTrack: 'rgba(255, 255, 255, 0.18)',
   // Pastille « encre » : lettre des réponses, centre de l'anneau, bandeau « Ta place ».
   inkSurface: Palette.ink,
+  // Badge flamme d'une série (spec 18) : goutte rose, goutte or dedans, nombre à l'encre (comme la TV).
+  streakOuter: Palette.pink,
+  streakInner: Palette.gold,
+  onStreak: Palette.ink,
   // Voile derrière un panneau (contrôles de l'hôte).
   backdrop: 'rgba(23, 6, 70, 0.7)',
   confetti: [Palette.cyan, Palette.gold, Palette.green, Palette.white, Palette.pinkLight],
