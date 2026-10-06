@@ -80,8 +80,10 @@ export const HIDDEN_ANSWER_TEXT = '•••';
 // Estimation de la durée d'une validation par l'hôte (Contrôle), pour la durée affichée sur la fiche.
 export const VALIDATION_ESTIMATE_S = 15;
 
-// Bluff (spec 16) : vote de 30 s (des phrases à lire) ; révélation allongée de 2 s par fausse proposition.
-export const BLUFF_VOTE_DURATION_S = 30;
+// Bluff (spec 16) : vote sans minuteur (il se termine quand tous les joueurs connectés ont voté, ou
+// par « Clore le vote » de l'hôte) ; durée moyenne estimée pour la fiche du quiz. Révélation allongée
+// de 2 s par fausse proposition.
+export const BLUFF_VOTE_ESTIMATE_S = 30;
 export const BLUFF_REVEAL_PER_CHOICE_S = 2;
 // Longueur maximale d'une proposition, d'une vraie réponse et d'un leurre : des phrases (identique à
 // database.rules.json), et essais au plus quand une

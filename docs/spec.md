@@ -122,7 +122,7 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 | **STARTING** (3 s) | Automatique | Fin du compte à rebours |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (60 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
 | **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. En Suspense, passage direct à QUESTION (ou à END après la dernière question) |
-| **VOTE** (Bluff seulement, 30 s) | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont voté (délai de 2 s). L'hôte peut avancer. Toujours suivi de REVEAL (section 16) |
+| **VOTE** (Bluff seulement, sans minuteur) | Automatique | Tous les joueurs connectés ont voté (délai de 2 s), **ou** l'hôte appuie sur « Clore le vote » (confirmation s'il manque des votes). Toujours suivi de REVEAL (section 16) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. S'il reste des questions, retour à QUESTION, sinon passage à END |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
@@ -166,7 +166,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 ### 6.1 Durées
 - **Choix multiples** : 20 secondes par question.
 - **Réponse libre** : 30 secondes par question, quiz comme blind test (l'extrait joue alors toute la preview de 30 s).
-- **Bluff** : écriture 60 s, vote 30 s, révélation 4 s plus 2 s par fausse proposition (section 16).
+- **Bluff** : écriture 60 s, vote sans minuteur, révélation 4 s plus 2 s par fausse proposition (section 16).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
 - **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
@@ -519,7 +519,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Principe.** Un quiz de type `bluff` ne propose pas de réponses : la question s'affiche sur la TV, et sur les téléphones seulement quand aucune TV n'est présente (voir plus bas) ; chaque joueur invente une **fausse réponse** crédible sur son téléphone ; le jeu mélange les propositions avec la vraie réponse (et des leurres) ; chaque joueur vote pour celle qu'il croit vraie, jamais pour la sienne. Puis révélation (écran propre au Bluff), et classement comme d'habitude (seulement à la fin en Suspense).
 
-**Déroulé.** QUESTION (écriture, 60 s) → VOTE (30 s) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture et le vote gardent leur chrono.
+**Déroulé.** QUESTION (écriture, 60 s) → VOTE (sans minuteur) → REVEAL (4 s plus 2 s par fausse proposition) → SCORES → question suivante. Pas à pas : la révélation et le classement attendent l'hôte, comme d'habitude ; l'écriture garde son chrono. Suspense : la révélation mène directement à la question suivante, comme d'habitude.
 
 **Joueurs.** 2 au minimum. Bluff : pas de limite propre, limite générale de l'app (`MAX_PLAYERS`, 20). Sur la TV, les choix sont des cartes en une ou deux colonnes selon leur nombre et la longueur de leur texte (des phrases), avec une taille de texte adaptée, toujours lisible en 720p ; sur le téléphone, la liste défile.
 
@@ -538,7 +538,12 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - **Doublons** : les propositions identiques après normalisation (majuscules, accents, ponctuation, article initial) n'en font qu'une, avec tous leurs auteurs ; le texte affiché est celui de la première arrivée. Une proposition identique à un leurre remplace ce leurre et reste celle du joueur.
 - **Leurres** : on vise 6 choix au total. Leurres utilisés = max(0, 6 − (1 + nombre de propositions distinctes)), dans la limite des leurres de la question, tirés au hasard. Garantie : chaque joueur a au moins **3 choix votables** hors sa propre proposition ; sinon, d'autres leurres sont ajoutés tant qu'il en reste.
 - Les choix sont publiés sans auteur ni type. Chaque auteur sait seulement lequel est le sien (grisé, « Ta proposition ») : il ne peut pas voter pour lui.
-- Fin anticipée du vote quand tous les joueurs connectés ont voté (2 s après le dernier vote).
+- **Fin du vote, sans minuteur** (les joueurs ont le temps de lire jusqu'à 20 propositions) :
+  - automatiquement, 2 s après le dernier vote, quand tous les joueurs **connectés** ont voté ;
+  - ou quand l'hôte appuie sur « Clore le vote » sur son téléphone, avec une confirmation s'il manque des votes (« N joueurs n'ont pas voté. Clore quand même ? ») ; ceux qui n'ont pas voté n'ont pas de vote (mêmes points que sans vote).
+  - Compte affiché à la place du minuteur, sur la TV et les téléphones : « X/Y ont voté ». Attendus (Y) : les joueurs connectés, plus ceux qui ont déjà voté. L'hôte voit aussi qui n'a pas encore voté. Ni tic-tac ni buzzer.
+  - **Un joueur déconnecté ne bloque jamais** : un joueur déconnecté qui n'a pas voté n'est pas attendu ; si le dernier qui n'avait pas voté se déconnecte, le vote se termine aussitôt. S'il revient avant la fin, il est de nouveau attendu et peut voter. Un joueur parti après son vote reste compté. Si personne n'est connecté ni n'a voté, seul « Clore le vote » fait avancer. Coupure brutale d'un téléphone : le serveur peut mettre jusqu'à environ une minute à la constater ; l'hôte peut clore le vote sans attendre. L'hôte qui joue est attendu comme les autres.
+  - Pause pendant le vote : la reprise revient au vote, toujours sans minuteur.
 
 **Points.** 1000 pour un vote sur la vraie réponse ; 500 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
 
@@ -548,7 +553,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Téléphone (B1 à B3).** Écriture : la question (seulement sans TV présente), le champ sur plusieurs lignes avec son compteur, ENVOYER ; après un refus, le texte reste dans le champ, avec le motif et les essais restants ; « Vérification de ta proposition… » tant que l'hôte n'a pas jugé. Attente : « Proposition envoyée », la proposition rappelée, les avatars des joueurs qui ont fini (ou « Plus d'essai » après trois refus). Vote : la question (seulement sans TV présente) et les choix lettrés, le sien grisé en pointillés avec « Ta proposition » ; un appui sélectionne, « Je vote pour celle-ci » envoie ; puis « Vote envoyé ». Révélation : « Bien vu ! » (vraie réponse), « Piégé ! » ou « Pas de vote », les points de la question, une phrase d'explication, la vraie réponse, puis qui sa proposition a piégé. L'hôte inscrit joue avec les mêmes écrans.
 
-**TV présente.** Chaque TV ouverte sur la partie (Cast ou plan B) écrit sa présence dans `sessions/{code}/tvPresence/{uid}` (champ public ; seule la TV écrit son propre nœud, ni l'hôte ni un joueur inscrit ne peuvent s'y déclarer), retirée par le serveur à sa déconnexion. Quand au moins une TV est présente, les téléphones n'affichent pas l'énoncé pendant l'écriture et le vote du Bluff : on le lit sur la TV, le téléphone garde la pastille, le champ ou les choix, le minuteur et le bouton. Dans le doute (champ absent, partie ancienne, TV en cours de connexion), l'énoncé reste affiché. Les autres types de partie ne changent pas.
+**TV présente.** Chaque TV ouverte sur la partie (Cast ou plan B) écrit sa présence dans `sessions/{code}/tvPresence/{uid}` (champ public ; seule la TV écrit son propre nœud, ni l'hôte ni un joueur inscrit ne peuvent s'y déclarer), retirée par le serveur à sa déconnexion. Quand au moins une TV est présente, les téléphones n'affichent pas l'énoncé pendant l'écriture et le vote du Bluff : on le lit sur la TV, le téléphone garde la pastille, le champ ou les choix, le minuteur (ou « X/Y ont voté ») et le bouton. Dans le doute (champ absent, partie ancienne, TV en cours de connexion), l'énoncé reste affiché. Les autres types de partie ne changent pas.
 
 **Catalogue et réglages.** Onglet « Bluff » du catalogue, toujours jouable, avec les mêmes puces de thème que les quiz ; les affiches gardent l'icône de leur thème. Feuille des réglages d'un Bluff : ni mode de réponse, ni Contrôle, ni Rapidité ; Groupe, Pas à pas et Suspense disponibles. Résumé : « Bluff · … ».
 
@@ -564,7 +569,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - **Personne n'écrit** : vraie réponse et tous les leurres (au moins 3 choix).
 - **Tous écrivent la même chose** : un seul choix avec tous comme auteurs, qu'aucun ne peut voter ; vraie réponse et leurres (au moins 3 choix votables chacun).
 - **Beaucoup de joueurs** (jusqu'à 20, la limite générale) : plus de leurre ; autant de choix que de propositions distinctes, plus la vraie réponse ; révélation plus longue (2 s par fausse proposition).
-- **Déconnexion pendant l'écriture** : une proposition acceptée reste en jeu et rapporte à son auteur. **Pendant le vote** : pas de vote, mais les points de piège restent.
+- **Déconnexion pendant l'écriture** : une proposition acceptée reste en jeu et rapporte à son auteur. **Pendant le vote** : pas de vote, mais les points de piège restent ; le joueur n'est plus attendu (voir « Fin du vote »).
 - **Autre écriture de la vraie réponse** (« Landlords Game ») : refusée comme la vraie réponse. **Un mot de la vraie réponse seul** (« Game ») : accepté.
 
 **Sécurité.** La vraie réponse n'est jamais publiée désignée avant la révélation : pendant le vote, elle n'est qu'un texte parmi d'autres, à une place tirée au hasard. Propositions, verdicts, auteurs, votes et points sont réservés à l'hôte, sauf ce qui concerne le joueur lui-même (section 7). Même limite qu'ailleurs : le catalogue `questions/` reste lisible par tout utilisateur connecté.
@@ -588,7 +593,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - Blind test : aucune musique pendant la question (l'extrait joue seul). La musique de jeu revient en fondu dès l'affichage de la bonne réponse (début de la révélation) et continue au classement. Elle se tait par un fondu de 300 ms qui se termine avant l'extrait suivant : à la fin du 3-2-1, du classement, ou de la révélation en Suspense (en Pas à pas, au début de la question). Musique d'attente au salon, jingle de fin inchangé.
 - Jingle entamé depuis plus de 1,5 s quand la TV s'ouvre : pas joué.
 - Fichiers et durées : `docs/sons.md`.
-- Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
+- Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et à l'écriture du Bluff (le vote n'a pas de minuteur) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
 - Pause : la musique en cours s'arrête par un fondu de 300 ms en gardant sa position, et la musique d'attente joue en boucle pendant toute la pause ; à la reprise, fondu enchaîné de 600 ms et la musique repart là où elle s'était arrêtée. Le chrono et l'extrait s'arrêtent ; en blind test, la musique d'attente joue de même pendant la pause. Une pause pendant la musique d'attente ne change rien.
 
 **Déclenchement.** Chaque son est déduit par comparaison de l'état précédent et du nouvel état (`shared/sound.ts`). Le premier état reçu (TV ouverte ou reconnectée en pleine partie) ne joue aucun son ; un changement de phase ne sonne que si elle a commencé il y a moins de 2 s. **Fin de partie en Suspense** : la TV affiche « Et le grand gagnant est… » (« Et l'équipe gagnante est… » en Groupe) pendant le roulement de tambour (3 s), puis le podium avec le tada ; une TV ouverte après ces 3 s affiche directement le podium. Les téléphones attendent aussi ces 3 s (« Et le grand gagnant est… Regarde la TV ! ») avant le classement final, pour ne rien révéler avant la TV. **Bonne ou mauvaise réponse** (écran commun) : fanfare si au moins un joueur a trouvé, « raté » si personne n'a trouvé.

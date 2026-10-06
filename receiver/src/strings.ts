@@ -76,7 +76,9 @@ export const strings = {
     writeHint: 'Inventez une fausse réponse sur votre téléphone !',
     voteHint: 'Votez pour la vraie réponse !',
     writtenCount: (count: number, total: number) => `${count}/${total} ont écrit`,
-    votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
+    // Vote sans minuteur : « 7/12 » en gros, « ont voté » dessous, à la place de l'anneau du chrono.
+    voteCountNumber: (count: number, total: number) => `${count}/${total}`,
+    voteCountLabel: 'ont voté',
     revealTitle: 'Les propositions se retournent…',
     truthTitle: 'La vraie réponse',
     suspense: 'Suspense… la vraie réponse arrive',

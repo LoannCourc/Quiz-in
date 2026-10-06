@@ -1,3 +1,4 @@
+import { voteProgress, type VoteProgress } from '@shared/bluff'
 import { bluffChoicesLayout } from '@shared/bluffLayout'
 import type { PublicSession } from '@shared/types'
 
@@ -33,9 +34,9 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
   // Beaucoup de choix (petit texte) : question plus basse, sans pastille ni consigne, pour leur laisser la place.
   const voteLayout = bluffChoicesLayout(question.choices ?? [])
   const isCrowded = isVote && voteLayout.crowded
-  const answeredLabel = isVote
-    ? strings.bluff.votedCount(answeredCount, connectedCount)
-    : isBluff
+  // Vote sans minuteur : « X/Y ont voté » à la place de l'anneau (attendus : connectés et votants).
+  const votes = isVote ? voteProgress(session) : null
+  const answeredLabel = isBluff
       ? strings.bluff.writtenCount(answeredCount, connectedCount)
       : strings.question.answeredCount(answeredCount, connectedCount)
   const questionCard = (
@@ -56,7 +57,11 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
       />
 
       <section className="question-main">
-        {!isValidation && <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />}
+        {votes ? (
+          <VoteCount progress={votes} />
+        ) : (
+          !isValidation && <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
+        )}
         {question.audio ? (
           // Blind test : seul l'indicateur d'écoute s'ajoute, jamais le titre ni la pochette.
           <div className="question-card-column">
@@ -107,9 +112,12 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
       {/* Indicateur discret : on montre qui a répondu, jamais ce qu'il a répondu. */}
       {!isValidation && (
         <footer className="question-answered">
-          <span className="question-answered-count">
-            {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
-          </span>
+          {/* Vote : le compte est déjà à la place du minuteur. */}
+          {!votes && (
+            <span className="question-answered-count">
+              {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
+            </span>
+          )}
           {session.settings.teams ? (
             // Groupe : avatars regroupés par équipe (maquette G2).
             <TeamAvatarGroups session={session} players={players} />
@@ -128,5 +136,15 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
         </footer>
       )}
     </main>
+  )
+}
+
+// Bluff, vote sans minuteur : combien ont voté, à la place de l'anneau du chrono.
+function VoteCount({ progress }: { progress: VoteProgress }) {
+  return (
+    <div className="vote-count">
+      <span className="vote-count-number">{strings.bluff.voteCountNumber(progress.voted, progress.expected)}</span>
+      <span className="vote-count-label">{strings.bluff.voteCountLabel}</span>
+    </div>
   )
 }

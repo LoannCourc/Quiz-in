@@ -222,3 +222,36 @@
   --ring-width: 0.35rem;
 }
 
+
+/* Bluff, vote sans minuteur : « 7/12 ont voté » à la place de l'anneau du chrono, même encombrement. */
+.vote-count {
+  --vote-count-size: 6.5rem;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--vote-count-size);
+  min-height: var(--vote-count-size);
+  padding: 0 0.5rem;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.vote-count-number {
+  font-family: var(--font-display);
+  font-size: calc(var(--vote-count-size) * 0.34);
+  line-height: var(--display-line-height-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent);
+}
+
+.vote-count-label {
+  font-size: calc(var(--vote-count-size) * 0.16);
+  font-weight: 900;
+  color: var(--color-text-muted);
+}
+
+.question-vote.is-crowded .vote-count {
+  --vote-count-size: 3.6rem;
+}

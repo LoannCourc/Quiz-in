@@ -1,3 +1,4 @@
+import { voteProgress } from '@shared/bluff';
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
 import { isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
@@ -10,7 +11,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
-import type { AppBackgroundName } from '@/constants/appTheme';
+import { TEXT_FIT_SAFETY, type AppBackgroundName } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDelayPassed } from '@/hooks/useDelayPassed';
@@ -96,10 +97,16 @@ function questionTopBar({ session, uid, serverOffsetMs, bluff }: PlayerGameProps
   if (!isQuestion && !isVote) return undefined;
   const score = rankedPlayers(session.players).find((player) => player.id === uid)?.score ?? 0;
   const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
+  // Vote du Bluff sans minuteur : « X/Y ont voté » à la place de la barre de temps.
+  const votes = isVote ? voteProgress(session) : null;
   return (
     <>
       <QuestionHeader index={session.currentIndex} questionCount={session.questionCount} score={score} />
-      <Timebar {...timing} />
+      {votes ? (
+        <Text style={[textStyles.label, styles.voteCount]}>{strings.game.bluff.votedCount(votes.voted, votes.expected)}</Text>
+      ) : (
+        <Timebar {...timing} />
+      )}
     </>
   );
 }
@@ -257,6 +264,10 @@ const styles = StyleSheet.create({
   },
   notice: {
     textAlign: 'center',
+  },
+  voteCount: {
+    textAlign: 'center',
+    ...TEXT_FIT_SAFETY,
   },
   suspense: {
     flexGrow: 1,

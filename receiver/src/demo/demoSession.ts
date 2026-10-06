@@ -1,7 +1,6 @@
 import {
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
-  BLUFF_VOTE_DURATION_S,
   MAX_PLAYERS,
   QUESTION_DURATION_S,
   QUESTIONS_PER_GAME,
@@ -80,8 +79,6 @@ function phaseDurationS(status: GameStatus, answerMode: AnswerMode): number {
       return STARTING_DURATION_S
     case 'question':
       return DEMO_QUESTION.timeLimit ?? QUESTION_DURATION_S[answerMode]
-    case 'vote':
-      return BLUFF_VOTE_DURATION_S
     case 'reveal':
       return REVEAL_DURATION_S[answerMode]
     case 'scores':
@@ -195,7 +192,8 @@ export function buildDemoSession({
     questionCount: QUESTIONS_PER_GAME,
     phaseStartedAt: startedAt,
     // Validation (Contrôle) : sans échéance, comme dans une vraie partie.
-    phaseEndsAt: status === 'validation' ? 0 : startedAt + phaseDurationS(status, answerMode) * 1000,
+    // Sans échéance : validation (Contrôle) et vote du Bluff.
+    phaseEndsAt: status === 'validation' || status === 'vote' ? 0 : startedAt + phaseDurationS(status, answerMode) * 1000,
     pausedFrom: isPaused ? 'question' : undefined,
     remainingMs: isPaused ? 12_000 : undefined,
     currentQuestion: {

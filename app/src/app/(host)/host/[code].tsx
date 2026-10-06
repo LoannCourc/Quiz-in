@@ -1,4 +1,4 @@
-import { isBluffQuestion } from '@shared/bluff';
+import { isBluffQuestion, voteProgress } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
   endUpdate,
@@ -249,6 +249,14 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     });
   }
 
+  // Bluff, vote sans minuteur : qui n'a pas encore voté, et « Clore le vote » (confirmation s'il en manque).
+  const votes = session.status === 'vote' ? voteProgress(session) : null;
+  function closeVote() {
+    const missing = votes?.missing.length ?? 0;
+    if (missing === 0) onSkip();
+    else confirmAction(strings.hostControls.closeVoteConfirm(missing), () => onSkip());
+  }
+
   const actions: HostActions = {
     // Pendant la validation, Passer valide avec les coches actuelles.
     skip: () => onSkip(session.status === 'validation' ? decisions : undefined),
@@ -276,6 +284,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       awaitingNext={hostControls(session).awaitingNext}
       onNext={actions.skip}
       validation={isValidation ? { counts: reviewCounts(groups), onValidate: actions.skip } : null}
+      vote={votes ? { missingNames: votes.missing.map((id) => session.players[id]?.name ?? '?'), onClose: closeVote } : null}
     />
   );
   // Son de la TV : mémorisé sur le téléphone et publié dans la partie, que la TV applique aussitôt.
@@ -376,6 +385,8 @@ interface HostFooterProps {
   onNext: () => void;
   // Contrôle : bilan des coches et « Valider les réponses » (null hors de la validation).
   validation: { counts: ReturnType<typeof reviewCounts>; onValidate: () => void } | null;
+  // Bluff, vote sans minuteur : qui n'a pas encore voté, et « Clore le vote » (null hors du vote).
+  vote: { missingNames: string[]; onClose: () => void } | null;
 }
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
@@ -392,6 +403,7 @@ function HostFooter({
   awaitingNext,
   onNext,
   validation,
+  vote,
 }: HostFooterProps) {
   return (
     <View style={styles.footerStack}>
@@ -403,6 +415,12 @@ function HostFooter({
         <>
           <Text style={[textStyles.muted, styles.centered]}>{strings.hostValidation.counts(validation.counts)}</Text>
           <BigButton label={strings.hostControls.validate} onPress={validation.onValidate} />
+        </>
+      )}
+      {vote && (
+        <>
+          <Text style={[textStyles.muted, styles.centered]}>{strings.hostControls.voteMissing(vote.missingNames)}</Text>
+          <BigButton label={strings.hostControls.closeVote} onPress={vote.onClose} />
         </>
       )}
       {status === 'ended' && (

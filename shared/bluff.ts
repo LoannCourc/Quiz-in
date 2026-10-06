@@ -20,6 +20,7 @@ import type {
   GameQuestion,
   PlayerId,
   PlayerResult,
+  PublicSession,
   RevealedBluffChoice,
   Session,
 } from './types'
@@ -105,14 +106,33 @@ export function writingDeadline(session: Session): number {
   return Math.min(timeUp, lastAt + ALL_ANSWERED_DELAY_S * 1000)
 }
 
-// Fin du vote : chrono plus une marge, ou plus tôt si tous les joueurs connectés ont voté.
-export function voteDeadline(session: Session): number {
-  const timeUp = session.phaseEndsAt + REVEAL_GRACE_MS
-  const connected = connectedPlayerIds(session.players)
+// Vote sans minuteur : où en sont les joueurs. Attendus : les joueurs connectés, plus ceux qui ont déjà
+// voté (un joueur parti après son vote reste compté). Un joueur déconnecté qui n'a pas voté n'est pas
+// attendu : il ne bloque jamais la partie ; s'il revient avant la fin du vote, il est de nouveau attendu.
+export interface VoteProgress {
+  voted: number
+  expected: number
+  // Joueurs connectés qui n'ont pas encore voté (l'hôte voit leurs noms).
+  missing: PlayerId[]
+}
+
+export function voteProgress(session: Pick<PublicSession, 'players' | 'votedBy' | 'currentIndex'>): VoteProgress {
+  const votedBy = session.votedBy?.[session.currentIndex] ?? {}
+  const voted = Object.keys(session.players).filter((id) => votedBy[id] === true).length
+  const missing = connectedPlayerIds(session.players).filter((id) => votedBy[id] !== true)
+  return { voted, expected: voted + missing.length, missing }
+}
+
+// Fin automatique du vote : ALL_ANSWERED_DELAY_S après le dernier vote, quand plus aucun joueur connecté
+// n'est attendu (aussitôt si le dernier qui n'avait pas voté se déconnecte). null tant qu'un joueur
+// connecté n'a pas voté, ou si personne n'a voté : seul « Clore le vote » de l'hôte fait alors avancer.
+export function voteDeadline(session: Session): number | null {
   const votes = session.votes?.[session.currentIndex] ?? {}
-  if (connected.length === 0 || !connected.every((id) => votes[id] !== undefined)) return timeUp
-  const lastAt = Math.max(...connected.map((id) => votes[id].submittedAt))
-  return Math.min(timeUp, lastAt + ALL_ANSWERED_DELAY_S * 1000)
+  const voters = Object.keys(session.players).filter((id) => votes[id] !== undefined)
+  const waiting = connectedPlayerIds(session.players).filter((id) => votes[id] === undefined)
+  if (waiting.length > 0 || voters.length === 0) return null
+  const lastAt = Math.max(...voters.map((id) => votes[id].submittedAt))
+  return lastAt + ALL_ANSWERED_DELAY_S * 1000
 }
 
 // Mélange de Fisher-Yates ; random : générateur dans [0, 1[ (remplaçable pour les tests).

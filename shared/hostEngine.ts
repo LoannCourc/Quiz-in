@@ -636,6 +636,9 @@ export interface HostControls {
   awaitingNext: AwaitingNext | null
   // Contrôle, phase VALIDATION : gros bouton « Valider les réponses » (validateUpdate).
   canValidate: boolean
+  // Bluff, vote sans minuteur : gros bouton « Clore le vote » (même transition que Passer, avec une
+  // confirmation s'il manque des votes). Passer n'est alors pas proposé dans le panneau.
+  canCloseVote: boolean
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
@@ -651,6 +654,7 @@ export function hostControls(session: Session): HostControls {
     canReplay: session.status === 'ended',
     awaitingNext: awaitingNextOf(session),
     canValidate: session.status === 'validation',
+    canCloseVote: session.status === 'vote',
   }
 }
 
@@ -662,7 +666,8 @@ function skipTarget(session: Session): SkipTarget | null {
       if (session.settings.answerMode === 'bluff') return 'vote'
       return hasValidationPhase(session.settings) ? 'validation' : 'reveal'
     case 'vote':
-      return 'reveal'
+      // « Clore le vote » (gros bouton, avec confirmation) remplace Passer.
+      return null
     case 'validation':
       // Même chose que « Valider les réponses » avec les décisions automatiques.
       return 'reveal'

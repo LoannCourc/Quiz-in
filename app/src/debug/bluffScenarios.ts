@@ -1,4 +1,4 @@
-import { BLUFF_VOTE_DURATION_S, QUESTION_DURATION_S, REVEAL_DURATION_S } from '@shared/constants';
+import { QUESTION_DURATION_S, REVEAL_DURATION_S } from '@shared/constants';
 import type { BluffCheck, BluffEntry, PlayerId, PlayerResult, PublicQuestion, PublicSession, RevealedBluffChoice } from '@shared/types';
 
 import type { PlayerBluff } from '@/lib/playerBluff';
@@ -95,7 +95,8 @@ export function buildBluffScenario(id: BluffScenarioId, base: PublicSession, now
     status: 'vote',
     currentQuestion: { ...PUBLIC_QUESTION, choices: [...choices] },
     phaseStartedAt: now - 5_000,
-    phaseEndsAt: now - 5_000 + BLUFF_VOTE_DURATION_S * 1000,
+    // Vote sans minuteur.
+    phaseEndsAt: 0,
     bluffedBy: { 2: { lea: true, tom: true, noe: true, ines: true, me: true } },
     votedBy: { 2: { lea: true, ines: true } },
   });

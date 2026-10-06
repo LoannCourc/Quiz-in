@@ -1,6 +1,6 @@
 import {
   BLUFF_TARGET_CHOICES,
-  BLUFF_VOTE_DURATION_S,
+  BLUFF_VOTE_ESTIMATE_S,
   DEFAULT_SESSION_SETTINGS,
   DIFFICULTY_EASY_MAX,
   DIFFICULTY_MEDIUM_MAX,
@@ -35,7 +35,7 @@ export function difficultyLevel(average: number): DifficultyLevel {
 // de la partie (Choix multiples).
 // Phases de réponse d'une question : écriture et vote en Bluff (révélation estimée avec les choix visés).
 function answerPhasesS(answerMode: AnswerMode): number {
-  const voteS = answerMode === 'bluff' ? BLUFF_VOTE_DURATION_S : 0
+  const voteS = answerMode === 'bluff' ? BLUFF_VOTE_ESTIMATE_S : 0
   return QUESTION_DURATION_S[answerMode] + voteS + revealDurationS(answerMode, BLUFF_TARGET_CHOICES)
 }
 

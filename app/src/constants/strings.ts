@@ -383,6 +383,21 @@ export const strings = {
     // Pas à pas : gros bouton pendant l'attente, nommé d'après sa destination (même action que Passer).
     // Contrôle : gros bouton de la validation (avec les coches de l'hôte).
     validate: 'Valider les réponses',
+    // Bluff, vote sans minuteur : l'hôte clôt le vote ; ceux qui n'ont pas voté n'ont pas de point de vote.
+    closeVote: 'Clore le vote',
+    closeVoteConfirm: (missing: number) => ({
+      title: 'Clore le vote ?',
+      message: `${missing} joueur${missing > 1 ? 's n’ont' : ' n’a'} pas voté. Clore quand même ?`,
+      confirm: 'Clore',
+      cancel: 'Attendre',
+    }),
+    // Joueurs connectés qui n'ont pas encore voté (« Léa, Tom et 3 autres »).
+    voteMissing: (names: string[]) => {
+      if (names.length === 0) return 'Tout le monde a voté.';
+      const shown = names.length > 3 ? [...names.slice(0, 2), `${names.length - 2} autres`] : names;
+      const list = shown.length > 1 ? `${shown.slice(0, -1).join(', ')} et ${shown[shown.length - 1]}` : shown[0];
+      return `Pas encore voté : ${list}`;
+    },
     next: {
       ranking: 'Voir le classement',
       nextQuestion: 'Question suivante',
@@ -474,6 +489,8 @@ export const strings = {
     bluff: {
       writeBadge: 'Bluff · Invente une fausse réponse',
       voteBadge: 'Bluff · Quelle est la vraie réponse ?',
+      // Vote sans minuteur (joueurs connectés et ceux qui ont déjà voté).
+      votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
       fieldLabel: 'Ta fausse réponse',
       placeholder: 'Une réponse crédible…',
       counter: (length: number, max: number) => `${length} / ${max}`,

@@ -1244,6 +1244,15 @@ describe('Bluff', () => {
     await assertFails(castVote(OTHER, 0))
   })
 
+  test('vote sans minuteur : accepté longtemps après le début (phaseEndsAt = 0), refusé en pause et une fois le vote clos', async () => {
+    await seedSession({ ...voting, phaseStartedAt: Date.now() - 600_000, phaseEndsAt: 0 })
+    await assertSucceeds(castVote(PLAYER, 0))
+    await seedSession({ ...voting, status: 'paused', pausedFrom: 'vote', phaseEndsAt: 0, remainingMs: 0 })
+    await assertFails(castVote(OTHER, 1))
+    await seedSession({ ...voting, status: 'reveal', phaseEndsAt: 0 })
+    await assertFails(castVote(OTHER, 1))
+  })
+
   test('moteur : vérification, vote et révélation d’un Bluff acceptés par les règles', async () => {
     await seedSession({ status: 'lobby', phaseEndsAt: 0, settings: BLUFF_SETTINGS, players: bluffPlayers })
     const hostRef = db(HOST).ref(SESSION)

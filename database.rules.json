@@ -273,7 +273,7 @@
         "votes": {
           "$index": {
             "$uid": {
-              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'vote' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && newData.child('submittedAt').val() <= root.child('sessions/' + $code + '/phaseEndsAt').val() + 1000 && root.child('sessions/' + $code + '/currentQuestion/choices/' + newData.child('value').val()).exists() && newData.child('value').val() != root.child('sessions/' + $code + '/bluffOwn/' + $index + '/' + $uid).val()",
+              ".write": "auth != null && auth.uid == $uid && !data.exists() && root.child('sessions/' + $code + '/status').val() == 'vote' && root.child('sessions/' + $code + '/currentIndex').val() + '' == $index && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && root.child('sessions/' + $code + '/currentQuestion/choices/' + newData.child('value').val()).exists() && newData.child('value').val() != root.child('sessions/' + $code + '/bluffOwn/' + $index + '/' + $uid).val()",
               ".validate": "newData.hasChildren(['value', 'submittedAt'])",
               "value": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 == 0" },
               "submittedAt": { ".validate": "newData.isNumber() && (newData.val() == now || newData.val() == data.val())" },

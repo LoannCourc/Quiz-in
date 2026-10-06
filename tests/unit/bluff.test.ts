@@ -10,27 +10,29 @@ import {
   checkBluff,
   isBluffDone,
   voteDeadline,
+  voteProgress,
   writingDeadline,
 } from '../../shared/bluff'
 import {
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
-  BLUFF_VOTE_DURATION_S,
   DEFAULT_SESSION_SETTINGS,
   QUESTION_DURATION_S,
   REVEAL_GRACE_MS,
 } from '../../shared/constants'
-import { nextPhase, revealDurationS } from '../../shared/gameFlow'
+import { isUntimedPhase, nextPhase, revealDurationS } from '../../shared/gameFlow'
 import {
   hostControls,
   launchUpdate,
   nextDeadline,
   pauseUpdate,
   replayUpdate,
+  resumeUpdate,
   transitionUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
 import { settingsForGameType } from '../../shared/quizCatalog'
+import { timedCues } from '../../shared/sound'
 import type { BluffChoice, BluffEntry, Player, PlayerId, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeBluffQuestion, makeSession, player } from './engineFixtures'
 
@@ -222,7 +224,8 @@ describe('Bluff : votes et points', () => {
   test('vote : choix publiés sans auteur ni type, auteurs gardés par l’hôte', () => {
     const { session, choices } = votingSession()
     expect(session.status).toBe('vote')
-    expect(session.phaseEndsAt - session.phaseStartedAt).toBe(BLUFF_VOTE_DURATION_S * 1000)
+    // Vote sans minuteur.
+    expect(session.phaseEndsAt).toBe(0)
     expect(session.currentQuestion?.choices).toEqual(choices.map((choice) => choice.text))
     expect(JSON.stringify(session.currentQuestion)).not.toContain('truth')
     expect(session.bluffOwn?.[0].p0).toBe(session.bluffOwn?.[0].p2)
@@ -248,17 +251,85 @@ describe('Bluff : votes et points', () => {
     expect(results.p2).toEqual({ correct: false, points: BLUFF_TRAP_POINTS })
   })
 
-  test('fin anticipée du vote quand tous les connectés ont voté', () => {
+  test('fin du vote : 2 s après le dernier vote quand tous les connectés ont voté, jamais sur un minuteur', () => {
     const { session, own } = votingSession()
     expect(voteDeadline(vote(session, { p0: own.p1, p1: own.p0, p2: own.p1 }))).toBe(NOW + 100 + 2000)
-    expect(voteDeadline(vote(session, { p0: own.p1 }))).toBe(session.phaseEndsAt + REVEAL_GRACE_MS)
+    expect(voteDeadline(vote(session, { p0: own.p1 }))).toBeNull()
+    expect(voteDeadline(session)).toBeNull()
+    expect(nextDeadline(session)).toBeNull()
+  })
+})
+
+// Joueurs connectés ou non, et ceux qui ont voté (votedBy et votes, écrits ensemble par le téléphone).
+function voteState(connected: Record<PlayerId, boolean>, voters: PlayerId[]): Session {
+  const playersById = Object.fromEntries(Object.entries(connected).map(([id, isOn]) => [id, player(id, { connected: isOn })]))
+  return makeSession({
+    status: 'vote',
+    settings: BLUFF,
+    players: playersById,
+    phaseEndsAt: 0,
+    votedBy: { 0: Object.fromEntries(voters.map((id) => [id, true])) },
+    votes: { 0: Object.fromEntries(voters.map((id, rank) => [id, { value: 0, submittedAt: NOW + rank * 1000 }])) },
+  })
+}
+
+describe('Bluff : vote sans minuteur, joueurs déconnectés', () => {
+  test('« X/Y ont voté » : attendus = connectés + ceux qui ont déjà voté ; l’hôte voit qui manque', () => {
+    expect(voteProgress(voteState({ a: true, b: true, c: true }, ['a']))).toEqual({ voted: 1, expected: 3, missing: ['b', 'c'] })
+    // Un joueur parti après son vote reste compté ; un joueur parti sans voter n’est pas attendu.
+    expect(voteProgress(voteState({ a: false, b: true, c: false }, ['a']))).toEqual({ voted: 1, expected: 2, missing: ['b'] })
+  })
+
+  test('un joueur déconnecté qui n’a pas voté ne bloque jamais : fin dès que les connectés ont voté', () => {
+    expect(voteDeadline(voteState({ a: true, b: true, c: false }, ['a', 'b']))).toBe(NOW + 1000 + 2000)
+  })
+
+  test('le dernier joueur qui n’avait pas voté se déconnecte : fin aussitôt (échéance déjà passée)', () => {
+    const waiting = voteState({ a: true, b: true }, ['a'])
+    expect(voteDeadline(waiting)).toBeNull()
+    const gone = voteState({ a: true, b: false }, ['a'])
+    expect(voteDeadline(gone)).toBe(NOW + 2000)
+  })
+
+  test('reconnexion avant la fin : le joueur est de nouveau attendu', () => {
+    expect(voteDeadline(voteState({ a: true, b: false }, ['a']))).not.toBeNull()
+    expect(voteDeadline(voteState({ a: true, b: true }, ['a']))).toBeNull()
+  })
+
+  test('hôte qui joue : compté comme un joueur (attendu tant qu’il est connecté et n’a pas voté)', () => {
+    const hostPlays = { ...voteState({ host: true, a: true }, ['a']), hostUid: 'host' }
+    expect(voteProgress(hostPlays).missing).toEqual(['host'])
+    expect(voteDeadline(hostPlays)).toBeNull()
+  })
+
+  test('personne de connecté ni de vote : pas de fin automatique, « Clore le vote » de l’hôte', () => {
+    expect(voteDeadline(voteState({ a: false, b: false }, []))).toBeNull()
+    const session = voteState({ a: false }, [])
+    expect(hostControls(session)).toMatchObject({ canCloseVote: true, skip: null })
+    // Clore le vote : même transition que Passer, vers la révélation (les absents n’ont pas de vote).
+    const closed = transitionUpdate(
+      { ...session, currentQuestion: { text: QUESTION.text, difficulty: 3, timeLimit: 45, choices: ['Vraie', 'Leurre'] }, bluffChoices: { 0: [{ text: QUESTION.answer, kind: 'truth' }, { text: 'Leurre', kind: 'decoy' }] } },
+      BLUFF_QUESTIONS,
+      { status: 'vote', currentIndex: 0 },
+      NOW,
+    )
+    expect(closed).toMatchObject({ status: 'reveal' })
+  })
+
+  test('pause pendant le vote : reprise toujours sans échéance ; ni tic-tac ni buzzer', () => {
+    const session = voteState({ a: true, b: true }, ['a'])
+    expect(isUntimedPhase(session)).toBe(true)
+    const paused = apply(session, pauseUpdate(session, NOW))
+    expect(resumeUpdate(paused, NOW + 60_000)).toMatchObject({ status: 'vote', phaseEndsAt: 0 })
+    expect(timedCues(session)).toEqual([])
   })
 })
 
 describe('Bluff : déroulé et moteur', () => {
-  test('question (écriture, 60 s) → vote (30 s) → révélation (4 s + 2 s par fausse proposition)', () => {
+  test('question (écriture, 60 s) → vote (sans minuteur) → révélation (4 s + 2 s par fausse proposition)', () => {
     const context = { answerMode: 'bluff' as const, currentIndex: 0, questionCount: 3 }
-    expect(nextPhase('question', context)).toEqual({ status: 'vote', currentIndex: 0, durationS: BLUFF_VOTE_DURATION_S })
+    expect(nextPhase('question', context)).toEqual({ status: 'vote', currentIndex: 0, durationS: null })
+    expect(nextPhase('question', { ...context, stepByStep: true, suspense: true })).toMatchObject({ status: 'vote', durationS: null })
     expect(nextPhase('vote', { ...context, choiceCount: 6 })).toEqual({ status: 'reveal', currentIndex: 0, durationS: 14 })
     expect(revealDurationS('bluff', 31)).toBe(64)
     expect(revealDurationS('choice', 6)).toBe(6)

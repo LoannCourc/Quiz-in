@@ -1,6 +1,5 @@
 import {
   BLUFF_REVEAL_PER_CHOICE_S,
-  BLUFF_VOTE_DURATION_S,
   NEXT_QUESTION_ANNOUNCE_MS,
   QUESTION_DURATION_S,
   REVEAL_DURATION_S,
@@ -73,8 +72,8 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
     case 'starting':
       return { status: 'question', currentIndex: 0, durationS: questionDurationS(answerMode, timeLimitS) }
     case 'question':
-      // Bluff : après l'écriture, le vote.
-      if (answerMode === 'bluff') return { status: 'vote', currentIndex, durationS: BLUFF_VOTE_DURATION_S }
+      // Bluff : après l'écriture, le vote, sans durée (fin : tous ont voté, ou « Clore le vote »).
+      if (answerMode === 'bluff') return { status: 'vote', currentIndex, durationS: null }
       // Contrôle : validation par l'hôte, sans durée (seul « Valider » fait avancer).
       return validation ? { status: 'validation', currentIndex, durationS: null } : reveal
     case 'validation':
@@ -144,10 +143,10 @@ export function isAwaitingHost(session: Pick<PublicSession, 'status' | 'settings
   return (session.status === 'reveal' || session.status === 'scores') && session.settings.stepByStep === true
 }
 
-// Phase sans échéance (phaseEndsAt = 0) : attente de l'hôte en Pas à pas, ou validation (Contrôle).
-// Une reprise après une pause la laisse sans échéance.
+// Phase sans échéance (phaseEndsAt = 0) : attente de l'hôte en Pas à pas, validation (Contrôle) ou vote
+// du Bluff. Une reprise après une pause la laisse sans échéance.
 export function isUntimedPhase(session: Pick<PublicSession, 'status' | 'settings'>): boolean {
-  return session.status === 'validation' || isAwaitingHost(session)
+  return session.status === 'validation' || session.status === 'vote' || isAwaitingHost(session)
 }
 
 type SessionTiming = Pick<

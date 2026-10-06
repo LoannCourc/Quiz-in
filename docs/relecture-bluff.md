@@ -16,6 +16,15 @@ Dix quiz Bluff de 10 questions, construits à partir de la banque de questions d
 
 Après une correction : `npm run build` dans `content/`, puis réimport de `/quizzes` et de `/questions`.
 
+## Tester en partie : le vote n'a pas de minuteur
+
+- Pendant le vote, la TV et les téléphones affichent « X/Y ont voté » à la place du minuteur, sans tic-tac ni buzzer :
+  prendre le temps de lire toutes les propositions fait partie du jeu.
+- Le vote se termine seul 2 s après le dernier vote des joueurs connectés. Sinon, l'hôte voit sous les choix qui n'a
+  pas encore voté, et appuie sur « Clore le vote » (confirmation s'il manque des votes).
+- À vérifier en partie : une question dont les propositions sont longues reste lisible jusqu'au bout ; un joueur qui
+  ferme son navigateur pendant le vote ne bloque pas la partie.
+
 ## Tri de la banque (environ 320 lignes → 100 questions)
 
 - **Doublons** : une seule version gardée pour chaque sujet (Tennessee Williams, Tycho Brahe, Jack Daniel, Eschyle,
