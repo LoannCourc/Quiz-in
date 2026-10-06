@@ -189,6 +189,7 @@ Chaque lot : un commit, typage, lint, tests ; déploiement de la TV (`firebase d
 **Allumer le panneau** :
 - Cast : dans Chrome sur le PC, `npm run dev` dans `receiver/`, puis `http://localhost:5173/cast-sender.html`, connexion à « TV Salon » (étape 1), puis « Afficher les mesures » (étape 5). Possible avant la partie (la TV garde le réglage) ou en pleine partie, en se connectant à la TV déjà lancée, sans envoyer de code.
 - Plan B : ajouter `&perf=1` à l'adresse (`&perf=0` l'éteint).
+- Musique coupée sur la TV seule, pour comparer sur la même partie : « Couper la musique sur la TV » / « Musique selon l'hôte » (étape 5 de `cast-sender.html`), ou `&perfmusic=0` en plan B. Le panneau affiche « coupée par les mesures » et range les mesures dans la colonne « coupée ».
 
 **Lire le panneau** (à gauche : mesures en direct ; à droite : journal des 30 derniers incidents) :
 - « Musique : ACTIVE / coupée » : toutes les mesures sont rangées selon cet état ; le tableau compare les deux colonnes depuis l'ouverture du panneau.
@@ -196,3 +197,86 @@ Chaque lot : un commit, typage, lint, tests ; déploiement de la TV (`firebase d
 - Incident « transition » : plus de 1 s entre la publication par l'hôte et l'image sur la TV (détail réseau / affichage). Incident « hôte » : l'hôte a publié plus de 1 s après l'échéance.
 - Ligne « décodage » (grisée) : une musique a été décodée (durée) ; « · décodage » sur un incident : un décodage était en cours.
 - « Anti-veille : vidéo playing · Wake Lock held / refused / unsupported » : état du lot c.
+
+## Lot b : étude de la musique (à valider, rien n'est codé)
+
+### Ce qu'ont montré les tests sur la box (6 octobre 2026)
+
+Sur le Bluff, couper la musique améliore nettement la fluidité ; avec la musique, l'écran reste saccadé. La musique est une cause principale.
+
+### Ce que coûte la musique aujourd'hui
+
+Mesuré dans Chrome sur PC ; la box est sans doute 5 à 10 fois plus lente.
+
+| Fichier | Compressé | Durée | Décodé (mono 32 kHz) | Décodage | Mixage mono (fil principal) |
+|---|---|---|---|---|---|
+| `Waiting_sound.ogg` | 0,28 Mo | 34 s | 4,1 Mo | 59 ms | 22 ms |
+| `Salon_music.ogg` | 1,87 Mo | 137 s | 16,7 Mo | 287 ms | 65 ms |
+| `Bluffecriture_sound.ogg` | 0,96 Mo | 70 s | 8,5 Mo | 122 ms | 35 ms |
+| `Bluffvote_sound.ogg` | 1,20 Mo | 96 s | 11,7 Mo | 167 ms | 54 ms |
+| `Findepartie_sound.ogg` | 0,23 Mo | 17 s | 2,0 Mo | 39 ms | 9 ms |
+
+Mécanisme actuel (`receiver/src/lib/sound/musicPlayer.ts`) :
+- Chaque piste est décodée en entier par `decodeAudioData`.
+- Le décodage tourne hors du fil principal, mais produit d'abord une copie **stéréo** (deux fois la taille ci-dessus). Notre code la mixe ensuite en mono **sur le fil principal**. Pendant un décodage, la mémoire monte donc à environ trois fois la taille décodée.
+- Le Bluff prépare 4 pistes (salon, écriture, vote, fin) : 26 Mo décodés et gardés. C'est sous le budget de 32 Mo : pas de redécodage en pleine partie. En revanche, la préparation peut déborder du salon sur les premières questions, si l'hôte lance vite.
+- Deux pistes longues jouent ensemble pendant chaque fondu enchaîné de 800 ms (écriture ↔ vote du Bluff).
+- Le moteur son est créé avec `latencyHint: 'interactive'` (`soundEngine.ts`). Ce réglage impose de petits tampons audio, donc un fil audio réveillé très souvent et prioritaire. Sur 4 cœurs faibles, il prend du temps au rendu de l'écran.
+
+**Deux causes possibles, que le panneau départagera** (colonnes « active / coupée », musique coupée sur la même partie) :
+1. **Des pics** : incidents « minuteur » ou « tâche » marqués « décodage », surtout en début de partie. Remède : ne plus décoder d'un bloc, ou seulement au salon.
+2. **Une charge continue** : moins d'images par seconde en permanence avec la musique, sans incident. La cause serait le fil audio (lecture, rééchantillonnage vers la sortie, mixage, fondus) et la mémoire occupée. Remède : alléger le fil audio, ou sortir la musique de Web Audio.
+
+### Options comparées
+
+| Option | Mémoire | Pics (fil principal) | Charge continue | Boucle sans coupure | Fondus et ducking | Coût et risque |
+|---|---|---|---|---|---|---|
+| **A. Flux `<audio>` relié à Web Audio** (`MediaElementAudioSourceNode`, ta piste) | Quelques centaines de Ko par flux, au lieu de 26 Mo | Plus de décodage d'un bloc ni de mixage mono : décodage progressif, hors du fil principal | Décodage continu (faible) **plus** le même mixage Web Audio, avec un rééchantillonneur plus coûteux : pas forcément moins de charge continue | **Non garantie** : en boucle, un `<audio>` revient au début avec un petit trou (quelques dizaines de ms, à mesurer). Parade : deux lecteurs en relais avec un court fondu, déclenché par des minuteurs JS, justement en retard sur la box | Gardés (gains Web Audio précis). Fondu entre deux flux : deux lecteurs, le second lancé un peu en avance | Moyen : réécriture du lecteur de musique ; risque sur la boucle |
+| **B. Flux `<audio>` seul, hors Web Audio** (volume du lecteur) | Comme A | Comme A | La plus basse : chemin média natif ; Web Audio ne sert plus qu'aux effets | Comme A | Par le volume du lecteur, réglé en petites marches par JS (un peu moins doux sur la box) | Moyen ; deux chemins audio |
+| **C. Fichiers allégés** : mono, 22 ou 24 kHz, boucles de 30 à 45 s | Divisée par 3 à 5 (Salon : 16,7 → environ 3 Mo) | Divisés d'autant ; plus de mixage mono si le fichier est déjà mono | Un peu moins de rééchantillonnage | **Garantie**, comme aujourd'hui | Inchangés | Code : presque rien. Travail sur les fichiers (Audacity). La licence Pixabay autorise la modification, à confirmer en remplissant `docs/sons-licences.md` |
+| **D. Moteur son plus léger sur la box** : `latencyHint: 'playback'`, contexte à 24 kHz | Inchangée | Inchangés | Nettement moins de réveils du fil audio, moitié moins d'échantillons à calculer | Garantie | Inchangés | Très faible (deux paramètres). Effets un peu plus en retard (quelques dizaines de ms), aigus coupés au-dessus de 12 kHz : à écouter |
+| E. Pas de fondu enchaîné entre longues pistes sur la box | Inchangée | Inchangés | Une piste à la fois au lieu de deux pendant 800 ms | Garantie | Coupure plus sèche | Très faible ; gain probablement minime |
+| F. Décodage progressif (fichiers en tranches) | Divisée | Étalés | Inchangée | Garantie si les tranches sont calées à l'échantillon | Inchangés | Élevé, pour un gain que A, B ou C donnent plus simplement |
+
+**Veille et `<audio>`** :
+- Dans Chromium 92, seul un élément **`<video>`** garde l'écran allumé (VideoWakeLock), à l'écran ou s'il joue un son audible. Un `<audio>` ne le fait pas.
+- Une musique jouée par un élément `<video>` empêcherait donc aussi la veille, mais seulement musique activée. La vidéo muette du lot c reste nécessaire.
+
+**Démarrage sans geste dans le Cast** :
+- Déjà vérifié sur la box pour le `<audio>` des blind tests.
+- Avec A, il faut en plus que le contexte Web Audio tourne : c'est déjà le cas pour les effets.
+- En plan B, le bandeau « Cliquez pour activer le son » couvre les deux.
+
+**Pause avec position conservée** : plus simple qu'aujourd'hui avec A ou B. Le lecteur en pause garde sa position et repart avec `play()`. La musique d'attente joue sur un autre lecteur.
+
+### Recommandation
+
+1. **Étape b1 : banc d'essai sur la box** (petit code, après accord).
+   - Dans l'écran de test du son de `cast-sender.html`, ajouter le panneau de mesures et trois façons de jouer `Salon_music` en boucle sur un écran animé : comme aujourd'hui, en A, en B.
+   - Ajouter deux interrupteurs : D (moteur léger) et C (fichier allégé).
+   - Relever les images par seconde, les tâches longues et le battement ; écouter le trou de boucle et les fondus.
+   - Environ une demi-journée de code, puis 30 min de mesures.
+2. **Étape b2 : correctif**, choisi d'après les chiffres :
+   - si C et D suffisent, les appliquer (risque minimal, boucles parfaites) ;
+   - sinon, B pour les longues boucles, ou A si les fondus par le volume sont trop secs. Le jingle de fin, court, reste décodé pour partir à l'heure exacte.
+3. **Dans tous les cas** : préparer les pistes pendant le salon seulement, et aucun décodage pendant une question.
+
+**Non garanti sans la box** : le trou de boucle d'un `<audio>` ; un décodage matériel (Vorbis est en général décodé par logiciel, n'y comptons pas) ; le gain réel de D.
+
+### Protocole de la veille : deux scénarios de 30 minutes
+
+Le lot c est gardé : une partie sans veille ne prouve rien si la TV a été allumée autrement.
+
+| Scénario | Démarrage | Pendant 30 min |
+|---|---|---|
+| 1. TV allumée **par la télécommande** | TV et box éteintes. Allumer à la télécommande, attendre l'accueil d'Android TV, puis lancer le Cast depuis l'app | Partie en Pas à pas (aucune échéance), télécommande posée, musique activée |
+| 2. TV allumée **par le Cast** | TV et box en veille. Lancer le Cast depuis l'app : la box réveille la TV (HDMI-CEC) | Même partie, mêmes réglages |
+
+**Pour chaque scénario, noter** :
+- l'heure de début ;
+- les délais de l'économiseur d'écran et de la mise en veille de la box (Paramètres → Préférences de l'appareil), sans les changer ;
+- l'état « Anti-veille » du panneau au début : vidéo `playing`, et Wake Lock `held`, `refused` ou `unsupported` ;
+- toutes les 5 minutes : TV allumée, oui ou non ;
+- en cas de veille : l'heure, ce qui s'affiche (économiseur de la box, écran noir, TV éteinte), et si l'app de l'hôte a mis la partie en pause.
+
+**Réussite** : 30 minutes sans veille **dans les deux scénarios**. Puis refaire le scénario 2 avec la musique coupée par le panneau.
