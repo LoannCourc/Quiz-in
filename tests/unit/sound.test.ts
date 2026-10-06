@@ -86,9 +86,15 @@ describe('Sons déduits des changements d’état', () => {
 
   test('tirage des équipes : à chaque nouveau tirage récent', () => {
     const lobby = makeSession({ status: 'lobby' })
-    expect(soundCues(lobby, { ...lobby, teamDrawAt: NOW - 100 }, NOW)).toEqual(['teamDraw'])
-    expect(soundCues({ ...lobby, teamDrawAt: NOW - 100 }, { ...lobby, teamDrawAt: NOW - 100 }, NOW)).toEqual([])
-    expect(soundCues(lobby, { ...lobby, teamDrawAt: NOW - CUE_MAX_AGE_MS }, NOW)).toEqual([])
+    // Tirage : plus de son au changement d'état, un calendrier (un tic par joueur posé, puis le gong).
+    expect(soundCues(lobby, { ...lobby, teamDrawAt: NOW - 100 }, NOW)).toEqual([])
+    const drawn = { ...lobby, settings: { ...lobby.settings, teams: true, teamCount: 2 }, teamDrawAt: NOW, players: { a: player('A', { team: 'pink' }), b: player('B', { team: 'cyan' }), c: player('C', { team: 'pink' }) } }
+    expect(timedCues(drawn)).toEqual([
+      { id: 'teamDrawTick', at: NOW },
+      { id: 'teamDrawTick', at: NOW + 450 },
+      { id: 'teamDrawTick', at: NOW + 900 },
+      { id: 'teamDrawGong', at: NOW + 1_400 },
+    ])
   })
 
   test('équipes validées : à chaque nouvelle validation récente', () => {

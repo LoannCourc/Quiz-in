@@ -1,5 +1,5 @@
-import { activeTeams, teamCountOf } from '@shared/teams'
-import type { PlayerId, PublicSession, TeamId } from '@shared/types'
+import { teamColumns } from '@shared/teamDraw'
+import type { PlayerId, PublicSession } from '@shared/types'
 
 import { strings } from '../strings'
 import { TeamSymbol } from './TeamSymbol'
@@ -7,37 +7,32 @@ import './TeamColumns.css'
 
 interface TeamColumnsProps {
   session: PublicSession
-  // Tirage : les joueurs arrivent un à un dans leur colonne (une équipe après l'autre).
-  animate?: boolean
+  // Tirage : délai d'arrivée de chaque joueur dans sa colonne, en ms (calendrier de shared/teamDraw.ts,
+  // négatif si l'arrivée est déjà en cours). Sans : tous affichés tout de suite (salon).
+  arrivalDelayMs?: Record<PlayerId, number>
 }
-
-// Délai entre deux arrivées pendant l'animation du tirage.
-const ARRIVAL_STEP_S = 0.45
 
 // Une colonne par équipe (maquette G2) : en-tête à sa couleur (symbole et nom), puis ses joueurs.
 // Les joueurs sans équipe sont rappelés en dessous. Animations CSS seulement (transform, opacity).
-export function TeamColumns({ session, animate = false }: TeamColumnsProps) {
-  const playerIds = Object.keys(session.players)
-  const teams = activeTeams(teamCountOf(session.settings, playerIds.length))
-  const byName = (a: PlayerId, b: PlayerId) => session.players[a].name.localeCompare(session.players[b].name, 'fr')
-  const membersOf = (team: TeamId) => playerIds.filter((id) => session.players[id].team === team).sort(byName)
-  const unassigned = playerIds.filter((id) => !teams.includes(session.players[id].team as TeamId)).sort(byName)
+export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
+  const { columns, unassigned } = teamColumns(session)
+  const teams = columns.map((column) => column.team)
 
   return (
     <div className="team-columns-wrap">
       <div className={`team-columns columns-${teams.length}`}>
-        {teams.map((team, teamIndex) => (
+        {columns.map(({ team, members }) => (
           <section key={team} className={`team-column team-${team}`}>
             <h2 className="team-column-head">
               <TeamSymbol team={team} />
               {strings.teams.names[team]}
             </h2>
             <ul className="team-column-members">
-              {membersOf(team).map((id, memberIndex) => (
+              {members.map((id) => (
                 <li
                   key={id}
-                  className={animate ? 'team-member is-arriving' : 'team-member'}
-                  style={animate ? { animationDelay: `${(memberIndex * teams.length + teamIndex) * ARRIVAL_STEP_S}s` } : undefined}>
+                  className={arrivalDelayMs ? 'team-member is-arriving' : 'team-member'}
+                  style={arrivalDelayMs ? { animationDelay: `${arrivalDelayMs[id] ?? 0}ms` } : undefined}>
                   <span className="team-member-avatar">{session.players[id].avatar}</span>
                   <span className="team-member-name">{session.players[id].name}</span>
                 </li>

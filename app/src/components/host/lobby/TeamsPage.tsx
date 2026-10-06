@@ -1,3 +1,4 @@
+import { teamDrawTimeline } from '@shared/teamDraw';
 import { drawsAtLaunch, lobbyTeamRefusal, teamModeOf } from '@shared/teams';
 import type { PlayerId, Session, TeamId, TeamMode } from '@shared/types';
 import { useEffect } from 'react';
@@ -9,6 +10,8 @@ import { Screen } from '@/components/ui/Screen';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useDelayPassed } from '@/hooks/useDelayPassed';
+import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 
 import { TeamComposer } from './TeamComposer';
 
@@ -57,7 +60,10 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
   const { page, composer } = strings.teams;
   const step = pageStep(session);
   const playerCount = Object.keys(session.players).length;
-  const canValidate = lobbyTeamRefusal(session) === null;
+  // Tirage en cours sur la TV : pas de validation avant que le dernier joueur soit posé (gong).
+  const serverOffsetMs = useServerTimeOffset();
+  const isDrawShown = useDelayPassed(session.teamDrawAt ?? 0, teamDrawTimeline(session).gongAtMs, serverOffsetMs);
+  const canValidate = lobbyTeamRefusal(session) === null && isDrawShown;
   // « Ils choisissent » : pas de tirage, il écraserait les choix des joueurs.
   const canDraw = teamModeOf(session.settings) !== 'players' && step.instruction !== 'tooFewPlayers';
   const hasTeams = Object.values(session.players).some((player) => player.team !== undefined);
@@ -73,7 +79,7 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
 
   // Un seul bouton mis en avant (le gros bouton jaune), l'autre action en pilule discrète au-dessus.
   const draw = { label: hasTeams ? composer.redraw : composer.draw, onPress: onDraw, disabled: false };
-  const validate = { label: page.validate, onPress: onValidate, disabled: !canValidate };
+  const validate = { label: isDrawShown ? page.validate : page.drawing, onPress: onValidate, disabled: !canValidate };
   const isDrawPrimary = canDraw && step.primary === 'draw';
   const primary = isDrawPrimary ? draw : validate;
   const secondary = isDrawPrimary ? validate : canDraw ? draw : null;

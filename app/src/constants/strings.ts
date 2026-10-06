@@ -179,6 +179,8 @@ export const strings = {
     page: {
       back: 'Retour au salon',
       validate: 'Valider les équipes',
+      // Pendant l'animation du tirage sur la TV (bouton grisé jusqu'au gong).
+      drawing: 'Tirage en cours…',
       // Aide toujours visible sous la consigne, quel que soit le nombre de joueurs.
       minimumHelp: `Le mode Groupe se joue à partir de ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
       instructions: {

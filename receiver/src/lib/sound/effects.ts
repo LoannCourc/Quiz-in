@@ -261,17 +261,17 @@ const SYNTHS: Record<SoundEffectId, Synth> = {
     applause(context, out, at + 0.3, 2.6)
     return 2.9
   },
-  // Roulette qui ralentit, puis gong grave : les équipes sont tirées.
-  teamDraw: (context, out, at) => {
-    let time = at
-    for (let click = 0; click < 12; click++) {
-      tone(context, out, { type: 'square', from: 1_200, at: time, duration: 0.025, peak: 0.15 })
-      time += 0.06 + click * 0.012
-    }
-    tone(context, out, { type: 'sine', from: E2 * 2, at: time, duration: 1.6, peak: 0.6, attack: 0.01 })
-    tone(context, out, { type: 'sine', from: E2 * 5.4, at: time, duration: 1.1, peak: 0.2, attack: 0.01 })
-    tone(context, out, { type: 'sine', from: E2 * 8.9, at: time, duration: 0.7, peak: 0.1, attack: 0.01 })
-    return time - at + 1.6
+  // Tirage des équipes : un clic de roulette par joueur posé dans sa colonne…
+  teamDrawTick: (context, out, at) => {
+    tone(context, out, { type: 'square', from: 1_200, at, duration: 0.025, peak: 0.15 })
+    return 0.03
+  },
+  // …puis un gong grave quand le dernier est posé.
+  teamDrawGong: (context, out, at) => {
+    tone(context, out, { type: 'sine', from: E2 * 2, at, duration: 1.6, peak: 0.6, attack: 0.01 })
+    tone(context, out, { type: 'sine', from: E2 * 5.4, at, duration: 1.1, peak: 0.2, attack: 0.01 })
+    tone(context, out, { type: 'sine', from: E2 * 8.9, at, duration: 0.7, peak: 0.1, attack: 0.01 })
+    return 1.6
   },
   // « Bloop » descendant, plus discret que l'arrivée : quelqu'un quitte le salon.
   playerLeft: (context, out, at) => {

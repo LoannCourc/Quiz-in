@@ -2,6 +2,7 @@ import { bluffRevealTimeline } from './bluff'
 import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
+import { teamDrawTimeline } from './teamDraw'
 import type { PlayerId, PublicSession, SoundSettings } from './types'
 
 // Son de la TV (spec 17) : réglages de l'hôte, mélange des canaux, table des effets et sons déduits de
@@ -69,7 +70,8 @@ export type SoundEffectId =
   | 'bluffTruth'
   | 'drumroll'
   | 'tada'
-  | 'teamDraw'
+  | 'teamDrawTick'
+  | 'teamDrawGong'
   | 'playerLeft'
   | 'go'
   | 'validationStart'
@@ -104,7 +106,8 @@ export const SOUND_EFFECTS: Record<SoundEffectId, SoundEffectSpec> = {
   bluffTruth: { volume: 0.9, ducks: true },
   drumroll: { volume: 0.8, ducks: true },
   tada: { volume: 1, ducks: true },
-  teamDraw: { volume: 0.8, ducks: true },
+  teamDrawTick: { volume: 0.5, ducks: false },
+  teamDrawGong: { volume: 0.8, ducks: true },
   playerLeft: { volume: 0.4, ducks: false },
   go: { volume: 0.9, ducks: true },
   validationStart: { volume: 0.5, ducks: false },
@@ -231,9 +234,6 @@ export function soundCues(previous: PublicSession | null, next: PublicSession, n
     if (Object.keys(next.players).some((id) => !(id in previous.players))) cues.push('playerJoined')
     if (Object.keys(previous.players).some((id) => !(id in next.players))) cues.push('playerLeft')
   }
-  if (next.teamDrawAt !== undefined && next.teamDrawAt !== previous.teamDrawAt && nowServer - next.teamDrawAt < CUE_MAX_AGE_MS) {
-    cues.push('teamDraw')
-  }
   const validatedAt = next.teamsValidatedAt
   if (validatedAt !== undefined && validatedAt !== previous.teamsValidatedAt && nowServer - validatedAt < CUE_MAX_AGE_MS) {
     cues.push('teamsValidated')
@@ -272,6 +272,8 @@ export function phaseKey(session: PublicSession): string {
 export function timedCues(session: PublicSession): TimedCue[] {
   const { status, phaseStartedAt: start, phaseEndsAt: end } = session
   switch (status) {
+    case 'lobby':
+      return teamDrawCues(session)
     case 'starting':
       return end > 0 ? beforeEnd(end, COUNTDOWN_BEEPS, 'countdown').filter((cue) => cue.at >= start) : []
     case 'question':
@@ -287,6 +289,16 @@ export function timedCues(session: PublicSession): TimedCue[] {
     default:
       return []
   }
+}
+
+// Tirage des équipes : un tic par joueur posé dans sa colonne, puis le gong quand le dernier est posé (même
+// calendrier que l'écran du tirage, shared/teamDraw.ts). Un ancien tirage ne rejoue rien (sons passés).
+function teamDrawCues(session: PublicSession): TimedCue[] {
+  const start = session.teamDrawAt
+  if (!session.settings.teams || start === undefined) return []
+  const timeline = teamDrawTimeline(session)
+  const ticks = timeline.arrivals.map((arrival) => ({ id: 'teamDrawTick' as const, at: start + arrival.atMs }))
+  return [...ticks, { id: 'teamDrawGong', at: start + timeline.gongAtMs }]
 }
 
 // count sons, un par seconde, la dernière seconde finissant à end.

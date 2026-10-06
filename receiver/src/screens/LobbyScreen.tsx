@@ -1,4 +1,5 @@
-import { MAX_PLAYERS, TEAM_DRAW_SHOW_MS } from '@shared/constants'
+import { MAX_PLAYERS } from '@shared/constants'
+import { teamDrawTimeline } from '@shared/teamDraw'
 import type { PublicSession } from '@shared/types'
 import { QRCodeSVG } from 'qrcode.react'
 import { useEffect, useState } from 'react'
@@ -39,7 +40,8 @@ interface LobbyScreenProps {
 export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
   const players = sortByRank(session.players)
   // Groupe : écran du tirage pendant quelques secondes après chaque « Tirer au sort ».
-  const isDrawing = useIsRecent(session.settings.teams ? session.teamDrawAt : undefined, TEAM_DRAW_SHOW_MS)
+  // Durée selon le nombre de joueurs : tous arrivent, le gong sonne, puis les équipes restent un instant.
+  const isDrawing = useIsRecent(session.settings.teams ? session.teamDrawAt : undefined, teamDrawTimeline(session).endMs)
   // Joueurs à la place qui reste : échelle réduite tant qu'un avatar, une équipe ou un pseudo dépasse.
   const { teams, teamCount } = session.settings
   const fitKey = `${players.map((player) => `${player.id}:${player.name}:${player.team ?? ''}`).join('|')}|${teams}|${teamCount ?? ''}`

@@ -19,7 +19,8 @@ Arrivée du classement et du podium : calendrier commun à l'écran et aux sons,
 |---|---|---|---|---|
 | `playerJoined` | « bloop-bloop » montant | salon : un nouveau joueur dans `players` | 0,6 | non |
 | `playerLeft` | « bloop » descendant, plus discret | salon : un joueur retiré de `players` | 0,4 | non |
-| `teamDraw` | roulette qui ralentit, puis gong | nouveau tirage des équipes (`teamDrawAt`) | 0,8 | oui |
+| `teamDrawTick` | clic de roulette | tirage des équipes : un par joueur posé dans sa colonne (calendrier `shared/teamDraw.ts`, le même que l'écran) | 0,5 | non |
+| `teamDrawGong` | gong grave | tirage des équipes : le dernier joueur est posé (fin de l'animation) | 0,8 | oui |
 | `countdown` | bip franc | `starting` : 3, 2, 1 (une fois par seconde) | 0,8 | oui |
 | `go` | coup grave, bip aigu tenu et accord de cuivres | première question de la partie (`starting` → `question`, question 1) ; remplace `questionShown` | 0,9 | oui |
 | `questionShown` | souffle puis accord de cuivres | entrée dans `question` (questions suivantes) et dans `vote` du Bluff | 0,8 | non |
