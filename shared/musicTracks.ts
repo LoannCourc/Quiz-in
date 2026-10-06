@@ -15,7 +15,7 @@ export interface MusicTrack {
 export const MUSIC_TRACKS: Record<MusicTrackId, MusicTrack> = {
   // Salon et tirage des équipes.
   waiting: { file: 'Waiting_sound.ogg', volume: 1, loop: true },
-  // Question, révélation et classement d'un quiz à choix multiples (volume bas) ; classement d'un blind test.
+  // Question, révélation et classement d'un quiz à choix multiples (volume bas) ; révélation et classement d'un blind test.
   game: { file: 'Salon_music.ogg', volume: 0.5, loop: true },
   // Écriture du Bluff ; question, révélation et classement en saisie libre (Contrôle compris).
   writing: { file: 'Bluffecriture_sound.ogg', volume: 0.8, loop: true },

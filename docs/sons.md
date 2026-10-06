@@ -57,12 +57,12 @@ Fichiers du développeur (OGG), jamais versionnés : déposés dans `receiver/pu
 |---|---|---|---|---|
 | Salon, tirage des équipes, 3-2-1 | `Waiting_sound.ogg` (34 s) | boucle | 1 | aussi dans une partie de blind test |
 | Question, révélation et classement, choix multiples | `Salon_music.ogg` (137 s) | boucle | 0,5 | sans interruption d'une phase à l'autre |
-| Classement d'un blind test | `Salon_music.ogg` | boucle | 0,5 | revient en fondu, se tait avant l'extrait suivant |
+| Révélation et classement d'un blind test | `Salon_music.ogg` | boucle | 0,5 | revient en fondu dès la bonne réponse, se tait avant l'extrait suivant |
 | Question, validation, révélation et classement, saisie libre | `Bluffecriture_sound.ogg` (70 s) | boucle | 0,8 | jamais pendant la question d'un blind test |
 | Bluff, écriture | `Bluffecriture_sound.ogg` | boucle | 0,8 | |
 | Bluff, vote, révélation et classement | `Bluffvote_sound.ogg` (96 s) | boucle | 0,8 | |
 | Classement final | `Findepartie_sound.ogg` (17 s) | jingle, une fois | 1 | en entier, après le roulement en Suspense ; puis silence |
-| Question et révélation d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1 ou du classement) |
+| Question d'un blind test | aucune | | | silence avant l'extrait (fondu de 300 ms, fini à la fin du 3-2-1, du classement, ou de la révélation en Suspense) |
 
 Volumes : relatifs au canal musique (35 % du volume général, ducking des effets). Fondu enchaîné de 800 ms entre deux musiques ; une même musique continue d'une phase à l'autre. Pause : la musique en cours s'arrête (fondu de 300 ms, position gardée) et `Waiting_sound.ogg` joue en boucle ; à la reprise, fondu enchaîné de 600 ms, la musique repart où elle s'était arrêtée (aussi en blind test, où rien n'est à reprendre).
 

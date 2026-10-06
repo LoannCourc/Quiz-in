@@ -8,7 +8,7 @@ import { musicPlayer } from '../lib/sound/musicPlayer'
 
 // Musique de la TV pendant la partie (spec 17) : prépare les pistes du mode de jeu, puis applique à
 // chaque changement le plan de shared/music.ts (piste, jingle, arrêt avant l'extrait, pause).
-// isBlindTestGame : le quiz est un blind test (pas de musique pendant la question et la révélation).
+// isBlindTestGame : le quiz est un blind test (pas de musique pendant la question).
 export function useTvMusic(session: PublicSession, isBlindTestGame: boolean, serverOffsetMs: number): void {
   const isMusicOn = soundSettingsOf(session).music
   const { answerMode } = session.settings

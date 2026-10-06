@@ -47,15 +47,23 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(suspense, false)).toMatchObject({ track: 'final', startAt: NOW + SUSPENSE_DRUMROLL_MS })
   })
 
-  test('blind test : silence pendant la question et la révélation (arrêt rapide), musique au salon, au classement et à la fin', () => {
+  test('blind test : silence pendant l’extrait (arrêt rapide), musique de jeu dès la bonne réponse, au salon, au classement et à la fin', () => {
     expect(musicPlan(inPhase('question', 'choice', { currentQuestion: BLIND_TEST_QUESTION }), false)).toMatchObject({ track: null, fastStop: true })
-    expect(musicPlan(inPhase('reveal'), true)).toMatchObject({ track: null, fastStop: true })
+    expect(musicPlan(inPhase('reveal'), true)).toMatchObject({ track: 'game', fastStop: false })
+    expect(musicPlan(inPhase('reveal', 'free'), true).track).toBe('game')
+    expect(musicPlan(inPhase('reveal', 'choice', { currentQuestion: BLIND_TEST_QUESTION }), false).track).toBe('game')
     expect(musicPlan(inPhase('question', 'free'), true).track).toBeNull()
     expect(musicPlan(inPhase('lobby'), true).track).toBe('waiting')
     expect(musicPlan(inPhase('ended'), true).track).toBe('final')
   })
 
-  test('blind test : la musique se tait à la fin du 3-2-1 et du classement, avant l’extrait', () => {
+  test('blind test : la musique se tait à la fin du 3-2-1, de la révélation et du classement, avant l’extrait', () => {
+    // Révélation suivie du classement : la musique continue (pas d'arrêt à la fin de la révélation).
+    expect(musicPlan(inPhase('reveal'), true)).toMatchObject({ track: 'game', stopBy: undefined })
+    // Suspense : la question suivante suit directement la révélation, la musique se tait avant son extrait.
+    const suspense = { ...makeSession().settings, suspense: true }
+    expect(musicPlan(inPhase('reveal', 'choice', { settings: suspense }), true)).toMatchObject({ track: 'game', stopBy: NOW + 20_000 })
+    expect(musicPlan(inPhase('reveal', 'choice', { settings: suspense, phaseEndsAt: 0 }), true).stopBy).toBeUndefined()
     expect(musicPlan(inPhase('starting'), true)).toMatchObject({ track: 'waiting', stopBy: NOW + 20_000 })
     expect(musicPlan(inPhase('scores'), true)).toMatchObject({ track: 'game', stopBy: NOW + 20_000 })
     expect(musicPlan(inPhase('scores', 'free'), true).track).toBe('game')

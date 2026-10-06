@@ -45,7 +45,7 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
   const mode = session.settings.answerMode
   const play = (track: MusicTrackId): MusicPlan => ({ track, fastStop: false, isPaused: false })
   const silence: MusicPlan = { track: null, fastStop: isBlindTest, isPaused: false }
-  // Blind test : la musique se tait avant la question suivante (fin du 3-2-1 ou du classement).
+  // Blind test : la musique se tait avant la question suivante (fin du 3-2-1, de la révélation ou du classement).
   const stopBy = isBlindTest && session.status !== 'paused' && session.phaseEndsAt > 0 ? session.phaseEndsAt : undefined
 
   switch (status) {
@@ -63,7 +63,9 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
       return play('vote')
     case 'reveal':
       if (mode === 'bluff') return play('vote')
-      if (isBlindTest) return silence
+      // Blind test : la musique de jeu revient dès la bonne réponse. Elle continue au classement ; en Suspense,
+      // la question suivante suit directement la révélation : la musique se tait alors avant son extrait.
+      if (isBlindTest) return { ...play('game'), stopBy: session.settings.suspense ? stopBy : undefined }
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'scores':
       // La musique de la question continue à travers le classement ; blind test : la musique de jeu revient,

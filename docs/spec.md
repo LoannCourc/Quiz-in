@@ -582,7 +582,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 - Bluff : musique d'écriture, puis musique du vote (boucles), qui continue pendant la révélation et le classement.
 - Classement entre les questions : pas de jingle ; seuls ses effets (lignes, glissement) passent par-dessus la musique, avec le ducking habituel. Classement final : jingle de fin joué une fois en entier (en Suspense, après le roulement de tambour), puis silence ; « Rejouer » pendant le jingle l'éteint par un fondu de 600 ms.
 - Passage d'une musique à l'autre : fondu enchaîné de 800 ms ; une même musique d'une phase à l'autre continue sans reprendre au début.
-- Blind test : aucune musique pendant la question et la révélation (l'extrait joue seul). La musique se tait par un fondu de 300 ms qui se termine à la fin du 3-2-1 ou du classement, avant l'extrait (en Pas à pas, au début de la question). Elle revient au salon, au classement (musique de jeu, en fondu) et à la fin.
+- Blind test : aucune musique pendant la question (l'extrait joue seul). La musique de jeu revient en fondu dès l'affichage de la bonne réponse (début de la révélation) et continue au classement. Elle se tait par un fondu de 300 ms qui se termine avant l'extrait suivant : à la fin du 3-2-1, du classement, ou de la révélation en Suspense (en Pas à pas, au début de la question). Musique d'attente au salon, jingle de fin inchangé.
 - Jingle entamé depuis plus de 1,5 s quand la TV s'ouvre : pas joué.
 - Fichiers et durées : `docs/sons.md`.
 - Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et en Bluff (écriture et vote) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
