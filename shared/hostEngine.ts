@@ -22,6 +22,7 @@ import { hasRankingStep, hasValidationPhase, isAwaitingHost, isUntimedPhase, nex
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
+import { nextStreak } from './streak'
 import {
   activeTeams,
   teamCountOf,
@@ -410,6 +411,9 @@ function revealPaths(session: Session, { reveal, results, scores, ranks }: Revea
   for (const playerId of Object.keys(scores)) {
     update[`players/${playerId}/score`] = scores[playerId]
     update[`players/${playerId}/rank`] = ranks[playerId]
+    // Série (spec 18) : d'après le résultat de la question, juste ou validé par l'hôte.
+    const player = session.players[playerId]
+    update[`players/${playerId}/streak`] = nextStreak(player?.streak, results[playerId], player?.connected === true)
   }
   return update
 }
@@ -601,6 +605,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = null
     update[`players/${playerId}/rank`] = null
+    update[`players/${playerId}/streak`] = null
   }
   return update
 }

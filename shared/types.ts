@@ -228,6 +228,8 @@ export interface Player {
   connected: boolean;
   // Groupe : équipe du joueur, modifiable en LOBBY seulement.
   team?: TeamId;
+  // Série de bonnes réponses d'affilée (spec 18), écrite par l'hôte à chaque révélation ; absente : 0.
+  streak?: number;
 }
 
 export interface Answer {

@@ -745,6 +745,7 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
       expect(session.status).toBe('reveal')
       expect(session.answers?.[index]?.[PLAYER]).toMatchObject({ value: 1, correct: true })
       expect(session.players[PLAYER].rank).toBe(1)
+      expect(session.players[PLAYER].streak).toBe(index + 1)
 
       // Après la dernière question : directement la fin, sans classement intermédiaire.
       session = await advance(session, 'reveal')
@@ -1309,6 +1310,37 @@ describe('Son de la TV (sound)', () => {
 
   test('partie sans réglage du son (créée avant) : toujours valide', async () => {
     await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null })))
+  })
+})
+
+describe('Série (players/{uid}/streak)', () => {
+  const STREAK_PATH = `${SESSION}/players/${PLAYER}/streak`
+
+  test('l’hôte écrit un entier de 0 à 50, lisible par un autre joueur et la TV', async () => {
+    await seedSession({ status: 'reveal' })
+    await assertSucceeds(db(HOST).ref(STREAK_PATH).set(0))
+    await assertSucceeds(db(HOST).ref(STREAK_PATH).set(5))
+    await assertSucceeds(db(HOST).ref(STREAK_PATH).set(50))
+    expect((await db(OTHER).ref(STREAK_PATH).once('value')).val()).toBe(50)
+    expect((await db('tv-uid').ref(STREAK_PATH).once('value')).val()).toBe(50)
+  })
+
+  test('valeur invalide refusée : négative, décimale, au-delà de 50, texte', async () => {
+    await seedSession({ status: 'reveal' })
+    for (const value of [-1, 1.5, 51, 'x']) {
+      await assertFails(db(HOST).ref(STREAK_PATH).set(value))
+    }
+  })
+
+  test('un joueur ne peut écrire ni sa série ni celle d’un autre', async () => {
+    await seedSession({ status: 'reveal' })
+    await assertFails(db(PLAYER).ref(STREAK_PATH).set(3))
+    await assertFails(db(OTHER).ref(STREAK_PATH).set(0))
+  })
+
+  test('Rejouer : l’hôte la supprime', async () => {
+    await seedSession({ status: 'ended', players: { [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true, streak: 4 } } })
+    await assertSucceeds(db(HOST).ref(STREAK_PATH).remove())
   })
 })
 

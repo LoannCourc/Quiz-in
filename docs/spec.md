@@ -613,3 +613,21 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 **Autres moments sonores (TV).** « GO » à la première question de la partie (à la place du son de question) ; départ d'un joueur du salon ; Contrôle : un son quand la validation commence, un « validé » quand les résultats sont publiés, suivi de la fanfare ou du « raté » ; Rejouer : retour au salon. Équipes validées : « Valider les équipes » (équipes complètes) publie `teamsValidatedAt` (écrit par l'hôte, lisible par tous), la TV joue un « verrouillage » lumineux, distinct du gong du tirage.
 
 **Téléphones (lot 4).** Sons **activés par défaut, très discrets**, avec un interrupteur sur l'écran de saisie du pseudo et en jeu (gardé sur le téléphone) ; sur iPhone, rien ne sort en mode silencieux. Sons : bienvenue (pseudo et avatar validés), clic d'envoi (réponse, proposition de Bluff), proposition envoyée, refus, vote envoyé, « Bien vu ! », « Piégé ! », avec une légère vibration (Android ; Safari ne vibre pas). Aucun son de téléphone pendant un blind test. L'hôte (app Android) : vibration seule, sans dépendance.
+
+## 18. Série
+
+Chaque joueur a une **série** : le nombre de bonnes réponses d'affilée. Elle est individuelle, même en Groupe (l'équipe n'a pas de série).
+
+**Règle (à chaque fin de question, avec le résultat).**
+- Bonne réponse : +1. Mauvaise réponse : retour à 0.
+- Quiz (choix multiples, Réponse libre) : la correction automatique.
+- Contrôle : la correction validée par l'hôte (rien ne bouge pendant la validation).
+- Blind test « titre et artiste » : à moitié juste (titre **ou** artiste), la série ne bouge pas.
+- Bluff : voter pour la vraie réponse = +1 ; voter pour un bluff ou un leurre = 0 ; piéger d'autres joueurs ne compte pas (des points, mais pas de série).
+- Pas de réponse (temps écoulé, question passée par l'hôte, pas de vote en Bluff) : 0 si le joueur est connecté à la fin de la question. Déconnecté à ce moment-là : sa série ne bouge pas, il la retrouve à son retour.
+- Arrivée en cours de partie : part de 0. Rejouer : toutes les séries repartent de 0.
+- Plafond technique : 50, le nombre maximal de questions d'une partie (règles de la base).
+
+**Données.** `players/{id}/streak` (entier de 0 à 50, absent = 0), écrit par l'hôte seul, dans le même update que les points de la révélation (`nextStreak`, `shared/streak.ts`) ; lisible par la TV et les joueurs comme le reste de `players`. Rejouer la supprime.
+
+**Affichage (parties 2 et 3).** À partir de 3 : badge flamme (or et rose, chiffre dedans) dans le classement de la TV et sur l'écran de résultat du téléphone. Son sur la TV à 3 tout juste, plus fort à 5, une fois par question, après la fanfare. Suspense : aucun badge sur la TV avant l'écran de fin (l'ordre des séries trahirait le classement caché) ; le téléphone montre seulement la série du joueur, qui ne dit rien de son rang.

@@ -169,6 +169,9 @@
               ".validate": "newData.isBoolean()"
             },
             "score": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+            "streak": {
+              ".validate": "newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 0 && newData.val() <= 50"
+            },
             "rank": { ".validate": "newData.isNumber() && newData.val() >= 1" },
             "team": {
               ".write": "auth != null && auth.uid == $uid && data.parent().child('name').exists() && root.child('sessions/' + $code + '/status').val() == 'lobby' && root.child('sessions/' + $code + '/settings/teams').val() == true && root.child('sessions/' + $code + '/settings/teamMode').val() == 'players'",
