@@ -4,7 +4,7 @@ import { QUESTION_DURATION_S } from '../../shared/constants'
 import { replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { bluffRevealTimeline } from '../../shared/bluff'
 import { STREAK_CUE_DELAY_MS, timedCues, VALIDATED_RESULT_DELAY_MS } from '../../shared/sound'
-import { hasStreakBadge, nextStreak, STREAK_MAX, streakSound } from '../../shared/streak'
+import { hasStreakBadge, nextStreak, rankingStreakBadges, STREAK_MAX, streakSound } from '../../shared/streak'
 import type { Answer, BluffChoice, PlayerResult, RevealedBluffChoice, Player, PlayerId, Question, Session, SessionSettings } from '../../shared/types'
 import { BLUFF_QUESTIONS, HOST, makeQuestion, makeSession, OTHER, player, PLAYER, QUESTIONS } from './engineFixtures'
 
@@ -230,5 +230,32 @@ describe('Série : badge et son de la TV', () => {
     })
     expect(streakCueOf(reveal)?.id).toBe('streak')
     expect(streakCueOf({ ...reveal, status: 'paused', pausedFrom: 'reveal' })).toBeUndefined()
+  })
+})
+
+describe('Série : badges du classement de la TV', () => {
+  // 7 joueurs, rangs 1 à 7 ; séries : 1er 5, 2e 0, 3e 3, 6e 4 (hors top 5), 7e 2.
+  const players: Record<PlayerId, Player> = {
+    a: player('Ana', { rank: 1, streak: 5, team: 'pink', score: 700 }),
+    b: player('Ben', { rank: 2, streak: 0, team: 'cyan', score: 600 }),
+    c: player('Céa', { rank: 3, streak: 3, team: 'cyan', score: 500 }),
+    d: player('Dan', { rank: 4, team: 'pink', score: 400 }),
+    e: player('Eva', { rank: 5, team: 'gold', score: 300 }),
+    f: player('Fred', { rank: 6, streak: 4, team: 'gold', score: 200 }),
+    g: player('Gus', { rank: 7, streak: 2, team: 'gold', score: 100 }),
+  }
+
+  test('les 5 premiers avec une série de 3 et plus ; au-delà de la 5e place, pas de badge (limite connue)', () => {
+    expect(rankingStreakBadges({ players, settings: CHOICE })).toEqual({ a: 5, c: 3 })
+  })
+
+  test('Suspense : aucun badge', () => {
+    expect(rankingStreakBadges({ players, settings: { ...CHOICE, suspense: true } })).toEqual({})
+  })
+
+  test('Groupe : seulement le meilleur joueur de chaque équipe', () => {
+    const settings: SessionSettings = { ...CHOICE, teams: true, teamCount: 3 }
+    // Meilleurs joueurs : Ana (rose, 5), Ben (cyan, 0 : pas de badge, Céa 3 non affichée), Eva (or, sans série).
+    expect(rankingStreakBadges({ players, settings })).toEqual({ a: 5 })
   })
 })

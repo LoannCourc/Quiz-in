@@ -1,4 +1,4 @@
-import { PUBLIC_SESSION_FIELDS, type PublicField } from '@shared/publicFields'
+import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '@shared/publicFields'
 import type { PublicSession } from '@shared/types'
 import { onValue, ref, type Database, type Unsubscribe } from 'firebase/database'
 import { useEffect, useState } from 'react'
@@ -36,13 +36,9 @@ const PUBLIC_FIELDS = PUBLIC_SESSION_FIELDS
 type FieldValues = Partial<Record<PublicField, unknown>>
 
 // status est toujours écrit par l'hôte : s'il manque, la session n'existe pas.
-// La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
 function toSessionState(values: FieldValues): LiveSessionState {
-  if (values.status == null) return { kind: 'notFound', wasRemoved: false }
-  // Forme garantie par les règles de validation de la base (database.rules.json).
-  const session = values as PublicSession
-  const reveal = session.reveal && { ...session.reveal, stats: session.reveal.stats ?? {} }
-  return { kind: 'ready', session: { ...session, players: session.players ?? {}, reveal } }
+  const session = toPublicSession(values)
+  return session ? { kind: 'ready', session } : { kind: 'notFound', wasRemoved: false }
 }
 
 function subscribeToFields(

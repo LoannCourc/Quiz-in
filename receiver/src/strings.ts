@@ -211,6 +211,8 @@ export const strings = {
     memoryUnknown: 'Mémoire JS : non mesurable',
     screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
     // Groupe : équipe reçus/affichés (capacité) ; en rouge si un membre n'est pas affiché.
+    streaks: (active: { name: string; streak: number }[], zero: number, missing: number) =>
+      `Séries reçues : ${active.length > 0 ? active.map((entry) => `${entry.name} ${entry.streak}`).join(' · ') : 'aucune en cours'} (${zero} à 0, ${missing} sans le champ)`,
     teamColumns: (scale: string, teams: { team: string; received: number; shown: number; capacity: number }[]) =>
       `Équipes (échelle ${scale}) : ${teams.map((team) => `${team.team} ${team.received} reçus, ${team.shown} affichés, capacité ${team.capacity}`).join(' · ')}`,
     sound: (music: boolean, forcedOff: boolean, effects: boolean) =>

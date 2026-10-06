@@ -68,6 +68,12 @@ export interface TeamColumnStats {
   capacity: number
 }
 
+export interface StreakStats {
+  active: { name: string; streak: number }[]
+  zero: number
+  missing: number
+}
+
 export interface PerfSnapshot {
   fps: number
   minFps: number | null
@@ -81,6 +87,9 @@ export interface PerfSnapshot {
   // Groupe, salon ou tirage : par équipe, membres reçus (données), affichés (en entier dans la colonne) et
   // capacité de la colonne (lignes qui y tiennent) ; échelle appliquée. null hors de ces écrans.
   teamColumns: { scale: string; teams: TeamColumnStats[] } | null
+  // Séries reçues de la base (spec 18), telles quelles : joueurs dont la série est au-dessus de 0, et combien
+  // sont à 0 ou sans le champ (hôte d'une version sans série).
+  streaks: StreakStats
   chromeVersion: string
   musicOn: boolean
   // Musique coupée par le panneau (et non par l'hôte).
@@ -150,6 +159,7 @@ class PerfMonitor {
   private incidents: PerfIncident[] = []
   // hostMusic : réglage de l'hôte ; la musique jouée tient compte aussi du panneau (isMusicOn).
   private teamCounts: Record<string, number> = {}
+  private streaks: StreakStats = { active: [], zero: 0, missing: 0 }
   private context: { status: GameStatus | null; index: number | null; hostMusic: boolean; effects: boolean } = {
     status: null,
     index: null,
@@ -201,6 +211,7 @@ class PerfMonitor {
     this.context = { status: session.status, index: session.currentIndex, hostMusic: sound.music, effects: sound.effects }
     this.teamCounts = {}
     for (const player of Object.values(session.players)) if (player.team) this.teamCounts[player.team] = (this.teamCounts[player.team] ?? 0) + 1
+    this.streaks = streakStatsOf(session)
     const previous = this.lastPhase
     if (this.isRunning && previous !== null && previous.startedAt !== session.phaseStartedAt) {
       this.pending = {
@@ -259,6 +270,7 @@ class PerfMonitor {
       memory: memory ? { usedMb: Math.round(memory.usedJSHeapSize / MEGABYTE), limitMb: Math.round(memory.jsHeapSizeLimit / MEGABYTE) } : null,
       screen: `${innerWidth}×${innerHeight} ×${devicePixelRatio}`,
       teamColumns: this.teamColumnStats(),
+      streaks: this.streaks,
       chromeVersion: /Chrome\/(\d+)/.exec(navigator.userAgent)?.[1] ?? '?',
       musicOn: this.isMusicOn(),
       musicForcedOff: isPerfMusicForcedOff(),
@@ -362,3 +374,16 @@ class PerfMonitor {
 
 // Un seul moniteur pour la page.
 export const perfMonitor = new PerfMonitor()
+
+function streakStatsOf(session: PublicSession): StreakStats {
+  const players = Object.values(session.players)
+  const active = players
+    .filter((player) => (player.streak ?? 0) > 0)
+    .map((player) => ({ name: player.name, streak: player.streak ?? 0 }))
+    .sort((a, b) => b.streak - a.streak || a.name.localeCompare(b.name, 'fr'))
+  return {
+    active,
+    zero: players.filter((player) => player.streak === 0).length,
+    missing: players.filter((player) => player.streak === undefined).length,
+  }
+}

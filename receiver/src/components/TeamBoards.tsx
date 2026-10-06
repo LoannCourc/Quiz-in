@@ -1,5 +1,5 @@
 import { teamRanking, teamsInGame, type TeamRow } from '@shared/teams'
-import type { Player, PublicSession } from '@shared/types'
+import type { Player, PlayerId, PublicSession } from '@shared/types'
 
 import { Avatar } from './Avatar'
 import { hasAnswered, sortByRank, type RankedPlayer } from '../lib/players'
@@ -31,8 +31,8 @@ export function TeamAvatarGroups({ session, players }: { session: PublicSession;
   )
 }
 
-// showStreaks : classement en cours de partie (spec 18), badge flamme du meilleur joueur (série individuelle).
-function BestPlayer({ player, showStreaks = false, delay }: { player: Player | undefined; showStreaks?: boolean; delay?: string }) {
+// streak : classement en cours de partie (spec 18), série du meilleur joueur à montrer en badge flamme.
+function BestPlayer({ player, streak, delay }: { player: Player | undefined; streak?: number; delay?: string }) {
   if (!player) return <span />
   return (
     <span className="team-best">
@@ -41,7 +41,7 @@ function BestPlayer({ player, showStreaks = false, delay }: { player: Player | u
         <span className="team-best-label">{strings.teams.bestPlayer}</span>
         <span className="team-best-name">{strings.teams.bestPlayerScore(player.name, player.score ?? 0)}</span>
       </span>
-      {showStreaks && <StreakBadge streak={player.streak} delay={delay} />}
+      {streak !== undefined && <StreakBadge streak={streak} delay={delay} />}
     </span>
   )
 }
@@ -49,7 +49,15 @@ function BestPlayer({ player, showStreaks = false, delay }: { player: Player | u
 // Classement des équipes entre deux questions (G3) : rang, pastille, barre proportionnelle au score,
 // moyenne, meilleur joueur de l'équipe.
 // delays : délai CSS d'arrivée de chaque ligne, par position (0 : première équipe).
-export function TeamRankingBoard({ session, delays, showStreaks = false }: { session: PublicSession; delays?: readonly string[]; showStreaks?: boolean }) {
+export function TeamRankingBoard({
+  session,
+  delays,
+  streaks,
+}: {
+  session: PublicSession
+  delays?: readonly string[]
+  streaks?: Record<PlayerId, number>
+}) {
   const rows = teamRanking(session)
   const maxScore = Math.max(1, ...rows.map((row) => row.score))
   return (
@@ -72,7 +80,7 @@ export function TeamRankingBoard({ session, delays, showStreaks = false }: { ses
             </span>
             <BestPlayer
               player={row.bestPlayerId ? session.players[row.bestPlayerId] : undefined}
-              showStreaks={showStreaks}
+              streak={row.bestPlayerId ? streaks?.[row.bestPlayerId] : undefined}
               delay={delays?.[position]}
             />
           </li>

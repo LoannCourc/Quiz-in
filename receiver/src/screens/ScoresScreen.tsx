@@ -1,6 +1,7 @@
 import { SCORES_TOP_COUNT } from '@shared/constants'
 import { isAnnouncingNextQuestion, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow'
 import { scoresEntryMs, scoresRowCount } from '@shared/rankingTimeline'
+import { rankingStreakBadges } from '@shared/streak'
 import type { PlayerId, PublicSession } from '@shared/types'
 
 import { GameHeader } from '../components/GameHeader'
@@ -55,8 +56,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
     gainedPoints[playerId] = result.points
   }
   const countdown = nextQuestionCountdown(session)
-  // Séries (spec 18) : jamais en Suspense, où rien ne doit trahir le classement caché.
-  const showStreaks = !session.settings.suspense
+  // Séries (spec 18) : badges des joueurs affichés, jamais en Suspense (shared/streak.ts).
+  const streaks = rankingStreakBadges(session)
 
   return (
     <main className="screen scores">
@@ -69,7 +70,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
             <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
           </div>
-          <TeamRankingBoard session={session} delays={delays} showStreaks={showStreaks} />
+          <TeamRankingBoard session={session} delays={delays} streaks={streaks} />
         </>
       ) : (
         <>
@@ -78,8 +79,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
             <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
           </div>
           <div className="scores-body">
-            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} showStreaks={showStreaks} />
-            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} showStreaks={showStreaks} />
+            <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} streaks={streaks} />
+            <RankingList players={topPlayers.slice(PODIUM_SIZE)} gainedPoints={gainedPoints} delays={delays.slice(PODIUM_SIZE)} streaks={streaks} />
           </div>
         </>
       )}

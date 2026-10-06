@@ -1,4 +1,6 @@
 import type { RankedPlayer } from '../lib/players'
+import type { PlayerId } from '@shared/types'
+
 import { strings } from '../strings'
 import { StreakBadge } from './StreakBadge'
 import './Podium.css'
@@ -13,12 +15,12 @@ interface PodiumProps {
   // Fin de partie (spec 17) : les avatars sautent selon leur place, couronne et projecteur sur le 1er,
   // marches qui pulsent au rythme des sauts (EndDance.css).
   dance?: boolean
-  // Classement en cours de partie (spec 18) : badge flamme des séries de 3 et plus, au coin de l'avatar.
-  showStreaks?: boolean
+  // Classement en cours de partie (spec 18) : séries à montrer en badge flamme au coin de l'avatar.
+  streaks?: Record<PlayerId, number>
 }
 
 // Les trois premiers joueurs du classement trié ; marche colorée selon la position.
-export function Podium({ players, delays, dance = false, showStreaks = false }: PodiumProps) {
+export function Podium({ players, delays, dance = false, streaks }: PodiumProps) {
   return (
     <section className={dance ? 'podium is-dancing' : 'podium'}>
       {DISPLAY_ORDER.map((position) => {
@@ -30,9 +32,9 @@ export function Podium({ players, delays, dance = false, showStreaks = false }: 
             <span className="podium-avatar">
               {dance && position === 0 && <Crown />}
               {player.avatar}
-              {showStreaks && (
+              {streaks?.[player.id] !== undefined && (
                 <span className="podium-streak">
-                  <StreakBadge streak={player.streak} delay={delays?.[position]} />
+                  <StreakBadge streak={streaks[player.id]} delay={delays?.[position]} />
                 </span>
               )}
             </span>

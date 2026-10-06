@@ -1,4 +1,6 @@
-import type { Player, PlayerId, PlayerResult } from './types'
+import { SCORES_TOP_COUNT } from './constants'
+import { teamRanking } from './teams'
+import type { Player, PlayerId, PlayerResult, PublicSession } from './types'
 
 // Série (« flamme », spec 18) : nombre de bonnes réponses d'affilée de chaque joueur, toujours individuelle
 // (même en Groupe). Écrite par l'hôte avec les scores, à la révélation de chaque question.
@@ -37,4 +39,24 @@ export function streakSound(players: Record<PlayerId, Pick<Player, 'streak'>>, r
     .map(([, player]) => player.streak ?? 0)
   if (reached.includes(STREAK_BIG_SOUND_LEVEL)) return 'streakBig'
   return reached.includes(STREAK_SOUND_LEVEL) ? 'streak' : null
+}
+
+// Badges du classement intermédiaire de la TV (joueur → série) : les joueurs affichés (les 5 premiers ; en
+// Groupe, le meilleur joueur de chaque équipe) dont la série vaut au moins 3. Aucun en Suspense : l'ordre
+// des séries trahirait le classement caché. L'écran du classement n'affiche que ce que renvoie cette
+// fonction.
+export function rankingStreakBadges(session: Pick<PublicSession, 'players' | 'settings' | 'teams'>): Record<PlayerId, number> {
+  if (session.settings.suspense) return {}
+  const shown = session.settings.teams
+    ? teamRanking(session).flatMap((row) => (row.bestPlayerId ? [row.bestPlayerId] : []))
+    : Object.entries(session.players)
+        .sort(([, a], [, b]) => a.rank - b.rank || a.name.localeCompare(b.name, 'fr'))
+        .slice(0, SCORES_TOP_COUNT)
+        .map(([id]) => id)
+  const badges: Record<PlayerId, number> = {}
+  for (const id of shown) {
+    const streak = session.players[id]?.streak
+    if (hasStreakBadge(streak)) badges[id] = streak ?? 0
+  }
+  return badges
 }

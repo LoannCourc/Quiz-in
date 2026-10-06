@@ -1,6 +1,6 @@
 import { initializeApp, type FirebaseOptions } from 'firebase/app'
-import { getAuth, signInAnonymously, type Auth } from 'firebase/auth'
-import { getDatabase, type Database } from 'firebase/database'
+import { connectAuthEmulator, getAuth, signInAnonymously, type Auth } from 'firebase/auth'
+import { connectDatabaseEmulator, getDatabase, type Database } from 'firebase/database'
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,6 +11,12 @@ const firebaseConfig: FirebaseOptions = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
+
+// Développement seulement : VITE_FIREBASE_EMULATOR=1 branche la TV sur les émulateurs locaux (Auth 9099,
+// Database 9000, base du projet fictif des tests des règles), pour rejouer une vraie partie sans toucher
+// la vraie base. Jamais dans le bundle publié (import.meta.env.DEV).
+const EMULATOR_NAMESPACE = 'demo-quiz-in'
+const isEmulator = import.meta.env.DEV && import.meta.env.VITE_FIREBASE_EMULATOR === '1'
 
 export class MissingConfigError extends Error {}
 
@@ -32,9 +38,13 @@ export function getFirebase(): FirebaseServices {
     throw new MissingConfigError(`Configuration Firebase incomplète dans receiver/.env : ${missingKeys.join(', ')}`)
   }
 
-  const app = initializeApp(firebaseConfig)
+  const app = initializeApp(isEmulator ? { ...firebaseConfig, databaseURL: `http://127.0.0.1:9000?ns=${EMULATOR_NAMESPACE}` } : firebaseConfig)
   // Sur le web, getAuth conserve la session anonyme dans le navigateur.
   services = { auth: getAuth(app), db: getDatabase(app) }
+  if (isEmulator) {
+    connectAuthEmulator(services.auth, 'http://127.0.0.1:9099', { disableWarnings: true })
+    connectDatabaseEmulator(services.db, '127.0.0.1', 9000)
+  }
   return services
 }
 

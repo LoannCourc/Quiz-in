@@ -25,9 +25,10 @@ import {
 import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
-import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
+import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '../../shared/publicFields'
+import { rankingStreakBadges } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
-import type { GameStatus, Session } from '../../shared/types'
+import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
 
 const PROJECT_ID = 'demo-quiz-in'
@@ -756,6 +757,50 @@ describe("Moteur de l'hôte : updates acceptés par les règles", () => {
     expect(session.currentQuestion).toBeUndefined()
     expect(session.reveal).toBeUndefined()
   })
+
+  // Vrai chemin des séries (spec 18) : l'hôte écrit, la TV et un joueur lisent les champs publics un par
+  // un comme leurs applications (PUBLIC_SESSION_FIELDS, toPublicSession), puis le classement de la TV
+  // choisit ses badges (rankingStreakBadges). Aucune donnée injectée à la main.
+  async function readPublicSession(uid: string): Promise<PublicSession> {
+    const values: Partial<Record<PublicField, unknown>> = {}
+    for (const field of PUBLIC_SESSION_FIELDS) {
+      values[field] = (await db(uid).ref(`${SESSION}/${field}`).once('value')).val() ?? undefined
+    }
+    const publicSession = toPublicSession(values)
+    expect(publicSession).not.toBeNull()
+    return publicSession as PublicSession
+  }
+
+  test('séries : écrites par l’hôte qui joue, reçues par la TV et les joueurs, badge au classement dès 3', async () => {
+    const questions = QUESTIONS.slice(0, 6)
+    const gameQuestions6 = selectGameQuestions(questions)
+    let session = await seedLobby()
+    const launch = launchUpdate(session, questions, Date.now())
+    session = await applyAsHost(launch.ok ? launch.update : null)
+    const step = (from: GameStatus) => {
+      expect(session.status).toBe(from)
+      return applyAsHost(transitionUpdate(session, gameQuestions6, { status: session.status, currentIndex: session.currentIndex }, Date.now()))
+    }
+    session = await step('starting')
+    for (let index = 0; index < 5; index++) {
+      // L'hôte joue et répond juste (1) ; Léa se trompe (0).
+      await assertSucceeds(submitAnswer(HOST, index, 1))
+      await assertSucceeds(submitAnswer(PLAYER, index, 0))
+      session = await readSession()
+      session = await step('question')
+      session = await step('reveal')
+      expect(session.status).toBe('scores')
+      const streak = index + 1
+      for (const reader of ['tv-uid', PLAYER]) {
+        const seen = await readPublicSession(reader)
+        expect(seen.players[HOST].streak).toBe(streak)
+        expect(seen.players[PLAYER].streak).toBe(0)
+        expect(rankingStreakBadges(seen)).toEqual(streak >= 3 ? { [HOST]: streak } : {})
+      }
+      session = await step('scores')
+    }
+    // Lectures champ par champ, deux lecteurs, cinq questions : plus long que la limite par défaut.
+  }, 30_000)
 
   test('pause et reprise dans chaque état où elles sont possibles', async () => {
     let session = await seedLobby()

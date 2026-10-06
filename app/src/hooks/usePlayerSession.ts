@@ -1,4 +1,4 @@
-import { PUBLIC_SESSION_FIELDS, type PublicField } from '@shared/publicFields';
+import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '@shared/publicFields';
 import type { GameStatus, PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref, type Unsubscribe } from 'firebase/database';
 import { useEffect, useState } from 'react';
@@ -25,14 +25,9 @@ function toState(uid: PlayerId, values: FieldValues, received: Set<PublicField>)
   // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
   if (received.size < PUBLIC_FIELDS.length) return { kind: 'loading' };
   // status est toujours écrit par l'hôte : s'il manque, la partie n'existe pas.
-  if (values.status == null) return { kind: 'notFound', wasRemoved: false };
-  // Forme garantie par les règles de validation de la base (database.rules.json).
-  const raw = values as PublicSession;
-  // La base ne stocke pas les objets vides : players et reveal.stats peuvent manquer.
-  const players = raw.players ?? {};
-  const reveal = raw.reveal && { ...raw.reveal, stats: raw.reveal.stats ?? {} };
-  const session: PublicSession = { ...raw, players, reveal };
-  return { kind: 'ready', uid, status: session.status, players, session };
+  const session = toPublicSession(values);
+  if (!session) return { kind: 'notFound', wasRemoved: false };
+  return { kind: 'ready', uid, status: session.status, players: session.players, session };
 }
 
 // Connexion anonyme, puis abonnement en temps réel aux champs publics de la partie.
