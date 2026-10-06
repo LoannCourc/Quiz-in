@@ -40,7 +40,7 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
   // Bluff (maquette B4) : écriture des fausses réponses, puis vote parmi les choix publiés.
   const isBluff = session.settings.answerMode === 'bluff'
   const isVote = isBluff && session.status === 'vote'
-  // Beaucoup de choix (petit texte) : question plus basse, sans pastille ni consigne, pour leur laisser la place.
+  // Beaucoup de choix (petit texte) : question plus basse, sans consigne, pour leur laisser la place.
   const voteLayout = bluffChoicesLayout(question.choices ?? [])
   const isCrowded = isVote && voteLayout.crowded
   // Vote sans minuteur : « X/Y ont voté » à la place de l'anneau (attendus : connectés et votants).
@@ -76,11 +76,6 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
           <div className="question-card-column">
             {questionCard}
             <AudioStatus />
-          </div>
-        ) : isBluff ? (
-          <div className="question-card-column">
-            <span className="bluff-badge">{strings.bluff.badge}</span>
-            {questionCard}
           </div>
         ) : (
           questionCard

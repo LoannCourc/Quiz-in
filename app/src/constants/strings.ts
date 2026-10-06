@@ -491,8 +491,9 @@ export const strings = {
     },
     // Bluff (maquettes B1, B2, B3) : écrire une fausse réponse, attendre, voter, résultat.
     bluff: {
-      writeBadge: 'Bluff · Invente une fausse réponse',
-      voteBadge: 'Bluff · Quelle est la vraie réponse ?',
+      // Consignes en tête de l'écriture et du vote (l'énoncé n'est pas affiché quand une TV est présente).
+      writeInstruction: 'Invente une fausse réponse',
+      voteInstruction: 'Quelle est la vraie réponse ?',
       // Vote sans minuteur (joueurs connectés et ceux qui ont déjà voté).
       votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
       fieldLabel: 'Ta fausse réponse',

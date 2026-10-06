@@ -33,12 +33,9 @@ interface PhaseProps {
 
 const { bluff: texts } = strings.game;
 
-function Badge({ label, tone }: { label: string; tone: 'write' | 'vote' }) {
-  return (
-    <View style={[styles.badge, tone === 'vote' && styles.voteBadge]}>
-      <Text style={styles.badgeText}>{label}</Text>
-    </View>
-  );
+// Consigne de la phase (pas une pastille de type de jeu) : ce que le joueur doit faire maintenant.
+function Instruction({ label }: { label: string }) {
+  return <Text style={styles.instruction}>{label}</Text>;
 }
 
 // B1 : la question (sur le téléphone seulement sans TV), un champ sur plusieurs lignes
@@ -64,7 +61,7 @@ export function BluffWriteView(props: PhaseProps) {
 
   return (
     <View style={styles.container}>
-      <Badge label={texts.writeBadge} tone="write" />
+      <Instruction label={texts.writeInstruction} />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <View style={styles.field}>
         <Text style={styles.fieldLabel}>{texts.fieldLabel}</Text>
@@ -159,7 +156,7 @@ export function BluffVoteView(props: PhaseProps) {
   const isSending = vote.kind === 'sending';
   return (
     <View style={styles.container}>
-      <Badge label={texts.voteBadge} tone="vote" />
+      <Instruction label={texts.voteInstruction} />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <View style={styles.choices}>
         {choices.map((choice, choiceIndex) => {
@@ -271,22 +268,11 @@ const styles = StyleSheet.create({
   centered: {
     textAlign: 'center',
   },
-  badge: {
-    alignSelf: 'center',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.one + 2,
-    borderRadius: AppSizes.radiusPill,
-    backgroundColor: AppColors.accent,
-  },
-  voteBadge: {
-    backgroundColor: AppColors.link,
-  },
-  badgeText: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.ink,
+  instruction: {
+    color: AppColors.accent,
     fontFamily: AppFonts.black,
-    fontSize: 13,
-    textTransform: 'uppercase',
+    fontSize: 20,
+    textAlign: 'center',
   },
   questionText: {
     color: AppColors.text,

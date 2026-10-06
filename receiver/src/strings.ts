@@ -72,7 +72,6 @@ export const strings = {
   },
   // Bluff (maquettes B4 et B5) : écriture des fausses réponses, vote, révélation.
   bluff: {
-    badge: 'Bluff',
     writeHint: 'Inventez une fausse réponse sur votre téléphone !',
     voteHint: 'Votez pour la vraie réponse !',
     writtenCount: (count: number, total: number) => `${count}/${total} ont écrit`,
