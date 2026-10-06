@@ -259,3 +259,18 @@ describe('Classements d’équipe (écrans)', () => {
     ])
   })
 })
+
+describe('Tirage : tous les joueurs placés, équipes équilibrées', () => {
+  const ids = (count: number) => Array.from({ length: count }, (_, index) => `p${index}`)
+  const sizes = (draw: Record<string, string>) =>
+    Object.values(draw)
+      .reduce<Record<string, number>>((count, team) => ({ ...count, [team]: (count[team] ?? 0) + 1 }), {})
+
+  test('20 joueurs : 10/10 en 2 équipes, 7/7/6 en 3, 5 par équipe en 4 ; personne sans équipe', () => {
+    for (const [teamCount, expected] of [[2, [10, 10]], [3, [7, 7, 6]], [4, [5, 5, 5, 5]]] as const) {
+      const draw = drawTeams(ids(20), teamCount)
+      expect(Object.keys(draw)).toHaveLength(20)
+      expect(Object.values(sizes(draw)).sort((a, b) => b - a)).toEqual(expected)
+    }
+  })
+})

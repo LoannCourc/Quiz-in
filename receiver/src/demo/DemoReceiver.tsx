@@ -33,7 +33,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 }
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
-// &capture=1 masque le panneau (captures d'écran) ; &last=1 : dernière question ; &players=20 remplit la partie, &players=0 à 8 la vide
+// &capture=1 masque le panneau (captures d'écran) ; &last=1 : dernière question ; &unassigned=12 : 12 joueurs
+// sans équipe (Groupe, salon) ; &players=20 remplit la partie, &players=0 à 8 la vide
 // (salon).
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
@@ -104,7 +105,7 @@ function DemoGame({ params }: { params: URLSearchParams }) {
     questionLength > 0 && withTeams.currentQuestion
       ? { ...withTeams, currentQuestion: { ...withTeams.currentQuestion, text: demoQuestionText(questionLength) } }
       : withTeams
-  const limited = withPlayerLimit(withQuestion, params.get('players'))
+  const limited = withUnassigned(withPlayerLimit(withQuestion, params.get('players')), Number(params.get('unassigned')) || 0)
   // &last=1 : dernière question de la partie (révélation suivie directement de l'écran de fin).
   const session = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
@@ -183,4 +184,14 @@ function withPlayerLimit(session: PublicSession, requested: string | null): Publ
 function demoTeamCount(value: string | null): number {
   const count = Number(value)
   return count >= 2 && count <= 4 ? count : 3
+}
+
+// &unassigned=N : les N derniers joueurs sans équipe (arrivés après le tirage).
+function withUnassigned(session: PublicSession, count: number): PublicSession {
+  if (count <= 0) return session
+  const entries = Object.entries(session.players)
+  const players = Object.fromEntries(
+    entries.map(([id, player], index) => [id, index >= entries.length - count ? { ...player, team: undefined } : player]),
+  )
+  return { ...session, players }
 }
