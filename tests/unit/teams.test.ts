@@ -8,6 +8,7 @@ import {
   drawTeams,
   launchTeamDraw,
   lobbyTeamRefusal,
+  lateJoinerUpdate,
   rankInTeam,
   teamAssignment,
   suggestedTeamCount,
@@ -310,5 +311,74 @@ describe('Joueurs sans équipe : toujours comptés, lancement refusé', () => {
     const session = makeSession({ status: 'lobby', settings: TEAM_SETTINGS, players })
     expect(teamAssignment(session)).toEqual({ placed: 0, unassigned: 8 })
     expect(drawsAtLaunch(session)).toBe(true)
+  })
+})
+
+describe('Retardataires : placés par l’hôte dans l’équipe la moins nombreuse, après la validation', () => {
+  const SETTINGS: SessionSettings = { answerMode: 'choice', speedBonus: true, control: false, teams: true, teamMode: 'random', teamCount: 4 }
+  // 12 joueurs tirés (3 par équipe), équipes validées après le tirage, puis des arrivées.
+  function validatedLobby(late: number, overrides: Partial<Session> = {}): Session {
+    const ids = Array.from({ length: 12 }, (_, index) => `p${String(index).padStart(2, '0')}`)
+    const teams: TeamId[] = ['pink', 'cyan', 'gold', 'green']
+    const players: Record<PlayerId, Player> = Object.fromEntries(ids.map((id, index) => [id, player(id, { team: teams[index % 4] })]))
+    for (let index = 0; index < late; index++) players[`z${String(index).padStart(2, '0')}`] = player(`late${index}`)
+    return makeSession({ status: 'lobby', settings: SETTINGS, players, teamDrawAt: 1_000, teamsValidatedAt: 2_000, ...overrides })
+  }
+  function apply(session: Session, update: SessionUpdate | null): Session {
+    const players = structuredClone(session.players)
+    for (const [path, value] of Object.entries(update ?? {})) {
+      const [root, id, field] = path.split('/')
+      if (root === 'players' && field === 'team') players[id] = { ...players[id], team: value as TeamId }
+    }
+    return { ...session, players }
+  }
+  const sizes = (session: Session) => (['pink', 'cyan', 'gold', 'green'] as const).map((team) => teamMembers(session.players, team).length)
+
+  for (const late of [1, 3, 10]) {
+    test(`${late} arrivée(s) : tous placés, équipes équilibrées (écart d’un joueur au plus), lancement de nouveau possible`, () => {
+      const placed = apply(validatedLobby(late), lateJoinerUpdate(validatedLobby(late)))
+      const counts = sizes(placed)
+      expect(counts.reduce((sum, count) => sum + count, 0)).toBe(12 + late)
+      expect(Math.max(...counts) - Math.min(...counts)).toBeLessThanOrEqual(1)
+      expect(lobbyTeamRefusal(placed)).toBeNull()
+      expect(lateJoinerUpdate(placed)).toBeNull()
+    })
+  }
+
+  test('arrivées simultanées : réparties une à une (égalité : Rose, Cyan, Or, Vert)', () => {
+    expect(lateJoinerUpdate(validatedLobby(3))).toEqual({
+      'settings/teamCount': 4,
+      'players/z00/team': 'pink',
+      'players/z01/team': 'cyan',
+      'players/z02/team': 'gold',
+    })
+  })
+
+  test('équipes inégales : le retardataire va dans la moins nombreuse', () => {
+    const session = validatedLobby(1)
+    const players = { ...session.players }
+    delete players.p01 // une équipe Cyan de 2
+    expect(lateJoinerUpdate({ ...session, players })).toMatchObject({ 'players/z00/team': 'cyan' })
+  })
+
+  test('joueur parti puis revenu : il garde son équipe, rien à placer', () => {
+    const session = validatedLobby(0)
+    const gone = { ...session, players: { ...session.players, p05: { ...session.players.p05, connected: false } } }
+    expect(lateJoinerUpdate(gone)).toBeNull()
+    const back = { ...gone, players: { ...gone.players, p05: { ...gone.players.p05, connected: true } } }
+    expect(back.players.p05.team).toBe('cyan')
+    expect(lateJoinerUpdate(back)).toBeNull()
+  })
+
+  test('hôte qui joue et s’inscrit après la validation : placé comme les autres', () => {
+    const session = validatedLobby(0)
+    const withHost = { ...session, players: { ...session.players, [session.hostUid]: player('Hôte') } }
+    expect(lateJoinerUpdate(withHost)).toMatchObject({ [`players/${session.hostUid}/team`]: 'pink' })
+  })
+
+  test('aucun placement avant la validation, après un nouveau tirage non validé, ni hors du salon', () => {
+    expect(lateJoinerUpdate(validatedLobby(2, { teamsValidatedAt: undefined }))).toBeNull()
+    expect(lateJoinerUpdate(validatedLobby(2, { teamDrawAt: 3_000 }))).toBeNull()
+    expect(lateJoinerUpdate(validatedLobby(2, { status: 'question' }))).toBeNull()
   })
 })

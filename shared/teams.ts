@@ -101,6 +101,35 @@ export function teamsValidatedUpdate(session: Session, nowServer: number): Sessi
   return { teamsValidatedAt: nowServer }
 }
 
+// Équipes validées et pas de tirage depuis : un nouveau tirage (ou celui en cours) attend une nouvelle
+// validation de l'hôte avant tout placement automatique.
+export function areTeamsValidated(session: Pick<Session, 'teamsValidatedAt' | 'teamDrawAt'>): boolean {
+  return session.teamsValidatedAt !== undefined && session.teamsValidatedAt >= (session.teamDrawAt ?? 0)
+}
+
+// Retardataires (spec 6.4) : un joueur qui rejoint le salon après la validation des équipes est placé par
+// l'hôte dans l'équipe la moins nombreuse (égalité : Rose, Cyan, Or, Vert). Plusieurs arrivées : une à
+// une, en recomptant après chaque placement (répartition équilibrée). Un joueur qui part puis revient garde
+// son entrée, donc son équipe. null s'il n'y a personne à placer, avant la validation ou pendant un tirage.
+export function lateJoinerUpdate(session: Session): SessionUpdate | null {
+  if (!isTeamLobby(session) || !areTeamsValidated(session)) return null
+  const teams = session.settings.teamCount !== undefined ? activeTeams(session.settings.teamCount) : teamsInGame(session.players)
+  if (teams.length < MIN_TEAMS) return null
+  const late = Object.keys(session.players)
+    .filter((id) => !teams.includes(session.players[id].team as TeamId))
+    .sort()
+  if (late.length === 0) return null
+  const sizes = Object.fromEntries(teams.map((team) => [team, teamMembers(session.players, team).length])) as Record<TeamId, number>
+  // Nombre d'équipes écrit avec les placements : les règles exigent qu'il autorise Or et Vert.
+  const update: SessionUpdate = { 'settings/teamCount': teams.length }
+  for (const id of late) {
+    const team = teams.reduce((smallest, candidate) => (sizes[candidate] < sizes[smallest] ? candidate : smallest))
+    sizes[team] += 1
+    update[`players/${id}/team`] = team
+  }
+  return update
+}
+
 // « Au hasard » sans tirage de l'hôte : les équipes seront tirées au lancement.
 export function drawsAtLaunch(session: Pick<Session, 'status' | 'settings' | 'players'>): boolean {
   return (

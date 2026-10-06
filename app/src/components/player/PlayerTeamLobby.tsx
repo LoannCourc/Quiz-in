@@ -7,6 +7,7 @@ import { TeamSymbol } from '@/components/ui/TeamSymbol';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useJoinedTeamNotice } from '@/hooks/useJoinedTeamNotice';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
 interface PlayerTeamLobbyProps {
@@ -23,11 +24,13 @@ export function PlayerTeamLobby({ uid, players, settings, onChoose, error }: Pla
   const { picker } = strings.teams;
   const teams = activeTeams(teamCountOf(settings, Object.keys(players).length));
   const myTeam = players[uid]?.team;
+  const joinedTeam = useJoinedTeamNotice(myTeam);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{picker.title}</Text>
       <Text style={styles.note}>{picker.hint}</Text>
+      {joinedTeam && <Text style={[textStyles.label, styles.centered]}>{strings.teams.joined(strings.teams.names[joinedTeam])}</Text>}
       <View style={styles.grid}>
         {TEAM_IDS.map((team) =>
           teams.includes(team) ? (

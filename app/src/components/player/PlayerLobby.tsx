@@ -5,6 +5,7 @@ import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useJoinedTeamNotice } from '@/hooks/useJoinedTeamNotice';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
 import { PlayerTeamLobby } from './PlayerTeamLobby';
@@ -20,6 +21,7 @@ interface PlayerLobbyProps {
 // les joueurs et les équipes). Le bouton « Modifier mon profil » est fourni à part, en pied d'écran.
 export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
   const me = players[uid];
+  const joinedTeam = useJoinedTeamNotice(teams ? me?.team : undefined);
   // Groupe, mode « Ils choisissent » : le choix de l'équipe remplace le lobby (maquette G1).
   if (teams && teams.settings.teamMode === 'players') {
     return <PlayerTeamLobby uid={uid} players={players} {...teams} />;
@@ -35,6 +37,7 @@ export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
           <Text style={styles.myName}>{me.name}</Text>
         </View>
       )}
+      {joinedTeam && <Text style={styles.joined}>{strings.teams.joined(strings.teams.names[joinedTeam])}</Text>}
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
       <Text style={[textStyles.label, styles.centered]}>{strings.lobby.waiting}</Text>
     </View>
@@ -72,6 +75,12 @@ const styles = StyleSheet.create({
     lineHeight: Math.round(26 * DISPLAY_LINE_HEIGHT),
   },
   centered: {
+    textAlign: 'center',
+  },
+  joined: {
+    color: AppColors.accent,
+    fontFamily: AppFonts.black,
+    fontSize: 18,
     textAlign: 'center',
   },
 });

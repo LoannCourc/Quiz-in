@@ -3,6 +3,7 @@ import type { SessionUpdate } from '@shared/hostEngine';
 import { canLaunchGame, connectedPlayerIds } from '@shared/players';
 import {
   assignTeamUpdate,
+  lateJoinerUpdate,
   lobbyTeamRefusal,
   teamAssignment,
   teamCountUpdate,
@@ -13,7 +14,7 @@ import {
 } from '@shared/teams';
 import { soundSettingsOf } from '@shared/sound';
 import type { Session, SoundSettings } from '@shared/types';
-import { useCallback, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { OptionToggle } from '@/components/host/OptionToggle';
@@ -109,6 +110,16 @@ export function HostLobby(props: HostLobbyProps) {
       setLaunchError(strings.hostControls.actionFailed);
     });
   }
+  // Groupe : un joueur qui rejoint après la validation des équipes est placé dans l'équipe la moins
+  // nombreuse (shared/teams.ts). Calculé à nouveau sur la session relue au moment d'écrire : deux appels
+  // rapprochés donnent le même placement. Sans hôte (app fermée), l'alerte « sans équipe » reste.
+  const hasLateJoiner = lateJoinerUpdate(session) !== null;
+  useEffect(() => {
+    if (hasLateJoiner) lobbyAction((current) => lateJoinerUpdate(current));
+    // lobbyAction change à chaque rendu ; seul le besoin de placer quelqu'un déclenche l'écriture.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasLateJoiner, session]);
+
   const connectedCount = connectedPlayerIds(players).length;
 
   // Son de la TV : mémorisé sur le téléphone et publié dans la partie (la TV l'applique aussitôt).

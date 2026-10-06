@@ -26,7 +26,7 @@ import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
-import { launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
+import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1318,6 +1318,29 @@ describe('Groupe : validation des équipes (teamsValidatedAt)', () => {
     await assertSucceeds(db(HOST).ref(`${SESSION}/teamsValidatedAt`).set(Date.now()))
     await assertFails(db(HOST).ref(`${SESSION}/teamsValidatedAt`).set('maintenant'))
     await assertFails(db(PLAYER).ref(`${SESSION}/teamsValidatedAt`).set(Date.now()))
+  })
+
+  test('retardataires placés par l’hôte après la validation (Or et Vert compris) : accepté par les règles', async () => {
+    const teams = ['pink', 'cyan', 'gold', 'green'] as const
+    const players: Data = {}
+    for (let index = 0; index < 8; index++) players[`p${index}`] = { name: `Joueur ${index}`, avatar: '🦊', connected: true, team: teams[index % 4] }
+    players.late0 = { name: 'Tard 1', avatar: '🐸', connected: true }
+    players.late1 = { name: 'Tard 2', avatar: '🐸', connected: true }
+    players.late2 = { name: 'Tard 3', avatar: '🐸', connected: true }
+    await seedSession({
+      status: 'lobby',
+      phaseEndsAt: 0,
+      settings: { answerMode: 'choice', speedBonus: true, control: false, teams: true, teamMode: 'random', teamCount: 4 },
+      players,
+      teamDrawAt: Date.now() - 60_000,
+      teamsValidatedAt: Date.now() - 30_000,
+    })
+    const session = (await readAsAdmin(SESSION)) as Session
+    const update = lateJoinerUpdate(session)
+    expect(update).toMatchObject({ 'players/late0/team': 'pink', 'players/late1/team': 'cyan', 'players/late2/team': 'gold' })
+    await assertSucceeds(db(HOST).ref(SESSION).update(update ?? {}))
+    // Un joueur ne se place pas lui-même hors du mode « Ils choisissent ».
+    await assertFails(db('late9').ref(`${SESSION}/players/late9/team`).set('green'))
   })
 })
 

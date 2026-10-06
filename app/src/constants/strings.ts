@@ -202,6 +202,8 @@ export const strings = {
         ready: 'Équipes prêtes : appuie sur VALIDER LES ÉQUIPES.',
       },
     },
+    // Téléphone : équipe reçue (tirage, ou placement d'un retardataire par l'hôte).
+    joined: (team: string) => `Tu as rejoint l’équipe ${team}`,
     picker: {
       title: 'Choisis ton équipe',
       hint: 'Tu peux changer jusqu’au lancement de la partie.',
