@@ -10,16 +10,9 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { isFreeText, type AnswerState, type FreeText } from '@/lib/playerGame';
 
-import type { PhaseTiming } from './phaseTiming';
-import { QuestionHeader } from './QuestionHeader';
-import { Timebar } from './Timebar';
 
 interface FreeQuestionViewProps {
   question: PublicQuestion;
-  index: number;
-  questionCount?: number;
-  score: number;
-  timing: PhaseTiming;
   answer: Exclude<AnswerState, { kind: 'sent' }>;
   onAnswer: (given: FreeText) => void;
 }
@@ -33,7 +26,7 @@ function typedText(answer: FreeQuestionViewProps['answer']): FreeText {
 // (deux pour un blind test « both » : titre et artiste, un seul suffit) et VALIDER. Entrée valide
 // aussi. Correction et majuscule automatiques désactivées : la correction de l'hôte s'en charge.
 // Un seul envoi : une fois validée, la réponse ne peut plus changer.
-export function FreeQuestionView({ question, index, questionCount, score, timing, answer, onAnswer }: FreeQuestionViewProps) {
+export function FreeQuestionView({ question, answer, onAnswer }: FreeQuestionViewProps) {
   const isBlindTest = question.ask !== undefined;
   const isBoth = question.ask === 'both';
   const [initial] = useState(() => typedText(answer));
@@ -48,8 +41,6 @@ export function FreeQuestionView({ question, index, questionCount, score, timing
 
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
 
       {isBlindTest && question.ask ? (
         <View style={styles.listening}>

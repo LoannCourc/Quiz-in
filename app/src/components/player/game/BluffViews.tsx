@@ -12,9 +12,6 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { PlayerBluff } from '@/lib/playerBluff';
 
-import type { PhaseTiming } from './phaseTiming';
-import { QuestionHeader } from './QuestionHeader';
-import { Timebar } from './Timebar';
 
 // Bluff (spec 16), téléphone du joueur : écrire sa fausse réponse (B1), attendre et voter (B2),
 // résultat (B3). Aucun accès à Firebase : la page fournit l'état (useBluff) et les actions.
@@ -28,10 +25,6 @@ export interface BluffProgressPlayer {
 
 interface PhaseProps {
   question: PublicQuestion;
-  index: number;
-  questionCount?: number;
-  score: number;
-  timing: PhaseTiming;
   bluff: PlayerBluff;
   progress: BluffProgressPlayer[];
 }
@@ -49,7 +42,7 @@ function Badge({ label, tone }: { label: string; tone: 'write' | 'vote' }) {
 // B1 : la question (aussi sur le téléphone, pour écrire tranquillement), un champ sur plusieurs lignes
 // avec son compteur, puis ENVOYER. Après un refus, le texte reste dans le champ pour être modifié.
 export function BluffWriteView(props: PhaseProps) {
-  const { question, index, questionCount, score, timing, bluff, progress } = props;
+  const { question, bluff, progress } = props;
   const status = bluffWriteStatus(bluff.entry, bluff.check);
   const [text, setText] = useState(() => (bluff.send.kind !== 'idle' ? bluff.send.text : (bluff.entry?.text ?? '')));
 
@@ -69,8 +62,6 @@ export function BluffWriteView(props: PhaseProps) {
 
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
       <Badge label={texts.writeBadge} tone="write" />
       <Text style={styles.questionText}>{question.text}</Text>
       <View style={styles.field}>
@@ -124,11 +115,9 @@ interface WaitProps extends PhaseProps {
 }
 
 // B2, à gauche : coche, message, rappel de la proposition (ou du vote), et qui a déjà fini.
-function BluffWaitView({ index, questionCount, score, timing, progress, title, quote, message, withMark = true }: WaitProps) {
+function BluffWaitView({ progress, title, quote, message, withMark = true }: WaitProps) {
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
       <View style={styles.waitCenter}>
         {withMark && <MarkIcon kind="check" size={48} color={AppColors.correct} />}
         <Text style={[textStyles.hero, styles.waitTitle]}>{title}</Text>
@@ -155,7 +144,7 @@ function ProgressRow({ progress }: { progress: BluffProgressPlayer[] }) {
 // B2, à droite : les choix (le sien grisé, « Ta proposition »), un appui sélectionne, puis
 // « Je vote pour celle-ci ». La liste défile avec la page quand les choix sont nombreux.
 export function BluffVoteView(props: PhaseProps) {
-  const { question, index, questionCount, score, timing, bluff, progress } = props;
+  const { question, bluff, progress } = props;
   const choices = question.choices ?? [];
   const { vote, ownChoice } = bluff;
   const [selected, setSelected] = useState<number | null>(vote.kind === 'refused' ? vote.choice : null);
@@ -168,8 +157,6 @@ export function BluffVoteView(props: PhaseProps) {
   const isSending = vote.kind === 'sending';
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
       <Badge label={texts.voteBadge} tone="vote" />
       <Text style={styles.questionText}>{question.text}</Text>
       <View style={styles.choices}>

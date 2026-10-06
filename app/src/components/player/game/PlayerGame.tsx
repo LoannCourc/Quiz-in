@@ -30,10 +30,12 @@ import { BluffRevealView, BluffVoteView, BluffWriteView, type BluffProgressPlaye
 import { Confetti } from './Confetti';
 import { FreeQuestionView } from './FreeQuestionView';
 import type { PhaseTiming } from './phaseTiming';
+import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
+import { Timebar } from './Timebar';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
 export interface PlayerGameProps {
@@ -75,13 +77,29 @@ export function PlayerGame(props: PlayerGameProps) {
   const showConfetti = outcome === 'correct' || (session.status === 'ended' && isEndShown);
   return (
     <View style={styles.root}>
-      <Screen background={background} footer={props.footer}>
+      <Screen background={background} header={isEndShown ? questionTopBar(props) : undefined} footer={props.footer}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
         {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
       {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
       {props.overlay}
     </View>
+  );
+}
+
+// Question et vote du Bluff : numéro de la question, score et minuteur, fixés en haut de l'écran (hors de
+// la zone qui défile : le clavier ne les fait jamais sortir de l'écran).
+function questionTopBar({ session, uid, serverOffsetMs, bluff }: PlayerGameProps): ReactNode {
+  const isQuestion = session.status === 'question' && session.currentQuestion !== undefined;
+  const isVote = session.status === 'vote' && session.currentQuestion?.choices !== undefined && Boolean(bluff);
+  if (!isQuestion && !isVote) return undefined;
+  const score = rankedPlayers(session.players).find((player) => player.id === uid)?.score ?? 0;
+  const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
+  return (
+    <>
+      <QuestionHeader index={session.currentIndex} questionCount={session.questionCount} score={score} />
+      <Timebar {...timing} />
+    </>
   );
 }
 
@@ -130,8 +148,6 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
     serverOffsetMs,
   };
   const ranked = rankedPlayers(session.players);
-  const me = ranked.find((player) => player.id === uid);
-  const score = me?.score ?? 0;
   const { currentIndex: index, questionCount } = session;
   const countdown = nextQuestionCountdown(session);
   // Suspense : ni rang ni étape Classement en cours de partie, seulement les points gagnés.
@@ -150,10 +166,10 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       if (!question) return <WaitingView />;
       if (bluff) {
         const progress = bluffProgress(session, session.bluffedBy?.[index]);
-        return <BluffWriteView key={index} {...{ question, index, questionCount, score, timing, bluff, progress }} />;
+        return <BluffWriteView key={index} {...{ question, bluff, progress }} />;
       }
       const current = effectiveAnswer(session, uid, answer);
-      const common = { question, index, questionCount, score, timing };
+      const common = { question };
       const progress = answeredProgress(session.players, session.answeredBy?.[index]);
       if (current.kind === 'sent') return <AnswerSentView {...common} given={current.given} progress={progress} />;
       // Réponse libre : pas de propositions publiées, le joueur tape sa réponse.
@@ -167,7 +183,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
       const question = session.currentQuestion;
       if (!question?.choices || !bluff) return <WaitingView />;
       const progress = bluffProgress(session, session.votedBy?.[index]);
-      return <BluffVoteView key={index} {...{ question, index, questionCount, score, timing, bluff, progress }} />;
+      return <BluffVoteView key={index} {...{ question, bluff, progress }} />;
     }
     case 'reveal': {
       if (!session.reveal) return <WaitingView />;

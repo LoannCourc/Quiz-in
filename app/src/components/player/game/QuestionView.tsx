@@ -8,16 +8,9 @@ import { Spacing } from '@/constants/theme';
 import type { AnswerState } from '@/lib/playerGame';
 
 import { ChoicePill, choiceTextSize, pillSizeForHeight, type PillSize } from './ChoicePill';
-import type { PhaseTiming } from './phaseTiming';
-import { QuestionHeader } from './QuestionHeader';
-import { Timebar } from './Timebar';
 
 interface QuestionViewProps {
   question: PublicQuestion;
-  index: number;
-  questionCount?: number;
-  score: number;
-  timing: PhaseTiming;
   answer: Exclude<AnswerState, { kind: 'sent' }>;
   onAnswer: (choice: number) => void;
 }
@@ -34,7 +27,7 @@ function isLocked(answer: QuestionViewProps['answer']): boolean {
 
 // Écran de question mobile, sans défilement : l'énoncé se lit sur la TV ; les 4 pilules se
 // partagent la hauteur restante (72 à 116 px chacune) et la taille du texte suit leur hauteur.
-export function QuestionView({ question, index, questionCount, score, timing, answer, onAnswer }: QuestionViewProps) {
+export function QuestionView({ question, answer, onAnswer }: QuestionViewProps) {
   const locked = isLocked(answer);
   const chosen = answer.kind === 'idle' || typeof answer.given !== 'number' ? null : answer.given;
   const [pillSize, setPillSize] = useState<PillSize>('medium');
@@ -49,8 +42,6 @@ export function QuestionView({ question, index, questionCount, score, timing, an
 
   return (
     <View style={styles.container}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
 
       {question.options ? (
         <View style={styles.choices} onLayout={measureChoices}>

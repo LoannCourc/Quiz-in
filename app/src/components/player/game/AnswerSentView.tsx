@@ -9,16 +9,9 @@ import { Spacing } from '@/constants/theme';
 import { isFreeText, type FreeText, type GivenAnswer } from '@/lib/playerGame';
 
 import { ChoicePill, choiceTextSize } from './ChoicePill';
-import type { PhaseTiming } from './phaseTiming';
-import { QuestionHeader } from './QuestionHeader';
-import { Timebar } from './Timebar';
 
 interface AnswerSentViewProps {
   question: PublicQuestion;
-  index: number;
-  questionCount?: number;
-  score: number;
-  timing: PhaseTiming;
   // null : réponse envoyée avant un rechargement de la page, inconnue de l'appareil.
   given: GivenAnswer | null;
   // Joueurs connectés ayant répondu / joueurs connectés (answeredBy : qui, jamais quoi).
@@ -27,12 +20,10 @@ interface AnswerSentViewProps {
 
 // Réponse définitive : un seul message, très gros, le rappel de la réponse, puis combien de joueurs
 // ont répondu ; le temps restant reste affiché par la barre. Réponse libre : maquette S2.
-export function AnswerSentView({ question, index, questionCount, score, timing, given, progress }: AnswerSentViewProps) {
+export function AnswerSentView({ question, given, progress }: AnswerSentViewProps) {
   const isFree = question.options === undefined;
   return (
     <View style={[styles.container, isFree && styles.freeContainer]}>
-      <QuestionHeader index={index} questionCount={questionCount} score={score} />
-      <Timebar {...timing} />
       {isFree ? (
         <FreeSent given={isFreeText(given) ? given : null} />
       ) : (

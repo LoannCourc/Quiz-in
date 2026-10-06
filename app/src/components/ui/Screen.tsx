@@ -18,6 +18,9 @@ export function ScreenBackground({ children, background = 'main' }: BackgroundPr
 }
 
 interface ScreenProps extends BackgroundProps {
+  // Fixé en haut de l'écran, hors de la zone qui défile : toujours visible, même quand le clavier fait
+  // défiler la page (en-tête de la question et minuteur).
+  header?: ReactNode;
   // Fixé en bas de l'écran, hors de la zone qui défile : toujours visible.
   footer?: ReactNode;
   // false : la page ne défile pas, la colonne occupe la hauteur restante (une zone interne défile
@@ -27,11 +30,12 @@ interface ScreenProps extends BackgroundProps {
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Le défilement garde le formulaire
 // accessible quand le clavier du téléphone est ouvert.
-export function Screen({ children, background, footer, scrollable = true }: ScreenProps) {
+export function Screen({ children, background, header, footer, scrollable = true }: ScreenProps) {
   const column = <View style={[styles.column, !scrollable && styles.fixedColumn]}>{children}</View>;
   return (
     <ScreenBackground background={background}>
       <SafeAreaView style={styles.safeArea}>
+        {header && <View style={styles.header}>{header}</View>}
         {scrollable ? (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             {column}
@@ -66,6 +70,14 @@ const styles = StyleSheet.create({
   fixedColumn: {
     flex: 1,
     minHeight: 0,
+  },
+  header: {
+    width: '100%',
+    maxWidth: AppSizes.contentMaxWidth,
+    alignSelf: 'center',
+    gap: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    paddingTop: Spacing.three,
   },
   footer: {
     width: '100%',
