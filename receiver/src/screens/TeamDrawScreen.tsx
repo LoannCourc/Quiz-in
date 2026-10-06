@@ -13,7 +13,7 @@ export function TeamDrawScreen({ session }: { session: PublicSession }) {
   const teamCount = activeTeams(teamCountOf(session.settings, playerCount)).length
   // Colonnes à la place qui reste (pseudos entiers, aucun joueur sous le bord de l'écran).
   const fitKey = Object.entries(session.players).map(([id, player]) => `${id}:${player.name}:${player.team ?? ''}`).join('|')
-  const ref = useFitScale(fitKey, '.team-columns-wrap, .team-column', '.team-member-name')
+  const ref = useFitScale(fitKey, { variables: ['--fit-scale'], boxes: '.team-columns-wrap, .team-column', texts: '.team-member-name' })
   return (
     <main className="screen team-draw" key={session.teamDrawAt} ref={ref}>
       <header className="team-draw-header">

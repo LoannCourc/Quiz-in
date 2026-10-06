@@ -7,12 +7,18 @@ import { Avatar } from '../components/Avatar'
 import { BluffVoteChoices } from '../components/BluffChoices'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
+import { useFitScale } from '../hooks/useFitScale'
 import { TeamAvatarGroups } from '../components/TeamBoards'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { isTightQuestion, MANY_PLAYERS_MIN, questionSizeClass } from '../lib/questionSize'
 import { answeredByCount, countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
+
+// Échelles réduites dans l'ordre : la barre des joueurs (--bar-scale), puis le texte de la consigne ou des
+// propositions du vote (--text-scale). L'écran entier, le cadre de la consigne et la liste des propositions
+// ne doivent jamais déborder.
+const FIT_OPTIONS = { variables: ['--bar-scale', '--text-scale'], boxes: '.free-prompt, .bluff-choices', includeRoot: true }
 
 interface QuestionScreenProps {
   session: PublicSession
@@ -23,6 +29,9 @@ interface QuestionScreenProps {
 
 export function QuestionScreen({ session, roomCode, isValidation = false }: QuestionScreenProps) {
   const question = session.currentQuestion
+  // Tout tient à l'écran : la barre des joueurs rétrécit d'abord, puis la consigne ou les propositions.
+  const fitKey = `${session.status}|${question?.text}|${question?.choices?.join('|')}|${Object.keys(session.players).length}|${session.settings.teams}`
+  const screenRef = useFitScale(fitKey, FIT_OPTIONS)
   if (!question) return null
 
   const players = sortForGame(session)
@@ -45,10 +54,10 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
   // Énoncé long ou beaucoup de joueurs : marges et cadre réduits, pour que la barre des joueurs tienne.
   const screenClass = isVote
     ? `screen question question-vote${isCrowded ? ' is-crowded' : ''}`
-    : `screen question${isTightQuestion(question.text, players.length) ? ' is-tight' : ''}`
+    : `screen question${isTightQuestion(question.text, players.length) ? ' is-tight' : ''}${question.options ? '' : ' has-prompt'}`
 
   return (
-    <main className={screenClass}>
+    <main className={screenClass} ref={screenRef}>
       <GameHeader
         roomCode={roomCode}
         questionIndex={session.currentIndex}
@@ -148,3 +157,4 @@ function VoteCount({ progress }: { progress: VoteProgress }) {
     </div>
   )
 }
+

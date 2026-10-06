@@ -43,7 +43,7 @@ export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
   // Joueurs à la place qui reste : échelle réduite tant qu'un avatar, une équipe ou un pseudo dépasse.
   const { teams, teamCount } = session.settings
   const fitKey = `${players.map((player) => `${player.id}:${player.name}:${player.team ?? ''}`).join('|')}|${teams}|${teamCount ?? ''}`
-  const playersRef = useFitScale(fitKey, FIT_BOXES, FIT_TEXTS)
+  const playersRef = useFitScale(fitKey, { variables: ['--fit-scale'], boxes: FIT_BOXES, texts: FIT_TEXTS })
   if (isDrawing) return <TeamDrawScreen session={session} />
 
   return (

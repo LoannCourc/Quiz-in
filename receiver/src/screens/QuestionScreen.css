@@ -9,13 +9,20 @@
   grid-row: 5;
 }
 
+/* Consigne dans un cadre (Bluff, réponse libre, validation) : le cadre ne se comprime jamais sous son
+   texte ; quand la place manque, la barre des joueurs rétrécit (--bar-scale), puis le texte de la consigne
+   (--text-scale), réglés par hooks/useFitScale.ts. */
+.question.has-prompt {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+}
+
 /* Énoncé long ou beaucoup de joueurs : tout doit tenir, barre des joueurs comprise. */
 .question.is-tight {
   row-gap: 1rem;
 }
 
 .question.is-tight .free-prompt {
-  min-height: 6.5rem;
+  min-height: calc(6.5rem * var(--text-scale, 1));
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
 }
@@ -89,7 +96,7 @@
   display: grid;
   grid-template-columns: 1fr;
   place-items: center;
-  min-height: 11rem;
+  min-height: calc(11rem * var(--text-scale, 1));
   padding: 1rem 2rem;
   border: 0.25rem dashed var(--color-text-muted);
   border-radius: var(--radius-card);
@@ -113,7 +120,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 2.2rem;
+  font-size: calc(2.2rem * var(--text-scale, 1));
   line-height: var(--display-line-height);
   text-align: center;
   text-shadow: var(--text-shadow-hard);
@@ -138,11 +145,11 @@
 .question-avatars {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: calc(0.6rem * var(--bar-scale, 1));
 }
 
 .question-avatars .avatar {
-  --avatar-size: 3.5rem;
+  --avatar-size: calc(3.5rem * var(--bar-scale, 1));
 }
 
 /* 13 joueurs et plus : avatars plus petits, sur une seule ligne. */
@@ -152,8 +159,22 @@
 }
 
 .question-avatars.is-many .avatar {
-  --avatar-size: 2.1rem;
+  --avatar-size: calc(2.1rem * var(--bar-scale, 1));
 }
+
+/* Groupe : avatars par équipe, plus petits quand la place manque (une seule rangée si possible). */
+.question .team-avatar-groups {
+  gap: calc(0.8rem * var(--bar-scale, 1)) calc(1.2rem * var(--bar-scale, 1));
+}
+
+.question .team-avatar-group {
+  padding: calc(0.3rem * var(--bar-scale, 1)) calc(0.8rem * var(--bar-scale, 1));
+}
+
+.question .team-avatar-group .avatar {
+  --avatar-size: calc(3rem * var(--bar-scale, 1));
+}
+
 
 /* Bluff (maquette B4) : pastille « BLUFF » au-dessus de la question. */
 .bluff-badge {
