@@ -196,6 +196,42 @@ export const strings = {
     compactPoints: (points: number) => `${points}`,
     gained: (points: number) => `+${points}`,
   },
+  // Panneau de mesures (?perf=1, plan de fiabilité) : outil de diagnostic, affiché par-dessus la partie.
+  perf: {
+    title: 'Mesures de la TV',
+    fps: (fps: number, min: number | null) => `Images/s : ${fps} (min. 10 s : ${min ?? '–'})`,
+    longTasks: (count: number, maxMs: number, isSupported: boolean) =>
+      isSupported ? `Tâches longues 10 s : ${count} (max. ${maxMs} ms)` : 'Tâches longues : non mesurables',
+    tickGap: (maxMs: number) => `Battement max. 10 s : ${maxMs} ms (attendu 250)`,
+    renders: (perSecond: number) => `Rendus/s : ${perSecond}`,
+    memory: (usedMb: number, limitMb: number) => `Mémoire JS : ${usedMb} / ${limitMb} Mo`,
+    memoryUnknown: 'Mémoire JS : non mesurable',
+    screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
+    sound: (music: boolean, effects: boolean) => `Musique : ${music ? 'ACTIVE' : 'coupée'} · effets : ${effects ? 'oui' : 'non'}`,
+    musicMemory: (tracks: number, decodedMb: number, fileMb: number, decoding: number) =>
+      `Pistes décodées : ${tracks} (${decodedMb.toFixed(1)} Mo ; fichiers ${fileMb.toFixed(1)} Mo)${decoding > 0 ? ` · décodage en cours` : ''}`,
+    lastDecode: (track: string, ms: number) => `Dernier décodage : ${track}, ${ms} ms`,
+    keepAwake: (video: string, wakeLock: string) => `Anti-veille : vidéo ${video} · Wake Lock ${wakeLock}`,
+    transition: (status: string, host: number | null, network: number, display: number) =>
+      `Dernière transition (${status}) : hôte ${host === null ? '–' : `+${host}`} · réseau ${network} · affichage ${display} ms`,
+    noTransition: 'Dernière transition : aucune encore',
+    compareTitle: 'Musique active / coupée (depuis l’ouverture)',
+    compareHead: ['', 'active', 'coupée'],
+    compareRows: {
+      duration: 'Durée',
+      fps: 'Images/s moy. (min.)',
+      longTasks: 'Tâches longues (max.)',
+      tickGap: 'Battement max.',
+      transitions: 'Transitions TV moy. (max.)',
+      host: 'Retard hôte max.',
+      incidents: 'Incidents',
+    },
+    incidentsTitle: (count: number) => `Incidents (${count}/30, le plus récent en haut)`,
+    noIncident: 'Aucun incident',
+    incidentKinds: { tick: 'minuteur', task: 'tâche', state: 'transition', host: 'hôte', decode: 'décodage' },
+    incidentContext: (status: string | null, index: number | null, music: boolean, decoding: boolean) =>
+      `${status ?? '?'}${index === null ? '' : ` Q${index + 1}`} · musique ${music ? 'oui' : 'non'}${decoding ? ' · décodage' : ''}`,
+  },
   dev: {
     title: 'Démo',
     statuses: {

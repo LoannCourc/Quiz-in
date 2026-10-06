@@ -41,6 +41,18 @@ export async function decodeMusic(data: ArrayBuffer): Promise<AudioBuffer> {
   return mono
 }
 
+// Diagnostic (panneau de mesures ?perf=1) : pistes décodées, mémoire, décodage en cours ou dernier.
+export interface MusicStats {
+  isEnabled: boolean
+  decodedTracks: number
+  decodedBytes: number
+  // Fichiers téléchargés gardés compressés en mémoire (pour redécoder sans retélécharger).
+  fileBytes: number
+  decodingCount: number
+  lastDecode: { track: MusicTrackId; ms: number; at: number } | null
+  decodeCount: number
+}
+
 interface Playing {
   key: string
   track: MusicTrackId
@@ -68,6 +80,8 @@ class MusicPlayer {
   private readonly missing = new Set<MusicTrackId>()
   private placeholderBuffer: AudioBuffer | null = null
   private output: { context: AudioContext; input: AudioNode } | null = null
+  private lastDecode: MusicStats['lastDecode'] = null
+  private decodeCount = 0
   private current: Playing | null = null
   // Pause : musique de la phase retenue et sa position, reprise au même endroit.
   private held: { track: MusicTrackId; offsetS: number } | null = null
@@ -249,7 +263,10 @@ class MusicPlayer {
         this.files.set(track, file)
       }
       // decodeAudioData consomme le tampon : on décode une copie, le fichier reste disponible.
+      const decodeStartedAt = performance.now()
       const buffer = await decodeMusic(file.slice(0))
+      this.lastDecode = { track, ms: Math.round(performance.now() - decodeStartedAt), at: Date.now() }
+      this.decodeCount++
       this.keep(track, buffer)
       return buffer
     } catch (error) {
@@ -287,6 +304,18 @@ class MusicPlayer {
   // Mémoire occupée par les pistes décodées (octets), pour le diagnostic.
   get decodedMemory(): number {
     return [...this.decoded.values()].reduce((sum, entry) => sum + decodedBytes(entry.buffer), 0)
+  }
+
+  get stats(): MusicStats {
+    return {
+      isEnabled: this.isEnabled,
+      decodedTracks: this.decoded.size,
+      decodedBytes: this.decodedMemory,
+      fileBytes: [...this.files.values()].reduce((sum, file) => sum + file.byteLength, 0),
+      decodingCount: this.loading.size,
+      lastDecode: this.lastDecode,
+      decodeCount: this.decodeCount,
+    }
   }
 }
 

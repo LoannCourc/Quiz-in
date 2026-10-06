@@ -4,6 +4,7 @@ import { onValue, ref, type Database, type Unsubscribe } from 'firebase/database
 import { useEffect, useState } from 'react'
 
 import { ensureSignedIn, getFirebase, MissingConfigError } from '../lib/firebase'
+import { perfMonitor } from '../lib/perf/perfMonitor'
 
 export type LoadErrorKind = 'missingConfig' | 'permissionDenied' | 'other'
 
@@ -63,7 +64,11 @@ function subscribeToFields(
         // On attend la première valeur de chaque champ pour ne pas afficher une session incomplète.
         if (received.size !== PUBLIC_FIELDS.length) return
         const state = toSessionState(values)
-        if (state.kind === 'ready') hasSeenGame = true
+        if (state.kind === 'ready') {
+          hasSeenGame = true
+          // Heure de réception d'une nouvelle phase (panneau ?perf=1 ; sans effet s'il est éteint).
+          perfMonitor.noteSession(state.session)
+        }
         onChange(state.kind === 'notFound' ? { ...state, wasRemoved: hasSeenGame } : state)
       },
       (error) => onChange(toErrorState(error)),

@@ -1,0 +1,61 @@
+/* Panneau de mesures (?perf=1) : outil de diagnostic par-dessus la partie, en unités de la TV (rem)
+   pour garder la même taille en 720p et en 1080p. Fond plein, sans flou ni ombre. */
+.perf-panel {
+  position: fixed;
+  top: 0.4rem;
+  z-index: 100;
+  width: 24rem;
+  max-height: 35rem;
+  overflow: hidden;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.3rem;
+  background: var(--color-background);
+  opacity: 0.92;
+  color: var(--color-text);
+  font: 700 0.42rem/1.3 var(--font-text);
+  pointer-events: none;
+}
+
+.perf-panel-stats {
+  left: 0.4rem;
+}
+
+.perf-panel-incidents {
+  right: 0.4rem;
+}
+
+.perf-title {
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+.perf-strong {
+  color: var(--color-correct);
+}
+
+.perf-table {
+  margin-top: 0.3rem;
+  border-collapse: collapse;
+}
+
+.perf-table caption {
+  color: var(--color-accent);
+  text-align: left;
+}
+
+.perf-table th,
+.perf-table td {
+  padding: 0 0.4rem 0 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.perf-incident {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.perf-info {
+  color: var(--color-text-muted);
+}

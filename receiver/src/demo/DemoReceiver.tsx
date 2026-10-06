@@ -2,9 +2,12 @@ import { isBlindTestAsk } from '@shared/quizValidation'
 import type { AnswerMode, GameStatus } from '@shared/types'
 import { useState } from 'react'
 
+import { PerfPanel } from '../components/PerfPanel'
 import { GameAudioStateContext, type GameAudioState } from '../hooks/useGameAudio'
+import { usePerfEnabled } from '../hooks/usePerfEnabled'
 import { useTvMusic } from '../hooks/useTvMusic'
 import { useTvSound } from '../hooks/useTvSound'
+import { perfMonitor } from '../lib/perf/perfMonitor'
 import { ReceiverScreen } from '../screens/ReceiverScreen'
 import { DevPanel } from './DevPanel'
 import { SoundGallery } from './SoundGallery'
@@ -104,6 +107,10 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
   useTvMusic(session, isBlindTest, 0)
+  // &perf=1 : panneau de mesures sur les écrans de démo (son aspect, et le coût des animations).
+  const isPerfEnabled = usePerfEnabled()
+  perfMonitor.noteSession(session)
+  perfMonitor.noteRender()
 
   // Changer d'état relance le chrono de la phase, comme le ferait l'hôte.
   function selectStatus(status: GameStatus) {
@@ -135,6 +142,7 @@ function DemoGame({ params }: { params: URLSearchParams }) {
       <GameAudioStateContext value={audioState}>
         <ReceiverScreen session={session} roomCode={DEMO_ROOM_CODE} />
       </GameAudioStateContext>
+      {isPerfEnabled && <PerfPanel serverOffsetMs={0} />}
       {!isCapture && (
         <DevPanel
           status={options.status}

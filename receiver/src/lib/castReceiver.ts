@@ -1,4 +1,6 @@
-import { CAST_NAMESPACE, readCastAudioTest, readCastRoomCode, readCastSoundTest } from '@shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastPerf, readCastRoomCode, readCastSoundTest } from '@shared/cast'
+
+import { setPerfEnabled } from './perf/perfFlag'
 
 // SDK Web Receiver de Google : toujours chargé depuis gstatic (Google interdit de l'héberger
 // soi-même), et seulement en mode Cast, pour que le navigateur du plan B n'en dépende pas.
@@ -57,6 +59,12 @@ function loadCastSdk(): Promise<CastFramework> {
 }
 
 function receiveMessage(event: CustomMessageEvent): void {
+  // Panneau de mesures (cast-sender.html), même en pleine partie : la partie continue.
+  const perf = readCastPerf(event.data)
+  if (perf !== null) {
+    setPerfEnabled(perf)
+    return
+  }
   const soundTest = readCastSoundTest(event.data)
   if (soundTest !== null) {
     soundTestListeners.forEach((listener) => listener(soundTest))

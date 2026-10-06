@@ -51,3 +51,15 @@ export function readCastSoundTest(data: unknown): string | null {
   const target = soundTest.trim()
   return target === 'effects' || SOUND_TEST_FILE.test(target) || target.startsWith('https://') ? target : null
 }
+
+// Panneau de mesures de la TV (plan de fiabilité, outil cast-sender.html) : allumé ou éteint.
+export interface CastPerfMessage {
+  perf: boolean
+}
+
+// Valeur demandée, ou null (message ignoré).
+export function readCastPerf(data: unknown): boolean | null {
+  if (typeof data !== 'object' || data === null || !('perf' in data)) return null
+  const { perf } = data
+  return typeof perf === 'boolean' ? perf : null
+}

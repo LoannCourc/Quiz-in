@@ -1,6 +1,6 @@
 # Plan de fiabilité de la TV (partie B)
 
-Statut : **plan à valider**. Aucun correctif n'est codé. Seule l'instrumentation (lot 1) pourra l'être, après accord.
+Statut : plan validé. **Lot 1 (mesures, dit lot a) et lot 3 (veille, dit lot c) codés**, à mesurer sur la box ; lots 2 et 4 (dits b et d) : pas avant les mesures. Mode d'emploi en fin de document.
 
 ## Problèmes observés (tests en famille, box Bouygues « Bouygtel 4K », Cast)
 
@@ -183,3 +183,16 @@ Les points suivants sont déjà en place et n'expliquent pas le saut :
    - *Validation* : ≥ 30 images par seconde en fin de partie à 8 et 20 joueurs, et rendu toujours lisible à 3 m.
 
 Chaque lot : un commit, typage, lint, tests ; déploiement de la TV (`firebase deploy --only hosting:tv`) proposé au développeur ; mesure sur la box avant le lot suivant.
+
+## Mode d'emploi des mesures (lots a et c codés)
+
+**Allumer le panneau** :
+- Cast : dans Chrome sur le PC, `npm run dev` dans `receiver/`, puis `http://localhost:5173/cast-sender.html`, connexion à « TV Salon » (étape 1), puis « Afficher les mesures » (étape 5). Possible avant la partie (la TV garde le réglage) ou en pleine partie, en se connectant à la TV déjà lancée, sans envoyer de code.
+- Plan B : ajouter `&perf=1` à l'adresse (`&perf=0` l'éteint).
+
+**Lire le panneau** (à gauche : mesures en direct ; à droite : journal des 30 derniers incidents) :
+- « Musique : ACTIVE / coupée » : toutes les mesures sont rangées selon cet état ; le tableau compare les deux colonnes depuis l'ouverture du panneau.
+- Incident « minuteur » : la page n'a pas tourné pendant au moins 1,5 s. Avec « tâche » au même moment : la TV était occupée. Sans tâche : elle était suspendue (veille ou économie d'énergie).
+- Incident « transition » : plus de 1 s entre la publication par l'hôte et l'image sur la TV (détail réseau / affichage). Incident « hôte » : l'hôte a publié plus de 1 s après l'échéance.
+- Ligne « décodage » (grisée) : une musique a été décodée (durée) ; « · décodage » sur un incident : un décodage était en cours.
+- « Anti-veille : vidéo playing · Wake Lock held / refused / unsupported » : état du lot c.

@@ -1,19 +1,22 @@
 import { isHostAway } from '@shared/hostAbsence'
 import type { PublicSession } from '@shared/types'
-import type { ReactNode } from 'react'
+import { useLayoutEffect, type ReactNode } from 'react'
 
 import { AudioUnlockBanner } from './components/AudioUnlockBanner'
 import { ConnectionLostBanner } from './components/ConnectionLostBanner'
+import { PerfPanel } from './components/PerfPanel'
 import { HostAwayStatus } from './components/HostAwayStatus'
 import { useAbandonedGameCleanup } from './hooks/useAbandonedGameCleanup'
 import { useBlindTestInfo } from './hooks/useBlindTestInfo'
 import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useKeepAwake } from './hooks/useKeepAwake'
 import { useLiveSession } from './hooks/useLiveSession'
+import { usePerfEnabled } from './hooks/usePerfEnabled'
 import { usePhaseStale } from './hooks/usePhaseStale'
 import { useTvMusic } from './hooks/useTvMusic'
 import { useTvPresence } from './hooks/useTvPresence'
 import { useTvSound } from './hooks/useTvSound'
+import { perfMonitor } from './lib/perf/perfMonitor'
 import { ServerTimeOffsetContext } from './lib/serverTime'
 import { ReceiverScreen } from './screens/ReceiverScreen'
 import { StatusScreen } from './screens/StatusScreen'
@@ -29,6 +32,7 @@ interface LiveReceiverProps {
 export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps) {
   const { state, hasConnectedOnce, isConnected, serverTimeOffsetMs } = useLiveSession(roomCode)
   const isConnectionLost = hasConnectedOnce && !isConnected
+  const isPerfEnabled = usePerfEnabled()
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
   useTvPresence(roomCode, state.kind === 'ready' && isConnected)
   // Pas de veille de la box du salon à la fin de partie (podium compris) ; coupé sans partie.
@@ -58,6 +62,7 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
             <LiveSessionScreen session={state.session} roomCode={roomCode} />
           </GameAudio>
           {isConnectionLost && <ConnectionLostBanner />}
+          {isPerfEnabled && <PerfPanel serverOffsetMs={serverTimeOffsetMs} />}
         </ServerTimeOffsetContext>
       )
   }
@@ -93,7 +98,18 @@ function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioP
 // depuis plus de 5 s : « En attente de l'hôte… » à la place du chrono figé.
 function LiveSessionScreen({ session, roomCode }: { session: PublicSession; roomCode: string }) {
   const isStale = usePhaseStale(session)
+  usePerfDisplayed(session.phaseStartedAt)
+  perfMonitor.noteRender()
   if (isHostAway(session)) return <HostAwayStatus session={session} />
   if (isStale) return <StatusScreen title={strings.waitingHost.title} hint={strings.waitingHost.message} />
   return <ReceiverScreen session={session} roomCode={roomCode} />
+}
+
+// Panneau ?perf=1 : heure de la première image qui montre une nouvelle phase. L'effet de mise en page
+// s'exécute avant que l'image soit peinte ; requestAnimationFrame tombe juste avant cette peinture.
+function usePerfDisplayed(phaseStartedAt: number): void {
+  useLayoutEffect(() => {
+    const frameId = requestAnimationFrame(() => perfMonitor.noteDisplayed(phaseStartedAt))
+    return () => cancelAnimationFrame(frameId)
+  }, [phaseStartedAt])
 }
