@@ -2,6 +2,7 @@ import { bluffRevealTimeline } from './bluff'
 import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
+import { startingTimeline } from './startingCountdown'
 import { streakSound } from './streak'
 import { teamDrawTimeline } from './teamDraw'
 import type { PlayerId, PublicSession, SoundSettings } from './types'
@@ -35,8 +36,6 @@ export const CUE_MAX_AGE_MS = 2_000
 export const CUE_LATE_TOLERANCE_MS = 400
 // Chrono : un tic par seconde pendant les CLOCK_TICK_COUNT dernières secondes, puis le buzzer.
 export const CLOCK_TICK_COUNT = 5
-// Décompte du 3-2-1 : un bip par seconde.
-export const COUNTDOWN_BEEPS = 3
 // Classement : le glissement suit l'arrivée de la dernière ligne (la première place).
 export const RANK_SHUFFLE_DELAY_MS = 400
 // Bluff : le « piégé » suit de peu la carte retournée.
@@ -210,8 +209,8 @@ function phaseEntryCue(previous: PublicSession, next: PublicSession): SoundEffec
       // Rejouer : retour au salon depuis la fin de partie.
       return previous.status === 'ended' ? 'replay' : null
     case 'question':
-      // Tout début de la partie : le « GO » remplace le son de la question.
-      return previous.status === 'starting' && next.currentIndex === 0 ? 'go' : 'questionShown'
+      // Tout début de la partie : le « GO » a déjà sonné sur le « GO ! » du 3-2-1 (programmé), rien de plus.
+      return previous.status === 'starting' && next.currentIndex === 0 ? null : 'questionShown'
     case 'vote':
       return 'questionShown'
     case 'validation':
@@ -282,7 +281,7 @@ export function timedCues(session: PublicSession): TimedCue[] {
     case 'lobby':
       return teamDrawCues(session)
     case 'starting':
-      return end > 0 ? beforeEnd(end, COUNTDOWN_BEEPS, 'countdown').filter((cue) => cue.at >= start) : []
+      return end > 0 ? startingCues(end).filter((cue) => cue.at >= start) : []
     case 'question':
     case 'vote':
       if (end <= 0 || isBlindTestQuestion(session) || isEveryoneDone(session)) return []
@@ -306,6 +305,12 @@ function teamDrawCues(session: PublicSession): TimedCue[] {
   const timeline = teamDrawTimeline(session)
   const ticks = timeline.arrivals.map((arrival) => ({ id: 'teamDrawTick' as const, at: start + arrival.atMs }))
   return [...ticks, { id: 'teamDrawGong', at: start + timeline.gongAtMs }]
+}
+
+// 3-2-1 : un bip au début de chaque chiffre, le son GO sur le « GO ! » (shared/startingCountdown.ts).
+function startingCues(end: number): TimedCue[] {
+  const { digitsAt, goAt } = startingTimeline(end)
+  return [...digitsAt.map((at) => ({ id: 'countdown' as const, at })), { id: 'go', at: goAt }]
 }
 
 // count sons, un par seconde, la dernière seconde finissant à end.

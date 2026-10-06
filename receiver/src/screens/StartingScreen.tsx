@@ -1,28 +1,26 @@
+import { GO_DISPLAY_MS, msUntilNextStartingStep, STARTING_DIGIT_MS, startingStep, startingTimeline, type StartingStep } from '@shared/startingCountdown'
 import type { PublicSession } from '@shared/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { RingArcs } from '../components/Countdown'
-import { useRemainingMs } from '../hooks/useRemainingMs'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { strings } from '../strings'
 import '../components/Countdown.css'
 import './StartingScreen.css'
 
-const SECOND_MS = 1000
-
 export function StartingScreen({ session }: { session: PublicSession }) {
-  const remainingMs = useRemainingMs(session.phaseEndsAt)
-  const seconds = Math.max(1, Math.ceil(remainingMs / SECOND_MS))
+  const step = useStartingStep(session.phaseEndsAt)
+  const isGo = step === 'go'
 
   return (
     <main className="screen starting">
       <h1 className="hero-title">{strings.starting.getReady}</h1>
-      <div className="countdown-ring starting-disc">
-        {/* La clé change à chaque seconde : React recrée l'anneau et le chiffre, leurs animations rejouent. */}
-        <SecondRing key={seconds} phaseEndsAt={session.phaseEndsAt} seconds={seconds} />
+      <div className={isGo ? 'countdown-ring starting-disc is-go' : 'countdown-ring starting-disc'}>
+        {/* La clé change à chaque étape : React recrée l'anneau et le texte, leurs animations rejouent. */}
+        {!isGo && <DigitRing key={step} phaseEndsAt={session.phaseEndsAt} digit={step} />}
         <div className="countdown-center">
-          <span key={seconds} className="starting-number">
-            {seconds}
+          <span key={step} className={isGo ? 'starting-number starting-go' : 'starting-number'}>
+            {isGo ? strings.starting.go : step}
           </span>
         </div>
       </div>
@@ -31,13 +29,39 @@ export function StartingScreen({ session }: { session: PublicSession }) {
   )
 }
 
-// Anneau qui se vide pendant la seconde du chiffre affiché, calé sur l'heure du serveur : délai négatif
-// si la seconde a déjà commencé à l'affichage (TV ouverte en cours de route).
-function SecondRing({ phaseEndsAt, seconds }: { phaseEndsAt: number; seconds: number }) {
+function remainingMs(phaseEndsAt: number, offsetMs: number): number {
+  return Math.max(0, phaseEndsAt - estimateServerNow(offsetMs))
+}
+
+// Étape du 3-2-1 (chiffre ou « GO ! ») : un rendu à chaque changement, programmé au moment exact, calé
+// sur l'heure du serveur comme le son (shared/startingCountdown.ts).
+function useStartingStep(phaseEndsAt: number): StartingStep {
+  const offsetMs = useServerTimeOffset()
+  const [step, setStep] = useState(() => startingStep(remainingMs(phaseEndsAt, offsetMs)))
+
+  useEffect(() => {
+    const remaining = () => remainingMs(phaseEndsAt, offsetMs)
+    let timeoutId: ReturnType<typeof setTimeout>
+    const scheduleNext = () => {
+      setStep(startingStep(remaining()))
+      const waitMs = msUntilNextStartingStep(remaining())
+      if (waitMs > 0) timeoutId = setTimeout(scheduleNext, waitMs + 5)
+    }
+    scheduleNext()
+    return () => clearTimeout(timeoutId)
+  }, [phaseEndsAt, offsetMs])
+
+  return step
+}
+
+// Anneau qui se vide pendant le chiffre affiché : délai négatif si le chiffre a déjà commencé à
+// l'affichage (TV ouverte en cours de route).
+function DigitRing({ phaseEndsAt, digit }: { phaseEndsAt: number; digit: number }) {
   const offsetMs = useServerTimeOffset()
   const [elapsedMs] = useState(() => {
-    const secondEndsAt = phaseEndsAt - (seconds - 1) * SECOND_MS
-    return Math.min(SECOND_MS, Math.max(0, SECOND_MS - (secondEndsAt - estimateServerNow(offsetMs))))
+    const { digitsAt } = startingTimeline(phaseEndsAt)
+    const startedAt = digitsAt[digitsAt.length - digit] ?? phaseEndsAt - GO_DISPLAY_MS
+    return Math.min(STARTING_DIGIT_MS, Math.max(0, estimateServerNow(offsetMs) - startedAt))
   })
-  return <RingArcs timing={{ animationDuration: `${SECOND_MS}ms`, animationDelay: `-${elapsedMs}ms` }} />
+  return <RingArcs timing={{ animationDuration: `${STARTING_DIGIT_MS}ms`, animationDelay: `-${elapsedMs}ms` }} />
 }

@@ -39,6 +39,8 @@ export const strings = {
   starting: {
     getReady: 'Prêts ?',
     firstQuestion: 'La première question arrive…',
+    // Fin du 3-2-1, avec le son GO.
+    go: 'GO !',
   },
   question: {
     progress: (index: number, total: number | undefined) => (total ? `Question ${index}/${total}` : `Question ${index}`),

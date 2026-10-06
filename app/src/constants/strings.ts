@@ -464,6 +464,8 @@ export const strings = {
     starting: {
       title: 'Prêt ?',
       subtitle: 'Les questions s’affichent sur la télé',
+      // Fin du 3-2-1 (même instant que sur la TV).
+      go: 'GO !',
     },
     // Réponse libre (S1) : un champ, ou deux (titre et artiste) pour un blind test « both ».
     freeQuestion: {

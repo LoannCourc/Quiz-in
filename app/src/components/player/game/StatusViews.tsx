@@ -8,7 +8,7 @@ import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
 
 import { Countdown } from './Countdown';
-import type { PhaseTiming } from './phaseTiming';
+import { useStartingStep, type PhaseTiming } from './phaseTiming';
 import { Ranking } from './RankingList';
 
 // Écrans simples du joueur : démarrage, classement, pause, fin, attente.
@@ -16,10 +16,11 @@ import { Ranking } from './RankingList';
 const STARTING_RING_SIZE = 200;
 
 export function StartingView({ timing }: { timing: PhaseTiming }) {
+  const step = useStartingStep(timing);
   return (
     <View style={styles.centeredBlock}>
       <Text style={textStyles.hero}>{strings.game.starting.title}</Text>
-      <Countdown {...timing} size={STARTING_RING_SIZE} />
+      <Countdown {...timing} size={STARTING_RING_SIZE} label={step === 'go' ? strings.game.starting.go : String(step)} />
       <Text style={[textStyles.label, styles.centered]}>{strings.game.starting.subtitle}</Text>
     </View>
   );

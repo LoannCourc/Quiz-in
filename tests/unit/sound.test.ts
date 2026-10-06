@@ -104,9 +104,9 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(lobby, { ...lobby, teamsValidatedAt: NOW - CUE_MAX_AGE_MS }, NOW)).toEqual([])
   })
 
-  test('« GO » à la première question, puis question qui apparaît (et début du vote), si la phase est récente', () => {
+  test('première question : rien (le « GO » a sonné sur le « GO ! » du 3-2-1) ; puis question qui apparaît (et début du vote), si la phase est récente', () => {
     const starting = makeSession({ status: 'starting' })
-    expect(soundCues(starting, question, NOW)).toEqual(['go'])
+    expect(soundCues(starting, question, NOW)).toEqual([])
     expect(soundCues(question, { ...question, currentIndex: 1 }, NOW)).toEqual(['questionShown'])
     expect(soundCues(inPhase({ status: 'scores' }), { ...question, currentIndex: 1 }, NOW)).toEqual(['questionShown'])
     expect(soundCues(question, inPhase({ status: 'vote' }), NOW)).toEqual(['questionShown'])
@@ -170,12 +170,13 @@ describe('Sons déduits des changements d’état', () => {
 })
 
 describe('Sons programmés de la phase', () => {
-  test('3-2-1 : un bip par seconde', () => {
+  test('3-2-1 : un bip par chiffre (0,8 s), puis le GO sur le « GO ! », 0,6 s avant la question', () => {
     const starting = makeSession({ status: 'starting', phaseStartedAt: NOW, phaseEndsAt: NOW + 3_000 })
     expect(timedCues(starting)).toEqual([
       { id: 'countdown', at: NOW },
-      { id: 'countdown', at: NOW + 1_000 },
-      { id: 'countdown', at: NOW + 2_000 },
+      { id: 'countdown', at: NOW + 800 },
+      { id: 'countdown', at: NOW + 1_600 },
+      { id: 'go', at: NOW + 2_400 },
     ])
   })
 

@@ -8,6 +8,8 @@ import { URGENT_THRESHOLD_S, usePulse, useRemainingFraction, useSecondsLeft, typ
 
 interface CountdownProps extends PhaseTiming {
   size?: number;
+  // Texte au centre à la place des secondes (3-2-1 du démarrage : chiffre ou « GO ! »).
+  label?: string;
 }
 
 // Décompte plein écran (3-2-1). Nouvelle clé dès que la phase change ou que sa fin est
@@ -19,7 +21,7 @@ export function Countdown(props: CountdownProps) {
 // Anneau rose qui se vide dans le sens inverse des aiguilles d'une montre, chiffre au centre.
 // Deux moitiés d'anneau, chacune dans une demi-boîte qui coupe ce qui dépasse, tournent pour
 // découvrir l'arc rose : moitié droite pour les premiers 50 % restants, moitié gauche au-delà.
-function CountdownRing({ size = AppSizes.ringSize, ...timingProps }: CountdownProps) {
+function CountdownRing({ size = AppSizes.ringSize, label, ...timingProps }: CountdownProps) {
   // Objet stable : les effets ne redémarrent pas à chaque rendu du parent.
   const [timing] = useState<PhaseTiming>(timingProps);
   const seconds = useSecondsLeft(timing);
@@ -46,13 +48,18 @@ function CountdownRing({ size = AppSizes.ringSize, ...timingProps }: CountdownPr
         <Animated.View style={[styles.leftArc, circle, { transform: [{ rotate: leftRotate }] }]} />
       </View>
       <View style={[styles.center, { inset: AppSizes.ringWidth, borderRadius: size / 2 }]}>
-        <Animated.Text style={[styles.seconds, { fontSize: size * 0.4, transform: [{ scale: pulse }] }]}>
-          {seconds}
+        <Animated.Text
+          style={[styles.seconds, { fontSize: size * (label && label.length > 2 ? WORD_SIZE_RATIO : DIGIT_SIZE_RATIO), transform: [{ scale: pulse }] }]}>
+          {label ?? seconds}
         </Animated.Text>
       </View>
     </View>
   );
 }
+
+// Taille du texte au centre, relative à l'anneau : un chiffre, ou un mot (« GO ! ») qui doit tenir dedans.
+const DIGIT_SIZE_RATIO = 0.4;
+const WORD_SIZE_RATIO = 0.22;
 
 const styles = StyleSheet.create({
   ring: {

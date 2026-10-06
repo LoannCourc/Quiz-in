@@ -1,3 +1,4 @@
+import { msUntilNextStartingStep, startingStep, type StartingStep } from '@shared/startingCountdown';
 import { useEffect, useState } from 'react';
 import { Animated, Easing, Platform } from 'react-native';
 
@@ -40,6 +41,25 @@ export function useSecondsLeft(timing: PhaseTiming): number {
   }, [timing]);
 
   return seconds;
+}
+
+// 3-2-1 puis « GO ! » (shared/startingCountdown.ts, même calendrier que la TV et ses sons) : un rendu à
+// chaque changement, programmé au moment exact.
+export function useStartingStep(timing: PhaseTiming): StartingStep {
+  const [step, setStep] = useState(() => startingStep(remainingMs(timing)));
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const scheduleNext = () => {
+      setStep(startingStep(remainingMs(timing)));
+      const waitMs = msUntilNextStartingStep(remainingMs(timing));
+      if (waitMs > 0) timeoutId = setTimeout(scheduleNext, waitMs + 5);
+    };
+    scheduleNext();
+    return () => clearTimeout(timeoutId);
+  }, [timing]);
+
+  return step;
 }
 
 // Part restante de la phase, de 1 à 0, animée sans rendu React : sur Android, l'animation est
