@@ -1,12 +1,16 @@
+/* Une seule rangée de la hauteur de l'écran : la colonne des joueurs ne peut jamais l'agrandir. Colonne
+   gauche de largeur fixe (le code le plus large, « MMMM », y tient) : le QR code et le code restent à la même
+   place quel que soit le nombre de joueurs et quelles que soient les lettres du code. */
 .lobby {
-  grid-template-columns: auto 1fr;
-  column-gap: 4rem;
-  align-items: center;
+  grid-template-columns: 19.5rem minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 3rem;
 }
 
-/* À gauche : QR dans une carte blanche, adresse et code en or. */
+/* À gauche : QR dans une carte blanche, adresse et code en or. Taille fixe. */
 .lobby-join {
   display: grid;
+  align-self: center;
   justify-items: center;
   row-gap: 0.8rem;
 }
@@ -38,7 +42,7 @@
 
 .lobby-code {
   font-family: var(--font-display);
-  font-size: 4.6rem;
+  font-size: 3.8rem;
   line-height: var(--display-line-height-tight);
   letter-spacing: 0.2em;
   /* Compense l'espacement ajouté après la dernière lettre. */
@@ -47,11 +51,19 @@
   text-shadow: var(--text-shadow-hard);
 }
 
-/* À droite : logo, nombre de joueurs et avatars. */
+/* À droite : logo, nombre de joueurs, joueurs (rangée qui ne dépasse jamais la place restante), attente.
+   Tailles de base selon la densité (lib/lobbyLayout.ts), multipliées par --fit-scale : réduite par
+   hooks/useFitScale.ts tant qu'un avatar, une équipe ou un pseudo dépasse. */
 .lobby-players {
+  --fit-scale: 1;
+  --avatar-base: 4.2rem;
+  --name-base: 1.2rem;
+  --gap-base: 1.2rem;
   display: grid;
+  grid-template-rows: auto auto minmax(0, auto) auto;
   align-content: center;
   row-gap: 1.4rem;
+  min-height: 0;
 }
 
 .lobby-logo {
@@ -73,8 +85,69 @@
 
 .lobby-avatars {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-  gap: 1.2rem 0.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-content: start;
+  gap: var(--gap-base) calc(0.8rem * var(--fit-scale));
+  min-height: 0;
+  overflow: hidden;
+}
+
+.lobby-avatars .avatar {
+  --avatar-size: calc(var(--avatar-base) * var(--fit-scale));
+  min-width: 0;
+}
+
+/* Pseudos entiers (12 caractères au plus) : jamais de « … », l'échelle rétrécit à la place. */
+.lobby-avatars .avatar-name {
+  max-width: 100%;
+  font-size: calc(var(--name-base) * var(--fit-scale));
+  text-overflow: clip;
+}
+
+/* 9 à 12 joueurs : avatars un peu plus petits, trois rangées de quatre. */
+.lobby-dense .lobby-players {
+  --avatar-base: 3.5rem;
+  --name-base: 1.1rem;
+  --gap-base: 0.9rem;
+  row-gap: 1rem;
+}
+
+.lobby-dense .lobby-logo {
+  font-size: 4rem;
+}
+
+/* 13 à 20 joueurs : cinq colonnes, quatre rangées, logo réduit. */
+.lobby-packed .lobby-players {
+  --avatar-base: 3rem;
+  --name-base: 0.95rem;
+  --gap-base: 0.6rem;
+  row-gap: 0.8rem;
+}
+
+.lobby-packed .lobby-logo {
+  font-size: 3.2rem;
+}
+
+.lobby-packed .lobby-count {
+  font-size: 1.5rem;
+}
+
+.lobby-packed .lobby-avatars {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.lobby-packed .lobby-avatars .avatar {
+  row-gap: 0.25rem;
+}
+
+.lobby-packed .lobby-waiting {
+  font-size: 1.3rem;
+}
+
+/* Groupe : quatre équipes en deux rangées de deux (sinon trop étroites pour un pseudo de 12 caractères). */
+.lobby .team-columns.columns-4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .lobby-avatars .avatar {

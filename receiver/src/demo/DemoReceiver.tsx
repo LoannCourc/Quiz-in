@@ -1,5 +1,5 @@
 import { isBlindTestAsk } from '@shared/quizValidation'
-import type { AnswerMode, GameStatus } from '@shared/types'
+import type { AnswerMode, GameStatus, PublicSession } from '@shared/types'
 import { useState } from 'react'
 
 import { PerfPanel } from '../components/PerfPanel'
@@ -33,7 +33,8 @@ function isDemoStatus(value: string | null): value is GameStatus {
 }
 
 // Adresse : ?status=question pour ouvrir un état ; &elapsed=4.5 fait démarrer la phase 4,5 s plus tôt ;
-// &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie.
+// &capture=1 masque le panneau (captures d'écran) ; &players=20 remplit la partie, &players=0 à 8 la vide
+// (salon).
 // &blindtest=1 : question musicale (sans son) ; &audio=unavailable : « Extrait indisponible » ;
 // &long=1 : propositions longues (mise en page) ; &long=one : une seule de 80 caractères ; &step=1 : Pas à pas (révélation et classement en attente de l'hôte) ;
 // &suspense=1 : Suspense (pas de classement en cours de partie) ; &mode=free : Réponse libre ;
@@ -96,13 +97,14 @@ function DemoGame({ params }: { params: URLSearchParams }) {
       : withSuspense
   // Groupe (&teams=1) ; &draw=1 : tirage à l'ouverture de la page.
   const [drawAt] = useState(() => (params.get('draw') === '1' ? Date.now() : undefined))
-  const withTeams = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt) : withAsk
+  const withTeams = params.get('teams') === '1' ? withDemoTeams(withAsk, drawAt, demoTeamCount(params.get('teamcount'))) : withAsk
   // &qlen=140 : énoncé de cette longueur (mise en page des questions longues, jusqu'à 4 lignes).
   const questionLength = Number(params.get('qlen'))
-  const session =
+  const withQuestion =
     questionLength > 0 && withTeams.currentQuestion
       ? { ...withTeams, currentQuestion: { ...withTeams.currentQuestion, text: demoQuestionText(questionLength) } }
       : withTeams
+  const session = withPlayerLimit(withQuestion, params.get('players'))
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
@@ -166,4 +168,17 @@ function demoQuestionText(length: number): string {
   let text = ''
   for (let index = 0; text.length < length; index++) text += (text ? ' ' : '') + words[index % words.length]
   return text.slice(0, Math.max(1, length - 2)).trimEnd() + ' ?'
+}
+
+// &players=0 à 8 : moins de joueurs que la démo n'en a (les premiers gardés).
+function withPlayerLimit(session: PublicSession, requested: string | null): PublicSession {
+  const entries = Object.entries(session.players)
+  const count = requested === null ? entries.length : Number(requested)
+  return count < entries.length ? { ...session, players: Object.fromEntries(entries.slice(0, Math.max(0, count))) } : session
+}
+
+// &teamcount=2 à 4 : nombre d'équipes de la démo (3 par défaut).
+function demoTeamCount(value: string | null): number {
+  const count = Number(value)
+  return count >= 2 && count <= 4 ? count : 3
 }

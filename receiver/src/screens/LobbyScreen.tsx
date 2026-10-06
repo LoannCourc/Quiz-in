@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react'
 
 import { Avatar } from '../components/Avatar'
 import { TeamColumns } from '../components/TeamColumns'
+import { useFitScale } from '../hooks/useFitScale'
 import { JOIN_URL_BASE, PLAYERS_SITE_HOST } from '../config'
+import { lobbyDensity } from '../lib/lobbyLayout'
 import { countConnected, sortByRank } from '../lib/players'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { strings } from '../strings'
@@ -25,6 +27,10 @@ function useIsRecent(since: number | undefined, durationMs: number): boolean {
   return remainingMs > 0
 }
 
+// Ce qui doit tenir dans la colonne des joueurs : boîtes sans débordement, pseudos entiers.
+const FIT_BOXES = '.lobby-avatars, .team-columns-wrap, .team-column'
+const FIT_TEXTS = '.avatar-name, .team-member-name, .team-unassigned-player'
+
 interface LobbyScreenProps {
   session: PublicSession
   roomCode: string
@@ -34,10 +40,14 @@ export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
   const players = sortByRank(session.players)
   // Groupe : écran du tirage pendant quelques secondes après chaque « Tirer au sort ».
   const isDrawing = useIsRecent(session.settings.teams ? session.teamDrawAt : undefined, TEAM_DRAW_SHOW_MS)
+  // Joueurs à la place qui reste : échelle réduite tant qu'un avatar, une équipe ou un pseudo dépasse.
+  const { teams, teamCount } = session.settings
+  const fitKey = `${players.map((player) => `${player.id}:${player.name}:${player.team ?? ''}`).join('|')}|${teams}|${teamCount ?? ''}`
+  const playersRef = useFitScale(fitKey, FIT_BOXES, FIT_TEXTS)
   if (isDrawing) return <TeamDrawScreen session={session} />
 
   return (
-    <main className="screen lobby">
+    <main className={`screen lobby lobby-${lobbyDensity(players.length)}`}>
       <section className="lobby-join">
         <p className="lobby-label">{strings.lobby.scanToJoin}</p>
         <div className="lobby-qr">
@@ -49,7 +59,7 @@ export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
         <p className="lobby-code">{roomCode}</p>
       </section>
 
-      <section className="lobby-players">
+      <section className="lobby-players" ref={playersRef}>
         <h1 className="lobby-logo">{strings.appName}</h1>
         <p className="lobby-count">{strings.lobby.playerCount(countConnected(players), MAX_PLAYERS)}</p>
         {session.settings.teams ? (

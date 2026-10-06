@@ -287,8 +287,8 @@ export function withLongOptions(session: PublicSession, isBlindTest: boolean, ki
 
 // Groupe (&teams=1) : joueurs répartis à tour de rôle en 3 équipes ; drawAt : heure du tirage (écran
 // « Tirage des équipes » de la TV pendant quelques secondes).
-export function withDemoTeams(session: PublicSession, drawAt?: number): PublicSession {
-  const teams = activeTeams(3)
+export function withDemoTeams(session: PublicSession, drawAt?: number, teamCount = 3): PublicSession {
+  const teams = activeTeams(teamCount)
   const players = Object.fromEntries(
     Object.entries(session.players).map(([id, player], index) => [id, { ...player, team: teams[index % teams.length] }]),
   )
