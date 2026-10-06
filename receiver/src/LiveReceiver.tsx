@@ -8,6 +8,7 @@ import { HostAwayStatus } from './components/HostAwayStatus'
 import { useAbandonedGameCleanup } from './hooks/useAbandonedGameCleanup'
 import { useBlindTestInfo } from './hooks/useBlindTestInfo'
 import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
+import { useKeepAwake } from './hooks/useKeepAwake'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePhaseStale } from './hooks/usePhaseStale'
 import { useTvMusic } from './hooks/useTvMusic'
@@ -30,6 +31,8 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
   const isConnectionLost = hasConnectedOnce && !isConnected
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
   useTvPresence(roomCode, state.kind === 'ready' && isConnected)
+  // Pas de veille de la box du salon à la fin de partie (podium compris) ; coupé sans partie.
+  useKeepAwake(state.kind === 'ready' && state.session.status !== 'ended')
 
   switch (state.kind) {
     case 'loading':
