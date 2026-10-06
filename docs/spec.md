@@ -529,6 +529,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
   - **mot interdit** (même liste qu'en Réponse libre) : refusée, jamais masquée ;
   - **vide** (que des espaces ou de la ponctuation) : refusée.
 - **3 essais au plus** : après trois refus, le joueur n'a pas de proposition pour cette question. Le message de refus indique les essais restants.
+- **Hôte qui joue** : sa propre proposition lui arrive d'abord avec une heure estimée, puis avec l'heure du serveur ; seule l'heure de son verdict est alors mise à jour, sans nouveau jugement (sinon sa proposition disparaissait des choix du vote).
 - **Une proposition acceptée est définitive.** Son avatar s'allume sur la TV ; rien ne dit qui a écrit quoi avant la révélation.
 - Fin anticipée : quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai (2 s après la dernière).
 

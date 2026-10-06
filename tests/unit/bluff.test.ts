@@ -118,21 +118,23 @@ describe('Bluff : vérification des propositions', () => {
     expect(session.bluffChecks?.[0].p1).toMatchObject({ verdict: 'truth', refusals: 1 })
     // Rien de nouveau : pas d'écriture.
     expect(bluffChecksUpdate(session, QUESTION)).toBeNull()
-    session = apply(session, { 'bluffs/0/p1': { text: 'Capitale Express', submittedAt: NOW + 10 } })
+    // Nouvel essai, quelques secondes plus tard (le temps de lire le refus).
+    session = apply(session, { 'bluffs/0/p1': { text: 'Capitale Express', submittedAt: NOW + 5_000 } })
     session = apply(session, bluffChecksUpdate(session, QUESTION))
-    expect(session.bluffChecks?.[0].p1).toEqual({ verdict: 'ok', refusals: 1, submittedAt: NOW + 10 })
+    expect(session.bluffChecks?.[0].p1).toEqual({ verdict: 'ok', refusals: 1, submittedAt: NOW + 5_000 })
   })
 
   test('trois refus : plus d’essai, la proposition est terminée sans être retenue', () => {
     let session = writing({ p0: 'Landlord Game' })
     for (let attempt = 1; attempt <= 3; attempt++) {
-      session = apply(session, { 'bluffs/0/p0': { text: 'Landlords Game', submittedAt: NOW + attempt } })
+      session = apply(session, { 'bluffs/0/p0': { text: 'Landlords Game', submittedAt: NOW + attempt * 5_000 } })
       session = apply(session, bluffChecksUpdate(session, QUESTION))
     }
     expect(session.bluffChecks?.[0].p0.refusals).toBe(3)
     expect(isBluffDone(session.bluffChecks?.[0].p0)).toBe(true)
-    session = apply(session, { 'bluffs/0/p0': { text: 'Monopolis', submittedAt: NOW + 9 } })
-    expect(bluffChecksUpdate(session, QUESTION)).toBeNull()
+    // Plus d'essai : jamais rejugée (seule l'heure, si elle change, est recopiée).
+    session = apply(session, { 'bluffs/0/p0': { text: 'Monopolis', submittedAt: NOW + 30_000 } })
+    expect(bluffChecksUpdate(session, QUESTION)).toEqual({ 'bluffChecks/0/p0/submittedAt': NOW + 30_000 })
   })
 
   test('hors de l’écriture d’un Bluff : aucune vérification', () => {
@@ -368,5 +370,64 @@ describe('settingsForGameType', () => {
   test('autre quiz : le mode bluff revient au mode par défaut, le reste ne change pas', () => {
     expect(settingsForGameType({ ...settings, answerMode: 'bluff' }, 'quiz').answerMode).toBe(DEFAULT_SESSION_SETTINGS.answerMode)
     expect(settingsForGameType({ ...settings, answerMode: 'free' }, 'blindTest')).toEqual({ ...settings, answerMode: 'free' })
+  })
+})
+
+// Hôte qui joue : sa propre proposition arrive d'abord avec une estimation locale de l'heure du serveur,
+// puis avec la vraie valeur (quelques dizaines de millisecondes plus tard). Avant la correction, son
+// verdict restait apparié à l'estimation et la proposition disparaissait des choix du vote.
+describe('Bluff : proposition de l’hôte qui joue (heure corrigée par le serveur)', () => {
+  const SERVER_DELAY_MS = 30
+
+  // Propositions jugées sur l'estimation de p0 (l'hôte qui joue), puis heure de p0 corrigée par le serveur.
+  function judgedThenCorrected(texts: Record<PlayerId, string>): Session {
+    let session: Session = { ...writing(texts), hostUid: 'p0' }
+    session = apply(session, bluffChecksUpdate(session, QUESTION))
+    const estimate = session.bluffs?.[0].p0.submittedAt ?? NOW
+    return apply(session, { 'bluffs/0/p0': { text: texts.p0, submittedAt: estimate + SERVER_DELAY_MS } })
+  }
+
+  function atVote(session: Session): Session {
+    const judged = apply(session, bluffChecksUpdate(session, QUESTION))
+    return apply(judged, transitionUpdate(judged, [QUESTION], { status: 'question', currentIndex: 0 }, NOW + 1_000, {}, {}, sequence([0.3])))
+  }
+
+  test('heure corrigée : verdict gardé, heure recopiée, aucun essai compté ni nouveau jugement', () => {
+    const session = judgedThenCorrected({ p0: 'Monopolis', p1: 'Rue Royale' })
+    expect(bluffChecksUpdate(session, QUESTION)).toEqual({ 'bluffChecks/0/p0/submittedAt': NOW + SERVER_DELAY_MS })
+    const refused = judgedThenCorrected({ p0: "The Landlord's Game", p1: 'Rue Royale' })
+    const restamped = apply(refused, bluffChecksUpdate(refused, QUESTION))
+    expect(restamped.bluffChecks?.[0].p0).toEqual({ verdict: 'truth', refusals: 1, submittedAt: NOW + SERVER_DELAY_MS })
+    // L'écran de l'hôte affiche bien le refus (et non « Vérification… » sans fin).
+    expect(bluffWriteStatus(restamped.bluffs?.[0].p0 ?? null, restamped.bluffChecks?.[0].p0 ?? null)).toBe('refused')
+  })
+
+  test('2 joueurs (hôte qui joue + 1) : les deux propositions sont dans les choix, chacun ne peut pas voter pour la sienne', () => {
+    const voting = atVote(judgedThenCorrected({ p0: 'Monopolis', p1: 'Rue Royale' }))
+    const choices = voting.bluffChoices?.[0] ?? []
+    const own = voting.bluffOwn?.[0] ?? {}
+    expect(choices.filter((choice) => choice.kind === 'bluff').map((choice) => choice.text).sort()).toEqual(['Monopolis', 'Rue Royale'])
+    expect(voting.currentQuestion?.choices).toEqual(choices.map((choice) => choice.text))
+    expect(choices[own.p0]).toMatchObject({ text: 'Monopolis', authors: ['p0'] })
+    expect(choices[own.p1]).toMatchObject({ text: 'Rue Royale', authors: ['p1'] })
+    // Un vote pour sa propre proposition est ignoré ; celui de l'autre joueur compte.
+    const revealed = bluffRevealData(vote(voting, { p0: own.p0, p1: own.p0 }))
+    expect(revealed.choices[own.p0].voters).toEqual(['p1'])
+    expect(revealed.results.p0).toMatchObject({ correct: false, points: BLUFF_TRAP_POINTS })
+  })
+
+  test('autre joueur : un nouvel essai, même très rapide, est jugé (la tolérance ne vaut que pour l’hôte)', () => {
+    let session: Session = { ...writing({ p0: 'Monopolis', p1: "The Landlord's Game" }), hostUid: 'p0' }
+    session = apply(session, bluffChecksUpdate(session, QUESTION))
+    session = apply(session, { 'bluffs/0/p1': { text: 'Rue Royale', submittedAt: NOW + 20 } })
+    session = apply(session, bluffChecksUpdate(session, QUESTION))
+    expect(session.bluffChecks?.[0].p1).toEqual({ verdict: 'ok', refusals: 1, submittedAt: NOW + 20 })
+  })
+
+  test('3 joueurs : les trois propositions sont dans les choix', () => {
+    const voting = atVote(judgedThenCorrected({ p0: 'Monopolis', p1: 'Rue Royale', p2: 'Capitale Express' }))
+    const texts = (voting.bluffChoices?.[0] ?? []).filter((choice) => choice.kind === 'bluff').map((choice) => choice.text)
+    expect(texts.sort()).toEqual(['Capitale Express', 'Monopolis', 'Rue Royale'])
+    expect(new Set(Object.values(voting.bluffOwn?.[0] ?? {})).size).toBe(3)
   })
 })

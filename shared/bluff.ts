@@ -55,16 +55,36 @@ export function isBluffDone(check: BluffCheck | undefined): boolean {
   return check !== undefined && (check.verdict === 'ok' || check.refusals >= BLUFF_MAX_ATTEMPTS)
 }
 
+// Heure d'une proposition corrigée par le serveur : l'hôte qui joue voit sa propre proposition d'abord
+// avec une estimation locale de l'heure du serveur, puis avec la vraie valeur, quelques dizaines de
+// millisecondes plus tard (il ne voit celles des autres qu'avec leur valeur définitive). En deçà de cet
+// écart, c'est la même proposition : impossible d'attendre le verdict d'un refus et de renvoyer aussi vite.
+export const BLUFF_TIMESTAMP_TOLERANCE_MS = 1_500
+
+// La proposition vue a-t-elle déjà été jugée ? Même heure ; proposition acceptée ou sans essai restant
+// (les règles de la base interdisent de la réécrire : seule son heure a pu être corrigée) ; ou, pour
+// l'hôte qui joue, heure corrigée par le serveur (écart de moins de BLUFF_TIMESTAMP_TOLERANCE_MS).
+function isSameSubmission(check: BluffCheck, submittedAt: number, isHostOwn: boolean): boolean {
+  if (check.submittedAt === submittedAt || isBluffDone(check)) return true
+  return isHostOwn && Math.abs(submittedAt - check.submittedAt) < BLUFF_TIMESTAMP_TOLERANCE_MS
+}
+
 // Vérification des propositions arrivées depuis le dernier passage (l'hôte l'appelle à chaque
 // changement de la session pendant l'écriture). Une proposition acceptée allume l'avatar du joueur
-// (bluffedBy) ; un refus compte un essai. null : rien de nouveau.
+// (bluffedBy) ; un refus compte un essai. Une proposition déjà jugée dont seule l'heure a été corrigée
+// par le serveur garde son verdict : son heure est seulement recopiée, pour que la proposition et son
+// verdict restent appariés (choix du vote, écran du joueur). null : rien de nouveau.
 export function bluffChecksUpdate(session: Session, question: BluffQuestion): Update | null {
   if (session.status !== 'question' || session.settings.answerMode !== 'bluff') return null
   const index = session.currentIndex
   const update: Update = {}
   for (const [playerId, bluff] of Object.entries(session.bluffs?.[index] ?? {})) {
     const check = session.bluffChecks?.[index]?.[playerId]
-    if (!session.players[playerId] || isBluffDone(check) || check?.submittedAt === bluff.submittedAt) continue
+    if (!session.players[playerId] || check?.submittedAt === bluff.submittedAt) continue
+    if (check && isSameSubmission(check, bluff.submittedAt, playerId === session.hostUid)) {
+      update[`bluffChecks/${index}/${playerId}/submittedAt`] = bluff.submittedAt
+      continue
+    }
     const verdict = checkBluff(bluff.text, question)
     const refusals = (check?.refusals ?? 0) + (verdict === 'ok' ? 0 : 1)
     update[`bluffChecks/${index}/${playerId}`] = { verdict, refusals, submittedAt: bluff.submittedAt }

@@ -1311,3 +1311,65 @@ describe('Groupe : validation des équipes (teamsValidatedAt)', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/teamsValidatedAt`).set(Date.now()))
   })
 })
+
+// Hôte qui joue (2 joueurs : l'hôte + 1) : sa proposition, écrite avec l'heure du serveur, lui arrive
+// d'abord avec une estimation locale, puis avec la vraie valeur. Elle doit figurer dans les choix du
+// vote comme celle de l'autre joueur ; le joueur ne peut pas voter pour la sienne.
+describe('Bluff : hôte qui joue, 2 joueurs', () => {
+  test('les deux propositions sont dans les choix ; chacun vote pour l’autre et le piège', async () => {
+    const now = Date.now()
+    await seedSession({
+      settings: { answerMode: 'bluff', speedBonus: false, control: false, teams: false },
+      questionCount: 1,
+      currentQuestion: { text: BLUFF_QUESTIONS[0].text, difficulty: 2, timeLimit: 60 },
+      phaseStartedAt: now - 1_000,
+      phaseEndsAt: now + 60_000,
+      players: {
+        [HOST]: { name: 'Hôte', avatar: '🐸', score: 0, rank: 1, connected: true },
+        [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true },
+      },
+    })
+    const hostRef = db(HOST).ref(SESSION)
+    const stamps: number[] = []
+    const refused: string[] = []
+    let latest: Session | null = null
+    // Comme l'app de l'hôte : session lue en temps réel, chaque nouvelle valeur jugée aussitôt.
+    hostRef.on('value', (snapshot) => {
+      latest = snapshot.val() as Session
+      const stamp = latest.bluffs?.[0]?.[HOST]?.submittedAt
+      if (stamp !== undefined && stamps.at(-1) !== stamp) stamps.push(stamp)
+      const update = bluffChecksUpdate(latest, BLUFF_QUESTIONS[0])
+      if (update) hostRef.update(update).catch((error: unknown) => refused.push(String(error)))
+    })
+    await db(PLAYER).ref(`${SESSION}/bluffs/0/${PLAYER}`).set({ text: 'Proposition de Léa', submittedAt: SERVER_TIME })
+    await hostRef.child(`bluffs/0/${HOST}`).set({ text: 'Proposition de l’hôte', submittedAt: SERVER_TIME })
+    await new Promise((resolve) => setTimeout(resolve, 1_000))
+    hostRef.off()
+    const written = (await readAsAdmin(SESSION)) as Session
+    expect(written.bluffChecks?.[0][HOST]).toMatchObject({ verdict: 'ok', submittedAt: written.bluffs?.[0][HOST].submittedAt })
+
+    await assertSucceeds(hostRef.update(transitionUpdate(written, BLUFF_QUESTIONS.slice(0, 1), { status: 'question', currentIndex: 0 }, Date.now()) ?? {}))
+    const voting = (await readAsAdmin(SESSION)) as Session
+    const choices = voting.bluffChoices?.[0] ?? []
+    const own = voting.bluffOwn?.[0] ?? {}
+    expect(choices.filter((choice) => choice.kind === 'bluff').map((choice) => choice.text).sort()).toEqual(['Proposition de Léa', 'Proposition de l’hôte'])
+    expect(choices[own[HOST]]?.authors).toEqual([HOST])
+    expect(choices[own[PLAYER]]?.authors).toEqual([PLAYER])
+
+    const castVote = (uid: string, value: number) =>
+      db(uid).ref(SESSION).update({ [`votes/0/${uid}`]: { value, submittedAt: SERVER_TIME }, [`votedBy/0/${uid}`]: true })
+    // Le joueur ne peut pas voter pour sa proposition (règles) ; l'hôte, autorité de la partie, n'en est pas
+    // empêché par les règles : son écran grise sa proposition et le moteur ignore un tel vote (tests unitaires).
+    await assertFails(castVote(PLAYER, own[PLAYER]))
+    await assertSucceeds(castVote(HOST, own[PLAYER]))
+    await assertSucceeds(castVote(PLAYER, own[HOST]))
+    const voted = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(hostRef.update(transitionUpdate(voted, BLUFF_QUESTIONS.slice(0, 1), { status: 'vote', currentIndex: 0 }, Date.now()) ?? {}))
+    // Chacun a piégé l'autre : 500 points chacun.
+    expect(((await readAsAdmin(SESSION)) as Session).bluffPoints?.[0]).toEqual({ [HOST]: 500, [PLAYER]: 500 })
+    // Le jugement de l'hôte n'a jamais été refusé par les règles (heure recopiée comprise).
+    expect(refused).toEqual([])
+    // Diagnostic : l'hôte voit sa propre proposition avec une heure estimée, puis celle du serveur.
+    expect(stamps.length).toBeGreaterThanOrEqual(1)
+  })
+})
