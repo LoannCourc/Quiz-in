@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import { execSync } from 'node:child_process'
 import { existsSync, readdirSync, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig, type Plugin } from 'vite'
@@ -33,9 +34,25 @@ function musicCheck(): Plugin {
   }
 }
 
+// Version de la TV, affichée par le panneau ?perf=1 : heure de construction et commit (dépôt modifié : « + »).
+// Sert à reconnaître une TV en ligne périmée.
+function buildCommit(): string {
+  try {
+    const hash = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim()
+    const isDirty = execSync('git status --porcelain', { encoding: 'utf8' }).trim() !== ''
+    return isDirty ? `${hash}+` : hash
+  } catch {
+    return '?'
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), musicCheck()],
+  define: {
+    __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    __BUILD_COMMIT__: JSON.stringify(buildCommit()),
+  },
   // Box de test (Bouygues, Android TV) : navigateur Cast basé sur Chrome 92. La syntaxe JS et CSS
   // plus récente est retranscrite pour lui.
   build: {

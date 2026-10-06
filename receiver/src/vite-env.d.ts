@@ -13,6 +13,10 @@ interface ImportMetaEnv {
   readonly VITE_FIREBASE_EMULATOR?: string
 }
 
+// Version de la TV (vite.config.ts) : heure de construction (ISO) et commit.
+declare const __BUILD_TIME__: string
+declare const __BUILD_COMMIT__: string
+
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
