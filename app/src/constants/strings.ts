@@ -241,7 +241,6 @@ export const strings = {
     playersTitle: 'Joueurs',
     connectedCount: (count: number) => `${count} connecté${count > 1 ? 's' : ''}`,
     hostBadge: 'Hôte',
-    editProfileLink: 'Modifier',
     codeAccessibility: (code: string) => `Code de la partie : ${code.split('').join(' ')}`,
     noTv: {
       title: 'Rejoindre sans TV',
@@ -272,7 +271,6 @@ export const strings = {
     copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
-    noPlayers: 'Aucun joueur pour l’instant. Ils rejoignent en scannant le QR code de la TV.',
     hostJoinTitle: 'Toi aussi, tu joues !',
     // TV connectée : le bloc code, QR et lien se réduit à une barre (maquette L1).
     tvBar: {
@@ -280,15 +278,10 @@ export const strings = {
       codeLabel: 'Code de la partie : ',
       details: 'Détails',
       hide: 'Masquer',
-      // Sans TV connectée : bloc du code réductible en une ligne « Code B9CX · Détails ».
-      collapse: 'Réduire',
-      codeShort: 'Code ',
       intro: 'Les joueurs scannent le QR code ou ouvrent le lien.',
     },
-    // Hôte pas encore inscrit (maquette L1).
+    // Hôte pas encore inscrit : « Je joue aussi » (feuille « Réglages » du salon).
     hostCard: {
-      title: 'Tu n’es pas dans la partie',
-      hint: 'Pseudo et avatar, comme les autres joueurs',
       button: 'Je joue aussi',
     },
     launchButton: 'Lancer la partie',
