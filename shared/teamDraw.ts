@@ -6,12 +6,13 @@ import type { PlayerId, PublicSession, TeamId } from './types'
 // bouton « Valider les équipes » de l'hôte (jamais avant que tous les joueurs soient placés).
 
 // Intervalle entre deux arrivées, réduit pour que toutes les arrivées tiennent en TEAM_DRAW_ARRIVALS_MAX_MS.
-export const TEAM_DRAW_STEP_MS = 450
-export const TEAM_DRAW_ARRIVALS_MAX_MS = 6_000
-// Durée de l'arrivée d'un joueur (animation de la TV) : le gong sonne quand le dernier est posé.
-export const TEAM_DRAW_ARRIVAL_MS = 500
+// Calendrier raccourci d'environ 30 % (octobre 2026) : 20 joueurs arrivent tous en 4,2 s, gong à 4,55 s.
+export const TEAM_DRAW_STEP_MS = 315
+export const TEAM_DRAW_ARRIVALS_MAX_MS = 4_200
+// Durée de l'arrivée d'un joueur (animation de la TV, TeamColumns) : le gong sonne quand le dernier est posé.
+export const TEAM_DRAW_ARRIVAL_MS = 350
 // Équipes complètes à l'écran après le gong, avant le retour au salon.
-export const TEAM_DRAW_HOLD_MS = 3_000
+export const TEAM_DRAW_HOLD_MS = 2_100
 
 export interface TeamColumn {
   team: TeamId

@@ -34,8 +34,8 @@ describe('Tirage des équipes : tous les joueurs placés à la fin de l’animat
     }
   }
 
-  test('une arrivée toutes les 0,45 s pour peu de joueurs, plus vite pour 20 (toutes en 6 s)', () => {
-    expect(teamDrawTimeline(drawnSession(4, 2)).stepMs).toBe(450)
-    expect(teamDrawTimeline(drawnSession(20, 4)).stepMs).toBe(315)
+  test('une arrivée toutes les 0,315 s pour peu de joueurs, plus vite pour 20 (toutes en 4,2 s)', () => {
+    expect(teamDrawTimeline(drawnSession(4, 2)).stepMs).toBe(315)
+    expect(teamDrawTimeline(drawnSession(20, 4)).stepMs).toBe(221)
   })
 })

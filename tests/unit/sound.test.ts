@@ -91,9 +91,9 @@ describe('Sons déduits des changements d’état', () => {
     const drawn = { ...lobby, settings: { ...lobby.settings, teams: true, teamCount: 2 }, teamDrawAt: NOW, players: { a: player('A', { team: 'pink' }), b: player('B', { team: 'cyan' }), c: player('C', { team: 'pink' }) } }
     expect(timedCues(drawn)).toEqual([
       { id: 'teamDrawTick', at: NOW },
-      { id: 'teamDrawTick', at: NOW + 450 },
-      { id: 'teamDrawTick', at: NOW + 900 },
-      { id: 'teamDrawGong', at: NOW + 1_400 },
+      { id: 'teamDrawTick', at: NOW + 315 },
+      { id: 'teamDrawTick', at: NOW + 630 },
+      { id: 'teamDrawGong', at: NOW + 980 },
     ])
   })
 

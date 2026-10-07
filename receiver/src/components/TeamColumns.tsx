@@ -1,4 +1,4 @@
-import { teamColumns } from '@shared/teamDraw'
+import { TEAM_DRAW_ARRIVAL_MS, teamColumns } from '@shared/teamDraw'
 import type { PlayerId, PublicSession, TeamId } from '@shared/types'
 import { useEffect, useState } from 'react'
 
@@ -36,7 +36,7 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
                 <li
                   key={id}
                   className={arrivalDelayMs ? 'team-member is-arriving' : 'team-member'}
-                  style={arrivalDelayMs ? { animationDelay: `${arrivalDelayMs[id] ?? 0}ms` } : undefined}>
+                  style={arrivalDelayMs ? { animationDelay: `${arrivalDelayMs[id] ?? 0}ms`, animationDuration: `${TEAM_DRAW_ARRIVAL_MS}ms` } : undefined}>
                   <span className="team-member-avatar">{session.players[id].avatar}</span>
                   <span className="team-member-name">{session.players[id].name}</span>
                 </li>

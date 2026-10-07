@@ -89,7 +89,8 @@
 /* Tirage : chaque joueur glisse dans sa colonne, l'un après l'autre (délai posé par le composant). */
 .team-member.is-arriving {
   opacity: 0;
-  animation: team-member-arrive 0.5s ease-out forwards;
+  /* Durée : TEAM_DRAW_ARRIVAL_MS (style en ligne, shared/teamDraw.ts). */
+  animation: team-member-arrive 0.35s ease-out forwards;
 }
 
 @keyframes team-member-arrive {
