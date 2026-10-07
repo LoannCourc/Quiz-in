@@ -10,6 +10,7 @@ import {
   type HostControls,
   type SessionUpdate,
 } from '@shared/hostEngine';
+import { withStoredDefaults } from '@shared/publicFields';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { soundSettingsOf } from '@shared/sound';
 import type { GameQuestion, Question, Session, SoundSettings } from '@shared/types';
@@ -67,10 +68,10 @@ export default function HostScreen() {
 function HostSession({ code }: { code: string }) {
   // Seul l'hôte peut lire sa session d'un bloc : un refus signifie « pas l'hôte » ou « introuvable ».
   const session = useLiveValue<Session>(`sessions/${code}`);
-  // La base ne stocke pas les objets vides : players manque tant que personne n'a rejoint.
+  // La base ne stocke pas les objets vides (players, reveal.stats) : complétés par withStoredDefaults.
   // Objet recréé seulement quand la session change (le moteur se recalcule sur ce changement).
   const value = session.kind === 'ready' ? session.value : null;
-  const current = useMemo(() => value && { ...value, players: value.players ?? {} }, [value]);
+  const current = useMemo(() => value && withStoredDefaults(value), [value]);
   const wasRemoved = session.kind === 'ready' && session.wasRemoved;
 
   // Partie supprimée pendant l'absence de l'hôte : plus d'écriture de départ, plus de reprise.

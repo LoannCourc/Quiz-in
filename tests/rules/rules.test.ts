@@ -28,11 +28,11 @@ import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
 import { drawGameQuestions } from '../../shared/drawGame'
 import { drawHintsUpdate } from '../../shared/drawGuess'
-import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '../../shared/publicFields'
+import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
-import { BLUFF_QUESTIONS, makeSession, QUESTIONS } from '../unit/engineFixtures'
+import { BLUFF_QUESTIONS, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
 
 const PROJECT_ID = 'demo-quiz-in'
 const CODE = 'K7PX'
@@ -1655,6 +1655,37 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await step()
     expect(session).toMatchObject({ status: 'question', currentIndex: 1 })
     expect(session.drawing).toBeUndefined()
+  })
+
+  test('hôte inscrit qui devine : la réponse relue par l’hôte n’a pas de stats (objet vide non stocké), complétée avant usage', async () => {
+    const questions = drawGameQuestions(CODE)
+    const players = { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') }
+    await seed({ sessions: { [CODE]: makeSession({ settings: DRAW_SETTINGS as Session['settings'], phaseStartedAt: Date.now(), players }) } })
+    // L'hôte lit sa session d'un bloc, comme l'écran de l'app (useLiveValue), puis la complète.
+    const hostRead = async () => (await db(HOST).ref(SESSION).once('value')).val() as Session
+    let session = withStoredDefaults(await hostRead())
+    const launch = launchUpdate(session, questions, Date.now())
+    await assertSucceeds(db(HOST).ref(SESSION).update(launch.ok ? launch.update : {}))
+    const step = async () => {
+      session = withStoredDefaults(await hostRead())
+      const update = transitionUpdate(session, questions, { status: session.status, currentIndex: session.currentIndex }, Date.now())
+      await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    }
+    await step()
+    session = withStoredDefaults(await hostRead())
+    expect(session.drawTurn?.drawer).toBe(PLAYER)
+    // L'hôte devine (il ne dessine jamais), puis juge son propre essai.
+    await assertSucceeds(db(HOST).ref(`${SESSION}/drawGuess/${HOST}`).set({ text: questions[0].word, count: 1, at: SERVER_TIME }))
+    await assertSucceeds(db(HOST).ref(SESSION).update(drawHintsUpdate(withStoredDefaults(await hostRead())) as SessionUpdate))
+    await step()
+    const raw = await hostRead()
+    expect(raw.status).toBe('reveal')
+    // Cause de l'erreur de rendu : reveal.stats ({} à l'écriture) n'existe pas à la lecture.
+    expect(raw.reveal?.stats).toBeUndefined()
+    const read = withStoredDefaults(raw)
+    expect(read.reveal?.stats).toEqual({})
+    expect(read.reveal?.stats.drawCancelled === true).toBe(false)
+    expect(read.reveal?.results?.[HOST]?.correct).toBe(true)
   })
 })
 

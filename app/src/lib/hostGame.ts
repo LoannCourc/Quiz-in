@@ -9,6 +9,7 @@ import {
   type LaunchRefusal,
   type SessionUpdate,
 } from '@shared/hostEngine';
+import { withStoredDefaults } from '@shared/publicFields';
 import { parseBluffQuestions, parseQuestions } from '@shared/quizValidation';
 import { launchTeamDraw } from '@shared/teams';
 import type { GameQuestion, Session } from '@shared/types';
@@ -67,7 +68,7 @@ export async function runTransition(
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
   const session = snapshot.val() as Session;
   const changes = transitionUpdate(
-    { ...session, players: session.players ?? {} },
+    withStoredDefaults(session),
     questions,
     expected,
     nowServer,
@@ -83,7 +84,7 @@ export async function runTransition(
 export async function publishAudioUrl(code: string, questions: readonly GameQuestion[], audioUrls: AudioUrls): Promise<void> {
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return;
-  const changes = audioUrlUpdate(snapshot.val() as Session, questions, audioUrls);
+  const changes = audioUrlUpdate(withStoredDefaults(snapshot.val() as Session), questions, audioUrls);
   if (changes) await update(ref(db, `sessions/${code}`), changes);
 }
 
@@ -105,7 +106,7 @@ export async function applyHostAction(
   if (!snapshot.exists()) return false;
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
   const session = snapshot.val() as Session;
-  const changes = buildUpdate({ ...session, players: session.players ?? {} }, nowServer);
+  const changes = buildUpdate(withStoredDefaults(session), nowServer);
   if (!changes) return false;
   await update(ref(db, `sessions/${code}`), changes);
   return true;
