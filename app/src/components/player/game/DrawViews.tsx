@@ -2,14 +2,15 @@ import { DRAW_GUESS_MAX_LENGTH, DRAW_MAX_GUESSES } from '@shared/constants';
 import { drawingChunkList } from '@shared/drawGame';
 import type { DrawTurn, PlayerResult, PublicSession } from '@shared/types';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
+import { EyeIcon } from '@/components/player/draw/EyeIcon';
 import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
 import { DrawingTools } from '@/components/player/draw/DrawingTools';
 import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { DrawGuessState, PlayerDraw } from '@/lib/playerDraw';
@@ -23,19 +24,46 @@ const texts = strings.draw;
 const INITIAL_COLOR = 1;
 const INITIAL_WIDTH = 1;
 
-// Dessinateur, en haut de l'écran (petit) : son mot, la catégorie, et le temps restant.
+// Taille du mot : la plus grande qui tient sur une ligne entre les deux cases de l'œil (Bowlby One, une
+// lettre majuscule fait environ 0,85 de la taille de police), entre WORD_MIN_SIZE et WORD_MAX_SIZE.
+const WORD_MAX_SIZE = 34;
+const WORD_MIN_SIZE = 20;
+const LETTER_WIDTH_RATIO = 0.85;
+const EYE_BOX = 44;
+const EYE_SIZE = 26;
+
+function wordFontSize(word: string, screenWidth: number): number {
+  const available = Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three - 2 * EYE_BOX;
+  const fitting = Math.floor(available / (Math.max(word.length, 1) * LETTER_WIDTH_RATIO));
+  return Math.max(WORD_MIN_SIZE, Math.min(WORD_MAX_SIZE, fitting));
+}
+
+// Dessinateur, en haut de l'écran : son mot en grand (masquable d'un tap sur l'œil, si quelqu'un regarde
+// par-dessus son épaule), la catégorie en petit, et le temps restant. À monter avec une clé par manche :
+// le mot se réaffiche à chaque nouvelle manche.
 export function DrawerTopBar({ word, category, timing }: { word: string | null; category: string; timing: PhaseTiming }) {
+  const [isHidden, setIsHidden] = useState(false);
+  const { width } = useWindowDimensions();
+  const shown = word === null ? texts.wordLoading : isHidden ? texts.wordMask : word;
+  const size = wordFontSize(word ?? '', width);
   return (
     <View style={styles.topBar}>
       <View style={styles.wordRow}>
-        <Text style={styles.wordLabel}>{texts.yourWord}</Text>
-        <Text style={styles.word} numberOfLines={1}>
-          {word ?? texts.wordLoading}
-        </Text>
-        <Text style={styles.category} numberOfLines={1}>
-          {category}
-        </Text>
+        {/* Case vide de la largeur de l'œil, à gauche : le mot reste centré. */}
+        <View style={styles.eyeBox} />
+        <Text style={[styles.word, { fontSize: size, lineHeight: Math.round(size * DISPLAY_LINE_HEIGHT) }]}>{shown}</Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={isHidden ? texts.showWord : texts.hideWord}
+          hitSlop={Spacing.two}
+          onPress={() => setIsHidden(!isHidden)}
+          style={({ pressed }) => [styles.eyeBox, pressed && styles.pressed]}>
+          <EyeIcon isOpen={!isHidden} size={EYE_SIZE} color={AppColors.link} />
+        </Pressable>
       </View>
+      <Text style={styles.category} numberOfLines={1}>
+        {category}
+      </Text>
       <Timebar {...timing} />
     </View>
   );
@@ -65,8 +93,15 @@ export function DrawerView({ session, draw }: { session: PublicSession; draw: Pl
         onUndo={() => canvas.current?.undo()}
         onClear={() => canvas.current?.clear()}
       />
-      <Text style={[textStyles.muted, styles.centered]}>{texts.noLetters}</Text>
-      {draw.canChangeWord && <BigButton label={texts.changeWord} variant="secondary" size="compact" onPress={draw.onChangeWord} />}
+      {/* Une seule ligne sous les outils : le canvas et le chrono restent visibles sans défiler à 320 px. */}
+      <View style={styles.drawerFooter}>
+        <Text style={textStyles.muted}>{texts.noLetters}</Text>
+        {draw.canChangeWord && (
+          <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={draw.onChangeWord}>
+            {({ pressed }) => <Text style={[styles.changeWord, pressed && styles.pressed]}>{texts.changeWord}</Text>}
+          </Pressable>
+        )}
+      </View>
     </View>
   );
 }
@@ -201,29 +236,45 @@ const styles = StyleSheet.create({
   },
   wordRow: {
     flexDirection: 'row',
-    alignItems: 'baseline',
-    gap: Spacing.two,
+    alignItems: 'center',
   },
-  wordLabel: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.extraBold,
-    fontSize: 13,
+  eyeBox: {
+    width: EYE_BOX,
+    height: EYE_BOX,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pressed: {
+    opacity: 0.6,
   },
   word: {
-    ...TEXT_FIT_SAFETY,
-    flexShrink: 1,
+    flex: 1,
+    minWidth: 0,
     color: AppColors.accent,
-    fontFamily: AppFonts.black,
-    fontSize: 20,
+    fontFamily: AppFonts.display,
+    textAlign: 'center',
     textTransform: 'uppercase',
   },
   category: {
     ...TEXT_FIT_SAFETY,
-    marginLeft: 'auto',
     color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
-    fontSize: 13,
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  drawerFooter: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    columnGap: Spacing.three,
+  },
+  changeWord: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
+    textDecorationLine: 'underline',
   },
   drawer: {
     gap: Spacing.two,

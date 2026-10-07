@@ -662,8 +662,10 @@ export const strings = {
     undoIcon: '↶',
     clear: 'Tout effacer',
     clearIcon: '🗑️',
-    // Dessinateur : le mot, en petit au-dessus du canvas.
-    yourWord: 'Ton mot',
+    // Dessinateur : le mot, en grand au-dessus du canvas, masquable d'un tap sur l'œil.
+    wordMask: '••••',
+    hideWord: 'Masquer le mot',
+    showWord: 'Afficher le mot',
     noLetters: 'Ni lettres ni chiffres !',
     wordLoading: '…',
     // Dessinateur : une fois par manche, avant le premier trait.
