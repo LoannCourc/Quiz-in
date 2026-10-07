@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
@@ -19,7 +20,7 @@ export function DetailsToggle({ label, isOpen, onPress }: DetailsToggleProps) {
       hitSlop={Spacing.one}
       onPress={onPress}
       style={({ pressed }) => [styles.toggle, pressed && styles.pressed]}>
-      <Text style={styles.label}>{label}</Text>
+      <ButtonLabel style={styles.label}>{label}</ButtonLabel>
       {/* Chevron du réglage tourné : vers le bas pour déplier, vers le haut pour replier. */}
       <View style={isOpen ? styles.chevronUp : styles.chevronDown}>
         <SettingsIcon name="chevron" color={AppColors.link} />

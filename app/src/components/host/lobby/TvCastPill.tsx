@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { AppColors, AppFonts, AppShadows, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -16,7 +17,7 @@ export function TvCastPill({ cast }: { cast: CastGame }) {
       onPress={cast.showTvPicker}
       style={({ pressed }) => [styles.pill, pressed && styles.pressed]}>
       <TvCastButton />
-      <Text style={styles.label}>{strings.cast.showButton}</Text>
+      <ButtonLabel style={styles.label}>{strings.cast.showButton}</ButtonLabel>
     </Pressable>
   );
 }

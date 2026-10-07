@@ -1,6 +1,7 @@
 import type { QuizGameType } from '@shared/types';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -43,7 +44,7 @@ export function GameTypeTabs({ selected, onSelect, isBlindTestEnabled }: GameTyp
               accessibilityState={{ disabled: true }}
               accessibilityLabel={strings.catalog.gameTypeSoon(label)}
               style={styles.tab}>
-              <Text style={styles.soonLabel}>{label}</Text>
+              <ButtonLabel style={styles.soonLabel}>{label}</ButtonLabel>
               <Text style={styles.badge}>{strings.catalog.soon}</Text>
             </View>
           );
@@ -56,7 +57,7 @@ export function GameTypeTabs({ selected, onSelect, isBlindTestEnabled }: GameTyp
             accessibilityState={{ selected: isSelected }}
             onPress={() => onSelect(type)}
             style={[styles.tab, isSelected && styles.activeTab]}>
-            <Text style={isSelected ? styles.activeLabel : styles.soonLabel}>{label}</Text>
+            <ButtonLabel style={isSelected ? styles.activeLabel : styles.soonLabel}>{label}</ButtonLabel>
           </Pressable>
         );
       })}

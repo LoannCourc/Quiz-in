@@ -1,18 +1,21 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
-import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
+
+import { ButtonLabel } from './ButtonLabel';
 
 interface BigButtonProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
-  // compact : texte plus petit, sur une seule ligne (deux boutons côte à côte).
+  // compact : texte plus petit (deux boutons côte à côte).
   size?: 'large' | 'compact';
 }
 
 // Grosse pilule à ombre dure : à l'appui, elle « s'enfonce » (décalage vers le bas, ombre réduite).
+// Texte : règle commune des boutons (ButtonLabel : toujours lisible en entier, deux lignes au plus).
 export function BigButton({ label, onPress, disabled = false, variant = 'primary', size = 'large' }: BigButtonProps) {
   const isPrimary = variant === 'primary';
   const isCompact = size === 'compact';
@@ -28,17 +31,14 @@ export function BigButton({ label, onPress, disabled = false, variant = 'primary
         pressed && styles.pressed,
         disabled && styles.disabled,
       ]}>
-      <Text
-        numberOfLines={isCompact ? 1 : undefined}
-        adjustsFontSizeToFit={isCompact}
+      <ButtonLabel
         style={[
-          styles.label,
           isPrimary ? styles.primaryLabel : styles.secondaryLabel,
           isCompact && (isPrimary ? styles.compactPrimaryLabel : styles.compactLabel),
           disabled && styles.disabledLabel,
         ]}>
         {label}
-      </Text>
+      </ButtonLabel>
     </Pressable>
   );
 }
@@ -70,10 +70,6 @@ const styles = StyleSheet.create({
   },
   disabledLabel: {
     color: AppColors.textMuted,
-  },
-  label: {
-    ...TEXT_FIT_SAFETY,
-    textAlign: 'center',
   },
   primaryLabel: {
     color: AppColors.onAccent,

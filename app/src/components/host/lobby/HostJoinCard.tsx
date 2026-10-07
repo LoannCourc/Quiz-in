@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { AppColors, AppFonts, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -15,7 +16,7 @@ export function HostJoinCard({ onJoin }: { onJoin: () => void }) {
         <Text style={styles.hint}>{hostCard.hint}</Text>
       </View>
       <Pressable accessibilityRole="button" onPress={onJoin} style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
-        <Text style={styles.buttonLabel}>{hostCard.button}</Text>
+        <ButtonLabel style={styles.buttonLabel}>{hostCard.button}</ButtonLabel>
       </Pressable>
     </View>
   );

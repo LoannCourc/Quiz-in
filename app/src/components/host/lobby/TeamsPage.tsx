@@ -4,6 +4,7 @@ import type { PlayerId, Session, TeamId, TeamMode } from '@shared/types';
 import { useEffect } from 'react';
 import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
@@ -94,7 +95,7 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
           disabled={secondary.disabled}
           onPress={secondary.onPress}
           style={({ pressed }) => [styles.discrete, pressed && styles.discretePressed, secondary.disabled && styles.discreteDisabled]}>
-          <Text style={styles.discreteLabel}>{secondary.label}</Text>
+          <ButtonLabel style={styles.discreteLabel}>{secondary.label}</ButtonLabel>
         </Pressable>
       )}
       <BigButton label={primary.label} onPress={primary.onPress} disabled={primary.disabled} />

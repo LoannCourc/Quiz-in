@@ -4,6 +4,7 @@ import type { Player, PlayerId, SessionSettings, TeamId, TeamMode } from '@share
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { TeamTile } from '@/components/ui/TeamSymbol';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -52,7 +53,7 @@ export function TeamComposer({ settings, players, onMode, onCount, onAssign }: T
             accessibilityState={{ selected: option === mode }}
             onPress={() => onMode(option)}
             style={[styles.segment, option === mode && styles.segmentOn]}>
-            <Text style={[styles.segmentText, option === mode && styles.segmentTextOn]}>{composer.modes[option]}</Text>
+            <ButtonLabel style={[styles.segmentText, option === mode && styles.segmentTextOn]}>{composer.modes[option]}</ButtonLabel>
           </Pressable>
         ))}
       </View>

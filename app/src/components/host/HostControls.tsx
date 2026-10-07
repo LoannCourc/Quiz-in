@@ -2,6 +2,7 @@ import type { HostControls as AvailableControls } from '@shared/hostEngine';
 import type { SoundSettings } from '@shared/types';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { SoundSettingsSection } from '@/components/host/settings/SoundSettingsSection';
 import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
@@ -17,7 +18,7 @@ export function HostControlsBar({ onPress }: { onPress: () => void }) {
       accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [styles.bar, pressed && styles.pressed]}>
-      <Text style={styles.barText}>{strings.hostControls.open}</Text>
+      <ButtonLabel style={styles.barText}>{strings.hostControls.open}</ButtonLabel>
     </Pressable>
   );
 }

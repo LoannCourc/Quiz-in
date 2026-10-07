@@ -2,6 +2,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useState } from 'react';
 import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { AppColors, AppFonts, AppShadows, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -121,9 +122,7 @@ function SmallPill({ label, color, onPress }: SmallPillProps) {
       accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [styles.pill, { backgroundColor: color }, pressed && styles.pressed]}>
-      <Text style={styles.pillLabel} numberOfLines={1}>
-        {label}
-      </Text>
+      <ButtonLabel style={styles.pillLabel}>{label}</ButtonLabel>
     </Pressable>
   );
 }
