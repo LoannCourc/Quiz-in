@@ -109,6 +109,7 @@
             "$other": { ".validate": false }
           },
           "stats": {
+            "drawCancelled": { ".validate": "newData.val() == true" },
             "choiceCounts": {
               "$choice": { ".validate": "$choice.matches(/^[0-3]$/) && newData.isNumber() && newData.val() >= 0" }
             },
@@ -236,6 +237,7 @@
           "round": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 == 0" },
           "wordLength": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 40 && newData.val() % 1 == 0" },
           "category": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" },
+          "changedWord": { ".validate": "newData.val() == true" },
           "$other": { ".validate": false }
         },
         "drawSecret": {
@@ -250,6 +252,38 @@
           "$chunk": {
             ".write": "auth != null && !data.exists() && newData.exists() && root.child('sessions/' + $code + '/drawTurn/drawer').val() == auth.uid && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/settings/answerMode').val() == 'draw'",
             ".validate": "$chunk.matches(/^([0-9]|[1-9][0-9]|[1-3][0-9][0-9])$/) && newData.isString() && newData.val().length >= 3 && newData.val().length <= 4000"
+          }
+        },
+        "drawGuess": {
+          "$uid": {
+            ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/settings/answerMode').val() == 'draw' && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && root.child('sessions/' + $code + '/drawTurn/drawer').val() != $uid && !root.child('sessions/' + $code + '/drawFound/' + $uid).exists() && (root.child('sessions/' + $code + '/settings/teams').val() != true || root.child('sessions/' + $code + '/players/' + $uid + '/team').val() == root.child('sessions/' + $code + '/players/' + root.child('sessions/' + $code + '/drawTurn/drawer').val() + '/team').val())",
+            ".validate": "newData.hasChildren(['text', 'count', 'at']) && newData.child('at').val() == now && newData.child('count').val() <= 15 && (data.exists() ? newData.child('count').val() == data.child('count').val() + 1 && now >= data.child('at').val() + 1500 : newData.child('count').val() == 1)",
+            "text": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" },
+            "count": { ".validate": "newData.isNumber() && newData.val() % 1 == 0" },
+            "at": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "drawHint": {
+          "$uid": {
+            ".read": "auth != null && auth.uid == $uid",
+            ".validate": "newData.hasChildren(['count', 'verdict'])",
+            "count": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 15 && newData.val() % 1 == 0" },
+            "verdict": { ".validate": "newData.isString() && newData.val().matches(/^(wrong|close|found)$/)" },
+            "$other": { ".validate": false }
+          }
+        },
+        "drawFound": {
+          ".read": "auth != null",
+          "$uid": { ".validate": "newData.isNumber()" }
+        },
+        "drawWordChange": {
+          ".write": "auth != null && !data.exists() && root.child('sessions/' + $code + '/drawTurn/drawer').val() == auth.uid && root.child('sessions/' + $code + '/status').val() == 'question' && !root.child('sessions/' + $code + '/drawing').exists() && !root.child('sessions/' + $code + '/drawTurn/changedWord').exists()",
+          ".validate": "newData.val() == true"
+        },
+        "drawPoints": {
+          "$index": {
+            "$uid": { ".validate": "newData.isNumber() && newData.val() >= 0" }
           }
         },
         "bluffs": {

@@ -635,3 +635,23 @@ Chaque joueur a une **série** : le nombre de bonnes réponses d'affilée. Elle 
 Sous le classement intermédiaire, ligne « Aussi en série : 🐯 Max 4 · 🐧 Noé 3 · +2 » : séries de 3 et plus des joueurs absents du classement affiché (au-delà de la 5e place ; en Groupe, hors meilleurs joueurs), la plus longue d'abord, 3 au plus ; jamais en Suspense ni sur l'écran de fin.
 
 **Téléphone.** Sur l'écran de résultat (joueurs et hôte qui joue, quiz et Bluff), après une bonne réponse et à partir de 3 : badge flamme avec le nombre et « Série de 4 ! », sans son. Rien après une réponse à moitié juste (la série n'a pas grandi). Aussi en Suspense : sa propre série ne dit rien de son rang.
+
+## 19. Dessine-moi
+
+Plan et décisions : `docs/plan-dessine-moi.md`. Un joueur dessine un mot secret sur son téléphone (site des joueurs), la TV montre le dessin en direct, les autres devinent en tapant le mot.
+
+**Partie.** 4, 6 ou 8 manches (8 par défaut ; réglage au lot 7). Chacun dessine au plus une fois, dans un ordre tiré au lancement. L'hôte qui joue devine mais ne dessine jamais (son app n'a pas de surface de dessin). TV obligatoire. Manche de 75 s, puis la réponse (le mot, le dessin final, les points), puis le classement, comme les autres jeux. La série (flamme) n'est pas comptée.
+
+**Dessinateur.** Voit son mot, la catégorie et le temps restant ; peut changer de mot une seule fois, et seulement avant son premier trait. Ni lettres ni chiffres (consigne). Déconnecté à la fin de la manche : manche annulée, sans points pour personne.
+
+**Devineurs.** Tous les joueurs connectés sauf le dessinateur ; en Groupe, seulement les joueurs de l'équipe du dessinateur (les autres regardent). Un champ de réponse : 15 essais par manche au plus, 1,5 s au moins entre deux essais. Après chaque essai : « Pas ça… », « Tu es proche ! » ou « Trouvé ! ». Une fois trouvé, plus d'essai.
+
+**Jugement (par l'hôte).** Sans casse, sans accents, sans article initial, sans pluriel (s ou x final) : juste si identique, ou à une faute près (lettre en trop, en moins, changée, ou deux lettres inversées) pour un mot de 5 lettres et plus. « Proche » : deux fautes, ou le début du mot (au moins 3 lettres). Les propositions ne sont jamais montrées sur la TV ni aux autres joueurs.
+
+**Points.** Devineur qui trouve : de 1 000 (tout de suite) à 400 (à la dernière seconde), selon le moment où il trouve. Dessinateur : 1 000 × (devineurs qui ont trouvé ÷ devineurs de la manche), arrondi. En Groupe, score d'équipe = moyenne des points de ses joueurs présents, question par question, comme les autres jeux (chaque équipe dessine autant de fois).
+
+**Fin de manche.** 2 s après que tous les devineurs connectés ont trouvé, ou à la fin du chrono. L'hôte peut annuler la manche (contrôles) : réponse affichée « Manche annulée », aucun point.
+
+**TV.** Le dessin en grand, « Léa dessine ! », la catégorie et le nombre de lettres, le chrono ; bandeau « Tom a trouvé ! » à chaque joueur qui trouve, avatars des devineurs allumés quand ils ont trouvé. Jamais le mot avant la réponse, jamais une proposition.
+
+**Données.** `drawTurn` (public : dessinateur, manche, nombre de lettres, catégorie), `drawing` (public : paquets du dessin), `drawFound/{uid}` (public : heure à laquelle le joueur a trouvé), `drawSecret` (mot : hôte et dessinateur), `drawGuess/{uid}` (dernier essai : hôte seulement), `drawHint/{uid}` (verdict du dernier essai : ce joueur seulement), `drawWordChange` (demande du dessinateur). Effacés à chaque manche.

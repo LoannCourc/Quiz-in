@@ -16,9 +16,9 @@ import type { AnswerMode, GameStatus, PublicSession, SessionSettings } from './t
 // seulement en Bluff (QUESTION est alors l'écriture des fausses réponses).
 // PAUSED n'a pas d'état suivant fixe : la reprise revient à pausedFrom avec remainingMs.
 
-// Pas de classement intermédiaire : Suspense, et Dessine-moi tant qu'il n'a pas de points (lot 2).
-export function skipsRankingStep(settings: Pick<SessionSettings, 'suspense' | 'answerMode'>): boolean {
-  return settings.suspense === true || settings.answerMode === 'draw'
+// Pas de classement intermédiaire : Suspense.
+export function skipsRankingStep(settings: Pick<SessionSettings, 'suspense'>): boolean {
+  return settings.suspense === true
 }
 
 export interface FlowContext {
@@ -102,7 +102,7 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
       return reveal
     case 'reveal':
       // Pas de classement intermédiaire en Suspense, ni après la dernière question (l'écran de fin le montre).
-      return suspense || answerMode === 'draw' || currentIndex + 1 >= questionCount
+      return suspense || currentIndex + 1 >= questionCount
         ? afterQuestion(context, timeLimitS)
         : { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
     case 'scores':

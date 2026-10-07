@@ -30,6 +30,7 @@ const PUBLIC_FIELD_SET: Record<keyof PublicSession, true> = {
   tvPresence: true,
   drawTurn: true,
   drawing: true,
+  drawFound: true,
 }
 
 export type PublicField = keyof PublicSession

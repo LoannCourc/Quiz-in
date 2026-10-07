@@ -111,6 +111,24 @@ export interface DrawTurn {
   round: number;
   wordLength: number;
   category: string;
+  // Le dessinateur a changé de mot (une fois par manche, avant son premier trait).
+  changedWord?: true;
+}
+
+// Dessine-moi : dernier essai d'un devineur (réécrit à chaque essai ; lisible par l'hôte seulement).
+export interface DrawGuess {
+  text: string;
+  // Numéro de l'essai dans la manche (1 à DRAW_MAX_GUESSES).
+  count: number;
+  // Heure du serveur.
+  at: number;
+}
+
+// Verdict de l'hôte sur l'essai numéro count (lisible par ce joueur seulement).
+export type DrawVerdict = 'wrong' | 'close' | 'found';
+export interface DrawHint {
+  count: number;
+  verdict: DrawVerdict;
 }
 
 // Mot de la manche en cours : lisible par l'hôte et le dessinateur seulement.
@@ -189,6 +207,8 @@ export interface RevealStats {
   freeAnswers?: FreeAnswerGroup[];
   // Bluff : les choix du vote, dans leur ordre (lettres A, B, C…), avec auteurs et votants.
   bluffChoices?: RevealedBluffChoice[];
+  // Dessine-moi : manche annulée (par l'hôte, ou dessinateur parti) ; aucun point.
+  drawCancelled?: true;
 }
 
 export interface Reveal {
@@ -338,6 +358,8 @@ export interface PublicSession {
   // 399 ; la base peut les rendre sous forme de tableau). Effacés à chaque nouvelle manche.
   drawTurn?: DrawTurn;
   drawing?: Record<string, string> | (string | null)[];
+  // Dessine-moi : qui a trouvé le mot, et quand (heure du serveur) ; jamais ce qui a été proposé.
+  drawFound?: Record<PlayerId, number>;
 }
 
 // Son de la TV : musique d'ambiance et effets activés ou non, volume général de 0 à 100.
@@ -353,6 +375,12 @@ export interface Session extends PublicSession {
   // Dessine-moi : ordre des dessinateurs (tiré au lancement) et mot de la manche en cours.
   drawOrder?: PlayerId[];
   drawSecret?: DrawSecret;
+  drawGuess?: Record<PlayerId, DrawGuess>;
+  drawHint?: Record<PlayerId, DrawHint>;
+  // Demande de changement de mot du dessinateur (une fois par manche, avant son premier trait).
+  drawWordChange?: true;
+  // Points de chaque joueur à chaque manche (les réponses classiques les gardent dans answers).
+  drawPoints?: Record<number, Record<PlayerId, number>>;
   // Bluff (spec 16). bluffChecks et bluffOwn sont lisibles aussi par le joueur concerné, pour lui seul.
   bluffs?: Record<number, Record<PlayerId, BluffEntry>>;
   bluffChecks?: Record<number, Record<PlayerId, BluffCheck>>;

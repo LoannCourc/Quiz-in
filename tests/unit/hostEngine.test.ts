@@ -565,11 +565,12 @@ describe('hostControls', () => {
       awaitingNext: null,
       canValidate: false,
       canCloseVote: false,
+      canCancelDraw: false,
     })
   })
 
   test('LOBBY : aucun contrôle ; END : seulement Rejouer et Quitter', () => {
-    const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null, canValidate: false, canCloseVote: false }
+    const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null, canValidate: false, canCloseVote: false, canCancelDraw: false }
     expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canReplay: false })
     expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canReplay: true })
   })

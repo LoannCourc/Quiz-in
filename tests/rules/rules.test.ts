@@ -27,6 +27,7 @@ import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/cons
 import { hostReturnUpdate } from '../../shared/hostAbsence'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
 import { drawGameQuestions } from '../../shared/drawGame'
+import { drawHintsUpdate } from '../../shared/drawGuess'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
@@ -1548,6 +1549,70 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await assertFails(db(HOST).ref(`${SESSION}/drawTurn`).set({ drawer: 'inconnu', round: 0, wordLength: 4, category: 'Animal' }))
   })
 
+  const guess = (uid: string, count: number, text = 'chien') =>
+    db(uid).ref(`${SESSION}/drawGuess/${uid}`).set({ text, count, at: SERVER_TIME })
+  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+  test('essais : un devineur, numérotés de 1 à 15, 1,5 s d’écart au moins ; jamais le dessinateur', async () => {
+    await seedSession(round())
+    await assertSucceeds(guess(OTHER, 1))
+    await assertFails(guess(OTHER, 2))
+    await sleep(1_600)
+    await assertFails(guess(OTHER, 3))
+    await assertSucceeds(guess(OTHER, 2))
+    await assertFails(guess(PLAYER, 1))
+    await assertFails(db(OTHER).ref(`${SESSION}/drawGuess/${OTHER}`).set({ text: 'x'.repeat(41), count: 3, at: SERVER_TIME }))
+    // Seul l'hôte lit les essais.
+    await assertFails(db('tv-uid').ref(`${SESSION}/drawGuess`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawGuess/${OTHER}`).once('value'))
+  })
+
+  test('essais : plus rien après avoir trouvé, ni après le 15e, ni hors de la manche', async () => {
+    await seedSession(round({ drawFound: { [OTHER]: Date.now() } }))
+    await assertFails(guess(OTHER, 1))
+    await seedSession(round({ drawGuess: { [OTHER]: { text: 'x', count: 15, at: Date.now() - 5_000 } } }))
+    await assertFails(guess(OTHER, 16))
+    await seedSession(round({ status: 'reveal' }))
+    await assertFails(guess(OTHER, 1))
+  })
+
+  test('Groupe : seule l’équipe du dessinateur devine', async () => {
+    const third = 'third-uid'
+    await seedSession(
+      round({
+        settings: { ...DRAW_SETTINGS, teams: true, teamCount: 2 },
+        players: {
+          [PLAYER]: { ...twoPlayers[PLAYER], team: 'pink' },
+          [OTHER]: { ...twoPlayers[OTHER], team: 'cyan' },
+          [third]: { name: 'Zoé', avatar: '🦄', score: 0, rank: 1, connected: true, team: 'pink' },
+        },
+      }),
+    )
+    await assertFails(guess(OTHER, 1))
+    await assertSucceeds(guess(third, 1))
+  })
+
+  test('verdict : lu par le joueur seul ; « a trouvé » lu par tous ; points des manches écrits par l’hôte', async () => {
+    await seedSession(round({ drawHint: { [OTHER]: { count: 1, verdict: 'close' } }, drawFound: { [OTHER]: 1 } }))
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/drawHint/${OTHER}`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawHint/${OTHER}`).once('value'))
+    expect((await db('tv-uid').ref(`${SESSION}/drawFound`).once('value')).val()).toEqual({ [OTHER]: 1 })
+    await assertFails(db(OTHER).ref(`${SESSION}/drawFound/${OTHER}`).set(2))
+    await assertSucceeds(db(HOST).ref(`${SESSION}/drawPoints/0/${OTHER}`).set(820))
+    await assertSucceeds(db(HOST).ref(`${SESSION}/reveal`).set({ correctAnswer: 'chat', stats: { drawCancelled: true } }))
+  })
+
+  test('changement de mot : le dessinateur, une fois, avant son premier trait', async () => {
+    await seedSession(round())
+    await assertFails(db(OTHER).ref(`${SESSION}/drawWordChange`).set(true))
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/drawWordChange`).set(true))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawWordChange`).set(true))
+    await seedSession(round({ drawing: { 0: '0:u' } }))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawWordChange`).set(true))
+    await seedSession(round({ drawTurn: { drawer: PLAYER, round: 0, wordLength: 4, category: 'Animal', changedWord: true } }))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawWordChange`).set(true))
+  })
+
   test('partie réelle : lancement, manche, paquets du dessinateur, révélation, manche suivante (moteur et règles)', async () => {
     const questions = drawGameQuestions(CODE)
     await seed({ sessions: { [CODE]: makeSession({ settings: DRAW_SETTINGS as Session['settings'], phaseStartedAt: Date.now() }) } })
@@ -1575,8 +1640,18 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     const doc = new DrawingDoc()
     for (const data of Object.values(seen)) if (typeof data === 'string') doc.applyChunk(data)
     expect(doc.ops.map((op) => op.kind)).toEqual(['stroke', 'fill'])
+    // Un devineur trouve le mot ; l'hôte juge son essai (verdict et « a trouvé »).
+    const guesser = [PLAYER, OTHER].find((uid) => uid !== drawer) as string
+    await assertSucceeds(db(guesser).ref(`${SESSION}/drawGuess/${guesser}`).set({ text: questions[0].word, count: 1, at: SERVER_TIME }))
+    session = (await readAsAdmin(SESSION)) as Session
+    session = await asHost(drawHintsUpdate(session))
+    expect(session.drawHint?.[guesser]).toEqual({ count: 1, verdict: 'found' })
     await step()
     expect(session.reveal?.correctAnswer).toBe(questions[0].word)
+    expect(session.drawPoints?.[0]?.[guesser]).toBeGreaterThanOrEqual(400)
+    // Classement, puis manche suivante.
+    await step()
+    expect(session.status).toBe('scores')
     await step()
     expect(session).toMatchObject({ status: 'question', currentIndex: 1 })
     expect(session.drawing).toBeUndefined()

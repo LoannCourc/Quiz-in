@@ -10,6 +10,7 @@ import {
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
 import { drawEligiblePlayers, drawOrderFor, isDrawQuestion, wordLetterCount } from './drawGame'
+import { drawAllFoundAt, drawResults, isDrawRoundAbandoned } from './drawGuess'
 import {
   acceptedParts,
   groupFreeAnswers,
@@ -141,12 +142,14 @@ export interface RevealResult {
   ranks: Record<PlayerId, number>
 }
 
-// Score = somme des points stockés pour les questions précédentes (answers, ou bluffPoints en Bluff),
+// Score = somme des points stockés pour les questions précédentes (answers, bluffPoints en Bluff, drawPoints
+// en Dessine-moi),
 // plus ceux de la question révélée : rejouer la révélation ne compte jamais deux fois les mêmes points.
 function totalScore(session: Session, playerId: PlayerId, current: PlayerResult | undefined): number {
   let total = current?.points ?? 0
   for (let index = 0; index < session.currentIndex; index++) {
-    total += session.answers?.[index]?.[playerId]?.points ?? session.bluffPoints?.[index]?.[playerId] ?? 0
+    total +=
+      session.answers?.[index]?.[playerId]?.points ?? session.bluffPoints?.[index]?.[playerId] ?? session.drawPoints?.[index]?.[playerId] ?? 0
   }
   return total
 }
@@ -232,8 +235,10 @@ export function nextDeadline(session: Session): number | null {
     case 'starting':
       return session.phaseEndsAt
     case 'question':
-      // Bluff : écriture des fausses réponses.
-      return session.settings.answerMode === 'bluff' ? writingDeadline(session) : questionDeadline(session)
+      // Bluff : écriture des fausses réponses. Dessine-moi : fin du chrono, ou 2 s après que tous ont trouvé.
+      if (session.settings.answerMode === 'bluff') return writingDeadline(session)
+      if (session.settings.answerMode === 'draw') return drawDeadline(session)
+      return questionDeadline(session)
     case 'vote':
       return voteDeadline(session)
     case 'lobby':
@@ -242,6 +247,11 @@ export function nextDeadline(session: Session): number | null {
     case 'ended':
       return null
   }
+}
+
+function drawDeadline(session: Session): number {
+  const timeUp = session.phaseEndsAt + REVEAL_GRACE_MS
+  return Math.min(timeUp, drawAllFoundAt(session) ?? timeUp)
 }
 
 function questionDeadline(session: Session): number {
@@ -322,8 +332,8 @@ export function transitionUpdate(
     case 'reveal': {
       const question = questions[session.currentIndex]
       if (!question) return null
-      // Dessine-moi (lot 2) : le mot est publié, le dessin reste affiché ; ni points ni série.
-      if (isDrawQuestion(question)) return { ...base, reveal: { correctAnswer: question.word, stats: {} }, drawSecret: null }
+      // Dessine-moi : le mot, le dessin reste affiché, les points ; annulée si le dessinateur est parti.
+      if (isDrawQuestion(question)) return { ...base, ...drawRevealPaths(session, question, isDrawRoundAbandoned(session)) }
       if (isBluffQuestion(question)) {
         const result = buildBluffReveal(question, session)
         return { ...base, ...revealPaths(session, result), ...teamPresencePaths(session), ...teamPaths(session, result.results) }
@@ -341,6 +351,34 @@ export function transitionUpdate(
   }
 }
 
+// Dessine-moi, réponse de la manche : le mot (celui du dessinateur, qui a pu en changer), les points des
+// devineurs qui ont trouvé et du dessinateur ; manche annulée : aucun point (spec 19). Pas de série.
+function drawRevealPaths(session: Session, question: DrawQuestion, cancelled: boolean): SessionUpdate {
+  const results = cancelled ? {} : drawResults(session)
+  const word = session.drawSecret?.word ?? question.word
+  const reveal: Reveal = { correctAnswer: word, stats: cancelled ? { drawCancelled: true } : {}, results }
+  return {
+    ...revealPaths(session, withScores(session, reveal, results)),
+    ...teamPresencePaths(session),
+    ...teamPaths(session, results),
+    drawSecret: null,
+  }
+}
+
+const PHASE_PATHS: readonly string[] = ['status', 'currentIndex', 'phaseStartedAt', 'phaseEndsAt']
+
+// Dessine-moi : l'hôte annule la manche en cours (décision D8) : réponse tout de suite, aucun point.
+export function drawCancelUpdate(session: Session, questions: readonly GameQuestion[], nowServer: number): SessionUpdate | null {
+  const question = questions[session.currentIndex]
+  if (session.status !== 'question' || !question || !isDrawQuestion(question)) return null
+  const expected = { status: session.status, currentIndex: session.currentIndex }
+  const transition = transitionUpdate(session, questions, expected, nowServer)
+  if (!transition) return null
+  // De la transition normale, seuls l'état et ses heures : ses points ne doivent pas être écrits.
+  const phase = Object.fromEntries(Object.entries(transition).filter(([path]) => PHASE_PATHS.includes(path)))
+  return { ...phase, ...drawRevealPaths(session, question, true) }
+}
+
 // Dessine-moi, début d'une manche : dessinateur (ordre tiré au lancement), mot pour lui seul, dessin de
 // la manche précédente effacé.
 function drawRoundPaths(session: Session, question: DrawQuestion, round: number): SessionUpdate {
@@ -349,6 +387,10 @@ function drawRoundPaths(session: Session, question: DrawQuestion, round: number)
     drawTurn: drawer && { drawer, round, wordLength: wordLetterCount(question.word), category: question.category },
     drawSecret: drawer && { word: question.word, category: question.category },
     drawing: null,
+    drawGuess: null,
+    drawHint: null,
+    drawFound: null,
+    drawWordChange: null,
   }
 }
 
@@ -424,15 +466,17 @@ function gradingPaths(session: Session, question: Question): SessionUpdate {
 // points sans avoir voté, grâce à sa proposition).
 function revealPaths(session: Session, { reveal, results, scores, ranks }: RevealResult): SessionUpdate {
   const update: SessionUpdate = { reveal }
-  const isBluff = session.settings.answerMode === 'bluff'
+  const { answerMode } = session.settings
   for (const [playerId, result] of Object.entries(results)) {
-    if (isBluff) update[`bluffPoints/${session.currentIndex}/${playerId}`] = result.points
+    if (answerMode === 'bluff') update[`bluffPoints/${session.currentIndex}/${playerId}`] = result.points
+    else if (answerMode === 'draw') update[`drawPoints/${session.currentIndex}/${playerId}`] = result.points
     else Object.assign(update, resultPaths(session, playerId, result))
   }
   for (const playerId of Object.keys(scores)) {
     update[`players/${playerId}/score`] = scores[playerId]
     update[`players/${playerId}/rank`] = ranks[playerId]
-    // Série (spec 18) : d'après le résultat de la question, juste ou validé par l'hôte.
+    // Série (spec 18) : d'après le résultat de la question, juste ou validé par l'hôte. Pas en Dessine-moi.
+    if (answerMode === 'draw') continue
     const player = session.players[playerId]
     update[`players/${playerId}/streak`] = nextStreak(player?.streak, results[playerId], player?.connected === true)
   }
@@ -529,6 +573,11 @@ const DRAW_RESET: SessionUpdate = {
   drawTurn: null,
   drawSecret: null,
   drawing: null,
+  drawGuess: null,
+  drawHint: null,
+  drawFound: null,
+  drawWordChange: null,
+  drawPoints: null,
 }
 
 // Bluff : nœuds effacés au lancement et à « Rejouer ».
@@ -681,6 +730,8 @@ export interface HostControls {
   // Bluff, vote sans minuteur : gros bouton « Clore le vote » (même transition que Passer, avec une
   // confirmation s'il manque des votes). Passer n'est alors pas proposé dans le panneau.
   canCloseVote: boolean
+  // Dessine-moi, manche en cours : « Annuler la manche » (drawCancelUpdate, aucun point).
+  canCancelDraw: boolean
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
@@ -697,6 +748,7 @@ export function hostControls(session: Session): HostControls {
     awaitingNext: awaitingNextOf(session),
     canValidate: session.status === 'validation',
     canCloseVote: session.status === 'vote',
+    canCancelDraw: session.status === 'question' && session.settings.answerMode === 'draw',
   }
 }
 

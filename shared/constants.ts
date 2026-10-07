@@ -23,6 +23,15 @@ export const STARTING_DURATION_S = 3;
 export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 60, draw: 75 };
 export const ALL_ANSWERED_DELAY_S = 2;
 // Bluff : durée de base (la vraie réponse), plus le retournement des fausses propositions (revealDurationS).
+// Dessine-moi (spec 19) : essais par manche, écart minimal entre deux essais, longueur d'un essai.
+export const DRAW_MAX_GUESSES = 15;
+export const DRAW_GUESS_MIN_INTERVAL_MS = 1_500;
+export const DRAW_GUESS_MAX_LENGTH = 40;
+// Points : devineur de 1 000 (tout de suite) à 400 (à la fin du chrono) ; dessinateur 1 000 au plus.
+export const DRAW_GUESS_MAX_POINTS = 1_000;
+export const DRAW_GUESS_MIN_POINTS = 400;
+export const DRAW_DRAWER_MAX_POINTS = 1_000;
+
 export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4, draw: 6 };
 export const SCORES_DURATION_S = 5;
 // Fin du classement : annonce plein écran de la question suivante (comprise dans SCORES_DURATION_S).

@@ -32,7 +32,7 @@ export function normalizeAnswer(answer: string): string {
 
 // Distance de Damerau-Levenshtein (variante « alignement optimal ») : nombre minimal
 // d'insertions, suppressions, remplacements ou inversions de deux lettres voisines.
-function editDistance(a: string, b: string): number {
+export function editDistance(a: string, b: string): number {
   const rows = Array.from({ length: a.length + 1 }, (_, i) =>
     Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)),
   )

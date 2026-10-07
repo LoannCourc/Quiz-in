@@ -88,17 +88,19 @@ describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
     expect(toPublicQuestion(question, 'draw').text).toBe(question.category)
   })
 
-  test('révélation : le mot publié, le dessin gardé, ni points ni série ; puis manche suivante sans classement', () => {
+  test('réponse : le mot publié, le dessin gardé, personne n’a trouvé (0 point) ; classement, puis manche suivante', () => {
     const question = advance(launched(3))
     const withDrawing = { ...question, drawing: { 0: '0:s0,1,1:a,a' } }
     const reveal = advance(withDrawing, NOW + 100_000)
     expect(reveal.status).toBe('reveal')
-    expect(reveal.reveal).toEqual({ correctAnswer: questions[0].word, stats: {} })
+    expect(reveal.reveal).toMatchObject({ correctAnswer: questions[0].word, stats: {} })
     expect(reveal.drawSecret).toBeUndefined()
     expect(reveal.drawing).toEqual({ 0: '0:s0,1,1:a,a' })
-    expect(reveal.players[PLAYER]).toEqual(question.players[PLAYER])
-    expect(hasRankingStep(reveal)).toBe(false)
-    const next = advance(reveal, NOW + 200_000)
+    expect(reveal.players[PLAYER].score).toBe(0)
+    expect(hasRankingStep(reveal)).toBe(true)
+    const scores = advance(reveal, NOW + 150_000)
+    expect(scores.status).toBe('scores')
+    const next = advance(scores, NOW + 200_000)
     expect(next.status).toBe('question')
     expect(next.currentIndex).toBe(1)
     expect(next.drawTurn?.drawer).toBe(next.drawOrder?.[1])
