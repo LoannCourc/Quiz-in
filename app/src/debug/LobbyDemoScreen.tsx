@@ -19,7 +19,7 @@ import { DEMO_CODE } from './playerScenarios';
 // &teams=random|host|players : Groupe (composition des équipes, actions appliquées sur place) ;
 // &drawn=1 : équipes déjà tirées au sort ; &late=3 : 3 joueurs arrivés après le tirage (sans équipe) ; &page=teams : page « Équipes » ouverte ;
 // &details=1 (avec tv=connected) : QR et lien dépliés sous la barre « TV connectée » ;
-// &settings=1 : feuille « Réglages » ouverte.
+// &settings=1 : feuille « Réglages » ouverte ; &draw=1 : partie de Dessine-moi (à 2 : message du dessinateur unique).
 // Les actions (lancer, s'inscrire) écrivent dans la base : elles échouent ici, c'est attendu.
 
 const HOST_UID: PlayerId = 'host';
@@ -33,7 +33,7 @@ function isTeamMode(value: string | undefined): value is TeamMode {
   return TEAM_MODES.includes(value as TeamMode);
 }
 
-function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: TeamMode): Session {
+function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: TeamMode, isDraw = false): Session {
   const players: Record<PlayerId, Player> = {};
   for (let index = 0; index < playerCount; index += 1) {
     if (index === 0 && !hostRegistered) continue;
@@ -43,7 +43,11 @@ function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: Te
     hostUid: HOST_UID,
     quizId: DEMO_CATALOG[0].id,
     status: 'lobby',
-    settings: teamMode ? { ...DEFAULT_SESSION_SETTINGS, teams: true, teamMode } : DEFAULT_SESSION_SETTINGS,
+    settings: {
+      ...DEFAULT_SESSION_SETTINGS,
+      ...(teamMode && { teams: true, teamMode }),
+      ...(isDraw && { answerMode: 'draw' as const, speedBonus: false }),
+    },
     currentIndex: 0,
     phaseStartedAt: 0,
     phaseEndsAt: 0,
@@ -61,12 +65,12 @@ function demoCast(tv: string | undefined): CastGame {
 }
 
 export default function LobbyDemoScreen() {
-  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; settings?: string }>();
+  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; settings?: string; draw?: string }>();
   const playerCount = Math.min(20, Math.max(0, Number(params.players ?? 4) || 0));
   const teamMode = isTeamMode(params.teams) ? params.teams : undefined;
   // Session en mémoire : les actions du salon (équipes) s'y appliquent, rien n'est écrit dans la base.
   const [session, setSession] = useState(() => {
-    const initial = demoSession(playerCount, params.host !== '0', teamMode);
+    const initial = demoSession(playerCount, params.host !== '0', teamMode, params.draw === '1');
     const drawn = params.drawn === '1' ? applyLocalUpdate(initial, teamDrawUpdate(initial, Date.now() - 60_000)) : initial;
     return withLateJoiners(drawn, Number(params.late) || 0);
   });

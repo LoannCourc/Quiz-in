@@ -704,6 +704,8 @@ export const strings = {
     cancelled: 'Manche annulée : aucun point.',
     guessPoints: (points: number) => `Trouvé : +${formatNumber(points)} pts`,
     notFound: 'Pas trouvé cette fois.',
+    // Groupe : le joueur d'une autre équipe regardait.
+    otherTeamRound: (team: string) => `Manche de l’équipe ${team} : ton équipe joue à son tour.`,
     drawerPoints: (points: number) =>
       points > 0 ? `Ton dessin te rapporte +${formatNumber(points)} pts` : 'Personne n’a trouvé ton dessin.',
     // App de l'hôte : l'hôte qui joue ne dessine pas (décision D1).

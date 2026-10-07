@@ -172,6 +172,13 @@ function bluffProgress(session: PublicSession, done: Record<PlayerId, true> | un
   return connectedPlayerIds(session.players).map((id) => ({ id, avatar: session.players[id].avatar, done: done?.[id] === true }));
 }
 
+// Groupe : nom de l'équipe du dessinateur, si le joueur est dans une autre équipe (il regardait).
+function otherTeamRound(session: PublicSession, uid: PlayerId): string | null {
+  const drawerTeam = session.drawTurn && session.players[session.drawTurn.drawer]?.team;
+  if (!session.settings.teams || !drawerTeam || session.players[uid]?.team === drawerTeam) return null;
+  return strings.teams.names[drawerTeam];
+}
+
 function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, draw }: PlayerGameProps): ReactNode {
   if (!isKnownAnswerMode(session.settings.answerMode)) return <OutdatedView />;
   const timing: PhaseTiming = {
@@ -236,6 +243,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
               word={session.reveal.correctAnswer}
               drawerName={drawer?.name ?? null}
               result={myResult(session, uid)}
+              playingTeam={otherTeamRound(session, uid)}
               isDrawer={session.drawTurn?.drawer === uid}
               isCancelled={session.reveal.stats.drawCancelled === true}
             />

@@ -207,15 +207,18 @@ interface DrawRevealViewProps {
   result: PlayerResult | undefined;
   isDrawer: boolean;
   isCancelled: boolean;
+  // Groupe : équipe qui jouait la manche, pour le joueur d'une autre équipe (null sinon).
+  playingTeam: string | null;
 }
 
 // Révélation : le mot, qui l'a dessiné, et ce que la manche rapporte au joueur.
-export function DrawRevealView({ word, drawerName, result, isDrawer, isCancelled }: DrawRevealViewProps) {
+export function DrawRevealView({ word, drawerName, result, isDrawer, isCancelled, playingTeam }: DrawRevealViewProps) {
   let outcome: string | null = null;
   if (isCancelled) outcome = texts.cancelled;
   else if (isDrawer) outcome = texts.drawerPoints(result?.points ?? 0);
   else if (result?.correct) outcome = texts.guessPoints(result.points);
   else if (result) outcome = texts.notFound;
+  else if (playingTeam) outcome = texts.otherTeamRound(playingTeam);
   return (
     <View style={styles.block}>
       <Text style={[textStyles.label, styles.centered]}>{texts.itWas}</Text>

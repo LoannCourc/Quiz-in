@@ -222,3 +222,11 @@ describe('Dessine-moi en Groupe : points d’équipe', () => {
     expect(after.reveal?.results).not.toHaveProperty(HOST)
   })
 })
+
+describe('Dessine-moi : sons', () => {
+  test('« Changer de mot » ne fait aucun son (catégorie, nombre de lettres et énoncé changent)', () => {
+    const before = round({ phaseStartedAt: NOW_SOUND - 500, phaseEndsAt: NOW_SOUND + 60_000 })
+    const changed = apply({ ...before, drawWordChange: true }, drawWordChangeUpdate({ ...before, drawWordChange: true }, questions))
+    expect(soundCues(before, changed, NOW_SOUND)).toEqual([])
+  })
+})

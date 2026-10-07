@@ -99,6 +99,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   drawRevealDrawer: 'Dessine-moi : révélation, dessinateur',
   drawRevealMissed: 'Dessine-moi : révélation, pas trouvé',
   drawCancelled: 'Dessine-moi : manche annulée',
+  drawRevealTeams: 'Dessine-moi : révélation, autre équipe',
   ...BLUFF_SCENARIO_LABELS,
 };
 
@@ -230,7 +231,8 @@ type DrawScenarioId =
   | 'drawReveal'
   | 'drawRevealDrawer'
   | 'drawRevealMissed'
-  | 'drawCancelled';
+  | 'drawCancelled'
+  | 'drawRevealTeams';
 
 export interface DemoDraw {
   word: string | null;
@@ -252,13 +254,14 @@ const DEMO_DRAW_RESULTS: Partial<Record<DrawScenarioId, Record<PlayerId, PlayerR
   drawReveal: { [DEMO_UID]: { correct: true, points: 820 }, lea: { correct: true, points: 500 } },
   drawRevealDrawer: { [DEMO_UID]: { correct: true, points: 667 } },
   drawRevealMissed: { [DEMO_UID]: { correct: false, points: 0 }, lea: { correct: false, points: 0 } },
+  drawRevealTeams: { lea: { correct: true, points: 1000 }, tom: { correct: true, points: 880 } },
 };
 
 // Dessine-moi : manche en cours (je dessine, je devine, l'autre équipe devine), ou révélation du mot.
 function drawScenario(id: DrawScenarioId, now: number): Scenario {
   const isDrawer = id === 'drawDrawer' || id === 'drawRevealDrawer';
   const drawer = isDrawer ? DEMO_UID : 'lea';
-  const isTeams = id === 'drawSpectator';
+  const isTeams = id === 'drawSpectator' || id === 'drawRevealTeams';
   // Groupe à deux équipes : Léa (Rose) dessine, je suis Cyan.
   const players: Record<PlayerId, Player> = isTeams
     ? Object.fromEntries(
@@ -274,7 +277,7 @@ function drawScenario(id: DrawScenarioId, now: number): Scenario {
     drawTurn: { drawer, round: 2, wordLength: 6, category: 'Animal' },
     ...phase(now, QUESTION_DURATION_S.draw, 20),
   };
-  const isReveal = id === 'drawReveal' || id === 'drawRevealDrawer' || id === 'drawRevealMissed' || id === 'drawCancelled';
+  const isReveal = id === 'drawReveal' || id === 'drawRevealDrawer' || id === 'drawRevealMissed' || id === 'drawCancelled' || id === 'drawRevealTeams';
   const reveal: Reveal = { correctAnswer: DEMO_DRAW_WORD, stats: id === 'drawCancelled' ? { drawCancelled: true } : {}, results: DEMO_DRAW_RESULTS[id] ?? {} };
   const session: PublicSession = isReveal ? { ...base, status: 'reveal', reveal, ...phase(now, REVEAL_DURATION_S.draw) } : base;
   const draw: DemoDraw = { word: isDrawer ? DEMO_DRAW_WORD : null, canChangeWord: isDrawer, guess: { ...NO_GUESS, ...DEMO_GUESSES[id] } };
@@ -366,6 +369,7 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
     case 'drawRevealDrawer':
     case 'drawRevealMissed':
     case 'drawCancelled':
+    case 'drawRevealTeams':
       return drawScenario(id, now);
     case 'lobby':
       return idle(baseSession(now, PLAYERS_BEFORE));
