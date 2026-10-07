@@ -3,6 +3,7 @@ import {
   AVAILABLE_OPTIONS,
   BLUFF_HIDDEN_OPTIONS,
   canEnableOption,
+  hasImposedAnswerMode,
   withAnswerMode,
   type GameOption,
 } from '@shared/quizCatalog';
@@ -51,9 +52,9 @@ interface GameSettingsSheetProps {
 // Feuille des réglages de la partie (maquette R2) : tuiles à toucher, « Terminé » fixé en bas (seules
 // les tuiles défilent sur un petit écran). Fermeture aussi par un appui à côté ou le bouton retour.
 // Changer de mode coupe les options devenues incompatibles (withAnswerMode).
-// Bluff : ni mode de réponse ni Contrôle ou Rapidité, seulement Groupe et le rythme.
+// Bluff et Dessine-moi : ni mode de réponse ni Contrôle ou Rapidité, seulement Groupe et le rythme.
 export function GameSettingsSheet({ visible, settings, onChange, sound, onSoundChange, onClose }: GameSettingsSheetProps) {
-  const isBluff = settings.answerMode === 'bluff';
+  const isBluff = hasImposedAnswerMode(settings.answerMode);
   const options = isBluff ? OPTIONS.filter(({ option }) => !BLUFF_HIDDEN_OPTIONS.includes(option)) : OPTIONS;
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>

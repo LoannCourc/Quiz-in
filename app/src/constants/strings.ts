@@ -16,8 +16,8 @@ import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuizAudie
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 
-// Types de jeu du sélecteur du catalogue : seul le quiz est jouable au MVP.
-export type GameType = 'quiz' | 'blindTest' | 'bluff';
+// Types de jeu du sélecteur du catalogue. Dessine-moi : en développement seulement (lot 2).
+export type GameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -92,7 +92,7 @@ export const strings = {
     searchPlaceholder: 'Titre du quiz',
     closeSearch: 'Fermer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
-    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff' } satisfies Record<GameType, string>,
+    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Dessine-moi' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
     rows: {
@@ -117,11 +117,13 @@ export const strings = {
       choice: 'Choix multiples',
       free: 'Réponse libre',
       bluff: 'Bluff',
+      draw: 'Dessin',
     } satisfies Record<AnswerMode, string>,
     answerModeHints: {
       choice: '4 propositions',
       free: 'On tape la réponse',
       bluff: 'On invente une fausse réponse',
+      draw: 'On dessine, les autres devinent',
     } satisfies Record<AnswerMode, string>,
     optionsLabel: 'Options',
     rhythmLabel: 'Rythme',

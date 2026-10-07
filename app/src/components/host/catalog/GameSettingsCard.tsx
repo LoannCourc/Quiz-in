@@ -1,3 +1,4 @@
+import { hasImposedAnswerMode } from '@shared/quizCatalog';
 import type { SessionSettings } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -11,7 +12,7 @@ import { Spacing } from '@/constants/theme';
 // Bluff : « Bluff », sans mention de la Rapidité (sans effet).
 export function settingsSummary(settings: SessionSettings): string {
   const parts = [strings.quizSetup.answerModes[settings.answerMode]];
-  if (settings.answerMode !== 'bluff') parts.push(settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff);
+  if (!hasImposedAnswerMode(settings.answerMode)) parts.push(settings.speedBonus ? strings.quizSetup.speedBonusOn : strings.quizSetup.speedBonusOff);
   if (settings.control) parts.push(strings.quizSetup.options.control.title);
   if (settings.teams) parts.push(strings.quizSetup.options.teams.title);
   if (settings.stepByStep) parts.push(strings.quizSetup.stepByStep.title);

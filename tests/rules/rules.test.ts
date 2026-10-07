@@ -25,6 +25,8 @@ import {
 import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
+import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
+import { drawGameQuestions } from '../../shared/drawGame'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
@@ -1490,6 +1492,94 @@ describe('Bluff : hôte qui joue, 2 joueurs', () => {
     expect(refused).toEqual([])
     // Diagnostic : l'hôte voit sa propre proposition avec une heure estimée, puis celle du serveur.
     expect(stamps.length).toBeGreaterThanOrEqual(1)
+  })
+})
+
+describe('Dessine-moi (dessin en direct, lot 2)', () => {
+  const DRAW_SETTINGS = { answerMode: 'draw', speedBonus: false, control: false, teams: false }
+  const twoPlayers = {
+    [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true },
+    [OTHER]: { name: 'Tom', avatar: '🐼', score: 0, rank: 1, connected: true },
+  }
+  const round = (overrides: Data = {}) => ({
+    settings: DRAW_SETTINGS,
+    players: twoPlayers,
+    currentQuestion: { text: 'Animal', difficulty: 1, timeLimit: 75 },
+    drawTurn: { drawer: PLAYER, round: 0, wordLength: 4, category: 'Animal' },
+    drawSecret: { word: 'chat', category: 'Animal' },
+    ...overrides,
+  })
+  const chunk = (key: string) => `${SESSION}/drawing/${key}`
+
+  test('le dessinateur envoie ses paquets pendant sa manche ; tout le monde les lit', async () => {
+    await seedSession(round())
+    await assertSucceeds(db(PLAYER).ref(chunk('0')).set('0:s0,1,1:a,a;1,1'))
+    await assertSucceeds(db(PLAYER).ref(chunk('399')).set('b3:u'))
+    expect((await db('tv-uid').ref(chunk('0')).once('value')).val()).toBe('0:s0,1,1:a,a;1,1')
+    expect((await db(OTHER).ref(`${SESSION}/drawing`).once('value')).exists()).toBe(true)
+  })
+
+  test('refusé : autre joueur, paquet réécrit, trop long, mauvaise clé ou pas du texte, hors de la manche', async () => {
+    await seedSession(round())
+    await assertFails(db(OTHER).ref(chunk('0')).set('0:u'))
+    await assertSucceeds(db(PLAYER).ref(chunk('1')).set('1:u'))
+    await assertFails(db(PLAYER).ref(chunk('1')).set('1:x0'))
+    await assertFails(db(PLAYER).ref(chunk('2')).set('2:' + 'a'.repeat(3999)))
+    await assertFails(db(PLAYER).ref(chunk('400')).set('400:u'))
+    await assertFails(db(PLAYER).ref(chunk('07')).set('7:u'))
+    await assertFails(db(PLAYER).ref(chunk('3')).set(42))
+    await seedSession(round({ status: 'reveal' }))
+    await assertFails(db(PLAYER).ref(chunk('4')).set('4:u'))
+  })
+
+  test('le mot : lu par le dessinateur et l’hôte seulement, jamais par un autre joueur ni la TV', async () => {
+    await seedSession(round())
+    await assertSucceeds(db(PLAYER).ref(`${SESSION}/drawSecret`).once('value'))
+    await assertSucceeds(db(HOST).ref(`${SESSION}/drawSecret`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/drawSecret`).once('value'))
+    await assertFails(db('tv-uid').ref(`${SESSION}/drawSecret`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawSecret`).set({ word: 'chien', category: 'Animal' }))
+  })
+
+  test('manche publique (dessinateur, catégorie, nombre de lettres) : lue par tous, écrite par l’hôte seul', async () => {
+    await seedSession(round())
+    expect((await db('tv-uid').ref(`${SESSION}/drawTurn`).once('value')).val()).toMatchObject({ drawer: PLAYER, wordLength: 4 })
+    await assertFails(db(PLAYER).ref(`${SESSION}/drawTurn/drawer`).set(OTHER))
+    await assertFails(db(HOST).ref(`${SESSION}/drawTurn`).set({ drawer: 'inconnu', round: 0, wordLength: 4, category: 'Animal' }))
+  })
+
+  test('partie réelle : lancement, manche, paquets du dessinateur, révélation, manche suivante (moteur et règles)', async () => {
+    const questions = drawGameQuestions(CODE)
+    await seed({ sessions: { [CODE]: makeSession({ settings: DRAW_SETTINGS as Session['settings'], phaseStartedAt: Date.now() }) } })
+    const asHost = async (update: SessionUpdate | null) => {
+      expect(update).not.toBeNull()
+      await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+      return (await readAsAdmin(SESSION)) as Session
+    }
+    let session = (await readAsAdmin(SESSION)) as Session
+    const launch = launchUpdate(session, questions, Date.now())
+    session = await asHost(launch.ok ? launch.update : null)
+    const step = async () => (session = await asHost(transitionUpdate(session, questions, { status: session.status, currentIndex: session.currentIndex }, Date.now())))
+    await step()
+    expect(session.status).toBe('question')
+    const drawer = session.drawTurn?.drawer as string
+    expect(drawer).not.toBe(HOST)
+    // Le dessinateur dessine ; la TV lit le dessin et le reconstruit.
+    const writer = new DrawingWriter()
+    writer.beginStroke(1, 1, 10, 10)
+    writer.extendStroke(200, 10)
+    writer.endStroke()
+    writer.fill(5, [3, 4, 10])
+    for (const { seq, data } of writer.flush()) await assertSucceeds(db(drawer).ref(chunk(String(seq))).set(data))
+    const seen = (await db('tv-uid').ref(`${SESSION}/drawing`).once('value')).val() as Record<string, string> | string[]
+    const doc = new DrawingDoc()
+    for (const data of Object.values(seen)) if (typeof data === 'string') doc.applyChunk(data)
+    expect(doc.ops.map((op) => op.kind)).toEqual(['stroke', 'fill'])
+    await step()
+    expect(session.reveal?.correctAnswer).toBe(questions[0].word)
+    await step()
+    expect(session).toMatchObject({ status: 'question', currentIndex: 1 })
+    expect(session.drawing).toBeUndefined()
   })
 })
 

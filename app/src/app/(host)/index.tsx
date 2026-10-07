@@ -1,3 +1,4 @@
+import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
 import { Link, Redirect, router } from 'expo-router';
 import { useMemo } from 'react';
@@ -21,11 +22,12 @@ export default function HomeRoute() {
   return isPublishedWeb ? <Redirect href="/join" /> : <CatalogScreen />;
 }
 
-// Fiches valides ; les entrées mal formées de la base sont ignorées.
+// Fiches valides ; les entrées mal formées de la base sont ignorées. Dessine-moi (pas de quiz dans la
+// base) : fiche locale, en développement seulement (lot 2).
 function toEntries(quizzes: unknown): QuizEntry[] {
   const { valid, ignoredCount } = parseQuizCatalog(quizzes);
   warnIgnoredEntries('Catalogue', ignoredCount);
-  return valid;
+  return __DEV__ ? [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }] : valid;
 }
 
 function openQuiz(quizId: string) {

@@ -1,5 +1,6 @@
-import { isBluffQuestion, voteProgress } from '@shared/bluff';
+import { voteProgress } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
+import { isClassicQuestion } from '@shared/gameQuestions';
 import {
   endUpdate,
   hostControls,
@@ -103,9 +104,9 @@ function HostSession({ code }: { code: string }) {
   return <HostGame code={code} session={current} />;
 }
 
-// Question à choix ou à saisie (validation du Contrôle) ; jamais une question de Bluff.
+// Question à choix ou à saisie (validation du Contrôle) ; jamais une question de Bluff ni de dessin.
 function classicQuestion(question: GameQuestion | undefined): Question | undefined {
-  return question && !isBluffQuestion(question) ? question : undefined;
+  return question && isClassicQuestion(question) ? question : undefined;
 }
 
 // Partie en cours : de STARTING jusqu'avant END.
@@ -114,7 +115,7 @@ function isInProgress(session: Session): boolean {
 }
 
 function HostGame({ code, session }: { code: string; session: Session }) {
-  const questions = useGameQuestions(session.quizId, session.settings.answerMode === 'bluff');
+  const questions = useGameQuestions(code, session.quizId, session.settings.answerMode);
   const serverOffsetMs = useServerTimeOffset();
   const uid = session.hostUid;
   const isRegistered = session.players[uid] !== undefined;

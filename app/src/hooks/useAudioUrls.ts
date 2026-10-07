@@ -1,6 +1,6 @@
 import { AUDIO_URL_MIN_VALIDITY_MS, AUDIO_URL_REFRESH_INTERVAL_MS } from '@shared/constants';
 import { selectGameQuestions, type AudioUrls } from '@shared/hostEngine';
-import { isBluffQuestion } from '@shared/bluff';
+import { isClassicQuestion } from '@shared/gameQuestions';
 import type { GameQuestion, Question } from '@shared/types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -25,7 +25,7 @@ export function useAudioUrls(questions: readonly GameQuestion[] | null, isEnable
   const [failedIds, setFailedIds] = useState<readonly string[]>([]);
   const inFlight = useRef(new Set<string>());
   const tracks = useMemo(
-    () => (isEnabled && questions ? selectGameQuestions(questions).filter((question): question is Question => !isBluffQuestion(question) && question.music !== undefined) : []),
+    () => (isEnabled && questions ? selectGameQuestions(questions).filter((question): question is Question => isClassicQuestion(question) && question.music !== undefined) : []),
     [questions, isEnabled],
   );
 

@@ -20,10 +20,10 @@ export const POSTER_PALETTES: readonly PosterPalette[] = ['pink', 'blue', 'green
 // Durées en secondes.
 export const STARTING_DURATION_S = 3;
 // Bluff : écriture d'une fausse réponse (une phrase).
-export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 60 };
+export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 60, draw: 75 };
 export const ALL_ANSWERED_DELAY_S = 2;
 // Bluff : durée de base (la vraie réponse), plus le retournement des fausses propositions (revealDurationS).
-export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4 };
+export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4, draw: 6 };
 export const SCORES_DURATION_S = 5;
 // Fin du classement : annonce plein écran de la question suivante (comprise dans SCORES_DURATION_S).
 export const NEXT_QUESTION_ANNOUNCE_MS = 1_500;

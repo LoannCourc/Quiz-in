@@ -16,6 +16,11 @@ import type { AnswerMode, GameStatus, PublicSession, SessionSettings } from './t
 // seulement en Bluff (QUESTION est alors l'écriture des fausses réponses).
 // PAUSED n'a pas d'état suivant fixe : la reprise revient à pausedFrom avec remainingMs.
 
+// Pas de classement intermédiaire : Suspense, et Dessine-moi tant qu'il n'a pas de points (lot 2).
+export function skipsRankingStep(settings: Pick<SessionSettings, 'suspense' | 'answerMode'>): boolean {
+  return settings.suspense === true || settings.answerMode === 'draw'
+}
+
 export interface FlowContext {
   answerMode: AnswerMode
   // Index de la question courante (0 pour la première) et nombre de questions de la partie.
@@ -97,7 +102,7 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
       return reveal
     case 'reveal':
       // Pas de classement intermédiaire en Suspense, ni après la dernière question (l'écran de fin le montre).
-      return suspense || currentIndex + 1 >= questionCount
+      return suspense || answerMode === 'draw' || currentIndex + 1 >= questionCount
         ? afterQuestion(context, timeLimitS)
         : { status: 'scores', currentIndex, durationS: stepByStep ? null : SCORES_DURATION_S }
     case 'scores':
@@ -126,7 +131,7 @@ export function nextQuestionCountdown(session: SessionTiming): NextQuestionCount
   if (isAwaitingHost(session)) return null
   if (session.status === 'reveal') {
     // Suspense ou dernière question : pas de classement après la révélation, la suite arrive à sa fin.
-    const scoresMs = session.settings.suspense || isLast ? 0 : SCORES_DURATION_S * 1000
+    const scoresMs = skipsRankingStep(session.settings) || isLast ? 0 : SCORES_DURATION_S * 1000
     return { startsAt: session.phaseStartedAt, endsAt: session.phaseEndsAt + scoresMs, isLastQuestion: isLast }
   }
   if (session.status === 'scores') {
@@ -143,7 +148,7 @@ export function isLastQuestion(session: Pick<PublicSession, 'currentIndex' | 'qu
 
 // Étape « Classement » entre la révélation et la suite : ni en Suspense, ni après la dernière question.
 export function hasRankingStep(session: Pick<PublicSession, 'settings' | 'currentIndex' | 'questionCount'>): boolean {
-  return session.settings.suspense !== true && !isLastQuestion(session)
+  return !skipsRankingStep(session.settings) && !isLastQuestion(session)
 }
 
 // Numéro (à partir de 1) de la question annoncée pendant le classement : la suivante. null après

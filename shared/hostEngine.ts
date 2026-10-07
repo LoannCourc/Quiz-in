@@ -9,6 +9,7 @@ import {
   STARTING_DURATION_S,
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
+import { drawEligiblePlayers, drawOrderFor, isDrawQuestion, wordLetterCount } from './drawGame'
 import {
   acceptedParts,
   groupFreeAnswers,
@@ -18,7 +19,7 @@ import {
   type AcceptedParts,
   type ValidationDecisions,
 } from './freeAnswers'
-import { hasRankingStep, hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS } from './gameFlow'
+import { hasRankingStep, hasValidationPhase, isAwaitingHost, isUntimedPhase, nextPhase, questionDurationS, skipsRankingStep } from './gameFlow'
 import { canLaunchGame, connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { computePoints } from './scoring'
@@ -37,6 +38,7 @@ import type {
   AnswerMode,
   BluffQuestion,
   ChoiceOptions,
+  DrawQuestion,
   GameQuestion,
   GameStatus,
   PlayerId,
@@ -71,6 +73,10 @@ export type AudioUrls = Readonly<Record<string, string>>
 // Blind test : seulement l'adresse de l'extrait, jamais l'identifiant, le titre ni l'artiste.
 // Bluff : l'énoncé seul (les choix sont publiés au début du vote, sans la vraie réponse désignée).
 export function toPublicQuestion(question: GameQuestion, answerMode: AnswerMode, audioUrl?: string): PublicQuestion {
+  // Dessine-moi : jamais le mot ; la catégorie seule (indice public, décision D5).
+  if (isDrawQuestion(question)) {
+    return { text: question.category, difficulty: question.difficulty, timeLimit: questionDurationS(answerMode, question.timeLimit) }
+  }
   const published: PublicQuestion = {
     text: question.text,
     difficulty: question.difficulty,
@@ -276,8 +282,9 @@ export function transitionUpdate(
   const { answerMode } = session.settings
   const questionCount = session.questionCount ?? questions.length
   const suspense = session.settings.suspense === true
-  // Question qui démarre ensuite : la suivante après le classement, ou après la révélation en Suspense.
-  const isBeforeNextQuestion = session.status === 'scores' || (session.status === 'reveal' && suspense)
+  // Question qui démarre ensuite : la suivante après le classement, ou après la révélation quand il n'y a
+  // pas de classement intermédiaire (Suspense, Dessine-moi).
+  const isBeforeNextQuestion = session.status === 'scores' || (session.status === 'reveal' && skipsRankingStep(session.settings))
   const upcoming = questions[isBeforeNextQuestion ? session.currentIndex + 1 : session.currentIndex]
   const context = {
     answerMode,
@@ -297,7 +304,8 @@ export function transitionUpdate(
       const question = questions[phase.currentIndex]
       if (!question) return null
       // reveal est effacé au passage à la question suivante (spec 7).
-      return { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
+      const published = { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
+      return isDrawQuestion(question) ? { ...published, ...drawRoundPaths(session, question, phase.currentIndex) } : published
     }
     case 'vote': {
       // Bluff : choix publiés sans auteur ni type ; auteurs et index de chacun gardés pour la suite.
@@ -308,12 +316,14 @@ export function transitionUpdate(
     case 'validation': {
       // Correction automatique écrite dès la fin de la question (Rapidité calculée sur cette fin).
       const question = questions[session.currentIndex]
-      if (!question || isBluffQuestion(question)) return null
+      if (!question || isBluffQuestion(question) || isDrawQuestion(question)) return null
       return { ...base, ...gradingPaths(session, question), ...teamPresencePaths(session) }
     }
     case 'reveal': {
       const question = questions[session.currentIndex]
       if (!question) return null
+      // Dessine-moi (lot 2) : le mot est publié, le dessin reste affiché ; ni points ni série.
+      if (isDrawQuestion(question)) return { ...base, reveal: { correctAnswer: question.word, stats: {} }, drawSecret: null }
       if (isBluffQuestion(question)) {
         const result = buildBluffReveal(question, session)
         return { ...base, ...revealPaths(session, result), ...teamPresencePaths(session), ...teamPaths(session, result.results) }
@@ -328,6 +338,17 @@ export function transitionUpdate(
       return { ...base, currentQuestion: null, reveal: null }
     default:
       return base
+  }
+}
+
+// Dessine-moi, début d'une manche : dessinateur (ordre tiré au lancement), mot pour lui seul, dessin de
+// la manche précédente effacé.
+function drawRoundPaths(session: Session, question: DrawQuestion, round: number): SessionUpdate {
+  const drawer = session.drawOrder?.[round] ?? null
+  return {
+    drawTurn: drawer && { drawer, round, wordLength: wordLetterCount(question.word), category: question.category },
+    drawSecret: drawer && { word: question.word, category: question.category },
+    drawing: null,
   }
 }
 
@@ -458,15 +479,20 @@ export function launchUpdate(
   nowServer: number,
   limit = QUESTIONS_PER_GAME,
   audio: LaunchAudio = { enabled: false, urls: {} },
+  random: () => number = Math.random,
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
   if (Object.keys(session.players).length > MAX_PLAYERS) return { ok: false, reason: 'tooManyPlayers' }
   const teamRefusal = teamLaunchRefusal(session)
   if (teamRefusal) return { ok: false, reason: teamRefusal }
-  const gameQuestions = selectGameQuestions(questions, limit)
+  const isDraw = session.settings.answerMode === 'draw'
+  // Dessine-moi : autant de manches que de dessinateurs possibles au plus (chacun dessine une fois).
+  const drawers = isDraw ? drawEligiblePlayers(session.players, session.hostUid).length : Infinity
+  if (isDraw && drawers === 0) return { ok: false, reason: 'notEnoughPlayers' }
+  const gameQuestions = selectGameQuestions(questions, Math.min(limit, drawers))
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
-  const musicQuestions = gameQuestions.filter((question) => !isBluffQuestion(question) && question.music)
+  const musicQuestions = gameQuestions.filter((question) => 'music' in question && question.music)
   if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }
   if (musicQuestions.some((question) => !audio.urls[question.id])) return { ok: false, reason: 'audioUnavailable' }
 
@@ -483,6 +509,8 @@ export function launchUpdate(
     teamPoints: null,
     teamPresence: null,
     ...BLUFF_RESET,
+    ...DRAW_RESET,
+    drawOrder: isDraw ? drawOrderFor(session.players, session.hostUid, random).slice(0, gameQuestions.length) : null,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = 0
@@ -493,6 +521,14 @@ export function launchUpdate(
     update['settings/teamCount'] = teamCountOf(session.settings, Object.keys(session.players).length)
   }
   return { ok: true, update }
+}
+
+// Dessine-moi : nœuds effacés au lancement et à « Rejouer ».
+const DRAW_RESET: SessionUpdate = {
+  drawOrder: null,
+  drawTurn: null,
+  drawSecret: null,
+  drawing: null,
 }
 
 // Bluff : nœuds effacés au lancement et à « Rejouer ».
@@ -601,6 +637,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
     teamPoints: null,
     teamPresence: null,
     ...BLUFF_RESET,
+    ...DRAW_RESET,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = null

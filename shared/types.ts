@@ -14,7 +14,8 @@ export type GameStatus =
   | 'ended';
 
 // bluff : chaque joueur invente une fausse réponse, puis vote (spec 16) ; imposé par un quiz Bluff.
-export type AnswerMode = 'free' | 'choice' | 'bluff';
+// draw : Dessine-moi, un joueur dessine un mot secret que les autres devinent (plan-dessine-moi.md).
+export type AnswerMode = 'free' | 'choice' | 'bluff' | 'draw';
 
 // 1 = Facile, 2 = Moyen, 3 = Difficile.
 export type Difficulty = 1 | 2 | 3;
@@ -24,7 +25,7 @@ export type DifficultyLevel = 'easy' | 'medium' | 'hard';
 
 // Type de jeu d'un quiz : questions classiques, blind test (extraits musicaux joués par la TV), ou
 // Bluff (fausses réponses inventées par les joueurs, spec 16).
-export type QuizGameType = 'quiz' | 'blindTest' | 'bluff';
+export type QuizGameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 
 // Source des extraits audio (interchangeable : seule l'app de l'hôte sait l'interroger).
 export type AudioSourceId = 'deezer';
@@ -91,8 +92,32 @@ export interface BluffQuestion {
   timeLimit?: number;
 }
 
-// Question d'une partie : toutes classiques, ou toutes de Bluff.
-export type GameQuestion = Question | BluffQuestion;
+// Dessine-moi : une manche, un mot à dessiner (lisible par l'hôte ; le dessinateur le reçoit dans
+// drawSecret). La catégorie est publique (indice affiché sur la TV).
+export interface DrawQuestion {
+  id: string;
+  word: string;
+  category: string;
+  difficulty: Difficulty;
+  timeLimit?: number;
+}
+
+// Question d'une partie : toutes classiques, toutes de Bluff, ou toutes des manches de Dessine-moi.
+export type GameQuestion = Question | BluffQuestion | DrawQuestion;
+
+// Dessine-moi : manche en cours (public). round : numéro de la manche (currentIndex).
+export interface DrawTurn {
+  drawer: PlayerId;
+  round: number;
+  wordLength: number;
+  category: string;
+}
+
+// Mot de la manche en cours : lisible par l'hôte et le dessinateur seulement.
+export interface DrawSecret {
+  word: string;
+  category: string;
+}
 
 // Morceau d'une question de blind test (lisible uniquement par l'hôte, comme toute la question).
 export interface MusicTrack {
@@ -309,6 +334,10 @@ export interface PublicSession {
   // TV ouvertes sur la partie (Cast ou plan B) : chaque TV écrit son propre nœud, retiré par son
   // onDisconnect. Absent : aucune TV, ou partie créée avant ce champ.
   tvPresence?: Record<string, true>;
+  // Dessine-moi : manche en cours, et dessin envoyé par le dessinateur (paquets « seq:ops », clés 0 à
+  // 399 ; la base peut les rendre sous forme de tableau). Effacés à chaque nouvelle manche.
+  drawTurn?: DrawTurn;
+  drawing?: Record<string, string> | (string | null)[];
 }
 
 // Son de la TV : musique d'ambiance et effets activés ou non, volume général de 0 à 100.
@@ -321,6 +350,9 @@ export interface SoundSettings {
 // Session complète, lisible uniquement par l'hôte.
 export interface Session extends PublicSession {
   answers?: Record<number, Record<PlayerId, Answer>>;
+  // Dessine-moi : ordre des dessinateurs (tiré au lancement) et mot de la manche en cours.
+  drawOrder?: PlayerId[];
+  drawSecret?: DrawSecret;
   // Bluff (spec 16). bluffChecks et bluffOwn sont lisibles aussi par le joueur concerné, pour lui seul.
   bluffs?: Record<number, Record<PlayerId, BluffEntry>>;
   bluffChecks?: Record<number, Record<PlayerId, BluffCheck>>;

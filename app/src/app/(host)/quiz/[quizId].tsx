@@ -1,5 +1,6 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
 import { areSettingsCompatible, isValidQuizId, settingsForGameType } from '@shared/quizCatalog';
+import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -40,11 +41,13 @@ function QuizScreen({ quizId }: { quizId: string }) {
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
   // Fiche absente ou mal formée : null, traitée comme introuvable.
   const summary = useMemo(() => {
+    // Dessine-moi : fiche locale (développement seulement, lot 2).
+    if (__DEV__ && quizId === DRAW_QUIZ_ID) return DRAW_QUIZ_SUMMARY;
     if (quiz.kind !== 'ready') return null;
     const parsed = parseQuizSummary(quiz.value);
     warnIgnoredEntries('Fiche du quiz', parsed === null && quiz.value !== null ? 1 : 0);
     return parsed;
-  }, [quiz]);
+  }, [quiz, quizId]);
   const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   // Bluff : mode bluff imposé, sans Contrôle ni Rapidité (spec 16).
   const settings = summary ? settingsForGameType(chosenSettings, summary.gameType) : chosenSettings;

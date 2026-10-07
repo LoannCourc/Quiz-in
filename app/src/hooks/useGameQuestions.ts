@@ -1,6 +1,7 @@
+import { drawGameQuestions } from '@shared/drawGame';
 import { selectGameQuestions } from '@shared/hostEngine';
-import type { GameQuestion } from '@shared/types';
-import { useEffect, useState } from 'react';
+import type { AnswerMode, GameQuestion } from '@shared/types';
+import { useEffect, useMemo, useState } from 'react';
 
 import { toErrorMessage } from '@/lib/errors';
 import { loadQuizQuestions } from '@/lib/hostGame';
@@ -12,11 +13,16 @@ export type GameQuestionsState =
   | { kind: 'ready'; questions: GameQuestion[] };
 
 // Questions de la partie, chargées une fois par l'hôte. Rien de critique n'est gardé ici :
-// après une relance de l'app, elles sont simplement relues. isBluff : partie de Bluff.
-export function useGameQuestions(quizId: string, isBluff: boolean): GameQuestionsState {
+// après une relance de l'app, elles sont simplement relues. Dessine-moi : manches tirées du code de la
+// partie (mots dans le code, toujours les mêmes pour ce code), sans lecture dans la base.
+export function useGameQuestions(code: string, quizId: string, answerMode: AnswerMode): GameQuestionsState {
+  const isBluff = answerMode === 'bluff';
+  const isDraw = answerMode === 'draw';
   const [state, setState] = useState<GameQuestionsState>({ kind: 'loading' });
+  const drawQuestions = useMemo(() => (isDraw ? drawGameQuestions(code) : null), [code, isDraw]);
 
   useEffect(() => {
+    if (isDraw) return;
     let isActive = true;
     loadQuizQuestions(quizId, isBluff)
       .then((questions) => {
@@ -29,7 +35,7 @@ export function useGameQuestions(quizId: string, isBluff: boolean): GameQuestion
     return () => {
       isActive = false;
     };
-  }, [quizId, isBluff]);
+  }, [code, quizId, isBluff, isDraw]);
 
-  return state;
+  return drawQuestions ? { kind: 'ready', questions: drawQuestions } : state;
 }

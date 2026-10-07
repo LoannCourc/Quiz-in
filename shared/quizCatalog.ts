@@ -91,7 +91,15 @@ export const BLUFF_HIDDEN_OPTIONS: readonly GameOption[] = ['speedBonus', 'contr
 
 // Réglages adaptés au type du quiz : un Bluff se joue toujours en mode bluff, sans Contrôle ni Rapidité ;
 // un autre quiz ne garde jamais le mode bluff (retour au mode par défaut).
+// Mode de réponse imposé par le type de jeu (Bluff, Dessine-moi) : pas de choix du mode dans la feuille,
+// ni Contrôle ni Rapidité.
+export function hasImposedAnswerMode(answerMode: AnswerMode): boolean {
+  return answerMode === 'bluff' || answerMode === 'draw'
+}
+
 export function settingsForGameType(settings: SessionSettings, gameType: QuizGameType): SessionSettings {
   if (gameType === 'bluff') return { ...settings, answerMode: 'bluff', speedBonus: false, control: false }
+  // Dessine-moi (lot 2) : sans Rapidité ni Contrôle (le jugement des réponses viendra au lot 3).
+  if (gameType === 'draw') return { ...settings, answerMode: 'draw', speedBonus: false, control: false }
   return settings.answerMode === 'bluff' ? { ...settings, answerMode: DEFAULT_SESSION_SETTINGS.answerMode } : settings
 }
