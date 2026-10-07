@@ -417,8 +417,8 @@ export function withDemoStreaks(session: PublicSession, streaks: readonly number
 
 // Dessine-moi (&mode=draw ; &word=arc-en-ciel : mot de la révélation) : manche de Léa (« Animal », 6 lettres) avec la maison du banc d'essai déjà
 // dessinée ; à la révélation, le mot. &found=N : les N premiers devineurs ont trouvé (le dernier en bandeau) ;
-// &cancelled=1 : manche annulée.
-export function withDemoDraw(session: PublicSession, word = 'maison', foundCount = 0, isCancelled = false): PublicSession {
+// &cancelled=1 : manche annulée ; &drawername=MMMMMMMMMMMM : pseudo du dessinateur (12 caractères au plus).
+export function withDemoDraw(session: PublicSession, word = 'maison', foundCount = 0, isCancelled = false, drawerName?: string): PublicSession {
   const recording = JSON.parse(benchRecording) as { chunks: { data: string }[] }
   const drawing = Object.fromEntries(recording.chunks.map((chunk, index) => [String(index), chunk.data]))
   const drawer = 'lea'
@@ -426,8 +426,10 @@ export function withDemoDraw(session: PublicSession, word = 'maison', foundCount
   const drawFound = Object.fromEntries(finders.map((id, index) => [id, session.phaseStartedAt + (index + 1) * 4_000]))
   const results = Object.fromEntries(finders.map((id, index) => [id, { correct: true, points: 950 - index * 60 }]))
   if (finders.length > 0) results[drawer] = { correct: true, points: 600 }
+  const players = drawerName ? { ...session.players, [drawer]: { ...session.players[drawer], name: drawerName } } : session.players
   return {
     ...session,
+    players,
     currentQuestion: { text: 'Animal', difficulty: 2, timeLimit: 75 },
     drawTurn: { drawer, round: session.currentIndex, wordLength: 6, category: 'Animal' },
     drawing,

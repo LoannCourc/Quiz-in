@@ -115,7 +115,7 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const lastQuestion = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
   const withStreaks = withDemoStreaks(lastQuestion, demoStreaks(params.get('streaks')))
   // &mode=draw : Dessine-moi, la maison du banc d'essai déjà dessinée (manche ou révélation).
-  const session = options.answerMode === 'draw' ? withDemoDraw(withStreaks, params.get('word') ?? undefined, Number(params.get('found')) || 0, params.get('cancelled') === '1') : withStreaks
+  const session = options.answerMode === 'draw' ? withDemoDraw(withStreaks, params.get('word') ?? undefined, Number(params.get('found')) || 0, params.get('cancelled') === '1', params.get('drawername') ?? undefined) : withStreaks
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)

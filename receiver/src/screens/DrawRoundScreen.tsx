@@ -6,8 +6,12 @@ import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
 import { LiveDrawing } from '../components/LiveDrawing'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
+import { useFitScale } from '../hooks/useFitScale'
 import { strings } from '../strings'
 import './DrawRoundScreen.css'
+
+// Colonne de droite : réduite tant qu'elle déborde, ou qu'un mot du titre est coupé (long pseudo).
+const SIDE_FIT = { variables: ['--side-scale'], boxes: '.draw-round-side', texts: '.draw-round-title' }
 
 // Au-delà, le mot de la révélation passe en taille réduite (il tient alors sur une ou deux lignes).
 const LONG_WORD_LENGTH = 8
@@ -21,12 +25,13 @@ export function DrawRoundScreen({ session, roomCode }: { session: PublicSession;
   const drawerName = drawer?.name ?? ''
   const progress = drawFoundProgress(session)
   const latest = progress.latest ? session.players[progress.latest] : undefined
+  const sideRef = useFitScale(`${drawerName}|${turn?.category ?? ''}|${session.settings.teams}`, SIDE_FIT)
   return (
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
       <div className="draw-round-body">
         <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-round-canvas" />
-        <aside className="draw-round-side">
+        <aside ref={sideRef} className="draw-round-side">
           <h1 className="hero-title draw-round-title">{strings.draw.drawing(drawerName)}</h1>
           {turn && <p className="draw-round-hint">{strings.draw.hint(turn.category, turn.wordLength)}</p>}
           {session.settings.teams && drawer?.team && (
