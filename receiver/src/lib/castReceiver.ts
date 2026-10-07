@@ -1,4 +1,4 @@
-import { CAST_NAMESPACE, readCastAudioTest, readCastPerf, readCastPerfMusic, readCastRoomCode, readCastSoundTest } from '@shared/cast'
+import { CAST_NAMESPACE, readCastAudioTest, readCastDrawBench, readCastPerf, readCastPerfMusic, readCastRoomCode, readCastSoundTest } from '@shared/cast'
 
 import { setPerfEnabled, setPerfMusicForcedOff } from './perf/perfFlag'
 
@@ -37,10 +37,12 @@ declare global {
 type CodeListener = (code: string) => void
 type AudioTestListener = (url: string) => void
 type SoundTestListener = (target: string) => void
+type DrawBenchListener = (scale: number) => void
 
 const listeners = new Set<CodeListener>()
 const audioTestListeners = new Set<AudioTestListener>()
 const soundTestListeners = new Set<SoundTestListener>()
+const drawBenchListeners = new Set<DrawBenchListener>()
 let lastCode: string | null = null
 let started: Promise<void> | null = null
 
@@ -68,6 +70,11 @@ function receiveMessage(event: CustomMessageEvent): void {
   const perfMusic = readCastPerfMusic(event.data)
   if (perfMusic !== null) {
     setPerfMusicForcedOff(!perfMusic)
+    return
+  }
+  const drawBench = readCastDrawBench(event.data)
+  if (drawBench !== null) {
+    drawBenchListeners.forEach((listener) => listener(drawBench))
     return
   }
   const soundTest = readCastSoundTest(event.data)
@@ -118,6 +125,12 @@ export function onCastCode(listener: CodeListener): () => void {
 export function onCastAudioTest(listener: AudioTestListener): () => void {
   audioTestListeners.add(listener)
   return () => audioTestListeners.delete(listener)
+}
+
+// Banc d'essai du dessin envoyé par cast-sender.html (échelle du canvas).
+export function onCastDrawBench(listener: DrawBenchListener): () => void {
+  drawBenchListeners.add(listener)
+  return () => drawBenchListeners.delete(listener)
 }
 
 // Test du son de la TV envoyé par cast-sender.html : « effects », ou fichier de musique à décoder.

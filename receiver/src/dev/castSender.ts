@@ -2,6 +2,7 @@ import {
   CAST_NAMESPACE,
   CAST_RECEIVER_APP_ID,
   type CastAudioTestMessage,
+  type CastDrawBenchMessage,
   type CastPerfMessage,
   type CastPerfMusicMessage,
   type CastSoundTestMessage,
@@ -57,7 +58,9 @@ globals.__onGCastApiAvailable = (isAvailable) => {
   show(`Prêt (récepteur ${CAST_RECEIVER_APP_ID}). Cliquez sur l’icône Cast et choisissez la TV.`)
 }
 
-function send(message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage | CastPerfMusicMessage): void {
+function send(
+  message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage | CastPerfMusicMessage | CastDrawBenchMessage,
+): void {
   const session = context()?.getCurrentSession()
   if (!session) {
     show('Pas de session Cast : connectez-vous d’abord à la TV (étape 1).')
@@ -77,6 +80,9 @@ document.getElementById('perf-on')!.addEventListener('click', () => send({ perf:
 document.getElementById('perf-off')!.addEventListener('click', () => send({ perf: false }))
 document.getElementById('perf-music-off')!.addEventListener('click', () => send({ perfMusic: false }))
 document.getElementById('perf-music-on')!.addEventListener('click', () => send({ perfMusic: true }))
+document.getElementById('draw-bench')!.addEventListener('click', () => send({ drawBench: true }))
+document.getElementById('draw-bench-15')!.addEventListener('click', () => send({ drawBench: 1.5 }))
+document.getElementById('draw-bench-2')!.addEventListener('click', () => send({ drawBench: 2 }))
 
 const sdk = document.createElement('script')
 sdk.src = SENDER_SDK_URL

@@ -610,6 +610,25 @@ export const strings = {
     },
     waiting: 'Patiente un instant, la partie continue…',
   },
+  // Dessine-moi (plan docs/plan-dessine-moi.md) : outils du dessinateur.
+  draw: {
+    tools: { pen: 'Crayon', eraser: 'Gomme', bucket: 'Seau' },
+    widths: ['Trait fin', 'Trait moyen', 'Trait épais'],
+    color: (index: number) => `Couleur ${index}`,
+    undo: 'Annuler',
+    clear: 'Tout effacer',
+    // App de l'hôte : l'hôte qui joue ne dessine pas (décision D1).
+    nativeUnavailable: 'Le dessin se fait depuis un navigateur.',
+  },
+  // Prototype du dessin (lot 1, développement seulement) : /debug/draw.
+  drawDemo: {
+    title: 'Dessine-moi · prototype',
+    hint: 'Rien n’est envoyé : le dessin est enregistré sur ce téléphone, pour le banc d’essai de la TV.',
+    stats: (ops: number, chunks: number, kilobytes: string) => `${ops} opérations · ${chunks} paquets · ${kilobytes} Ko`,
+    export: 'Exporter le dessin',
+    exportHint: 'Tout sélectionner, copier, puis coller dans un fichier (receiver/src/lib/drawing/benchRecording.json).',
+    restart: 'Recommencer',
+  },
   playerDemo: {
     title: 'Démo : écrans du joueur',
     hint: 'Données factices, sans Firebase. Les appuis sur les propositions sont simulés.',

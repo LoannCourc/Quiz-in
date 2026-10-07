@@ -151,6 +151,19 @@ export const strings = {
     blocked: 'Lecture bloquée : la TV demande un geste de l’utilisateur.',
     failed: 'Lecture impossible : adresse expirée, réseau ou format.',
   },
+  // Banc d'essai du dessin (Dessine-moi, lot 1, ?drawbench=1 ou cast-sender.html) : outil de mesure.
+  drawBench: {
+    title: 'Banc d’essai du dessin',
+    loading: 'Chargement du dessin enregistré…',
+    error: 'Dessin enregistré illisible.',
+    phases: { replay: 'Rejeu en temps réel', stress: 'Annuler × 20 (tout repeindre)', pause: 'Pause, puis on recommence' },
+    cycle: (cycle: number, phase: string) => `Tour ${cycle} · ${phase}`,
+    chunks: (applied: number, total: number, kilobytes: string) => `Paquets : ${applied} / ${total} (${kilobytes} Ko)`,
+    ops: (ops: number, fills: number) => `Opérations affichées : ${ops}, dont ${fills} seaux`,
+    render: (last: string, max: string) => `Rendu d’un paquet : ${last} ms (max. ${max} ms)`,
+    repaint: (average: string, max: string) => `Tout repeindre : ${average} ms en moyenne (max. ${max} ms)`,
+    canvas: (width: number, height: number) => `Canvas : ${width} × ${height}`,
+  },
   // Test du son de la TV (cast-sender.html, spec 17) : moteur des effets et des musiques.
   soundTest: {
     title: 'Test des effets et musiques',

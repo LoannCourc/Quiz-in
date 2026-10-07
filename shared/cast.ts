@@ -74,3 +74,19 @@ export function readCastPerfMusic(data: unknown): boolean | null {
   const { perfMusic } = data
   return typeof perfMusic === 'boolean' ? perfMusic : null
 }
+
+// Banc d'essai du dessin (Dessine-moi, lot 1, outil cast-sender.html) : la TV rejoue un dessin enregistré
+// en boucle, panneau de mesures affiché. true : canvas de 640 × 480 ; un nombre : son échelle (1, 1,5 ou 2).
+export interface CastDrawBenchMessage {
+  drawBench: boolean | number
+}
+
+export const DRAW_BENCH_SCALES: readonly number[] = [1, 1.5, 2]
+
+// Échelle demandée, ou null (message ignoré, ou false : retour à l'attente).
+export function readCastDrawBench(data: unknown): number | null {
+  if (typeof data !== 'object' || data === null || !('drawBench' in data)) return null
+  const { drawBench } = data
+  if (drawBench === true) return 1
+  return typeof drawBench === 'number' && DRAW_BENCH_SCALES.includes(drawBench) ? drawBench : null
+}

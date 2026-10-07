@@ -1,0 +1,37 @@
+/* Banc d'essai du dessin : canvas 4:3 en bas à gauche (sous le panneau de mesures), chiffres à droite. */
+.draw-bench {
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  column-gap: 3vw;
+}
+
+.draw-bench-canvas {
+  height: 52vh;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background: var(--white);
+}
+
+.draw-bench-stats {
+  display: grid;
+  row-gap: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.draw-bench-stats p {
+  margin: 0;
+}
+
+.draw-bench-title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: var(--display-line-height);
+  color: var(--color-accent);
+}
+
+.draw-bench-phase {
+  color: var(--color-accent);
+}

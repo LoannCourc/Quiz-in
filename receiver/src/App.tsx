@@ -1,9 +1,11 @@
+import { DRAW_BENCH_SCALES } from '@shared/cast'
 import { RECEIVER_CODE_PARAM } from '@shared/constants'
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode'
 import { lazy, Suspense } from 'react'
 
 import { CastReceiver } from './CastReceiver'
 import { LiveReceiver } from './LiveReceiver'
+import { DrawBenchScreen } from './screens/DrawBenchScreen'
 import { StatusScreen } from './screens/StatusScreen'
 import { strings } from './strings'
 
@@ -17,8 +19,11 @@ const DemoReceiver = import.meta.env.DEV
 // console Cast n'a pas de code ; ?cast=1 force le mode Cast en développement.
 
 // Avec ?code=XXXX : partie réelle, dans n'importe quel navigateur (plan B sans Cast).
+// ?drawbench=1 (ou 1.5, 2 : échelle du canvas) : banc d'essai du dessin, aussi sur le site publié (plan B).
 function App() {
   const params = new URLSearchParams(window.location.search)
+  const benchScale = Number(params.get('drawbench'))
+  if (DRAW_BENCH_SCALES.includes(benchScale)) return <DrawBenchScreen scale={benchScale} />
   const rawCode = params.get(RECEIVER_CODE_PARAM)
   if (rawCode === null) {
     return DemoReceiver && !params.has('cast') ? (
