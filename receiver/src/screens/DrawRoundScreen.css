@@ -54,6 +54,10 @@
   text-transform: uppercase;
 }
 
+.draw-reveal-word.is-long {
+  font-size: 2.8rem;
+}
+
 .draw-reveal-by {
   margin: 0;
   font-size: 1.6rem;

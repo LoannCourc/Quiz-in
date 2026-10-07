@@ -4,13 +4,16 @@
 // Chaque faux joueur est un vrai utilisateur anonyme (receiver/.env) : il rejoint le salon, reste
 // connecté, puis répond à chaque question comme un téléphone (choix au hasard, réponse libre, Bluff :
 // proposition puis vote), à un moment au hasard du temps de réponse. Rejouer : ils restent.
+// Dessine-moi : un faux joueur désigné dessinateur rejoue le dessin enregistré du banc d'essai
+// (src/lib/drawing/benchRecording.json), chaque paquet à son heure, comme un vrai téléphone.
 // Ctrl+C : ils se déconnectent (la partie les voit hors ligne).
 // Limite de Firebase : environ 100 nouveaux comptes anonymes par heure et par adresse IP.
-// Essai local : FAKE_PLAYERS_EMULATOR=1 vise les émulateurs (firebase emulators:start, Auth 9099,
-// Database 9000) au lieu du vrai projet.
+// Essai local : FAKE_PLAYERS_EMULATOR=1 vise les émulateurs (Auth 9099, Database 9000, base demo-quiz-in,
+// la même que la TV lancée avec VITE_FIREBASE_EMULATOR=1) au lieu du vrai projet.
 import { initializeApp, setLogLevel } from 'firebase/app'
 import { connectAuthEmulator, getAuth, signInAnonymously } from 'firebase/auth'
 import { connectDatabaseEmulator, get, getDatabase, onDisconnect, onValue, ref, serverTimestamp, set, update } from 'firebase/database'
+import { readFileSync } from 'node:fs'
 
 const MAX_PLAYERS = 20
 const AVATARS = ['🤖', '👾', '🦾', '🛸', '🚀', '🧠', '🎛️', '📡', '🔋', '💾', '🕹️', '🎲', '🧩', '🔧', '⚙️', '🛰️', '🔭', '💡', '🧲', '📟']
@@ -21,6 +24,8 @@ const ANSWER_SHARE = 0.7
 // Les champs d'une transition arrivent un par un : on attend qu'ils soient tous là avant d'agir.
 const SETTLE_MS = 300
 const isEmulator = process.env.FAKE_PLAYERS_EMULATOR === '1'
+// Dessin rejoué par un faux dessinateur (Dessine-moi).
+const DRAWING = JSON.parse(readFileSync(new URL('../src/lib/drawing/benchRecording.json', import.meta.url), 'utf8'))
 
 const config = {
   apiKey: process.env.VITE_FIREBASE_API_KEY,
@@ -30,6 +35,8 @@ const config = {
   storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.VITE_FIREBASE_APP_ID,
+  // Émulateurs : base du projet fictif des tests des règles (comme la TV en mode émulateur).
+  ...(isEmulator && { databaseURL: 'http://127.0.0.1:9000?ns=demo-quiz-in' }),
 }
 
 const code = (process.argv[2] ?? '').toUpperCase()
@@ -116,6 +123,27 @@ async function vote(player, index, choiceCount) {
   throw new Error('aucun choix accepté')
 }
 
+// Dessine-moi : le faux dessinateur envoie les paquets enregistrés à leur heure, tant que la manche dure
+// (isCurrent faux : manche finie, on s'arrête). Les autres faux joueurs regardent (pas encore de réponse).
+function drawRound(players, phase, isCurrent) {
+  const drawer = players.find((player) => player.uid === phase.drawTurn?.drawer)
+  if (!drawer) return
+  let sent = 0
+  DRAWING.chunks.forEach((chunk, seq) => {
+    setTimeout(() => {
+      if (!isCurrent()) return
+      set(ref(drawer.db, `sessions/${code}/drawing/${seq}`), chunk.data).then(
+        () => {
+          sent++
+          if (sent === DRAWING.chunks.length) console.log(`Manche ${phase.currentIndex + 1} : ${drawer.name} a envoyé ses ${sent} paquets`)
+        },
+        () => {},
+      )
+    }, chunk.t)
+  })
+  console.log(`Manche ${phase.currentIndex + 1} : ${drawer.name} dessine (${DRAWING.chunks.length} paquets enregistrés)`)
+}
+
 // Un écran de question ou de vote : chaque joueur agit à un moment au hasard, puis bilan.
 function playPhase(players, phase, serverOffsetMs) {
   const remainingMs = phase.phaseEndsAt > 0 ? phase.phaseEndsAt - (Date.now() + serverOffsetMs) : 20_000
@@ -163,14 +191,22 @@ async function main() {
   const phase = {}
   let playedKey = null
   let settleId = null
+  const phaseKey = () => `${phase.status}-${phase.currentIndex}-${phase.phaseStartedAt}`
   const playIfReady = () => {
     const isPlayable = (phase.status === 'question' && phase.currentQuestion) || (phase.status === 'vote' && phase.currentQuestion?.choices)
-    const key = `${phase.status}-${phase.currentIndex}-${phase.phaseStartedAt}`
+    const key = phaseKey()
     if (!isPlayable || !phase.settings || key === playedKey) return
+    if (phase.settings.answerMode === 'draw') {
+      // La manche du dessinateur doit être publiée (drawTurn de cette manche) avant de dessiner.
+      if (phase.drawTurn?.round !== phase.currentIndex) return
+      playedKey = key
+      drawRound(players, { ...phase }, () => phaseKey() === key)
+      return
+    }
     playedKey = key
     playPhase(players, { ...phase }, serverOffsetMs)
   }
-  const fields = ['status', 'currentIndex', 'currentQuestion', 'phaseStartedAt', 'phaseEndsAt', 'settings']
+  const fields = ['status', 'currentIndex', 'currentQuestion', 'phaseStartedAt', 'phaseEndsAt', 'settings', 'drawTurn']
   for (const field of fields) {
     onValue(sessionRef(field), (snapshot) => {
       phase[field] = snapshot.val()

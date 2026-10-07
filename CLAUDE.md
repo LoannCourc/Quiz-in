@@ -68,7 +68,16 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
   - logique pure `shared/drawing/` (palette, lissage, texte compact `DrawingWriter` / `DrawingDoc`, grille et seau `raster`, rendu incrémental `DrawingRenderer`), tests `tests/unit/drawing.test.ts` ;
   - téléphone : canvas `components/player/draw/DrawingCanvas.web.tsx` (un doigt à la fois, pas de défilement, de « tirer pour recharger » ni d'appui long), remplaçant dans l'app (l'hôte ne dessine pas), outils `DrawingTools`, démo `/debug/draw` ;
   - TV : banc d'essai `DrawBenchScreen` (`?drawbench=1|1.5|2` sur le site publié, message Cast `{ "drawBench": … }`, `cast-sender.html` étape 6), dessin enregistré `receiver/src/lib/drawing/benchRecording.json`.
-  - **Ne pas passer au lot 2 (transport Firebase, règles) sans l'accord du développeur.** Chrome 92 sur la box : pas de `Array.findLast` ni d'autre méthode récente dans `shared/drawing/`.
+  - Lot 1 validé sur la box. **Lot 2 (dessin en direct dans une vraie partie, manches sans points) codé**, à mesurer sur la box :
+    - canvas TV `TV_DRAW_SCALE` 1,5 (960 × 720 ; 1 → 640 × 480) ;
+    - type de jeu et mode `draw` (onglet et fiche du catalogue en développement seulement, `DRAW_QUIZ_SUMMARY`) ;
+    - manches `drawGameQuestions` (mots provisoires `shared/drawWords.ts`, tirés du code de la partie) et ordre des dessinateurs `drawOrder` tiré au lancement, sans l'hôte (D1) ;
+    - champs `drawTurn`, `drawing` (publics) et `drawSecret` (hôte et dessinateur) ; règles et tests sur l'émulateur ;
+    - révélation sans points ni série, sans classement (`skipsRankingStep`).
+  - Téléphones : `DrawViews` (dessinateur sans défilement, autres joueurs, révélation), `useDraw`, reprise après rechargement (`DrawingWriter(doc)`) ; démos `/debug/player?s=drawDrawer|drawWatch|drawReveal`.
+  - TV : `LiveDrawing`, `DrawRoundScreen` / `DrawRevealScreen` ; `?perf=1` : « Dessin reçu » ; démo `?mode=draw&status=question|reveal&word=`.
+  - Faux dessinateur : `npm run fake-players` rejoue `benchRecording.json` quand un faux joueur dessine.
+  - **Ne pas passer au lot 3 (réponses, points, Groupe, spec § 19) sans l'accord du développeur.** Chrome 92 sur la box : pas de `Array.findLast` ni d'autre méthode récente dans `shared/drawing/`.
 - **Prochains chantiers validés** (détail : spec 14). **Ne rien coder avant le message dédié du développeur pour chaque chantier.**
   - (d) Publication de l'application Cast.
 - Les questions (`questions/`) ne sont lues que par l'hôte (`useGameQuestions`), validées par `shared/quizValidation.ts`.

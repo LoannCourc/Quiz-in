@@ -415,9 +415,9 @@ export function withDemoStreaks(session: PublicSession, streaks: readonly number
   return { ...session, players, reveal: session.reveal ? { ...session.reveal, results } : undefined }
 }
 
-// Dessine-moi (&mode=draw) : manche de Léa (« Animal », 6 lettres) avec la maison du banc d'essai déjà
+// Dessine-moi (&mode=draw ; &word=arc-en-ciel : mot de la révélation) : manche de Léa (« Animal », 6 lettres) avec la maison du banc d'essai déjà
 // dessinée ; à la révélation, le mot.
-export function withDemoDraw(session: PublicSession): PublicSession {
+export function withDemoDraw(session: PublicSession, word = 'maison'): PublicSession {
   const recording = JSON.parse(benchRecording) as { chunks: { data: string }[] }
   const drawing = Object.fromEntries(recording.chunks.map((chunk, index) => [String(index), chunk.data]))
   return {
@@ -425,6 +425,6 @@ export function withDemoDraw(session: PublicSession): PublicSession {
     currentQuestion: { text: 'Animal', difficulty: 2, timeLimit: 75 },
     drawTurn: { drawer: 'lea', round: session.currentIndex, wordLength: 6, category: 'Animal' },
     drawing,
-    reveal: session.status === 'reveal' ? { correctAnswer: 'maison', stats: {} } : session.reveal,
+    reveal: session.status === 'reveal' ? { correctAnswer: word, stats: {} } : session.reveal,
   }
 }

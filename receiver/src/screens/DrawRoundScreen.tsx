@@ -8,6 +8,9 @@ import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
 import { strings } from '../strings'
 import './DrawRoundScreen.css'
 
+// Au-delà, le mot de la révélation passe en taille réduite (il tient alors sur une ou deux lignes).
+const LONG_WORD_LENGTH = 8
+
 // Dessine-moi, manche en cours : le dessin en grand (l'essentiel de l'écran), qui dessine, l'indice
 // (catégorie et nombre de lettres, décision D5) et le temps restant. Jamais le mot.
 export function DrawRoundScreen({ session, roomCode }: { session: PublicSession; roomCode: string }) {
@@ -34,6 +37,7 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
   const turn = session.drawTurn
   const drawerName = turn ? (session.players[turn.drawer]?.name ?? null) : null
   const countdown = nextQuestionCountdown(session)
+  const word = session.reveal?.correctAnswer ?? ''
   return (
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
@@ -42,7 +46,7 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
         <aside className="draw-round-side">
           <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} isRound />
           <p className="draw-round-hint">{strings.draw.itWas}</p>
-          <h1 className="draw-reveal-word">{session.reveal?.correctAnswer}</h1>
+          <h1 className={word.length > LONG_WORD_LENGTH ? 'draw-reveal-word is-long' : 'draw-reveal-word'}>{word}</h1>
           {drawerName && <p className="draw-reveal-by">{strings.draw.drawnBy(drawerName)}</p>}
           {countdown && <NextQuestionLine countdown={countdown} isRound />}
           {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}

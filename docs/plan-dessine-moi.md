@@ -1,6 +1,16 @@
 # Plan : « Dessine-moi » (4e mini-jeu, type Pictionary)
 
-Statut : **plan validé (7 octobre 2026). Lot 1 (prototype) codé, à tester sur téléphone et sur la box.** Les règles passeront dans la spec (§ 19) au lot 3, avant le moteur.
+Statut : **plan validé (7 octobre 2026). Lot 1 validé sur la box (environ 50 images/s). Lot 2 (dessin en direct dans une vraie partie) codé, à mesurer sur la box.** Les règles du jeu passeront dans la spec (§ 19) au lot 3, avant les réponses et les points.
+
+**Lot 2, écart validé** : au lieu du mode de test prévu (`?drawtest=1`), des **manches sans points dans une vraie partie** :
+- type de jeu `draw`, onglet et fiche en développement seulement ;
+- manches et dessinateurs tirés au lancement ;
+- dessin en direct ;
+- révélation du mot, sans réponses ni classement.
+
+Un faux joueur dessinateur (`fake-players`) rejoue la maison enregistrée, pour mesurer sans humain.
+
+**Canvas de la TV** : 960 × 720, réglé par la constante `TV_DRAW_SCALE` (`shared/drawing/palette.ts`, 1 pour 640 × 480).
 
 **Décisions du développeur** :
 - D1 : l'hôte qui joue devine mais ne dessine pas (Skia plus tard, build groupé).
