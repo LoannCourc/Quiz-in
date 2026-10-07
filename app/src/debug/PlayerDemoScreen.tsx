@@ -147,6 +147,7 @@ export default function PlayerDemoScreen() {
           answer={scenario.answer}
           onAnswer={answer}
           bluff={bluff}
+          draw={scenario.draw ? { word: scenario.draw.word, onChunk: () => {} } : null}
           footer={hostFooter}
         />
       )}

@@ -1,5 +1,5 @@
 import { DRAW_WORDS } from './drawWords'
-import type { DrawQuestion, GameQuestion, Player, PlayerId, QuizSummary } from './types'
+import type { DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
 
 // Dessine-moi (plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs. Lot 2 : des
 // manches sans réponses ni points (le jugement et les points arrivent au lot 3).
@@ -70,6 +70,16 @@ export function drawEligiblePlayers(players: Record<PlayerId, Player>, hostUid: 
 // Ordre des dessinateurs, tiré au lancement : chacun dessine au plus une fois.
 export function drawOrderFor(players: Record<PlayerId, Player>, hostUid: PlayerId, random: () => number): PlayerId[] {
   return shuffled(drawEligiblePlayers(players, hostUid), random)
+}
+
+// Paquets du dessin de la manche, dans l'ordre des clés (la base les rend en objet, ou en tableau quand
+// les clés se suivent depuis 0).
+export function drawingChunkList(drawing: PublicSession['drawing']): string[] {
+  if (!drawing) return []
+  return Object.entries(drawing)
+    .filter((entry): entry is [string, string] => typeof entry[1] === 'string')
+    .sort(([a], [b]) => Number(a) - Number(b))
+    .map(([, data]) => data)
 }
 
 // Nombre de lettres affiché sur la TV (décision D5) : lettres seulement (espaces et tirets à part).

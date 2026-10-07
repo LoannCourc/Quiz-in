@@ -78,6 +78,21 @@ describe('Dessin : texte compact', () => {
     expect(doc.ops[0]).toEqual({ kind: 'fill', id: 0, color: 5, spans })
   })
 
+  test('reprise après un rechargement : numérotation et opérations continuent après le dessin envoyé', () => {
+    const first = new DrawingWriter()
+    square(first, 0, 0)
+    first.undo()
+    square(first, 200, 0)
+    const sent = first.flush()
+    const doc = replay(sent)
+    const resumed = new DrawingWriter(doc)
+    square(resumed, 400, 0)
+    const more = resumed.flush()
+    expect(more[0].data.startsWith(`${sent.length.toString(36)}:`)).toBe(true)
+    for (const chunk of more) doc.applyChunk(chunk.data)
+    expect(strokesOf(doc).map((op) => [op.id, op.points[0]])).toEqual([[1, 200], [2, 400]])
+  })
+
   test('paquet illisible ou couleur inconnue : ignoré sans planter', () => {
     const doc = new DrawingDoc()
     doc.applyChunk('n’importe quoi')

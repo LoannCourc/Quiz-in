@@ -58,10 +58,18 @@ function decodeTriples(payload: string): number[][] {
 // Côté dessinateur : transforme les gestes en opérations, puis en paquets. Les points d'un trait en cours
 // sont lissés à chaque envoi (on garde le dernier point envoyé comme ancre, pour un trait continu).
 export class DrawingWriter {
-  private nextId = 0
-  private nextSeq = 0
+  private nextId: number
+  private nextSeq: number
+
   private tokens: string[] = []
   private stroke: { id: number; color: number; width: number; raw: number[]; sentX: number; sentY: number; started: boolean } | null = null
+
+  // Reprise (page du dessinateur rechargée en pleine manche) : numérotation après le dessin déjà envoyé,
+  // sinon les nouveaux paquets réécriraient des clés existantes (refusé par les règles).
+  constructor(resume?: DrawingDoc) {
+    this.nextSeq = resume?.nextSequence ?? 0
+    this.nextId = resume?.nextOpId ?? 0
+  }
 
   beginStroke(color: number, width: number, x: number, y: number): void {
     this.endStroke()
@@ -153,8 +161,19 @@ export class DrawingDoc {
   receivedLength = 0
   appliedChunks = 0
   private nextSeq = 0
+  // Plus grand numéro d'opération vu (annulées comprises) : une reprise repart au-dessus.
+  private maxId = -1
   private waiting = new Map<number, string>()
   private cursors = new Map<number, { x: number; y: number }>()
+
+  // Numéro du prochain paquet attendu, et premier numéro d'opération libre (reprise de l'écriture).
+  get nextSequence(): number {
+    return this.nextSeq
+  }
+
+  get nextOpId(): number {
+    return this.maxId + 1
+  }
 
   // Paquet « seq:ops » ; appliqué dès que tous les précédents sont là. Paquet illisible : ignoré.
   applyChunk(data: string): void {
@@ -189,7 +208,9 @@ export class DrawingDoc {
         return
       }
       if (kind === 'x') {
-        this.ops.push({ kind: 'clear', id: decodeNumber(token.slice(1)) })
+        const id = decodeNumber(token.slice(1))
+        this.maxId = Math.max(this.maxId, id)
+        this.ops.push({ kind: 'clear', id })
         return
       }
       const colon = token.indexOf(':')
@@ -205,6 +226,7 @@ export class DrawingDoc {
 
   private startStroke([id, color, width]: number[], triples: number[][]): void {
     if (!isDrawColor(color) || !isStrokeWidth(width) || triples.length === 0) return
+    this.maxId = Math.max(this.maxId, id)
     const op: DrawOp = { kind: 'stroke', id, color, width, points: [] }
     this.cursors.set(id, { x: 0, y: 0 })
     this.ops.push(op)
@@ -213,6 +235,7 @@ export class DrawingDoc {
 
   private startFill([id, color]: number[], triples: number[][]): void {
     if (!isDrawColor(color)) return
+    this.maxId = Math.max(this.maxId, id)
     const op: DrawOp = { kind: 'fill', id, color, spans: [] }
     this.cursors.set(id, { x: 0, y: 0 })
     this.ops.push(op)

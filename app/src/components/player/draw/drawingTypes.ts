@@ -10,7 +10,9 @@ export interface DrawingCanvasProps {
   tool: DrawTool
   color: number
   width: number
-  // Chaque paquet produit (prototype : enregistré ; plus tard : envoyé dans la base).
-  onChunk?: (data: string) => void
+  // Chaque paquet produit, avec son numéro (clé dans la base ; démo : enregistré).
+  onChunk?: (chunk: { seq: number; data: string }) => void
+  // Paquets déjà envoyés pendant cette manche (page rechargée) : redessinés, l'écriture continue après.
+  initialChunks?: readonly string[]
   ref?: React.Ref<DrawingCanvasHandle>
 }

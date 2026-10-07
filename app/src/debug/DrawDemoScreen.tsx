@@ -31,7 +31,7 @@ export default function DrawDemoScreen() {
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [canvasKey, setCanvasKey] = useState(0);
 
-  function record(data: string) {
+  function record({ data }: { seq: number; data: string }) {
     const now = Date.now();
     startedAt.current ??= now;
     const origin = startedAt.current;

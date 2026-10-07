@@ -31,6 +31,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useAnswer } from '@/hooks/useAnswer';
 import { useBluff } from '@/hooks/useBluff';
+import { useDraw } from '@/hooks/useDraw';
 import { useAudioUrls } from '@/hooks/useAudioUrls';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useCastGame, type CastGame } from '@/hooks/useCastGame';
@@ -208,6 +209,8 @@ interface HostInGameProps {
 function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const bluff = useBluff(code, session.hostUid, session);
+  // Dessine-moi : l'hôte qui joue ne dessine jamais (D1), il regarde la TV.
+  const draw = useDraw(code, session.hostUid, session);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   // Contrôle : coches de l'hôte pour la question en cours, gardées dans l'app jusqu'à « Valider »
@@ -350,6 +353,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       answer={answer}
       onAnswer={onAnswer}
       bluff={bluff}
+      draw={draw}
       footer={footer}
       overlay={overlay}
     />

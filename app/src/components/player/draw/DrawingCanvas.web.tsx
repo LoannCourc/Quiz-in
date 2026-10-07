@@ -29,39 +29,33 @@ interface Session {
 // tout de suite à l'écran ; les points lissés partent par paquets ; le canvas se repeint ensuite d'après
 // ces paquets, comme la TV. Défilement, « tirer pour recharger », zoom et appui long sont bloqués sur la
 // surface, et un seul doigt dessine à la fois.
-export function DrawingCanvas({ tool, color, width, onChunk, ref }: DrawingCanvasProps) {
+export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, ref }: DrawingCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const session = useRef<Session>({
-    writer: new DrawingWriter(),
-    doc: new DrawingDoc(),
-    renderer: null,
-    context: null,
-    scale: 1,
-    pointerId: null,
-    last: null,
-  });
+  // Créée au montage, d'après les paquets déjà envoyés (reprise après un rechargement).
+  const session = useRef<Session | null>(null);
   // Outil courant lu par les gestionnaires d'événements (posés une seule fois).
-  const toolRef = useRef({ tool, color, width, onChunk });
+  const toolRef = useRef({ tool, color, width, onChunk, initialChunks });
   useLayoutEffect(() => {
-    toolRef.current = { tool, color, width, onChunk };
-  }, [tool, color, width, onChunk]);
+    toolRef.current = { tool, color, width, onChunk, initialChunks };
+  }, [tool, color, width, onChunk, initialChunks]);
 
   function flush(): void {
     const current = session.current;
+    if (!current) return;
     for (const chunk of current.writer.flush()) {
       current.doc.applyChunk(chunk.data);
-      toolRef.current.onChunk?.(chunk.data);
+      toolRef.current.onChunk?.(chunk);
     }
     current.renderer?.render(current.doc);
   }
 
   useImperativeHandle(ref, () => ({
     undo: () => {
-      session.current.writer.undo();
+      session.current?.writer.undo();
       flush();
     },
     clear: () => {
-      session.current.writer.clear();
+      session.current?.writer.clear();
       flush();
     },
   }));
@@ -69,7 +63,10 @@ export function DrawingCanvas({ tool, color, width, onChunk, ref }: DrawingCanva
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const current = session.current;
+    const doc = new DrawingDoc();
+    for (const data of toolRef.current.initialChunks ?? []) doc.applyChunk(data);
+    const current: Session = { writer: new DrawingWriter(doc), doc, renderer: null, context: null, scale: 1, pointerId: null, last: null };
+    session.current = current;
 
     // Taille réelle du canvas = taille affichée × densité de l'écran : trait net ; tout est repeint.
     const resize = () => {

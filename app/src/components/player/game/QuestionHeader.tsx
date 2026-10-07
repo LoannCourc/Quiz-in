@@ -9,14 +9,16 @@ interface QuestionHeaderProps {
   // Nombre de questions de la partie (absent avant le lancement : « QUESTION 3 » seul).
   questionCount?: number;
   score: number;
+  // Dessine-moi : « MANCHE 3/8 ».
+  isRound?: boolean;
 }
 
 // Pastille or « QUESTION 3/10 » à gauche, score du joueur à droite (maquette mobile).
-export function QuestionHeader({ index, questionCount, score }: QuestionHeaderProps) {
+export function QuestionHeader({ index, questionCount, score, isRound = false }: QuestionHeaderProps) {
   return (
     <View style={styles.row}>
       <View style={styles.pill}>
-        <Text style={styles.pillText}>{strings.game.questionPill(index, questionCount)}</Text>
+        <Text style={styles.pillText}>{(isRound ? strings.game.roundPill : strings.game.questionPill)(index, questionCount)}</Text>
       </View>
       <Text style={styles.score}>{strings.game.score(score)}</Text>
     </View>

@@ -458,6 +458,9 @@ export const strings = {
     choiceLetters: ['A', 'B', 'C', 'D'],
     questionPill: (index: number, count: number | undefined) =>
       count ? `Question ${index + 1}/${count}` : `Question ${index + 1}`,
+    // Dessine-moi : une manche plutôt qu'une question.
+    roundPill: (index: number, count: number | undefined) =>
+      count ? `Manche ${index + 1}/${count}` : `Manche ${index + 1}`,
     score: (points: number) => `${formatNumber(points)} pts`,
     secondsLeft: (seconds: number) => `${seconds} seconde${seconds > 1 ? 's' : ''} restante${seconds > 1 ? 's' : ''}`,
     points: (points: number) => `${formatNumber(points)} point${points > 1 ? 's' : ''}`,
@@ -617,8 +620,23 @@ export const strings = {
     tools: { pen: 'Crayon', eraser: 'Gomme', bucket: 'Seau' },
     widths: ['Trait fin', 'Trait moyen', 'Trait épais'],
     color: (index: number) => `Couleur ${index}`,
-    undo: 'Annuler',
+    // Icônes des boutons (le nom ci-dessus sert aux lecteurs d'écran).
+    toolIcons: { pen: '✏️', eraser: '🧽', bucket: '🪣' },
+    undo: 'Annuler le dernier trait',
+    undoIcon: '↶',
     clear: 'Tout effacer',
+    clearIcon: '🗑️',
+    // Dessinateur : le mot, en petit au-dessus du canvas.
+    yourWord: 'Ton mot',
+    noLetters: 'Ni lettres ni chiffres !',
+    wordLoading: '…',
+    // Les autres joueurs (lot 2 : pas encore de réponse à taper).
+    drawing: (name: string) => `${name} dessine !`,
+    watchTv: 'Regarde la TV et devine.',
+    hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
+    // Révélation.
+    itWas: 'C’était…',
+    drawnBy: (name: string) => `Dessiné par ${name}`,
     // App de l'hôte : l'hôte qui joue ne dessine pas (décision D1).
     nativeUnavailable: 'Le dessin se fait depuis un navigateur.',
   },

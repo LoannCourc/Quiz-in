@@ -49,6 +49,9 @@ export type ScenarioId =
   | 'paused'
   | 'ended'
   | 'endedSuspense'
+  | 'drawDrawer'
+  | 'drawWatch'
+  | 'drawReveal'
   | BluffScenarioId;
 
 export const SCENARIO_LABELS: Record<ScenarioId, string> = {
@@ -87,6 +90,9 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   paused: 'Pause',
   ended: 'Fin',
   endedSuspense: 'Suspense : fin (3 s d’attente, puis classement)',
+  drawDrawer: 'Dessine-moi : je dessine',
+  drawWatch: 'Dessine-moi : un autre dessine',
+  drawReveal: 'Dessine-moi : révélation du mot',
   ...BLUFF_SCENARIO_LABELS,
 };
 
@@ -99,6 +105,8 @@ export interface Scenario {
   answer: AnswerState;
   // Bluff : proposition, verdict et vote du joueur (absent hors Bluff).
   bluff?: DemoBluff;
+  // Dessine-moi : mot du dessinateur (absent hors de ce jeu).
+  draw?: { word: string | null };
 }
 
 function isBluffScenarioId(id: ScenarioId): id is BluffScenarioId {
@@ -206,6 +214,23 @@ const REVEAL: Reveal = {
   results: RESULTS,
 };
 
+// Dessine-moi : manche en cours (je dessine, ou Léa dessine), ou révélation du mot.
+function drawScenario(id: 'drawDrawer' | 'drawWatch' | 'drawReveal', now: number): Scenario {
+  const drawer = id === 'drawDrawer' ? DEMO_UID : 'lea';
+  const base: PublicSession = {
+    ...baseSession(now, PLAYERS_BEFORE),
+    settings: { answerMode: 'draw', speedBonus: false, control: false, teams: false },
+    status: 'question',
+    questionCount: 8,
+    currentQuestion: { text: 'Animal', difficulty: 2, timeLimit: QUESTION_DURATION_S.draw },
+    drawTurn: { drawer, round: 2, wordLength: 6, category: 'Animal' },
+    ...phase(now, QUESTION_DURATION_S.draw, 20),
+  };
+  const session: PublicSession =
+    id === 'drawReveal' ? { ...base, status: 'reveal', reveal: { correctAnswer: 'girafe', stats: {} }, ...phase(now, REVEAL_DURATION_S.draw) } : base;
+  return { session, answer: IDLE_ANSWER, draw: { word: id === 'drawDrawer' ? 'girafe' : null } };
+}
+
 function baseSession(now: number, players: Record<PlayerId, Player>): PublicSession {
   return {
     hostUid: 'lea',
@@ -281,6 +306,10 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
   if (isBluffScenarioId(id)) return { ...buildBluffScenario(id, baseSession(now, PLAYERS_BEFORE), now), answer: IDLE_ANSWER };
 
   switch (id) {
+    case 'drawDrawer':
+    case 'drawWatch':
+    case 'drawReveal':
+      return drawScenario(id, now);
     case 'lobby':
       return idle(baseSession(now, PLAYERS_BEFORE));
     case 'revealTeams':

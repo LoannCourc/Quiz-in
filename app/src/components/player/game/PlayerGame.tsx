@@ -17,6 +17,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDelayPassed } from '@/hooks/useDelayPassed';
 import type { PlayerBluff } from '@/lib/playerBluff';
+import type { PlayerDraw } from '@/lib/playerDraw';
 import {
   correctChoiceIndex,
   effectiveAnswer,
@@ -36,6 +37,7 @@ import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
+import { DrawerTopBar, DrawerView, DrawRevealView, DrawWatchView } from './DrawViews';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
 import { Timebar } from './Timebar';
@@ -58,6 +60,8 @@ export interface PlayerGameProps {
   overlay?: ReactNode;
   // Bluff : proposition, verdict et vote du joueur (useBluff) ; absent hors d'une partie de Bluff.
   bluff?: PlayerBluff | null;
+  // Dessine-moi : mot du dessinateur et envoi de son dessin (useDraw) ; absent hors de ce jeu.
+  draw?: PlayerDraw | null;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -78,9 +82,15 @@ export function PlayerGame(props: PlayerGameProps) {
   const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
   // Confettis : une fois à la révélation d'une bonne réponse et à la fin de partie.
   const showConfetti = outcome === 'correct' || (session.status === 'ended' && isEndShown);
+  // Dessinateur pendant sa manche : la page ne défile pas (le doigt dessine).
+  const isDrawing = isDrawerNow(props);
   return (
     <View style={styles.root}>
-      <Screen background={background} header={isEndShown ? questionTopBar(props) : undefined} footer={props.footer}>
+      <Screen
+        background={background}
+        header={isEndShown ? questionTopBar(props) : undefined}
+        footer={props.footer}
+        scrollable={!isDrawing}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
         {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
@@ -90,19 +100,28 @@ export function PlayerGame(props: PlayerGameProps) {
   );
 }
 
+// Dessine-moi : le joueur est le dessinateur de la manche en cours (jamais l'hôte, décision D1).
+function isDrawerNow({ session, uid, draw }: PlayerGameProps): boolean {
+  return Boolean(draw) && session.status === 'question' && session.drawTurn?.drawer === uid;
+}
+
 // Question et vote du Bluff : numéro de la question, score et minuteur, fixés en haut de l'écran (hors de
 // la zone qui défile : le clavier ne les fait jamais sortir de l'écran).
-function questionTopBar({ session, uid, serverOffsetMs, bluff }: PlayerGameProps): ReactNode {
+function questionTopBar(props: PlayerGameProps): ReactNode {
+  const { session, uid, serverOffsetMs, bluff } = props;
   const isQuestion = session.status === 'question' && session.currentQuestion !== undefined;
   const isVote = session.status === 'vote' && session.currentQuestion?.choices !== undefined && Boolean(bluff);
   if (!isQuestion && !isVote) return undefined;
   const score = rankedPlayers(session.players).find((player) => player.id === uid)?.score ?? 0;
   const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
+  if (session.drawTurn && isDrawerNow(props)) {
+    return <DrawerTopBar word={props.draw?.word ?? null} category={session.drawTurn.category} timing={timing} />;
+  }
   // Vote du Bluff sans minuteur : « X/Y ont voté » à la place de la barre de temps.
   const votes = isVote ? voteProgress(session) : null;
   return (
     <>
-      <QuestionHeader index={session.currentIndex} questionCount={session.questionCount} score={score} />
+      <QuestionHeader index={session.currentIndex} questionCount={session.questionCount} score={score} isRound={session.settings.answerMode === 'draw'} />
       {votes ? (
         <Text style={[textStyles.label, styles.voteCount]}>{strings.game.bluff.votedCount(votes.voted, votes.expected)}</Text>
       ) : (
@@ -150,7 +169,7 @@ function bluffProgress(session: PublicSession, done: Record<PlayerId, true> | un
   return connectedPlayerIds(session.players).map((id) => ({ id, avatar: session.players[id].avatar, done: done?.[id] === true }));
 }
 
-function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: PlayerGameProps): ReactNode {
+function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, draw }: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
     phaseEndsAt: session.phaseEndsAt,
@@ -171,6 +190,11 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
     case 'question': {
       const question = session.currentQuestion;
       if (!question) return <WaitingView />;
+      if (draw && session.drawTurn) {
+        const { drawTurn } = session;
+        if (drawTurn.drawer === uid) return <DrawerView key={drawTurn.round} session={session} draw={draw} />;
+        return <DrawWatchView turn={drawTurn} drawerName={session.players[drawTurn.drawer]?.name ?? ''} />;
+      }
       if (bluff) {
         const progress = bluffProgress(session, session.bluffedBy?.[index]);
         return <BluffWriteView key={index} {...{ question, bluff, progress }} showQuestion={!isTvPresent(session)} />;
@@ -194,6 +218,15 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff }: P
     }
     case 'reveal': {
       if (!session.reveal) return <WaitingView />;
+      if (draw) {
+        const drawer = session.drawTurn && session.players[session.drawTurn.drawer];
+        return (
+          <>
+            {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
+            <DrawRevealView word={session.reveal.correctAnswer} drawerName={drawer?.name ?? null} />
+          </>
+        );
+      }
       const result = myResult(session, uid);
       const bluffChoices = session.reveal.stats.bluffChoices;
       if (bluffChoices) {
