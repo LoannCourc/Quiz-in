@@ -1,5 +1,5 @@
 import { DRAW_WORDS } from './drawWords'
-import type { DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
+import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
 
 // Dessine-moi (plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs. Lot 2 : des
 // manches sans réponses ni points (le jugement et les points arrivent au lot 3).
@@ -32,7 +32,7 @@ export function isDrawQuestion(question: GameQuestion): question is DrawQuestion
 
 // Nombre pseudo-aléatoire reproductible (mulberry32) : mêmes mots pour un même code de partie, même
 // après une relance de l'app de l'hôte.
-function seededRandom(seedText: string): () => number {
+export function seededRandom(seedText: string): () => number {
   let seed = 0
   for (const character of seedText) seed = (Math.imul(seed, 31) + character.charCodeAt(0)) | 0
   return () => {
@@ -43,7 +43,7 @@ function seededRandom(seedText: string): () => number {
   }
 }
 
-function shuffled<T>(items: readonly T[], random: () => number): T[] {
+export function shuffled<T>(items: readonly T[], random: () => number): T[] {
   const result = [...items]
   for (let index = result.length - 1; index > 0; index--) {
     const other = Math.floor(random() * (index + 1))
@@ -52,11 +52,26 @@ function shuffled<T>(items: readonly T[], random: () => number): T[] {
   return result
 }
 
-// Manches d'une partie : mots tirés de la liste, dans un ordre propre à la partie (code de salle).
+// Niveaux des mots d'une partie : un difficile toutes les 8 manches, environ 3 moyens sur 8, le reste
+// facile (8 manches : 4 faciles, 3 moyens, 1 difficile ; 4 manches : 2 faciles, 2 moyens).
+function levelQuotas(count: number): Record<Difficulty, number> {
+  const hard = Math.floor(count / 8)
+  const medium = Math.round(count * 0.375)
+  return { 1: count - medium - hard, 2: medium, 3: hard }
+}
+
+// Manches d'une partie : mots tirés au hasard (reproductible : même code de salle, mêmes mots, même après
+// une relance de l'app de l'hôte), niveaux mélangés, la première manche toujours facile.
 export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT): DrawQuestion[] {
-  return shuffled(DRAW_WORDS, seededRandom(roomCode))
-    .slice(0, count)
-    .map((entry, index) => ({ id: `draw-${index}`, word: entry.word, category: entry.category, difficulty: entry.difficulty }))
+  const random = seededRandom(roomCode)
+  const quotas = levelQuotas(count)
+  const picked = ([1, 2, 3] as const).flatMap((level) =>
+    shuffled(DRAW_WORDS.filter((entry) => entry.difficulty === level), random).slice(0, quotas[level]),
+  )
+  const order = shuffled(picked, random)
+  const firstEasy = order.findIndex((entry) => entry.difficulty === 1)
+  if (firstEasy > 0) [order[0], order[firstEasy]] = [order[firstEasy], order[0]]
+  return order.map((entry, index) => ({ id: `draw-${index}`, word: entry.word, category: entry.category, difficulty: entry.difficulty }))
 }
 
 // Dessinateurs possibles : tous les joueurs sauf l'hôte (décision D1 : l'hôte qui joue devine mais ne

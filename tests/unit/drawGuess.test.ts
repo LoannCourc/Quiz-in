@@ -191,3 +191,15 @@ describe('Dessine-moi : TV (qui a trouvé) et sons', () => {
     expect(soundCues(question, revealed({ correctAnswer: 'chat', stats: { drawCancelled: true }, results: {} }), NOW_SOUND)).toEqual(['miss'])
   })
 })
+
+describe('Dessine-moi : changement de mot au hasard', () => {
+  test('jamais un mot de la partie ; deux manches, deux remplaçants différents ; même niveau si possible', () => {
+    const replacement = (index: number) => {
+      const session = round({ drawWordChange: true, drawTurn: { drawer: PLAYER, round: index, wordLength: 4, category: 'Animal' } })
+      return (drawWordChangeUpdate(session, questions) as Record<string, { word: string }>).drawSecret.word
+    }
+    const words = [0, 1, 2, 3].map(replacement)
+    expect(new Set(words).size).toBe(4)
+    for (const word of words) expect(questions.map((question) => question.word)).not.toContain(word)
+  })
+})

@@ -144,3 +144,20 @@ describe('Dessine-moi : chemin de création (hôte + un seul joueur)', () => {
     expect(isKnownAnswerMode('mime')).toBe(false)
   })
 })
+
+describe('Dessine-moi : mots tirés au hasard (niveaux mélangés)', () => {
+  test('8 manches : 4 faciles, 3 moyens, 1 difficile ; la première facile ; tous différents', () => {
+    for (const code of ['K7PX', 'ABCD', 'MMMM', 'B9CX']) {
+      const words = drawGameQuestions(code)
+      const levels = words.map((question) => question.difficulty)
+      expect([1, 2, 3].map((level) => levels.filter((value) => value === level).length)).toEqual([4, 3, 1])
+      expect(levels[0]).toBe(1)
+      expect(new Set(words.map((question) => question.word)).size).toBe(8)
+    }
+  })
+
+  test('4 et 6 manches : pas de mot difficile', () => {
+    expect(drawGameQuestions('K7PX', 4).map((question) => question.difficulty).sort()).toEqual([1, 1, 2, 2])
+    expect(drawGameQuestions('K7PX', 6).some((question) => question.difficulty === 3)).toBe(false)
+  })
+})

@@ -1,6 +1,6 @@
 import { editDistance, normalizeAnswer } from './answerMatching'
 import { ALL_ANSWERED_DELAY_S, DRAW_DRAWER_MAX_POINTS, DRAW_GUESS_MAX_POINTS, DRAW_GUESS_MIN_POINTS } from './constants'
-import { wordLetterCount } from './drawGame'
+import { seededRandom, shuffled, wordLetterCount } from './drawGame'
 import { drawAnswers, DRAW_WORDS } from './drawWords'
 import type { SessionUpdate } from './hostEngine'
 import { connectedPlayerIds } from './players'
@@ -131,15 +131,19 @@ export function isDrawRoundAbandoned(session: Pick<PublicSession, 'players' | 'd
   return drawer !== undefined && session.players[drawer]?.connected !== true
 }
 
-// Changement de mot (décision D7) : une fois, avant le premier trait. Mot de remplacement : le premier de
-// la liste qui n'est pas déjà prévu dans la partie, ni le mot actuel. null si rien à faire.
+// Changement de mot (décision D7) : une fois, avant le premier trait. Remplaçant tiré au hasard, de même
+// niveau si possible, jamais un mot prévu dans la partie ni le mot actuel ; reproductible (graine : les mots
+// de la partie) et propre à la manche (deux manches ne reçoivent jamais le même). null si rien à faire.
 export function drawWordChangeUpdate(session: Session, questions: readonly DrawQuestion[]): SessionUpdate | null {
   const turn = session.drawTurn
   if (!session.drawWordChange || !turn || turn.changedWord || session.status !== 'question') return null
   const planned = new Set([...questions.map((question) => question.word), session.drawSecret?.word])
-  const offset = turn.round % DRAW_WORDS.length
-  const pool = [...DRAW_WORDS.slice(offset), ...DRAW_WORDS.slice(0, offset)]
-  const replacement = pool.find((entry) => !planned.has(entry.word))
+  const level = questions[turn.round]?.difficulty
+  const free = DRAW_WORDS.filter((entry) => !planned.has(entry.word))
+  const sameLevel = free.filter((entry) => entry.difficulty === level)
+  const seed = `${questions.map((question) => question.word).join('|')}|change`
+  const pool = shuffled(sameLevel.length > turn.round ? sameLevel : free, seededRandom(seed))
+  const replacement = pool.length > 0 ? pool[turn.round % pool.length] : undefined
   if (!replacement) return { drawWordChange: null }
   return {
     drawWordChange: null,
