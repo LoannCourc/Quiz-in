@@ -57,7 +57,7 @@ function OutlinePill({ label, onPress, isPressedState = false }: { label: string
       accessibilityState={{ expanded: isPressedState }}
       onPress={onPress}
       style={({ pressed }) => [styles.pill, pressed && styles.pressed]}>
-      <ButtonLabel style={styles.pillLabel}>{label}</ButtonLabel>
+      <ButtonLabel stretch={false} style={styles.pillLabel}>{label}</ButtonLabel>
     </Pressable>
   );
 }
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: Spacing.two,
   },
+  // Pilule qui épouse son texte (maquette N2) ; les deux restent centrées sous le code.
   pill: {
-    flex: 1,
-    maxWidth: 170,
+    flexShrink: 1,
     minHeight: 40,
     justifyContent: 'center',
-    paddingHorizontal: Spacing.two,
+    paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.one,
     borderRadius: AppSizes.radiusPill,
     borderWidth: 2,

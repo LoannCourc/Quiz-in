@@ -14,8 +14,8 @@ interface SoundQuickAccessProps {
   onChange: (sound: SoundSettings) => void;
 }
 
-// Salon (maquette N2) : petite icône ronde « Son » en haut à droite ; un appui ouvre une feuille avec les
-// réglages du son de la TV (couper la musique sans recréer la partie).
+// Salon (maquette N2) : petit bouton rond plein « Son » en haut à droite ; un appui ouvre une feuille
+// avec les réglages du son de la TV (couper la musique sans recréer la partie).
 export function SoundQuickAccess({ sound, onChange }: SoundQuickAccessProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { sound: texts } = strings;
@@ -28,7 +28,7 @@ export function SoundQuickAccess({ sound, onChange }: SoundQuickAccessProps) {
         hitSlop={4}
         onPress={() => setIsOpen(true)}
         style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
-        <SettingsIcon name="speaker" color={AppColors.link} />
+        <SettingsIcon name="speaker" color={AppColors.text} />
       </Pressable>
       <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <SoundSettingsSection sound={sound} onChange={onChange} />
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     borderRadius: AppSizes.roundIconButton / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: AppColors.link,
+    // Bouton plein, fond semi-transparent (maquette N2).
+    backgroundColor: AppColors.surface,
   },
   pressed: {
     opacity: 0.7,

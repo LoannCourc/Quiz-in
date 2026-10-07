@@ -22,12 +22,11 @@ export function LobbySettingsRow({ onPress }: { onPress: () => void }) {
       accessibilityLabel={`${texts.title} : ${texts.summary}`}
       onPress={onPress}
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
-      <SettingsIcon name="sliders" color={AppColors.link} />
       <Text style={styles.rowText}>
         <Text style={styles.rowTitle}>{texts.title}</Text>
         <Text style={styles.rowSummary}>{` · ${texts.summary}`}</Text>
       </Text>
-      <SettingsIcon name="chevron" color={AppColors.link} />
+      <SettingsIcon name="chevron" color={AppColors.text} />
     </Pressable>
   );
 }
@@ -85,16 +84,16 @@ export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
 }
 
 const styles = StyleSheet.create({
+  // Panneau plein, sans icône à gauche, flèche à droite (maquette N2).
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
-    minHeight: 48,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.one,
-    borderRadius: AppSizes.radiusPill,
-    borderWidth: 2,
-    borderColor: AppColors.link,
+    minHeight: 56,
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.two,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.lobbyPanel,
   },
   pressed: {
     opacity: 0.8,

@@ -14,6 +14,8 @@ const Palette = {
   pinkLight: '#ff6fa8',
   // Rose adouci (octobre 2026) : moins agressif que pink ; texte encre dessus (7,8:1).
   pinkSoft: '#f58aae',
+  // Violet des panneaux pleins du salon (ligne « Réglages », maquette N2).
+  violetPanel: '#2a1460',
   cyan: '#3fe9ff',
   gold: '#ffd23d',
   green: '#7dff9a',
@@ -48,6 +50,8 @@ export const AppColors = {
   // Couleur unie sous le dégradé (avant son affichage, et partout où un dégradé n'a pas de sens).
   background: Palette.bgBottom,
   surface: 'rgba(255, 255, 255, 0.12)',
+  // Salon (maquette N2) : panneau plein de la ligne « Réglages ».
+  lobbyPanel: Palette.violetPanel,
   card: Palette.white,
   text: Palette.white,
   textMuted: Palette.lavender,

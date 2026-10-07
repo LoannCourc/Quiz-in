@@ -147,8 +147,10 @@ export function HostLobby(props: HostLobbyProps) {
     }
   }
 
+  // Pied fixe (maquette N2) : la ligne « Réglages », puis ce qui empêche le lancement, puis le bouton.
   const footer = (
     <View style={styles.footer}>
+      <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
       <LaunchHint
         questions={questions}
         hasEnoughPlayers={hasEnoughPlayers}
@@ -228,7 +230,6 @@ export function HostLobby(props: HostLobbyProps) {
         )}
         <LobbyPlayerGrid players={players} hostUid={uid} />
       </View>
-      <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
       <LobbySettingsSheet
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
