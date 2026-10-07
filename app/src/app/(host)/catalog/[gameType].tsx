@@ -9,22 +9,23 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings, type GameType } from '@/constants/strings';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
+import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { warnIgnoredEntries } from '@/lib/devLog';
 
-// Jeux ouvrables depuis l'accueil. Dessine-moi : en développement seulement, tant qu'il n'est pas terminé.
-function isOpenableGame(value: string | undefined, isBlindTestEnabled: boolean): value is GameType {
+// Jeux ouvrables depuis l'accueil (blind test et Dessine-moi : selon leur interrupteur à distance).
+function isOpenableGame(value: string | undefined, isBlindTestEnabled: boolean, isDrawEnabled: boolean): value is GameType {
   if (value === 'quiz' || value === 'bluff') return true;
   if (value === 'blindTest') return isBlindTestEnabled;
-  return value === 'draw' && __DEV__;
+  return value === 'draw' && isDrawEnabled;
 }
 
 // Fiches valides ; les entrées mal formées de la base sont ignorées. Dessine-moi (pas de quiz dans la
-// base) : fiche locale, en développement seulement.
+// base) : fiche locale.
 function toEntries(quizzes: unknown): QuizEntry[] {
   const { valid, ignoredCount } = parseQuizCatalog(quizzes);
   warnIgnoredEntries('Catalogue', ignoredCount);
-  return __DEV__ ? [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }] : valid;
+  return [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
 }
 
 function openQuiz(quizId: string) {
@@ -41,9 +42,10 @@ function backHome() {
 export default function CatalogRoute() {
   const { gameType } = useLocalSearchParams<{ gameType: string }>();
   const isBlindTestEnabled = useBlindTestEnabled();
+  const isDrawEnabled = useDrawEnabled();
   const catalog = useLiveValue<unknown>('quizzes');
   const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
-  if (!isOpenableGame(gameType, isBlindTestEnabled)) return <Redirect href="/" />;
+  if (!isOpenableGame(gameType, isBlindTestEnabled, isDrawEnabled)) return <Redirect href="/" />;
 
   return (
     <Screen>

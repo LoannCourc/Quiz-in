@@ -160,6 +160,9 @@ export const AUDIO_FADE_IN_MS = 80;
 export const AUDIO_STOP_FADE_MS = 150;
 // Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).
 export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';
+// Interrupteur à distance de Dessine-moi : absent ou true, le jeu est ouvert ; false (console Firebase),
+// la tuile passe en « Bientôt » sans nouvelle version de l'app.
+export const DRAW_ENABLED_PATH = 'config/drawEnabled';
 
 // Modes de réponse connus de cette version (liste exhaustive par le typage). Un site des joueurs resté
 // ouvert depuis une version plus ancienne ne connaît pas un mode récent : il demande de recharger la page

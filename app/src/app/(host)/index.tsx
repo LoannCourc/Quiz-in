@@ -8,6 +8,7 @@ import { AppColors } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
+import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useResumableGame } from '@/hooks/useResumableGame';
 import { isPublishedWeb } from '@/lib/platform';
 
@@ -23,6 +24,7 @@ function openGame(game: GameType) {
 function HomeScreen() {
   const resumableCode = useResumableGame();
   const isBlindTestEnabled = useBlindTestEnabled();
+  const isDrawEnabled = useDrawEnabled();
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
@@ -32,7 +34,7 @@ function HomeScreen() {
 
   return (
     <Screen>
-      <HomeView onOpenGame={openGame} banner={resumeButton} isBlindTestEnabled={isBlindTestEnabled} />
+      <HomeView onOpenGame={openGame} banner={resumeButton} isBlindTestEnabled={isBlindTestEnabled} isDrawEnabled={isDrawEnabled} />
 
       <View style={styles.footerLinks}>
         <Link href="/about" style={styles.footerLink}>

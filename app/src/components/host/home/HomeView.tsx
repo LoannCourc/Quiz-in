@@ -8,21 +8,28 @@ import { Spacing } from '@/constants/theme';
 
 import { GameTile } from './GameTile';
 
-// Dessine-moi : tuile en développement seulement, tant que le jeu n'est pas terminé.
-const GAMES: readonly GameType[] = __DEV__ ? ['quiz', 'blindTest', 'bluff', 'draw'] : ['quiz', 'blindTest', 'bluff'];
+const GAMES: readonly GameType[] = ['quiz', 'blindTest', 'bluff', 'draw'];
 const TITLE_SIZE = 28;
+
+// « Bientôt » si l'interrupteur du jeu est coupé ; Dessine-moi ouvert : « Nouveau ».
+function tileBadge(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: boolean): 'new' | 'soon' | undefined {
+  if (game === 'blindTest') return isBlindTestEnabled ? undefined : 'soon';
+  if (game === 'draw') return isDrawEnabled ? 'new' : 'soon';
+  return undefined;
+}
 
 interface HomeViewProps {
   onOpenGame: (game: GameType) => void;
   // Affiché sous le titre (« Reprendre la partie »).
   banner?: ReactNode;
-  // Interrupteur à distance : la tuile Blind test reste visible mais « Bientôt » s'il est coupé.
+  // Interrupteurs à distance : la tuile reste visible mais « Bientôt » si son jeu est coupé.
   isBlindTestEnabled: boolean;
+  isDrawEnabled: boolean;
 }
 
 // Accueil de l'hôte (maquette H1, « grille 2 × 2 ») : logo, « À quoi on joue ? », une tuile par jeu, qui
 // ouvre le catalogue de ce jeu. Pas de recherche ici : elle reste dans chaque catalogue.
-export function HomeView({ onOpenGame, banner, isBlindTestEnabled }: HomeViewProps) {
+export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled }: HomeViewProps) {
   return (
     <View style={styles.column}>
       <Text style={styles.brand}>{strings.join.appName}</Text>
@@ -36,7 +43,7 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled }: HomeViewPro
           <GameTile
             key={game}
             game={game}
-            badge={game === 'draw' ? 'new' : game === 'blindTest' && !isBlindTestEnabled ? 'soon' : undefined}
+            badge={tileBadge(game, isBlindTestEnabled, isDrawEnabled)}
             onPress={() => onOpenGame(game)}
           />
         ))}

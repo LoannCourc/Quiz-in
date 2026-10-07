@@ -13,6 +13,7 @@ import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
+import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useSoundPreferences } from '@/hooks/useSoundPreferences';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
@@ -41,8 +42,8 @@ function QuizScreen({ quizId }: { quizId: string }) {
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
   // Fiche absente ou mal formée : null, traitée comme introuvable.
   const summary = useMemo(() => {
-    // Dessine-moi : fiche locale (développement seulement, lot 2).
-    if (__DEV__ && quizId === DRAW_QUIZ_ID) return DRAW_QUIZ_SUMMARY;
+    // Dessine-moi : fiche locale (pas de quiz dans la base).
+    if (quizId === DRAW_QUIZ_ID) return DRAW_QUIZ_SUMMARY;
     if (quiz.kind !== 'ready') return null;
     const parsed = parseQuizSummary(quiz.value);
     warnIgnoredEntries('Fiche du quiz', parsed === null && quiz.value !== null ? 1 : 0);
@@ -54,10 +55,15 @@ function QuizScreen({ quizId }: { quizId: string }) {
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const isBlindTestEnabled = useBlindTestEnabled();
+  const isDrawEnabled = useDrawEnabled();
   const [sound, setSound] = useSoundPreferences();
-  // Blind test avec l'interrupteur coupé : fiche visible (lien direct), mais pas de partie.
+  // Jeu coupé à distance (blind test, Dessine-moi) : fiche visible (lien direct), mais pas de partie.
   const unavailableReason =
-    summary?.gameType === 'blindTest' && !isBlindTestEnabled ? strings.quizSetup.blindTestUnavailable : undefined;
+    summary?.gameType === 'blindTest' && !isBlindTestEnabled
+      ? strings.quizSetup.blindTestUnavailable
+      : summary?.gameType === 'draw' && !isDrawEnabled
+        ? strings.quizSetup.drawUnavailable
+        : undefined;
 
   async function create() {
     if (!areSettingsCompatible(settings) || unavailableReason) return;

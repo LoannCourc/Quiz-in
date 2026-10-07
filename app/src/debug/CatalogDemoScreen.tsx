@@ -1,4 +1,5 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
+import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { settingsForGameType } from '@shared/quizCatalog';
 import { GENRE_ICONS, ICON_THEMES, themeIconOf, type GenreIconName, type QuizIconName } from '@shared/themeIcons';
 import { DEFAULT_SOUND_SETTINGS } from '@shared/sound';
@@ -18,22 +19,26 @@ import { Spacing } from '@/constants/theme';
 
 import { DEMO_CATALOG } from './demoCatalog';
 
+// Dessine-moi : fiche locale, comme dans le vrai catalogue.
+const DEMO_ENTRIES = [...DEMO_CATALOG, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
+
 // Démo de l'accueil, du catalogue et des fiches avec des quiz fictifs (développement uniquement).
 // /debug/catalog : accueil (tuiles des jeux) ; &game=quiz|blindTest|bluff|draw : catalogue de ce jeu ;
-// &blindtest=0 : tuile Blind test « Bientôt ». /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
+// &blindtest=0 : tuile Blind test « Bientôt » ; &draw=0 : tuile Dessine-moi « Bientôt ». /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons, game, blindtest } = useLocalSearchParams<{
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw } = useLocalSearchParams<{
     quiz?: string;
     settings?: string;
     icons?: string;
     game?: GameType;
     blindtest?: string;
+    draw?: string;
   }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
-  const quiz = DEMO_CATALOG.find((entry) => entry.id === quizId);
+  const quiz = DEMO_ENTRIES.find((entry) => entry.id === quizId);
 
   if (icons === '1' || icons === 'genres') return <ThemeIconGallery onlyGenres={icons === 'genres'} />;
   if (quiz) {
@@ -53,13 +58,13 @@ export default function CatalogDemoScreen() {
     <Screen>
       {game ? (
         <CatalogView
-          entries={DEMO_CATALOG}
+          entries={DEMO_ENTRIES}
           gameType={game}
           onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
           onBack={() => router.setParams({ game: undefined })}
         />
       ) : (
-        <HomeView isBlindTestEnabled={blindtest !== '0'} onOpenGame={(type) => router.setParams({ game: type })} />
+        <HomeView isBlindTestEnabled={blindtest !== '0'} isDrawEnabled={draw !== '0'} onOpenGame={(type) => router.setParams({ game: type })} />
       )}
     </Screen>
   );

@@ -16,7 +16,7 @@ import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuizAudie
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 
-// Types de jeu du sélecteur du catalogue. Dessine-moi : en développement seulement (lot 2).
+// Types de jeu de l'accueil (une tuile chacun).
 export type GameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
@@ -137,17 +137,20 @@ export const strings = {
     comingSoon: 'bientôt',
     incompatible: 'incompatible avec ces réglages',
     // minutes null : Pas à pas, la durée dépend de l'hôte.
-    meta: (questionCount: number, minutes: number | null) =>
-      `${questionCount} questions · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · jusqu’à ${MAX_PLAYERS} joueurs`,
+    // isRound : Dessine-moi (des manches, pas des questions).
+    meta: (questionCount: number, minutes: number | null, isRound = false) =>
+      `${questionCount} ${isRound ? 'manches' : 'questions'} · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · jusqu’à ${MAX_PLAYERS} joueurs`,
     audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
     settingsTitle: 'Réglages de la partie',
     audioCredit: 'Extrait audio et informations : Deezer',
     blindTestUnavailable: 'Le blind test n’est pas disponible pour le moment.',
+    drawUnavailable: 'Dessine-moi n’est pas disponible pour le moment.',
     speedBonusOn: 'Rapidité activée',
     speedBonusOff: 'sans Rapidité',
     settingsCardLabel: (summary: string) => `Réglages de la partie : ${summary}. Modifier`,
     settingsDone: 'Terminé',
     createButton: 'Choisir ce quiz',
+    createGameButton: 'Choisir ce jeu',
     creating: 'Création…',
     noFreeCode: 'Impossible de trouver un code de partie libre. Réessaie.',
     createFailed: 'La partie n’a pas pu être créée :',

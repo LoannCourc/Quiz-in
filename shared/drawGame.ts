@@ -19,7 +19,7 @@ export const DRAW_QUIZ_SUMMARY: QuizSummary = {
   questionCount: DRAW_ROUNDS_DEFAULT,
   estimatedMinutes: 15,
   description:
-    'À tour de rôle, un joueur dessine un mot secret sur son téléphone ; les autres le devinent en regardant la TV. Plus on trouve vite, plus on marque, et le dessinateur gagne des points quand on trouve son dessin.',
+    'Chacun son tour, un joueur dessine un mot secret, les autres le devinent en regardant la TV. Plus on trouve vite, plus on marque.',
   audience: 'all',
   poster: 'pink',
   addedAt: '',

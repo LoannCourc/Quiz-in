@@ -56,7 +56,7 @@ export function QuizDetails(props: QuizDetailsProps) {
       {error && <Text style={textStyles.error}>{error}</Text>}
       {unavailableReason && <Text style={textStyles.error}>{unavailableReason}</Text>}
       <BigButton
-        label={isCreating ? strings.quizSetup.creating : strings.quizSetup.createButton}
+        label={isCreating ? strings.quizSetup.creating : quiz.gameType === 'draw' ? strings.quizSetup.createGameButton : strings.quizSetup.createButton}
         onPress={onChoose}
         disabled={isCreating || unavailableReason !== undefined}
       />
@@ -73,7 +73,7 @@ export function QuizDetails(props: QuizDetailsProps) {
         <Text style={styles.title} numberOfLines={3}>
           {quiz.title}
         </Text>
-        <Text style={styles.meta}>{strings.quizSetup.meta(questionCount, estimateGameMinutes(questionCount, settings))}</Text>
+        <Text style={styles.meta}>{strings.quizSetup.meta(questionCount, estimateGameMinutes(questionCount, settings), quiz.gameType === 'draw')}</Text>
         <View style={styles.tags}>
           <Tag label={strings.catalog.difficultyLevels[level]} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />
