@@ -13,6 +13,8 @@
   --white: #ffffff;
   --pink: #ff3d8b;
   --pink-light: #ff6fa8;
+  /* Rose adouci (octobre 2026) : moins agressif que --pink ; texte encre dessus (7,8:1). */
+  --pink-soft: #f58aae;
   --cyan: #3fe9ff;
   --gold: #ffd23d;
   --green: #7dff9a;
@@ -38,6 +40,8 @@
   --color-highlight: var(--pink);
   /* Texte sur le rose (pastilles, bandeaux) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1). */
   --on-highlight: var(--ink);
+  /* Pastille « QUESTION X/N » et « MANCHE X/N » de l'en-tête. */
+  --question-pill: var(--pink-soft);
   --color-selection: var(--white);
 
   /* Réponses A, B, C, D : la lettre accompagne toujours la couleur. */

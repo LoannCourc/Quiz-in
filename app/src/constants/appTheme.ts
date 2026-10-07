@@ -10,6 +10,8 @@ const Palette = {
   white: '#ffffff',
   pink: '#ff3d8b',
   pinkLight: '#ff6fa8',
+  // Rose adouci (octobre 2026) : moins agressif que pink ; texte encre dessus (7,8:1).
+  pinkSoft: '#f58aae',
   cyan: '#3fe9ff',
   gold: '#ffd23d',
   green: '#7dff9a',
