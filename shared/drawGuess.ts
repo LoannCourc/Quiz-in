@@ -1,7 +1,7 @@
 import { editDistance, normalizeAnswer } from './answerMatching'
 import { ALL_ANSWERED_DELAY_S, DRAW_DRAWER_MAX_POINTS, DRAW_GUESS_MAX_POINTS, DRAW_GUESS_MIN_POINTS } from './constants'
 import { wordLetterCount } from './drawGame'
-import { DRAW_WORDS } from './drawWords'
+import { drawAnswers, DRAW_WORDS } from './drawWords'
 import type { SessionUpdate } from './hostEngine'
 import { connectedPlayerIds } from './players'
 import type { DrawQuestion, DrawVerdict, PlayerId, PlayerResult, PublicSession, Session } from './types'
@@ -26,7 +26,14 @@ function comparable(text: string): string {
 
 const letters = (text: string) => text.replace(/ /g, '').length
 
+// Verdict d'un essai : le meilleur obtenu contre le mot et ses synonymes acceptés (shared/drawWords.ts).
 export function judgeDrawGuess(guess: string, word: string): DrawVerdict {
+  const verdicts = drawAnswers(word).map((answer) => judgeAgainst(guess, answer))
+  if (verdicts.includes('found')) return 'found'
+  return verdicts.includes('close') ? 'close' : 'wrong'
+}
+
+function judgeAgainst(guess: string, word: string): DrawVerdict {
   const given = comparable(guess)
   const expected = comparable(word)
   if (given === '' || expected === '') return 'wrong'

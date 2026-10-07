@@ -1,22 +1,276 @@
 import type { Difficulty } from './types'
 
-// Mots de Dessine-moi. PROVISOIRE (lot 2) : une dizaine de mots pour essayer le dessin en vraie partie ;
-// la liste d'environ 200 mots, par catégories, arrive au lot 4 (relecture docs/relecture-dessine-moi.md).
+// Mots de Dessine-moi (lot 4). Règles de la liste, vérifiées par tests/unit/drawWords.test.ts :
+// - noms communs concrets, faciles à dessiner, sans nom propre ni marque, sans lettre ni chiffre à écrire,
+//   sans mot abstrait, à double sens (souris, glace, bureau…) ou gênant pour un public famille ;
+// - difficulty : difficulté À DESSINER (1 facile, 2 moyen, 3 difficile ; environ 60 / 30 / 10 %) ;
+// - accepts : de vrais synonymes courants seulement, peu nombreux et de longueur proche ; jamais les
+//   variantes d'orthographe, de pluriel ou les fautes (le jugement automatique s'en charge) ;
+// - pas de doublon après normalisation, 3 à 14 lettres (sans tirets ni espaces), et aucune réponse
+//   acceptée qui soit aussi le mot d'une autre entrée.
+// Pas de « œ » (œuf, cœur…) : le nombre de lettres affiché et la saisie au clavier ne concorderaient pas.
+export const DRAW_CATEGORIES = [
+  'Animal',
+  'Nourriture',
+  'Objet',
+  'Maison',
+  'Nature',
+  'Lieu',
+  'Transport',
+  'Métier',
+  'Sport',
+  'Loisir',
+  'Vêtement',
+  'Corps',
+] as const
+
+export type DrawCategory = (typeof DRAW_CATEGORIES)[number]
+
 export interface DrawWord {
   word: string
-  category: string
+  category: DrawCategory
   difficulty: Difficulty
+  accepts?: readonly string[]
 }
 
 export const DRAW_WORDS: readonly DrawWord[] = [
-  { word: 'maison', category: 'Objet', difficulty: 1 },
-  { word: 'chat', category: 'Animal', difficulty: 1 },
-  { word: 'soleil', category: 'Nature', difficulty: 1 },
-  { word: 'vélo', category: 'Transport', difficulty: 1 },
+  // Animal
+  { word: 'chat', category: 'Animal', difficulty: 1, accepts: ['minou'] },
+  { word: 'chien', category: 'Animal', difficulty: 1, accepts: ['toutou'] },
+  { word: 'poisson', category: 'Animal', difficulty: 1 },
+  { word: 'oiseau', category: 'Animal', difficulty: 1 },
+  { word: 'lapin', category: 'Animal', difficulty: 1 },
+  { word: 'cochon', category: 'Animal', difficulty: 1 },
+  { word: 'vache', category: 'Animal', difficulty: 1 },
+  { word: 'mouton', category: 'Animal', difficulty: 1 },
+  { word: 'canard', category: 'Animal', difficulty: 1 },
+  { word: 'serpent', category: 'Animal', difficulty: 1 },
+  { word: 'girafe', category: 'Animal', difficulty: 1 },
+  { word: 'éléphant', category: 'Animal', difficulty: 1 },
+  { word: 'escargot', category: 'Animal', difficulty: 1 },
+  { word: 'tortue', category: 'Animal', difficulty: 1 },
+  { word: 'papillon', category: 'Animal', difficulty: 1 },
+  { word: 'araignée', category: 'Animal', difficulty: 1 },
+  { word: 'abeille', category: 'Animal', difficulty: 1 },
+  { word: 'coccinelle', category: 'Animal', difficulty: 1 },
+  { word: 'baleine', category: 'Animal', difficulty: 1 },
+  { word: 'cheval', category: 'Animal', difficulty: 2 },
+  { word: 'lion', category: 'Animal', difficulty: 2 },
+  { word: 'crocodile', category: 'Animal', difficulty: 2 },
+  { word: 'pingouin', category: 'Animal', difficulty: 2, accepts: ['manchot'] },
+  { word: 'kangourou', category: 'Animal', difficulty: 2 },
+  { word: 'dauphin', category: 'Animal', difficulty: 2 },
+  { word: 'pieuvre', category: 'Animal', difficulty: 2, accepts: ['poulpe'] },
+  { word: 'hérisson', category: 'Animal', difficulty: 2 },
+  { word: 'caméléon', category: 'Animal', difficulty: 3 },
+
+  // Nourriture
   { word: 'pomme', category: 'Nourriture', difficulty: 1 },
-  { word: 'girafe', category: 'Animal', difficulty: 2 },
-  { word: 'parapluie', category: 'Objet', difficulty: 2 },
-  { word: 'fusée', category: 'Transport', difficulty: 2 },
-  { word: 'arc-en-ciel', category: 'Nature', difficulty: 2 },
+  { word: 'banane', category: 'Nourriture', difficulty: 1 },
+  { word: 'poire', category: 'Nourriture', difficulty: 1 },
+  { word: 'cerise', category: 'Nourriture', difficulty: 1 },
+  { word: 'fraise', category: 'Nourriture', difficulty: 1 },
+  { word: 'carotte', category: 'Nourriture', difficulty: 1 },
+  { word: 'pizza', category: 'Nourriture', difficulty: 1 },
   { word: 'gâteau', category: 'Nourriture', difficulty: 1 },
+  { word: 'sucette', category: 'Nourriture', difficulty: 1 },
+  { word: 'bonbon', category: 'Nourriture', difficulty: 1 },
+  { word: 'hamburger', category: 'Nourriture', difficulty: 1, accepts: ['burger'] },
+  { word: 'frites', category: 'Nourriture', difficulty: 1 },
+  { word: 'ananas', category: 'Nourriture', difficulty: 1 },
+  { word: 'pastèque', category: 'Nourriture', difficulty: 1 },
+  { word: 'citron', category: 'Nourriture', difficulty: 1 },
+  { word: 'champignon', category: 'Nourriture', difficulty: 1 },
+  { word: 'tomate', category: 'Nourriture', difficulty: 1 },
+  { word: 'croissant', category: 'Nourriture', difficulty: 2 },
+  { word: 'fromage', category: 'Nourriture', difficulty: 2 },
+  { word: 'raisin', category: 'Nourriture', difficulty: 2 },
+  { word: 'saucisse', category: 'Nourriture', difficulty: 2 },
+  { word: 'brocoli', category: 'Nourriture', difficulty: 2 },
+  { word: 'crêpe', category: 'Nourriture', difficulty: 2 },
+  { word: 'spaghetti', category: 'Nourriture', difficulty: 2, accepts: ['pâtes'] },
+  { word: 'chocolat', category: 'Nourriture', difficulty: 3 },
+  { word: 'café', category: 'Nourriture', difficulty: 3 },
+
+  // Objet
+  { word: 'parapluie', category: 'Objet', difficulty: 1, accepts: ['pépin'] },
+  { word: 'lunettes', category: 'Objet', difficulty: 1 },
+  { word: 'ciseaux', category: 'Objet', difficulty: 1 },
+  { word: 'clé', category: 'Objet', difficulty: 1 },
+  { word: 'crayon', category: 'Objet', difficulty: 1 },
+  { word: 'bougie', category: 'Objet', difficulty: 1 },
+  { word: 'cadeau', category: 'Objet', difficulty: 1 },
+  { word: 'téléphone', category: 'Objet', difficulty: 1, accepts: ['portable'] },
+  { word: 'montre', category: 'Objet', difficulty: 1 },
+  { word: 'couteau', category: 'Objet', difficulty: 1 },
+  { word: 'fourchette', category: 'Objet', difficulty: 1 },
+  { word: 'cuillère', category: 'Objet', difficulty: 1 },
+  { word: 'marteau', category: 'Objet', difficulty: 1 },
+  { word: 'ampoule', category: 'Objet', difficulty: 1 },
+  { word: 'enveloppe', category: 'Objet', difficulty: 1 },
+  { word: 'sac', category: 'Objet', difficulty: 1 },
+  { word: 'tasse', category: 'Objet', difficulty: 1 },
+  { word: 'valise', category: 'Objet', difficulty: 2 },
+  { word: 'loupe', category: 'Objet', difficulty: 2 },
+  { word: 'échelle', category: 'Objet', difficulty: 2 },
+  { word: 'cadenas', category: 'Objet', difficulty: 2 },
+  { word: 'brosse à dents', category: 'Objet', difficulty: 2 },
+  { word: 'appareil photo', category: 'Objet', difficulty: 2 },
+  { word: 'boussole', category: 'Objet', difficulty: 3 },
+
+  // Maison
+  { word: 'maison', category: 'Maison', difficulty: 1 },
+  { word: 'lit', category: 'Maison', difficulty: 1 },
+  { word: 'chaise', category: 'Maison', difficulty: 1 },
+  { word: 'table', category: 'Maison', difficulty: 1 },
+  { word: 'fenêtre', category: 'Maison', difficulty: 1 },
+  { word: 'porte', category: 'Maison', difficulty: 1 },
+  { word: 'lampe', category: 'Maison', difficulty: 1 },
+  { word: 'escalier', category: 'Maison', difficulty: 1 },
+  { word: 'horloge', category: 'Maison', difficulty: 1, accepts: ['pendule'] },
+  { word: 'télévision', category: 'Maison', difficulty: 1, accepts: ['téléviseur'] },
+  { word: 'canapé', category: 'Maison', difficulty: 2, accepts: ['sofa'] },
+  { word: 'baignoire', category: 'Maison', difficulty: 2 },
+  { word: 'douche', category: 'Maison', difficulty: 2 },
+  { word: 'cheminée', category: 'Maison', difficulty: 2 },
+  { word: 'armoire', category: 'Maison', difficulty: 2 },
+  { word: 'robinet', category: 'Maison', difficulty: 2 },
+  { word: 'aspirateur', category: 'Maison', difficulty: 3 },
+
+  // Nature
+  { word: 'soleil', category: 'Nature', difficulty: 1 },
+  { word: 'lune', category: 'Nature', difficulty: 1 },
+  { word: 'étoile', category: 'Nature', difficulty: 1 },
+  { word: 'nuage', category: 'Nature', difficulty: 1 },
+  { word: 'arbre', category: 'Nature', difficulty: 1 },
+  { word: 'fleur', category: 'Nature', difficulty: 1 },
+  { word: 'montagne', category: 'Nature', difficulty: 1 },
+  { word: 'arc-en-ciel', category: 'Nature', difficulty: 1 },
+  { word: 'pluie', category: 'Nature', difficulty: 1 },
+  { word: 'cactus', category: 'Nature', difficulty: 1 },
+  { word: 'flocon', category: 'Nature', difficulty: 1 },
+  { word: 'palmier', category: 'Nature', difficulty: 1 },
+  { word: 'volcan', category: 'Nature', difficulty: 2 },
+  { word: 'vague', category: 'Nature', difficulty: 2 },
+  { word: 'rocher', category: 'Nature', difficulty: 2 },
+  { word: 'île', category: 'Nature', difficulty: 2 },
+  { word: 'tornade', category: 'Nature', difficulty: 3 },
+
+  // Lieu
+  { word: 'château', category: 'Lieu', difficulty: 1 },
+  { word: 'pyramide', category: 'Lieu', difficulty: 1 },
+  { word: 'igloo', category: 'Lieu', difficulty: 1 },
+  { word: 'tente', category: 'Lieu', difficulty: 1 },
+  { word: 'pont', category: 'Lieu', difficulty: 1 },
+  { word: 'phare', category: 'Lieu', difficulty: 2 },
+  { word: 'école', category: 'Lieu', difficulty: 2 },
+  { word: 'église', category: 'Lieu', difficulty: 2 },
+  { word: 'plage', category: 'Lieu', difficulty: 2 },
+  { word: 'cabane', category: 'Lieu', difficulty: 2 },
+  { word: 'moulin', category: 'Lieu', difficulty: 2 },
+  { word: 'piscine', category: 'Lieu', difficulty: 2 },
+  { word: 'ferme', category: 'Lieu', difficulty: 2 },
+  { word: 'hôpital', category: 'Lieu', difficulty: 3 },
+  { word: 'gare', category: 'Lieu', difficulty: 3 },
+  { word: 'zoo', category: 'Lieu', difficulty: 3 },
+
+  // Transport
+  { word: 'voiture', category: 'Transport', difficulty: 1, accepts: ['auto', 'bagnole'] },
+  { word: 'vélo', category: 'Transport', difficulty: 1, accepts: ['bicyclette', 'bike'] },
+  { word: 'avion', category: 'Transport', difficulty: 1 },
+  { word: 'bateau', category: 'Transport', difficulty: 1 },
+  { word: 'train', category: 'Transport', difficulty: 1 },
+  { word: 'fusée', category: 'Transport', difficulty: 1 },
+  { word: 'camion', category: 'Transport', difficulty: 1 },
+  { word: 'moto', category: 'Transport', difficulty: 1 },
+  { word: 'hélicoptère', category: 'Transport', difficulty: 2, accepts: ['hélico'] },
+  { word: 'sous-marin', category: 'Transport', difficulty: 2 },
+  { word: 'montgolfière', category: 'Transport', difficulty: 2 },
+  { word: 'trottinette', category: 'Transport', difficulty: 2 },
+  { word: 'tracteur', category: 'Transport', difficulty: 2 },
+  { word: 'ambulance', category: 'Transport', difficulty: 2 },
+  { word: 'parachute', category: 'Transport', difficulty: 3 },
+
+  // Métier
+  { word: 'clown', category: 'Métier', difficulty: 1 },
+  { word: 'pompier', category: 'Métier', difficulty: 2 },
+  { word: 'policier', category: 'Métier', difficulty: 2, accepts: ['gendarme'] },
+  { word: 'cuisinier', category: 'Métier', difficulty: 2, accepts: ['chef'] },
+  { word: 'astronaute', category: 'Métier', difficulty: 2, accepts: ['cosmonaute'] },
+  { word: 'magicien', category: 'Métier', difficulty: 2 },
+  { word: 'médecin', category: 'Métier', difficulty: 3, accepts: ['docteur'] },
+  { word: 'facteur', category: 'Métier', difficulty: 3 },
+  { word: 'coiffeur', category: 'Métier', difficulty: 3 },
+  { word: 'peintre', category: 'Métier', difficulty: 3 },
+  { word: 'jardinier', category: 'Métier', difficulty: 3 },
+  { word: 'boulanger', category: 'Métier', difficulty: 3 },
+
+  // Sport
+  { word: 'football', category: 'Sport', difficulty: 1, accepts: ['foot'] },
+  { word: 'tennis', category: 'Sport', difficulty: 1 },
+  { word: 'basketball', category: 'Sport', difficulty: 1, accepts: ['basket'] },
+  { word: 'ski', category: 'Sport', difficulty: 2 },
+  { word: 'natation', category: 'Sport', difficulty: 2 },
+  { word: 'boxe', category: 'Sport', difficulty: 2 },
+  { word: 'surf', category: 'Sport', difficulty: 2 },
+  { word: 'rugby', category: 'Sport', difficulty: 2 },
+  { word: 'bowling', category: 'Sport', difficulty: 2 },
+  { word: 'pétanque', category: 'Sport', difficulty: 2, accepts: ['boules'] },
+  { word: 'judo', category: 'Sport', difficulty: 3 },
+  { word: 'plongée', category: 'Sport', difficulty: 3 },
+  { word: 'escalade', category: 'Sport', difficulty: 3 },
+
+  // Loisir
+  { word: 'guitare', category: 'Loisir', difficulty: 1 },
+  { word: 'tambour', category: 'Loisir', difficulty: 1 },
+  { word: 'ballon', category: 'Loisir', difficulty: 1 },
+  { word: 'cerf-volant', category: 'Loisir', difficulty: 1 },
+  { word: 'robot', category: 'Loisir', difficulty: 1 },
+  { word: 'poupée', category: 'Loisir', difficulty: 1 },
+  { word: 'nounours', category: 'Loisir', difficulty: 1, accepts: ['peluche'] },
+  { word: 'piano', category: 'Loisir', difficulty: 2 },
+  { word: 'trompette', category: 'Loisir', difficulty: 2 },
+  { word: 'violon', category: 'Loisir', difficulty: 2 },
+  { word: 'puzzle', category: 'Loisir', difficulty: 2 },
+  { word: 'toboggan', category: 'Loisir', difficulty: 2 },
+  { word: 'balançoire', category: 'Loisir', difficulty: 2 },
+  { word: 'château de sable', category: 'Loisir', difficulty: 2 },
+  { word: 'marionnette', category: 'Loisir', difficulty: 3 },
+
+  // Vêtement
+  { word: 'chaussette', category: 'Vêtement', difficulty: 1 },
+  { word: 'chaussure', category: 'Vêtement', difficulty: 1, accepts: ['soulier'] },
+  { word: 'chapeau', category: 'Vêtement', difficulty: 1 },
+  { word: 'pantalon', category: 'Vêtement', difficulty: 1 },
+  { word: 'robe', category: 'Vêtement', difficulty: 1 },
+  { word: 'jupe', category: 'Vêtement', difficulty: 1 },
+  { word: 'écharpe', category: 'Vêtement', difficulty: 1 },
+  { word: 'gant', category: 'Vêtement', difficulty: 1 },
+  { word: 'bonnet', category: 'Vêtement', difficulty: 1 },
+  { word: 'cravate', category: 'Vêtement', difficulty: 1 },
+  { word: 'botte', category: 'Vêtement', difficulty: 1 },
+  { word: 'casquette', category: 'Vêtement', difficulty: 1 },
+  { word: 'ceinture', category: 'Vêtement', difficulty: 2 },
+  { word: 'manteau', category: 'Vêtement', difficulty: 2 },
+  { word: 'pyjama', category: 'Vêtement', difficulty: 2 },
+
+  // Corps
+  { word: 'main', category: 'Corps', difficulty: 1 },
+  { word: 'pied', category: 'Corps', difficulty: 1 },
+  { word: 'nez', category: 'Corps', difficulty: 1 },
+  { word: 'oreille', category: 'Corps', difficulty: 1 },
+  { word: 'bouche', category: 'Corps', difficulty: 1 },
+  { word: 'dent', category: 'Corps', difficulty: 1 },
+  { word: 'doigt', category: 'Corps', difficulty: 1 },
+  { word: 'bras', category: 'Corps', difficulty: 1 },
+  { word: 'jambe', category: 'Corps', difficulty: 1 },
+  { word: 'tête', category: 'Corps', difficulty: 1 },
+  { word: 'genou', category: 'Corps', difficulty: 2 },
+  { word: 'squelette', category: 'Corps', difficulty: 2 },
 ]
+
+// Réponses justes d'un mot : le mot et ses synonymes acceptés.
+export function drawAnswers(word: string): readonly string[] {
+  const entry = DRAW_WORDS.find((candidate) => candidate.word === word)
+  return entry?.accepts ? [word, ...entry.accepts] : [word]
+}

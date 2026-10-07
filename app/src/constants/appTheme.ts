@@ -210,7 +210,6 @@ export const AppSizes = {
   featuredNumber: 108,
   chipHeight: 40,
   tabUnderline: 3,
-  // Salon : QR code (scanné de près, de téléphone à téléphone).
   // Salon sans TV (maquette N2) : le code en très grand (« MMMM » tient à 320 px).
   lobbyHeroCode: 64,
   // Salon : icône ronde « Son » de l'en-tête.
@@ -218,6 +217,7 @@ export const AppSizes = {
   // Salon : grille des joueurs (cercle de l'avatar, largeur d'une case).
   lobbyGridAvatar: 52,
   lobbyGridCell: 68,
+  // Salon : QR code (scanné de près, de téléphone à téléphone).
   qrSize: 152,
   qrQuietZone: 4,
 } as const;
