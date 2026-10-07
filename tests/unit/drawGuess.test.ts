@@ -203,3 +203,22 @@ describe('Dessine-moi : changement de mot au hasard', () => {
     for (const word of words) expect(questions.map((question) => question.word)).not.toContain(word)
   })
 })
+
+describe('Dessine-moi en Groupe : points d’équipe', () => {
+  test('seule l’équipe du dessinateur marque (moyenne du dessinateur et de ses devineurs) ; les autres 0 pour la manche', () => {
+    const teamed = round(
+      { settings: { ...DRAW, teams: true, teamCount: 2 }, drawFound: { [OTHER]: START } },
+      {
+        [PLAYER]: player('Léa', { team: 'pink' }),
+        [OTHER]: player('Tom', { team: 'pink' }),
+        zoe: player('Zoé', { team: 'cyan' }),
+        [HOST]: player('Hôte', { team: 'cyan' }),
+      },
+    )
+    const after = reveal(teamed)
+    // Tom (devineur, tout de suite) 1 000 ; Léa (dessinatrice, 1 devineur sur 1) 1 000 ; moyenne rose 1 000.
+    expect(after.teamPoints?.[0]).toEqual({ pink: 1_000, cyan: 0 })
+    expect(after.reveal?.results).not.toHaveProperty('zoe')
+    expect(after.reveal?.results).not.toHaveProperty(HOST)
+  })
+})
