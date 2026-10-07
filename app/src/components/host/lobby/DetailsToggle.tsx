@@ -20,7 +20,7 @@ export function DetailsToggle({ label, isOpen, onPress }: DetailsToggleProps) {
       hitSlop={Spacing.one}
       onPress={onPress}
       style={({ pressed }) => [styles.toggle, pressed && styles.pressed]}>
-      <ButtonLabel style={styles.label}>{label}</ButtonLabel>
+      <ButtonLabel inRow style={styles.label}>{label}</ButtonLabel>
       {/* Chevron du réglage tourné : vers le bas pour déplier, vers le haut pour replier. */}
       <View style={isOpen ? styles.chevronUp : styles.chevronDown}>
         <SettingsIcon name="chevron" color={AppColors.link} />

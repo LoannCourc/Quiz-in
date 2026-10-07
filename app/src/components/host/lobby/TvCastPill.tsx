@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { TvCastButton } from '@/components/host/TvCastButton';
@@ -17,10 +17,15 @@ export function TvCastPill({ cast }: { cast: CastGame }) {
       onPress={cast.showTvPicker}
       style={({ pressed }) => [styles.pill, pressed && styles.pressed]}>
       <TvCastButton />
-      <ButtonLabel style={styles.label}>{strings.cast.showButton}</ButtonLabel>
+      <ButtonLabel inRow style={styles.label}>{strings.cast.showButton}</ButtonLabel>
+      {/* Vide de la largeur de l'icône, à droite : le texte reste centré dans la pilule. */}
+      {HAS_CAST_ICON && <View style={styles.iconMirror} />}
     </Pressable>
   );
 }
+
+// Web : pas d'icône Cast (TvCastButton.web.tsx).
+const HAS_CAST_ICON = Platform.OS !== 'web';
 
 const styles = StyleSheet.create({
   pill: {
@@ -37,6 +42,9 @@ const styles = StyleSheet.create({
   pressed: {
     transform: [{ translateY: 4 }],
     boxShadow: AppShadows.pressed,
+  },
+  iconMirror: {
+    width: AppSizes.castIconSize,
   },
   label: {
     color: AppColors.onHighlight,

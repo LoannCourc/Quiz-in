@@ -10,6 +10,9 @@ import { Platform, StyleSheet, Text, type StyleProp, type TextStyle } from 'reac
 //   au pixel perd alors son dernier mot (« VOIR LE » au lieu de « VOIR LE CLASSEMENT »). Parade : le texte
 //   prend toute la largeur du bouton (stretch), et garde une marge proportionnelle à sa police.
 //   À retirer quand React Native publiera son correctif (PR #57117).
+// - Bouton avec icône (rangée) : inRow. Le texte prend la largeur laissée par l'icône (flex), centré en
+//   largeur par textAlign et en hauteur par la rangée (alignItems: 'center'). Jamais alignSelf: 'stretch'
+//   dans une rangée : il étirerait le texte en HAUTEUR et le collerait en haut du bouton.
 export const BUTTON_LABEL_MAX_LINES = 2;
 export const BUTTON_LABEL_MIN_SCALE = 0.7;
 export const BUTTON_LABEL_MAX_FONT_SCALE = 1.4;
@@ -22,9 +25,11 @@ interface ButtonLabelProps {
   style?: StyleProp<TextStyle>;
   // false : le texte épouse son contenu (pastille centrée sans largeur propre) ; la marge reste.
   stretch?: boolean;
+  // Dans une rangée (icône + texte) : partage la largeur de la rangée au lieu de s'étirer.
+  inRow?: boolean;
 }
 
-export function ButtonLabel({ children, style, stretch = true }: ButtonLabelProps) {
+export function ButtonLabel({ children, style, stretch = true, inRow = false }: ButtonLabelProps) {
   const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
   const margin = Math.max(2, Math.round(fontSize * OVERHANG_RATIO));
   // Gauche et droite explicites : elles l'emportent sur une marge du style (TEXT_FIT_SAFETY compris).
@@ -35,7 +40,7 @@ export function ButtonLabel({ children, style, stretch = true }: ButtonLabelProp
       adjustsFontSizeToFit
       minimumFontScale={BUTTON_LABEL_MIN_SCALE}
       maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}
-      style={[styles.label, stretch && styles.stretch, style, slack]}>
+      style={[styles.label, inRow ? styles.inRow : stretch && styles.stretch, style, slack]}>
       {children}
     </Text>
   );
@@ -47,5 +52,10 @@ const styles = StyleSheet.create({
   },
   stretch: {
     alignSelf: 'stretch',
+  },
+  inRow: {
+    flexGrow: 1,
+    flexShrink: 1,
+    minWidth: 0,
   },
 });
