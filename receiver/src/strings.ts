@@ -35,6 +35,8 @@ export const strings = {
   },
   header: {
     joinAt: (host: string) => `${host} · code`,
+    // Pendant la partie, à côté du QR code : il ne sert qu'à revenir (pas de nouveau joueur après le lancement).
+    rejoin: 'Déconnecté ? Scanne pour revenir dans la partie.',
   },
   starting: {
     getReady: 'Prêts ?',

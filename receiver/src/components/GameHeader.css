@@ -25,10 +25,19 @@
 }
 
 .game-header-join {
+  display: grid;
+  justify-items: end;
   margin-left: auto;
   font-size: 0.85rem;
   font-weight: 900;
   color: var(--color-text-muted);
+  text-align: right;
+}
+
+.game-header-rejoin {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-text);
 }
 
 .game-header-code {
