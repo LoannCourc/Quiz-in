@@ -210,3 +210,25 @@ Au total : environ **10 à 11 jours** de travail de mon côté, plus vos tests. 
 - **Hôte** : contrôles (Passer = fin de manche, éventuellement Annuler la manche, D8) ; réglage du nombre de manches ; carte du catalogue.
 - **Docs** : spec § 19, `docs/sons.md` (déclencheurs), `docs/relecture-dessine-moi.md` (mots), CLAUDE.md, ce plan mis à jour au fil des lots.
 - **Performance** : seule la TV reçoit le dessin. Rien ne change pour les téléphones des devineurs, sauf si D2 = (b).
+
+## 7. Mesure sur la box (dessin en direct, musique active)
+
+But : vérifier que le dessin d'un vrai dessinateur reste fluide sur la box, musique active, avec le
+rejeu lissé (`shared/drawing/playback.ts`, retard `DRAW_PLAYBACK_DELAY_MS` = 500 ms).
+
+1. Déployer la TV (`firebase deploy --only hosting:tv`), lancer une partie de Dessine-moi, caster sur la
+   box ; musique et effets activés dans le salon.
+2. `receiver/cast-sender.html`, étape 5 : activer le panneau de mesures (`{ "perf": true }`).
+3. Faire dessiner un vrai joueur sur une tablette ou un téléphone pendant une manche entière (traits longs,
+   courbes, un seau, un « Annuler »). Pour charger la box : `npm run fake-players -- CODE 18` dans `receiver/`.
+4. Lire sur la TV, pendant la manche :
+   - « Images/s » : **45 ou plus** pendant le dessin ;
+   - « Tâches longues » : **aucune au-delà de 100 ms** ;
+   - « Paquets en direct » : écart moyen vers 300 ms, **rattrapages proches de 0** ;
+   - « Dessin reçu » : rendu d'une image **sous 4 ms**, tout repeindre (après « Annuler ») **sous 50 ms**.
+5. À 3 m : le trait avance-t-il en continu ? Le retard (environ 1 s après le geste) gêne-t-il les devineurs ?
+6. Musique coupée sur la TV seule (`{ "perfMusic": false }`) : refaire une manche et comparer le tableau
+   « musique active / coupée ».
+
+Si le trait saccade encore : noter les chiffres et essayer d'autres retards en plan B
+(`https://quiz-in-7dbd6.web.app/?code=CODE&drawdelay=300`, puis 700) avant de changer la constante.
