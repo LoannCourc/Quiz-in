@@ -1,0 +1,8 @@
+/* Dessin de la manche : 4:3, fond blanc (celui du dessin), coins arrondis, ombre dure. */
+.live-drawing {
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background: var(--white);
+  box-shadow: var(--shadow-hard);
+}

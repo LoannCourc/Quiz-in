@@ -1,0 +1,62 @@
+/* Manche de Dessine-moi : en-tête, puis le dessin à gauche (aussi grand que possible) et la colonne
+   « Léa dessine ! », indice et chrono à droite. */
+.draw-round {
+  grid-template-rows: auto 1fr;
+  row-gap: 1.5rem;
+}
+
+.draw-round-body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 2.5rem;
+  min-height: 0;
+}
+
+.draw-round-canvas,
+.draw-reveal-canvas {
+  height: 100%;
+  max-height: 68vh;
+  max-width: 60vw;
+}
+
+.draw-round-side {
+  display: grid;
+  justify-items: center;
+  row-gap: 1.6rem;
+  text-align: center;
+}
+
+.draw-round-title {
+  font-size: 3rem;
+}
+
+.draw-round-hint {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-accent);
+}
+
+.draw-round-side .countdown-ring {
+  --ring-size: 9rem;
+  --ring-width: 0.8rem;
+}
+
+/* Révélation : le dessin final, à côté du mot. */
+.draw-reveal-word {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 4.5rem;
+  line-height: var(--display-line-height);
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.draw-reveal-by {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}

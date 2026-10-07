@@ -1,3 +1,4 @@
+import benchRecording from '../lib/drawing/benchRecording.json?raw'
 import {
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
@@ -412,4 +413,18 @@ export function withDemoStreaks(session: PublicSession, streaks: readonly number
     if (streak > 0) results[id] = { points: results[id]?.points ?? 100, correct: true }
   })
   return { ...session, players, reveal: session.reveal ? { ...session.reveal, results } : undefined }
+}
+
+// Dessine-moi (&mode=draw) : manche de Léa (« Animal », 6 lettres) avec la maison du banc d'essai déjà
+// dessinée ; à la révélation, le mot.
+export function withDemoDraw(session: PublicSession): PublicSession {
+  const recording = JSON.parse(benchRecording) as { chunks: { data: string }[] }
+  const drawing = Object.fromEntries(recording.chunks.map((chunk, index) => [String(index), chunk.data]))
+  return {
+    ...session,
+    currentQuestion: { text: 'Animal', difficulty: 2, timeLimit: 75 },
+    drawTurn: { drawer: 'lea', round: session.currentIndex, wordLength: 6, category: 'Animal' },
+    drawing,
+    reveal: session.status === 'reveal' ? { correctAnswer: 'maison', stats: {} } : session.reveal,
+  }
 }

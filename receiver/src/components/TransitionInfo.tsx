@@ -15,13 +15,18 @@ export function TransitionSteps({
   active,
   withRanking = true,
   isLastQuestion = false,
+  isRound = false,
 }: {
   active: TransitionStep
   withRanking?: boolean
   isLastQuestion?: boolean
+  // Dessine-moi : « Manche suivante ».
+  isRound?: boolean
 }) {
-  const activeLabel = strings.transition.steps[active]
-  const labels = isLastQuestion ? [...strings.transition.steps.slice(0, 2), strings.transition.finalStep] : strings.transition.steps
+  const { steps: questionSteps, finalStep, nextRoundStep } = strings.transition
+  const baseSteps = isRound ? [questionSteps[0], questionSteps[1], nextRoundStep] : questionSteps
+  const activeLabel = baseSteps[active]
+  const labels = isLastQuestion ? [...baseSteps.slice(0, 2), finalStep] : baseSteps
   const steps = withRanking ? labels : labels.filter((_, index) => index !== 1)
   return (
     <ol className="transition-steps">
@@ -36,22 +41,22 @@ export function TransitionSteps({
 
 // « Prochaine question dans N… » et une fine barre qui se vide (animation CSS transform seulement,
 // reprise là où en est l'attente grâce à un délai négatif). Clé par attente (reprise après pause).
-export function NextQuestionLine({ countdown }: { countdown: NextQuestionCountdown }) {
-  return <WaitLine key={`${countdown.startsAt}-${countdown.endsAt}`} countdown={countdown} />
+export function NextQuestionLine({ countdown, isRound = false }: { countdown: NextQuestionCountdown; isRound?: boolean }) {
+  return <WaitLine key={`${countdown.startsAt}-${countdown.endsAt}`} countdown={countdown} isRound={isRound} />
 }
 
-function WaitLine({ countdown }: { countdown: NextQuestionCountdown }) {
+function WaitLine({ countdown, isRound }: { countdown: NextQuestionCountdown; isRound: boolean }) {
   const offsetMs = useServerTimeOffset()
   const remainingMs = useRemainingMs(countdown.endsAt)
   // Mesuré une seule fois : la barre CSS avance ensuite seule.
   const [elapsedMs] = useState(() => estimateServerNow(offsetMs) - countdown.startsAt)
   const seconds = Math.ceil(remainingMs / 1000)
-  const { nextQuestionIn, finalRankingIn } = strings.transition
+  const { nextQuestionIn, nextRoundIn, finalRankingIn } = strings.transition
 
   return (
     <div className="next-question">
       <span className="next-question-label">
-        {countdown.isLastQuestion ? finalRankingIn(seconds) : nextQuestionIn(seconds)}
+        {countdown.isLastQuestion ? finalRankingIn(seconds) : (isRound ? nextRoundIn : nextQuestionIn)(seconds)}
       </span>
       <span className="next-question-track">
         <span

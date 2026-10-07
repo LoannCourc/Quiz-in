@@ -12,16 +12,18 @@ interface GameHeaderProps {
   questionIndex?: number
   questionCount?: number
   difficulty?: Difficulty
+  // Dessine-moi : « MANCHE n/N ».
+  isRound?: boolean
 }
 
 // En-tête des écrans de partie (maquette TV) : logo, question en cours, adresse, code et QR,
 // pour qu'un joueur déconnecté puisse revenir à tout moment.
-export function GameHeader({ roomCode, questionIndex, questionCount, difficulty }: GameHeaderProps) {
+export function GameHeader({ roomCode, questionIndex, questionCount, difficulty, isRound = false }: GameHeaderProps) {
   return (
     <header className="game-header">
       <span className="game-header-logo">{strings.appName}</span>
       {questionIndex !== undefined && (
-        <span className="game-header-question">{strings.question.progress(questionIndex + 1, questionCount)}</span>
+        <span className="game-header-question">{(isRound ? strings.question.roundProgress : strings.question.progress)(questionIndex + 1, questionCount)}</span>
       )}
       {difficulty !== undefined && <DifficultyBadge difficulty={difficulty} />}
       <span className="game-header-join">

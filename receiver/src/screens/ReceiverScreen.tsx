@@ -1,5 +1,6 @@
 import type { PublicSession } from '@shared/types'
 
+import { DrawRevealScreen, DrawRoundScreen } from './DrawRoundScreen'
 import { EndScreen } from './EndScreen'
 import { LobbyScreen } from './LobbyScreen'
 import { PausedScreen } from './PausedScreen'
@@ -21,10 +22,14 @@ export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
     case 'starting':
       return <StartingScreen session={session} />
     case 'question':
+      // Dessine-moi : le dessin en direct à la place de la question.
+      if (session.settings.answerMode === 'draw') return <DrawRoundScreen session={session} roomCode={roomCode} />
+      return <QuestionScreen session={session} roomCode={roomCode} />
     case 'vote':
       // Bluff : l'écriture des fausses réponses, puis le vote, sur le même écran que la question.
       return <QuestionScreen session={session} roomCode={roomCode} />
     case 'reveal':
+      if (session.settings.answerMode === 'draw') return <DrawRevealScreen session={session} roomCode={roomCode} />
       return <RevealScreen session={session} roomCode={roomCode} />
     case 'scores':
       return <ScoresScreen session={session} roomCode={roomCode} />

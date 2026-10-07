@@ -198,6 +198,8 @@ export function ranksChanged(session: Pick<PublicSession, 'players' | 'reveal'>)
 // Résultat d'une question (hors Bluff) : fanfare si au moins un joueur a trouvé, « raté » sinon.
 function resultCue(session: PublicSession): SoundEffectId | null {
   if (session.reveal?.stats.bluffChoices) return null
+  // Dessine-moi (lot 2, sans réponses) : le mot apparaît, accord éclatant (ni fanfare ni « raté »).
+  if (session.settings.answerMode === 'draw') return 'bluffTruth'
   const results = Object.values(session.reveal?.results ?? {})
   return results.some((result) => result.correct) ? 'fanfare' : 'miss'
 }

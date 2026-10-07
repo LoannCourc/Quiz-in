@@ -67,6 +67,17 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
       <div>{texts.screen(snapshot.screen, snapshot.chromeVersion)}</div>
       <div>{texts.build(new Date(__BUILD_TIME__), __BUILD_COMMIT__)}</div>
       <div>{texts.streaks(snapshot.streaks.active, snapshot.streaks.zero, snapshot.streaks.missing)}</div>
+      {snapshot.drawing && (
+        <div>
+          {texts.drawing(
+            snapshot.drawing.chunks,
+            snapshot.drawing.kilobytes.toFixed(1),
+            snapshot.drawing.lastRenderMs.toFixed(1),
+            snapshot.drawing.maxRenderMs.toFixed(1),
+            snapshot.drawing.fullRenderMs.toFixed(1),
+          )}
+        </div>
+      )}
       {snapshot.teamColumns && (
         <div className={snapshot.teamColumns.teams.some((team) => team.shown < team.received) ? 'perf-alert' : undefined}>
           {texts.teamColumns(snapshot.teamColumns.scale, snapshot.teamColumns.teams)}

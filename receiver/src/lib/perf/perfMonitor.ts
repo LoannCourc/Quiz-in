@@ -68,6 +68,15 @@ export interface TeamColumnStats {
   capacity: number
 }
 
+// Dessine-moi : dessin reçu pendant la manche (TV), et coût de son rendu.
+export interface DrawingStats {
+  chunks: number
+  kilobytes: number
+  lastRenderMs: number
+  maxRenderMs: number
+  fullRenderMs: number
+}
+
 export interface StreakStats {
   active: { name: string; streak: number }[]
   zero: number
@@ -90,6 +99,8 @@ export interface PerfSnapshot {
   // Séries reçues de la base (spec 18), telles quelles : joueurs dont la série est au-dessus de 0, et combien
   // sont à 0 ou sans le champ (hôte d'une version sans série).
   streaks: StreakStats
+  // null hors d'une manche de Dessine-moi.
+  drawing: DrawingStats | null
   chromeVersion: string
   musicOn: boolean
   // Musique coupée par le panneau (et non par l'hôte).
@@ -160,6 +171,7 @@ class PerfMonitor {
   // hostMusic : réglage de l'hôte ; la musique jouée tient compte aussi du panneau (isMusicOn).
   private teamCounts: Record<string, number> = {}
   private streaks: StreakStats = { active: [], zero: 0, missing: 0 }
+  private drawing: DrawingStats | null = null
   private context: { status: GameStatus | null; index: number | null; hostMusic: boolean; effects: boolean } = {
     status: null,
     index: null,
@@ -206,6 +218,11 @@ class PerfMonitor {
 
   // Appelé à chaque état reçu de la base, avant tout rendu : heure de réception d'une nouvelle phase.
   // L'état est retenu même panneau éteint (léger) : allumé en pleine partie, il sait déjà où elle en est.
+  // Dessin rendu par la TV (null : plus de manche affichée).
+  noteDrawing(stats: DrawingStats | null): void {
+    this.drawing = stats
+  }
+
   noteSession(session: PublicSession): void {
     const sound = soundSettingsOf(session)
     this.context = { status: session.status, index: session.currentIndex, hostMusic: sound.music, effects: sound.effects }
@@ -271,6 +288,7 @@ class PerfMonitor {
       screen: `${innerWidth}×${innerHeight} ×${devicePixelRatio}`,
       teamColumns: this.teamColumnStats(),
       streaks: this.streaks,
+      drawing: this.drawing,
       chromeVersion: /Chrome\/(\d+)/.exec(navigator.userAgent)?.[1] ?? '?',
       musicOn: this.isMusicOn(),
       musicForcedOff: isPerfMusicForcedOff(),

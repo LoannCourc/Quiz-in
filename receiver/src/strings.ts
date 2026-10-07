@@ -44,6 +44,8 @@ export const strings = {
   },
   question: {
     progress: (index: number, total: number | undefined) => (total ? `Question ${index}/${total}` : `Question ${index}`),
+    // Dessine-moi : une manche plutôt qu'une question.
+    roundProgress: (index: number, total: number | undefined) => (total ? `Manche ${index}/${total}` : `Manche ${index}`),
     answeredCount: (count: number, total: number) => `${count}/${total} ont répondu`,
     noConnectedPlayers: '—',
     // Réponse libre : à la place des propositions, ce qu'il faut écrire (blind test : selon ask).
@@ -103,6 +105,9 @@ export const strings = {
     // Dernière question : la révélation mène directement à l'écran de fin.
     finalStep: 'Classement final',
     nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds}…`,
+    // Dessine-moi : des manches.
+    nextRoundStep: 'Manche suivante',
+    nextRoundIn: (seconds: number) => `Prochaine manche dans ${seconds}…`,
     finalRankingIn: (seconds: number) => `Classement final dans ${seconds}…`,
     announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
     announceHint: 'Préparez-vous !',
@@ -150,6 +155,14 @@ export const strings = {
     finished: (seconds: number) => `Lecture terminée (${seconds} s)`,
     blocked: 'Lecture bloquée : la TV demande un geste de l’utilisateur.',
     failed: 'Lecture impossible : adresse expirée, réseau ou format.',
+  },
+  // Dessine-moi (plan docs/plan-dessine-moi.md) : manche et révélation.
+  draw: {
+    // Espace insécable : le « ! » ne passe jamais seul à la ligne.
+    drawing: (name: string) => `${name} dessine !`,
+    hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
+    itWas: 'C’était…',
+    drawnBy: (name: string) => `Dessiné par ${name}`,
   },
   // Banc d'essai du dessin (Dessine-moi, lot 1, ?drawbench=1 ou cast-sender.html) : outil de mesure.
   drawBench: {
@@ -233,6 +246,8 @@ export const strings = {
     // Groupe : équipe reçus/affichés (capacité) ; en rouge si un membre n'est pas affiché.
     build: (builtAt: Date, commit: string) =>
       `Version de la TV : construite le ${builtAt.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })} · commit ${commit}`,
+    drawing: (chunks: number, kilobytes: string, last: string, max: string, repaint: string) =>
+      `Dessin reçu : ${chunks} paquets (${kilobytes} Ko) · rendu d’un paquet ${last} ms (max. ${max} ms) · tout repeindre ${repaint} ms`,
     streaks: (active: { name: string; streak: number }[], zero: number, missing: number) =>
       `Séries reçues : ${active.length > 0 ? active.map((entry) => `${entry.name} ${entry.streak}`).join(' · ') : 'aucune en cours'} (${zero} à 0, ${missing} sans le champ)`,
     teamColumns: (scale: string, teams: { team: string; received: number; shown: number; capacity: number }[]) =>

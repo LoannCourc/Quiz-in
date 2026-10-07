@@ -19,6 +19,7 @@ import {
   demoExtraPlayerCount,
   toDemoBlindTest,
   withDemoBluff,
+  withDemoDraw,
   withDemoStreaks,
   withDemoTeams,
   withLongOptions,
@@ -51,7 +52,7 @@ function initialOptions(params: URLSearchParams): DemoOptions {
   const status = params.get('status')
   return {
     status: isDemoStatus(status) ? status : 'lobby',
-    answerMode: params.get('mode') === 'free' ? 'free' : params.get('mode') === 'bluff' ? 'bluff' : 'choice',
+    answerMode: demoAnswerMode(params.get('mode')),
     answeredCount: Math.min(Number(params.get('answered')) || INITIAL_ANSWERED_COUNT, DEMO_MAX_ANSWERS),
     isToggleablePlayerConnected: true,
     startedAt: Date.now() - (Number(params.get('elapsed')) || 0) * 1000,
@@ -112,7 +113,9 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const limited = withUnassigned(withPlayerLimit(withQuestion, params.get('players')), Number(params.get('unassigned')) || 0)
   // &last=1 : dernière question de la partie (révélation suivie directement de l'écran de fin).
   const lastQuestion = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
-  const session = withDemoStreaks(lastQuestion, demoStreaks(params.get('streaks')))
+  const withStreaks = withDemoStreaks(lastQuestion, demoStreaks(params.get('streaks')))
+  // &mode=draw : Dessine-moi, la maison du banc d'essai déjà dessinée (manche ou révélation).
+  const session = options.answerMode === 'draw' ? withDemoDraw(withStreaks) : withStreaks
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
   const isCapture = params.get('capture') === '1'
   useTvSound(session, 0)
@@ -183,6 +186,11 @@ function withPlayerLimit(session: PublicSession, requested: string | null): Publ
   const entries = Object.entries(session.players)
   const count = requested === null ? entries.length : Number(requested)
   return count < entries.length ? { ...session, players: Object.fromEntries(entries.slice(0, Math.max(0, count))) } : session
+}
+
+// &mode=free, bluff ou draw (Dessine-moi) ; choix multiples sinon.
+function demoAnswerMode(value: string | null): AnswerMode {
+  return value === 'free' || value === 'bluff' || value === 'draw' ? value : 'choice'
 }
 
 // &streaks=5,3,0,4 : liste de séries (entiers de 0 à 50), une par joueur dans l'ordre du classement.
