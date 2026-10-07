@@ -49,7 +49,7 @@ const NOTE_HEAD = 6.5;
 // Hampe posée sur le trait de la tête (bord droit du cercle, moins un demi-trait) : elles se rejoignent.
 const NOTE_STEM_SHIFT = NOTE_HEAD / 2 - STROKE / 2;
 
-function note(pen: Pen): ReactNode[] {
+export function note(pen: Pen): ReactNode[] {
   const stem1 = 6.5 + NOTE_STEM_SHIFT;
   const stem2 = 16.5 + NOTE_STEM_SHIFT;
   return [

@@ -1,5 +1,7 @@
 import type { ThemeIconName } from '@shared/themeIcons';
 import type { PosterPalette, TeamId } from '@shared/types';
+
+import type { GameType } from './strings';
 import { Platform } from 'react-native';
 
 // Direction artistique « Plateau TV » : seul endroit où l'app définit couleurs, polices et formes.
@@ -99,6 +101,10 @@ export const AppColors = {
   onTeam: Palette.ink,
   // Icônes de thème (maquette I2) : traits blancs, ombre bleu nuit ; pastille de couleur fixe par thème
   // dans les puces de filtre (Culture générale, ou thème inconnu, sur « ? »).
+  // Accueil (maquette H1) : couleur de chaque tuile de jeu, texte encre dessus, bord blanc.
+  gameTiles: { quiz: Palette.pinkSoft, blindTest: Palette.cyan, bluff: Palette.green, draw: Palette.gold } satisfies Record<GameType, string>,
+  onGameTile: Palette.ink,
+  gameTileBorder: Palette.white,
   themeIcon: Palette.white,
   themeIconShadow: Palette.ink,
   themeChips: {
@@ -213,6 +219,8 @@ export const AppSizes = {
 // Ombre dure décalée, sans flou.
 export const AppShadows = {
   hard: '0px 7px 0px rgba(0, 0, 0, 0.35)',
+  // Ombre dure encre (tuiles de l'accueil).
+  hardInk: `0px 7px 0px ${Palette.ink}`,
   pressed: '0px 3px 0px rgba(0, 0, 0, 0.35)',
   textColor: 'rgba(0, 0, 0, 0.35)',
 } as const;

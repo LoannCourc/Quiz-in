@@ -615,6 +615,21 @@ export const strings = {
     },
     waiting: 'Patiente un instant, la partie continue…',
   },
+  // Accueil de l'hôte (maquette H1) : choix du jeu, puis son catalogue.
+  home: {
+    title: 'À quoi on joue ?',
+    subtitle: 'Choisis un jeu pour commencer.',
+    footer: 'De 2 à 20 joueurs · Mode Groupe dès 4 joueurs',
+    games: {
+      quiz: { name: 'Quiz', hint: 'Réponds vite, marque plus.' },
+      blindTest: { name: 'Blind test', hint: 'Titre et artiste, à l’oreille.' },
+      bluff: { name: 'Bluff', hint: 'Invente la fausse réponse.' },
+      draw: { name: 'Dessine-moi', hint: 'Dessine, les autres devinent.' },
+    } satisfies Record<GameType, { name: string; hint: string }>,
+    newBadge: 'Nouveau',
+    soonBadge: 'Bientôt',
+    back: 'Retour à l’accueil',
+  },
   // Dessine-moi (plan docs/plan-dessine-moi.md) : outils du dessinateur.
   draw: {
     tools: { pen: 'Crayon', eraser: 'Gomme', bucket: 'Seau' },

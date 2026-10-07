@@ -1,42 +1,26 @@
-import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
-import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
 import { Link, Redirect, router } from 'expo-router';
-import { useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { CatalogView } from '@/components/host/catalog/CatalogView';
+import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
-import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
-import { strings } from '@/constants/strings';
+import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
-import { useLiveValue } from '@/hooks/useLiveValue';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useResumableGame } from '@/hooks/useResumableGame';
-import { warnIgnoredEntries } from '@/lib/devLog';
 import { isPublishedWeb } from '@/lib/platform';
 
-// Accueil de l'hôte. Sur le site des joueurs (web publié), redirige vers la saisie du code.
+// Accueil de l'hôte (choix du jeu). Sur le site des joueurs (web publié), redirige vers la saisie du code.
 export default function HomeRoute() {
-  return isPublishedWeb ? <Redirect href="/join" /> : <CatalogScreen />;
+  return isPublishedWeb ? <Redirect href="/join" /> : <HomeScreen />;
 }
 
-// Fiches valides ; les entrées mal formées de la base sont ignorées. Dessine-moi (pas de quiz dans la
-// base) : fiche locale, en développement seulement (lot 2).
-function toEntries(quizzes: unknown): QuizEntry[] {
-  const { valid, ignoredCount } = parseQuizCatalog(quizzes);
-  warnIgnoredEntries('Catalogue', ignoredCount);
-  return __DEV__ ? [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }] : valid;
+function openGame(game: GameType) {
+  router.push({ pathname: '/catalog/[gameType]', params: { gameType: game } });
 }
 
-function openQuiz(quizId: string) {
-  router.push({ pathname: '/quiz/[quizId]', params: { quizId } });
-}
-
-function CatalogScreen() {
-  const catalog = useLiveValue<unknown>('quizzes');
-  const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
+function HomeScreen() {
   const resumableCode = useResumableGame();
   const isBlindTestEnabled = useBlindTestEnabled();
   const resumeButton = resumableCode && (
@@ -48,18 +32,7 @@ function CatalogScreen() {
 
   return (
     <Screen>
-      {catalog.kind === 'loading' && <Text style={textStyles.body}>{strings.catalog.loading}</Text>}
-      {catalog.kind === 'error' && (
-        <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>
-      )}
-      {catalog.kind === 'ready' && (
-        <CatalogView
-          entries={entries}
-          onOpenQuiz={openQuiz}
-          banner={resumeButton}
-          isBlindTestEnabled={isBlindTestEnabled}
-        />
-      )}
+      <HomeView onOpenGame={openGame} banner={resumeButton} isBlindTestEnabled={isBlindTestEnabled} />
 
       <View style={styles.footerLinks}>
         <Link href="/about" style={styles.footerLink}>

@@ -8,20 +8,29 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { CatalogView } from '@/components/host/catalog/CatalogView';
+import { HomeView } from '@/components/host/home/HomeView';
 import { QuizDetails } from '@/components/host/catalog/QuizDetails';
 import { Screen } from '@/components/ui/Screen';
 import { ThemeIcon } from '@/components/ui/ThemeIcon';
 import { AppColors, AppFonts } from '@/constants/appTheme';
+import type { GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 import { DEMO_CATALOG } from './demoCatalog';
 
-// Démo du catalogue et des fiches avec des quiz fictifs (développement uniquement).
-// /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
+// Démo de l'accueil, du catalogue et des fiches avec des quiz fictifs (développement uniquement).
+// /debug/catalog : accueil (tuiles des jeux) ; &game=quiz|blindTest|bluff|draw : catalogue de ce jeu ;
+// &blindtest=0 : tuile Blind test « Bientôt ». /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons } = useLocalSearchParams<{ quiz?: string; settings?: string; icons?: string }>();
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest } = useLocalSearchParams<{
+    quiz?: string;
+    settings?: string;
+    icons?: string;
+    game?: GameType;
+    blindtest?: string;
+  }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
   const quiz = DEMO_CATALOG.find((entry) => entry.id === quizId);
@@ -42,11 +51,16 @@ export default function CatalogDemoScreen() {
   }
   return (
     <Screen>
-      <CatalogView
-        entries={DEMO_CATALOG}
-        isBlindTestEnabled
-        onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
-      />
+      {game ? (
+        <CatalogView
+          entries={DEMO_CATALOG}
+          gameType={game}
+          onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
+          onBack={() => router.setParams({ game: undefined })}
+        />
+      ) : (
+        <HomeView isBlindTestEnabled={blindtest !== '0'} onOpenGame={(type) => router.setParams({ game: type })} />
+      )}
     </Screen>
   );
 }

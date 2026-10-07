@@ -1,14 +1,15 @@
 import { catalogRows, catalogThemes, filterByGameType, filterByTheme, searchByTitle } from '@shared/catalogRows';
 import type { QuizEntry } from '@shared/quizValidation';
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
-import { strings } from '@/constants/strings';
+import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-import { GameTypeTabs, type PlayableGameType } from './GameTypeTabs';
+import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
+
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
 import { QuizPoster } from './QuizPoster';
@@ -18,11 +19,11 @@ const POSTERS_PER_SCREEN = 3;
 
 interface CatalogViewProps {
   entries: QuizEntry[];
+  // Jeu choisi sur l'accueil : seules ses fiches sont montrées.
+  gameType: GameType;
   onOpenQuiz: (quizId: string) => void;
-  // Affiché sous l'en-tête (« Reprendre la partie »).
-  banner?: ReactNode;
-  // Interrupteur à distance : l'onglet Blind test et ses quiz n'apparaissent que s'il est ouvert.
-  isBlindTestEnabled?: boolean;
+  // Retour à l'accueil (choix du jeu).
+  onBack: () => void;
 }
 
 // Largeur d'une affiche : trois par largeur de colonne, dans les bornes du thème.
@@ -31,32 +32,31 @@ function posterWidthFor(columnWidth: number): number {
   return Math.min(AppSizes.posterMaxWidth, Math.max(AppSizes.posterMinWidth, fitted));
 }
 
-// Catalogue de l'hôte (maquette S2), à partir de fiches déjà validées : base ou démo.
-export function CatalogView({ entries: allEntries, onOpenQuiz, banner, isBlindTestEnabled = false }: CatalogViewProps) {
-  const [gameType, setGameType] = useState<PlayableGameType>('quiz');
+// Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
+// démo. En-tête : retour à l'accueil, nom du jeu, recherche ; puis le filtre des thèmes et les rangées.
+export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack }: CatalogViewProps) {
   const [theme, setTheme] = useState<string | null>(null);
   // null : recherche fermée.
   const [query, setQuery] = useState<string | null>(null);
   // Largeur réelle de la colonne, mesurée à l'affichage (0 tant qu'elle n'est pas connue).
   const [columnWidth, setColumnWidth] = useState(0);
   const posterWidth = posterWidthFor(columnWidth);
-  // Interrupteur coupé en cours de route : retour aux quiz, les blind tests disparaissent.
-  const visibleType = gameType === 'blindTest' && !isBlindTestEnabled ? 'quiz' : gameType;
-  const entries = useMemo(() => filterByGameType(allEntries, visibleType), [allEntries, visibleType]);
+  const entries = useMemo(() => filterByGameType(allEntries, gameType), [allEntries, gameType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
-
-  // Changer d'onglet repart de « Tout » : le thème choisi peut ne pas exister dans l'autre onglet.
-  function selectGameType(type: PlayableGameType) {
-    setGameType(type);
-    setTheme(null);
-  }
   const isSearching = query !== null && query.trim() !== '';
 
   return (
     <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
       <View style={styles.header}>
+        <Pressable accessibilityRole="button" accessibilityLabel={strings.home.back} hitSlop={Spacing.two} onPress={onBack} style={styles.iconButton}>
+          <View style={styles.backIcon}>
+            <SettingsIcon name="chevron" color={AppColors.text} />
+          </View>
+        </Pressable>
         {query === null ? (
-          <Text style={styles.brand}>{strings.join.appName}</Text>
+          <Text style={styles.brand} numberOfLines={1}>
+            {strings.home.games[gameType].name}
+          </Text>
         ) : (
           <TextInput
             autoFocus
@@ -79,8 +79,6 @@ export function CatalogView({ entries: allEntries, onOpenQuiz, banner, isBlindTe
         </Pressable>
       </View>
 
-      {banner}
-      <GameTypeTabs selected={visibleType} onSelect={selectGameType} isBlindTestEnabled={isBlindTestEnabled} />
       {entries.length > 0 && <ThemeChips themes={themes} selected={theme} onSelect={setTheme} />}
 
       {entries.length === 0 ? (
@@ -177,6 +175,10 @@ const styles = StyleSheet.create({
     color: AppColors.ink,
     fontFamily: AppFonts.extraBold,
     fontSize: AppSizes.textBody,
+  },
+  // Le chevron du réglage pointe vers la droite : retourné pour « retour ».
+  backIcon: {
+    transform: [{ rotate: '180deg' }],
   },
   iconButton: {
     width: 48,
