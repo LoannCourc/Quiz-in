@@ -524,7 +524,6 @@ export function launchUpdate(
   limit = QUESTIONS_PER_GAME,
   audio: LaunchAudio = { enabled: false, urls: {} },
   random: () => number = Math.random,
-  allowSoloDrawer = false,
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
@@ -532,12 +531,10 @@ export function launchUpdate(
   const teamRefusal = teamLaunchRefusal(session)
   if (teamRefusal) return { ok: false, reason: teamRefusal }
   const isDraw = session.settings.answerMode === 'draw'
-  // Dessine-moi : toutes les manches dès 2 dessinateurs possibles (rotation, drawOrderFor). Un seul
-  // dessinateur possible : une manche, sauf allowSoloDrawer (option de développement, tests à 2 appareils).
-  const drawers = isDraw ? drawEligiblePlayers(session.players, session.hostUid).length : Infinity
-  if (isDraw && drawers === 0) return { ok: false, reason: 'notEnoughPlayers' }
-  const roundLimit = isDraw && drawers === 1 && !allowSoloDrawer ? 1 : limit
-  const gameQuestions = selectGameQuestions(questions, roundLimit)
+  // Dessine-moi : toutes les manches, dessinateurs à tour de rôle (drawOrderFor) ; partie à deux (un seul
+  // dessinateur possible, l'hôte ne dessine pas) : il dessine toutes les manches (spec 19).
+  if (isDraw && drawEligiblePlayers(session.players, session.hostUid).length === 0) return { ok: false, reason: 'notEnoughPlayers' }
+  const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
   const musicQuestions = gameQuestions.filter((question) => 'music' in question && question.music)
   if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }

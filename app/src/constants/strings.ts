@@ -303,11 +303,9 @@ export const strings = {
       teamsUnassigned: 'Chaque joueur doit être dans une équipe.',
       teamTooSmall: `Il faut au moins ${MIN_TEAM_SIZE} joueurs par équipe.`,
     } satisfies Record<LaunchRefusal, string>,
-    // Dessine-moi, développement seulement : tester plusieurs manches avec 2 appareils.
-    soloDrawer: {
-      title: 'Un seul dessinateur : toutes les manches',
-      hint: 'Développement uniquement : le seul joueur qui peut dessiner dessine chaque manche.',
-    },
+    // Dessine-moi à deux : l'hôte ne dessine jamais, l'autre joueur dessine toutes les manches.
+    soloDrawer: (name: string, hostPlays: boolean) =>
+      hostPlays ? `Partie à deux : ${name} dessine toutes les manches, tu devines.` : `Seul dessinateur possible : ${name} dessine toutes les manches.`,
     shortGame: {
       title: `Partie courte (${DEV_SHORT_GAME_QUESTIONS} questions)`,
       hint: 'Développement uniquement, absent de l’app publiée.',

@@ -41,17 +41,14 @@ interface LobbySettingsSheetProps {
   // L'hôte s'inscrit (« Je joue aussi ») ou modifie son pseudo et son avatar.
   isHostRegistered: boolean;
   onHostProfile: () => void;
-  // Partie courte et, en Dessine-moi, un seul dessinateur pour toutes les manches (développement seulement).
+  // Partie courte (développement seulement).
   isShortGame: boolean;
   onShortGame: (value: boolean) => void;
-  isSoloDrawer: boolean;
-  onSoloDrawer: (value: boolean) => void;
 }
 
 // Feuille « Réglages » du salon : Équipes, « Je joue aussi », et Partie courte en développement.
 export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
   const { isOpen, onClose, session, onTeamsEnabled, onOpenTeams, isHostRegistered, onHostProfile, isShortGame, onShortGame } = props;
-  const { isSoloDrawer, onSoloDrawer } = props;
   const isTeams = session.settings.teams;
   const playerCount = Object.keys(session.players).length;
   // Coupé avec trop peu de joueurs : activation impossible (le salon le dit) ; activé, on peut toujours couper.
@@ -80,14 +77,6 @@ export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
           hint={strings.hostLobby.shortGame.hint}
           value={isShortGame}
           onChange={onShortGame}
-        />
-      )}
-      {__DEV__ && session.settings.answerMode === 'draw' && (
-        <OptionToggle
-          title={strings.hostLobby.soloDrawer.title}
-          hint={strings.hostLobby.soloDrawer.hint}
-          value={isSoloDrawer}
-          onChange={onSoloDrawer}
         />
       )}
     </BottomSheet>

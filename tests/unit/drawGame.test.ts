@@ -101,11 +101,9 @@ describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
     for (let index = 1; index < teams.length; index++) expect(teams[index]).not.toBe(teams[index - 1])
   })
 
-  test('un seul dessinateur possible : une manche ; option de développement : toutes les manches', () => {
+  test('partie à deux : le seul dessinateur possible dessine toutes les manches', () => {
     const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') } })
-    const single = launchUpdate(lobby, questions, NOW)
-    expect(single.ok && single.update.questionCount).toBe(1)
-    const solo = launchUpdate(lobby, questions, NOW, undefined, undefined, Math.random, true)
+    const solo = launchUpdate(lobby, questions, NOW)
     expect(solo.ok && solo.update.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
     expect(solo.ok && solo.update.drawOrder).toEqual(Array(DRAW_ROUNDS_DEFAULT).fill(PLAYER))
   })
@@ -167,12 +165,12 @@ describe('Dessine-moi : chemin de création (hôte + un seul joueur)', () => {
     expect(settingsForGameType(chosen, DRAW_QUIZ_SUMMARY.gameType)).toMatchObject({ answerMode: 'draw', speedBonus: false, control: false })
   })
 
-  test('hôte qui joue + une tablette : une manche, la tablette dessine, l’hôte devine', () => {
+  test('hôte qui joue + une tablette : toutes les manches, la tablette dessine, l’hôte devine', () => {
     const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') }, quizId: 'dessine-moi' })
     const launch = launchUpdate(lobby, questions, NOW)
     expect(launch.ok).toBe(true)
     const round = advance(apply(lobby, launch.ok ? launch.update : null))
-    expect(round.questionCount).toBe(1)
+    expect(round.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
     expect(round.settings.answerMode).toBe('draw')
     expect(round.drawTurn?.drawer).toBe(PLAYER)
     expect(isDrawGuesser(round, HOST)).toBe(true)

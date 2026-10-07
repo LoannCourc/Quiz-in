@@ -1,5 +1,6 @@
 import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
 import type { SessionUpdate } from '@shared/hostEngine';
+import { drawEligiblePlayers } from '@shared/drawGame';
 import { canLaunchGame, connectedPlayerIds } from '@shared/players';
 import {
   assignTeamUpdate,
@@ -87,8 +88,6 @@ export function HostLobby(props: HostLobbyProps) {
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
-  // Dessine-moi, développement seulement : tester plusieurs manches avec 2 appareils.
-  const [isSoloDrawer, setIsSoloDrawer] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
   const [launchError, setLaunchError] = useState<string | null>(null);
 
@@ -137,15 +136,7 @@ export function HostLobby(props: HostLobbyProps) {
     try {
       const limit = isShortGame ? DEV_SHORT_GAME_QUESTIONS : undefined;
       const launchAudio = { enabled: audio.isEnabled, urls: audio.urls };
-      const outcome = await launchGame(
-        code,
-        session,
-        questions.questions,
-        Date.now() + serverOffsetMs,
-        limit,
-        launchAudio,
-        __DEV__ && isSoloDrawer,
-      );
+      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
@@ -169,6 +160,7 @@ export function HostLobby(props: HostLobbyProps) {
         error={launchError}
         audioStatus={audio.status}
         connectedCount={connectedCount}
+        soloDrawer={soloDrawerNotice(session)}
       />
       <BigButton
         label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
@@ -250,8 +242,6 @@ export function HostLobby(props: HostLobbyProps) {
         onHostProfile={() => (isRegistered ? setIsEditing(true) : setIsHostJoining(true))}
         isShortGame={isShortGame}
         onShortGame={setIsShortGame}
-        isSoloDrawer={isSoloDrawer}
-        onSoloDrawer={setIsSoloDrawer}
       />
     </Screen>
   );
@@ -266,10 +256,21 @@ interface LaunchHintProps {
   error: string | null;
   audioStatus: AudioUrlsStatus;
   connectedCount: number;
+  // Dessine-moi à deux : le seul dessinateur possible dessine toutes les manches (information, sans blocage).
+  soloDrawer: string | null;
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
-function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount }: LaunchHintProps) {
+// Dessine-moi : un seul joueur peut dessiner (l'hôte ne dessine jamais) ; message pour le dire.
+function soloDrawerNotice(session: Session): string | null {
+  if (session.settings.answerMode !== 'draw') return null;
+  const drawers = drawEligiblePlayers(session.players, session.hostUid);
+  if (drawers.length !== 1) return null;
+  return strings.hostLobby.soloDrawer(session.players[drawers[0]].name, session.players[session.hostUid] !== undefined);
+}
+
+function LaunchHint(props: LaunchHintProps) {
+  const { questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount, soloDrawer } = props;
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
@@ -292,6 +293,7 @@ function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount,
   if (teamRefusal) {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.launchRefusals[teamRefusal]}</Text>;
   }
+  if (soloDrawer) return <Text style={[styles.hint, styles.centered]}>{soloDrawer}</Text>;
   return null;
 }
 
