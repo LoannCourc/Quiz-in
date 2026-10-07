@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { isKnownAnswerMode } from '../../shared/constants'
-import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, wordLetterCount } from '../../shared/drawGame'
+import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawOrderFor, wordLetterCount } from '../../shared/drawGame'
 import { isDrawGuesser } from '../../shared/drawGuess'
 import { hasRankingStep, nextPhase } from '../../shared/gameFlow'
 import { launchUpdate, replayUpdate, toPublicQuestion, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
@@ -36,6 +36,8 @@ function players(count: number): Record<PlayerId, Player> {
 
 const questions = drawGameQuestions('K7PX')
 
+const countBy = (values: readonly string[]) => values.reduce<Record<string, number>>((counts, value) => ({ ...counts, [value]: (counts[value] ?? 0) + 1 }), {})
+
 function launched(playerCount = 3): Session {
   const lobby = makeSession({ settings: DRAW, players: players(playerCount), quizId: 'dessine-moi' })
   const launch = launchUpdate(lobby, questions, NOW, undefined, undefined, () => 0.42)
@@ -64,14 +66,48 @@ describe('Dessine-moi : mots et dessinateurs', () => {
 })
 
 describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
-  test('lancement : une manche par dessinateur possible au plus, ordre tiré sans l’hôte', () => {
+  test('lancement : toutes les manches dès 2 dessinateurs, rotation équitable, jamais l’hôte', () => {
     const few = launched(3)
-    expect(few.questionCount).toBe(2)
-    expect([...(few.drawOrder ?? [])].sort()).toEqual([OTHER, PLAYER].sort())
+    expect(few.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
+    const counts = countBy(few.drawOrder ?? [])
+    expect(Object.keys(counts).sort()).toEqual([OTHER, PLAYER].sort())
+    expect(Object.values(counts)).toEqual([4, 4])
+    // À tour de rôle : jamais deux manches de suite pour le même joueur.
+    for (let index = 1; index < (few.drawOrder ?? []).length; index++) expect(few.drawOrder?.[index]).not.toBe(few.drawOrder?.[index - 1])
     const many = launched(12)
-    expect(many.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
     expect(many.drawOrder).toHaveLength(DRAW_ROUNDS_DEFAULT)
     expect(many.drawOrder).not.toContain(HOST)
+    expect(new Set(many.drawOrder).size).toBe(DRAW_ROUNDS_DEFAULT)
+  })
+
+  test('rotation : écart d’une manche au plus entre deux joueurs (3 dessinateurs, 8 manches)', () => {
+    const order = drawOrderFor(players(4), HOST, 8, () => 0.3)
+    const values = Object.values(countBy(order))
+    expect(Math.max(...values) - Math.min(...values)).toBeLessThanOrEqual(1)
+  })
+
+  test('Groupe : les équipes dessinent à tour de rôle, autant de fois chacune', () => {
+    const grouped: Record<PlayerId, Player> = {
+      [HOST]: player('Hôte', { team: 'pink' }),
+      a: player('A', { team: 'pink' }),
+      b: player('B', { team: 'pink' }),
+      c: player('C', { team: 'cyan' }),
+      d: player('D', { team: 'cyan' }),
+      e: player('E', { team: 'cyan' }),
+    }
+    const order = drawOrderFor(grouped, HOST, 8, () => 0.6, true)
+    const teams = order.map((id) => grouped[id].team)
+    expect(countBy(teams.map(String))).toEqual({ pink: 4, cyan: 4 })
+    for (let index = 1; index < teams.length; index++) expect(teams[index]).not.toBe(teams[index - 1])
+  })
+
+  test('un seul dessinateur possible : une manche ; option de développement : toutes les manches', () => {
+    const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') } })
+    const single = launchUpdate(lobby, questions, NOW)
+    expect(single.ok && single.update.questionCount).toBe(1)
+    const solo = launchUpdate(lobby, questions, NOW, undefined, undefined, Math.random, true)
+    expect(solo.ok && solo.update.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
+    expect(solo.ok && solo.update.drawOrder).toEqual(Array(DRAW_ROUNDS_DEFAULT).fill(PLAYER))
   })
 
   test('hôte seul avec personne d’autre pour dessiner : lancement refusé', () => {

@@ -82,9 +82,35 @@ export function drawEligiblePlayers(players: Record<PlayerId, Player>, hostUid: 
     .sort()
 }
 
-// Ordre des dessinateurs, tiré au lancement : chacun dessine au plus une fois.
-export function drawOrderFor(players: Record<PlayerId, Player>, hostUid: PlayerId, random: () => number): PlayerId[] {
-  return shuffled(drawEligiblePlayers(players, hostUid), random)
+// Ordre des dessinateurs pour `rounds` manches, tiré au lancement : rotation cyclique, chacun son tour,
+// plusieurs fois si besoin (écart d'une manche au plus entre deux joueurs). Groupe : les équipes dessinent
+// à tour de rôle (autant de fois chacune, à une manche près), et dans chaque équipe ses joueurs à tour de
+// rôle.
+export function drawOrderFor(
+  players: Record<PlayerId, Player>,
+  hostUid: PlayerId,
+  rounds: number,
+  random: () => number,
+  byTeam = false,
+): PlayerId[] {
+  const eligible = drawEligiblePlayers(players, hostUid)
+  if (eligible.length === 0) return []
+  const groups = byTeam ? teamGroups(players, eligible) : [eligible]
+  const order = shuffled(groups, random).map((group) => shuffled(group, random))
+  return Array.from({ length: rounds }, (_, round) => {
+    const group = order[round % order.length]
+    return group[Math.floor(round / order.length) % group.length]
+  })
+}
+
+// Dessinateurs possibles regroupés par équipe (équipes sans dessinateur possible ignorées).
+function teamGroups(players: Record<PlayerId, Player>, eligible: readonly PlayerId[]): PlayerId[][] {
+  const byTeam = new Map<string, PlayerId[]>()
+  for (const id of eligible) {
+    const team = players[id].team ?? ''
+    byTeam.set(team, [...(byTeam.get(team) ?? []), id])
+  }
+  return [...byTeam.keys()].sort().map((team) => byTeam.get(team) as PlayerId[])
 }
 
 // Paquets du dessin de la manche, dans l'ordre des clés (la base les rend en objet, ou en tableau quand

@@ -524,6 +524,7 @@ export function launchUpdate(
   limit = QUESTIONS_PER_GAME,
   audio: LaunchAudio = { enabled: false, urls: {} },
   random: () => number = Math.random,
+  allowSoloDrawer = false,
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
@@ -531,10 +532,12 @@ export function launchUpdate(
   const teamRefusal = teamLaunchRefusal(session)
   if (teamRefusal) return { ok: false, reason: teamRefusal }
   const isDraw = session.settings.answerMode === 'draw'
-  // Dessine-moi : autant de manches que de dessinateurs possibles au plus (chacun dessine une fois).
+  // Dessine-moi : toutes les manches dès 2 dessinateurs possibles (rotation, drawOrderFor). Un seul
+  // dessinateur possible : une manche, sauf allowSoloDrawer (option de développement, tests à 2 appareils).
   const drawers = isDraw ? drawEligiblePlayers(session.players, session.hostUid).length : Infinity
   if (isDraw && drawers === 0) return { ok: false, reason: 'notEnoughPlayers' }
-  const gameQuestions = selectGameQuestions(questions, Math.min(limit, drawers))
+  const roundLimit = isDraw && drawers === 1 && !allowSoloDrawer ? 1 : limit
+  const gameQuestions = selectGameQuestions(questions, roundLimit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
   const musicQuestions = gameQuestions.filter((question) => 'music' in question && question.music)
   if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }
@@ -554,7 +557,7 @@ export function launchUpdate(
     teamPresence: null,
     ...BLUFF_RESET,
     ...DRAW_RESET,
-    drawOrder: isDraw ? drawOrderFor(session.players, session.hostUid, random).slice(0, gameQuestions.length) : null,
+    drawOrder: isDraw ? drawOrderFor(session.players, session.hostUid, gameQuestions.length, random, session.settings.teams) : null,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = 0

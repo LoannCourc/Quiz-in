@@ -40,10 +40,12 @@ export async function launchGame(
   nowServer: number,
   limit?: number,
   audio?: LaunchAudio,
+  // Dessine-moi, développement seulement : un seul dessinateur possible joue toutes les manches.
+  allowSoloDrawer = false,
 ): Promise<LaunchOutcome> {
   // Groupe « Au hasard » sans tirage de l'hôte : équipes tirées d'abord (écrites encore en lobby).
   const draw = launchTeamDraw(session);
-  const result = launchUpdate(draw?.session ?? session, questions, nowServer, limit, audio);
+  const result = launchUpdate(draw?.session ?? session, questions, nowServer, limit, audio, Math.random, allowSoloDrawer);
   if (!result.ok) return result;
   if (draw) await update(ref(db, `sessions/${code}`), draw.update);
   await update(ref(db, `sessions/${code}`), result.update);

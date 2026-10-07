@@ -87,6 +87,8 @@ export function HostLobby(props: HostLobbyProps) {
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
+  // Dessine-moi, développement seulement : tester plusieurs manches avec 2 appareils.
+  const [isSoloDrawer, setIsSoloDrawer] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
   const [launchError, setLaunchError] = useState<string | null>(null);
 
@@ -135,7 +137,15 @@ export function HostLobby(props: HostLobbyProps) {
     try {
       const limit = isShortGame ? DEV_SHORT_GAME_QUESTIONS : undefined;
       const launchAudio = { enabled: audio.isEnabled, urls: audio.urls };
-      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio);
+      const outcome = await launchGame(
+        code,
+        session,
+        questions.questions,
+        Date.now() + serverOffsetMs,
+        limit,
+        launchAudio,
+        __DEV__ && isSoloDrawer,
+      );
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
@@ -240,6 +250,8 @@ export function HostLobby(props: HostLobbyProps) {
         onHostProfile={() => (isRegistered ? setIsEditing(true) : setIsHostJoining(true))}
         isShortGame={isShortGame}
         onShortGame={setIsShortGame}
+        isSoloDrawer={isSoloDrawer}
+        onSoloDrawer={setIsSoloDrawer}
       />
     </Screen>
   );
