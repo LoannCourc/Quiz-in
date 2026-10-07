@@ -142,24 +142,22 @@
   text-transform: uppercase;
 }
 
+/* Avatars pendant la question : une seule ligne dans une zone de hauteur fixe, jamais de débordement.
+   Taille : la plus petite de la taille normale et de --avatar-fit (largeur disponible / nombre d'avatars,
+   hooks/useAvatarRowFit.ts). L'agrandissement d'un avatar allumé (×1,06) est prévu dans la hauteur. */
 .question-avatars {
+  --avatar-max: calc(3.5rem * var(--bar-scale, 1));
   display: flex;
-  flex-wrap: wrap;
-  gap: calc(0.6rem * var(--bar-scale, 1));
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-width: 0;
+  height: calc(var(--avatar-max) * 1.1);
+  gap: calc(0.5rem * var(--bar-scale, 1));
 }
 
 .question-avatars .avatar {
-  --avatar-size: calc(3.5rem * var(--bar-scale, 1));
-}
-
-/* 13 joueurs et plus : avatars plus petits, sur une seule ligne. */
-.question-avatars.is-many {
-  flex-wrap: nowrap;
-  gap: 0.35rem;
-}
-
-.question-avatars.is-many .avatar {
-  --avatar-size: calc(2.1rem * var(--bar-scale, 1));
+  --avatar-size: min(var(--avatar-max), var(--avatar-fit, var(--avatar-max)));
 }
 
 /* Groupe : avatars par équipe, plus petits quand la place manque (une seule rangée si possible). */

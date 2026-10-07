@@ -7,10 +7,11 @@ import { Avatar } from '../components/Avatar'
 import { BluffVoteChoices } from '../components/BluffChoices'
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
+import { useAvatarRowFit } from '../hooks/useAvatarRowFit'
 import { useFitScale } from '../hooks/useFitScale'
 import { TeamAvatarGroups } from '../components/TeamBoards'
 import { optionsSizeClass } from '../lib/optionsSize'
-import { isTightQuestion, MANY_PLAYERS_MIN, questionSizeClass } from '../lib/questionSize'
+import { isTightQuestion, questionSizeClass } from '../lib/questionSize'
 import { answeredByCount, countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
@@ -32,6 +33,8 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
   // Tout tient à l'écran : la barre des joueurs rétrécit d'abord, puis la consigne ou les propositions.
   const fitKey = `${session.status}|${question?.text}|${question?.choices?.join('|')}|${Object.keys(session.players).length}|${session.settings.teams}`
   const screenRef = useFitScale(fitKey, FIT_OPTIONS)
+  // Rangée des avatars : toujours une seule ligne, taille calculée d'après la place (1 à 20 joueurs).
+  const avatarRow = useAvatarRowFit(Object.keys(session.players).length)
   if (!question) return null
 
   const players = sortForGame(session)
@@ -129,7 +132,7 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
             // Groupe : avatars regroupés par équipe (maquette G2).
             <TeamAvatarGroups session={session} players={players} />
           ) : (
-            <div className={players.length >= MANY_PLAYERS_MIN ? 'question-avatars is-many' : 'question-avatars'}>
+            <div ref={avatarRow} className="question-avatars">
               {players.map((player) => (
                 <Avatar
                   key={player.id}
