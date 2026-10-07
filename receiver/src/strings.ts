@@ -165,6 +165,12 @@ export const strings = {
     hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
     itWas: 'C’était…',
     drawnBy: (name: string) => `Dessiné par ${name}`,
+    // Espace insécable : le « ! » ne passe jamais seul à la ligne.
+    found: (name: string) => `${name} a trouvé !`,
+    foundCount: (found: number, guessers: number) => `${found}/${guessers} ont trouvé`,
+    // Groupe : seule l'équipe du dessinateur devine.
+    teamGuesses: (team: string) => `L’équipe ${team} devine`,
+    cancelled: 'Manche annulée : aucun point.',
   },
   // Banc d'essai du dessin (Dessine-moi, lot 1, ?drawbench=1 ou cast-sender.html) : outil de mesure.
   drawBench: {

@@ -23,24 +23,24 @@
 .draw-round-side {
   display: grid;
   justify-items: center;
-  row-gap: 1.6rem;
+  row-gap: 1.1rem;
   text-align: center;
 }
 
 .draw-round-title {
-  font-size: 3rem;
+  font-size: 2.4rem;
 }
 
 .draw-round-hint {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 900;
   color: var(--color-accent);
 }
 
 .draw-round-side .countdown-ring {
-  --ring-size: 9rem;
-  --ring-width: 0.8rem;
+  --ring-size: 7.5rem;
+  --ring-width: 0.7rem;
 }
 
 /* Révélation : le dessin final, à côté du mot. */
@@ -63,4 +63,63 @@
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--color-text-muted);
+}
+
+/* Groupe : quelle équipe devine. */
+.draw-round-team {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+/* Qui a trouvé : le dernier en bandeau (rejoué à chaque nouveau), puis combien ont trouvé. Hauteur du
+   bandeau réservée : le chrono ne bouge pas. */
+.draw-found {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.5rem;
+}
+
+.draw-found-banner {
+  margin: 0;
+  min-height: 3rem;
+  padding: 0.4rem 1.4rem;
+  border-radius: 999px;
+  background: var(--color-correct);
+  color: var(--color-on-correct);
+  font-size: 1.6rem;
+  font-weight: 900;
+  box-shadow: var(--shadow-hard);
+  animation: draw-found-pop 450ms ease-out both;
+}
+
+.draw-found-banner.is-empty {
+  visibility: hidden;
+  animation: none;
+}
+
+@keyframes draw-found-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.draw-found-count {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
+
+.draw-reveal-cancelled {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-text);
 }

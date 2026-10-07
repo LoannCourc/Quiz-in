@@ -1,3 +1,4 @@
+import { drawFoundProgress } from '@shared/drawGuess'
 import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession } from '@shared/types'
 
@@ -12,10 +13,14 @@ import './DrawRoundScreen.css'
 const LONG_WORD_LENGTH = 8
 
 // Dessine-moi, manche en cours : le dessin en grand (l'essentiel de l'écran), qui dessine, l'indice
-// (catégorie et nombre de lettres, décision D5) et le temps restant. Jamais le mot.
+// (catégorie et nombre de lettres, décision D5), le temps restant, puis qui a trouvé : le dernier en
+// bandeau, et combien ont trouvé. Jamais le mot, jamais les essais.
 export function DrawRoundScreen({ session, roomCode }: { session: PublicSession; roomCode: string }) {
   const turn = session.drawTurn
-  const drawerName = turn ? (session.players[turn.drawer]?.name ?? '') : ''
+  const drawer = turn ? session.players[turn.drawer] : undefined
+  const drawerName = drawer?.name ?? ''
+  const progress = drawFoundProgress(session)
+  const latest = progress.latest ? session.players[progress.latest] : undefined
   return (
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
@@ -24,20 +29,36 @@ export function DrawRoundScreen({ session, roomCode }: { session: PublicSession;
         <aside className="draw-round-side">
           <h1 className="hero-title draw-round-title">{strings.draw.drawing(drawerName)}</h1>
           {turn && <p className="draw-round-hint">{strings.draw.hint(turn.category, turn.wordLength)}</p>}
+          {session.settings.teams && drawer?.team && (
+            <p className="draw-round-team">{strings.draw.teamGuesses(strings.teams.names[drawer.team])}</p>
+          )}
           <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
+          <div className="draw-found">
+            {latest ? (
+              <p key={progress.latest} className="draw-found-banner">
+                {strings.draw.found(latest.name)}
+              </p>
+            ) : (
+              <p className="draw-found-banner is-empty" aria-hidden="true" />
+            )}
+            {progress.guessers.length > 0 && (
+              <p className="draw-found-count">{strings.draw.foundCount(progress.found.length, progress.guessers.length)}</p>
+            )}
+          </div>
         </aside>
       </div>
     </main>
   )
 }
 
-// Dessine-moi, révélation : le dessin final à gauche, le mot et son dessinateur à droite, puis la manche
-// suivante (pas de classement au lot 2 : pas de points).
+// Dessine-moi, révélation : le dessin final à gauche, le mot et son dessinateur à droite (ou « Manche
+// annulée »), puis le classement.
 export function DrawRevealScreen({ session, roomCode }: { session: PublicSession; roomCode: string }) {
   const turn = session.drawTurn
   const drawerName = turn ? (session.players[turn.drawer]?.name ?? null) : null
   const countdown = nextQuestionCountdown(session)
   const word = session.reveal?.correctAnswer ?? ''
+  const isCancelled = session.reveal?.stats.drawCancelled === true
   return (
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
@@ -48,6 +69,7 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
           <p className="draw-round-hint">{strings.draw.itWas}</p>
           <h1 className={word.length > LONG_WORD_LENGTH ? 'draw-reveal-word is-long' : 'draw-reveal-word'}>{word}</h1>
           {drawerName && <p className="draw-reveal-by">{strings.draw.drawnBy(drawerName)}</p>}
+          {isCancelled && <p className="draw-reveal-cancelled">{strings.draw.cancelled}</p>}
           {countdown && <NextQuestionLine countdown={countdown} isRound />}
           {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
         </aside>

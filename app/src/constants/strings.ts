@@ -674,7 +674,7 @@ export const strings = {
     // Révélation.
     itWas: 'C’était…',
     drawnBy: (name: string) => `Dessiné par ${name}`,
-    cancelled: 'Manche annulée : aucun point.',
+    cancelled: 'Manche annulée : aucun point.',
     guessPoints: (points: number) => `Trouvé : +${formatNumber(points)} pts`,
     notFound: 'Pas trouvé cette fois.',
     drawerPoints: (points: number) =>

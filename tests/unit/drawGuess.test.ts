@@ -2,13 +2,15 @@ import { describe, expect, test } from 'vitest'
 
 import { DRAW_GUESS_MAX_POINTS, DRAW_GUESS_MIN_POINTS } from '../../shared/constants'
 import { drawGameQuestions } from '../../shared/drawGame'
-import { drawAllFoundAt, drawGuessers, drawHintsUpdate, drawResults, drawWordChangeUpdate, judgeDrawGuess } from '../../shared/drawGuess'
+import { drawAllFoundAt, drawFoundProgress, drawGuessers, drawHintsUpdate, drawResults, drawWordChangeUpdate, judgeDrawGuess } from '../../shared/drawGuess'
 import { drawCancelUpdate, hostControls, nextDeadline, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
+import { soundCues } from '../../shared/sound'
 import type { Player, PlayerId, Session, SessionSettings } from '../../shared/types'
 import { HOST, makeSession, OTHER, player, PLAYER } from './engineFixtures'
 
 const START = 1_000_000
 const END = START + 75_000
+const NOW_SOUND = 9_000_000
 const DRAW: SessionSettings = { answerMode: 'draw', speedBonus: false, control: false, teams: false }
 const questions = drawGameQuestions('K7PX')
 
@@ -159,5 +161,33 @@ describe('Dessine-moi : changement de mot', () => {
 
   test('la réponse donne le mot du dessinateur (après changement)', () => {
     expect(reveal(round({ drawSecret: { word: 'fusée', category: 'Transport' } })).reveal?.correctAnswer).toBe('fusée')
+  })
+})
+
+describe('Dessine-moi : TV (qui a trouvé) et sons', () => {
+  test('progression : devineurs, trouvés dans l’ordre, le dernier en bandeau ; un absent qui avait trouvé reste compté', () => {
+    const session = round({ drawFound: { zoe: START + 9_000, [OTHER]: START + 4_000 } }, { zoe: player('Zoé', { connected: false }) })
+    const progress = drawFoundProgress(session)
+    expect(progress.found).toEqual([OTHER, 'zoe'])
+    expect(progress.latest).toBe('zoe')
+    expect([...progress.guessers].sort()).toEqual([HOST, OTHER, 'zoe'].sort())
+    expect(drawFoundProgress(round()).latest).toBeNull()
+  })
+
+  test('un joueur trouve : « pop » ; le dernier devineur : « tous » ; jamais pour un essai faux', () => {
+    const before = round({ phaseStartedAt: NOW_SOUND - 500, phaseEndsAt: NOW_SOUND + 60_000 })
+    const one = { ...before, drawFound: { [OTHER]: NOW_SOUND } }
+    expect(soundCues(before, one, NOW_SOUND)).toEqual(['answerPop'])
+    const all = { ...one, drawFound: { ...one.drawFound, zoe: NOW_SOUND, [HOST]: NOW_SOUND } }
+    expect(soundCues(one, all, NOW_SOUND)).toEqual(['allAnswered'])
+    expect(soundCues(before, { ...before, drawHint: { [OTHER]: { count: 1, verdict: 'wrong' } } }, NOW_SOUND)).toEqual([])
+  })
+
+  test('réponse : fanfare si quelqu’un a trouvé, « raté » sinon ou si la manche est annulée', () => {
+    const question = round({ phaseStartedAt: NOW_SOUND - 60_000, phaseEndsAt: NOW_SOUND })
+    const revealed = (reveal: Session['reveal']) => ({ ...question, status: 'reveal' as const, phaseStartedAt: NOW_SOUND - 100, reveal })
+    expect(soundCues(question, revealed({ correctAnswer: 'chat', stats: {}, results: { [OTHER]: { correct: true, points: 900 } } }), NOW_SOUND)).toEqual(['fanfare'])
+    expect(soundCues(question, revealed({ correctAnswer: 'chat', stats: {}, results: {} }), NOW_SOUND)).toEqual(['miss'])
+    expect(soundCues(question, revealed({ correctAnswer: 'chat', stats: { drawCancelled: true }, results: {} }), NOW_SOUND)).toEqual(['miss'])
   })
 })

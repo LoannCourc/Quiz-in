@@ -1,4 +1,5 @@
 import { bluffRevealTimeline } from './bluff'
+import { drawFoundProgress } from './drawGuess'
 import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
@@ -167,6 +168,11 @@ function isBlindTestQuestion(session: PublicSession): boolean {
 // null hors des phases où l'on répond.
 function progressOf(session: PublicSession): { done: number; total: number } | null {
   const index = session.currentIndex
+  // Dessine-moi : « a trouvé » parmi les devineurs.
+  if (session.status === 'question' && session.settings.answerMode === 'draw') {
+    const { guessers, found } = drawFoundProgress(session)
+    return { done: found.length, total: guessers.length }
+  }
   let doneBy: Record<PlayerId, true> | undefined
   if (session.status === 'question') {
     doneBy = session.settings.answerMode === 'bluff' ? session.bluffedBy?.[index] : session.answeredBy?.[index]
@@ -198,8 +204,8 @@ export function ranksChanged(session: Pick<PublicSession, 'players' | 'reveal'>)
 // Résultat d'une question (hors Bluff) : fanfare si au moins un joueur a trouvé, « raté » sinon.
 function resultCue(session: PublicSession): SoundEffectId | null {
   if (session.reveal?.stats.bluffChoices) return null
-  // Dessine-moi (lot 2, sans réponses) : le mot apparaît, accord éclatant (ni fanfare ni « raté »).
-  if (session.settings.answerMode === 'draw') return 'bluffTruth'
+  // Dessine-moi annulé : « raté » ; sinon comme les autres jeux (dessinateur compris s'il a été trouvé).
+  if (session.reveal?.stats.drawCancelled) return 'miss'
   const results = Object.values(session.reveal?.results ?? {})
   return results.some((result) => result.correct) ? 'fanfare' : 'miss'
 }

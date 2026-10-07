@@ -55,6 +55,24 @@ export function isDrawGuesser(session: Pick<PublicSession, 'players' | 'settings
   return !session.settings.teams || session.players[uid].team === session.players[drawer]?.team
 }
 
+// Pour la TV et ses sons : qui devine, qui a trouvé (dans l'ordre), et le dernier à avoir trouvé.
+// Un joueur déconnecté qui avait trouvé reste compté parmi ceux qui ont trouvé.
+export interface DrawFoundProgress {
+  guessers: PlayerId[]
+  found: PlayerId[]
+  latest: PlayerId | null
+}
+
+export function drawFoundProgress(session: Pick<PublicSession, 'players' | 'settings' | 'drawTurn' | 'drawFound'>): DrawFoundProgress {
+  const foundAt = session.drawFound ?? {}
+  const found = Object.keys(foundAt)
+    .filter((id) => session.players[id] !== undefined)
+    .sort((a, b) => foundAt[a] - foundAt[b])
+  const guessers = drawGuessers(session)
+  for (const id of found) if (!guessers.includes(id)) guessers.push(id)
+  return { guessers, found, latest: found.length > 0 ? found[found.length - 1] : null }
+}
+
 // Verdicts des essais pas encore jugés (l'hôte, à chaque nouvel essai) : drawHint/{uid} pour le joueur,
 // drawFound/{uid} (heure de l'essai) s'il a trouvé. null s'il n'y a rien de neuf.
 export function drawHintsUpdate(session: Session): SessionUpdate | null {
