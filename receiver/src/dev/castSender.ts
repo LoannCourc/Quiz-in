@@ -81,7 +81,7 @@ document.getElementById('perf-off')!.addEventListener('click', () => send({ perf
 document.getElementById('perf-music-off')!.addEventListener('click', () => send({ perfMusic: false }))
 document.getElementById('perf-music-on')!.addEventListener('click', () => send({ perfMusic: true }))
 document.getElementById('draw-bench')!.addEventListener('click', () => send({ drawBench: true }))
-document.getElementById('draw-bench-15')!.addEventListener('click', () => send({ drawBench: 1.5 }))
+document.getElementById('draw-bench-1')!.addEventListener('click', () => send({ drawBench: 1 }))
 document.getElementById('draw-bench-2')!.addEventListener('click', () => send({ drawBench: 2 }))
 
 const sdk = document.createElement('script')

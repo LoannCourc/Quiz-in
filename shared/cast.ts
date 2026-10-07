@@ -1,3 +1,4 @@
+import { TV_DRAW_SCALE } from './drawing/palette'
 import { isValidRoomCode, normalizeRoomCode } from './roomCode'
 
 // Canal de messages personnalisé entre l'app de l'hôte (émetteur Cast) et la TV (récepteur).
@@ -76,7 +77,8 @@ export function readCastPerfMusic(data: unknown): boolean | null {
 }
 
 // Banc d'essai du dessin (Dessine-moi, lot 1, outil cast-sender.html) : la TV rejoue un dessin enregistré
-// en boucle, panneau de mesures affiché. true : canvas de 640 × 480 ; un nombre : son échelle (1, 1,5 ou 2).
+// en boucle, panneau de mesures affiché. true : canvas de la TV (TV_DRAW_SCALE) ; un nombre : son échelle
+// (1, 1,5 ou 2).
 export interface CastDrawBenchMessage {
   drawBench: boolean | number
 }
@@ -87,6 +89,6 @@ export const DRAW_BENCH_SCALES: readonly number[] = [1, 1.5, 2]
 export function readCastDrawBench(data: unknown): number | null {
   if (typeof data !== 'object' || data === null || !('drawBench' in data)) return null
   const { drawBench } = data
-  if (drawBench === true) return 1
+  if (drawBench === true) return TV_DRAW_SCALE
   return typeof drawBench === 'number' && DRAW_BENCH_SCALES.includes(drawBench) ? drawBench : null
 }

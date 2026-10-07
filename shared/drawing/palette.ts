@@ -6,6 +6,11 @@
 export const DRAW_WIDTH = 640
 export const DRAW_HEIGHT = 480
 
+// Canvas de la TV : pixels par point logique. 1,5 → 960 × 720 (décision du lot 1 : le bord des seaux
+// est trop crénelé à 640 × 480 sur un grand écran). Seul réglage à changer pour redescendre à 1
+// (640 × 480) si les mesures en vraie partie, musique active, se dégradent. Les données ne changent pas.
+export const TV_DRAW_SCALE = 1.5
+
 // Grille du seau : une case pour 2 × 2 points logiques (320 × 240).
 export const GRID_SCALE = 2
 export const GRID_WIDTH = DRAW_WIDTH / GRID_SCALE
