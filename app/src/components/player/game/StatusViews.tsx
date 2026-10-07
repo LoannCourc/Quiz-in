@@ -1,6 +1,7 @@
 import type { PlayerId } from '@shared/types';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
+import { BigButton } from '@/components/ui/BigButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -80,6 +81,23 @@ export function EndView({ players, uid }: { players: RankedPlayer[]; uid: Player
   );
 }
 
+// Mode de jeu inconnu de cette page (ouverte avant une mise à jour du site) : recharger, plutôt
+// qu'afficher l'écran d'un autre jeu.
+export function OutdatedView() {
+  const texts = strings.game.outdated;
+  return (
+    <View style={styles.outdated}>
+      <Text style={[textStyles.hero, styles.centered]}>{texts.title}</Text>
+      <Text style={[textStyles.body, styles.centered]}>{texts.message}</Text>
+      {Platform.OS === 'web' && <BigButton label={texts.reload} onPress={reloadPage} />}
+    </View>
+  );
+}
+
+function reloadPage() {
+  (globalThis as { location?: { reload: () => void } }).location?.reload();
+}
+
 export function WaitingView() {
   return <Text style={[textStyles.label, styles.centered]}>{strings.game.waiting}</Text>;
 }
@@ -88,6 +106,11 @@ const PAUSE_COIN = 120;
 
 const styles = StyleSheet.create({
   block: {
+    gap: Spacing.four,
+  },
+  outdated: {
+    flexGrow: 1,
+    justifyContent: 'center',
     gap: Spacing.four,
   },
   centeredBlock: {

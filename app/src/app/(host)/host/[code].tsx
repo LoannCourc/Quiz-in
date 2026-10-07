@@ -178,6 +178,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           question={classicQuestion(gameQuestions?.[session.currentIndex])}
           onSkip={engine.skip}
           onCancelDraw={engine.cancelDrawRound}
+          isWriteRefused={engine.isWriteRefused}
           connection={connection}
           cast={cast}
         />
@@ -203,13 +204,15 @@ interface HostInGameProps {
   onSkip: (decisions?: ValidationDecisions) => void;
   // Dessine-moi : « Annuler la manche » (après confirmation).
   onCancelDraw: () => void;
+  // Écriture de l'hôte refusée par les règles de la base.
+  isWriteRefused: boolean;
   connection: HostConnection;
   cast: CastGame;
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
-function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, onCancelDraw, connection, cast }: HostInGameProps) {
+function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, onCancelDraw, isWriteRefused, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const bluff = useBluff(code, session.hostUid, session);
   // Dessine-moi : l'hôte qui joue ne dessine jamais (D1), il regarde la TV.
@@ -283,7 +286,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     <HostFooter
       status={session.status}
       error={actionError}
-      notice={hostNotice(connection, cast)}
+      notice={hostNotice(connection, cast, isWriteRefused)}
       showCastButton={cast.isAvailable}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
@@ -365,7 +368,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
 }
 
 // Message au-dessus des contrôles quand la partie est en pause pour une raison extérieure.
-function hostNotice(connection: HostConnection, cast: CastGame): string | null {
+function hostNotice(connection: HostConnection, cast: CastGame, isWriteRefused: boolean): string | null {
+  if (isWriteRefused) return strings.hostGame.writeRefused;
   if (cast.castInterrupted) return strings.hostGame.castInterrupted;
   if (connection.returnedFromAbsence) return strings.hostGame.returnedFromAbsence;
   return null;

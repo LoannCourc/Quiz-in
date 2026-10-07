@@ -1,8 +1,11 @@
 import { describe, expect, test } from 'vitest'
 
-import { DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, wordLetterCount } from '../../shared/drawGame'
+import { isKnownAnswerMode } from '../../shared/constants'
+import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, wordLetterCount } from '../../shared/drawGame'
+import { isDrawGuesser } from '../../shared/drawGuess'
 import { hasRankingStep, nextPhase } from '../../shared/gameFlow'
 import { launchUpdate, replayUpdate, toPublicQuestion, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
+import { settingsForGameType } from '../../shared/quizCatalog'
 import type { Player, PlayerId, Session, SessionSettings } from '../../shared/types'
 import { HOST, makeSession, OTHER, player, PLAYER } from './engineFixtures'
 
@@ -118,5 +121,26 @@ describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
     expect(replayed.drawOrder).toBeUndefined()
     expect(replayed.drawTurn).toBeUndefined()
     expect(replayed.drawSecret).toBeUndefined()
+  })
+})
+
+describe('Dessine-moi : chemin de création (hôte + un seul joueur)', () => {
+  test('fiche Dessine-moi : mode draw imposé, quels que soient les réglages choisis', () => {
+    expect(DRAW_QUIZ_SUMMARY.gameType).toBe('draw')
+    const chosen: SessionSettings = { answerMode: 'free', speedBonus: true, control: true, teams: false }
+    expect(settingsForGameType(chosen, DRAW_QUIZ_SUMMARY.gameType)).toMatchObject({ answerMode: 'draw', speedBonus: false, control: false })
+  })
+
+  test('hôte qui joue + une tablette : une manche, la tablette dessine, l’hôte devine', () => {
+    const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') }, quizId: 'dessine-moi' })
+    const launch = launchUpdate(lobby, questions, NOW)
+    expect(launch.ok).toBe(true)
+    const round = advance(apply(lobby, launch.ok ? launch.update : null))
+    expect(round.questionCount).toBe(1)
+    expect(round.settings.answerMode).toBe('draw')
+    expect(round.drawTurn?.drawer).toBe(PLAYER)
+    expect(isDrawGuesser(round, HOST)).toBe(true)
+    expect(isKnownAnswerMode(round.settings.answerMode)).toBe(true)
+    expect(isKnownAnswerMode('mime')).toBe(false)
   })
 })

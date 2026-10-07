@@ -311,6 +311,8 @@ export const strings = {
     gameDeleted: 'La partie a été supprimée : tu as été absent trop longtemps.',
     connectionLost: 'Connexion perdue… la partie est en attente',
     castInterrupted: 'Cast interrompu : reconnecte la TV, puis reprends',
+    // Règles de la base plus anciennes que l'app (déploiement oublié) : la partie ne peut plus avancer.
+    writeRefused: 'La base a refusé une écriture de la partie : ses règles de sécurité ne sont peut-être pas à jour.',
     connectionLostHint: 'Elle sera mise en pause dès le retour du réseau.',
     backToCatalog: 'Retour au catalogue',
   },
@@ -463,6 +465,12 @@ export const strings = {
   },
   game: {
     awaitingHost: 'En attente de l’hôte pour la suite…',
+    // Site resté ouvert depuis une version plus ancienne que le jeu de la partie.
+    outdated: {
+      title: 'Nouveau jeu !',
+      message: 'Cette partie utilise un jeu que cette page ne connaît pas encore. Recharge la page pour jouer.',
+      reload: 'Recharger la page',
+    },
     choiceLetters: ['A', 'B', 'C', 'D'],
     questionPill: (index: number, count: number | undefined) =>
       count ? `Question ${index + 1}/${count}` : `Question ${index + 1}`,

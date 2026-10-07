@@ -16,13 +16,34 @@ import type { GameQuestion, Session } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
-import { applyHostAction, runTransition } from '@/lib/hostGame';
+import { applyHostAction, isPermissionDenied, runTransition } from '@/lib/hostGame';
 
 export interface HostEngine {
   // Contrôle « Passer » de l'hôte ; decisions : pendant la validation (Contrôle), ses coches.
   skip: (decisions?: ValidationDecisions) => void;
   // Dessine-moi : « Annuler la manche » (réponse tout de suite, aucun point).
   cancelDrawRound: () => void;
+  // Dernière écriture de l'hôte refusée par les règles de la base (message à l'écran).
+  isWriteRefused: boolean;
+}
+
+type ReportWrite = (error: unknown, label: string) => void;
+
+// Écriture réussie (error null) ou échouée : un refus des règles est signalé à l'écran, avec un message
+// clair dans la console ; une autre erreur (réseau) est seulement journalisée.
+function writeReporter(setRefused: (refused: boolean) => void): ReportWrite {
+  return (error, label) => {
+    if (error === null) {
+      setRefused(false);
+      return;
+    }
+    if (isPermissionDenied(error)) {
+      console.error(`[engine] ${label} : écriture refusée par les règles de la base (règles déployées plus anciennes que l'app ?)`, error);
+      setRefused(true);
+    } else {
+      console.error(`[engine] ${label} impossible`, error);
+    }
+  };
 }
 
 interface HostEngineInput {
@@ -68,6 +89,9 @@ export function useHostEngine({
   audioUrls = NO_AUDIO_URLS,
 }: HostEngineInput): HostEngine {
   const foregroundCount = useForegroundCount();
+  const [isWriteRefused, setIsWriteRefused] = useState(false);
+  // Fonction stable (le setter de useState l'est) : utilisable dans les minuteurs.
+  const [report] = useState(() => writeReporter(setIsWriteRefused));
   const lock = useRef<TransitionLock | null>(null);
   const canWriteRef = useRef(canWrite);
   // Référence : un renouvellement d'adresse ne doit pas reprogrammer le minuteur de la partie.
@@ -90,13 +114,13 @@ export function useHostEngine({
 
     const timeoutId = setTimeout(() => {
       const nowServer = Date.now() + serverOffsetMs;
-      void advance(code, questions, expected, nowServer, lock, canWriteRef, audioUrlsRef);
+      void advance(code, questions, expected, nowServer, lock, canWriteRef, audioUrlsRef, report);
     }, delayMs);
     return () => clearTimeout(timeoutId);
-  }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount]);
+  }, [code, session, questions, serverOffsetMs, canWrite, foregroundCount, report]);
 
-  useBluffChecks(code, session, questions, serverOffsetMs, canWrite);
-  useDrawJudging(code, session, questions, serverOffsetMs, canWrite);
+  useBluffChecks(code, session, questions, serverOffsetMs, canWrite, report);
+  useDrawJudging(code, session, questions, serverOffsetMs, canWrite, report);
 
   // Passer : la transition suivante tout de suite, par le même chemin que le minuteur (même verrou,
   // même état attendu) : un double appui, ou un appui en même temps que le minuteur, est ignoré.
@@ -104,7 +128,7 @@ export function useHostEngine({
   function skip(decisions: ValidationDecisions = {}) {
     if (!questions || !canWriteRef.current) return;
     const expected: ExpectedPhase = { status: session.status, currentIndex: session.currentIndex };
-    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef, audioUrlsRef, decisions);
+    void advance(code, questions, expected, Date.now() + serverOffsetMs, lock, canWriteRef, audioUrlsRef, report, decisions);
   }
 
   // Même verrou que les transitions : un appui pendant la fin du minuteur n'écrit qu'une fois.
@@ -115,13 +139,16 @@ export function useHostEngine({
     const current: TransitionLock = { key, since: Date.now() };
     lock.current = current;
     applyHostAction(code, (current, nowServer) => drawCancelUpdate(current, questions, nowServer), Date.now() + serverOffsetMs)
-      .catch((error: unknown) => console.error('[engine] Annulation de la manche impossible', error))
+      .then(
+        () => report(null, 'Annulation de la manche'),
+        (error: unknown) => report(error, 'Annulation de la manche'),
+      )
       .finally(() => {
         if (lock.current === current) lock.current = null;
       });
   }
 
-  return { skip, cancelDrawRound };
+  return { skip, cancelDrawRound, isWriteRefused };
 }
 
 // Bluff (spec 16) : pendant l'écriture, l'hôte juge chaque nouvelle proposition (vraie réponse, mot
@@ -132,10 +159,11 @@ function useBluffChecks(
   questions: readonly GameQuestion[] | null,
   serverOffsetMs: number,
   canWrite: boolean,
+  report: ReportWrite,
 ): void {
   const question = questions?.[session.currentIndex];
   const build = question && isBluffQuestion(question) ? (current: Session) => bluffChecksUpdate(current, question) : null;
-  useHostVerdicts(code, session, build, serverOffsetMs, canWrite, 'Vérification des propositions');
+  useHostVerdicts(code, session, build, serverOffsetMs, canWrite, 'Vérification des propositions', report);
 }
 
 // Dessine-moi (spec 19) : l'hôte juge chaque nouvel essai (verdict pour le joueur, « a trouvé » pour
@@ -146,13 +174,14 @@ function useDrawJudging(
   questions: readonly GameQuestion[] | null,
   serverOffsetMs: number,
   canWrite: boolean,
+  report: ReportWrite,
 ): void {
   const drawQuestions = questions?.filter(isDrawQuestion);
   const build =
     drawQuestions && drawQuestions.length > 0 && session.status === 'question'
       ? (current: Session) => mergeUpdates(drawHintsUpdate(current), drawWordChangeUpdate(current, drawQuestions))
       : null;
-  useHostVerdicts(code, session, build, serverOffsetMs, canWrite, 'Jugement des essais');
+  useHostVerdicts(code, session, build, serverOffsetMs, canWrite, 'Jugement des essais', report);
 }
 
 function mergeUpdates(first: SessionUpdate | null, second: SessionUpdate | null): SessionUpdate | null {
@@ -161,7 +190,7 @@ function mergeUpdates(first: SessionUpdate | null, second: SessionUpdate | null)
 }
 
 // Écrit le résultat de build dès qu'il n'est pas vide. Une seule écriture à la fois ; la session est
-// relue avant d'écrire. Un échec sera réessayé à la valeur suivante.
+// relue avant d'écrire. Un échec n'est réessayé qu'à la valeur suivante de la session (jamais en boucle).
 function useHostVerdicts(
   code: string,
   session: Session,
@@ -169,6 +198,7 @@ function useHostVerdicts(
   serverOffsetMs: number,
   canWrite: boolean,
   label: string,
+  report: ReportWrite,
 ): void {
   const isWriting = useRef(false);
   // Relance après chaque écriture : un essai arrivé pendant l'écriture est jugé aussitôt.
@@ -179,13 +209,18 @@ function useHostVerdicts(
     if (!canWrite || isWriting.current || !build) return;
     if (build(session) === null) return;
     isWriting.current = true;
-    applyHostAction(code, build, Date.now() + serverOffsetMs)
-      .catch((error: unknown) => console.error(`[engine] ${label} impossible`, error))
-      .finally(() => {
+    applyHostAction(code, build, Date.now() + serverOffsetMs).then(
+      () => {
         isWriting.current = false;
+        report(null, label);
         setWriteCount((count) => count + 1);
-      });
-  }, [code, session, build, serverOffsetMs, canWrite, writeCount, label]);
+      },
+      (error: unknown) => {
+        isWriting.current = false;
+        report(error, label);
+      },
+    );
+  }, [code, session, build, serverOffsetMs, canWrite, writeCount, label, report]);
 }
 
 // Exécute une transition, sauf si la même est déjà en cours d'écriture depuis moins de
@@ -199,6 +234,7 @@ async function advance(
   lock: { current: TransitionLock | null },
   canWrite: { current: boolean },
   audioUrls: { current: AudioUrls },
+  report: ReportWrite,
   decisions: ValidationDecisions = {},
 ): Promise<void> {
   const key = transitionKey(expected);
@@ -210,9 +246,10 @@ async function advance(
   lock.current = current;
   try {
     await runTransition(code, questions, expected, nowServer, () => canWrite.current, audioUrls.current, decisions);
+    report(null, `Transition ${key}`);
   } catch (error) {
     // Erreur d'écriture : on réessaiera à la prochaine valeur de la session ou au premier plan.
-    console.error('[engine] Transition impossible', error);
+    report(error, `Transition ${key}`);
   } finally {
     if (lock.current === current) lock.current = null;
   }

@@ -1,5 +1,5 @@
 import { voteProgress } from '@shared/bluff';
-import { CORRECT_ANSWER_POINTS } from '@shared/constants';
+import { CORRECT_ANSWER_POINTS, isKnownAnswerMode } from '@shared/constants';
 import { isDrawGuesser } from '@shared/drawGuess';
 import { hasRankingStep, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
@@ -39,7 +39,7 @@ import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
 import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView } from './DrawViews';
-import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
+import { EndView, OutdatedView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
 import { Timebar } from './Timebar';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
@@ -171,6 +171,7 @@ function bluffProgress(session: PublicSession, done: Record<PlayerId, true> | un
 }
 
 function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, draw }: PlayerGameProps): ReactNode {
+  if (!isKnownAnswerMode(session.settings.answerMode)) return <OutdatedView />;
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
     phaseEndsAt: session.phaseEndsAt,
