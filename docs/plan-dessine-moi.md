@@ -1,6 +1,6 @@
 # Plan : « Dessine-moi » (4e mini-jeu, type Pictionary)
 
-Statut : **plan validé (7 octobre 2026). Lot 1 validé sur la box (environ 50 images/s). Lot 2 (dessin en direct dans une vraie partie) codé, à mesurer sur la box. Lot 3 (réponses, jugement, points, TV et téléphones des devineurs) codé, à tester en vraie partie ; règles du jeu dans la spec (§ 19).** Le lot 3 a regroupé les lots 3, 5 et 6 du tableau ci-dessous (sauf la liste des mots, lot 4, et les réglages, lot 7). Écart : la TV n'allume pas d'avatars des devineurs (la colonne ne tenait pas en 720p) ; elle affiche « N/M ont trouvé » sous le bandeau.
+Statut : **plan validé (7 octobre 2026). Lots 1 à 5 codés** (lot 1 validé sur la box ; dessin en direct, réponses, jugement, points, 210 mots, rejeu lissé sur la TV, Groupe), à tester en vraie partie et à mesurer sur la box (§ 7). Reste : lot 7 (réglage du nombre de manches, 4, 6 ou 8). Règles du jeu : spec § 19 ; relecture des mots : `docs/relecture-dessine-moi.md`. Écarts décidés en cours de route : pas d'avatars des devineurs sur la TV (« N/M ont trouvé » à la place) ; rotation des dessinateurs (plusieurs fois chacun si besoin, partie à deux : un seul dessinateur) au lieu d'un passage chacun.
 
 **Lot 2, écart validé** : au lieu du mode de test prévu (`?drawtest=1`), des **manches sans points dans une vraie partie** :
 - type de jeu `draw`, onglet et fiche en développement seulement ;
