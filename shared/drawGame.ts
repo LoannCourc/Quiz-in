@@ -1,16 +1,14 @@
 import { DRAW_WORDS } from './drawWords'
 import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
 
-// Dessine-moi (plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs. Lot 2 : des
-// manches sans réponses ni points (le jugement et les points arrivent au lot 3).
+// Dessine-moi (spec 19, plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs.
 
 // Nombre de manches (décision D3 : 4, 6 ou 8 au choix, 8 par défaut ; le réglage arrive au lot 7).
 export const DRAW_ROUNDS_DEFAULT = 8
 // Identifiant du quiz « Dessine-moi » (pas de quiz dans la base : les mots sont dans le code).
 export const DRAW_QUIZ_ID = 'dessine-moi'
 
-// Fiche du jeu dans le catalogue de l'hôte (pas de quiz dans la base). Lot 2 : visible en développement
-// seulement (onglet « Dessine-moi »).
+// Fiche du jeu dans le catalogue de l'hôte (pas de quiz dans la base).
 export const DRAW_QUIZ_SUMMARY: QuizSummary = {
   title: 'Dessine-moi',
   theme: 'Culture générale',
@@ -20,7 +18,8 @@ export const DRAW_QUIZ_SUMMARY: QuizSummary = {
   difficultyLabel: 'Facile',
   questionCount: DRAW_ROUNDS_DEFAULT,
   estimatedMinutes: 15,
-  description: 'Un joueur dessine un mot secret, les autres devinent en regardant la TV. Essai : manches sans points.',
+  description:
+    'À tour de rôle, un joueur dessine un mot secret sur son téléphone ; les autres le devinent en regardant la TV. Plus on trouve vite, plus on marque, et le dessinateur gagne des points quand on trouve son dessin.',
   audience: 'all',
   poster: 'pink',
   addedAt: '',

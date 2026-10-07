@@ -99,7 +99,7 @@ export function hasImposedAnswerMode(answerMode: AnswerMode): boolean {
 
 export function settingsForGameType(settings: SessionSettings, gameType: QuizGameType): SessionSettings {
   if (gameType === 'bluff') return { ...settings, answerMode: 'bluff', speedBonus: false, control: false }
-  // Dessine-moi (lot 2) : sans Rapidité ni Contrôle (le jugement des réponses viendra au lot 3).
+  // Dessine-moi : sans Rapidité (les points dépendent déjà du temps) ni Contrôle (jugement automatique).
   if (gameType === 'draw') return { ...settings, answerMode: 'draw', speedBonus: false, control: false }
   return settings.answerMode === 'bluff' ? { ...settings, answerMode: DEFAULT_SESSION_SETTINGS.answerMode } : settings
 }
