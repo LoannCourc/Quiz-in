@@ -36,6 +36,8 @@
   --color-on-correct: var(--ink);
   --color-wrong: var(--pink);
   --color-highlight: var(--pink);
+  /* Texte sur le rose (pastilles, bandeaux) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1). */
+  --on-highlight: var(--ink);
   --color-selection: var(--white);
 
   /* Réponses A, B, C, D : la lettre accompagne toujours la couleur. */

@@ -51,6 +51,8 @@ export const AppColors = {
   accent: Palette.gold,
   onAccent: Palette.ink,
   highlight: Palette.pink,
+  // Texte sur le rose (pastilles) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1).
+  onHighlight: Palette.ink,
   correct: Palette.green,
   onCorrect: Palette.ink,
   wrong: Palette.pink,

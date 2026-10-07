@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     boxShadow: AppShadows.pressed,
   },
   label: {
-    color: AppColors.text,
+    color: AppColors.onHighlight,
     fontFamily: AppFonts.black,
     fontSize: 20,
   },
