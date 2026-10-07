@@ -31,6 +31,7 @@ export interface HostActions {
   replay: () => void;
   quit: () => void;
   showTv: () => void;
+  cancelDraw: () => void;
 }
 
 interface HostControlsPanelProps {
@@ -65,6 +66,9 @@ export function HostControlsPanel({ controls, actions, canShowTv, sound, onSound
             }
             onPress={run(actions.skip)}
           />
+        )}
+        {controls.canCancelDraw && (
+          <BigButton label={strings.hostControls.cancelDraw} variant="secondary" onPress={run(actions.cancelDraw)} />
         )}
         {controls.canPause && <BigButton label={strings.hostControls.pause} variant="secondary" onPress={run(actions.pause)} />}
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}

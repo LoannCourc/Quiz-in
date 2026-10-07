@@ -418,6 +418,14 @@ export const strings = {
       nextQuestion: 'Question suivante',
       finalRanking: 'Classement final',
     } satisfies Record<AwaitingNext, string>,
+    // Dessine-moi : la manche s'arrête, la réponse est donnée, personne ne marque de point.
+    cancelDraw: 'Annuler la manche',
+    cancelDrawConfirm: {
+      title: 'Annuler la manche ?',
+      message: 'Le mot sera donné et personne ne marquera de point pour cette manche.',
+      confirm: 'Annuler la manche',
+      cancel: 'Continuer',
+    },
     pause: 'Pause',
     resume: 'Reprendre',
     end: 'Terminer la partie',
@@ -645,13 +653,32 @@ export const strings = {
     yourWord: 'Ton mot',
     noLetters: 'Ni lettres ni chiffres !',
     wordLoading: '…',
-    // Les autres joueurs (lot 2 : pas encore de réponse à taper).
-    drawing: (name: string) => `${name} dessine !`,
-    watchTv: 'Regarde la TV et devine.',
+    // Dessinateur : une fois par manche, avant le premier trait.
+    changeWord: 'Changer de mot',
+    // Les devineurs : un mot à la fois, jugé par l'hôte.
+    drawing: (name: string) => `${name} dessine !`,
     hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
+    guessLabel: 'Ton idée',
+    guessPlaceholder: 'Un mot…',
+    send: 'Envoyer',
+    checking: 'Vérification…',
+    wrong: (text: string | null) => (text ? `« ${text} » : pas ça…` : 'Pas ça…'),
+    close: (text: string | null) => (text ? `« ${text} » : tu es proche !` : 'Tu es proche !'),
+    failed: 'Essai non envoyé : réessaie.',
+    triesLeft: (left: number) => (left > 1 ? `Encore ${left} essais` : 'Dernier essai !'),
+    exhausted: 'Plus d’essai pour cette manche.',
+    found: 'Trouvé !',
+    foundHint: 'Bravo ! Les points arrivent avec la réponse.',
+    // Groupe : seule l'équipe du dessinateur devine.
+    teamGuesses: (team: string) => `L’équipe ${team} devine. Regarde la TV !`,
     // Révélation.
     itWas: 'C’était…',
     drawnBy: (name: string) => `Dessiné par ${name}`,
+    cancelled: 'Manche annulée : aucun point.',
+    guessPoints: (points: number) => `Trouvé : +${formatNumber(points)} pts`,
+    notFound: 'Pas trouvé cette fois.',
+    drawerPoints: (points: number) =>
+      points > 0 ? `Ton dessin te rapporte +${formatNumber(points)} pts` : 'Personne n’a trouvé ton dessin.',
     // App de l'hôte : l'hôte qui joue ne dessine pas (décision D1).
     nativeUnavailable: 'Le dessin se fait depuis un navigateur.',
   },

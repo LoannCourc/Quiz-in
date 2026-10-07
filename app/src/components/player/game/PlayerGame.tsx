@@ -1,5 +1,6 @@
 import { voteProgress } from '@shared/bluff';
 import { CORRECT_ANSWER_POINTS } from '@shared/constants';
+import { isDrawGuesser } from '@shared/drawGuess';
 import { hasRankingStep, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
 import { answeredProgress, connectedPlayerIds } from '@shared/players';
 import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
@@ -37,7 +38,7 @@ import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
-import { DrawerTopBar, DrawerView, DrawRevealView, DrawWatchView } from './DrawViews';
+import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView } from './DrawViews';
 import { EndView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
 import { Timebar } from './Timebar';
@@ -193,7 +194,11 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
       if (draw && session.drawTurn) {
         const { drawTurn } = session;
         if (drawTurn.drawer === uid) return <DrawerView key={drawTurn.round} session={session} draw={draw} />;
-        return <DrawWatchView turn={drawTurn} drawerName={session.players[drawTurn.drawer]?.name ?? ''} />;
+        const drawerName = session.players[drawTurn.drawer]?.name ?? '';
+        if (isDrawGuesser(session, uid)) return <DrawGuessView key={drawTurn.round} turn={drawTurn} drawerName={drawerName} draw={draw} />;
+        const drawerTeam = session.players[drawTurn.drawer]?.team;
+        const team = drawerTeam ? strings.teams.names[drawerTeam] : '';
+        return <DrawSpectatorView turn={drawTurn} drawerName={drawerName} team={team} />;
       }
       if (bluff) {
         const progress = bluffProgress(session, session.bluffedBy?.[index]);
@@ -223,7 +228,13 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
         return (
           <>
             {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
-            <DrawRevealView word={session.reveal.correctAnswer} drawerName={drawer?.name ?? null} />
+            <DrawRevealView
+              word={session.reveal.correctAnswer}
+              drawerName={drawer?.name ?? null}
+              result={myResult(session, uid)}
+              isDrawer={session.drawTurn?.drawer === uid}
+              isCancelled={session.reveal.stats.drawCancelled === true}
+            />
           </>
         );
       }

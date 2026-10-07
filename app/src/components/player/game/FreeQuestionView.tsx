@@ -108,10 +108,20 @@ interface AnswerFieldProps {
   onSubmit: () => void;
   disabled: boolean;
   autoFocus?: boolean;
+  maxLength?: number;
 }
 
 // Champ blanc, contour cyan quand il a le focus, compteur de caractères à droite.
-function AnswerField({ label, placeholder, text, onChangeText, onSubmit, disabled, autoFocus = false }: AnswerFieldProps) {
+export function AnswerField({
+  label,
+  placeholder,
+  text,
+  onChangeText,
+  onSubmit,
+  disabled,
+  autoFocus = false,
+  maxLength = FREE_ANSWER_MAX_LENGTH,
+}: AnswerFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View style={styles.field}>
@@ -125,7 +135,7 @@ function AnswerField({ label, placeholder, text, onChangeText, onSubmit, disable
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
           placeholderTextColor={AppColors.textMuted}
-          maxLength={FREE_ANSWER_MAX_LENGTH}
+          maxLength={maxLength}
           editable={!disabled}
           autoFocus={autoFocus}
           autoCorrect={false}
@@ -137,7 +147,7 @@ function AnswerField({ label, placeholder, text, onChangeText, onSubmit, disable
           accessibilityLabel={label}
           style={styles.input}
         />
-        <Text style={styles.counter}>{strings.game.freeQuestion.counter(text.length, FREE_ANSWER_MAX_LENGTH)}</Text>
+        <Text style={styles.counter}>{strings.game.freeQuestion.counter(text.length, maxLength)}</Text>
       </View>
     </View>
   );

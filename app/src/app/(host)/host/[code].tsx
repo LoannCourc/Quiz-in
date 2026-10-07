@@ -177,6 +177,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           isRegistered={isRegistered}
           question={classicQuestion(gameQuestions?.[session.currentIndex])}
           onSkip={engine.skip}
+          onCancelDraw={engine.cancelDrawRound}
           connection={connection}
           cast={cast}
         />
@@ -200,13 +201,15 @@ interface HostInGameProps {
   // Question en cours (questions de la partie lues par l'hôte) : pour la validation (Contrôle).
   question: Question | undefined;
   onSkip: (decisions?: ValidationDecisions) => void;
+  // Dessine-moi : « Annuler la manche » (après confirmation).
+  onCancelDraw: () => void;
   connection: HostConnection;
   cast: CastGame;
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
 // d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
-function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, connection, cast }: HostInGameProps) {
+function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, onCancelDraw, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const bluff = useBluff(code, session.hostUid, session);
   // Dessine-moi : l'hôte qui joue ne dessine jamais (D1), il regarde la TV.
@@ -270,6 +273,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     replay: () => void replay(),
     quit,
     showTv: cast.showTvPicker,
+    cancelDraw: () => confirmAction(strings.hostControls.cancelDrawConfirm, onCancelDraw),
   };
 
   // Hors ligne : seulement le message, aucun contrôle (rien ne doit partir en file d'attente).

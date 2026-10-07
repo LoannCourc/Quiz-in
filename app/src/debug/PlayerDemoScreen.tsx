@@ -1,3 +1,5 @@
+import { DRAW_GUESS_MIN_INTERVAL_MS } from '@shared/constants';
+import { judgeDrawGuess } from '@shared/drawGuess';
 import type { PublicSession } from '@shared/types';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -19,12 +21,15 @@ import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import type { PlayerBluff } from '@/lib/playerBluff';
+import type { PlayerDraw } from '@/lib/playerDraw';
 import type { GivenAnswer } from '@/lib/playerGame';
 import { Spacing } from '@/constants/theme';
 import {
   buildScenario,
   DEMO_CODE,
+  DEMO_DRAW_WORD,
   DEMO_UID,
+  type DemoDraw,
   isScenarioId,
   SCENARIO_LABELS,
   type Scenario,
@@ -108,6 +113,30 @@ export default function PlayerDemoScreen() {
       }
     : null;
 
+  // Dessine-moi : chaque essai est jugé sur place contre le mot de la démo, comme le ferait l'hôte.
+  function updateDraw(change: (draw: DemoDraw) => DemoDraw) {
+    setScenario((current) => (current.draw ? { ...current, draw: change(current.draw) } : current));
+  }
+  const draw: PlayerDraw | null = scenario.draw
+    ? {
+        ...scenario.draw,
+        onChunk: () => {},
+        onChangeWord: () => updateDraw((current) => ({ ...current, word: 'koala', canChangeWord: false })),
+        onGuess: (text) => {
+          const count = scenario.draw ? scenario.draw.guess.used + 1 : 1;
+          const nextAllowedAt = Date.now() + DRAW_GUESS_MIN_INTERVAL_MS;
+          updateDraw((current) => ({ ...current, guess: { ...current.guess, used: count, lastText: text.trim(), isPending: true, nextAllowedAt } }));
+          setTimeout(() => {
+            const verdict = judgeDrawGuess(text, DEMO_DRAW_WORD);
+            updateDraw((current) => ({
+              ...current,
+              guess: { ...current.guess, hint: { count, verdict }, isPending: false, isFound: verdict === 'found' },
+            }));
+          }, SIMULATED_WRITE_MS);
+        },
+      }
+    : null;
+
   if (params.bands === '1') return <PlaceBandGallery />;
 
   return (
@@ -147,7 +176,7 @@ export default function PlayerDemoScreen() {
           answer={scenario.answer}
           onAnswer={answer}
           bluff={bluff}
-          draw={scenario.draw ? { word: scenario.draw.word, onChunk: () => {} } : null}
+          draw={draw}
           footer={hostFooter}
         />
       )}

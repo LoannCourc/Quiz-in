@@ -1,8 +1,9 @@
-import { QUESTION_DURATION_S, REVEAL_DURATION_S, SCORES_DURATION_S, STARTING_DURATION_S } from '@shared/constants';
+import { DRAW_MAX_GUESSES, QUESTION_DURATION_S, REVEAL_DURATION_S, SCORES_DURATION_S, STARTING_DURATION_S } from '@shared/constants';
 import { teamStandings } from '@shared/teams';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, PublicSession, Reveal, TeamId } from '@shared/types';
 
 import { IDLE_ANSWER, type AnswerState, type FreeText } from '@/lib/playerGame';
+import type { DrawGuessState } from '@/lib/playerDraw';
 
 import { BLUFF_SCENARIO_LABELS, buildBluffScenario, type BluffScenarioId, type DemoBluff } from './bluffScenarios';
 
@@ -49,9 +50,7 @@ export type ScenarioId =
   | 'paused'
   | 'ended'
   | 'endedSuspense'
-  | 'drawDrawer'
-  | 'drawWatch'
-  | 'drawReveal'
+  | DrawScenarioId
   | BluffScenarioId;
 
 export const SCENARIO_LABELS: Record<ScenarioId, string> = {
@@ -91,8 +90,15 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   ended: 'Fin',
   endedSuspense: 'Suspense : fin (3 s d’attente, puis classement)',
   drawDrawer: 'Dessine-moi : je dessine',
-  drawWatch: 'Dessine-moi : un autre dessine',
-  drawReveal: 'Dessine-moi : révélation du mot',
+  drawWatch: 'Dessine-moi : je devine',
+  drawGuessClose: 'Dessine-moi : « tu es proche ! »',
+  drawGuessFound: 'Dessine-moi : trouvé',
+  drawGuessExhausted: 'Dessine-moi : plus d’essai',
+  drawSpectator: 'Dessine-moi : l’autre équipe devine',
+  drawReveal: 'Dessine-moi : révélation, trouvé',
+  drawRevealDrawer: 'Dessine-moi : révélation, dessinateur',
+  drawRevealMissed: 'Dessine-moi : révélation, pas trouvé',
+  drawCancelled: 'Dessine-moi : manche annulée',
   ...BLUFF_SCENARIO_LABELS,
 };
 
@@ -105,8 +111,8 @@ export interface Scenario {
   answer: AnswerState;
   // Bluff : proposition, verdict et vote du joueur (absent hors Bluff).
   bluff?: DemoBluff;
-  // Dessine-moi : mot du dessinateur (absent hors de ce jeu).
-  draw?: { word: string | null };
+  // Dessine-moi : mot du dessinateur et essais du devineur (absent hors de ce jeu).
+  draw?: DemoDraw;
 }
 
 function isBluffScenarioId(id: ScenarioId): id is BluffScenarioId {
@@ -214,21 +220,65 @@ const REVEAL: Reveal = {
   results: RESULTS,
 };
 
-// Dessine-moi : manche en cours (je dessine, ou Léa dessine), ou révélation du mot.
-function drawScenario(id: 'drawDrawer' | 'drawWatch' | 'drawReveal', now: number): Scenario {
-  const drawer = id === 'drawDrawer' ? DEMO_UID : 'lea';
+type DrawScenarioId =
+  | 'drawDrawer'
+  | 'drawWatch'
+  | 'drawGuessClose'
+  | 'drawGuessFound'
+  | 'drawGuessExhausted'
+  | 'drawSpectator'
+  | 'drawReveal'
+  | 'drawRevealDrawer'
+  | 'drawRevealMissed'
+  | 'drawCancelled';
+
+export interface DemoDraw {
+  word: string | null;
+  canChangeWord: boolean;
+  guess: DrawGuessState;
+}
+
+export const DEMO_DRAW_WORD = 'girafe';
+
+const NO_GUESS: DrawGuessState = { hint: null, used: 0, lastText: null, isPending: false, nextAllowedAt: 0, hasFailed: false, isFound: false };
+
+const DEMO_GUESSES: Partial<Record<DrawScenarioId, Partial<DrawGuessState>>> = {
+  drawGuessClose: { hint: { count: 3, verdict: 'close' }, used: 3, lastText: 'girafon' },
+  drawGuessFound: { hint: { count: 4, verdict: 'found' }, used: 4, isFound: true },
+  drawGuessExhausted: { hint: { count: DRAW_MAX_GUESSES, verdict: 'wrong' }, used: DRAW_MAX_GUESSES, lastText: 'zèbre' },
+};
+
+const DEMO_DRAW_RESULTS: Partial<Record<DrawScenarioId, Record<PlayerId, PlayerResult>>> = {
+  drawReveal: { [DEMO_UID]: { correct: true, points: 820 }, lea: { correct: true, points: 500 } },
+  drawRevealDrawer: { [DEMO_UID]: { correct: true, points: 667 } },
+  drawRevealMissed: { [DEMO_UID]: { correct: false, points: 0 }, lea: { correct: false, points: 0 } },
+};
+
+// Dessine-moi : manche en cours (je dessine, je devine, l'autre équipe devine), ou révélation du mot.
+function drawScenario(id: DrawScenarioId, now: number): Scenario {
+  const isDrawer = id === 'drawDrawer' || id === 'drawRevealDrawer';
+  const drawer = isDrawer ? DEMO_UID : 'lea';
+  const isTeams = id === 'drawSpectator';
+  // Groupe à deux équipes : Léa (Rose) dessine, je suis Cyan.
+  const players: Record<PlayerId, Player> = isTeams
+    ? Object.fromEntries(
+        Object.entries(PLAYERS_BEFORE).map(([uid, entry]) => [uid, { ...entry, team: TEAM_OF[uid] === 'cyan' ? 'cyan' : 'pink' }]),
+      )
+    : PLAYERS_BEFORE;
   const base: PublicSession = {
-    ...baseSession(now, PLAYERS_BEFORE),
-    settings: { answerMode: 'draw', speedBonus: false, control: false, teams: false },
+    ...baseSession(now, players),
+    settings: { answerMode: 'draw', speedBonus: false, control: false, teams: isTeams, ...(isTeams ? { teamCount: 2 } : {}) },
     status: 'question',
     questionCount: 8,
     currentQuestion: { text: 'Animal', difficulty: 2, timeLimit: QUESTION_DURATION_S.draw },
     drawTurn: { drawer, round: 2, wordLength: 6, category: 'Animal' },
     ...phase(now, QUESTION_DURATION_S.draw, 20),
   };
-  const session: PublicSession =
-    id === 'drawReveal' ? { ...base, status: 'reveal', reveal: { correctAnswer: 'girafe', stats: {} }, ...phase(now, REVEAL_DURATION_S.draw) } : base;
-  return { session, answer: IDLE_ANSWER, draw: { word: id === 'drawDrawer' ? 'girafe' : null } };
+  const isReveal = id === 'drawReveal' || id === 'drawRevealDrawer' || id === 'drawRevealMissed' || id === 'drawCancelled';
+  const reveal: Reveal = { correctAnswer: DEMO_DRAW_WORD, stats: id === 'drawCancelled' ? { drawCancelled: true } : {}, results: DEMO_DRAW_RESULTS[id] ?? {} };
+  const session: PublicSession = isReveal ? { ...base, status: 'reveal', reveal, ...phase(now, REVEAL_DURATION_S.draw) } : base;
+  const draw: DemoDraw = { word: isDrawer ? DEMO_DRAW_WORD : null, canChangeWord: isDrawer, guess: { ...NO_GUESS, ...DEMO_GUESSES[id] } };
+  return { session, answer: IDLE_ANSWER, draw };
 }
 
 function baseSession(now: number, players: Record<PlayerId, Player>): PublicSession {
@@ -308,7 +358,14 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
   switch (id) {
     case 'drawDrawer':
     case 'drawWatch':
+    case 'drawGuessClose':
+    case 'drawGuessFound':
+    case 'drawGuessExhausted':
+    case 'drawSpectator':
     case 'drawReveal':
+    case 'drawRevealDrawer':
+    case 'drawRevealMissed':
+    case 'drawCancelled':
       return drawScenario(id, now);
     case 'lobby':
       return idle(baseSession(now, PLAYERS_BEFORE));
