@@ -1,5 +1,6 @@
 import type { DrawOp } from './encoding'
 import { BACKGROUND_COLOR, GRID_HEIGHT, GRID_SCALE, GRID_WIDTH, STROKE_WIDTHS } from './palette'
+import { sampleStroke } from './smooth'
 
 // Grille du seau (320 × 240, une case pour 2 × 2 points logiques) : couleur exacte de chaque case, sans
 // lissage, calculée par ce code seulement (téléphone du dessinateur). Le seau s'y remplit, puis la zone
@@ -33,9 +34,10 @@ function paintSegment(grid: Grid, color: number, radius: number, ax: number, ay:
   }
 }
 
+// Le trait suit les mêmes courbes que l'affichage (smooth.ts), échantillonnées finement.
 function paintStroke(grid: Grid, op: Extract<DrawOp, { kind: 'stroke' }>): void {
   const radius = STROKE_WIDTHS[op.width] / 2
-  const { points } = op
+  const points = sampleStroke(op.points)
   if (points.length === 2) {
     paintSegment(grid, op.color, radius, points[0], points[1], points[0], points[1])
     return

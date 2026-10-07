@@ -1,3 +1,4 @@
+import type { PlaybackStats } from '@shared/drawing/playback'
 import { transitionLatency, type TransitionLatency } from '@shared/perfLatency'
 import { soundSettingsOf } from '@shared/sound'
 import type { GameStatus, PublicSession } from '@shared/types'
@@ -69,12 +70,14 @@ export interface TeamColumnStats {
 }
 
 // Dessine-moi : dessin reçu pendant la manche (TV), et coût de son rendu.
-export interface DrawingStats {
+export interface DrawingStats extends PlaybackStats {
   chunks: number
   kilobytes: number
   lastRenderMs: number
   maxRenderMs: number
   fullRenderMs: number
+  // Retard d'affichage du rejeu lissé (ms).
+  delayMs: number
 }
 
 export interface StreakStats {

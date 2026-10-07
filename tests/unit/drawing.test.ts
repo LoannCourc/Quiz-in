@@ -4,6 +4,7 @@ import { DrawingDoc, DrawingWriter, MAX_CHUNK_LENGTH, type DrawOp } from '../../
 import { GRID_HEIGHT, GRID_WIDTH } from '../../shared/drawing/palette'
 import { floodFill, rasterize } from '../../shared/drawing/raster'
 import { DrawingRenderer, type DrawSurface } from '../../shared/drawing/render'
+import { sampleStroke, traceCurves } from '../../shared/drawing/smooth'
 import { simplifyPoints } from '../../shared/drawing/simplify'
 
 function replay(chunks: { data: string }[]): DrawingDoc {
@@ -154,6 +155,7 @@ describe('Dessin : rendu incrémental', () => {
       beginPath: () => calls.push('beginPath'),
       moveTo: (x, y) => calls.push(`moveTo ${x},${y}`),
       lineTo: (x, y) => calls.push(`lineTo ${x},${y}`),
+      quadraticCurveTo: (cx, cy, x, y) => calls.push(`curve ${cx},${cy} ${x},${y}`),
       stroke: () => calls.push('stroke'),
       arc: () => calls.push('arc'),
       fill: () => calls.push('fill'),
@@ -162,7 +164,7 @@ describe('Dessin : rendu incrémental', () => {
     return { calls, surface }
   }
 
-  test('seuls les nouveaux points sont peints ; annuler repeint tout', () => {
+  test('courbes par les milieux ; seuls les nouveaux points sont peints ; queue à la fin ; annuler repeint tout', () => {
     const writer = new DrawingWriter()
     const doc = new DrawingDoc()
     const { calls, surface } = recorder()
@@ -171,17 +173,45 @@ describe('Dessin : rendu incrémental', () => {
     writer.extendStroke(10, 0)
     for (const chunk of writer.flush()) doc.applyChunk(chunk.data)
     renderer.render(doc)
+    expect(calls.slice(-4)).toEqual(['beginPath', 'moveTo 0,0', 'lineTo 5,0', 'stroke'])
     calls.length = 0
     writer.extendStroke(10, 10)
     writer.endStroke()
     for (const chunk of writer.flush()) doc.applyChunk(chunk.data)
     renderer.render(doc)
-    expect(calls).toEqual(['beginPath', 'moveTo 10,0', 'lineTo 10,10', 'stroke'])
+    // Angle droit : coin franc (passe par le point).
+    expect(calls).toEqual(['beginPath', 'moveTo 5,0', 'lineTo 10,0', 'lineTo 10,5', 'stroke'])
+    calls.length = 0
+    // Plus rien n'arrive : la queue (dernier milieu → dernier point) est peinte, une seule fois.
+    renderer.finishLast(doc)
+    renderer.finishLast(doc)
+    expect(calls).toEqual(['beginPath', 'moveTo 10,5', 'lineTo 10,10', 'stroke'])
     calls.length = 0
     writer.undo()
     for (const chunk of writer.flush()) doc.applyChunk(chunk.data)
     renderer.render(doc)
     // Fond repeint, plus aucun trait.
     expect(calls).toEqual(['fillRect 0,0,640,480'])
+  })
+})
+
+describe('Dessin : tracé lissé', () => {
+  test('courbe par les milieux ; coin franc gardé ; grille du seau sur le même tracé', () => {
+    // Légère courbe : lissée. Angle droit : passe par le coin.
+    const calls: string[] = []
+    const sink = {
+      moveTo: (x: number, y: number) => calls.push(`M${x},${y}`),
+      lineTo: (x: number, y: number) => calls.push(`L${x},${y}`),
+      quadraticCurveTo: (cx: number, cy: number, x: number, y: number) => calls.push(`Q${cx},${cy} ${x},${y}`),
+    }
+    traceCurves([0, 0, 10, 2, 20, 0], 0, 3, sink, 1)
+    expect(calls).toEqual(['M0,0', 'L5,1', 'Q10,2 15,1'])
+    calls.length = 0
+    traceCurves([0, 0, 10, 0, 10, 10], 0, 3, sink, 1)
+    expect(calls).toEqual(['M0,0', 'L5,0', 'L10,0', 'L10,5'])
+    const sampled = sampleStroke([0, 0, 10, 0, 10, 10])
+    expect(sampled.slice(0, 2)).toEqual([0, 0])
+    expect(sampled.slice(-2)).toEqual([10, 10])
+    expect(sampled).toContain(10)
   })
 })

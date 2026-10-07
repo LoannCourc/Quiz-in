@@ -259,7 +259,10 @@ export const strings = {
     build: (builtAt: Date, commit: string) =>
       `Version de la TV : construite le ${builtAt.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })} · commit ${commit}`,
     drawing: (chunks: number, kilobytes: string, last: string, max: string, repaint: string) =>
-      `Dessin reçu : ${chunks} paquets (${kilobytes} Ko) · rendu d’un paquet ${last} ms (max. ${max} ms) · tout repeindre ${repaint} ms`,
+      `Dessin reçu : ${chunks} paquets (${kilobytes} Ko) · rendu d’une image ${last} ms (max. ${max} ms) · tout repeindre ${repaint} ms`,
+    // Rejeu lissé : arrivée réelle des paquets pendant le dessin, et ce que la TV en fait.
+    drawingFlow: (gapAverage: number, gapMax: number, points: number, chars: number, delay: number, catchUps: number) =>
+      `Paquets en direct : écart moyen ${gapAverage} ms (max. ${gapMax} ms) · ${points} points et ${chars} caractères par paquet · retard d’affichage ${delay} ms · rattrapages ${catchUps}`,
     streaks: (active: { name: string; streak: number }[], zero: number, missing: number) =>
       `Séries reçues : ${active.length > 0 ? active.map((entry) => `${entry.name} ${entry.streak}`).join(' · ') : 'aucune en cours'} (${zero} à 0, ${missing} sans le champ)`,
     teamColumns: (scale: string, teams: { team: string; received: number; shown: number; capacity: number }[]) =>

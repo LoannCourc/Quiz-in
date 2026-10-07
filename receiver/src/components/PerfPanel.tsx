@@ -78,6 +78,18 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
           )}
         </div>
       )}
+      {snapshot.drawing && (
+        <div>
+          {texts.drawingFlow(
+            snapshot.drawing.gapAverageMs,
+            snapshot.drawing.gapMaxMs,
+            snapshot.drawing.pointsPerChunk,
+            snapshot.drawing.charsPerChunk,
+            snapshot.drawing.delayMs,
+            snapshot.drawing.catchUps,
+          )}
+        </div>
+      )}
       {snapshot.teamColumns && (
         <div className={snapshot.teamColumns.teams.some((team) => team.shown < team.received) ? 'perf-alert' : undefined}>
           {texts.teamColumns(snapshot.teamColumns.scale, snapshot.teamColumns.teams)}

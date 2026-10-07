@@ -1,8 +1,23 @@
-/* Dessin de la manche : 4:3, fond blanc (celui du dessin), coins arrondis, ombre dure. */
+/* Dessin de la manche : 4:3, fond blanc (celui du dessin), coins arrondis, ombre dure. Deux canvas
+   superposés : le dessin, et au-dessus le calque transparent de la pointe du crayon. */
 .live-drawing {
+  position: relative;
   display: block;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   border-radius: var(--radius-card);
   background: var(--white);
   box-shadow: var(--shadow-hard);
+}
+
+.live-drawing-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.live-drawing-pen {
+  pointer-events: none;
 }
