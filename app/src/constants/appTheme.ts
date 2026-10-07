@@ -54,7 +54,8 @@ export const AppColors = {
   ink: Palette.ink,
   accent: Palette.gold,
   onAccent: Palette.ink,
-  highlight: Palette.pink,
+  // Rose décoratif (anneaux, cadres, pastilles) : rose adouci. Le rose vif (wrong) est réservé aux alertes.
+  highlight: Palette.pinkSoft,
   // Texte sur le rose (pastilles) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1).
   onHighlight: Palette.ink,
   correct: Palette.green,
@@ -67,14 +68,14 @@ export const AppColors = {
   // Podium : 1er or, 2e cyan, 3e rose (maquette).
   podium: [Palette.gold, Palette.cyan, Palette.pinkLight],
   // Anneau du compte à rebours : temps restant en rose, temps écoulé en lavande translucide.
-  ring: Palette.pink,
+  ring: Palette.pinkSoft,
   ringTrack: Palette.track,
   // Barre de temps mobile : même rose que l'anneau, sur blanc translucide.
   timebarTrack: 'rgba(255, 255, 255, 0.18)',
   // Pastille « encre » : lettre des réponses, centre de l'anneau, bandeau « Ta place ».
   inkSurface: Palette.ink,
   // Badge flamme d'une série (spec 18) : goutte rose, goutte or dedans, nombre à l'encre (comme la TV).
-  streakOuter: Palette.pink,
+  streakOuter: Palette.pinkSoft,
   streakInner: Palette.gold,
   onStreak: Palette.ink,
   // Voile derrière un panneau (contrôles de l'hôte).
@@ -97,7 +98,7 @@ export const AppColors = {
   qrBackground: Palette.white,
   qrModule: Palette.ink,
   // Groupe : couleur de chaque équipe (toujours accompagnée de son symbole), symbole en encre.
-  teams: { pink: Palette.pink, cyan: Palette.cyan, gold: Palette.gold, green: Palette.green } satisfies Record<TeamId, string>,
+  teams: { pink: Palette.pinkSoft, cyan: Palette.cyan, gold: Palette.gold, green: Palette.green } satisfies Record<TeamId, string>,
   onTeam: Palette.ink,
   // Icônes de thème (maquette I2) : traits blancs, ombre bleu nuit ; pastille de couleur fixe par thème
   // dans les puces de filtre (Culture générale, ou thème inconnu, sur « ? »).

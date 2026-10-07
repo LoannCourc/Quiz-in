@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   warning: {
-    color: AppColors.highlight,
+    color: AppColors.wrong,
     fontFamily: AppFonts.extraBold,
     fontSize: 12,
   },

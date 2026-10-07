@@ -37,7 +37,9 @@
   --color-correct: var(--green);
   --color-on-correct: var(--ink);
   --color-wrong: var(--pink);
-  --color-highlight: var(--pink);
+  /* Rose décoratif (cadres, anneaux, pastilles, bandeaux) : rose adouci ; le rose vif est réservé aux
+     alertes et erreurs (--color-wrong). */
+  --color-highlight: var(--pink-soft);
   /* Texte sur le rose (pastilles, bandeaux) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1). */
   --on-highlight: var(--ink);
   /* Pastille « QUESTION X/N » et « MANCHE X/N » de l'en-tête. */
@@ -50,7 +52,7 @@
   --choice-2: var(--gold);
   --choice-3: var(--green);
   /* Groupe : couleur de chaque équipe (toujours avec son symbole), symbole en encre. */
-  --team-pink: var(--pink);
+  --team-pink: var(--pink-soft);
   --team-cyan: var(--cyan);
   --team-gold: var(--gold);
   --team-green: var(--green);
@@ -61,10 +63,10 @@
   --podium-1: var(--gold);
   --podium-2: var(--cyan);
   --podium-3: var(--pink-light);
-  --streak-outer: var(--pink);
+  --streak-outer: var(--pink-soft);
   --streak-inner: var(--gold);
   --on-streak: var(--ink);
-  --ring: var(--pink);
+  --ring: var(--pink-soft);
   --ring-track: rgba(201, 184, 255, 0.35);
   --ink-surface: var(--ink);
   --dimmed-opacity: 0.35;

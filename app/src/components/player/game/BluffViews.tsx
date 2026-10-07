@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     boxShadow: AppShadows.hard,
   },
   inputRefused: {
-    borderColor: AppColors.highlight,
+    borderColor: AppColors.wrong,
   },
   inputBusy: {
     opacity: 0.6,
@@ -460,7 +460,7 @@ const styles = StyleSheet.create({
     color: AppColors.correct,
   },
   trappedTitle: {
-    color: AppColors.highlight,
+    color: AppColors.wrong,
   },
   muted: {
     color: AppColors.textMuted,
