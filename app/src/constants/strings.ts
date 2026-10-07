@@ -253,6 +253,22 @@ export const strings = {
       planBLink: 'Écran sur un PC : copier le lien de l’écran',
       planBCopied: 'Lien de l’écran copié : ouvre-le en plein écran sur le PC.',
     },
+    // Salon sans TV (maquette N2) : sous le code, le QR (et le lien) à la demande.
+    qrButton: 'QR code',
+    hideQr: 'Masquer le QR',
+    noPlayersShort: 'Aucun joueur pour l’instant',
+    waitingPlayers: 'En attente des joueurs…',
+    // Dessine-moi : des manches, pas des questions.
+    roundsMeta: (roundCount: number, minutes: number) => `${roundCount} manches · environ ${minutes} min`,
+    // Ligne « Réglages » et sa feuille.
+    settings: {
+      title: 'Réglages',
+      summary: 'équipes, je joue aussi',
+      teamsTitle: 'Jouer en équipes',
+      teamsHint: 'Groupe : le score d’une équipe est la moyenne de ses joueurs.',
+      teamsMinPlayers: `dès ${MIN_TEAM_GAME_PLAYERS} joueurs`,
+      editProfile: 'Modifier mon pseudo et mon avatar',
+    },
     copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',

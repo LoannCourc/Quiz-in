@@ -169,6 +169,20 @@ export function teamCountUpdate(session: Session, count: number): SessionUpdate 
   return update
 }
 
+// Groupe activé ou coupé depuis le salon (feuille « Réglages » de l'hôte). Activé : seulement à partir de
+// MIN_TEAM_GAME_PLAYERS joueurs, « Au hasard » par défaut. Coupé : équipes, tirage et validation effacés
+// (les téléphones quittent l'écran des équipes).
+export function teamsEnabledUpdate(session: Session, enabled: boolean): SessionUpdate | null {
+  if (session.status !== 'lobby' || session.settings.teams === enabled) return null
+  if (enabled) {
+    if (Object.keys(session.players).length < MIN_TEAM_GAME_PLAYERS) return null
+    return { 'settings/teams': true, 'settings/teamMode': teamModeOf(session.settings), ...countPath(session) }
+  }
+  const update: SessionUpdate = { 'settings/teams': false, teamDrawAt: null, teamsValidatedAt: null }
+  for (const id of Object.keys(session.players)) update[`players/${id}/team`] = null
+  return update
+}
+
 export function teamModeUpdate(session: Session, mode: TeamMode): SessionUpdate | null {
   return isTeamLobby(session) ? { ...countPath(session), 'settings/teamMode': mode } : null
 }

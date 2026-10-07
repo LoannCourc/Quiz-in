@@ -1,4 +1,5 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
+import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { QuizSummary } from '@shared/types';
 import { useMemo } from 'react';
@@ -8,10 +9,14 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/
 import { strings } from '@/constants/strings';
 import { useLiveValue } from '@/hooks/useLiveValue';
 
-// Titre du quiz et sa méta. Fiche absente ou mal formée : rien n'est affiché (le salon reste utilisable).
+// Titre du quiz (ou du jeu) et sa méta. Fiche absente ou mal formée : rien n'est affiché (le salon reste
+// utilisable). Dessine-moi : fiche locale (pas de quiz dans la base).
 export function LobbyHeader({ quizId }: { quizId: string }) {
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
-  const summary = useMemo(() => (quiz.kind === 'ready' ? parseQuizSummary(quiz.value) : null), [quiz]);
+  const summary = useMemo(() => {
+    if (quizId === DRAW_QUIZ_ID) return DRAW_QUIZ_SUMMARY;
+    return quiz.kind === 'ready' ? parseQuizSummary(quiz.value) : null;
+  }, [quiz, quizId]);
   return summary && <LobbyQuizTitle quiz={summary} />;
 }
 
@@ -23,7 +28,9 @@ export function LobbyQuizTitle({ quiz }: { quiz: QuizSummary }) {
         {quiz.title}
       </Text>
       <Text style={styles.meta}>
-        {strings.hostLobby.quizMeta(Math.min(quiz.questionCount, QUESTIONS_PER_GAME), quiz.estimatedMinutes)}
+        {quiz.gameType === 'draw'
+          ? strings.hostLobby.roundsMeta(quiz.questionCount, quiz.estimatedMinutes)
+          : strings.hostLobby.quizMeta(Math.min(quiz.questionCount, QUESTIONS_PER_GAME), quiz.estimatedMinutes)}
       </Text>
     </View>
   );

@@ -212,7 +212,14 @@ export const AppSizes = {
   tabUnderline: 3,
   // Salon : chiffres du code, avatars de la liste, QR code (scanné de près, de téléphone à téléphone).
   lobbyCode: 56,
+  // Salon sans TV (maquette N2) : le code en très grand (« MMMM » tient à 320 px).
+  lobbyHeroCode: 64,
   lobbyAvatar: 40,
+  // Salon : icône ronde « Son » de l'en-tête.
+  roundIconButton: 44,
+  // Salon : grille des joueurs (cercle de l'avatar, largeur d'une case).
+  lobbyGridAvatar: 52,
+  lobbyGridCell: 68,
   qrSize: 152,
   qrQuietZone: 4,
 } as const;

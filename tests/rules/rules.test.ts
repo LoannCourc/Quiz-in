@@ -30,7 +30,7 @@ import { drawGameQuestions } from '../../shared/drawGame'
 import { drawHintsUpdate } from '../../shared/drawGuess'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
-import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsValidatedUpdate } from '../../shared/teams'
+import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1431,6 +1431,21 @@ describe('Groupe : validation des équipes (teamsValidatedAt)', () => {
     await assertSucceeds(db(HOST).ref(SESSION).update(update ?? {}))
     // Un joueur ne se place pas lui-même hors du mode « Ils choisissent ».
     await assertFails(db('late9').ref(`${SESSION}/players/late9/team`).set('green'))
+  })
+
+  test('Groupe activé puis coupé depuis la feuille « Réglages » du salon : accepté pour l’hôte seulement', async () => {
+    const players: Data = {}
+    for (let index = 0; index < 4; index++) players[`p${index}`] = { name: `Joueur ${index}`, avatar: '🦊', connected: true }
+    await seedSession({ status: 'lobby', phaseEndsAt: 0, settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false }, players })
+    const enable = teamsEnabledUpdate((await readAsAdmin(SESSION)) as Session, true)
+    await assertFails(db(PLAYER).ref(SESSION).update(enable ?? {}))
+    await assertSucceeds(db(HOST).ref(SESSION).update(enable ?? {}))
+    await assertSucceeds(db(HOST).ref(SESSION).update(teamDrawUpdate((await readAsAdmin(SESSION)) as Session, Date.now()) ?? {}))
+    const disable = teamsEnabledUpdate((await readAsAdmin(SESSION)) as Session, false)
+    await assertSucceeds(db(HOST).ref(SESSION).update(disable ?? {}))
+    const after = (await readAsAdmin(SESSION)) as Session
+    expect(after.settings.teams).toBe(false)
+    expect(Object.values(after.players).some((entry) => entry.team !== undefined)).toBe(false)
   })
 })
 

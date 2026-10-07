@@ -18,6 +18,7 @@ import {
   teamLaunchRefusal,
   teamMembers,
   teamModeUpdate,
+  teamsEnabledUpdate,
   teamQuestionPoints,
   teamRanking,
   teamStandings,
@@ -380,5 +381,31 @@ describe('Retardataires : placés par l’hôte dans l’équipe la moins nombre
     expect(lateJoinerUpdate(validatedLobby(2, { teamsValidatedAt: undefined }))).toBeNull()
     expect(lateJoinerUpdate(validatedLobby(2, { teamDrawAt: 3_000 }))).toBeNull()
     expect(lateJoinerUpdate(validatedLobby(2, { status: 'question' }))).toBeNull()
+  })
+})
+
+describe('Groupe activé ou coupé depuis le salon', () => {
+  const lobby = (count: number, settings: Partial<SessionSettings> = {}) =>
+    makeSession({
+      settings: { answerMode: 'choice', speedBonus: false, control: false, teams: false, ...settings },
+      players: Object.fromEntries(Array.from({ length: count }, (_, index) => [`p${index}`, player(`Joueur ${index}`)])),
+    })
+
+  test('activé dès 4 joueurs, « Au hasard » par défaut ; refusé en dessous', () => {
+    expect(teamsEnabledUpdate(lobby(3), true)).toBeNull()
+    expect(teamsEnabledUpdate(lobby(4), true)).toMatchObject({ 'settings/teams': true, 'settings/teamMode': 'random' })
+    expect(teamsEnabledUpdate(lobby(4, { teams: true }), true)).toBeNull()
+  })
+
+  test('coupé : équipes, tirage et validation effacés ; jamais hors du salon', () => {
+    const grouped = { ...lobby(4, { teams: true }), teamDrawAt: 5, players: { a: player('A', { team: 'pink' }), b: player('B', { team: 'cyan' }) } }
+    expect(teamsEnabledUpdate(grouped, false)).toEqual({
+      'settings/teams': false,
+      teamDrawAt: null,
+      teamsValidatedAt: null,
+      'players/a/team': null,
+      'players/b/team': null,
+    })
+    expect(teamsEnabledUpdate({ ...grouped, status: 'question' }, false)).toBeNull()
   })
 })

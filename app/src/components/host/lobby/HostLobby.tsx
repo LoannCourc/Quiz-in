@@ -9,6 +9,7 @@ import {
   teamCountUpdate,
   teamDrawUpdate,
   teamModeUpdate,
+  teamsEnabledUpdate,
   teamsValidatedUpdate,
   type TeamRefusal,
 } from '@shared/teams';
@@ -17,7 +18,6 @@ import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { OptionToggle } from '@/components/host/OptionToggle';
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
 import { JoinForm } from '@/components/player/JoinForm';
 import { BigButton } from '@/components/ui/BigButton';
@@ -32,14 +32,12 @@ import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
 
-import { CollapsedCodeBar } from './CollapsedCodeBar';
-import { HostJoinCard } from './HostJoinCard';
 import { JoinWithoutTv } from './JoinWithoutTv';
-import { LobbyCodeCard } from './LobbyCodeCard';
+import { LobbyCodeHero } from './LobbyCodeHero';
 import { LobbyHeader } from './LobbyHeader';
-import { LobbyPlayerRows } from './LobbyPlayerRows';
+import { LobbyPlayerGrid } from './LobbyPlayerGrid';
+import { LobbySettingsRow, LobbySettingsSheet } from './LobbySettings';
 import { TeamsPage } from './TeamsPage';
-import { TeamsSummaryRow } from './TeamsSummaryRow';
 import { TvCastPill } from './TvCastPill';
 import { TvConnectedBar } from './TvConnectedBar';
 
@@ -54,7 +52,7 @@ interface HostLobbyProps {
   initialNoTvOpen?: boolean;
   initialTvDetailsOpen?: boolean;
   initialTeamsOpen?: boolean;
-  initialCodeCollapsed?: boolean;
+  initialSettingsOpen?: boolean;
   // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
   audio?: LobbyAudio;
   // Démo : actions du salon (équipes) appliquées localement au lieu d'écrire dans la base.
@@ -67,12 +65,13 @@ export type LobbyAudio = GameAudioUrls & { isEnabled: boolean };
 
 const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined, isEnabled: false };
 
-// Salon de l'hôte : quiz, code, TV (ou « Je n'ai pas de TV »), joueurs, et « Lancer la partie » fixé
-// en bas, toujours visible. La page défile : aucune hauteur fixe, la liste des joueurs et le formulaire
-// de l'hôte gardent une hauteur confortable, même avec une grande police.
+// Salon de l'hôte (maquette N2, « le code d'abord ») : quiz et son, code en très grand (QR et lien à la
+// demande), TV (ou « Je n'ai pas de TV »), joueurs, une ligne « Réglages », et « Lancer la partie » fixé
+// en bas, toujours visible. TV connectée : le bloc du code devient la barre « TV connectée ». La page
+// défile s'il le faut (grande police) ; au-delà de 8 joueurs, la grille défile dans sa propre zone.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
-  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialCodeCollapsed = false } = props;
+  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialSettingsOpen = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -80,11 +79,11 @@ export function HostLobby(props: HostLobbyProps) {
   const [isEditing, setIsEditing] = useState(false);
   // « Je joue aussi » : l'hôte ouvre le formulaire des joueurs.
   const [isHostJoining, setIsHostJoining] = useState(false);
-  // Replié à chaque ouverture du salon : état local, jamais mémorisé.
-  const [isNoTvOpen, setIsNoTvOpen] = useState(initialNoTvOpen);
+  // Replié à chaque ouverture du salon : état local, jamais mémorisé. QR code et lien : « QR code » ou
+  // « Je n'ai pas de TV ».
+  const [isQrOpen, setIsQrOpen] = useState(initialNoTvOpen);
   const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
-  // Sans TV connectée : bloc du code réduit à une ligne, pour laisser la place aux joueurs.
-  const [isCodeCollapsed, setIsCodeCollapsed] = useState(initialCodeCollapsed);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
@@ -157,6 +156,7 @@ export function HostLobby(props: HostLobbyProps) {
         unassignedCount={teamAssignment(session).unassigned}
         error={launchError}
         audioStatus={audio.status}
+        connectedCount={connectedCount}
       />
       <BigButton
         label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
@@ -189,25 +189,24 @@ export function HostLobby(props: HostLobbyProps) {
   return (
     <Screen footer={footer}>
       <View style={styles.top}>
-        {header ?? <LobbyHeader quizId={session.quizId} />}
+        <View style={styles.headerRow}>
+          <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} />}</View>
+          <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
+        </View>
         {cast.isTvConnected ? (
           <TvConnectedBar code={code} isOpen={isTvDetailsOpen} onToggle={() => setIsTvDetailsOpen((open) => !open)} />
-        ) : isCodeCollapsed ? (
-          <CollapsedCodeBar code={code} onExpand={() => setIsCodeCollapsed(false)} />
-        ) : (
-          <LobbyCodeCard code={code} compact={isNoTvOpen} onCollapse={() => setIsCodeCollapsed(true)} />
-        )}
-        {cast.isTvConnected || isCodeCollapsed ? null : isNoTvOpen ? (
-          <JoinWithoutTv code={code} onHide={() => setIsNoTvOpen(false)} />
         ) : (
           <>
+            <LobbyCodeHero code={code} isQrOpen={isQrOpen} onToggleQr={() => setIsQrOpen((open) => !open)} />
+            {isQrOpen && <JoinWithoutTv code={code} onHide={() => setIsQrOpen(false)} />}
             {cast.isAvailable && <TvCastPill cast={cast} />}
-            <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsNoTvOpen(true)}>
-              <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
-            </Pressable>
+            {!isQrOpen && (
+              <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsQrOpen(true)}>
+                <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
+              </Pressable>
+            )}
           </>
         )}
-        <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
       </View>
 
       <View style={styles.players}>
@@ -215,41 +214,32 @@ export function HostLobby(props: HostLobbyProps) {
           <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
           <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
         </View>
-        <View style={styles.playersPanel}>
-          {showJoinForm && (
-            <View style={styles.joinForm}>
-              <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
-              <JoinForm
-                code={code}
-                uid={uid}
-                status={session.status}
-                players={players}
-                edit={isRegistered ? { onDone: () => setIsEditing(false) } : undefined}
-              />
-            </View>
-          )}
-          {Object.keys(players).length === 0 ? (
-            <Text style={textStyles.muted}>{strings.hostLobby.noPlayers}</Text>
-          ) : (
-            <LobbyPlayerRows
+        {showJoinForm && (
+          <View style={styles.joinForm}>
+            <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
+            <JoinForm
+              code={code}
+              uid={uid}
+              status={session.status}
               players={players}
-              hostUid={uid}
-              onEditHost={isRegistered && !isEditing ? () => setIsEditing(true) : undefined}
+              edit={isRegistered ? { onDone: () => setIsEditing(false) } : undefined}
             />
-          )}
-          {/* Partie courte : tests manuels, absente de l'app publiée (__DEV__ faux). */}
-          {__DEV__ && (
-            <OptionToggle
-              title={strings.hostLobby.shortGame.title}
-              hint={strings.hostLobby.shortGame.hint}
-              value={isShortGame}
-              onChange={setIsShortGame}
-            />
-          )}
-        </View>
+          </View>
+        )}
+        <LobbyPlayerGrid players={players} hostUid={uid} />
       </View>
-      {!isRegistered && !showJoinForm && <HostJoinCard onJoin={() => setIsHostJoining(true)} />}
-      {session.settings.teams && <TeamsSummaryRow session={session} onPress={() => setIsTeamsOpen(true)} />}
+      <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
+      <LobbySettingsSheet
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        session={session}
+        onTeamsEnabled={(enabled) => lobbyAction((current) => teamsEnabledUpdate(current, enabled))}
+        onOpenTeams={() => setIsTeamsOpen(true)}
+        isHostRegistered={isRegistered}
+        onHostProfile={() => (isRegistered ? setIsEditing(true) : setIsHostJoining(true))}
+        isShortGame={isShortGame}
+        onShortGame={setIsShortGame}
+      />
     </Screen>
   );
 }
@@ -262,10 +252,11 @@ interface LaunchHintProps {
   unassignedCount: number;
   error: string | null;
   audioStatus: AudioUrlsStatus;
+  connectedCount: number;
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
-function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus }: LaunchHintProps) {
+function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount }: LaunchHintProps) {
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
@@ -279,7 +270,8 @@ function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount,
   if (questions.kind === 'loading') {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.loadingQuestions}</Text>;
   }
-  // Pas assez de joueurs : rien d'écrit, le bouton reste désactivé (attendre les joueurs est l'état normal).
+  // Personne encore : l'état normal du salon, dit simplement au-dessus du bouton grisé.
+  if (connectedCount === 0) return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.waitingPlayers}</Text>;
   if (!hasEnoughPlayers) return null;
   if (teamRefusal === 'teamsUnassigned' && unassignedCount > 0) {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.unassignedLaunch(unassignedCount)}</Text>;
@@ -293,6 +285,14 @@ function LaunchHint({ questions, hasEnoughPlayers, teamRefusal, unassignedCount,
 const styles = StyleSheet.create({
   top: {
     gap: Spacing.three,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: Spacing.two,
+  },
+  fill: {
+    flex: 1,
   },
   noTvLink: {
     color: AppColors.link,
