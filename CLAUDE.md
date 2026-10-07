@@ -74,10 +74,16 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
     - type de jeu et mode `draw` (onglet et fiche du catalogue en développement seulement, `DRAW_QUIZ_SUMMARY`) ;
     - manches `drawGameQuestions` (mots provisoires `shared/drawWords.ts`, tirés du code de la partie) et ordre des dessinateurs `drawOrder` tiré au lancement, sans l'hôte (D1) ;
     - champs `drawTurn`, `drawing` (publics) et `drawSecret` (hôte et dessinateur) ; règles et tests sur l'émulateur ;
-    - révélation sans points ni série, sans classement (`skipsRankingStep`).
+    - révélation sans points ni classement au lot 2 (depuis le lot 3 : points et classement ; jamais de série).
   - Téléphones : `DrawViews` (dessinateur sans défilement, autres joueurs, révélation), `useDraw`, reprise après rechargement (`DrawingWriter(doc)`) ; démos `/debug/player?s=drawDrawer|drawWatch|drawReveal`.
   - TV : `LiveDrawing`, `DrawRoundScreen` / `DrawRevealScreen` ; `?perf=1` : « Dessin reçu » ; démo `?mode=draw&status=question|reveal&word=`.
-  - Faux dessinateur : `npm run fake-players` rejoue `benchRecording.json` quand un faux joueur dessine.
+  - Faux dessinateur : `npm run fake-players` rejoue `benchRecording.json` quand un faux joueur dessine ; les autres faux joueurs devinent (mots de la catégorie et du bon nombre de lettres, après un ou deux mots faux ; environ un sur quatre ne trouve jamais).
+  - **Lot 3 (réponses, jugement, points) codé**, à tester en vraie partie ; règles du jeu : spec § 19.
+    - Logique pure `shared/drawGuess.ts` : `judgeDrawGuess` (casse, accents, article, pluriel ; une faute dès 5 lettres ; « proche » : deux fautes ou début du mot), devineurs `drawGuessers` (en Groupe, l'équipe du dessinateur seulement), verdicts `drawHintsUpdate`, points `drawResults` (devineur 1 000 → 400 selon le temps, dessinateur 1 000 × part des devineurs qui ont trouvé), fin anticipée `drawAllFoundAt` (2 s après le dernier), changement de mot `drawWordChangeUpdate`, progression TV `drawFoundProgress`.
+    - Données : `drawGuess/{uid}` (essai numéroté, hôte seul en lecture, 15 au plus, 1,5 s d'écart), `drawHint/{uid}` (verdict, lu par le joueur seul), `drawFound` (public), `drawWordChange` (demande du dessinateur), `drawPoints/{manche}/{uid}` (hôte) ; `reveal.stats.drawCancelled`. Série jamais comptée ; classement comme les autres jeux.
+    - Moteur : `drawRevealPaths`, `drawCancelUpdate` (« Annuler la manche » du panneau de l'hôte, `hostControls().canCancelDraw`), dessinateur parti : manche annulée. Hôte : `useDrawJudging` (`useHostVerdicts` commun avec le Bluff).
+    - Téléphones : `DrawGuessView` (champ, verdict, essais restants, « Trouvé ! »), `DrawSpectatorView` (Groupe), « Changer de mot » du dessinateur, révélation avec les points ou « Manche annulée ». Démos `/debug/player?s=drawWatch|drawGuessClose|drawGuessFound|drawGuessExhausted|drawSpectator|drawReveal|drawRevealDrawer|drawRevealMissed|drawCancelled`.
+    - TV : bandeau « X a trouvé ! », « N/M ont trouvé », équipe qui devine ; sons « pop » / « tous », fanfare ou « raté ». Démo `?mode=draw&status=question&found=3`, `&cancelled=1`.
   - **Ne pas passer au lot 3 (réponses, points, Groupe, spec § 19) sans l'accord du développeur.** Chrome 92 sur la box : pas de `Array.findLast` ni d'autre méthode récente dans `shared/drawing/`.
 - **Prochains chantiers validés** (détail : spec 14). **Ne rien coder avant le message dédié du développeur pour chaque chantier.**
   - (d) Publication de l'application Cast.

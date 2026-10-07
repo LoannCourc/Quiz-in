@@ -19,22 +19,26 @@ import { TransitionSteps, type TransitionStep } from './TransitionSteps';
 export interface WaitInfo {
   timing: PhaseTiming;
   isLastQuestion: boolean;
+  // Dessine-moi : « manche » au lieu de « question ».
+  isRound: boolean;
 }
+
+const stepLabels = (isRound: boolean) => (isRound ? strings.game.transition.roundSteps : strings.game.transition.steps);
 
 // En haut des écrans de transition : l'étape en cours et le temps avant la question suivante.
 export function WaitHeader({ step, wait, withRanking = true }: { step: TransitionStep; wait: WaitInfo; withRanking?: boolean }) {
   return (
     <View style={styles.header}>
-      <TransitionSteps active={step} withRanking={withRanking} isLastQuestion={wait.isLastQuestion} />
-      <NextQuestionBar timing={wait.timing} isLastQuestion={wait.isLastQuestion} />
+      <TransitionSteps active={step} withRanking={withRanking} isLastQuestion={wait.isLastQuestion} labels={stepLabels(wait.isRound)} />
+      <NextQuestionBar timing={wait.timing} isLastQuestion={wait.isLastQuestion} isRound={wait.isRound} />
     </View>
   );
 }
 
 // Pas à pas : classement sans barre de temps ni annonce, jusqu'à l'action de l'hôte.
 // Classement de la phase : celui des équipes en Groupe, sinon celui des joueurs.
-function PhaseRanking({ players, uid, index, team }: { players: RankedPlayer[]; uid: PlayerId; index: number; team?: TeamGameInfo }) {
-  return team ? <TeamScoresView info={team} /> : <ScoresView players={players} uid={uid} index={index} />;
+function PhaseRanking({ players, uid, index, team, isRound }: { players: RankedPlayer[]; uid: PlayerId; index: number; team?: TeamGameInfo; isRound: boolean }) {
+  return team ? <TeamScoresView info={team} /> : <ScoresView players={players} uid={uid} index={index} isRound={isRound} />;
 }
 
 interface AwaitingScoresPhaseProps {
@@ -42,17 +46,18 @@ interface AwaitingScoresPhaseProps {
   uid: PlayerId;
   index: number;
   team?: TeamGameInfo;
+  isRound: boolean;
 }
 
-export function AwaitingScoresPhase({ players, uid, index, team }: AwaitingScoresPhaseProps) {
+export function AwaitingScoresPhase({ players, uid, index, team, isRound }: AwaitingScoresPhaseProps) {
   return (
     <>
       <View style={styles.header}>
-        <TransitionSteps active={1} />
+        <TransitionSteps active={1} labels={stepLabels(isRound)} />
         {/* En haut, à la place de la barre de temps : visible sans faire défiler le classement. */}
         <Text style={[textStyles.muted, styles.centered]}>{strings.game.awaitingHost}</Text>
       </View>
-      <PhaseRanking players={players} uid={uid} index={index} team={team} />
+      <PhaseRanking players={players} uid={uid} index={index} team={team} isRound={isRound} />
     </>
   );
 }
@@ -79,21 +84,22 @@ export function ScoresPhase({ players, uid, index, phase: phaseProps, wait, upco
   const isEndOfPhase = useRemainingBelow(phase, NEXT_QUESTION_ANNOUNCE_MS);
   const isAnnouncing = upcoming !== null && questionCount !== undefined && isEndOfPhase;
 
-  if (isAnnouncing) return <AnnounceView questionNumber={upcoming} questionCount={questionCount} />;
+  if (isAnnouncing) return <AnnounceView questionNumber={upcoming} questionCount={questionCount} isRound={wait.isRound} />;
   return (
     <>
       <WaitHeader step={1} wait={wait} />
-      <PhaseRanking players={players} uid={uid} index={index} team={team} />
+      <PhaseRanking players={players} uid={uid} index={index} team={team} isRound={wait.isRound} />
     </>
   );
 }
 
-function AnnounceView({ questionNumber, questionCount }: { questionNumber: number; questionCount: number }) {
+function AnnounceView({ questionNumber, questionCount, isRound }: { questionNumber: number; questionCount: number; isRound: boolean }) {
+  const { announce, announceRound } = strings.game.transition;
   return (
     <View style={styles.announce}>
-      <TransitionSteps active={2} />
+      <TransitionSteps active={2} labels={stepLabels(isRound)} />
       <View style={styles.announceCenter}>
-        <Text style={[textStyles.hero, styles.announceText]}>{strings.game.transition.announce(questionNumber, questionCount)}</Text>
+        <Text style={[textStyles.hero, styles.announceText]}>{(isRound ? announceRound : announce)(questionNumber, questionCount)}</Text>
         <Text style={[textStyles.label, styles.centered]}>{strings.game.transition.announceHint}</Text>
       </View>
     </View>

@@ -31,6 +31,8 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
   // Rafraîchi plusieurs fois par seconde : bascule vers l'annonce au bon moment.
   useRemainingMs(session.phaseEndsAt)
   const upcoming = upcomingQuestionNumber(session)
+  // Dessine-moi : « manche » au lieu de « question ».
+  const isRound = session.settings.answerMode === 'draw'
   // Lignes de la dernière à la première, chacune avec son son (shared/rankingTimeline.ts).
   const entryDelay = useEntryDelay(session.phaseStartedAt)
   const rowCount = scoresRowCount(session)
@@ -41,9 +43,9 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
       <main className="screen announce">
         {/* Sans la pastille « QUESTION n/N » de la question finie : seule l'annonce compte. */}
         <GameHeader roomCode={roomCode} />
-        <TransitionSteps active={2} />
+        <TransitionSteps active={2} isRound={isRound} />
         <div className="announce-center">
-          <h1 className="hero-title announce-title">{strings.transition.announce(upcoming, session.questionCount)}</h1>
+          <h1 className="hero-title announce-title">{(isRound ? strings.transition.announceRound : strings.transition.announce)(upcoming, session.questionCount)}</h1>
           <p className="announce-hint">{strings.transition.announceHint}</p>
         </div>
       </main>
@@ -62,14 +64,14 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
 
   return (
     <main className="screen scores">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
-      <TransitionSteps active={1} />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound={isRound} />
+      <TransitionSteps active={1} isRound={isRound} />
       {session.settings.teams ? (
         // Groupe : classement des équipes à la place du classement des joueurs (maquette G3).
         <>
           <div className="scores-title-row">
             <h1 className="screen-title">{strings.teams.rankingTitle}</h1>
-            <span className="scores-subtitle">{strings.teams.afterQuestion(session.currentIndex + 1, session.questionCount)}</span>
+            <span className="scores-subtitle">{(isRound ? strings.teams.afterRound : strings.teams.afterQuestion)(session.currentIndex + 1, session.questionCount)}</span>
           </div>
           <div className="scores-side">
             <TeamRankingBoard session={session} delays={delays} streaks={streaks} />
@@ -80,7 +82,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
         <>
           <div className="scores-title-row">
             <h1 className="screen-title">{strings.scores.title}</h1>
-            <span className="scores-subtitle">{strings.scores.afterQuestion(session.currentIndex + 1)}</span>
+            <span className="scores-subtitle">{(isRound ? strings.scores.afterRound : strings.scores.afterQuestion)(session.currentIndex + 1)}</span>
           </div>
           <div className="scores-body">
             <Podium players={topPlayers.slice(0, PODIUM_SIZE)} delays={delays} streaks={streaks} />
@@ -91,7 +93,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
           </div>
         </>
       )}
-      {countdown && <NextQuestionLine countdown={countdown} />}
+      {countdown && <NextQuestionLine countdown={countdown} isRound={isRound} />}
       {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
     </main>
   )

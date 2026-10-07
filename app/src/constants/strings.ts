@@ -511,6 +511,10 @@ export const strings = {
       // Dernière question : la révélation mène directement au classement final.
       finalStep: 'Classement final',
       nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds} s`,
+      // Dessine-moi : manches au lieu de questions.
+      roundSteps: ['Réponse', 'Classement', 'Manche suivante'],
+      nextRoundIn: (seconds: number) => `Prochaine manche dans ${seconds} s`,
+      announceRound: (roundNumber: number, roundCount: number) => `Manche ${roundNumber}/${roundCount}`,
       finalRankingIn: (seconds: number) => `Classement final dans ${seconds} s`,
       announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
       announceHint: 'Prépare-toi !',
@@ -601,6 +605,7 @@ export const strings = {
     scores: {
       title: 'Classement',
       afterQuestion: (index: number) => `après la question ${index + 1}`,
+      afterRound: (index: number) => `après la manche ${index + 1}`,
       me: 'Toi',
     },
     paused: {

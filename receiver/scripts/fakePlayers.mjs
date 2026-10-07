@@ -5,7 +5,10 @@
 // connecté, puis répond à chaque question comme un téléphone (choix au hasard, réponse libre, Bluff :
 // proposition puis vote), à un moment au hasard du temps de réponse. Rejouer : ils restent.
 // Dessine-moi : un faux joueur désigné dessinateur rejoue le dessin enregistré du banc d'essai
-// (src/lib/drawing/benchRecording.json), chaque paquet à son heure, comme un vrai téléphone.
+// (src/lib/drawing/benchRecording.json), chaque paquet à son heure, comme un vrai téléphone. Les autres
+// devinent : ils ne lisent pas le mot, mais la catégorie et le nombre de lettres sont publics ; ils tentent
+// d'abord un ou deux mots faux, puis les mots de la liste qui correspondent (shared/drawWords.ts).
+// Environ un sur quatre ne trouve jamais (il n'envoie que des mots faux).
 // Ctrl+C : ils se déconnectent (la partie les voit hors ligne).
 // Limite de Firebase : environ 100 nouveaux comptes anonymes par heure et par adresse IP.
 // Essai local : FAKE_PLAYERS_EMULATOR=1 vise les émulateurs (Auth 9099, Database 9000, base demo-quiz-in,
@@ -26,6 +29,15 @@ const SETTLE_MS = 300
 const isEmulator = process.env.FAKE_PLAYERS_EMULATOR === '1'
 // Dessin rejoué par un faux dessinateur (Dessine-moi).
 const DRAWING = JSON.parse(readFileSync(new URL('../src/lib/drawing/benchRecording.json', import.meta.url), 'utf8'))
+// Mots de Dessine-moi, lus dans le fichier TypeScript (pas d'import possible depuis ce script).
+const DRAW_WORDS = [...readFileSync(new URL('../../shared/drawWords.ts', import.meta.url), 'utf8').matchAll(/word: '([^']+)', category: '([^']+)'/g)].map(
+  ([, word, category]) => ({ word, category }),
+)
+const DRAW_DECOYS = ['truc', 'machin', 'bidule', 'chose', 'dessin']
+// Essais d'un faux devineur : 1,5 s au moins entre deux (règles), 15 au plus.
+const DRAW_GUESS_GAP_MS = 2_500
+const DRAW_MAX_GUESSES = 15
+const DRAW_NEVER_FINDS = 0.25
 
 const config = {
   apiKey: process.env.VITE_FIREBASE_API_KEY,
@@ -124,7 +136,7 @@ async function vote(player, index, choiceCount) {
 }
 
 // Dessine-moi : le faux dessinateur envoie les paquets enregistrés à leur heure, tant que la manche dure
-// (isCurrent faux : manche finie, on s'arrête). Les autres faux joueurs regardent (pas encore de réponse).
+// (isCurrent faux : manche finie, on s'arrête). Les autres faux joueurs devinent.
 function drawRound(players, phase, isCurrent) {
   const drawer = players.find((player) => player.uid === phase.drawTurn?.drawer)
   if (!drawer) return
@@ -142,6 +154,32 @@ function drawRound(players, phase, isCurrent) {
     }, chunk.t)
   })
   console.log(`Manche ${phase.currentIndex + 1} : ${drawer.name} dessine (${DRAWING.chunks.length} paquets enregistrés)`)
+  for (const player of players) if (player !== drawer) guessRound(player, phase, isCurrent)
+}
+
+// Lettres d'un mot sans tirets ni espaces (comme wordLetterCount).
+const letterCount = (word) => word.replace(/[\s-]/g, '').length
+
+// Un faux devineur : ses essais l'un après l'autre, jusqu'à « trouvé » (drawFound public), 15 essais ou la
+// fin de la manche. Refus des règles (autre équipe en Groupe, trop tôt) : il s'arrête.
+function guessRound(player, phase, isCurrent) {
+  const { category, wordLength } = phase.drawTurn
+  const candidates = DRAW_WORDS.filter((entry) => entry.category === category && letterCount(entry.word) === wordLength).map((entry) => entry.word)
+  const decoys = Array.from({ length: 1 + randomInt(3) }, () => pick(DRAW_DECOYS))
+  const guesses = (Math.random() < DRAW_NEVER_FINDS ? [...decoys, ...DRAW_DECOYS] : [...decoys, ...candidates]).slice(0, DRAW_MAX_GUESSES)
+  const foundRef = ref(player.db, `sessions/${code}/drawFound/${player.uid}`)
+  let count = 0
+  const next = async () => {
+    if (!isCurrent() || count >= guesses.length || (await get(foundRef)).exists()) return
+    count++
+    try {
+      await set(ref(player.db, `sessions/${code}/drawGuess/${player.uid}`), { text: guesses[count - 1], count, at: serverTimestamp() })
+    } catch {
+      return
+    }
+    setTimeout(next, DRAW_GUESS_GAP_MS + Math.random() * 1_000)
+  }
+  setTimeout(next, 4_000 + Math.random() * 20_000)
 }
 
 // Un écran de question ou de vote : chaque joueur agit à un moment au hasard, puis bilan.

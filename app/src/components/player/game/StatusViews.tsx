@@ -30,15 +30,16 @@ interface ScoresViewProps {
   players: RankedPlayer[];
   uid: PlayerId;
   index: number;
+  isRound?: boolean;
 }
 
-export function ScoresView({ players, uid, index }: ScoresViewProps) {
+export function ScoresView({ players, uid, index, isRound = false }: ScoresViewProps) {
   return (
     <View style={styles.block}>
       <View style={styles.scoresHeader}>
         <Text style={styles.sectionTitle}>{strings.game.scores.title}</Text>
         <Text style={styles.sectionSubtitle} numberOfLines={1}>
-          {strings.game.scores.afterQuestion(index)}
+          {(isRound ? strings.game.scores.afterRound : strings.game.scores.afterQuestion)(index)}
         </Text>
       </View>
       <Ranking players={players} uid={uid} />

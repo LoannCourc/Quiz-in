@@ -183,6 +183,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
   const wait: WaitInfo | null = countdown && {
     timing: { phaseStartedAt: countdown.startsAt, phaseEndsAt: countdown.endsAt, serverOffsetMs },
     isLastQuestion: countdown.isLastQuestion,
+    isRound: session.settings.answerMode === 'draw',
   };
 
   switch (session.status) {
@@ -272,7 +273,7 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
     }
     case 'scores':
       // Pas à pas : classement en attente de l'hôte (aussi après une reconnexion).
-      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} team={team} />;
+      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} team={team} isRound={session.settings.answerMode === 'draw'} />;
       if (!wait) return <WaitingView />;
       return (
         <ScoresPhase

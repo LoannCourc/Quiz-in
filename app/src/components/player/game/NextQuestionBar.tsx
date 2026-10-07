@@ -11,6 +11,8 @@ interface NextQuestionBarProps {
   // Attente totale jusqu'à la question suivante (révélation + classement), heure serveur.
   timing: PhaseTiming;
   isLastQuestion: boolean;
+  // Dessine-moi : « Prochaine manche dans N s ».
+  isRound?: boolean;
 }
 
 // « Prochaine question dans N… » et une fine barre qui se vide (animation native).
@@ -20,16 +22,16 @@ export function NextQuestionBar(props: NextQuestionBarProps) {
   return <WaitLine key={`${phaseStartedAt}-${phaseEndsAt}`} {...props} />;
 }
 
-function WaitLine({ timing: timingProps, isLastQuestion }: NextQuestionBarProps) {
+function WaitLine({ timing: timingProps, isLastQuestion, isRound = false }: NextQuestionBarProps) {
   // Objet stable : les effets ne redémarrent pas à chaque rendu du parent.
   const [timing] = useState<PhaseTiming>(timingProps);
   const seconds = useSecondsLeft(timing);
   const fraction = useRemainingFraction(timing);
-  const { nextQuestionIn, finalRankingIn } = strings.game.transition;
+  const { nextQuestionIn, nextRoundIn, finalRankingIn } = strings.game.transition;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{isLastQuestion ? finalRankingIn(seconds) : nextQuestionIn(seconds)}</Text>
+      <Text style={styles.label}>{isLastQuestion ? finalRankingIn(seconds) : (isRound ? nextRoundIn : nextQuestionIn)(seconds)}</Text>
       <View style={styles.track}>
         <Animated.View style={[styles.fill, { transform: [{ scaleX: fraction }] }]} />
       </View>

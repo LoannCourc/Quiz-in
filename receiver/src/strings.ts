@@ -23,6 +23,7 @@ export const strings = {
     moreMembers: (count: number) => `+${count}`,
     rankingTitle: 'Classement des équipes',
     afterQuestion: (index: number, total: number | undefined) => (total ? `Après la question ${index} / ${total}` : `Après la question ${index}`),
+    afterRound: (index: number, total: number | undefined) => (total ? `Après la manche ${index} / ${total}` : `Après la manche ${index}`),
     averagePoints: (points: number) => `${points} pts de moyenne`,
     averageUnit: 'pts de moyenne',
     bestPlayer: 'Meilleur joueur',
@@ -112,11 +113,14 @@ export const strings = {
     nextRoundIn: (seconds: number) => `Prochaine manche dans ${seconds}…`,
     finalRankingIn: (seconds: number) => `Classement final dans ${seconds}…`,
     announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
+    announceRound: (roundNumber: number, roundCount: number) => `Manche ${roundNumber}/${roundCount}`,
     announceHint: 'Préparez-vous !',
   },
   scores: {
     title: 'Classement',
     afterQuestion: (index: number) => `après la question ${index}`,
+    // Dessine-moi : manches.
+    afterRound: (index: number) => `après la manche ${index}`,
   },
   end: {
     title: 'Partie terminée !',
