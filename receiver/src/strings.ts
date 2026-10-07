@@ -101,7 +101,7 @@ export const strings = {
   },
   // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
   transition: {
-    steps: ['Révélation', 'Classement', 'Question suivante'],
+    steps: ['Réponse', 'Classement', 'Question suivante'],
     // Dernière question : la révélation mène directement à l'écran de fin.
     finalStep: 'Classement final',
     nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds}…`,
@@ -286,7 +286,7 @@ export const strings = {
       question: 'Question',
       vote: 'Vote',
       validation: 'Validation',
-      reveal: 'Révélation',
+      reveal: 'Réponse',
       scores: 'Classement',
       paused: 'Pause',
       ended: 'Fin',

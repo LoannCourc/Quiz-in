@@ -327,7 +327,7 @@ export const strings = {
   },
   // Contrôle (maquette V1) : validation des réponses libres par l'hôte avant la révélation.
   hostValidation: {
-    steps: ['Question', 'Validation', 'Révélation'],
+    steps: ['Question', 'Validation', 'Réponse'],
     blindTest: {
       title: 'Blind test · titre',
       artist: 'Blind test · artiste',
@@ -499,7 +499,7 @@ export const strings = {
     },
     // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
     transition: {
-      steps: ['Révélation', 'Classement', 'Question suivante'],
+      steps: ['Réponse', 'Classement', 'Question suivante'],
       // Dernière question : la révélation mène directement au classement final.
       finalStep: 'Classement final',
       nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds} s`,
@@ -611,7 +611,7 @@ export const strings = {
     // Contrôle : pendant que l'hôte valide les réponses.
     validation: {
       title: 'L’hôte valide les réponses…',
-      hint: 'Les points arrivent à la révélation.',
+      hint: 'Les points arrivent avec la réponse.',
     },
     waiting: 'Patiente un instant, la partie continue…',
   },
