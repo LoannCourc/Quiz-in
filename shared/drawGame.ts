@@ -94,12 +94,10 @@ export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT,
   return order.map((entry, index) => ({ id: `draw-${index}`, word: entry.word, category: entry.category, difficulty: entry.difficulty }))
 }
 
-// Dessinateurs possibles : tous les joueurs sauf l'hôte (décision D1 : l'hôte qui joue devine mais ne
-// dessine pas, son app n'a pas de surface de dessin).
-export function drawEligiblePlayers(players: Record<PlayerId, Player>, hostUid: PlayerId): PlayerId[] {
-  return Object.keys(players)
-    .filter((id) => id !== hostUid)
-    .sort()
+// Dessinateurs possibles : tous les joueurs, l'hôte compris s'il joue (« Je joue aussi » : il est alors
+// dans players et dessine dans l'app, lot C). L'hôte qui ne joue pas n'est pas dans players.
+export function drawEligiblePlayers(players: Record<PlayerId, Player>): PlayerId[] {
+  return Object.keys(players).sort()
 }
 
 // Ordre des dessinateurs pour `rounds` manches, tiré au lancement : rotation cyclique, chacun son tour,
@@ -108,12 +106,11 @@ export function drawEligiblePlayers(players: Record<PlayerId, Player>, hostUid: 
 // rôle.
 export function drawOrderFor(
   players: Record<PlayerId, Player>,
-  hostUid: PlayerId,
   rounds: number,
   random: () => number,
   byTeam = false,
 ): PlayerId[] {
-  const eligible = drawEligiblePlayers(players, hostUid)
+  const eligible = drawEligiblePlayers(players)
   if (eligible.length === 0) return []
   const groups = byTeam ? teamGroups(players, eligible) : [eligible]
   const order = shuffled(groups, random).map((group) => shuffled(group, random))

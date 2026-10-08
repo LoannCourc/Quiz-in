@@ -356,8 +356,6 @@ export const strings = {
       teamTooSmall: `Il faut au moins ${MIN_TEAM_SIZE} joueurs par équipe.`,
     } satisfies Record<LaunchRefusal, string>,
     // Dessine-moi à deux : l'hôte ne dessine jamais, l'autre joueur dessine toutes les manches.
-    soloDrawer: (name: string, hostPlays: boolean) =>
-      hostPlays ? `Partie à deux : ${name} dessine toutes les manches, tu devines.` : `Seul dessinateur possible : ${name} dessine toutes les manches.`,
     shortGame: {
       title: `Partie courte (${DEV_SHORT_GAME_QUESTIONS} questions)`,
       hint: 'Développement uniquement, absent de l’app publiée.',

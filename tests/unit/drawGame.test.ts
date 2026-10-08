@@ -57,8 +57,10 @@ describe('Dessine-moi : mots et dessinateurs', () => {
     expect(new Set(questions.map((question) => question.word)).size).toBe(DRAW_ROUNDS_DEFAULT)
   })
 
-  test('l’hôte ne dessine jamais (décision D1)', () => {
-    expect(drawEligiblePlayers(players(3), HOST)).toEqual([OTHER, PLAYER].sort())
+  test('l’hôte qui joue dessine à son tour (lot C) ; celui qui ne joue pas n’est pas dans players', () => {
+    expect(drawEligiblePlayers(players(3))).toEqual([HOST, OTHER, PLAYER].sort())
+    const withoutHost = Object.fromEntries(Object.entries(players(3)).filter(([id]) => id !== HOST))
+    expect(drawEligiblePlayers(withoutHost)).toEqual([OTHER, PLAYER].sort())
   })
 
   test('nombre de lettres : sans tirets ni espaces', () => {
@@ -68,22 +70,21 @@ describe('Dessine-moi : mots et dessinateurs', () => {
 })
 
 describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
-  test('lancement : toutes les manches dès 2 dessinateurs, rotation équitable, jamais l’hôte', () => {
+  test('lancement : toutes les manches, rotation équitable, l’hôte qui joue compris (lot C)', () => {
     const few = launched(3)
     expect(few.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
     const counts = countBy(few.drawOrder ?? [])
-    expect(Object.keys(counts).sort()).toEqual([OTHER, PLAYER].sort())
-    expect(Object.values(counts)).toEqual([4, 4])
+    expect(Object.keys(counts).sort()).toEqual([HOST, OTHER, PLAYER].sort())
+    expect(Object.values(counts).sort()).toEqual([2, 3, 3])
     // À tour de rôle : jamais deux manches de suite pour le même joueur.
     for (let index = 1; index < (few.drawOrder ?? []).length; index++) expect(few.drawOrder?.[index]).not.toBe(few.drawOrder?.[index - 1])
     const many = launched(12)
     expect(many.drawOrder).toHaveLength(DRAW_ROUNDS_DEFAULT)
-    expect(many.drawOrder).not.toContain(HOST)
     expect(new Set(many.drawOrder).size).toBe(DRAW_ROUNDS_DEFAULT)
   })
 
   test('rotation : écart d’une manche au plus entre deux joueurs (3 dessinateurs, 8 manches)', () => {
-    const order = drawOrderFor(players(4), HOST, 8, () => 0.3)
+    const order = drawOrderFor(players(4), 8, () => 0.3)
     const values = Object.values(countBy(order))
     expect(Math.max(...values) - Math.min(...values)).toBeLessThanOrEqual(1)
   })
@@ -97,17 +98,27 @@ describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
       d: player('D', { team: 'cyan' }),
       e: player('E', { team: 'cyan' }),
     }
-    const order = drawOrderFor(grouped, HOST, 8, () => 0.6, true)
+    const order = drawOrderFor(grouped, 8, () => 0.6, true)
     const teams = order.map((id) => grouped[id].team)
     expect(countBy(teams.map(String))).toEqual({ pink: 4, cyan: 4 })
     for (let index = 1; index < teams.length; index++) expect(teams[index]).not.toBe(teams[index - 1])
   })
 
-  test('partie à deux : le seul dessinateur possible dessine toutes les manches', () => {
+  test('partie à deux (l’hôte qui joue et un joueur) : chacun son tour, 4 manches chacun', () => {
     const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') } })
-    const solo = launchUpdate(lobby, questions, NOW)
-    expect(solo.ok && solo.update.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
-    expect(solo.ok && solo.update.drawOrder).toEqual(Array(DRAW_ROUNDS_DEFAULT).fill(PLAYER))
+    const duo = launchUpdate(lobby, questions, NOW, undefined, undefined, () => 0.42)
+    const order = duo.ok ? (duo.update.drawOrder ?? []) : []
+    expect(order).toHaveLength(DRAW_ROUNDS_DEFAULT)
+    expect(countBy(order)).toEqual({ [HOST]: 4, [PLAYER]: 4 })
+    for (let index = 1; index < order.length; index++) expect(order[index]).not.toBe(order[index - 1])
+  })
+
+  test('option de développement « Un seul dessinateur » : le premier tiré dessine toutes les manches', () => {
+    const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') } })
+    const single = launchUpdate(lobby, questions, NOW, undefined, undefined, () => 0.42, true)
+    const order = single.ok ? (single.update.drawOrder ?? []) : []
+    expect(new Set(order).size).toBe(1)
+    expect(order).toHaveLength(DRAW_ROUNDS_DEFAULT)
   })
 
   test('hôte seul avec personne d’autre pour dessiner : lancement refusé', () => {
@@ -167,15 +178,18 @@ describe('Dessine-moi : chemin de création (hôte + un seul joueur)', () => {
     expect(settingsForGameType(chosen, DRAW_QUIZ_SUMMARY.gameType)).toMatchObject({ answerMode: 'draw', speedBonus: false, control: false })
   })
 
-  test('hôte qui joue + une tablette : toutes les manches, la tablette dessine, l’hôte devine', () => {
+  test('hôte qui joue + une tablette : toutes les manches ; quand la tablette dessine, l’hôte devine, et inversement', () => {
     const lobby = makeSession({ settings: DRAW, players: { [HOST]: player('Hôte'), [PLAYER]: player('Tablette') }, quizId: 'dessine-moi' })
     const launch = launchUpdate(lobby, questions, NOW)
     expect(launch.ok).toBe(true)
     const round = advance(apply(lobby, launch.ok ? launch.update : null))
     expect(round.questionCount).toBe(DRAW_ROUNDS_DEFAULT)
     expect(round.settings.answerMode).toBe('draw')
-    expect(round.drawTurn?.drawer).toBe(PLAYER)
-    expect(isDrawGuesser(round, HOST)).toBe(true)
+    const drawer = round.drawTurn?.drawer
+    const guesser = drawer === HOST ? PLAYER : HOST
+    expect([HOST, PLAYER]).toContain(drawer)
+    expect(isDrawGuesser(round, guesser)).toBe(true)
+    expect(isDrawGuesser(round, drawer ?? '')).toBe(false)
     expect(isKnownAnswerMode(round.settings.answerMode)).toBe(true)
     expect(isKnownAnswerMode('mime')).toBe(false)
   })

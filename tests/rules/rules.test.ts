@@ -1551,6 +1551,13 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     expect((await db(OTHER).ref(`${SESSION}/drawing`).once('value')).exists()).toBe(true)
   })
 
+  test('l’hôte qui joue, dessinateur de la manche (lot C), envoie ses paquets ; les joueurs les lisent', async () => {
+    await seedSession(round({ players: { ...twoPlayers, [HOST]: { name: 'Hôte', avatar: '🐸', score: 0, rank: 1, connected: true } }, drawTurn: { drawer: HOST, round: 0, wordLength: 4, category: 'Animal' } }))
+    await assertSucceeds(db(HOST).ref(chunk('0')).set('0:s0,1,1:a,a;1,1'))
+    await assertFails(db(PLAYER).ref(chunk('1')).set('1:u'))
+    expect((await db(PLAYER).ref(chunk('0')).once('value')).val()).toBe('0:s0,1,1:a,a;1,1')
+  })
+
   test('refusé : autre joueur, paquet réécrit, trop long, mauvaise clé ou pas du texte, hors de la manche', async () => {
     await seedSession(round())
     await assertFails(db(OTHER).ref(chunk('0')).set('0:u'))
@@ -1659,7 +1666,8 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await step()
     expect(session.status).toBe('question')
     const drawer = session.drawTurn?.drawer as string
-    expect(drawer).not.toBe(HOST)
+    // L'hôte qui joue dessine à son tour (lot C) : le dessinateur est un des joueurs inscrits.
+    expect(Object.keys(session.players)).toContain(drawer)
     // Le dessinateur dessine ; la TV lit le dessin et le reconstruit.
     const writer = new DrawingWriter()
     writer.beginStroke(1, 1, 10, 10)

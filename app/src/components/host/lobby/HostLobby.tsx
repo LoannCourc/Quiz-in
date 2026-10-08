@@ -1,6 +1,6 @@
 import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
 import type { SessionUpdate } from '@shared/hostEngine';
-import { drawEligiblePlayers, drawRoundsOf, drawRoundsUpdate } from '@shared/drawGame';
+import { drawRoundsOf, drawRoundsUpdate } from '@shared/drawGame';
 import { canLaunchGame, connectedPlayerIds, hostLeaveUpdate } from '@shared/players';
 import {
   assignTeamUpdate,
@@ -161,7 +161,6 @@ export function HostLobby(props: HostLobbyProps) {
         error={launchError}
         audioStatus={audio.status}
         connectedCount={connectedCount}
-        soloDrawer={soloDrawerNotice(session)}
       />
       <BigButton
         label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
@@ -247,20 +246,12 @@ interface LaunchHintProps {
   audioStatus: AudioUrlsStatus;
   connectedCount: number;
   // Dessine-moi à deux : le seul dessinateur possible dessine toutes les manches (information, sans blocage).
-  soloDrawer: string | null;
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
-// Dessine-moi : un seul joueur peut dessiner (l'hôte ne dessine jamais) ; message pour le dire.
-function soloDrawerNotice(session: Session): string | null {
-  if (session.settings.answerMode !== 'draw') return null;
-  const drawers = drawEligiblePlayers(session.players, session.hostUid);
-  if (drawers.length !== 1) return null;
-  return strings.hostLobby.soloDrawer(session.players[drawers[0]].name, session.players[session.hostUid] !== undefined);
-}
 
 function LaunchHint(props: LaunchHintProps) {
-  const { questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount, soloDrawer } = props;
+  const { questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount } = props;
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
@@ -283,7 +274,6 @@ function LaunchHint(props: LaunchHintProps) {
   if (teamRefusal) {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.launchRefusals[teamRefusal]}</Text>;
   }
-  if (soloDrawer) return <Text style={[styles.hint, styles.centered]}>{soloDrawer}</Text>;
   return null;
 }
 

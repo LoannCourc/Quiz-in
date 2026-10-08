@@ -13,7 +13,7 @@ Un faux joueur dessinateur (`fake-players`) rejoue la maison enregistrée, pour 
 **Canvas de la TV** : 960 × 720, réglé par la constante `TV_DRAW_SCALE` (`shared/drawing/palette.ts`, 1 pour 640 × 480).
 
 **Décisions du développeur** :
-- D1 : l'hôte qui joue devine mais ne dessine pas (Skia plus tard, build groupé).
+- D1 : l'hôte qui joue devine mais ne dessine pas (Skia plus tard, build groupé). **Remplacée au lot C (octobre 2026)** : l'hôte qui joue dessine à son tour (react-native-svg) ; spec § 19.
 - D2 : TV obligatoire.
 - D3 : 4, 6 ou 8 manches (8 par défaut), chacun dessine au plus une fois ; en Groupe, un multiple du nombre d'équipes.
 - D4 : dessinateur, 1 000 points au plus, en proportion des devineurs qui ont trouvé.

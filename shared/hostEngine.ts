@@ -516,7 +516,7 @@ export type LaunchResult = { ok: true; update: SessionUpdate } | { ok: false; re
 
 // Ordre des dessinateurs au lancement : rotation (drawOrderFor), ou un seul dessinateur répété.
 function drawOrderOf(session: Session, rounds: number, random: () => number, singleDrawer: boolean): PlayerId[] {
-  const order = drawOrderFor(session.players, session.hostUid, rounds, random, session.settings.teams)
+  const order = drawOrderFor(session.players, rounds, random, session.settings.teams)
   return singleDrawer && order.length > 0 ? order.map(() => order[0]) : order
 }
 
@@ -540,9 +540,9 @@ export function launchUpdate(
   const teamRefusal = teamLaunchRefusal(session)
   if (teamRefusal) return { ok: false, reason: teamRefusal }
   const isDraw = session.settings.answerMode === 'draw'
-  // Dessine-moi : toutes les manches, dessinateurs à tour de rôle (drawOrderFor) ; partie à deux (un seul
-  // dessinateur possible, l'hôte ne dessine pas) : il dessine toutes les manches (spec 19).
-  if (isDraw && drawEligiblePlayers(session.players, session.hostUid).length === 0) return { ok: false, reason: 'notEnoughPlayers' }
+  // Dessine-moi : toutes les manches, dessinateurs à tour de rôle (drawOrderFor), l'hôte compris s'il joue ;
+  // un seul dessinateur possible (l'hôte ne joue pas) : il dessine toutes les manches (spec 19).
+  if (isDraw && drawEligiblePlayers(session.players).length === 0) return { ok: false, reason: 'notEnoughPlayers' }
   const gameQuestions = selectGameQuestions(questions, limit)
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
   const musicQuestions = gameQuestions.filter((question) => 'music' in question && question.music)
