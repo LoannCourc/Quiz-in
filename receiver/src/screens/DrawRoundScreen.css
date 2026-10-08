@@ -28,6 +28,9 @@
 .draw-round-side {
   --side-scale: 1;
   display: grid;
+  /* Piste unique à la largeur de la colonne : un mot trop long déborde (et se mesure) au lieu d'élargir
+     la piste en silence. */
+  grid-template-columns: minmax(0, 1fr);
   align-content: center;
   justify-items: center;
   row-gap: calc(1.1rem * var(--side-scale));
@@ -57,18 +60,20 @@
 }
 
 /* Révélation : le dessin final, à côté du mot. */
+.draw-reveal-side {
+  --word-scale: 1;
+}
+
 .draw-reveal-word {
+  max-width: 100%;
   margin: 0;
+  overflow-wrap: normal;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 4.5rem;
+  font-size: calc(var(--word-base, 4.5rem) * var(--word-scale));
   line-height: var(--display-line-height);
   color: var(--color-accent);
   text-transform: uppercase;
-}
-
-.draw-reveal-word.is-long {
-  font-size: 2.8rem;
 }
 
 .draw-reveal-by {

@@ -1,6 +1,7 @@
 import { drawFoundProgress } from '@shared/drawGuess'
 import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession } from '@shared/types'
+import type { CSSProperties } from 'react'
 
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
@@ -13,8 +14,18 @@ import './DrawRoundScreen.css'
 // Colonne de droite : réduite tant qu'elle déborde, ou qu'un mot du titre est coupé (long pseudo).
 const SIDE_FIT = { variables: ['--side-scale'], boxes: '.draw-round-side', texts: '.draw-round-title' }
 
-// Au-delà, le mot de la révélation passe en taille réduite (il tient alors sur une ou deux lignes).
-const LONG_WORD_LENGTH = 8
+// Révélation : taille de départ du mot selon son mot le plus long (4,5 rem jusqu'à 6 lettres), puis
+// réduite par mesure (--word-scale) tant qu'un mot est coupé ou que la colonne déborde. Passage à la ligne
+// entre deux mots seulement (« château de sable »), jamais au milieu d'un mot.
+const WORD_MAX_REM = 4.5
+const WORD_FULL_LETTERS = 6
+const WORD_FIT = { variables: ['--word-scale'], boxes: '.draw-reveal-word', texts: '.draw-reveal-word', includeRoot: true }
+
+function wordBaseStyle(word: string): CSSProperties {
+  const longest = Math.max(1, ...word.split(/s+/).map((part) => [...part].length))
+  const rem = Math.min(WORD_MAX_REM, (WORD_MAX_REM * WORD_FULL_LETTERS) / longest)
+  return { '--word-base': `${rem.toFixed(2)}rem` } as CSSProperties
+}
 
 // Dessine-moi, manche en cours : le dessin en grand (l'essentiel de l'écran), qui dessine, l'indice
 // (catégorie et nombre de lettres, décision D5), le temps restant, puis qui a trouvé : le dernier en
@@ -64,15 +75,18 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
   const countdown = nextQuestionCountdown(session)
   const word = session.reveal?.correctAnswer ?? ''
   const isCancelled = session.reveal?.stats.drawCancelled === true
+  const sideRef = useFitScale(word, WORD_FIT)
   return (
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
       <div className="draw-round-body">
         <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-reveal-canvas" />
-        <aside className="draw-round-side">
+        <aside ref={sideRef} className="draw-round-side draw-reveal-side">
           <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} isRound />
           <p className="draw-round-hint">{strings.draw.itWas}</p>
-          <h1 className={word.length > LONG_WORD_LENGTH ? 'draw-reveal-word is-long' : 'draw-reveal-word'}>{word}</h1>
+          <h1 className="draw-reveal-word" style={wordBaseStyle(word)}>
+            {word}
+          </h1>
           {drawerName && <p className="draw-reveal-by">{strings.draw.drawnBy(drawerName)}</p>}
           {isCancelled && <p className="draw-reveal-cancelled">{strings.draw.cancelled}</p>}
           {countdown && <NextQuestionLine countdown={countdown} isRound />}

@@ -1,12 +1,17 @@
 import type { NextQuestionCountdown } from '@shared/gameFlow'
 import { useState } from 'react'
 
+import { useFitScale } from '../hooks/useFitScale'
+
 import { useRemainingMs } from '../hooks/useRemainingMs'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { strings } from '../strings'
 import './TransitionInfo.css'
 
 export type TransitionStep = 0 | 1 | 2
+
+// Toujours sur une ligne : texte des étapes réduit tant que la rangée dépasse sa colonne (Dessine-moi).
+const STEPS_FIT = { variables: ['--steps-scale'], boxes: '.transition-steps', texts: '.transition-steps' }
 
 // Étapes entre deux questions : Révélation, Classement, Question suivante (l'étape en cours en or).
 // Suspense ou dernière question (withRanking faux) : sans l'étape Classement, qui n'a pas lieu ; dernière
@@ -28,7 +33,9 @@ export function TransitionSteps({
   const activeLabel = baseSteps[active]
   const labels = isLastQuestion ? [...baseSteps.slice(0, 2), finalStep] : baseSteps
   const steps = withRanking ? labels : labels.filter((_, index) => index !== 1)
+  const fitRef = useFitScale(steps.join('|'), STEPS_FIT)
   return (
+    <div ref={fitRef} className="transition-steps-fit">
     <ol className="transition-steps">
       {steps.map((label) => (
         <li key={label} className={label === activeLabel ? 'transition-step is-active' : 'transition-step'}>
@@ -36,6 +43,7 @@ export function TransitionSteps({
         </li>
       ))}
     </ol>
+    </div>
   )
 }
 
