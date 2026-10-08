@@ -727,6 +727,8 @@ export const strings = {
     clearLabel: 'Effacer',
     widths: ['Trait fin', 'Trait moyen', 'Trait épais'],
     widthTitle: 'Épaisseur',
+    // App trop ancienne (sans le module de dessin) : rien à dessiner, on le dit.
+    canvasMissing: 'Cette version de l’app ne sait pas encore dessiner : mets-la à jour.',
     // Zoom (maquettes E1 à E3) : affichage seulement, la TV voit toujours le dessin entier.
     zoomIn: 'Zoomer',
     zoomOut: 'Dézoomer',
