@@ -20,7 +20,9 @@ export function DetailsToggle({ label, isOpen, onPress }: DetailsToggleProps) {
       hitSlop={Spacing.one}
       onPress={onPress}
       style={({ pressed }) => [styles.toggle, pressed && styles.pressed]}>
-      <ButtonLabel inRow style={styles.label}>{label}</ButtonLabel>
+      {/* Pastille à la largeur de son texte : jamais étirée dans la rangée qui la contient (avec inRow, le
+          texte s'étirait sur Android et la pastille prenait toute la barre « TV connectée »). */}
+      <ButtonLabel stretch={false} style={styles.label}>{label}</ButtonLabel>
       {/* Chevron du réglage tourné : vers le bas pour déplier, vers le haut pour replier. */}
       <View style={isOpen ? styles.chevronUp : styles.chevronDown}>
         <SettingsIcon name="chevron" color={AppColors.link} />
@@ -31,6 +33,7 @@ export function DetailsToggle({ label, isOpen, onPress }: DetailsToggleProps) {
 
 const styles = StyleSheet.create({
   toggle: {
+    flexShrink: 0,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: Spacing.three,

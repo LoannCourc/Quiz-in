@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { TvCastButton } from '@/components/host/TvCastButton';
+import { BUTTON_LABEL_MAX_FONT_SCALE, BUTTON_LABEL_MIN_SCALE } from '@/components/ui/ButtonLabel';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -23,8 +24,10 @@ export function TvConnectedBar({ code, isOpen, onToggle }: TvConnectedBarProps) 
       <View style={styles.bar}>
         <View style={styles.dot} />
         <View style={styles.texts}>
-          <Text style={styles.title}>{tvBar.connected}</Text>
-          <Text style={styles.code} accessibilityLabel={strings.hostLobby.codeAccessibility(code)}>
+          <Text style={styles.title} {...ONE_LINE}>
+            {tvBar.connected}
+          </Text>
+          <Text style={styles.code} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE} accessibilityLabel={strings.hostLobby.codeAccessibility(code)}>
             {tvBar.codeLabel}
             <Text style={styles.codeValue}>{code}</Text>
           </Text>
@@ -38,6 +41,17 @@ export function TvConnectedBar({ code, isOpen, onToggle }: TvConnectedBarProps) 
 }
 
 const DOT_SIZE = 10;
+// « TV connectée » : une ligne, réduite plutôt que coupée ; police du système plafonnée comme les boutons.
+// Le code, lui, passe à la ligne mais n'est jamais coupé. Sans largeur minimale, la colonne pouvait
+// tomber à zéro et écrire « TV connectée » lettre par lettre, en hauteur.
+const ONE_LINE = {
+  numberOfLines: 1,
+  adjustsFontSizeToFit: true,
+  minimumFontScale: BUTTON_LABEL_MIN_SCALE,
+  maxFontSizeMultiplier: BUTTON_LABEL_MAX_FONT_SCALE,
+} as const;
+// Largeur en dessous de laquelle « Détails » passe sous les textes (petit écran, grande police).
+const TEXTS_MIN_WIDTH = 120;
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +59,9 @@ const styles = StyleSheet.create({
   },
   bar: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     gap: Spacing.two,
     paddingLeft: Spacing.three,
     paddingRight: Spacing.two,
@@ -60,7 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.correct,
   },
   texts: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: TEXTS_MIN_WIDTH,
+    minWidth: 0,
   },
   title: {
     color: AppColors.text,
