@@ -1,4 +1,5 @@
 import type { ThemeIconName } from '@shared/themeIcons';
+import type { DrawCategory } from '@shared/drawWords';
 import type { PosterPalette, TeamId } from '@shared/types';
 
 import type { GameType } from './strings';
@@ -110,6 +111,22 @@ export const AppColors = {
   // dans les puces de filtre (Culture générale, ou thème inconnu, sur « ? »).
   // Accueil (maquette H1) : couleur de chaque tuile de jeu, texte encre dessus, bord blanc.
   gameTiles: { quiz: Palette.pinkSoft, blindTest: Palette.cyan, bluff: Palette.green, draw: Palette.gold } satisfies Record<GameType, string>,
+  // Dessine-moi, affiches des catégories (maquette D1) : couleurs de la charte et des affiches du catalogue,
+  // texte et icône encre. Rose vif (alertes) jamais utilisé : Sport prend le rose des affiches.
+  drawCategories: {
+    Animal: Palette.pinkSoft,
+    Nourriture: Palette.glowOrange,
+    Objet: PosterColors.blue[0],
+    Maison: Palette.goldDeep,
+    Nature: Palette.green,
+    Lieu: PosterColors.violet[0],
+    Transport: Palette.cyan,
+    Métier: PosterColors.green[0],
+    Sport: PosterColors.pink[0],
+    Loisir: Palette.gold,
+    Vêtement: Palette.pinkLight,
+    Corps: Palette.cyan,
+  } satisfies Record<DrawCategory, string>,
   onGameTile: Palette.ink,
   gameTileBorder: Palette.white,
   themeIcon: Palette.white,

@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { Text } from 'react-native';
 
 import { CatalogView } from '@/components/host/catalog/CatalogView';
+import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings, type GameType } from '@/constants/strings';
@@ -28,10 +29,14 @@ function toEntries(quizzes: unknown): QuizEntry[] {
   return [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
 }
 
-// Dessine-moi : les catégories choisies voyagent jusqu'à la fiche (« animal,sport »), qui les met dans les
-// réglages de la partie.
-function openQuiz(quizId: string, drawCategories: string[]) {
-  const params = drawCategories.length > 0 ? { quizId, categories: drawCategories.join(',') } : { quizId };
+function openQuiz(quizId: string) {
+  router.push({ pathname: '/quiz/[quizId]', params: { quizId } });
+}
+
+// Dessine-moi : les catégories choisies voyagent jusqu'à la fiche du jeu (« animal,sport »), qui les met
+// dans les réglages de la partie. Vide : « Mélange ».
+function openDrawGame(drawCategories: string[]) {
+  const params = drawCategories.length > 0 ? { quizId: DRAW_QUIZ_ID, categories: drawCategories.join(',') } : { quizId: DRAW_QUIZ_ID };
   router.push({ pathname: '/quiz/[quizId]', params });
 }
 
@@ -49,6 +54,8 @@ export default function CatalogRoute() {
   const catalog = useLiveValue<unknown>('quizzes');
   const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
   if (!isOpenableGame(gameType, isBlindTestEnabled, isDrawEnabled)) return <Redirect href="/" />;
+  // Dessine-moi (maquette D1) : choix des catégories de mots, puis la fiche du jeu.
+  if (gameType === 'draw') return <DrawCategoryPicker onBack={backHome} onContinue={openDrawGame} />;
 
   return (
     <Screen>

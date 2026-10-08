@@ -90,8 +90,14 @@ export const strings = {
     allThemes: 'Tout',
     // Dessine-moi : catégories des mots de la partie.
     drawCategories: {
-      label: 'Catégories de mots',
+      title: 'Quels mots dessiner ?',
+      subtitle: 'Choisis une ou plusieurs catégories.',
       mix: 'Mélange',
+      mixHint: 'Toutes les catégories',
+      count: (count: number) => `${count} catégorie${count > 1 ? 's' : ''}`,
+      none: 'Aucune catégorie',
+      noneHint: 'Choisis au moins une catégorie.',
+      continue: 'Continuer',
     },
     search: 'Rechercher un quiz',
     searchPlaceholder: 'Titre du quiz',

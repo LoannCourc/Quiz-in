@@ -35,7 +35,7 @@ function columns(pen: Pen): ReactNode[] {
   ];
 }
 
-function gamepad(pen: Pen): ReactNode[] {
+export function gamepad(pen: Pen): ReactNode[] {
   return [
     box(pen, 'body', 1.5, 6.5, 21, 11, 5.5),
     line(pen, 'crossH', 5.5, 12, 9.5, 12),
@@ -76,7 +76,7 @@ function flask(pen: Pen): ReactNode[] {
 const BALL = { x: 2.5, y: 2.5, w: 19, h: 19, radius: 9.5 };
 
 // Ballon : contour, puis les coutures dans un disque qui les découpe.
-function ball(pen: Pen): ReactNode[] {
+export function ball(pen: Pen): ReactNode[] {
   return [
     clipped(pen, 'seams', BALL, (seams) => [
       line(seams, 'vertical', 12, 1, 12, 23),

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { CatalogView } from '@/components/host/catalog/CatalogView';
+import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { HomeView } from '@/components/host/home/HomeView';
 import { QuizDetails } from '@/components/host/catalog/QuizDetails';
 import { Screen } from '@/components/ui/Screen';
@@ -55,15 +56,24 @@ export default function CatalogDemoScreen() {
       />
     );
   }
+  // Dessine-moi (maquette D1) : choix des catégories, comme la vraie route.
+  if (game === 'draw') {
+    return (
+      <DrawCategoryPicker
+        onBack={() => router.setParams({ game: undefined })}
+        onContinue={(ids) =>
+          router.push({ pathname: '/debug/catalog', params: ids.length > 0 ? { quiz: DRAW_QUIZ_ID, categories: ids.join(',') } : { quiz: DRAW_QUIZ_ID } })
+        }
+      />
+    );
+  }
   return (
     <Screen>
       {game ? (
         <CatalogView
           entries={DEMO_ENTRIES}
           gameType={game}
-          onOpenQuiz={(id, categories) =>
-            router.push({ pathname: '/debug/catalog', params: categories.length > 0 ? { quiz: id, categories: categories.join(',') } : { quiz: id } })
-          }
+          onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
           onBack={() => router.setParams({ game: undefined })}
         />
       ) : (
