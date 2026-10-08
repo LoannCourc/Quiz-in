@@ -13,6 +13,7 @@ import { strings, type GameType } from '@/constants/strings';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { usePlayedQuizzes } from '@/hooks/usePlayedQuizzes';
 import { warnIgnoredEntries } from '@/lib/devLog';
 
 // Fiches valides ; les entrées mal formées de la base sont ignorées. Dessine-moi (pas de quiz dans la
@@ -44,6 +45,7 @@ function backHome() {
 export default function CatalogRoute() {
   const { gameType } = useLocalSearchParams<{ gameType: string }>();
   const blindTest = useBlindTestEnabled();
+  const played = usePlayedQuizzes();
   const draw = useDrawEnabled();
   const catalog = useLiveValue<unknown>('quizzes');
   const entries = useMemo(() => (catalog.kind === 'ready' ? toEntries(catalog.value) : []), [catalog]);
@@ -66,7 +68,7 @@ export default function CatalogRoute() {
     <Screen>
       {catalog.kind === 'loading' && <Text style={textStyles.body}>{strings.catalog.loading}</Text>}
       {catalog.kind === 'error' && <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>}
-      {catalog.kind === 'ready' && <CatalogView entries={entries} gameType={game} onOpenQuiz={openQuiz} onBack={backHome} />}
+      {catalog.kind === 'ready' && <CatalogView entries={entries} gameType={game} onOpenQuiz={openQuiz} onBack={backHome} played={played} />}
     </Screen>
   );
 }

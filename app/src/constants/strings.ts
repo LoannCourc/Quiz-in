@@ -7,7 +7,7 @@ import {
   PLAYER_NAME_MAX_LENGTH,
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
-import type { CatalogRowId } from '@shared/catalogRows';
+import type { CatalogRowId, CatalogSortId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
@@ -104,6 +104,17 @@ export const strings = {
     searchPlaceholder: 'Titre du quiz',
     closeSearch: 'Fermer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
+    // Lot E : tris du catalogue et repère des quiz déjà joués sur ce téléphone.
+    sortLabel: 'Trier',
+    sorts: {
+      new: 'Nouveautés',
+      notPlayed: 'Pas encore faits',
+      easiest: 'Plus faciles',
+      alphabetical: 'A à Z',
+    } satisfies Record<CatalogSortId, string>,
+    allPlayed: 'Tu as déjà fait tous ces quiz.',
+    played: 'Déjà fait',
+    playedLabel: (title: string) => `${title}, déjà fait`,
     gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Dessine-moi' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,

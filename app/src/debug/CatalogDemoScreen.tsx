@@ -29,7 +29,7 @@ const DEMO_ENTRIES = [...DEMO_CATALOG, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY 
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories } = useLocalSearchParams<{
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories, played: playedParam } = useLocalSearchParams<{
     quiz?: string;
     settings?: string;
     icons?: string;
@@ -37,7 +37,10 @@ export default function CatalogDemoScreen() {
     blindtest?: string;
     draw?: string;
     categories?: string;
+    // &played=id1,id2 : quiz « déjà faits » (lot E).
+    played?: string;
   }>();
+  const played = new Set(playedParam ? playedParam.split(',') : []);
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
   const quiz = DEMO_ENTRIES.find((entry) => entry.id === quizId);
@@ -53,6 +56,7 @@ export default function CatalogDemoScreen() {
         onSoundChange={setSound}
         onChoose={() => router.back()}
         initialSettingsOpen={openSettings === '1'}
+        isPlayed={played.has(quiz.id)}
       />
     );
   }
@@ -75,6 +79,7 @@ export default function CatalogDemoScreen() {
           gameType={game}
           onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
           onBack={() => router.setParams({ game: undefined })}
+          played={played}
         />
       ) : (
         <HomeView isBlindTestEnabled={blindtest !== '0'} isDrawEnabled={draw !== '0'} onOpenGame={(type) => router.setParams({ game: type })} />

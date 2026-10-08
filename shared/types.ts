@@ -44,6 +44,8 @@ export interface QuizSummary {
   language: 'fr';
   difficulty: number;
   difficultyLabel: string;
+  // Niveau choisi par l'auteur (tri « Plus faciles », rangées, fiche) ; absent : déduit de difficulty.
+  level?: DifficultyLevel;
   questionCount: number;
   estimatedMinutes: number;
   description: string;

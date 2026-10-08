@@ -30,6 +30,7 @@ import type { CastGame } from '@/hooks/useCastGame';
 import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
+import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
 
 import { JoinWithoutTv } from './JoinWithoutTv';
@@ -136,6 +137,8 @@ export function HostLobby(props: HostLobbyProps) {
       const singleDrawer = __DEV__ && isSingleDrawer;
       const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio, singleDrawer);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
+      // Lot E : le quiz porte le repère « déjà fait » dans le catalogue de ce téléphone.
+      if (outcome.ok) void markQuizPlayed(session.quizId);
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
     } catch (error) {

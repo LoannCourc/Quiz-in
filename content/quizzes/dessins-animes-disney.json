@@ -5,6 +5,7 @@
   "description": "Simba, Olaf, Woody et les Minions : un quiz pour les petits (et les grands qui connaissent les chansons par cœur).",
   "audience": "kids",
   "poster": "orange",
+  "level": "easy",
   "addedAt": "2026-09-26",
   "featuredRank": 4,
   "reviewStatus": "provisoire, à vérifier",

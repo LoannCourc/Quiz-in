@@ -14,10 +14,17 @@ interface PosterRowProps {
   // Top 10 : gros chiffre (featuredRank) devant chaque affiche.
   ranked?: boolean;
   onOpenQuiz: (quizId: string) => void;
+  // Quiz déjà joués sur ce téléphone (lot E).
+  played: ReadonlySet<string>;
+}
+
+function posterLabel(quiz: QuizEntry, ranked: boolean, isPlayed: boolean): string {
+  const label = strings.catalog.posterLabel(quiz.title, ranked ? quiz.featuredRank : undefined);
+  return isPlayed ? strings.catalog.playedLabel(label) : label;
 }
 
 // Rangée titrée d'affiches qui défile horizontalement, jusqu'aux bords de l'écran.
-export function PosterRow({ title, quizzes, posterWidth, ranked = false, onOpenQuiz }: PosterRowProps) {
+export function PosterRow({ title, quizzes, posterWidth, ranked = false, onOpenQuiz, played }: PosterRowProps) {
   return (
     <View style={styles.section}>
       <Text style={styles.title}>{title}</Text>
@@ -31,8 +38,9 @@ export function PosterRow({ title, quizzes, posterWidth, ranked = false, onOpenQ
               theme={quiz.theme}
               icon={quiz.icon}
               width={posterWidth}
-              accessibilityLabel={strings.catalog.posterLabel(quiz.title, ranked ? quiz.featuredRank : undefined)}
+              accessibilityLabel={posterLabel(quiz, ranked, played.has(quiz.id))}
               onPress={() => onOpenQuiz(quiz.id)}
+              isPlayed={played.has(quiz.id)}
             />
           </View>
         ))}

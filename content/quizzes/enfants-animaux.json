@@ -5,6 +5,7 @@
   "description": "Bébés animaux, cris de la ferme et champions de la nature : un quiz tout doux pour les plus jeunes.",
   "audience": "kids",
   "poster": "green",
+  "level": "easy",
   "addedAt": "2026-10-01",
   "reviewStatus": "provisoire, à vérifier",
   "questions": [

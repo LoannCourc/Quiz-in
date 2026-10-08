@@ -5,6 +5,7 @@
   "description": "Instruments, compositeurs et légendes de la chanson : un quiz musical où l'on n'écoute rien, on réfléchit.",
   "audience": "all",
   "poster": "pink",
+  "level": "medium",
   "addedAt": "2026-09-22",
   "featuredRank": 7,
   "reviewStatus": "provisoire, à vérifier",

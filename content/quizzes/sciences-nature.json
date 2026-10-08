@@ -5,6 +5,7 @@
   "description": "Corps humain, planètes, chimie et grandes découvertes : de quoi briller avec quelques souvenirs de cours.",
   "audience": "all",
   "poster": "violet",
+  "level": "medium",
   "addedAt": "2026-09-29",
   "reviewStatus": "provisoire, à vérifier",
   "questions": [

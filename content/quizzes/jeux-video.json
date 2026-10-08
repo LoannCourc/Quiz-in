@@ -5,6 +5,7 @@
   "description": "Mario, Pikachu, Lara Croft et les Creepers : un quiz pour les joueurs de toutes les générations de consoles.",
   "audience": "all",
   "poster": "cyan",
+  "level": "medium",
   "addedAt": "2026-10-03",
   "featuredRank": 6,
   "reviewStatus": "provisoire, à vérifier",

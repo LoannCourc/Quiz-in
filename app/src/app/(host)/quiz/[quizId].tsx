@@ -17,6 +17,7 @@ import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useSoundPreferences } from '@/hooks/useSoundPreferences';
+import { usePlayedQuizzes } from '@/hooks/usePlayedQuizzes';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
@@ -64,6 +65,7 @@ function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const isBlindTestEnabled = useBlindTestEnabled();
+  const played = usePlayedQuizzes();
   const isDrawEnabled = useDrawEnabled();
   const [sound, setSound] = useSoundPreferences();
   // Jeu coupé à distance (blind test, Dessine-moi) : fiche visible (lien direct), mais pas de partie.
@@ -121,6 +123,7 @@ function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories
       isCreating={isCreating}
       error={createError}
       unavailableReason={unavailableReason}
+      isPlayed={played.has(quizId)}
     />
   );
 }

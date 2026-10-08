@@ -5,6 +5,7 @@
   "description": "Histoire, sciences, arts et vie quotidienne : un quiz pour tous les âges, idéal pour lancer la soirée.",
   "audience": "all",
   "poster": "pink",
+  "level": "easy",
   "addedAt": "2026-10-04",
   "featuredRank": 1,
   "reviewStatus": "provisoire, à vérifier",

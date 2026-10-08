@@ -1,6 +1,6 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
 import { drawCategoriesOf } from '@shared/drawWords';
-import { difficultyLevel, estimateGameMinutes } from '@shared/quizCatalog';
+import { estimateGameMinutes, quizLevel } from '@shared/quizCatalog';
 import type { QuizSummary, SessionSettings, SoundSettings } from '@shared/types';
 import { useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
@@ -33,6 +33,8 @@ interface QuizDetailsProps {
   error?: string | null;
   // Raison pour laquelle le quiz ne peut pas être choisi (blind test désactivé) : bouton bloqué.
   unavailableReason?: string;
+  // Quiz déjà joué sur ce téléphone (lot E) : étiquette « Déjà fait ».
+  isPlayed?: boolean;
   // Démo (/debug/catalog) : feuille des réglages déjà ouverte.
   initialSettingsOpen?: boolean;
 }
@@ -46,10 +48,10 @@ function posterWidthFor(screenHeight: number): number {
 // carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
 export function QuizDetails(props: QuizDetailsProps) {
   const { quiz, settings, onSettingsChange, sound, onSoundChange, onChoose, isCreating = false, error, unavailableReason } = props;
-  const { initialSettingsOpen = false } = props;
+  const { initialSettingsOpen = false, isPlayed = false } = props;
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
-  const level = difficultyLevel(quiz.difficulty);
+  const level = quizLevel(quiz);
   const questionCount = Math.min(quiz.questionCount, QUESTIONS_PER_GAME);
 
   const footer = (
@@ -79,6 +81,7 @@ export function QuizDetails(props: QuizDetailsProps) {
           <Tag label={strings.catalog.difficultyLevels[level]} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />
           <Tag label={strings.catalog.gameTypes[quiz.gameType]} color={AppColors.tags.gameType} />
+          {isPlayed && <Tag label={strings.catalog.played} color={AppColors.correct} />}
         </View>
         {quiz.gameType === 'draw' && (
           <Text style={styles.meta}>{strings.quizSetup.drawCategories(drawCategoriesOf(settings.drawCategories))}</Text>

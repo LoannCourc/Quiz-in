@@ -10,6 +10,28 @@ Document de relecture des 15 quiz de `content/quizzes/` (10 questions chacun, to
 
 Les questions du quiz existant « Culture générale : les bases » n'ont pas été modifiées. Seule remarque : la bonne réponse y est presque toujours en position B.
 
+## Niveau de chaque quiz (tri « Plus faciles »)
+
+Niveau choisi pour chaque quiz (champ `level` de son fichier : `easy`, `medium` ou `hard`), affiché sur sa fiche et utilisé par le tri « Plus faciles » et les rangées « Faciles » et « Pour les experts ». Proposé d'après la moyenne des questions (1 facile, 2 moyen, 3 difficile) et le public visé. Pour le changer : modifier `level` dans le fichier, `npm run build`, puis réimport de `/quizzes`.
+
+| Quiz | Identifiant | Niveau | Moyenne des questions | OK ? |
+|---|---|---|---|---|
+| Cinéma : les films cultes | `cinema-films-cultes` | Moyen | 2,0 | |
+| Cuisine et gastronomie | `cuisine-gastronomie` | Moyen | 1,9 | |
+| Culture générale : les bases | `culture-generale-1` | Facile | 1,2 | |
+| Pour les experts : culture pointue | `culture-pointue` | Difficile | 2,5 | |
+| Dessins animés et Disney | `dessins-animes-disney` | Facile | 1,3 | |
+| Spécial enfants : les animaux | `enfants-animaux` | Facile | 1,3 | |
+| Géographie de la France | `geographie-france` | Facile | 1,5 | |
+| Géographie du monde | `geographie-monde` | Moyen | 2,0 | |
+| Histoire de France | `histoire-de-france` | Difficile | 2,4 | |
+| Jeux vidéo | `jeux-video` | Moyen | 2,0 | |
+| Langue française : expressions et orthographe | `langue-francaise` | Difficile | 2,5 | |
+| Musique : culture et histoire | `musique-culture` | Moyen | 1,9 | |
+| Sciences et nature | `sciences-nature` | Moyen | 1,9 | |
+| Séries cultes | `series-cultes` | Moyen | 2,0 | |
+| Sport : grands moments | `sport-grands-moments` | Moyen | 1,8 | |
+
 ## 1. Culture générale : les bases
 
 `culture-generale-1` · thème « Culture générale » · Facile (moyenne 1,2) · Tout public · affiche rose · ajouté le 2026-10-04 · Top 10 n° 1

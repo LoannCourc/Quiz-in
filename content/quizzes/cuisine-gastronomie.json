@@ -5,6 +5,7 @@
   "description": "Spécialités régionales, sauces, épices et gestes du chef : un quiz qui donne faim, à faire avant le dîner.",
   "audience": "all",
   "poster": "red",
+  "level": "medium",
   "addedAt": "2026-09-02",
   "featuredRank": 9,
   "reviewStatus": "provisoire, à vérifier",

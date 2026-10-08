@@ -5,6 +5,7 @@
   "description": "Des Simpson à Kaamelott en passant par Friends : avez-vous bien regardé toutes les saisons ?",
   "audience": "all",
   "poster": "blue",
+  "level": "medium",
   "addedAt": "2026-09-19",
   "featuredRank": 3,
   "reviewStatus": "provisoire, à vérifier",

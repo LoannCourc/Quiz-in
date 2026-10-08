@@ -20,6 +20,7 @@ import type {
   BluffQuestion,
   ChoiceOptions,
   Difficulty,
+  DifficultyLevel,
   MusicTrack,
   PosterPalette,
   Question,
@@ -128,9 +129,9 @@ export function isFeaturedRank(value: unknown): value is number {
 // Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
 function catalogDisplayFields(value: Record<string, unknown>): Pick<
   QuizSummary,
-  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon'
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level'
 > {
-  const { description, audience, poster, addedAt, featuredRank, icon } = value
+  const { description, audience, poster, addedAt, featuredRank, icon, level } = value
   return {
     description:
       typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
@@ -139,7 +140,12 @@ function catalogDisplayFields(value: Record<string, unknown>): Pick<
     addedAt: isQuizDate(addedAt) ? addedAt : '',
     ...(isFeaturedRank(featuredRank) && { featuredRank }),
     ...(isQuizIconName(icon) && { icon }),
+    ...(isDifficultyLevel(level) && { level }),
   }
+}
+
+function isDifficultyLevel(value: unknown): value is DifficultyLevel {
+  return value === 'easy' || value === 'medium' || value === 'hard'
 }
 
 // Fiche d'un quiz (quizzes/{quizId}), ou null si elle est absente ou mal formée.

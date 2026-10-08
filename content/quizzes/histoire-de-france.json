@@ -5,6 +5,7 @@
   "description": "Rois, batailles, traités et grandes dates : un quiz exigeant pour les passionnés d'histoire.",
   "audience": "experts",
   "poster": "gold",
+  "level": "hard",
   "addedAt": "2026-08-29",
   "reviewStatus": "provisoire, à vérifier",
   "questions": [

@@ -1,4 +1,4 @@
-import { catalogRows, catalogThemes, filterByGameType, filterByTheme, searchByTitle } from '@shared/catalogRows';
+import { catalogRows, catalogThemes, filterByGameType, filterByTheme, searchByTitle, sortCatalog, type CatalogSortId } from '@shared/catalogRows';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -13,6 +13,7 @@ import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
 import { QuizPoster } from './QuizPoster';
+import { SortChips } from './SortChips';
 import { ThemeChips } from './ThemeChips';
 
 const POSTERS_PER_SCREEN = 3;
@@ -24,23 +25,36 @@ interface CatalogViewProps {
   onOpenQuiz: (quizId: string) => void;
   // Retour à l'accueil (choix du jeu).
   onBack: () => void;
+  // Quiz déjà joués sur ce téléphone (lot E) : repère sur l'affiche, tri « Pas encore faits ».
+  played: ReadonlySet<string>;
 }
 
 // Largeur d'une affiche : trois par largeur de colonne, dans les bornes du thème.
 function posterWidthFor(columnWidth: number): number {
-  const fitted = Math.floor((columnWidth - (POSTERS_PER_SCREEN - 1) * Spacing.three) / POSTERS_PER_SCREEN);
-  return Math.min(AppSizes.posterMaxWidth, Math.max(AppSizes.posterMinWidth, fitted));
+  return Math.min(AppSizes.posterMaxWidth, Math.max(AppSizes.posterMinWidth, threeAcross(columnWidth)));
+}
+
+// Grille (recherche, tri) : toujours trois colonnes pleines, même sur un écran de 320 points.
+function gridPosterWidthFor(columnWidth: number): number {
+  return Math.min(AppSizes.posterMaxWidth, threeAcross(columnWidth));
+}
+
+function threeAcross(columnWidth: number): number {
+  return Math.floor((columnWidth - (POSTERS_PER_SCREEN - 1) * Spacing.three) / POSTERS_PER_SCREEN);
 }
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
 // démo. En-tête : retour à l'accueil, nom du jeu, recherche ; puis le filtre des thèmes et les rangées.
-export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack }: CatalogViewProps) {
+export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played }: CatalogViewProps) {
   const [theme, setTheme] = useState<string | null>(null);
+  // null : les rangées ; sinon une grille dans l'ordre du tri.
+  const [sort, setSort] = useState<CatalogSortId | null>(null);
   // null : recherche fermée.
   const [query, setQuery] = useState<string | null>(null);
   // Largeur réelle de la colonne, mesurée à l'affichage (0 tant qu'elle n'est pas connue).
   const [columnWidth, setColumnWidth] = useState(0);
   const posterWidth = posterWidthFor(columnWidth);
+  const gridPosterWidth = gridPosterWidthFor(columnWidth);
   const entries = useMemo(() => filterByGameType(allEntries, gameType), [allEntries, gameType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
   const isSearching = query !== null && query.trim() !== '';
@@ -80,17 +94,28 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack 
       </View>
 
       {entries.length > 0 && <ThemeChips themes={themes} selected={theme} onSelect={setTheme} />}
+      {entries.length > 0 && !isSearching && <SortChips selected={sort} onSelect={setSort} />}
 
       {entries.length === 0 ? (
         <Text style={textStyles.body}>{strings.catalog.emptyCatalog}</Text>
       ) : isSearching ? (
-        <SearchResults
+        <PosterGrid
           quizzes={searchByTitle(filterByTheme(entries, theme), query)}
-          posterWidth={posterWidth}
+          emptyText={strings.catalog.noSearchResult}
+          posterWidth={gridPosterWidth}
           onOpenQuiz={onOpenQuiz}
+          played={played}
+        />
+      ) : sort !== null ? (
+        <PosterGrid
+          quizzes={sortCatalog(filterByTheme(entries, theme), sort, played)}
+          emptyText={sort === 'notPlayed' ? strings.catalog.allPlayed : strings.catalog.noMatch}
+          posterWidth={gridPosterWidth}
+          onOpenQuiz={onOpenQuiz}
+          played={played}
         />
       ) : (
-        <Rows entries={entries} theme={theme} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} />
+        <Rows entries={entries} theme={theme} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
       )}
     </View>
   );
@@ -101,9 +126,10 @@ interface RowsProps {
   theme: string | null;
   posterWidth: number;
   onOpenQuiz: (quizId: string) => void;
+  played: ReadonlySet<string>;
 }
 
-function Rows({ entries, theme, posterWidth, onOpenQuiz }: RowsProps) {
+function Rows({ entries, theme, posterWidth, onOpenQuiz, played }: RowsProps) {
   const rows = catalogRows(entries, theme);
   if (rows.length === 0) return <Text style={textStyles.body}>{strings.catalog.noMatch}</Text>;
   return (
@@ -116,21 +142,24 @@ function Rows({ entries, theme, posterWidth, onOpenQuiz }: RowsProps) {
           posterWidth={posterWidth}
           ranked={row.id === 'featured'}
           onOpenQuiz={onOpenQuiz}
+          played={played}
         />
       ))}
     </>
   );
 }
 
-interface SearchResultsProps {
+interface PosterGridProps {
   quizzes: QuizEntry[];
+  emptyText: string;
   posterWidth: number;
   onOpenQuiz: (quizId: string) => void;
+  played: ReadonlySet<string>;
 }
 
-// Résultats en grille de trois colonnes.
-function SearchResults({ quizzes, posterWidth, onOpenQuiz }: SearchResultsProps) {
-  if (quizzes.length === 0) return <Text style={textStyles.body}>{strings.catalog.noSearchResult}</Text>;
+// Résultats d'une recherche ou d'un tri, en grille de trois colonnes.
+function PosterGrid({ quizzes, emptyText, posterWidth, onOpenQuiz, played }: PosterGridProps) {
+  if (quizzes.length === 0) return <Text style={textStyles.body}>{emptyText}</Text>;
   return (
     <View style={styles.grid}>
       {quizzes.map((quiz) => (
@@ -141,7 +170,9 @@ function SearchResults({ quizzes, posterWidth, onOpenQuiz }: SearchResultsProps)
           theme={quiz.theme}
           icon={quiz.icon}
           width={posterWidth}
+          accessibilityLabel={played.has(quiz.id) ? strings.catalog.playedLabel(quiz.title) : quiz.title}
           onPress={() => onOpenQuiz(quiz.id)}
+          isPlayed={played.has(quiz.id)}
         />
       ))}
     </View>

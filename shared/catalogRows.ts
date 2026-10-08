@@ -1,8 +1,8 @@
 import { normalizeAnswer } from './answerMatching'
 import { FEATURED_QUIZ_COUNT, NEW_QUIZ_COUNT } from './constants'
-import { difficultyLevel } from './quizCatalog'
+import { quizLevel } from './quizCatalog'
 import type { QuizEntry } from './quizValidation'
-import type { QuizGameType } from './types'
+import type { DifficultyLevel, QuizGameType } from './types'
 
 // Rangées et filtres du catalogue de l'hôte (spec 4.1). Logique pure : l'écran ne fait qu'afficher.
 
@@ -55,13 +55,13 @@ export function newestQuizzes(entries: readonly QuizEntry[]): QuizEntry[] {
 }
 
 export function easyQuizzes(entries: readonly QuizEntry[]): QuizEntry[] {
-  return entries.filter((entry) => difficultyLevel(entry.difficulty) === 'easy').sort(byTitle)
+  return entries.filter((entry) => quizLevel(entry) === 'easy').sort(byTitle)
 }
 
 // Difficiles, ou destinés aux experts.
 export function expertQuizzes(entries: readonly QuizEntry[]): QuizEntry[] {
   return entries
-    .filter((entry) => difficultyLevel(entry.difficulty) === 'hard' || entry.audience === 'experts')
+    .filter((entry) => quizLevel(entry) === 'hard' || entry.audience === 'experts')
     .sort(byTitle)
 }
 
@@ -75,4 +75,37 @@ export function catalogRows(entries: readonly QuizEntry[], theme: string | null)
     { id: 'experts', quizzes: expertQuizzes(visible) },
   ]
   return rows.filter((row) => row.quizzes.length > 0)
+}
+
+// Tris du catalogue (lot E), proposés au-dessus des rangées ; null : les rangées.
+export type CatalogSortId = 'new' | 'notPlayed' | 'easiest' | 'alphabetical'
+
+export const CATALOG_SORTS: readonly CatalogSortId[] = ['new', 'notPlayed', 'easiest', 'alphabetical']
+
+const LEVEL_ORDER: Record<DifficultyLevel, number> = { easy: 0, medium: 1, hard: 2 }
+
+// Plus récents d'abord ; une fiche sans date en dernier.
+function byNewest(a: QuizEntry, b: QuizEntry): number {
+  if (a.addedAt === '' || b.addedAt === '') return (a.addedAt === '' ? 1 : 0) - (b.addedAt === '' ? 1 : 0) || byTitle(a, b)
+  return b.addedAt.localeCompare(a.addedAt) || byTitle(a, b)
+}
+
+// Niveau du quiz, puis moyenne de ses questions, puis titre.
+function byEasiest(a: QuizEntry, b: QuizEntry): number {
+  return LEVEL_ORDER[quizLevel(a)] - LEVEL_ORDER[quizLevel(b)] || a.difficulty - b.difficulty || byTitle(a, b)
+}
+
+// Tous les quiz visibles dans l'ordre du tri ; « Pas encore faits » retire ceux déjà joués sur ce
+// téléphone (played) et garde les plus récents d'abord.
+export function sortCatalog(entries: readonly QuizEntry[], sort: CatalogSortId, played: ReadonlySet<string>): QuizEntry[] {
+  switch (sort) {
+    case 'new':
+      return [...entries].sort(byNewest)
+    case 'notPlayed':
+      return entries.filter((entry) => !played.has(entry.id)).sort(byNewest)
+    case 'easiest':
+      return [...entries].sort(byEasiest)
+    case 'alphabetical':
+      return [...entries].sort(byTitle)
+  }
 }

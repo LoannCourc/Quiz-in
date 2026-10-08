@@ -9,6 +9,7 @@ import {
   filterByGameType,
   newestQuizzes,
   searchByTitle,
+  sortCatalog,
 } from '../../shared/catalogRows'
 import type { QuizEntry } from '../../shared/quizValidation'
 
@@ -79,5 +80,31 @@ describe('catalogue', () => {
     expect(catalogRows(entries, 'Sport').map((row) => row.id)).toEqual(['featured', 'easy'])
     expect(catalogRows(entries, null).map((row) => row.id)).toEqual(['featured', 'new', 'easy', 'experts'])
     expect(catalogRows(entries, 'Géo')).toEqual([])
+  })
+})
+
+describe('tris du catalogue (lot E)', () => {
+  const entries = [
+    quiz('Zèbres', { addedAt: '2026-08-01', level: 'easy', difficulty: 1.5 }),
+    quiz('Atlas', { addedAt: '2026-09-15', difficulty: 2.6 }),
+    quiz('Micro', { addedAt: '', level: 'medium', difficulty: 1.2 }),
+    quiz('Bébés', { addedAt: '2026-09-01', level: 'easy', difficulty: 1.1 }),
+  ]
+
+  test('Nouveautés : les plus récents d’abord, sans date en dernier', () => {
+    expect(ids(sortCatalog(entries, 'new', new Set()))).toEqual(['Atlas', 'Bébés', 'Zèbres', 'Micro'])
+  })
+
+  test('Pas encore faits : sans les quiz joués sur ce téléphone', () => {
+    expect(ids(sortCatalog(entries, 'notPlayed', new Set(['Atlas', 'Micro'])))).toEqual(['Bébés', 'Zèbres'])
+  })
+
+  test('Plus faciles : niveau choisi (sinon déduit de la moyenne), puis moyenne, puis titre', () => {
+    // Atlas : pas de niveau choisi, moyenne 2,6 → difficile.
+    expect(ids(sortCatalog(entries, 'easiest', new Set()))).toEqual(['Bébés', 'Zèbres', 'Micro', 'Atlas'])
+  })
+
+  test('A à Z : ordre alphabétique français (accents compris)', () => {
+    expect(ids(sortCatalog(entries, 'alphabetical', new Set()))).toEqual(['Atlas', 'Bébés', 'Micro', 'Zèbres'])
   })
 })

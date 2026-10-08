@@ -53,6 +53,8 @@ interface QuizFileBase {
   poster: PosterPalette
   addedAt: string
   featuredRank?: number
+  // Niveau du quiz choisi par l'auteur (tri « Plus faciles ») ; absent : déduit de ses questions.
+  level?: DifficultyLevel
   // Icône propre au quiz (identifiant de shared/themeIcons.ts) ; absente : celle du thème.
   icon?: string
   reviewStatus?: string
@@ -118,6 +120,7 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (!QUIZ_AUDIENCES.includes(quiz.audience)) errors.push(`audience : ${QUIZ_AUDIENCES.join(', ')}`)
   if (!POSTER_PALETTES.includes(quiz.poster)) errors.push(`poster : ${POSTER_PALETTES.join(', ')}`)
   if (!isQuizDate(quiz.addedAt)) errors.push('addedAt : date AAAA-MM-JJ')
+  if (quiz.level !== undefined && !['easy', 'medium', 'hard'].includes(quiz.level)) errors.push('level : easy, medium ou hard')
   if (quiz.featuredRank !== undefined && !isFeaturedRank(quiz.featuredRank)) errors.push('featuredRank : entier de 1 à 10')
   if (quiz.icon !== undefined && !isQuizIconName(quiz.icon)) errors.push(`icon « ${quiz.icon} » inconnue (shared/themeIcons.ts)`)
   if (quiz.questions.length < QUESTIONS_PER_GAME) errors.push(`au moins ${QUESTIONS_PER_GAME} questions`)
@@ -260,13 +263,15 @@ function toQuestions(quiz: QuizFile): (Question | BluffQuestion)[] {
 
 function toSummary(quiz: QuizFile): QuizSummary {
   const difficulty = averageDifficulty(quiz.questions.map((question) => question.difficulty))
+  const level = quiz.level ?? difficultyLevel(difficulty)
   return {
     title: quiz.title,
     theme: quiz.theme,
     gameType: quiz.gameType ?? 'quiz',
     language: 'fr',
     difficulty,
-    difficultyLabel: DIFFICULTY_LABELS[difficultyLevel(difficulty)],
+    difficultyLabel: DIFFICULTY_LABELS[level],
+    level,
     questionCount: quiz.questions.length,
     estimatedMinutes: estimateQuizMinutes(
       Math.min(quiz.questions.length, QUESTIONS_PER_GAME),

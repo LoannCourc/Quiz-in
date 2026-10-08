@@ -4,7 +4,9 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { gradientStyle } from '@/components/ui/gradient';
 import { ThemeIcon } from '@/components/ui/ThemeIcon';
-import { AppColors, AppFonts, AppPosterGradients, AppShadows, AppSizes } from '@/constants/appTheme';
+import { MarkIcon } from '@/components/ui/MarkIcon';
+import { AppColors, AppFonts, AppPosterGradients, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 interface QuizPosterProps {
@@ -19,6 +21,8 @@ interface QuizPosterProps {
   accessibilityLabel?: string;
   // Sans onPress, l'affiche n'est pas un bouton (grande affiche de la fiche).
   onPress?: () => void;
+  // Quiz déjà joué sur ce téléphone (lot E) : pastille « Déjà fait » en haut à droite.
+  isPlayed?: boolean;
 }
 
 // Largeur moyenne d'une capitale en Nunito Black, en fraction de la taille de police (avec marge).
@@ -36,16 +40,25 @@ function titleSizeFor(title: string, width: number): number {
 
 // Côté maximal de l'icône de thème sur une affiche.
 const ICON_MAX_SIZE = 64;
+const PLAYED_MARK_SIZE = 10;
 
 // Affiche portrait d'un quiz : dégradé propre au quiz (champ poster), icône du quiz (ou grand « ? »)
 // et titre en bas.
-export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress }: QuizPosterProps) {
+export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress, isPlayed = false }: QuizPosterProps) {
   const icon = quizIconOf({ theme, icon: ownIcon });
   const height = Math.round(width * AppSizes.posterRatio);
   const markSize = Math.round(width * 0.5);
   const titleSize = titleSizeFor(title, width);
   const content = (
     <>
+      {isPlayed && (
+        <View style={styles.playedBadge}>
+          <MarkIcon kind="check" size={PLAYED_MARK_SIZE} color={AppColors.onCorrect} />
+          <Text style={styles.playedText} numberOfLines={1}>
+            {strings.catalog.played}
+          </Text>
+        </View>
+      )}
       {icon === 'question' ? (
         <Text style={[styles.mark, { fontSize: markSize, lineHeight: Math.round(markSize * 1.3) }]}>?</Text>
       ) : (
@@ -85,6 +98,26 @@ const styles = StyleSheet.create({
     borderRadius: AppSizes.posterRadius,
     backgroundColor: AppColors.surface,
     boxShadow: AppShadows.hard,
+  },
+  playedBadge: {
+    position: 'absolute',
+    top: Spacing.one,
+    right: Spacing.one,
+    zIndex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    paddingHorizontal: Spacing.one + 2,
+    paddingVertical: 2,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.correct,
+  },
+  playedText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.onCorrect,
+    fontFamily: AppFonts.black,
+    fontSize: 9,
+    textTransform: 'uppercase',
   },
   pressed: {
     transform: [{ translateY: 4 }],

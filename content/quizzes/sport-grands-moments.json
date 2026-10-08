@@ -5,6 +5,7 @@
   "description": "Jeux olympiques, Coupe du monde, Tour de France et légendes du sport : les exploits qui ont marqué l'histoire.",
   "audience": "all",
   "poster": "orange",
+  "level": "medium",
   "addedAt": "2026-09-15",
   "featuredRank": 8,
   "reviewStatus": "provisoire, à vérifier",

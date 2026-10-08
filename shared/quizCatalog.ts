@@ -25,6 +25,11 @@ export function averageDifficulty(difficulties: readonly Difficulty[]): number {
 }
 
 // Spec 8 : moins de 1,67 → Facile, jusqu'à 2,33 → Moyen, au-delà → Difficile.
+// Niveau d'un quiz : celui choisi par l'auteur, sinon celui de la moyenne de ses questions.
+export function quizLevel(summary: { level?: DifficultyLevel; difficulty: number }): DifficultyLevel {
+  return summary.level ?? difficultyLevel(summary.difficulty)
+}
+
 export function difficultyLevel(average: number): DifficultyLevel {
   if (average < DIFFICULTY_EASY_MAX) return 'easy'
   if (average <= DIFFICULTY_MEDIUM_MAX) return 'medium'

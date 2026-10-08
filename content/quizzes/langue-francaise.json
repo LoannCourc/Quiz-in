@@ -5,6 +5,7 @@
   "description": "Expressions imagées, mots rares, pluriels et pièges d'orthographe : un quiz pour les amoureux de la langue.",
   "audience": "experts",
   "poster": "gold",
+  "level": "hard",
   "addedAt": "2026-10-02",
   "reviewStatus": "provisoire, à vérifier",
   "questions": [
