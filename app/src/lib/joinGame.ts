@@ -1,3 +1,4 @@
+import { AVATARS } from '@shared/avatars';
 import { MAX_PLAYERS } from '@shared/constants';
 import { isSamePlayerName } from '@shared/playerName';
 import type { GameStatus, Player, PlayerId, TeamId } from '@shared/types';
@@ -18,6 +19,12 @@ function otherPlayers(players: LobbyPlayers, uid: PlayerId): LobbyPlayer[] {
   return Object.entries(players)
     .filter(([id]) => id !== uid)
     .map(([, player]) => player);
+}
+
+// Premier avatar encore libre : chacun a ainsi un avatar différent sans avoir à chercher.
+export function firstFreeAvatar(players: LobbyPlayers): string {
+  const used = new Set(Object.values(players).map((player) => player.avatar));
+  return AVATARS.find((avatar) => !used.has(avatar)) ?? AVATARS[0];
 }
 
 // Refus connus avant même la saisie du pseudo.

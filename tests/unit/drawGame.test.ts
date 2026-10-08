@@ -1,7 +1,8 @@
 import { describe, expect, test } from 'vitest'
 
 import { isKnownAnswerMode } from '../../shared/constants'
-import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawOrderFor, wordLetterCount } from '../../shared/drawGame'
+import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawOrderFor, drawRoundsOf, drawRoundsUpdate, wordLetterCount } from '../../shared/drawGame'
+import { hostLeaveUpdate } from '../../shared/players'
 import { isDrawGuesser } from '../../shared/drawGuess'
 import { drawCategoryId, DRAW_WORDS, drawWordsIn } from '../../shared/drawWords'
 import { hasRankingStep, nextPhase } from '../../shared/gameFlow'
@@ -213,5 +214,33 @@ describe('Dessine-moi : catégories choisies dans le catalogue', () => {
     expect(drawWordsIn({ 0: 'animal' } as unknown as string[])).toBe(DRAW_WORDS)
     expect(drawCategoryId('Métier')).toBe('metier')
     expect(drawCategoryId('Vêtement')).toBe('vetement')
+  })
+})
+
+describe('Dessine-moi : nombre de manches et un seul dessinateur (réglages R4)', () => {
+  test('4, 6 ou 8 manches ; autre valeur : 8 ; réglage seulement dans le salon', () => {
+    expect(drawRoundsOf({ drawRounds: 6 })).toBe(6)
+    expect(drawRoundsOf({ drawRounds: 5 })).toBe(DRAW_ROUNDS_DEFAULT)
+    expect(drawRoundsOf({})).toBe(DRAW_ROUNDS_DEFAULT)
+    expect(drawRoundsUpdate({ status: 'lobby' }, 4)).toEqual({ 'settings/drawRounds': 4 })
+    expect(drawRoundsUpdate({ status: 'lobby' }, 5)).toBeNull()
+    expect(drawRoundsUpdate({ status: 'question' }, 4)).toBeNull()
+    expect(drawGameQuestions('K7PX', 4)).toHaveLength(4)
+  })
+
+  test('option de développement : un seul dessinateur pour toutes les manches', () => {
+    const lobby = makeSession({ settings: DRAW, players: players(5), quizId: 'dessine-moi' })
+    const launch = launchUpdate(lobby, questions, NOW, undefined, undefined, () => 0.3, true)
+    const order = launch.ok ? (launch.update.drawOrder as string[]) : []
+    expect(order).toHaveLength(DRAW_ROUNDS_DEFAULT)
+    expect(new Set(order).size).toBe(1)
+    expect(order[0]).not.toBe(HOST)
+  })
+
+  test('« Quitter » de l’hôte qui jouait : son entrée retirée, dans le salon seulement', () => {
+    const lobby = makeSession({ players: players(3) })
+    expect(hostLeaveUpdate(lobby)).toEqual({ [`players/${HOST}`]: null })
+    expect(hostLeaveUpdate({ ...lobby, status: 'question' })).toBeNull()
+    expect(hostLeaveUpdate({ ...lobby, players: { [PLAYER]: player('Léa') } })).toBeNull()
   })
 })

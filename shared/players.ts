@@ -60,3 +60,10 @@ export function answeredProgress(
   const connected = connectedPlayerIds(players)
   return { answered: connected.filter((id) => answeredBy?.[id] === true).length, total: connected.length }
 }
+
+// « Quitter » de l'hôte qui jouait (feuille Réglages du salon) : son entrée de joueur est retirée, rien
+// d'autre (équipes, tirage et validation restent ; le salon dit s'il manque un joueur dans une équipe).
+export function hostLeaveUpdate(session: { status: GameStatus; hostUid: PlayerId; players: Record<PlayerId, unknown> }): Record<string, null> | null {
+  if (session.status !== 'lobby' || session.players[session.hostUid] === undefined) return null
+  return { [`players/${session.hostUid}`]: null }
+}

@@ -1,4 +1,4 @@
-import { drawGameQuestions } from '@shared/drawGame';
+import { DRAW_ROUNDS_DEFAULT, drawGameQuestions } from '@shared/drawGame';
 import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
 import { selectGameQuestions } from '@shared/hostEngine';
 import type { AnswerMode, GameQuestion } from '@shared/types';
@@ -21,6 +21,7 @@ export function useGameQuestions(
   quizId: string,
   answerMode: AnswerMode,
   drawCategories: readonly string[] = [],
+  drawRounds = DRAW_ROUNDS_DEFAULT,
 ): GameQuestionsState {
   const isBluff = answerMode === 'bluff';
   const isDraw = answerMode === 'draw';
@@ -28,8 +29,8 @@ export function useGameQuestions(
   // Clé texte : un nouveau tableau de même contenu (session relue) ne retire pas les mots.
   const categoriesKey = drawCategoriesOf(drawCategories).map(drawCategoryId).join(',');
   const drawQuestions = useMemo(
-    () => (isDraw ? drawGameQuestions(code, undefined, categoriesKey === '' ? [] : categoriesKey.split(',')) : null),
-    [code, isDraw, categoriesKey],
+    () => (isDraw ? drawGameQuestions(code, drawRounds, categoriesKey === '' ? [] : categoriesKey.split(',')) : null),
+    [code, isDraw, categoriesKey, drawRounds],
   );
 
   useEffect(() => {

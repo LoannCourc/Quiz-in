@@ -1,4 +1,3 @@
-import { AVATARS } from '@shared/avatars';
 import { PLAYER_NAME_MAX_LENGTH } from '@shared/constants';
 import { cleanPlayerName, isValidPlayerName } from '@shared/playerName';
 import type { GameStatus, PlayerId } from '@shared/types';
@@ -8,7 +7,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { strings } from '@/constants/strings';
 import { AppColors } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
-import { getJoinRefusal, registerPlayer, rememberedProfile, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
+import { firstFreeAvatar, getJoinRefusal, registerPlayer, rememberedProfile, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
 
 import { AvatarPicker } from './AvatarPicker';
 import { BigButton } from '@/components/ui/BigButton';
@@ -21,12 +20,6 @@ interface JoinFormProps {
   players: LobbyPlayers;
   // Présent : modification du profil d'un joueur déjà inscrit (formulaire prérempli).
   edit?: { onDone: () => void };
-}
-
-// Premier avatar encore libre : chacun a ainsi un avatar différent sans avoir à chercher.
-function firstFreeAvatar(players: LobbyPlayers): string {
-  const used = new Set(Object.values(players).map((player) => player.avatar));
-  return AVATARS.find((avatar) => !used.has(avatar)) ?? AVATARS[0];
 }
 
 export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {

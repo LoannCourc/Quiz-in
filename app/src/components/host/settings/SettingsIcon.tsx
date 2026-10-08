@@ -14,7 +14,9 @@ export type SettingsIconName =
   | 'podium'
   | 'chevron'
   | 'music'
-  | 'speaker';
+  | 'speaker'
+  // Une personne (« Je joue aussi »).
+  | 'person';
 
 const SIZE = 24;
 const STROKE = 2.5;
@@ -81,6 +83,13 @@ function renderIcon(name: SettingsIconName, color: string) {
           <View style={[styles.shoulders, { left: 0 }, line]} />
           <View style={[styles.head, { left: 14 }, line]} />
           <View style={[styles.shoulders, { left: 11 }, line]} />
+        </>
+      );
+    case 'person':
+      return (
+        <>
+          <View style={[styles.personHead, line]} />
+          <View style={[styles.personShoulders, line]} />
         </>
       );
     case 'next':
@@ -224,6 +233,26 @@ const styles = StyleSheet.create({
     height: 7,
     borderRadius: 3.5,
     borderWidth: 2,
+  },
+  personHead: {
+    position: 'absolute',
+    top: 2,
+    left: 7,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    borderWidth: 2.5,
+  },
+  personShoulders: {
+    position: 'absolute',
+    top: 14,
+    left: 3,
+    width: 18,
+    height: 9,
+    borderTopLeftRadius: 9,
+    borderTopRightRadius: 9,
+    borderWidth: 2.5,
+    borderBottomWidth: 0,
   },
   shoulders: {
     position: 'absolute',

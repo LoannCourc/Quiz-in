@@ -52,6 +52,8 @@ export const AppColors = {
   surface: 'rgba(255, 255, 255, 0.12)',
   // Salon (maquette N2) : panneau plein de la ligne « Réglages ».
   lobbyPanel: Palette.violetPanel,
+  // Poignée des feuilles du bas.
+  sheetHandle: Palette.track,
   card: Palette.white,
   text: Palette.white,
   textMuted: Palette.lavender,

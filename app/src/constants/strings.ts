@@ -273,15 +273,34 @@ export const strings = {
     settings: {
       title: 'Réglages',
       summary: 'équipes, je joue aussi',
+      playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''}`,
+      // Dessine-moi.
+      roundsTitle: 'Nombre de manches',
+      roundsHint: 'À tour de rôle.',
+      roundsChoice: (rounds: number) => `${rounds} manches`,
       teamsTitle: 'Jouer en équipes',
-      teamsHint: 'Groupe : le score d’une équipe est la moyenne de ses joueurs.',
-      teamsMinPlayers: `dès ${MIN_TEAM_GAME_PLAYERS} joueurs`,
-      editProfile: 'Modifier mon pseudo et mon avatar',
+      teamsHint: 'Le score d’une équipe est la moyenne de ses joueurs.',
+      teamsMinPlayers: `Disponible dès ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
+      // « Je joue aussi » (maquette R4, états A, B, C).
+      playTitle: 'Je joue aussi',
+      playHint: 'Tu rejoins la partie avec ton téléphone.',
+      playHintOpen: 'Choisis ton prénom et ton avatar.',
+      namePlaceholder: 'Ton prénom',
+      scrollHint: 'Fais défiler pour voir tous les avatars.',
+      joinButton: 'Rejoindre la partie',
+      joining: 'Connexion…',
+      playing: (name: string) => `Tu joues : ${name}`,
+      playingHint: 'Tu es dans la partie.',
+      leave: 'Quitter',
+      // Bloc réservé au développement (absent de l'app publiée).
+      devTitle: 'Développement',
+      devHint: 'Partie courte, un seul dessinateur. Absent de l’app publiée.',
+      singleDrawerTitle: 'Un seul dessinateur : toutes les manches',
+      singleDrawerHint: 'Développement uniquement : un même joueur dessine chaque manche.',
     },
     copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
-    hostJoinTitle: 'Toi aussi, tu joues !',
     // TV connectée : le bloc code, QR et lien se réduit à une barre (maquette L1).
     tvBar: {
       connected: 'TV connectée',
@@ -289,10 +308,6 @@ export const strings = {
       details: 'Détails',
       hide: 'Masquer',
       intro: 'Les joueurs scannent le QR code ou ouvrent le lien.',
-    },
-    // Hôte pas encore inscrit : « Je joue aussi » (feuille « Réglages » du salon).
-    hostCard: {
-      button: 'Je joue aussi',
     },
     launchButton: 'Lancer la partie',
     launching: 'Lancement…',

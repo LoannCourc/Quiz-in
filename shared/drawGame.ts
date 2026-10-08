@@ -1,10 +1,23 @@
 import { drawWordsIn } from './drawWords'
-import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
+import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary, SessionSettings } from './types'
 
 // Dessine-moi (spec 19, plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs.
 
-// Nombre de manches (décision D3 : 4, 6 ou 8 au choix, 8 par défaut ; le réglage arrive au lot 7).
+// Nombre de manches (décision D3 : 4, 6 ou 8 au choix dans les réglages du salon, 8 par défaut).
 export const DRAW_ROUNDS_DEFAULT = 8
+export const DRAW_ROUND_CHOICES = [4, 6, 8] as const
+
+// Nombre de manches de la partie : celui des réglages s'il est valide, sinon 8.
+export function drawRoundsOf(settings: Pick<SessionSettings, 'drawRounds'>): number {
+  const value = settings.drawRounds
+  return DRAW_ROUND_CHOICES.some((choice) => choice === value) ? (value as number) : DRAW_ROUNDS_DEFAULT
+}
+
+// Réglage du nombre de manches depuis le salon (null : hors du salon ou valeur inconnue).
+export function drawRoundsUpdate(session: Pick<PublicSession, 'status'>, rounds: number): Record<string, number> | null {
+  if (session.status !== 'lobby' || !DRAW_ROUND_CHOICES.some((choice) => choice === rounds)) return null
+  return { 'settings/drawRounds': rounds }
+}
 // Identifiant du quiz « Dessine-moi » (pas de quiz dans la base : les mots sont dans le code).
 export const DRAW_QUIZ_ID = 'dessine-moi'
 

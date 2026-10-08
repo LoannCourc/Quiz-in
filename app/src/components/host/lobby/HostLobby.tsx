@@ -1,7 +1,7 @@
 import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
 import type { SessionUpdate } from '@shared/hostEngine';
-import { drawEligiblePlayers } from '@shared/drawGame';
-import { canLaunchGame, connectedPlayerIds } from '@shared/players';
+import { drawEligiblePlayers, drawRoundsOf, drawRoundsUpdate } from '@shared/drawGame';
+import { canLaunchGame, connectedPlayerIds, hostLeaveUpdate } from '@shared/players';
 import {
   assignTeamUpdate,
   lateJoinerUpdate,
@@ -20,7 +20,6 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
-import { JoinForm } from '@/components/player/JoinForm';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -76,10 +75,6 @@ export function HostLobby(props: HostLobbyProps) {
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
-  const isRegistered = players[uid] !== undefined;
-  const [isEditing, setIsEditing] = useState(false);
-  // « Je joue aussi » : l'hôte ouvre le formulaire des joueurs.
-  const [isHostJoining, setIsHostJoining] = useState(false);
   // Replié à chaque ouverture du salon : état local, jamais mémorisé. QR code et lien : « QR code » ou
   // « Je n'ai pas de TV ».
   const [isQrOpen, setIsQrOpen] = useState(initialNoTvOpen);
@@ -88,6 +83,8 @@ export function HostLobby(props: HostLobbyProps) {
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
   const [isShortGame, setIsShortGame] = useState(false);
+  // Dessine-moi, développement seulement : un seul dessinateur pour toutes les manches.
+  const [isSingleDrawer, setIsSingleDrawer] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
   const [launchError, setLaunchError] = useState<string | null>(null);
 
@@ -136,7 +133,8 @@ export function HostLobby(props: HostLobbyProps) {
     try {
       const limit = isShortGame ? DEV_SHORT_GAME_QUESTIONS : undefined;
       const launchAudio = { enabled: audio.isEnabled, urls: audio.urls };
-      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio);
+      const singleDrawer = __DEV__ && isSingleDrawer;
+      const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio, singleDrawer);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
@@ -188,13 +186,11 @@ export function HostLobby(props: HostLobbyProps) {
     );
   }
 
-  const showJoinForm = isEditing || (!isRegistered && isHostJoining);
-
   return (
     <Screen footer={footer}>
       <View style={styles.top}>
         <View style={styles.headerRow}>
-          <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} />}</View>
+          <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} drawRounds={drawRoundsOf(session.settings)} />}</View>
           <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
         </View>
         {cast.isTvConnected ? (
@@ -218,30 +214,21 @@ export function HostLobby(props: HostLobbyProps) {
           <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
           <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
         </View>
-        {showJoinForm && (
-          <View style={styles.joinForm}>
-            <Text style={textStyles.label}>{strings.hostLobby.hostJoinTitle}</Text>
-            <JoinForm
-              code={code}
-              uid={uid}
-              status={session.status}
-              players={players}
-              edit={isRegistered ? { onDone: () => setIsEditing(false) } : undefined}
-            />
-          </View>
-        )}
         <LobbyPlayerGrid players={players} hostUid={uid} />
       </View>
       <LobbySettingsSheet
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
+        code={code}
         session={session}
+        onRounds={(rounds) => lobbyAction((current) => drawRoundsUpdate(current, rounds))}
         onTeamsEnabled={(enabled) => lobbyAction((current) => teamsEnabledUpdate(current, enabled))}
         onOpenTeams={() => setIsTeamsOpen(true)}
-        isHostRegistered={isRegistered}
-        onHostProfile={() => (isRegistered ? setIsEditing(true) : setIsHostJoining(true))}
+        onHostLeave={() => lobbyAction((current) => hostLeaveUpdate(current))}
         isShortGame={isShortGame}
         onShortGame={setIsShortGame}
+        isSingleDrawer={isSingleDrawer}
+        onSingleDrawer={setIsSingleDrawer}
       />
     </Screen>
   );

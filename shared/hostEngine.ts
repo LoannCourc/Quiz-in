@@ -514,6 +514,12 @@ export interface LaunchAudio {
 
 export type LaunchResult = { ok: true; update: SessionUpdate } | { ok: false; reason: LaunchRefusal }
 
+// Ordre des dessinateurs au lancement : rotation (drawOrderFor), ou un seul dessinateur répété.
+function drawOrderOf(session: Session, rounds: number, random: () => number, singleDrawer: boolean): PlayerId[] {
+  const order = drawOrderFor(session.players, session.hostUid, rounds, random, session.settings.teams)
+  return singleDrawer && order.length > 0 ? order.map(() => order[0]) : order
+}
+
 // Lancement (LOBBY → STARTING) : questionCount fixé, scores remis à zéro, réponses effacées.
 // Refusé, avec la raison, si la partie ne peut pas commencer. Blind test : refusé si l'interrupteur
 // est coupé ou s'il manque l'adresse d'un extrait.
@@ -524,6 +530,9 @@ export function launchUpdate(
   limit = QUESTIONS_PER_GAME,
   audio: LaunchAudio = { enabled: false, urls: {} },
   random: () => number = Math.random,
+  // Dessine-moi, développement seulement : un seul dessinateur pour toutes les manches (tests à deux
+  // appareils).
+  singleDrawer = false,
 ): LaunchResult {
   if (session.status !== 'lobby') return { ok: false, reason: 'notLobby' }
   if (!canLaunchGame(session.players)) return { ok: false, reason: 'notEnoughPlayers' }
@@ -554,7 +563,7 @@ export function launchUpdate(
     teamPresence: null,
     ...BLUFF_RESET,
     ...DRAW_RESET,
-    drawOrder: isDraw ? drawOrderFor(session.players, session.hostUid, gameQuestions.length, random, session.settings.teams) : null,
+    drawOrder: isDraw ? drawOrderOf(session, gameQuestions.length, random, singleDrawer) : null,
   }
   for (const playerId of Object.keys(session.players)) {
     update[`players/${playerId}/score`] = 0

@@ -50,6 +50,7 @@
           "suspense": { ".validate": "newData.isBoolean()" },
           "teamMode": { ".validate": "newData.isString() && newData.val().matches(/^(random|host|players)$/)" },
           "teamCount": { ".validate": "newData.isNumber() && (newData.val() == 2 || newData.val() == 3 || newData.val() == 4)" },
+          "drawRounds": { ".validate": "newData.isNumber() && (newData.val() == 4 || newData.val() == 6 || newData.val() == 8)" },
           "drawCategories": {
             "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^(animal|nourriture|objet|maison|nature|lieu|transport|metier|sport|loisir|vetement|corps)$/)" }
           },

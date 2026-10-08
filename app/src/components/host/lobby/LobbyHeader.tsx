@@ -11,13 +11,19 @@ import { useLiveValue } from '@/hooks/useLiveValue';
 
 // Titre du quiz (ou du jeu) et sa méta. Fiche absente ou mal formée : rien n'est affiché (le salon reste
 // utilisable). Dessine-moi : fiche locale (pas de quiz dans la base).
-export function LobbyHeader({ quizId }: { quizId: string }) {
+// drawRounds : Dessine-moi, nombre de manches choisi dans les réglages (la durée suit).
+export function LobbyHeader({ quizId, drawRounds }: { quizId: string; drawRounds?: number }) {
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
   const summary = useMemo(() => {
     if (quizId === DRAW_QUIZ_ID) return DRAW_QUIZ_SUMMARY;
     return quiz.kind === 'ready' ? parseQuizSummary(quiz.value) : null;
   }, [quiz, quizId]);
-  return summary && <LobbyQuizTitle quiz={summary} />;
+  if (!summary) return null;
+  const shown =
+    drawRounds && summary.gameType === 'draw'
+      ? { ...summary, questionCount: drawRounds, estimatedMinutes: Math.round((summary.estimatedMinutes * drawRounds) / summary.questionCount) }
+      : summary;
+  return <LobbyQuizTitle quiz={shown} />;
 }
 
 // Affichage seul, à partir d'une fiche déjà validée.

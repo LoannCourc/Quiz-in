@@ -254,6 +254,8 @@ export interface SessionSettings {
   // Dessine-moi : catégories de mots choisies dans le catalogue (identifiants de drawCategoryId, voir
   // shared/drawWords.ts). Absent ou vide : « Mélange », toutes les catégories.
   drawCategories?: string[];
+  // Dessine-moi : nombre de manches choisi dans les réglages du salon (4, 6 ou 8). Absent : 8.
+  drawRounds?: number;
 }
 
 // Groupe : 4 équipes fixes (Rose, Cyan, Or, Vert), chacune avec un symbole dessiné (étoile, rond,
