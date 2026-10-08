@@ -2,8 +2,11 @@
 @import './theme.css';
 
 :root {
-  /* Unité de base proportionnelle à l'écran : 30px en 1920×1080, 20px en 1280×720.
-     Tout le reste est exprimé en rem, donc la mise en page est identique sur toutes les TV. */
+  /* Scène 16:9 de 64 × 36 rem : 1 rem vaut 30px en 1920×1080, 20px en 1280×720, quels que soient la
+     résolution et le facteur d'échelle de la TV. Tout est exprimé en rem (jamais vw, vh, ni %
+     d'écran) : la scène est identique partout, centrée avec des bandes si l'écran n'est pas en 16:9.
+     Première ligne : repli pour un navigateur sans min() (écran 16:9 supposé). */
+  font-size: 1.5625vw;
   font-size: min(100vw / 64, 100vh / 36);
   font-family: var(--font-text);
   font-weight: 800;
@@ -18,11 +21,15 @@
   box-sizing: border-box;
 }
 
+/* La scène (l'écran en cours) est centrée dans la fenêtre ; le fond dégradé remplit les bandes éventuelles. */
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
   background: var(--background);
-  min-height: 100vh;
 }
 
 h1,
@@ -30,13 +37,14 @@ p {
   margin: 0;
 }
 
-/* Marges de sécurité : 5 % autour de l'écran, car certaines TV rognent les bords. */
+/* Scène de 64 × 36 rem. Marges de sécurité : 5 % autour, car certaines TV rognent les bords. */
 .screen {
   position: relative;
   display: grid;
-  width: 100vw;
-  height: 100vh;
-  padding: 5vh 5vw;
+  flex-shrink: 0;
+  width: 64rem;
+  height: 36rem;
+  padding: 1.8rem 3.2rem;
   overflow: hidden;
   animation: screen-fade-in 300ms ease-out both;
 }

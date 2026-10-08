@@ -1,7 +1,7 @@
 /* Placé dans la marge de sécurité haute, centré. */
 .connection-lost {
   position: fixed;
-  top: 5vh;
+  top: 1.8rem;
   left: 50%;
   z-index: 5;
   display: grid;

@@ -2,12 +2,12 @@
 .draw-bench {
   grid-template-columns: auto 1fr;
   align-items: end;
-  column-gap: 3vw;
+  column-gap: 2rem;
 }
 
 .draw-bench-canvas {
-  height: 52vh;
-  aspect-ratio: 4 / 3;
+  width: calc(18.7rem * 4 / 3);
+  height: 18.7rem;
   border-radius: var(--radius-card);
   background: var(--white);
 }

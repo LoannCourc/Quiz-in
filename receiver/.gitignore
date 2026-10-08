@@ -28,3 +28,6 @@ dist-ssr
 
 # Sessions de test générées par npm run test-session
 test-data/
+
+# Captures des écrans générées par npm run captures
+captures/

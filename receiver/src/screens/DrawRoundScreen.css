@@ -1,6 +1,9 @@
 /* Manche de Dessine-moi : en-tête, puis le dessin à gauche (aussi grand que possible) et la colonne
    « Léa dessine ! », indice et chrono à droite. */
 .draw-round {
+  /* Cadre du dessin : taille fixe en rem, toujours 4:3 (24 × 32 rem), sans dépendre de la fenêtre ni de
+     aspect-ratio (absent des navigateurs de certaines TV). */
+  --draw-frame-width: 32rem;
   grid-template-rows: auto 1fr;
   row-gap: 1.5rem;
 }
@@ -8,7 +11,7 @@
 .draw-round-body {
   display: grid;
   /* minmax(0, …) : un long pseudo ne peut pas élargir la colonne au-delà de l'écran. */
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: var(--draw-frame-width) minmax(0, 1fr);
   align-items: center;
   column-gap: 2.5rem;
   min-height: 0;
@@ -16,9 +19,8 @@
 
 .draw-round-canvas,
 .draw-reveal-canvas {
-  height: 100%;
-  max-height: 68vh;
-  max-width: 60vw;
+  width: var(--draw-frame-width);
+  height: calc(var(--draw-frame-width) * 3 / 4);
 }
 
 /* --side-scale (useFitScale) : réduit toute la colonne tant qu'elle déborde en hauteur ou qu'un mot du

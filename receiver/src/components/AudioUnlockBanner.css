@@ -2,7 +2,7 @@
 .audio-unlock {
   position: fixed;
   left: 50%;
-  bottom: 4vh;
+  bottom: 1.4rem;
   z-index: 20;
   display: grid;
   justify-items: center;
