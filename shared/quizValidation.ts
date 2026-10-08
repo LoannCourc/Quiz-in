@@ -65,7 +65,7 @@ function isDifficulty(value: unknown): value is Difficulty {
   return value === 1 || value === 2 || value === 3
 }
 
-function isQuizGameType(value: unknown): value is QuizGameType {
+export function isQuizGameType(value: unknown): value is QuizGameType {
   return value === 'quiz' || value === 'blindTest' || value === 'bluff'
 }
 

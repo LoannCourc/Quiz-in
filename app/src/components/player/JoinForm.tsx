@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { strings } from '@/constants/strings';
-import { AppColors } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 import { firstFreeAvatar, getJoinRefusal, registerPlayer, rememberedProfile, updateProfile, type LobbyPlayers } from '@/lib/joinGame';
 
 import { AvatarPicker } from './AvatarPicker';
 import { BigButton } from '@/components/ui/BigButton';
+import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
 
 interface JoinFormProps {
@@ -22,6 +23,8 @@ interface JoinFormProps {
   edit?: { onDone: () => void };
 }
 
+// Maquette J3 : « TON PRÉNOM » (champ blanc, contour cyan avec le focus), « TON AVATAR » sur une ligne
+// qui défile, puis « REJOINDRE LA PARTIE » en bas de l'écran, au-dessus du clavier.
 export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
   // Modification : profil enregistré. Réinscription après un retrait du lobby : dernier profil connu.
   const current = edit ? players[uid] : rememberedProfile(code);
@@ -29,6 +32,7 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
   const [avatar, setAvatar] = useState(() => current?.avatar ?? firstFreeAvatar(players));
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isNameFocused, setIsNameFocused] = useState(false);
 
   const name = cleanPlayerName(rawName);
   const canSubmit = isValidPlayerName(name) && !isSubmitting;
@@ -63,7 +67,7 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
   return (
     <View style={styles.form}>
       <View style={styles.field}>
-        <Text style={textStyles.label}>{strings.join.nameLabel}</Text>
+        <Text style={styles.label}>{strings.join.nameLabel}</Text>
         <TextInput
           value={rawName}
           onChangeText={(text) => {
@@ -71,46 +75,78 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
             setError(null);
           }}
           onSubmitEditing={submit}
+          onFocus={() => setIsNameFocused(true)}
+          onBlur={() => setIsNameFocused(false)}
           placeholder={strings.join.namePlaceholder}
           placeholderTextColor={AppColors.textMuted}
           maxLength={PLAYER_NAME_MAX_LENGTH}
           autoCorrect={false}
           autoComplete="off"
           returnKeyType="done"
-          style={textStyles.input}
+          accessibilityLabel={strings.join.nameLabel}
+          style={[styles.input, isNameFocused && styles.inputFocused]}
         />
-        <Text style={textStyles.muted}>{strings.join.nameHint}</Text>
       </View>
 
       <View style={styles.field}>
-        <Text style={textStyles.label}>{strings.join.avatarLabel}</Text>
-        <AvatarPicker selected={avatar} onSelect={setAvatar} />
+        <Text style={styles.label}>{strings.join.avatarLabel}</Text>
+        <AvatarPicker selected={avatar} onSelect={setAvatar} layout="row" />
       </View>
 
-      {error && <Text style={textStyles.error}>{error}</Text>}
-
-      <BigButton
-        label={isSubmitting ? texts.submitting : texts.submitButton}
-        onPress={submit}
-        disabled={!canSubmit}
-      />
-      {edit && (
-        <BigButton
-          label={strings.profile.cancelButton}
-          variant="secondary"
-          onPress={edit.onDone}
-          disabled={isSubmitting}
-        />
-      )}
+      <View style={styles.footer}>
+        {error && <Text style={textStyles.error}>{error}</Text>}
+        <SubmitButton label={isSubmitting ? texts.submitting : texts.submitButton} onPress={submit} disabled={!canSubmit} />
+        {edit && (
+          <BigButton
+            label={strings.profile.cancelButton}
+            variant="secondary"
+            onPress={edit.onDone}
+            disabled={isSubmitting}
+          />
+        )}
+      </View>
     </View>
   );
 }
 
+const FIELD_BORDER = 3;
+const NAME_SIZE = 22;
+
 const styles = StyleSheet.create({
+  // Occupe la hauteur restante : le bouton descend en bas de l'écran.
   form: {
+    flexGrow: 1,
     gap: Spacing.four,
   },
   field: {
+    gap: Spacing.two,
+  },
+  label: {
+    color: AppColors.questionMeta,
+    fontFamily: AppFonts.black,
+    fontSize: 12,
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  input: {
+    minHeight: AppSizes.fieldHeight,
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radius,
+    borderWidth: FIELD_BORDER,
+    borderColor: AppColors.fieldIdleBorder,
+    backgroundColor: AppColors.card,
+    color: AppColors.ink,
+    fontFamily: AppFonts.black,
+    fontSize: NAME_SIZE,
+    // Web : pas de contour du navigateur, le cadre cyan indique le focus.
+    outlineWidth: 0,
+    outlineColor: 'transparent',
+  },
+  inputFocused: {
+    borderColor: AppColors.link,
+  },
+  footer: {
+    marginTop: 'auto',
     gap: Spacing.two,
   },
 });

@@ -36,6 +36,7 @@ function HomeScreen() {
     <Screen>
       <HomeView
         onOpenGame={openGame}
+        onJoinWithCode={() => router.push('/join')}
         banner={resumeButton}
         isBlindTestEnabled={isBlindTestEnabled === true}
         isDrawEnabled={isDrawEnabled !== false}

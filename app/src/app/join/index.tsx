@@ -2,17 +2,21 @@ import { ROOM_CODE_LENGTH } from '@shared/constants';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { BigButton } from '@/components/ui/BigButton';
-import { Logo } from '@/components/ui/Logo';
+import { CodeBoxes } from '@/components/player/CodeBoxes';
+import { JoinTopBar } from '@/components/player/JoinTopBar';
 import { Screen } from '@/components/ui/Screen';
+import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors } from '@/constants/appTheme';
+import { AppColors, AppFonts } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
-// Saisie du code de salle, pour ceux qui n'ont pas scanné le QR code.
+const QUESTION_SIZE = 20;
+
+// Saisie du code de la partie (maquette J2), pour ceux qui n'ont pas scanné le QR code : ouvert depuis
+// l'accueil de l'hôte (« J'ai un code ») ou sur le site des joueurs. « Continuer » mène à J3.
 export default function JoinCodeScreen() {
   const [rawCode, setRawCode] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -26,52 +30,57 @@ export default function JoinCodeScreen() {
     router.push({ pathname: '/join/[code]', params: { code } });
   }
 
-  return (
-    <Screen>
-      <Logo size="large" />
-      <Text style={[textStyles.label, styles.centered]}>{strings.join.codeTitle}</Text>
+  const footer = (
+    <SubmitButton label={strings.join.codeButton} onPress={submit} disabled={code.length !== ROOM_CODE_LENGTH} />
+  );
 
-      <View style={styles.field}>
-        <Text style={textStyles.muted}>{strings.join.codeLabel}</Text>
-        <TextInput
-          value={code}
+  return (
+    <Screen footer={footer}>
+      <JoinTopBar />
+      <View style={styles.texts}>
+        <Text style={styles.question}>{strings.join.codeQuestion}</Text>
+        <Text style={styles.where}>{strings.join.codeWhere}</Text>
+      </View>
+      <View style={styles.code}>
+        <CodeBoxes
+          code={code}
           onChangeText={(text) => {
             setRawCode(text);
             setError(null);
           }}
-          onSubmitEditing={submit}
-          placeholder={strings.join.codePlaceholder}
-          placeholderTextColor={AppColors.textMuted}
-          maxLength={ROOM_CODE_LENGTH}
-          autoCapitalize="characters"
-          autoCorrect={false}
-          autoComplete="off"
-          returnKeyType="go"
-          style={[textStyles.input, styles.codeInput]}
+          onSubmit={submit}
         />
+        <Text style={styles.hint}>{strings.join.codeHint}</Text>
       </View>
-
-      {error && <Text style={textStyles.error}>{error}</Text>}
-
-      <BigButton
-        label={strings.join.codeButton}
-        onPress={submit}
-        disabled={code.length !== ROOM_CODE_LENGTH}
-      />
+      {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  texts: {
+    gap: Spacing.one,
+  },
+  question: {
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: QUESTION_SIZE,
+  },
+  where: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 14,
+  },
+  code: {
+    gap: Spacing.three,
+  },
+  hint: {
+    color: AppColors.questionMeta,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
+    textAlign: 'center',
+  },
   centered: {
     textAlign: 'center',
-  },
-  field: {
-    gap: Spacing.two,
-  },
-  codeInput: {
-    textAlign: 'center',
-    fontSize: 40,
-    letterSpacing: 12,
   },
 });

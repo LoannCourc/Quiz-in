@@ -82,7 +82,12 @@ export default function CatalogDemoScreen() {
           played={played}
         />
       ) : (
-        <HomeView isBlindTestEnabled={blindtest !== '0'} isDrawEnabled={draw !== '0'} onOpenGame={(type) => router.setParams({ game: type })} />
+        <HomeView
+          isBlindTestEnabled={blindtest !== '0'}
+          isDrawEnabled={draw !== '0'}
+          onOpenGame={(type) => router.setParams({ game: type })}
+          onJoinWithCode={() => router.push('/join')}
+        />
       )}
     </Screen>
   );

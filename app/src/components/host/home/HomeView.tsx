@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Logo } from '@/components/ui/Logo';
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
+import { KeyboardIcon } from '@/components/ui/KeyboardIcon';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -11,6 +13,7 @@ import { GameTile } from './GameTile';
 
 const GAMES: readonly GameType[] = ['quiz', 'blindTest', 'bluff', 'draw'];
 const TITLE_SIZE = 28;
+const JOIN_ICON_SIZE = 22;
 
 // « Bientôt » si l'interrupteur à distance du jeu est coupé.
 function isGameOff(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: boolean): boolean {
@@ -24,11 +27,13 @@ interface HomeViewProps {
   // Interrupteurs à distance : la tuile reste visible mais « Bientôt » si son jeu est coupé.
   isBlindTestEnabled: boolean;
   isDrawEnabled: boolean;
+  // Maquette J1 : rejoindre la partie d'un autre hôte avec son code (absent : pas de bouton).
+  onJoinWithCode?: () => void;
 }
 
 // Accueil de l'hôte (maquette H1, « grille 2 × 2 ») : logo, « À quoi on joue ? », une tuile par jeu, qui
 // ouvre le catalogue de ce jeu. Pas de recherche ici : elle reste dans chaque catalogue.
-export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled }: HomeViewProps) {
+export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled, onJoinWithCode }: HomeViewProps) {
   return (
     <View style={styles.column}>
       <Logo size="medium" align="start" />
@@ -47,6 +52,17 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
           />
         ))}
       </View>
+      {onJoinWithCode && (
+        <Pressable
+          accessibilityRole="button"
+          onPress={onJoinWithCode}
+          style={({ pressed }) => [styles.joinButton, pressed && styles.joinPressed]}>
+          <KeyboardIcon size={JOIN_ICON_SIZE} color={AppColors.link} />
+          <ButtonLabel inRow style={styles.joinLabel}>
+            {strings.home.joinWithCode}
+          </ButtonLabel>
+        </Pressable>
+      )}
       <Text style={[textStyles.muted, styles.footer]}>{strings.home.footer}</Text>
     </View>
   );
@@ -55,6 +71,25 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
 const styles = StyleSheet.create({
   column: {
     gap: Spacing.four,
+  },
+  joinButton: {
+    minHeight: AppSizes.submitHeight,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.one,
+    borderRadius: AppSizes.radiusPill,
+    borderWidth: 3,
+    borderColor: AppColors.link,
+  },
+  joinPressed: {
+    opacity: 0.7,
+  },
+  joinLabel: {
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 14,
   },
   titles: {
     gap: Spacing.one,

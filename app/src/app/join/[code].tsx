@@ -7,7 +7,9 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { HostAwayNotice, WaitingHostNotice } from '@/components/player/HostAwayNotice';
+import { JoinGameCard } from '@/components/player/JoinGameCard';
 import { JoinHeader } from '@/components/player/JoinHeader';
+import { JoinTopBar } from '@/components/player/JoinTopBar';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
 import { BigButton } from '@/components/ui/BigButton';
@@ -90,15 +92,19 @@ function JoinRoom({ code }: { code: string }) {
     return <RegisteredPlayer code={code} state={state} serverOffsetMs={serverOffsetMs} />;
   }
 
+  // Maquette J3 : en-tête « Rejoindre une partie », carte de la partie, puis le formulaire ; partie
+  // commencée, pleine ou terminée : le refus à la place du formulaire.
   const refusal = getEntryRefusal(state.status, state.players, state.uid);
   return (
-    <WelcomeScreen code={code}>
+    <Screen>
+      <JoinTopBar />
+      <JoinGameCard code={code} session={state.session} />
       {refusal ? (
         <PlayerNotice message={strings.join.refusals[refusal]} tone="error" showOtherCode />
       ) : (
         <JoinForm code={code} uid={state.uid} status={state.status} players={state.players} />
       )}
-    </WelcomeScreen>
+    </Screen>
   );
 }
 
