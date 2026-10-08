@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { GENRE_DRAWINGS } from '@/components/ui/genreIcons';
 import { box, clipped, dot, GRID, line, ring, type Pen } from '@/components/ui/iconShapes';
 
-export type ToolIconName = 'pen' | 'eraser' | 'bucket' | 'undo' | 'clear';
+export type ToolIconName = 'pen' | 'eraser' | 'bucket' | 'undo' | 'clear' | 'zoomIn' | 'zoomOut' | 'fit';
 
 // Gomme : bloc en biais, sa bande, et la ligne du sol.
 function eraser(pen: Pen): ReactNode[] {
@@ -54,12 +54,39 @@ function clear(pen: Pen): ReactNode[] {
   ];
 }
 
+// Loupe (zoom) : verre, manche, et le signe − ou +.
+function magnifier(pen: Pen, withPlus: boolean): ReactNode[] {
+  return [
+    ring(pen, 'glass', 10.5, 10.5, 14, 14),
+    line(pen, 'handle', 16, 16, 20.5, 20.5),
+    line(pen, 'minus', 7.5, 10.5, 13.5, 10.5),
+    ...(withPlus ? [line(pen, 'plus', 10.5, 7.5, 10.5, 13.5)] : []),
+  ];
+}
+
+// Ajuster : les quatre coins d'un cadre (voir tout le dessin).
+function fit(pen: Pen): ReactNode[] {
+  return [
+    line(pen, 'tlA', 4, 4, 9, 4),
+    line(pen, 'tlB', 4, 4, 4, 9),
+    line(pen, 'trA', 15, 4, 20, 4),
+    line(pen, 'trB', 20, 4, 20, 9),
+    line(pen, 'blA', 4, 20, 9, 20),
+    line(pen, 'blB', 4, 15, 4, 20),
+    line(pen, 'brA', 15, 20, 20, 20),
+    line(pen, 'brB', 20, 15, 20, 20),
+  ];
+}
+
 const DRAWINGS: Record<ToolIconName, (pen: Pen) => ReactNode[]> = {
   pen: GENRE_DRAWINGS.pencil,
   eraser,
   bucket,
   undo,
   clear,
+  zoomIn: (pen) => magnifier(pen, true),
+  zoomOut: (pen) => magnifier(pen, false),
+  fit,
 };
 
 // Icônes des outils du dessinateur (maquette E1), dessinées en traits sur la grille commune des icônes.

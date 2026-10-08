@@ -26,6 +26,12 @@ const STROKE_HOLD_MS = 100;
 const MAX_RESOLUTION = 2;
 // Fin d'un changement de zoom avant de repeindre plus fin (évite de repeindre pendant le pincement).
 const SHARPEN_DELAY_MS = 150;
+// Mini-carte (maquette E3) : part de la largeur du cadre, marge depuis son coin haut gauche.
+const MINIMAP_SHARE = 0.28;
+const MINIMAP_MARGIN = 8;
+
+// Le canvas du navigateur sait zoomer (boutons, mini-carte) ; celui de l'app pas encore (étape 3).
+export const CANVAS_CAN_ZOOM = true;
 
 // Début d'un trait pas encore envoyé (STROKE_HOLD_MS) : ses points logiques à plat.
 interface PendingStroke {
@@ -56,6 +62,7 @@ interface Session {
   fingers: Map<number, ScreenPoint>;
   gesture: Gesture;
   last: ScreenPoint | null;
+  minimap: DrawingRenderer | null;
 }
 
 // Site des joueurs : surface de dessin du dessinateur (canvas 2D du navigateur, 4:3) dans un cadre fixe.
@@ -66,6 +73,11 @@ interface Session {
 export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onViewportChange, ref }: DrawingCanvasProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const minimapRef = useRef<HTMLDivElement>(null);
+  const minimapCanvasRef = useRef<HTMLCanvasElement>(null);
+  const visibleRef = useRef<HTMLDivElement>(null);
+  // Mini-carte à jour (posé par l'effet) : repeinte quand le dessin change.
+  const refreshMinimapRef = useRef<() => void>(() => {});
   // Créée au montage, d'après les paquets déjà envoyés (reprise après un rechargement).
   const session = useRef<Session | null>(null);
   // Outil courant lu par les gestionnaires d'événements (posés une seule fois).
@@ -84,6 +96,7 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
       toolRef.current.onChunk?.(chunk);
     }
     current.renderer?.render(current.doc);
+    refreshMinimapRef.current();
   }
 
   useImperativeHandle(ref, () => ({
@@ -116,6 +129,7 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
       fingers: new Map(),
       gesture: { kind: 'idle' },
       last: null,
+      minimap: null,
     };
     session.current = current;
     const frameSize = () => ({ width: frame.clientWidth, height: frame.clientHeight });
@@ -132,6 +146,32 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
       current.renderer?.repaint(current.doc.ops);
     };
 
+    // Mini-carte (maquette E3), seulement pendant un zoom : tout le dessin, et la partie visible en rose.
+    const showMinimap = (repaint: boolean) => {
+      const box = minimapRef.current;
+      const miniCanvas = minimapCanvasRef.current;
+      const visible = visibleRef.current;
+      if (!box || !miniCanvas || !visible) return;
+      const isZoomed = current.view.scale > 1;
+      box.style.display = isZoomed ? 'block' : 'none';
+      if (!isZoomed) return;
+      const pixels = Math.round(box.clientWidth * (window.devicePixelRatio || 1));
+      if (miniCanvas.width !== pixels || !current.minimap) {
+        miniCanvas.width = pixels;
+        miniCanvas.height = Math.round((pixels * DRAW_HEIGHT) / DRAW_WIDTH);
+        const context = miniCanvas.getContext('2d');
+        current.minimap = context && new DrawingRenderer(context, pixels / DRAW_WIDTH);
+        repaint = true;
+      }
+      if (repaint) current.minimap?.repaint(current.doc.ops);
+      const { scale, x, y } = current.view;
+      visible.style.left = `${(x / DRAW_WIDTH) * 100}%`;
+      visible.style.top = `${(y / DRAW_HEIGHT) * 100}%`;
+      visible.style.width = `${100 / scale}%`;
+      visible.style.height = `${100 / scale}%`;
+    };
+    refreshMinimapRef.current = () => showMinimap(true);
+
     // Vue affichée : le canvas (taille du cadre) agrandi puis décalé dans le cadre, qui le découpe.
     const showView = () => {
       const { width: frameWidth, height: frameHeight } = frameSize();
@@ -139,6 +179,7 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
       const shiftX = (-x / DRAW_WIDTH) * frameWidth * scale;
       const shiftY = (-y / DRAW_HEIGHT) * frameHeight * scale;
       canvas.style.transform = `translate(${shiftX}px, ${shiftY}px) scale(${scale})`;
+      showMinimap(false);
     };
     // Après un changement de zoom : plus fin s'il le faut, puis prévenir l'écran (pourcentage, mini-carte).
     let sharpenTimer: ReturnType<typeof setTimeout> | undefined;
@@ -365,6 +406,24 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
           background: DRAW_COLORS[BACKGROUND_COLOR],
         }}
       />
+      <div
+        ref={minimapRef}
+        style={{
+          display: 'none',
+          position: 'absolute',
+          top: MINIMAP_MARGIN,
+          left: MINIMAP_MARGIN,
+          width: `${MINIMAP_SHARE * 100}%`,
+          aspectRatio: `${DRAW_WIDTH} / ${DRAW_HEIGHT}`,
+          overflow: 'hidden',
+          borderRadius: 8,
+          background: DRAW_COLORS[BACKGROUND_COLOR],
+          boxShadow: `0 3px 0 ${AppColors.inkSurface}, 0 0 0 1px ${AppColors.inkSurface}`,
+          pointerEvents: 'none',
+        }}>
+        <canvas ref={minimapCanvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
+        <div ref={visibleRef} style={{ position: 'absolute', border: `2px solid ${AppColors.zoomViewport}`, borderRadius: 2 }} />
+      </div>
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import { DRAW_GUESS_MAX_LENGTH, DRAW_MAX_GUESSES } from '@shared/constants';
 import { drawingChunkList } from '@shared/drawGame';
+import { FIT_VIEWPORT, ZOOM_MAX, zoomPercent, type Viewport } from '@shared/drawing/viewport';
 import { DRAW_HEIGHT, DRAW_WIDTH } from '@shared/drawing/palette';
 import type { DrawTurn, PlayerResult, PublicSession } from '@shared/types';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
-import { DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
+import { CANVAS_CAN_ZOOM, DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
+import { ToolIcon, type ToolIconName } from '@/components/player/draw/ToolIcon';
 import { EyeIcon } from '@/components/player/draw/EyeIcon';
 import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
 import { DrawingColors, DrawingToolButtons, DrawingTools, DrawingWidths, type DrawingToolState } from '@/components/player/draw/DrawingTools';
@@ -36,6 +38,13 @@ const EYE_SIZE = 24;
 const CHANGE_WORD_WIDTH = 96;
 // Paysage (E2) : largeur du panneau de droite (en-tête, mot, couleurs, épaisseurs).
 const SIDE_PANEL_WIDTH = 270;
+// Boutons de zoom sur le dessin.
+const ZOOM_BUTTON = 30;
+const ZOOM_ICON = 18;
+// Portrait : en dessous de cette hauteur d'écran, outils compacts et pas de ligne d'aide.
+const SHORT_SCREEN_HEIGHT = 700;
+// Ligne d'aide sous le dessin : hauteur fixe (avec ou sans la pastille « Zoom ×2 »).
+const ZOOM_HINT_HEIGHT = 22;
 
 // Taille d'après le mot le plus long (« château de sable » passe à la ligne entre ses mots, jamais au
 // milieu d'un mot), dans la largeur disponible.
@@ -169,10 +178,15 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
   const [width, setWidth] = useState(INITIAL_WIDTH);
   const window = useWindowDimensions();
   const isLandscape = isDrawerLandscape(window.width, window.height);
+  // Portrait sur un écran bas : couleurs et épaisseurs compactes, sans ligne d'aide, pour garder un grand
+  // dessin.
+  const isShort = window.height < SHORT_SCREEN_HEIGHT;
   // Place laissée au canvas, mesurée à l'affichage.
   const [area, setArea] = useState({ width: 0, height: 0 });
   // Dessin déjà envoyé dans cette manche (page rechargée) : lu une fois, à l'arrivée sur l'écran.
   const [initialChunks] = useState(() => drawingChunkList(session.drawing));
+  // Zoom (affichage seulement) : la vue du canvas, pour les boutons et la ligne d'aide.
+  const [view, setView] = useState<Viewport>(FIT_VIEWPORT);
   const canvasWidth = Math.min(area.width, (area.height * DRAW_WIDTH) / DRAW_HEIGHT);
   const tools: DrawingToolState = {
     tool,
@@ -188,7 +202,23 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
     <View style={styles.canvasArea} onLayout={(event) => setArea(event.nativeEvent.layout)}>
       {canvasWidth > 0 && (
         <View style={{ width: canvasWidth }}>
-          <DrawingCanvas ref={canvas} tool={tool} color={color} width={width} onChunk={draw.onChunk} initialChunks={initialChunks} />
+          <DrawingCanvas
+            ref={canvas}
+            tool={tool}
+            color={color}
+            width={width}
+            onChunk={draw.onChunk}
+            initialChunks={initialChunks}
+            onViewportChange={setView}
+          />
+          {CANVAS_CAN_ZOOM && (
+            <ZoomControls
+              view={view}
+              onZoomOut={() => canvas.current?.zoomBy?.(-1)}
+              onZoomIn={() => canvas.current?.zoomBy?.(1)}
+              onFit={() => canvas.current?.fit?.()}
+            />
+          )}
         </View>
       )}
     </View>
@@ -197,7 +227,8 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
     return (
       <View style={styles.drawer}>
         {canvasArea}
-        <DrawingTools {...tools} />
+        {CANVAS_CAN_ZOOM && !isShort && <ZoomHint view={view} />}
+        <DrawingTools {...tools} compact={isShort} />
       </View>
     );
   }
@@ -211,7 +242,70 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
         <DrawingColors {...tools} compact />
         <DrawingWidths {...tools} compact />
         <Text style={styles.noLetters}>{texts.noLetters}</Text>
+        {CANVAS_CAN_ZOOM && <ZoomHint view={view} short />}
       </View>
+    </View>
+  );
+}
+
+interface ZoomControlsProps {
+  view: Viewport;
+  onZoomOut: () => void;
+  onZoomIn: () => void;
+  onFit: () => void;
+}
+
+// Pastille posée sur le coin bas droit du dessin (maquettes E1, E2) : − , le pourcentage, + ; pendant un
+// zoom, « voir tout le dessin » (E3).
+function ZoomControls({ view, onZoomOut, onZoomIn, onFit }: ZoomControlsProps) {
+  const isZoomed = view.scale > 1;
+  return (
+    <View style={styles.zoomPill}>
+      <ZoomButton icon="zoomOut" label={texts.zoomOut} onPress={onZoomOut} disabled={!isZoomed} />
+      <Text style={styles.zoomPercent} maxFontSizeMultiplier={1}>
+        {texts.zoomPercent(zoomPercent(view))}
+      </Text>
+      <ZoomButton icon="zoomIn" label={texts.zoomIn} onPress={onZoomIn} disabled={view.scale >= ZOOM_MAX} />
+      {isZoomed && <ZoomButton icon="fit" label={texts.zoomFit} onPress={onFit} />}
+    </View>
+  );
+}
+
+function ZoomButton({ icon, label, onPress, disabled = false }: { icon: ToolIconName; label: string; onPress: () => void; disabled?: boolean }) {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled }}
+      disabled={disabled}
+      hitSlop={Spacing.one}
+      onPress={onPress}
+      style={({ pressed }) => [styles.zoomButton, (pressed || disabled) && styles.pressed]}>
+      <ToolIcon name={icon} size={ZOOM_ICON} color={AppColors.text} />
+    </Pressable>
+  );
+}
+
+// Ligne d'aide sous le dessin (hauteur fixe : le dessin ne change pas de taille quand on zoome) : comment
+// zoomer, ou pendant un zoom « Zoom ×2 · La TV voit toujours le dessin en entier » (E3).
+function ZoomHint({ view, short = false }: { view: Viewport; short?: boolean }) {
+  if (view.scale <= 1) {
+    return (
+      <Text style={styles.zoomHint} numberOfLines={short ? 2 : 1}>
+        {short ? texts.zoomHintShort : texts.zoomHint}
+      </Text>
+    );
+  }
+  return (
+    <View style={styles.zoomHintRow}>
+      <View style={styles.zoomBadge}>
+        <Text style={styles.zoomBadgeText} maxFontSizeMultiplier={1}>
+          {texts.zoomBadge(view.scale)}
+        </Text>
+      </View>
+      <Text style={[styles.zoomHint, styles.zoomHintText]} numberOfLines={1}>
+        {short ? texts.zoomTvNoteShort : texts.zoomTvNote}
+      </Text>
     </View>
   );
 }
@@ -451,6 +545,65 @@ const styles = StyleSheet.create({
   drawer: {
     flex: 1,
     gap: Spacing.three,
+  },
+  zoomPill: {
+    position: 'absolute',
+    right: Spacing.one + 2,
+    bottom: Spacing.one + 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+    padding: 3,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.zoomPill,
+  },
+  zoomButton: {
+    width: ZOOM_BUTTON,
+    height: ZOOM_BUTTON,
+    borderRadius: ZOOM_BUTTON / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: AppColors.inkSurface,
+  },
+  zoomPercent: {
+    ...TEXT_FIT_SAFETY,
+    minWidth: 40,
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: 12,
+    textAlign: 'center',
+    fontVariant: ['tabular-nums'],
+  },
+  zoomHintRow: {
+    minHeight: ZOOM_HINT_HEIGHT,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  zoomHint: {
+    ...TEXT_FIT_SAFETY,
+    minHeight: ZOOM_HINT_HEIGHT,
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 11,
+    lineHeight: ZOOM_HINT_HEIGHT,
+    textAlign: 'center',
+  },
+  zoomHintText: {
+    flexShrink: 1,
+    textAlign: 'left',
+  },
+  zoomBadge: {
+    paddingHorizontal: Spacing.two,
+    paddingVertical: 2,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.link,
+  },
+  zoomBadgeText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.ink,
+    fontFamily: AppFonts.black,
+    fontSize: 11,
   },
   // Paysage (E2) : outils | canvas | panneau, sur toute la largeur de l'écran.
   drawerLandscape: {

@@ -14,6 +14,9 @@ import type { DrawingCanvasProps } from './drawingTypes';
 const FLUSH_INTERVAL_MS = 300;
 const VIEW_BOX = `0 0 ${DRAW_WIDTH} ${DRAW_HEIGHT}`;
 
+// Zoom dans l'app : étape 3 de la livraison C, après le test du dessin de l'hôte sur le build.
+export const CANVAS_CAN_ZOOM = false;
+
 // App de l'hôte qui joue (lot C) : surface de dessin en SVG (react-native-svg), 4:3. Même format et mêmes
 // paquets que le canvas du navigateur (DrawingCanvas.web.tsx) : la TV ne voit aucune différence. Le doigt
 // dessine tout de suite à l'écran (trait en cours), les paquets partent toutes les 300 ms, et le dessin

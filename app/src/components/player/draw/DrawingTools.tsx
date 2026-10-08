@@ -35,12 +35,13 @@ const DOT_SCALE = 0.6;
 
 // Portrait (maquette E1) : cinq outils ronds avec leur nom, dix couleurs en deux rangées de cinq, puis la
 // rangée « ÉPAISSEUR ». Choisir une couleur repasse au crayon après la gomme.
-export function DrawingTools(props: DrawingToolState) {
+// compact : écran bas, couleurs et épaisseurs plus petites (le dessin garde sa place).
+export function DrawingTools({ compact = false, ...props }: DrawingToolState & { compact?: boolean }) {
   return (
-    <View style={styles.block}>
+    <View style={[styles.block, compact && styles.blockCompact]}>
       <DrawingToolButtons {...props} />
-      <DrawingColors {...props} />
-      <DrawingWidths {...props} withTitle />
+      <DrawingColors {...props} compact={compact} />
+      <DrawingWidths {...props} withTitle compact={compact} />
     </View>
   );
 }
@@ -149,6 +150,9 @@ function ToolButton({ icon, label, accessibilityLabel, showLabel, isActive = fal
 const styles = StyleSheet.create({
   block: {
     gap: Spacing.three,
+  },
+  blockCompact: {
+    gap: Spacing.two,
   },
   toolsRow: {
     flexDirection: 'row',

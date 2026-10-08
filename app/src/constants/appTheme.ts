@@ -110,6 +110,10 @@ export const AppColors = {
   // Tuile de réglage inactive (l'active est en accent, texte encre).
   tileIdle: 'rgba(255, 255, 255, 0.08)',
   link: Palette.cyan,
+  // Zoom du dessinateur : partie visible sur la mini-carte (maquette E3).
+  zoomViewport: Palette.pink,
+  // Pastille des boutons de zoom posée sur le dessin (maquettes E1, E2).
+  zoomPill: 'rgba(27, 10, 69, 0.85)',
   // Fond du QR code et de ses marges : contraste maximal avec les modules encre.
   qrBackground: Palette.white,
   qrModule: Palette.ink,

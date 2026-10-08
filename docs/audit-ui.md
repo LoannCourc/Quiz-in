@@ -22,7 +22,10 @@ Contrôle à chaque lot : captures du téléphone (`/debug/player?s=…&capture=
 | Choix multiples | Q3 | Maquette Q3 non reçue (absente des Téléchargements) ; l'en-tête S1 est appliqué en attendant | à voir |
 | Dessinateur, portrait | E1 | Outils petits sans libellés, palette de 11 couleurs avec le gris, barre de temps au lieu de « Tu dessines · 1:12 » | corrigé (livraison A) |
 | Dessinateur, portrait | E1 | Canvas blanc au lieu de crème ; « Changer de mot » dans la carte du mot et « Ni lettres ni chiffres ! » gardés (absents de la maquette) | voulu (décision du développeur) |
-| Dessinateur | E1, E2, E3 | Boutons de zoom et paysage | à corriger (lot C et livraison C) |
+| Dessinateur, paysage | E2 | Absent | corrigé (lot C) |
+| Dessinateur, zoom | E1, E2, E3 | Absent | corrigé sur le site des joueurs (livraison C, étapes 1 et 2) ; app : étape 3 |
+| Dessinateur, zoom | E3 | Curseur vertical de zoom et rangée d'outils qui déborde à droite : remplacés par la pastille − / % / + / ajuster sur le dessin | voulu (E3 non validée comme écran) |
+| Dessinateur, portrait | E1 | Écran de moins de 700 points de haut : couleurs et épaisseurs compactes, pas de ligne d'aide | voulu (le dessin garde sa taille) |
 
 ## TV
 
