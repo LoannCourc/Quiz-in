@@ -1,12 +1,11 @@
-/* Logo L5. Couches de text-shadow en em (le logo garde ses proportions à toutes les tailles), la première
-   dessinée au-dessus : contour encre de la face (sa ligne du bas sépare la face du relief), relief rose
-   (quatre pas vers le bas), puis contour encre du relief. */
+/* Logo L5. Ombres dures en em (le logo garde ses proportions à toutes les tailles), la première dessinée
+   au-dessus : relief rose empilé vers le bas (8 copies, 0,14 em), puis l'ombre encre sous le relief.
+   Aucun contour autour des lettres. */
 .logo {
-  --logo-o: 0.045em;
-  --logo-d: 0.032em;
-  --logo-r: 0.13em;
+  --logo-r: 0.14em;
+  --logo-s: 0.05em;
   display: inline-block;
-  padding: var(--logo-o) var(--logo-o) calc(var(--logo-r) + var(--logo-o));
+  padding-bottom: calc(var(--logo-r) + var(--logo-s));
   font-family: var(--font-display);
   font-weight: 400;
   line-height: var(--display-line-height-tight);
@@ -14,25 +13,15 @@
   text-transform: uppercase;
   white-space: nowrap;
   text-shadow:
-    var(--logo-o) 0 0 var(--logo-outline),
-    calc(-1 * var(--logo-o)) 0 0 var(--logo-outline),
-    0 calc(-1 * var(--logo-o)) 0 var(--logo-outline),
-    0 var(--logo-o) 0 var(--logo-outline),
-    var(--logo-d) var(--logo-d) 0 var(--logo-outline),
-    calc(-1 * var(--logo-d)) var(--logo-d) 0 var(--logo-outline),
-    var(--logo-d) calc(-1 * var(--logo-d)) 0 var(--logo-outline),
-    calc(-1 * var(--logo-d)) calc(-1 * var(--logo-d)) 0 var(--logo-outline),
+    0 calc(var(--logo-r) * 0.125) 0 var(--logo-relief),
     0 calc(var(--logo-r) * 0.25) 0 var(--logo-relief),
+    0 calc(var(--logo-r) * 0.375) 0 var(--logo-relief),
     0 calc(var(--logo-r) * 0.5) 0 var(--logo-relief),
+    0 calc(var(--logo-r) * 0.625) 0 var(--logo-relief),
     0 calc(var(--logo-r) * 0.75) 0 var(--logo-relief),
+    0 calc(var(--logo-r) * 0.875) 0 var(--logo-relief),
     0 var(--logo-r) 0 var(--logo-relief),
-    var(--logo-o) calc(var(--logo-r) * 0.5) 0 var(--logo-outline),
-    calc(-1 * var(--logo-o)) calc(var(--logo-r) * 0.5) 0 var(--logo-outline),
-    var(--logo-o) var(--logo-r) 0 var(--logo-outline),
-    calc(-1 * var(--logo-o)) var(--logo-r) 0 var(--logo-outline),
-    0 calc(var(--logo-r) + var(--logo-o)) 0 var(--logo-outline),
-    var(--logo-d) calc(var(--logo-r) + var(--logo-d)) 0 var(--logo-outline),
-    calc(-1 * var(--logo-d)) calc(var(--logo-r) + var(--logo-d)) 0 var(--logo-outline);
+    0 calc(var(--logo-r) + var(--logo-s)) 0 var(--logo-shadow);
 }
 
 .logo-small {

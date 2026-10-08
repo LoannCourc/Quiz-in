@@ -33,10 +33,10 @@
   --color-text: var(--white);
   --color-text-muted: var(--lavender);
   --color-accent: var(--gold);
-  /* Logo L5 : face or, relief rose vif (choix du logo, pas une alerte), contour encre. */
+  /* Logo L5 : face or, relief rose vif (choix du logo, pas une alerte), ombre encre sous le relief. */
   --logo-face: var(--gold);
   --logo-relief: var(--pink);
-  --logo-outline: var(--ink);
+  --logo-shadow: var(--ink);
   --color-on-accent: var(--ink);
   --color-correct: var(--green);
   --color-on-correct: var(--ink);

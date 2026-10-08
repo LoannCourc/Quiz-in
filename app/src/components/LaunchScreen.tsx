@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   // Hauteur du logo en grand réservée avant la police : rien ne bouge quand il apparaît.
   logoSlot: {
-    minHeight: 81,
+    minHeight: 78,
     justifyContent: 'center',
   },
   dots: {
