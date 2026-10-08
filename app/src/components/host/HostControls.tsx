@@ -12,13 +12,14 @@ import { Spacing } from '@/constants/theme';
 
 // Barre pleine largeur en bas de l'écran, dans le pied d'écran (qui réserve sa place sous le
 // contenu) : elle ouvre le panneau des contrôles de l'hôte.
-export function HostControlsBar({ onPress }: { onPress: () => void }) {
+// compact : l'hôte dessine, la barre laisse la place au dessin.
+export function HostControlsBar({ onPress, isCompact = false }: { onPress: () => void; isCompact?: boolean }) {
   return (
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
-      style={({ pressed }) => [styles.bar, pressed && styles.pressed]}>
-      <ButtonLabel style={styles.barText}>{strings.hostControls.open}</ButtonLabel>
+      style={({ pressed }) => [styles.bar, isCompact && styles.barCompact, pressed && styles.pressed]}>
+      <ButtonLabel style={[styles.barText, isCompact && styles.barTextCompact]}>{strings.hostControls.open}</ButtonLabel>
     </Pressable>
   );
 }
@@ -94,6 +95,9 @@ const styles = StyleSheet.create({
     borderColor: AppColors.selection,
     backgroundColor: AppColors.inkSurface,
   },
+  barCompact: {
+    minHeight: AppSizes.hostBarCompactHeight,
+  },
   pressed: {
     opacity: 0.8,
   },
@@ -102,6 +106,9 @@ const styles = StyleSheet.create({
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: AppSizes.textBody,
+  },
+  barTextCompact: {
+    fontSize: 14,
   },
   overlay: {
     position: 'absolute',

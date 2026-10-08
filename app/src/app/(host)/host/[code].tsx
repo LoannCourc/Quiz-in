@@ -296,6 +296,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       error={actionError}
       notice={hostNotice(connection, cast, isWriteRefused)}
       showCastButton={cast.isAvailable}
+      isDrawing={session.status === 'question' && session.drawTurn?.drawer === session.hostUid}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
       onReplay={actions.replay}
@@ -397,6 +398,8 @@ interface HostFooterProps {
   error: string | null;
   notice: string | null;
   showCastButton: boolean;
+  // L'hôte dessine (Dessine-moi) : barre compacte.
+  isDrawing: boolean;
   onOpenPanel: () => void;
   onResume: () => void;
   onReplay: () => void;
@@ -417,6 +420,7 @@ function HostFooter({
   error,
   notice,
   showCastButton,
+  isDrawing,
   onOpenPanel,
   onResume,
   onReplay,
@@ -456,7 +460,7 @@ function HostFooter({
       )}
       <View style={styles.barRow}>
         <View style={styles.fill}>
-          <HostControlsBar onPress={onOpenPanel} />
+          <HostControlsBar onPress={onOpenPanel} isCompact={isDrawing} />
         </View>
         {/* Icône Cast : état de la TV, et cible de « Afficher sur la TV » dans le panneau. */}
         {showCastButton && <TvCastButton />}

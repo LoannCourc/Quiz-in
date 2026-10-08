@@ -35,24 +35,40 @@ const DOT_SCALE = 0.6;
 
 // Portrait (maquette E1) : cinq outils ronds avec leur nom, dix couleurs en deux rangées de cinq, puis la
 // rangée « ÉPAISSEUR ». Choisir une couleur repasse au crayon après la gomme.
-// compact : écran bas, couleurs et épaisseurs plus petites (le dessin garde sa place).
-export function DrawingTools({ compact = false, ...props }: DrawingToolState & { compact?: boolean }) {
+// Densité des outils en portrait, choisie pour que le dessin prenne toute la largeur (DrawerView) :
+// normal (E1), compact (couleurs et épaisseurs plus petites), serré (outils sans nom, dix couleurs sur une
+// ligne, épaisseurs sans titre).
+export type ToolsDensity = 'normal' | 'compact' | 'tight';
+
+// Hauteur occupée par les outils selon la densité (points, écarts compris), pour choisir la densité.
+export const TOOLS_HEIGHT: Record<ToolsDensity, number> = { normal: 240, compact: 202, tight: 120 };
+
+export function DrawingTools({ density = 'normal', ...props }: DrawingToolState & { density?: ToolsDensity }) {
+  const isCompact = density !== 'normal';
+  const isTight = density === 'tight';
   return (
-    <View style={[styles.block, compact && styles.blockCompact]}>
-      <DrawingToolButtons {...props} />
-      <DrawingColors {...props} compact={compact} />
-      <DrawingWidths {...props} withTitle compact={compact} />
+    <View style={[styles.block, isCompact && styles.blockCompact]}>
+      <DrawingToolButtons {...props} hideLabels={isTight} />
+      <DrawingColors {...props} compact={isCompact} oneRow={isTight} />
+      <DrawingWidths {...props} withTitle={!isTight} compact={isCompact} />
     </View>
   );
 }
 
 // Crayon, gomme, pot, annuler, effacer (l'outil choisi en or) : en rangée avec leur nom (E1), ou en
 // colonne sans nom (paysage, E2).
-export function DrawingToolButtons({ tool, onTool, onUndo, onClear, vertical = false }: DrawingToolState & { vertical?: boolean }) {
+export function DrawingToolButtons({
+  tool,
+  onTool,
+  onUndo,
+  onClear,
+  vertical = false,
+  hideLabels = false,
+}: DrawingToolState & { vertical?: boolean; hideLabels?: boolean }) {
   const { draw } = strings;
-  const showLabels = !vertical;
+  const showLabels = !vertical && !hideLabels;
   return (
-    <View style={vertical ? styles.toolsColumn : styles.toolsRow}>
+    <View style={vertical ? styles.toolsColumn : [styles.toolsRow, hideLabels && styles.toolsRowTight]}>
       {TOOLS.map((item) => (
         <ToolButton key={item} icon={item} label={draw.tools[item]} showLabel={showLabels} isActive={item === tool} onPress={() => onTool(item)} />
       ))}
@@ -63,13 +79,13 @@ export function DrawingToolButtons({ tool, onTool, onUndo, onClear, vertical = f
 }
 
 // Dix couleurs en deux rangées de cinq ; la couleur choisie a un contour blanc (sauf avec la gomme).
-export function DrawingColors({ tool, color, onColor, onTool, compact = false }: DrawingToolState & { compact?: boolean }) {
+export function DrawingColors({ tool, color, onColor, onTool, compact = false, oneRow = false }: DrawingToolState & { compact?: boolean; oneRow?: boolean }) {
   const { draw } = strings;
-  const rows = [PICKER_COLORS.slice(0, COLORS_PER_ROW), PICKER_COLORS.slice(COLORS_PER_ROW)];
+  const rows = oneRow ? [PICKER_COLORS] : [PICKER_COLORS.slice(0, COLORS_PER_ROW), PICKER_COLORS.slice(COLORS_PER_ROW)];
   return (
     <View style={[styles.colors, compact && styles.colorsCompact]}>
       {rows.map((row, rowIndex) => (
-        <View key={rowIndex} style={styles.colorsRow}>
+        <View key={rowIndex} style={[styles.colorsRow, oneRow && styles.colorsRowTight]}>
           {row.map((index) => {
             const isSelected = index === color && tool !== 'eraser';
             return (
@@ -159,6 +175,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: Spacing.one,
   },
+  toolsRowTight: {
+    justifyContent: 'space-around',
+  },
   toolsColumn: {
     justifyContent: 'space-between',
     gap: Spacing.two,
@@ -198,6 +217,9 @@ const styles = StyleSheet.create({
   },
   colors: {
     gap: Spacing.three,
+  },
+  colorsRowTight: {
+    gap: Spacing.one,
   },
   colorsCompact: {
     gap: Spacing.two,

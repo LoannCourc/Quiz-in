@@ -10,7 +10,15 @@ import { CANVAS_CAN_ZOOM, DrawingCanvas } from '@/components/player/draw/Drawing
 import { ToolIcon, type ToolIconName } from '@/components/player/draw/ToolIcon';
 import { EyeIcon } from '@/components/player/draw/EyeIcon';
 import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
-import { DrawingColors, DrawingToolButtons, DrawingTools, DrawingWidths, type DrawingToolState } from '@/components/player/draw/DrawingTools';
+import {
+  DrawingColors,
+  DrawingToolButtons,
+  DrawingTools,
+  DrawingWidths,
+  TOOLS_HEIGHT,
+  type DrawingToolState,
+  type ToolsDensity,
+} from '@/components/player/draw/DrawingTools';
 import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -41,8 +49,8 @@ const SIDE_PANEL_WIDTH = 270;
 // Boutons de zoom sur le dessin.
 const ZOOM_BUTTON = 30;
 const ZOOM_ICON = 18;
-// Portrait : en dessous de cette hauteur d'écran, outils compacts et pas de ligne d'aide.
-const SHORT_SCREEN_HEIGHT = 700;
+// Écart entre le dessin et les outils (styles.drawer).
+const DRAWER_GAP = Spacing.three;
 // Ligne d'aide sous le dessin : hauteur fixe (avec ou sans la pastille « Zoom ×2 »).
 const ZOOM_HINT_HEIGHT = 22;
 
@@ -73,6 +81,18 @@ export interface DrawerTopBarProps {
   // « Changer de mot » : une fois par manche, avant le premier trait.
   canChangeWord: boolean;
   onChangeWord: () => void;
+}
+
+// Densité des outils en portrait : la plus confortable qui laisse au dessin toute la largeur (4:3), ligne
+// d'aide du zoom comprise en densité normale ; sinon serrée (le dessin rétrécit alors un peu, sans déborder).
+function toolsDensityFor({ width, height }: { width: number; height: number }): ToolsDensity {
+  if (width === 0) return 'normal';
+  const canvasHeight = (width * DRAW_HEIGHT) / DRAW_WIDTH;
+  const hint = CANVAS_CAN_ZOOM ? ZOOM_HINT_HEIGHT + DRAWER_GAP : 0;
+  const fits = (density: ToolsDensity) =>
+    canvasHeight + DRAWER_GAP + TOOLS_HEIGHT[density] + (density === 'normal' ? hint : 0) <= height;
+  if (fits('normal')) return 'normal';
+  return fits('compact') ? 'compact' : 'tight';
 }
 
 // Écran du dessinateur en paysage (maquette E2) : quand la fenêtre est plus large que haute.
@@ -178,9 +198,10 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
   const [width, setWidth] = useState(INITIAL_WIDTH);
   const window = useWindowDimensions();
   const isLandscape = isDrawerLandscape(window.width, window.height);
-  // Portrait sur un écran bas : couleurs et épaisseurs compactes, sans ligne d'aide, pour garder un grand
-  // dessin.
-  const isShort = window.height < SHORT_SCREEN_HEIGHT;
+  // Portrait : le dessin prend toute la largeur ; les outils prennent la densité la plus confortable qui
+  // tient dans la hauteur restante (mesurée).
+  const [drawerSize, setDrawerSize] = useState({ width: 0, height: 0 });
+  const density = toolsDensityFor(drawerSize);
   // Place laissée au canvas, mesurée à l'affichage.
   const [area, setArea] = useState({ width: 0, height: 0 });
   // Dessin déjà envoyé dans cette manche (page rechargée) : lu une fois, à l'arrivée sur l'écran.
@@ -225,10 +246,10 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
   );
   if (!isLandscape) {
     return (
-      <View style={styles.drawer}>
+      <View style={styles.drawer} onLayout={(event) => setDrawerSize(event.nativeEvent.layout)}>
         {canvasArea}
-        {CANVAS_CAN_ZOOM && !isShort && <ZoomHint view={view} />}
-        <DrawingTools {...tools} compact={isShort} />
+        {CANVAS_CAN_ZOOM && density === 'normal' && <ZoomHint view={view} />}
+        <DrawingTools {...tools} density={density} />
       </View>
     );
   }
