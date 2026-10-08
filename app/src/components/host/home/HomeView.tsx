@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Logo } from '@/components/ui/Logo';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
+import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
@@ -30,7 +31,7 @@ interface HomeViewProps {
 export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled }: HomeViewProps) {
   return (
     <View style={styles.column}>
-      <Text style={styles.brand}>{strings.join.appName}</Text>
+      <Logo size="medium" align="start" />
       <View style={styles.titles}>
         <Text style={styles.title}>{strings.home.title}</Text>
         <Text style={[textStyles.body, styles.subtitle]}>{strings.home.subtitle}</Text>
@@ -54,13 +55,6 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
 const styles = StyleSheet.create({
   column: {
     gap: Spacing.four,
-  },
-  brand: {
-    color: AppColors.accent,
-    fontFamily: AppFonts.display,
-    fontSize: AppSizes.textLarge,
-    lineHeight: Math.round(AppSizes.textLarge * DISPLAY_LINE_HEIGHT),
-    textTransform: 'uppercase',
   },
   titles: {
     gap: Spacing.one,

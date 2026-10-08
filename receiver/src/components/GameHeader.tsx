@@ -4,6 +4,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { JOIN_URL_BASE, PLAYERS_SITE_HOST } from '../config'
 import { strings } from '../strings'
 import { DifficultyBadge } from './DifficultyBadge'
+import { Logo } from './Logo'
 import './GameHeader.css'
 
 interface GameHeaderProps {
@@ -21,7 +22,7 @@ interface GameHeaderProps {
 export function GameHeader({ roomCode, questionIndex, questionCount, difficulty, isRound = false }: GameHeaderProps) {
   return (
     <header className="game-header">
-      <span className="game-header-logo">{strings.appName}</span>
+      <Logo size="small" />
       {questionIndex !== undefined && (
         <span className="game-header-question">{(isRound ? strings.question.roundProgress : strings.question.progress)(questionIndex + 1, questionCount)}</span>
       )}

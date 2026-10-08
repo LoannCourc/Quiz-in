@@ -1,3 +1,4 @@
+import { Logo } from '../components/Logo'
 import './StatusScreen.css'
 
 interface StatusScreenProps {
@@ -10,10 +11,11 @@ interface StatusScreenProps {
   lines?: readonly string[]
 }
 
-// Écran de message : chargement, partie introuvable, erreur.
+// Écran de message, sous le logo : attente du Cast, chargement, partie introuvable, erreur.
 export function StatusScreen({ title, hint, detail, isLoading = false, lines }: StatusScreenProps) {
   return (
     <main className="screen status">
+      <Logo size="medium" />
       {isLoading && <span className="status-spinner" aria-hidden="true" />}
       <h1 className="status-title">{title}</h1>
       {hint && <p className="status-hint">{hint}</p>}

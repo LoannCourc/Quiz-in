@@ -128,6 +128,12 @@ export const AppColors = {
     Corps: Palette.cyan,
   } satisfies Record<DrawCategory, string>,
   onGameTile: Palette.ink,
+  // Logo L5 : face or, relief rose vif (choix du logo, pas une alerte), contour encre.
+  logoFace: Palette.gold,
+  logoRelief: Palette.pink,
+  logoOutline: Palette.ink,
+  // Page de démarrage : trois points rose vif, cyan, or sous le logo.
+  launchDots: [Palette.pink, Palette.cyan, Palette.gold],
   gameTileBorder: Palette.white,
   themeIcon: Palette.white,
   themeIconShadow: Palette.ink,

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
+import { Logo } from '@/components/ui/Logo';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
@@ -27,7 +28,7 @@ export default function JoinCodeScreen() {
 
   return (
     <Screen>
-      <Text style={textStyles.title}>{strings.join.appName}</Text>
+      <Logo size="large" />
       <Text style={[textStyles.label, styles.centered]}>{strings.join.codeTitle}</Text>
 
       <View style={styles.field}>

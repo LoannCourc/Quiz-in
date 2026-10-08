@@ -66,14 +66,9 @@
   min-height: 0;
 }
 
+/* Logo (components/Logo.css) : seule sa taille change avec la densité du salon. */
 .lobby-logo {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 5rem;
-  line-height: var(--display-line-height-tight);
-  color: var(--color-accent);
-  text-transform: uppercase;
-  text-shadow: var(--text-shadow-hard);
+  justify-self: start;
 }
 
 .lobby-count {

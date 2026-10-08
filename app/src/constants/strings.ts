@@ -21,6 +21,8 @@ export type GameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
 export const strings = {
+  // Nom de l'app, écrit par le logo (components/ui/Logo.tsx) et lu par les lecteurs d'écran.
+  appName: "Quiz'in",
   counter: {
     title: 'Compteur partagé',
     loading: 'Connexion…',
@@ -28,7 +30,6 @@ export const strings = {
     errorPrefix: 'Erreur :',
   },
   join: {
-    appName: "Quiz'in",
     codeTitle: 'Rejoindre une partie',
     codeLabel: 'Code affiché sur la TV',
     codePlaceholder: 'ABCD',

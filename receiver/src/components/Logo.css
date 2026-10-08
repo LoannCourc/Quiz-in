@@ -1,0 +1,48 @@
+/* Logo L5. Couches de text-shadow en em (le logo garde ses proportions à toutes les tailles), la première
+   dessinée au-dessus : contour encre de la face (sa ligne du bas sépare la face du relief), relief rose
+   (quatre pas vers le bas), puis contour encre du relief. */
+.logo {
+  --logo-o: 0.045em;
+  --logo-d: 0.032em;
+  --logo-r: 0.13em;
+  display: inline-block;
+  padding: var(--logo-o) var(--logo-o) calc(var(--logo-r) + var(--logo-o));
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--display-line-height-tight);
+  color: var(--logo-face);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow:
+    var(--logo-o) 0 0 var(--logo-outline),
+    calc(-1 * var(--logo-o)) 0 0 var(--logo-outline),
+    0 calc(-1 * var(--logo-o)) 0 var(--logo-outline),
+    0 var(--logo-o) 0 var(--logo-outline),
+    var(--logo-d) var(--logo-d) 0 var(--logo-outline),
+    calc(-1 * var(--logo-d)) var(--logo-d) 0 var(--logo-outline),
+    var(--logo-d) calc(-1 * var(--logo-d)) 0 var(--logo-outline),
+    calc(-1 * var(--logo-d)) calc(-1 * var(--logo-d)) 0 var(--logo-outline),
+    0 calc(var(--logo-r) * 0.25) 0 var(--logo-relief),
+    0 calc(var(--logo-r) * 0.5) 0 var(--logo-relief),
+    0 calc(var(--logo-r) * 0.75) 0 var(--logo-relief),
+    0 var(--logo-r) 0 var(--logo-relief),
+    var(--logo-o) calc(var(--logo-r) * 0.5) 0 var(--logo-outline),
+    calc(-1 * var(--logo-o)) calc(var(--logo-r) * 0.5) 0 var(--logo-outline),
+    var(--logo-o) var(--logo-r) 0 var(--logo-outline),
+    calc(-1 * var(--logo-o)) var(--logo-r) 0 var(--logo-outline),
+    0 calc(var(--logo-r) + var(--logo-o)) 0 var(--logo-outline),
+    var(--logo-d) calc(var(--logo-r) + var(--logo-d)) 0 var(--logo-outline),
+    calc(-1 * var(--logo-d)) calc(var(--logo-r) + var(--logo-d)) 0 var(--logo-outline);
+}
+
+.logo-small {
+  font-size: 1.8rem;
+}
+
+.logo-medium {
+  font-size: 3.2rem;
+}
+
+.logo-large {
+  font-size: 5rem;
+}

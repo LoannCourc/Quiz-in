@@ -3,6 +3,7 @@ import { Redirect, router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
+import { Logo } from '@/components/ui/Logo';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
@@ -23,6 +24,7 @@ export default function AboutRoute() {
   if (isPublishedWeb) return <Redirect href="/join" />;
   return (
     <Screen>
+      <Logo size="large" />
       <Text style={textStyles.title}>{strings.about.title}</Text>
       <View style={styles.section}>
         <Text style={textStyles.label}>{strings.about.version(APP_VERSION)}</Text>

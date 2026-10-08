@@ -5,6 +5,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { useEffect, useState } from 'react'
 
 import { Avatar } from '../components/Avatar'
+import { Logo } from '../components/Logo'
 import { TeamColumns } from '../components/TeamColumns'
 import { useFitScale } from '../hooks/useFitScale'
 import { JOIN_URL_BASE, PLAYERS_SITE_HOST } from '../config'
@@ -62,7 +63,7 @@ export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
       </section>
 
       <section className="lobby-players" ref={playersRef}>
-        <h1 className="lobby-logo">{strings.appName}</h1>
+        <Logo size="large" as="h1" className="lobby-logo" />
         <p className="lobby-count">{strings.lobby.playerCount(countConnected(players), MAX_PLAYERS)}</p>
         {session.settings.teams ? (
           // Groupe : les joueurs dans leur équipe (et ceux qui n'en ont pas encore).
