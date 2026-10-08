@@ -1,6 +1,7 @@
 import type { Player } from '@shared/types'
 
 import './Avatar.css'
+import { nameScaleStyle } from '../lib/playerNameStyle'
 
 interface AvatarProps {
   player: Player
@@ -18,7 +19,11 @@ export function Avatar({ player, state = 'normal', showName = true }: AvatarProp
   return (
     <div className={className}>
       <span className="avatar-emoji">{player.avatar}</span>
-      {showName && <span className="avatar-name">{player.name}</span>}
+      {showName && (
+        <span className="avatar-name" style={nameScaleStyle(player.name)}>
+          {player.name}
+        </span>
+      )}
     </div>
   )
 }

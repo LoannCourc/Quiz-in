@@ -82,8 +82,9 @@
 .team-member-name {
   min-width: 0;
   overflow: hidden;
+  font-size: calc(1em * var(--name-scale, 1));
   white-space: nowrap;
-  text-overflow: clip;
+  text-overflow: ellipsis;
 }
 
 /* Tirage : chaque joueur glisse dans sa colonne, l'un après l'autre (délai posé par le composant). */

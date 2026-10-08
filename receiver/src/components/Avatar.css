@@ -20,9 +20,10 @@
   transition: transform 300ms ease-out;
 }
 
+/* --name-scale : pseudo réduit selon sa longueur (shared/playerName.ts), puis « … ». */
 .avatar-name {
   max-width: 8em;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--name-scale, 1));
   font-weight: 900;
   white-space: nowrap;
   overflow: hidden;

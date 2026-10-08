@@ -7,6 +7,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useJoinedTeamNotice } from '@/hooks/useJoinedTeamNotice';
 import type { LobbyPlayers } from '@/lib/joinGame';
+import { PlayerName } from '@/components/ui/PlayerName';
 
 import { PlayerTeamLobby } from './PlayerTeamLobby';
 
@@ -34,7 +35,7 @@ export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
           <View style={styles.bigDisc}>
             <Text style={styles.bigAvatar}>{me.avatar}</Text>
           </View>
-          <Text style={styles.myName}>{me.name}</Text>
+          <PlayerName name={me.name} style={styles.myName} />
         </View>
       )}
       {joinedTeam && <Text style={styles.joined}>{strings.teams.joined(strings.teams.names[joinedTeam])}</Text>}

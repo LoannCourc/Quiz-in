@@ -5,6 +5,7 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } f
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
+import { PlayerName } from '@/components/ui/PlayerName';
 
 // Hauteur des marches, par position sur le podium (1re, 2e, 3e place du classement trié).
 const STEP_HEIGHTS = [190, 150, 110];
@@ -46,9 +47,7 @@ function Podium({ players, uid }: RankingProps) {
                 <Text style={styles.meTagText}>{strings.game.scores.me}</Text>
               </View>
             ) : (
-              <Text style={styles.podiumName} numberOfLines={1}>
-                {player.name}
-              </Text>
+              <PlayerName name={player.name} style={styles.podiumName} />
             )}
             <View
               style={[
@@ -71,9 +70,13 @@ function RankingRow({ player, isMe }: { player: RankedPlayer; isMe: boolean }) {
     <View style={[styles.row, isMe && styles.myRow]}>
       <Text style={styles.rowRank}>{player.rank}</Text>
       <Text style={styles.rowAvatar}>{player.avatar}</Text>
-      <Text style={styles.rowName} numberOfLines={1}>
-        {isMe ? strings.game.scores.me : player.name}
-      </Text>
+      {isMe ? (
+        <Text style={styles.rowName} numberOfLines={1}>
+          {strings.game.scores.me}
+        </Text>
+      ) : (
+        <PlayerName name={player.name} style={styles.rowName} />
+      )}
       <Text style={styles.rowScore}>{strings.game.formatNumber(player.score)}</Text>
     </View>
   );

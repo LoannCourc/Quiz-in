@@ -440,3 +440,13 @@ export function withDemoDraw(session: PublicSession, word = 'maison', foundCount
         : session.reveal,
   }
 }
+
+const LONG_NAMES = ['Ordinateur', 'Marie-Hélène', 'Maximilienne', 'Christophe', 'Bartholomew', 'Anne-Sophie']
+
+// &names=long : chaque joueur reçoit un pseudo long (mise en page des pseudos sur une ligne).
+export function withLongNames(session: PublicSession): PublicSession {
+  const players = Object.fromEntries(
+    Object.entries(session.players).map(([id, player], index) => [id, { ...player, name: LONG_NAMES[index % LONG_NAMES.length] }]),
+  )
+  return { ...session, players }
+}

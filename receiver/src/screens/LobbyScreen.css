@@ -100,7 +100,7 @@
 /* Pseudos entiers (12 caractères au plus) : jamais de « … », l'échelle rétrécit à la place. */
 .lobby-avatars .avatar-name {
   max-width: 100%;
-  font-size: calc(var(--name-base) * var(--fit-scale));
+  font-size: calc(var(--name-base) * var(--fit-scale) * var(--name-scale, 1));
   text-overflow: clip;
 }
 

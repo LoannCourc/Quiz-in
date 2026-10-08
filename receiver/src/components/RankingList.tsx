@@ -2,6 +2,7 @@ import type { PlayerId } from '@shared/types'
 
 import type { RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
+import { nameScaleStyle } from '../lib/playerNameStyle'
 import { StreakBadge } from './StreakBadge'
 import './RankingList.css'
 
@@ -54,7 +55,9 @@ export function RankingList({ players, gainedPoints, columns = 1, delays, dance 
                 </span>
               )}
             </span>
-            <span className="ranking-name">{player.name}</span>
+            <span className="ranking-name" style={nameScaleStyle(player.name)}>
+              {player.name}
+            </span>
             {gainedPoints && (
               <span className="ranking-gained">{gained > 0 ? strings.ranking.gained(gained) : ''}</span>
             )}

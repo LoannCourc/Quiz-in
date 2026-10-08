@@ -239,7 +239,8 @@ export const AppSizes = {
   roundIconButton: 44,
   // Salon : grille des joueurs (cercle de l'avatar, largeur d'une case).
   lobbyGridAvatar: 52,
-  lobbyGridCell: 68,
+  // 76 : un pseudo de 12 caractères tient sur une ligne (PlayerName) ; 4 cases par ligne dès 360 px.
+  lobbyGridCell: 76,
   // Salon : QR code (scanné de près, de téléphone à téléphone).
   qrSize: 152,
   qrQuietZone: 4,

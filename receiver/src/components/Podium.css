@@ -29,7 +29,7 @@
 
 .podium-name {
   max-width: 100%;
-  font-size: 1.3rem;
+  font-size: calc(1.3rem * var(--name-scale, 1));
   font-weight: 900;
   white-space: nowrap;
   overflow: hidden;

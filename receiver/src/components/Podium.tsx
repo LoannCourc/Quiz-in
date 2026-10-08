@@ -2,6 +2,7 @@ import type { RankedPlayer } from '../lib/players'
 import type { PlayerId } from '@shared/types'
 
 import { strings } from '../strings'
+import { nameScaleStyle } from '../lib/playerNameStyle'
 import { StreakBadge } from './StreakBadge'
 import './Podium.css'
 
@@ -38,7 +39,9 @@ export function Podium({ players, delays, dance = false, streaks }: PodiumProps)
                 </span>
               )}
             </span>
-            <span className="podium-name">{player.name}</span>
+            <span className="podium-name" style={nameScaleStyle(player.name)}>
+              {player.name}
+            </span>
             <div className="podium-block">
               <span className="podium-rank">{player.rank}</span>
               <span className="podium-score">{strings.ranking.points(player.score)}</span>

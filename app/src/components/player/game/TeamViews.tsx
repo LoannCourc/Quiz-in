@@ -10,6 +10,7 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } f
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { RankedPlayer } from '@/lib/playerGame';
+import { PlayerName } from '@/components/ui/PlayerName';
 
 import { PlaceBand } from './PlaceBand';
 import { EndView } from './StatusViews';
@@ -105,7 +106,7 @@ export function TeamEndView({ info, me, playerCount, isBestOfTeam, onShowPlayers
               <Text style={styles.meAvatarText}>{me.avatar}</Text>
             </View>
             <View style={styles.meTexts}>
-              <Text style={styles.meName}>{me.name}</Text>
+              <PlayerName name={me.name} style={styles.meName} />
               {isBestOfTeam && <Text style={styles.note}>{game.bestOfTeam}</Text>}
             </View>
             <View style={styles.meRank}>

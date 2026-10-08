@@ -9,6 +9,7 @@ import { TeamTile } from '@/components/ui/TeamSymbol';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { PlayerName } from '@/components/ui/PlayerName';
 
 interface TeamComposerProps {
   settings: SessionSettings;
@@ -154,7 +155,7 @@ function PlayerChip({ player, isSelected, onPress }: { player: Player; isSelecte
       onPress={onPress}
       style={[styles.chip, isSelected && styles.chipSelected, !player.connected && styles.chipAway]}>
       <Text style={styles.chipAvatar}>{player.avatar}</Text>
-      <Text style={styles.chipName}>{player.name}</Text>
+      <PlayerName name={player.name} style={styles.chipName} />
     </Pressable>
   );
 }

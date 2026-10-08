@@ -24,20 +24,23 @@ import { DEMO_CODE } from './playerScenarios';
 
 const HOST_UID: PlayerId = 'host';
 const NAMES = ['Loann', 'Maman', 'Papa', 'Camille', 'Léa', 'Tom', 'Noé', 'Inès', 'Hugo', 'Jade'];
+// &names=long : pseudos longs (10 à 12 caractères), pour vérifier qu'ils tiennent sur une ligne.
+const LONG_NAMES = ['Ordinateur', 'Marie-Hélène', 'Maximilienne', 'Christophe', 'Bartholomew', 'Anne-Sophie'];
 
-function player(index: number): Player {
-  return { name: NAMES[index % NAMES.length] + (index >= NAMES.length ? ` ${index}` : ''), avatar: AVATARS[index % AVATARS.length], score: 0, rank: 0, connected: true };
+function player(index: number, isLong = false): Player {
+  const names = isLong ? LONG_NAMES : NAMES;
+  return { name: isLong ? names[index % names.length] : names[index % names.length] + (index >= names.length ? ` ${index}` : ''), avatar: AVATARS[index % AVATARS.length], score: 0, rank: 0, connected: true };
 }
 
 function isTeamMode(value: string | undefined): value is TeamMode {
   return TEAM_MODES.includes(value as TeamMode);
 }
 
-function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: TeamMode, isDraw = false): Session {
+function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: TeamMode, isDraw = false, isLong = false): Session {
   const players: Record<PlayerId, Player> = {};
   for (let index = 0; index < playerCount; index += 1) {
     if (index === 0 && !hostRegistered) continue;
-    players[index === 0 ? HOST_UID : `p${index}`] = player(index);
+    players[index === 0 ? HOST_UID : `p${index}`] = player(index, isLong);
   }
   return {
     hostUid: HOST_UID,
@@ -65,12 +68,12 @@ function demoCast(tv: string | undefined): CastGame {
 }
 
 export default function LobbyDemoScreen() {
-  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; settings?: string; draw?: string }>();
+  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; settings?: string; draw?: string; names?: string }>();
   const playerCount = Math.min(20, Math.max(0, Number(params.players ?? 4) || 0));
   const teamMode = isTeamMode(params.teams) ? params.teams : undefined;
   // Session en mémoire : les actions du salon (équipes) s'y appliquent, rien n'est écrit dans la base.
   const [session, setSession] = useState(() => {
-    const initial = demoSession(playerCount, params.host !== '0', teamMode, params.draw === '1');
+    const initial = demoSession(playerCount, params.host !== '0', teamMode, params.draw === '1', params.names === 'long');
     const drawn = params.drawn === '1' ? applyLocalUpdate(initial, teamDrawUpdate(initial, Date.now() - 60_000)) : initial;
     return withLateJoiners(drawn, Number(params.late) || 0);
   });

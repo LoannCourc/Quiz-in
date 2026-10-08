@@ -6,6 +6,7 @@ import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
+import { PlayerName } from '@/components/ui/PlayerName';
 
 // Cercles vides en pointillés tant que personne n'a rejoint.
 const EMPTY_SEATS = 5;
@@ -34,9 +35,7 @@ export function LobbyPlayerGrid({ players, hostUid }: { players: LobbyPlayers; h
           <View style={styles.disc}>
             <Text style={styles.avatar}>{player.avatar}</Text>
           </View>
-          <Text style={styles.name} numberOfLines={2}>
-            {player.name}
-          </Text>
+          <PlayerName name={player.name} style={styles.name} />
           {player.id === hostUid && <Text style={styles.badge}>{strings.hostLobby.hostBadge}</Text>}
         </View>
       ))}

@@ -13,3 +13,15 @@ export function isValidPlayerName(name: string): boolean {
 export function isSamePlayerName(a: string, b: string): boolean {
   return a.toLocaleLowerCase('fr') === b.toLocaleLowerCase('fr')
 }
+
+// Taille d'un pseudo selon sa longueur (spec 6.6 : 12 caractères au plus), pour qu'il tienne toujours sur
+// une seule ligne : entière jusqu'à 8 caractères, puis 6 % de moins par caractère, jamais sous 76 % (taille
+// minimale lisible). Au-delà de la place disponible : « … ». Même règle sur les téléphones et sur la TV.
+const NAME_FULL_SIZE_LENGTH = 8
+const NAME_SCALE_STEP = 0.06
+export const NAME_MIN_SCALE = 0.76
+
+export function playerNameScale(name: string): number {
+  const extra = Math.max(0, [...name].length - NAME_FULL_SIZE_LENGTH)
+  return Math.max(NAME_MIN_SCALE, Math.round((1 - extra * NAME_SCALE_STEP) * 100) / 100)
+}

@@ -22,6 +22,7 @@ import {
   withDemoDraw,
   withDemoStreaks,
   withDemoTeams,
+  withLongNames,
   withLongOptions,
   type DemoOptions,
 } from './demoSession'
@@ -113,7 +114,9 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const limited = withUnassigned(withPlayerLimit(withQuestion, params.get('players')), Number(params.get('unassigned')) || 0)
   // &last=1 : dernière question de la partie (révélation suivie directement de l'écran de fin).
   const lastQuestion = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
-  const withStreaks = withDemoStreaks(lastQuestion, demoStreaks(params.get('streaks')))
+  // &names=long : pseudos longs (10 à 12 caractères) : une seule ligne, taille réduite, puis « … ».
+  const named = params.get('names') === 'long' ? withLongNames(lastQuestion) : lastQuestion
+  const withStreaks = withDemoStreaks(named, demoStreaks(params.get('streaks')))
   // &mode=draw : Dessine-moi, la maison du banc d'essai déjà dessinée (manche ou révélation).
   const session = options.answerMode === 'draw' ? withDemoDraw(withStreaks, params.get('word') ?? undefined, Number(params.get('found')) || 0, params.get('cancelled') === '1', params.get('drawername') ?? undefined) : withStreaks
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'
