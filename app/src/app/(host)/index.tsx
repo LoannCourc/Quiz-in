@@ -34,7 +34,12 @@ function HomeScreen() {
 
   return (
     <Screen>
-      <HomeView onOpenGame={openGame} banner={resumeButton} isBlindTestEnabled={isBlindTestEnabled} isDrawEnabled={isDrawEnabled} />
+      <HomeView
+        onOpenGame={openGame}
+        banner={resumeButton}
+        isBlindTestEnabled={isBlindTestEnabled === true}
+        isDrawEnabled={isDrawEnabled !== false}
+      />
 
       <View style={styles.footerLinks}>
         <Link href="/about" style={styles.footerLink}>

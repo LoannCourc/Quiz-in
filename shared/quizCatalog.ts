@@ -103,3 +103,22 @@ export function settingsForGameType(settings: SessionSettings, gameType: QuizGam
   if (gameType === 'draw') return { ...settings, answerMode: 'draw', speedBonus: false, control: false }
   return settings.answerMode === 'bluff' ? { ...settings, answerMode: DEFAULT_SESSION_SETTINGS.answerMode } : settings
 }
+
+// Interrupteurs à distance des jeux (config/…) : true ou false une fois lus, null tant qu'ils se lisent.
+export interface GameSwitches {
+  blindTest: boolean | null
+  draw: boolean | null
+}
+
+export type GameAccess = 'open' | 'closed' | 'loading'
+
+// Accès au catalogue d'un jeu ouvert depuis l'accueil. Interrupteur pas encore lu : on attend (jamais de
+// retour à l'accueil pendant la lecture : c'était le bug du blind test, renvoyé à l'accueil à chaque fois).
+// Jeu inconnu : fermé.
+export function gameAccess(game: string | undefined, switches: GameSwitches): GameAccess {
+  if (game === 'quiz' || game === 'bluff') return 'open'
+  if (game !== 'blindTest' && game !== 'draw') return 'closed'
+  const value = switches[game]
+  if (value === null) return 'loading'
+  return value ? 'open' : 'closed'
+}

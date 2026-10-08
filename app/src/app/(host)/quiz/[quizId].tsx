@@ -68,9 +68,9 @@ function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories
   const [sound, setSound] = useSoundPreferences();
   // Jeu coupé à distance (blind test, Dessine-moi) : fiche visible (lien direct), mais pas de partie.
   const unavailableReason =
-    summary?.gameType === 'blindTest' && !isBlindTestEnabled
+    summary?.gameType === 'blindTest' && isBlindTestEnabled !== true
       ? strings.quizSetup.blindTestUnavailable
-      : summary?.gameType === 'draw' && !isDrawEnabled
+      : summary?.gameType === 'draw' && isDrawEnabled === false
         ? strings.quizSetup.drawUnavailable
         : undefined;
 

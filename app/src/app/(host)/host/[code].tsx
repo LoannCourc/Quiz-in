@@ -133,7 +133,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   const connection = useHostAbsence(code, session, serverOffsetMs);
   const gameQuestions = questions.kind === 'ready' ? questions.questions : null;
   // Blind test : adresses des extraits, récupérées dès le salon et renouvelées avant expiration.
-  const isBlindTestEnabled = useBlindTestEnabled();
+  const isBlindTestEnabled = useBlindTestEnabled() === true;
   const audio = useAudioUrls(gameQuestions, isBlindTestEnabled);
   const engine = useHostEngine({
     code,
