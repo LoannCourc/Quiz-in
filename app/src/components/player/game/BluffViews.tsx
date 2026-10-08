@@ -2,11 +2,11 @@ import { bluffAttemptsLeft, bluffPlayerOutcome, bluffWriteStatus } from '@shared
 import { BLUFF_MAX_LENGTH, BLUFF_TRAP_POINTS } from '@shared/constants';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, RevealedBluffChoice } from '@shared/types';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
-import { BigButton } from '@/components/ui/BigButton';
 import { BUTTON_LABEL_MAX_FONT_SCALE, BUTTON_LABEL_MIN_SCALE } from '@/components/ui/ButtonLabel';
 import { SubmitButton } from '@/components/ui/SubmitButton';
+import { displaySizeOnOneLine, displaySizeStyle } from '@/components/ui/displayFit';
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -38,9 +38,20 @@ interface PhaseProps {
 
 const { bluff: texts } = strings.game;
 
-// Consigne de la phase (pas une pastille de type de jeu) : ce que le joueur doit faire maintenant.
-function Instruction({ label }: { label: string }) {
-  return <Text style={styles.instruction}>{label}</Text>;
+// Consigne de la phase en pastille, sur une ligne : or à l'écriture (B1), cyan au vote (B2).
+function InstructionPill({ label, tone }: { label: string; tone: 'write' | 'vote' }) {
+  return (
+    <View style={[styles.instructionPill, tone === 'vote' && styles.instructionPillVote]}>
+      <Text
+        style={styles.instructionPillText}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={BUTTON_LABEL_MIN_SCALE}
+        maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+        {label}
+      </Text>
+    </View>
+  );
 }
 
 // B1 : pastille de consigne, la question (sur le téléphone seulement sans TV), le champ commun (S1) avec son
@@ -66,11 +77,7 @@ export function BluffWriteView(props: PhaseProps) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.writePill}>
-        <Text style={styles.writePillText} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={BUTTON_LABEL_MIN_SCALE} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
-          {texts.writeInstruction}
-        </Text>
-      </View>
+      <InstructionPill label={texts.writeInstruction} tone="write" />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <AnswerField
         label={texts.fieldLabel}
@@ -109,11 +116,14 @@ interface WaitProps extends PhaseProps {
 
 // B2, à gauche : coche, message, rappel de la proposition (ou du vote), et qui a déjà fini.
 function BluffWaitView({ progress, title, quote, message, withMark = true }: WaitProps) {
+  const { width } = useWindowDimensions();
   return (
     <View style={styles.container}>
       <View style={styles.waitCenter}>
         {withMark && <MarkIcon kind="check" size={48} color={AppColors.correct} />}
-        <Text style={[textStyles.hero, styles.waitTitle]}>{title}</Text>
+        <Text style={[textStyles.title, styles.waitTitle, displaySizeStyle(displaySizeOnOneLine(title, width, WAIT_TITLE_MAX, WAIT_TITLE_MIN))]} numberOfLines={1} maxFontSizeMultiplier={1}>
+          {title}
+        </Text>
         {quote !== undefined && <Text style={styles.waitQuote}>{texts.quoted(quote)}</Text>}
         <Text style={styles.waitMessage}>{message ?? texts.waiting}</Text>
         <ProgressRow progress={progress} />
@@ -134,10 +144,10 @@ function ProgressRow({ progress }: { progress: BluffProgressPlayer[] }) {
   );
 }
 
-// B2, à droite : les choix (le sien grisé, « Ta proposition »), un appui sélectionne, puis
-// « Je vote pour celle-ci ». La liste défile avec la page quand les choix sont nombreux.
+// B2, à droite : pastille cyan, les choix (le sien grisé, « Ta proposition »), un appui sélectionne (fond or),
+// puis « Je vote pour celle-ci ». La liste défile avec la page quand les choix sont nombreux.
 export function BluffVoteView(props: PhaseProps) {
-  const { question, bluff, progress, showQuestion } = props;
+  const { question, bluff, showQuestion } = props;
   const choices = question.choices ?? [];
   const { vote, ownChoice } = bluff;
   const [selected, setSelected] = useState<number | null>(vote.kind === 'refused' ? vote.choice : null);
@@ -150,7 +160,7 @@ export function BluffVoteView(props: PhaseProps) {
   const isSending = vote.kind === 'sending';
   return (
     <View style={styles.container}>
-      <Instruction label={texts.voteInstruction} />
+      <InstructionPill label={texts.voteInstruction} tone="vote" />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
       <View style={styles.choices}>
         {choices.map((choice, choiceIndex) => {
@@ -179,9 +189,7 @@ export function BluffVoteView(props: PhaseProps) {
       </View>
       <View style={styles.footer}>
         {vote.kind === 'refused' && <Text style={[textStyles.error, styles.centered]}>{texts.voteRefusals[vote.reason]}</Text>}
-        {selected === null && <Text style={[styles.hint, styles.centered]}>{texts.pickHint}</Text>}
-        <ProgressRow progress={progress} />
-        <BigButton
+        <SubmitButton
           label={isSending ? texts.sending : texts.voteButton}
           onPress={() => selected !== null && bluff.onVote(selected)}
           disabled={selected === null || isSending}
@@ -254,6 +262,9 @@ export function BluffRevealView({ choices, result, uid, players, streak }: Bluff
 }
 
 const PROGRESS_SIZE = 36;
+// « PROPOSITION ENVOYÉE » (maquette B2) : sur une ligne, plus petit sur un écran étroit.
+const WAIT_TITLE_MAX = 30;
+const WAIT_TITLE_MIN = 16;
 
 const styles = StyleSheet.create({
   container: {
@@ -263,25 +274,22 @@ const styles = StyleSheet.create({
   centered: {
     textAlign: 'center',
   },
-  writePill: {
+  instructionPill: {
     alignSelf: 'center',
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.one + 2,
     borderRadius: AppSizes.radiusPill,
     backgroundColor: AppColors.accent,
   },
-  writePillText: {
+  instructionPillVote: {
+    backgroundColor: AppColors.link,
+  },
+  instructionPillText: {
     ...TEXT_FIT_SAFETY,
     color: AppColors.onAccent,
     fontFamily: AppFonts.black,
     fontSize: 12,
     textTransform: 'uppercase',
-  },
-  instruction: {
-    color: AppColors.accent,
-    fontFamily: AppFonts.black,
-    fontSize: 20,
-    textAlign: 'center',
   },
   questionText: {
     color: AppColors.text,
@@ -374,7 +382,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.inkSurface,
   },
   choiceSelected: {
-    borderColor: AppColors.selection,
+    borderColor: AppColors.accent,
     backgroundColor: AppColors.accent,
   },
   choiceOwn: {

@@ -15,8 +15,9 @@ Contrôle à chaque lot : captures du téléphone (`/debug/player?s=…&capture=
 | Bluff, écrire | B1 | Champ sur 4 lignes au lieu d'une ligne ; consigne en texte or au lieu de la pastille « BLUFF · INVENTE UNE FAUSSE RÉPONSE » ; rangée d'avatars en plus | corrigé |
 | Dessine-moi, deviner | S1 | ENVOYER au lieu de VALIDER ; nombre d'essais sous le bouton (le pousse sous le clavier) | corrigé |
 | Dessine-moi, mot (dessinateur, révélation) | — | Taille d'après la longueur totale : un mot de 12 lettres pouvait se couper à 320 px | corrigé |
-| Bluff, attente | B2 | Pas encore comparé en détail | à corriger |
-| Envoyé (saisie libre) | S2 | La maquette garde l'en-tête et la barre ; « Tu ne peux plus la modifier. » en bas | à corriger |
+| Bluff, attente | B2 | Titre en très grand sur deux lignes au lieu d'une ligne | corrigé |
+| Bluff, vote | B2 | Consigne en texte or au lieu de la pastille cyan « BLUFF · QUELLE EST LA VRAIE RÉPONSE ? » ; phrase d'aide et rangée d'avatars en plus ; choix retenu avec contour blanc ; bouton gris au lieu de la pilule or | corrigé |
+| Envoyé (saisie libre) | S2 | « RÉPONSE ENVOYÉE ! » sur deux lignes au lieu d'une, sans point d'exclamation ; décompte « X/Y ont répondu » en plus | corrigé |
 | Révélation (saisie libre) | S2 | La maquette montre « TA PLACE » ; la règle « une fonction par écran » (spec 4) l'interdit | voulu |
 | Choix multiples | Q3 | Maquette Q3 non reçue (absente des Téléchargements) ; l'en-tête S1 est appliqué en attendant | à voir |
 | Dessinateur | E1, E2 | Écran actuel provisoire (outils petits, sans libellés, sans zoom) | à corriger (plan 5) |
@@ -27,6 +28,7 @@ Contrôle à chaque lot : captures du téléphone (`/debug/player?s=…&capture=
 |---|---|---|---|
 | Logo (tous les écrans) | L5 | Contour encre autour des lettres en plus du relief | corrigé |
 | Dessine-moi, révélation | — | Mot coupé (« BOUSSOL ») et onglets sur deux lignes dans la colonne de droite | corrigé |
-| Saisie libre, validation | T1 | Carte blanche de la question et cadre en pointillés au lieu du titre blanc seul, des trois points et de « Validation en cours » en haut à droite | à corriger |
-| Saisie libre, révélation | T2 | À comparer (carte « LA BONNE RÉPONSE » cyan, « VOS RÉPONSES ») | à corriger |
+| Saisie libre, validation | T1 | Carte blanche de la question et cadre en pointillés au lieu du titre blanc seul et des trois points | corrigé |
+| Saisie libre, validation | T1 | « Validation en cours » en haut à droite : la place est prise par l'adresse et le QR code de reconnexion (ajoutés après la maquette) | voulu |
+| Saisie libre, révélation | T2 | Grand titre « LA BONNE RÉPONSE » et pilules au lieu de la carte cyan à gauche et des barres « VOS RÉPONSES » proportionnelles, avec la note sur les réponses masquées | corrigé |
 | Pastille « QUESTION 3/10 » | plateau-tv | Rose adouci et texte encre au lieu du rose vif et texte blanc | voulu (décision d'octobre 2026) |

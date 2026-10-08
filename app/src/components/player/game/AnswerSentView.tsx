@@ -1,6 +1,7 @@
 import type { PublicQuestion } from '@shared/types';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
+import { displaySizeOnOneLine, displaySizeStyle } from '@/components/ui/displayFit';
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -32,7 +33,8 @@ export function AnswerSentView({ question, given, progress }: AnswerSentViewProp
           <ChoiceSent question={question} choice={typeof given === 'number' ? given : null} />
         </>
       )}
-      <Text style={styles.progress}>{strings.game.answerSent.answeredProgress(progress.answered, progress.total)}</Text>
+      {/* Saisie libre (S2) : pas de décompte des réponses, seulement le rappel qu'elle est définitive. */}
+      {!isFree && <Text style={styles.progress}>{strings.game.answerSent.answeredProgress(progress.answered, progress.total)}</Text>}
       {isFree ? (
         <Text style={[textStyles.muted, styles.centered, styles.locked]}>{strings.game.answerSent.locked}</Text>
       ) : (
@@ -52,13 +54,17 @@ function ChoiceSent({ question, choice }: { question: PublicQuestion; choice: nu
 
 // Coche verte, « RÉPONSE ENVOYÉE », puis la carte « TA RÉPONSE » (titre – artiste pour « both »).
 function FreeSent({ given }: { given: FreeText | null }) {
+  const { width } = useWindowDimensions();
+  const titleSize = displaySizeOnOneLine(strings.game.answerSent.freeTitle, width, TITLE_MAX, TITLE_MIN);
   const text = given ? strings.game.answerSent.bothAnswer(given.value.trim(), given.artist?.trim() ?? '') : '';
   return (
     <View style={styles.freeSent}>
       <View style={styles.checkDisc}>
         <MarkIcon kind="check" size={52} color={AppColors.onCorrect} />
       </View>
-      <Text style={textStyles.hero}>{strings.game.answerSent.title}</Text>
+      <Text style={[textStyles.title, displaySizeStyle(titleSize)]} numberOfLines={1} maxFontSizeMultiplier={1}>
+        {strings.game.answerSent.freeTitle}
+      </Text>
       {text === '' ? (
         <Text style={[textStyles.body, styles.centered]}>{strings.game.answerSent.unknownChoice}</Text>
       ) : (
@@ -90,6 +96,9 @@ export function ValidationWaitView({ given }: { given: GivenAnswer | null }) {
 }
 
 const PROGRESS_SIZE = 22;
+// Titre « RÉPONSE ENVOYÉE » (maquette S2) : sur une ligne, plus petit sur un écran étroit.
+const TITLE_MAX = 30;
+const TITLE_MIN = 18;
 const CHECK_SIZE = 96;
 
 const styles = StyleSheet.create({

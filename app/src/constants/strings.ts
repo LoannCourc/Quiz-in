@@ -579,7 +579,7 @@ export const strings = {
     bluff: {
       // Consignes en tête de l'écriture et du vote (l'énoncé n'est pas affiché quand une TV est présente).
       writeInstruction: 'Bluff · Invente une fausse réponse',
-      voteInstruction: 'Quelle est la vraie réponse ?',
+      voteInstruction: 'Bluff · Quelle est la vraie réponse ?',
       // Vote sans minuteur (joueurs connectés et ceux qui ont déjà voté).
       votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
       fieldLabel: 'Ta fausse réponse',
@@ -604,7 +604,6 @@ export const strings = {
       quoted: (text: string) => `« ${text} »`,
       mine: 'Ta proposition',
       voteButton: 'Je vote pour celle-ci',
-      pickHint: 'Touche la réponse que tu crois vraie.',
       voteSentTitle: 'Vote envoyé',
       voteRefusals: {
         tooLate: 'Trop tard : le vote est terminé.',
@@ -627,6 +626,8 @@ export const strings = {
     },
     answerSent: {
       title: 'Réponse envoyée !',
+      // Saisie libre (maquette S2) : sans point d'exclamation, sur une ligne.
+      freeTitle: 'Réponse envoyée',
       answeredProgress: (answered: number, total: number) => `${answered}/${total} ont répondu`,
       unknownChoice: 'Ta réponse est bien enregistrée.',
       waiting: 'En attente des autres joueurs…',
