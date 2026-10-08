@@ -22,22 +22,31 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const countdown = nextQuestionCountdown(session)
   // Propositions très longues : révélation compacte, pour que tout tienne (sans :has(), absent de Chrome 92).
   const isCompact = question.options !== undefined && optionsSizeClass(question.options) === "options-size-very-long"
+  const steps = <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} />
 
   return (
     <main className={isCompact ? "screen reveal reveal-compact" : "screen reveal"}>
       <Confetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
-      <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} />
-      <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
-
       {question.options && reveal.stats.choiceCounts ? (
-        <ChoiceResults
-          options={question.options}
-          counts={reveal.stats.choiceCounts}
-          correctAnswer={reveal.correctAnswer}
-        />
+        <>
+          {steps}
+          <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
+          <ChoiceResults
+            options={question.options}
+            counts={reveal.stats.choiceCounts}
+            correctAnswer={reveal.correctAnswer}
+          />
+        </>
       ) : (
-        <FreeResults correctAnswer={reveal.correctAnswer} groups={reveal.stats.freeAnswers ?? []} />
+        <>
+          {/* Maquette T2 : l'étape à gauche, l'énoncé en rappel discret à droite (pas de grand titre). */}
+          <div className="reveal-free-top">
+            {steps}
+            <p className="reveal-free-question">{question.text}</p>
+          </div>
+          <FreeResults correctAnswer={reveal.correctAnswer} groups={reveal.stats.freeAnswers ?? []} />
+        </>
       )}
 
       <div className="reveal-explanation-slot">
@@ -76,35 +85,51 @@ function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
   )
 }
 
-// Réponse libre : même zone que les quatre pilules. À gauche, la bonne réponse à la place de la
-// proposition gagnante ; à droite, les réponses des joueurs regroupées (texte déjà filtré par l'hôte,
-// FREE_ANSWER_GROUPS_MAX au plus), sur deux colonnes au-delà de quatre groupes.
+// Réponse libre (maquette T2) : à gauche, la carte cyan « LA BONNE RÉPONSE » ; à droite, « VOS RÉPONSES » :
+// les réponses des joueurs regroupées (texte déjà filtré par l'hôte, FREE_ANSWER_GROUPS_MAX au plus), une
+// barre par groupe, de longueur proportionnelle au nombre de joueurs, ce nombre à sa droite.
 function FreeResults({ correctAnswer, groups }: { correctAnswer: string; groups: FreeAnswerGroup[] }) {
+  const most = Math.max(1, ...groups.map((group) => group.playerIds.length))
   return (
-    <div className={`question-options reveal-options reveal-free ${optionsSizeClass([correctAnswer])}`}>
-      <div className="choice choice-1 is-correct free-correct">
-        <span className="choice-letter">
-          <VerdictMark verdict="correct" />
-        </span>
-        <span className="choice-text">{correctAnswer}</span>
+    <div className="reveal-free">
+      <div className="free-correct">
+        <p className="free-correct-label">{strings.reveal.title}</p>
+        <p className={`free-correct-text ${optionsSizeClass([correctAnswer])}`}>{correctAnswer}</p>
       </div>
-      {groups.length === 0 ? (
-        <p className="reveal-empty">{strings.reveal.noAnswer}</p>
-      ) : (
-        <ol className={groups.length > 4 ? 'free-groups is-two-columns' : 'free-groups'} aria-label={strings.reveal.freeAnswersTitle}>
-          {groups.map((group) => (
-            <li key={group.playerIds.join()} className={`free-group is-${group.verdict}`}>
-              <span className="free-group-mark">
-                <VerdictMark verdict={group.verdict} />
-              </span>
-              <span className="free-group-text">{group.value}</span>
-              <span className="reveal-count">{strings.reveal.choiceCount(group.playerIds.length)}</span>
-            </li>
-          ))}
-        </ol>
-      )}
+      <div className="free-answers">
+        <p className="free-answers-label">{strings.reveal.freeAnswersTitle}</p>
+        {groups.length === 0 ? (
+          <p className="reveal-empty">{strings.reveal.noAnswer}</p>
+        ) : (
+          <>
+            <ol className="free-groups">
+              {groups.map((group) => (
+                <li key={group.playerIds.join()} className={`free-group is-${group.verdict}`}>
+                  <span className="free-group-mark">
+                    <VerdictMark verdict={group.verdict} />
+                  </span>
+                  <span className="free-group-track">
+                    <span className="free-group-bar" style={{ width: barWidth(group, most) }}>
+                      <span className="free-group-text">{group.value}</span>
+                    </span>
+                  </span>
+                  <span className="free-group-count">{strings.reveal.choiceCount(group.playerIds.length)}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="free-answers-note">{strings.reveal.maskedNote}</p>
+          </>
+        )}
+      </div>
     </div>
   )
+}
+
+// Barre d'un groupe : longueur selon son nombre de joueurs (le plus grand groupe fait toute la piste), jamais
+// plus courte que son texte (environ 0,62 em par caractère, plus les marges) ; la piste la plafonne.
+function barWidth(group: FreeAnswerGroup, most: number): string {
+  const share = (group.playerIds.length / most) * 100
+  return `max(${share.toFixed(1)}%, calc(${[...group.value].length} * 0.62em + 1.8rem))`
 }
 
 // Coche et croix dessinées en CSS (les polices du design n'ont pas ces signes) ; ½ en texte.

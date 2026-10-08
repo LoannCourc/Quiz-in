@@ -1,0 +1,77 @@
+/* Maquette T1 : en-tête, l'énoncé en titre blanc (sans carte), puis l'état de la validation. */
+.validation {
+  grid-template-rows: auto 1fr auto;
+  row-gap: 1.5rem;
+}
+
+.validation-question {
+  align-self: center;
+  max-width: 48rem;
+  justify-self: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 3.4rem;
+  line-height: var(--display-line-height);
+  text-align: center;
+  text-shadow: var(--text-shadow-hard);
+}
+
+.validation-question.is-long {
+  font-size: 2.6rem;
+}
+
+.validation-question.is-very-long {
+  font-size: 2.1rem;
+}
+
+.validation-status {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.7rem;
+  padding-bottom: 1.5rem;
+}
+
+.validation-dots {
+  display: flex;
+  column-gap: 0.6rem;
+}
+
+/* Trois points roses qui s'allument tour à tour (opacité seulement : léger pour la box). */
+.validation-dots span {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--pink);
+  opacity: 0.3;
+  animation: validation-dot 1.2s ease-in-out infinite;
+}
+
+.validation-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.validation-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes validation-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.validation-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.validation-received {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+}

@@ -27,6 +27,8 @@ const SCREENS = [
   ['quiz-ended-20', 'status=ended&players=20&names=long'],
   ['free-question', 'status=question&mode=free'],
   ['free-validation', 'status=validation&mode=free'],
+  ['free-reveal', 'status=reveal&mode=free'],
+  ['free-reveal-step', 'status=reveal&mode=free&step=1'],
   ['blindtest-question', 'status=question&blindtest=1'],
   ['blindtest-reveal', 'status=reveal&blindtest=1'],
   ['bluff-write', 'status=question&mode=bluff'],

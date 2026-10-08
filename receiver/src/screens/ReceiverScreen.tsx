@@ -1,6 +1,7 @@
 import type { PublicSession } from '@shared/types'
 
 import { DrawRevealScreen, DrawRoundScreen } from './DrawRoundScreen'
+import { ValidationScreen } from './ValidationScreen'
 import { EndScreen } from './EndScreen'
 import { LobbyScreen } from './LobbyScreen'
 import { PausedScreen } from './PausedScreen'
@@ -38,7 +39,7 @@ export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
     case 'ended':
       return <EndScreen session={session} />
     case 'validation':
-      // Contrôle : l'énoncé reste affiché pendant que l'hôte valide les réponses.
-      return <QuestionScreen session={session} roomCode={roomCode} isValidation />
+      // Contrôle : l'énoncé reste affiché pendant que l'hôte valide les réponses (maquette T1).
+      return <ValidationScreen session={session} roomCode={roomCode} />
   }
 }

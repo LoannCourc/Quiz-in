@@ -77,6 +77,7 @@ export const strings = {
     noAnswer: 'Personne n’a répondu',
     // Réponse libre : réponses des joueurs regroupées, à côté de la bonne réponse.
     freeAnswersTitle: 'Vos réponses',
+    maskedNote: 'Les réponses refusées ou masquées par l’hôte s’affichent en •••',
     verdictMarks: { correct: '✓', partial: '½', wrong: '✕' } satisfies Record<AnswerVerdict, string>,
   },
   // Bluff (maquettes B4 et B5) : écriture des fausses réponses, vote, révélation.

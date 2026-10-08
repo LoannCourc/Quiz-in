@@ -12,7 +12,7 @@ import { useFitScale } from '../hooks/useFitScale'
 import { TeamAvatarGroups } from '../components/TeamBoards'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { isTightQuestion, questionSizeClass } from '../lib/questionSize'
-import { answeredByCount, countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
+import { countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
 import { strings } from '../strings'
 import './QuestionScreen.css'
 
@@ -24,11 +24,9 @@ const FIT_OPTIONS = { variables: ['--bar-scale', '--text-scale'], boxes: '.free-
 interface QuestionScreenProps {
   session: PublicSession
   roomCode: string
-  // Contrôle : même écran pendant la validation par l'hôte, sans chrono ni avatars.
-  isValidation?: boolean
 }
 
-export function QuestionScreen({ session, roomCode, isValidation = false }: QuestionScreenProps) {
+export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
   const question = session.currentQuestion
   // Tout tient à l'écran : la barre des joueurs rétrécit d'abord, puis la consigne ou les propositions.
   const fitKey = `${session.status}|${question?.text}|${question?.choices?.join('|')}|${Object.keys(session.players).length}|${session.settings.teams}`
@@ -72,7 +70,7 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
         {votes ? (
           <VoteCount progress={votes} />
         ) : (
-          !isValidation && <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
+          <Countdown phaseStartedAt={session.phaseStartedAt} phaseEndsAt={session.phaseEndsAt} />
         )}
         {question.audio ? (
           // Blind test : seul l'indicateur d'écoute s'ajoute, jamais le titre ni la pochette.
@@ -95,11 +93,6 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
         <div className="question-options free-prompt">
           <p className="free-prompt-text">{strings.bluff.writeHint}</p>
         </div>
-      ) : isValidation ? (
-        <div className="question-options free-prompt validation-prompt">
-          <p className="free-prompt-text">{strings.validation.title}</p>
-          <p className="validation-received">{strings.validation.received(answeredByCount(session))}</p>
-        </div>
       ) : question.options ? (
         <ol className={`question-options ${optionsSizeClass(question.options)}`}>
           {question.options.map((option, index) => (
@@ -117,34 +110,32 @@ export function QuestionScreen({ session, roomCode, isValidation = false }: Ques
       )}
 
       {/* Indicateur discret : on montre qui a répondu, jamais ce qu'il a répondu. */}
-      {!isValidation && (
-        <footer className="question-answered">
-          {/* Vote : le compte est déjà à la place du minuteur. */}
-          {!votes && (
-            <span className="question-answered-count">
-              {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
-            </span>
-          )}
-          {votes ? (
-            // Vote : une fine barre de progression suffit (le compte est en haut), la place va aux propositions.
-            <VoteProgressBar progress={votes} />
-          ) : session.settings.teams ? (
-            // Groupe : avatars regroupés par équipe (maquette G2).
-            <TeamAvatarGroups session={session} players={players} />
-          ) : (
-            <div ref={avatarRow} className="question-avatars">
-              {players.map((player) => (
-                <Avatar
-                  key={player.id}
-                  player={player}
-                  state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
-                  showName={false}
-                />
-              ))}
-            </div>
-          )}
-        </footer>
-      )}
+      <footer className="question-answered">
+        {/* Vote : le compte est déjà à la place du minuteur. */}
+        {!votes && (
+          <span className="question-answered-count">
+            {connectedCount > 0 ? answeredLabel : strings.question.noConnectedPlayers}
+          </span>
+        )}
+        {votes ? (
+          // Vote : une fine barre de progression suffit (le compte est en haut), la place va aux propositions.
+          <VoteProgressBar progress={votes} />
+        ) : session.settings.teams ? (
+          // Groupe : avatars regroupés par équipe (maquette G2).
+          <TeamAvatarGroups session={session} players={players} />
+        ) : (
+          <div ref={avatarRow} className="question-avatars">
+            {players.map((player) => (
+              <Avatar
+                key={player.id}
+                player={player}
+                state={hasAnswered(session, player.id) ? 'lit' : 'dimmed'}
+                showName={false}
+              />
+            ))}
+          </div>
+        )}
+      </footer>
     </main>
   )
 }

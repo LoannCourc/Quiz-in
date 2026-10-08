@@ -86,56 +86,131 @@
   font-size: 1.2rem;
 }
 
-/* Réponse libre : la bonne réponse (à gauche, sur deux rangées) et les réponses regroupées (à droite). */
-.reveal-free {
-  grid-template-rows: 1fr 1fr;
+/* Réponse libre (maquette T2). En haut : l'étape à gauche, l'énoncé en rappel à droite. */
+.reveal-free-top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 2rem;
 }
 
-.reveal-free .free-correct {
-  grid-row: span 2;
-  outline-color: var(--color-selection);
+.reveal-free-top .transition-steps-fit {
+  justify-items: start;
+}
+
+.reveal-free-question {
+  overflow: hidden;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* La carte de la bonne réponse à gauche, les réponses des joueurs à droite. */
+.reveal-free {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: center;
+  column-gap: 2.5rem;
+}
+
+.free-correct {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.3rem;
+  padding: 1.6rem 1.4rem;
+  border-radius: var(--radius-card);
+  background: var(--cyan);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+  text-align: center;
+}
+
+.free-correct-label {
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.free-correct-text {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: var(--display-line-height);
+  text-transform: uppercase;
+}
+
+.free-correct-text.options-size-long {
+  font-size: 2rem;
+}
+
+.free-correct-text.options-size-very-long {
+  font-size: 1.5rem;
+}
+
+.free-answers {
+  display: grid;
+  row-gap: 0.6rem;
+  min-width: 0;
+}
+
+.free-answers-label {
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
 }
 
 .free-groups {
-  grid-row: span 2;
   display: grid;
-  grid-auto-rows: minmax(0, 1fr);
-  gap: 0.4rem 0.8rem;
-  min-height: 11rem;
+  row-gap: 0.45rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.free-groups.is-two-columns {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  grid-auto-flow: column;
-}
-
+/* Une ligne : la marque, la barre (longueur selon le nombre de joueurs, jamais plus courte que son
+   texte), puis le nombre. */
 .free-group {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: 2rem minmax(0, 1fr) 2.2rem;
   align-items: center;
-  column-gap: 0.6rem;
-  min-height: 2.4rem;
-  padding: 0.2rem 0.3rem 0.2rem 0.4rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
+  column-gap: 0.7rem;
   font-size: 1.3rem;
   font-weight: 900;
 }
 
+.free-group-track {
+  display: flex;
+  min-width: 0;
+}
+
+/* Largeur calculée par barWidth (RevealScreen.tsx), plafonnée à la piste. */
+.free-group-bar {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.35rem 0.9rem;
+  border-radius: 0.6rem;
+  background: var(--color-surface);
+}
+
 .free-group-text {
+  display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.free-group .reveal-count {
-  min-width: 2rem;
-  height: 2rem;
-  font-size: 1.1rem;
+.free-group-count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .free-group-mark {
@@ -148,27 +223,28 @@
   color: var(--ink);
 }
 
-.free-group.is-correct {
+.free-group.is-correct .free-group-mark {
+  background: var(--color-correct);
+}
+
+.free-group.is-correct .free-group-bar {
   background: var(--color-correct);
   color: var(--color-on-correct);
 }
 
-.free-group.is-correct .free-group-mark {
-  background: var(--ink-surface);
-  color: var(--color-text);
-}
-
-.free-group.is-partial {
+.free-group.is-partial .free-group-mark,
+.free-group.is-partial .free-group-bar {
   background: var(--color-accent);
   color: var(--color-on-accent);
 }
 
-.free-group.is-partial .free-group-mark {
-  background: var(--ink-surface);
-  color: var(--color-text);
+.free-group.is-wrong .free-group-text {
+  color: var(--color-text-muted);
 }
 
-.free-group.is-wrong .free-group-text {
+.free-answers-note {
+  font-size: 0.8rem;
+  font-weight: 800;
   color: var(--color-text-muted);
 }
 
