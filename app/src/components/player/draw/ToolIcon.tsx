@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { GENRE_DRAWINGS } from '@/components/ui/genreIcons';
-import { box, clipped, dot, GRID, line, ring, type Pen } from '@/components/ui/iconShapes';
+import { box, clipped, dot, GRID, line, ring, STROKE, type Pen } from '@/components/ui/iconShapes';
 
 export type ToolIconName = 'pen' | 'eraser' | 'bucket' | 'undo' | 'clear' | 'zoomIn' | 'zoomOut' | 'fit';
 
@@ -32,14 +32,24 @@ function bucket(pen: Pen): ReactNode[] {
   ];
 }
 
-// Annuler : flèche vers la gauche qui revient en arc par la droite.
+// Annuler : flèche vers la gauche qui revient en demi-cercle par la droite. Le demi-cercle a pour rayon
+// UNDO_RADIUS au centre du trait : ring() se mesure au bord extérieur, d'où le trait ajouté à sa taille ; ainsi
+// il se raccorde exactement aux deux traits droits (sans marche, qui donnait un « 5 »).
+const UNDO_RADIUS = 5;
+const UNDO_TOP = 8;
+const UNDO_TURN_X = 14;
+
 function undo(pen: Pen): ReactNode[] {
+  const bottom = UNDO_TOP + 2 * UNDO_RADIUS;
+  const ringSize = 2 * UNDO_RADIUS + STROKE;
   return [
-    line(pen, 'top', 6, 7, 13, 7),
-    clipped(pen, 'curve', { x: 13, y: 5, w: 9, h: 18, radius: 0 }, (inner) => [ring(inner, 'arc', 13, 13, 14, 12)]),
-    line(pen, 'bottom', 8, 19, 13, 19),
-    line(pen, 'headA', 6, 7, 9.5, 3.5),
-    line(pen, 'headB', 6, 7, 9.5, 10.5),
+    line(pen, 'top', 5, UNDO_TOP, UNDO_TURN_X, UNDO_TOP),
+    clipped(pen, 'curve', { x: UNDO_TURN_X, y: 0, w: GRID - UNDO_TURN_X, h: GRID, radius: 0 }, (inner) => [
+      ring(inner, 'arc', UNDO_TURN_X, UNDO_TOP + UNDO_RADIUS, ringSize, ringSize),
+    ]),
+    line(pen, 'bottom', 9, bottom, UNDO_TURN_X, bottom),
+    line(pen, 'headA', 5, UNDO_TOP, 8.5, UNDO_TOP - 3.5),
+    line(pen, 'headB', 5, UNDO_TOP, 8.5, UNDO_TOP + 3.5),
   ];
 }
 
