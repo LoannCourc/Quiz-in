@@ -1,5 +1,6 @@
 import { DRAW_GUESS_MAX_LENGTH, DRAW_MAX_GUESSES } from '@shared/constants';
 import { drawingChunkList } from '@shared/drawGame';
+import { DRAW_HEIGHT, DRAW_WIDTH } from '@shared/drawing/palette';
 import type { DrawTurn, PlayerResult, PublicSession } from '@shared/types';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
@@ -16,8 +17,7 @@ import { Spacing } from '@/constants/theme';
 import type { DrawGuessState, PlayerDraw } from '@/lib/playerDraw';
 
 import { AnswerField } from './FreeQuestionView';
-import type { PhaseTiming } from './phaseTiming';
-import { Timebar } from './Timebar';
+import { useSecondsLeft, type PhaseTiming } from './phaseTiming';
 
 const texts = strings.draw;
 // Au départ : noir, trait moyen.
@@ -30,7 +30,9 @@ const WORD_MAX_SIZE = 34;
 const WORD_MIN_SIZE = 16;
 const LETTER_WIDTH_RATIO = 0.85;
 const EYE_BOX = 44;
-const EYE_SIZE = 26;
+const EYE_SIZE = 24;
+// « Changer de mot » dans la carte du mot : largeur fixe, réservée pour calculer la taille du mot.
+const CHANGE_WORD_WIDTH = 96;
 
 // Taille d'après le mot le plus long (« château de sable » passe à la ligne entre ses mots, jamais au
 // milieu d'un mot), dans la largeur disponible.
@@ -40,54 +42,114 @@ function wordFontSize(word: string, available: number, maxSize: number): number 
   return Math.max(WORD_MIN_SIZE, Math.min(maxSize, fitting));
 }
 
+// Vrai si le mot le plus long tient sur une ligne à la taille minimale.
+function fitsOnOneLine(word: string, available: number): boolean {
+  const longest = Math.max(1, ...word.split(/\s+/).map((part) => [...part].length));
+  return longest * LETTER_WIDTH_RATIO * WORD_MIN_SIZE <= available;
+}
+
 function contentWidth(screenWidth: number): number {
   return Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three;
 }
 
-// Dessinateur, en haut de l'écran : son mot en grand (masquable d'un tap sur l'œil, si quelqu'un regarde
-// par-dessus son épaule), la catégorie en petit, et le temps restant. À monter avec une clé par manche :
-// le mot se réaffiche à chaque nouvelle manche.
-export function DrawerTopBar({ word, category, timing }: { word: string | null; category: string; timing: PhaseTiming }) {
+interface DrawerTopBarProps {
+  word: string | null;
+  // Manche en cours (0 pour la première) et nombre de manches.
+  round: number;
+  roundCount?: number;
+  timing: PhaseTiming;
+  // « Changer de mot » : une fois par manche, avant le premier trait.
+  canChangeWord: boolean;
+  onChangeWord: () => void;
+}
+
+// Dessinateur, en haut de l'écran (maquette E1) : « MANCHE 3/8 » et « Tu dessines · 1:12 », puis la carte
+// « TON MOT » (le mot en grand, « Changer de mot » et l'œil qui le masque si quelqu'un regarde par-dessus
+// son épaule), puis le rappel « Ni lettres ni chiffres ! ». À monter avec une clé par manche : le mot se
+// réaffiche à chaque nouvelle manche.
+export function DrawerTopBar({ word, round, roundCount, timing, canChangeWord, onChangeWord }: DrawerTopBarProps) {
   const [isHidden, setIsHidden] = useState(false);
   const { width } = useWindowDimensions();
   const shown = word === null ? texts.wordLoading : isHidden ? texts.wordMask : word;
-  const size = wordFontSize(word ?? '', contentWidth(width) - 2 * EYE_BOX, WORD_MAX_SIZE);
+  // « Changer de mot » à côté de l'œil si le mot tient encore à la taille minimale, sinon sous le mot.
+  const besideEye = 2 * Spacing.three + EYE_BOX + Spacing.two;
+  const withButton = besideEye + CHANGE_WORD_WIDTH + Spacing.two;
+  const isButtonBeside = canChangeWord && fitsOnOneLine(word ?? '', contentWidth(width) - withButton);
+  const size = wordFontSize(word ?? '', contentWidth(width) - (isButtonBeside ? withButton : besideEye), WORD_MAX_SIZE);
+  const changeButton = canChangeWord && (
+    <Pressable
+      accessibilityRole="button"
+      hitSlop={Spacing.one}
+      onPress={onChangeWord}
+      style={({ pressed }) => [styles.changeWord, !isButtonBeside && styles.changeWordBelow, pressed && styles.pressed]}>
+      <Text style={styles.changeWordText} numberOfLines={1} maxFontSizeMultiplier={1}>
+        {texts.changeWord}
+      </Text>
+    </Pressable>
+  );
   return (
     <View style={styles.topBar}>
-      <View style={styles.wordRow}>
-        {/* Case vide de la largeur de l'œil, à gauche : le mot reste centré. */}
-        <View style={styles.eyeBox} />
-        <Text style={[styles.word, { fontSize: size, lineHeight: Math.round(size * DISPLAY_LINE_HEIGHT) }]}>{shown}</Text>
+      <View style={styles.topRow}>
+        <View style={styles.roundPill}>
+          <Text style={styles.roundText}>{strings.game.roundPill(round, roundCount)}</Text>
+        </View>
+        <DrawTime key={`${timing.phaseStartedAt}-${timing.phaseEndsAt}`} timing={timing} />
+      </View>
+      <View style={styles.wordCard}>
+        <View style={styles.wordTexts}>
+          <Text style={styles.wordLabel}>{texts.yourWord}</Text>
+          <Text style={[styles.word, { fontSize: size, lineHeight: Math.round(size * DISPLAY_LINE_HEIGHT) }]}>{shown}</Text>
+          {!isButtonBeside && changeButton}
+        </View>
+        {isButtonBeside && changeButton}
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={isHidden ? texts.showWord : texts.hideWord}
-          hitSlop={Spacing.two}
+          hitSlop={Spacing.one}
           onPress={() => setIsHidden(!isHidden)}
           style={({ pressed }) => [styles.eyeBox, pressed && styles.pressed]}>
-          <EyeIcon isOpen={!isHidden} size={EYE_SIZE} color={AppColors.link} />
+          <EyeIcon isOpen={!isHidden} size={EYE_SIZE} color={AppColors.text} />
         </Pressable>
       </View>
-      <Text style={styles.category} numberOfLines={1}>
-        {category}
-      </Text>
-      <Timebar {...timing} />
+      <Text style={styles.noLetters}>{texts.noLetters}</Text>
     </View>
   );
 }
 
-// Dessinateur (site des joueurs) : le canvas 4:3 sur toute la largeur, les outils en deux lignes dessous.
-// La page ne défile pas (Screen sans défilement) ; le canvas bloque défilement, zoom et paume.
+// « Tu dessines · 1:12 », le temps en vert ; une nouvelle clé à chaque phase (reprise après une pause).
+function DrawTime({ timing: timingProp }: { timing: PhaseTiming }) {
+  const [timing] = useState<PhaseTiming>(timingProp);
+  const seconds = useSecondsLeft(timing);
+  const clock = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+  return (
+    <Text style={styles.timeText} accessibilityLabel={strings.game.secondsLeft(seconds)}>
+      {texts.youDraw}
+      <Text style={styles.timeValue}>{clock}</Text>
+    </Text>
+  );
+}
+
+// Dessinateur (site des joueurs) : le canvas 4:3, aussi grand que la place restante le permet, puis les
+// outils (maquette E1). La page ne défile pas (Screen sans défilement) ; le canvas bloque défilement,
+// zoom et paume.
 export function DrawerView({ session, draw }: { session: PublicSession; draw: PlayerDraw }) {
   const canvas = useRef<DrawingCanvasHandle>(null);
   const [tool, setTool] = useState<DrawTool>('pen');
   const [color, setColor] = useState(INITIAL_COLOR);
   const [width, setWidth] = useState(INITIAL_WIDTH);
+  // Place laissée au canvas, mesurée à l'affichage.
+  const [area, setArea] = useState({ width: 0, height: 0 });
   // Dessin déjà envoyé dans cette manche (page rechargée) : lu une fois, à l'arrivée sur l'écran.
   const [initialChunks] = useState(() => drawingChunkList(session.drawing));
+  const canvasWidth = Math.min(area.width, (area.height * DRAW_WIDTH) / DRAW_HEIGHT);
   return (
     <View style={styles.drawer}>
-      <View style={styles.fullWidth}>
-        <DrawingCanvas ref={canvas} tool={tool} color={color} width={width} onChunk={draw.onChunk} initialChunks={initialChunks} />
+      <View style={styles.canvasArea} onLayout={(event) => setArea(event.nativeEvent.layout)}>
+        {canvasWidth > 0 && (
+          <View style={{ width: canvasWidth }}>
+            <DrawingCanvas ref={canvas} tool={tool} color={color} width={width} onChunk={draw.onChunk} initialChunks={initialChunks} />
+          </View>
+        )}
       </View>
       <DrawingTools
         tool={tool}
@@ -99,15 +161,6 @@ export function DrawerView({ session, draw }: { session: PublicSession; draw: Pl
         onUndo={() => canvas.current?.undo()}
         onClear={() => canvas.current?.clear()}
       />
-      {/* Une seule ligne sous les outils : le canvas et le chrono restent visibles sans défiler à 320 px. */}
-      <View style={styles.drawerFooter}>
-        <Text style={textStyles.muted}>{texts.noLetters}</Text>
-        {draw.canChangeWord && (
-          <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={draw.onChangeWord}>
-            {({ pressed }) => <Text style={[styles.changeWord, pressed && styles.pressed]}>{texts.changeWord}</Text>}
-          </Pressable>
-        )}
-      </View>
     </View>
   );
 }
@@ -243,27 +296,97 @@ const FEEDBACK_HEIGHT = 52;
 
 const styles = StyleSheet.create({
   topBar: {
-    gap: Spacing.one,
+    gap: Spacing.two,
   },
-  wordRow: {
+  topRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  roundPill: {
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.one + 2,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.highlight,
+  },
+  roundText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.onHighlight,
+    fontFamily: AppFonts.black,
+    fontSize: 13,
+    textTransform: 'uppercase',
+  },
+  timeText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
+  },
+  timeValue: {
+    color: AppColors.correct,
+    fontVariant: ['tabular-nums'],
+  },
+  wordCard: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: Spacing.two,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.panel,
+  },
+  wordTexts: {
+    flex: 1,
+    minWidth: 0,
+  },
+  wordLabel: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.black,
+    fontSize: 11,
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  changeWord: {
+    width: CHANGE_WORD_WIDTH,
+    paddingVertical: Spacing.one + 2,
+    alignItems: 'center',
+    borderRadius: AppSizes.radiusPill,
+    borderWidth: 2,
+    borderColor: AppColors.link,
+  },
+  changeWordBelow: {
+    alignSelf: 'flex-start',
+    marginTop: Spacing.one,
+  },
+  changeWordText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 11,
   },
   eyeBox: {
     width: EYE_BOX,
     height: EYE_BOX,
+    borderRadius: EYE_BOX / 2,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: AppColors.surface,
+  },
+  noLetters: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 12,
+    textAlign: 'center',
   },
   pressed: {
     opacity: 0.6,
   },
   word: {
-    flex: 1,
-    minWidth: 0,
     color: AppColors.accent,
     fontFamily: AppFonts.display,
-    textAlign: 'center',
     textTransform: 'uppercase',
   },
   category: {
@@ -273,26 +396,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
   },
-  drawerFooter: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    columnGap: Spacing.three,
-  },
-  changeWord: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.link,
-    fontFamily: AppFonts.black,
-    fontSize: 15,
-    textDecorationLine: 'underline',
-  },
+  // Toute la hauteur de l'écran : le canvas prend la place que les outils laissent.
   drawer: {
-    gap: Spacing.two,
+    flex: 1,
+    gap: Spacing.three,
   },
-  // Le canvas déborde les marges de la colonne : 4:3 sur toute la largeur du téléphone.
-  fullWidth: {
-    marginHorizontal: -Spacing.three,
+  canvasArea: {
+    flex: 1,
+    minHeight: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   block: {
     flexGrow: 1,

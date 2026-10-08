@@ -723,15 +723,18 @@ export const strings = {
   },
   // Dessine-moi (plan docs/plan-dessine-moi.md) : outils du dessinateur.
   draw: {
-    tools: { pen: 'Crayon', eraser: 'Gomme', bucket: 'Seau' },
+    // Maquette E1 : cinq outils ronds avec leur nom dessous.
+    tools: { pen: 'Crayon', eraser: 'Gomme', bucket: 'Pot' },
+    undoLabel: 'Annuler',
+    clearLabel: 'Effacer',
     widths: ['Trait fin', 'Trait moyen', 'Trait épais'],
+    widthTitle: 'Épaisseur',
     color: (index: number) => `Couleur ${index}`,
-    // Icônes des boutons (le nom ci-dessus sert aux lecteurs d'écran).
-    toolIcons: { pen: '✏️', eraser: '🧽', bucket: '🪣' },
     undo: 'Annuler le dernier trait',
-    undoIcon: '↶',
     clear: 'Tout effacer',
-    clearIcon: '🗑️',
+    // En-tête du dessinateur (E1) : manche, temps, carte « TON MOT ».
+    youDraw: 'Tu dessines · ',
+    yourWord: 'Ton mot',
     // Dessinateur : le mot, en grand au-dessus du canvas, masquable d'un tap sur l'œil.
     wordMask: '••••',
     hideWord: 'Masquer le mot',

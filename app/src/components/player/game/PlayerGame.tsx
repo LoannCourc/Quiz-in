@@ -115,7 +115,15 @@ function questionTopBar(props: PlayerGameProps): ReactNode {
   const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
   if (session.drawTurn && isDrawerNow(props)) {
     return (
-      <DrawerTopBar key={session.drawTurn.round} word={props.draw?.word ?? null} category={session.drawTurn.category} timing={timing} />
+      <DrawerTopBar
+        key={session.drawTurn.round}
+        word={props.draw?.word ?? null}
+        round={session.currentIndex}
+        roundCount={session.questionCount}
+        timing={timing}
+        canChangeWord={props.draw?.canChangeWord ?? false}
+        onChangeWord={() => props.draw?.onChangeWord()}
+      />
     );
   }
   // Vote du Bluff sans minuteur : « X/Y ont voté » et leur proportion à la place du temps.

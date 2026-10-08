@@ -33,6 +33,11 @@ export const DRAW_COLORS: readonly string[] = [
   '#8d5524',
 ]
 
+// Couleurs proposées au dessinateur (maquette E1, deux rangées de cinq) : tout sauf le fond (la gomme le
+// peint) et le gris (index 2, gardé pour relire les dessins déjà envoyés). Les index ne changent pas : la
+// TV n'a rien à changer.
+export const PICKER_COLORS: readonly number[] = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
 // Trois épaisseurs (diamètre en points logiques) : fine, moyenne, épaisse.
 export const STROKE_WIDTHS: readonly number[] = [4, 12, 28]
 

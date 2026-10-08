@@ -20,7 +20,9 @@ Contrôle à chaque lot : captures du téléphone (`/debug/player?s=…&capture=
 | Envoyé (saisie libre) | S2 | « RÉPONSE ENVOYÉE ! » sur deux lignes au lieu d'une, sans point d'exclamation ; décompte « X/Y ont répondu » en plus | corrigé |
 | Révélation (saisie libre) | S2 | La maquette montre « TA PLACE » ; la règle « une fonction par écran » (spec 4) l'interdit | voulu |
 | Choix multiples | Q3 | Maquette Q3 non reçue (absente des Téléchargements) ; l'en-tête S1 est appliqué en attendant | à voir |
-| Dessinateur | E1, E2 | Écran actuel provisoire (outils petits, sans libellés, sans zoom) | à corriger (plan 5) |
+| Dessinateur, portrait | E1 | Outils petits sans libellés, palette de 11 couleurs avec le gris, barre de temps au lieu de « Tu dessines · 1:12 » | corrigé (livraison A) |
+| Dessinateur, portrait | E1 | Canvas blanc au lieu de crème ; « Changer de mot » dans la carte du mot et « Ni lettres ni chiffres ! » gardés (absents de la maquette) | voulu (décision du développeur) |
+| Dessinateur | E1, E2, E3 | Boutons de zoom et paysage | à corriger (lot C et livraison C) |
 
 ## TV
 
