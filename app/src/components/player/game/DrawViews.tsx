@@ -8,12 +8,13 @@ import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-na
 import { DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
 import { EyeIcon } from '@/components/player/draw/EyeIcon';
 import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
-import { DrawingTools } from '@/components/player/draw/DrawingTools';
+import { DrawingColors, DrawingToolButtons, DrawingTools, DrawingWidths, type DrawingToolState } from '@/components/player/draw/DrawingTools';
 import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useDrawerRotation } from '@/hooks/useDrawerRotation';
 import type { DrawGuessState, PlayerDraw } from '@/lib/playerDraw';
 
 import { AnswerField } from './FreeQuestionView';
@@ -33,11 +34,13 @@ const EYE_BOX = 44;
 const EYE_SIZE = 24;
 // « Changer de mot » dans la carte du mot : largeur fixe, réservée pour calculer la taille du mot.
 const CHANGE_WORD_WIDTH = 96;
+// Paysage (E2) : largeur du panneau de droite (en-tête, mot, couleurs, épaisseurs).
+const SIDE_PANEL_WIDTH = 270;
 
 // Taille d'après le mot le plus long (« château de sable » passe à la ligne entre ses mots, jamais au
 // milieu d'un mot), dans la largeur disponible.
 function wordFontSize(word: string, available: number, maxSize: number): number {
-  const longest = Math.max(1, ...word.split(/s+/).map((part) => [...part].length));
+  const longest = Math.max(1, ...word.split(/\s+/).map((part) => [...part].length));
   const fitting = Math.floor(available / (longest * LETTER_WIDTH_RATIO));
   return Math.max(WORD_MIN_SIZE, Math.min(maxSize, fitting));
 }
@@ -52,7 +55,7 @@ function contentWidth(screenWidth: number): number {
   return Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three;
 }
 
-interface DrawerTopBarProps {
+export interface DrawerTopBarProps {
   word: string | null;
   // Manche en cours (0 pour la première) et nombre de manches.
   round: number;
@@ -63,19 +66,46 @@ interface DrawerTopBarProps {
   onChangeWord: () => void;
 }
 
-// Dessinateur, en haut de l'écran (maquette E1) : « MANCHE 3/8 » et « Tu dessines · 1:12 », puis la carte
-// « TON MOT » (le mot en grand, « Changer de mot » et l'œil qui le masque si quelqu'un regarde par-dessus
-// son épaule), puis le rappel « Ni lettres ni chiffres ! ». À monter avec une clé par manche : le mot se
-// réaffiche à chaque nouvelle manche.
-export function DrawerTopBar({ word, round, roundCount, timing, canChangeWord, onChangeWord }: DrawerTopBarProps) {
-  const [isHidden, setIsHidden] = useState(false);
+// Écran du dessinateur en paysage (maquette E2) : quand la fenêtre est plus large que haute.
+export function isDrawerLandscape(width: number, height: number): boolean {
+  return width > height;
+}
+
+// Dessinateur en portrait, en haut de l'écran (maquette E1) : « MANCHE 3/8 » et « Tu dessines · 1:12 »,
+// la carte « TON MOT », puis le rappel « Ni lettres ni chiffres ! ». À monter avec une clé par manche : le
+// mot se réaffiche à chaque nouvelle manche.
+export function DrawerTopBar(props: DrawerTopBarProps) {
   const { width } = useWindowDimensions();
+  return (
+    <View style={styles.topBar}>
+      <DrawerStatus {...props} />
+      <DrawerWordCard {...props} availableWidth={contentWidth(width)} />
+      <Text style={styles.noLetters}>{texts.noLetters}</Text>
+    </View>
+  );
+}
+
+function DrawerStatus({ round, roundCount, timing }: DrawerTopBarProps) {
+  return (
+    <View style={styles.topRow}>
+      <View style={styles.roundPill}>
+        <Text style={styles.roundText}>{strings.game.roundPill(round, roundCount)}</Text>
+      </View>
+      <DrawTime key={`${timing.phaseStartedAt}-${timing.phaseEndsAt}`} timing={timing} />
+    </View>
+  );
+}
+
+// Carte « TON MOT » : le mot en grand (ajusté à availableWidth, la largeur de la carte), « Changer de mot »
+// et l'œil qui le masque si quelqu'un regarde par-dessus l'épaule du dessinateur.
+function DrawerWordCard({ word, canChangeWord, onChangeWord, availableWidth }: DrawerTopBarProps & { availableWidth: number }) {
+  const [isHidden, setIsHidden] = useState(false);
   const shown = word === null ? texts.wordLoading : isHidden ? texts.wordMask : word;
   // « Changer de mot » à côté de l'œil si le mot tient encore à la taille minimale, sinon sous le mot.
   const besideEye = 2 * Spacing.three + EYE_BOX + Spacing.two;
   const withButton = besideEye + CHANGE_WORD_WIDTH + Spacing.two;
-  const isButtonBeside = canChangeWord && fitsOnOneLine(word ?? '', contentWidth(width) - withButton);
-  const size = wordFontSize(word ?? '', contentWidth(width) - (isButtonBeside ? withButton : besideEye), WORD_MAX_SIZE);
+  const isButtonBeside = canChangeWord && fitsOnOneLine(word ?? '', availableWidth - withButton);
+  const size = wordFontSize(word ?? '', availableWidth - (isButtonBeside ? withButton : besideEye), WORD_MAX_SIZE);
   const changeButton = canChangeWord && (
     <Pressable
       accessibilityRole="button"
@@ -88,30 +118,21 @@ export function DrawerTopBar({ word, round, roundCount, timing, canChangeWord, o
     </Pressable>
   );
   return (
-    <View style={styles.topBar}>
-      <View style={styles.topRow}>
-        <View style={styles.roundPill}>
-          <Text style={styles.roundText}>{strings.game.roundPill(round, roundCount)}</Text>
-        </View>
-        <DrawTime key={`${timing.phaseStartedAt}-${timing.phaseEndsAt}`} timing={timing} />
+    <View style={styles.wordCard}>
+      <View style={styles.wordTexts}>
+        <Text style={styles.wordLabel}>{texts.yourWord}</Text>
+        <Text style={[styles.word, { fontSize: size, lineHeight: Math.round(size * DISPLAY_LINE_HEIGHT) }]}>{shown}</Text>
+        {!isButtonBeside && changeButton}
       </View>
-      <View style={styles.wordCard}>
-        <View style={styles.wordTexts}>
-          <Text style={styles.wordLabel}>{texts.yourWord}</Text>
-          <Text style={[styles.word, { fontSize: size, lineHeight: Math.round(size * DISPLAY_LINE_HEIGHT) }]}>{shown}</Text>
-          {!isButtonBeside && changeButton}
-        </View>
-        {isButtonBeside && changeButton}
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={isHidden ? texts.showWord : texts.hideWord}
-          hitSlop={Spacing.one}
-          onPress={() => setIsHidden(!isHidden)}
-          style={({ pressed }) => [styles.eyeBox, pressed && styles.pressed]}>
-          <EyeIcon isOpen={!isHidden} size={EYE_SIZE} color={AppColors.text} />
-        </Pressable>
-      </View>
-      <Text style={styles.noLetters}>{texts.noLetters}</Text>
+      {isButtonBeside && changeButton}
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={isHidden ? texts.showWord : texts.hideWord}
+        hitSlop={Spacing.one}
+        onPress={() => setIsHidden(!isHidden)}
+        style={({ pressed }) => [styles.eyeBox, pressed && styles.pressed]}>
+        <EyeIcon isOpen={!isHidden} size={EYE_SIZE} color={AppColors.text} />
+      </Pressable>
     </View>
   );
 }
@@ -129,38 +150,68 @@ function DrawTime({ timing: timingProp }: { timing: PhaseTiming }) {
   );
 }
 
-// Dessinateur (site des joueurs) : le canvas 4:3, aussi grand que la place restante le permet, puis les
-// outils (maquette E1). La page ne défile pas (Screen sans défilement) ; le canvas bloque défilement,
-// zoom et paume.
-export function DrawerView({ session, draw }: { session: PublicSession; draw: PlayerDraw }) {
+interface DrawerViewProps {
+  session: PublicSession;
+  draw: PlayerDraw;
+  // En-tête du dessinateur : en haut de l'écran en portrait (PlayerGame), dans le panneau de droite en paysage.
+  header: DrawerTopBarProps;
+}
+
+// Dessinateur : le canvas 4:3, aussi grand que la place restante le permet. Portrait (E1) : les outils
+// dessous. Paysage (E2) : les outils en colonne à gauche, l'en-tête, les couleurs et les épaisseurs à
+// droite. La page ne défile pas (Screen sans défilement) ; le canvas garde le doigt. Dans l'app, l'écran
+// peut tourner tant qu'il est affiché (useDrawerRotation).
+export function DrawerView({ session, draw, header }: DrawerViewProps) {
+  useDrawerRotation();
   const canvas = useRef<DrawingCanvasHandle>(null);
   const [tool, setTool] = useState<DrawTool>('pen');
   const [color, setColor] = useState(INITIAL_COLOR);
   const [width, setWidth] = useState(INITIAL_WIDTH);
+  const window = useWindowDimensions();
+  const isLandscape = isDrawerLandscape(window.width, window.height);
   // Place laissée au canvas, mesurée à l'affichage.
   const [area, setArea] = useState({ width: 0, height: 0 });
   // Dessin déjà envoyé dans cette manche (page rechargée) : lu une fois, à l'arrivée sur l'écran.
   const [initialChunks] = useState(() => drawingChunkList(session.drawing));
   const canvasWidth = Math.min(area.width, (area.height * DRAW_WIDTH) / DRAW_HEIGHT);
-  return (
-    <View style={styles.drawer}>
-      <View style={styles.canvasArea} onLayout={(event) => setArea(event.nativeEvent.layout)}>
-        {canvasWidth > 0 && (
-          <View style={{ width: canvasWidth }}>
-            <DrawingCanvas ref={canvas} tool={tool} color={color} width={width} onChunk={draw.onChunk} initialChunks={initialChunks} />
-          </View>
-        )}
+  const tools: DrawingToolState = {
+    tool,
+    color,
+    width,
+    onTool: setTool,
+    onColor: setColor,
+    onWidth: setWidth,
+    onUndo: () => canvas.current?.undo(),
+    onClear: () => canvas.current?.clear(),
+  };
+  const canvasArea = (
+    <View style={styles.canvasArea} onLayout={(event) => setArea(event.nativeEvent.layout)}>
+      {canvasWidth > 0 && (
+        <View style={{ width: canvasWidth }}>
+          <DrawingCanvas ref={canvas} tool={tool} color={color} width={width} onChunk={draw.onChunk} initialChunks={initialChunks} />
+        </View>
+      )}
+    </View>
+  );
+  if (!isLandscape) {
+    return (
+      <View style={styles.drawer}>
+        {canvasArea}
+        <DrawingTools {...tools} />
       </View>
-      <DrawingTools
-        tool={tool}
-        color={color}
-        width={width}
-        onTool={setTool}
-        onColor={setColor}
-        onWidth={setWidth}
-        onUndo={() => canvas.current?.undo()}
-        onClear={() => canvas.current?.clear()}
-      />
+    );
+  }
+  return (
+    <View style={styles.drawerLandscape}>
+      <DrawingToolButtons {...tools} vertical />
+      {canvasArea}
+      <View style={styles.sidePanel}>
+        <DrawerStatus {...header} />
+        <DrawerWordCard {...header} availableWidth={SIDE_PANEL_WIDTH} />
+        <DrawingColors {...tools} compact />
+        <DrawingWidths {...tools} compact />
+        <Text style={styles.noLetters}>{texts.noLetters}</Text>
+      </View>
     </View>
   );
 }
@@ -401,8 +452,20 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: Spacing.three,
   },
+  // Paysage (E2) : outils | canvas | panneau, sur toute la largeur de l'écran.
+  drawerLandscape: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
+  },
+  sidePanel: {
+    width: SIDE_PANEL_WIDTH,
+    gap: Spacing.two,
+  },
   canvasArea: {
     flex: 1,
+    alignSelf: 'stretch',
     minHeight: 0,
     alignItems: 'center',
     justifyContent: 'center',

@@ -9,7 +9,7 @@ import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import { isTvPresent } from '@shared/tvPresence';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -38,7 +38,7 @@ import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
-import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView } from './DrawViews';
+import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView, isDrawerLandscape, type DrawerTopBarProps } from './DrawViews';
 import { EndView, OutdatedView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
@@ -82,15 +82,19 @@ export function PlayerGame(props: PlayerGameProps) {
   const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
   // Confettis : une fois à la révélation d'une bonne réponse et à la fin de partie.
   const showConfetti = outcome === 'correct' || (session.status === 'ended' && isEndShown);
-  // Dessinateur pendant sa manche : la page ne défile pas (le doigt dessine).
+  // Dessinateur pendant sa manche : la page ne défile pas (le doigt dessine). En paysage (E2), son en-tête
+  // est dans le panneau de droite et l'écran prend toute la largeur.
   const isDrawing = isDrawerNow(props);
+  const window = useWindowDimensions();
+  const isDrawingLandscape = isDrawing && isDrawerLandscape(window.width, window.height);
   return (
     <View style={styles.root}>
       <Screen
         background={background}
-        header={isEndShown ? questionTopBar(props) : undefined}
+        header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
         footer={props.footer}
-        scrollable={!isDrawing}>
+        scrollable={!isDrawing}
+        wide={isDrawingLandscape}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
         {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
@@ -114,17 +118,7 @@ function questionTopBar(props: PlayerGameProps): ReactNode {
   if (!isQuestion && !isVote) return undefined;
   const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
   if (session.drawTurn && isDrawerNow(props)) {
-    return (
-      <DrawerTopBar
-        key={session.drawTurn.round}
-        word={props.draw?.word ?? null}
-        round={session.currentIndex}
-        roundCount={session.questionCount}
-        timing={timing}
-        canChangeWord={props.draw?.canChangeWord ?? false}
-        onChangeWord={() => props.draw?.onChangeWord()}
-      />
-    );
+    return <DrawerTopBar key={session.drawTurn.round} {...drawerHeaderOf(props, timing)} />;
   }
   // Vote du Bluff sans minuteur : « X/Y ont voté » et leur proportion à la place du temps.
   const votes = isVote ? voteProgress(session) : undefined;
@@ -137,6 +131,19 @@ function questionTopBar(props: PlayerGameProps): ReactNode {
       votes={votes}
     />
   );
+}
+
+// En-tête du dessinateur (manche, temps, mot, « Changer de mot »).
+function drawerHeaderOf(props: PlayerGameProps, timing: PhaseTiming): DrawerTopBarProps {
+  const { session, draw } = props;
+  return {
+    word: draw?.word ?? null,
+    round: session.currentIndex,
+    roundCount: session.questionCount,
+    timing,
+    canChangeWord: draw?.canChangeWord ?? false,
+    onChangeWord: () => draw?.onChangeWord(),
+  };
 }
 
 // Suspense : « Et le grand gagnant est… » sur le téléphone aussi, pour ne rien révéler avant la TV.
@@ -184,7 +191,8 @@ function otherTeamRound(session: PublicSession, uid: PlayerId): string | null {
   return strings.teams.names[drawerTeam];
 }
 
-function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, draw }: PlayerGameProps): ReactNode {
+function renderView(props: PlayerGameProps): ReactNode {
+  const { session, uid, serverOffsetMs, answer, onAnswer, bluff, draw } = props;
   if (!isKnownAnswerMode(session.settings.answerMode)) return <OutdatedView />;
   const timing: PhaseTiming = {
     phaseStartedAt: session.phaseStartedAt,
@@ -209,7 +217,9 @@ function renderView({ session, uid, serverOffsetMs, answer, onAnswer, bluff, dra
       if (!question) return <WaitingView />;
       if (draw && session.drawTurn) {
         const { drawTurn } = session;
-        if (drawTurn.drawer === uid) return <DrawerView key={drawTurn.round} session={session} draw={draw} />;
+        if (drawTurn.drawer === uid) {
+          return <DrawerView key={drawTurn.round} session={session} draw={draw} header={drawerHeaderOf(props, timing)} />;
+        }
         const drawerName = session.players[drawTurn.drawer]?.name ?? '';
         if (isDrawGuesser(session, uid)) return <DrawGuessView key={drawTurn.round} turn={drawTurn} drawerName={drawerName} draw={draw} />;
         const drawerTeam = session.players[drawTurn.drawer]?.team;

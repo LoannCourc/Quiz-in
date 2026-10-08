@@ -33,15 +33,17 @@ interface ScreenProps extends BackgroundProps {
   // false : la page ne défile pas, la colonne occupe la hauteur restante (une zone interne défile
   // à sa place, comme la liste des joueurs du salon).
   scrollable?: boolean;
+  // Toute la largeur de l'écran, sans la colonne centrée (dessinateur en paysage, maquette E2).
+  wide?: boolean;
 }
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Clavier ouvert : la zone utile
 // s'arrête au-dessus du clavier (useKeyboardInset), le bas de la colonne (bouton « Valider ») reste visible.
-export function Screen({ children, background, header, footer, scrollable = true }: ScreenProps) {
+export function Screen({ children, background, header, footer, scrollable = true, wide = false }: ScreenProps) {
   const keyboardInset = useKeyboardInset();
   const hasKeyboard = keyboardInset > 0;
   const bottomGap = hasKeyboard ? { paddingBottom: KEYBOARD_GAP } : null;
-  const column = <View style={[styles.column, !scrollable && styles.fixedColumn]}>{children}</View>;
+  const column = <View style={[styles.column, !scrollable && styles.fixedColumn, wide && styles.wideColumn]}>{children}</View>;
   return (
     <ScreenBackground background={background}>
       <SafeAreaView
@@ -98,6 +100,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingTop: Spacing.two,
     paddingBottom: Spacing.three,
+  },
+  wideColumn: {
+    maxWidth: '100%',
   },
   column: {
     flexGrow: 1,

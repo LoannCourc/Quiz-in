@@ -768,7 +768,6 @@ export const strings = {
     drawerPoints: (points: number) =>
       points > 0 ? `Ton dessin te rapporte +${formatNumber(points)} pts` : 'Personne n’a trouvé ton dessin.',
     // App de l'hôte : l'hôte qui joue ne dessine pas (décision D1).
-    nativeUnavailable: 'Le dessin se fait depuis un navigateur.',
   },
   // Prototype du dessin (lot 1, développement seulement) : /debug/draw.
   drawDemo: {
