@@ -251,6 +251,9 @@ export interface SessionSettings {
   // d'équipes (2 à 4). Absents : tirage au sort, nombre suggéré d'après les joueurs.
   teamMode?: TeamMode;
   teamCount?: number;
+  // Dessine-moi : catégories de mots choisies dans le catalogue (identifiants de drawCategoryId, voir
+  // shared/drawWords.ts). Absent ou vide : « Mélange », toutes les catégories.
+  drawCategories?: string[];
 }
 
 // Groupe : 4 équipes fixes (Rose, Cyan, Or, Vert), chacune avec un symbole dessiné (étoile, rond,

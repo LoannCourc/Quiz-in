@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { GENRE_DRAWINGS } from '@/components/ui/genreIcons';
 import { box, dot, GRID, line, type Pen } from '@/components/ui/iconShapes';
 import { note } from '@/components/ui/ThemeIcon';
 import { AppFonts } from '@/constants/appTheme';
@@ -22,22 +23,10 @@ function bubble(pen: Pen): ReactNode[] {
   ];
 }
 
-// Crayon en biais : le corps, la virole, la pointe.
-function pencil(pen: Pen): ReactNode[] {
-  return [
-    line(pen, 'top', 15.5, 3.5, 20.5, 8.5),
-    line(pen, 'sideA', 15.5, 3.5, 5, 14),
-    line(pen, 'sideB', 20.5, 8.5, 10, 19),
-    line(pen, 'ferrule', 13, 6, 18, 11),
-    line(pen, 'tipA', 5, 14, 3, 21),
-    line(pen, 'tipB', 10, 19, 3, 21),
-  ];
-}
-
 const DRAWINGS: Record<Exclude<GameType, 'quiz'>, (pen: Pen) => ReactNode[]> = {
   blindTest: note,
   bluff: bubble,
-  draw: pencil,
+  draw: GENRE_DRAWINGS.pencil,
 };
 
 export function GameIcon({ game, size, color }: { game: GameType; size: number; color: string }) {

@@ -117,7 +117,7 @@ function isInProgress(session: Session): boolean {
 }
 
 function HostGame({ code, session }: { code: string; session: Session }) {
-  const questions = useGameQuestions(code, session.quizId, session.settings.answerMode);
+  const questions = useGameQuestions(code, session.quizId, session.settings.answerMode, session.settings.drawCategories);
   const serverOffsetMs = useServerTimeOffset();
   const uid = session.hostUid;
   const isRegistered = session.players[uid] !== undefined;

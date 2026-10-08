@@ -1,6 +1,7 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
 import { areSettingsCompatible, isValidQuizId, settingsForGameType } from '@shared/quizCatalog';
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
+import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { SessionSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -23,10 +24,15 @@ import { saveHostedGameCode } from '@/lib/hostedGameStorage';
 
 // Fiche d'un quiz : « Choisir ce quiz » crée la partie (réglages par défaut, modifiables dans la feuille
 // « Réglages ») et ouvre le salon.
+// Dessine-moi : « animal,sport » (catalogue) → identifiants connus seulement ; absent : « Mélange ».
+function categoriesParam(value: string | undefined): string[] {
+  return drawCategoriesOf(value ? value.split(',') : []).map(drawCategoryId);
+}
+
 export default function QuizRoute() {
-  const { quizId = '' } = useLocalSearchParams<{ quizId: string }>();
+  const { quizId = '', categories } = useLocalSearchParams<{ quizId: string; categories?: string }>();
   // Identifiant vérifié avant toute lecture dans la base.
-  return isValidQuizId(quizId) ? <QuizScreen quizId={quizId} /> : <QuizNotFound />;
+  return isValidQuizId(quizId) ? <QuizScreen quizId={quizId} drawCategories={categoriesParam(categories)} /> : <QuizNotFound />;
 }
 
 function QuizNotFound() {
@@ -38,7 +44,7 @@ function QuizNotFound() {
   );
 }
 
-function QuizScreen({ quizId }: { quizId: string }) {
+function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories: string[] }) {
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
   // Fiche absente ou mal formée : null, traitée comme introuvable.
   const summary = useMemo(() => {
@@ -49,7 +55,10 @@ function QuizScreen({ quizId }: { quizId: string }) {
     warnIgnoredEntries('Fiche du quiz', parsed === null && quiz.value !== null ? 1 : 0);
     return parsed;
   }, [quiz, quizId]);
-  const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
+  // Dessine-moi : catégories choisies dans le catalogue, écrites avec les réglages de la partie.
+  const [chosenSettings, setSettings] = useState<SessionSettings>(() =>
+    quizId === DRAW_QUIZ_ID && drawCategories.length > 0 ? { ...DEFAULT_SESSION_SETTINGS, drawCategories } : DEFAULT_SESSION_SETTINGS,
+  );
   // Bluff : mode bluff imposé, sans Contrôle ni Rapidité (spec 16).
   const settings = summary ? settingsForGameType(chosenSettings, summary.gameType) : chosenSettings;
   const [isCreating, setIsCreating] = useState(false);

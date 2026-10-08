@@ -11,11 +11,9 @@ import { GameTile } from './GameTile';
 const GAMES: readonly GameType[] = ['quiz', 'blindTest', 'bluff', 'draw'];
 const TITLE_SIZE = 28;
 
-// « Bientôt » si l'interrupteur du jeu est coupé ; Dessine-moi ouvert : « Nouveau ».
-function tileBadge(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: boolean): 'new' | 'soon' | undefined {
-  if (game === 'blindTest') return isBlindTestEnabled ? undefined : 'soon';
-  if (game === 'draw') return isDrawEnabled ? 'new' : 'soon';
-  return undefined;
+// « Bientôt » si l'interrupteur à distance du jeu est coupé.
+function isGameOff(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: boolean): boolean {
+  return (game === 'blindTest' && !isBlindTestEnabled) || (game === 'draw' && !isDrawEnabled);
 }
 
 interface HomeViewProps {
@@ -43,7 +41,7 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
           <GameTile
             key={game}
             game={game}
-            badge={tileBadge(game, isBlindTestEnabled, isDrawEnabled)}
+            isSoon={isGameOff(game, isBlindTestEnabled, isDrawEnabled)}
             onPress={() => onOpenGame(game)}
           />
         ))}

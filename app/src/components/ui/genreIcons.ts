@@ -150,6 +150,18 @@ function speechBubble(pen: Pen): ReactNode[] {
   ];
 }
 
+// Crayon : corps en biais, virole, pointe (Dessine-moi : affiche du catalogue et tuile de l'accueil).
+function pencil(pen: Pen): ReactNode[] {
+  return [
+    line(pen, 'top', 15.5, 3.5, 20.5, 8.5),
+    line(pen, 'sideA', 15.5, 3.5, 5, 14),
+    line(pen, 'sideB', 20.5, 8.5, 10, 19),
+    line(pen, 'ferrule', 13, 6, 18, 11),
+    line(pen, 'tipA', 5, 14, 3, 21),
+    line(pen, 'tipB', 10, 19, 3, 21),
+  ];
+}
+
 export const GENRE_DRAWINGS: Record<GenreIconName, (pen: Pen) => ReactNode[]> = {
   cassette,
   cd,
@@ -162,4 +174,5 @@ export const GENRE_DRAWINGS: Record<GenreIconName, (pen: Pen) => ReactNode[]> = 
   microphone,
   guitar,
   speechBubble,
+  pencil,
 };

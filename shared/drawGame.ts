@@ -1,4 +1,4 @@
-import { DRAW_WORDS } from './drawWords'
+import { drawWordsIn } from './drawWords'
 import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary } from './types'
 
 // Dessine-moi (spec 19, plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs.
@@ -22,6 +22,7 @@ export const DRAW_QUIZ_SUMMARY: QuizSummary = {
     'Chacun son tour, un joueur dessine un mot secret, les autres le devinent en regardant la TV. Plus on trouve vite, plus on marque.',
   audience: 'all',
   poster: 'pink',
+  icon: 'pencil',
   addedAt: '',
 }
 
@@ -59,14 +60,21 @@ function levelQuotas(count: number): Record<Difficulty, number> {
   return { 1: count - medium - hard, 2: medium, 3: hard }
 }
 
-// Manches d'une partie : mots tirés au hasard (reproductible : même code de salle, mêmes mots, même après
-// une relance de l'app de l'hôte), niveaux mélangés, la première manche toujours facile.
-export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT): DrawQuestion[] {
+// Manches d'une partie : mots tirés au hasard (reproductible : même code de salle et mêmes catégories,
+// mêmes mots, même après une relance de l'app de l'hôte), dans les catégories choisies (toutes si aucune),
+// niveaux mélangés, la première manche toujours facile. Une catégorie sans assez de mots d'un niveau est
+// complétée par ses mots des autres niveaux : jamais moins de manches que prévu.
+export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT, categories: readonly string[] = []): DrawQuestion[] {
   const random = seededRandom(roomCode)
   const quotas = levelQuotas(count)
-  const picked = ([1, 2, 3] as const).flatMap((level) =>
-    shuffled(DRAW_WORDS.filter((entry) => entry.difficulty === level), random).slice(0, quotas[level]),
+  const pool = drawWordsIn(categories)
+  const byLevel = ([1, 2, 3] as const).map((level) => shuffled(pool.filter((entry) => entry.difficulty === level), random))
+  const picked = byLevel.flatMap((words, index) => words.slice(0, quotas[(index + 1) as Difficulty]))
+  const rest = shuffled(
+    byLevel.flatMap((words, index) => words.slice(quotas[(index + 1) as Difficulty])),
+    random,
   )
+  picked.push(...rest.slice(0, Math.max(0, count - picked.length)))
   const order = shuffled(picked, random)
   const firstEasy = order.findIndex((entry) => entry.difficulty === 1)
   if (firstEasy > 0) [order[0], order[firstEasy]] = [order[firstEasy], order[0]]

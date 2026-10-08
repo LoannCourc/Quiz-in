@@ -14,17 +14,16 @@ const BORDER = 4;
 interface GameTileProps {
   game: GameType;
   onPress: () => void;
-  // Étiquette en haut à droite : « Nouveau », ou « Bientôt » (tuile éteinte, non cliquable).
-  badge?: 'new' | 'soon';
+  // Jeu coupé à distance : étiquette « Bientôt » en haut à droite, tuile éteinte, non cliquable.
+  isSoon?: boolean;
 }
 
 // Tuile d'un jeu de l'accueil (maquette H1) : fond de la couleur du jeu, bord blanc, ombre dure encre,
 // disque encre avec l'icône dans la couleur de la tuile, nom et phrase en encre (ButtonLabel : jamais
-// coupés). Une tuile « Bientôt » (blind test coupé à distance) reste visible mais ne s'ouvre pas.
-export function GameTile({ game, onPress, badge }: GameTileProps) {
+// coupés). Une tuile « Bientôt » (jeu coupé à distance) reste visible mais ne s'ouvre pas.
+export function GameTile({ game, onPress, isSoon = false }: GameTileProps) {
   const color = AppColors.gameTiles[game];
   const { name, hint } = strings.home.games[game];
-  const isSoon = badge === 'soon';
   return (
     <Pressable
       accessibilityRole="button"
@@ -33,9 +32,9 @@ export function GameTile({ game, onPress, badge }: GameTileProps) {
       disabled={isSoon}
       onPress={onPress}
       style={({ pressed }) => [styles.tile, { backgroundColor: color }, pressed && styles.pressed, isSoon && styles.soon]}>
-      {badge && (
+      {isSoon && (
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>{badge === 'new' ? strings.home.newBadge : strings.home.soonBadge}</Text>
+          <Text style={styles.badgeText}>{strings.home.soonBadge}</Text>
         </View>
       )}
       <View style={styles.disc}>

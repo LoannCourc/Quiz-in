@@ -1527,6 +1527,14 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
   })
   const chunk = (key: string) => `${SESSION}/drawing/${key}`
 
+  test('catégories de mots dans les réglages : identifiants connus seulement, écrits par l’hôte', async () => {
+    await seedSession({ status: 'lobby', settings: DRAW_SETTINGS })
+    await assertSucceeds(db(HOST).ref(`${SESSION}/settings/drawCategories`).set(['animal', 'metier', 'vetement']))
+    await assertFails(db(HOST).ref(`${SESSION}/settings/drawCategories`).set(['Métier']))
+    await assertFails(db(HOST).ref(`${SESSION}/settings/drawCategories`).set(['dinosaure']))
+    await assertFails(db(PLAYER).ref(`${SESSION}/settings/drawCategories`).set(['animal']))
+  })
+
   test('le dessinateur envoie ses paquets pendant sa manche ; tout le monde les lit', async () => {
     await seedSession(round())
     await assertSucceeds(db(PLAYER).ref(chunk('0')).set('0:s0,1,1:a,a;1,1'))

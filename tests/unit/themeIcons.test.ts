@@ -38,6 +38,6 @@ describe('Icônes de thème', () => {
     expect(quizIconOf({ theme: 'Musique', icon: 'cassette' })).toBe('cassette')
     expect(quizIconOf({ theme: 'Musique' })).toBe('note')
     expect(isQuizIconName('licorne')).toBe(false)
-    expect(GENRE_ICONS).toHaveLength(11)
+    expect(GENRE_ICONS).toHaveLength(12)
   })
 })

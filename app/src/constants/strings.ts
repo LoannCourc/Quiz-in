@@ -88,6 +88,11 @@ export const strings = {
     emptyCatalog: 'Aucun quiz disponible.',
     noMatch: 'Aucun quiz pour ce thème.',
     allThemes: 'Tout',
+    // Dessine-moi : catégories des mots de la partie.
+    drawCategories: {
+      label: 'Catégories de mots',
+      mix: 'Mélange',
+    },
     search: 'Rechercher un quiz',
     searchPlaceholder: 'Titre du quiz',
     closeSearch: 'Fermer la recherche',
@@ -151,6 +156,8 @@ export const strings = {
     settingsDone: 'Terminé',
     createButton: 'Choisir ce quiz',
     createGameButton: 'Choisir ce jeu',
+    // Dessine-moi : catégories choisies dans le catalogue (vide : toutes).
+    drawCategories: (names: string[]) => `Catégories : ${names.length === 0 ? 'Mélange' : names.join(', ')}`,
     creating: 'Création…',
     noFreeCode: 'Impossible de trouver un code de partie libre. Réessaie.',
     createFailed: 'La partie n’a pas pu être créée :',
@@ -662,7 +669,6 @@ export const strings = {
       bluff: { name: 'Bluff', hint: 'Invente la fausse réponse.' },
       draw: { name: 'Dessine-moi', hint: 'Dessine, les autres devinent.' },
     } satisfies Record<GameType, { name: string; hint: string }>,
-    newBadge: 'Nouveau',
     soonBadge: 'Bientôt',
     back: 'Retour à l’accueil',
   },

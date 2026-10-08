@@ -1,7 +1,7 @@
 import { editDistance, normalizeAnswer } from './answerMatching'
 import { ALL_ANSWERED_DELAY_S, DRAW_DRAWER_MAX_POINTS, DRAW_GUESS_MAX_POINTS, DRAW_GUESS_MIN_POINTS } from './constants'
 import { seededRandom, shuffled, wordLetterCount } from './drawGame'
-import { drawAnswers, DRAW_WORDS } from './drawWords'
+import { drawAnswers, drawWordsIn } from './drawWords'
 import type { SessionUpdate } from './hostEngine'
 import { connectedPlayerIds } from './players'
 import type { DrawQuestion, DrawVerdict, PlayerId, PlayerResult, PublicSession, Session } from './types'
@@ -139,7 +139,7 @@ export function drawWordChangeUpdate(session: Session, questions: readonly DrawQ
   if (!session.drawWordChange || !turn || turn.changedWord || session.status !== 'question') return null
   const planned = new Set([...questions.map((question) => question.word), session.drawSecret?.word])
   const level = questions[turn.round]?.difficulty
-  const free = DRAW_WORDS.filter((entry) => !planned.has(entry.word))
+  const free = drawWordsIn(session.settings.drawCategories).filter((entry) => !planned.has(entry.word))
   const sameLevel = free.filter((entry) => entry.difficulty === level)
   const seed = `${questions.map((question) => question.word).join('|')}|change`
   const pool = shuffled(sameLevel.length > turn.round ? sameLevel : free, seededRandom(seed))

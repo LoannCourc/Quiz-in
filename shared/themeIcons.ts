@@ -5,7 +5,7 @@
 
 export type ThemeIconName = 'question' | 'clapper' | 'globe' | 'columns' | 'gamepad' | 'note' | 'flask' | 'ball'
 
-// Genres de blind test (I3).
+// Genres de blind test (I3), et le crayon de Dessine-moi.
 export type GenreIconName =
   | 'cassette'
   | 'cd'
@@ -18,6 +18,8 @@ export type GenreIconName =
   | 'microphone'
   | 'guitar'
   | 'speechBubble'
+  // Dessine-moi (affiche du jeu, comme sa tuile d'accueil).
+  | 'pencil'
 
 export type QuizIconName = ThemeIconName | GenreIconName
 
@@ -44,6 +46,7 @@ export const GENRE_ICONS: readonly GenreIconName[] = [
   'microphone',
   'guitar',
   'speechBubble',
+  'pencil',
 ]
 
 const ALL_ICONS: readonly QuizIconName[] = [...new Set<QuizIconName>([...Object.values(THEME_ICONS), ...GENRE_ICONS])]

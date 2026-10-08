@@ -24,17 +24,18 @@ const DEMO_ENTRIES = [...DEMO_CATALOG, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY 
 
 // Démo de l'accueil, du catalogue et des fiches avec des quiz fictifs (développement uniquement).
 // /debug/catalog : accueil (tuiles des jeux) ; &game=quiz|blindTest|bluff|draw : catalogue de ce jeu ;
-// &blindtest=0 : tuile Blind test « Bientôt » ; &draw=0 : tuile Dessine-moi « Bientôt ». /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte) ;
+// &blindtest=0 : tuile Blind test « Bientôt » ; &draw=0 : tuile Dessine-moi « Bientôt ». /debug/catalog?quiz=<id> ouvre une fiche (&settings=1 : feuille des réglages ouverte ; &categories=animal,sport : Dessine-moi) ;
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw } = useLocalSearchParams<{
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories } = useLocalSearchParams<{
     quiz?: string;
     settings?: string;
     icons?: string;
     game?: GameType;
     blindtest?: string;
     draw?: string;
+    categories?: string;
   }>();
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
@@ -45,7 +46,7 @@ export default function CatalogDemoScreen() {
     return (
       <QuizDetails
         quiz={quiz}
-        settings={settingsForGameType(settings, quiz.gameType)}
+        settings={settingsForGameType(categories ? { ...settings, drawCategories: categories.split(',') } : settings, quiz.gameType)}
         onSettingsChange={setSettings}
         sound={sound}
         onSoundChange={setSound}
@@ -60,7 +61,9 @@ export default function CatalogDemoScreen() {
         <CatalogView
           entries={DEMO_ENTRIES}
           gameType={game}
-          onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
+          onOpenQuiz={(id, categories) =>
+            router.push({ pathname: '/debug/catalog', params: categories.length > 0 ? { quiz: id, categories: categories.join(',') } : { quiz: id } })
+          }
           onBack={() => router.setParams({ game: undefined })}
         />
       ) : (

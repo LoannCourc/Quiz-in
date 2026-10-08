@@ -1,4 +1,5 @@
 import { drawGameQuestions } from '@shared/drawGame';
+import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
 import { selectGameQuestions } from '@shared/hostEngine';
 import type { AnswerMode, GameQuestion } from '@shared/types';
 import { useEffect, useMemo, useState } from 'react';
@@ -14,12 +15,22 @@ export type GameQuestionsState =
 
 // Questions de la partie, chargées une fois par l'hôte. Rien de critique n'est gardé ici :
 // après une relance de l'app, elles sont simplement relues. Dessine-moi : manches tirées du code de la
-// partie (mots dans le code, toujours les mêmes pour ce code), sans lecture dans la base.
-export function useGameQuestions(code: string, quizId: string, answerMode: AnswerMode): GameQuestionsState {
+// partie et des catégories choisies (mots dans le code, toujours les mêmes), sans lecture dans la base.
+export function useGameQuestions(
+  code: string,
+  quizId: string,
+  answerMode: AnswerMode,
+  drawCategories: readonly string[] = [],
+): GameQuestionsState {
   const isBluff = answerMode === 'bluff';
   const isDraw = answerMode === 'draw';
   const [state, setState] = useState<GameQuestionsState>({ kind: 'loading' });
-  const drawQuestions = useMemo(() => (isDraw ? drawGameQuestions(code) : null), [code, isDraw]);
+  // Clé texte : un nouveau tableau de même contenu (session relue) ne retire pas les mots.
+  const categoriesKey = drawCategoriesOf(drawCategories).map(drawCategoryId).join(',');
+  const drawQuestions = useMemo(
+    () => (isDraw ? drawGameQuestions(code, undefined, categoriesKey === '' ? [] : categoriesKey.split(',')) : null),
+    [code, isDraw, categoriesKey],
+  );
 
   useEffect(() => {
     if (isDraw) return;

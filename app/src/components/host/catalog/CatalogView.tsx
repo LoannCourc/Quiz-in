@@ -10,6 +10,7 @@ import { Spacing } from '@/constants/theme';
 
 import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 
+import { DrawCategoryChips } from './DrawCategoryChips';
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
 import { QuizPoster } from './QuizPoster';
@@ -21,7 +22,8 @@ interface CatalogViewProps {
   entries: QuizEntry[];
   // Jeu choisi sur l'accueil : seules ses fiches sont montrées.
   gameType: GameType;
-  onOpenQuiz: (quizId: string) => void;
+  // drawCategories : Dessine-moi, catégories de mots choisies (vide : « Mélange »).
+  onOpenQuiz: (quizId: string, drawCategories: string[]) => void;
   // Retour à l'accueil (choix du jeu).
   onBack: () => void;
 }
@@ -34,8 +36,12 @@ function posterWidthFor(columnWidth: number): number {
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
 // démo. En-tête : retour à l'accueil, nom du jeu, recherche ; puis le filtre des thèmes et les rangées.
-export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack }: CatalogViewProps) {
+// Dessine-moi : à la place des thèmes, les catégories de mots de la partie (« Mélange » par défaut).
+export function CatalogView({ entries: allEntries, gameType, onOpenQuiz: openWithCategories, onBack }: CatalogViewProps) {
   const [theme, setTheme] = useState<string | null>(null);
+  const [drawCategories, setDrawCategories] = useState<string[]>([]);
+  const isDraw = gameType === 'draw';
+  const onOpenQuiz = (quizId: string) => openWithCategories(quizId, isDraw ? drawCategories : []);
   // null : recherche fermée.
   const [query, setQuery] = useState<string | null>(null);
   // Largeur réelle de la colonne, mesurée à l'affichage (0 tant qu'elle n'est pas connue).
@@ -79,7 +85,14 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack 
         </Pressable>
       </View>
 
-      {entries.length > 0 && <ThemeChips themes={themes} selected={theme} onSelect={setTheme} />}
+      {isDraw ? (
+        <View style={styles.drawCategories}>
+          <Text style={styles.sectionTitle}>{strings.catalog.drawCategories.label}</Text>
+          <DrawCategoryChips selected={drawCategories} onChange={setDrawCategories} />
+        </View>
+      ) : (
+        entries.length > 0 && <ThemeChips themes={themes} selected={theme} onSelect={setTheme} />
+      )}
 
       {entries.length === 0 ? (
         <Text style={textStyles.body}>{strings.catalog.emptyCatalog}</Text>
@@ -149,6 +162,14 @@ function SearchResults({ quizzes, posterWidth, onOpenQuiz }: SearchResultsProps)
 }
 
 const styles = StyleSheet.create({
+  drawCategories: {
+    gap: Spacing.two,
+  },
+  sectionTitle: {
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
+  },
   column: {
     gap: Spacing.four,
   },

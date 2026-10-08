@@ -1,4 +1,5 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
+import { drawCategoriesOf } from '@shared/drawWords';
 import { difficultyLevel, estimateGameMinutes } from '@shared/quizCatalog';
 import type { QuizSummary, SessionSettings, SoundSettings } from '@shared/types';
 import { useState } from 'react';
@@ -79,6 +80,9 @@ export function QuizDetails(props: QuizDetailsProps) {
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />
           <Tag label={strings.catalog.gameTypes[quiz.gameType]} color={AppColors.tags.gameType} />
         </View>
+        {quiz.gameType === 'draw' && (
+          <Text style={styles.meta}>{strings.quizSetup.drawCategories(drawCategoriesOf(settings.drawCategories))}</Text>
+        )}
         {quiz.description !== '' && (
           <Text style={styles.description} numberOfLines={4}>
             {quiz.description}

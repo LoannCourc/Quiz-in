@@ -28,8 +28,11 @@ function toEntries(quizzes: unknown): QuizEntry[] {
   return [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
 }
 
-function openQuiz(quizId: string) {
-  router.push({ pathname: '/quiz/[quizId]', params: { quizId } });
+// Dessine-moi : les catégories choisies voyagent jusqu'à la fiche (« animal,sport »), qui les met dans les
+// réglages de la partie.
+function openQuiz(quizId: string, drawCategories: string[]) {
+  const params = drawCategories.length > 0 ? { quizId, categories: drawCategories.join(',') } : { quizId };
+  router.push({ pathname: '/quiz/[quizId]', params });
 }
 
 // Retour à l'accueil (par la pile si on en vient, sinon en le remplaçant : lien direct).

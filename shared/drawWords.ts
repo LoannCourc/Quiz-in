@@ -269,6 +269,28 @@ export const DRAW_WORDS: readonly DrawWord[] = [
   { word: 'squelette', category: 'Corps', difficulty: 2 },
 ]
 
+// Identifiant d'une catégorie (minuscules, sans accent : « Métier » → « metier ») : c'est lui qui est écrit
+// dans les réglages de la partie (settings/drawCategories), vérifié par les règles de la base.
+export function drawCategoryId(category: DrawCategory): string {
+  return category
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
+// Catégories retenues : identifiants connus seulement, dans l'ordre de DRAW_CATEGORIES. Vide : « Mélange ».
+// Lu dans la base : tout ce qui n'est pas un tableau compte comme « Mélange ».
+export function drawCategoriesOf(ids: readonly string[] | undefined): DrawCategory[] {
+  const wanted = new Set(Array.isArray(ids) ? ids : [])
+  return DRAW_CATEGORIES.filter((category) => wanted.has(drawCategoryId(category)))
+}
+
+// Mots des catégories choisies (toutes si aucune).
+export function drawWordsIn(ids: readonly string[] | undefined): readonly DrawWord[] {
+  const categories = drawCategoriesOf(ids)
+  return categories.length === 0 ? DRAW_WORDS : DRAW_WORDS.filter((entry) => categories.includes(entry.category))
+}
+
 // Réponses justes d'un mot : le mot et ses synonymes acceptés.
 export function drawAnswers(word: string): readonly string[] {
   const entry = DRAW_WORDS.find((candidate) => candidate.word === word)

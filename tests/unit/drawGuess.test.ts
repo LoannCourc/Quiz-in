@@ -230,3 +230,14 @@ describe('Dessine-moi : sons', () => {
     expect(soundCues(before, changed, NOW_SOUND)).toEqual([])
   })
 })
+
+describe('Dessine-moi : changement de mot dans les catégories choisies', () => {
+  test('le remplaçant reste dans les catégories de la partie', () => {
+    const settings = { ...DRAW, drawCategories: ['sport'] }
+    for (const index of [0, 1, 2]) {
+      const session = round({ settings, drawWordChange: true, drawTurn: { drawer: PLAYER, round: index, wordLength: 4, category: 'Sport' } })
+      const update = drawWordChangeUpdate(session, questions) as Record<string, { category: string }>
+      expect(update.drawSecret.category).toBe('Sport')
+    }
+  })
+})

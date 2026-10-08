@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest'
 import { isKnownAnswerMode } from '../../shared/constants'
 import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawOrderFor, wordLetterCount } from '../../shared/drawGame'
 import { isDrawGuesser } from '../../shared/drawGuess'
+import { drawCategoryId, DRAW_WORDS, drawWordsIn } from '../../shared/drawWords'
 import { hasRankingStep, nextPhase } from '../../shared/gameFlow'
 import { launchUpdate, replayUpdate, toPublicQuestion, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { settingsForGameType } from '../../shared/quizCatalog'
@@ -193,5 +194,24 @@ describe('Dessine-moi : mots tirés au hasard (niveaux mélangés)', () => {
   test('4 et 6 manches : pas de mot difficile', () => {
     expect(drawGameQuestions('K7PX', 4).map((question) => question.difficulty).sort()).toEqual([1, 1, 2, 2])
     expect(drawGameQuestions('K7PX', 6).some((question) => question.difficulty === 3)).toBe(false)
+  })
+})
+
+describe('Dessine-moi : catégories choisies dans le catalogue', () => {
+  test('mots des catégories choisies seulement, 8 manches même pour la plus petite (Corps), toujours les mêmes', () => {
+    const corps = drawGameQuestions('K7PX', 8, ['corps'])
+    expect(corps).toHaveLength(8)
+    expect(new Set(corps.map((question) => question.category))).toEqual(new Set(['Corps']))
+    expect(drawGameQuestions('K7PX', 8, ['corps'])).toEqual(corps)
+    const two = drawGameQuestions('K7PX', 8, ['animal', 'sport'])
+    expect(two.every((question) => question.category === 'Animal' || question.category === 'Sport')).toBe(true)
+  })
+
+  test('« Mélange » (vide, inconnu ou mal formé) : toutes les catégories', () => {
+    expect(drawWordsIn([])).toBe(DRAW_WORDS)
+    expect(drawWordsIn(['inconnue'])).toBe(DRAW_WORDS)
+    expect(drawWordsIn({ 0: 'animal' } as unknown as string[])).toBe(DRAW_WORDS)
+    expect(drawCategoryId('Métier')).toBe('metier')
+    expect(drawCategoryId('Vêtement')).toBe('vetement')
   })
 })
