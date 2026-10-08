@@ -81,3 +81,53 @@ describe('canvas de l’hôte (lot C) : les traits restent affichés', () => {
     expect(reopened.snapshot().shapes).toHaveLength(1)
   })
 })
+
+describe('canvas de l’hôte : zoom (livraison C, étape 3)', () => {
+  test('deux doigts posés presque en même temps : le début gardé est annulé, rien n’est envoyé', () => {
+    const canvas = new LiveCanvas([])
+    canvas.beginStroke(1, 1, 100, 100, false, true)
+    canvas.extendStroke(110, 100)
+    expect(canvas.hasPendingStroke).toBe(true)
+    expect(canvas.snapshot().live).not.toBeNull()
+    canvas.cancelStroke()
+    expect(canvas.snapshot().live).toBeNull()
+    expect(canvas.flush()).toEqual([])
+    expect(canvas.snapshot().shapes).toHaveLength(0)
+  })
+
+  test('début gardé puis confirmé : le trait entier part, points du début compris', () => {
+    const canvas = new LiveCanvas([])
+    canvas.beginStroke(1, 1, 10, 10, false, true)
+    canvas.extendStroke(20, 10)
+    canvas.commitStroke()
+    canvas.extendStroke(30, 10)
+    const sent = canvas.endStroke()
+    const tv = new DrawingDoc()
+    for (const chunk of sent) tv.applyChunk(chunk.data)
+    expect(tv.ops).toHaveLength(1)
+    expect(tv.ops[0].kind === 'stroke' && tv.ops[0].points.slice(0, 2)).toEqual([10, 10])
+  })
+
+  test('à 3× : le point sous le doigt est celui du dessin (zoom local, paquets en points du dessin entier)', () => {
+    const canvas = new LiveCanvas([])
+    canvas.setSize(320, 240)
+    canvas.setView({ scale: 3, x: 400, y: 300 })
+    // Coin haut gauche du cadre → coin de la partie visible ; centre → son centre.
+    expect(canvas.toLogical(0, 0)).toEqual({ x: 400, y: 300 })
+    expect(canvas.toLogical(160, 120)).toEqual({ x: Math.round(400 + 640 / 6), y: 300 + 480 / 6 })
+    // Vue bornée : jamais hors du dessin.
+    canvas.setView({ scale: 3, x: 9999, y: -5 })
+    expect(canvas.snapshot().view).toEqual({ scale: 3, x: 640 - 640 / 3, y: 0 })
+  })
+
+  test('seau zoomé : la zone remplie est celle du dessin sous le doigt', () => {
+    const canvas = new LiveCanvas([])
+    canvas.setSize(320, 240)
+    drawLine(canvas, 1, [0, 240], [640, 240])
+    canvas.setView({ scale: 2, x: 0, y: 240 })
+    const point = canvas.toLogical(100, 100)
+    expect(point.y).toBeGreaterThan(240)
+    canvas.fill(5, point.x, point.y)
+    expect(canvas.snapshot().shapes.map((shape) => shape.kind)).toEqual(['stroke', 'fill'])
+  })
+})

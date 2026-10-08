@@ -6,8 +6,8 @@ import { strings } from '@/constants/strings';
 
 import type { DrawingCanvasProps } from './drawingTypes';
 
-// Zoom dans l'app : étape 3 de la livraison C, après le test du dessin de l'hôte sur le build.
-export const CANVAS_CAN_ZOOM = false;
+// Zoom dans l'app (livraison C, étape 3) : pincement, boutons et mini-carte, comme sur le site des joueurs.
+export const CANVAS_CAN_ZOOM = true;
 
 // Canvas SVG (react-native-svg) chargé seulement quand l'hôte dessine, jamais au démarrage : un build de
 // développement plus ancien, sans ce module natif, ouvre l'app normalement. null : module absent.

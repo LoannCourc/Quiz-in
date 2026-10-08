@@ -1,9 +1,10 @@
 import type { DrawingRecording } from '@shared/drawing/recording';
-import { useRef, useState } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import { useRef, useState, type ComponentType } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
-import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
+import type { DrawingCanvasHandle, DrawingCanvasProps, DrawTool } from '@/components/player/draw/drawingTypes';
 import { DrawingTools } from '@/components/player/draw/DrawingTools';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
@@ -17,10 +18,18 @@ const INITIAL_COLOR = 1;
 const INITIAL_WIDTH = 1;
 const KILOBYTE = 1024;
 
+// ?svg=1 : le canvas de l'app (react-native-svg), dans le navigateur, pour essayer ses gestes et son zoom.
+function loadSvgCanvas(): ComponentType<DrawingCanvasProps> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- chargé seulement avec ?svg=1 : la démo ne doit pas charger le module natif au démarrage
+  return (require('@/components/player/draw/SvgDrawingCanvas') as typeof import('@/components/player/draw/SvgDrawingCanvas')).SvgDrawingCanvas;
+}
+
 // Prototype du dessin (lot 1, développement seulement, route /debug/draw) : surface et outils du
 // dessinateur, sans Firebase. Les paquets sont enregistrés avec leur heure ; « Exporter » donne le dessin
 // à rejouer sur la TV (banc d'essai). window.__drawRecording : le même enregistrement, pour les outils.
 export default function DrawDemoScreen() {
+  const { svg } = useLocalSearchParams<{ svg?: string }>();
+  const [Canvas] = useState<ComponentType<DrawingCanvasProps>>(() => (svg === '1' ? loadSvgCanvas() : DrawingCanvas));
   const canvas = useRef<DrawingCanvasHandle>(null);
   const [tool, setTool] = useState<DrawTool>('pen');
   const [color, setColor] = useState(INITIAL_COLOR);
@@ -56,7 +65,7 @@ export default function DrawDemoScreen() {
     <Screen>
       <Text style={styles.title}>{strings.drawDemo.title}</Text>
       <Text style={textStyles.muted}>{strings.drawDemo.hint}</Text>
-      <DrawingCanvas key={canvasKey} ref={canvas} tool={tool} color={color} width={width} onChunk={record} />
+      <Canvas key={canvasKey} ref={canvas} tool={tool} color={color} width={width} onChunk={record} />
       <DrawingTools
         tool={tool}
         color={color}
