@@ -13,7 +13,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
-import { TEXT_FIT_SAFETY, type AppBackgroundName } from '@/constants/appTheme';
+import type { AppBackgroundName } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDelayPassed } from '@/hooks/useDelayPassed';
@@ -41,7 +41,6 @@ import { RevealView, type FreeRevealInfo } from './RevealView';
 import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView } from './DrawViews';
 import { EndView, OutdatedView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
-import { Timebar } from './Timebar';
 import { AwaitingScoresPhase, ScoresPhase, WaitHeader, type WaitInfo } from './TransitionViews';
 
 export interface PlayerGameProps {
@@ -106,31 +105,29 @@ function isDrawerNow({ session, uid, draw }: PlayerGameProps): boolean {
   return Boolean(draw) && session.status === 'question' && session.drawTurn?.drawer === uid;
 }
 
-// Question et vote du Bluff : numéro de la question, score et minuteur, fixés en haut de l'écran (hors de
-// la zone qui défile : le clavier ne les fait jamais sortir de l'écran).
+// Question et vote du Bluff : numéro de la question et minuteur (maquette S1), fixés en haut de l'écran
+// (hors de la zone qui défile : le clavier ne les fait jamais sortir de l'écran).
 function questionTopBar(props: PlayerGameProps): ReactNode {
-  const { session, uid, serverOffsetMs, bluff } = props;
+  const { session, serverOffsetMs, bluff } = props;
   const isQuestion = session.status === 'question' && session.currentQuestion !== undefined;
   const isVote = session.status === 'vote' && session.currentQuestion?.choices !== undefined && Boolean(bluff);
   if (!isQuestion && !isVote) return undefined;
-  const score = rankedPlayers(session.players).find((player) => player.id === uid)?.score ?? 0;
   const timing: PhaseTiming = { phaseStartedAt: session.phaseStartedAt, phaseEndsAt: session.phaseEndsAt, serverOffsetMs };
   if (session.drawTurn && isDrawerNow(props)) {
     return (
       <DrawerTopBar key={session.drawTurn.round} word={props.draw?.word ?? null} category={session.drawTurn.category} timing={timing} />
     );
   }
-  // Vote du Bluff sans minuteur : « X/Y ont voté » à la place de la barre de temps.
-  const votes = isVote ? voteProgress(session) : null;
+  // Vote du Bluff sans minuteur : « X/Y ont voté » et leur proportion à la place du temps.
+  const votes = isVote ? voteProgress(session) : undefined;
   return (
-    <>
-      <QuestionHeader index={session.currentIndex} questionCount={session.questionCount} score={score} isRound={session.settings.answerMode === 'draw'} />
-      {votes ? (
-        <Text style={[textStyles.label, styles.voteCount]}>{strings.game.bluff.votedCount(votes.voted, votes.expected)}</Text>
-      ) : (
-        <Timebar {...timing} />
-      )}
-    </>
+    <QuestionHeader
+      index={session.currentIndex}
+      questionCount={session.questionCount}
+      isRound={session.settings.answerMode === 'draw'}
+      timing={votes ? undefined : timing}
+      votes={votes}
+    />
   );
 }
 
@@ -320,10 +317,6 @@ const styles = StyleSheet.create({
   },
   notice: {
     textAlign: 'center',
-  },
-  voteCount: {
-    textAlign: 'center',
-    ...TEXT_FIT_SAFETY,
   },
   suspense: {
     flexGrow: 1,

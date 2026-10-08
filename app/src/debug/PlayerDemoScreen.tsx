@@ -53,6 +53,17 @@ function withDemoStreak(session: PublicSession, streak: number): PublicSession {
   return { ...session, players: { ...session.players, [DEMO_UID]: { ...me, streak } } };
 }
 
+// &word=montgolfière : mot de Dessine-moi (dessinateur et révélation).
+function withDemoWord(scenario: Scenario, word: string | undefined): Scenario {
+  if (!word || !scenario.draw) return scenario;
+  const reveal = scenario.session.reveal ? { ...scenario.session.reveal, correctAnswer: word } : undefined;
+  return {
+    ...scenario,
+    session: reveal ? { ...scenario.session, reveal } : scenario.session,
+    draw: scenario.draw.word ? { ...scenario.draw, word } : scenario.draw,
+  };
+}
+
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
@@ -61,19 +72,19 @@ function withDemoStreak(session: PublicSession, streak: number): PublicSession {
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
   const hostFooter = params.host === '1' ? <HostControlsBar onPress={() => {}} /> : undefined;
   const [scenarioId, setScenarioId] = useState<ScenarioId>(initialId);
   // Reconstruit à chaque choix (même scénario re-choisi) : les chronos repartent de maintenant.
-  const [scenario, setScenario] = useState<Scenario>(() => buildScenario(initialId, Date.now()));
+  const [scenario, setScenario] = useState<Scenario>(() => withDemoWord(buildScenario(initialId, Date.now()), params.word));
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   function selectScenario(id: ScenarioId) {
     setScenarioId(id);
-    setScenario(buildScenario(id, Date.now()));
+    setScenario(withDemoWord(buildScenario(id, Date.now()), params.word));
     setIsPanelOpen(false);
   }
 
@@ -208,7 +219,7 @@ function PlaceBandGallery() {
   return (
     <Screen>
       <View style={styles.gallery}>
-        <QuestionHeader index={2} questionCount={10} score={1242} />
+        <QuestionHeader index={2} questionCount={10} timing={countdown} />
         <TransitionSteps active={0} />
         <TransitionSteps active={1} />
         <TransitionSteps active={0} withRanking={false} />

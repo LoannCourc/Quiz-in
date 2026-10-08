@@ -21,6 +21,9 @@ const Palette = {
   gold: '#ffd23d',
   green: '#7dff9a',
   lavender: '#c9b8ff',
+  // Maquette S1 : libellés discrets (« Question 3 / 10 », « TA RÉPONSE », compteur) et piste de la barre.
+  lavenderMuted: '#a99ee0',
+  violetTrack: '#5a45a8',
   bgTop: '#7a35d9',
   bgMiddle: '#3a1280',
   bgBottom: '#170646',
@@ -78,7 +81,13 @@ export const AppColors = {
   ring: Palette.pinkSoft,
   ringTrack: Palette.track,
   // Barre de temps mobile : même rose que l'anneau, sur blanc translucide.
-  timebarTrack: 'rgba(255, 255, 255, 0.18)',
+  // Barre de temps des questions (maquette S1) : piste violette, remplissage rose vif (choix de la maquette).
+  timebarTrack: Palette.violetTrack,
+  timebarFill: Palette.pink,
+  // En-tête des questions, libellés et compteur des champs (maquette S1).
+  questionMeta: Palette.lavenderMuted,
+  // Champ de saisie sans le focus (maquette S1, champ « ARTISTE »).
+  fieldIdleBorder: Palette.violetTrack,
   // Pastille « encre » : lettre des réponses, centre de l'anneau, bandeau « Ta place ».
   inkSurface: Palette.ink,
   // Badge flamme d'une série (spec 18) : goutte rose, goutte or dedans, nombre à l'encre (comme la TV).
@@ -219,7 +228,9 @@ export const AppSizes = {
   cardBorder: 5,
   ringSize: 112,
   ringWidth: 12,
-  timebarHeight: 15,
+  timebarHeight: 10,
+  submitHeight: 58,
+  fieldHeight: 60,
   timebarDigits: 40,
   // Barre des contrôles de l'hôte (pied d'écran).
   hostBarHeight: 52,
@@ -257,6 +268,9 @@ export const AppShadows = {
   hard: '0px 7px 0px rgba(0, 0, 0, 0.35)',
   // Ombre dure encre (tuiles de l'accueil).
   hardInk: `0px 7px 0px ${Palette.ink}`,
+  // Bouton d'envoi des réponses écrites (maquette S1).
+  submit: `0px 5px 0px ${Palette.ink}`,
+  submitPressed: `0px 2px 0px ${Palette.ink}`,
   pressed: '0px 3px 0px rgba(0, 0, 0, 0.35)',
   textColor: 'rgba(0, 0, 0, 0.35)',
 } as const;

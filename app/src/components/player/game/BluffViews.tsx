@@ -2,16 +2,19 @@ import { bluffAttemptsLeft, bluffPlayerOutcome, bluffWriteStatus } from '@shared
 import { BLUFF_MAX_LENGTH, BLUFF_TRAP_POINTS } from '@shared/constants';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, RevealedBluffChoice } from '@shared/types';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
+import { BUTTON_LABEL_MAX_FONT_SCALE, BUTTON_LABEL_MIN_SCALE } from '@/components/ui/ButtonLabel';
+import { SubmitButton } from '@/components/ui/SubmitButton';
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { PlayerBluff } from '@/lib/playerBluff';
 
+import { AnswerField } from './FreeQuestionView';
 import { StreakNotice } from './StreakNotice';
 
 
@@ -40,10 +43,10 @@ function Instruction({ label }: { label: string }) {
   return <Text style={styles.instruction}>{label}</Text>;
 }
 
-// B1 : la question (sur le téléphone seulement sans TV), un champ sur plusieurs lignes
-// avec son compteur, puis ENVOYER. Après un refus, le texte reste dans le champ pour être modifié.
+// B1 : pastille de consigne, la question (sur le téléphone seulement sans TV), le champ commun (S1) avec son
+// compteur, puis ENVOYER. Après un refus, le texte reste dans le champ pour être modifié.
 export function BluffWriteView(props: PhaseProps) {
-  const { question, bluff, progress, showQuestion } = props;
+  const { question, bluff, showQuestion } = props;
   const status = bluffWriteStatus(bluff.entry, bluff.check);
   const [text, setText] = useState(() => (bluff.send.kind !== 'idle' ? bluff.send.text : (bluff.entry?.text ?? '')));
 
@@ -63,33 +66,23 @@ export function BluffWriteView(props: PhaseProps) {
 
   return (
     <View style={styles.container}>
-      <Instruction label={texts.writeInstruction} />
-      {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
-      <View style={styles.field}>
-        <Text style={styles.fieldLabel}>{texts.fieldLabel}</Text>
-        <View style={[styles.inputBox, verdict !== undefined && verdict !== 'ok' && styles.inputRefused, isBusy && styles.inputBusy]}>
-          <TextInput
-            value={text}
-            onChangeText={setText}
-            onSubmitEditing={submit}
-            placeholder={texts.placeholder}
-            placeholderTextColor={AppColors.textMuted}
-            maxLength={BLUFF_MAX_LENGTH}
-            editable={!isBusy}
-            multiline
-            numberOfLines={INPUT_LINES}
-            autoFocus
-            autoCorrect={false}
-            spellCheck={false}
-            autoComplete="off"
-            returnKeyType="send"
-            submitBehavior="submit"
-            accessibilityLabel={texts.fieldLabel}
-            style={styles.input}
-          />
-          <Text style={styles.counter}>{texts.counter(text.length, BLUFF_MAX_LENGTH)}</Text>
-        </View>
+      <View style={styles.writePill}>
+        <Text style={styles.writePillText} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={BUTTON_LABEL_MIN_SCALE} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+          {texts.writeInstruction}
+        </Text>
       </View>
+      {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
+      <AnswerField
+        label={texts.fieldLabel}
+        placeholder={texts.placeholder}
+        text={text}
+        onChangeText={setText}
+        onSubmit={submit}
+        disabled={isBusy}
+        maxLength={BLUFF_MAX_LENGTH}
+        isRefused={verdict !== undefined && verdict !== 'ok'}
+        autoFocus
+      />
       {verdict !== undefined && verdict !== 'ok' ? (
         <View style={styles.refusal}>
           <Text style={styles.refusalTitle}>{texts.refusals[verdict]}</Text>
@@ -101,8 +94,7 @@ export function BluffWriteView(props: PhaseProps) {
       <View style={styles.footer}>
         {status === 'checking' && <Text style={[textStyles.muted, styles.centered]}>{texts.checking}</Text>}
         {bluff.send.kind === 'failed' && <Text style={[textStyles.error, styles.centered]}>{texts.sendFailed}</Text>}
-        <ProgressRow progress={progress} />
-        <BigButton label={bluff.send.kind === 'sending' ? texts.sending : texts.send} onPress={submit} disabled={!canSubmit} />
+        <SubmitButton label={bluff.send.kind === 'sending' ? texts.sending : texts.send} onPress={submit} disabled={!canSubmit} />
       </View>
     </View>
   );
@@ -262,8 +254,6 @@ export function BluffRevealView({ choices, result, uid, players, streak }: Bluff
 }
 
 const PROGRESS_SIZE = 36;
-const INPUT_LINES = 4;
-const INPUT_LINE_HEIGHT = 24;
 
 const styles = StyleSheet.create({
   container: {
@@ -272,6 +262,20 @@ const styles = StyleSheet.create({
   },
   centered: {
     textAlign: 'center',
+  },
+  writePill: {
+    alignSelf: 'center',
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.one + 2,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.accent,
+  },
+  writePillText: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.onAccent,
+    fontFamily: AppFonts.black,
+    fontSize: 12,
+    textTransform: 'uppercase',
   },
   instruction: {
     color: AppColors.accent,
@@ -284,50 +288,6 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.black,
     fontSize: 22,
     textAlign: 'center',
-  },
-  field: {
-    gap: Spacing.one + 2,
-  },
-  fieldLabel: {
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.black,
-    fontSize: 13,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-  },
-  inputBox: {
-    gap: Spacing.one,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    borderRadius: AppSizes.radius,
-    borderWidth: 3,
-    borderColor: AppColors.link,
-    backgroundColor: AppColors.card,
-    boxShadow: AppShadows.hard,
-  },
-  inputRefused: {
-    borderColor: AppColors.wrong,
-  },
-  inputBusy: {
-    opacity: 0.6,
-  },
-  // Hauteur de quatre lignes : 100 caractères tiennent sans défiler (le champ ne grandit pas sur le web).
-  input: {
-    minHeight: INPUT_LINES * INPUT_LINE_HEIGHT,
-    color: AppColors.ink,
-    fontFamily: AppFonts.black,
-    fontSize: 18,
-    lineHeight: INPUT_LINE_HEIGHT,
-    textAlignVertical: 'top',
-    outlineWidth: 0,
-    outlineColor: 'transparent',
-  },
-  counter: {
-    ...TEXT_FIT_SAFETY,
-    alignSelf: 'flex-end',
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.black,
-    fontSize: 13,
   },
   hint: {
     color: AppColors.textMuted,

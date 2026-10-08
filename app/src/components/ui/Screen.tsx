@@ -1,11 +1,18 @@
 import type { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
 
 import { AppBackgrounds, AppColors, AppSizes, type AppBackgroundName } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
+import { useKeyboardInset } from '@/hooks/useKeyboardInset';
+
 import { gradientStyle } from './gradient';
+
+// Clavier ouvert : la marge du bas (sûre) est remplacée par la hauteur du clavier, et le bas de l'écran
+// garde 12 points au-dessus de lui (maquette S1).
+const KEYBOARD_GAP = 12;
+const EDGES_WITH_KEYBOARD: Edge[] = ['top', 'left', 'right'];
 
 interface BackgroundProps {
   children?: ReactNode;
@@ -28,22 +35,27 @@ interface ScreenProps extends BackgroundProps {
   scrollable?: boolean;
 }
 
-// Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Le défilement garde le formulaire
-// accessible quand le clavier du téléphone est ouvert.
+// Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Clavier ouvert : la zone utile
+// s'arrête au-dessus du clavier (useKeyboardInset), le bas de la colonne (bouton « Valider ») reste visible.
 export function Screen({ children, background, header, footer, scrollable = true }: ScreenProps) {
+  const keyboardInset = useKeyboardInset();
+  const hasKeyboard = keyboardInset > 0;
+  const bottomGap = hasKeyboard ? { paddingBottom: KEYBOARD_GAP } : null;
   const column = <View style={[styles.column, !scrollable && styles.fixedColumn]}>{children}</View>;
   return (
     <ScreenBackground background={background}>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView
+        edges={hasKeyboard ? EDGES_WITH_KEYBOARD : undefined}
+        style={[styles.safeArea, hasKeyboard && { paddingBottom: keyboardInset }]}>
         {header && <View style={styles.header}>{header}</View>}
         {scrollable ? (
-          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+          <ScrollView contentContainerStyle={[styles.scrollContent, !footer && bottomGap]} keyboardShouldPersistTaps="handled">
             {column}
           </ScrollView>
         ) : (
-          <View style={[styles.scrollContent, styles.fixedContent]}>{column}</View>
+          <View style={[styles.scrollContent, styles.fixedContent, !footer && bottomGap]}>{column}</View>
         )}
-        {footer && <View style={styles.footer}>{footer}</View>}
+        {footer && <View style={[styles.footer, bottomGap]}>{footer}</View>}
       </SafeAreaView>
     </ScreenBackground>
   );

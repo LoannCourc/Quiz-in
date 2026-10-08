@@ -8,7 +8,7 @@ import { DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
 import { EyeIcon } from '@/components/player/draw/EyeIcon';
 import type { DrawingCanvasHandle, DrawTool } from '@/components/player/draw/drawingTypes';
 import { DrawingTools } from '@/components/player/draw/DrawingTools';
-import { BigButton } from '@/components/ui/BigButton';
+import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -27,15 +27,21 @@ const INITIAL_WIDTH = 1;
 // Taille du mot : la plus grande qui tient sur une ligne entre les deux cases de l'œil (Bowlby One, une
 // lettre majuscule fait environ 0,85 de la taille de police), entre WORD_MIN_SIZE et WORD_MAX_SIZE.
 const WORD_MAX_SIZE = 34;
-const WORD_MIN_SIZE = 20;
+const WORD_MIN_SIZE = 16;
 const LETTER_WIDTH_RATIO = 0.85;
 const EYE_BOX = 44;
 const EYE_SIZE = 26;
 
-function wordFontSize(word: string, screenWidth: number): number {
-  const available = Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three - 2 * EYE_BOX;
-  const fitting = Math.floor(available / (Math.max(word.length, 1) * LETTER_WIDTH_RATIO));
-  return Math.max(WORD_MIN_SIZE, Math.min(WORD_MAX_SIZE, fitting));
+// Taille d'après le mot le plus long (« château de sable » passe à la ligne entre ses mots, jamais au
+// milieu d'un mot), dans la largeur disponible.
+function wordFontSize(word: string, available: number, maxSize: number): number {
+  const longest = Math.max(1, ...word.split(/s+/).map((part) => [...part].length));
+  const fitting = Math.floor(available / (longest * LETTER_WIDTH_RATIO));
+  return Math.max(WORD_MIN_SIZE, Math.min(maxSize, fitting));
+}
+
+function contentWidth(screenWidth: number): number {
+  return Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three;
 }
 
 // Dessinateur, en haut de l'écran : son mot en grand (masquable d'un tap sur l'œil, si quelqu'un regarde
@@ -45,7 +51,7 @@ export function DrawerTopBar({ word, category, timing }: { word: string | null; 
   const [isHidden, setIsHidden] = useState(false);
   const { width } = useWindowDimensions();
   const shown = word === null ? texts.wordLoading : isHidden ? texts.wordMask : word;
-  const size = wordFontSize(word ?? '', width);
+  const size = wordFontSize(word ?? '', contentWidth(width) - 2 * EYE_BOX, WORD_MAX_SIZE);
   return (
     <View style={styles.topBar}>
       <View style={styles.wordRow}>
@@ -165,8 +171,8 @@ export function DrawGuessView({ turn, drawerName, draw }: DrawGuessViewProps) {
           />
           <GuessFeedback guess={guess} />
           <View style={styles.guessFooter}>
-            <BigButton label={texts.send} onPress={send} disabled={!canSend} />
             <Text style={[textStyles.muted, styles.centered]}>{texts.triesLeft(left)}</Text>
+            <SubmitButton label={texts.send} onPress={send} disabled={!canSend} />
           </View>
         </>
       ) : (
@@ -213,6 +219,8 @@ interface DrawRevealViewProps {
 
 // Révélation : le mot, qui l'a dessiné, et ce que la manche rapporte au joueur.
 export function DrawRevealView({ word, drawerName, result, isDrawer, isCancelled, playingTeam }: DrawRevealViewProps) {
+  const { width } = useWindowDimensions();
+  const revealSize = wordFontSize(word, contentWidth(width), REVEAL_WORD_SIZE);
   let outcome: string | null = null;
   if (isCancelled) outcome = texts.cancelled;
   else if (isDrawer) outcome = texts.drawerPoints(result?.points ?? 0);
@@ -222,7 +230,7 @@ export function DrawRevealView({ word, drawerName, result, isDrawer, isCancelled
   return (
     <View style={styles.block}>
       <Text style={[textStyles.label, styles.centered]}>{texts.itWas}</Text>
-      <Text style={styles.revealWord}>{word}</Text>
+      <Text style={[styles.revealWord, { fontSize: revealSize, lineHeight: Math.round(revealSize * DISPLAY_LINE_HEIGHT) }]}>{word}</Text>
       {drawerName && <Text style={[textStyles.muted, styles.centered]}>{texts.drawnBy(drawerName)}</Text>}
       {outcome && <Text style={[styles.outcome, result?.correct && !isCancelled && styles.found]}>{outcome}</Text>}
     </View>
@@ -335,8 +343,6 @@ const styles = StyleSheet.create({
   revealWord: {
     color: AppColors.accent,
     fontFamily: AppFonts.display,
-    fontSize: REVEAL_WORD_SIZE,
-    lineHeight: Math.round(REVEAL_WORD_SIZE * DISPLAY_LINE_HEIGHT),
     textAlign: 'center',
     textTransform: 'uppercase',
   },

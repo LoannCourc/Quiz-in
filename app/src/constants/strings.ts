@@ -522,6 +522,10 @@ export const strings = {
     roundPill: (index: number, count: number | undefined) =>
       count ? `Manche ${index + 1}/${count}` : `Manche ${index + 1}`,
     score: (points: number) => `${formatNumber(points)} pts`,
+    // En-tête des questions (maquette S1) : « Question 3 / 10 » à gauche, « 18 s » à droite.
+    questionProgress: (index: number, count: number | undefined, isRound: boolean) =>
+      `${isRound ? 'Manche' : 'Question'} ${index + 1}${count ? ` / ${count}` : ''}`,
+    secondsShort: (seconds: number) => `${seconds} s`,
     secondsLeft: (seconds: number) => `${seconds} seconde${seconds > 1 ? 's' : ''} restante${seconds > 1 ? 's' : ''}`,
     points: (points: number) => `${formatNumber(points)} point${points > 1 ? 's' : ''}`,
     formatNumber,
@@ -574,7 +578,7 @@ export const strings = {
     // Bluff (maquettes B1, B2, B3) : écrire une fausse réponse, attendre, voter, résultat.
     bluff: {
       // Consignes en tête de l'écriture et du vote (l'énoncé n'est pas affiché quand une TV est présente).
-      writeInstruction: 'Invente une fausse réponse',
+      writeInstruction: 'Bluff · Invente une fausse réponse',
       voteInstruction: 'Quelle est la vraie réponse ?',
       // Vote sans minuteur (joueurs connectés et ceux qui ont déjà voté).
       votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
@@ -718,7 +722,7 @@ export const strings = {
     hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
     guessLabel: 'Ton idée',
     guessPlaceholder: 'Un mot…',
-    send: 'Envoyer',
+    send: 'Valider',
     checking: 'Vérification…',
     wrong: (text: string | null) => (text ? `« ${text} » : pas ça…` : 'Pas ça…'),
     close: (text: string | null) => (text ? `« ${text} » : tu es proche !` : 'Tu es proche !'),

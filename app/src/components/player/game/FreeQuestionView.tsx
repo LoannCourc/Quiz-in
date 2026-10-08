@@ -3,9 +3,9 @@ import type { PublicQuestion } from '@shared/types';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { BigButton } from '@/components/ui/BigButton';
+import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
-import { AppColors, AppFonts, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { isFreeText, type AnswerState, type FreeText } from '@/lib/playerGame';
@@ -94,7 +94,7 @@ export function FreeQuestionView({ question, answer, onAnswer }: FreeQuestionVie
         {answer.kind === 'refused' && (
           <Text style={[textStyles.error, styles.centered]}>{strings.game.question.refusals[answer.reason]}</Text>
         )}
-        <BigButton label={strings.game.freeQuestion.submit} onPress={submit} disabled={!canSubmit} />
+        <SubmitButton label={strings.game.freeQuestion.submit} onPress={submit} disabled={!canSubmit} />
       </View>
     </View>
   );
@@ -109,9 +109,12 @@ interface AnswerFieldProps {
   disabled: boolean;
   autoFocus?: boolean;
   maxLength?: number;
+  // Bluff : proposition refusée (contour rose, maquette B1).
+  isRefused?: boolean;
 }
 
-// Champ blanc, contour cyan quand il a le focus, compteur de caractères à droite.
+// Champ de la maquette S1 : libellé espacé, champ blanc de 60 points, contour cyan de 3 points quand il a
+// le focus (violet sinon), texte de 22, compteur « 8 / 60 » à droite.
 export function AnswerField({
   label,
   placeholder,
@@ -121,12 +124,13 @@ export function AnswerField({
   disabled,
   autoFocus = false,
   maxLength = FREE_ANSWER_MAX_LENGTH,
+  isRefused = false,
 }: AnswerFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View style={styles.field}>
       <Text style={styles.fieldLabel}>{label}</Text>
-      <View style={[styles.inputBox, isFocused && styles.inputFocused, disabled && styles.inputDisabled]}>
+      <View style={[styles.inputBox, isFocused && styles.inputFocused, isRefused && styles.inputRefused, disabled && styles.inputDisabled]}>
         <TextInput
           value={text}
           onChangeText={onChangeText}
@@ -211,26 +215,28 @@ const styles = StyleSheet.create({
     gap: Spacing.one + 2,
   },
   fieldLabel: {
-    color: AppColors.textMuted,
+    color: AppColors.questionMeta,
     fontFamily: AppFonts.black,
-    fontSize: 13,
-    letterSpacing: 1,
+    fontSize: 12,
+    letterSpacing: 1.5,
     textTransform: 'uppercase',
   },
   inputBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    minHeight: AppSizes.buttonHeight,
+    minHeight: AppSizes.fieldHeight,
     paddingLeft: Spacing.three,
     paddingRight: Spacing.three,
     borderRadius: AppSizes.radius,
     borderWidth: FIELD_BORDER,
-    borderColor: AppColors.chipBorder,
+    borderColor: AppColors.fieldIdleBorder,
     backgroundColor: AppColors.card,
-    boxShadow: AppShadows.hard,
   },
   inputFocused: {
     borderColor: AppColors.link,
+  },
+  inputRefused: {
+    borderColor: AppColors.wrong,
   },
   inputDisabled: {
     opacity: 0.6,
@@ -238,7 +244,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     minWidth: 0,
-    paddingVertical: Spacing.two,
+    paddingVertical: Spacing.one,
     color: AppColors.ink,
     fontFamily: AppFonts.black,
     fontSize: 22,
@@ -249,7 +255,7 @@ const styles = StyleSheet.create({
   counter: {
     ...TEXT_FIT_SAFETY,
     marginLeft: Spacing.two,
-    color: AppColors.textMuted,
+    color: AppColors.questionMeta,
     fontFamily: AppFonts.black,
     fontSize: 13,
   },
