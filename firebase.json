@@ -46,6 +46,10 @@
       "ignore": ["firebase.json", "**/.*"],
       "rewrites": [
         {
+          "source": "/confidentialite",
+          "destination": "/confidentialite.html"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
