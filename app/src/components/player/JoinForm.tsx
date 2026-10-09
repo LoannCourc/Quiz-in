@@ -1,8 +1,8 @@
-import { PLAYER_NAME_MAX_LENGTH } from '@shared/constants';
+import { PLAYER_NAME_MAX_LENGTH, PRIVACY_URL } from '@shared/constants';
 import { cleanPlayerName, isValidPlayerName } from '@shared/playerName';
 import type { GameStatus, PlayerId } from '@shared/types';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { strings } from '@/constants/strings';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
@@ -95,6 +95,14 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
 
       <View style={styles.footer}>
         {error && <Text style={textStyles.error}>{error}</Text>}
+        {!edit && (
+          <Text style={styles.respect}>
+            {strings.join.respectNotice}{' '}
+            <Text accessibilityRole="link" style={styles.respectLink} onPress={() => void Linking.openURL(PRIVACY_URL)}>
+              {strings.join.privacyLink}
+            </Text>
+          </Text>
+        )}
         <SubmitButton label={isSubmitting ? texts.submitting : texts.submitButton} onPress={submit} disabled={!canSubmit} />
         {edit && (
           <BigButton
@@ -144,6 +152,16 @@ const styles = StyleSheet.create({
   },
   inputFocused: {
     borderColor: AppColors.link,
+  },
+  respect: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  respectLink: {
+    color: AppColors.link,
+    textDecorationLine: 'underline',
   },
   footer: {
     marginTop: 'auto',

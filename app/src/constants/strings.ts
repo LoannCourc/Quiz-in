@@ -50,6 +50,9 @@ export const strings = {
     nameHint: `${PLAYER_NAME_MIN_LENGTH} à ${PLAYER_NAME_MAX_LENGTH} caractères`,
     avatarLabel: 'Ton avatar',
     submitButton: 'Rejoindre la partie',
+    // Sous le formulaire (règles des stores sur les contenus des joueurs).
+    respectNotice: 'En jouant, tu t’engages à rester respectueux.',
+    privacyLink: 'Confidentialité',
     submitting: 'Inscription…',
     roomLabel: (code: string) => `Partie ${code}`,
     otherCodeButton: 'Saisir un autre code',
