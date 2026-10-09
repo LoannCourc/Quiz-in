@@ -356,6 +356,14 @@
             }
           }
         },
+        "bluffHidden": {
+          ".read": "auth != null",
+          "$index": {
+            "$choice": {
+              ".validate": "$index.matches(/^[0-9]+$/) && $choice.matches(/^[0-9]+$/) && newData.val() == true"
+            }
+          }
+        },
         "votedBy": {
           ".read": "auth != null",
           "$index": {

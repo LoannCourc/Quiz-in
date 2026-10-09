@@ -180,6 +180,19 @@ describe('Exclure un joueur (salon)', () => {
   })
 })
 
+describe('Bluff : propositions masquées par l’hôte', () => {
+  test('l’hôte masque et réaffiche ; tout le monde lit ; un joueur ne peut rien écrire', async () => {
+    await seedSession({ status: 'vote', settings: { answerMode: 'bluff', speedBonus: false, control: false, teams: false } })
+    await assertSucceeds(db(HOST).ref(`${SESSION}/bluffHidden/0/1`).set(true))
+    // Clés numériques : la base peut rendre un tableau ; seul compte bluffHidden[question][choix].
+    expect((await db('tv-uid').ref(`${SESSION}/bluffHidden`).once('value')).val()[0][1]).toBe(true)
+    expect((await db(PLAYER).ref(`${SESSION}/bluffHidden/0`).once('value')).val()[1]).toBe(true)
+    await assertSucceeds(db(HOST).ref(`${SESSION}/bluffHidden/0/1`).remove())
+    await assertFails(db(PLAYER).ref(`${SESSION}/bluffHidden/0/2`).set(true))
+    await assertFails(db(HOST).ref(`${SESSION}/bluffHidden/0/2`).set('oui'))
+  })
+})
+
 describe('Catalogue', () => {
   const catalog = { questions: { 'quiz-1': { 0: { text: 'Q ?', correctIndex: 1 } } } }
 

@@ -7,6 +7,7 @@ import {
   BLUFF_TARGET_CHOICES,
   BLUFF_TRAP_POINTS,
   BLUFF_TRUTH_POINTS,
+  HIDDEN_ANSWER_TEXT,
   REVEAL_GRACE_MS,
 } from './constants'
 import { bluffRevealStepMs } from './gameFlow'
@@ -289,4 +290,55 @@ export function bluffRevealTimeline(choices: readonly RevealedBluffChoice[]): Bl
   const stepMs = bluffRevealStepMs(falseChoices.length)
   const flips = falseChoices.map(({ index, choice }, order) => ({ index, choice, atMs: order * stepMs }))
   return { flips, truthAtMs: flips.length * stepMs, stepMs }
+}
+
+// Masquer une proposition (modération) : pendant le vote et la révélation, l'hôte peut remplacer le texte
+// d'une proposition de joueur par « ••• » sur la TV et les téléphones. Jamais la vraie réponse ni un
+// leurre (contenu du quiz). Le vote et les points ne changent pas.
+export function canHideBluffChoice(session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices'>, choiceIndex: number): boolean {
+  if (session.status !== 'vote' && session.status !== 'reveal') return false
+  return session.bluffChoices?.[session.currentIndex]?.[choiceIndex]?.kind === 'bluff'
+}
+
+export function bluffHideUpdate(
+  session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices'>,
+  choiceIndex: number,
+  hidden: boolean,
+): Record<string, true | null> | null {
+  if (!canHideBluffChoice(session, choiceIndex)) return null
+  return { [`bluffHidden/${session.currentIndex}/${choiceIndex}`]: hidden ? true : null }
+}
+
+// Session telle qu'affichée : textes des propositions masquées remplacés par « ••• », au vote (choix
+// publiés) comme à la révélation (choix avec auteurs et votants).
+export function withHiddenBluffChoices<T extends Pick<PublicSession, 'bluffHidden' | 'currentIndex' | 'currentQuestion' | 'reveal'>>(session: T): T {
+  const hidden = session.bluffHidden?.[session.currentIndex]
+  if (!hidden || Object.keys(hidden).length === 0) return session
+  const mask = (text: string, index: number) => (hidden[index] ? HIDDEN_ANSWER_TEXT : text)
+  const question = session.currentQuestion
+  const choices = question?.choices?.map(mask)
+  const revealed = session.reveal?.stats.bluffChoices?.map((choice, index) => ({ ...choice, text: mask(choice.text, index) }))
+  return {
+    ...session,
+    currentQuestion: question && choices ? { ...question, choices } : question,
+    reveal: session.reveal && revealed ? { ...session.reveal, stats: { ...session.reveal.stats, bluffChoices: revealed } } : session.reveal,
+  }
+}
+
+export interface HideableBluffProposal {
+  choiceIndex: number
+  text: string
+  authors: PlayerId[]
+  hidden: boolean
+}
+
+// Propositions de joueurs que l'hôte peut masquer maintenant (panneau des contrôles), avec leur état.
+export function hideableBluffProposals(session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices' | 'bluffHidden'>): HideableBluffProposal[] {
+  const choices = session.bluffChoices?.[session.currentIndex] ?? []
+  const hidden = session.bluffHidden?.[session.currentIndex]
+  return choices.flatMap((choice, choiceIndex) =>
+    canHideBluffChoice(session, choiceIndex)
+      ? [{ choiceIndex, text: choice.text, authors: choice.authors ?? [], hidden: hidden?.[choiceIndex] === true }]
+      : [],
+  )
 }

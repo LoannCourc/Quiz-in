@@ -26,6 +26,7 @@ const PUBLIC_FIELD_SET: Record<keyof PublicSession, true> = {
   teamsValidatedAt: true,
   bluffedBy: true,
   votedBy: true,
+  bluffHidden: true,
   sound: true,
   tvPresence: true,
   drawTurn: true,

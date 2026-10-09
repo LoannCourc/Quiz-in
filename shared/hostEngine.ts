@@ -600,6 +600,7 @@ const BLUFF_RESET: SessionUpdate = {
   votes: null,
   votedBy: null,
   bluffPoints: null,
+  bluffHidden: null,
 }
 
 const PAUSABLE: readonly GameStatus[] = ['starting', 'question', 'vote', 'validation', 'reveal', 'scores']

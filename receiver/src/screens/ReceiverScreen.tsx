@@ -1,3 +1,4 @@
+import { withHiddenBluffChoices } from '@shared/bluff'
 import type { PublicSession } from '@shared/types'
 
 import { DrawRevealScreen, DrawRoundScreen } from './DrawRoundScreen'
@@ -15,8 +16,9 @@ interface ReceiverScreenProps {
   roomCode: string
 }
 
-// Un écran par état de la partie (spec 4.3 et 5).
-export function ReceiverScreen({ session, roomCode }: ReceiverScreenProps) {
+// Un écran par état de la partie (spec 4.3 et 5). Bluff : propositions masquées par l'hôte en « ••• ».
+export function ReceiverScreen({ session: received, roomCode }: ReceiverScreenProps) {
+  const session = withHiddenBluffChoices(received)
   switch (session.status) {
     case 'lobby':
       return <LobbyScreen session={session} roomCode={roomCode} />

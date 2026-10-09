@@ -356,6 +356,9 @@ export interface PublicSession {
   // Bluff : qui a une proposition acceptée, et qui a voté (jamais quoi).
   bluffedBy?: Record<number, Record<PlayerId, true>>;
   votedBy?: Record<number, Record<PlayerId, true>>;
+  // Bluff : propositions de joueurs masquées par l'hôte (« ••• » sur la TV et les téléphones), par question
+  // puis par index du choix (même ordre au vote et à la révélation).
+  bluffHidden?: Record<number, Record<number, true>>;
   // Son de la TV (spec 17), réglé par l'hôte à tout moment ; absent dans les parties créées avant.
   sound?: SoundSettings;
   // TV ouvertes sur la partie (Cast ou plan B) : chaque TV écrit son propre nœud, retiré par son

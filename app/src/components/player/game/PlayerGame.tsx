@@ -1,4 +1,4 @@
-import { voteProgress } from '@shared/bluff';
+import { voteProgress, withHiddenBluffChoices } from '@shared/bluff';
 import { CORRECT_ANSWER_POINTS, isKnownAnswerMode } from '@shared/constants';
 import { isDrawGuesser } from '@shared/drawGuess';
 import { hasRankingStep, isAwaitingHost, nextQuestionCountdown, upcomingQuestionNumber } from '@shared/gameFlow';
@@ -72,7 +72,12 @@ function speedBonusOf(session: PublicSession, result: PlayerResult | undefined):
 
 // Écran du joueur pendant la partie, en plein écran, choisi d'après l'état de la session.
 // Aucun accès à Firebase : la page parente fournit les données.
+// Bluff : propositions masquées par l'hôte remplacées par « ••• » avant tout affichage.
 export function PlayerGame(props: PlayerGameProps) {
+  return <PlayerGameScreen {...props} session={withHiddenBluffChoices(props.session)} />;
+}
+
+function PlayerGameScreen(props: PlayerGameProps) {
   const { session, uid } = props;
   // Suspense : le classement final attend la fin du roulement de tambour de la TV (spec 17).
   const isSuspenseEnd = session.status === 'ended' && session.settings.suspense === true;

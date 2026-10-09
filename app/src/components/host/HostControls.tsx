@@ -43,13 +43,17 @@ interface HostControlsPanelProps {
   // Son de la TV, réglable à tout moment (le panneau reste ouvert).
   sound: SoundSettings;
   onSoundChange: (sound: SoundSettings) => void;
+  // Bluff, vote et révélation : propositions de joueurs que l'hôte peut masquer (le panneau reste ouvert).
+  bluffProposals?: { choiceIndex: number; text: string; authors: string; hidden: boolean }[];
+  onToggleBluffProposal?: (choiceIndex: number, hidden: boolean) => void;
   onClose: () => void;
 }
 
 // Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer ;
 // en fin de partie, Rejouer / Quitter ; Afficher sur la TV (reconnexion du Cast) ; son de la TV. Chaque action ferme le
 // panneau, sauf les réglages du son. Appui en dehors : fermeture sans action. Le contenu défile sur un petit écran.
-export function HostControlsPanel({ controls, actions, canShowTv, sound, onSoundChange, onClose }: HostControlsPanelProps) {
+export function HostControlsPanel(props: HostControlsPanelProps) {
+  const { controls, actions, canShowTv, sound, onSoundChange, bluffProposals = [], onToggleBluffProposal, onClose } = props;
   const run = (action: () => void) => () => {
     onClose();
     action();
@@ -77,6 +81,26 @@ export function HostControlsPanel({ controls, actions, canShowTv, sound, onSound
         {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
+        {bluffProposals.length > 0 && onToggleBluffProposal && (
+          <View style={styles.proposals}>
+            <Text style={textStyles.label}>{strings.hostControls.bluffProposalsTitle}</Text>
+            <Text style={textStyles.muted}>{strings.hostControls.bluffProposalsHint}</Text>
+            {bluffProposals.map((proposal) => (
+              <View key={proposal.choiceIndex} style={styles.proposal}>
+                <View style={styles.proposalTexts}>
+                  <Text style={[styles.proposalText, proposal.hidden && styles.proposalHidden]}>{proposal.text}</Text>
+                  <Text style={textStyles.muted}>{strings.hostControls.bluffAuthors(proposal.authors)}</Text>
+                </View>
+                <BigButton
+                  label={proposal.hidden ? strings.hostControls.showProposal : strings.hostControls.hideProposal}
+                  variant="secondary"
+                  size="compact"
+                  onPress={() => onToggleBluffProposal(proposal.choiceIndex, !proposal.hidden)}
+                />
+              </View>
+            ))}
+          </View>
+        )}
         <SoundSettingsSection sound={sound} onChange={onSoundChange} />
         <BigButton label={strings.hostControls.close} variant="secondary" onPress={onClose} />
       </ScrollView>
@@ -109,6 +133,31 @@ const styles = StyleSheet.create({
   },
   barTextCompact: {
     fontSize: 14,
+  },
+  proposals: {
+    gap: Spacing.two,
+  },
+  proposal: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    padding: Spacing.two,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
+  },
+  proposalTexts: {
+    flex: 1,
+    gap: 2,
+  },
+  proposalText: {
+    color: AppColors.text,
+    fontFamily: AppFonts.extraBold,
+    fontSize: 15,
+  },
+  // Masquée : barrée chez l'hôte (lui seul la voit encore).
+  proposalHidden: {
+    color: AppColors.textMuted,
+    textDecorationLine: 'line-through',
   },
   overlay: {
     position: 'absolute',
