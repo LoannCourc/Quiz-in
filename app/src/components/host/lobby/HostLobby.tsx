@@ -1,7 +1,7 @@
 import { DEV_SHORT_GAME_QUESTIONS } from '@shared/constants';
 import type { SessionUpdate } from '@shared/hostEngine';
 import { drawRoundsOf, drawRoundsUpdate } from '@shared/drawGame';
-import { canLaunchGame, connectedPlayerIds, hostLeaveUpdate } from '@shared/players';
+import { canLaunchGame, connectedPlayerIds, hostLeaveUpdate, removePlayerUpdate } from '@shared/players';
 import {
   assignTeamUpdate,
   lateJoinerUpdate,
@@ -29,6 +29,7 @@ import { Spacing } from '@/constants/theme';
 import type { CastGame } from '@/hooks/useCastGame';
 import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
+import { confirmAction } from '@/lib/confirm';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
@@ -216,7 +217,13 @@ export function HostLobby(props: HostLobbyProps) {
           <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
           <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
         </View>
-        <LobbyPlayerGrid players={players} hostUid={uid} />
+        <LobbyPlayerGrid
+          players={players}
+          hostUid={uid}
+          onRemove={(playerId, name) =>
+            confirmAction(strings.hostLobby.removeConfirm(name), () => lobbyAction((current) => removePlayerUpdate(current, playerId)))
+          }
+        />
       </View>
       <LobbySettingsSheet
         isOpen={isSettingsOpen}

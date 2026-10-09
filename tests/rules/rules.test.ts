@@ -26,6 +26,7 @@ import {
 import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate } from '../../shared/hostAbsence'
+import { removePlayerUpdate } from '../../shared/players'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
 import { drawGameQuestions } from '../../shared/drawGame'
 import { drawHintsUpdate } from '../../shared/drawGuess'
@@ -147,6 +148,35 @@ describe('Lecture', () => {
   test('un utilisateur non connecté ne lit rien', async () => {
     await seedSession()
     await assertFails(db(null).ref(`${SESSION}/status`).once('value'))
+  })
+})
+
+describe('Exclure un joueur (salon)', () => {
+  const lobbyPlayers = {
+    [PLAYER]: { name: 'Léa', avatar: '🦊', connected: true },
+    [OTHER]: { name: 'Tom', avatar: '🐼', connected: true },
+  }
+
+  test('l’hôte exclut un joueur : entrée retirée, identifiant gardé ; le joueur ne peut plus revenir', async () => {
+    await seedSession({ status: 'lobby', players: lobbyPlayers })
+    const update = removePlayerUpdate({ status: 'lobby', hostUid: HOST, players: lobbyPlayers }, PLAYER)
+    await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    expect(await readAsAdmin(`${SESSION}/players/${PLAYER}`)).toBeNull()
+    // Ni réinscription, ni présence.
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}`).update({ name: 'Léa', avatar: '🦊', connected: true }))
+    await assertFails(db(PLAYER).ref(`${SESSION}/players/${PLAYER}/connected`).set(true))
+    // Les autres joueurs continuent normalement.
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/players/${OTHER}`).update({ name: 'Tommy', avatar: '🐼' }))
+  })
+
+  test('le joueur exclu lit sa propre exclusion, pas les autres joueurs ; seul l’hôte l’écrit', async () => {
+    await seedSession({ status: 'lobby', players: { [OTHER]: lobbyPlayers[OTHER] }, banned: { [PLAYER]: true } })
+    expect((await db(PLAYER).ref(`${SESSION}/banned/${PLAYER}`).once('value')).val()).toBe(true)
+    await assertFails(db(OTHER).ref(`${SESSION}/banned/${PLAYER}`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/banned`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/banned/${PLAYER}`).remove())
+    await assertFails(db(OTHER).ref(`${SESSION}/banned/${OTHER}`).set(true))
+    await assertFails(db(HOST).ref(`${SESSION}/banned/${OTHER}`).set('oui'))
   })
 })
 

@@ -21,6 +21,7 @@ import { useAnswer } from '@/hooks/useAnswer';
 import { useBluff } from '@/hooks/useBluff';
 import { useDraw } from '@/hooks/useDraw';
 import { usePhaseStale } from '@/hooks/usePhaseStale';
+import { useIsRemoved } from '@/hooks/useIsRemoved';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { chooseTeam, getEntryRefusal, rememberProfile } from '@/lib/joinGame';
@@ -68,6 +69,8 @@ function JoinRoom({ code }: { code: string }) {
   const serverOffsetMs = useServerTimeOffset();
   // Hôte parti depuis plus de 5 min : ce téléphone supprime la partie (nettoyage, spec 6.6).
   useAbandonedGameCleanup(code, state.kind === 'ready' ? state.session : null, serverOffsetMs);
+  // Exclu par l'hôte : un message, plus de formulaire (les règles refusent de toute façon le retour).
+  const isRemoved = useIsRemoved(code, state.kind === 'ready' ? state.uid : null);
 
   switch (state.kind) {
     case 'loading':
@@ -85,6 +88,14 @@ function JoinRoom({ code }: { code: string }) {
           />
         </WelcomeScreen>
       );
+  }
+
+  if (isRemoved) {
+    return (
+      <WelcomeScreen code={code}>
+        <PlayerNotice message={strings.join.refusals.removed} tone="error" showOtherCode />
+      </WelcomeScreen>
+    );
   }
 
   // Reprise : même session anonyme (même navigateur) = même uid, donc on retrouve son entrée.

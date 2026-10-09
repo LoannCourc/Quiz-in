@@ -11,7 +11,7 @@ import { db } from './firebase';
 export type LobbyPlayer = Pick<Player, 'name' | 'avatar' | 'connected' | 'team'>;
 export type LobbyPlayers = Record<PlayerId, LobbyPlayer>;
 
-export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken' | 'nameNotAllowed';
+export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken' | 'nameNotAllowed' | 'removed';
 
 // Les autres joueurs que soi : à l'inscription, le joueur n'a pas encore d'entrée ;
 // en modification de profil, il ne doit gêner ni lui-même ni le plafond de joueurs.

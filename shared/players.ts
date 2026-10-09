@@ -67,3 +67,14 @@ export function hostLeaveUpdate(session: { status: GameStatus; hostUid: PlayerId
   if (session.status !== 'lobby' || session.players[session.hostUid] === undefined) return null
   return { [`players/${session.hostUid}`]: null }
 }
+
+// « Exclure » de l'hôte (salon) : l'entrée du joueur est retirée et son identifiant gardé dans banned :
+// les règles l'empêchent de rejoindre à nouveau cette partie (même navigateur, même identifiant).
+// Jamais l'hôte lui-même, seulement en lobby, seulement un joueur présent.
+export function removePlayerUpdate(
+  session: { status: GameStatus; hostUid: PlayerId; players: Record<PlayerId, unknown> },
+  uid: PlayerId,
+): Record<string, true | null> | null {
+  if (session.status !== 'lobby' || uid === session.hostUid || session.players[uid] === undefined) return null
+  return { [`players/${uid}`]: null, [`banned/${uid}`]: true }
+}

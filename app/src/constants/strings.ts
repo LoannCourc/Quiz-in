@@ -60,6 +60,8 @@ export const strings = {
       full: `Cette partie est complète (${MAX_PLAYERS} joueurs maximum).`,
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
       nameNotAllowed: 'Ce pseudo n’est pas accepté. Choisis-en un autre, sympa pour tout le monde !',
+      // Exclu par l'hôte : ne peut plus rejoindre cette partie (règles de la base).
+      removed: 'Tu as été retiré de la partie par l’hôte.',
     } satisfies Record<JoinRefusal, string>,
     joinFailed: 'Impossible de rejoindre la partie, réessaie.',
     gameOver: 'La partie est terminée. Merci d’avoir joué !',
@@ -282,6 +284,14 @@ export const strings = {
     playersTitle: 'Joueurs',
     connectedCount: (count: number) => `${count} connecté${count > 1 ? 's' : ''}`,
     hostBadge: 'Hôte',
+    // Exclure un joueur (bouton × sur son avatar, puis confirmation).
+    removePlayer: (name: string) => `Exclure ${name}`,
+    removeConfirm: (name: string) => ({
+      title: `Exclure ${name} ?`,
+      message: `${name} sera retiré de la partie et ne pourra plus la rejoindre.`,
+      confirm: 'Exclure',
+      cancel: 'Annuler',
+    }),
     codeAccessibility: (code: string) => `Code de la partie : ${code.split('').join(' ')}`,
     noTv: {
       title: 'Rejoindre sans TV',

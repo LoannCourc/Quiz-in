@@ -378,6 +378,8 @@ export interface SoundSettings {
 
 // Session complète, lisible uniquement par l'hôte.
 export interface Session extends PublicSession {
+  // Joueurs exclus par l'hôte (salon) : ils ne peuvent plus rejoindre cette partie ; chacun ne lit que le sien.
+  banned?: Record<PlayerId, true>;
   answers?: Record<number, Record<PlayerId, Answer>>;
   // Dessine-moi : ordre des dessinateurs (tiré au lancement) et mot de la manche en cours.
   drawOrder?: PlayerId[];

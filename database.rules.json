@@ -162,15 +162,15 @@
           "$uid": {
             ".validate": "newData.hasChildren(['name', 'avatar'])",
             "name": {
-              ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",
+              ".write": "auth != null && auth.uid == $uid && !root.child('sessions/' + $code + '/banned/' + $uid).exists() && root.child('sessions/' + $code + '/status').val() == 'lobby'",
               ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 12 && newData.val().matches(/^[^ ](.*[^ ])?$/)"
             },
             "avatar": {
-              ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'lobby'",
+              ".write": "auth != null && auth.uid == $uid && !root.child('sessions/' + $code + '/banned/' + $uid).exists() && root.child('sessions/' + $code + '/status').val() == 'lobby'",
               ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 16"
             },
             "connected": {
-              ".write": "auth != null && auth.uid == $uid && newData.parent().child('name').exists()",
+              ".write": "auth != null && auth.uid == $uid && !root.child('sessions/' + $code + '/banned/' + $uid).exists() && newData.parent().child('name').exists()",
               ".validate": "newData.isBoolean()"
             },
             "score": { ".validate": "newData.isNumber() && newData.val() >= 0" },
@@ -179,7 +179,7 @@
             },
             "rank": { ".validate": "newData.isNumber() && newData.val() >= 1" },
             "team": {
-              ".write": "auth != null && auth.uid == $uid && data.parent().child('name').exists() && root.child('sessions/' + $code + '/status').val() == 'lobby' && root.child('sessions/' + $code + '/settings/teams').val() == true && root.child('sessions/' + $code + '/settings/teamMode').val() == 'players'",
+              ".write": "auth != null && auth.uid == $uid && !root.child('sessions/' + $code + '/banned/' + $uid).exists() && data.parent().child('name').exists() && root.child('sessions/' + $code + '/status').val() == 'lobby' && root.child('sessions/' + $code + '/settings/teams').val() == true && root.child('sessions/' + $code + '/settings/teamMode').val() == 'players'",
               ".validate": "newData.isString() && newData.val().matches(/^(pink|cyan|gold|green)$/) && (newData.parent().parent().parent().child('status').val() == 'lobby' || newData.val() == data.val()) && (newData.val() != 'gold' || newData.parent().parent().parent().child('settings/teamCount').val() >= 3) && (newData.val() != 'green' || newData.parent().parent().parent().child('settings/teamCount').val() == 4)"
             },
             "$other": { ".validate": false }
@@ -221,6 +221,12 @@
           "effects": { ".validate": "newData.isBoolean()" },
           "volume": { ".validate": "newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 0 && newData.val() <= 100" },
           "$other": { ".validate": false }
+        },
+        "banned": {
+          "$uid": {
+            ".read": "auth != null && auth.uid == $uid",
+            ".validate": "newData.val() == true"
+          }
         },
         "tvPresence": {
           ".read": "auth != null",
