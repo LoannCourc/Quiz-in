@@ -135,6 +135,21 @@
 }
 
 
+/* Manche annulée : cadre neutre de la taille du dessin, sans le dessin. */
+.draw-hidden {
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-hard);
+}
+
+.draw-hidden-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+}
+
 .draw-reveal-cancelled {
   margin: 0;
   font-size: 1.6rem;

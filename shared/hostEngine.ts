@@ -367,7 +367,8 @@ function drawRevealPaths(session: Session, question: DrawQuestion, cancelled: bo
 
 const PHASE_PATHS: readonly string[] = ['status', 'currentIndex', 'phaseStartedAt', 'phaseEndsAt']
 
-// Dessine-moi : l'hôte annule la manche en cours (décision D8) : réponse tout de suite, aucun point.
+// Dessine-moi : l'hôte annule la manche en cours (décision D8) : réponse tout de suite, aucun point, et le
+// dessin effacé de la base (la TV et les téléphones ne le montrent plus, même à la réponse).
 export function drawCancelUpdate(session: Session, questions: readonly GameQuestion[], nowServer: number): SessionUpdate | null {
   const question = questions[session.currentIndex]
   if (session.status !== 'question' || !question || !isDrawQuestion(question)) return null
@@ -376,7 +377,7 @@ export function drawCancelUpdate(session: Session, questions: readonly GameQuest
   if (!transition) return null
   // De la transition normale, seuls l'état et ses heures : ses points ne doivent pas être écrits.
   const phase = Object.fromEntries(Object.entries(transition).filter(([path]) => PHASE_PATHS.includes(path)))
-  return { ...phase, ...drawRevealPaths(session, question, true) }
+  return { ...phase, ...drawRevealPaths(session, question, true), drawing: null }
 }
 
 // Dessine-moi, début d'une manche : dessinateur (ordre tiré au lancement), mot pour lui seul, dessin de

@@ -12,6 +12,7 @@ import { readFileSync } from 'node:fs'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 
 import {
+  drawCancelUpdate,
   endUpdate,
   launchUpdate,
   pauseUpdate,
@@ -1651,6 +1652,27 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/drawWordChange`).set(true))
   })
 
+  test('l’hôte annule la manche : réponse sans points et dessin effacé de la base (moteur et règles)', async () => {
+    const questions = drawGameQuestions(CODE)
+    await seed({ sessions: { [CODE]: makeSession({ settings: DRAW_SETTINGS as Session['settings'], phaseStartedAt: Date.now() }) } })
+    const asHost = async (update: SessionUpdate | null) => {
+      expect(update).not.toBeNull()
+      await assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+      return (await readAsAdmin(SESSION)) as Session
+    }
+    let session = (await readAsAdmin(SESSION)) as Session
+    const launch = launchUpdate(session, questions, Date.now())
+    session = await asHost(launch.ok ? launch.update : null)
+    session = await asHost(transitionUpdate(session, questions, { status: session.status, currentIndex: session.currentIndex }, Date.now()))
+    const drawer = session.drawTurn?.drawer as string
+    await assertSucceeds(db(drawer).ref(chunk('0')).set('0:u'))
+    session = (await readAsAdmin(SESSION)) as Session
+    session = await asHost(drawCancelUpdate(session, questions, Date.now()))
+    expect(session.status).toBe('reveal')
+    expect(session.reveal?.stats).toEqual({ drawCancelled: true })
+    expect((await db('tv-uid').ref(`${SESSION}/drawing`).once('value')).exists()).toBe(false)
+  })
+
   test('partie réelle : lancement, manche, paquets du dessinateur, révélation, manche suivante (moteur et règles)', async () => {
     const questions = drawGameQuestions(CODE)
     await seed({ sessions: { [CODE]: makeSession({ settings: DRAW_SETTINGS as Session['settings'], phaseStartedAt: Date.now() }) } })
@@ -1703,8 +1725,12 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     // L'hôte lit sa session d'un bloc, comme l'écran de l'app (useLiveValue), puis la complète.
     const hostRead = async () => (await db(HOST).ref(SESSION).once('value')).val() as Session
     let session = withStoredDefaults(await hostRead())
-    const launch = launchUpdate(session, questions, Date.now())
-    await assertSucceeds(db(HOST).ref(SESSION).update(launch.ok ? launch.update : {}))
+    // L'hôte qui joue dessine aussi à son tour (lot C) : tirage choisi pour que la tablette dessine la
+    // première manche (l'hôte devine).
+    const launchWith = (value: number) => launchUpdate(session, questions, Date.now(), undefined, undefined, () => value)
+    const launch = [0, 0.25, 0.5, 0.75, 0.99].map(launchWith).find((result) => result.ok && result.update.drawOrder?.[0] === PLAYER)
+    expect(launch).toBeDefined()
+    await assertSucceeds(db(HOST).ref(SESSION).update(launch?.ok ? launch.update : {}))
     const step = async () => {
       session = withStoredDefaults(await hostRead())
       const update = transitionUpdate(session, questions, { status: session.status, currentIndex: session.currentIndex }, Date.now())
@@ -1713,7 +1739,7 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await step()
     session = withStoredDefaults(await hostRead())
     expect(session.drawTurn?.drawer).toBe(PLAYER)
-    // L'hôte devine (il ne dessine jamais), puis juge son propre essai.
+    // L'hôte devine, puis juge son propre essai.
     await assertSucceeds(db(HOST).ref(`${SESSION}/drawGuess/${HOST}`).set({ text: questions[0].word, count: 1, at: SERVER_TIME }))
     await assertSucceeds(db(HOST).ref(SESSION).update(drawHintsUpdate(withStoredDefaults(await hostRead())) as SessionUpdate))
     await step()

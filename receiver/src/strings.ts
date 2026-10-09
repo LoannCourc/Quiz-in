@@ -176,6 +176,8 @@ export const strings = {
     // Groupe : seule l'équipe du dessinateur devine.
     teamGuesses: (team: string) => `L’équipe ${team} devine`,
     cancelled: 'Manche annulée : aucun point.',
+    // Manche annulée par l'hôte : le dessin n'est plus montré.
+    hiddenDrawing: 'Dessin masqué',
   },
   // Banc d'essai du dessin (Dessine-moi, lot 1, ?drawbench=1 ou cast-sender.html) : outil de mesure.
   drawBench: {

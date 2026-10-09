@@ -80,7 +80,14 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
     <main className="screen draw-round">
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
       <div className="draw-round-body">
-        <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-reveal-canvas" />
+        {isCancelled ? (
+          // Manche annulée par l'hôte : un cadre neutre à la place du dessin (effacé de la base).
+          <div className="draw-reveal-canvas draw-hidden">
+            <p className="draw-hidden-text">{strings.draw.hiddenDrawing}</p>
+          </div>
+        ) : (
+          <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-reveal-canvas" />
+        )}
         <aside ref={sideRef} className="draw-round-side draw-reveal-side">
           <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} isRound />
           <p className="draw-round-hint">{strings.draw.itWas}</p>

@@ -138,13 +138,15 @@ describe('Dessine-moi : points, fin de manche, annulation', () => {
   })
 
   test('l’hôte annule la manche : réponse tout de suite, aucun point même pour qui avait trouvé', () => {
-    const session = round({ drawFound: { [OTHER]: START } })
+    const session = round({ drawFound: { [OTHER]: START }, drawing: { 0: '0:u' } })
     expect(hostControls(session).canCancelDraw).toBe(true)
     const after = apply(session, drawCancelUpdate(session, questions, START + 30_000))
     expect(after.status).toBe('reveal')
     expect(after.reveal?.stats).toEqual({ drawCancelled: true })
     expect(after.drawPoints).toBeUndefined()
     expect(after.players[OTHER].score).toBe(0)
+    // Le dessin est effacé de la base tout de suite (la TV ne le montre plus, même à la réponse).
+    expect(after.drawing).toBeUndefined()
   })
 })
 
