@@ -18,6 +18,11 @@
     },
     "android": {
       "package": "com.herocorp.quizin",
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#170646",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
