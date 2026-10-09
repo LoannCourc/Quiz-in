@@ -70,6 +70,8 @@ export const strings = {
   },
   about: {
     link: 'À propos et crédits',
+    // Lien de l'accueil : ouvre la page de confidentialité du site des joueurs dans le navigateur.
+    privacyShortLink: 'Confidentialité',
     title: 'À propos',
     version: (version: string) => `Quiz’in, version ${version}`,
     tagline: 'Le quiz des soirées entre amis et en famille : l’hôte affiche la partie sur la TV, chacun répond sur son téléphone.',

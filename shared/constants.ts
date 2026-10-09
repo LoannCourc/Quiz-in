@@ -133,6 +133,8 @@ export const SESSION_TTL_HOURS = 24;
 // Site Firebase Hosting des joueurs (cible « players » dans .firebaserc). Le QR code du lobby
 // pointe vers `${PLAYERS_SITE_URL}/join/CODE` (spec 6.6).
 export const PLAYERS_SITE_URL = 'https://quizin-play.web.app';
+// Politique de confidentialité (page statique du site des joueurs ; adresse donnée aux stores).
+export const PRIVACY_URL = `${PLAYERS_SITE_URL}/confidentialite`;
 
 // Site Firebase Hosting du récepteur TV (cible « tv ») : il affiche la partie de `?code=CODE`.
 export const RECEIVER_SITE_URL = 'https://quiz-in-7dbd6.web.app';

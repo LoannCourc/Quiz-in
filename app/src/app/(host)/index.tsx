@@ -1,5 +1,6 @@
+import { PRIVACY_URL } from '@shared/constants';
 import { Link, Redirect, router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
@@ -19,6 +20,13 @@ export default function HomeRoute() {
 
 function openGame(game: GameType) {
   router.push({ pathname: '/catalog/[gameType]', params: { gameType: game } });
+}
+
+// Page du site des joueurs, ouverte dans le navigateur du téléphone.
+function openPrivacy() {
+  Linking.openURL(PRIVACY_URL).catch((error: unknown) => {
+    if (__DEV__) console.warn('[accueil] Page de confidentialité non ouverte', error);
+  });
 }
 
 function HomeScreen() {
@@ -46,6 +54,9 @@ function HomeScreen() {
         <Link href="/about" style={styles.footerLink}>
           {strings.about.link}
         </Link>
+        <Text accessibilityRole="link" onPress={openPrivacy} style={styles.footerLink}>
+          {strings.about.privacyShortLink}
+        </Text>
         {/* Démos : en développement seulement (absentes de l'APK publié). */}
         {__DEV__ && (
           <>

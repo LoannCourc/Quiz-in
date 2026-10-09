@@ -1,6 +1,7 @@
+import { PRIVACY_URL } from '@shared/constants';
 import Constants from 'expo-constants';
 import { Redirect, router } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 
 import { BigButton } from '@/components/ui/BigButton';
 import { Logo } from '@/components/ui/Logo';
@@ -46,7 +47,7 @@ export default function AboutRoute() {
           </Text>
         ))}
       </View>
-      <BigButton label={strings.about.privacyLink} variant="secondary" onPress={() => router.push('/confidentialite')} />
+      <BigButton label={strings.about.privacyLink} variant="secondary" onPress={() => void Linking.openURL(PRIVACY_URL)} />
       <BigButton label={strings.about.back} variant="secondary" onPress={backToCatalog} />
     </Screen>
   );
