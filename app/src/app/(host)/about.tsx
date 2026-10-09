@@ -46,6 +46,7 @@ export default function AboutRoute() {
           </Text>
         ))}
       </View>
+      <BigButton label={strings.about.privacyLink} variant="secondary" onPress={() => router.push('/confidentialite')} />
       <BigButton label={strings.about.back} variant="secondary" onPress={backToCatalog} />
     </Screen>
   );

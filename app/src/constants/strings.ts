@@ -91,6 +91,14 @@ export const strings = {
       'Effets sonores : créés pour Quiz’in.',
     ],
     back: 'Retour au catalogue',
+    privacyLink: 'Politique de confidentialité',
+  },
+  // Page /confidentialite (site des joueurs et app ; adresse donnée aux stores). Un paragraphe par élément.
+  privacy: {
+    title: 'Politique de confidentialité',
+    // À REMPLACER par le texte du développeur avant tout déploiement.
+    paragraphs: ['Texte en cours de rédaction.'],
+    back: 'Retour',
   },
   catalog: {
     loading: 'Chargement du catalogue…',
