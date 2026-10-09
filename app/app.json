@@ -8,7 +8,10 @@
     "scheme": "app",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/icon-ios.png",
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Quiz'in utilise le réseau local pour trouver ta TV (Google Cast) et y afficher la partie."
+      }
     },
     "android": {
       "package": "com.herocorp.quizin",
