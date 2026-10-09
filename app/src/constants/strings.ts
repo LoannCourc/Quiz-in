@@ -59,6 +59,7 @@ export const strings = {
       ended: 'Cette partie est terminée.',
       full: `Cette partie est complète (${MAX_PLAYERS} joueurs maximum).`,
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
+      nameNotAllowed: 'Ce pseudo n’est pas accepté. Choisis-en un autre, sympa pour tout le monde !',
     } satisfies Record<JoinRefusal, string>,
     joinFailed: 'Impossible de rejoindre la partie, réessaie.',
     gameOver: 'La partie est terminée. Merci d’avoir joué !',

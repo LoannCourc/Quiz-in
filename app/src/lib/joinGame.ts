@@ -1,6 +1,6 @@
 import { AVATARS } from '@shared/avatars';
 import { MAX_PLAYERS } from '@shared/constants';
-import { isSamePlayerName } from '@shared/playerName';
+import { isAllowedPlayerName, isSamePlayerName } from '@shared/playerName';
 import type { GameStatus, Player, PlayerId, TeamId } from '@shared/types';
 import { ref, set, update } from 'firebase/database';
 
@@ -11,7 +11,7 @@ import { db } from './firebase';
 export type LobbyPlayer = Pick<Player, 'name' | 'avatar' | 'connected' | 'team'>;
 export type LobbyPlayers = Record<PlayerId, LobbyPlayer>;
 
-export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken';
+export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken' | 'nameNotAllowed';
 
 // Les autres joueurs que soi : à l'inscription, le joueur n'a pas encore d'entrée ;
 // en modification de profil, il ne doit gêner ni lui-même ni le plafond de joueurs.
@@ -48,6 +48,7 @@ export function getJoinRefusal(
 ): JoinRefusal | null {
   const entryRefusal = getEntryRefusal(status, players, uid);
   if (entryRefusal) return entryRefusal;
+  if (!isAllowedPlayerName(name)) return 'nameNotAllowed';
   const isNameTaken = otherPlayers(players, uid).some((player) => isSamePlayerName(player.name, name));
   return isNameTaken ? 'nameTaken' : null;
 }
