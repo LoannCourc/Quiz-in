@@ -68,11 +68,11 @@ function withDemoWord(scenario: Scenario, word: string | undefined): Scenario {
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
 // TV est présente (Bluff : pas d'énoncé sur le téléphone) ; &streak=4 : série du joueur (badge flamme sur
-// l'écran de résultat à partir de 3, après une bonne réponse) ;
+// l'écran de résultat à partir de 3, après une bonne réponse) ; &choosing=1 (s=lobby) : l'hôte choisit le prochain jeu ;
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
@@ -158,6 +158,8 @@ export default function PlayerDemoScreen() {
           <PlayerLobby
             uid={DEMO_UID}
             players={scenario.session.players}
+            // &choosing=1 : Changer de jeu, l'hôte choisit le prochain jeu.
+            message={params.choosing === '1' ? strings.lobby.choosingNextGame : undefined}
             teams={
               scenario.session.settings.teams
                 ? {

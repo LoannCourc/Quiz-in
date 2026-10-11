@@ -16,11 +16,13 @@ interface PlayerLobbyProps {
   players: LobbyPlayers;
   // Groupe : réglages de la partie et choix de l'équipe (mode « Ils choisissent »).
   teams?: { settings: SessionSettings; onChoose: (team: TeamId) => void; error: string | null };
+  // Ligne sous le titre, à la place de « En attente du lancement… » (Changer de jeu : l'hôte choisit).
+  message?: string;
 }
 
 // Lobby du joueur : son avatar en grand et le message principal, rien d'autre (la TV montre déjà
 // les joueurs et les équipes). Le bouton « Modifier mon profil » est fourni à part, en pied d'écran.
-export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
+export function PlayerLobby({ uid, players, teams, message = strings.lobby.waiting }: PlayerLobbyProps) {
   const me = players[uid];
   const joinedTeam = useJoinedTeamNotice(teams ? me?.team : undefined);
   // Groupe, mode « Ils choisissent » : le choix de l'équipe remplace le lobby (maquette G1).
@@ -40,7 +42,7 @@ export function PlayerLobby({ uid, players, teams }: PlayerLobbyProps) {
       )}
       {joinedTeam && <Text style={styles.joined}>{strings.teams.joined(strings.teams.names[joinedTeam])}</Text>}
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
-      <Text style={[textStyles.label, styles.centered]}>{strings.lobby.waiting}</Text>
+      <Text style={[textStyles.label, styles.centered]}>{message}</Text>
     </View>
   );
 }

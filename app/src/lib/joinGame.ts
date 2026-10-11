@@ -11,7 +11,15 @@ import { db } from './firebase';
 export type LobbyPlayer = Pick<Player, 'name' | 'avatar' | 'connected' | 'team'>;
 export type LobbyPlayers = Record<PlayerId, LobbyPlayer>;
 
-export type JoinRefusal = 'notFound' | 'alreadyStarted' | 'ended' | 'full' | 'nameTaken' | 'nameNotAllowed' | 'removed';
+export type JoinRefusal =
+  | 'notFound'
+  | 'alreadyStarted'
+  | 'ended'
+  | 'choosingNextGame'
+  | 'full'
+  | 'nameTaken'
+  | 'nameNotAllowed'
+  | 'removed';
 
 // Les autres joueurs que soi : à l'inscription, le joueur n'a pas encore d'entrée ;
 // en modification de profil, il ne doit gêner ni lui-même ni le plafond de joueurs.
@@ -27,13 +35,15 @@ export function firstFreeAvatar(players: LobbyPlayers): string {
   return AVATARS.find((avatar) => !used.has(avatar)) ?? AVATARS[0];
 }
 
-// Refus connus avant même la saisie du pseudo.
+// Refus connus avant même la saisie du pseudo. Fin de partie pendant que l'hôte choisit le prochain jeu
+// (isChoosingNextGame) : simple attente, le formulaire apparaît dès le retour au salon.
 export function getEntryRefusal(
   status: GameStatus,
   players: LobbyPlayers,
   uid: PlayerId,
+  isChoosingNextGame = false,
 ): JoinRefusal | null {
-  if (status === 'ended') return 'ended';
+  if (status === 'ended') return isChoosingNextGame ? 'choosingNextGame' : 'ended';
   if (status !== 'lobby') return 'alreadyStarted';
   // Les règles ne savent pas compter : l'hôte retirera aussi un joueur en trop (spec 7).
   if (otherPlayers(players, uid).length >= MAX_PLAYERS) return 'full';

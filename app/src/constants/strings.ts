@@ -62,6 +62,7 @@ export const strings = {
       notFound: 'Partie introuvable. Vérifie le code affiché sur la TV.',
       alreadyStarted: 'Cette partie a déjà commencé. Il n’est plus possible de la rejoindre.',
       ended: 'Cette partie est terminée.',
+      choosingNextGame: 'L’hôte choisit le prochain jeu. Tu pourras rejoindre dans un instant.',
       full: `Cette partie est complète (${MAX_PLAYERS} joueurs maximum).`,
       nameTaken: 'Ce pseudo est déjà pris dans cette partie. Choisis-en un autre.',
       nameNotAllowed: 'Ce pseudo n’est pas accepté. Choisis-en un autre, sympa pour tout le monde !',
@@ -75,6 +76,8 @@ export const strings = {
   lobby: {
     inLobbyTitle: 'Tu es dans la partie !',
     waiting: 'En attente du lancement…',
+    // Changer de jeu : fin de partie, l'hôte choisit le prochain jeu dans le catalogue.
+    choosingNextGame: 'L’hôte choisit le prochain jeu…',
   },
   about: {
     link: 'À propos et crédits',

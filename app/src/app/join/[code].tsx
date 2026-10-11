@@ -105,13 +105,14 @@ function JoinRoom({ code }: { code: string }) {
 
   // Maquette J3 : en-tête « Rejoindre une partie », carte de la partie, puis le formulaire ; partie
   // commencée, pleine ou terminée : le refus à la place du formulaire.
-  const refusal = getEntryRefusal(state.status, state.players, state.uid);
+  const refusal = getEntryRefusal(state.status, state.players, state.uid, state.session.nextGameAt != null);
+  const isWaitingRefusal = refusal === 'choosingNextGame';
   return (
     <Screen>
       <JoinTopBar />
       <JoinGameCard code={code} session={state.session} />
       {refusal ? (
-        <PlayerNotice message={strings.join.refusals[refusal]} tone="error" showOtherCode />
+        <PlayerNotice message={strings.join.refusals[refusal]} tone={isWaitingRefusal ? 'info' : 'error'} showOtherCode={!isWaitingRefusal} />
       ) : (
         <JoinForm code={code} uid={state.uid} status={state.status} players={state.players} />
       )}
@@ -167,6 +168,15 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
     return (
       <WelcomeScreen code={code}>
         <WaitingHostNotice />
+      </WelcomeScreen>
+    );
+  }
+
+  // Changer de jeu : l'écran de fin laisse place au salon d'attente pendant que l'hôte choisit.
+  if (status === 'ended' && state.session.nextGameAt != null) {
+    return (
+      <WelcomeScreen code={code}>
+        <PlayerLobby uid={uid} players={players} message={strings.lobby.choosingNextGame} />
       </WelcomeScreen>
     );
   }
