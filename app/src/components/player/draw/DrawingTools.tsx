@@ -36,12 +36,12 @@ const DOT_SCALE = 0.6;
 // Portrait (maquette E1) : cinq outils ronds avec leur nom, douze couleurs en deux rangées de six, puis la
 // rangée « ÉPAISSEUR ». Choisir une couleur repasse au crayon après la gomme.
 // Densité des outils en portrait, choisie pour que le dessin prenne toute la largeur (DrawerView) :
-// normal (E1), compact (couleurs et épaisseurs plus petites), serré (outils sans nom, douze couleurs sur une
-// ligne, épaisseurs sans titre).
+// normal (E1), compact (couleurs et épaisseurs plus petites), serré (outils sans nom, couleurs compactes sur deux
+// rangées, épaisseurs sans titre).
 export type ToolsDensity = 'normal' | 'compact' | 'tight';
 
 // Hauteur occupée par les outils selon la densité (points, écarts compris), pour choisir la densité.
-export const TOOLS_HEIGHT: Record<ToolsDensity, number> = { normal: 240, compact: 202, tight: 120 };
+export const TOOLS_HEIGHT: Record<ToolsDensity, number> = { normal: 240, compact: 202, tight: 172 };
 
 export function DrawingTools({ density = 'normal', ...props }: DrawingToolState & { density?: ToolsDensity }) {
   const isCompact = density !== 'normal';
@@ -49,7 +49,7 @@ export function DrawingTools({ density = 'normal', ...props }: DrawingToolState 
   return (
     <View style={[styles.block, isCompact && styles.blockCompact]}>
       <DrawingToolButtons {...props} hideLabels={isTight} />
-      <DrawingColors {...props} compact={isCompact} oneRow={isTight} />
+      <DrawingColors {...props} compact={isCompact} />
       <DrawingWidths {...props} withTitle={!isTight} compact={isCompact} />
     </View>
   );
@@ -80,13 +80,14 @@ export function DrawingToolButtons({
 
 // Douze couleurs en deux rangées de six ; la couleur choisie a un contour blanc (cyan pour le blanc, sinon
 // invisible), sauf avec la gomme. Pastilles sur le fond sombre des outils : le blanc s'y voit, avec son contour fin.
-export function DrawingColors({ tool, color, onColor, onTool, compact = false, oneRow = false }: DrawingToolState & { compact?: boolean; oneRow?: boolean }) {
+export function DrawingColors({ tool, color, onColor, onTool, compact = false }: DrawingToolState & { compact?: boolean }) {
   const { draw } = strings;
-  const rows = oneRow ? [PICKER_COLORS] : [PICKER_COLORS.slice(0, COLORS_PER_ROW), PICKER_COLORS.slice(COLORS_PER_ROW)];
+  // Toujours deux rangées de six, même sur un petit écran (pastilles assez grandes pour le doigt).
+  const rows = [PICKER_COLORS.slice(0, COLORS_PER_ROW), PICKER_COLORS.slice(COLORS_PER_ROW)];
   return (
     <View style={[styles.colors, compact && styles.colorsCompact]}>
       {rows.map((row, rowIndex) => (
-        <View key={rowIndex} style={[styles.colorsRow, oneRow && styles.colorsRowTight]}>
+        <View key={rowIndex} style={styles.colorsRow}>
           {row.map((index) => {
             const isSelected = index === color && tool !== 'eraser';
             return (
@@ -223,9 +224,6 @@ const styles = StyleSheet.create({
   },
   colors: {
     gap: Spacing.three,
-  },
-  colorsRowTight: {
-    gap: Spacing.one,
   },
   colorsCompact: {
     gap: Spacing.two,
