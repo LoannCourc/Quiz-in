@@ -50,6 +50,10 @@
           "destination": "/confidentialite.html"
         },
         {
+          "source": "/aide-tv",
+          "destination": "/aide-tv.html"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
