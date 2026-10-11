@@ -1,10 +1,12 @@
 import { PRIVACY_URL } from '@shared/constants';
-import { Link, Redirect, router } from 'expo-router';
+import { isValidRoomCode } from '@shared/roomCode';
+import { Link, Redirect, router, useLocalSearchParams } from 'expo-router';
 import { Linking, StyleSheet, Text, View } from 'react-native';
 
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
+import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -18,8 +20,9 @@ export default function HomeRoute() {
   return isPublishedWeb ? <Redirect href="/join" /> : <HomeScreen />;
 }
 
-function openGame(game: GameType) {
-  router.push({ pathname: '/catalog/[gameType]', params: { gameType: game } });
+// room : Changer de jeu, le jeu choisi remplacera celui de cette partie (pas de nouveau salon).
+function openGame(game: GameType, room: string | undefined) {
+  router.push({ pathname: '/catalog/[gameType]', params: room ? { gameType: game, room } : { gameType: game } });
 }
 
 // Page du site des joueurs, ouverte dans le navigateur du téléphone.
@@ -30,6 +33,8 @@ function openPrivacy() {
 }
 
 function HomeScreen() {
+  const params = useLocalSearchParams<{ room?: string }>();
+  const room = params.room && isValidRoomCode(params.room) ? params.room : undefined;
   const resumableCode = useResumableGame();
   const isBlindTestEnabled = useBlindTestEnabled();
   const isDrawEnabled = useDrawEnabled();
@@ -43,9 +48,9 @@ function HomeScreen() {
   return (
     <Screen>
       <HomeView
-        onOpenGame={openGame}
-        onJoinWithCode={() => router.push('/join')}
-        banner={resumeButton}
+        onOpenGame={(game) => openGame(game, room)}
+        onJoinWithCode={room ? undefined : () => router.push('/join')}
+        banner={room ? <RoomBanner code={room} /> : resumeButton}
         isBlindTestEnabled={isBlindTestEnabled === true}
         isDrawEnabled={isDrawEnabled !== false}
       />
@@ -76,7 +81,23 @@ function HomeScreen() {
   );
 }
 
+// Changer de jeu : rappel du salon gardé ouvert, et retour à la partie sans rien changer.
+function RoomBanner({ code }: { code: string }) {
+  return (
+    <View style={styles.roomBanner}>
+      <Text style={[textStyles.body, styles.roomText]}>{strings.home.roomBanner(code)}</Text>
+      <BigButton label={strings.home.roomCancel} variant="secondary" size="compact" onPress={() => router.back()} />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  roomBanner: {
+    gap: Spacing.two,
+  },
+  roomText: {
+    textAlign: 'center',
+  },
   footerLinks: {
     marginTop: 'auto',
   },

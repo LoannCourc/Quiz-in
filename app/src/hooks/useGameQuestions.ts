@@ -25,7 +25,10 @@ export function useGameQuestions(
 ): GameQuestionsState {
   const isBluff = answerMode === 'bluff';
   const isDraw = answerMode === 'draw';
-  const [state, setState] = useState<GameQuestionsState>({ kind: 'loading' });
+  // État étiqueté par quiz : après « Changer de jeu », les questions de l'ancien quiz ne sont jamais rendues
+  // (chargement tant que celles du nouveau ne sont pas arrivées).
+  const [loaded, setLoaded] = useState<{ quizId: string; state: GameQuestionsState }>({ quizId, state: { kind: 'loading' } });
+  const state: GameQuestionsState = loaded.quizId === quizId ? loaded.state : { kind: 'loading' };
   // Clé texte : un nouveau tableau de même contenu (session relue) ne retire pas les mots.
   const categoriesKey = drawCategoriesOf(drawCategories).map(drawCategoryId).join(',');
   const drawQuestions = useMemo(
@@ -38,11 +41,11 @@ export function useGameQuestions(
     let isActive = true;
     loadQuizQuestions(quizId, isBluff)
       .then((questions) => {
-        if (isActive) setState({ kind: 'ready', questions: selectGameQuestions(questions) });
+        if (isActive) setLoaded({ quizId, state: { kind: 'ready', questions: selectGameQuestions(questions) } });
       })
       .catch((error: unknown) => {
         console.error('[engine] Chargement des questions impossible', error);
-        if (isActive) setState({ kind: 'error', detail: toErrorMessage(error) });
+        if (isActive) setLoaded({ quizId, state: { kind: 'error', detail: toErrorMessage(error) } });
       });
     return () => {
       isActive = false;

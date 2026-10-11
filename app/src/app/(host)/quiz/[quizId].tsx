@@ -1,4 +1,6 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
+import { changeGameUpdate } from '@shared/hostEngine';
+import { isValidRoomCode } from '@shared/roomCode';
 import { areSettingsCompatible, isValidQuizId, settingsForGameType } from '@shared/quizCatalog';
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
@@ -16,11 +18,13 @@ import { strings } from '@/constants/strings';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { useSoundPreferences } from '@/hooks/useSoundPreferences';
 import { usePlayedQuizzes } from '@/hooks/usePlayedQuizzes';
 import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
 import { warnIgnoredEntries } from '@/lib/devLog';
 import { toErrorMessage } from '@/lib/errors';
+import { applyHostAction } from '@/lib/hostGame';
 import { saveHostedGameCode } from '@/lib/hostedGameStorage';
 
 // Fiche d'un quiz : « Choisir ce quiz » crée la partie (réglages par défaut, modifiables dans la feuille
@@ -31,9 +35,13 @@ function categoriesParam(value: string | undefined): string[] {
 }
 
 export default function QuizRoute() {
-  const { quizId = '', categories } = useLocalSearchParams<{ quizId: string; categories?: string }>();
+  const { quizId = '', categories, room } = useLocalSearchParams<{ quizId: string; categories?: string; room?: string }>();
   // Identifiant vérifié avant toute lecture dans la base.
-  return isValidQuizId(quizId) ? <QuizScreen quizId={quizId} drawCategories={categoriesParam(categories)} /> : <QuizNotFound />;
+  return isValidQuizId(quizId) ? (
+    <QuizScreen quizId={quizId} drawCategories={categoriesParam(categories)} room={room && isValidRoomCode(room) ? room : undefined} />
+  ) : (
+    <QuizNotFound />
+  );
 }
 
 function QuizNotFound() {
@@ -45,7 +53,9 @@ function QuizNotFound() {
   );
 }
 
-function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories: string[] }) {
+// room : Changer de jeu, le quiz remplace celui de cette partie au lieu de créer un salon.
+function QuizScreen({ quizId, drawCategories, room }: { quizId: string; drawCategories: string[]; room?: string }) {
+  const serverOffsetMs = useServerTimeOffset();
   const quiz = useLiveValue<unknown>(`quizzes/${quizId}`);
   // Fiche absente ou mal formée : null, traitée comme introuvable.
   const summary = useMemo(() => {
@@ -80,6 +90,10 @@ function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories
     if (!areSettingsCompatible(settings) || unavailableReason) return;
     setIsCreating(true);
     setCreateError(null);
+    if (room) {
+      await changeGame(room);
+      return;
+    }
     try {
       const code = await createGame(quizId, settings, sound);
       // Mémorisé sur l'appareil : « Reprendre la partie » si l'app est relancée en pleine partie.
@@ -94,6 +108,21 @@ function QuizScreen({ quizId, drawCategories }: { quizId: string; drawCategories
       );
       setIsCreating(false);
     }
+  }
+
+  // Changer de jeu : le jeu choisi remplace le précédent dans le salon gardé ouvert, puis retour à son écran.
+  async function changeGame(code: string) {
+    try {
+      const applied = await applyHostAction(code, (session, now) => changeGameUpdate(session, quizId, settings, now), Date.now() + serverOffsetMs);
+      if (applied) {
+        router.dismissTo({ pathname: '/host/[code]', params: { code } });
+        return;
+      }
+      setCreateError(strings.quizSetup.changeGameFailed);
+    } catch (error) {
+      setCreateError(`${strings.quizSetup.changeGameFailed} ${toErrorMessage(error)}`);
+    }
+    setIsCreating(false);
   }
 
   if (quiz.kind === 'loading') {

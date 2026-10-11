@@ -24,15 +24,16 @@ function toEntries(quizzes: unknown): QuizEntry[] {
   return [...valid, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
 }
 
-function openQuiz(quizId: string) {
-  router.push({ pathname: '/quiz/[quizId]', params: { quizId } });
+// room : Changer de jeu (salon gardé ouvert), transmis jusqu'à la fiche.
+function openQuiz(quizId: string, room: string | undefined) {
+  router.push({ pathname: '/quiz/[quizId]', params: { quizId, ...(room && { room }) } });
 }
 
 // Dessine-moi : les catégories choisies voyagent jusqu'à la fiche du jeu (« animal,sport »), qui les met
 // dans les réglages de la partie. Vide : « Mélange ».
-function openDrawGame(drawCategories: string[]) {
-  const params = drawCategories.length > 0 ? { quizId: DRAW_QUIZ_ID, categories: drawCategories.join(',') } : { quizId: DRAW_QUIZ_ID };
-  router.push({ pathname: '/quiz/[quizId]', params });
+function openDrawGame(drawCategories: string[], room: string | undefined) {
+  const categories = drawCategories.length > 0 ? { categories: drawCategories.join(',') } : {};
+  router.push({ pathname: '/quiz/[quizId]', params: { quizId: DRAW_QUIZ_ID, ...categories, ...(room && { room }) } });
 }
 
 // Retour à l'accueil (par la pile si on en vient, sinon en le remplaçant : lien direct).
@@ -43,7 +44,7 @@ function backHome() {
 
 // Catalogue d'un jeu, ouvert depuis une tuile de l'accueil. Jeu inconnu ou indisponible : retour à l'accueil.
 export default function CatalogRoute() {
-  const { gameType } = useLocalSearchParams<{ gameType: string }>();
+  const { gameType, room } = useLocalSearchParams<{ gameType: string; room?: string }>();
   const blindTest = useBlindTestEnabled();
   const played = usePlayedQuizzes();
   const draw = useDrawEnabled();
@@ -60,7 +61,7 @@ export default function CatalogRoute() {
     );
   }
   // Dessine-moi (maquette D1) : choix des catégories de mots, puis la fiche du jeu.
-  if (gameType === 'draw') return <DrawCategoryPicker onBack={backHome} onContinue={openDrawGame} />;
+  if (gameType === 'draw') return <DrawCategoryPicker onBack={backHome} onContinue={(categories) => openDrawGame(categories, room)} />;
   // Accès ouvert : gameType est l'un des quatre jeux (gameAccess).
   const game = gameType as GameType;
 
@@ -68,7 +69,7 @@ export default function CatalogRoute() {
     <Screen>
       {catalog.kind === 'loading' && <Text style={textStyles.body}>{strings.catalog.loading}</Text>}
       {catalog.kind === 'error' && <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>}
-      {catalog.kind === 'ready' && <CatalogView entries={entries} gameType={game} onOpenQuiz={openQuiz} onBack={backHome} played={played} />}
+      {catalog.kind === 'ready' && <CatalogView entries={entries} gameType={game} onOpenQuiz={(quizId) => openQuiz(quizId, room)} onBack={backHome} played={played} />}
     </Screen>
   );
 }

@@ -196,6 +196,7 @@ export const strings = {
   },
   quizSetup: {
     loading: 'Chargement du quiz…',
+    changeGameFailed: 'Impossible de changer de jeu : la partie n’attend plus de nouveau jeu.',
     notFound: 'Ce quiz n’existe pas.',
     backToCatalog: 'Retour au catalogue',
     answerModeLabel: 'Comment répond-on ?',
@@ -574,6 +575,8 @@ export const strings = {
       cancel: 'Continuer',
     },
     replay: 'Rejouer',
+    // Fin de partie : autre quiz ou autre jeu, sans nouveau salon (mêmes joueurs, même code).
+    changeGame: 'Changer de jeu',
     quit: 'Quitter',
     quitConfirm: {
       title: 'Quitter la partie ?',
@@ -780,6 +783,9 @@ export const strings = {
   // Accueil de l'hôte (maquette H1) : choix du jeu, puis son catalogue.
   home: {
     title: 'À quoi on joue ?',
+    // Changer de jeu : accueil ouvert depuis la fin d'une partie, le salon reste ouvert.
+    roomBanner: (code: string) => `Partie ${code} : choisis le prochain jeu. Les joueurs restent connectés.`,
+    roomCancel: 'Annuler, revenir à la partie',
     subtitle: 'Choisis un jeu pour commencer.',
     footer: 'De 2 à 20 joueurs · Mode Groupe dès 4 joueurs',
     // Maquette J1 : rejoindre la partie d'un autre hôte avec son code.

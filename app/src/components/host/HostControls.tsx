@@ -30,6 +30,7 @@ export interface HostActions {
   resume: () => void;
   end: () => void;
   replay: () => void;
+  changeGame: () => void;
   quit: () => void;
   showTv: () => void;
   cancelDraw: () => void;
@@ -79,6 +80,7 @@ export function HostControlsPanel(props: HostControlsPanelProps) {
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
+        {controls.canReplay && <BigButton label={strings.hostControls.changeGame} onPress={run(actions.changeGame)} />}
         {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
         {bluffProposals.length > 0 && onToggleBluffProposal && (

@@ -6,6 +6,8 @@ import {
   hostControls,
   pauseUpdate,
   replayUpdate,
+  cancelNextGameUpdate,
+  chooseNextGameUpdate,
   resumeUpdate,
   type HostControls,
   type SessionUpdate,
@@ -17,8 +19,8 @@ import { soundSettingsOf } from '@shared/sound';
 import type { GameQuestion, Question, Session, SoundSettings } from '@shared/types';
 import { expectedAnswer, reviewCounts, reviewGroups, type ReviewGroup } from '@shared/validationReview';
 import { useKeepAwake } from 'expo-keep-awake';
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { HostControlsBar, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
@@ -255,6 +257,30 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     await saveHostedGameCode(code);
   }
 
+  // Changer de jeu : la TV et les joueurs voient « L'hôte choisit le prochain jeu… », l'hôte ouvre l'accueil
+  // des jeux en mode salon (room) ; ce salon reste ouvert dessous (présence, Cast, moteur).
+  async function changeGame() {
+    if (!connection.canWrite) return;
+    await act(chooseNextGameUpdate);
+    router.push({ pathname: '/', params: { room: code } });
+  }
+
+  // Retour sur cet écran sans avoir choisi de jeu (bouton retour, Annuler, app relancée) : fin de l'attente
+  // sur la TV. Seulement au retour sur l'écran (valeurs lues dans une référence) : l'attente écrite juste
+  // avant d'ouvrir l'accueil ne doit pas être annulée aussitôt.
+  const latest = useRef({ isChoosing: false, serverOffsetMs });
+  useEffect(() => {
+    latest.current = { isChoosing: session.status === 'ended' && session.nextGameAt != null, serverOffsetMs };
+  });
+  useFocusEffect(
+    useCallback(() => {
+      if (!latest.current.isChoosing) return;
+      applyHostAction(code, cancelNextGameUpdate, Date.now() + latest.current.serverOffsetMs).catch((error: unknown) =>
+        console.warn('[engine] Attente du prochain jeu non annulée', error),
+      );
+    }, [code]),
+  );
+
   // Quitter : suppression de toute la partie, puis retour au catalogue.
   function quit() {
     confirmAction(strings.hostControls.quitConfirm, () => {
@@ -282,6 +308,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     resume: () => void act(resumeUpdate),
     end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
     replay: () => void replay(),
+    changeGame: () => void changeGame(),
     quit,
     showTv: cast.showTvPicker,
     cancelDraw: () => confirmAction(strings.hostControls.cancelDrawConfirm, onCancelDraw),
@@ -300,6 +327,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
       onReplay={actions.replay}
+      onChangeGame={actions.changeGame}
       onQuit={actions.quit}
       awaitingNext={hostControls(session).awaitingNext}
       onNext={actions.skip}
@@ -408,6 +436,7 @@ interface HostFooterProps {
   onOpenPanel: () => void;
   onResume: () => void;
   onReplay: () => void;
+  onChangeGame: () => void;
   onQuit: () => void;
   // Pas à pas : la révélation attend l'hôte ; même action que Passer (verrou contre le double appui).
   awaitingNext: HostControls['awaitingNext'];
@@ -419,7 +448,7 @@ interface HostFooterProps {
 }
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
-// (panneau), précédée de Reprendre en pause, et de Rejouer / Quitter en fin de partie.
+// (panneau), précédée de Reprendre en pause, et de Rejouer / Changer de jeu / Quitter en fin de partie.
 function HostFooter({
   status,
   error,
@@ -429,6 +458,7 @@ function HostFooter({
   onOpenPanel,
   onResume,
   onReplay,
+  onChangeGame,
   onQuit,
   awaitingNext,
   onNext,
@@ -454,14 +484,17 @@ function HostFooter({
         </>
       )}
       {status === 'ended' && (
-        <View style={styles.footerRow}>
-          <View style={styles.fill}>
-            <BigButton label={strings.hostControls.replay} size="compact" onPress={onReplay} />
+        <>
+          <View style={styles.footerRow}>
+            <View style={styles.fill}>
+              <BigButton label={strings.hostControls.replay} size="compact" onPress={onReplay} />
+            </View>
+            <View style={styles.fill}>
+              <BigButton label={strings.hostControls.changeGame} size="compact" onPress={onChangeGame} />
+            </View>
           </View>
-          <View style={styles.fill}>
-            <BigButton label={strings.hostControls.quit} variant="secondary" size="compact" onPress={onQuit} />
-          </View>
-        </View>
+          <BigButton label={strings.hostControls.quit} variant="secondary" size="compact" onPress={onQuit} />
+        </>
       )}
       <View style={styles.barRow}>
         <View style={styles.fill}>
