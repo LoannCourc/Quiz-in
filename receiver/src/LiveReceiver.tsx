@@ -36,7 +36,8 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
   useTvPresence(roomCode, state.kind === 'ready' && isConnected)
   // Pas de veille de la box du salon à la fin de partie (podium compris) ; coupé sans partie.
-  useKeepAwake(state.kind === 'ready' && state.session.status !== 'ended')
+  // Changer de jeu : la TV reste éveillée pendant que l'hôte choisit le prochain jeu.
+  useKeepAwake(state.kind === 'ready' && (state.session.status !== 'ended' || state.session.nextGameAt != null))
 
   switch (state.kind) {
     case 'loading':

@@ -36,9 +36,11 @@ const FIT_TEXTS = '.avatar-name, .team-member-name, .team-unassigned-player'
 interface LobbyScreenProps {
   session: PublicSession
   roomCode: string
+  // Ligne du bas, à la place de « En attente des joueurs… » (Changer de jeu : l'hôte choisit).
+  message?: string
 }
 
-export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
+export function LobbyScreen({ session, roomCode, message = strings.lobby.waitingForPlayers }: LobbyScreenProps) {
   const players = sortByRank(session.players)
   // Groupe : écran du tirage pendant quelques secondes après chaque « Tirer au sort ».
   // Durée selon le nombre de joueurs : tous arrivent, le gong sonne, puis les équipes restent un instant.
@@ -75,7 +77,7 @@ export function LobbyScreen({ session, roomCode }: LobbyScreenProps) {
             ))}
           </div>
         )}
-        <p className="lobby-waiting">{strings.lobby.waitingForPlayers}</p>
+        <p className="lobby-waiting">{message}</p>
       </section>
     </main>
   )

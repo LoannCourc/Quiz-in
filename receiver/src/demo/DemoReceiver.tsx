@@ -47,6 +47,7 @@ function isDemoStatus(value: string | null): value is GameStatus {
 // &teams=1 : Groupe (3 équipes) ; &draw=1 : écran du tirage des équipes ; &qlen=140 : énoncé de 140 caractères.
 // &streaks=5,3,0,4 : séries des joueurs dans l'ordre du classement (badge flamme à partir de 3 ; son à la
 // révélation pour une série de 3 ou 5 tout juste).
+// &choosing=1 (avec status=ended) : Changer de jeu, l'hôte choisit le prochain jeu (salon d'attente).
 // &mode=bluff : Bluff (status=question : écriture, status=vote, status=reveal) ; &choices=21 : nombre de
 // choix (avec &players=20) ; &long=1 : phrases de 100 caractères.
 function initialOptions(params: URLSearchParams): DemoOptions {
@@ -116,7 +117,9 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   const lastQuestion = params.get('last') === '1' ? { ...limited, currentIndex: (limited.questionCount ?? 1) - 1 } : limited
   // &names=long : pseudos longs (10 à 12 caractères) : une seule ligne, taille réduite, puis « … ».
   const named = params.get('names') === 'long' ? withLongNames(lastQuestion) : lastQuestion
-  const withStreaks = withDemoStreaks(named, demoStreaks(params.get('streaks')))
+  const streaked = withDemoStreaks(named, demoStreaks(params.get('streaks')))
+  const [choosingAt] = useState(() => (params.get('choosing') === '1' ? Date.now() : undefined))
+  const withStreaks = choosingAt === undefined ? streaked : { ...streaked, nextGameAt: choosingAt }
   // &mode=draw : Dessine-moi, la maison du banc d'essai déjà dessinée (manche ou révélation).
   const session = options.answerMode === 'draw' ? withDemoDraw(withStreaks, params.get('word') ?? undefined, Number(params.get('found')) || 0, params.get('cancelled') === '1', params.get('drawername') ?? undefined) : withStreaks
   const audioState: GameAudioState = params.get('audio') === 'unavailable' ? 'unavailable' : 'playing'

@@ -75,6 +75,8 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
       if (isBlindTest) return { ...play('game'), stopBy }
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'ended':
+      // Changer de jeu : l'hôte choisit le prochain jeu, la musique du salon reprend.
+      if (session.nextGameAt != null) return play('waiting')
       // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium ; puis en boucle
       // tant que l'écran de fin est affiché (shared/musicTracks.ts), jusqu'à Rejouer ou la fin de la partie.
       return { ...play('final'), startAt: session.phaseStartedAt + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0) }

@@ -1,6 +1,8 @@
 import { withHiddenBluffChoices } from '@shared/bluff'
 import type { PublicSession } from '@shared/types'
 
+import { strings } from '../strings'
+
 import { DrawRevealScreen, DrawRoundScreen } from './DrawRoundScreen'
 import { ValidationScreen } from './ValidationScreen'
 import { EndScreen } from './EndScreen'
@@ -39,6 +41,8 @@ export function ReceiverScreen({ session: received, roomCode }: ReceiverScreenPr
     case 'paused':
       return <PausedScreen />
     case 'ended':
+      // Changer de jeu : salon d'attente (code, QR, joueurs) pendant que l'hôte choisit.
+      if (session.nextGameAt != null) return <LobbyScreen session={session} roomCode={roomCode} message={strings.lobby.choosingNextGame} />
       return <EndScreen session={session} />
     case 'validation':
       // Contrôle : l'énoncé reste affiché pendant que l'hôte valide les réponses (maquette T1).

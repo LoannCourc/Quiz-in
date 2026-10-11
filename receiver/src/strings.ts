@@ -11,6 +11,7 @@ export const strings = {
     orEnterCode: 'ou saisissez le code',
     playerCount: (count: number, max: number) => `${count}/${max} joueurs`,
     waitingForPlayers: 'En attente des joueurs…',
+    choosingNextGame: 'L’hôte choisit le prochain jeu…',
   },
   // Groupe : équipes Rose, Cyan, Or, Vert (maquettes G2 et G3).
   teams: {

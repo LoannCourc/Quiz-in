@@ -47,6 +47,10 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(suspense, false)).toMatchObject({ track: 'final', startAt: NOW + SUSPENSE_DRUMROLL_MS })
   })
 
+  test('Changer de jeu : pendant le choix de l’hôte, la musique du salon remplace celle de la fin', () => {
+    expect(musicPlan(inPhase('ended', 'choice', { nextGameAt: NOW }), false).track).toBe('waiting')
+  })
+
   test('blind test : silence pendant l’extrait (arrêt rapide), musique de jeu dès la bonne réponse, au salon, au classement et à la fin', () => {
     expect(musicPlan(inPhase('question', 'choice', { currentQuestion: BLIND_TEST_QUESTION }), false)).toMatchObject({ track: null, fastStop: true })
     expect(musicPlan(inPhase('reveal'), true)).toMatchObject({ track: 'game', fastStop: false })
