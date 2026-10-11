@@ -215,9 +215,17 @@ export function HostLobby(props: HostLobbyProps) {
             {cast.isAvailable && (
               <>
                 <TvCastPill cast={cast} />
-                <Pressable accessibilityRole="link" hitSlop={Spacing.two} onPress={() => router.push('/tv-help')}>
-                  <Text style={styles.helpLink}>{strings.hostLobby.tvHelpLink}</Text>
-                </Pressable>
+                {cast.noTvFound ? (
+                  <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
+                    <Text style={styles.noTvFoundText}>
+                      {strings.hostLobby.noTvFoundBanner} <Text style={styles.noTvFoundAction}>{strings.hostLobby.noTvFoundAction}</Text>
+                    </Text>
+                  </Pressable>
+                ) : (
+                  <Pressable accessibilityRole="link" hitSlop={Spacing.two} onPress={() => router.push('/tv-help')}>
+                    <Text style={styles.helpLink}>{strings.hostLobby.tvHelpLink}</Text>
+                  </Pressable>
+                )}
               </>
             )}
             {!isQrOpen && (
@@ -326,6 +334,24 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.bold,
     fontSize: 14,
     textAlign: 'center',
+    textDecorationLine: 'underline',
+  },
+  // Recherche des TV sans résultat : le lien devient un bandeau.
+  noTvFoundBanner: {
+    paddingVertical: Spacing.two,
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
+  },
+  noTvFoundText: {
+    color: AppColors.text,
+    fontFamily: AppFonts.bold,
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  noTvFoundAction: {
+    color: AppColors.link,
+    fontFamily: AppFonts.extraBold,
     textDecorationLine: 'underline',
   },
   players: {

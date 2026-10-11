@@ -2,9 +2,12 @@ import { CAST_NAMESPACE, type CastShowGameMessage } from '@shared/cast';
 import { pauseUpdate } from '@shared/hostEngine';
 import type { Session } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
-import GoogleCast, { useCastChannel } from 'react-native-google-cast';
+import GoogleCast, { CastState, useCastChannel, useCastState } from 'react-native-google-cast';
 
 import { applyHostAction } from '@/lib/hostGame';
+
+// Recherche des TV sans résultat depuis ce délai : le salon propose l'aide « Je ne trouve pas ma TV ».
+const NO_TV_FOUND_DELAY_MS = 8000;
 
 export interface CastGame {
   // Faux sur le web (site des joueurs) : pas de Cast, l'interface TV est masquée.
@@ -12,6 +15,8 @@ export interface CastGame {
   isTvConnected: boolean;
   // La session Cast s'est terminée pendant la partie, qui a été mise en pause.
   castInterrupted: boolean;
+  // La recherche des TV ne trouve rien depuis quelques secondes.
+  noTvFound: boolean;
   // Liste des TV (dialogue Cast natif) ; exige un TvCastButton affiché à l'écran.
   showTvPicker: () => void;
 }
@@ -25,6 +30,8 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   const [castInterrupted, setCastInterrupted] = useState(false);
   const [previousStatus, setPreviousStatus] = useState(session.status);
   const latest = useRef({ canWrite, serverOffsetMs });
+  const isSearchEmpty = useCastState() === CastState.NO_DEVICES_AVAILABLE;
+  const [hasWaitedForTv, setHasWaitedForTv] = useState(false);
 
   // Le message disparaît dès que la partie quitte la pause (reprise, fin).
   if (session.status !== previousStatus) {
@@ -35,6 +42,15 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   useEffect(() => {
     latest.current = { canWrite, serverOffsetMs };
   }, [canWrite, serverOffsetMs]);
+
+  useEffect(() => {
+    if (!isSearchEmpty) return;
+    const timer = setTimeout(() => setHasWaitedForTv(true), NO_TV_FOUND_DELAY_MS);
+    return () => {
+      clearTimeout(timer);
+      setHasWaitedForTv(false);
+    };
+  }, [isSearchEmpty]);
 
   useEffect(() => {
     if (!channel) return;
@@ -63,5 +79,5 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
       .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
   }
 
-  return { isAvailable: true, isTvConnected: channel !== null, castInterrupted, showTvPicker };
+  return { isAvailable: true, isTvConnected: channel !== null, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv, showTvPicker };
 }
