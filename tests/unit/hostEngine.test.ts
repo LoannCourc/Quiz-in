@@ -19,6 +19,10 @@ import {
   nextDeadline,
   pauseUpdate,
   replayUpdate,
+  changeGameUpdate,
+  chooseNextGameUpdate,
+  cancelNextGameUpdate,
+  nextGameSettings,
   resumeUpdate,
   selectGameQuestions,
   toPublicQuestion,
@@ -541,6 +545,61 @@ describe('replayUpdate (Rejouer)', () => {
     for (const status of ['lobby', 'question', 'paused'] as const) {
       expect(replayUpdate(makeSession({ status }), NOW)).toBeNull()
     }
+  })
+})
+
+describe('Changer de jeu', () => {
+  const ended = makeSession({
+    status: 'ended',
+    currentIndex: 9,
+    questionCount: 10,
+    answers: {},
+    nextGameAt: NOW - 1000,
+    settings: { ...makeSession().settings, teams: true, teamMode: 'host', teamCount: 3, suspense: true },
+  })
+  const bluff = { answerMode: 'bluff', speedBonus: false, control: false, teams: false } as const
+
+  test('le choix ne commence qu’à la fin de partie', () => {
+    expect(chooseNextGameUpdate(ended, NOW)).toEqual({ nextGameAt: NOW })
+    for (const status of ['lobby', 'question', 'paused'] as const) {
+      expect(chooseNextGameUpdate(makeSession({ status }), NOW)).toBeNull()
+    }
+  })
+
+  test('annuler retire seulement l’attente', () => {
+    expect(cancelNextGameUpdate(ended)).toEqual({ nextGameAt: null })
+    expect(cancelNextGameUpdate(makeSession({ status: 'ended' }))).toBeNull()
+  })
+
+  test('nouveau jeu : retour au LOBBY, scores effacés, joueurs gardés, équipes gardées', () => {
+    const update = changeGameUpdate(ended, 'bluff-betes', bluff, NOW)
+    expect(update).toMatchObject({
+      status: 'lobby',
+      quizId: 'bluff-betes',
+      currentIndex: 0,
+      questionCount: null,
+      answers: null,
+      nextGameAt: null,
+      [`players/${PLAYER}/score`]: null,
+      [`players/${PLAYER}/streak`]: null,
+      settings: { answerMode: 'bluff', speedBonus: false, control: false, teams: true, teamMode: 'host', teamCount: 3 },
+    })
+    expect(Object.keys(update ?? {})).not.toContain(`players/${PLAYER}`)
+    expect(Object.keys(update ?? {})).not.toContain('banned')
+  })
+
+  test('réglages : ceux du jeu choisi, aucune valeur absente écrite (la base refuse undefined)', () => {
+    const settings = nextGameSettings(makeSession().settings, bluff)
+    expect(Object.values(settings)).not.toContain(undefined)
+    expect(settings).not.toHaveProperty('suspense')
+  })
+
+  test('hors de la fin de partie : refusé', () => {
+    expect(changeGameUpdate(makeSession({ status: 'question' }), 'x', bluff, NOW)).toBeNull()
+  })
+
+  test('Rejouer efface aussi l’attente du choix', () => {
+    expect(replayUpdate(ended, NOW)).toMatchObject({ nextGameAt: null })
   })
 })
 

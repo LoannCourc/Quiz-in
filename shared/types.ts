@@ -370,6 +370,9 @@ export interface PublicSession {
   drawing?: Record<string, string> | (string | null)[];
   // Dessine-moi : qui a trouvé le mot, et quand (heure du serveur) ; jamais ce qui a été proposé.
   drawFound?: Record<PlayerId, number>;
+  // Fin de partie, « Changer de jeu » : heure (serveur) à laquelle l'hôte a ouvert le catalogue ; la TV et
+  // les joueurs affichent « L'hôte choisit le prochain jeu… ». Effacé au choix (retour au salon) ou à l'annulation.
+  nextGameAt?: number;
 }
 
 // Son de la TV : musique d'ambiance et effets activés ou non, volume général de 0 à 100.

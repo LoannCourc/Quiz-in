@@ -17,6 +17,8 @@ import {
   launchUpdate,
   pauseUpdate,
   replayUpdate,
+  changeGameUpdate,
+  chooseNextGameUpdate,
   resumeUpdate,
   selectGameQuestions,
   transitionUpdate,
@@ -965,6 +967,26 @@ describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
     const relaunch = launchUpdate(session, QUESTIONS.slice(0, 1), Date.now())
     session = await applyAsHost(relaunch.ok ? relaunch.update : null)
     expect(session).toMatchObject({ status: 'starting', questionCount: 1 })
+  })
+
+  test('Changer de jeu : attente publique, nouveau quiz au salon, joueurs et exclus gardés', async () => {
+    let session = await seedQuestion()
+    // Pendant la partie : ni attente, ni changement de quiz.
+    await assertFails(db(HOST).ref(`${SESSION}/nextGameAt`).set(SERVER_TIME))
+    await assertFails(db(HOST).ref(`${SESSION}/quizId`).set('autre-quiz'))
+    session = await applyAsHost(endUpdate(session, Date.now()))
+    // Un joueur ne peut pas l'écrire ; l'hôte oui ; tout le monde le lit.
+    await assertFails(db(PLAYER).ref(`${SESSION}/nextGameAt`).set(SERVER_TIME))
+    session = await applyAsHost(chooseNextGameUpdate(session, Date.now()))
+    expect(typeof (await db(PLAYER).ref(`${SESSION}/nextGameAt`).once('value')).val()).toBe('number')
+    const chosen = { answerMode: 'bluff', speedBonus: false, control: false, teams: false } as const
+    session = await applyAsHost(changeGameUpdate(session, 'bluff-betes', chosen, Date.now()))
+    expect(session).toMatchObject({ status: 'lobby', quizId: 'bluff-betes', settings: { answerMode: 'bluff' } })
+    expect(session.nextGameAt).toBeUndefined()
+    expect(session.players[PLAYER]).toMatchObject({ name: expect.any(String) })
+    expect(session.players[PLAYER].score).toBeUndefined()
+    // Au salon, l'attente ne peut plus être écrite (seulement à la fin de partie).
+    await assertFails(db(HOST).ref(`${SESSION}/nextGameAt`).set(SERVER_TIME))
   })
 
   test("Quitter : l'hôte supprime toute la session, un joueur ne le peut pas", async () => {

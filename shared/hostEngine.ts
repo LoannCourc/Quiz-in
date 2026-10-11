@@ -48,6 +48,7 @@ import type {
   Question,
   Reveal,
   Session,
+  SessionSettings,
 } from './types'
 
 // Moteur de partie de l'hôte (spec 5 et 6), sans Firebase ni React : chaque fonction lit la
@@ -681,6 +682,44 @@ export function endUpdate(session: Session, nowServer: number): SessionUpdate | 
 // Groupe : les équipes sont gardées (seuls leurs scores sont effacés).
 export function replayUpdate(session: Session, nowServer: number): SessionUpdate | null {
   if (session.status !== 'ended') return null
+  return newGameReset(session, nowServer)
+}
+
+// Changer de jeu (fin de partie), étape 1 : l'hôte ouvre le catalogue sans quitter le salon. La TV et
+// les joueurs affichent « L'hôte choisit le prochain jeu… » tant que nextGameAt est écrit.
+export function chooseNextGameUpdate(session: Session, nowServer: number): SessionUpdate | null {
+  if (session.status !== 'ended') return null
+  return { nextGameAt: nowServer }
+}
+
+// L'hôte revient du catalogue sans rien choisir : retour à l'écran de fin.
+export function cancelNextGameUpdate(session: Session): SessionUpdate | null {
+  if (session.nextGameAt == null) return null
+  return { nextGameAt: null }
+}
+
+// Réglages du jeu choisi, avec l'état du Groupe de la partie précédente (les équipes sont gardées).
+// Les champs absents ne sont pas écrits (la base refuse undefined).
+export function nextGameSettings(previous: SessionSettings, chosen: SessionSettings): SessionSettings {
+  const merged: SessionSettings = {
+    ...chosen,
+    teams: previous.teams,
+    teamMode: previous.teamMode,
+    teamCount: previous.teamCount,
+  }
+  return Object.fromEntries(Object.entries(merged).filter(([, value]) => value !== undefined)) as SessionSettings
+}
+
+// Changer de jeu, étape 2 : le jeu choisi remplace le précédent, retour au LOBBY avec le même code,
+// les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, Bluff
+// et Dessine-moi remis à zéro, comme Rejouer.
+export function changeGameUpdate(session: Session, quizId: string, settings: SessionSettings, nowServer: number): SessionUpdate | null {
+  if (session.status !== 'ended') return null
+  return { ...newGameReset(session, nowServer), quizId, settings: nextGameSettings(session.settings, settings) }
+}
+
+// Remise à zéro commune à Rejouer et Changer de jeu.
+function newGameReset(session: Session, nowServer: number): SessionUpdate {
   const update: SessionUpdate = {
     status: 'lobby',
     currentIndex: 0,
@@ -696,6 +735,7 @@ export function replayUpdate(session: Session, nowServer: number): SessionUpdate
     teams: null,
     teamPoints: null,
     teamPresence: null,
+    nextGameAt: null,
     ...BLUFF_RESET,
     ...DRAW_RESET,
   }

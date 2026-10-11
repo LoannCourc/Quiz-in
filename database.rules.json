@@ -25,7 +25,11 @@
         },
         "quizId": {
           ".read": "auth != null",
-          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64"
+          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64 && (!data.exists() || newData.val() == data.val() || ((data.parent().child('status').val() == 'ended' || data.parent().child('status').val() == 'lobby') && newData.parent().child('status').val() == 'lobby'))"
+        },
+        "nextGameAt": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() <= now && newData.parent().child('status').val() == 'ended'"
         },
         "hostLeftAt": {
           ".read": "auth != null",
