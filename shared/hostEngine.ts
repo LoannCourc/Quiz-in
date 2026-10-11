@@ -10,6 +10,7 @@ import {
   TRANSITION_LOCK_MAX_MS,
 } from './constants'
 import { drawEligiblePlayers, drawOrderFor, isDrawQuestion, wordLetterCount } from './drawGame'
+import { gameQuestionCount, MAX_QUESTIONS_PER_GAME } from './questionPool'
 import { drawAllFoundAt, drawResults, isDrawRoundAbandoned } from './drawGuess'
 import {
   acceptedParts,
@@ -59,10 +60,10 @@ import type {
 // Chemin relatif à sessions/{code} → valeur (null efface le chemin).
 export type SessionUpdate = Record<string, unknown>
 
-// Partie limitée à QUESTIONS_PER_GAME questions, dans l'ordre du quiz (questions déjà validées).
-// limit : partie plus courte (réservée au développement), jamais plus que QUESTIONS_PER_GAME.
+// Questions de la partie, dans l'ordre reçu (questions déjà validées) : limit (10 par défaut, nombre choisi
+// pour un ensemble de quiz, ou partie courte de développement), jamais plus que MAX_QUESTIONS_PER_GAME.
 export function selectGameQuestions<T extends GameQuestion>(questions: readonly T[], limit = QUESTIONS_PER_GAME): T[] {
-  return questions.slice(0, Math.max(0, Math.min(limit, QUESTIONS_PER_GAME)))
+  return questions.slice(0, Math.max(0, Math.min(limit, MAX_QUESTIONS_PER_GAME)))
 }
 
 // Blind test : adresses temporaires des extraits, par identifiant de question, fournies par l'hôte
@@ -529,7 +530,8 @@ export function launchUpdate(
   session: Session,
   questions: readonly GameQuestion[],
   nowServer: number,
-  limit = QUESTIONS_PER_GAME,
+  // Absent : le nombre de questions des réglages (gameQuestionCount).
+  limit?: number,
   audio: LaunchAudio = { enabled: false, urls: {} },
   random: () => number = Math.random,
   // Dessine-moi, développement seulement : un seul dessinateur pour toutes les manches (tests à deux
@@ -545,7 +547,7 @@ export function launchUpdate(
   // Dessine-moi : toutes les manches, dessinateurs à tour de rôle (drawOrderFor), l'hôte compris s'il joue ;
   // un seul dessinateur possible (l'hôte ne joue pas) : il dessine toutes les manches (spec 19).
   if (isDraw && drawEligiblePlayers(session.players).length === 0) return { ok: false, reason: 'notEnoughPlayers' }
-  const gameQuestions = selectGameQuestions(questions, limit)
+  const gameQuestions = selectGameQuestions(questions, limit ?? gameQuestionCount(session.settings))
   if (gameQuestions.length === 0) return { ok: false, reason: 'noQuestions' }
   const musicQuestions = gameQuestions.filter((question) => 'music' in question && question.music)
   if (musicQuestions.length > 0 && !audio.enabled) return { ok: false, reason: 'blindTestDisabled' }
@@ -715,7 +717,7 @@ export function nextGameSettings(previous: SessionSettings, chosen: SessionSetti
 // et Dessine-moi remis à zéro, comme Rejouer.
 export function changeGameUpdate(session: Session, quizId: string, settings: SessionSettings, nowServer: number): SessionUpdate | null {
   if (session.status !== 'ended') return null
-  return { ...newGameReset(session, nowServer), quizId, settings: nextGameSettings(session.settings, settings) }
+  return { ...newGameReset(session, nowServer), quizId, settings: nextGameSettings(session.settings, settings), questionRefs: null }
 }
 
 // Remise à zéro commune à Rejouer et Changer de jeu.

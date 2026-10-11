@@ -989,6 +989,22 @@ describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
     await assertFails(db(HOST).ref(`${SESSION}/nextGameAt`).set(SERVER_TIME))
   })
 
+  test('Ensemble de questions : réglages validés, tirage lisible par l’hôte seul', async () => {
+    await seed({ sessions: { [CODE]: makeSession({ phaseStartedAt: Date.now() }) } })
+    const settings = `${SESSION}/settings`
+    await assertSucceeds(db(HOST).ref(`${settings}/themes`).set(['Culture générale', 'Histoire']))
+    await assertSucceeds(db(HOST).ref(`${settings}/questionCount`).set(20))
+    await assertFails(db(HOST).ref(`${settings}/questionCount`).set(25))
+    await assertSucceeds(db(HOST).ref(`${settings}/quizIds`).set(['bluff-betes', 'bluff-objets']))
+    await assertFails(db(HOST).ref(`${settings}/quizIds`).set(['Pas Un Identifiant']))
+    // Les réglages restent publics (aucune réponse dedans) ; le tirage, non.
+    expect((await db(PLAYER).ref(`${settings}/themes`).once('value')).val()).toEqual(['Culture générale', 'Histoire'])
+    await assertSucceeds(db(HOST).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/q1', 'histoire-de-france/q4']))
+    await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set(['sans-barre']))
+    await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/q1']))
+  })
+
   test("Quitter : l'hôte supprime toute la session, un joueur ne le peut pas", async () => {
     await seedQuestion()
     await assertFails(db(PLAYER).ref(SESSION).remove())

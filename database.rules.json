@@ -27,6 +27,9 @@
           ".read": "auth != null",
           ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64 && (!data.exists() || newData.val() == data.val() || ((data.parent().child('status').val() == 'ended' || data.parent().child('status').val() == 'lobby') && newData.parent().child('status').val() == 'lobby'))"
         },
+        "questionRefs": {
+          "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^[a-z0-9-]{1,64}\\/[^\\/]{1,64}$/)" }
+        },
         "nextGameAt": {
           ".read": "auth != null",
           ".validate": "newData.isNumber() && newData.val() <= now && newData.parent().child('status').val() == 'ended'"
@@ -55,6 +58,13 @@
           "teamMode": { ".validate": "newData.isString() && newData.val().matches(/^(random|host|players)$/)" },
           "teamCount": { ".validate": "newData.isNumber() && (newData.val() == 2 || newData.val() == 3 || newData.val() == 4)" },
           "drawRounds": { ".validate": "newData.isNumber() && (newData.val() == 4 || newData.val() == 6 || newData.val() == 8)" },
+          "questionCount": { ".validate": "newData.isNumber() && (newData.val() == 10 || newData.val() == 15 || newData.val() == 20 || newData.val() == 30)" },
+          "themes": {
+            "$i": { ".validate": "$i.matches(/^[0-9]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" }
+          },
+          "quizIds": {
+            "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^[a-z0-9-]{1,64}$/)" }
+          },
           "drawCategories": {
             "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^(animal|nourriture|objet|maison|nature|lieu|transport|metier|sport|loisir|vetement|corps)$/)" }
           },

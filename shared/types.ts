@@ -258,6 +258,11 @@ export interface SessionSettings {
   drawCategories?: string[];
   // Dessine-moi : nombre de manches choisi dans les réglages du salon (4, 6 ou 8). Absent : 8.
   drawRounds?: number;
+  // Partie tirée dans un ensemble (shared/questionPool.ts) : thèmes du Quiz (noms des thèmes) ou quiz de
+  // « Mon mélange » (Bluff), et nombre de questions (10, 15, 20 ou 30). Absents : un quiz seul, 10 questions.
+  themes?: string[];
+  quizIds?: string[];
+  questionCount?: number;
 }
 
 // Groupe : 4 équipes fixes (Rose, Cyan, Or, Vert), chacune avec un symbole dessiné (étoile, rond,
@@ -396,6 +401,9 @@ export interface Session extends PublicSession {
   drawWordChange?: true;
   // Points de chaque joueur à chaque manche (les réponses classiques les gardent dans answers).
   drawPoints?: Record<number, Record<PlayerId, number>>;
+  // Partie tirée dans un ensemble : questions tirées au salon (« quizId/questionId », dans l'ordre de la
+  // partie), relues après une relance de l'app de l'hôte. Rejouer les garde, Changer de jeu les efface.
+  questionRefs?: string[];
   // Bluff (spec 16). bluffChecks et bluffOwn sont lisibles aussi par le joueur concerné, pour lui seul.
   bluffs?: Record<number, Record<PlayerId, BluffEntry>>;
   bluffChecks?: Record<number, Record<PlayerId, BluffCheck>>;

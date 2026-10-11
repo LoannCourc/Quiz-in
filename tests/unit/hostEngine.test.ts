@@ -86,8 +86,9 @@ describe('selectGameQuestions', () => {
     expect(selectGameQuestions(QUESTIONS, 3).map((q) => q.id)).toEqual(['q-0', 'q-1', 'q-2'])
   })
 
-  test('limite jamais au-delà de QUESTIONS_PER_GAME, ni négative', () => {
-    expect(selectGameQuestions(QUESTIONS, 50)).toHaveLength(QUESTIONS_PER_GAME)
+  test('10 par défaut ; limite jamais au-delà de 30 (ensemble de quiz), ni négative', () => {
+    expect(selectGameQuestions(QUESTIONS)).toHaveLength(QUESTIONS_PER_GAME)
+    expect(selectGameQuestions(QUESTIONS, 50)).toHaveLength(QUESTIONS.length)
     expect(selectGameQuestions(QUESTIONS, -1)).toEqual([])
   })
 })
