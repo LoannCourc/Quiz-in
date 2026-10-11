@@ -31,12 +31,14 @@ export const DRAW_COLORS: readonly string[] = [
   '#8e24aa',
   '#ec4899',
   '#8d5524',
+  // Beige (teintes de peau, sable), ajouté après coup : index 12.
+  '#f2d3a8',
 ]
 
-// Couleurs proposées au dessinateur (maquette E1, deux rangées de cinq) : tout sauf le fond (la gomme le
-// peint) et le gris (index 2, gardé pour relire les dessins déjà envoyés). Les index ne changent pas : la
-// TV n'a rien à changer.
-export const PICKER_COLORS: readonly number[] = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+// Couleurs proposées au dessinateur, deux rangées de six : tout sauf le gris (index 2, gardé pour relire les
+// dessins déjà envoyés). Le blanc est aussi celui du fond : il couvre, comme la gomme, mais au crayon et au
+// seau. Les index ne changent jamais (ils circulent dans la base) ; une TV d'avant le beige (12) ignore ses traits.
+export const PICKER_COLORS: readonly number[] = [1, 0, 12, 11, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // Trois épaisseurs (diamètre en points logiques) : fine, moyenne, épaisse.
 export const STROKE_WIDTHS: readonly number[] = [4, 12, 28]

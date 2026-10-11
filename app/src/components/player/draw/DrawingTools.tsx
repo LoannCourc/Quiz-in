@@ -1,4 +1,4 @@
-import { DRAW_COLORS, PICKER_COLORS, STROKE_WIDTHS } from '@shared/drawing/palette';
+import { BACKGROUND_COLOR, DRAW_COLORS, PICKER_COLORS, STROKE_WIDTHS } from '@shared/drawing/palette';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -20,7 +20,7 @@ export interface DrawingToolState {
 }
 
 const TOOLS: readonly DrawTool[] = ['pen', 'eraser', 'bucket'];
-const COLORS_PER_ROW = 5;
+const COLORS_PER_ROW = 6;
 // Tailles des maquettes E1 et E2 ; les boutons rétrécissent sur un écran étroit (tout tient à 320 points).
 const TOOL_MAX = 52;
 const TOOL_ICON = 24;
@@ -33,10 +33,10 @@ const WIDTH_COMPACT = 38;
 // Points des épaisseurs, réduits pour tenir dans un bouton.
 const DOT_SCALE = 0.6;
 
-// Portrait (maquette E1) : cinq outils ronds avec leur nom, dix couleurs en deux rangées de cinq, puis la
+// Portrait (maquette E1) : cinq outils ronds avec leur nom, douze couleurs en deux rangées de six, puis la
 // rangée « ÉPAISSEUR ». Choisir une couleur repasse au crayon après la gomme.
 // Densité des outils en portrait, choisie pour que le dessin prenne toute la largeur (DrawerView) :
-// normal (E1), compact (couleurs et épaisseurs plus petites), serré (outils sans nom, dix couleurs sur une
+// normal (E1), compact (couleurs et épaisseurs plus petites), serré (outils sans nom, douze couleurs sur une
 // ligne, épaisseurs sans titre).
 export type ToolsDensity = 'normal' | 'compact' | 'tight';
 
@@ -78,7 +78,8 @@ export function DrawingToolButtons({
   );
 }
 
-// Dix couleurs en deux rangées de cinq ; la couleur choisie a un contour blanc (sauf avec la gomme).
+// Douze couleurs en deux rangées de six ; la couleur choisie a un contour blanc (cyan pour le blanc, sinon
+// invisible), sauf avec la gomme. Pastilles sur le fond sombre des outils : le blanc s'y voit, avec son contour fin.
 export function DrawingColors({ tool, color, onColor, onTool, compact = false, oneRow = false }: DrawingToolState & { compact?: boolean; oneRow?: boolean }) {
   const { draw } = strings;
   const rows = oneRow ? [PICKER_COLORS] : [PICKER_COLORS.slice(0, COLORS_PER_ROW), PICKER_COLORS.slice(COLORS_PER_ROW)];
@@ -98,7 +99,12 @@ export function DrawingColors({ tool, color, onColor, onTool, compact = false, o
                   onColor(index);
                   if (tool === 'eraser') onTool('pen');
                 }}
-                style={[styles.swatch, compact && styles.swatchCompact, { backgroundColor: DRAW_COLORS[index] }, isSelected && styles.swatchSelected]}
+                style={[
+                  styles.swatch,
+                  compact && styles.swatchCompact,
+                  { backgroundColor: DRAW_COLORS[index] },
+                  isSelected && (index === BACKGROUND_COLOR ? styles.swatchSelectedOnWhite : styles.swatchSelected),
+                ]}
               />
             );
           })}
@@ -242,6 +248,9 @@ const styles = StyleSheet.create({
   },
   swatchSelected: {
     borderColor: AppColors.selection,
+  },
+  swatchSelectedOnWhite: {
+    borderColor: AppColors.link,
   },
   widthRow: {
     flexDirection: 'row',

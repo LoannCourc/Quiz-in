@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { DrawingDoc, DrawingWriter, MAX_CHUNK_LENGTH, type DrawOp } from '../../shared/drawing/encoding'
-import { GRID_HEIGHT, GRID_WIDTH } from '../../shared/drawing/palette'
+import { BACKGROUND_COLOR, GRID_HEIGHT, GRID_WIDTH, PICKER_COLORS } from '../../shared/drawing/palette'
 import { floodFill, rasterize } from '../../shared/drawing/raster'
 import { DrawingRenderer, type DrawSurface } from '../../shared/drawing/render'
 import { sampleStroke, traceCurves } from '../../shared/drawing/smooth'
@@ -40,6 +40,14 @@ describe('Dessin : texte compact', () => {
     writer.endStroke()
     const doc = replay([...first, ...writer.flush()])
     expect(strokesOf(doc)).toEqual([{ kind: 'stroke', id: 0, color: 3, width: 1, points: [10, 10, 50, 10, 50, 60, -5, 60] }])
+  })
+
+  test('toutes les couleurs proposées, blanc et beige compris, passent par la base et sont relues', () => {
+    const writer = new DrawingWriter()
+    PICKER_COLORS.forEach((color, index) => square(writer, index * 10, 0, color))
+    const doc = replay(writer.flush())
+    expect(strokesOf(doc).map((op) => op.color)).toEqual([...PICKER_COLORS])
+    expect(PICKER_COLORS).toEqual(expect.arrayContaining([BACKGROUND_COLOR, 12]))
   })
 
   test('paquets arrivés dans le désordre : appliqués dans l’ordre', () => {
