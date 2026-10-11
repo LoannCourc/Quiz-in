@@ -36,6 +36,8 @@ export const strings = {
     codeQuestion: 'Quel est le code de la partie ?',
     codeWhere: 'Tu le trouves sur la TV ou sur l’écran de l’hôte.',
     codeHint: '4 caractères : lettres et chiffres',
+    codeBoxAccessibility: (position: number, char: string | undefined) =>
+      char ? `Caractère ${position} : ${char}. Toucher pour le corriger` : `Caractère ${position}, vide`,
     codeAccessibility: 'Code de la partie, 4 caractères',
     codeButton: 'Continuer',
     gameCard: {
@@ -339,6 +341,8 @@ export const strings = {
       confirm: 'Exclure',
       cancel: 'Annuler',
     }),
+    codeBoxAccessibility: (position: number, char: string | undefined) =>
+      char ? `Caractère ${position} : ${char}. Toucher pour le corriger` : `Caractère ${position}, vide`,
     codeAccessibility: (code: string) => `Code de la partie : ${code.split('').join(' ')}`,
     noTv: {
       title: 'Rejoindre sans TV',

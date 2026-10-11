@@ -19,26 +19,49 @@ interface CodeBoxesProps {
   onSubmit: () => void;
 }
 
-// Code de la partie en quatre cases (maquette J2) : un seul champ invisible posé sur les cases reçoit la
-// saisie (clavier, collage, saisie automatique) ; les cases montrent les caractères, la case en cours en
-// cyan. Un appui n'importe où sur les cases rouvre le clavier.
+interface Selection {
+  start: number;
+  end: number;
+}
+
+// Case en cyan : le caractère sélectionné (à remplacer), sinon la prochaine case vide ; aucune si le code
+// est complet et rien n'est sélectionné.
+function currentBox(code: string, selection: Selection): number | null {
+  if (selection.end - selection.start === 1) return selection.start;
+  return code.length < ROOM_CODE_LENGTH ? Math.min(selection.start, code.length) : null;
+}
+
+// Code de la partie en quatre cases (maquette J2) : un seul champ invisible, sous les cases, reçoit la
+// saisie ; les cases montrent les caractères. Toucher une case remplie sélectionne son caractère dans le
+// champ : le prochain caractère tapé le remplace, sans effacer les autres. Toucher une case vide place
+// la saisie à la suite.
 export function CodeBoxes({ code, onChangeText, onSubmit }: CodeBoxesProps) {
   const inputRef = useRef<TextInput>(null);
   const [isFocused, setIsFocused] = useState(true);
-  const current = Math.min(code.length, ROOM_CODE_LENGTH - 1);
+  // Sélection imposée par un appui sur une case ; retirée dès la saisie suivante (le champ reprend la main).
+  const [forcedSelection, setForcedSelection] = useState<Selection | undefined>(undefined);
+  const [selection, setSelection] = useState<Selection>({ start: code.length, end: code.length });
+  const current = isFocused ? currentBox(code, forcedSelection ?? selection) : null;
+
+  function selectBox(index: number) {
+    const start = Math.min(index, code.length);
+    const next = { start, end: Math.min(start + 1, code.length) };
+    setForcedSelection(next);
+    setSelection(next);
+    inputRef.current?.focus();
+  }
+
   return (
-    <Pressable accessible={false} onPress={() => inputRef.current?.focus()} style={styles.row}>
-      {Array.from({ length: ROOM_CODE_LENGTH }, (_, index) => (
-        <View key={index} style={[styles.box, isFocused && index === current && styles.boxCurrent]}>
-          <Text style={styles.char} allowFontScaling={false}>
-            {code[index] ?? ''}
-          </Text>
-        </View>
-      ))}
+    <View style={styles.row}>
       <TextInput
         ref={inputRef}
         value={code}
-        onChangeText={onChangeText}
+        selection={forcedSelection}
+        onSelectionChange={(event) => setSelection(event.nativeEvent.selection)}
+        onChangeText={(text) => {
+          setForcedSelection(undefined);
+          onChangeText(text);
+        }}
         onSubmitEditing={onSubmit}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -53,7 +76,19 @@ export function CodeBoxes({ code, onChangeText, onSubmit }: CodeBoxesProps) {
         accessibilityLabel={strings.join.codeAccessibility}
         style={styles.hiddenInput}
       />
-    </Pressable>
+      {Array.from({ length: ROOM_CODE_LENGTH }, (_, index) => (
+        <Pressable
+          key={index}
+          accessibilityRole="button"
+          accessibilityLabel={strings.join.codeBoxAccessibility(index + 1, code[index])}
+          onPress={() => selectBox(index)}
+          style={[styles.box, index === current && styles.boxCurrent]}>
+          <Text style={styles.char} allowFontScaling={false}>
+            {code[index] ?? ''}
+          </Text>
+        </Pressable>
+      ))}
+    </View>
   );
 }
 
@@ -83,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: CHAR_SIZE,
     lineHeight: Math.round(CHAR_SIZE * DISPLAY_LINE_HEIGHT),
   },
-  // Champ réel, transparent, sur toute la rangée : il reçoit la saisie sans se voir.
+  // Champ réel, transparent, sous les cases (elles reçoivent les appuis) : il reçoit la saisie sans se voir.
   hiddenInput: {
     position: 'absolute',
     top: 0,
