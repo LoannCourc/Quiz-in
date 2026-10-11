@@ -101,6 +101,46 @@ export const strings = {
     back: 'Retour au catalogue',
     privacyLink: 'Politique de confidentialité',
   },
+  // Aide « Je ne trouve pas ma TV » (même texte que la page /aide-tv du site des joueurs).
+  tvHelp: {
+    title: 'Je ne trouve pas ma TV',
+    intro: 'Pour afficher le jeu, ton téléphone doit voir ta TV. Voici quoi vérifier, dans l’ordre.',
+    steps: {
+      wifi: {
+        title: 'Même Wi-Fi',
+        text: 'Ton téléphone et ta TV (ou ta box, ou ta clé Chromecast) doivent être sur le même réseau Wi-Fi. Pas en 4G/5G, pas sur un réseau « invité », sans VPN.',
+      },
+      power: {
+        title: 'TV allumée',
+        text: 'Allume la TV et sa box. Si tu utilises une clé Chromecast, vérifie qu’elle est bien branchée.',
+      },
+      restart: {
+        title: 'Redémarre',
+        text: 'Coupe et rallume le Wi-Fi de ton téléphone. Si ça ne change rien, débranche ta box ou ta clé 30 secondes, puis rebranche-la.',
+      },
+      localNetwork: {
+        title: 'Autorise le réseau local',
+        ios: 'Va dans Réglages → Quiz’in → Réseau local et active-le.',
+        android: 'Dans Réglages → Applications → Quiz’in → Autorisations, active « Appareils à proximité » s’il est proposé.',
+      },
+      youtube: {
+        title: 'Fais le test YouTube',
+        text: 'Ouvre YouTube et touche l’icône de diffusion. Si ta TV n’y apparaît pas non plus, le souci vient du réseau ou de la TV, pas de Quiz’in.',
+      },
+      elsewhere: {
+        title: 'La TV est chez quelqu’un d’autre ?',
+        text: 'Le propriétaire doit autoriser la diffusion pour tout le réseau Wi-Fi : dans l’app Google Home, touche la TV, puis Paramètres et le réglage de diffusion. Il peut aussi t’inviter dans son foyer Google Home.',
+      },
+      compatible: {
+        title: 'Ta TV est-elle compatible ?',
+        text: 'Il faut une TV avec Chromecast intégré (Google TV, Android TV, Freebox Pop…) ou une clé Chromecast. Une TV sans Chromecast, une Apple TV, ou certaines TV Samsung ou LG ne fonctionnent pas.',
+      },
+    },
+    contactStart: 'Toujours rien ? Écris-nous : ',
+    contactEmail: 'quizinsupport@gmail.com',
+    retry: 'Réessayer',
+    back: 'Retour',
+  },
   catalog: {
     loading: 'Chargement du catalogue…',
     errorPrefix: 'Erreur de chargement :',
@@ -284,6 +324,10 @@ export const strings = {
     codeLabel: 'Code de la partie',
     quizMeta: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
     noTvLink: 'Je n’ai pas de TV',
+    // Aide « Je ne trouve pas ma TV » (écran tvHelp) : lien sous « Afficher sur la TV », bandeau si aucune TV.
+    tvHelpLink: 'Je ne trouve pas ma TV ?',
+    noTvFoundBanner: 'Pas de TV trouvée ?',
+    noTvFoundAction: 'Voir l’aide',
     playersTitle: 'Joueurs',
     connectedCount: (count: number) => `${count} connecté${count > 1 ? 's' : ''}`,
     hostBadge: 'Hôte',

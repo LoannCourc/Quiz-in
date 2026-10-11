@@ -17,6 +17,7 @@ import {
 import { soundSettingsOf } from '@shared/sound';
 import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
+import { router, useFocusEffect } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
@@ -33,6 +34,7 @@ import { confirmAction } from '@/lib/confirm';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
+import { consumeTvRetry } from '@/lib/tvRetry';
 
 import { JoinWithoutTv } from './JoinWithoutTv';
 import { LobbyCodeHero } from './LobbyCodeHero';
@@ -80,6 +82,14 @@ export function HostLobby(props: HostLobbyProps) {
   // Replié à chaque ouverture du salon : état local, jamais mémorisé. QR code et lien : « QR code » ou
   // « Je n'ai pas de TV ».
   const [isQrOpen, setIsQrOpen] = useState(initialNoTvOpen);
+  const { showTvPicker } = cast;
+
+  // Retour de l'aide par « Réessayer » : la liste des TV se rouvre (l'icône Cast native est ici).
+  useFocusEffect(
+    useCallback(() => {
+      if (consumeTvRetry()) showTvPicker();
+    }, [showTvPicker]),
+  );
   const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
@@ -202,7 +212,14 @@ export function HostLobby(props: HostLobbyProps) {
           <>
             <LobbyCodeHero code={code} isQrOpen={isQrOpen} onToggleQr={() => setIsQrOpen((open) => !open)} />
             {isQrOpen && <JoinWithoutTv code={code} onHide={() => setIsQrOpen(false)} />}
-            {cast.isAvailable && <TvCastPill cast={cast} />}
+            {cast.isAvailable && (
+              <>
+                <TvCastPill cast={cast} />
+                <Pressable accessibilityRole="link" hitSlop={Spacing.two} onPress={() => router.push('/tv-help')}>
+                  <Text style={styles.helpLink}>{strings.hostLobby.tvHelpLink}</Text>
+                </Pressable>
+              </>
+            )}
             {!isQrOpen && (
               <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsQrOpen(true)}>
                 <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
@@ -300,6 +317,14 @@ const styles = StyleSheet.create({
     color: AppColors.link,
     fontFamily: AppFonts.extraBold,
     fontSize: 16,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+  },
+  // Lien discret sous « Afficher sur la TV ».
+  helpLink: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 14,
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
