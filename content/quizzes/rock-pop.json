@@ -1,0 +1,176 @@
+{
+  "id": "rock-pop",
+  "title": "Rock et pop internationale",
+  "theme": "Musique",
+  "description": "Queen, ABBA, Pink Floyd ou Nirvana : dix questions sur les légendes du rock et de la pop.",
+  "audience": "all",
+  "poster": "pink",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "rp-01",
+      "text": "Quel groupe britannique avait Freddie Mercury pour chanteur ?",
+      "options": [
+        "The Who",
+        "Genesis",
+        "Deep Purple",
+        "Queen"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "queen"
+      ],
+      "difficulty": 1,
+      "explanation": "Le groupe a signé « Bohemian Rhapsody »."
+    },
+    {
+      "id": "rp-02",
+      "text": "De quel pays vient le groupe ABBA ?",
+      "options": [
+        "La Norvège",
+        "La Suède",
+        "Le Danemark",
+        "Les Pays-Bas"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "suede",
+        "la suede"
+      ],
+      "difficulty": 1,
+      "explanation": "Il remporte l'Eurovision en 1974 avec « Waterloo »."
+    },
+    {
+      "id": "rp-03",
+      "text": "Quel guitariste gaucher joue l'hymne américain au festival de Woodstock, en 1969 ?",
+      "options": [
+        "Jimi Hendrix",
+        "Eric Clapton",
+        "Carlos Santana",
+        "Jimmy Page"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "hendrix",
+        "jimi hendrix"
+      ],
+      "difficulty": 2,
+      "explanation": "Sa version distordue est restée célèbre."
+    },
+    {
+      "id": "rp-04",
+      "text": "Quel groupe publie l'album « The Dark Side of the Moon » en 1973 ?",
+      "options": [
+        "Led Zeppelin",
+        "Genesis",
+        "Pink Floyd",
+        "Yes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "pink floyd"
+      ],
+      "difficulty": 2,
+      "explanation": "Sa pochette montre un prisme qui décompose la lumière."
+    },
+    {
+      "id": "rp-05",
+      "text": "Quel groupe irlandais a pour chanteur Bono ?",
+      "options": [
+        "The Cranberries",
+        "U2",
+        "Coldplay",
+        "Oasis"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "u2"
+      ],
+      "difficulty": 1,
+      "explanation": "Le groupe vient de Dublin."
+    },
+    {
+      "id": "rp-06",
+      "text": "Quel groupe de Seattle, emmené par Kurt Cobain, a popularisé le grunge ?",
+      "options": [
+        "Pearl Jam",
+        "Soundgarden",
+        "Foo Fighters",
+        "Nirvana"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "nirvana"
+      ],
+      "difficulty": 2,
+      "explanation": "Son album « Nevermind » sort en 1991."
+    },
+    {
+      "id": "rp-07",
+      "text": "Quel album de Michael Jackson, sorti en 1982, contient « Billie Jean » et « Beat It » ?",
+      "options": [
+        "Thriller",
+        "Bad",
+        "Off the Wall",
+        "Dangerous"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "thriller"
+      ],
+      "difficulty": 2,
+      "explanation": "Son clip, avec des zombies, est entré dans l'histoire."
+    },
+    {
+      "id": "rp-08",
+      "text": "Quel chanteur britannique a créé le personnage de Ziggy Stardust ?",
+      "options": [
+        "Elton John",
+        "Freddie Mercury",
+        "David Bowie",
+        "Mick Jagger"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "bowie",
+        "david bowie"
+      ],
+      "difficulty": 2,
+      "explanation": "Ziggy Stardust est une rock star venue de l'espace."
+    },
+    {
+      "id": "rp-09",
+      "text": "Quelle chanteuse est surnommée la « reine de la pop » ?",
+      "options": [
+        "Cher",
+        "Cyndi Lauper",
+        "Madonna",
+        "Kylie Minogue"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "madonna"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle débute au début des années 1980."
+    },
+    {
+      "id": "rp-10",
+      "text": "Sous quel nom de scène est connu Reginald Dwight, l'auteur de « Your Song » ?",
+      "options": [
+        "Elton John",
+        "George Michael",
+        "Phil Collins",
+        "Rod Stewart"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "elton john"
+      ],
+      "difficulty": 3,
+      "explanation": "Il emprunte son nom à deux musiciens qu'il admirait."
+    }
+  ]
+}

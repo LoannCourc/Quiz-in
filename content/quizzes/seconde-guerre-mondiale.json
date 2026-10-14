@@ -1,0 +1,178 @@
+{
+  "id": "seconde-guerre-mondiale",
+  "title": "La Seconde Guerre mondiale",
+  "theme": "Histoire",
+  "description": "Opérations, batailles et figures de la Résistance : dix questions pour les passionnés d'histoire du XXe siècle.",
+  "audience": "experts",
+  "poster": "red",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "sgm-01",
+      "text": "Quel est le nom de code du plan de débarquement allié en Normandie ?",
+      "options": [
+        "Torch",
+        "Market Garden",
+        "Overlord",
+        "Barbarossa"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "overlord",
+        "operation overlord"
+      ],
+      "difficulty": 2,
+      "explanation": "Son volet naval s'appelait « Neptune »."
+    },
+    {
+      "id": "sgm-02",
+      "text": "Quelle bataille, de l'été 1942 à février 1943, marque un tournant sur le front de l'Est ?",
+      "options": [
+        "Koursk",
+        "Leningrad",
+        "Stalingrad",
+        "Moscou"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "stalingrad"
+      ],
+      "difficulty": 2,
+      "explanation": "La 6e armée allemande y est encerclée puis capitule."
+    },
+    {
+      "id": "sgm-03",
+      "text": "Quelle bataille navale de juin 1942 marque un tournant dans la guerre du Pacifique ?",
+      "options": [
+        "Midway",
+        "Guadalcanal",
+        "Okinawa",
+        "Iwo Jima"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "midway"
+      ],
+      "difficulty": 3,
+      "explanation": "Le Japon y perd quatre porte-avions."
+    },
+    {
+      "id": "sgm-04",
+      "text": "De quelle ville du Nord les soldats alliés sont-ils évacués vers l'Angleterre, fin mai 1940 ?",
+      "options": [
+        "Calais",
+        "Boulogne-sur-Mer",
+        "Le Havre",
+        "Dunkerque"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "dunkerque"
+      ],
+      "difficulty": 2,
+      "explanation": "L'opération Dynamo sauve environ 340 000 soldats."
+    },
+    {
+      "id": "sgm-05",
+      "text": "Quel est le nom de code de l'invasion de l'URSS par l'Allemagne, le 22 juin 1941 ?",
+      "options": [
+        "Overlord",
+        "Barbarossa",
+        "Typhon",
+        "Citadelle"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "barbarossa",
+        "operation barbarossa"
+      ],
+      "difficulty": 3,
+      "explanation": "Le nom rend hommage à l'empereur Frédéric Barberousse."
+    },
+    {
+      "id": "sgm-06",
+      "text": "Quel chef de la Résistance, qui en a unifié les mouvements, est arrêté à Caluire en juin 1943 ?",
+      "options": [
+        "Jean Moulin",
+        "Pierre Brossolette",
+        "Lucie Aubrac",
+        "Henri Frenay"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "jean moulin",
+        "moulin"
+      ],
+      "difficulty": 2,
+      "explanation": "Il meurt quelques semaines plus tard, après avoir été torturé."
+    },
+    {
+      "id": "sgm-07",
+      "text": "Quelle bataille aérienne de 1940 oppose la Royal Air Force à la Luftwaffe ?",
+      "options": [
+        "La bataille de France",
+        "La bataille de l'Atlantique",
+        "La bataille d'Angleterre",
+        "La bataille des Ardennes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "bataille d'angleterre",
+        "la bataille d'angleterre"
+      ],
+      "difficulty": 2,
+      "explanation": "L'échec allemand fait reporter l'invasion de la Grande-Bretagne."
+    },
+    {
+      "id": "sgm-08",
+      "text": "Quel général allemand, chef de l'Afrikakorps, est surnommé le « Renard du désert » ?",
+      "options": [
+        "Heinz Guderian",
+        "Erwin Rommel",
+        "Erich von Manstein",
+        "Gerd von Rundstedt"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "rommel",
+        "erwin rommel"
+      ],
+      "difficulty": 3,
+      "explanation": "Il combat en Afrique du Nord à partir de 1941."
+    },
+    {
+      "id": "sgm-09",
+      "text": "Dans quelle ville allemande Truman, Staline et Churchill, puis Attlee, se réunissent-ils en juillet 1945 ?",
+      "options": [
+        "Berlin",
+        "Nuremberg",
+        "Munich",
+        "Potsdam"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "potsdam"
+      ],
+      "difficulty": 3,
+      "explanation": "La conférence se tient au château de Cecilienhof."
+    },
+    {
+      "id": "sgm-10",
+      "text": "Quelle ville japonaise est frappée par la seconde bombe atomique, le 9 août 1945 ?",
+      "options": [
+        "Nagasaki",
+        "Hiroshima",
+        "Kokura",
+        "Osaka"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "nagasaki"
+      ],
+      "difficulty": 2,
+      "explanation": "Kokura était la cible prévue, mais les nuages l'ont épargnée."
+    }
+  ]
+}

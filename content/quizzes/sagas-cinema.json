@@ -1,0 +1,181 @@
+{
+  "id": "sagas-cinema",
+  "title": "Les grandes sagas du cinéma",
+  "theme": "Cinéma et séries",
+  "description": "Harry Potter, James Bond, Star Wars ou Matrix : dix questions sur les sagas qui ont marqué le grand écran.",
+  "audience": "all",
+  "poster": "violet",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "sg-01",
+      "text": "Dans « Harry Potter », dans quelle maison de Poudlard Harry est-il envoyé ?",
+      "options": [
+        "Serpentard",
+        "Gryffondor",
+        "Poufsouffle",
+        "Serdaigle"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "gryffondor"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est le Choixpeau magique qui répartit les élèves."
+    },
+    {
+      "id": "sg-02",
+      "text": "Quel est le matricule de l'agent secret James Bond ?",
+      "options": [
+        "001",
+        "700",
+        "070",
+        "007"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "007",
+        "zero zero sept"
+      ],
+      "difficulty": 1,
+      "explanation": "Le double zéro signifie qu'il a le « permis de tuer »."
+    },
+    {
+      "id": "sg-03",
+      "text": "Quel archéologue au chapeau et au fouet est incarné par Harrison Ford ?",
+      "options": [
+        "Indiana Jones",
+        "Han Solo",
+        "Rick Deckard",
+        "Allan Quatermain"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "indiana jones",
+        "indy"
+      ],
+      "difficulty": 1,
+      "explanation": "Harrison Ford joue aussi Han Solo dans « Star Wars »."
+    },
+    {
+      "id": "sg-04",
+      "text": "Dans « Star Wars », quel petit maître Jedi vert parle en inversant ses phrases ?",
+      "options": [
+        "Obi-Wan Kenobi",
+        "Chewbacca",
+        "Yoda",
+        "R2-D2"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "yoda"
+      ],
+      "difficulty": 1,
+      "explanation": "« Puissant tu deviendras. »"
+    },
+    {
+      "id": "sg-05",
+      "text": "Dans « Jurassic Park » (1993), quel dinosaure géant poursuit la jeep des héros ?",
+      "options": [
+        "Le vélociraptor",
+        "Le tricératops",
+        "Le tyrannosaure",
+        "Le brachiosaure"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "tyrannosaure",
+        "t-rex",
+        "t rex"
+      ],
+      "difficulty": 1,
+      "explanation": "Son reflet apparaît dans le rétroviseur : « les objets sont plus proches qu'ils ne paraissent »."
+    },
+    {
+      "id": "sg-06",
+      "text": "Dans quelle ville vit le boxeur Rocky Balboa ?",
+      "options": [
+        "Philadelphie",
+        "Chicago",
+        "Boston",
+        "Détroit"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "philadelphie"
+      ],
+      "difficulty": 2,
+      "explanation": "Il s'entraîne en montant les marches du musée d'art de la ville."
+    },
+    {
+      "id": "sg-07",
+      "text": "Dans « Pirates des Caraïbes », comment s'appelle le navire de Jack Sparrow ?",
+      "options": [
+        "Le Hollandais volant",
+        "La Revanche de la Reine Anne",
+        "L'Endeavour",
+        "Le Black Pearl"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "black pearl",
+        "le black pearl"
+      ],
+      "difficulty": 2,
+      "explanation": "On le reconnaît à ses voiles noires."
+    },
+    {
+      "id": "sg-08",
+      "text": "Quel acteur incarne James Bond dans le tout premier film de la série, « James Bond 007 contre Dr No » (1962) ?",
+      "options": [
+        "Roger Moore",
+        "Sean Connery",
+        "Daniel Craig",
+        "Pierce Brosnan"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "sean connery",
+        "connery"
+      ],
+      "difficulty": 2,
+      "explanation": "Il joue Bond dans sept films."
+    },
+    {
+      "id": "sg-09",
+      "text": "Dans « Le Seigneur des anneaux », comment Gollum appelle-t-il l'Anneau ?",
+      "options": [
+        "« Mon précieux »",
+        "« Mon trésor »",
+        "« Mon maître »",
+        "« Mon ombre »"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "mon precieux",
+        "precieux"
+      ],
+      "difficulty": 2,
+      "explanation": "L'Anneau l'a rendu obsédé pendant des siècles."
+    },
+    {
+      "id": "sg-10",
+      "text": "Dans « Matrix », quelle pilule Neo avale-t-il pour découvrir la vérité ?",
+      "options": [
+        "La bleue",
+        "La verte",
+        "La rouge",
+        "La jaune"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "rouge",
+        "la rouge"
+      ],
+      "difficulty": 2,
+      "explanation": "La bleue l'aurait renvoyé à sa vie ordinaire."
+    }
+  ]
+}

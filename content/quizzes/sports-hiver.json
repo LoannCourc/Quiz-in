@@ -1,0 +1,184 @@
+{
+  "id": "sports-hiver",
+  "title": "Les sports d'hiver",
+  "theme": "Sport",
+  "description": "Ski, curling, hockey et patinage : dix questions pour glisser sur la neige et la glace.",
+  "audience": "all",
+  "poster": "blue",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "shv-01",
+      "text": "Dans quel sport fait-on glisser de lourdes pierres sur la glace en balayant devant elles ?",
+      "options": [
+        "Le hockey",
+        "Le bobsleigh",
+        "Le curling",
+        "La luge"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "curling",
+        "le curling"
+      ],
+      "difficulty": 1,
+      "explanation": "Le balayage aide la pierre à aller plus loin."
+    },
+    {
+      "id": "shv-02",
+      "text": "Au hockey sur glace, avec quoi joue-t-on à la place d'une balle ?",
+      "options": [
+        "Un palet",
+        "Un ballon",
+        "Un volant",
+        "Une bille"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "palet",
+        "un palet",
+        "rondelle"
+      ],
+      "difficulty": 1,
+      "explanation": "Au Québec, on l'appelle la rondelle."
+    },
+    {
+      "id": "shv-03",
+      "text": "Quelle épreuve de ski consiste à descendre en passant entre des portes très rapprochées ?",
+      "options": [
+        "Le saut",
+        "Le biathlon",
+        "Le ski de fond",
+        "Le slalom"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "slalom",
+        "le slalom"
+      ],
+      "difficulty": 1,
+      "explanation": "Le slalom géant a des portes plus espacées."
+    },
+    {
+      "id": "shv-04",
+      "text": "Quel sport associe le ski de fond et le tir à la carabine ?",
+      "options": [
+        "Le combiné nordique",
+        "Le biathlon",
+        "Le triathlon",
+        "Le pentathlon"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "biathlon",
+        "le biathlon"
+      ],
+      "difficulty": 2,
+      "explanation": "Le combiné nordique, lui, associe ski de fond et saut à ski."
+    },
+    {
+      "id": "shv-05",
+      "text": "Comment appelle-t-on la planche sur laquelle on descend les pistes, les deux pieds attachés ?",
+      "options": [
+        "Le snowboard",
+        "Le ski alpin",
+        "Le patin",
+        "Le bobsleigh"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "snowboard",
+        "surf des neiges"
+      ],
+      "difficulty": 1,
+      "explanation": "On dit aussi « surf des neiges »."
+    },
+    {
+      "id": "shv-06",
+      "text": "Quelle épreuve se pratique à plat ventre sur une luge, la tête la première ?",
+      "options": [
+        "La luge",
+        "Le bobsleigh",
+        "Le skeleton",
+        "Le curling"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "skeleton",
+        "le skeleton"
+      ],
+      "difficulty": 2,
+      "explanation": "En luge, on descend sur le dos, les pieds en avant."
+    },
+    {
+      "id": "shv-07",
+      "text": "Quel skieur français remporte trois médailles d'or aux Jeux de Grenoble, en 1968 ?",
+      "options": [
+        "Luc Alphand",
+        "Jean-Claude Killy",
+        "Alexis Pinturault",
+        "Émile Allais"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "killy",
+        "jean-claude killy"
+      ],
+      "difficulty": 2,
+      "explanation": "Il gagne la descente, le slalom et le slalom géant."
+    },
+    {
+      "id": "shv-08",
+      "text": "Comment s'appelle la remontée mécanique où l'on s'assoit sur une banquette suspendue ?",
+      "options": [
+        "Le téléski",
+        "Le téléphérique",
+        "Le funiculaire",
+        "Le télésiège"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "telesiege",
+        "le telesiege"
+      ],
+      "difficulty": 1,
+      "explanation": "Au téléski, on reste debout sur ses skis."
+    },
+    {
+      "id": "shv-09",
+      "text": "En patinage artistique, quel saut, le seul à partir vers l'avant, porte le prénom d'un patineur norvégien ?",
+      "options": [
+        "L'axel",
+        "Le lutz",
+        "Le salchow",
+        "La boucle"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "axel",
+        "l'axel"
+      ],
+      "difficulty": 3,
+      "explanation": "Il doit son nom à Axel Paulsen ; on y fait une rotation et demie."
+    },
+    {
+      "id": "shv-10",
+      "text": "Au hockey sur glace, combien de joueurs par équipe sont sur la glace, gardien compris ?",
+      "options": [
+        "5",
+        "7",
+        "6",
+        "11"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "6",
+        "six"
+      ],
+      "difficulty": 2,
+      "explanation": "Un gardien et cinq joueurs de champ."
+    }
+  ]
+}

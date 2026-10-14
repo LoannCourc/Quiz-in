@@ -1,0 +1,186 @@
+{
+  "id": "meteo-climat",
+  "title": "Météo et climat",
+  "theme": "Sciences et nature",
+  "description": "Orages, vents, givre et mousson : dix questions pour devenir le présentateur météo de la famille.",
+  "audience": "all",
+  "poster": "cyan",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "met-01",
+      "text": "Quel instrument mesure la température ?",
+      "options": [
+        "Le thermomètre",
+        "Le baromètre",
+        "L'anémomètre",
+        "Le pluviomètre"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "thermometre",
+        "le thermometre"
+      ],
+      "difficulty": 1,
+      "explanation": "L'anémomètre, lui, mesure la vitesse du vent."
+    },
+    {
+      "id": "met-02",
+      "text": "Comment appelle-t-on les grains de glace qui tombent parfois pendant un orage ?",
+      "options": [
+        "La neige",
+        "La bruine",
+        "La grêle",
+        "La rosée"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "grele",
+        "la grele"
+      ],
+      "difficulty": 1,
+      "explanation": "Certains grêlons peuvent être aussi gros qu'une balle de golf."
+    },
+    {
+      "id": "met-03",
+      "text": "Quel phénomène lumineux accompagne le tonnerre pendant un orage ?",
+      "options": [
+        "L'arc-en-ciel",
+        "L'aurore",
+        "L'éclair",
+        "Le halo"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "eclair",
+        "l'eclair",
+        "la foudre"
+      ],
+      "difficulty": 1,
+      "explanation": "On voit l'éclair avant d'entendre le tonnerre, car la lumière va plus vite que le son."
+    },
+    {
+      "id": "met-04",
+      "text": "À combien de degrés Celsius l'eau pure gèle-t-elle ?",
+      "options": [
+        "0",
+        "-10",
+        "4",
+        "10"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "0",
+        "zero"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est le point de départ de l'échelle Celsius."
+    },
+    {
+      "id": "met-05",
+      "text": "Comment appelle-t-on un tourbillon de vent très violent en forme d'entonnoir ?",
+      "options": [
+        "Une mousson",
+        "Une brise",
+        "Une averse",
+        "Une tornade"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "tornade",
+        "une tornade"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle naît sous un nuage d'orage."
+    },
+    {
+      "id": "met-06",
+      "text": "Quel vent froid et sec descend la vallée du Rhône vers la Méditerranée ?",
+      "options": [
+        "La tramontane",
+        "Le mistral",
+        "Le sirocco",
+        "Le foehn"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "mistral",
+        "le mistral"
+      ],
+      "difficulty": 2,
+      "explanation": "La tramontane souffle plutôt sur le Languedoc et le Roussillon."
+    },
+    {
+      "id": "met-07",
+      "text": "Quel instrument mesure la pression de l'air ?",
+      "options": [
+        "Le baromètre",
+        "Le thermomètre",
+        "L'hygromètre",
+        "L'anémomètre"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "barometre",
+        "le barometre"
+      ],
+      "difficulty": 2,
+      "explanation": "Une pression qui baisse annonce souvent du mauvais temps."
+    },
+    {
+      "id": "met-08",
+      "text": "Comment appelle-t-on les cyclones tropicaux de l'Atlantique Nord et des Caraïbes ?",
+      "options": [
+        "Les typhons",
+        "Les moussons",
+        "Les ouragans",
+        "Les blizzards"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "ouragans",
+        "ouragan",
+        "les ouragans"
+      ],
+      "difficulty": 2,
+      "explanation": "Dans le nord-ouest du Pacifique, on parle de typhons."
+    },
+    {
+      "id": "met-09",
+      "text": "Comment appelle-t-on la fine couche de glace qui blanchit l'herbe les matins froids ?",
+      "options": [
+        "La rosée",
+        "Le givre",
+        "La brume",
+        "Le verglas"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "givre",
+        "le givre",
+        "gelee blanche"
+      ],
+      "difficulty": 2,
+      "explanation": "La rosée, elle, est faite de gouttelettes d'eau liquide."
+    },
+    {
+      "id": "met-10",
+      "text": "Comment s'appelle la saison des grandes pluies en Inde et en Asie du Sud ?",
+      "options": [
+        "La sécheresse",
+        "La canicule",
+        "La banquise",
+        "La mousson"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "mousson",
+        "la mousson"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle est apportée par des vents venus de l'océan."
+    }
+  ]
+}

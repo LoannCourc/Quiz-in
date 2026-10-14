@@ -1,0 +1,175 @@
+{
+  "id": "villes-de-france",
+  "title": "Villes et régions de France",
+  "theme": "Géographie",
+  "description": "De Lille à Nice, de la Bretagne à la Provence : dix questions pour faire le tour de France.",
+  "audience": "all",
+  "poster": "blue",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "vf-01",
+      "text": "Quelle ville accueille chaque été un célèbre festival de théâtre, dans la cour du palais des Papes ?",
+      "options": [
+        "Cannes",
+        "Avignon",
+        "Deauville",
+        "Annecy"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "avignon"
+      ],
+      "difficulty": 2,
+      "explanation": "Le festival a été créé par Jean Vilar en 1947."
+    },
+    {
+      "id": "vf-02",
+      "text": "Quelle ville d'Alsace accueille le Parlement européen ?",
+      "options": [
+        "Strasbourg",
+        "Colmar",
+        "Mulhouse",
+        "Metz"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "strasbourg"
+      ],
+      "difficulty": 1,
+      "explanation": "Sa cathédrale est l'une des plus hautes de France."
+    },
+    {
+      "id": "vf-03",
+      "text": "Quelle région est célèbre pour ses champs de lavande ?",
+      "options": [
+        "La Bretagne",
+        "La Normandie",
+        "La Provence",
+        "L'Auvergne"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "provence",
+        "la provence"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils fleurissent en violet au début de l'été."
+    },
+    {
+      "id": "vf-04",
+      "text": "Quelle ville est surnommée la « capitale des Gaules » ?",
+      "options": [
+        "Marseille",
+        "Lyon",
+        "Bordeaux",
+        "Reims"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "lyon"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle s'appelait Lugdunum à l'époque romaine."
+    },
+    {
+      "id": "vf-05",
+      "text": "De quelle région la crêpe et le cidre sont-ils deux grands symboles ?",
+      "options": [
+        "L'Alsace",
+        "La Provence",
+        "La Bourgogne",
+        "La Bretagne"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "bretagne",
+        "la bretagne"
+      ],
+      "difficulty": 1,
+      "explanation": "Les galettes salées sont faites de farine de sarrasin."
+    },
+    {
+      "id": "vf-06",
+      "text": "Quelle ville du Nord organise chaque septembre une immense braderie ?",
+      "options": [
+        "Lille",
+        "Roubaix",
+        "Amiens",
+        "Arras"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "lille"
+      ],
+      "difficulty": 2,
+      "explanation": "On y mange traditionnellement des moules-frites."
+    },
+    {
+      "id": "vf-07",
+      "text": "Quelle ville accueille chaque année la course automobile des 24 Heures ?",
+      "options": [
+        "Reims",
+        "Pau",
+        "Le Mans",
+        "Nevers"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "le mans"
+      ],
+      "difficulty": 1,
+      "explanation": "Les voitures roulent jour et nuit pendant 24 heures."
+    },
+    {
+      "id": "vf-08",
+      "text": "Quelle ville de la Côte d'Azur est célèbre pour sa promenade des Anglais ?",
+      "options": [
+        "Cannes",
+        "Antibes",
+        "Nice",
+        "Menton"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "nice"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle longe la baie des Anges."
+    },
+    {
+      "id": "vf-09",
+      "text": "Quelle ville de l'Aude est célèbre pour sa cité médiévale fortifiée ?",
+      "options": [
+        "Carcassonne",
+        "Narbonne",
+        "Perpignan",
+        "Béziers"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "carcassonne"
+      ],
+      "difficulty": 2,
+      "explanation": "Ses remparts ont été restaurés au XIXe siècle par Viollet-le-Duc."
+    },
+    {
+      "id": "vf-10",
+      "text": "Quelle ville, au bord de la Garonne, abrite la Cité du Vin ?",
+      "options": [
+        "Toulouse",
+        "Agen",
+        "Libourne",
+        "Bordeaux"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "bordeaux"
+      ],
+      "difficulty": 1,
+      "explanation": "Sa région viticole est connue dans le monde entier."
+    }
+  ]
+}

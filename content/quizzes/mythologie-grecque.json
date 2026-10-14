@@ -1,0 +1,175 @@
+{
+  "id": "mythologie-grecque",
+  "title": "La mythologie grecque",
+  "theme": "Culture générale",
+  "description": "Dieux de l'Olympe, héros et monstres : dix questions sur les grands récits de la Grèce antique.",
+  "audience": "all",
+  "poster": "cyan",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "mg-01",
+      "text": "Qui est le roi des dieux de l'Olympe ?",
+      "options": [
+        "Hadès",
+        "Apollon",
+        "Arès",
+        "Zeus"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "zeus"
+      ],
+      "difficulty": 1,
+      "explanation": "Il lance la foudre."
+    },
+    {
+      "id": "mg-02",
+      "text": "Quelle créature aux cheveux de serpents change en pierre ceux qui la regardent ?",
+      "options": [
+        "Méduse",
+        "La Chimère",
+        "L'Hydre",
+        "La Sphinge"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "meduse"
+      ],
+      "difficulty": 1,
+      "explanation": "Persée lui coupe la tête en la regardant dans un bouclier."
+    },
+    {
+      "id": "mg-03",
+      "text": "Quel héros grec tue le Minotaure dans le labyrinthe ?",
+      "options": [
+        "Persée",
+        "Jason",
+        "Thésée",
+        "Achille"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "thesee"
+      ],
+      "difficulty": 2,
+      "explanation": "Le labyrinthe se trouvait en Crète."
+    },
+    {
+      "id": "mg-04",
+      "text": "Quelle princesse donne à Thésée un fil pour ressortir du labyrinthe ?",
+      "options": [
+        "Pénélope",
+        "Hélène",
+        "Ariane",
+        "Médée"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "ariane"
+      ],
+      "difficulty": 2,
+      "explanation": "D'où l'expression « le fil d'Ariane »."
+    },
+    {
+      "id": "mg-05",
+      "text": "Quel héros rusé imagine le cheval de Troie ?",
+      "options": [
+        "Ulysse",
+        "Agamemnon",
+        "Hector",
+        "Pâris"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ulysse"
+      ],
+      "difficulty": 2,
+      "explanation": "Son long retour vers Ithaque est raconté dans « L'Odyssée »."
+    },
+    {
+      "id": "mg-06",
+      "text": "Quelle déesse de la sagesse est la protectrice d'Athènes ?",
+      "options": [
+        "Aphrodite",
+        "Héra",
+        "Artémis",
+        "Athéna"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "athena"
+      ],
+      "difficulty": 2,
+      "explanation": "Le Parthénon lui était consacré."
+    },
+    {
+      "id": "mg-07",
+      "text": "Où se trouve le seul point faible d'Achille ?",
+      "options": [
+        "Au genou",
+        "Au talon",
+        "À l'épaule",
+        "Au cœur"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "talon",
+        "au talon",
+        "son talon"
+      ],
+      "difficulty": 1,
+      "explanation": "Sa mère l'avait plongé dans le Styx en le tenant par le talon."
+    },
+    {
+      "id": "mg-08",
+      "text": "Quel Titan vole le feu aux dieux pour le donner aux hommes ?",
+      "options": [
+        "Prométhée",
+        "Atlas",
+        "Cronos",
+        "Hypérion"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "promethee"
+      ],
+      "difficulty": 2,
+      "explanation": "Zeus le punit en l'enchaînant à un rocher."
+    },
+    {
+      "id": "mg-09",
+      "text": "Comment s'appelle la femme qui, en ouvrant une jarre interdite, libère tous les maux du monde ?",
+      "options": [
+        "Psyché",
+        "Perséphone",
+        "Pandore",
+        "Cassandre"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "pandore"
+      ],
+      "difficulty": 2,
+      "explanation": "Seule l'Espérance reste au fond."
+    },
+    {
+      "id": "mg-10",
+      "text": "Quel chien à trois têtes garde l'entrée des Enfers ?",
+      "options": [
+        "Pégase",
+        "Cerbère",
+        "Le Minotaure",
+        "Charybde"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "cerbere"
+      ],
+      "difficulty": 2,
+      "explanation": "Héraclès le capture lors de son dernier travail."
+    }
+  ]
+}

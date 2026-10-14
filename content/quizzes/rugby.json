@@ -1,0 +1,185 @@
+{
+  "id": "rugby",
+  "title": "Le rugby",
+  "theme": "Sport",
+  "description": "Essais, mêlées et Six Nations : dix questions pour les amoureux du ballon ovale.",
+  "audience": "all",
+  "poster": "green",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "rg-01",
+      "text": "Combien de joueurs une équipe de rugby à XV aligne-t-elle sur le terrain ?",
+      "options": [
+        "15",
+        "11",
+        "13",
+        "7"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "15",
+        "quinze"
+      ],
+      "difficulty": 1,
+      "explanation": "Le rugby à XIII et le rugby à 7 se jouent avec moins de joueurs."
+    },
+    {
+      "id": "rg-02",
+      "text": "Comment s'appelle la danse maorie que les All Blacks exécutent avant leurs matchs ?",
+      "options": [
+        "Le hula",
+        "La samba",
+        "La gigue",
+        "Le haka"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "haka",
+        "le haka"
+      ],
+      "difficulty": 1,
+      "explanation": "Les All Blacks sont l'équipe de Nouvelle-Zélande."
+    },
+    {
+      "id": "rg-03",
+      "text": "Quel tournoi annuel oppose la France, l'Angleterre, l'Écosse, le pays de Galles, l'Irlande et l'Italie ?",
+      "options": [
+        "La Coupe du monde",
+        "Le Tournoi des Six Nations",
+        "Le Rugby Championship",
+        "La Coupe d'Europe"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "six nations",
+        "tournoi des six nations",
+        "6 nations"
+      ],
+      "difficulty": 1,
+      "explanation": "L'Italie l'a rejoint en 2000."
+    },
+    {
+      "id": "rg-04",
+      "text": "Combien de points rapporte une transformation réussie ?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "5"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "2",
+        "deux"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle se tente juste après un essai."
+    },
+    {
+      "id": "rg-05",
+      "text": "Combien de points rapporte un drop réussi ?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "3",
+        "trois"
+      ],
+      "difficulty": 2,
+      "explanation": "Le ballon doit rebondir au sol juste avant d'être frappé."
+    },
+    {
+      "id": "rg-06",
+      "text": "Dans quelle direction les passes à la main doivent-elles être faites ?",
+      "options": [
+        "Vers l'avant",
+        "Vers l'arrière",
+        "En diagonale vers l'avant",
+        "Dans n'importe quelle direction"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "vers l'arriere",
+        "en arriere",
+        "arriere"
+      ],
+      "difficulty": 1,
+      "explanation": "Une passe vers l'avant est un « en-avant », sanctionné par l'arbitre."
+    },
+    {
+      "id": "rg-07",
+      "text": "Comment s'appelle la phase où les avants des deux équipes se lient et poussent face à face ?",
+      "options": [
+        "La touche",
+        "L'essai",
+        "La chandelle",
+        "La mêlée"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "melee",
+        "la melee"
+      ],
+      "difficulty": 1,
+      "explanation": "Le demi de mêlée y introduit le ballon."
+    },
+    {
+      "id": "rg-08",
+      "text": "Quelle équipe nationale est surnommée les « Springboks » ?",
+      "options": [
+        "L'Afrique du Sud",
+        "La Nouvelle-Zélande",
+        "L'Australie",
+        "L'Argentine"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "afrique du sud",
+        "l'afrique du sud"
+      ],
+      "difficulty": 2,
+      "explanation": "Le springbok est une antilope d'Afrique australe."
+    },
+    {
+      "id": "rg-09",
+      "text": "Quel nom porte le trophée remis au vainqueur de la Coupe du monde de rugby ?",
+      "options": [
+        "Le bouclier de Brennus",
+        "La Calcutta Cup",
+        "Le trophée Webb Ellis",
+        "La coupe Bledisloe"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "webb ellis",
+        "trophee webb ellis"
+      ],
+      "difficulty": 3,
+      "explanation": "Il honore William Webb Ellis, présenté comme l'inventeur du rugby."
+    },
+    {
+      "id": "rg-10",
+      "text": "Comment appelle-t-on le fait de gagner tous ses matchs du Tournoi des Six Nations ?",
+      "options": [
+        "La Triple Couronne",
+        "Le doublé",
+        "Le Grand Chelem",
+        "La cuillère de bois"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "grand chelem",
+        "le grand chelem"
+      ],
+      "difficulty": 2,
+      "explanation": "La cuillère de bois revient à l'équipe qui perd tous ses matchs."
+    }
+  ]
+}

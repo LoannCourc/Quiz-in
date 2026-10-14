@@ -1,0 +1,183 @@
+{
+  "id": "pays-du-monde",
+  "title": "Pays du monde",
+  "theme": "Géographie",
+  "description": "Drapeaux étonnants, pays enclavés et capitales méconnues : dix questions pour les globe-trotteurs.",
+  "audience": "experts",
+  "poster": "gold",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "pm-01",
+      "text": "Quel pays a le seul drapeau national qui n'est ni rectangulaire ni carré ?",
+      "options": [
+        "Le Népal",
+        "Le Bhoutan",
+        "La Suisse",
+        "Le Vatican"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "nepal",
+        "le nepal"
+      ],
+      "difficulty": 3,
+      "explanation": "Il est formé de deux fanions triangulaires superposés."
+    },
+    {
+      "id": "pm-02",
+      "text": "En plus de la Bolivie, quel pays d'Amérique du Sud n'a aucun accès à la mer ?",
+      "options": [
+        "L'Uruguay",
+        "L'Équateur",
+        "Le Paraguay",
+        "Le Suriname"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "paraguay",
+        "le paraguay"
+      ],
+      "difficulty": 3,
+      "explanation": "Ses voisins sont le Brésil, la Bolivie et l'Argentine."
+    },
+    {
+      "id": "pm-03",
+      "text": "Quel royaume est entièrement entouré par l'Afrique du Sud ?",
+      "options": [
+        "L'Eswatini",
+        "Le Lesotho",
+        "Le Botswana",
+        "La Namibie"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "lesotho",
+        "le lesotho"
+      ],
+      "difficulty": 3,
+      "explanation": "L'Eswatini touche aussi le Mozambique."
+    },
+    {
+      "id": "pm-04",
+      "text": "Quel pays a pour capitale Addis-Abeba ?",
+      "options": [
+        "Le Kenya",
+        "L'Érythrée",
+        "La Somalie",
+        "L'Éthiopie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "ethiopie",
+        "l'ethiopie"
+      ],
+      "difficulty": 2,
+      "explanation": "La ville accueille aussi le siège de l'Union africaine."
+    },
+    {
+      "id": "pm-05",
+      "text": "Quels pays le détroit de Béring sépare-t-il ?",
+      "options": [
+        "La Russie et les États-Unis",
+        "Le Canada et la Russie",
+        "Le Japon et la Russie",
+        "Les États-Unis et le Canada"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "russie et etats-unis",
+        "la russie et les etats-unis",
+        "etats-unis et russie"
+      ],
+      "difficulty": 2,
+      "explanation": "Il sépare la Sibérie de l'Alaska, sur environ 85 km."
+    },
+    {
+      "id": "pm-06",
+      "text": "Quelle ville est la capitale constitutionnelle de la Bolivie ?",
+      "options": [
+        "La Paz",
+        "Santa Cruz",
+        "Sucre",
+        "Cochabamba"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "sucre"
+      ],
+      "difficulty": 3,
+      "explanation": "La Paz est le siège du gouvernement."
+    },
+    {
+      "id": "pm-07",
+      "text": "En plus du Vatican, quel micro-État est entièrement enclavé dans l'Italie ?",
+      "options": [
+        "Monaco",
+        "Le Liechtenstein",
+        "Saint-Marin",
+        "Andorre"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "saint-marin",
+        "san marino"
+      ],
+      "difficulty": 2,
+      "explanation": "C'est l'une des plus anciennes républiques du monde."
+    },
+    {
+      "id": "pm-08",
+      "text": "Quelle est la capitale de la Turquie ?",
+      "options": [
+        "Ankara",
+        "Istanbul",
+        "Izmir",
+        "Antalya"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ankara"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle remplace Istanbul en 1923, à la naissance de la République."
+    },
+    {
+      "id": "pm-09",
+      "text": "Dans quel pays se trouve le désert d'Atacama, l'un des plus arides du monde ?",
+      "options": [
+        "Le Mexique",
+        "L'Australie",
+        "La Namibie",
+        "Le Chili"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "chili",
+        "le chili"
+      ],
+      "difficulty": 2,
+      "explanation": "Certaines de ses stations météo n'ont jamais mesuré de pluie."
+    },
+    {
+      "id": "pm-10",
+      "text": "Quel pays a pour capitale Hanoï ?",
+      "options": [
+        "Le Laos",
+        "Le Viêt Nam",
+        "Le Cambodge",
+        "La Thaïlande"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "viet nam",
+        "vietnam",
+        "le viet nam"
+      ],
+      "difficulty": 2,
+      "explanation": "Hô Chi Minh-Ville est plus peuplée, mais Hanoï est la capitale."
+    }
+  ]
+}

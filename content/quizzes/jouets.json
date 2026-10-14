@@ -1,0 +1,183 @@
+{
+  "id": "jouets",
+  "title": "Jouets d'hier et d'aujourd'hui",
+  "theme": "Loisirs",
+  "description": "Lego, Barbie, yo-yo ou Tamagotchi : dix questions sur les jouets qui ont rempli nos coffres.",
+  "audience": "all",
+  "poster": "orange",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q4)",
+  "questions": [
+    {
+      "id": "jx-01",
+      "text": "Quelle marque danoise fabrique des petites briques en plastique à emboîter ?",
+      "options": [
+        "Playmobil",
+        "Meccano",
+        "Lego",
+        "Kapla"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "lego"
+      ],
+      "difficulty": 1,
+      "explanation": "Son nom vient du danois « leg godt », « joue bien »."
+    },
+    {
+      "id": "jx-02",
+      "text": "Quel casse-tête cubique aux faces colorées a été inventé par Ernő Rubik ?",
+      "options": [
+        "Le tangram",
+        "Le Rubik's Cube",
+        "Le sudoku",
+        "Le Mastermind"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "rubik's cube",
+        "rubiks cube",
+        "rubik"
+      ],
+      "difficulty": 1,
+      "explanation": "Il a été inventé en Hongrie en 1974."
+    },
+    {
+      "id": "jx-03",
+      "text": "Comment s'appelle la poupée mannequin lancée par Mattel en 1959 ?",
+      "options": [
+        "Sindy",
+        "Bratz",
+        "Polly Pocket",
+        "Barbie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "barbie"
+      ],
+      "difficulty": 1,
+      "explanation": "Son ami s'appelle Ken."
+    },
+    {
+      "id": "jx-04",
+      "text": "Quel jouet monte et descend le long d'une ficelle enroulée ?",
+      "options": [
+        "Le yo-yo",
+        "La toupie",
+        "Le cerf-volant",
+        "Le diabolo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "yo-yo",
+        "yoyo"
+      ],
+      "difficulty": 1,
+      "explanation": "On le fait remonter d'un petit coup de poignet."
+    },
+    {
+      "id": "jx-05",
+      "text": "Quelle marque allemande fabrique de petits personnages en plastique d'environ 7,5 cm ?",
+      "options": [
+        "Lego",
+        "Schleich",
+        "Playmobil",
+        "Kapla"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "playmobil"
+      ],
+      "difficulty": 2,
+      "explanation": "Les premiers personnages sont sortis en 1974."
+    },
+    {
+      "id": "jx-06",
+      "text": "Quel jouet tourne longtemps sur sa pointe quand on le lance ?",
+      "options": [
+        "La balle",
+        "Le yo-yo",
+        "La toupie",
+        "La bille"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "toupie",
+        "la toupie"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle finit par tomber en ralentissant."
+    },
+    {
+      "id": "jx-07",
+      "text": "Quel jouet électronique des années 1990 était un petit animal virtuel à nourrir et à soigner ?",
+      "options": [
+        "Le Tamagotchi",
+        "La Game Boy",
+        "Le Walkman",
+        "Le Pokédex"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "tamagotchi",
+        "le tamagotchi"
+      ],
+      "difficulty": 2,
+      "explanation": "Il venait du Japon et tenait dans la main."
+    },
+    {
+      "id": "jx-08",
+      "text": "Quel jeu consiste à retirer des blocs de bois d'une tour sans la faire tomber ?",
+      "options": [
+        "Le Mikado",
+        "Le Kapla",
+        "Les dominos",
+        "Le Jenga"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "jenga",
+        "le jenga"
+      ],
+      "difficulty": 1,
+      "explanation": "Au Mikado, ce sont des baguettes que l'on retire une à une."
+    },
+    {
+      "id": "jx-09",
+      "text": "Quel président américain a donné son surnom à l'ours en peluche « teddy bear » ?",
+      "options": [
+        "Abraham Lincoln",
+        "Theodore Roosevelt",
+        "George Washington",
+        "John F. Kennedy"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "theodore roosevelt",
+        "roosevelt",
+        "teddy roosevelt"
+      ],
+      "difficulty": 2,
+      "explanation": "« Teddy » était le surnom de Theodore Roosevelt."
+    },
+    {
+      "id": "jx-10",
+      "text": "Quel grand cerceau, que l'on fait tourner autour de la taille, a fait fureur à la fin des années 1950 ?",
+      "options": [
+        "Le hula-hoop",
+        "Le frisbee",
+        "Le skateboard",
+        "La corde à sauter"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "hula-hoop",
+        "hula hoop",
+        "houla-hop"
+      ],
+      "difficulty": 2,
+      "explanation": "Il faut onduler des hanches pour qu'il ne tombe pas."
+    }
+  ]
+}
