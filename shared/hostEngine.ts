@@ -656,17 +656,25 @@ export function isTransitionLocked(lock: TransitionLock | null, key: string, now
   return lock !== null && lock.key === key && nowMs - lock.since < TRANSITION_LOCK_MAX_MS
 }
 
-// Partie que l'hôte peut reprendre (bouton « Reprendre la partie » de l'accueil) : elle existe, n'est pas
-// terminée, il en est l'hôte, et il n'est pas parti depuis plus de HOST_DISCONNECT_TIMEOUT_S (joueurs et TV
-// peuvent alors la supprimer). Sinon, le code mémorisé sur l'appareil doit être effacé. nowServer : heure du
-// serveur (comparée à hostLeftAt, écrit par le serveur).
-export function isResumableBy(
-  game: { hostUid?: PlayerId; status?: GameStatus; hostLeftAt?: number } | null,
-  uid: PlayerId,
-  nowServer: number,
-): boolean {
-  if (game === null || game.hostUid !== uid || game.status === undefined || game.status === 'ended') return false
-  return !canDeleteAbandonedGame({ status: game.status, hostLeftAt: game.hostLeftAt }, nowServer)
+// Lecture de la partie gardée sur le téléphone (bouton « Reprendre la partie » de l'accueil) : trouvée, absente
+// (lecture réussie, plus de session), ou échouée (refus, réseau, délai dépassé : on ne sait pas).
+export type ResumeRead =
+  | { kind: 'found'; game: { hostUid?: PlayerId; status?: GameStatus; hostLeftAt?: number } }
+  | { kind: 'missing' }
+  | { kind: 'failed' }
+
+// resume : bouton affiché ; forget : partie certainement finie, code effacé ; retry : doute, bouton gardé et
+// nouvel essai (jamais d'effacement sur une erreur).
+export type ResumeDecision = 'resume' | 'forget' | 'retry'
+
+// Le bouton ne disparaît que sur une réponse certaine : session supprimée, partie d'un autre hôte, ou hôte
+// absent depuis plus de HOST_DISCONNECT_TIMEOUT_S (joueurs et TV peuvent alors la supprimer). Une partie
+// terminée mais encore présente reste reprenable (« Quitter » efface le code).
+export function resumeDecision(read: ResumeRead, uid: PlayerId, nowServer: number): ResumeDecision {
+  if (read.kind === 'failed') return 'retry'
+  if (read.kind === 'missing' || read.game.hostUid !== uid) return 'forget'
+  const status = read.game.status ?? 'lobby'
+  return canDeleteAbandonedGame({ status, hostLeftAt: read.game.hostLeftAt }, nowServer) ? 'forget' : 'resume'
 }
 
 // États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).

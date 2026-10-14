@@ -1,5 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
+import type { GameStatus } from '../../shared/types'
+
 import {
   ALL_ANSWERED_DELAY_S,
   QUESTIONS_PER_GAME,
@@ -14,7 +16,7 @@ import {
   endUpdate,
   gradeAnswer,
   hostControls,
-  isResumableBy,
+  resumeDecision,
   isTransitionLocked,
   launchUpdate,
   nextDeadline,
@@ -459,24 +461,30 @@ describe('verrou de transition', () => {
   })
 })
 
-describe('isResumableBy', () => {
-  test('partie en cours dont je suis l’hôte : reprise possible', () => {
-    expect(isResumableBy({ hostUid: HOST, status: 'question' }, HOST, NOW)).toBe(true)
-    expect(isResumableBy({ hostUid: HOST, status: 'lobby' }, HOST, NOW)).toBe(true)
+describe('resumeDecision (bouton « Reprendre la partie »)', () => {
+  const found = (game: { hostUid?: string; status?: GameStatus; hostLeftAt?: number }) => ({ kind: 'found' as const, game })
+
+  test('partie présente dont je suis l’hôte : reprise', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'question' }), HOST, NOW)).toBe('resume')
   })
 
-  test('partie inexistante, terminée, ou d’un autre hôte : pas de reprise', () => {
-    expect(isResumableBy(null, HOST, NOW)).toBe(false)
-    expect(isResumableBy({}, HOST, NOW)).toBe(false)
-    expect(isResumableBy({ hostUid: HOST, status: 'ended' }, HOST, NOW)).toBe(false)
-    expect(isResumableBy({ hostUid: OTHER, status: 'question' }, HOST, NOW)).toBe(false)
+  test('partie absente (lecture réussie) ou d’un autre hôte : code oublié', () => {
+    expect(resumeDecision({ kind: 'missing' }, HOST, NOW)).toBe('forget')
+    expect(resumeDecision(found({ hostUid: OTHER, status: 'question' }), HOST, NOW)).toBe('forget')
   })
 
-  test('hôte parti : reprise possible pendant 5 min, plus après (joueurs et TV peuvent supprimer la partie)', () => {
-    const leftAt = NOW - HOST_DISCONNECT_TIMEOUT_S * 1000
-    expect(isResumableBy({ hostUid: HOST, status: 'paused', hostLeftAt: leftAt + 1 }, HOST, NOW)).toBe(true)
-    expect(isResumableBy({ hostUid: HOST, status: 'paused', hostLeftAt: leftAt - 1 }, HOST, NOW)).toBe(false)
-    expect(isResumableBy({ hostUid: HOST, status: 'lobby', hostLeftAt: leftAt - 1 }, HOST, NOW)).toBe(false)
+  test('erreur de lecture (refus, réseau, délai) : doute, bouton gardé et nouvel essai, jamais d’effacement', () => {
+    expect(resumeDecision({ kind: 'failed' }, HOST, NOW)).toBe('retry')
+  })
+
+  test('hôte absent depuis 2 min : reprise ; depuis 6 min : code oublié', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'paused', hostLeftAt: NOW - 2 * 60_000 }), HOST, NOW)).toBe('resume')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'paused', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('forget')
+    expect(HOST_DISCONNECT_TIMEOUT_S).toBe(300)
+  })
+
+  test('partie terminée mais encore présente : le bouton reste', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended' }), HOST, NOW)).toBe('resume')
   })
 })
 

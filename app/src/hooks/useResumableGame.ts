@@ -1,57 +1,112 @@
-import { isResumableBy } from '@shared/hostEngine';
+import { resumeDecision, type ResumeDecision, type ResumeRead } from '@shared/hostEngine';
 import type { GameStatus } from '@shared/types';
 import { useFocusEffect } from 'expo-router';
-import { get, ref } from 'firebase/database';
+import { get, onValue, ref } from 'firebase/database';
 import { useCallback, useState } from 'react';
 
 import { db, ensureSignedIn } from '@/lib/firebase';
 import { clearHostedGameCode, loadHostedGameCode } from '@/lib/hostedGameStorage';
 
-// Code de la partie que cet appareil peut reprendre (hôte relancé en pleine partie), ou null.
-// Vérifiée dans la base à chaque retour sur l'accueil (il reste monté sous les autres écrans : après
-// « Quitter », l'ancien bouton restait affiché) ; rien n'est proposé pendant la vérification. Partie
-// disparue, terminée, d'un autre hôte, ou hôte parti depuis plus de 5 min : le code mémorisé est effacé.
+// Lecture de la partie : au-delà, elle compte comme échouée (doute, nouvel essai).
+const READ_TIMEOUT_MS = 8_000;
+// Doute : nouvel essai après ce délai, tant que l'accueil est affiché.
+const RETRY_DELAY_MS = 5_000;
+// Heure du serveur : décalage local de Firebase, attendu au plus ce délai (sinon l'horloge du téléphone).
+const OFFSET_TIMEOUT_MS = 2_000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([promise, new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Délai dépassé')), ms))]);
+}
+
+// Décalage de l'horloge du serveur, comme useServerTimeOffset (onValue : get() n'est pas fait pour .info).
+function readServerOffset(): Promise<number> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      unsubscribe();
+      resolve(0);
+    }, OFFSET_TIMEOUT_MS);
+    const unsubscribe = onValue(ref(db, '.info/serverTimeOffset'), (snapshot) => {
+      clearTimeout(timer);
+      unsubscribe();
+      resolve(typeof snapshot.val() === 'number' ? (snapshot.val() as number) : 0);
+    });
+  });
+}
+
+// Champs publics seulement : hostUid, status et hostLeftAt. Toute erreur (refus au relancement, avant que la
+// connexion porte l'authentification ; réseau ; délai) donne « failed », jamais « missing ».
+async function readGame(code: string): Promise<ResumeRead> {
+  try {
+    const [hostUid, status, hostLeftAt] = await withTimeout(
+      Promise.all([
+        get(ref(db, `sessions/${code}/hostUid`)),
+        get(ref(db, `sessions/${code}/status`)),
+        get(ref(db, `sessions/${code}/hostLeftAt`)),
+      ]),
+      READ_TIMEOUT_MS,
+    );
+    if (!hostUid.exists()) return { kind: 'missing' };
+    return {
+      kind: 'found',
+      game: {
+        hostUid: hostUid.val() as string,
+        status: status.val() as GameStatus,
+        hostLeftAt: typeof hostLeftAt.val() === 'number' ? (hostLeftAt.val() as number) : undefined,
+      },
+    };
+  } catch (error) {
+    console.warn('[resume] Lecture de la partie à reprendre impossible : nouvel essai', error);
+    return { kind: 'failed' };
+  }
+}
+
+async function checkStoredGame(): Promise<{ code: string; decision: ResumeDecision } | null> {
+  const code = await loadHostedGameCode();
+  if (!code) return null;
+  try {
+    const user = await withTimeout(ensureSignedIn(), READ_TIMEOUT_MS);
+    const [read, offset] = await Promise.all([readGame(code), readServerOffset()]);
+    return { code, decision: resumeDecision(read, user.uid, Date.now() + offset) };
+  } catch (error) {
+    console.warn('[resume] Connexion pas encore prête : nouvel essai', error);
+    return { code, decision: 'retry' };
+  }
+}
+
+// Code de la partie que cet appareil peut reprendre, ou null. Vérifié à chaque retour sur l'accueil (il reste
+// monté sous les autres écrans). Rien n'est affiché pendant la première vérification. Le code gardé n'est
+// effacé que sur une réponse certaine (resumeDecision) ; en cas de doute, le bouton reste et la lecture
+// recommence toutes les RETRY_DELAY_MS.
 export function useResumableGame(): string | null {
   const [code, setCode] = useState<string | null>(null);
 
   useFocusEffect(
     useCallback(() => {
       let isActive = true;
+      let retryTimer: ReturnType<typeof setTimeout> | undefined;
       setCode(null);
-      findResumableGame()
-        .then((found) => {
-          if (isActive) setCode(found);
-        })
-        .catch((error: unknown) => console.warn('[resume] Vérification de la partie à reprendre impossible', error));
+      const check = () => {
+        checkStoredGame()
+          .then(async (result) => {
+            if (!isActive) return;
+            if (result === null) return setCode(null);
+            if (result.decision === 'forget') {
+              await clearHostedGameCode();
+              if (isActive) setCode(null);
+              return;
+            }
+            setCode(result.code);
+            if (result.decision === 'retry') retryTimer = setTimeout(check, RETRY_DELAY_MS);
+          })
+          .catch((error: unknown) => console.warn('[resume] Vérification de la partie à reprendre impossible', error));
+      };
+      check();
       return () => {
         isActive = false;
+        clearTimeout(retryTimer);
       };
     }, []),
   );
 
   return code;
-}
-
-async function findResumableGame(): Promise<string | null> {
-  const code = await loadHostedGameCode();
-  if (!code) return null;
-  const user = await ensureSignedIn();
-  // Champs publics seulement : hostUid, status et hostLeftAt ; heure du serveur par son décalage.
-  const [hostUid, status, hostLeftAt, offset] = await Promise.all([
-    get(ref(db, `sessions/${code}/hostUid`)),
-    get(ref(db, `sessions/${code}/status`)),
-    get(ref(db, `sessions/${code}/hostLeftAt`)),
-    get(ref(db, '.info/serverTimeOffset')),
-  ]);
-  const game = hostUid.exists()
-    ? {
-        hostUid: hostUid.val() as string,
-        status: status.val() as GameStatus,
-        hostLeftAt: typeof hostLeftAt.val() === 'number' ? (hostLeftAt.val() as number) : undefined,
-      }
-    : null;
-  const nowServer = Date.now() + (typeof offset.val() === 'number' ? (offset.val() as number) : 0);
-  if (isResumableBy(game, user.uid, nowServer)) return code;
-  await clearHostedGameCode();
-  return null;
 }
