@@ -1,0 +1,135 @@
+{
+  "id": "bluff-science-insolite",
+  "gameType": "bluff",
+  "title": "Science insolite",
+  "theme": "Sciences et nature",
+  "description": "Une banane radioactive, une tour qui grandit, un jour plus long qu'une année : inventez une explication crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "cyan",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B3)",
+  "questions": [
+    {
+      "id": "bsci-01",
+      "text": "Pourquoi la banane est-elle très légèrement radioactive ?",
+      "answer": "Elle contient du potassium, dont une petite partie est radioactive.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle pousse sur des sols volcaniques.",
+        "Sa peau absorbe les rayons du soleil.",
+        "Ses graines dégagent un gaz radioactif."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsci-02",
+      "text": "Sur Vénus, qu'est-ce qui dure plus longtemps qu'une année ?",
+      "answer": "Un tour sur elle-même : 243 jours, contre 225 pour faire le tour du Soleil.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un orage : certains durent deux ans.",
+        "Une nuit : le Soleil ne s'y lève que tous les cinq ans.",
+        "Une éclipse, qui dure plusieurs mois."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bsci-03",
+      "text": "Qu'a d'étonnant le corps du poulpe ?",
+      "answer": "Il a trois cœurs et du sang bleu.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il respire par la peau et n'a pas de poumons ni de branchies.",
+        "Il a des dents sur chaque ventouse.",
+        "Il voit dans le noir grâce à ses ventouses."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bsci-04",
+      "text": "Combien pèserait une cuillère à café de matière d'étoile à neutrons ?",
+      "answer": "Des centaines de millions de tonnes, voire davantage.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Environ 10 kilos, comme un seau d'eau.",
+        "Autant qu'un éléphant, 5 tonnes.",
+        "Presque rien : c'est surtout du vide."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsci-05",
+      "text": "Que fait la tour Eiffel quand il fait très chaud ?",
+      "answer": "Elle grandit d'une quinzaine de centimètres : le métal se dilate.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle penche de deux mètres vers le nord.",
+        "Elle siffle : le vent chante dans ses rivets chauds.",
+        "Elle rapetisse : sa peinture se rétracte."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bsci-06",
+      "text": "Voit-on la Grande Muraille de Chine à l'œil nu depuis l'espace ?",
+      "answer": "Non : même le premier astronaute chinois ne l'a pas vue.",
+      "acceptedAnswers": [
+        "non"
+      ],
+      "decoys": [
+        "Oui, c'est la seule construction humaine visible.",
+        "Oui, mais seulement la nuit, grâce à ses lampes.",
+        "Seulement depuis la Lune, par temps clair."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bsci-07",
+      "text": "Quelle est la température d'un éclair ?",
+      "answer": "Environ 30 000 °C, plusieurs fois plus que la surface du Soleil.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Environ 100 °C, comme l'eau qui bout.",
+        "Environ 1 000 °C, comme de la lave.",
+        "Moins de 0 °C : c'est un phénomène froid."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsci-08",
+      "text": "Comment Alexander Fleming a-t-il découvert la pénicilline, en 1928 ?",
+      "answer": "En rentrant de vacances : une moisissure avait tué les bactéries d'une boîte oubliée.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En analysant la boue d'un champ de bataille.",
+        "En goûtant un fromage moisi au laboratoire.",
+        "En cherchant un remède pour son chien malade."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsci-09",
+      "text": "De quoi est né le Post-it ?",
+      "answer": "D'une colle ratée, trop faible, et d'un choriste qui perdait ses marque-pages.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un papier peint qui se décollait tout seul.",
+        "D'une étiquette de médicament qui ne collait pas.",
+        "D'un pansement raté inventé par un dentiste."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsci-10",
+      "text": "Selon le récit le plus connu, comment est né le four à micro-ondes ?",
+      "answer": "Un ingénieur a vu fondre une barre chocolatée dans sa poche, près d'un radar.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un cuisinier avait laissé une assiette sur une télévision allumée.",
+        "Un pilote réchauffait son repas sur le moteur de son avion.",
+        "Un médecin chauffait du lait avec une machine à rayons X."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

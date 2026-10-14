@@ -1,0 +1,150 @@
+{
+  "id": "bluff-traditions-sport",
+  "gameType": "bluff",
+  "title": "Traditions du sport",
+  "theme": "Sport",
+  "description": "Un lion mascotte, une coupe qui part en vacances, un maillot couleur de journal : inventez une tradition crédible, démasquez la vraie.",
+  "audience": "all",
+  "poster": "green",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B3)",
+  "questions": [
+    {
+      "id": "btr-01",
+      "text": "Quelle a été la toute première mascotte officielle de la Coupe du monde, en 1966 ?",
+      "answer": "World Cup Willie, un lion vêtu du drapeau britannique.",
+      "acceptedAnswers": [
+        "world cup willie",
+        "willie"
+      ],
+      "decoys": [
+        "Un bulldog nommé Winston.",
+        "Un ours en casque de policier anglais.",
+        "Un corbeau de la tour de Londres."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-02",
+      "text": "À quels Jeux a eu lieu le premier relais de la flamme olympique ?",
+      "answer": "À Berlin, en 1936 : la torche était partie d'Olympie.",
+      "acceptedAnswers": [
+        "berlin 1936",
+        "berlin"
+      ],
+      "decoys": [
+        "À Athènes, en 1896, pour les premiers Jeux modernes.",
+        "À Paris, en 1924, sur les Champs-Élysées.",
+        "À Londres, en 1948, à travers la Manche."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "btr-03",
+      "text": "Pourquoi le maillot du leader du Tour de France est-il jaune ?",
+      "answer": "C'était la couleur du papier de L'Auto, le journal qui organisait la course.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour être vu de loin par les voitures, la nuit.",
+        "Parce que le premier leader adorait les tournesols.",
+        "C'était le seul tissu disponible en 1919."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-04",
+      "text": "Quelle tradition entoure la coupe Stanley, le trophée du hockey nord-américain ?",
+      "answer": "Chaque membre de l'équipe gagnante passe une journée avec le trophée.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le capitaine doit dormir avec elle la première nuit.",
+        "L'entraîneur doit y boire un litre de lait.",
+        "Elle est fondue et refaite chaque année."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-05",
+      "text": "Quelle règle de tenue s'impose aux joueurs de Wimbledon ?",
+      "answer": "Ils doivent être habillés presque entièrement en blanc, même les sous-vêtements visibles.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils doivent porter une cravate à la cérémonie d'ouverture.",
+        "Les casquettes sont interdites sur le court central.",
+        "Les chaussettes doivent être aux couleurs de leur pays."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "btr-06",
+      "text": "D'où vient le nom de la Coupe de l'America, la célèbre course de voile ?",
+      "answer": "De la goélette « America », victorieuse de la première course, en 1851.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du continent américain, d'où partait la première course.",
+        "D'une riche héritière nommée America Vanderbilt.",
+        "D'un navire britannique coulé par les Américains."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-07",
+      "text": "D'où viennent les Harlem Globetrotters ?",
+      "answer": "De Chicago : « Harlem » a été choisi pour annoncer une équipe de joueurs noirs.",
+      "acceptedAnswers": [
+        "chicago"
+      ],
+      "decoys": [
+        "De Harlem, à New York, d'un club de quartier.",
+        "D'un cirque itinérant de Floride.",
+        "D'une université de Californie."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-08",
+      "text": "Quelle était la longueur de la plus longue étape du premier Tour de France, en 1903 ?",
+      "answer": "471 km, entre Nantes et Paris.",
+      "acceptedAnswers": [
+        "471 km",
+        "471"
+      ],
+      "decoys": [
+        "250 km, de Lyon à Marseille.",
+        "800 km, en deux jours sans arrêt.",
+        "320 km, de Bordeaux à Toulouse."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "btr-09",
+      "text": "Quel numéro portait Michael Jordan lors de son retour en NBA, en 1995 ?",
+      "answer": "Le 45, son numéro au baseball : son 23 avait été retiré.",
+      "acceptedAnswers": [
+        "45"
+      ],
+      "decoys": [
+        "Le 99, pour marquer les esprits.",
+        "Le 32, tiré au sort par son équipe.",
+        "Le 1, pour sa nouvelle carrière."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "btr-10",
+      "text": "Quel animal a été la première mascotte officielle des Jeux olympiques, en 1972 ?",
+      "answer": "Waldi, un teckel aux couleurs olympiques, à Munich.",
+      "acceptedAnswers": [
+        "waldi",
+        "un teckel",
+        "teckel"
+      ],
+      "decoys": [
+        "Un ours brun, symbole de Berlin.",
+        "Un aigle nommé Adlerchen.",
+        "Un renard des Alpes appelé Fuchsi."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

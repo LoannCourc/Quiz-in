@@ -1,0 +1,140 @@
+{
+  "id": "bluff-tubes-insolites",
+  "gameType": "bluff",
+  "title": "Tubes et chansons",
+  "theme": "Musique",
+  "description": "Un riff trouvé en dormant, un clip de 24 heures, un tube parisien venu de Londres : inventez l'histoire d'une chanson, trouvez la vraie.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B3)",
+  "questions": [
+    {
+      "id": "bti-01",
+      "text": "Quel record « Gangnam Style » a-t-elle établi en 2012 ?",
+      "answer": "Première vidéo YouTube à dépasser un milliard de vues.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Chanson la plus courte classée numéro un.",
+        "Premier clip tourné entièrement sous l'eau.",
+        "Chanson traduite dans le plus de langues en un an."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bti-02",
+      "text": "Comment « Bohemian Rhapsody », jugée trop longue pour la radio, a-t-elle percé en 1975 ?",
+      "answer": "Un animateur de Londres l'a passée 14 fois en deux jours.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Queen l'a jouée en direct dans le métro de Londres.",
+        "Elle a d'abord été vendue en cassette dans les stations-service.",
+        "Elle a été choisie pour une publicité de voiture."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-03",
+      "text": "De quelle chanson « Les Champs-Élysées », de Joe Dassin, est-elle l'adaptation ?",
+      "answer": "« Waterloo Road », une chanson anglaise sur une rue de Londres.",
+      "acceptedAnswers": [
+        "waterloo road"
+      ],
+      "decoys": [
+        "« Broadway Boogie », sur une avenue de New York.",
+        "« La Rambla », une chanson espagnole sur Barcelone.",
+        "« Unter den Linden », une marche allemande."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bti-04",
+      "text": "Quel événement raconte « Smoke on the Water », de Deep Purple ?",
+      "answer": "L'incendie du casino de Montreux, pendant un concert de Frank Zappa, en 1971.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un feu de forêt vu depuis un bateau sur le lac de Genève.",
+        "La fumée d'un barbecue qui a gâché leur premier concert.",
+        "L'explosion d'un ferry sur la Tamise."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-05",
+      "text": "Qu'avait d'unique le clip de « Happy », de Pharrell Williams, en 2013 ?",
+      "answer": "Il durait 24 heures : la chanson y tournait en boucle.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il était filmé en une seule prise, sans aucun montage.",
+        "Il avait été tourné entièrement par des enfants.",
+        "Il n'est resté visible qu'une seule journée."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-06",
+      "text": "Pour qui Paul McCartney a-t-il écrit « Hey Jude » ?",
+      "answer": "Pour Julian, le fils de John Lennon : elle s'appelait d'abord « Hey Jules ».",
+      "acceptedAnswers": [
+        "julian lennon",
+        "julian"
+      ],
+      "decoys": [
+        "Pour son chien, qui s'appelait Jude.",
+        "Pour une fan qui lui écrivait chaque semaine.",
+        "Pour sa sœur Judith, partie vivre en Australie."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-07",
+      "text": "Qu'a de particulier l'hymne européen, tiré de l'« Ode à la joie » de Beethoven ?",
+      "answer": "Il n'a pas de paroles officielles : seule la musique a été retenue.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il se chante dans toutes les langues de l'Union en même temps.",
+        "Il dure exactement une minute, pas plus.",
+        "Il change de chef d'orchestre chaque année."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-08",
+      "text": "Quand a été enregistrée la chanson « We Are the World », en 1985 ?",
+      "answer": "En une nuit, juste après la cérémonie des American Music Awards.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sur trois mois, chaque chanteur dans un studio différent.",
+        "Pendant un concert géant, devant le public.",
+        "Le jour de Noël, dans une église de Los Angeles."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-09",
+      "text": "Comment Keith Richards a-t-il trouvé le riff de « Satisfaction » ?",
+      "answer": "En dormant : il l'a joué à moitié endormi et enregistré sur cassette.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En entendant une sirène de police dans la rue.",
+        "En réparant la guitare de Mick Jagger.",
+        "En reprenant l'air d'une publicité pour une lessive."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bti-10",
+      "text": "De quelle chanson vient « Le lion est mort ce soir » ?",
+      "answer": "De « Mbube », une chanson zouloue de Solomon Linda, enregistrée en 1939.",
+      "acceptedAnswers": [
+        "mbube"
+      ],
+      "decoys": [
+        "D'une berceuse du Kenya chantée aux enfants.",
+        "D'un chant de chasseurs inuits.",
+        "D'un air de jazz de La Nouvelle-Orléans."
+      ],
+      "difficulty": 3
+    }
+  ]
+}

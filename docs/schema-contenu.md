@@ -26,7 +26,7 @@ quiz de 10 questions dans le thème.
 | Musique | 0 / 0 | 0 / 0 |
 | Sport | 0 / 0 | 0 / 0 |
 
-Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 30 questions. Bluff : état après le lot B2 (chaque catégorie a au moins 20 questions).
+Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 30 questions. Bluff : état après le lot B3 (octobre 2026) : 30 questions dans chaque catégorie, 40 en Histoire.
 
 ## Règles communes à tous les jeux
 

@@ -1,0 +1,143 @@
+{
+  "id": "bluff-series-tele",
+  "gameType": "bluff",
+  "title": "Séries et télé",
+  "theme": "Cinéma et séries",
+  "description": "Un gobelet chez les dragons, des triplés imprévus, un fort qui n'a jamais servi : inventez une anecdote crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "violet",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B3)",
+  "questions": [
+    {
+      "id": "bse-01",
+      "text": "Quel mot d'Homer Simpson est entré dans l'Oxford English Dictionary, en 2001 ?",
+      "answer": "« D'oh! », son cri d'agacement, écrit sans apostrophe.",
+      "acceptedAnswers": [
+        "d'oh",
+        "doh"
+      ],
+      "decoys": [
+        "« Ay caramba », emprunté à Bart.",
+        "« Woohoo », son cri de joie.",
+        "« Mmm donuts », écrit en un seul mot."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-02",
+      "text": "Quel objet s'est glissé par erreur dans une scène de banquet de « Game of Thrones », en 2019 ?",
+      "answer": "Un gobelet de café en carton, posé devant Daenerys.",
+      "acceptedAnswers": [
+        "un gobelet de cafe",
+        "gobelet"
+      ],
+      "decoys": [
+        "Une montre au poignet d'un figurant.",
+        "Un téléphone portable dans la main d'un garde.",
+        "Une paire de baskets aux pieds d'un soldat."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bse-03",
+      "text": "Où « Breaking Bad » devait-elle d'abord se dérouler, avant Albuquerque ?",
+      "answer": "À Riverside, en Californie : le Nouveau-Mexique offrait des avantages fiscaux.",
+      "acceptedAnswers": [
+        "riverside"
+      ],
+      "decoys": [
+        "À Las Vegas, mais les casinos ont refusé le tournage.",
+        "À Miami, trop humide pour les décors du désert.",
+        "À Phoenix, la ville natale du créateur."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bse-04",
+      "text": "Pourquoi Phoebe porte-t-elle des triplés dans « Friends » ?",
+      "answer": "L'actrice Lisa Kudrow était vraiment enceinte : la série l'a intégré.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le producteur avait perdu un pari contre les scénaristes.",
+        "Les fans l'avaient réclamé lors d'un vote.",
+        "Pour remplacer un épisode annulé pendant une grève."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-05",
+      "text": "Selon les explications les plus citées, pourquoi les Simpson sont-ils jaunes ?",
+      "answer": "Pour attirer l'œil au premier regard, même en zappant.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "La peinture jaune était la seule disponible au studio.",
+        "En hommage aux taxis new-yorkais.",
+        "La série devait d'abord être sponsorisée par une moutarde."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-06",
+      "text": "Pourquoi Fort Boyard, le décor du jeu télévisé, n'a-t-il jamais servi à défendre la côte ?",
+      "answer": "Avant la fin des travaux, les canons portaient assez loin pour s'en passer.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il s'enfonçait d'un mètre par an dans le sable.",
+        "Les soldats refusaient d'y vivre à cause du mal de mer.",
+        "Ses canons avaient été tournés par erreur vers la terre."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-07",
+      "text": "Qu'avait de particulier Peter Falk, l'acteur de l'inspecteur Columbo ?",
+      "answer": "Il avait un œil de verre, depuis une opération à l'âge de 3 ans.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il était daltonien et ne voyait pas son imperméable beige.",
+        "Il ne savait pas conduire : sa voiture était tirée.",
+        "Il était gaucher mais jouait toujours de la main droite."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-08",
+      "text": "D'où vient le salut vulcain de Spock, dans « Star Trek » ?",
+      "answer": "D'un geste de bénédiction juive que l'acteur avait vu enfant, à la synagogue.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un signe de la langue des signes qui veut dire « paix ».",
+        "D'un tour de magie que l'acteur faisait à ses enfants.",
+        "D'un salut militaire d'une armée de l'Antiquité."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-09",
+      "text": "Quel record détient « Doctor Who », lancée en 1963 ?",
+      "answer": "Plus longue série de science-fiction de l'histoire, selon le Guinness.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Plus grand nombre d'acteurs pour un même rôle : 40.",
+        "Plus long épisode de série : 9 heures d'affilée.",
+        "Plus de spectateurs pour une série en noir et blanc."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bse-10",
+      "text": "Combien de temps duraient les épisodes des premières saisons de « Kaamelott » ?",
+      "answer": "3 minutes 30 secondes, à l'heure du dîner sur M6.",
+      "acceptedAnswers": [
+        "3 minutes 30"
+      ],
+      "decoys": [
+        "52 minutes, comme une série classique.",
+        "1 minute, comme une publicité.",
+        "26 minutes, sans aucune coupure."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

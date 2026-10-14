@@ -1,0 +1,146 @@
+{
+  "id": "bluff-origines-mots",
+  "gameType": "bluff",
+  "title": "L'origine des mots",
+  "theme": "Culture générale",
+  "description": "Un préfet devenu poubelle, un ministre devenu silhouette, un atoll devenu maillot : inventez l'origine d'un mot, trouvez la vraie.",
+  "audience": "all",
+  "poster": "gold",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B3)",
+  "questions": [
+    {
+      "id": "bom-01",
+      "text": "D'où vient le mot « boycott » ?",
+      "answer": "D'un régisseur irlandais, le capitaine Boycott, mis à l'écart par tout un village en 1880.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un mot hollandais qui veut dire « tourner le dos ».",
+        "D'un roi d'Écosse qui refusait de payer ses dettes.",
+        "D'un marchand de thé ruiné par ses clients."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-02",
+      "text": "D'où vient le mot « silhouette » ?",
+      "answer": "D'Étienne de Silhouette, un ministre des Finances de 1759 connu pour ses économies.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un peintre qui ne dessinait que les ombres.",
+        "D'une danseuse de l'Opéra très mince.",
+        "D'un mot italien qui veut dire « petite ombre »."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-03",
+      "text": "D'où vient le mot « poubelle » ?",
+      "answer": "Du préfet Eugène Poubelle, qui imposa les boîtes à ordures à Paris en 1883.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un mot breton qui veut dire « petit seau ».",
+        "D'une marque de seaux en fer-blanc.",
+        "Du quartier parisien où vivaient les chiffonniers."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-04",
+      "text": "Joseph-Ignace Guillotin a-t-il inventé la guillotine ?",
+      "answer": "Non : il l'a proposée comme mort égale pour tous ; un chirurgien l'a conçue.",
+      "acceptedAnswers": [
+        "non"
+      ],
+      "decoys": [
+        "Oui, et il en a été la première victime.",
+        "Oui, en s'inspirant d'un coupe-papier.",
+        "Oui, pour remplacer la pendaison, jugée trop lente."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-05",
+      "text": "D'où viendrait l'expression « OK », apparue dans un journal de Boston en 1839 ?",
+      "answer": "D'une plaisanterie : « oll korrect », écriture fautive de « all correct ».",
+      "acceptedAnswers": [
+        "oll korrect"
+      ],
+      "decoys": [
+        "Des initiales d'un général, Otto Kessler.",
+        "Des wagons de marchandises marqués « Outgoing Kargo ».",
+        "D'un mot amérindien qui veut dire « c'est ainsi »."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bom-06",
+      "text": "D'où vient le mot « robot » ?",
+      "answer": "Du tchèque « robota », la corvée, dans une pièce de théâtre de 1920.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du nom d'un inventeur japonais, Robo Tanaka.",
+        "D'une abréviation anglaise, « Remote Operated Bot ».",
+        "D'un mot latin qui veut dire « homme de fer »."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-07",
+      "text": "D'où vient le nom du maillot « bikini », lancé en 1946 ?",
+      "answer": "D'un atoll du Pacifique où les États-Unis venaient de faire un essai atomique.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'une plage de Saint-Tropez.",
+        "D'un mot hawaïen qui veut dire « petit tissu ».",
+        "Du prénom de la fille de son créateur."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-08",
+      "text": "D'où vient le mot « denim » ?",
+      "answer": "De la « serge de Nîmes », un tissu de la ville de Nîmes.",
+      "acceptedAnswers": [
+        "serge de nimes",
+        "nimes"
+      ],
+      "decoys": [
+        "Du nom de l'ouvrier qui a cousu le premier jean.",
+        "D'un mot anglais qui veut dire « bleu de travail ».",
+        "D'une ville de l'Inde où poussait le coton."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bom-09",
+      "text": "D'où vient le mot « nicotine » ?",
+      "answer": "De Jean Nicot, un ambassadeur qui fit connaître le tabac en France vers 1560.",
+      "acceptedAnswers": [
+        "jean nicot",
+        "nicot"
+      ],
+      "decoys": [
+        "D'une île grecque célèbre pour son tabac.",
+        "Du chimiste qui l'a isolée, Nikolaï Kotine.",
+        "D'un mot amérindien qui veut dire « fumée »."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bom-10",
+      "text": "D'où vient le mot « mansarde » ?",
+      "answer": "De l'architecte François Mansart, qui popularisa les toits brisés.",
+      "acceptedAnswers": [
+        "mansart",
+        "francois mansart"
+      ],
+      "decoys": [
+        "D'un mot italien qui veut dire « petite maison ».",
+        "D'une famille Mansard qui louait des chambres à Paris.",
+        "D'un ordre de moines qui vivaient sous les toits."
+      ],
+      "difficulty": 2
+    }
+  ]
+}
