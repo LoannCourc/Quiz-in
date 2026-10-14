@@ -38,8 +38,9 @@ function SlidersIcon() {
 }
 
 function chipLabel(key: QuizFilterKey, filters: QuizFilters): string {
-  if (key === 'level' && filters.level) return strings.catalog.difficultyLevels[filters.level];
-  if (key === 'audience' && filters.audience) return strings.quizSetup.audiences[filters.audience];
+  if (key.kind === 'theme') return key.theme ?? texts.allThemesChip;
+  if (key.kind === 'level' && filters.level) return strings.catalog.difficultyLevels[filters.level];
+  if (key.kind === 'audience' && filters.audience) return strings.quizSetup.audiences[filters.audience];
   return texts.hidePlayedChip;
 }
 
@@ -61,7 +62,7 @@ export function ActiveFilters({ filters, shownCount, onRemove, onClearAll }: Act
           const label = chipLabel(key, filters);
           return (
             <Pressable
-              key={key}
+              key={label}
               accessibilityRole="button"
               accessibilityLabel={texts.removeChip(label)}
               onPress={() => onRemove(key)}

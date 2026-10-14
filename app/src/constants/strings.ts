@@ -248,6 +248,8 @@ export const strings = {
       sortTitle: 'Trier par',
       levelTitle: 'Difficulté',
       audienceTitle: 'Pour qui ?',
+      themeTitle: 'Thème',
+      allThemesChip: 'Tous les thèmes',
       hidePlayed: 'Cacher ceux déjà faits',
       hidePlayedChip: 'Pas encore faits',
       removeChip: (label: string) => `Retirer le filtre ${label}`,

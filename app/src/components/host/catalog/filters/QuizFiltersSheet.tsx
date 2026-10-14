@@ -1,3 +1,4 @@
+import { toggleTheme } from '@shared/catalogRows';
 import { NO_QUIZ_FILTERS, QUIZ_AUDIENCES, QUIZ_LEVELS, QUIZ_SORTS, type QuizFilters } from '@shared/quizFilters';
 import { useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -9,6 +10,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 import { LevelDots } from '../blindtest/BlindTestParts';
+import { ThemeChips } from '../ThemeChips';
 import { FilterToggle } from './FilterToggle';
 
 const texts = strings.catalog.filters;
@@ -16,16 +18,18 @@ const texts = strings.catalog.filters;
 interface QuizFiltersSheetProps {
   // Réglages appliqués à l'ouverture ; la feuille travaille sur une copie.
   filters: QuizFilters;
+  // Thèmes du catalogue (bloc « Thème », plusieurs choix possibles).
+  themes: string[];
   // Nombre de quiz affichés avec ces réglages (« VOIR N QUIZ », mis à jour à chaque choix).
   countFor: (filters: QuizFilters) => number;
   onApply: (filters: QuizFilters) => void;
   onClose: () => void;
 }
 
-// Feuille « Trier et filtrer » (maquette QT1) : un tri, une difficulté et un public au plus (un second appui
-// les retire), « Cacher ceux déjà faits ». Rien n'est appliqué avant « VOIR N QUIZ » ; fermer la feuille
+// Feuille « Trier et filtrer » (maquette QT1) : un tri, des thèmes (« Tout » compris : mélange de thèmes),
+// une difficulté et un public au plus (un second appui les retire), « Cacher ceux déjà faits ». Rien n'est appliqué avant « VOIR N QUIZ » ; fermer la feuille
 // abandonne les choix. Montée seulement quand elle est ouverte.
-export function QuizFiltersSheet({ filters, countFor, onApply, onClose }: QuizFiltersSheetProps) {
+export function QuizFiltersSheet({ filters, themes, countFor, onApply, onClose }: QuizFiltersSheetProps) {
   const [draft, setDraft] = useState(filters);
   const change = (changes: Partial<QuizFilters>) => setDraft((current) => ({ ...current, ...changes }));
 
@@ -47,6 +51,9 @@ export function QuizFiltersSheet({ filters, countFor, onApply, onClose }: QuizFi
             />
           ))}
         </View>
+      </Section>
+      <Section title={texts.themeTitle}>
+        <ThemeChips themes={themes} selection={draft.themes} onToggle={(theme) => change({ themes: toggleTheme(draft.themes, theme) })} wrap />
       </Section>
       <Section title={texts.levelTitle}>
         <View style={styles.levels}>

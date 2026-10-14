@@ -2,12 +2,8 @@ import {
   catalogRows,
   catalogThemes,
   filterByGameType,
-  filterByThemes,
-  NO_THEME,
   searchByTitle,
   selectedThemes,
-  toggleTheme,
-  type ThemeSelection,
 } from '@shared/catalogRows';
 import { availableQuestionCounts, poolQuestionTotal, poolQuizzes, QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
 import { quizLevel } from '@shared/quizCatalog';
@@ -27,7 +23,6 @@ import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
 import { QuestionCountBar } from './QuestionCountBar';
 import { QuizPoster } from './QuizPoster';
-import { ThemeChips } from './ThemeChips';
 import { ActiveFilters, FiltersButton } from './filters/CatalogFilterBar';
 import { QuizFiltersSheet } from './filters/QuizFiltersSheet';
 
@@ -61,11 +56,10 @@ function threeAcross(columnWidth: number): number {
 }
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
-// démo. En-tête : retour à l'accueil, nom du jeu, recherche ; puis le filtre des thèmes et les rangées.
-// Quiz : dès qu'un thème est choisi (« Tout » compris), la barre « Nombre de questions » apparaît en bas ;
-// les affiches restent des quiz de 10 questions (fiche, sans barre).
+// démo. En-tête : retour à l'accueil, nom du jeu, recherche et « Filtres » ; puis les rangées.
+// Quiz : dès qu'un thème est choisi dans la feuille des filtres (« Tout » compris), la barre « Nombre de
+// questions » apparaît en bas ; les affiches restent des quiz de 10 questions (fiche, sans barre).
 export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, onContinueThemes }: CatalogViewProps) {
-  const [themeSelection, setThemeSelection] = useState<ThemeSelection>(NO_THEME);
   const [questionCount, setQuestionCount] = useState(QUIZ_QUESTION_COUNTS[0]);
   // Tri et filtres (maquette QT1) : sans rien, les rangées ; sinon une grille dans l'ordre du tri.
   const [filters, setFilters] = useState<QuizFilters>(NO_QUIZ_FILTERS);
@@ -77,10 +71,9 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   const gridPosterWidth = gridPosterWidthFor(columnWidth);
   const entries = useMemo(() => filterByGameType(allEntries, gameType), [allEntries, gameType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
-  const chosenThemes = selectedThemes(themeSelection, themes);
-  const shown = filterByThemes(entries, chosenThemes);
+  const chosenThemes = selectedThemes(filters.themes, themes);
   const isSearching = query.trim() !== '';
-  const filtered = isFiltering(filters) ? filterQuizzes(shown, filters, played) : shown;
+  const filtered = isFiltering(filters) ? filterQuizzes(entries, filters, played) : entries;
   const footer =
     onContinueThemes && chosenThemes.length > 0 ? (
       <ThemesCountBar
@@ -125,10 +118,6 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
             <FiltersButton count={activeFilterCount(filters)} onPress={() => setIsFiltersOpen(true)} />
           </View>
         )}
-
-        {entries.length > 0 && (
-          <ThemeChips themes={themes} selection={themeSelection} onToggle={(theme) => setThemeSelection((current) => toggleTheme(current, theme))} />
-        )}
         {isFiltering(filters) && (
           <ActiveFilters
             filters={filters}
@@ -157,13 +146,14 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
             played={played}
           />
         ) : (
-          <Rows entries={shown} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
+          <Rows entries={entries} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
         )}
       </View>
       {isFiltersOpen && (
         <QuizFiltersSheet
           filters={filters}
-          countFor={(draft) => (isFiltering(draft) ? filterQuizzes(shown, draft, played) : shown).length}
+          themes={themes}
+          countFor={(draft) => (isFiltering(draft) ? filterQuizzes(entries, draft, played) : entries).length}
           onApply={(draft) => {
             setFilters(draft);
             setIsFiltersOpen(false);
