@@ -1,7 +1,9 @@
 import { PRIVACY_URL } from '@shared/constants';
+import { HOME_COMPACT_BELOW_HEIGHT, homeBlockGap, homeTileDensity } from '@shared/homeLayout';
 import { isValidRoomCode } from '@shared/roomCode';
 import { Link, Redirect, router, useLocalSearchParams } from 'expo-router';
-import { Linking, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Linking, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
@@ -47,14 +49,28 @@ function HomeScreen() {
     />
   );
 
+  // Sans défilement (aucun bandeau en haut) : les tuiles prennent la hauteur restante, mesurée ; densité
+  // d'après cette hauteur et la police du système. Rien ne tient lisiblement : défilement, jusqu'au prochain
+  // changement de taille de fenêtre ou de police.
+  const { height, fontScale } = useWindowDimensions();
+  const sizeKey = `${height}|${fontScale}`;
+  const [measured, setMeasured] = useState<{ sizeKey: string; gridHeight: number } | null>(null);
+  const gridHeight = measured?.sizeKey === sizeKey ? measured.gridHeight : null;
+  const density = gridHeight === null ? 'normal' : homeTileDensity(gridHeight, fontScale);
+  const fit =
+    !room && !resumableCode && density !== null
+      ? { density, gap: homeBlockGap(height), isCompact: height < HOME_COMPACT_BELOW_HEIGHT, onGridHeight: (measuredHeight: number) => setMeasured({ sizeKey, gridHeight: measuredHeight }) }
+      : undefined;
+
   return (
-    <Screen>
+    <Screen scrollable={fit === undefined}>
       <HomeView
         onOpenGame={(game) => openGame(game, room)}
         onJoinWithCode={room ? undefined : () => router.push('/join')}
         banner={room ? <RoomBanner code={room} /> : resumeButton}
         isBlindTestEnabled={isBlindTestEnabled === true}
         isDrawEnabled={isDrawEnabled !== false}
+        fit={fit}
       />
 
       <View style={styles.footerLinks}>
@@ -100,17 +116,22 @@ const styles = StyleSheet.create({
   roomText: {
     textAlign: 'center',
   },
+  // À propos et Confidentialité sur une ligne (démos de développement : une seconde ligne).
   footerLinks: {
     marginTop: 'auto',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    columnGap: Spacing.four,
   },
   footerLink: {
-    paddingVertical: Spacing.three,
+    paddingVertical: Spacing.two,
     color: AppColors.textMuted,
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
   debugLink: {
-    paddingVertical: Spacing.three,
+    paddingVertical: Spacing.two,
     color: AppColors.textMuted,
     textAlign: 'center',
     textDecorationLine: 'underline',

@@ -250,10 +250,11 @@ export const strings = {
       experts: 'Pour les experts',
     } satisfies Record<CatalogRowId, string>,
     posterLabel: (title: string, rank?: number) => (rank === undefined ? title : `${rank}. ${title}`),
-    demoCatalogLink: 'Outils de développement : catalogue fictif',
+    // Démos (développement seulement), sur une ligne en bas de l'accueil.
+    demoCatalogLink: 'Démo catalogue',
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
-    debugLink: 'Outils de développement : compteur partagé',
-    playerDemoLink: 'Outils de développement : écrans du joueur',
+    debugLink: 'Démo compteur',
+    playerDemoLink: 'Démo joueur',
     resumeGame: (code: string) => `Reprendre la partie ${code}`,
   },
   quizSetup: {
