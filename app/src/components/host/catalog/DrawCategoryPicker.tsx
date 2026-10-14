@@ -1,3 +1,4 @@
+import { fittedFontSize } from '@shared/fontSize';
 import { DRAW_CATEGORIES, drawCategoryId, type DrawCategory } from '@shared/drawWords';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -21,8 +22,7 @@ const LETTER_WIDTH_RATIO = 0.62;
 const LONGEST_NAME = Math.max(...DRAW_CATEGORIES.map((category) => category.length));
 
 function nameFontSize(tileWidth: number): number {
-  const fitting = Math.floor((tileWidth - 2 * Spacing.two) / (LONGEST_NAME * LETTER_WIDTH_RATIO));
-  return Math.max(NAME_MIN_SIZE, Math.min(NAME_MAX_SIZE, fitting));
+  return fittedFontSize(NAME_MAX_SIZE, tileWidth - 2 * Spacing.two, LONGEST_NAME, LETTER_WIDTH_RATIO, NAME_MIN_SIZE);
 }
 
 interface DrawCategoryPickerProps {

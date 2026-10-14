@@ -1,5 +1,5 @@
 import { levelDots, type BlindTestFacet } from '@shared/blindTestCatalog';
-import { DISPLAY_CHAR_WIDTH } from '@shared/labelFit';
+import { fittedFontSize } from '@shared/fontSize';
 import { quizLevel } from '@shared/quizCatalog';
 import type { QuizEntry } from '@shared/quizValidation';
 import type { DifficultyLevel } from '@shared/types';
@@ -36,6 +36,10 @@ interface TileProps {
 
 const TILE_HEIGHT = 104;
 const TILE_LABEL_MAX = 26;
+// « Toutes époques » sur une ligne dans une tuile d'écran de 320 points.
+const TILE_LABEL_MIN = 9;
+// Largeur d'une lettre de Bowlby One, prudente (minuscules accentuées comprises).
+const TILE_CHAR_WIDTH = 0.82;
 const CORNER = 40;
 
 // Tuile d'un onglet (maquette BT5) : quart de disque coloré en haut à droite, libellé en couleur,
@@ -44,7 +48,7 @@ export function BlindTestTile({ facet, count, playedCount, accent, width, onPres
   const label = facetLabel(facet);
   // Le libellé tient toujours sur une ligne : taille d'après la largeur de la tuile (largeur moyenne mesurée
   // des lettres de Bowlby One), 26 au plus.
-  const labelSize = Math.min(TILE_LABEL_MAX, Math.floor((width - Spacing.three * 2) / (label.length * DISPLAY_CHAR_WIDTH)));
+  const labelSize = fittedFontSize(TILE_LABEL_MAX, width - Spacing.three * 2, label.length, TILE_CHAR_WIDTH, TILE_LABEL_MIN);
   return (
     <Pressable
       accessibilityRole="button"

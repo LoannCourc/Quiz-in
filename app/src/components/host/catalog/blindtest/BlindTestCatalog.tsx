@@ -38,7 +38,7 @@ export function BlindTestCatalog({ entries: allEntries, played, onOpenQuiz, onBa
   const [columnWidth, setColumnWidth] = useState(0);
   const tiles = useMemo(() => blindTestTiles(entries, tab, played), [entries, tab, played]);
   const results = useMemo(() => (query.trim() === '' ? null : searchByTitle(entries, query)), [entries, query]);
-  const tileWidth = Math.floor((columnWidth - Spacing.three * (COLUMNS - 1)) / COLUMNS);
+  const tileWidth = Math.max(0, Math.floor((columnWidth - Spacing.three * (COLUMNS - 1)) / COLUMNS));
 
   if (openFacet) {
     return <BlindTestList entries={entries} facet={openFacet} played={played} onOpenQuiz={onOpenQuiz} onBack={() => setOpenFacet(null)} />;
@@ -89,7 +89,7 @@ export function BlindTestCatalog({ entries: allEntries, played, onOpenQuiz, onBa
           />
         ) : (
           <FlatList
-            data={tiles}
+            data={tileWidth > 0 ? tiles : []}
             numColumns={COLUMNS}
             key={tab}
             keyExtractor={(tile) => String(tile.facet.value)}

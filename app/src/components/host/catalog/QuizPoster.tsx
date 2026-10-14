@@ -1,3 +1,4 @@
+import { fittedFontSize } from '@shared/fontSize';
 import { quizIconOf, type QuizIconName } from '@shared/themeIcons';
 import type { PosterPalette } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -34,8 +35,8 @@ const TITLE_MIN_SIZE = 9;
 function titleSizeFor(title: string, width: number): number {
   const innerWidth = width - 2 * Spacing.two;
   const longestWord = Math.max(1, ...title.split(/\s+/).map((word) => word.length));
-  const fitting = Math.floor(innerWidth / (longestWord * UPPERCASE_CHAR_WIDTH));
-  return Math.max(TITLE_MIN_SIZE, Math.min(Math.max(12, Math.round(width * 0.11)), fitting));
+  const base = Math.max(TITLE_MIN_SIZE, Math.round(width * 0.11));
+  return fittedFontSize(base, innerWidth, longestWord, UPPERCASE_CHAR_WIDTH, TITLE_MIN_SIZE);
 }
 
 // Côté maximal de l'icône de thème sur une affiche.
@@ -47,7 +48,8 @@ const PLAYED_MARK_SIZE = 10;
 export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress, isPlayed = false }: QuizPosterProps) {
   const icon = quizIconOf({ theme, icon: ownIcon });
   const height = Math.round(width * AppSizes.posterRatio);
-  const markSize = Math.round(width * 0.5);
+  // Taille de l'icône : jamais négative (largeur pas encore mesurée).
+  const markSize = Math.max(0, Math.round(width * 0.5));
   const titleSize = titleSizeFor(title, width);
   const content = (
     <>
@@ -59,13 +61,9 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
           </Text>
         </View>
       )}
-      {icon === 'question' ? (
-        <Text style={[styles.mark, { fontSize: markSize, lineHeight: Math.round(markSize * 1.3) }]}>?</Text>
-      ) : (
-        <View style={styles.icon}>
-          <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
-        </View>
-      )}
+      <View style={styles.icon}>
+        <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
+      </View>
       <Text numberOfLines={3} style={[styles.title, { fontSize: titleSize, lineHeight: Math.round(titleSize * 1.15) }]}>
         {title}
       </Text>
@@ -122,15 +120,6 @@ const styles = StyleSheet.create({
   pressed: {
     transform: [{ translateY: 4 }],
     boxShadow: AppShadows.pressed,
-  },
-  mark: {
-    marginTop: Spacing.two,
-    color: AppColors.text,
-    fontFamily: AppFonts.display,
-    textAlign: 'center',
-    textShadowColor: AppShadows.textColor,
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 0,
   },
   icon: {
     alignItems: 'center',

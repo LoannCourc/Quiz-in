@@ -1,3 +1,5 @@
+import { fittedFontSize } from '@shared/fontSize';
+
 import { AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { Spacing } from '@/constants/theme';
 
@@ -8,8 +10,7 @@ const DISPLAY_LETTER_RATIO = 0.82;
 // pas réduire un texte tout seul) : la plus grande taille, entre min et max, qui fait tenir le texte.
 export function displaySizeOnOneLine(text: string, screenWidth: number, max: number, min: number): number {
   const available = Math.min(screenWidth, AppSizes.contentMaxWidth) - 2 * Spacing.three;
-  const fitting = Math.floor(available / (Math.max(1, [...text].length) * DISPLAY_LETTER_RATIO));
-  return Math.max(min, Math.min(max, fitting));
+  return fittedFontSize(max, available, Math.max(1, [...text].length), DISPLAY_LETTER_RATIO, min);
 }
 
 // Style de taille (police et hauteur de ligne) d'un titre en Bowlby One.

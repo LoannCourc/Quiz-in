@@ -1,3 +1,4 @@
+import { fittedFontSize } from '@shared/fontSize';
 import { DRAW_GUESS_MAX_LENGTH, DRAW_MAX_GUESSES } from '@shared/constants';
 import { drawingChunkList } from '@shared/drawGame';
 import { FIT_VIEWPORT, ZOOM_MAX, zoomPercent, type Viewport } from '@shared/drawing/viewport';
@@ -58,8 +59,7 @@ const ZOOM_HINT_HEIGHT = 22;
 // milieu d'un mot), dans la largeur disponible.
 function wordFontSize(word: string, available: number, maxSize: number): number {
   const longest = Math.max(1, ...word.split(/\s+/).map((part) => [...part].length));
-  const fitting = Math.floor(available / (longest * LETTER_WIDTH_RATIO));
-  return Math.max(WORD_MIN_SIZE, Math.min(maxSize, fitting));
+  return fittedFontSize(maxSize, available, longest, LETTER_WIDTH_RATIO, WORD_MIN_SIZE);
 }
 
 // Vrai si le mot le plus long tient sur une ligne à la taille minimale.

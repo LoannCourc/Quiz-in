@@ -1,3 +1,4 @@
+import { boundedFontSize } from '@shared/fontSize';
 import { optionsTextSize, type OptionsTextSize } from '@shared/optionsText';
 import { trackOptionParts } from '@shared/trackOption';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -102,7 +103,7 @@ export function ChoicePill({
             {title}
           </Text>
           {artist !== null && (
-            <Text style={[styles.artist, { fontSize: Math.round(fontSize * ARTIST_SCALE) }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+            <Text style={[styles.artist, { fontSize: boundedFontSize(Math.round(fontSize * ARTIST_SCALE), fontSize) }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
               {artist}
             </Text>
           )}

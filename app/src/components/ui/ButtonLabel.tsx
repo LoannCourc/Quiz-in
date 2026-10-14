@@ -1,3 +1,4 @@
+import { boundedFontSize } from '@shared/fontSize';
 import { DISPLAY_CHAR_WIDTH, fittedLabelScale, TEXT_CHAR_WIDTH } from '@shared/labelFit';
 import { useState } from 'react';
 import { PixelRatio, Platform, StyleSheet, Text, type StyleProp, type TextStyle } from 'react-native';
@@ -70,7 +71,9 @@ function useIosFit(text: string, flat: TextStyle, maxLines: number, hasOwnWidth:
   const scale = fittedLabelScale(text, width, rendered, maxLines, charRatio);
   const onLayout = (event: { nativeEvent: { layout: { width: number } } }) => setWidth(Math.round(event.nativeEvent.layout.width));
   if (scale === 1) return { onLayout, style: null };
-  return { onLayout, style: { fontSize: fontSize * scale, ...(flat.lineHeight !== undefined && { lineHeight: flat.lineHeight * scale }) } };
+  const fitted = boundedFontSize(fontSize * scale, fontSize, fontSize * BUTTON_LABEL_MIN_SCALE);
+  const ratio = fitted / fontSize;
+  return { onLayout, style: { fontSize: fitted, ...(flat.lineHeight !== undefined && { lineHeight: flat.lineHeight * ratio }) } };
 }
 
 const styles = StyleSheet.create({
