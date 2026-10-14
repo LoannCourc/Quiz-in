@@ -46,31 +46,32 @@ function titleSizeFor(title: string, width: number): number {
 const ICON_MAX_SIZE = 64;
 const PLAYED_MARK_SIZE = 10;
 const PLAYED_BADGE_SIZE = 18;
-// Pastille de difficulté : trois points (un niveau de quiz : facile, moyen, difficile), libellé ajusté à
-// la largeur de l'affiche (grille de 320 points : 85 de large).
+// Pastille de difficulté : trois points (un niveau de quiz : facile, moyen, difficile) et libellé en 9 points ;
+// s'il ne tient pas en 9 points (« Difficile » sur une affiche de 85 de large, grille de 320 points), les
+// points seuls.
 const LEVEL_DOTS = 3;
 const LEVEL_DOT = 5;
 const LEVEL_DOT_GAP = 2;
 const LEVEL_FONT_SIZE = 9;
-const LEVEL_FONT_MIN = 7;
 // Largeur moyenne d'un caractère en Nunito Black, en fraction de la taille (avec marge).
 const LEVEL_CHAR_WIDTH = 0.62;
 
-function levelFontSizeFor(label: string, width: number): number {
+const LEVEL_LINE_HEIGHT = 12;
+
+function levelLabelFits(label: string, width: number): boolean {
   const dotsWidth = LEVEL_DOTS * LEVEL_DOT + (LEVEL_DOTS - 1) * LEVEL_DOT_GAP;
   const available = width - 2 * Spacing.one - 2 * (Spacing.one + 1) - dotsWidth - Spacing.one;
-  return fittedFontSize(LEVEL_FONT_SIZE, available, label.length, LEVEL_CHAR_WIDTH, LEVEL_FONT_MIN);
+  return label.length * LEVEL_CHAR_WIDTH * LEVEL_FONT_SIZE <= available;
 }
 
 // Lecteur d'écran : la difficulté après le titre.
 function withLevel(label: string, level: DifficultyLevel | undefined): string {
-  return level ? strings.catalog.withLevel(label, strings.catalog.difficultyLevels[level]) : label;
+  return level ? strings.catalog.withLevel(label, strings.catalog.difficultyLevels[level].toLowerCase()) : label;
 }
 
 function LevelPill({ level, width }: { level: DifficultyLevel; width: number }) {
   const label = strings.catalog.difficultyLevels[level];
   const filled = Math.min(LEVEL_DOTS, levelDots(level));
-  const fontSize = levelFontSizeFor(label, width);
   return (
     <View style={styles.levelPill}>
       <View style={styles.levelDots}>
@@ -78,14 +79,13 @@ function LevelPill({ level, width }: { level: DifficultyLevel; width: number }) 
           <View key={index} style={[styles.levelDot, index < filled ? styles.levelDotFilled : styles.levelDotEmpty]} />
         ))}
       </View>
-      {/* Taille déjà ajustée à la largeur de l'affiche : la police du système ne l'agrandit pas (sinon le mot
-          serait coupé) ; le lecteur d'écran lit le niveau dans le libellé de l'affiche. */}
-      <Text
-        style={[styles.levelText, { fontSize, lineHeight: Math.round(fontSize * 1.3) }]}
-        numberOfLines={1}
-        maxFontSizeMultiplier={1}>
-        {label}
-      </Text>
+      {/* Place comptée en 9 points : la police du système ne l'agrandit pas (sinon le mot serait coupé) ; le
+          lecteur d'écran lit la difficulté dans le libellé de l'affiche. */}
+      {levelLabelFits(label, width) && (
+        <Text style={styles.levelText} numberOfLines={1} maxFontSizeMultiplier={1}>
+          {label}
+        </Text>
+      )}
     </View>
   );
 }
@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
     ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.black,
+    fontSize: LEVEL_FONT_SIZE,
+    lineHeight: LEVEL_LINE_HEIGHT,
   },
   pressed: {
     transform: [{ translateY: 4 }],
