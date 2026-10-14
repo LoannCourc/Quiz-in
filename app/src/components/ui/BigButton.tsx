@@ -12,11 +12,13 @@ interface BigButtonProps {
   variant?: 'primary' | 'secondary';
   // compact : texte plus petit (deux boutons côte à côte).
   size?: 'large' | 'compact';
+  // Une seule ligne, hauteur fixe, texte centré (« Reprendre la partie 746N » : jamais une pastille haute).
+  singleLine?: boolean;
 }
 
 // Grosse pilule à ombre dure : à l'appui, elle « s'enfonce » (décalage vers le bas, ombre réduite).
 // Texte : règle commune des boutons (ButtonLabel : toujours lisible en entier, deux lignes au plus).
-export function BigButton({ label, onPress, disabled = false, variant = 'primary', size = 'large' }: BigButtonProps) {
+export function BigButton({ label, onPress, disabled = false, variant = 'primary', size = 'large', singleLine = false }: BigButtonProps) {
   const isPrimary = variant === 'primary';
   const isCompact = size === 'compact';
   return (
@@ -27,11 +29,13 @@ export function BigButton({ label, onPress, disabled = false, variant = 'primary
       disabled={disabled}
       style={({ pressed }) => [
         styles.button,
+        singleLine && styles.singleLine,
         isPrimary ? styles.primary : styles.secondary,
         pressed && styles.pressed,
         disabled && styles.disabled,
       ]}>
       <ButtonLabel
+        maxLines={singleLine ? 1 : undefined}
         style={[
           isPrimary ? styles.primaryLabel : styles.secondaryLabel,
           isCompact && (isPrimary ? styles.compactPrimaryLabel : styles.compactLabel),
@@ -52,6 +56,10 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.two,
     borderRadius: AppSizes.radiusPill,
     boxShadow: AppShadows.hard,
+  },
+  singleLine: {
+    height: AppSizes.buttonHeight,
+    paddingVertical: 0,
   },
   primary: {
     backgroundColor: AppColors.accent,

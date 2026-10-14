@@ -41,6 +41,8 @@ function HomeScreen() {
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
+      size="compact"
+      singleLine
       onPress={() => router.push({ pathname: '/host/[code]', params: { code: resumableCode } })}
     />
   );
