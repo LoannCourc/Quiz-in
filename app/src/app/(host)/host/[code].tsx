@@ -278,8 +278,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
   // Quitter : suppression de toute la partie, puis retour au catalogue.
   function quit() {
     confirmAction(strings.hostControls.quitConfirm, () => {
-      router.replace('/');
-      void clearHostedGameCode();
+      // Code oublié avant le retour à l'accueil : il revérifie la partie à reprendre dès qu'il réapparaît.
+      void clearHostedGameCode().finally(() => router.replace('/'));
       // D'abord annuler l'écriture de départ, sinon elle recréerait un hostLeftAt orphelin.
       cancelHostAbsenceMarker(code)
         .then(() => deleteGame(code))
