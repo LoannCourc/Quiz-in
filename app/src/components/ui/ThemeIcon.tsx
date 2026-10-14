@@ -5,7 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { AppColors } from '@/constants/appTheme';
 
 import { GENRE_DRAWINGS } from './genreIcons';
-import { box, clipped, dot, GRID, line, questionMark, ring, roof, STROKE, type Pen } from './iconShapes';
+import { box, clipped, dot, GRID, line, ring, roof, STROKE, type Pen } from './iconShapes';
+import { QuestionMarkIcon } from './QuestionMarkIcon';
 
 // Icônes des quiz : thèmes (maquette I2) et genres de blind test (I3, genreIcons), dessinées avec des
 // View comme SettingsIcon : aucune image ni bibliothèque, même rendu sur Android et le web. Traits
@@ -88,8 +89,7 @@ export function ball(pen: Pen): ReactNode[] {
   ];
 }
 
-const DRAWINGS: Record<QuizIconName, (pen: Pen) => ReactNode[]> = {
-  question: questionMark,
+const DRAWINGS: Record<Exclude<QuizIconName, 'question'>, (pen: Pen) => ReactNode[]> = {
   clapper,
   globe,
   columns,
@@ -109,6 +109,10 @@ interface ThemeIconProps {
 export function ThemeIcon({ name, size }: ThemeIconProps) {
   // Ombre dure bleu nuit, décalée vers le bas comme celle des badges.
   const shadowOffset = Math.max(1, Math.round(size * 0.05));
+  // « ? » (Culture générale, thème inconnu) : composant commun, courbe en SVG.
+  if (name === 'question') {
+    return <QuestionMarkIcon size={size} color={AppColors.themeIcon} shadowColor={AppColors.themeIconShadow} shadowOffset={shadowOffset} />;
+  }
   const draw = DRAWINGS[name];
   const k = size / GRID;
   return (

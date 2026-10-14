@@ -2,7 +2,8 @@ import type { ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { GENRE_DRAWINGS } from '@/components/ui/genreIcons';
-import { box, dot, GRID, line, questionMark, type Pen } from '@/components/ui/iconShapes';
+import { box, dot, GRID, line, type Pen } from '@/components/ui/iconShapes';
+import { QuestionMarkIcon } from '@/components/ui/QuestionMarkIcon';
 import { note } from '@/components/ui/ThemeIcon';
 import type { GameType } from '@/constants/strings';
 
@@ -22,13 +23,13 @@ function bubble(pen: Pen): ReactNode[] {
   ];
 }
 
-const DRAWINGS: Record<GameType, (pen: Pen) => ReactNode[]> = {
-  quiz: questionMark,
+const DRAWINGS: Record<Exclude<GameType, 'quiz'>, (pen: Pen) => ReactNode[]> = {
   blindTest: note,
   bluff: bubble,
   draw: GENRE_DRAWINGS.pencil,
 };
 
 export function GameIcon({ game, size, color }: { game: GameType; size: number; color: string }) {
+  if (game === 'quiz') return <QuestionMarkIcon size={size} color={color} />;
   return <View style={{ width: size, height: size }}>{DRAWINGS[game]({ k: size / GRID, color })}</View>;
 }

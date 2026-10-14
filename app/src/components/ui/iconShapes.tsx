@@ -181,9 +181,8 @@ function thickRing(pen: Pen, key: string, cx: number, cy: number, d: number, wei
   return <View key={key} style={style} />;
 }
 
-// Point d'interrogation dessiné (Quiz, Culture générale) : crochet (anneau épais privé de son quart bas
-// gauche), tige et point. Mêmes proportions sur Android, iOS et le web : jamais de glyphe de police, dont
-// les métriques (hauteur de ligne, montée) diffèrent selon le système et décentraient le « ? » sur iPhone.
+// Point d'interrogation en formes : seulement le repli de QuestionMarkIcon quand react-native-svg manque
+// (build ancien) ; crochet (anneau épais privé de son quart bas gauche), tige et point.
 export function questionMark(pen: Pen): ReactNode[] {
   const hook = (inner: Pen) => [thickRing(inner, 'ring', 12, 8.5, 12, QUESTION_WEIGHT)];
   return [

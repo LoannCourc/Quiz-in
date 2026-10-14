@@ -12,6 +12,7 @@ import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestC
 import { BluffCatalog } from '@/components/host/catalog/bluff/BluffCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
+import { GameIcon } from '@/components/host/home/GameIcon';
 import { HomeView } from '@/components/host/home/HomeView';
 import { QuizDetails } from '@/components/host/catalog/QuizDetails';
 import { Screen } from '@/components/ui/Screen';
@@ -48,6 +49,7 @@ export default function CatalogDemoScreen() {
   const quiz = DEMO_ENTRIES.find((entry) => entry.id === quizId);
 
   if (icons === '1' || icons === 'genres') return <ThemeIconGallery onlyGenres={icons === 'genres'} />;
+  if (icons === 'question') return <QuestionMarkGallery />;
   if (quiz) {
     return (
       <QuizDetails
@@ -118,6 +120,40 @@ const GALLERY_ROWS: { label: string; name: QuizIconName; color: string }[] = [
   ...ICON_THEMES.map((theme) => ({ label: theme, name: themeIconOf(theme), color: AppColors.themeChips[themeIconOf(theme)] })),
   ...GENRE_ICONS.map((name) => ({ label: name, name, color: AppColors.themeChips.note })),
 ];
+
+// ?icons=question : le « ? » aux tailles de l'app, sur fond sombre et sur fond clair (affiches, puces), et tel
+// qu'il est sur la tuile Quiz de l'accueil (disque encre, « ? » rose).
+const QUESTION_SIZES = [18, 24, 32, 48, 64];
+const QUESTION_BACKGROUNDS: { label: string; color: string }[] = [
+  { label: 'Puce / affiche rose', color: AppColors.themeChips.question },
+  { label: 'Fond clair (or)', color: AppColors.accent },
+  { label: 'Fond sombre', color: AppColors.inkSurface },
+];
+
+function QuestionMarkGallery() {
+  return (
+    <Screen>
+      {QUESTION_BACKGROUNDS.map(({ label, color }) => (
+        <View key={label} style={styles.galleryRow}>
+          {QUESTION_SIZES.map((size) => (
+            <View key={size} style={[styles.galleryTile, { backgroundColor: color, padding: size / 4 }]}>
+              <ThemeIcon name="question" size={size} />
+            </View>
+          ))}
+          <Text style={styles.galleryLabel}>{label}</Text>
+        </View>
+      ))}
+      <View style={styles.galleryRow}>
+        {QUESTION_SIZES.map((size) => (
+          <View key={size} style={[styles.galleryTile, { backgroundColor: AppColors.inkSurface, padding: size / 4, borderRadius: size }]}>
+            <GameIcon game="quiz" size={size} color={AppColors.gameTiles.quiz} />
+          </View>
+        ))}
+        <Text style={styles.galleryLabel}>Tuile Quiz</Text>
+      </View>
+    </Screen>
+  );
+}
 
 function ThemeIconGallery({ onlyGenres }: { onlyGenres: boolean }) {
   return (
