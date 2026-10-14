@@ -25,7 +25,8 @@ function isGameOff(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: b
 
 interface HomeViewProps {
   onOpenGame: (game: GameType) => void;
-  // Affiché sous le titre (« Reprendre la partie »).
+  // Bandeau en haut (« Reprendre la partie », choix du prochain jeu) ; il remplace « À quoi on joue ? » et
+  // son sous-titre, pour que les tuiles tiennent sans défilement.
   banner?: ReactNode;
   // Interrupteurs à distance : la tuile reste visible mais « Bientôt » si son jeu est coupé.
   isBlindTestEnabled: boolean;
@@ -55,11 +56,12 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
   return (
     <View style={[styles.column, fit && { flex: 1, gap: fit.gap }]}>
       <Logo size={isCompact ? 'small' : 'medium'} align="start" />
-      <View style={styles.titles}>
-        <Text style={[styles.title, isCompact && styles.titleCompact]}>{strings.home.title}</Text>
-        {!isCompact && <Text style={[textStyles.body, styles.subtitle]}>{strings.home.subtitle}</Text>}
-      </View>
-      {banner}
+      {banner ?? (
+        <View style={styles.titles}>
+          <Text style={[styles.title, isCompact && styles.titleCompact]}>{strings.home.title}</Text>
+          {!isCompact && <Text style={[textStyles.body, styles.subtitle]}>{strings.home.subtitle}</Text>}
+        </View>
+      )}
       {fit ? (
         <View style={styles.fitGrid} onLayout={(event) => fit.onGridHeight(event.nativeEvent.layout.height)}>
           {[GAMES.slice(0, 2), GAMES.slice(2)].map((row) => (
