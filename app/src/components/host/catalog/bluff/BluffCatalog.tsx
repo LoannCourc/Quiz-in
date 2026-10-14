@@ -66,7 +66,7 @@ export function BluffCatalog({ entries: allEntries, played, onBack, onContinue }
       available={isEmpty ? [] : available}
       value={count}
       onChange={setQuestionCount}
-      summary={isEmpty ? texts.chooseQuiz : texts.mixSummary(mix.length, summary.questionCount)}
+      summary={isEmpty ? texts.chooseQuiz : texts.mixScope(mix.length)}
       onShowSummary={isEmpty ? undefined : () => setSheet('mix')}
       note={!isEmpty && available.length < BLUFF_QUESTION_COUNTS.length ? texts.mixTooSmall(summary.questionCount) : undefined}
       onContinue={() => onContinue(mix, count)}

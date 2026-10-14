@@ -170,9 +170,11 @@ export const strings = {
       remove: (title: string) => `Retirer « ${title} » de mon mélange`,
       chooseQuiz: 'Choisis un quiz',
       mixSummary: (quizzes: number, questions: number) => `${quizzes} quiz · ${questions} questions`,
+      // Barre « Nombre de questions » : le périmètre seul (le total est dans « Voir » et sous les options grisées).
+      mixScope: (quizzes: number) => `${quizzes} quiz`,
       mixTitle: 'Mon mélange',
       clearMix: 'Tout vider',
-      mixTooSmall: (total: number) => `Ce mélange n’a que ${total} questions : les options grisées sont impossibles.`,
+      mixTooSmall: (total: number) => `Ce mélange n’a que ${total} questions.`,
       noResult: 'Aucun quiz pour ce choix.',
     },
     // Catalogue du Blind test (maquette BT5).

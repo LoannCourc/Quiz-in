@@ -196,7 +196,6 @@ function ThemesCountBar({ entries, themes, scope, value, onChange, onContinue }:
       note={available.length < QUIZ_QUESTION_COUNTS.length ? strings.catalog.questionCount.themesTooSmall(themes.length, total) : undefined}
       onContinue={() => onContinue(count)}
       isContinueDisabled={available.length === 0}
-      compact
     />
   );
 }
