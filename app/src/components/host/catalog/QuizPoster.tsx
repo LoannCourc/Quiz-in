@@ -2,6 +2,7 @@ import { levelDots } from '@shared/blindTestCatalog';
 import { fittedFontSize } from '@shared/fontSize';
 import { quizIconOf, type QuizIconName } from '@shared/themeIcons';
 import type { DifficultyLevel, PosterPalette } from '@shared/types';
+import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { gradientStyle } from '@/components/ui/gradient';
@@ -46,22 +47,26 @@ function titleSizeFor(title: string, width: number): number {
 const ICON_MAX_SIZE = 64;
 const PLAYED_MARK_SIZE = 10;
 const PLAYED_BADGE_SIZE = 18;
-// Pastille de difficulté : trois points (un niveau de quiz : facile, moyen, difficile) et libellé en 9 points ;
-// s'il ne tient pas en 9 points (« Difficile » sur une affiche de 85 de large, grille de 320 points), les
-// points seuls.
+// Pastille de difficulté (28 de haut) : trois points (un niveau de quiz : facile, moyen, difficile) et libellé en
+// 13 points ; s'il ne tient pas dans la largeur de l'affiche (« Difficile » à 320 de large), les points seuls.
 const LEVEL_DOTS = 3;
-const LEVEL_DOT = 5;
-const LEVEL_DOT_GAP = 2;
-const LEVEL_FONT_SIZE = 9;
-// Largeur moyenne d'un caractère en Nunito Black, en fraction de la taille (avec marge).
-const LEVEL_CHAR_WIDTH = 0.62;
+const LEVEL_DOT = 6;
+const LEVEL_DOT_GAP = 3;
+const LEVEL_FONT_SIZE = 13;
+const LEVEL_PILL_HEIGHT = 28;
+const LEVEL_PILL_PADDING = 6;
+const LEVEL_PILL_GAP = 4;
+// Marge à droite de la pastille, et marge de sécurité sur la mesure du libellé (Android la donne parfois une
+// fraction de pixel trop étroite).
+const LEVEL_PILL_END = 3;
+const LEVEL_MEASURE_MARGIN = 1;
+const LEVEL_LINE_HEIGHT = 17;
 
-const LEVEL_LINE_HEIGHT = 12;
-
-function levelLabelFits(label: string, width: number): boolean {
+// Le libellé mesuré (largeur naturelle) tient-il à côté des points ?
+function levelLabelFits(labelWidth: number, posterWidth: number): boolean {
   const dotsWidth = LEVEL_DOTS * LEVEL_DOT + (LEVEL_DOTS - 1) * LEVEL_DOT_GAP;
-  const available = width - 2 * Spacing.one - 2 * (Spacing.one + 1) - dotsWidth - Spacing.one;
-  return label.length * LEVEL_CHAR_WIDTH * LEVEL_FONT_SIZE <= available;
+  const available = posterWidth - Spacing.one - LEVEL_PILL_END - 2 * LEVEL_PILL_PADDING - dotsWidth - LEVEL_PILL_GAP;
+  return labelWidth + LEVEL_MEASURE_MARGIN <= available;
 }
 
 // Lecteur d'écran : la difficulté après le titre.
@@ -72,21 +77,34 @@ function withLevel(label: string, level: DifficultyLevel | undefined): string {
 function LevelPill({ level, width }: { level: DifficultyLevel; width: number }) {
   const label = strings.catalog.difficultyLevels[level];
   const filled = Math.min(LEVEL_DOTS, levelDots(level));
+  // Largeur naturelle du libellé, mesurée par un texte invisible (0 : pas encore mesurée, points seuls).
+  const [labelWidth, setLabelWidth] = useState(0);
   return (
-    <View style={styles.levelPill}>
-      <View style={styles.levelDots}>
-        {Array.from({ length: LEVEL_DOTS }, (_, index) => (
-          <View key={index} style={[styles.levelDot, index < filled ? styles.levelDotFilled : styles.levelDotEmpty]} />
-        ))}
+    <>
+      <View style={styles.levelPill}>
+        <View style={styles.levelDots}>
+          {Array.from({ length: LEVEL_DOTS }, (_, index) => (
+            <View key={index} style={[styles.levelDot, index < filled ? styles.levelDotFilled : styles.levelDotEmpty]} />
+          ))}
+        </View>
+        {/* Taille fixe : la police du système ne l'agrandit pas (sinon le mot serait coupé) ; le lecteur d'écran
+            lit la difficulté dans le libellé de l'affiche. */}
+        {labelWidth > 0 && levelLabelFits(labelWidth, width) && (
+          <Text style={styles.levelText} numberOfLines={1} maxFontSizeMultiplier={1}>
+            {label}
+          </Text>
+        )}
       </View>
-      {/* Place comptée en 9 points : la police du système ne l'agrandit pas (sinon le mot serait coupé) ; le
-          lecteur d'écran lit la difficulté dans le libellé de l'affiche. */}
-      {levelLabelFits(label, width) && (
-        <Text style={styles.levelText} numberOfLines={1} maxFontSizeMultiplier={1}>
-          {label}
-        </Text>
-      )}
-    </View>
+      {/* Hors de la pastille (dans l'affiche, bien plus large que le mot) : jamais coupé sur deux lignes. */}
+      <Text
+        style={[styles.levelText, styles.levelMeasure]}
+        maxFontSizeMultiplier={1}
+        importantForAccessibility="no-hide-descendants"
+        accessibilityElementsHidden
+        onLayout={(event) => setLabelWidth(event.nativeEvent.layout.width)}>
+        {label}
+      </Text>
+    </>
   );
 }
 
@@ -101,7 +119,7 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
   const content = (
     <>
       {level && <LevelPill level={level} width={width} />}
-      <View style={styles.icon}>
+      <View style={[styles.icon, level && styles.iconBelowLevel]}>
         <View>
           <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
           {isPlayed && (
@@ -163,11 +181,11 @@ const styles = StyleSheet.create({
     top: Spacing.one,
     left: Spacing.one,
     zIndex: 1,
+    height: LEVEL_PILL_HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.one,
-    paddingHorizontal: Spacing.one + 1,
-    paddingVertical: 2,
+    gap: LEVEL_PILL_GAP,
+    paddingHorizontal: LEVEL_PILL_PADDING,
     borderRadius: AppSizes.radiusPill,
     backgroundColor: AppColors.ink,
   },
@@ -184,7 +202,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.levelDot,
   },
   levelDotEmpty: {
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: AppColors.levelDotEmpty,
   },
   levelText: {
@@ -194,6 +212,13 @@ const styles = StyleSheet.create({
     fontSize: LEVEL_FONT_SIZE,
     lineHeight: LEVEL_LINE_HEIGHT,
   },
+  // Invisible, à la largeur naturelle du mot.
+  levelMeasure: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    opacity: 0,
+  },
   pressed: {
     transform: [{ translateY: 4 }],
     boxShadow: AppShadows.pressed,
@@ -201,6 +226,10 @@ const styles = StyleSheet.create({
   icon: {
     alignItems: 'center',
     marginTop: Spacing.three,
+  },
+  // Sous la pastille de difficulté (en haut à gauche, 28 de haut).
+  iconBelowLevel: {
+    marginTop: LEVEL_PILL_HEIGHT,
   },
   title: {
     color: AppColors.text,
