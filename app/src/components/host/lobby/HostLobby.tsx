@@ -220,7 +220,8 @@ export function HostLobby(props: HostLobbyProps) {
           <>
             <LobbyCodeHero code={code} isQrOpen={isQrOpen} onToggleQr={() => setIsQrOpen((open) => !open)} />
             {isQrOpen && <JoinWithoutTv code={code} onHide={() => setIsQrOpen(false)} />}
-            {cast.isAvailable && (
+            {/* QR code affiché (« Je n'ai pas de TV ») : pas de TV, ni son aide, jusqu'à « Masquer ». */}
+            {cast.isAvailable && !isQrOpen && (
               <>
                 <TvCastPill cast={cast} />
                 {cast.noTvFound ? (
