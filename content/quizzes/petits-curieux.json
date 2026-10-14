@@ -1,0 +1,183 @@
+{
+  "id": "petits-curieux",
+  "title": "Les petits curieux",
+  "theme": "Culture générale",
+  "description": "Couleurs, saisons, formes et contes : un quiz tout doux pour les plus jeunes joueurs.",
+  "audience": "kids",
+  "poster": "pink",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "pc-01",
+      "text": "Quel est le plus petit des continents ?",
+      "options": [
+        "L'Europe",
+        "L'Antarctique",
+        "L'Océanie",
+        "L'Amérique du Sud"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "oceanie",
+        "l'oceanie"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle regroupe l'Australie et de nombreuses îles du Pacifique."
+    },
+    {
+      "id": "pc-02",
+      "text": "Quelle couleur obtient-on en mélangeant du bleu et du jaune ?",
+      "options": [
+        "Le violet",
+        "Le vert",
+        "L'orange",
+        "Le marron"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "vert",
+        "le vert"
+      ],
+      "difficulty": 1,
+      "explanation": "Le bleu et le rouge donnent du violet ; le rouge et le jaune, de l'orange."
+    },
+    {
+      "id": "pc-03",
+      "text": "Combien de couleurs compte-t-on traditionnellement dans un arc-en-ciel ?",
+      "options": [
+        "5",
+        "6",
+        "9",
+        "7"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "7",
+        "sept"
+      ],
+      "difficulty": 1,
+      "explanation": "Rouge, orange, jaune, vert, bleu, indigo et violet."
+    },
+    {
+      "id": "pc-04",
+      "text": "Combien de mois compte une année ?",
+      "options": [
+        "12",
+        "10",
+        "11",
+        "13"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "12",
+        "douze"
+      ],
+      "difficulty": 1,
+      "explanation": "De janvier à décembre."
+    },
+    {
+      "id": "pc-05",
+      "text": "En quelle saison les feuilles de beaucoup d'arbres tombent-elles ?",
+      "options": [
+        "En hiver",
+        "Au printemps",
+        "En automne",
+        "En été"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "en automne",
+        "automne",
+        "l'automne"
+      ],
+      "difficulty": 1,
+      "explanation": "Elles jaunissent et rougissent avant de tomber."
+    },
+    {
+      "id": "pc-06",
+      "text": "Que devient l'eau quand elle gèle ?",
+      "options": [
+        "De la vapeur",
+        "Du sable",
+        "De la glace",
+        "De la neige fondue"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "glace",
+        "de la glace"
+      ],
+      "difficulty": 1,
+      "explanation": "L'eau gèle à 0 °C."
+    },
+    {
+      "id": "pc-07",
+      "text": "Combien de côtés a un triangle ?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "3",
+        "trois"
+      ],
+      "difficulty": 1,
+      "explanation": "Le carré en a quatre, le pentagone cinq."
+    },
+    {
+      "id": "pc-08",
+      "text": "Quel astre nous éclaire pendant la journée ?",
+      "options": [
+        "La Lune",
+        "L'étoile Polaire",
+        "Mars",
+        "Le Soleil"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "soleil",
+        "le soleil"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est une étoile, très proche de nous."
+    },
+    {
+      "id": "pc-09",
+      "text": "Dans quel conte une jeune fille perd-elle une pantoufle de verre ?",
+      "options": [
+        "Blanche-Neige",
+        "Cendrillon",
+        "La Belle au bois dormant",
+        "Le Petit Chaperon rouge"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "cendrillon"
+      ],
+      "difficulty": 1,
+      "explanation": "Le prince la retrouve grâce à cette pantoufle."
+    },
+    {
+      "id": "pc-10",
+      "text": "Quel fruit jaune et courbé les singes adorent-ils dans les dessins animés ?",
+      "options": [
+        "La banane",
+        "La poire",
+        "Le citron",
+        "L'ananas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "banane",
+        "la banane"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle pousse en grappes appelées « régimes »."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "corps-humain",
+  "title": "Le corps humain",
+  "theme": "Sciences et nature",
+  "description": "Os, muscles, organes et dents : dix questions pour mieux connaître la machine que l'on habite.",
+  "audience": "all",
+  "poster": "red",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "ch-01",
+      "text": "Quel est le plus grand organe du corps humain ?",
+      "options": [
+        "Le foie",
+        "Les poumons",
+        "L'intestin",
+        "La peau"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "peau",
+        "la peau"
+      ],
+      "difficulty": 2,
+      "explanation": "Chez un adulte, elle couvre près de 2 m²."
+    },
+    {
+      "id": "ch-02",
+      "text": "Combien de cavités compte le cœur humain ?",
+      "options": [
+        "4",
+        "2",
+        "3",
+        "6"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Deux oreillettes en haut, deux ventricules en bas."
+    },
+    {
+      "id": "ch-03",
+      "text": "Quel est l'os le plus long du corps humain ?",
+      "options": [
+        "Le tibia",
+        "L'humérus",
+        "Le fémur",
+        "La colonne vertébrale"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "femur",
+        "le femur"
+      ],
+      "difficulty": 1,
+      "explanation": "Il relie la hanche au genou."
+    },
+    {
+      "id": "ch-04",
+      "text": "Dans quelle partie de l'oreille se trouve l'étrier, le plus petit os du corps ?",
+      "options": [
+        "L'oreille externe",
+        "L'oreille interne",
+        "L'oreille moyenne",
+        "Le conduit auditif"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "oreille moyenne"
+      ],
+      "difficulty": 2,
+      "explanation": "Avec le marteau et l'enclume, il transmet les vibrations du tympan."
+    },
+    {
+      "id": "ch-05",
+      "text": "Quelles cellules du sang transportent l'oxygène ?",
+      "options": [
+        "Les globules rouges",
+        "Les globules blancs",
+        "Les plaquettes",
+        "Les neurones"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "globules rouges",
+        "hematies"
+      ],
+      "difficulty": 1,
+      "explanation": "On les appelle aussi hématies ; elles contiennent l'hémoglobine."
+    },
+    {
+      "id": "ch-06",
+      "text": "Combien de dents compte la denture complète d'un adulte, dents de sagesse comprises ?",
+      "options": [
+        "28",
+        "30",
+        "36",
+        "32"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "32",
+        "trente-deux"
+      ],
+      "difficulty": 2,
+      "explanation": "Sans les quatre dents de sagesse, il en reste 28."
+    },
+    {
+      "id": "ch-07",
+      "text": "Comment s'appelle le clapet qui ferme la trachée quand on avale ?",
+      "options": [
+        "La luette",
+        "L'épiglotte",
+        "Le larynx",
+        "L'œsophage"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "epiglotte",
+        "l'epiglotte"
+      ],
+      "difficulty": 3,
+      "explanation": "Il évite que les aliments partent « de travers », vers les poumons."
+    },
+    {
+      "id": "ch-08",
+      "text": "Quel muscle, sous les poumons, est le principal muscle de la respiration ?",
+      "options": [
+        "Le diaphragme",
+        "Le pectoral",
+        "L'abdominal",
+        "Le trapèze"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "diaphragme",
+        "le diaphragme"
+      ],
+      "difficulty": 2,
+      "explanation": "En se contractant, il descend et fait entrer l'air dans les poumons."
+    },
+    {
+      "id": "ch-09",
+      "text": "Quelle vitamine, désignée par une lettre, la peau fabrique-t-elle grâce au soleil ?",
+      "options": [
+        "C",
+        "A",
+        "D",
+        "K"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "d",
+        "vitamine d"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle aide à fixer le calcium dans les os."
+    },
+    {
+      "id": "ch-10",
+      "text": "Comment s'appelle l'os du talon ?",
+      "options": [
+        "Le métatarse",
+        "Le calcanéum",
+        "La rotule",
+        "Le péroné"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "calcaneum",
+        "le calcaneum"
+      ],
+      "difficulty": 3,
+      "explanation": "C'est le plus gros os du pied."
+    }
+  ]
+}

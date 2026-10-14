@@ -1,0 +1,181 @@
+{
+  "id": "jeux-olympiques",
+  "title": "Les Jeux olympiques",
+  "theme": "Sport",
+  "description": "Des premiers Jeux d'hiver à Paris 2024 : dix questions sur les records et les légendes olympiques.",
+  "audience": "experts",
+  "poster": "blue",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "jo-01",
+      "text": "Dans quelle ville se sont tenus, en 1924, les Jeux reconnus comme les premiers Jeux olympiques d'hiver ?",
+      "options": [
+        "Chamonix",
+        "Saint-Moritz",
+        "Oslo",
+        "Grenoble"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "chamonix"
+      ],
+      "difficulty": 2,
+      "explanation": "Appelés d'abord « Semaine internationale des sports d'hiver », ils ont ensuite été reconnus comme les premiers Jeux d'hiver."
+    },
+    {
+      "id": "jo-02",
+      "text": "En quelle année Paris a-t-elle accueilli les Jeux olympiques d'été pour la première fois ?",
+      "options": [
+        "1908",
+        "1912",
+        "1900",
+        "1924"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "1900"
+      ],
+      "difficulty": 3,
+      "explanation": "Ces Jeux, mêlés à l'Exposition universelle, s'étalent sur plus de cinq mois."
+    },
+    {
+      "id": "jo-03",
+      "text": "Quel athlète américain remporte quatre médailles d'or aux Jeux de Berlin, en 1936 ?",
+      "options": [
+        "Carl Lewis",
+        "Jesse Owens",
+        "Jim Thorpe",
+        "Bob Beamon"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "owens",
+        "jesse owens"
+      ],
+      "difficulty": 2,
+      "explanation": "100 m, 200 m, saut en longueur et relais 4 × 100 m."
+    },
+    {
+      "id": "jo-04",
+      "text": "Quelle gymnaste roumaine obtient la première note parfaite de 10 aux Jeux de Montréal, en 1976 ?",
+      "options": [
+        "Olga Korbut",
+        "Simona Amânar",
+        "Larissa Latynina",
+        "Nadia Comăneci"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "comaneci",
+        "nadia comaneci"
+      ],
+      "difficulty": 2,
+      "explanation": "Le tableau, incapable d'afficher 10, indique « 1.00 »."
+    },
+    {
+      "id": "jo-05",
+      "text": "Combien d'épreuves compte l'heptathlon féminin ?",
+      "options": [
+        "7",
+        "5",
+        "8",
+        "10"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "7",
+        "sept"
+      ],
+      "difficulty": 2,
+      "explanation": "Trois courses, deux sauts et deux lancers, sur deux jours."
+    },
+    {
+      "id": "jo-06",
+      "text": "Dans quelle ville Bob Beamon réussit-il son saut en longueur de 8,90 m, en 1968 ?",
+      "options": [
+        "Tokyo",
+        "Munich",
+        "Mexico",
+        "Rome"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "mexico"
+      ],
+      "difficulty": 3,
+      "explanation": "Il bat l'ancien record du monde de 55 cm."
+    },
+    {
+      "id": "jo-07",
+      "text": "Quelle ville française accueille les Jeux olympiques d'hiver de 1992 ?",
+      "options": [
+        "Grenoble",
+        "Chamonix",
+        "Albertville",
+        "Annecy"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "albertville"
+      ],
+      "difficulty": 2,
+      "explanation": "Ce sont les derniers Jeux d'hiver organisés la même année que les Jeux d'été."
+    },
+    {
+      "id": "jo-08",
+      "text": "Quel nageur français remporte quatre titres individuels aux Jeux de Paris 2024 ?",
+      "options": [
+        "Léon Marchand",
+        "Florent Manaudou",
+        "Maxime Grousset",
+        "Yannick Agnel"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "marchand",
+        "leon marchand"
+      ],
+      "difficulty": 2,
+      "explanation": "400 m et 200 m quatre nages, 200 m papillon et 200 m brasse."
+    },
+    {
+      "id": "jo-09",
+      "text": "Quelle discipline fait ses débuts olympiques aux Jeux de Paris 2024, place de la Concorde ?",
+      "options": [
+        "Le skateboard",
+        "L'escalade",
+        "Le surf",
+        "Le breaking"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "breaking",
+        "breakdance",
+        "le breaking"
+      ],
+      "difficulty": 3,
+      "explanation": "Skateboard, escalade et surf étaient déjà apparus à Tokyo."
+    },
+    {
+      "id": "jo-10",
+      "text": "Quel pays accueille en 1964 les premiers Jeux olympiques organisés en Asie ?",
+      "options": [
+        "La Corée du Sud",
+        "Le Japon",
+        "La Chine",
+        "L'Inde"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "japon",
+        "le japon",
+        "tokyo"
+      ],
+      "difficulty": 3,
+      "explanation": "Les Jeux se tiennent à Tokyo, en octobre 1964."
+    }
+  ]
+}

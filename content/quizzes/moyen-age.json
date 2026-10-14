@@ -1,0 +1,183 @@
+{
+  "id": "moyen-age",
+  "title": "Châteaux et chevaliers",
+  "theme": "Histoire",
+  "description": "Donjons, croisades et rois légendaires : dix questions pour plonger dans le Moyen Âge.",
+  "audience": "all",
+  "poster": "violet",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "ma-01",
+      "text": "Comment appelle-t-on le fossé rempli d'eau qui entoure certains châteaux forts ?",
+      "options": [
+        "Les remparts",
+        "La herse",
+        "Les douves",
+        "Les créneaux"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "douves",
+        "les douves"
+      ],
+      "difficulty": 1,
+      "explanation": "On le franchissait par un pont-levis."
+    },
+    {
+      "id": "ma-02",
+      "text": "Comment s'appelle la grande tour principale d'un château fort ?",
+      "options": [
+        "La tourelle",
+        "Le beffroi",
+        "Le donjon",
+        "Le clocher"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "donjon",
+        "le donjon"
+      ],
+      "difficulty": 1,
+      "explanation": "C'était le dernier refuge du seigneur en cas d'attaque."
+    },
+    {
+      "id": "ma-03",
+      "text": "Quel roi d'Angleterre a été surnommé « Cœur de Lion » ?",
+      "options": [
+        "Richard Ier",
+        "Henri II",
+        "Jean sans Terre",
+        "Édouard Ier"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "richard",
+        "richard ier",
+        "richard 1er"
+      ],
+      "difficulty": 2,
+      "explanation": "Il a participé à la troisième croisade."
+    },
+    {
+      "id": "ma-04",
+      "text": "Quel souverain a été couronné empereur à Rome le jour de Noël de l'an 800 ?",
+      "options": [
+        "Clovis",
+        "Hugues Capet",
+        "Pépin le Bref",
+        "Charlemagne"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "charlemagne"
+      ],
+      "difficulty": 1,
+      "explanation": "Il a été couronné par le pape Léon III."
+    },
+    {
+      "id": "ma-05",
+      "text": "En quelle année a eu lieu la bataille d'Hastings, qui ouvre à Guillaume le Conquérant les portes de l'Angleterre ?",
+      "options": [
+        "1166",
+        "1066",
+        "966",
+        "1214"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "1066"
+      ],
+      "difficulty": 2,
+      "explanation": "Guillaume, duc de Normandie, y bat le roi Harold."
+    },
+    {
+      "id": "ma-06",
+      "text": "Comment appelle-t-on les expéditions militaires parties d'Europe vers Jérusalem à partir de la fin du XIe siècle ?",
+      "options": [
+        "Les croisades",
+        "Les invasions",
+        "Les pèlerinages",
+        "Les conquêtes"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "croisades",
+        "les croisades"
+      ],
+      "difficulty": 1,
+      "explanation": "La première croisade est lancée en 1095."
+    },
+    {
+      "id": "ma-07",
+      "text": "Quel roi de France, mort près de Tunis en 1270, a été proclamé saint ?",
+      "options": [
+        "Philippe le Bel",
+        "Charles V",
+        "Louis IX",
+        "Charles VII"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "louis ix",
+        "saint louis",
+        "louis 9"
+      ],
+      "difficulty": 2,
+      "explanation": "On l'appelle aussi Saint Louis."
+    },
+    {
+      "id": "ma-08",
+      "text": "Comment appelait-on le jeune noble au service d'un chevalier, avant d'être adoubé à son tour ?",
+      "options": [
+        "Le vassal",
+        "L'écuyer",
+        "Le serf",
+        "Le troubadour"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "ecuyer",
+        "l'ecuyer"
+      ],
+      "difficulty": 1,
+      "explanation": "Il s'occupait des armes et du cheval de son maître."
+    },
+    {
+      "id": "ma-09",
+      "text": "Comment a-t-on surnommé l'épidémie qui a ravagé l'Europe au milieu du XIVe siècle ?",
+      "options": [
+        "La grippe espagnole",
+        "La lèpre rouge",
+        "Le choléra blanc",
+        "La peste noire"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "peste noire",
+        "la peste"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle aurait tué entre un tiers et la moitié des Européens."
+    },
+    {
+      "id": "ma-10",
+      "text": "Quelle longue broderie raconte la conquête de l'Angleterre par Guillaume le Conquérant ?",
+      "options": [
+        "La tapisserie de Bayeux",
+        "La tapisserie de l'Apocalypse",
+        "La Dame à la licorne",
+        "Le suaire de Turin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "tapisserie de bayeux",
+        "bayeux"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle mesure près de 70 mètres de long."
+    }
+  ]
+}

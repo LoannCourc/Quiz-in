@@ -1,0 +1,184 @@
+{
+  "id": "instruments-musique",
+  "title": "Les instruments de musique",
+  "theme": "Musique",
+  "description": "Cordes, vents et percussions : dix questions pour reconnaître les instruments de l'orchestre et d'ailleurs.",
+  "audience": "all",
+  "poster": "pink",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "im-01",
+      "text": "Quel instrument a des touches noires et blanches ?",
+      "options": [
+        "Le piano",
+        "La harpe",
+        "La flûte",
+        "Le violon"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "piano",
+        "le piano"
+      ],
+      "difficulty": 1,
+      "explanation": "Les touches noires jouent les dièses et les bémols."
+    },
+    {
+      "id": "im-02",
+      "text": "À quelle famille d'instruments appartient le violon ?",
+      "options": [
+        "Les cuivres",
+        "Les bois",
+        "Les percussions",
+        "Les cordes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "cordes",
+        "les cordes"
+      ],
+      "difficulty": 1,
+      "explanation": "On frotte ses cordes avec un archet."
+    },
+    {
+      "id": "im-03",
+      "text": "Quel instrument à vent porte le nom de son inventeur, Adolphe Sax ?",
+      "options": [
+        "La clarinette",
+        "Le saxophone",
+        "Le trombone",
+        "Le hautbois"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "saxophone",
+        "le saxophone",
+        "saxo"
+      ],
+      "difficulty": 1,
+      "explanation": "Adolphe Sax, facteur belge, le fait breveter en 1846."
+    },
+    {
+      "id": "im-04",
+      "text": "Combien de cordes compte un violon ?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 2,
+      "explanation": "Elles sont accordées en sol, ré, la, mi."
+    },
+    {
+      "id": "im-05",
+      "text": "Quel est le plus grand instrument à cordes frottées de l'orchestre ?",
+      "options": [
+        "Le violoncelle",
+        "L'alto",
+        "La contrebasse",
+        "La viole"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "contrebasse",
+        "la contrebasse"
+      ],
+      "difficulty": 2,
+      "explanation": "On en joue debout ou assis sur un tabouret haut."
+    },
+    {
+      "id": "im-06",
+      "text": "Quel instrument est fait de lames de bois que l'on frappe avec des baguettes ?",
+      "options": [
+        "Le triangle",
+        "Le xylophone",
+        "Le tambourin",
+        "Les maracas"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "xylophone",
+        "le xylophone"
+      ],
+      "difficulty": 1,
+      "explanation": "Son nom vient du grec « xylon », le bois."
+    },
+    {
+      "id": "im-07",
+      "text": "Avec son sac et ses tuyaux, quel instrument est le symbole musical de l'Écosse ?",
+      "options": [
+        "L'accordéon",
+        "L'harmonica",
+        "Le banjo",
+        "La cornemuse"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "cornemuse",
+        "la cornemuse"
+      ],
+      "difficulty": 1,
+      "explanation": "Le musicien souffle dans le sac, qui alimente les tuyaux."
+    },
+    {
+      "id": "im-08",
+      "text": "Comment s'appelle la fine tige que tient le chef d'orchestre ?",
+      "options": [
+        "La baguette",
+        "L'archet",
+        "Le diapason",
+        "Le métronome"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "baguette",
+        "la baguette"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle sert à marquer la mesure et les départs."
+    },
+    {
+      "id": "im-09",
+      "text": "Quel instrument de la famille des cuivres possède une coulisse ?",
+      "options": [
+        "La trompette",
+        "Le cor",
+        "Le trombone",
+        "Le tuba"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "trombone",
+        "le trombone"
+      ],
+      "difficulty": 2,
+      "explanation": "En faisant glisser la coulisse, on change la note."
+    },
+    {
+      "id": "im-10",
+      "text": "Combien de musiciens compte un quatuor ?",
+      "options": [
+        "3",
+        "5",
+        "4",
+        "8"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Le quatuor à cordes réunit deux violons, un alto et un violoncelle."
+    }
+  ]
+}

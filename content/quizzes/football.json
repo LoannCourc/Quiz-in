@@ -1,0 +1,182 @@
+{
+  "id": "football",
+  "title": "Le football",
+  "theme": "Sport",
+  "description": "Règles, légendes et grandes finales : dix questions pour les fans de ballon rond.",
+  "audience": "all",
+  "poster": "green",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "fb-01",
+      "text": "Combien de minutes dure un match de football, sans les prolongations ni le temps additionnel ?",
+      "options": [
+        "80",
+        "90",
+        "100",
+        "120"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "90",
+        "quatre-vingt-dix"
+      ],
+      "difficulty": 1,
+      "explanation": "Deux mi-temps de 45 minutes."
+    },
+    {
+      "id": "fb-02",
+      "text": "Quel pays a remporté la première Coupe du monde de football, en 1930 ?",
+      "options": [
+        "L'Uruguay",
+        "Le Brésil",
+        "L'Argentine",
+        "L'Italie"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "uruguay",
+        "l'uruguay"
+      ],
+      "difficulty": 2,
+      "explanation": "Le pays organisateur bat l'Argentine en finale."
+    },
+    {
+      "id": "fb-03",
+      "text": "Quel joueur français marque deux buts de la tête en finale de la Coupe du monde 1998 ?",
+      "options": [
+        "Thierry Henry",
+        "Emmanuel Petit",
+        "Zinédine Zidane",
+        "Lilian Thuram"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "zidane",
+        "zinedine zidane"
+      ],
+      "difficulty": 1,
+      "explanation": "Emmanuel Petit inscrit le troisième but, en fin de match."
+    },
+    {
+      "id": "fb-04",
+      "text": "De quelle couleur est le carton qui signifie une expulsion ?",
+      "options": [
+        "Jaune",
+        "Rouge",
+        "Blanc",
+        "Noir"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "rouge"
+      ],
+      "difficulty": 1,
+      "explanation": "Deux cartons jaunes dans le même match valent aussi un rouge."
+    },
+    {
+      "id": "fb-05",
+      "text": "À combien de mètres de la ligne de but se trouve le point de penalty ?",
+      "options": [
+        "9",
+        "13",
+        "16",
+        "11"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "11",
+        "onze"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est placé à l'intérieur de la surface de réparation."
+    },
+    {
+      "id": "fb-06",
+      "text": "Dans quelle ville se trouve le stade Vélodrome ?",
+      "options": [
+        "Marseille",
+        "Lyon",
+        "Bordeaux",
+        "Saint-Étienne"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "marseille"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est le stade de l'Olympique de Marseille."
+    },
+    {
+      "id": "fb-07",
+      "text": "Quel club français a remporté la Ligue des champions en 1993 ?",
+      "options": [
+        "Le Paris Saint-Germain",
+        "L'AS Monaco",
+        "L'Olympique de Marseille",
+        "Les Girondins de Bordeaux"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "marseille",
+        "om",
+        "olympique de marseille"
+      ],
+      "difficulty": 2,
+      "explanation": "L'OM bat le Milan AC 1-0 en finale, à Munich."
+    },
+    {
+      "id": "fb-08",
+      "text": "Quel joueur a reçu le tout premier Ballon d'or, en 1956 ?",
+      "options": [
+        "Alfredo Di Stéfano",
+        "Raymond Kopa",
+        "Stanley Matthews",
+        "Ferenc Puskás"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "matthews",
+        "stanley matthews"
+      ],
+      "difficulty": 3,
+      "explanation": "L'ailier anglais de Blackpool devance Di Stéfano et Kopa."
+    },
+    {
+      "id": "fb-09",
+      "text": "Quel joueur brésilien, trois fois champion du monde, était surnommé « le Roi » ?",
+      "options": [
+        "Pelé",
+        "Garrincha",
+        "Ronaldo",
+        "Zico"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "pele"
+      ],
+      "difficulty": 2,
+      "explanation": "Il gagne la Coupe du monde en 1958, 1962 et 1970."
+    },
+    {
+      "id": "fb-10",
+      "text": "Comment appelle-t-on le fait de marquer trois buts dans un même match ?",
+      "options": [
+        "Un grand chelem",
+        "Un triplé d'or",
+        "Une lucarne",
+        "Un coup du chapeau"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "coup du chapeau",
+        "hat-trick",
+        "triple"
+      ],
+      "difficulty": 2,
+      "explanation": "En anglais, on parle de « hat-trick »."
+    }
+  ]
+}

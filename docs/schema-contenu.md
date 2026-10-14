@@ -1,6 +1,12 @@
 # Schéma du contenu : rédiger des quiz pour Quiz'in
 
-Pour Loann et son conseiller. Référence technique complète : `content/README.md` (contrôles du build).
+Référence technique complète : `content/README.md` (contrôles du build).
+
+**Qui rédige** : Claude Code rédige les questions et les vérifie avec des sources web (Bluff et quiz difficiles : une URL
+par réponse dans `docs/relecture-<lot>.md`, deux sources quand c'est possible ; sans source fiable, la question est
+retirée ou remplacée). Quiz faciles et moyens : faits classiques, certitude notée « sûr » ou « à vérifier », tout
+doute est retiré. Le développeur relit un échantillon, en priorité les questions « à vérifier » (en tête de chaque
+fichier de relecture). La règle des faits vérifiés (deux sources quand c'est possible) reste valable.
 Chaque quiz est **un fichier JSON** dans `content/quizzes/`, nommé d'après son identifiant. Le Bluff aussi :
 la banque d'origine (`content/sources/`) n'est plus lue, on écrit directement le JSON.
 
@@ -13,12 +19,14 @@ quiz de 10 questions dans le thème.
 |---|---|---|
 | Culture générale | 0 / 0 | 0 / 0 |
 | Cinéma et séries | 0 / 0 | 15 / 20 (aucun Bluff) |
-| Loisirs | 0 / 10 | 5 / 10 |
-| Sciences et nature | 0 / 10 | 0 / 0 |
-| Géographie | 0 / 10 | 5 / 10 |
-| Histoire | 10 / 20 | 0 / 0 |
-| Musique | 10 / 20 | 15 / 20 (aucun Bluff) |
-| Sport | 10 / 20 | 15 / 20 (aucun Bluff) |
+| Loisirs | 0 / 0 | 5 / 10 |
+| Sciences et nature | 0 / 0 | 0 / 0 |
+| Géographie | 0 / 0 | 5 / 10 |
+| Histoire | 0 / 0 | 0 / 0 |
+| Musique | 0 / 0 | 15 / 20 (aucun Bluff) |
+| Sport | 0 / 0 | 15 / 20 (aucun Bluff) |
+
+Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 30 questions.
 
 ## Règles communes à tous les jeux
 

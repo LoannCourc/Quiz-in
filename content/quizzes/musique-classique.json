@@ -1,0 +1,184 @@
+{
+  "id": "musique-classique",
+  "title": "Grands compositeurs",
+  "theme": "Musique",
+  "description": "Opéras, symphonies et ballets : dix questions pour les amateurs de musique classique.",
+  "audience": "experts",
+  "poster": "gold",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "mc-01",
+      "text": "Quel compositeur italien a écrit « Les Quatre Saisons » ?",
+      "options": [
+        "Arcangelo Corelli",
+        "Domenico Scarlatti",
+        "Giuseppe Verdi",
+        "Antonio Vivaldi"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "vivaldi",
+        "antonio vivaldi"
+      ],
+      "difficulty": 1,
+      "explanation": "Ces quatre concertos pour violon sont publiés en 1725 à Amsterdam."
+    },
+    {
+      "id": "mc-02",
+      "text": "Dans quel opéra de Mozart chante Papageno, l'oiseleur ?",
+      "options": [
+        "Don Giovanni",
+        "La Flûte enchantée",
+        "Les Noces de Figaro",
+        "Così fan tutte"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "la flute enchantee",
+        "flute enchantee"
+      ],
+      "difficulty": 2,
+      "explanation": "L'œuvre est créée à Vienne en 1791."
+    },
+    {
+      "id": "mc-03",
+      "text": "Quel compositeur a écrit la « Symphonie fantastique », créée à Paris en 1830 ?",
+      "options": [
+        "Hector Berlioz",
+        "Camille Saint-Saëns",
+        "Charles Gounod",
+        "Franz Liszt"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "berlioz",
+        "hector berlioz"
+      ],
+      "difficulty": 3,
+      "explanation": "Elle est créée le 5 décembre 1830 au Conservatoire de Paris."
+    },
+    {
+      "id": "mc-04",
+      "text": "Quel compositeur français a écrit l'opéra « Carmen » ?",
+      "options": [
+        "Jules Massenet",
+        "Jacques Offenbach",
+        "Georges Bizet",
+        "Léo Delibes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "bizet",
+        "georges bizet"
+      ],
+      "difficulty": 2,
+      "explanation": "L'opéra est créé en 1875 à l'Opéra-Comique, à Paris."
+    },
+    {
+      "id": "mc-05",
+      "text": "Quel compositeur russe a écrit la musique du ballet « Le Lac des cygnes » ?",
+      "options": [
+        "Igor Stravinsky",
+        "Piotr Ilitch Tchaïkovski",
+        "Sergueï Prokofiev",
+        "Nikolaï Rimski-Korsakov"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "piotr ilitch tchaikovski",
+        "tchaikovski",
+        "tchaikovsky"
+      ],
+      "difficulty": 2,
+      "explanation": "Le ballet, commandé en 1875, est créé à Moscou en 1877."
+    },
+    {
+      "id": "mc-06",
+      "text": "Quel compositeur a dédié six concertos au margrave de Brandebourg en 1721 ?",
+      "options": [
+        "Georg Friedrich Haendel",
+        "Georg Philipp Telemann",
+        "Joseph Haydn",
+        "Jean-Sébastien Bach"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "bach",
+        "jean-sebastien bach",
+        "js bach"
+      ],
+      "difficulty": 3,
+      "explanation": "Ce sont les six « Concertos brandebourgeois »."
+    },
+    {
+      "id": "mc-07",
+      "text": "Dans quelle ville Mozart est-il né ?",
+      "options": [
+        "Salzbourg",
+        "Vienne",
+        "Munich",
+        "Prague"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "salzbourg",
+        "salzburg"
+      ],
+      "difficulty": 2,
+      "explanation": "Il y naît le 27 janvier 1756."
+    },
+    {
+      "id": "mc-08",
+      "text": "Quel compositeur a écrit « Le Carnaval des animaux » ?",
+      "options": [
+        "Claude Debussy",
+        "Maurice Ravel",
+        "Camille Saint-Saëns",
+        "Erik Satie"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "saint-saens",
+        "camille saint-saens"
+      ],
+      "difficulty": 2,
+      "explanation": "Il l'a composé en 1886 et en a interdit l'exécution publique de son vivant."
+    },
+    {
+      "id": "mc-09",
+      "text": "Quel compositeur norvégien a écrit « Dans l'antre du roi de la montagne », pour la pièce « Peer Gynt » ?",
+      "options": [
+        "Jean Sibelius",
+        "Carl Nielsen",
+        "Edvard Grieg",
+        "Antonín Dvořák"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "grieg",
+        "edvard grieg"
+      ],
+      "difficulty": 3,
+      "explanation": "La musique de scène date de 1875 ; la pièce est d'Henrik Ibsen."
+    },
+    {
+      "id": "mc-10",
+      "text": "De quel opéra de Verdi vient le chœur des esclaves hébreux, « Va, pensiero » ?",
+      "options": [
+        "Nabucco",
+        "La Traviata",
+        "Aïda",
+        "Rigoletto"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "nabucco"
+      ],
+      "difficulty": 3,
+      "explanation": "L'opéra est créé à la Scala de Milan en 1842."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "vingtieme-siecle",
+  "title": "Le XXe siècle",
+  "theme": "Histoire",
+  "description": "Guerres mondiales, guerre froide et grandes figures : dix questions sur le siècle qui a changé le monde.",
+  "audience": "all",
+  "poster": "blue",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "xx-01",
+      "text": "En quelle année a commencé la Première Guerre mondiale ?",
+      "options": [
+        "1912",
+        "1916",
+        "1914",
+        "1918"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "1914"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle éclate en août 1914, un mois après l'attentat de Sarajevo."
+    },
+    {
+      "id": "xx-02",
+      "text": "Quelle conférence de février 1945 réunit Roosevelt, Churchill et Staline en Crimée ?",
+      "options": [
+        "La conférence de Yalta",
+        "La conférence de Potsdam",
+        "La conférence de Téhéran",
+        "La conférence de Munich"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "yalta",
+        "conference de yalta"
+      ],
+      "difficulty": 3,
+      "explanation": "Les trois Alliés y préparent l'après-guerre en Europe."
+    },
+    {
+      "id": "xx-03",
+      "text": "À quelle date les Alliés débarquent-ils en Normandie ?",
+      "options": [
+        "Le 8 mai 1945",
+        "Le 18 juin 1940",
+        "Le 25 août 1944",
+        "Le 6 juin 1944"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "6 juin 1944"
+      ],
+      "difficulty": 1,
+      "explanation": "Le « Jour J », sur cinq plages de la côte normande."
+    },
+    {
+      "id": "xx-04",
+      "text": "Quel général lance, depuis Londres, l'appel du 18 juin 1940 ?",
+      "options": [
+        "Philippe Leclerc",
+        "Charles de Gaulle",
+        "Jean de Lattre de Tassigny",
+        "Philippe Pétain"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "de gaulle",
+        "charles de gaulle"
+      ],
+      "difficulty": 1,
+      "explanation": "Il appelle les Français à poursuivre le combat."
+    },
+    {
+      "id": "xx-05",
+      "text": "Quel homme, libéré en 1990 après 27 ans de prison, devient président de l'Afrique du Sud en 1994 ?",
+      "options": [
+        "Nelson Mandela",
+        "Desmond Tutu",
+        "Frederik de Klerk",
+        "Thabo Mbeki"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "mandela",
+        "nelson mandela"
+      ],
+      "difficulty": 2,
+      "explanation": "Il reçoit le prix Nobel de la paix en 1993."
+    },
+    {
+      "id": "xx-06",
+      "text": "Quelle crise de 1962 oppose les États-Unis et l'URSS autour de missiles installés dans une île des Caraïbes ?",
+      "options": [
+        "La crise de Berlin",
+        "La crise de Suez",
+        "La crise de Cuba",
+        "La crise de Corée"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "cuba",
+        "crise de cuba",
+        "crise des missiles de cuba"
+      ],
+      "difficulty": 2,
+      "explanation": "Pendant treize jours, le monde craint une guerre nucléaire."
+    },
+    {
+      "id": "xx-07",
+      "text": "En quelle année l'Union soviétique a-t-elle été dissoute ?",
+      "options": [
+        "1989",
+        "1991",
+        "1985",
+        "1993"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "1991"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle disparaît officiellement fin décembre 1991."
+    },
+    {
+      "id": "xx-08",
+      "text": "Quel traité, signé en 1957, crée la Communauté économique européenne ?",
+      "options": [
+        "Le traité de Maastricht",
+        "Le traité de Paris",
+        "Le traité de Lisbonne",
+        "Le traité de Rome"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "rome",
+        "traite de rome"
+      ],
+      "difficulty": 2,
+      "explanation": "Six pays le signent, dont la France et l'Allemagne de l'Ouest."
+    },
+    {
+      "id": "xx-09",
+      "text": "Quel président américain a été assassiné à Dallas en 1963 ?",
+      "options": [
+        "John F. Kennedy",
+        "Abraham Lincoln",
+        "Richard Nixon",
+        "Lyndon Johnson"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "kennedy",
+        "john f kennedy",
+        "jfk"
+      ],
+      "difficulty": 1,
+      "explanation": "Il est tué le 22 novembre 1963."
+    },
+    {
+      "id": "xx-10",
+      "text": "Comment s'appelle le premier satellite artificiel, lancé par l'URSS en 1957 ?",
+      "options": [
+        "Vostok",
+        "Apollo",
+        "Spoutnik",
+        "Soyouz"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "spoutnik",
+        "sputnik"
+      ],
+      "difficulty": 2,
+      "explanation": "Son « bip-bip » radio est capté dans le monde entier."
+    }
+  ]
+}

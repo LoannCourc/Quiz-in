@@ -1,0 +1,184 @@
+{
+  "id": "fleuves-montagnes",
+  "title": "Fleuves, lacs et montagnes",
+  "theme": "Géographie",
+  "description": "Des Andes à l'Oural, du Danube à la Volga : dix questions pour voyager le long des fleuves et des sommets.",
+  "audience": "all",
+  "poster": "green",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "fm-01",
+      "text": "Quel fleuve traverse Londres ?",
+      "options": [
+        "La Tamise",
+        "Le Rhin",
+        "La Severn",
+        "La Clyde"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "tamise",
+        "la tamise"
+      ],
+      "difficulty": 1,
+      "explanation": "Le célèbre Tower Bridge l'enjambe."
+    },
+    {
+      "id": "fm-02",
+      "text": "Dans quel pays se trouve le Kilimandjaro ?",
+      "options": [
+        "Le Kenya",
+        "L'Éthiopie",
+        "La Tanzanie",
+        "L'Ouganda"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "tanzanie",
+        "la tanzanie"
+      ],
+      "difficulty": 2,
+      "explanation": "Ce volcan est le point culminant de l'Afrique."
+    },
+    {
+      "id": "fm-03",
+      "text": "Quelle chaîne de montagnes longe toute la côte ouest de l'Amérique du Sud ?",
+      "options": [
+        "Les Rocheuses",
+        "L'Atlas",
+        "La cordillère des Andes",
+        "L'Himalaya"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "andes",
+        "cordillere des andes",
+        "les andes"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle traverse sept pays, du Venezuela à l'Argentine."
+    },
+    {
+      "id": "fm-04",
+      "text": "Quel fleuve traverse Vienne, Budapest et Belgrade avant de se jeter dans la mer Noire ?",
+      "options": [
+        "Le Danube",
+        "Le Rhin",
+        "La Vistule",
+        "L'Elbe"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "danube",
+        "le danube"
+      ],
+      "difficulty": 2,
+      "explanation": "Il traverse ou longe dix pays d'Europe."
+    },
+    {
+      "id": "fm-05",
+      "text": "Dans quel pays se trouve le volcan Etna ?",
+      "options": [
+        "La Grèce",
+        "L'Espagne",
+        "L'Islande",
+        "L'Italie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "italie",
+        "l'italie"
+      ],
+      "difficulty": 1,
+      "explanation": "Il domine l'est de la Sicile."
+    },
+    {
+      "id": "fm-06",
+      "text": "Quel est le plus grand lac d'Afrique ?",
+      "options": [
+        "Le lac Tanganyika",
+        "Le lac Victoria",
+        "Le lac Tchad",
+        "Le lac Malawi"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "victoria",
+        "lac victoria"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est partagé entre l'Ouganda, le Kenya et la Tanzanie."
+    },
+    {
+      "id": "fm-07",
+      "text": "À Lyon, quelle rivière rejoint le Rhône ?",
+      "options": [
+        "La Saône",
+        "L'Isère",
+        "La Durance",
+        "Le Doubs"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "saone",
+        "la saone"
+      ],
+      "difficulty": 2,
+      "explanation": "Les deux cours d'eau se rejoignent au confluent, au sud de la presqu'île."
+    },
+    {
+      "id": "fm-08",
+      "text": "Quelle chaîne de montagnes sert traditionnellement de limite entre l'Europe et l'Asie ?",
+      "options": [
+        "Le Caucase",
+        "Les Carpates",
+        "L'Oural",
+        "L'Altaï"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "oural",
+        "l'oural"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle traverse la Russie du nord au sud."
+    },
+    {
+      "id": "fm-09",
+      "text": "Quel fleuve, le plus long d'Europe, se jette dans la mer Caspienne ?",
+      "options": [
+        "Le Danube",
+        "La Volga",
+        "Le Dniepr",
+        "L'Oural"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "volga",
+        "la volga"
+      ],
+      "difficulty": 3,
+      "explanation": "Elle coule entièrement en Russie, sur environ 3 500 km."
+    },
+    {
+      "id": "fm-10",
+      "text": "Quel désert s'étend sur le sud de la Mongolie et le nord de la Chine ?",
+      "options": [
+        "Le Kalahari",
+        "L'Atacama",
+        "Le Namib",
+        "Le désert de Gobi"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "gobi",
+        "desert de gobi"
+      ],
+      "difficulty": 2,
+      "explanation": "C'est un désert froid, aux hivers glacials."
+    }
+  ]
+}

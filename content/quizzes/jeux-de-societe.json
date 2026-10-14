@@ -1,0 +1,182 @@
+{
+  "id": "jeux-de-societe",
+  "title": "Jeux de société",
+  "theme": "Loisirs",
+  "description": "Échecs, Monopoly, Scrabble, Cluedo : dix questions sur les jeux qui animent les soirées en famille.",
+  "audience": "all",
+  "poster": "cyan",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q1)",
+  "questions": [
+    {
+      "id": "jds-01",
+      "text": "Aux échecs, quelle pièce ne se déplace qu'en diagonale ?",
+      "options": [
+        "La tour",
+        "Le fou",
+        "Le cavalier",
+        "Le roi"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "fou",
+        "le fou"
+      ],
+      "difficulty": 1,
+      "explanation": "Chaque joueur a deux fous : l'un reste sur les cases blanches, l'autre sur les noires."
+    },
+    {
+      "id": "jds-02",
+      "text": "Combien de cases compte un échiquier ?",
+      "options": [
+        "49",
+        "81",
+        "100",
+        "64"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "64",
+        "soixante-quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Huit rangées de huit cases."
+    },
+    {
+      "id": "jds-03",
+      "text": "Au Monopoly, dans l'édition française classique, quelle est la rue la plus chère ?",
+      "options": [
+        "La rue de la Paix",
+        "L'avenue des Champs-Élysées",
+        "L'avenue Foch",
+        "Le boulevard de Belleville"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "rue de la paix"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle ferme le plateau, juste avant la case Départ."
+    },
+    {
+      "id": "jds-04",
+      "text": "Sur un dé à six faces classique, combien font deux faces opposées additionnées ?",
+      "options": [
+        "6",
+        "8",
+        "7",
+        "12"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "7",
+        "sept"
+      ],
+      "difficulty": 2,
+      "explanation": "Le 1 fait face au 6, le 2 au 5 et le 3 au 4."
+    },
+    {
+      "id": "jds-05",
+      "text": "Au Scrabble, combien de lettres chaque joueur a-t-il sur son chevalet ?",
+      "options": [
+        "5",
+        "8",
+        "7",
+        "10"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "7",
+        "sept"
+      ],
+      "difficulty": 1,
+      "explanation": "Poser les sept lettres d'un coup rapporte une prime de 50 points."
+    },
+    {
+      "id": "jds-06",
+      "text": "Aux dames internationales, combien de cases compte le damier ?",
+      "options": [
+        "100",
+        "64",
+        "81",
+        "144"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "100",
+        "cent"
+      ],
+      "difficulty": 2,
+      "explanation": "Le damier international mesure dix cases sur dix."
+    },
+    {
+      "id": "jds-07",
+      "text": "Au Cluedo, que faut-il découvrir en plus du coupable et du lieu du crime ?",
+      "options": [
+        "Le mobile",
+        "L'heure",
+        "Le témoin",
+        "L'arme"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "arme",
+        "l'arme"
+      ],
+      "difficulty": 1,
+      "explanation": "Chandelier, poignard, revolver… une seule arme est la bonne."
+    },
+    {
+      "id": "jds-08",
+      "text": "Quel jeu consiste à aligner quatre jetons de sa couleur dans une grille posée à la verticale ?",
+      "options": [
+        "Othello",
+        "Puissance 4",
+        "Le morpion",
+        "Mastermind"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "puissance 4",
+        "puissance quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Les jetons tombent jusqu'en bas de la colonne choisie."
+    },
+    {
+      "id": "jds-09",
+      "text": "Au Mastermind classique, combien de pions forment le code secret à deviner ?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 2,
+      "explanation": "Dans la version d'origine, le code compte quatre pions de six couleurs possibles."
+    },
+    {
+      "id": "jds-10",
+      "text": "Aux échecs, comment s'appelle le coup où le roi et une tour bougent en même temps ?",
+      "options": [
+        "Le pat",
+        "La promotion",
+        "Le roque",
+        "Le gambit"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "roque",
+        "le roque"
+      ],
+      "difficulty": 2,
+      "explanation": "Le roi se déplace de deux cases vers la tour, qui passe de l'autre côté du roi."
+    }
+  ]
+}
