@@ -5,6 +5,7 @@
 // Blind test : les identifiants des morceaux viennent de music-check/<quizId>.json, seulement s'ils sont vérifiés.
 // Bluff : questions sans propositions (vraie réponse et leurres), contrôlées par bluffContent.ts.
 import { isValidQuestionId } from '../../shared/questionPool'
+import { TRACK_OPTION_SEPARATOR, trackOptionAnswer, trackOptionParts } from '../../shared/trackOption'
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -101,9 +102,11 @@ function questionErrors(question: SourceQuestion): string[] {
   }
   if (errors.length > 0) return errors
 
-  // La question doit fonctionner dans les deux modes (spec 8).
+  // La question doit fonctionner dans les deux modes (spec 8). Blind test : ce que demande la question dans
+  // la proposition « Titre – Artiste » (le titre, l'artiste, ou les deux).
   options.forEach((option, index) => {
-    const accepted = isAnswerCorrect(option, acceptedAnswers)
+    const asked = isBlindTestAsk(question.ask) ? trackOptionAnswer(option, question.ask) : option
+    const accepted = isAnswerCorrect(asked, acceptedAnswers)
     if (index === correctIndex && !accepted) errors.push(`la bonne proposition « ${option} » n'est pas acceptée en réponse libre`)
     if (index !== correctIndex && accepted) errors.push(`la mauvaise proposition « ${option} » serait acceptée en réponse libre`)
   })
@@ -140,6 +143,7 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
     questionErrors(question).forEach((error) => errors.push(prefix + error))
     if (quiz.gameType !== 'blindTest' && question.music) errors.push(`${prefix}music réservé aux blind tests`)
     if (quiz.gameType !== 'blindTest' && question.ask !== undefined) errors.push(`${prefix}ask réservé aux blind tests`)
+    errors.push(...trackOptionErrors(question, quiz.gameType === 'blindTest').map((error) => prefix + error))
     if (quiz.gameType === 'blindTest') {
       askErrors(question).forEach((error) => errors.push(prefix + error))
       freeAnswerTargetErrors(question).forEach((error) => errors.push(prefix + error))
@@ -183,6 +187,17 @@ function askErrors(question: SourceQuestion): string[] {
   return errors
 }
 
+// Choix multiples : un blind test propose « Titre – Artiste » (affichés sur deux lignes) ; ailleurs, le séparateur
+// est interdit (il serait coupé à l'affichage).
+function trackOptionErrors(question: SourceQuestion, isBlindTest: boolean): string[] {
+  return question.options.flatMap((option) => {
+    const hasArtist = trackOptionParts(option).artist !== null
+    if (isBlindTest && !hasArtist) return [`« ${option} » : proposition « Titre – Artiste » attendue`]
+    if (!isBlindTest && option.includes(TRACK_OPTION_SEPARATOR)) return [`« ${option} » : le séparateur « – » est réservé aux blind tests`]
+    return []
+  })
+}
+
 // Question telle qu'elle sera corrigée en Réponse libre (identifiant du morceau inutile ici).
 function asQuestion(question: SourceQuestion): Question {
   const { music, ...rest } = question
@@ -195,7 +210,7 @@ function freeAnswerTargetErrors(question: SourceQuestion): string[] {
   if (question.ask !== 'title' && question.ask !== 'artist') return []
   const { main } = answerTargets(asQuestion(question))
   return question.options.flatMap((option, index) => {
-    const accepted = isAnswerCorrect(option, main)
+    const accepted = isAnswerCorrect(trackOptionAnswer(option, question.ask as 'title' | 'artist'), main)
     if (index === question.correctIndex && !accepted) return [`réponse libre : « ${option} » ne serait pas acceptée`]
     if (index !== question.correctIndex && accepted) return [`réponse libre : la mauvaise proposition « ${option} » serait acceptée`]
     return []

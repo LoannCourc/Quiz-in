@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Années 80
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- a80-01 A (bonne réponse) : Billie Jean → Billie Jean – Michael Jackson
+- a80-01 B : Every Breath You Take → Every Breath You Take – The Police
+- a80-01 C : Sweet Dreams (Are Made of This) → Sweet Dreams (Are Made of This) – Eurythmics
+- a80-01 D : Smalltown Boy → Smalltown Boy – Bronski Beat
+- a80-02 A : Duran Duran → Hungry Like the Wolf – Duran Duran
+- a80-02 B : Tears for Fears → Everybody Wants To Rule The World – Tears for Fears
+- a80-02 C (bonne réponse) : a-ha → Take On Me – a-ha
+- a80-02 D : Spandau Ballet → True – Spandau Ballet
+- a80-03 A : Walking on Sunshine → Walking on Sunshine – Katrina & The Waves
+- a80-03 B (bonne réponse) : Girls Just Want to Have Fun → Girls Just Want to Have Fun – Cyndi Lauper
+- a80-03 C : Don't You (Forget About Me) → Don't You (Forget About Me) – Simple Minds
+- a80-03 D : Karma Chameleon → Karma Chameleon – Culture Club
+- a80-04 A : Bon Jovi → Livin' On A Prayer – Bon Jovi
+- a80-04 B : Scorpions → Still Loving You – Scorpions
+- a80-04 C : Def Leppard → Pour Some Sugar On Me – Def Leppard
+- a80-04 D (bonne réponse) : Europe → The Final Countdown – Europe
+- a80-05 A : Self Control → Self Control – Laura Branigan
+- a80-05 B : Words → Words – F. R. David
+- a80-05 C (bonne réponse) : La Isla Bonita → La Isla Bonita – Madonna
+- a80-05 D : Flashdance... What a Feeling → Flashdance... What a Feeling – Irene Cara
+- a80-06 A (bonne réponse) : Wham! → Wake Me Up Before You Go-Go – Wham!
+- a80-06 B : Culture Club → Do You Really Want to Hurt Me – Culture Club
+- a80-06 C : Frankie Goes to Hollywood → Relax – Frankie Goes to Hollywood
+- a80-06 D : Kajagoogoo → Too Shy – Kajagoogoo
+- a80-07 A : Toute première fois → Toute première fois – Jeanne Mas
+- a80-07 B : Ouragan → Ouragan – Stéphanie
+- a80-07 C : Les Démons de minuit → Les Démons de minuit – Images
+- a80-07 D (bonne réponse) : Voyage, voyage → Voyage, voyage – Desireless
+- a80-08 A : Daniel Balavoine → L'Aziza – Daniel Balavoine
+- a80-08 B (bonne réponse) : Jean-Jacques Goldman → Quand la musique est bonne – Jean-Jacques Goldman
+- a80-08 C : Michel Berger → La groupie du pianiste – Michel Berger
+- a80-08 D : Francis Cabrel → La Dame de Haute-Savoie – Francis Cabrel
+- a80-09 A (bonne réponse) : Africa → Africa – Toto
+- a80-09 B : Owner of a Lonely Heart → Owner of a Lonely Heart – Yes
+- a80-09 C : Don't Stop Believin' → Don't Stop Believin' – Journey
+- a80-09 D : In the Air Tonight → In the Air Tonight – Phil Collins
+- a80-10 A : Journey → Separate Ways (Worlds Apart) – Journey
+- a80-10 B : Foreigner → I Want to Know What Love Is – Foreigner
+- a80-10 C (bonne réponse) : Survivor → Eye of the Tiger – Survivor
+- a80-10 D : REO Speedwagon → Can't Fight This Feeling – REO Speedwagon

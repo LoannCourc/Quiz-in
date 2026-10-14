@@ -1,4 +1,5 @@
 import { optionsTextSize, type OptionsTextSize } from '@shared/optionsText';
+import { trackOptionParts } from '@shared/trackOption';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -17,10 +18,20 @@ const SIZES: Record<PillSize, { letter: number; letterFont: number; text: Record
 };
 
 // Taille du texte commune à toutes les propositions d'une question, d'après la plus longue
-// (80 caractères au plus) : jamais de réduction proposition par proposition.
+// (80 caractères au plus) : jamais de réduction proposition par proposition. Blind test : d'après les titres
+// (l'artiste, plus petit, va dessous).
 export function choiceTextSize(options: readonly string[]): OptionsTextSize {
-  return optionsTextSize(options, { normalMax: 30, longMax: 60 });
+  const parts = options.map(trackOptionParts);
+  const size = optionsTextSize(
+    parts.map((part) => part.title),
+    { normalMax: 30, longMax: 60 },
+  );
+  // L'artiste ajoute une ligne à chaque pilule : un cran plus petit, pour que les quatre tiennent sans défiler.
+  return size === 'normal' && parts.some((part) => part.artist !== null) ? 'long' : size;
 }
+
+// Part de la taille du titre donnée à l'artiste, sous le titre (blind test).
+const ARTIST_SCALE = 0.72;
 
 // Taille la plus grande qui laisse tenir une proposition de 80 caractères (4 lignes) dans une
 // pilule de cette hauteur.
@@ -63,6 +74,8 @@ export function ChoicePill({
   const letter = strings.game.choiceLetters[choice];
   const { letter: letterSize, letterFont, text: textFonts } = SIZES[size];
   const fontSize = textFonts[textSize];
+  // Blind test « Titre – Artiste » : titre en gros, artiste en plus petit dessous.
+  const { title, artist } = trackOptionParts(text);
   return (
     // Anneau extérieur toujours présent (transparent sinon) : la sélection ne décale rien.
     <View style={[styles.selectionRing, isSelected && styles.selected]}>
@@ -84,9 +97,16 @@ export function ChoicePill({
             {letter}
           </Text>
         </View>
-        <Text style={[styles.text, { fontSize }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
-          {text}
-        </Text>
+        <View style={styles.texts}>
+          <Text style={[styles.text, { fontSize }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+            {title}
+          </Text>
+          {artist !== null && (
+            <Text style={[styles.artist, { fontSize: Math.round(fontSize * ARTIST_SCALE) }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+              {artist}
+            </Text>
+          )}
+        </View>
       </Pressable>
     </View>
   );
@@ -132,9 +152,15 @@ const styles = StyleSheet.create({
     color: AppColors.text,
     fontFamily: AppFonts.display,
   },
-  text: {
+  texts: {
     flex: 1,
+  },
+  text: {
     color: AppColors.onChoice,
     fontFamily: AppFonts.black,
+  },
+  artist: {
+    color: AppColors.onChoice,
+    fontFamily: AppFonts.bold,
   },
 });

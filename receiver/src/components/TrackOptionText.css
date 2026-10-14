@@ -1,0 +1,7 @@
+/* Blind test : l'artiste sous le titre, plus petit (proportionnel à la taille du titre). */
+.choice-artist {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 700;
+  line-height: 1.2;
+}

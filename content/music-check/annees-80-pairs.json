@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "a80-01",
+    "index": 0,
+    "before": "Billie Jean",
+    "after": "Billie Jean – Michael Jackson",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-01",
+    "index": 1,
+    "before": "Every Breath You Take",
+    "after": "Every Breath You Take – The Police",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-01",
+    "index": 2,
+    "before": "Sweet Dreams (Are Made of This)",
+    "after": "Sweet Dreams (Are Made of This) – Eurythmics",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-01",
+    "index": 3,
+    "before": "Smalltown Boy",
+    "after": "Smalltown Boy – Bronski Beat",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-02",
+    "index": 0,
+    "before": "Duran Duran",
+    "after": "Hungry Like the Wolf – Duran Duran",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-02",
+    "index": 1,
+    "before": "Tears for Fears",
+    "after": "Everybody Wants To Rule The World – Tears for Fears",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-02",
+    "index": 2,
+    "before": "a-ha",
+    "after": "Take On Me – a-ha",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-02",
+    "index": 3,
+    "before": "Spandau Ballet",
+    "after": "True – Spandau Ballet",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-03",
+    "index": 0,
+    "before": "Walking on Sunshine",
+    "after": "Walking on Sunshine – Katrina & The Waves",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-03",
+    "index": 1,
+    "before": "Girls Just Want to Have Fun",
+    "after": "Girls Just Want to Have Fun – Cyndi Lauper",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-03",
+    "index": 2,
+    "before": "Don't You (Forget About Me)",
+    "after": "Don't You (Forget About Me) – Simple Minds",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-03",
+    "index": 3,
+    "before": "Karma Chameleon",
+    "after": "Karma Chameleon – Culture Club",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-04",
+    "index": 0,
+    "before": "Bon Jovi",
+    "after": "Livin' On A Prayer – Bon Jovi",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-04",
+    "index": 1,
+    "before": "Scorpions",
+    "after": "Still Loving You – Scorpions",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-04",
+    "index": 2,
+    "before": "Def Leppard",
+    "after": "Pour Some Sugar On Me – Def Leppard",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-04",
+    "index": 3,
+    "before": "Europe",
+    "after": "The Final Countdown – Europe",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-05",
+    "index": 0,
+    "before": "Self Control",
+    "after": "Self Control – Laura Branigan",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-05",
+    "index": 1,
+    "before": "Words",
+    "after": "Words – F. R. David",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-05",
+    "index": 2,
+    "before": "La Isla Bonita",
+    "after": "La Isla Bonita – Madonna",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-05",
+    "index": 3,
+    "before": "Flashdance... What a Feeling",
+    "after": "Flashdance... What a Feeling – Irene Cara",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-06",
+    "index": 0,
+    "before": "Wham!",
+    "after": "Wake Me Up Before You Go-Go – Wham!",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-06",
+    "index": 1,
+    "before": "Culture Club",
+    "after": "Do You Really Want to Hurt Me – Culture Club",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-06",
+    "index": 2,
+    "before": "Frankie Goes to Hollywood",
+    "after": "Relax – Frankie Goes to Hollywood",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-06",
+    "index": 3,
+    "before": "Kajagoogoo",
+    "after": "Too Shy – Kajagoogoo",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-07",
+    "index": 0,
+    "before": "Toute première fois",
+    "after": "Toute première fois – Jeanne Mas",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-07",
+    "index": 1,
+    "before": "Ouragan",
+    "after": "Ouragan – Stéphanie",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-07",
+    "index": 2,
+    "before": "Les Démons de minuit",
+    "after": "Les Démons de minuit – Images",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-07",
+    "index": 3,
+    "before": "Voyage, voyage",
+    "after": "Voyage, voyage – Desireless",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-08",
+    "index": 0,
+    "before": "Daniel Balavoine",
+    "after": "L'Aziza – Daniel Balavoine",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-08",
+    "index": 1,
+    "before": "Jean-Jacques Goldman",
+    "after": "Quand la musique est bonne – Jean-Jacques Goldman",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-08",
+    "index": 2,
+    "before": "Michel Berger",
+    "after": "La groupie du pianiste – Michel Berger",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-08",
+    "index": 3,
+    "before": "Francis Cabrel",
+    "after": "La Dame de Haute-Savoie – Francis Cabrel",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-09",
+    "index": 0,
+    "before": "Africa",
+    "after": "Africa – Toto",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-09",
+    "index": 1,
+    "before": "Owner of a Lonely Heart",
+    "after": "Owner of a Lonely Heart – Yes",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-09",
+    "index": 2,
+    "before": "Don't Stop Believin'",
+    "after": "Don't Stop Believin' – Journey",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-09",
+    "index": 3,
+    "before": "In the Air Tonight",
+    "after": "In the Air Tonight – Phil Collins",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-10",
+    "index": 0,
+    "before": "Journey",
+    "after": "Separate Ways (Worlds Apart) – Journey",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-10",
+    "index": 1,
+    "before": "Foreigner",
+    "after": "I Want to Know What Love Is – Foreigner",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a80-10",
+    "index": 2,
+    "before": "Survivor",
+    "after": "Eye of the Tiger – Survivor",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a80-10",
+    "index": 3,
+    "before": "REO Speedwagon",
+    "after": "Can't Fight This Feeling – REO Speedwagon",
+    "isCorrect": false
+  }
+]

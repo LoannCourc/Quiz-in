@@ -125,11 +125,11 @@ p {
 
 /* Propositions longues : texte plus petit, même taille sur la question et la révélation (lib/optionsSize). */
 .options-size-long .choice-text {
-  font-size: 1.5rem;
+  font-size: calc(1.5rem * var(--text-scale, 1));
 }
 
 .options-size-very-long .choice-text {
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--text-scale, 1));
 }
 
 /* Dans une pilule : pastille sombre, lettre blanche (maquette). */

@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Rock : les classiques
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- rck-01 A (bonne réponse) : We Will Rock You → We Will Rock You – Queen
+- rck-01 B : Rock and Roll All Nite → Rock and Roll All Nite – KISS
+- rck-01 C : I Love Rock 'n' Roll → I Love Rock 'n' Roll – Joan Jett and the Blackhearts
+- rck-01 D : Born to Be Wild → Born to Be Wild – Steppenwolf
+- rck-02 A : Def Leppard → Pour Some Sugar On Me – Def Leppard
+- rck-02 B : Scorpions → Still Loving You – Scorpions
+- rck-02 C (bonne réponse) : AC/DC → Back in Black – AC/DC
+- rck-02 D : Iron Maiden → Fear of the Dark – Iron Maiden
+- rck-03 A : My Generation → My Generation – The Who
+- rck-03 B (bonne réponse) : (I Can't Get No) Satisfaction → (I Can't Get No) Satisfaction – The Rolling Stones
+- rck-03 C : You Really Got Me → You Really Got Me – The Kinks
+- rck-03 D : Oh, Pretty Woman → Oh, Pretty Woman – Roy Orbison
+- rck-04 A : Uriah Heep → Lady in Black – Uriah Heep
+- rck-04 B : Thin Lizzy → The Boys Are Back In Town – Thin Lizzy
+- rck-04 C : Rainbow → Since You Been Gone – Rainbow
+- rck-04 D (bonne réponse) : Deep Purple → Smoke on the Water – Deep Purple
+- rck-05 A : A Whiter Shade of Pale → A Whiter Shade of Pale – Procol Harum
+- rck-05 B : Waterloo Sunset → Waterloo Sunset – The Kinks
+- rck-05 C (bonne réponse) : Hey Jude → Hey Jude – The Beatles
+- rck-05 D : Nights in White Satin → Nights in White Satin – The Moody Blues
+- rck-06 A (bonne réponse) : Dire Straits → Sultans of Swing – Dire Straits
+- rck-06 B : The Police → Every Breath You Take – The Police
+- rck-06 C : Eagles → Hotel California – Eagles
+- rck-06 D : Fleetwood Mac → The Chain – Fleetwood Mac
+- rck-07 A : Livin' on a Prayer → Livin' on a Prayer – Bon Jovi
+- rck-07 B : Here I Go Again → Here I Go Again – Whitesnake
+- rck-07 C : Jump → Jump – Van Halen
+- rck-07 D (bonne réponse) : Sweet Child O' Mine → Sweet Child O' Mine – Guns N' Roses
+- rck-08 A : Pearl Jam → Black – Pearl Jam
+- rck-08 B (bonne réponse) : Nirvana → Come as You Are – Nirvana
+- rck-08 C : Soundgarden → Black Hole Sun – Soundgarden
+- rck-08 D : Alice in Chains → Nutshell – Alice in Chains
+- rck-09 A (bonne réponse) : Sweet Home Alabama → Sweet Home Alabama – Lynyrd Skynyrd
+- rck-09 B : Born to Run → Born to Run – Bruce Springsteen
+- rck-09 C : More Than a Feeling → More Than a Feeling – Boston
+- rck-09 D : Go Your Own Way → Go Your Own Way – Fleetwood Mac
+- rck-10 A : Simple Minds → Don't You (Forget About Me) – Simple Minds
+- rck-10 B : The Cure → Boys Don't Cry – The Cure
+- rck-10 C (bonne réponse) : U2 → With or Without You – U2
+- rck-10 D : Depeche Mode → Enjoy the Silence – Depeche Mode

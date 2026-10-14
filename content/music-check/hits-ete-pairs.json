@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "ete-01",
+    "index": 0,
+    "before": "Tic Tic Tac",
+    "after": "Tic Tic Tac – Carrapicho",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-01",
+    "index": 1,
+    "before": "Lambada",
+    "after": "Lambada – Kaoma",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-01",
+    "index": 2,
+    "before": "Le Bal masqué",
+    "after": "Le Bal masqué – La Compagnie Créole",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-01",
+    "index": 3,
+    "before": "Saga Africa",
+    "after": "Saga Africa – Yannick Noah",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-02",
+    "index": 0,
+    "before": "Gipsy Kings",
+    "after": "Bamboléo – Gipsy Kings",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-02",
+    "index": 1,
+    "before": "Las Ketchup",
+    "after": "Aserejé – Las Ketchup",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-02",
+    "index": 2,
+    "before": "Los Lobos",
+    "after": "La Bamba – Los Lobos",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-02",
+    "index": 3,
+    "before": "Los del Río",
+    "after": "Macarena – Los del Río",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-03",
+    "index": 0,
+    "before": "Tacata",
+    "after": "Tacata – Tacabro",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-03",
+    "index": 1,
+    "before": "Ai se eu te pego",
+    "after": "Ai se eu te pego – Michel Teló",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-03",
+    "index": 2,
+    "before": "Dragostea din tei",
+    "after": "Dragostea din tei – O-Zone",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-03",
+    "index": 3,
+    "before": "Waka Waka (This Time for Africa)",
+    "after": "Waka Waka (This Time for Africa) – Shakira",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-04",
+    "index": 0,
+    "before": "Lou Bega",
+    "after": "Mambo No. 5 – Lou Bega",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-04",
+    "index": 1,
+    "before": "Ricky Martin",
+    "after": "María – Ricky Martin",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-04",
+    "index": 2,
+    "before": "Enrique Iglesias",
+    "after": "Bailando – Enrique Iglesias",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-04",
+    "index": 3,
+    "before": "Marc Anthony",
+    "after": "Vivir mi vida – Marc Anthony",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-05",
+    "index": 0,
+    "before": "Laisse parler les gens",
+    "after": "Laisse parler les gens – Dj Team",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-05",
+    "index": 1,
+    "before": "Femme like U",
+    "after": "Femme like U – K-Maro",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-05",
+    "index": 2,
+    "before": "Zouk la sé sèl médikaman nou ni",
+    "after": "Zouk la sé sèl médikaman nou ni – Kassav'",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-05",
+    "index": 3,
+    "before": "Premier Gaou",
+    "after": "Premier Gaou – Magic System",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-06",
+    "index": 0,
+    "before": "Shaggy",
+    "after": "Boombastic – Shaggy",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-06",
+    "index": 1,
+    "before": "OMI",
+    "after": "Cheerleader – OMI",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-06",
+    "index": 2,
+    "before": "Sean Paul",
+    "after": "Temperature – Sean Paul",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-06",
+    "index": 3,
+    "before": "Kungs",
+    "after": "This Girl – Kungs",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-07",
+    "index": 0,
+    "before": "Makeba",
+    "after": "Makeba – Jain",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-07",
+    "index": 1,
+    "before": "Prayer in C",
+    "after": "Prayer in C – Lilly Wood And The Prick",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-07",
+    "index": 2,
+    "before": "Lean On",
+    "after": "Lean On – Major Lazer",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-07",
+    "index": 3,
+    "before": "Jerusalema",
+    "after": "Jerusalema – Master KG",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-08",
+    "index": 0,
+    "before": "The Beach Boys",
+    "after": "Good Vibrations – The Beach Boys",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-08",
+    "index": 1,
+    "before": "The Lovin' Spoonful",
+    "after": "Daydream – The Lovin' Spoonful",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-08",
+    "index": 2,
+    "before": "Mungo Jerry",
+    "after": "In the Summertime – Mungo Jerry",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-08",
+    "index": 3,
+    "before": "Creedence Clearwater Revival",
+    "after": "Fortunate Son – Creedence Clearwater Revival",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-09",
+    "index": 0,
+    "before": "Cheap Thrills",
+    "after": "Cheap Thrills – Sia",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-09",
+    "index": 1,
+    "before": "Summer",
+    "after": "Summer – Calvin Harris",
+    "isCorrect": true
+  },
+  {
+    "questionId": "ete-09",
+    "index": 2,
+    "before": "Faded",
+    "after": "Faded – Alan Walker",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-09",
+    "index": 3,
+    "before": "Stole the Show",
+    "after": "Stole the Show – Kygo",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-10",
+    "index": 0,
+    "before": "Bob Sinclar",
+    "after": "Love Generation – Bob Sinclar",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-10",
+    "index": 1,
+    "before": "David Guetta",
+    "after": "Memories – David Guetta",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-10",
+    "index": 2,
+    "before": "Antoine Clamaran",
+    "after": "Gold – Antoine Clamaran",
+    "isCorrect": false
+  },
+  {
+    "questionId": "ete-10",
+    "index": 3,
+    "before": "Martin Solveig",
+    "after": "Hello – Martin Solveig",
+    "isCorrect": true
+  }
+]

@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Années 2000
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- a00-01 A : Can't Fight the Moonlight → Can't Fight the Moonlight – LeAnn Rimes
+- a00-01 B : Complicated → Complicated – Avril Lavigne
+- a00-01 C (bonne réponse) : Hips Don't Lie → Hips Don't Lie – Shakira
+- a00-01 D : Hey Ya! → Hey Ya! – OutKast
+- a00-02 A (bonne réponse) : Britney Spears → Toxic – Britney Spears
+- a00-02 B : Christina Aguilera → Beautiful – Christina Aguilera
+- a00-02 C : Jessica Simpson → I Wanna Love You Forever – Jessica Simpson
+- a00-02 D : Mandy Moore → Someday We'll Know – Mandy Moore
+- a00-03 A : Hot n Cold → Hot n Cold – Katy Perry
+- a00-03 B : When Love Takes Over → When Love Takes Over – David Guetta
+- a00-03 C : Hey, Soul Sister → Hey, Soul Sister – Train
+- a00-03 D (bonne réponse) : I Gotta Feeling → I Gotta Feeling – The Black Eyed Peas
+- a00-04 A : Keane → Somewhere Only We Know – Keane
+- a00-04 B (bonne réponse) : Coldplay → Viva la Vida – Coldplay
+- a00-04 C : Snow Patrol → Chasing Cars – Snow Patrol
+- a00-04 D : The Killers → Mr. Brightside – The Killers
+- a00-05 A (bonne réponse) : One More Time → One More Time – Daft Punk
+- a00-05 B : Lady (Hear Me Tonight) → Lady (Hear Me Tonight) – Modjo
+- a00-05 C : Call on Me → Call on Me – Eric Prydz
+- a00-05 D : The Logical Song → The Logical Song – Scooter
+- a00-06 A : Sophie Ellis-Bextor → Murder On The Dancefloor – Sophie Ellis-Bextor
+- a00-06 B : Dido → Thank You – Dido
+- a00-06 C (bonne réponse) : Kylie Minogue → Can't Get You Out of My Head – Kylie Minogue
+- a00-06 D : Nelly Furtado → Maneater – Nelly Furtado
+- a00-07 A : Tout le bonheur du monde → Tout le bonheur du monde – Sinsemilia
+- a00-07 B (bonne réponse) : On s'attache → On s'attache – Christophe Maé
+- a00-07 C : Toi + Moi → Toi + Moi – Grégoire
+- a00-07 D : Le Vent nous portera → Le Vent nous portera – Noir Désir
+- a00-08 A : Beyoncé → Halo – Beyoncé
+- a00-08 B : Alicia Keys → Fallin' – Alicia Keys
+- a00-08 C : Leona Lewis → Bleeding Love – Leona Lewis
+- a00-08 D (bonne réponse) : Rihanna → Umbrella – Rihanna
+- a00-09 A : Papi chulo → Papi chulo – Lorna
+- a00-09 B : Obsesión → Obsesión – Aventura
+- a00-09 C (bonne réponse) : Aserejé → Aserejé – Las Ketchup
+- a00-09 D : La Bomba → La Bomba – King África
+- a00-10 A (bonne réponse) : Gnarls Barkley → Crazy – Gnarls Barkley
+- a00-10 B : Gorillaz → Feel Good Inc. – Gorillaz
+- a00-10 C : Scissor Sisters → I Don't Feel Like Dancin' – Scissor Sisters
+- a00-10 D : Mika → Relax, Take It Easy – Mika

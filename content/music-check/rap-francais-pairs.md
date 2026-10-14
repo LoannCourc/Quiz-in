@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Rap français
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- rap-01 A : Bye Bye → Bye Bye – Ménélik
+- rap-01 B (bonne réponse) : Caroline → Caroline – MC Solaar
+- rap-01 C : Les Princes de la ville → Les Princes de la ville – 113
+- rap-01 D : Laisse pas traîner ton fils → Laisse pas traîner ton fils – Suprême NTM
+- rap-02 A : Alliance Ethnik → Simple et funky – Alliance Ethnik
+- rap-02 B : Fonky Family → Mystère et suspense – Fonky Family
+- rap-02 C : Ministère A.M.E.R. → Sacrifice de poulets – Ministère A.M.E.R.
+- rap-02 D (bonne réponse) : IAM → Je danse le Mia – IAM
+- rap-03 A : Simple et funky → Simple et funky – Alliance Ethnik
+- rap-03 B : Tonton du bled → Tonton du bled – 113
+- rap-03 C (bonne réponse) : Angela → Angela – Saïan Supa Crew
+- rap-03 D : Gravé dans la roche → Gravé dans la roche – Sniper
+- rap-04 A (bonne réponse) : Diam's → Ma France à moi – Diam's
+- rap-04 B : Keny Arkana → La rage – Keny Arkana
+- rap-04 C : Kenza Farah → Je me bats – Kenza Farah
+- rap-04 D : Lady Laistee → Et si ... ? – Lady Laistee
+- rap-05 A : Saint-Denis → Saint-Denis – Grand Corps Malade
+- rap-05 B : Banlieusards → Banlieusards – Kery James
+- rap-05 C : Ego → Pour ceux – Mafia K'1 Fry
+- rap-05 D (bonne réponse) : Gibraltar → Gibraltar – Abd al Malik
+- rap-06 A : Casseurs Flowters → Si facile – Casseurs Flowters
+- rap-06 B (bonne réponse) : Bigflo & Oli → Dommage – Bigflo & Oli
+- rap-06 C : Nekfeu → On verra – Nekfeu
+- rap-06 D : Lomepal → Sex, Drug & Rock'n'roll – Lomepal
+- rap-07 A (bonne réponse) : Cosmo → Cosmo – Soprano
+- rap-07 B : Bella → Bella – Maître Gims
+- rap-07 C : Je te pardonne → Je te pardonne – Maître Gims
+- rap-07 D : Ego → Ego – Willy William
+- rap-08 A : Psy 4 de la Rime → Le Son des bandits – Psy 4 de la Rime
+- rap-08 B : 113 → Les Princes de la ville – 113
+- rap-08 C (bonne réponse) : Sexion d'Assaut → Avant qu'elle parte – Sexion d'Assaut
+- rap-08 D : Fonky Family → L'amour du risque – Fonky Family
+- rap-09 A : On verra → On verra – Nekfeu
+- rap-09 B (bonne réponse) : La terre est ronde → La terre est ronde – Orelsan
+- rap-09 C : Papaoutai → Papaoutai – Stromae
+- rap-09 D : Tonton du bled → Tonton du bled – 113
+- rap-10 A : Lartiste → Chocolat (feat. Awa Imani) – Lartiste
+- rap-10 B : Keblack → Uber – Keblack
+- rap-10 C : Naza → Pas d'problèmes – Naza
+- rap-10 D (bonne réponse) : Black M → Sur ma route – Black M

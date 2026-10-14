@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "rap-01",
+    "index": 0,
+    "before": "Bye Bye",
+    "after": "Bye Bye – Ménélik",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-01",
+    "index": 1,
+    "before": "Caroline",
+    "after": "Caroline – MC Solaar",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-01",
+    "index": 2,
+    "before": "Les Princes de la ville",
+    "after": "Les Princes de la ville – 113",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-01",
+    "index": 3,
+    "before": "Laisse pas traîner ton fils",
+    "after": "Laisse pas traîner ton fils – Suprême NTM",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-02",
+    "index": 0,
+    "before": "Alliance Ethnik",
+    "after": "Simple et funky – Alliance Ethnik",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-02",
+    "index": 1,
+    "before": "Fonky Family",
+    "after": "Mystère et suspense – Fonky Family",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-02",
+    "index": 2,
+    "before": "Ministère A.M.E.R.",
+    "after": "Sacrifice de poulets – Ministère A.M.E.R.",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-02",
+    "index": 3,
+    "before": "IAM",
+    "after": "Je danse le Mia – IAM",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-03",
+    "index": 0,
+    "before": "Simple et funky",
+    "after": "Simple et funky – Alliance Ethnik",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-03",
+    "index": 1,
+    "before": "Tonton du bled",
+    "after": "Tonton du bled – 113",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-03",
+    "index": 2,
+    "before": "Angela",
+    "after": "Angela – Saïan Supa Crew",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-03",
+    "index": 3,
+    "before": "Gravé dans la roche",
+    "after": "Gravé dans la roche – Sniper",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-04",
+    "index": 0,
+    "before": "Diam's",
+    "after": "Ma France à moi – Diam's",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-04",
+    "index": 1,
+    "before": "Keny Arkana",
+    "after": "La rage – Keny Arkana",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-04",
+    "index": 2,
+    "before": "Kenza Farah",
+    "after": "Je me bats – Kenza Farah",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-04",
+    "index": 3,
+    "before": "Lady Laistee",
+    "after": "Et si ... ? – Lady Laistee",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-05",
+    "index": 0,
+    "before": "Saint-Denis",
+    "after": "Saint-Denis – Grand Corps Malade",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-05",
+    "index": 1,
+    "before": "Banlieusards",
+    "after": "Banlieusards – Kery James",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-05",
+    "index": 2,
+    "before": "Ego",
+    "after": "Pour ceux – Mafia K'1 Fry",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-05",
+    "index": 3,
+    "before": "Gibraltar",
+    "after": "Gibraltar – Abd al Malik",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-06",
+    "index": 0,
+    "before": "Casseurs Flowters",
+    "after": "Si facile – Casseurs Flowters",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-06",
+    "index": 1,
+    "before": "Bigflo & Oli",
+    "after": "Dommage – Bigflo & Oli",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-06",
+    "index": 2,
+    "before": "Nekfeu",
+    "after": "On verra – Nekfeu",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-06",
+    "index": 3,
+    "before": "Lomepal",
+    "after": "Sex, Drug & Rock'n'roll – Lomepal",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-07",
+    "index": 0,
+    "before": "Cosmo",
+    "after": "Cosmo – Soprano",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-07",
+    "index": 1,
+    "before": "Bella",
+    "after": "Bella – Maître Gims",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-07",
+    "index": 2,
+    "before": "Je te pardonne",
+    "after": "Je te pardonne – Maître Gims",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-07",
+    "index": 3,
+    "before": "Ego",
+    "after": "Ego – Willy William",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-08",
+    "index": 0,
+    "before": "Psy 4 de la Rime",
+    "after": "Le Son des bandits – Psy 4 de la Rime",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-08",
+    "index": 1,
+    "before": "113",
+    "after": "Les Princes de la ville – 113",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-08",
+    "index": 2,
+    "before": "Sexion d'Assaut",
+    "after": "Avant qu'elle parte – Sexion d'Assaut",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-08",
+    "index": 3,
+    "before": "Fonky Family",
+    "after": "L'amour du risque – Fonky Family",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-09",
+    "index": 0,
+    "before": "On verra",
+    "after": "On verra – Nekfeu",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-09",
+    "index": 1,
+    "before": "La terre est ronde",
+    "after": "La terre est ronde – Orelsan",
+    "isCorrect": true
+  },
+  {
+    "questionId": "rap-09",
+    "index": 2,
+    "before": "Papaoutai",
+    "after": "Papaoutai – Stromae",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-09",
+    "index": 3,
+    "before": "Tonton du bled",
+    "after": "Tonton du bled – 113",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-10",
+    "index": 0,
+    "before": "Lartiste",
+    "after": "Chocolat (feat. Awa Imani) – Lartiste",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-10",
+    "index": 1,
+    "before": "Keblack",
+    "after": "Uber – Keblack",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-10",
+    "index": 2,
+    "before": "Naza",
+    "after": "Pas d'problèmes – Naza",
+    "isCorrect": false
+  },
+  {
+    "questionId": "rap-10",
+    "index": 3,
+    "before": "Black M",
+    "after": "Sur ma route – Black M",
+    "isCorrect": true
+  }
+]

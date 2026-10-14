@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "dsc-01",
+    "index": 0,
+    "before": "Don't Leave Me This Way",
+    "after": "Don't Leave Me This Way – Thelma Houston",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-01",
+    "index": 1,
+    "before": "Ring My Bell",
+    "after": "Ring My Bell – Anita Ward",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-01",
+    "index": 2,
+    "before": "Got to Be Real",
+    "after": "Got to Be Real – Cheryl Lynn",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-01",
+    "index": 3,
+    "before": "I Will Survive",
+    "after": "I Will Survive – Gloria Gaynor",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-02",
+    "index": 0,
+    "before": "The Trammps",
+    "after": "Disco Inferno – The Trammps",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-02",
+    "index": 1,
+    "before": "Bee Gees",
+    "after": "Stayin' Alive – Bee Gees",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-02",
+    "index": 2,
+    "before": "Heatwave",
+    "after": "Always and Forever – Heatwave",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-02",
+    "index": 3,
+    "before": "Tavares",
+    "after": "Heaven Must Be Missing An Angel – Tavares",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-03",
+    "index": 0,
+    "before": "Le Freak",
+    "after": "Le Freak – Chic",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-03",
+    "index": 1,
+    "before": "Disco Inferno",
+    "after": "Disco Inferno – The Trammps",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-03",
+    "index": 2,
+    "before": "Car Wash",
+    "after": "Car Wash – Rose Royce",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-03",
+    "index": 3,
+    "before": "Boogie Oogie Oogie",
+    "after": "Boogie Oogie Oogie – A Taste of Honey",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-04",
+    "index": 0,
+    "before": "Kool & the Gang",
+    "after": "Get Down On It – Kool & the Gang",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-04",
+    "index": 1,
+    "before": "Commodores",
+    "after": "Easy – Commodores",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-04",
+    "index": 2,
+    "before": "Earth, Wind & Fire",
+    "after": "September – Earth, Wind & Fire",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-04",
+    "index": 3,
+    "before": "The Gap Band",
+    "after": "Outstanding – The Gap Band",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-05",
+    "index": 0,
+    "before": "Y.M.C.A.",
+    "after": "Y.M.C.A. – Village People",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-05",
+    "index": 1,
+    "before": "Born to Be Alive",
+    "after": "Born to Be Alive – Patrick Hernandez",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-05",
+    "index": 2,
+    "before": "Daddy Cool",
+    "after": "Daddy Cool – Boney M.",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-05",
+    "index": 3,
+    "before": "D.I.S.C.O.",
+    "after": "D.I.S.C.O. – Ottawan",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-06",
+    "index": 0,
+    "before": "The Pointer Sisters",
+    "after": "I'm So Excited – The Pointer Sisters",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-06",
+    "index": 1,
+    "before": "The Three Degrees",
+    "after": "TSOP (The Sound of Philadelphia) – The Three Degrees",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-06",
+    "index": 2,
+    "before": "The Emotions",
+    "after": "Best of My Love – The Emotions",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-06",
+    "index": 3,
+    "before": "Sister Sledge",
+    "after": "We Are Family – Sister Sledge",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-07",
+    "index": 0,
+    "before": "Play That Funky Music",
+    "after": "Play That Funky Music – Wild Cherry",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-07",
+    "index": 1,
+    "before": "Jungle Boogie",
+    "after": "Jungle Boogie – Kool & the Gang",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-07",
+    "index": 2,
+    "before": "Superstition",
+    "after": "Superstition – Stevie Wonder",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-07",
+    "index": 3,
+    "before": "Pick Up the Pieces",
+    "after": "Pick Up the Pieces – Average White Band",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-08",
+    "index": 0,
+    "before": "Lipps Inc.",
+    "after": "Funkytown – Lipps Inc.",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-08",
+    "index": 1,
+    "before": "Ottawan",
+    "after": "Hands Up (Give Me Your Heart) – Ottawan",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-08",
+    "index": 2,
+    "before": "Boney M.",
+    "after": "Rasputin – Boney M.",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-08",
+    "index": 3,
+    "before": "Village People",
+    "after": "In The Navy – Village People",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-09",
+    "index": 0,
+    "before": "Get Down On It",
+    "after": "Get Down On It – Kool & the Gang",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-09",
+    "index": 1,
+    "before": "Shake Your Groove Thing",
+    "after": "Shake Your Groove Thing – Peaches & Herb",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-09",
+    "index": 2,
+    "before": "Boogie Nights",
+    "after": "Boogie Nights – Heatwave",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-09",
+    "index": 3,
+    "before": "Don't Stop 'Til You Get Enough",
+    "after": "Don't Stop 'Til You Get Enough – Michael Jackson",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-10",
+    "index": 0,
+    "before": "Diana Ross",
+    "after": "I'm Coming Out – Diana Ross",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-10",
+    "index": 1,
+    "before": "Donna Summer",
+    "after": "I Feel Love – Donna Summer",
+    "isCorrect": true
+  },
+  {
+    "questionId": "dsc-10",
+    "index": 2,
+    "before": "Grace Jones",
+    "after": "Pull Up to the Bumper – Grace Jones",
+    "isCorrect": false
+  },
+  {
+    "questionId": "dsc-10",
+    "index": 3,
+    "before": "Amii Stewart",
+    "after": "Knock On Wood – Amii Stewart",
+    "isCorrect": false
+  }
+]

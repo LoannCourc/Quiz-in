@@ -6,6 +6,14 @@ La bonne réponse est en **gras**. Début de l'extrait (`startS`) : 0 s partout 
 
 Positions des bonnes réponses sur les 100 questions : A 25, B 25, C 25, D 25.
 
+**Octobre 2026 : propositions « Titre – Artiste » à relire.** Chaque proposition affiche maintenant le titre et
+l'artiste. La moitié ajoutée aux mauvaises propositions (l'artiste d'un titre, ou un titre connu d'un artiste) vient
+de Deezer, puis a été corrigée à la main (époque, artiste d'origine plutôt qu'une reprise, pas de doublon dans un
+quiz) : liste complète par quiz dans `content/music-check/<quizId>-pairs.md`. Les bonnes réponses viennent du
+champ `music` (déjà vérifié). Les tableaux ci-dessous montrent encore l'ancienne forme (titre ou artiste seul).
+Points d'attention : `hits-ete` « Laisse parler les gens » (artiste crédité selon Deezer : Dj Team), `rap-francais`
+rap-05 C, ancienne proposition « Ego » (ambiguë) remplacée par « Pour ceux – Mafia K'1 Fry ».
+
 | Quiz | Difficulté | Affiche | Top 10 |
 |---|---|---|---|
 | Années 80 (`annees-80`) | Facile | pink | 2 |

@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Années 90
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- a90-01 A : Rhythm Is a Dancer → Rhythm Is a Dancer – Snap!
+- a90-01 B (bonne réponse) : What Is Love → What Is Love – Haddaway
+- a90-01 C : The Rhythm of the Night → The Rhythm of the Night – Corona
+- a90-01 D : Mr. Vain → Mr. Vain – Culture Beat
+- a90-02 A : All Saints → Pure Shores – All Saints
+- a90-02 B : TLC → No Scrubs – TLC
+- a90-02 C : Eternal → Just a Step from Heaven – Eternal
+- a90-02 D (bonne réponse) : Spice Girls → Wannabe – Spice Girls
+- a90-03 A : Samba de Janeiro → Samba de Janeiro – Bellini
+- a90-03 B : Bailamos → Bailamos – Enrique Iglesias
+- a90-03 C (bonne réponse) : Livin' la Vida Loca → Livin' la Vida Loca – Ricky Martin
+- a90-03 D : Mi chico latino → Mi chico latino – Geri Halliwell
+- a90-04 A (bonne réponse) : Cher → Believe – Cher
+- a90-04 B : Madonna → Vogue – Madonna
+- a90-04 C : Tina Turner → GoldenEye – Tina Turner
+- a90-04 D : Céline Dion → Pour que tu m'aimes encore – Céline Dion
+- a90-05 A : Saturday Night → Saturday Night – Whigfield
+- a90-05 B : Coco Jamboo → Coco Jamboo – Mr. President
+- a90-05 C : No Limit → No Limit – 2 Unlimited
+- a90-05 D (bonne réponse) : The Sign → The Sign – Ace of Base
+- a90-06 A : Lara Fabian → Je t'aime – Lara Fabian
+- a90-06 B (bonne réponse) : Larusso → Tu m'oublieras – Larusso
+- a90-06 C : Hélène Ségara → Il y a trop de gens qui t'aiment – Hélène Ségara
+- a90-06 D : Natasha St-Pier → Tu trouveras – Natasha St-Pier
+- a90-07 A (bonne réponse) : Wonderwall → Wonderwall – Oasis
+- a90-07 B : Bitter Sweet Symphony → Bitter Sweet Symphony – The Verve
+- a90-07 C : Song 2 → Song 2 – Blur
+- a90-07 D : Common People → Common People – Pulp
+- a90-08 A : Mariah Carey → Hero – Mariah Carey
+- a90-08 B : Toni Braxton → Un-Break My Heart – Toni Braxton
+- a90-08 C (bonne réponse) : Whitney Houston → I Will Always Love You – Whitney Houston
+- a90-08 D : Céline Dion → My Heart Will Go On – Céline Dion
+- a90-09 A : Tearin' Up My Heart → Tearin' Up My Heart – *NSYNC
+- a90-09 B (bonne réponse) : I Want It That Way → I Want It That Way – Backstreet Boys
+- a90-09 C : Back for Good → Back for Good – Take That
+- a90-09 D : Flying Without Wings → Flying Without Wings – Westlife
+- a90-10 A : Corona → Baby Baby – Corona
+- a90-10 B : Whigfield → Another Day – Whigfield
+- a90-10 C : Alice Deejay → Better Off Alone – Alice Deejay
+- a90-10 D (bonne réponse) : Gala → Freed from Desire – Gala

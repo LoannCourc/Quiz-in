@@ -66,12 +66,21 @@ une phrase de 100 caractères au plus), `acceptedAnswers` (ses autres écritures
 
 Un blind test a `"gameType": "blindTest"`. Chaque question a un champ `ask` (ce qu'elle demande) et
 l'énoncé qui va avec, quatre propositions du même genre et de la même époque, et un champ `music` sans
-identifiant :
+identifiant. **Toutes les propositions s'écrivent « Titre – Artiste »** (tiret demi-cadratin « – »
+entouré d'espaces) : en Choix multiples, le téléphone et la TV affichent le titre en gros et l'artiste
+dessous. Le build refuse une proposition sans artiste, et ce séparateur dans un quiz qui n'est pas un
+blind test. `ask` ne décide que de l'énoncé et de ce qu'il faut écrire en Réponse libre :
 
-- `"ask": "title"`, « Quel est ce titre ? » : propositions = titres ; la bonne proposition cite le titre ;
-- `"ask": "artist"`, « Quel artiste ? » : propositions = artistes ; la bonne proposition cite l'artiste ;
-- `"ask": "both"`, « Quel est ce morceau ? » (« Tubes francophones ») : propositions « Titre – Artiste » ;
-  en Réponse libre, deux champs (titre et artiste), chacun rapporte la moitié des points.
+- `"ask": "title"`, « Quel est ce titre ? » : en Réponse libre, on écrit le titre ;
+- `"ask": "artist"`, « Quel artiste ? » : en Réponse libre, on écrit l'artiste ;
+- `"ask": "both"`, « Quel est ce morceau ? » (« Tubes francophones ») : en Réponse libre, deux champs
+  (titre et artiste), chacun rapporte la moitié des points.
+
+Compléter des propositions qui n'ont que le titre ou que l'artiste : `npm run music:pairs -- <quizId>`
+écrit un brouillon `music-check/<quizId>-pairs.json` (et `.md` lisible) d'après Deezer : l'artiste d'un
+titre, ou le titre le plus écouté d'un artiste. À relire et corriger dans le `.json` (époque, artiste
+d'origine, doublons), puis `npm run music:pairs -- <quizId> --apply` réécrit la ligne `options` des
+questions. La bonne proposition vient toujours du champ `music`, jamais de Deezer.
 
 Dans un même quiz, alterner titre et artiste, et équilibrer les positions des bonnes réponses (A, B, C, D).
 
@@ -88,8 +97,8 @@ Dans un même quiz, alterner titre et artiste, et équilibrer les positions des 
   pendant tout le timer de la question (20 s) : `startS + timer` ≤ 30, soit `startS` de 0 à 10. En
   Réponse libre (timer de 30 s), seul `startS` = 0 couvre tout le chrono : au-delà, le script avertit
   que l'extrait s'arrête avant la fin.
-- Les `acceptedAnswers` contiennent la bonne proposition (titre, artiste, ou « titre – artiste »), pour
-  qu'elle soit acceptée en réponse libre.
+- Les `acceptedAnswers` contiennent ce que demande la question dans la bonne proposition (son titre, son
+  artiste, ou « titre – artiste » pour `both`), pour qu'elle soit acceptée en réponse libre.
 - Mauvaises propositions : tubes ou artistes de la même époque (au plus un titre du même artiste), jamais
   la bonne réponse d'une autre question du quiz ni l'artiste d'un autre morceau du quiz.
 - Un morceau n'apparaît que dans un seul blind test. Public familial : aucun morceau à paroles explicites.

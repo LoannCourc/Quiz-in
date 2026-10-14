@@ -3,6 +3,7 @@ import { bluffChoicesLayout } from '@shared/bluffLayout'
 import type { PublicSession } from '@shared/types'
 
 import { AudioStatus } from '../components/AudioStatus'
+import { TrackOptionText } from '../components/TrackOptionText'
 import { Avatar } from '../components/Avatar'
 import { BluffVoteChoices } from '../components/BluffChoices'
 import { Countdown } from '../components/Countdown'
@@ -17,9 +18,9 @@ import { strings } from '../strings'
 import './QuestionScreen.css'
 
 // Échelles réduites dans l'ordre : la barre des joueurs (--bar-scale), puis le texte de la consigne ou des
-// propositions du vote (--text-scale). L'écran entier, le cadre de la consigne et la liste des propositions
-// ne doivent jamais déborder.
-const FIT_OPTIONS = { variables: ['--bar-scale', '--text-scale'], boxes: '.free-prompt, .bluff-choices', includeRoot: true }
+// propositions (--text-scale). L'écran entier, le cadre de la consigne, la liste des propositions du vote et
+// chaque proposition (blind test : titre et artiste sur deux lignes) ne doivent jamais déborder.
+const FIT_OPTIONS = { variables: ['--bar-scale', '--text-scale'], boxes: '.free-prompt, .bluff-choices, .question-options .choice', includeRoot: true }
 
 interface QuestionScreenProps {
   session: PublicSession
@@ -29,7 +30,7 @@ interface QuestionScreenProps {
 export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
   const question = session.currentQuestion
   // Tout tient à l'écran : la barre des joueurs rétrécit d'abord, puis la consigne ou les propositions.
-  const fitKey = `${session.status}|${question?.text}|${question?.choices?.join('|')}|${Object.keys(session.players).length}|${session.settings.teams}`
+  const fitKey = `${session.status}|${question?.text}|${question?.choices?.join('|')}|${question?.options?.join('|')}|${Object.keys(session.players).length}|${session.settings.teams}`
   const screenRef = useFitScale(fitKey, FIT_OPTIONS)
   // Rangée des avatars : toujours une seule ligne, taille calculée d'après la place (1 à 20 joueurs).
   const avatarRow = useAvatarRowFit(Object.keys(session.players).length)
@@ -98,7 +99,7 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
           {question.options.map((option, index) => (
             <li key={option} className={`choice choice-${index}`}>
               <span className="choice-letter">{strings.choiceLetters[index]}</span>
-              <span className="choice-text">{option}</span>
+              <TrackOptionText option={option} />
             </li>
           ))}
         </ol>

@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "a10-01",
+    "index": 0,
+    "before": "Can't Stop the Feeling!",
+    "after": "Can't Stop the Feeling! – Justin Timberlake",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-01",
+    "index": 1,
+    "before": "Sugar",
+    "after": "Sugar – Maroon 5",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-01",
+    "index": 2,
+    "before": "Treasure",
+    "after": "Treasure – Bruno Mars",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-01",
+    "index": 3,
+    "before": "Happy",
+    "after": "Happy – Pharrell Williams",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-02",
+    "index": 0,
+    "before": "Duffy",
+    "after": "Mercy – Duffy",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-02",
+    "index": 1,
+    "before": "Adele",
+    "after": "Rolling in the Deep – Adele",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-02",
+    "index": 2,
+    "before": "Sia",
+    "after": "Chandelier – Sia",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-02",
+    "index": 3,
+    "before": "Birdy",
+    "after": "People Help the People – Birdy",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-03",
+    "index": 0,
+    "before": "Despacito",
+    "after": "Despacito – Luis Fonsi",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-03",
+    "index": 1,
+    "before": "Bailando",
+    "after": "Bailando – Enrique Iglesias",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-03",
+    "index": 2,
+    "before": "Danza Kuduro",
+    "after": "Danza Kuduro – Don Omar",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-03",
+    "index": 3,
+    "before": "Mi Gente",
+    "after": "Mi Gente – J Balvin",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-04",
+    "index": 0,
+    "before": "Shawn Mendes",
+    "after": "Stitches – Shawn Mendes",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-04",
+    "index": 1,
+    "before": "James Arthur",
+    "after": "Say You Won't Let Go – James Arthur",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-04",
+    "index": 2,
+    "before": "Ed Sheeran",
+    "after": "Shape of You – Ed Sheeran",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-04",
+    "index": 3,
+    "before": "Lewis Capaldi",
+    "after": "Someone You Loved – Lewis Capaldi",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-05",
+    "index": 0,
+    "before": "Lean On",
+    "after": "Lean On – Major Lazer",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-05",
+    "index": 1,
+    "before": "Wake Me Up",
+    "after": "Wake Me Up – Avicii",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-05",
+    "index": 2,
+    "before": "Titanium",
+    "after": "Titanium – David Guetta",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-05",
+    "index": 3,
+    "before": "Faded",
+    "after": "Faded – Alan Walker",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-06",
+    "index": 0,
+    "before": "Soprano",
+    "after": "Hiro – Soprano",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-06",
+    "index": 1,
+    "before": "Black M",
+    "after": "Sur ma route – Black M",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-06",
+    "index": 2,
+    "before": "Kendji Girac",
+    "after": "Andalouse – Kendji Girac",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-06",
+    "index": 3,
+    "before": "Maître Gims",
+    "after": "Est-ce que tu m'aimes ? – Maître Gims",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-07",
+    "index": 0,
+    "before": "Call Me Maybe",
+    "after": "Call Me Maybe – Carly Rae Jepsen",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-07",
+    "index": 1,
+    "before": "Moves Like Jagger",
+    "after": "Moves Like Jagger – Maroon 5",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-07",
+    "index": 2,
+    "before": "Gangnam Style",
+    "after": "Gangnam Style – PSY",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-07",
+    "index": 3,
+    "before": "Somebody That I Used to Know",
+    "after": "Somebody That I Used to Know – Gotye",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-08",
+    "index": 0,
+    "before": "Louane",
+    "after": "Jour 1 – Louane",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-08",
+    "index": 1,
+    "before": "Amel Bent",
+    "after": "Ma philosophie – Amel Bent",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-08",
+    "index": 2,
+    "before": "Jenifer",
+    "after": "Les choses simples – Jenifer",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-08",
+    "index": 3,
+    "before": "Nolwenn Leroy",
+    "after": "Dès que le vent soufflera – Nolwenn Leroy",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-09",
+    "index": 0,
+    "before": "Counting Stars",
+    "after": "Counting Stars – OneRepublic",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-09",
+    "index": 1,
+    "before": "Pompeii",
+    "after": "Pompeii – Bastille",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-09",
+    "index": 2,
+    "before": "Shut Up and Dance",
+    "after": "Shut Up and Dance – Walk The Moon",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-09",
+    "index": 3,
+    "before": "Believer",
+    "after": "Believer – Imagine Dragons",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-10",
+    "index": 0,
+    "before": "Justice",
+    "after": "D.A.N.C.E. – Justice",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-10",
+    "index": 1,
+    "before": "Daft Punk",
+    "after": "Get Lucky – Daft Punk",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a10-10",
+    "index": 2,
+    "before": "Kavinsky",
+    "after": "Nightcall – Kavinsky",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a10-10",
+    "index": 3,
+    "before": "Disclosure",
+    "after": "Latch – Disclosure",
+    "isCorrect": false
+  }
+]

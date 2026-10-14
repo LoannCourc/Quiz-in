@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "a90-01",
+    "index": 0,
+    "before": "Rhythm Is a Dancer",
+    "after": "Rhythm Is a Dancer – Snap!",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-01",
+    "index": 1,
+    "before": "What Is Love",
+    "after": "What Is Love – Haddaway",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-01",
+    "index": 2,
+    "before": "The Rhythm of the Night",
+    "after": "The Rhythm of the Night – Corona",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-01",
+    "index": 3,
+    "before": "Mr. Vain",
+    "after": "Mr. Vain – Culture Beat",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-02",
+    "index": 0,
+    "before": "All Saints",
+    "after": "Pure Shores – All Saints",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-02",
+    "index": 1,
+    "before": "TLC",
+    "after": "No Scrubs – TLC",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-02",
+    "index": 2,
+    "before": "Eternal",
+    "after": "Just a Step from Heaven – Eternal",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-02",
+    "index": 3,
+    "before": "Spice Girls",
+    "after": "Wannabe – Spice Girls",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-03",
+    "index": 0,
+    "before": "Samba de Janeiro",
+    "after": "Samba de Janeiro – Bellini",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-03",
+    "index": 1,
+    "before": "Bailamos",
+    "after": "Bailamos – Enrique Iglesias",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-03",
+    "index": 2,
+    "before": "Livin' la Vida Loca",
+    "after": "Livin' la Vida Loca – Ricky Martin",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-03",
+    "index": 3,
+    "before": "Mi chico latino",
+    "after": "Mi chico latino – Geri Halliwell",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-04",
+    "index": 0,
+    "before": "Cher",
+    "after": "Believe – Cher",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-04",
+    "index": 1,
+    "before": "Madonna",
+    "after": "Vogue – Madonna",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-04",
+    "index": 2,
+    "before": "Tina Turner",
+    "after": "GoldenEye – Tina Turner",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-04",
+    "index": 3,
+    "before": "Céline Dion",
+    "after": "Pour que tu m'aimes encore – Céline Dion",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-05",
+    "index": 0,
+    "before": "Saturday Night",
+    "after": "Saturday Night – Whigfield",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-05",
+    "index": 1,
+    "before": "Coco Jamboo",
+    "after": "Coco Jamboo – Mr. President",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-05",
+    "index": 2,
+    "before": "No Limit",
+    "after": "No Limit – 2 Unlimited",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-05",
+    "index": 3,
+    "before": "The Sign",
+    "after": "The Sign – Ace of Base",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-06",
+    "index": 0,
+    "before": "Lara Fabian",
+    "after": "Je t'aime – Lara Fabian",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-06",
+    "index": 1,
+    "before": "Larusso",
+    "after": "Tu m'oublieras – Larusso",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-06",
+    "index": 2,
+    "before": "Hélène Ségara",
+    "after": "Il y a trop de gens qui t'aiment – Hélène Ségara",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-06",
+    "index": 3,
+    "before": "Natasha St-Pier",
+    "after": "Tu trouveras – Natasha St-Pier",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-07",
+    "index": 0,
+    "before": "Wonderwall",
+    "after": "Wonderwall – Oasis",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-07",
+    "index": 1,
+    "before": "Bitter Sweet Symphony",
+    "after": "Bitter Sweet Symphony – The Verve",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-07",
+    "index": 2,
+    "before": "Song 2",
+    "after": "Song 2 – Blur",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-07",
+    "index": 3,
+    "before": "Common People",
+    "after": "Common People – Pulp",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-08",
+    "index": 0,
+    "before": "Mariah Carey",
+    "after": "Hero – Mariah Carey",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-08",
+    "index": 1,
+    "before": "Toni Braxton",
+    "after": "Un-Break My Heart – Toni Braxton",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-08",
+    "index": 2,
+    "before": "Whitney Houston",
+    "after": "I Will Always Love You – Whitney Houston",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-08",
+    "index": 3,
+    "before": "Céline Dion",
+    "after": "My Heart Will Go On – Céline Dion",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-09",
+    "index": 0,
+    "before": "Tearin' Up My Heart",
+    "after": "Tearin' Up My Heart – *NSYNC",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-09",
+    "index": 1,
+    "before": "I Want It That Way",
+    "after": "I Want It That Way – Backstreet Boys",
+    "isCorrect": true
+  },
+  {
+    "questionId": "a90-09",
+    "index": 2,
+    "before": "Back for Good",
+    "after": "Back for Good – Take That",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-09",
+    "index": 3,
+    "before": "Flying Without Wings",
+    "after": "Flying Without Wings – Westlife",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-10",
+    "index": 0,
+    "before": "Corona",
+    "after": "Baby Baby – Corona",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-10",
+    "index": 1,
+    "before": "Whigfield",
+    "after": "Another Day – Whigfield",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-10",
+    "index": 2,
+    "before": "Alice Deejay",
+    "after": "Better Off Alone – Alice Deejay",
+    "isCorrect": false
+  },
+  {
+    "questionId": "a90-10",
+    "index": 3,
+    "before": "Gala",
+    "after": "Freed from Desire – Gala",
+    "isCorrect": true
+  }
+]

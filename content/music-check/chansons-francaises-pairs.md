@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Chanson française
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- chf-01 A (bonne réponse) : Les Copains d'abord → Les Copains d'abord – Georges Brassens
+- chf-01 B : La Mer → La Mer – Charles Trenet
+- chf-01 C : Le Petit Bal perdu → Le Petit Bal perdu – Bourvil
+- chf-01 D : Avec le temps → Avec le temps – Léo Ferré
+- chf-02 A : Léo Ferré → C'est extra – Léo Ferré
+- chf-02 B : Gilbert Bécaud → Je reviens te chercher – Gilbert Bécaud
+- chf-02 C (bonne réponse) : Jacques Brel → Ne me quitte pas – Jacques Brel
+- chf-02 D : Claude Nougaro → Nougayork – Claude Nougaro
+- chf-03 A : Les Feuilles mortes → Les Feuilles mortes – Yves Montand
+- chf-03 B (bonne réponse) : L'Aigle noir → L'Aigle noir – Barbara
+- chf-03 C : Syracuse → Syracuse – Henri Salvador
+- chf-03 D : La Maritza → La Maritza – Sylvie Vartan
+- chf-04 A : Serge Reggiani → Il suffirait de presque rien – Serge Reggiani
+- chf-04 B : Yves Montand → À bicyclette – Yves Montand
+- chf-04 C : Gilbert Bécaud → Et maintenant – Gilbert Bécaud
+- chf-04 D (bonne réponse) : Charles Aznavour → Emmenez-moi – Charles Aznavour
+- chf-05 A : Le Déserteur → Le Déserteur – Boris Vian
+- chf-05 B : Les Petits Papiers → Les Petits Papiers – Régine
+- chf-05 C (bonne réponse) : Le Poinçonneur des Lilas → Le Poinçonneur des Lilas – Serge Gainsbourg
+- chf-05 D : Le Tourbillon → Le Tourbillon – Jeanne Moreau
+- chf-06 A (bonne réponse) : Jean Ferrat → La Montagne – Jean Ferrat
+- chf-06 B : Maxime Le Forestier → San Francisco – Maxime Le Forestier
+- chf-06 C : Hugues Aufray → Santiano – Hugues Aufray
+- chf-06 D : Georges Moustaki → Le métèque – Georges Moustaki
+- chf-07 A : Le Lac Majeur → Le Lac Majeur – Mort Shuman
+- chf-07 B : Capri c'est fini → Capri c'est fini – Hervé Vilard
+- chf-07 C : Une belle histoire → Une belle histoire – Michel Fugain
+- chf-07 D (bonne réponse) : Les Lacs du Connemara → Les Lacs du Connemara – Michel Sardou
+- chf-08 A : Sheila → L'École est finie – Sheila
+- chf-08 B (bonne réponse) : Dalida → Paroles, paroles – Dalida
+- chf-08 C : Mireille Mathieu → Mille colombes – Mireille Mathieu
+- chf-08 D : Nana Mouskouri → Quand tu chantes – Nana Mouskouri
+- chf-09 A (bonne réponse) : Mistral gagnant → Mistral gagnant – Renaud
+- chf-09 B : La Ballade des gens heureux → La Ballade des gens heureux – Gérard Lenorman
+- chf-09 C : L'Été indien → L'Été indien – Joe Dassin
+- chf-09 D : Les Mots bleus → Les Mots bleus – Christophe
+- chf-10 A : Juliette Gréco → Sous le ciel de Paris – Juliette Gréco
+- chf-10 B : Patachou → Les ronds dans l'eau – Patachou
+- chf-10 C (bonne réponse) : Édith Piaf → Non, je ne regrette rien – Édith Piaf
+- chf-10 D : Mistinguett → Mon homme – Mistinguett

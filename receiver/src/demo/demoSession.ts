@@ -219,10 +219,10 @@ export function buildDemoSession({
 // Blind test (?blindtest=1) : même session, question musicale. L'adresse ne mène à rien : la démo ne
 // joue aucun son, elle montre seulement les écrans (indicateur d'écoute, mention à la révélation).
 const DEMO_SONGS: ChoiceOptions = [
-  'Papaoutai – Stromae',
-  'Alors on danse – Stromae',
-  'Formidable – Stromae',
-  'Tous les mêmes – Stromae',
+  'Walking on Sunshine – Katrina & The Waves',
+  'Girls Just Want to Have Fun – Cyndi Lauper',
+  "Don't You (Forget About Me) – Simple Minds",
+  'Karma Chameleon – Culture Club',
 ]
 
 export function toDemoBlindTest(session: PublicSession): PublicSession {
@@ -239,7 +239,7 @@ export function toDemoBlindTest(session: PublicSession): PublicSession {
       ...session.reveal,
       correctAnswer: DEMO_SONGS[DEMO_QUESTION.correctIndex],
       explanation: undefined,
-      music: { title: 'Alors on danse', artist: 'Stromae', source: 'deezer' },
+      music: { title: 'Girls Just Want to Have Fun', artist: 'Cyndi Lauper', source: 'deezer' },
     },
   }
 }

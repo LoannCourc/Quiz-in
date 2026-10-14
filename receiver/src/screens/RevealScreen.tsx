@@ -2,6 +2,7 @@ import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown }
 import type { AnswerVerdict, ChoiceOptions, FreeAnswerGroup, PublicSession } from '@shared/types'
 
 import { Confetti } from '../components/Confetti'
+import { TrackOptionText } from '../components/TrackOptionText'
 import { GameHeader } from '../components/GameHeader'
 import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
 import { optionsSizeClass } from '../lib/optionsSize'
@@ -76,7 +77,7 @@ function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
         return (
           <li key={option} className={`choice choice-${index} ${isCorrect ? 'is-correct' : 'is-dimmed'}`}>
             <span className="choice-letter">{strings.choiceLetters[index]}</span>
-            <span className="choice-text">{option}</span>
+            <TrackOptionText option={option} />
             <span className="reveal-count">{strings.reveal.choiceCount(counts[index] ?? 0)}</span>
           </li>
         )
@@ -94,7 +95,9 @@ function FreeResults({ correctAnswer, groups }: { correctAnswer: string; groups:
     <div className="reveal-free">
       <div className="free-correct">
         <p className="free-correct-label">{strings.reveal.title}</p>
-        <p className={`free-correct-text ${optionsSizeClass([correctAnswer])}`}>{correctAnswer}</p>
+        <p className={`free-correct-text ${optionsSizeClass([correctAnswer])}`}>
+          <TrackOptionText option={correctAnswer} className="free-correct-title" />
+        </p>
       </div>
       <div className="free-answers">
         <p className="free-answers-label">{strings.reveal.freeAnswersTitle}</p>

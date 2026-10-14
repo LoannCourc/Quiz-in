@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "chf-01",
+    "index": 0,
+    "before": "Les Copains d'abord",
+    "after": "Les Copains d'abord – Georges Brassens",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-01",
+    "index": 1,
+    "before": "La Mer",
+    "after": "La Mer – Charles Trenet",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-01",
+    "index": 2,
+    "before": "Le Petit Bal perdu",
+    "after": "Le Petit Bal perdu – Bourvil",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-01",
+    "index": 3,
+    "before": "Avec le temps",
+    "after": "Avec le temps – Léo Ferré",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-02",
+    "index": 0,
+    "before": "Léo Ferré",
+    "after": "C'est extra – Léo Ferré",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-02",
+    "index": 1,
+    "before": "Gilbert Bécaud",
+    "after": "Je reviens te chercher – Gilbert Bécaud",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-02",
+    "index": 2,
+    "before": "Jacques Brel",
+    "after": "Ne me quitte pas – Jacques Brel",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-02",
+    "index": 3,
+    "before": "Claude Nougaro",
+    "after": "Nougayork – Claude Nougaro",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-03",
+    "index": 0,
+    "before": "Les Feuilles mortes",
+    "after": "Les Feuilles mortes – Yves Montand",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-03",
+    "index": 1,
+    "before": "L'Aigle noir",
+    "after": "L'Aigle noir – Barbara",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-03",
+    "index": 2,
+    "before": "Syracuse",
+    "after": "Syracuse – Henri Salvador",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-03",
+    "index": 3,
+    "before": "La Maritza",
+    "after": "La Maritza – Sylvie Vartan",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-04",
+    "index": 0,
+    "before": "Serge Reggiani",
+    "after": "Il suffirait de presque rien – Serge Reggiani",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-04",
+    "index": 1,
+    "before": "Yves Montand",
+    "after": "À bicyclette – Yves Montand",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-04",
+    "index": 2,
+    "before": "Gilbert Bécaud",
+    "after": "Et maintenant – Gilbert Bécaud",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-04",
+    "index": 3,
+    "before": "Charles Aznavour",
+    "after": "Emmenez-moi – Charles Aznavour",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-05",
+    "index": 0,
+    "before": "Le Déserteur",
+    "after": "Le Déserteur – Boris Vian",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-05",
+    "index": 1,
+    "before": "Les Petits Papiers",
+    "after": "Les Petits Papiers – Régine",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-05",
+    "index": 2,
+    "before": "Le Poinçonneur des Lilas",
+    "after": "Le Poinçonneur des Lilas – Serge Gainsbourg",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-05",
+    "index": 3,
+    "before": "Le Tourbillon",
+    "after": "Le Tourbillon – Jeanne Moreau",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-06",
+    "index": 0,
+    "before": "Jean Ferrat",
+    "after": "La Montagne – Jean Ferrat",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-06",
+    "index": 1,
+    "before": "Maxime Le Forestier",
+    "after": "San Francisco – Maxime Le Forestier",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-06",
+    "index": 2,
+    "before": "Hugues Aufray",
+    "after": "Santiano – Hugues Aufray",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-06",
+    "index": 3,
+    "before": "Georges Moustaki",
+    "after": "Le métèque – Georges Moustaki",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-07",
+    "index": 0,
+    "before": "Le Lac Majeur",
+    "after": "Le Lac Majeur – Mort Shuman",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-07",
+    "index": 1,
+    "before": "Capri c'est fini",
+    "after": "Capri c'est fini – Hervé Vilard",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-07",
+    "index": 2,
+    "before": "Une belle histoire",
+    "after": "Une belle histoire – Michel Fugain",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-07",
+    "index": 3,
+    "before": "Les Lacs du Connemara",
+    "after": "Les Lacs du Connemara – Michel Sardou",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-08",
+    "index": 0,
+    "before": "Sheila",
+    "after": "L'École est finie – Sheila",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-08",
+    "index": 1,
+    "before": "Dalida",
+    "after": "Paroles, paroles – Dalida",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-08",
+    "index": 2,
+    "before": "Mireille Mathieu",
+    "after": "Mille colombes – Mireille Mathieu",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-08",
+    "index": 3,
+    "before": "Nana Mouskouri",
+    "after": "Quand tu chantes – Nana Mouskouri",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-09",
+    "index": 0,
+    "before": "Mistral gagnant",
+    "after": "Mistral gagnant – Renaud",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-09",
+    "index": 1,
+    "before": "La Ballade des gens heureux",
+    "after": "La Ballade des gens heureux – Gérard Lenorman",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-09",
+    "index": 2,
+    "before": "L'Été indien",
+    "after": "L'Été indien – Joe Dassin",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-09",
+    "index": 3,
+    "before": "Les Mots bleus",
+    "after": "Les Mots bleus – Christophe",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-10",
+    "index": 0,
+    "before": "Juliette Gréco",
+    "after": "Sous le ciel de Paris – Juliette Gréco",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-10",
+    "index": 1,
+    "before": "Patachou",
+    "after": "Les ronds dans l'eau – Patachou",
+    "isCorrect": false
+  },
+  {
+    "questionId": "chf-10",
+    "index": 2,
+    "before": "Édith Piaf",
+    "after": "Non, je ne regrette rien – Édith Piaf",
+    "isCorrect": true
+  },
+  {
+    "questionId": "chf-10",
+    "index": 3,
+    "before": "Mistinguett",
+    "after": "Mon homme – Mistinguett",
+    "isCorrect": false
+  }
+]

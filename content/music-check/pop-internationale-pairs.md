@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Pop internationale
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- pop-01 A : Don't Go Breaking My Heart → Don't Go Breaking My Heart – Elton John
+- pop-01 B : Sugar Baby Love → Sugar Baby Love – The Rubettes
+- pop-01 C (bonne réponse) : Dancing Queen → Dancing Queen – ABBA
+- pop-01 D : Love Is in the Air → Love Is in the Air – John Paul Young
+- pop-02 A (bonne réponse) : Elton John → I'm Still Standing – Elton John
+- pop-02 B : Billy Joel → Uptown Girl – Billy Joel
+- pop-02 C : Phil Collins → Another Day in Paradise – Phil Collins
+- pop-02 D : Rod Stewart → Da Ya Think I'm Sexy? – Rod Stewart
+- pop-03 A : Perfect → Perfect – Ed Sheeran
+- pop-03 B : All of Me → All of Me – John Legend
+- pop-03 C : Love Yourself → Love Yourself – Justin Bieber
+- pop-03 D (bonne réponse) : Just the Way You Are → Just the Way You Are – Bruno Mars
+- pop-04 A : Kesha → TiK ToK – Kesha
+- pop-04 B (bonne réponse) : Katy Perry → Roar – Katy Perry
+- pop-04 C : Demi Lovato → Cool for the Summer – Demi Lovato
+- pop-04 D : Selena Gomez → Come & Get It – Selena Gomez
+- pop-05 A (bonne réponse) : Shake It Off → Shake It Off – Taylor Swift
+- pop-05 B : Problem → Problem – Ariana Grande
+- pop-05 C : Royals → Royals – Lorde
+- pop-05 D : Love Me Like You Do → Love Me Like You Do – Ellie Goulding
+- pop-06 A : Rita Ora → Anywhere – Rita Ora
+- pop-06 B : Anne-Marie → FRIENDS – Anne-Marie
+- pop-06 C (bonne réponse) : Dua Lipa → Don't Start Now – Dua Lipa
+- pop-06 D : Ava Max → Sweet but Psycho – Ava Max
+- pop-07 A : Watermelon Sugar → Watermelon Sugar – Harry Styles
+- pop-07 B (bonne réponse) : Blinding Lights → Blinding Lights – The Weeknd
+- pop-07 C : Dance Monkey → Dance Monkey – Tones and I
+- pop-07 D : Señorita → Señorita – Shawn Mendes
+- pop-08 A : Kylie Minogue → Can't Get You out of My Head – Kylie Minogue
+- pop-08 B : Gwen Stefani → The Sweet Escape – Gwen Stefani
+- pop-08 C : Nelly Furtado → Maneater – Nelly Furtado
+- pop-08 D (bonne réponse) : Madonna → Hung Up – Madonna
+- pop-09 A : Torn → Torn – Natalie Imbruglia
+- pop-09 B : You're Beautiful → You're Beautiful – James Blunt
+- pop-09 C (bonne réponse) : Angels → Angels – Robbie Williams
+- pop-09 D : Iris → Iris – The Goo Goo Dolls
+- pop-10 A (bonne réponse) : Lewis Capaldi → Someone You Loved – Lewis Capaldi
+- pop-10 B : James Arthur → Say You Won't Let Go – James Arthur
+- pop-10 C : Sam Smith → Stay With Me – Sam Smith
+- pop-10 D : Tom Odell → Another Love – Tom Odell

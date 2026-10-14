@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Années 2010
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- a10-01 A : Can't Stop the Feeling! → Can't Stop the Feeling! – Justin Timberlake
+- a10-01 B : Sugar → Sugar – Maroon 5
+- a10-01 C : Treasure → Treasure – Bruno Mars
+- a10-01 D (bonne réponse) : Happy → Happy – Pharrell Williams
+- a10-02 A : Duffy → Mercy – Duffy
+- a10-02 B (bonne réponse) : Adele → Rolling in the Deep – Adele
+- a10-02 C : Sia → Chandelier – Sia
+- a10-02 D : Birdy → People Help the People – Birdy
+- a10-03 A (bonne réponse) : Despacito → Despacito – Luis Fonsi
+- a10-03 B : Bailando → Bailando – Enrique Iglesias
+- a10-03 C : Danza Kuduro → Danza Kuduro – Don Omar
+- a10-03 D : Mi Gente → Mi Gente – J Balvin
+- a10-04 A : Shawn Mendes → Stitches – Shawn Mendes
+- a10-04 B : James Arthur → Say You Won't Let Go – James Arthur
+- a10-04 C (bonne réponse) : Ed Sheeran → Shape of You – Ed Sheeran
+- a10-04 D : Lewis Capaldi → Someone You Loved – Lewis Capaldi
+- a10-05 A : Lean On → Lean On – Major Lazer
+- a10-05 B (bonne réponse) : Wake Me Up → Wake Me Up – Avicii
+- a10-05 C : Titanium → Titanium – David Guetta
+- a10-05 D : Faded → Faded – Alan Walker
+- a10-06 A : Soprano → Hiro – Soprano
+- a10-06 B : Black M → Sur ma route – Black M
+- a10-06 C : Kendji Girac → Andalouse – Kendji Girac
+- a10-06 D (bonne réponse) : Maître Gims → Est-ce que tu m'aimes ? – Maître Gims
+- a10-07 A : Call Me Maybe → Call Me Maybe – Carly Rae Jepsen
+- a10-07 B : Moves Like Jagger → Moves Like Jagger – Maroon 5
+- a10-07 C (bonne réponse) : Gangnam Style → Gangnam Style – PSY
+- a10-07 D : Somebody That I Used to Know → Somebody That I Used to Know – Gotye
+- a10-08 A (bonne réponse) : Louane → Jour 1 – Louane
+- a10-08 B : Amel Bent → Ma philosophie – Amel Bent
+- a10-08 C : Jenifer → Les choses simples – Jenifer
+- a10-08 D : Nolwenn Leroy → Dès que le vent soufflera – Nolwenn Leroy
+- a10-09 A : Counting Stars → Counting Stars – OneRepublic
+- a10-09 B : Pompeii → Pompeii – Bastille
+- a10-09 C : Shut Up and Dance → Shut Up and Dance – Walk The Moon
+- a10-09 D (bonne réponse) : Believer → Believer – Imagine Dragons
+- a10-10 A : Justice → D.A.N.C.E. – Justice
+- a10-10 B (bonne réponse) : Daft Punk → Get Lucky – Daft Punk
+- a10-10 C : Kavinsky → Nightcall – Kavinsky
+- a10-10 D : Disclosure → Latch – Disclosure

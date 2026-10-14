@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Disco et funk
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- dsc-01 A : Don't Leave Me This Way → Don't Leave Me This Way – Thelma Houston
+- dsc-01 B : Ring My Bell → Ring My Bell – Anita Ward
+- dsc-01 C : Got to Be Real → Got to Be Real – Cheryl Lynn
+- dsc-01 D (bonne réponse) : I Will Survive → I Will Survive – Gloria Gaynor
+- dsc-02 A : The Trammps → Disco Inferno – The Trammps
+- dsc-02 B (bonne réponse) : Bee Gees → Stayin' Alive – Bee Gees
+- dsc-02 C : Heatwave → Always and Forever – Heatwave
+- dsc-02 D : Tavares → Heaven Must Be Missing An Angel – Tavares
+- dsc-03 A (bonne réponse) : Le Freak → Le Freak – Chic
+- dsc-03 B : Disco Inferno → Disco Inferno – The Trammps
+- dsc-03 C : Car Wash → Car Wash – Rose Royce
+- dsc-03 D : Boogie Oogie Oogie → Boogie Oogie Oogie – A Taste of Honey
+- dsc-04 A : Kool & the Gang → Get Down On It – Kool & the Gang
+- dsc-04 B : Commodores → Easy – Commodores
+- dsc-04 C (bonne réponse) : Earth, Wind & Fire → September – Earth, Wind & Fire
+- dsc-04 D : The Gap Band → Outstanding – The Gap Band
+- dsc-05 A : Y.M.C.A. → Y.M.C.A. – Village People
+- dsc-05 B (bonne réponse) : Born to Be Alive → Born to Be Alive – Patrick Hernandez
+- dsc-05 C : Daddy Cool → Daddy Cool – Boney M.
+- dsc-05 D : D.I.S.C.O. → D.I.S.C.O. – Ottawan
+- dsc-06 A : The Pointer Sisters → I'm So Excited – The Pointer Sisters
+- dsc-06 B : The Three Degrees → TSOP (The Sound of Philadelphia) – The Three Degrees
+- dsc-06 C : The Emotions → Best of My Love – The Emotions
+- dsc-06 D (bonne réponse) : Sister Sledge → We Are Family – Sister Sledge
+- dsc-07 A : Play That Funky Music → Play That Funky Music – Wild Cherry
+- dsc-07 B : Jungle Boogie → Jungle Boogie – Kool & the Gang
+- dsc-07 C (bonne réponse) : Superstition → Superstition – Stevie Wonder
+- dsc-07 D : Pick Up the Pieces → Pick Up the Pieces – Average White Band
+- dsc-08 A (bonne réponse) : Lipps Inc. → Funkytown – Lipps Inc.
+- dsc-08 B : Ottawan → Hands Up (Give Me Your Heart) – Ottawan
+- dsc-08 C : Boney M. → Rasputin – Boney M.
+- dsc-08 D : Village People → In The Navy – Village People
+- dsc-09 A : Get Down On It → Get Down On It – Kool & the Gang
+- dsc-09 B : Shake Your Groove Thing → Shake Your Groove Thing – Peaches & Herb
+- dsc-09 C : Boogie Nights → Boogie Nights – Heatwave
+- dsc-09 D (bonne réponse) : Don't Stop 'Til You Get Enough → Don't Stop 'Til You Get Enough – Michael Jackson
+- dsc-10 A : Diana Ross → I'm Coming Out – Diana Ross
+- dsc-10 B (bonne réponse) : Donna Summer → I Feel Love – Donna Summer
+- dsc-10 C : Grace Jones → Pull Up to the Bumper – Grace Jones
+- dsc-10 D : Amii Stewart → Knock On Wood – Amii Stewart

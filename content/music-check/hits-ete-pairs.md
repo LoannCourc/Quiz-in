@@ -1,0 +1,44 @@
+# Propositions « Titre – Artiste » : Hits de l'été
+
+Moitié ajoutée d’après Deezer (la bonne proposition d’après le champ music). À relire.
+
+- ete-01 A : Tic Tic Tac → Tic Tic Tac – Carrapicho
+- ete-01 B (bonne réponse) : Lambada → Lambada – Kaoma
+- ete-01 C : Le Bal masqué → Le Bal masqué – La Compagnie Créole
+- ete-01 D : Saga Africa → Saga Africa – Yannick Noah
+- ete-02 A : Gipsy Kings → Bamboléo – Gipsy Kings
+- ete-02 B : Las Ketchup → Aserejé – Las Ketchup
+- ete-02 C : Los Lobos → La Bamba – Los Lobos
+- ete-02 D (bonne réponse) : Los del Río → Macarena – Los del Río
+- ete-03 A : Tacata → Tacata – Tacabro
+- ete-03 B : Ai se eu te pego → Ai se eu te pego – Michel Teló
+- ete-03 C (bonne réponse) : Dragostea din tei → Dragostea din tei – O-Zone
+- ete-03 D : Waka Waka (This Time for Africa) → Waka Waka (This Time for Africa) – Shakira
+- ete-04 A (bonne réponse) : Lou Bega → Mambo No. 5 – Lou Bega
+- ete-04 B : Ricky Martin → María – Ricky Martin
+- ete-04 C : Enrique Iglesias → Bailando – Enrique Iglesias
+- ete-04 D : Marc Anthony → Vivir mi vida – Marc Anthony
+- ete-05 A : Laisse parler les gens → Laisse parler les gens – Dj Team
+- ete-05 B : Femme like U → Femme like U – K-Maro
+- ete-05 C : Zouk la sé sèl médikaman nou ni → Zouk la sé sèl médikaman nou ni – Kassav'
+- ete-05 D (bonne réponse) : Premier Gaou → Premier Gaou – Magic System
+- ete-06 A : Shaggy → Boombastic – Shaggy
+- ete-06 B (bonne réponse) : OMI → Cheerleader – OMI
+- ete-06 C : Sean Paul → Temperature – Sean Paul
+- ete-06 D : Kungs → This Girl – Kungs
+- ete-07 A (bonne réponse) : Makeba → Makeba – Jain
+- ete-07 B : Prayer in C → Prayer in C – Lilly Wood And The Prick
+- ete-07 C : Lean On → Lean On – Major Lazer
+- ete-07 D : Jerusalema → Jerusalema – Master KG
+- ete-08 A : The Beach Boys → Good Vibrations – The Beach Boys
+- ete-08 B : The Lovin' Spoonful → Daydream – The Lovin' Spoonful
+- ete-08 C (bonne réponse) : Mungo Jerry → In the Summertime – Mungo Jerry
+- ete-08 D : Creedence Clearwater Revival → Fortunate Son – Creedence Clearwater Revival
+- ete-09 A : Cheap Thrills → Cheap Thrills – Sia
+- ete-09 B (bonne réponse) : Summer → Summer – Calvin Harris
+- ete-09 C : Faded → Faded – Alan Walker
+- ete-09 D : Stole the Show → Stole the Show – Kygo
+- ete-10 A : Bob Sinclar → Love Generation – Bob Sinclar
+- ete-10 B : David Guetta → Memories – David Guetta
+- ete-10 C : Antoine Clamaran → Gold – Antoine Clamaran
+- ete-10 D (bonne réponse) : Martin Solveig → Hello – Martin Solveig
