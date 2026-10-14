@@ -1,7 +1,23 @@
 # Plan : nombre de questions, rejouer sans recréer de salon, catalogues Blind test (BT5) et Bluff (BL4)
 
 Retours de test d'octobre 2026, points 1, 4, 5 et 6. Les points 2 (palette) et 3 (saisie du code) sont faits.
-Rien n'est codé ici avant validation. Chaque lot : spec d'abord, puis règles et tests d'émulateur, puis code.
+Chaque lot : spec d'abord, puis règles et tests d'émulateur, puis code.
+
+## Décisions validées (Loann, octobre 2026)
+
+- **Plan validé.** Point 4 (Changer de jeu) codé ; point 1 en cours ; points 5 et 6 après le message dédié.
+- **Quiz** : interface S2 gardée (Top 10 et thèmes). Les affiches restent des quiz fixes de 10 questions (fiche, sans
+  barre). La barre « Nombre de questions » n'apparaît que lorsqu'un ou plusieurs thèmes sont choisis (« Tout »
+  compris) : tirage dans l'union des thèmes choisis, en évitant les questions déjà jouées.
+- **Nombre de questions** : Quiz 10 / 20 / 30, Bluff 10 / 15 / 20, 10 par défaut. Une option dont l'ensemble est trop
+  petit est grisée, avec la raison.
+- **Scores** au changement de jeu : remis à zéro (cumul plus tard).
+- **Catégories** : les 8 thèmes actuels seulement ; le Bluff n'affiche que celles qui ont du contenu.
+- **Blind test** : genres Pop, Rock, Rap, Chanson, Disco/Funk, Électro (un genre principal par blind test, pas de
+  « Variété ») ; niveau « Impossible » ajouté au modèle (4 niveaux), affiché dans les filtres seulement s'il contient
+  au moins un blind test.
+- **Questions manquantes** : rédigées par Loann et son conseiller ; Claude fournit le schéma exact et un exemple par
+  jeu à la fin du point 1. On livre avec les ensembles actuels (options grisées).
 
 ## 0. État actuel (ce qui existe)
 
