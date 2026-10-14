@@ -171,6 +171,11 @@ export const strings = {
       removeFilter: (label: string) => `Retirer le filtre ${label}`,
       noResult: 'Aucun blind test pour ce choix.',
     },
+    // Bluff, Mon mélange : fiche de la partie tirée dans les quiz choisis (route /pool).
+    mixGame: {
+      description: (count: number, total: number) =>
+        `${count} questions tirées au hasard parmi les ${total} des quiz choisis, en commençant par celles jamais jouées sur ce téléphone.`,
+    },
     // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool).
     themesGame: {
       allThemes: 'Tous les thèmes',
