@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { BUTTON_LABEL_MAX_FONT_SCALE } from '@/components/ui/ButtonLabel';
 
 // Tailles de pastille et de texte : « medium » partout (maquette) ; sur l'écran de question,
 // la taille suit la hauteur disponible pour chaque pilule (voir pillSizeForHeight).
@@ -40,8 +41,9 @@ interface ChoicePillProps {
   size?: PillSize;
   // Taille du texte, la même pour toutes les propositions de la question (choiceTextSize).
   textSize?: OptionsTextSize;
-  // Remplissage : la pilule prend sa part de la hauteur disponible (72 à 116 px).
-  fill?: boolean;
+  // Remplissage : hauteur minimale de la pilule, sa part de la hauteur disponible (72 à 116 px) ; elle
+  // grandit au-delà si son texte le demande (jamais de texte rogné : l'écran défile alors).
+  fillHeight?: number;
   onPress?: () => void;
 }
 
@@ -55,7 +57,7 @@ export function ChoicePill({
   disabled = false,
   size = 'medium',
   textSize = 'normal',
-  fill = false,
+  fillHeight,
   onPress,
 }: ChoicePillProps) {
   const letter = strings.game.choiceLetters[choice];
@@ -63,7 +65,7 @@ export function ChoicePill({
   const fontSize = textFonts[textSize];
   return (
     // Anneau extérieur toujours présent (transparent sinon) : la sélection ne décale rien.
-    <View style={[styles.selectionRing, isSelected && styles.selected, fill && styles.fillRing]}>
+    <View style={[styles.selectionRing, isSelected && styles.selected]}>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={`${letter} : ${text}`}
@@ -72,7 +74,7 @@ export function ChoicePill({
         onPress={onPress}
         style={({ pressed }) => [
           styles.pill,
-          fill && styles.fillPill,
+          fillHeight !== undefined && { minHeight: fillHeight },
           { backgroundColor: AppColors.choices[choice] },
           pressed && styles.pressed,
           isDimmed && styles.dimmed,
@@ -82,14 +84,15 @@ export function ChoicePill({
             {letter}
           </Text>
         </View>
-        <Text style={[styles.text, { fontSize }]}>{text}</Text>
+        <Text style={[styles.text, { fontSize }]} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+          {text}
+        </Text>
       </Pressable>
     </View>
   );
 }
 
 const RING_GAP = 3;
-const RING_EXTRA = (RING_GAP + AppSizes.selectionWidth) * 2;
 
 const styles = StyleSheet.create({
   selectionRing: {
@@ -102,12 +105,6 @@ const styles = StyleSheet.create({
   selected: {
     borderColor: AppColors.selection,
   },
-  // Remplissage : part égale de la hauteur, sans dépasser le plafond (anneau compris).
-  fillRing: {
-    flex: 1,
-    minHeight: AppSizes.choiceHeightMin + RING_EXTRA,
-    maxHeight: AppSizes.choiceHeightLarge + RING_EXTRA,
-  },
   pill: {
     minHeight: AppSizes.choiceHeight,
     flexDirection: 'row',
@@ -118,10 +115,6 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.two,
     borderRadius: AppSizes.radiusPill,
     boxShadow: AppShadows.hard,
-  },
-  fillPill: {
-    flex: 1,
-    minHeight: AppSizes.choiceHeightMin,
   },
   pressed: {
     transform: [{ translateY: 4 }],

@@ -65,6 +65,13 @@ function withDemoWord(scenario: Scenario, word: string | undefined): Scenario {
   };
 }
 
+// &options=A|B|C|D : propositions de la question (mise en page des textes longs, blind test « Titre – Artiste »).
+function withDemoOptions(session: PublicSession, options: string | undefined): PublicSession {
+  const list = options?.split('|');
+  if (!list || list.length !== 4 || !session.currentQuestion) return session;
+  return { ...session, currentQuestion: { ...session.currentQuestion, options: list as [string, string, string, string] } };
+}
+
 // Démo des écrans du joueur (développement seulement, route /debug/player).
 // Adresse : /debug/player?s=revealCorrect pour ouvrir un scénario ; &capture=1 masque le
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
@@ -73,7 +80,7 @@ function withDemoWord(scenario: Scenario, word: string | undefined): Scenario {
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string; options?: string }>();
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
   // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
@@ -184,7 +191,10 @@ export default function PlayerDemoScreen() {
         <PlayerGame
           // Nouvelle clé à chaque scénario : les écrans repartent de leur état initial.
           key={scenario.session.phaseStartedAt}
-          session={withDemoStreak(params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session, Number(params.streak) || 0)}
+          session={withDemoOptions(
+            withDemoStreak(params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session, Number(params.streak) || 0),
+            params.options,
+          )}
           uid={DEMO_UID}
           serverOffsetMs={0}
           answer={scenario.answer}
