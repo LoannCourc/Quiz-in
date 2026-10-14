@@ -282,6 +282,9 @@ export const strings = {
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
     debugLink: 'Démo compteur',
     playerDemoLink: 'Démo joueur',
+    // Un seul lien « Démos » sur la ligne d'À propos : l'accueil garde la mise en page du build publié.
+    demosLink: 'Démos',
+    demosTitle: 'Démos',
     resumeGame: (code: string) => `Reprendre la partie ${code}`,
   },
   quizSetup: {

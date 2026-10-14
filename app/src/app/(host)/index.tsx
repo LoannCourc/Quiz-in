@@ -1,12 +1,13 @@
 import { PRIVACY_URL } from '@shared/constants';
 import { HOME_COMPACT_BELOW_HEIGHT, homeBlockGap, homeTileDensity } from '@shared/homeLayout';
 import { isValidRoomCode } from '@shared/roomCode';
-import { Link, Redirect, router, useLocalSearchParams } from 'expo-router';
+import { Link, Redirect, router, useLocalSearchParams, type Href } from 'expo-router';
 import { useState } from 'react';
 import { Linking, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
+import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
@@ -80,22 +81,43 @@ function HomeScreen() {
         <Text accessibilityRole="link" onPress={openPrivacy} style={styles.footerLink}>
           {strings.about.privacyShortLink}
         </Text>
-        {/* Démos : en développement seulement (absentes de l'APK publié). */}
-        {__DEV__ && (
-          <>
-          <Link href="/debug/catalog" style={styles.debugLink}>
-            {strings.catalog.demoCatalogLink}
-          </Link>
-          <Link href="/debug/player" style={styles.debugLink}>
-            {strings.catalog.playerDemoLink}
-          </Link>
-          <Link href="/debug/counter" style={styles.debugLink}>
-            {strings.catalog.debugLink}
-          </Link>
-          </>
-        )}
       </View>
+      {/* Démos : en développement seulement (absentes de l'APK publié), en haut à droite, à côté du logo, hors
+          de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
+      {__DEV__ && <DemosLink />}
     </Screen>
+  );
+}
+
+const DEMOS: readonly { href: Href; label: string }[] = [
+  { href: '/debug/catalog', label: strings.catalog.demoCatalogLink },
+  { href: '/debug/player', label: strings.catalog.playerDemoLink },
+  { href: '/debug/counter', label: strings.catalog.debugLink },
+];
+
+// « Démos » ouvre une feuille avec les démos de développement.
+function DemosLink() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Text accessibilityRole="link" onPress={() => setIsOpen(true)} style={[styles.footerLink, styles.demosLink]}>
+        {strings.catalog.demosLink}
+      </Text>
+      <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} title={strings.catalog.demosTitle}>
+        {DEMOS.map((demo) => (
+          <BigButton
+            key={demo.label}
+            label={demo.label}
+            variant="secondary"
+            size="compact"
+            onPress={() => {
+              setIsOpen(false);
+              router.push(demo.href);
+            }}
+          />
+        ))}
+      </BottomSheet>
+    </>
   );
 }
 
@@ -116,7 +138,7 @@ const styles = StyleSheet.create({
   roomText: {
     textAlign: 'center',
   },
-  // À propos et Confidentialité sur une ligne (démos de développement : une seconde ligne).
+  // À propos et Confidentialité sur une ligne.
   footerLinks: {
     marginTop: 'auto',
     flexDirection: 'row',
@@ -124,13 +146,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     columnGap: Spacing.four,
   },
-  footerLink: {
-    paddingVertical: Spacing.two,
-    color: AppColors.textMuted,
-    textAlign: 'center',
-    textDecorationLine: 'underline',
+  demosLink: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
-  debugLink: {
+  footerLink: {
     paddingVertical: Spacing.two,
     color: AppColors.textMuted,
     textAlign: 'center',
