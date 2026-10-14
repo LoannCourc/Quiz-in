@@ -11,6 +11,7 @@ import type { CatalogRowId, CatalogSortId } from '@shared/catalogRows';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
+import type { BluffSortId } from '@shared/bluffCatalog';
 import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
@@ -154,6 +155,25 @@ export const strings = {
     emptyCatalog: 'Aucun quiz disponible.',
     noMatch: 'Aucun quiz pour ce thème.',
     allThemes: 'Tout',
+    // Catalogue du Bluff (maquette BL4).
+    bluff: {
+      title: 'Bluff',
+      searchPlaceholder: (count: number) => `Chercher parmi ${count} quiz…`,
+      surprise: 'Surprends-moi',
+      surpriseHint: 'Un mélange au hasard',
+      sorts: { popular: 'Populaires', new: 'Nouveaux', alphabetical: 'A–Z', questionCount: 'Nombre de questions' } satisfies Record<BluffSortId, string>,
+      sortTitle: 'Trier',
+      quizCount: (count: number) => `${count} quiz`,
+      rowMeta: (theme: string, questions: number) => `${theme} · ${questions} questions`,
+      add: (title: string) => `Ajouter « ${title} » à mon mélange`,
+      remove: (title: string) => `Retirer « ${title} » de mon mélange`,
+      chooseQuiz: 'Choisis un quiz',
+      mixSummary: (quizzes: number, questions: number) => `${quizzes} quiz · ${questions} questions`,
+      mixTitle: 'Mon mélange',
+      clearMix: 'Tout vider',
+      mixTooSmall: (total: number) => `Ce mélange n’a que ${total} questions : les options grisées sont impossibles.`,
+      noResult: 'Aucun quiz pour ce choix.',
+    },
     // Catalogue du Blind test (maquette BT5).
     blindTest: {
       title: 'Blind test',

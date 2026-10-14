@@ -8,10 +8,11 @@ import { CATALOG_SORTS, sortCatalog, type CatalogSortId } from '@shared/catalogR
 import type { QuizEntry } from '@shared/quizValidation';
 import type { BlindTestGenre, DifficultyLevel } from '@shared/types';
 import { useEffect, useState } from 'react';
-import { BackHandler, FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { BackButton } from '@/components/ui/BackButton';
 import { BottomSheet } from '@/components/ui/BottomSheet';
+import { ChoiceRow } from '@/components/ui/ChoiceRow';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -118,18 +119,6 @@ export function BlindTestList({ entries, facet, played, onOpenQuiz, onBack }: Bl
   );
 }
 
-// Ligne cochable d'une feuille de filtre (coche cyan quand elle est choisie).
-function ChoiceRow({ label, isSelected, onPress }: { label: string; isSelected: boolean; onPress: () => void }) {
-  return (
-    <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: isSelected }} onPress={onPress} style={styles.choice}>
-      <Text style={styles.choiceLabel}>{label}</Text>
-      <View style={[styles.check, isSelected && styles.checkOn]}>{isSelected && <Text style={styles.checkMark}>✓</Text>}</View>
-    </Pressable>
-  );
-}
-
-const CHECK = 26;
-
 const styles = StyleSheet.create({
   column: {
     flex: 1,
@@ -164,38 +153,5 @@ const styles = StyleSheet.create({
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
     fontSize: 13,
-  },
-  choice: {
-    minHeight: 52,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Spacing.three,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: AppColors.chipBorder,
-  },
-  choiceLabel: {
-    flex: 1,
-    color: AppColors.text,
-    fontFamily: AppFonts.black,
-    fontSize: 16,
-  },
-  check: {
-    width: CHECK,
-    height: CHECK,
-    borderRadius: CHECK / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: AppColors.chipBorder,
-  },
-  checkOn: {
-    borderColor: AppColors.link,
-    backgroundColor: AppColors.link,
-  },
-  checkMark: {
-    color: AppColors.ink,
-    fontFamily: AppFonts.black,
-    fontSize: 15,
   },
 });

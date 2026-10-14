@@ -79,11 +79,14 @@ const styles = StyleSheet.create({
     borderRadius: AppSizes.radius,
     backgroundColor: AppColors.panel,
   },
+  // Le résumé passe sous le titre quand la place manque (écran étroit, « 3 quiz · 30 questions »).
   header: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: Spacing.two,
+    columnGap: Spacing.two,
+    rowGap: Spacing.one,
   },
   title: {
     ...TEXT_FIT_SAFETY,

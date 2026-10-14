@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestCatalog';
+import { BluffCatalog } from '@/components/host/catalog/bluff/BluffCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { HomeView } from '@/components/host/home/HomeView';
@@ -71,6 +72,9 @@ export default function CatalogDemoScreen() {
         }
       />
     );
+  }
+  if (game === 'bluff') {
+    return <BluffCatalog entries={DEMO_ENTRIES} played={played} onBack={() => router.setParams({ game: undefined })} onContinue={() => undefined} />;
   }
   if (game === 'blindTest') {
     return (

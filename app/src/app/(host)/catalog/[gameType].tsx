@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { Text } from 'react-native';
 
 import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestCatalog';
+import { BluffCatalog } from '@/components/host/catalog/bluff/BluffCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { Screen } from '@/components/ui/Screen';
@@ -42,6 +43,11 @@ function openThemesGame(themes: string[], questionCount: number, room: string | 
   router.push({ pathname: '/pool', params: { themes: themes.join('|'), count: String(questionCount), ...(room && { room }) } });
 }
 
+// Bluff, Mon mélange : fiche de la partie tirée dans les quiz choisis.
+function openMixGame(quizIds: string[], questionCount: number, room: string | undefined) {
+  router.push({ pathname: '/pool', params: { quizIds: quizIds.join(','), count: String(questionCount), ...(room && { room }) } });
+}
+
 // Retour à l'accueil (par la pile si on en vient, sinon en le remplaçant : lien direct).
 function backHome() {
   if (router.canGoBack()) router.back();
@@ -72,6 +78,10 @@ export default function CatalogRoute() {
   const game = gameType as GameType;
 
   // Blind test (maquette BT5) : onglets Genre / Années / Difficulté en tuiles, puis liste filtrée.
+  // Bluff (maquette BL4) : liste avec « Mon mélange » et barre « Nombre de questions ».
+  if (catalog.kind === 'ready' && game === 'bluff') {
+    return <BluffCatalog entries={entries} played={played} onBack={backHome} onContinue={(quizIds, count) => openMixGame(quizIds, count, room)} />;
+  }
   if (catalog.kind === 'ready' && game === 'blindTest') {
     return <BlindTestCatalog entries={entries} played={played} onOpenQuiz={(quizId) => openQuiz(quizId, room)} onBack={backHome} />;
   }
