@@ -17,12 +17,11 @@ import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
+import { BackButton } from '@/components/ui/BackButton';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
-
-import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
@@ -95,11 +94,7 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
     <Screen footer={footer}>
       <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={strings.home.back} hitSlop={Spacing.two} onPress={onBack} style={styles.iconButton}>
-            <View style={styles.backIcon}>
-              <SettingsIcon name="chevron" color={AppColors.text} />
-            </View>
-          </Pressable>
+          <BackButton onPress={onBack} label={strings.home.back} />
           {query === null ? (
             <Text style={styles.brand} numberOfLines={1}>
               {strings.home.games[gameType].name}
@@ -269,10 +264,6 @@ const styles = StyleSheet.create({
     color: AppColors.ink,
     fontFamily: AppFonts.extraBold,
     fontSize: AppSizes.textBody,
-  },
-  // Le chevron du réglage pointe vers la droite : retourné pour « retour ».
-  backIcon: {
-    transform: [{ rotate: '180deg' }],
   },
   iconButton: {
     width: 48,

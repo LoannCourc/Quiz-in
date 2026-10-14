@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
+import { BackButton } from '@/components/ui/BackButton';
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { DrawCategoryIcon } from '@/components/ui/drawCategoryIcons';
 import { Screen } from '@/components/ui/Screen';
@@ -80,11 +81,7 @@ export function DrawCategoryPicker({ onBack, onContinue }: DrawCategoryPickerPro
   return (
     <Screen footer={footer}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={strings.home.back} hitSlop={Spacing.two} onPress={onBack} style={styles.back}>
-          <View style={styles.backIcon}>
-            <SettingsIcon name="chevron" color={AppColors.text} />
-          </View>
-        </Pressable>
+        <BackButton onPress={onBack} label={strings.home.back} />
         <Text style={styles.brand} numberOfLines={1}>
           {strings.home.games.draw.name}
         </Text>
@@ -153,17 +150,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.three,
-  },
-  back: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: AppColors.surface,
-  },
-  backIcon: {
-    transform: [{ rotate: '180deg' }],
   },
   brand: {
     flexShrink: 1,

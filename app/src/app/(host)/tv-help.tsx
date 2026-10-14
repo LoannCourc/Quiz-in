@@ -1,7 +1,7 @@
-import { Redirect, router } from 'expo-router';
-import { Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Redirect } from 'expo-router';
+import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
 
-import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
+import { BackButton, goBackOrHome } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { BUTTON_LABEL_MAX_FONT_SCALE } from '@/components/ui/ButtonLabel';
 import { Screen } from '@/components/ui/Screen';
@@ -15,7 +15,6 @@ import { requestTvRetry } from '@/lib/tvRetry';
 const texts = strings.tvHelp;
 const NUMBER_SIZE = 34;
 const STEP_TITLE_SIZE = 17;
-const BACK_SIZE = 44;
 
 // Étapes, dans l'ordre ; la 4e (réseau local) selon le téléphone de l'hôte.
 function helpSteps(): { title: string; text: string }[] {
@@ -24,15 +23,10 @@ function helpSteps(): { title: string; text: string }[] {
   return [wifi, power, restart, { title: localNetwork.title, text: localText }, youtube, elsewhere, compatible];
 }
 
-function goBack() {
-  if (router.canGoBack()) router.back();
-  else router.replace('/');
-}
-
 // « Réessayer » : retour au salon, qui rouvre la liste des TV.
 function retry() {
   requestTvRetry();
-  goBack();
+  goBackOrHome();
 }
 
 // Aide « Je ne trouve pas ma TV » (ouverte depuis le salon, sous « Afficher sur la TV ») : sept vérifications
@@ -41,11 +35,7 @@ export default function TvHelpRoute() {
   if (isPublishedWeb) return <Redirect href="/join" />;
   return (
     <Screen footer={<BigButton label={texts.retry} onPress={retry} />}>
-      <Pressable accessibilityRole="button" accessibilityLabel={texts.back} hitSlop={Spacing.one} onPress={goBack} style={styles.back}>
-        <View style={styles.backIcon}>
-          <SettingsIcon name="chevron" color={AppColors.text} />
-        </View>
-      </Pressable>
+      <BackButton label={texts.back} />
       <Text style={textStyles.title} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
         {texts.title}
       </Text>
@@ -83,19 +73,6 @@ export default function TvHelpRoute() {
 }
 
 const styles = StyleSheet.create({
-  // Même flèche ronde que l'en-tête « Rejoindre une partie » ; le bouton retour d'Android fait de même.
-  back: {
-    width: BACK_SIZE,
-    height: BACK_SIZE,
-    borderRadius: BACK_SIZE / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: AppColors.surface,
-  },
-  // Le chevron du réglage pointe vers la droite : retourné pour « retour ».
-  backIcon: {
-    transform: [{ rotate: '180deg' }],
-  },
   intro: {
     color: AppColors.textMuted,
     textAlign: 'center',

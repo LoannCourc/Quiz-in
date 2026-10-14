@@ -23,6 +23,8 @@ export type GameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 export const strings = {
   // Nom de l'app, écrit par le logo (components/ui/Logo.tsx) et lu par les lecteurs d'écran.
   appName: "Quiz'in",
+  // Flèche retour en haut à gauche (BackButton), sur tous les écrans qui ont un écran précédent.
+  back: 'Retour',
   counter: {
     title: 'Compteur partagé',
     loading: 'Connexion…',

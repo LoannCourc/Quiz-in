@@ -15,6 +15,7 @@ import { TransitionSteps } from '@/components/player/game/TransitionSteps';
 import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
+import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -191,6 +192,7 @@ export default function PlayerDemoScreen() {
           bluff={bluff}
           draw={draw}
           footer={hostFooter}
+          backButton={params.host === '1' ? <BackButton /> : undefined}
         />
       )}
 

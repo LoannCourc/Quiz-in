@@ -27,6 +27,7 @@ import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
+import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -357,11 +358,15 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     />
   ) : null;
 
+  // Flèche retour : pendant la partie, la sortie de l'écran est interceptée et confirmée (useLeaveGuard,
+  // comme le bouton retour du téléphone) ; elle met la partie en pause avant de partir.
+  const backButton = <BackButton />;
+
   // Contrôle : l'hôte (joueur ou non) valide les réponses avant la révélation (maquette V1).
   if (isValidation && question) {
     return (
       <View style={styles.fill}>
-        <Screen footer={footer}>
+        <Screen header={backButton} footer={footer}>
           <HostValidation
             session={session}
             question={question}
@@ -379,7 +384,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     const title = session.status === 'ended' ? strings.game.ended.title : strings.hostGame.inProgressTitle;
     return (
       <View style={styles.fill}>
-        <Screen footer={footer}>
+        <Screen header={backButton} footer={footer}>
           <Text style={textStyles.hero}>{title}</Text>
           <Text style={[textStyles.body, styles.centered]}>{strings.hostGame.spectatorHint}</Text>
         </Screen>
@@ -398,6 +403,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       draw={draw}
       footer={footer}
       overlay={overlay}
+      backButton={backButton}
     />
   );
 }

@@ -22,6 +22,7 @@ import { router, useFocusEffect } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
+import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -209,6 +210,7 @@ export function HostLobby(props: HostLobbyProps) {
     <Screen footer={footer}>
       <View style={styles.top}>
         <View style={styles.headerRow}>
+          <BackButton />
           <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} drawRounds={drawRoundsOf(session.settings)} settings={session.settings} />}</View>
           <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
         </View>

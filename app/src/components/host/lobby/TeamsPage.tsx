@@ -4,9 +4,9 @@ import type { PlayerId, Session, TeamId, TeamMode } from '@shared/types';
 import { useEffect } from 'react';
 import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { ButtonLabel } from '@/components/ui/ButtonLabel';
-import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
+import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { Screen } from '@/components/ui/Screen';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -105,11 +105,7 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
   return (
     <Screen footer={footer}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={page.back} hitSlop={Spacing.two} onPress={onClose} style={styles.back}>
-          <View style={styles.backIcon}>
-            <SettingsIcon name="chevron" color={AppColors.text} />
-          </View>
-        </Pressable>
+        <BackButton onPress={onClose} label={page.back} />
         <Text style={styles.title}>{composer.title}</Text>
         <Text style={styles.count}>{strings.teams.playerCount(playerCount)}</Text>
       </View>
@@ -129,25 +125,12 @@ export function TeamsPage({ session, onMode, onCount, onAssign, onDraw, onClose,
   );
 }
 
-const BACK_SIZE = 40;
 
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.three,
-  },
-  back: {
-    width: BACK_SIZE,
-    height: BACK_SIZE,
-    borderRadius: BACK_SIZE / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: AppColors.panel,
-  },
-  // Le chevron du réglage pointe vers la droite : retourné pour « retour ».
-  backIcon: {
-    transform: [{ rotate: '180deg' }],
   },
   title: {
     ...TEXT_FIT_SAFETY,

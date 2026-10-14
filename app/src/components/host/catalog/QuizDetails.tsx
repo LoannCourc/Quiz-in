@@ -6,6 +6,7 @@ import type { QuizSummary, SessionSettings, SoundSettings } from '@shared/types'
 import { useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
+import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -72,6 +73,9 @@ export function QuizDetails(props: QuizDetailsProps) {
     <Screen footer={footer}>
       <View style={styles.content}>
         <View style={styles.posterBox}>
+          <View style={styles.back}>
+            <BackButton />
+          </View>
           <QuizPoster title={quiz.title} poster={quiz.poster} theme={quiz.theme} icon={quiz.icon} width={posterWidthFor(height)} />
         </View>
         <Text style={styles.title} numberOfLines={3}>
@@ -118,6 +122,12 @@ const styles = StyleSheet.create({
   },
   posterBox: {
     alignItems: 'center',
+  },
+  back: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 1,
   },
   // Marge en plus : les accents de Bowlby One montent haut au-dessus des capitales.
   title: {
