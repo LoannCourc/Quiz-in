@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { QUESTION_DURATION_S } from '../../shared/constants'
-import { replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
+import { changeGameUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { bluffRevealTimeline } from '../../shared/bluff'
 import { STREAK_CUE_DELAY_MS, timedCues, VALIDATED_RESULT_DELAY_MS } from '../../shared/sound'
 import { extraStreaks, hasStreakBadge, nextStreak, rankingStreakBadges, revealStreak, STREAK_MAX, streakSound } from '../../shared/streak'
@@ -165,9 +165,9 @@ describe('Série : écrite par le moteur à la révélation', () => {
     expect(streakOf(revealed(session), PLAYER)).toBe(7)
   })
 
-  test('Rejouer : toutes les séries remises à 0', () => {
+  test('Changer de jeu : toutes les séries remises à 0', () => {
     const ended = makeSession({ status: 'ended', players: { [PLAYER]: player('Léa', { streak: 6 }), [OTHER]: player('Tom', { streak: 3 }) } })
-    const replayed = apply(ended, replayUpdate(ended, NOW))
+    const replayed = apply(ended, changeGameUpdate(ended, ended.quizId, ended.settings, NOW))
     expect(replayed.players[PLAYER].streak).toBeUndefined()
     expect(replayed.players[OTHER].streak).toBeUndefined()
   })

@@ -27,7 +27,7 @@ import {
   launchUpdate,
   nextDeadline,
   pauseUpdate,
-  replayUpdate,
+  changeGameUpdate,
   resumeUpdate,
   transitionUpdate,
   type SessionUpdate,
@@ -393,10 +393,11 @@ describe('Bluff : déroulé et moteur', () => {
     expect(hostControls(session).skip).toBe('nextQuestion')
   })
 
-  test('lancement et Rejouer effacent les données du Bluff', () => {
+  test('lancement et Changer de jeu effacent les données du Bluff', () => {
     const launch = launchUpdate(makeSession({ settings: BLUFF }), BLUFF_QUESTIONS, NOW)
     expect(launch.ok && launch.update).toMatchObject({ bluffs: null, votes: null, bluffPoints: null, bluffOwn: null })
-    expect(replayUpdate(makeSession({ status: 'ended', settings: BLUFF }), NOW)).toMatchObject({ bluffChecks: null, votedBy: null })
+    const ended = makeSession({ status: 'ended', settings: BLUFF })
+    expect(changeGameUpdate(ended, ended.quizId, ended.settings, NOW)).toMatchObject({ bluffChecks: null, votedBy: null })
   })
 })
 

@@ -7,7 +7,7 @@ import type { AnswerMode, GameStatus, PublicSession } from './types'
 // Passage d'une musique à l'autre (fondu enchaîné), et arrêt rapide avant l'extrait d'un blind test.
 export const MUSIC_CROSSFADE_MS = 800
 export const MUSIC_FAST_STOP_MS = 300
-// Musique de fin interrompue (Rejouer) : fondu de sortie, la musique du salon démarre à temps.
+// Musique de fin interrompue (Changer de jeu) : fondu de sortie, la musique du salon démarre à temps.
 export const MUSIC_JINGLE_FADE_OUT_MS = 600
 // Pause : la musique en cours s'arrête en MUSIC_PAUSE_FADE_MS (sa position est gardée) et la musique
 // d'attente joue ; à la reprise, fondu enchaîné de MUSIC_RESUME_CROSSFADE_MS, là où elle s'était arrêtée.
@@ -78,7 +78,7 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
       // Changer de jeu : l'hôte choisit le prochain jeu, la musique du salon reprend.
       if (session.nextGameAt != null) return play('waiting')
       // Après le roulement de tambour en Suspense, en même temps que l'arrivée du podium ; puis en boucle
-      // tant que l'écran de fin est affiché (shared/musicTracks.ts), jusqu'à Rejouer ou la fin de la partie.
+      // tant que l'écran de fin est affiché (shared/musicTracks.ts), jusqu'à Changer de jeu ou la fin de la partie.
       return { ...play('final'), startAt: session.phaseStartedAt + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0) }
     default:
       return { track: null, fastStop: false, isPaused: false }

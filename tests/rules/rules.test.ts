@@ -16,7 +16,6 @@ import {
   endUpdate,
   launchUpdate,
   pauseUpdate,
-  replayUpdate,
   changeGameUpdate,
   chooseNextGameUpdate,
   resumeUpdate,
@@ -917,8 +916,8 @@ describe('Retrait des joueurs fantômes en lobby', () => {
   })
 })
 
-// D4 : contrôles de l'hôte (Terminer, Rejouer, Quitter), exécutés avec l'identité de l'hôte.
-describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
+// D4 : contrôles de l'hôte (Terminer, Changer de jeu, Quitter), exécutés avec l'identité de l'hôte.
+describe("Contrôles de l'hôte : Terminer, Changer de jeu, Quitter", () => {
   const twoQuestions = QUESTIONS.slice(0, 2)
 
   async function readSession(): Promise<Session> {
@@ -956,10 +955,10 @@ describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
     expect(session.pausedFrom).toBeUndefined()
   })
 
-  test('Rejouer : retour au lobby accepté (questionCount effacé), profil modifiable, relance acceptée', async () => {
+  test('Changer de jeu (même jeu) : retour au lobby accepté (questionCount effacé), profil modifiable, relance acceptée', async () => {
     let session = await seedQuestion()
     session = await applyAsHost(endUpdate(session, Date.now()))
-    session = await applyAsHost(replayUpdate(session, Date.now()))
+    session = await applyAsHost(changeGameUpdate(session, session.quizId, session.settings, Date.now()))
     expect(session.status).toBe('lobby')
     expect(session.questionCount).toBeUndefined()
     expect(session.players[PLAYER].score).toBeUndefined()
@@ -1485,7 +1484,7 @@ describe('Série (players/{uid}/streak)', () => {
     await assertFails(db(OTHER).ref(STREAK_PATH).set(0))
   })
 
-  test('Rejouer : l’hôte la supprime', async () => {
+  test('Changer de jeu : l’hôte la supprime', async () => {
     await seedSession({ status: 'ended', players: { [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true, streak: 4 } } })
     await assertSucceeds(db(HOST).ref(STREAK_PATH).remove())
   })

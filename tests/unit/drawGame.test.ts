@@ -6,7 +6,7 @@ import { hostLeaveUpdate } from '../../shared/players'
 import { isDrawGuesser } from '../../shared/drawGuess'
 import { drawCategoryId, DRAW_WORDS, drawWordsIn } from '../../shared/drawWords'
 import { hasRankingStep, nextPhase } from '../../shared/gameFlow'
-import { launchUpdate, replayUpdate, toPublicQuestion, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
+import { launchUpdate, changeGameUpdate, toPublicQuestion, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { settingsForGameType } from '../../shared/quizCatalog'
 import type { Player, PlayerId, Session, SessionSettings } from '../../shared/types'
 import { HOST, makeSession, OTHER, player, PLAYER } from './engineFixtures'
@@ -162,9 +162,9 @@ describe('Dessine-moi : moteur (lot 2, manches sans points)', () => {
     expect(nextPhase('reveal', { answerMode: 'draw', currentIndex: 1, questionCount: 2 })).toEqual({ status: 'ended', currentIndex: 1, durationS: null })
   })
 
-  test('Rejouer : tout ce qui concerne le dessin est effacé', () => {
+  test('Changer de jeu : tout ce qui concerne le dessin est effacé', () => {
     const ended = { ...advance(launched(3)), status: 'ended' as const }
-    const replayed = apply(ended, replayUpdate(ended, NOW))
+    const replayed = apply(ended, changeGameUpdate(ended, ended.quizId, ended.settings, NOW))
     expect(replayed.drawOrder).toBeUndefined()
     expect(replayed.drawTurn).toBeUndefined()
     expect(replayed.drawSecret).toBeUndefined()

@@ -61,7 +61,7 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('ended'), true).track).toBe('final')
   })
 
-  test('Rejouer : la musique de fin cède la place à celle du salon ; pause impossible en fin de partie', () => {
+  test('Changer de jeu : la musique de fin cède la place à celle du salon ; pause impossible en fin de partie', () => {
     expect(musicPlan(inPhase('lobby'), false)).toMatchObject({ track: 'waiting', isPaused: false })
     expect(musicPlan(inPhase('ended'), false).isPaused).toBe(false)
   })

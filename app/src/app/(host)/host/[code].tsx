@@ -5,7 +5,6 @@ import {
   endUpdate,
   hostControls,
   pauseUpdate,
-  replayUpdate,
   cancelNextGameUpdate,
   chooseNextGameUpdate,
   resumeUpdate,
@@ -50,7 +49,7 @@ import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { confirmAction } from '@/lib/confirm';
 import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
 import { applyHostAction, deleteGame, publishAudioUrl } from '@/lib/hostGame';
-import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
+import { clearHostedGameCode } from '@/lib/hostedGameStorage';
 import { publishSound, saveSoundPreferences } from '@/lib/soundPreferences';
 
 // Écran de l'hôte : salon (HostLobby), puis la partie, pilotée par le
@@ -215,7 +214,7 @@ interface HostInGameProps {
 }
 
 // Pendant la partie, l'hôte inscrit joue comme les autres. Ses contrôles sont dans le pied
-// d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Rejouer / Quitter à la fin).
+// d'écran (bouton « Hôte » et panneau ; Reprendre en pause ; Changer de jeu / Quitter à la fin).
 function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onSkip, onCancelDraw, isWriteRefused, connection, cast }: HostInGameProps) {
   const { answer, onAnswer } = useAnswer(code, session.hostUid, session);
   const bluff = useBluff(code, session.hostUid, session);
@@ -243,12 +242,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       console.error('[engine] Action de l’hôte impossible', error);
       setActionError(strings.hostControls.actionFailed);
     }
-  }
-
-  // Rejouer : même code, retour au lobby ; le code redevient « à reprendre » après une relance.
-  async function replay() {
-    await act(replayUpdate);
-    await saveHostedGameCode(code);
   }
 
   // Changer de jeu : la TV et les joueurs voient « L'hôte choisit le prochain jeu… », l'hôte ouvre l'accueil
@@ -301,7 +294,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     pause: () => void act(pauseUpdate),
     resume: () => void act(resumeUpdate),
     end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
-    replay: () => void replay(),
     changeGame: () => void changeGame(),
     // Quitter la partie (panneau, sans geste de retour sur iPhone) : comme le bouton retour d'Android,
     // la sortie est interceptée par useLeaveGuard (confirmation « Elle sera interrompue », pause).
@@ -323,7 +315,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       isDrawing={session.status === 'question' && session.drawTurn?.drawer === session.hostUid}
       onOpenPanel={() => setIsPanelOpen(true)}
       onResume={actions.resume}
-      onReplay={actions.replay}
       onChangeGame={actions.changeGame}
       onQuit={actions.quit}
       awaitingNext={hostControls(session).awaitingNext}
@@ -432,7 +423,6 @@ interface HostFooterProps {
   isDrawing: boolean;
   onOpenPanel: () => void;
   onResume: () => void;
-  onReplay: () => void;
   onChangeGame: () => void;
   onQuit: () => void;
   // Pas à pas : la révélation attend l'hôte ; même action que Passer (verrou contre le double appui).
@@ -445,7 +435,7 @@ interface HostFooterProps {
 }
 
 // Pied d'écran de l'hôte, sur tous les écrans de partie : la barre « Contrôles de l'hôte »
-// (panneau), précédée de Reprendre en pause, et de Rejouer / Changer de jeu / Quitter en fin de partie.
+// (panneau), précédée de Reprendre en pause, et de Changer de jeu / Quitter en fin de partie.
 function HostFooter({
   status,
   error,
@@ -454,7 +444,6 @@ function HostFooter({
   isDrawing,
   onOpenPanel,
   onResume,
-  onReplay,
   onChangeGame,
   onQuit,
   awaitingNext,
@@ -482,14 +471,7 @@ function HostFooter({
       )}
       {status === 'ended' && (
         <>
-          <View style={styles.footerRow}>
-            <View style={styles.fill}>
-              <BigButton label={strings.hostControls.replay} size="compact" onPress={onReplay} />
-            </View>
-            <View style={styles.fill}>
-              <BigButton label={strings.hostControls.changeGame} size="compact" onPress={onChangeGame} />
-            </View>
-          </View>
+          <BigButton label={strings.hostControls.changeGame} onPress={onChangeGame} />
           <BigButton label={strings.hostControls.quit} variant="secondary" size="compact" onPress={onQuit} />
         </>
       )}
@@ -518,10 +500,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
-  },
-  footerRow: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: Spacing.three,
   },
 });

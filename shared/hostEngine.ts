@@ -581,7 +581,7 @@ export function launchUpdate(
   return { ok: true, update }
 }
 
-// Dessine-moi : nœuds effacés au lancement et à « Rejouer ».
+// Dessine-moi : nœuds effacés au lancement et à « Changer de jeu ».
 const DRAW_RESET: SessionUpdate = {
   drawOrder: null,
   drawTurn: null,
@@ -594,7 +594,7 @@ const DRAW_RESET: SessionUpdate = {
   drawPoints: null,
 }
 
-// Bluff : nœuds effacés au lancement et à « Rejouer ».
+// Bluff : nœuds effacés au lancement et à « Changer de jeu ».
 const BLUFF_RESET: SessionUpdate = {
   bluffs: null,
   bluffChecks: null,
@@ -695,14 +695,6 @@ export function endUpdate(session: Session, nowServer: number): SessionUpdate | 
   }
 }
 
-// Rejouer (fin de partie) : retour au LOBBY avec le même code et les mêmes joueurs ; scores,
-// rangs, réponses et nombre de questions effacés. Les mêmes questions seront rejouées.
-// Groupe : les équipes sont gardées (seuls leurs scores sont effacés).
-export function replayUpdate(session: Session, nowServer: number): SessionUpdate | null {
-  if (session.status !== 'ended') return null
-  return newGameReset(session, nowServer)
-}
-
 // Changer de jeu (fin de partie), étape 1 : l'hôte ouvre le catalogue sans quitter le salon. La TV et
 // les joueurs affichent « L'hôte choisit le prochain jeu… » tant que nextGameAt est écrit.
 export function chooseNextGameUpdate(session: Session, nowServer: number): SessionUpdate | null {
@@ -730,13 +722,14 @@ export function nextGameSettings(previous: SessionSettings, chosen: SessionSetti
 
 // Changer de jeu, étape 2 : le jeu choisi remplace le précédent, retour au LOBBY avec le même code,
 // les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, Bluff
-// et Dessine-moi remis à zéro, comme Rejouer.
+// et Dessine-moi remis à zéro (newGameReset). Choisir le même jeu le relance.
 export function changeGameUpdate(session: Session, quizId: string, settings: SessionSettings, nowServer: number): SessionUpdate | null {
   if (session.status !== 'ended') return null
   return { ...newGameReset(session, nowServer), quizId, settings: nextGameSettings(session.settings, settings), questionRefs: null }
 }
 
-// Remise à zéro commune à Rejouer et Changer de jeu.
+// Remise à zéro d'un nouveau jeu dans le même salon (Changer de jeu) : Groupe, les équipes sont gardées
+// (seuls leurs scores sont effacés).
 function newGameReset(session: Session, nowServer: number): SessionUpdate {
   const update: SessionUpdate = {
     status: 'lobby',
@@ -789,8 +782,8 @@ export interface HostControls {
   canPause: boolean
   canResume: boolean
   canEnd: boolean
-  // Fin de partie : Rejouer et Quitter.
-  canReplay: boolean
+  // Fin de partie : Changer de jeu et Quitter.
+  canChangeGame: boolean
   // Pas à pas, phase en attente : gros bouton nommé d'après sa destination (classement, question
   // suivante, classement final). Même transition que Passer. null sinon (pause comprise).
   awaitingNext: AwaitingNext | null
@@ -804,7 +797,7 @@ export interface HostControls {
 }
 
 // Contrôles disponibles pour l'hôte selon l'état de la partie : aucun en LOBBY (le lancement a
-// son propre bouton) ; en END, seulement Rejouer et Quitter.
+// son propre bouton) ; en END, seulement Changer de jeu et Quitter.
 export function hostControls(session: Session): HostControls {
   const canEnd = IN_PROGRESS.includes(session.status)
   const skip = skipTarget(session)
@@ -813,7 +806,7 @@ export function hostControls(session: Session): HostControls {
     canPause: PAUSABLE.includes(session.status),
     canResume: session.status === 'paused',
     canEnd,
-    canReplay: session.status === 'ended',
+    canChangeGame: session.status === 'ended',
     awaitingNext: awaitingNextOf(session),
     canValidate: session.status === 'validation',
     canCloseVote: session.status === 'vote',

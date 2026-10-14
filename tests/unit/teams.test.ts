@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { launchUpdate, replayUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
+import { launchUpdate, changeGameUpdate, transitionUpdate, validateUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import {
   assignTeamUpdate,
   bestPlayerByTeam,
@@ -233,9 +233,9 @@ describe('Moteur : équipes pendant la partie', () => {
     expect(current.teamPoints?.[0]).toEqual({ pink: 50, cyan: 50 })
   })
 
-  test('Rejouer : équipes des joueurs gardées, scores d’équipe effacés', () => {
+  test('Changer de jeu : équipes des joueurs gardées, scores d’équipe effacés', () => {
     const ended = makeSession({ status: 'ended', settings: TEAMS, players: roster, teams: { pink: { score: 10, rank: 1 } }, teamPoints: { 0: { pink: 10 } } })
-    const replayed = apply(ended, replayUpdate(ended, NOW))
+    const replayed = apply(ended, changeGameUpdate(ended, ended.quizId, ended.settings, NOW))
     expect(replayed.players.a.team).toBe('pink')
     expect(replayed.teams).toBeUndefined()
     expect(replayed.teamPoints).toBeUndefined()

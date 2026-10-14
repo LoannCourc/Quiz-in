@@ -214,7 +214,7 @@ function resultCue(session: PublicSession): SoundEffectId | null {
 function phaseEntryCue(previous: PublicSession, next: PublicSession): SoundEffectId | null {
   switch (next.status) {
     case 'lobby':
-      // Rejouer : retour au salon depuis la fin de partie.
+      // Changer de jeu : retour au salon depuis la fin de partie (effet « replay »).
       return previous.status === 'ended' ? 'replay' : null
     case 'question':
       // Tout début de la partie : le « GO » a déjà sonné sur le « GO ! » du 3-2-1 (programmé), rien de plus.

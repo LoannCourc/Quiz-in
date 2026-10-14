@@ -54,7 +54,7 @@ export interface PlayerGameProps {
   onAnswer: (given: GivenAnswer) => void;
   // Message affiché au-dessus de l'écran (profil modifié au moment du lancement).
   notice?: string;
-  // Hôte : pied d'écran fixe (bouton des contrôles, Reprendre, Rejouer / Quitter), qui réserve
+  // Hôte : pied d'écran fixe (bouton des contrôles, Reprendre, Changer de jeu / Quitter), qui réserve
   // sa place sous le contenu, et calque par-dessus l'écran (panneau des contrôles).
   footer?: ReactNode;
   overlay?: ReactNode;

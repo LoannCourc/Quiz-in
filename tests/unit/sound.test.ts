@@ -78,7 +78,7 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(question, { ...question, players: joined.players }, NOW)).toEqual([])
   })
 
-  test('Rejouer : retour au salon depuis la fin de partie', () => {
+  test('Changer de jeu : retour au salon depuis la fin de partie', () => {
     const ended = makeSession({ status: 'ended' })
     expect(soundCues(ended, makeSession({ status: 'lobby', phaseStartedAt: NOW - 200 }), NOW)).toEqual(['replay'])
     expect(soundCues(ended, makeSession({ status: 'lobby', phaseStartedAt: NOW - CUE_MAX_AGE_MS }), NOW)).toEqual([])

@@ -410,7 +410,7 @@ export interface Session extends PublicSession {
   // Points de chaque joueur à chaque manche (les réponses classiques les gardent dans answers).
   drawPoints?: Record<number, Record<PlayerId, number>>;
   // Partie tirée dans un ensemble : questions tirées au salon (« quizId/questionId », dans l'ordre de la
-  // partie), relues après une relance de l'app de l'hôte. Rejouer les garde, Changer de jeu les efface.
+  // partie), relues après une relance de l'app de l'hôte. Changer de jeu les efface.
   questionRefs?: string[];
   // Bluff (spec 16). bluffChecks et bluffOwn sont lisibles aussi par le joueur concerné, pour lui seul.
   bluffs?: Record<number, Record<PlayerId, BluffEntry>>;

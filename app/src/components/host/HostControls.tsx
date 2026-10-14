@@ -29,7 +29,6 @@ export interface HostActions {
   pause: () => void;
   resume: () => void;
   end: () => void;
-  replay: () => void;
   changeGame: () => void;
   leave: () => void;
   quit: () => void;
@@ -52,7 +51,7 @@ interface HostControlsPanelProps {
 }
 
 // Panneau du bas, par-dessus l'écran : Passer (libellé explicite), Pause / Reprendre, Terminer ;
-// en fin de partie, Rejouer / Quitter ; Afficher sur la TV (reconnexion du Cast) ; son de la TV. Chaque action ferme le
+// en fin de partie, Changer de jeu / Quitter ; Afficher sur la TV (reconnexion du Cast) ; son de la TV. Chaque action ferme le
 // panneau, sauf les réglages du son. Appui en dehors : fermeture sans action. Le contenu défile sur un petit écran.
 export function HostControlsPanel(props: HostControlsPanelProps) {
   const { controls, actions, canShowTv, sound, onSoundChange, bluffProposals = [], onToggleBluffProposal, onClose } = props;
@@ -81,9 +80,8 @@ export function HostControlsPanel(props: HostControlsPanelProps) {
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.leaveGame} variant="secondary" onPress={run(actions.leave)} />}
-        {controls.canReplay && <BigButton label={strings.hostControls.replay} onPress={run(actions.replay)} />}
-        {controls.canReplay && <BigButton label={strings.hostControls.changeGame} onPress={run(actions.changeGame)} />}
-        {controls.canReplay && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
+        {controls.canChangeGame && <BigButton label={strings.hostControls.changeGame} onPress={run(actions.changeGame)} />}
+        {controls.canChangeGame && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
         {bluffProposals.length > 0 && onToggleBluffProposal && (
           <View style={styles.proposals}>

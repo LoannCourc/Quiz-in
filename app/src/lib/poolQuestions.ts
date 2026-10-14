@@ -8,7 +8,7 @@ import { loadQuizQuestions } from './hostGame';
 import { loadPlayedQuestions } from './playedQuestions';
 
 // Partie tirée dans un ensemble de quiz (thèmes du Quiz, « Mon mélange » du Bluff), côté hôte : tirage au
-// salon, écrit dans la partie (questionRefs), puis relu tel quel (relance de l'app, Rejouer).
+// salon, écrit dans la partie (questionRefs), puis relu tel quel (relance de l'app).
 
 export interface LoadedQuestions {
   questions: GameQuestion[];

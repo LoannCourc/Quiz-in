@@ -90,7 +90,7 @@ export async function publishAudioUrl(code: string, questions: readonly GameQues
   if (changes) await update(ref(db, `sessions/${code}`), changes);
 }
 
-// Action ponctuelle de l'hôte (Pause, Reprise, Terminer, Rejouer) : on relit la session, on
+// Action ponctuelle de l'hôte (Pause, Reprise, Terminer, Changer de jeu) : on relit la session, on
 // calcule l'update avec la fonction pure de shared/hostEngine.ts, puis un seul update().
 // Faux si l'action n'a plus de sens (session absente ou déjà dans un autre état).
 // Écriture refusée par les règles de sécurité de la base (et non coupure réseau) : réessayer ne sert à

@@ -21,7 +21,6 @@ import {
   launchUpdate,
   nextDeadline,
   pauseUpdate,
-  replayUpdate,
   changeGameUpdate,
   chooseNextGameUpdate,
   cancelNextGameUpdate,
@@ -537,34 +536,6 @@ describe('endUpdate (Terminer)', () => {
   })
 })
 
-describe('replayUpdate (Rejouer)', () => {
-  test('depuis END : retour au LOBBY, mêmes joueurs, scores et réponses effacés', () => {
-    const ended = makeSession({ status: 'ended', currentIndex: 9, questionCount: 10, answers: {}, answeredBy: {} })
-    const update = replayUpdate(ended, NOW)
-    expect(update).toMatchObject({
-      status: 'lobby',
-      currentIndex: 0,
-      phaseStartedAt: NOW,
-      phaseEndsAt: 0,
-      questionCount: null,
-      currentQuestion: null,
-      reveal: null,
-      answers: null,
-      answeredBy: null,
-      [`players/${PLAYER}/score`]: null,
-      [`players/${PLAYER}/rank`]: null,
-    })
-    // Les joueurs eux-mêmes ne sont jamais supprimés.
-    expect(Object.keys(update ?? {})).not.toContain(`players/${PLAYER}`)
-  })
-
-  test('hors de END : refusé', () => {
-    for (const status of ['lobby', 'question', 'paused'] as const) {
-      expect(replayUpdate(makeSession({ status }), NOW)).toBeNull()
-    }
-  })
-})
-
 describe('Changer de jeu', () => {
   const ended = makeSession({
     status: 'ended',
@@ -615,9 +586,6 @@ describe('Changer de jeu', () => {
     expect(changeGameUpdate(makeSession({ status: 'question' }), 'x', bluff, NOW)).toBeNull()
   })
 
-  test('Rejouer efface aussi l’attente du choix', () => {
-    expect(replayUpdate(ended, NOW)).toMatchObject({ nextGameAt: null })
-  })
 })
 
 describe('hostControls', () => {
@@ -637,7 +605,7 @@ describe('hostControls', () => {
       canPause: false,
       canResume: true,
       canEnd: true,
-      canReplay: false,
+      canChangeGame: false,
       awaitingNext: null,
       canValidate: false,
       canCloseVote: false,
@@ -645,9 +613,9 @@ describe('hostControls', () => {
     })
   })
 
-  test('LOBBY : aucun contrôle ; END : seulement Rejouer et Quitter', () => {
+  test('LOBBY : aucun contrôle ; END : seulement Changer de jeu et Quitter', () => {
     const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null, canValidate: false, canCloseVote: false, canCancelDraw: false }
-    expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canReplay: false })
-    expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canReplay: true })
+    expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canChangeGame: false })
+    expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canChangeGame: true })
   })
 })
