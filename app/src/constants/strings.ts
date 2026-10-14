@@ -231,7 +231,6 @@ export const strings = {
     clearSearch: 'Effacer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
     // Lot E : tris du catalogue et repère des quiz déjà joués sur ce téléphone.
-    sortLabel: 'Trier',
     sorts: {
       new: 'Nouveautés',
       notPlayed: 'Pas encore faits',
