@@ -30,7 +30,6 @@ export interface HostActions {
   resume: () => void;
   end: () => void;
   changeGame: () => void;
-  leave: () => void;
   quit: () => void;
   showTv: () => void;
   cancelDraw: () => void;
@@ -79,7 +78,6 @@ export function HostControlsPanel(props: HostControlsPanelProps) {
         {controls.canPause && <BigButton label={strings.hostControls.pause} variant="secondary" onPress={run(actions.pause)} />}
         {controls.canResume && <BigButton label={strings.hostControls.resume} onPress={run(actions.resume)} />}
         {controls.canEnd && <BigButton label={strings.hostControls.end} variant="secondary" onPress={run(actions.end)} />}
-        {controls.canEnd && <BigButton label={strings.hostControls.leaveGame} variant="secondary" onPress={run(actions.leave)} />}
         {controls.canChangeGame && <BigButton label={strings.hostControls.changeGame} onPress={run(actions.changeGame)} />}
         {controls.canChangeGame && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}

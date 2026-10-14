@@ -641,8 +641,6 @@ export const strings = {
     },
     // Fin de partie : autre quiz ou autre jeu, sans nouveau salon (mêmes joueurs, même code).
     changeGame: 'Changer de jeu',
-    // Pendant la partie : sortir de l'écran (pause, partie gardée), comme le bouton retour d'Android.
-    leaveGame: 'Quitter la partie',
     quit: 'Quitter',
     quitConfirm: {
       title: 'Quitter la partie ?',

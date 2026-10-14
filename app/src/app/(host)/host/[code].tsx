@@ -26,7 +26,6 @@ import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
-import { goBackOrHome } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -295,9 +294,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     resume: () => void act(resumeUpdate),
     end: () => confirmAction(strings.hostControls.endConfirm, () => void act(endUpdate)),
     changeGame: () => void changeGame(),
-    // Quitter la partie (panneau, sans geste de retour sur iPhone) : comme le bouton retour d'Android,
-    // la sortie est interceptée par useLeaveGuard (confirmation « Elle sera interrompue », pause).
-    leave: goBackOrHome,
     quit,
     showTv: cast.showTvPicker,
     cancelDraw: () => confirmAction(strings.hostControls.cancelDrawConfirm, onCancelDraw),
