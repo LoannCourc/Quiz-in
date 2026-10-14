@@ -12,6 +12,7 @@ import {
 import { drawEligiblePlayers, drawOrderFor, isDrawQuestion, wordLetterCount } from './drawGame'
 import { gameQuestionCount, MAX_QUESTIONS_PER_GAME } from './questionPool'
 import { drawAllFoundAt, drawResults, isDrawRoundAbandoned } from './drawGuess'
+import { canDeleteAbandonedGame } from './hostAbsence'
 import {
   acceptedParts,
   groupFreeAnswers,
@@ -655,10 +656,17 @@ export function isTransitionLocked(lock: TransitionLock | null, key: string, now
   return lock !== null && lock.key === key && nowMs - lock.since < TRANSITION_LOCK_MAX_MS
 }
 
-// Partie que l'hôte peut reprendre après une relance de l'app : elle existe, n'est pas terminée,
-// et il en est l'hôte. Sinon, le code mémorisé sur l'appareil doit être effacé.
-export function isResumableBy(game: { hostUid?: PlayerId; status?: GameStatus } | null, uid: PlayerId): boolean {
-  return game !== null && game.hostUid === uid && game.status !== undefined && game.status !== 'ended'
+// Partie que l'hôte peut reprendre (bouton « Reprendre la partie » de l'accueil) : elle existe, n'est pas
+// terminée, il en est l'hôte, et il n'est pas parti depuis plus de HOST_DISCONNECT_TIMEOUT_S (joueurs et TV
+// peuvent alors la supprimer). Sinon, le code mémorisé sur l'appareil doit être effacé. nowServer : heure du
+// serveur (comparée à hostLeftAt, écrit par le serveur).
+export function isResumableBy(
+  game: { hostUid?: PlayerId; status?: GameStatus; hostLeftAt?: number } | null,
+  uid: PlayerId,
+  nowServer: number,
+): boolean {
+  if (game === null || game.hostUid !== uid || game.status === undefined || game.status === 'ended') return false
+  return !canDeleteAbandonedGame({ status: game.status, hostLeftAt: game.hostLeftAt }, nowServer)
 }
 
 // États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).

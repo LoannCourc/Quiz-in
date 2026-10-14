@@ -7,6 +7,7 @@ import {
   REVEAL_GRACE_MS,
   SCORES_DURATION_S,
   TRANSITION_LOCK_MAX_MS,
+  HOST_DISCONNECT_TIMEOUT_S,
 } from '../../shared/constants'
 import {
   buildReveal,
@@ -460,15 +461,22 @@ describe('verrou de transition', () => {
 
 describe('isResumableBy', () => {
   test('partie en cours dont je suis l’hôte : reprise possible', () => {
-    expect(isResumableBy({ hostUid: HOST, status: 'question' }, HOST)).toBe(true)
-    expect(isResumableBy({ hostUid: HOST, status: 'lobby' }, HOST)).toBe(true)
+    expect(isResumableBy({ hostUid: HOST, status: 'question' }, HOST, NOW)).toBe(true)
+    expect(isResumableBy({ hostUid: HOST, status: 'lobby' }, HOST, NOW)).toBe(true)
   })
 
   test('partie inexistante, terminée, ou d’un autre hôte : pas de reprise', () => {
-    expect(isResumableBy(null, HOST)).toBe(false)
-    expect(isResumableBy({}, HOST)).toBe(false)
-    expect(isResumableBy({ hostUid: HOST, status: 'ended' }, HOST)).toBe(false)
-    expect(isResumableBy({ hostUid: OTHER, status: 'question' }, HOST)).toBe(false)
+    expect(isResumableBy(null, HOST, NOW)).toBe(false)
+    expect(isResumableBy({}, HOST, NOW)).toBe(false)
+    expect(isResumableBy({ hostUid: HOST, status: 'ended' }, HOST, NOW)).toBe(false)
+    expect(isResumableBy({ hostUid: OTHER, status: 'question' }, HOST, NOW)).toBe(false)
+  })
+
+  test('hôte parti : reprise possible pendant 5 min, plus après (joueurs et TV peuvent supprimer la partie)', () => {
+    const leftAt = NOW - HOST_DISCONNECT_TIMEOUT_S * 1000
+    expect(isResumableBy({ hostUid: HOST, status: 'paused', hostLeftAt: leftAt + 1 }, HOST, NOW)).toBe(true)
+    expect(isResumableBy({ hostUid: HOST, status: 'paused', hostLeftAt: leftAt - 1 }, HOST, NOW)).toBe(false)
+    expect(isResumableBy({ hostUid: HOST, status: 'lobby', hostLeftAt: leftAt - 1 }, HOST, NOW)).toBe(false)
   })
 })
 
