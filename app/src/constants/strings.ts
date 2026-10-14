@@ -154,6 +154,23 @@ export const strings = {
     emptyCatalog: 'Aucun quiz disponible.',
     noMatch: 'Aucun quiz pour ce thème.',
     allThemes: 'Tout',
+    // Catalogue du Blind test (maquette BT5).
+    blindTest: {
+      title: 'Blind test',
+      tabs: { genre: 'Genre', decade: 'Années', level: 'Difficulté' },
+      searchPlaceholder: 'Chercher un blind test…',
+      genres: { pop: 'Pop', rock: 'Rock', rap: 'Rap', chanson: 'Chanson', discoFunk: 'Disco/Funk', electro: 'Électro' },
+      decades: { 1960: '60s', 1970: '70s', 1980: '80s', 1990: '90s', 2000: '2000s', 2010: '2010s', 2020: '2020s', all: 'Toutes époques' },
+      decadeTitles: { 1960: 'Années 60', 1970: 'Années 70', 1980: 'Années 80', 1990: 'Années 90', 2000: 'Années 2000', 2010: 'Années 2010', 2020: 'Années 2020', all: 'Toutes époques' },
+      count: (count: number) => `${count} blind test${count > 1 ? 's' : ''}`,
+      played: (count: number) => `${count} joué${count > 1 ? 's' : ''}`,
+      ofTotal: (shown: number, total: number) => `${shown} sur ${total} blind test${total > 1 ? 's' : ''}`,
+      genreFilter: 'Genre',
+      levelFilter: 'Difficulté',
+      sort: 'Trier',
+      removeFilter: (label: string) => `Retirer le filtre ${label}`,
+      noResult: 'Aucun blind test pour ce choix.',
+    },
     // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool).
     themesGame: {
       allThemes: 'Tous les thèmes',

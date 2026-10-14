@@ -8,6 +8,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { HomeView } from '@/components/host/home/HomeView';
@@ -68,6 +69,16 @@ export default function CatalogDemoScreen() {
         onContinue={(ids) =>
           router.push({ pathname: '/debug/catalog', params: ids.length > 0 ? { quiz: DRAW_QUIZ_ID, categories: ids.join(',') } : { quiz: DRAW_QUIZ_ID } })
         }
+      />
+    );
+  }
+  if (game === 'blindTest') {
+    return (
+      <BlindTestCatalog
+        entries={DEMO_ENTRIES}
+        played={played}
+        onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
+        onBack={() => router.setParams({ game: undefined })}
       />
     );
   }

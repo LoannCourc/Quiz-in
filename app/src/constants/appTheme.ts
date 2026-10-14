@@ -1,6 +1,6 @@
 import type { ThemeIconName } from '@shared/themeIcons';
 import type { DrawCategory } from '@shared/drawWords';
-import type { PosterPalette, TeamId } from '@shared/types';
+import type { BlindTestGenre, PosterPalette, TeamId } from '@shared/types';
 
 import type { GameType } from './strings';
 import { Platform } from 'react-native';
@@ -160,6 +160,22 @@ export const AppColors = {
     flask: '#9b5cff',
     ball: Palette.pink,
   } satisfies Record<ThemeIconName, string>,
+  // Blind test (maquette BT5) : accent de chaque tuile (quart de disque et libellé), dans l'ordre des tuiles.
+  blindTestTiles: [Palette.pinkLight, PosterColors.orange[0], Palette.pink, PosterColors.blue[0], PosterColors.green[0], PosterColors.violet[0], Palette.cyan, Palette.gold],
+  // Carré de l'icône d'une ligne de la liste, selon le genre.
+  blindTestGenres: {
+    pop: Palette.pinkLight,
+    rock: PosterColors.blue[0],
+    rap: PosterColors.violet[0],
+    chanson: Palette.gold,
+    discoFunk: PosterColors.orange[0],
+    electro: Palette.cyan,
+  } satisfies Record<BlindTestGenre, string>,
+  // Points de difficulté : or, le 4e niveau (« Impossible ») en rose ; points vides en contour.
+  levelDot: Palette.gold,
+  levelDotImpossible: Palette.pink,
+  levelDotEmpty: Palette.lavenderMuted,
+  blindTestTile: Palette.violetPanel,
 } as const;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).

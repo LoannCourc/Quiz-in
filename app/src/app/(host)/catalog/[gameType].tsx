@@ -5,6 +5,7 @@ import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useMemo } from 'react';
 import { Text } from 'react-native';
 
+import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { Screen } from '@/components/ui/Screen';
@@ -70,6 +71,10 @@ export default function CatalogRoute() {
   // Accès ouvert : gameType est l'un des quatre jeux (gameAccess).
   const game = gameType as GameType;
 
+  // Blind test (maquette BT5) : onglets Genre / Années / Difficulté en tuiles, puis liste filtrée.
+  if (catalog.kind === 'ready' && game === 'blindTest') {
+    return <BlindTestCatalog entries={entries} played={played} onOpenQuiz={(quizId) => openQuiz(quizId, room)} onBack={backHome} />;
+  }
   if (catalog.kind === 'ready') {
     return (
       <CatalogView
