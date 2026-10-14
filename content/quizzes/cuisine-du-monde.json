@@ -1,0 +1,185 @@
+{
+  "id": "cuisine-du-monde",
+  "title": "La cuisine du monde",
+  "theme": "Loisirs",
+  "description": "Paella, houmous, goulasch ou ceviche : dix questions pour un tour du monde à table.",
+  "audience": "all",
+  "poster": "orange",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "cdm-01",
+      "text": "De quel pays la paella est-elle la grande spécialité ?",
+      "options": [
+        "L'Espagne",
+        "L'Italie",
+        "Le Portugal",
+        "Le Mexique"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "espagne",
+        "l'espagne"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle vient de la région de Valence."
+    },
+    {
+      "id": "cdm-02",
+      "text": "Quel plat italien, né à Naples, est une galette garnie cuite au four ?",
+      "options": [
+        "La lasagne",
+        "Le risotto",
+        "La pizza",
+        "La polenta"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "pizza",
+        "la pizza"
+      ],
+      "difficulty": 1,
+      "explanation": "La pizza Margherita reprend les couleurs du drapeau italien."
+    },
+    {
+      "id": "cdm-03",
+      "text": "Quel est l'ingrédient principal du houmous ?",
+      "options": [
+        "La lentille",
+        "Le pois chiche",
+        "L'aubergine",
+        "Le haricot rouge"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "pois chiche",
+        "pois chiches",
+        "le pois chiche"
+      ],
+      "difficulty": 2,
+      "explanation": "On l'écrase avec du tahini, du citron et de l'ail."
+    },
+    {
+      "id": "cdm-04",
+      "text": "De quel pays le goulasch est-il un plat emblématique ?",
+      "options": [
+        "La Pologne",
+        "L'Autriche",
+        "La Roumanie",
+        "La Hongrie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "hongrie",
+        "la hongrie"
+      ],
+      "difficulty": 2,
+      "explanation": "Ce ragoût de bœuf est parfumé au paprika."
+    },
+    {
+      "id": "cdm-05",
+      "text": "Quelle boisson japonaise est faite à partir de riz fermenté ?",
+      "options": [
+        "Le saké",
+        "Le soju",
+        "Le thé matcha",
+        "Le miso"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "sake",
+        "le sake"
+      ],
+      "difficulty": 2,
+      "explanation": "On le boit chaud ou froid."
+    },
+    {
+      "id": "cdm-06",
+      "text": "Comment s'appelle la semoule de blé dur des grands plats d'Afrique du Nord ?",
+      "options": [
+        "Le boulgour",
+        "Le quinoa",
+        "Le couscous",
+        "Le tapioca"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "couscous",
+        "le couscous"
+      ],
+      "difficulty": 1,
+      "explanation": "Il est inscrit au patrimoine culturel immatériel de l'UNESCO."
+    },
+    {
+      "id": "cdm-07",
+      "text": "Quel plat péruvien est fait de poisson cru mariné dans du citron vert ?",
+      "options": [
+        "Le tajine",
+        "Le chili con carne",
+        "Le ceviche",
+        "La feijoada"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "ceviche",
+        "le ceviche"
+      ],
+      "difficulty": 3,
+      "explanation": "L'acidité du citron « cuit » la chair du poisson."
+    },
+    {
+      "id": "cdm-08",
+      "text": "De quel pays la moussaka est-elle une spécialité ?",
+      "options": [
+        "La Grèce",
+        "La Turquie",
+        "Le Liban",
+        "L'Italie"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "grece",
+        "la grece"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle associe aubergines, viande hachée et béchamel."
+    },
+    {
+      "id": "cdm-09",
+      "text": "Quelle épice donne sa couleur jaune à de nombreux currys ?",
+      "options": [
+        "Le cumin",
+        "La cannelle",
+        "La muscade",
+        "Le curcuma"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "curcuma",
+        "le curcuma"
+      ],
+      "difficulty": 2,
+      "explanation": "On le surnomme parfois « safran des Indes »."
+    },
+    {
+      "id": "cdm-10",
+      "text": "Quelle soupe froide à base de tomate vient d'Andalousie ?",
+      "options": [
+        "Le minestrone",
+        "Le gaspacho",
+        "La soupe miso",
+        "Le velouté"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "gaspacho",
+        "gazpacho",
+        "le gaspacho"
+      ],
+      "difficulty": 2,
+      "explanation": "On la sert bien fraîche en été."
+    }
+  ]
+}

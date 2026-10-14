@@ -1,0 +1,189 @@
+{
+  "id": "films-animation",
+  "title": "Les films d'animation",
+  "theme": "Cinéma et séries",
+  "description": "Shrek, Ratatouille, Kung Fu Panda ou Totoro : dix questions sur les héros des films d'animation.",
+  "audience": "kids",
+  "poster": "orange",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "fa-01",
+      "text": "Dans « Shrek », quel animal bavard accompagne l'ogre ?",
+      "options": [
+        "Un cheval",
+        "Un âne",
+        "Un chat",
+        "Un dragon"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "ane",
+        "un ane",
+        "l'ane"
+      ],
+      "difficulty": 1,
+      "explanation": "Il ne s'arrête presque jamais de parler."
+    },
+    {
+      "id": "fa-02",
+      "text": "Dans « Ratatouille », quel animal rêve de devenir un grand chef ?",
+      "options": [
+        "Un hamster",
+        "Un lapin",
+        "Un écureuil",
+        "Un rat"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "rat",
+        "un rat"
+      ],
+      "difficulty": 1,
+      "explanation": "Il s'appelle Rémy et cuisine à Paris."
+    },
+    {
+      "id": "fa-03",
+      "text": "Dans « Là-haut », qu'est-ce qui fait s'envoler la maison de Carl ?",
+      "options": [
+        "Des ballons",
+        "Une fusée",
+        "Un hélicoptère",
+        "Un cerf-volant"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ballons",
+        "des ballons"
+      ],
+      "difficulty": 1,
+      "explanation": "Des milliers de ballons gonflés à l'hélium."
+    },
+    {
+      "id": "fa-04",
+      "text": "Dans « Kung Fu Panda », comment s'appelle le panda ?",
+      "options": [
+        "Bao",
+        "Ping",
+        "Po",
+        "Shifu"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "po"
+      ],
+      "difficulty": 1,
+      "explanation": "Shifu est son maître de kung-fu."
+    },
+    {
+      "id": "fa-05",
+      "text": "Dans « Vice-versa », quelle émotion est représentée par un personnage tout bleu ?",
+      "options": [
+        "La Colère",
+        "La Peur",
+        "La Tristesse",
+        "Le Dégoût"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "tristesse",
+        "la tristesse"
+      ],
+      "difficulty": 2,
+      "explanation": "La Colère est rouge et le Dégoût est vert."
+    },
+    {
+      "id": "fa-06",
+      "text": "Dans « Cars », comment s'appelle la voiture de course rouge ?",
+      "options": [
+        "Flash McQueen",
+        "Martin",
+        "Sally",
+        "Doc Hudson"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "flash mcqueen",
+        "mcqueen",
+        "flash"
+      ],
+      "difficulty": 1,
+      "explanation": "Martin, sa dépanneuse rouillée, est son meilleur ami."
+    },
+    {
+      "id": "fa-07",
+      "text": "Dans « Monstres et Cie », que récoltent les monstres pour produire de l'énergie ?",
+      "options": [
+        "Les jouets",
+        "Les rêves",
+        "Les bonbons",
+        "Les cris des enfants"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "cris",
+        "les cris",
+        "les cris des enfants"
+      ],
+      "difficulty": 2,
+      "explanation": "À la fin du film, ils découvrent que les rires sont encore plus efficaces."
+    },
+    {
+      "id": "fa-08",
+      "text": "Dans « WALL-E », quel est le travail du petit robot resté sur Terre ?",
+      "options": [
+        "Cuisiner",
+        "Compacter les déchets",
+        "Livrer le courrier",
+        "Réparer des fusées"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "compacter les dechets",
+        "ramasser les dechets",
+        "les dechets"
+      ],
+      "difficulty": 2,
+      "explanation": "Il range les déchets en cubes, jour après jour."
+    },
+    {
+      "id": "fa-09",
+      "text": "Dans « L'Âge de glace », quel animal court sans cesse après son gland ?",
+      "options": [
+        "Un écureuil",
+        "Un castor",
+        "Une souris",
+        "Un lapin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ecureuil",
+        "un ecureuil",
+        "scrat"
+      ],
+      "difficulty": 1,
+      "explanation": "Il s'appelle Scrat."
+    },
+    {
+      "id": "fa-10",
+      "text": "Dans « Mon voisin Totoro », quel véhicule magique a la forme d'un chat ?",
+      "options": [
+        "Un train",
+        "Un bateau",
+        "Un bus",
+        "Un avion"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "bus",
+        "un bus",
+        "chat-bus",
+        "chatbus"
+      ],
+      "difficulty": 2,
+      "explanation": "On l'appelle le Chat-bus."
+    }
+  ]
+}

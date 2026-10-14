@@ -1,0 +1,184 @@
+{
+  "id": "cinema-experts",
+  "title": "Le cinéma des experts",
+  "theme": "Cinéma et séries",
+  "description": "Oscars, chefs-d'œuvre et grands réalisateurs : dix questions pour les cinéphiles avertis.",
+  "audience": "experts",
+  "poster": "gold",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "cx-01",
+      "text": "Quel film remporte le tout premier Oscar du meilleur film, lors de la cérémonie de 1929 ?",
+      "options": [
+        "Les Ailes",
+        "Le Chanteur de jazz",
+        "Metropolis",
+        "L'Aurore"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "les ailes",
+        "wings"
+      ],
+      "difficulty": 3,
+      "explanation": "C'est le seul film muet à avoir remporté cet Oscar."
+    },
+    {
+      "id": "cx-02",
+      "text": "Quel réalisateur a signé « 2001 : l'Odyssée de l'espace » (1968) ?",
+      "options": [
+        "Steven Spielberg",
+        "George Lucas",
+        "Stanley Kubrick",
+        "Ridley Scott"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "kubrick",
+        "stanley kubrick"
+      ],
+      "difficulty": 2,
+      "explanation": "Il en a écrit le scénario avec Arthur C. Clarke."
+    },
+    {
+      "id": "cx-03",
+      "text": "Quel film d'Alfred Hitchcock contient la célèbre scène de la douche ?",
+      "options": [
+        "Les Oiseaux",
+        "Vertigo",
+        "Psychose",
+        "Fenêtre sur cour"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "psychose",
+        "psycho"
+      ],
+      "difficulty": 2,
+      "explanation": "La scène dure environ 45 secondes et compte 78 plans."
+    },
+    {
+      "id": "cx-04",
+      "text": "Dans quel film de Federico Fellini Anita Ekberg se baigne-t-elle dans la fontaine de Trevi ?",
+      "options": [
+        "La Dolce Vita",
+        "Huit et demi",
+        "Amarcord",
+        "La Strada"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "la dolce vita",
+        "dolce vita"
+      ],
+      "difficulty": 3,
+      "explanation": "Le film sort en 1960."
+    },
+    {
+      "id": "cx-05",
+      "text": "Quel est le premier long métrage d'animation des studios Disney, sorti en 1937 ?",
+      "options": [
+        "Pinocchio",
+        "Fantasia",
+        "Bambi",
+        "Blanche-Neige et les Sept Nains"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "blanche-neige",
+        "blanche-neige et les sept nains"
+      ],
+      "difficulty": 2,
+      "explanation": "Sa production a duré environ quatre ans."
+    },
+    {
+      "id": "cx-06",
+      "text": "Quel acteur a reçu l'Oscar du meilleur acteur pour « My Left Foot », « There Will Be Blood » et « Lincoln » ?",
+      "options": [
+        "Jack Nicholson",
+        "Daniel Day-Lewis",
+        "Anthony Hopkins",
+        "Tom Hanks"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "daniel day-lewis",
+        "day-lewis"
+      ],
+      "difficulty": 3,
+      "explanation": "Il est le premier acteur à remporter trois fois cet Oscar."
+    },
+    {
+      "id": "cx-07",
+      "text": "Dans quel film Marlon Brando incarne-t-il Vito Corleone ?",
+      "options": [
+        "Le Parrain",
+        "Sur les quais",
+        "Apocalypse Now",
+        "Un tramway nommé Désir"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "le parrain",
+        "parrain"
+      ],
+      "difficulty": 2,
+      "explanation": "Il refuse l'Oscar du meilleur acteur obtenu pour ce rôle."
+    },
+    {
+      "id": "cx-08",
+      "text": "Quel cinéaste japonais a réalisé « Les Sept Samouraïs » (1954) ?",
+      "options": [
+        "Yasujirō Ozu",
+        "Kenji Mizoguchi",
+        "Akira Kurosawa",
+        "Takeshi Kitano"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "kurosawa",
+        "akira kurosawa"
+      ],
+      "difficulty": 2,
+      "explanation": "Le film inspire le western « Les Sept Mercenaires » (1960)."
+    },
+    {
+      "id": "cx-09",
+      "text": "Quel film de 1927 est le premier long métrage à faire entendre des dialogues synchronisés ?",
+      "options": [
+        "Les Ailes",
+        "Le Chanteur de jazz",
+        "Metropolis",
+        "Le Mécano de la « General »"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "le chanteur de jazz",
+        "chanteur de jazz",
+        "the jazz singer"
+      ],
+      "difficulty": 3,
+      "explanation": "Il ne contient que quelques minutes de dialogues ; le reste est chanté ou muet."
+    },
+    {
+      "id": "cx-10",
+      "text": "Quelle actrice a remporté quatre fois l'Oscar de la meilleure actrice ?",
+      "options": [
+        "Meryl Streep",
+        "Ingrid Bergman",
+        "Bette Davis",
+        "Katharine Hepburn"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "katharine hepburn",
+        "hepburn"
+      ],
+      "difficulty": 3,
+      "explanation": "Elle n'est jamais venue chercher ses statuettes."
+    }
+  ]
+}

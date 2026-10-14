@@ -1,0 +1,178 @@
+{
+  "id": "comptines",
+  "title": "Comptines et chansons d'enfance",
+  "theme": "Musique",
+  "description": "Au clair de la lune, Frère Jacques, Meunier tu dors : complète les comptines que tout le monde connaît.",
+  "audience": "kids",
+  "poster": "pink",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "cpt-01",
+      "text": "Complète la comptine : « Au clair de la lune, mon ami… »",
+      "options": [
+        "Pinocchio",
+        "Pierrot",
+        "Arlequin",
+        "Guignol"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "pierrot"
+      ],
+      "difficulty": 1,
+      "explanation": "« … prête-moi ta plume pour écrire un mot. »"
+    },
+    {
+      "id": "cpt-02",
+      "text": "Complète la comptine : « Frère Jacques, dormez-vous ? Sonnez les… »",
+      "options": [
+        "matines",
+        "cloches",
+        "trompettes",
+        "sirènes"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "matines",
+        "les matines"
+      ],
+      "difficulty": 2,
+      "explanation": "Les matines sont une prière du petit matin."
+    },
+    {
+      "id": "cpt-03",
+      "text": "Complète la comptine : « Une souris verte qui courait dans… »",
+      "options": [
+        "le pré",
+        "la cour",
+        "l'herbe",
+        "le bois"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "l'herbe",
+        "herbe"
+      ],
+      "difficulty": 1,
+      "explanation": "« … je l'attrape par la queue, je la montre à ces messieurs. »"
+    },
+    {
+      "id": "cpt-04",
+      "text": "Complète la chanson : « Il était un petit navire qui n'avait ja-ja-jamais… »",
+      "options": [
+        "nagé",
+        "navigué",
+        "coulé",
+        "voyagé"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "navigue"
+      ],
+      "difficulty": 1,
+      "explanation": "« Ohé, ohé ! »"
+    },
+    {
+      "id": "cpt-05",
+      "text": "Complète la chanson : « Sur le pont d'…, on y danse, on y danse »",
+      "options": [
+        "Paris",
+        "Nantes",
+        "Lyon",
+        "Avignon"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "avignon"
+      ],
+      "difficulty": 1,
+      "explanation": "Le pont Saint-Bénézet ne traverse plus tout le Rhône."
+    },
+    {
+      "id": "cpt-06",
+      "text": "Complète la chanson : « À la claire fontaine, m'en allant… »",
+      "options": [
+        "promener",
+        "chanter",
+        "danser",
+        "rêver"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "promener"
+      ],
+      "difficulty": 2,
+      "explanation": "« … j'ai trouvé l'eau si belle que je m'y suis baigné. »"
+    },
+    {
+      "id": "cpt-07",
+      "text": "Complète la comptine : « Promenons-nous dans les bois, pendant que le… n'y est pas »",
+      "options": [
+        "renard",
+        "ogre",
+        "loup",
+        "chasseur"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "loup",
+        "le loup"
+      ],
+      "difficulty": 1,
+      "explanation": "« Loup, y es-tu ? »"
+    },
+    {
+      "id": "cpt-08",
+      "text": "Complète la comptine : « Meunier, tu dors, ton… va trop vite »",
+      "options": [
+        "voisin",
+        "chemin",
+        "moulin",
+        "jardin"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "moulin",
+        "ton moulin"
+      ],
+      "difficulty": 1,
+      "explanation": "« … ton moulin va trop fort. »"
+    },
+    {
+      "id": "cpt-09",
+      "text": "Complète la chanson : « Alouette, gentille alouette, alouette, je te… »",
+      "options": [
+        "plumerai",
+        "chanterai",
+        "garderai",
+        "suivrai"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "plumerai"
+      ],
+      "difficulty": 1,
+      "explanation": "Chaque couplet ajoute une partie de l'oiseau : la tête, le bec…"
+    },
+    {
+      "id": "cpt-10",
+      "text": "Complète la comptine : « Ainsi font, font, font les petites… »",
+      "options": [
+        "souris",
+        "fourmis",
+        "poupées",
+        "marionnettes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "marionnettes",
+        "les petites marionnettes"
+      ],
+      "difficulty": 1,
+      "explanation": "On la chante en faisant tourner ses mains."
+    }
+  ]
+}

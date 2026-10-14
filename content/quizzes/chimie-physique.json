@@ -1,0 +1,184 @@
+{
+  "id": "chimie-physique",
+  "title": "Chimie et physique",
+  "theme": "Sciences et nature",
+  "description": "Éléments, unités, particules et grands savants : dix questions pour les esprits scientifiques.",
+  "audience": "experts",
+  "poster": "blue",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "cp-01",
+      "text": "Quel est le symbole chimique du fer ?",
+      "options": [
+        "F",
+        "Fr",
+        "Ir",
+        "Fe"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "fe"
+      ],
+      "difficulty": 2,
+      "explanation": "Il vient du latin « ferrum »."
+    },
+    {
+      "id": "cp-02",
+      "text": "Quel gaz représente environ 78 % de l'air sec ?",
+      "options": [
+        "L'oxygène",
+        "L'azote",
+        "Le dioxyde de carbone",
+        "L'argon"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "azote",
+        "l'azote",
+        "diazote"
+      ],
+      "difficulty": 2,
+      "explanation": "L'oxygène en représente environ 21 %."
+    },
+    {
+      "id": "cp-03",
+      "text": "Quelle est l'unité de mesure de la résistance électrique ?",
+      "options": [
+        "L'ohm",
+        "Le volt",
+        "L'ampère",
+        "Le watt"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ohm",
+        "l'ohm"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle porte le nom du physicien allemand Georg Ohm."
+    },
+    {
+      "id": "cp-04",
+      "text": "Quel métal est liquide à température ambiante ?",
+      "options": [
+        "Le plomb",
+        "L'étain",
+        "Le mercure",
+        "Le zinc"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "mercure",
+        "le mercure"
+      ],
+      "difficulty": 2,
+      "explanation": "Il fond vers -39 °C."
+    },
+    {
+      "id": "cp-05",
+      "text": "Quelle scientifique reçoit le prix Nobel de physique en 1903, puis celui de chimie en 1911 ?",
+      "options": [
+        "Irène Joliot-Curie",
+        "Marie Curie",
+        "Lise Meitner",
+        "Rosalind Franklin"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "marie curie",
+        "curie"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle est la seule personne récompensée dans deux sciences différentes."
+    },
+    {
+      "id": "cp-06",
+      "text": "Quel physicien découvre les rayons X en 1895 ?",
+      "options": [
+        "Henri Becquerel",
+        "Max Planck",
+        "Ernest Rutherford",
+        "Wilhelm Röntgen"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "rontgen",
+        "roentgen",
+        "wilhelm rontgen"
+      ],
+      "difficulty": 3,
+      "explanation": "Cette découverte lui vaut le premier prix Nobel de physique, en 1901."
+    },
+    {
+      "id": "cp-07",
+      "text": "Quel gaz noble donne leur lumière rouge-orangé aux enseignes qui portent son nom ?",
+      "options": [
+        "Le néon",
+        "L'argon",
+        "L'hélium",
+        "Le krypton"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "neon",
+        "le neon"
+      ],
+      "difficulty": 2,
+      "explanation": "Les autres couleurs viennent d'autres gaz ou de revêtements fluorescents."
+    },
+    {
+      "id": "cp-08",
+      "text": "Quel chimiste russe publie en 1869 le premier tableau périodique des éléments ?",
+      "options": [
+        "Antoine Lavoisier",
+        "Amedeo Avogadro",
+        "Dmitri Mendeleïev",
+        "John Dalton"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "mendeleiev",
+        "dmitri mendeleiev"
+      ],
+      "difficulty": 3,
+      "explanation": "Il y laisse des cases vides pour des éléments encore inconnus."
+    },
+    {
+      "id": "cp-09",
+      "text": "À quelle vitesse, environ, le son se propage-t-il dans l'air à 15 °C ?",
+      "options": [
+        "100 m/s",
+        "1 500 m/s",
+        "340 m/s",
+        "3 000 m/s"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "340 m/s",
+        "340"
+      ],
+      "difficulty": 3,
+      "explanation": "Dans l'eau, il va environ quatre fois plus vite."
+    },
+    {
+      "id": "cp-10",
+      "text": "Quelle particule de l'atome porte une charge électrique négative ?",
+      "options": [
+        "L'électron",
+        "Le proton",
+        "Le neutron",
+        "Le photon"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "electron",
+        "l'electron"
+      ],
+      "difficulty": 2,
+      "explanation": "Les protons, dans le noyau, portent une charge positive."
+    }
+  ]
+}

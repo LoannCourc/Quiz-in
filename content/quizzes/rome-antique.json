@@ -1,0 +1,179 @@
+{
+  "id": "rome-antique",
+  "title": "La Rome antique",
+  "theme": "Histoire",
+  "description": "Gladiateurs, empereurs et légendes : dix questions sur Rome, de sa fondation à sa chute.",
+  "audience": "all",
+  "poster": "red",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "ra-01",
+      "text": "Selon la légende, quels jumeaux ont fondé Rome ?",
+      "options": [
+        "Castor et Pollux",
+        "Caïn et Abel",
+        "Romulus et Rémus",
+        "Hercule et Thésée"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "romulus et remus",
+        "romulus"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils auraient été nourris par une louve."
+    },
+    {
+      "id": "ra-02",
+      "text": "Quel grand amphithéâtre de Rome accueillait les combats de gladiateurs ?",
+      "options": [
+        "Le Panthéon",
+        "Le Colisée",
+        "Le Forum",
+        "Le Capitole"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "colisee",
+        "le colisee"
+      ],
+      "difficulty": 1,
+      "explanation": "Il pouvait accueillir plusieurs dizaines de milliers de spectateurs."
+    },
+    {
+      "id": "ra-03",
+      "text": "Quel général romain a conquis la Gaule ?",
+      "options": [
+        "Pompée",
+        "Hannibal",
+        "Marc Antoine",
+        "Jules César"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "cesar",
+        "jules cesar"
+      ],
+      "difficulty": 1,
+      "explanation": "Il raconte cette conquête dans « La Guerre des Gaules »."
+    },
+    {
+      "id": "ra-04",
+      "text": "Quel chef gaulois se rend à César après le siège d'Alésia, en 52 av. J.-C. ?",
+      "options": [
+        "Vercingétorix",
+        "Ambiorix",
+        "Brennus",
+        "Astérix"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "vercingetorix"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est emmené prisonnier à Rome."
+    },
+    {
+      "id": "ra-05",
+      "text": "Quelle ville romaine est ensevelie par l'éruption du Vésuve, en 79 ?",
+      "options": [
+        "Ostie",
+        "Ravenne",
+        "Pompéi",
+        "Carthage"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "pompei"
+      ],
+      "difficulty": 2,
+      "explanation": "Herculanum est détruite par la même éruption."
+    },
+    {
+      "id": "ra-06",
+      "text": "Qui est le premier empereur romain ?",
+      "options": [
+        "Néron",
+        "Caligula",
+        "Auguste",
+        "Tibère"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "auguste",
+        "octave"
+      ],
+      "difficulty": 2,
+      "explanation": "Il s'appelait d'abord Octave ; il est le petit-neveu de César."
+    },
+    {
+      "id": "ra-07",
+      "text": "Quelle langue parlaient les Romains ?",
+      "options": [
+        "Le latin",
+        "Le grec",
+        "Le gaulois",
+        "L'étrusque"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "latin",
+        "le latin"
+      ],
+      "difficulty": 1,
+      "explanation": "Le français, l'italien et l'espagnol en descendent."
+    },
+    {
+      "id": "ra-08",
+      "text": "Quel célèbre aqueduc romain se trouve près de Nîmes ?",
+      "options": [
+        "Le pont d'Avignon",
+        "Le pont Valentré",
+        "Le viaduc de Millau",
+        "Le pont du Gard"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "pont du gard"
+      ],
+      "difficulty": 2,
+      "explanation": "Il franchit le Gardon sur trois rangées d'arches."
+    },
+    {
+      "id": "ra-09",
+      "text": "Comment s'appelait l'assemblée qui conseillait les dirigeants de Rome ?",
+      "options": [
+        "Le Parlement",
+        "Le Sénat",
+        "La Diète",
+        "Le Conseil des Cinq-Cents"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "senat",
+        "le senat"
+      ],
+      "difficulty": 2,
+      "explanation": "Ses membres étaient appelés sénateurs."
+    },
+    {
+      "id": "ra-10",
+      "text": "En quelle année l'Empire romain d'Occident prend-il fin, avec la déposition de Romulus Augustule ?",
+      "options": [
+        "476",
+        "410",
+        "1453",
+        "395"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "476"
+      ],
+      "difficulty": 3,
+      "explanation": "Le chef Odoacre dépose le jeune empereur en septembre 476."
+    }
+  ]
+}

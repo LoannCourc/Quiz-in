@@ -1,0 +1,184 @@
+{
+  "id": "inventions",
+  "title": "Inventeurs et inventions",
+  "theme": "Culture générale",
+  "description": "Cinéma, avion, imprimerie ou braille : dix questions sur les inventions qui ont changé nos vies.",
+  "audience": "all",
+  "poster": "cyan",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "inv-01",
+      "text": "Quels frères ont inventé le cinématographe en 1895 ?",
+      "options": [
+        "Les frères Pathé",
+        "Les frères Wright",
+        "Les frères Lumière",
+        "Les frères Grimm"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "lumiere",
+        "freres lumiere"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils sont originaires de Lyon."
+    },
+    {
+      "id": "inv-02",
+      "text": "Quel Français a inventé une écriture en points en relief pour les aveugles ?",
+      "options": [
+        "Valentin Haüy",
+        "Charles Barbier",
+        "Louis Braille",
+        "Louis Pasteur"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "braille",
+        "louis braille"
+      ],
+      "difficulty": 1,
+      "explanation": "Il était lui-même devenu aveugle enfant."
+    },
+    {
+      "id": "inv-03",
+      "text": "Quel savant français a mis au point le vaccin contre la rage ?",
+      "options": [
+        "Louis Pasteur",
+        "Claude Bernard",
+        "Marie Curie",
+        "Ambroise Paré"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "pasteur",
+        "louis pasteur"
+      ],
+      "difficulty": 1,
+      "explanation": "Il le teste avec succès en 1885."
+    },
+    {
+      "id": "inv-04",
+      "text": "Quels frères réussissent le premier vol d'un avion motorisé, en 1903 ?",
+      "options": [
+        "Les frères Montgolfier",
+        "Les frères Lumière",
+        "Les frères Renault",
+        "Les frères Wright"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "wright",
+        "freres wright"
+      ],
+      "difficulty": 2,
+      "explanation": "Le vol a lieu aux États-Unis, en Caroline du Nord."
+    },
+    {
+      "id": "inv-05",
+      "text": "Qui met au point, vers 1450, l'imprimerie à caractères mobiles en Europe ?",
+      "options": [
+        "Léonard de Vinci",
+        "Gutenberg",
+        "Galilée",
+        "Copernic"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "gutenberg",
+        "johannes gutenberg"
+      ],
+      "difficulty": 2,
+      "explanation": "Il imprime notamment une célèbre Bible."
+    },
+    {
+      "id": "inv-06",
+      "text": "Quelle machine volante les frères Montgolfier font-ils s'élever en 1783 ?",
+      "options": [
+        "Un ballon à air chaud",
+        "Un planeur",
+        "Un hélicoptère",
+        "Un dirigeable"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "montgolfiere",
+        "ballon",
+        "ballon a air chaud"
+      ],
+      "difficulty": 1,
+      "explanation": "On l'appelle depuis une montgolfière."
+    },
+    {
+      "id": "inv-07",
+      "text": "Quel inventeur dépose en 1876 le brevet du téléphone ?",
+      "options": [
+        "Thomas Edison",
+        "Nikola Tesla",
+        "Alexander Graham Bell",
+        "Guglielmo Marconi"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "bell",
+        "graham bell",
+        "alexander graham bell"
+      ],
+      "difficulty": 2,
+      "explanation": "D'autres inventeurs travaillaient alors sur des appareils proches."
+    },
+    {
+      "id": "inv-08",
+      "text": "Quelle marque de stylo à bille doit son nom à son fondateur, Marcel Bich ?",
+      "options": [
+        "Parker",
+        "Bic",
+        "Waterman",
+        "Stabilo"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "bic"
+      ],
+      "difficulty": 2,
+      "explanation": "Le nom a été raccourci pour être facile à retenir."
+    },
+    {
+      "id": "inv-09",
+      "text": "Dans quel pays le papier a-t-il été inventé, il y a environ 2 000 ans ?",
+      "options": [
+        "L'Égypte",
+        "L'Inde",
+        "La Grèce",
+        "La Chine"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "chine",
+        "la chine"
+      ],
+      "difficulty": 1,
+      "explanation": "Les Égyptiens, eux, écrivaient sur du papyrus."
+    },
+    {
+      "id": "inv-10",
+      "text": "Quel physicien italien a laissé son nom au volt, après avoir inventé la pile électrique ?",
+      "options": [
+        "Alessandro Volta",
+        "Galilée",
+        "Guglielmo Marconi",
+        "Enrico Fermi"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "volta",
+        "alessandro volta"
+      ],
+      "difficulty": 2,
+      "explanation": "Il présente sa pile en 1800."
+    }
+  ]
+}

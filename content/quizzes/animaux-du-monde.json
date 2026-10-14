@@ -1,0 +1,187 @@
+{
+  "id": "animaux-du-monde",
+  "title": "Les animaux du monde",
+  "theme": "Sciences et nature",
+  "description": "Kangourous, girafes, colibris et ornithorynques : un tour du monde des animaux en dix questions.",
+  "audience": "all",
+  "poster": "green",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "am-01",
+      "text": "Quel animal d'Australie transporte son petit dans une poche ?",
+      "options": [
+        "Le kangourou",
+        "Le koala",
+        "L'émeu",
+        "Le wombat"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "kangourou",
+        "le kangourou"
+      ],
+      "difficulty": 1,
+      "explanation": "Le koala et le wombat ont aussi une poche, mais c'est le kangourou qui est célèbre pour ses bonds."
+    },
+    {
+      "id": "am-02",
+      "text": "Quel animal est le plus grand en hauteur ?",
+      "options": [
+        "L'éléphant",
+        "Le chameau",
+        "L'ours brun",
+        "La girafe"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "girafe",
+        "la girafe"
+      ],
+      "difficulty": 1,
+      "explanation": "Un mâle peut dépasser 5 mètres."
+    },
+    {
+      "id": "am-03",
+      "text": "Quel grand oiseau d'Afrique ne vole pas mais court très vite ?",
+      "options": [
+        "Le flamant rose",
+        "L'autruche",
+        "Le pélican",
+        "La cigogne"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "autruche",
+        "l'autruche"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est le plus grand oiseau du monde."
+    },
+    {
+      "id": "am-04",
+      "text": "Quel animal noir et blanc se nourrit presque uniquement de bambou ?",
+      "options": [
+        "Le panda géant",
+        "Le zèbre",
+        "Le blaireau",
+        "Le pingouin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "panda",
+        "le panda",
+        "panda geant"
+      ],
+      "difficulty": 1,
+      "explanation": "Il vit dans les montagnes de Chine."
+    },
+    {
+      "id": "am-05",
+      "text": "Combien de bosses a un dromadaire ?",
+      "options": [
+        "2",
+        "3",
+        "1",
+        "0"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "1",
+        "une",
+        "une bosse"
+      ],
+      "difficulty": 1,
+      "explanation": "Le chameau de Bactriane, lui, en a deux."
+    },
+    {
+      "id": "am-06",
+      "text": "Quel est le plus grand félin du monde ?",
+      "options": [
+        "Le lion",
+        "Le tigre",
+        "Le jaguar",
+        "Le léopard"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "tigre",
+        "le tigre"
+      ],
+      "difficulty": 2,
+      "explanation": "Le tigre de Sibérie est le plus massif."
+    },
+    {
+      "id": "am-07",
+      "text": "Quel est le plus gros animal terrestre ?",
+      "options": [
+        "L'hippopotame",
+        "Le rhinocéros",
+        "La girafe",
+        "L'éléphant d'Afrique"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "elephant",
+        "l'elephant",
+        "elephant d'afrique"
+      ],
+      "difficulty": 1,
+      "explanation": "Un mâle peut peser plus de 6 tonnes."
+    },
+    {
+      "id": "am-08",
+      "text": "Quel petit oiseau est capable de voler en arrière ?",
+      "options": [
+        "Le colibri",
+        "Le moineau",
+        "L'hirondelle",
+        "Le pic-vert"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "colibri",
+        "le colibri",
+        "oiseau-mouche"
+      ],
+      "difficulty": 2,
+      "explanation": "Ses ailes battent si vite qu'on les entend bourdonner."
+    },
+    {
+      "id": "am-09",
+      "text": "Quel reptile à carapace peut vivre plus de cent ans ?",
+      "options": [
+        "Le crocodile",
+        "Le lézard",
+        "La tortue",
+        "Le serpent"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "tortue",
+        "la tortue"
+      ],
+      "difficulty": 1,
+      "explanation": "Les tortues géantes des Galápagos vivent très longtemps."
+    },
+    {
+      "id": "am-10",
+      "text": "Quel mammifère pond des œufs et possède un bec de canard ?",
+      "options": [
+        "Le castor",
+        "La loutre",
+        "L'ornithorynque",
+        "Le tatou"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "ornithorynque",
+        "l'ornithorynque"
+      ],
+      "difficulty": 2,
+      "explanation": "Il vit en Australie, dans les rivières."
+    }
+  ]
+}

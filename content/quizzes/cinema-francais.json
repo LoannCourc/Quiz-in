@@ -1,0 +1,181 @@
+{
+  "id": "cinema-francais",
+  "title": "Le cinéma français",
+  "theme": "Cinéma et séries",
+  "description": "Comédies cultes, Oscars et Nouvelle Vague : dix questions sur le cinéma français.",
+  "audience": "all",
+  "poster": "blue",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "cf-01",
+      "text": "Dans « Les Visiteurs » (1993), quel acteur joue Jacquouille la Fripouille ?",
+      "options": [
+        "Jean Reno",
+        "Gérard Jugnot",
+        "Thierry Lhermitte",
+        "Christian Clavier"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "clavier",
+        "christian clavier"
+      ],
+      "difficulty": 1,
+      "explanation": "Jean Reno joue son maître, Godefroy de Montmirail."
+    },
+    {
+      "id": "cf-02",
+      "text": "Quel film de Dany Boon, sorti en 2008, se déroule chez les « Ch'tis » ?",
+      "options": [
+        "Bienvenue chez les Ch'tis",
+        "Camping",
+        "Les Bronzés",
+        "Le Dîner de cons"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "bienvenue chez les ch'tis",
+        "bienvenue chez les chtis"
+      ],
+      "difficulty": 1,
+      "explanation": "Un directeur de poste est muté à Bergues, dans le Nord."
+    },
+    {
+      "id": "cf-03",
+      "text": "Quel acteur partage l'affiche de « La Grande Vadrouille » (1966) avec Bourvil ?",
+      "options": [
+        "Fernandel",
+        "Jean Gabin",
+        "Louis de Funès",
+        "Lino Ventura"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "de funes",
+        "louis de funes"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils avaient déjà formé un duo dans « Le Corniaud »."
+    },
+    {
+      "id": "cf-04",
+      "text": "Quel réalisateur a signé « Le Grand Bleu » et « Léon » ?",
+      "options": [
+        "Jean-Pierre Jeunet",
+        "Jacques Audiard",
+        "Luc Besson",
+        "Claude Lelouch"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "besson",
+        "luc besson"
+      ],
+      "difficulty": 2,
+      "explanation": "Il a aussi réalisé « Le Cinquième Élément »."
+    },
+    {
+      "id": "cf-05",
+      "text": "Dans « Le Dîner de cons », comment s'appelle le personnage joué par Jacques Villeret ?",
+      "options": [
+        "François Pignon",
+        "Pierre Brochant",
+        "Juste Leblanc",
+        "Lucien Cheval"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "pignon",
+        "francois pignon"
+      ],
+      "difficulty": 2,
+      "explanation": "Pierre Brochant, joué par Thierry Lhermitte, l'invite au fameux dîner."
+    },
+    {
+      "id": "cf-06",
+      "text": "Pour quel film muet et en noir et blanc Jean Dujardin a-t-il reçu l'Oscar du meilleur acteur ?",
+      "options": [
+        "Intouchables",
+        "OSS 117",
+        "Le Discours d'un roi",
+        "The Artist"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "the artist"
+      ],
+      "difficulty": 2,
+      "explanation": "Le film remporte aussi l'Oscar du meilleur film."
+    },
+    {
+      "id": "cf-07",
+      "text": "Dans « Astérix et Obélix : Mission Cléopâtre » (2002), qui joue l'architecte Numérobis ?",
+      "options": [
+        "Gérard Darmon",
+        "Jamel Debbouze",
+        "Alain Chabat",
+        "Édouard Baer"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "jamel debbouze",
+        "jamel"
+      ],
+      "difficulty": 2,
+      "explanation": "Alain Chabat réalise le film et joue Jules César."
+    },
+    {
+      "id": "cf-08",
+      "text": "Quel réalisateur de la Nouvelle Vague a signé « Les Quatre Cents Coups » (1959) ?",
+      "options": [
+        "François Truffaut",
+        "Jean-Luc Godard",
+        "Claude Chabrol",
+        "Éric Rohmer"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "truffaut",
+        "francois truffaut"
+      ],
+      "difficulty": 3,
+      "explanation": "Le film lui vaut le prix de la mise en scène à Cannes, en 1959."
+    },
+    {
+      "id": "cf-09",
+      "text": "Quelle actrice française a reçu l'Oscar de la meilleure actrice pour « La Môme » ?",
+      "options": [
+        "Juliette Binoche",
+        "Isabelle Huppert",
+        "Marion Cotillard",
+        "Audrey Tautou"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "cotillard",
+        "marion cotillard"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle y incarne Édith Piaf."
+    },
+    {
+      "id": "cf-10",
+      "text": "Dans quelle ville se tient le plus célèbre festival de cinéma de France ?",
+      "options": [
+        "Deauville",
+        "Cannes",
+        "Nice",
+        "Biarritz"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "cannes"
+      ],
+      "difficulty": 1,
+      "explanation": "La récompense suprême y est la Palme d'or."
+    }
+  ]
+}

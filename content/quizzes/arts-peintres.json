@@ -1,0 +1,183 @@
+{
+  "id": "arts-peintres",
+  "title": "Peintres et chefs-d'œuvre",
+  "theme": "Culture générale",
+  "description": "Van Gogh, Monet, Picasso ou Vermeer : dix questions pour flâner dans les grands musées.",
+  "audience": "all",
+  "poster": "violet",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q3)",
+  "questions": [
+    {
+      "id": "ap-01",
+      "text": "Quel peintre néerlandais a peint « Les Tournesols » ?",
+      "options": [
+        "Rembrandt",
+        "Johannes Vermeer",
+        "Vincent Van Gogh",
+        "Piet Mondrian"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "van gogh",
+        "vincent van gogh"
+      ],
+      "difficulty": 1,
+      "explanation": "Il en a peint plusieurs versions, à Arles notamment."
+    },
+    {
+      "id": "ap-02",
+      "text": "Quel musée parisien, installé dans une ancienne gare, expose de nombreux impressionnistes ?",
+      "options": [
+        "Le musée d'Orsay",
+        "Le Louvre",
+        "Le Centre Pompidou",
+        "Le Petit Palais"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "orsay",
+        "musee d'orsay"
+      ],
+      "difficulty": 2,
+      "explanation": "La gare avait été construite pour l'Exposition universelle de 1900."
+    },
+    {
+      "id": "ap-03",
+      "text": "Quel peintre a donné son nom à l'impressionnisme avec « Impression, soleil levant » ?",
+      "options": [
+        "Auguste Renoir",
+        "Edgar Degas",
+        "Camille Pissarro",
+        "Claude Monet"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "monet",
+        "claude monet"
+      ],
+      "difficulty": 2,
+      "explanation": "Un critique s'est moqué du titre, et le mot est resté."
+    },
+    {
+      "id": "ap-04",
+      "text": "Quel sculpteur a réalisé « Le Penseur » ?",
+      "options": [
+        "Camille Claudel",
+        "Auguste Rodin",
+        "Aristide Maillol",
+        "Michel-Ange"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "rodin",
+        "auguste rodin"
+      ],
+      "difficulty": 1,
+      "explanation": "Une version en bronze se trouve au musée Rodin, à Paris."
+    },
+    {
+      "id": "ap-05",
+      "text": "Quel artiste espagnol a peint « Guernica » ?",
+      "options": [
+        "Pablo Picasso",
+        "Joan Miró",
+        "Francisco de Goya",
+        "Diego Velázquez"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "picasso",
+        "pablo picasso"
+      ],
+      "difficulty": 1,
+      "explanation": "Le tableau dénonce le bombardement de la ville en 1937."
+    },
+    {
+      "id": "ap-06",
+      "text": "Quel artiste a peint le plafond de la chapelle Sixtine, au Vatican ?",
+      "options": [
+        "Raphaël",
+        "Léonard de Vinci",
+        "Michel-Ange",
+        "Le Caravage"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "michel-ange",
+        "michelange"
+      ],
+      "difficulty": 2,
+      "explanation": "Il y travaille de 1508 à 1512."
+    },
+    {
+      "id": "ap-07",
+      "text": "Quel peintre a réalisé « La Jeune Fille à la perle » ?",
+      "options": [
+        "Rembrandt",
+        "Johannes Vermeer",
+        "Frans Hals",
+        "Pieter Bruegel"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "vermeer",
+        "johannes vermeer"
+      ],
+      "difficulty": 2,
+      "explanation": "Le tableau est conservé à La Haye, aux Pays-Bas."
+    },
+    {
+      "id": "ap-08",
+      "text": "Quel peintre norvégien a peint « Le Cri » ?",
+      "options": [
+        "Gustav Klimt",
+        "Egon Schiele",
+        "Paul Gauguin",
+        "Edvard Munch"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "munch",
+        "edvard munch"
+      ],
+      "difficulty": 2,
+      "explanation": "Il en a réalisé plusieurs versions."
+    },
+    {
+      "id": "ap-09",
+      "text": "Comment s'appelle le mouvement de Picasso et Braque, fait de formes géométriques ?",
+      "options": [
+        "Le cubisme",
+        "Le fauvisme",
+        "Le surréalisme",
+        "Le pointillisme"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "cubisme",
+        "le cubisme"
+      ],
+      "difficulty": 2,
+      "explanation": "Il naît au début du XXe siècle."
+    },
+    {
+      "id": "ap-10",
+      "text": "Quel peintre a fait scandale en 1863 avec « Le Déjeuner sur l'herbe » ?",
+      "options": [
+        "Gustave Courbet",
+        "Auguste Renoir",
+        "Édouard Manet",
+        "Paul Cézanne"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "manet",
+        "edouard manet"
+      ],
+      "difficulty": 3,
+      "explanation": "Refusé au Salon officiel, le tableau est montré au Salon des refusés."
+    }
+  ]
+}
