@@ -213,7 +213,7 @@ export const strings = {
     done: 'Test terminé.',
   },
   hostAway: {
-    title: 'L’hôte a perdu la connexion…',
+    title: 'En attente de l’hôte…',
     message: 'La partie va reprendre.',
     deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
   },

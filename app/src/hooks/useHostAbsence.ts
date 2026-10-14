@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { db } from '@/lib/firebase';
-import { armHostAbsenceMarker } from '@/lib/hostAbsence';
+import { armHostAbsenceMarker, markHostLeft } from '@/lib/hostAbsence';
 import { applyHostAction } from '@/lib/hostGame';
 
 export interface HostConnection {
@@ -16,6 +16,9 @@ export interface HostConnection {
   isOffline: boolean;
   // L'hôte vient de revenir d'une coupure et la partie est en pause (message sur l'écran de pause).
   returnedFromAbsence: boolean;
+  // Départ volontaire (spec 6.6) : heure de départ notée par l'app, jamais prise pour un retour tant que
+  // l'écran est encore affiché.
+  leave: () => Promise<void>;
 }
 
 // Absence de l'hôte (spec 6.6), tant que l'écran de la partie est affiché :
@@ -33,6 +36,7 @@ export function useHostAbsence(code: string, session: Session, serverOffsetMs: n
   const isConnectedRef = useRef(false);
   const offsetRef = useRef(serverOffsetMs);
   const isReturning = useRef(false);
+  const isLeaving = useRef(false);
   const hasLeftMarker = session.hostLeftAt !== undefined;
   const needsReturn = hasLeftMarker || lostAt !== null;
 
@@ -60,7 +64,7 @@ export function useHostAbsence(code: string, session: Session, serverOffsetMs: n
 
   // Retour après une coupure : une seule fois tant que l'écriture précédente n'est pas confirmée.
   useEffect(() => {
-    if (!isConnected || !needsReturn || isReturning.current) return;
+    if (!isConnected || !needsReturn || isReturning.current || isLeaving.current) return;
     isReturning.current = true;
     const buildReturn = (current: Session) =>
       hostReturnUpdate(current) ?? (lostAt === null ? null : connectionLostPauseUpdate(current, lostAt));
@@ -91,5 +95,9 @@ export function useHostAbsence(code: string, session: Session, serverOffsetMs: n
     canWrite: isConnected && !needsReturn,
     isOffline: lostAt !== null,
     returnedFromAbsence: returnedFromAbsence && session.status === 'paused',
+    leave: () => {
+      isLeaving.current = true;
+      return markHostLeft(code);
+    },
   };
 }

@@ -26,6 +26,16 @@ function leaveAfter(beforeLeave: () => Promise<unknown>, leave: () => void): voi
     .finally(leave);
 }
 
+// Écran de fin : aucune confirmation, mais onLeave est appelé quand l'écran est retiré (retour, geste,
+// lien). « Changer de jeu » ouvre l'accueil par-dessus : l'écran reste, onLeave n'est pas appelé.
+export function useEndScreenLeave(isActive: boolean, onLeave: () => void): void {
+  const navigation = useNavigation();
+  useEffect(() => {
+    if (!isActive) return;
+    return navigation.addListener('beforeRemove', onLeave);
+  }, [navigation, isActive, onLeave]);
+}
+
 export function useLeaveGuard(isActive: boolean, beforeLeave: () => Promise<unknown>): void {
   const navigation = useNavigation();
 

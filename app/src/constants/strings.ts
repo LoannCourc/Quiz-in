@@ -518,9 +518,9 @@ export const strings = {
     title: 'En attente de l’hôte…',
     message: 'La partie va reprendre.',
   },
-  // Joueurs pendant l'absence de l'hôte (coupure), spec 6.6.
+  // Joueurs pendant l'absence de l'hôte (départ ou coupure), spec 6.6.
   hostAway: {
-    title: 'L’hôte a perdu la connexion…',
+    title: 'En attente de l’hôte…',
     message: 'La partie va reprendre.',
     deletionIn: (time: string) => `Sans retour de l’hôte, la partie sera supprimée dans ${time}.`,
   },

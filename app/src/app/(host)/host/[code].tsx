@@ -40,7 +40,7 @@ import { useCastGame, type CastGame } from '@/hooks/useCastGame';
 import { useGameQuestions } from '@/hooks/useGameQuestions';
 import { useHostEngine } from '@/hooks/useHostEngine';
 import { useHostAbsence, type HostConnection } from '@/hooks/useHostAbsence';
-import { useLeaveGuard } from '@/hooks/useLeaveGuard';
+import { useEndScreenLeave, useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useLobbyCleanup } from '@/hooks/useLobbyCleanup';
 import { usePresence } from '@/hooks/usePresence';
@@ -140,9 +140,12 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
   const cast = useCastGame(code, session, connection.canWrite, serverOffsetMs);
-  // Départ volontaire confirmé : pause avant de quitter l'écran (pas hors ligne : elle partirait en retard).
+  // Départ volontaire confirmé : pause, puis heure de départ notée, avant de quitter l'écran (pas hors ligne :
+  // les écritures partiraient en retard ; l'écriture onDisconnect du serveur s'en charge).
   useLeaveGuard(inProgress, async () => {
-    if (connection.canWrite) await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
+    if (!connection.canWrite) return;
+    await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
+    await connection.leave();
   });
   useLobbyCleanup(code, session);
 
@@ -267,9 +270,17 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
     }, [code]),
   );
 
+  // Sortie de l'écran de fin autrement que par « Quitter » : heure de départ notée aussi.
+  const isQuitting = useRef(false);
+  useEndScreenLeave(session.status === 'ended' && connection.canWrite, () => {
+    if (isQuitting.current) return;
+    connection.leave().catch((error: unknown) => console.warn('[absence] Départ de l’hôte non noté', error));
+  });
+
   // Quitter : suppression de toute la partie, puis retour au catalogue.
   function quit() {
     confirmAction(strings.hostControls.quitConfirm, () => {
+      isQuitting.current = true;
       // Code oublié avant le retour à l'accueil : il revérifie la partie à reprendre dès qu'il réapparaît.
       void clearHostedGameCode().finally(() => router.replace('/'));
       // D'abord annuler l'écriture de départ, sinon elle recréerait un hostLeftAt orphelin.

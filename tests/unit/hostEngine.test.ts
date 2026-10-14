@@ -476,14 +476,24 @@ describe('resumeDecision (bouton « Reprendre la partie »)', () => {
     expect(resumeDecision({ kind: 'failed' }, HOST, NOW)).toBe('retry')
   })
 
-  test('hôte absent depuis 2 min : reprise ; depuis 6 min : code oublié', () => {
+  test('hôte absent depuis 2 min : reprise ; depuis 6 min : partie supprimée par l’hôte, puis code oublié', () => {
     expect(resumeDecision(found({ hostUid: HOST, status: 'paused', hostLeftAt: NOW - 2 * 60_000 }), HOST, NOW)).toBe('resume')
-    expect(resumeDecision(found({ hostUid: HOST, status: 'paused', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('forget')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'paused', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('delete')
     expect(HOST_DISCONNECT_TIMEOUT_S).toBe(300)
   })
 
-  test('partie terminée mais encore présente : le bouton reste', () => {
-    expect(resumeDecision(found({ hostUid: HOST, status: 'ended' }), HOST, NOW)).toBe('resume')
+  test('5 min pile : encore reprenable (même limite stricte que les règles de la base)', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'question', hostLeftAt: NOW - 300_000 }), HOST, NOW)).toBe('resume')
+  })
+
+  test('partie terminée récente : bouton oublié, rien de supprimé (podium des joueurs) ; terminée et abandonnée : supprimée', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended' }), HOST, NOW)).toBe('forget')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended', hostLeftAt: NOW - 60_000 }), HOST, NOW)).toBe('forget')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('delete')
+  })
+
+  test('partie d’un autre hôte abandonnée : jamais supprimée par moi, seulement oubliée', () => {
+    expect(resumeDecision(found({ hostUid: OTHER, status: 'paused', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('forget')
   })
 })
 

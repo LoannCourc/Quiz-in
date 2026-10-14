@@ -663,18 +663,20 @@ export type ResumeRead =
   | { kind: 'missing' }
   | { kind: 'failed' }
 
-// resume : bouton affiché ; forget : partie certainement finie, code effacé ; retry : doute, bouton gardé et
-// nouvel essai (jamais d'effacement sur une erreur).
-export type ResumeDecision = 'resume' | 'forget' | 'retry'
+// resume : bouton affiché ; forget : partie certainement finie, code effacé ; delete : partie abandonnée, que
+// l'hôte supprime avant d'effacer le code ; retry : doute, bouton gardé et nouvel essai (jamais d'effacement
+// sur une erreur).
+export type ResumeDecision = 'resume' | 'forget' | 'delete' | 'retry'
 
-// Le bouton ne disparaît que sur une réponse certaine : session supprimée, partie d'un autre hôte, ou hôte
-// absent depuis plus de HOST_DISCONNECT_TIMEOUT_S (joueurs et TV peuvent alors la supprimer). Une partie
-// terminée mais encore présente reste reprenable (« Quitter » efface le code).
+// Spec 6.6. Le bouton ne disparaît que sur une réponse certaine (lecture réussie) : session supprimée, partie
+// d'un autre hôte, partie terminée (podium gardé pour les joueurs : rien n'est supprimé), ou hôte absent
+// depuis plus de HOST_DISCONNECT_TIMEOUT_S (l'hôte supprime alors sa partie, comme joueurs et TV).
 export function resumeDecision(read: ResumeRead, uid: PlayerId, nowServer: number): ResumeDecision {
   if (read.kind === 'failed') return 'retry'
   if (read.kind === 'missing' || read.game.hostUid !== uid) return 'forget'
   const status = read.game.status ?? 'lobby'
-  return canDeleteAbandonedGame({ status, hostLeftAt: read.game.hostLeftAt }, nowServer) ? 'forget' : 'resume'
+  if (canDeleteAbandonedGame({ status, hostLeftAt: read.game.hostLeftAt }, nowServer)) return 'delete'
+  return status === 'ended' ? 'forget' : 'resume'
 }
 
 // États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).

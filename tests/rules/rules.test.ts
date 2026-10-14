@@ -1049,6 +1049,13 @@ describe('Hôte absent : hostLeftAt et suppression après délai', () => {
     expect(Math.abs(hostLeftAt - Date.now())).toBeLessThan(10_000)
   })
 
+  test('départ volontaire : l’hôte note lui-même hostLeftAt (heure du serveur), et lui seul peut supprimer avant le délai', async () => {
+    await seedSession({ status: 'paused' })
+    await assertSucceeds(db(HOST).ref(SESSION).update({ hostLeftAt: SERVER_TIME }))
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+    await assertSucceeds(db(HOST).ref(SESSION).remove())
+  })
+
   test('hostLeftAt dans le futur refusé, même pour l’hôte', async () => {
     await seedSession()
     await assertFails(db(HOST).ref(`${SESSION}/hostLeftAt`).set(Date.now() + 60_000))

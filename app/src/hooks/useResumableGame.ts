@@ -1,5 +1,6 @@
 import { firstValue } from '@shared/firstValue';
-import { resumeDecision, type ResumeDecision, type ResumeRead } from '@shared/hostEngine';
+import type { ResumeRead } from '@shared/hostEngine';
+import { runResumeCheck, type ResumeCheckDeps } from '@shared/resumeCheck';
 import type { GameStatus } from '@shared/types';
 import { useFocusEffect } from 'expo-router';
 import { get, onValue, ref } from 'firebase/database';
@@ -7,6 +8,7 @@ import { useCallback, useState } from 'react';
 
 import { db, ensureSignedIn } from '@/lib/firebase';
 import { clearHostedGameCode, loadHostedGameCode } from '@/lib/hostedGameStorage';
+import { deleteGame } from '@/lib/hostGame';
 
 // Lecture de la partie : au-delà, elle compte comme échouée (doute, nouvel essai).
 const READ_TIMEOUT_MS = 8_000;
@@ -60,23 +62,21 @@ async function readGame(code: string): Promise<ResumeRead> {
   }
 }
 
-async function checkStoredGame(): Promise<{ code: string; decision: ResumeDecision } | null> {
-  const code = await loadHostedGameCode();
-  if (!code) return null;
-  try {
-    const user = await withTimeout(ensureSignedIn(), READ_TIMEOUT_MS);
-    const [read, offset] = await Promise.all([readGame(code), readServerOffset()]);
-    return { code, decision: resumeDecision(read, user.uid, Date.now() + offset) };
-  } catch (error) {
-    console.warn('[resume] Connexion pas encore prête : nouvel essai', error);
-    return { code, decision: 'retry' };
-  }
-}
+// Accès réels de la vérification (shared/resumeCheck), chacun borné dans le temps.
+const RESUME_CHECK_DEPS: ResumeCheckDeps = {
+  uid: async () => (await withTimeout(ensureSignedIn(), READ_TIMEOUT_MS)).uid,
+  readGame,
+  serverNow: async () => Date.now() + (await readServerOffset()),
+  deleteGame: (code) => withTimeout(deleteGame(code), READ_TIMEOUT_MS),
+  forgetCode: clearHostedGameCode,
+  // Lignes [resume] dans la console (Metro) pour suivre les essais.
+  log: (message) => console.info(message),
+};
 
-// Code de la partie que cet appareil peut reprendre, ou null. Vérifié à chaque retour sur l'accueil (il reste
-// monté sous les autres écrans). Rien n'est affiché pendant la première vérification. Le code gardé n'est
-// effacé que sur une réponse certaine (resumeDecision) ; en cas de doute, le bouton reste et la lecture
-// recommence toutes les RETRY_DELAY_MS.
+// Code de la partie que cet appareil peut reprendre, ou null. Spec 6.6 : affiché dès qu'un code est gardé sur
+// le téléphone, puis vérifié à chaque retour sur l'accueil (il reste monté sous les autres écrans). Il ne
+// disparaît que sur une réponse certaine ; en cas de doute, il reste et la vérification recommence toutes
+// les RETRY_DELAY_MS.
 export function useResumableGame(): string | null {
   const [code, setCode] = useState<string | null>(null);
 
@@ -84,24 +84,25 @@ export function useResumableGame(): string | null {
     useCallback(() => {
       let isActive = true;
       let retryTimer: ReturnType<typeof setTimeout> | undefined;
-      setCode(null);
+      const retryLater = () => {
+        if (isActive) retryTimer = setTimeout(check, RETRY_DELAY_MS);
+      };
       const check = () => {
-        checkStoredGame()
-          .then(async (result) => {
+        loadHostedGameCode()
+          .then(async (stored) => {
             if (!isActive) return;
-            if (result === null) return setCode(null);
-            if (result.decision === 'forget') {
-              await clearHostedGameCode();
-              if (isActive) setCode(null);
-              return;
-            }
-            setCode(result.code);
-            if (result.decision === 'retry') retryTimer = setTimeout(check, RETRY_DELAY_MS);
+            setCode(stored);
+            if (stored === null) return;
+            console.info(`[resume] ${stored} : code gardé, bouton affiché, vérification…`);
+            const outcome = await runResumeCheck(stored, RESUME_CHECK_DEPS);
+            if (!isActive) return;
+            if (outcome === 'forgotten') setCode(null);
+            if (outcome === 'retry') retryLater();
           })
           .catch((error: unknown) => {
             // Erreur imprévue : le code gardé n'est jamais effacé, nouvel essai.
-            console.warn('[resume] Vérification de la partie à reprendre impossible : nouvel essai', error);
-            if (isActive) retryTimer = setTimeout(check, RETRY_DELAY_MS);
+            console.warn('[resume] Vérification impossible : bouton gardé, nouvel essai', error);
+            retryLater();
           });
       };
       check();

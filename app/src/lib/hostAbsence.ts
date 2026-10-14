@@ -1,4 +1,4 @@
-import { onDisconnect, ref, remove, serverTimestamp } from 'firebase/database';
+import { onDisconnect, ref, remove, serverTimestamp, update } from 'firebase/database';
 
 import { db } from './firebase';
 
@@ -14,6 +14,15 @@ export function armHostAbsenceMarker(code: string): Promise<void> {
 // hostLeftAt orphelin sous une session supprimée.
 export function cancelHostAbsenceMarker(code: string): Promise<void> {
   return onDisconnect(ref(db, `sessions/${code}`)).cancel();
+}
+
+// Départ volontaire de l'hôte (spec 6.6 : retour confirmé pendant la partie, sortie de l'écran de fin
+// autrement que par « Quitter ») : l'app note elle-même l'heure de départ, puisque sa connexion reste
+// ouverte. L'écriture onDisconnect est annulée, sinon la fermeture de l'app, plus tard, repousserait cette
+// heure. À son retour sur la partie, useHostAbsence la réarme et efface hostLeftAt (hostReturnUpdate).
+export async function markHostLeft(code: string): Promise<void> {
+  await cancelHostAbsenceMarker(code);
+  await update(ref(db, `sessions/${code}`), { hostLeftAt: serverTimestamp() });
 }
 
 // Nettoyage par un joueur ou la TV, une fois le délai dépassé (les règles le refusent avant).
