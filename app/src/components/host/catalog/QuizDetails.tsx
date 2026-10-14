@@ -1,5 +1,6 @@
 import { QUESTIONS_PER_GAME } from '@shared/constants';
 import { drawCategoriesOf } from '@shared/drawWords';
+import { gameQuestionCount, poolOf } from '@shared/questionPool';
 import { estimateGameMinutes, quizLevel } from '@shared/quizCatalog';
 import type { QuizSummary, SessionSettings, SoundSettings } from '@shared/types';
 import { useState } from 'react';
@@ -52,7 +53,7 @@ export function QuizDetails(props: QuizDetailsProps) {
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const level = quizLevel(quiz);
-  const questionCount = Math.min(quiz.questionCount, QUESTIONS_PER_GAME);
+  const questionCount = poolOf(settings) ? gameQuestionCount(settings) : Math.min(quiz.questionCount, QUESTIONS_PER_GAME);
 
   const footer = (
     <View style={styles.footer}>

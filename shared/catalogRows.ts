@@ -32,6 +32,34 @@ export function filterByTheme(entries: readonly QuizEntry[], theme: string | nul
   return entries.filter((entry) => theme === null || entry.theme === theme)
 }
 
+// Thèmes choisis dans le catalogue : aucun (rangées complètes, pas de partie tirée), « Tout », ou une
+// liste. Quiz : un choix ouvre la barre « Nombre de questions » (questions tirées dans l'union des thèmes).
+export type ThemeSelection = 'all' | readonly string[]
+
+export const NO_THEME: ThemeSelection = []
+
+// Thèmes de la sélection (« Tout » : tous ceux du catalogue).
+export function selectedThemes(selection: ThemeSelection, allThemes: readonly string[]): string[] {
+  return selection === 'all' ? [...allThemes] : [...selection]
+}
+
+export function isThemeSelected(selection: ThemeSelection, theme: string | null): boolean {
+  return theme === null ? selection === 'all' : selection !== 'all' && selection.includes(theme)
+}
+
+// Appui sur une puce : « Tout » (theme null) s'active ou se retire ; un thème s'ajoute ou se retire
+// (depuis « Tout », il devient le seul choisi).
+export function toggleTheme(selection: ThemeSelection, theme: string | null): ThemeSelection {
+  if (theme === null) return selection === 'all' ? NO_THEME : 'all'
+  if (selection === 'all') return [theme]
+  return selection.includes(theme) ? selection.filter((chosen) => chosen !== theme) : [...selection, theme]
+}
+
+// Fiches des thèmes choisis ; aucun thème : toutes.
+export function filterByThemes(entries: readonly QuizEntry[], themes: readonly string[]): QuizEntry[] {
+  return themes.length === 0 ? [...entries] : entries.filter((entry) => themes.includes(entry.theme))
+}
+
 // Recherche par titre, sans tenir compte des majuscules, des accents ni de la ponctuation.
 export function searchByTitle(entries: readonly QuizEntry[], query: string): QuizEntry[] {
   const needle = normalizeAnswer(query)

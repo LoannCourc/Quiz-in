@@ -71,24 +71,27 @@ export default function CatalogDemoScreen() {
       />
     );
   }
+  // CatalogView porte son propre écran (barre « Nombre de questions » fixe en bas).
+  if (game) {
+    return (
+      <CatalogView
+        entries={DEMO_ENTRIES}
+        gameType={game}
+        onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
+        onBack={() => router.setParams({ game: undefined })}
+        played={played}
+        onContinueThemes={game === 'quiz' ? () => undefined : undefined}
+      />
+    );
+  }
   return (
     <Screen>
-      {game ? (
-        <CatalogView
-          entries={DEMO_ENTRIES}
-          gameType={game}
-          onOpenQuiz={(id) => router.push({ pathname: '/debug/catalog', params: { quiz: id } })}
-          onBack={() => router.setParams({ game: undefined })}
-          played={played}
-        />
-      ) : (
-        <HomeView
-          isBlindTestEnabled={blindtest !== '0'}
-          isDrawEnabled={draw !== '0'}
-          onOpenGame={(type) => router.setParams({ game: type })}
-          onJoinWithCode={() => router.push('/join')}
-        />
-      )}
+      <HomeView
+        isBlindTestEnabled={blindtest !== '0'}
+        isDrawEnabled={draw !== '0'}
+        onOpenGame={(type) => router.setParams({ game: type })}
+        onJoinWithCode={() => router.push('/join')}
+      />
     </Screen>
   );
 }

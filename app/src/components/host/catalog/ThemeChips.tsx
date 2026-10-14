@@ -1,3 +1,4 @@
+import { isThemeSelected, type ThemeSelection } from '@shared/catalogRows';
 import { themeIconOf } from '@shared/themeIcons';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -9,14 +10,15 @@ import { Spacing } from '@/constants/theme';
 
 interface ThemeChipsProps {
   themes: string[];
-  // null : « Tout ».
-  selected: string | null;
-  onSelect: (theme: string | null) => void;
+  selection: ThemeSelection;
+  // Appui sur une puce ; null : « Tout » (toggleTheme, shared/catalogRows.ts).
+  onToggle: (theme: string | null) => void;
 }
 
 // Puces de thème du catalogue, sur une ligne qui défile horizontalement : pastille ronde à la couleur
-// du thème avec son icône (maquette I2), puis le libellé ; « Tout » sans pastille.
-export function ThemeChips({ themes, selected, onSelect }: ThemeChipsProps) {
+// du thème avec son icône (maquette I2), puis le libellé ; « Tout » sans pastille. Plusieurs thèmes peuvent
+// être choisis (Quiz : questions tirées dans leur union).
+export function ThemeChips({ themes, selection, onToggle }: ThemeChipsProps) {
   const choices: { value: string | null; label: string }[] = [
     { value: null, label: strings.catalog.allThemes },
     ...themes.map((theme) => ({ value: theme, label: theme })),
@@ -24,13 +26,13 @@ export function ThemeChips({ themes, selected, onSelect }: ThemeChipsProps) {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.row}>
       {choices.map((choice) => {
-        const isSelected = choice.value === selected;
+        const isSelected = isThemeSelected(selection, choice.value);
         return (
           <Pressable
             key={choice.label}
-            accessibilityRole="radio"
-            accessibilityState={{ selected: isSelected }}
-            onPress={() => onSelect(choice.value)}
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: isSelected }}
+            onPress={() => onToggle(choice.value)}
             style={[styles.chip, choice.value !== null && styles.chipWithIcon, isSelected && styles.selectedChip]}>
             {choice.value !== null && <ThemeDisc theme={choice.value} />}
             <Text style={[styles.label, isSelected && styles.selectedLabel]}>{choice.label}</Text>

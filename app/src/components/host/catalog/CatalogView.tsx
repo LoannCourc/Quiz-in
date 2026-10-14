@@ -1,8 +1,22 @@
-import { catalogRows, catalogThemes, filterByGameType, filterByTheme, searchByTitle, sortCatalog, type CatalogSortId } from '@shared/catalogRows';
+import {
+  catalogRows,
+  catalogThemes,
+  filterByGameType,
+  filterByThemes,
+  NO_THEME,
+  searchByTitle,
+  selectedThemes,
+  sortCatalog,
+  toggleTheme,
+  type CatalogSortId,
+  type ThemeSelection,
+} from '@shared/catalogRows';
+import { availableQuestionCounts, poolQuestionTotal, poolQuizzes, QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
@@ -12,6 +26,7 @@ import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
 
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
+import { QuestionCountBar } from './QuestionCountBar';
 import { QuizPoster } from './QuizPoster';
 import { SortChips } from './SortChips';
 import { ThemeChips } from './ThemeChips';
@@ -27,6 +42,8 @@ interface CatalogViewProps {
   onBack: () => void;
   // Quiz déjà joués sur ce téléphone (lot E) : repère sur l'affiche, tri « Pas encore faits ».
   played: ReadonlySet<string>;
+  // Quiz : thèmes choisis et nombre de questions (barre du bas), vers la fiche de la partie tirée.
+  onContinueThemes?: (themes: string[], questionCount: number) => void;
 }
 
 // Largeur d'une affiche : trois par largeur de colonne, dans les bornes du thème.
@@ -45,8 +62,11 @@ function threeAcross(columnWidth: number): number {
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
 // démo. En-tête : retour à l'accueil, nom du jeu, recherche ; puis le filtre des thèmes et les rangées.
-export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played }: CatalogViewProps) {
-  const [theme, setTheme] = useState<string | null>(null);
+// Quiz : dès qu'un thème est choisi (« Tout » compris), la barre « Nombre de questions » apparaît en bas ;
+// les affiches restent des quiz de 10 questions (fiche, sans barre).
+export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, onContinueThemes }: CatalogViewProps) {
+  const [themeSelection, setThemeSelection] = useState<ThemeSelection>(NO_THEME);
+  const [questionCount, setQuestionCount] = useState(QUIZ_QUESTION_COUNTS[0]);
   // null : les rangées ; sinon une grille dans l'ordre du tri.
   const [sort, setSort] = useState<CatalogSortId | null>(null);
   // null : recherche fermée.
@@ -57,80 +77,123 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   const gridPosterWidth = gridPosterWidthFor(columnWidth);
   const entries = useMemo(() => filterByGameType(allEntries, gameType), [allEntries, gameType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
+  const chosenThemes = selectedThemes(themeSelection, themes);
+  const shown = filterByThemes(entries, chosenThemes);
   const isSearching = query !== null && query.trim() !== '';
+  const footer =
+    onContinueThemes && chosenThemes.length > 0 ? (
+      <ThemesCountBar
+        entries={entries}
+        themes={chosenThemes}
+        value={questionCount}
+        onChange={setQuestionCount}
+        onContinue={(count) => onContinueThemes(chosenThemes, count)}
+      />
+    ) : undefined;
 
   return (
-    <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
-      <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={strings.home.back} hitSlop={Spacing.two} onPress={onBack} style={styles.iconButton}>
-          <View style={styles.backIcon}>
-            <SettingsIcon name="chevron" color={AppColors.text} />
-          </View>
-        </Pressable>
-        {query === null ? (
-          <Text style={styles.brand} numberOfLines={1}>
-            {strings.home.games[gameType].name}
-          </Text>
-        ) : (
-          <TextInput
-            autoFocus
-            value={query}
-            onChangeText={setQuery}
-            placeholder={strings.catalog.searchPlaceholder}
-            placeholderTextColor={AppColors.textMuted}
-            accessibilityLabel={strings.catalog.search}
-            returnKeyType="search"
-            style={styles.searchInput}
-          />
+    <Screen footer={footer}>
+      <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
+        <View style={styles.header}>
+          <Pressable accessibilityRole="button" accessibilityLabel={strings.home.back} hitSlop={Spacing.two} onPress={onBack} style={styles.iconButton}>
+            <View style={styles.backIcon}>
+              <SettingsIcon name="chevron" color={AppColors.text} />
+            </View>
+          </Pressable>
+          {query === null ? (
+            <Text style={styles.brand} numberOfLines={1}>
+              {strings.home.games[gameType].name}
+            </Text>
+          ) : (
+            <TextInput
+              autoFocus
+              value={query}
+              onChangeText={setQuery}
+              placeholder={strings.catalog.searchPlaceholder}
+              placeholderTextColor={AppColors.textMuted}
+              accessibilityLabel={strings.catalog.search}
+              returnKeyType="search"
+              style={styles.searchInput}
+            />
+          )}
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={query === null ? strings.catalog.search : strings.catalog.closeSearch}
+            hitSlop={Spacing.two}
+            onPress={() => setQuery(query === null ? '' : null)}
+            style={styles.iconButton}>
+            <LineIcon name={query === null ? 'search' : 'close'} />
+          </Pressable>
+        </View>
+
+        {entries.length > 0 && (
+          <ThemeChips themes={themes} selection={themeSelection} onToggle={(theme) => setThemeSelection((current) => toggleTheme(current, theme))} />
         )}
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={query === null ? strings.catalog.search : strings.catalog.closeSearch}
-          hitSlop={Spacing.two}
-          onPress={() => setQuery(query === null ? '' : null)}
-          style={styles.iconButton}>
-          <LineIcon name={query === null ? 'search' : 'close'} />
-        </Pressable>
+        {entries.length > 0 && !isSearching && <SortChips selected={sort} onSelect={setSort} />}
+
+        {entries.length === 0 ? (
+          <Text style={textStyles.body}>{strings.catalog.emptyCatalog}</Text>
+        ) : isSearching ? (
+          <PosterGrid
+            quizzes={searchByTitle(shown, query)}
+            emptyText={strings.catalog.noSearchResult}
+            posterWidth={gridPosterWidth}
+            onOpenQuiz={onOpenQuiz}
+            played={played}
+          />
+        ) : sort !== null ? (
+          <PosterGrid
+            quizzes={sortCatalog(shown, sort, played)}
+            emptyText={sort === 'notPlayed' ? strings.catalog.allPlayed : strings.catalog.noMatch}
+            posterWidth={gridPosterWidth}
+            onOpenQuiz={onOpenQuiz}
+            played={played}
+          />
+        ) : (
+          <Rows entries={shown} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
+        )}
       </View>
+    </Screen>
+  );
+}
 
-      {entries.length > 0 && <ThemeChips themes={themes} selected={theme} onSelect={setTheme} />}
-      {entries.length > 0 && !isSearching && <SortChips selected={sort} onSelect={setSort} />}
+interface ThemesCountBarProps {
+  entries: QuizEntry[];
+  themes: string[];
+  value: number;
+  onChange: (count: number) => void;
+  onContinue: (count: number) => void;
+}
 
-      {entries.length === 0 ? (
-        <Text style={textStyles.body}>{strings.catalog.emptyCatalog}</Text>
-      ) : isSearching ? (
-        <PosterGrid
-          quizzes={searchByTitle(filterByTheme(entries, theme), query)}
-          emptyText={strings.catalog.noSearchResult}
-          posterWidth={gridPosterWidth}
-          onOpenQuiz={onOpenQuiz}
-          played={played}
-        />
-      ) : sort !== null ? (
-        <PosterGrid
-          quizzes={sortCatalog(filterByTheme(entries, theme), sort, played)}
-          emptyText={sort === 'notPlayed' ? strings.catalog.allPlayed : strings.catalog.noMatch}
-          posterWidth={gridPosterWidth}
-          onOpenQuiz={onOpenQuiz}
-          played={played}
-        />
-      ) : (
-        <Rows entries={entries} theme={theme} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
-      )}
-    </View>
+// Quiz : nombre de questions tirées dans les thèmes choisis ; options au-delà de leurs questions grisées.
+// Choix devenu impossible (thème retiré) : le plus grand possible.
+function ThemesCountBar({ entries, themes, value, onChange, onContinue }: ThemesCountBarProps) {
+  const total = poolQuestionTotal(poolQuizzes(entries, { kind: 'themes', themes }, 'quiz'));
+  const available = availableQuestionCounts(QUIZ_QUESTION_COUNTS, total);
+  const count = available.includes(value) ? value : (available.at(-1) ?? value);
+  return (
+    <QuestionCountBar
+      options={QUIZ_QUESTION_COUNTS}
+      available={available}
+      value={count}
+      onChange={onChange}
+      summary={strings.catalog.questionCount.themesSummary(total)}
+      note={available.length < QUIZ_QUESTION_COUNTS.length ? strings.catalog.questionCount.themesTooSmall(themes.length, total) : undefined}
+      onContinue={() => onContinue(count)}
+      isContinueDisabled={available.length === 0}
+    />
   );
 }
 
 interface RowsProps {
   entries: QuizEntry[];
-  theme: string | null;
   posterWidth: number;
   onOpenQuiz: (quizId: string) => void;
   played: ReadonlySet<string>;
 }
 
-function Rows({ entries, theme, posterWidth, onOpenQuiz, played }: RowsProps) {
-  const rows = catalogRows(entries, theme);
+function Rows({ entries, posterWidth, onOpenQuiz, played }: RowsProps) {
+  const rows = catalogRows(entries, null);
   if (rows.length === 0) return <Text style={textStyles.body}>{strings.catalog.noMatch}</Text>;
   return (
     <>

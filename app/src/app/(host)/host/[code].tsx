@@ -12,7 +12,6 @@ import {
   type HostControls,
   type SessionUpdate,
 } from '@shared/hostEngine';
-import { drawRoundsOf } from '@shared/drawGame';
 import { withStoredDefaults } from '@shared/publicFields';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import { soundSettingsOf } from '@shared/sound';
@@ -120,13 +119,7 @@ function isInProgress(session: Session): boolean {
 }
 
 function HostGame({ code, session }: { code: string; session: Session }) {
-  const questions = useGameQuestions(
-    code,
-    session.quizId,
-    session.settings.answerMode,
-    session.settings.drawCategories,
-    drawRoundsOf(session.settings),
-  );
+  const questions = useGameQuestions(code, session);
   const serverOffsetMs = useServerTimeOffset();
   const uid = session.hostUid;
   const isRegistered = session.players[uid] !== undefined;

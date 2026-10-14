@@ -7,6 +7,11 @@ import {
   expertQuizzes,
   featuredQuizzes,
   filterByGameType,
+  filterByThemes,
+  isThemeSelected,
+  NO_THEME,
+  selectedThemes,
+  toggleTheme,
   newestQuizzes,
   searchByTitle,
   sortCatalog,
@@ -106,5 +111,28 @@ describe('tris du catalogue (lot E)', () => {
 
   test('A à Z : ordre alphabétique français (accents compris)', () => {
     expect(ids(sortCatalog(entries, 'alphabetical', new Set()))).toEqual(['Atlas', 'Bébés', 'Micro', 'Zèbres'])
+  })
+})
+
+describe('Choix des thèmes', () => {
+  const all = ['Histoire', 'Sport', 'Géo']
+
+  test('Tout, puis un thème : il devient le seul ; un second s’ajoute ; un appui le retire', () => {
+    let selection = toggleTheme(NO_THEME, null)
+    expect(selectedThemes(selection, all)).toEqual(all)
+    expect(isThemeSelected(selection, null)).toBe(true)
+    selection = toggleTheme(selection, 'Sport')
+    expect(selection).toEqual(['Sport'])
+    selection = toggleTheme(selection, 'Histoire')
+    expect(selectedThemes(selection, all)).toEqual(['Sport', 'Histoire'])
+    selection = toggleTheme(selection, 'Sport')
+    expect(selection).toEqual(['Histoire'])
+    expect(toggleTheme('all', null)).toEqual([])
+  })
+
+  test('filtre par l’union des thèmes ; aucun thème : tout', () => {
+    const entries = [quiz('a', { theme: 'Histoire' }), quiz('b', { theme: 'Sport' }), quiz('c', { theme: 'Géo' })]
+    expect(filterByThemes(entries, ['Histoire', 'Géo']).map((entry) => entry.id)).toEqual(['a', 'c'])
+    expect(filterByThemes(entries, [])).toHaveLength(3)
   })
 })

@@ -1,0 +1,150 @@
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
+import { SubmitButton } from '@/components/ui/SubmitButton';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { strings } from '@/constants/strings';
+import { Spacing } from '@/constants/theme';
+
+interface QuestionCountBarProps {
+  // Choix proposés (Quiz : 10 / 20 / 30 ; Bluff : 10 / 15 / 20) et ceux que l'ensemble permet.
+  options: readonly number[];
+  available: readonly number[];
+  value: number;
+  onChange: (count: number) => void;
+  // À droite du titre : « 2 thèmes · 50 questions », « Choisis un quiz »…
+  summary: string;
+  // Sous le contrôle : pourquoi des options sont grisées (« Ces thèmes n'ont que 20 questions »).
+  note?: string;
+  // Bluff : lien « Voir » (feuille de Mon mélange) à côté du résumé.
+  onShowSummary?: () => void;
+  onContinue: () => void;
+  isContinueDisabled?: boolean;
+}
+
+// Barre fixe en bas du catalogue (maquettes S2 et BL4) : « NOMBRE DE QUESTIONS », contrôle segmenté
+// (options impossibles grisées) et CONTINUER. Commune au Quiz et au Bluff.
+export function QuestionCountBar(props: QuestionCountBarProps) {
+  const { options, available, value, onChange, summary, note, onShowSummary, onContinue, isContinueDisabled = false } = props;
+  const texts = strings.catalog.questionCount;
+  return (
+    <View style={styles.bar}>
+      <View style={styles.header}>
+        <Text style={styles.title} numberOfLines={1}>
+          {texts.title}
+        </Text>
+        <View style={styles.summaryRow}>
+          <Text style={styles.summary} numberOfLines={1}>
+            {summary}
+          </Text>
+          {onShowSummary && (
+            <Pressable accessibilityRole="link" hitSlop={Spacing.two} onPress={onShowSummary}>
+              <Text style={styles.link}>{texts.show}</Text>
+            </Pressable>
+          )}
+        </View>
+      </View>
+      <View style={styles.track} accessibilityRole="radiogroup">
+        {options.map((count) => {
+          const isAvailable = available.includes(count);
+          const isSelected = count === value && isAvailable;
+          return (
+            <Pressable
+              key={count}
+              accessibilityRole="radio"
+              accessibilityLabel={texts.option(count)}
+              accessibilityState={{ selected: isSelected, disabled: !isAvailable }}
+              disabled={!isAvailable}
+              onPress={() => onChange(count)}
+              style={[styles.segment, isSelected && styles.segmentSelected]}>
+              <ButtonLabel style={[styles.segmentLabel, isSelected && styles.segmentLabelSelected, !isAvailable && styles.segmentLabelDisabled]}>
+                {String(count)}
+              </ButtonLabel>
+            </Pressable>
+          );
+        })}
+      </View>
+      {note && <Text style={styles.note}>{note}</Text>}
+      <SubmitButton label={texts.continue} onPress={onContinue} disabled={isContinueDisabled} />
+    </View>
+  );
+}
+
+const SEGMENT_HEIGHT = 44;
+
+const styles = StyleSheet.create({
+  bar: {
+    gap: Spacing.three,
+    padding: Spacing.three,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.panel,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.two,
+  },
+  title: {
+    ...TEXT_FIT_SAFETY,
+    flexShrink: 0,
+    color: AppColors.questionMeta,
+    fontFamily: AppFonts.black,
+    fontSize: 11,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+  },
+  summaryRow: {
+    flexShrink: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  summary: {
+    flexShrink: 1,
+    color: AppColors.text,
+    fontFamily: AppFonts.extraBold,
+    fontSize: 13,
+  },
+  link: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 13,
+    textDecorationLine: 'underline',
+  },
+  track: {
+    flexDirection: 'row',
+    padding: Spacing.one,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.inkSurface,
+  },
+  segment: {
+    flex: 1,
+    height: SEGMENT_HEIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: AppSizes.radiusPill,
+  },
+  segmentSelected: {
+    backgroundColor: AppColors.accent,
+  },
+  segmentLabel: {
+    color: AppColors.text,
+    fontFamily: AppFonts.black,
+    fontSize: 16,
+  },
+  segmentLabelSelected: {
+    color: AppColors.onAccent,
+  },
+  note: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
+    textAlign: 'center',
+  },
+  segmentLabelDisabled: {
+    color: AppColors.textMuted,
+    opacity: 0.4,
+  },
+});

@@ -15,6 +15,7 @@ import {
   type TeamRefusal,
 } from '@shared/teams';
 import { soundSettingsOf } from '@shared/sound';
+import { poolOf } from '@shared/questionPool';
 import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { router, useFocusEffect } from 'expo-router';
@@ -32,6 +33,7 @@ import type { AudioUrlsStatus, GameAudioUrls } from '@/hooks/useAudioUrls';
 import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { confirmAction } from '@/lib/confirm';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
+import { markQuestionsPlayed } from '@/lib/playedQuestions';
 import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
 import { consumeTvRetry } from '@/lib/tvRetry';
@@ -149,7 +151,11 @@ export function HostLobby(props: HostLobbyProps) {
       const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio, singleDrawer);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
       // Lot E : le quiz porte le repère « déjà fait » dans le catalogue de ce téléphone.
-      if (outcome.ok) void markQuizPlayed(session.quizId);
+      if (outcome.ok) {
+        // « Déjà fait » : un quiz choisi seul ; questions jouées : toujours (tirages suivants).
+        if (poolOf(session.settings) === null) void markQuizPlayed(session.quizId);
+        void markQuestionsPlayed(questions.refs);
+      }
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
     } catch (error) {
@@ -203,7 +209,7 @@ export function HostLobby(props: HostLobbyProps) {
     <Screen footer={footer}>
       <View style={styles.top}>
         <View style={styles.headerRow}>
-          <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} drawRounds={drawRoundsOf(session.settings)} />}</View>
+          <View style={styles.fill}>{header ?? <LobbyHeader quizId={session.quizId} drawRounds={drawRoundsOf(session.settings)} settings={session.settings} />}</View>
           <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
         </View>
         {cast.isTvConnected ? (

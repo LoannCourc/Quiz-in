@@ -1,36 +1,37 @@
-import { DRAW_ROUNDS_DEFAULT, drawGameQuestions } from '@shared/drawGame';
+import { drawGameQuestions, drawRoundsOf } from '@shared/drawGame';
 import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
 import { selectGameQuestions } from '@shared/hostEngine';
-import type { AnswerMode, GameQuestion } from '@shared/types';
+import { gameQuestionCount, poolOf, questionRef, type QuestionPool } from '@shared/questionPool';
+import type { GameQuestion, Session } from '@shared/types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { toErrorMessage } from '@/lib/errors';
 import { loadQuizQuestions } from '@/lib/hostGame';
+import { drawPoolGame, loadDrawnQuestions, type LoadedQuestions } from '@/lib/poolQuestions';
 
 export type GameQuestionsState =
   | { kind: 'loading' }
   | { kind: 'error'; detail: string }
-  // questions : les questions de la partie (au plus QUESTIONS_PER_GAME, dans l'ordre du quiz).
-  | { kind: 'ready'; questions: GameQuestion[] };
+  // questions : les questions de la partie, dans l'ordre ; refs : « quizId/questionId » de chacune
+  // (mémoire des questions jouées). Dessine-moi : pas de refs (mots tirés dans le code).
+  | { kind: 'ready'; questions: GameQuestion[]; refs: string[] };
 
-// Questions de la partie, chargées une fois par l'hôte. Rien de critique n'est gardé ici :
-// après une relance de l'app, elles sont simplement relues. Dessine-moi : manches tirées du code de la
-// partie et des catégories choisies (mots dans le code, toujours les mêmes), sans lecture dans la base.
-export function useGameQuestions(
-  code: string,
-  quizId: string,
-  answerMode: AnswerMode,
-  drawCategories: readonly string[] = [],
-  drawRounds = DRAW_ROUNDS_DEFAULT,
-): GameQuestionsState {
-  const isBluff = answerMode === 'bluff';
-  const isDraw = answerMode === 'draw';
-  // État étiqueté par quiz : après « Changer de jeu », les questions de l'ancien quiz ne sont jamais rendues
-  // (chargement tant que celles du nouveau ne sont pas arrivées).
-  const [loaded, setLoaded] = useState<{ quizId: string; state: GameQuestionsState }>({ quizId, state: { kind: 'loading' } });
-  const state: GameQuestionsState = loaded.quizId === quizId ? loaded.state : { kind: 'loading' };
-  // Clé texte : un nouveau tableau de même contenu (session relue) ne retire pas les mots.
-  const categoriesKey = drawCategoriesOf(drawCategories).map(drawCategoryId).join(',');
+// Questions de la partie, chargées par l'hôte. Un quiz seul : ses 10 premières questions, relues après une
+// relance de l'app. Ensemble de quiz (thèmes, Mon mélange) : tirées au salon et écrites dans la partie
+// (questionRefs), relues ensuite telles quelles. Dessine-moi : manches tirées du code de la partie et des
+// catégories choisies (mots dans le code, toujours les mêmes), sans lecture dans la base.
+export function useGameQuestions(code: string, session: Session): GameQuestionsState {
+  const { quizId, settings, questionRefs } = session;
+  const isBluff = settings.answerMode === 'bluff';
+  const isDraw = settings.answerMode === 'draw';
+  // Clés texte : un nouveau tableau de même contenu (session relue) ne relance rien.
+  const categoriesKey = drawCategoriesOf(settings.drawCategories ?? []).map(drawCategoryId).join(',');
+  const drawRounds = drawRoundsOf(settings);
+  const pool = poolOf(settings);
+  const loadKey = JSON.stringify({ quizId, isBluff, pool, count: gameQuestionCount(settings), refs: questionRefs ?? null } satisfies LoadInput);
+  // État étiqueté par sa clé : après « Changer de jeu », les questions de l'ancien jeu ne sont jamais rendues
+  // (chargement tant que les nouvelles ne sont pas arrivées).
+  const [loaded, setLoaded] = useState<{ key: string; state: GameQuestionsState }>({ key: loadKey, state: { kind: 'loading' } });
   const drawQuestions = useMemo(
     () => (isDraw ? drawGameQuestions(code, drawRounds, categoriesKey === '' ? [] : categoriesKey.split(',')) : null),
     [code, isDraw, categoriesKey, drawRounds],
@@ -39,18 +40,37 @@ export function useGameQuestions(
   useEffect(() => {
     if (isDraw) return;
     let isActive = true;
-    loadQuizQuestions(quizId, isBluff)
-      .then((questions) => {
-        if (isActive) setLoaded({ quizId, state: { kind: 'ready', questions: selectGameQuestions(questions) } });
+    loadQuestions(code, JSON.parse(loadKey) as LoadInput)
+      .then((result) => {
+        if (isActive) setLoaded({ key: loadKey, state: { kind: 'ready', ...result } });
       })
       .catch((error: unknown) => {
         console.error('[engine] Chargement des questions impossible', error);
-        if (isActive) setLoaded({ quizId, state: { kind: 'error', detail: toErrorMessage(error) } });
+        if (isActive) setLoaded({ key: loadKey, state: { kind: 'error', detail: toErrorMessage(error) } });
       });
     return () => {
       isActive = false;
     };
-  }, [code, quizId, isBluff, isDraw]);
+  }, [code, loadKey, isDraw]);
 
-  return drawQuestions ? { kind: 'ready', questions: drawQuestions } : state;
+  if (drawQuestions) return { kind: 'ready', questions: drawQuestions, refs: [] };
+  return loaded.key === loadKey ? loaded.state : { kind: 'loading' };
+}
+
+// Ce qui décide des questions à charger (clé texte de l'effet).
+interface LoadInput {
+  quizId: string;
+  isBluff: boolean;
+  pool: QuestionPool | null;
+  count: number;
+  refs: string[] | null;
+}
+
+async function loadQuestions(code: string, { quizId, isBluff, pool, count, refs }: LoadInput): Promise<LoadedQuestions> {
+  if (pool === null) {
+    const questions = selectGameQuestions(await loadQuizQuestions(quizId, isBluff));
+    return { questions, refs: questions.map((question) => questionRef(quizId, question.id)) };
+  }
+  if (refs) return loadDrawnQuestions(refs, isBluff);
+  return drawPoolGame(code, pool, count, isBluff);
 }

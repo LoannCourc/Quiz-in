@@ -152,6 +152,24 @@ export const strings = {
     emptyCatalog: 'Aucun quiz disponible.',
     noMatch: 'Aucun quiz pour ce thème.',
     allThemes: 'Tout',
+    // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool).
+    themesGame: {
+      allThemes: 'Tous les thèmes',
+      themes: (count: number) => `${count} thèmes`,
+      description: (count: number, total: number) =>
+        `${count} questions tirées au hasard parmi les ${total} de ces thèmes, en commençant par celles jamais jouées sur ce téléphone.`,
+      unavailable: 'Cette sélection de thèmes n’est plus disponible.',
+    },
+    // Barre « Nombre de questions » (Quiz : thèmes choisis ; Bluff : Mon mélange).
+    questionCount: {
+      title: 'Nombre de questions',
+      option: (count: number) => `${count} questions`,
+      continue: 'Continuer',
+      show: 'Voir',
+      themesTooSmall: (themes: number, total: number) =>
+        `${themes > 1 ? 'Ces thèmes n’ont' : 'Ce thème n’a'} que ${total} questions : les options grisées sont impossibles.`,
+      themesSummary: (total: number) => `${total} questions`,
+    },
     // Dessine-moi : catégories des mots de la partie.
     drawCategories: {
       title: 'Quels mots dessiner ?',
@@ -329,6 +347,8 @@ export const strings = {
     notHost: 'Partie introuvable, ou tu n’en es pas l’hôte.',
     codeLabel: 'Code de la partie',
     quizMeta: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
+    // Bluff, Mon mélange : partie tirée dans plusieurs quiz.
+    mixTitle: (quizzes: number) => `Mon mélange · ${quizzes} quiz`,
     noTvLink: 'Je n’ai pas de TV',
     // Aide « Je ne trouve pas ma TV » (écran tvHelp) : lien sous « Afficher sur la TV », bandeau si aucune TV.
     tvHelpLink: 'Je ne trouve pas ma TV ?',

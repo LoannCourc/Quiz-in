@@ -83,7 +83,7 @@ export default function LobbyDemoScreen() {
       code={DEMO_CODE}
       session={session}
       applyUpdate={(build) => setSession((current) => applyLocalUpdate(current, build(current, Date.now())))}
-      questions={{ kind: 'ready', questions: [] }}
+      questions={{ kind: 'ready', questions: [], refs: [] }}
       serverOffsetMs={0}
       cast={demoCast(params.tv)}
       header={<LobbyQuizTitle quiz={DEMO_CATALOG[0]} />}

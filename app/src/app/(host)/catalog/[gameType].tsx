@@ -36,6 +36,11 @@ function openDrawGame(drawCategories: string[], room: string | undefined) {
   router.push({ pathname: '/quiz/[quizId]', params: { quizId: DRAW_QUIZ_ID, ...categories, ...(room && { room }) } });
 }
 
+// Quiz, thèmes choisis : fiche de la partie tirée dans leur union (thèmes séparés par « | »).
+function openThemesGame(themes: string[], questionCount: number, room: string | undefined) {
+  router.push({ pathname: '/pool', params: { themes: themes.join('|'), count: String(questionCount), ...(room && { room }) } });
+}
+
 // Retour à l'accueil (par la pile si on en vient, sinon en le remplaçant : lien direct).
 function backHome() {
   if (router.canGoBack()) router.back();
@@ -65,11 +70,22 @@ export default function CatalogRoute() {
   // Accès ouvert : gameType est l'un des quatre jeux (gameAccess).
   const game = gameType as GameType;
 
+  if (catalog.kind === 'ready') {
+    return (
+      <CatalogView
+        entries={entries}
+        gameType={game}
+        onOpenQuiz={(quizId) => openQuiz(quizId, room)}
+        onBack={backHome}
+        played={played}
+        onContinueThemes={game === 'quiz' ? (themes, count) => openThemesGame(themes, count, room) : undefined}
+      />
+    );
+  }
   return (
     <Screen>
       {catalog.kind === 'loading' && <Text style={textStyles.body}>{strings.catalog.loading}</Text>}
       {catalog.kind === 'error' && <Text style={textStyles.error}>{`${strings.catalog.errorPrefix} ${catalog.detail}`}</Text>}
-      {catalog.kind === 'ready' && <CatalogView entries={entries} gameType={game} onOpenQuiz={(quizId) => openQuiz(quizId, room)} onBack={backHome} played={played} />}
     </Screen>
   );
 }
