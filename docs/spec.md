@@ -86,7 +86,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 6. Tant qu'il n'est pas inscrit, l'hôte voit une carte « Tu n'es pas dans la partie » avec **« Je joue aussi »**, qui ouvre le même formulaire que celui des joueurs (pseudo et avatar) ; ensuite, un lien « Modifier » sur sa ligne. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
 7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris ; en Groupe, conditions de la section 6.4). Ce qui manque est écrit au-dessus du bouton.
 8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1). Avec Contrôle, après chaque question, il valide les réponses (section 5.2).
-9. À la fin : classement final, puis **Changer de jeu** (le même jeu ou un autre, sans nouveau salon : mêmes joueurs, même code, même QR) ou **Quitter**. Pas de « Changer de jeu » séparé (octobre 2026) : choisir le même jeu le relance.
+9. À la fin : classement final, puis **Changer de jeu** (le même jeu ou un autre, sans nouveau salon : mêmes joueurs, même code, même QR) ou **Quitter**. Plus de bouton « Rejouer » (octobre 2026) : choisir le même jeu le relance.
 
 ### 4.2 Joueur
 1. Scanne le **QR code** affiché sur la TV (ou ouvre l'adresse et saisit le code de salle).
