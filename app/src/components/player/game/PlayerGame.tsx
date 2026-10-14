@@ -62,8 +62,6 @@ export interface PlayerGameProps {
   bluff?: PlayerBluff | null;
   // Dessine-moi : mot du dessinateur et envoi de son dessin (useDraw) ; absent hors de ce jeu.
   draw?: PlayerDraw | null;
-  // Hôte (appli) : flèche retour en haut à gauche ; jamais sur le site des joueurs.
-  backButton?: ReactNode;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -98,7 +96,7 @@ function PlayerGameScreen(props: PlayerGameProps) {
     <View style={styles.root}>
       <Screen
         background={background}
-        header={isEndShown && !isDrawing ? withBackButton(props.backButton, questionTopBar(props)) : isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
+        header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
         footer={props.footer}
         scrollable={!isDrawing}
         wide={isDrawingLandscape}>
@@ -114,19 +112,6 @@ function PlayerGameScreen(props: PlayerGameProps) {
 // Dessine-moi : le joueur est le dessinateur de la manche en cours (jamais l'hôte, décision D1).
 function isDrawerNow({ session, uid, draw }: PlayerGameProps): boolean {
   return Boolean(draw) && session.status === 'question' && session.drawTurn?.drawer === uid;
-}
-
-// Flèche de l'hôte à gauche de l'en-tête de la question, ou seule (pas pendant qu'il dessine : son en-tête
-// prend toute la largeur).
-function withBackButton(backButton: ReactNode, topBar: ReactNode): ReactNode {
-  if (!backButton) return topBar;
-  if (!topBar) return backButton;
-  return (
-    <View style={styles.headerRow}>
-      {backButton}
-      <View style={styles.headerFill}>{topBar}</View>
-    </View>
-  );
 }
 
 // Question et vote du Bluff : numéro de la question et minuteur (maquette S1), fixés en haut de l'écran
@@ -351,14 +336,6 @@ function renderView(props: PlayerGameProps): ReactNode {
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.three,
-  },
-  headerFill: {
     flex: 1,
   },
   notice: {
