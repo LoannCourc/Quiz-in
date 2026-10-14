@@ -34,7 +34,7 @@ interface HomeViewProps {
   onJoinWithCode?: () => void;
   // Sans défilement : les tuiles prennent la hauteur restante (deux rangées, densité donnée), les blocs sont
   // espacés de gap ; la hauteur de leur zone est mesurée (onGridHeight) pour choisir la densité.
-  // isCompact : écran bas (sous-titre effacé, logo, titre, bouton et phrase du bas plus petits).
+  // isCompact : écran bas (sous-titre effacé, logo, titre et bouton plus petits).
   fit?: { density: HomeTileDensity; gap: number; isCompact: boolean; onGridHeight: (height: number) => void };
 }
 
@@ -82,7 +82,6 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
           </ButtonLabel>
         </Pressable>
       )}
-      <Text style={[textStyles.muted, styles.footer, isCompact && styles.footerCompact]}>{strings.home.footer}</Text>
     </View>
   );
 }
@@ -140,13 +139,6 @@ const styles = StyleSheet.create({
     maxHeight: HOME_TILE_MAX_HEIGHT,
     flexDirection: 'row',
     gap: Spacing.three,
-  },
-  footer: {
-    textAlign: 'center',
-  },
-  footerCompact: {
-    fontSize: 13,
-    lineHeight: 18,
   },
   titleCompact: {
     fontSize: TITLE_SIZE_COMPACT,

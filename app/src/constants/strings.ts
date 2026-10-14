@@ -853,7 +853,6 @@ export const strings = {
     roomBanner: (code: string) => `Partie ${code} : choisis le prochain jeu. Les joueurs restent connectés.`,
     roomCancel: 'Annuler, revenir à la partie',
     subtitle: 'Choisis un jeu pour commencer.',
-    footer: 'De 2 à 20 joueurs · Mode Groupe dès 4 joueurs',
     // Maquette J1 : rejoindre la partie d'un autre hôte avec son code.
     joinWithCode: 'J’ai un code : rejoindre une partie',
     games: {

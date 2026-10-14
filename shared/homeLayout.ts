@@ -44,7 +44,7 @@ export function homeTileDensity(gridHeight: number, fontScale: number): HomeTile
 }
 
 // Sous cette hauteur de fenêtre, accueil compact : sous-titre effacé, logo réduit, titre, bouton
-// « J'ai un code » et phrase du bas plus petits.
+// « J'ai un code » plus petits.
 export const HOME_COMPACT_BELOW_HEIGHT = 760
 
 // Écart entre les blocs de l'accueil, réduit par paliers sur un écran bas.
