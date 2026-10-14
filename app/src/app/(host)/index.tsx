@@ -50,16 +50,16 @@ function HomeScreen() {
     />
   );
 
-  // Sans défilement (aucun bandeau, ou celui du choix du prochain jeu) : les tuiles prennent la hauteur
-  // restante, mesurée ; densité d'après cette hauteur et la police du système. Rien ne tient lisiblement :
-  // défilement, jusqu'au prochain changement de taille de fenêtre ou de police.
+  // Sans défilement (aussi avec « Reprendre la partie » ou le choix du prochain jeu, à la place du titre) :
+  // les tuiles prennent la hauteur restante, mesurée ; densité d'après cette hauteur et la police du système.
+  // Rien ne tient lisiblement : défilement, jusqu'au prochain changement de taille de fenêtre ou de police.
   const { height, fontScale } = useWindowDimensions();
   const sizeKey = `${height}|${fontScale}`;
   const [measured, setMeasured] = useState<{ sizeKey: string; gridHeight: number } | null>(null);
   const gridHeight = measured?.sizeKey === sizeKey ? measured.gridHeight : null;
   const density = gridHeight === null ? 'normal' : homeTileDensity(gridHeight, fontScale);
   const fit =
-    !resumableCode && density !== null
+    density !== null
       ? { density, gap: homeBlockGap(height), isCompact: height < HOME_COMPACT_BELOW_HEIGHT, onGridHeight: (measuredHeight: number) => setMeasured({ sizeKey, gridHeight: measuredHeight }) }
       : undefined;
 

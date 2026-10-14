@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { DISPLAY_CHAR_WIDTH, fittedLabelScale, LABEL_MIN_SCALE } from '../../shared/labelFit'
+import { DISPLAY_CHAR_WIDTH, fittedLabelScale, LABEL_MIN_SCALE, SINGLE_LINE_MIN_SCALE } from '../../shared/labelFit'
 
 describe('Libellé de bouton ajusté (iOS)', () => {
   test('un libellé qui tient garde sa taille', () => {
@@ -23,5 +23,12 @@ describe('Libellé de bouton ajusté (iOS)', () => {
   test('jamais sous le minimum, largeur inconnue : taille d’origine', () => {
     expect(fittedLabelScale('UN TRÈS TRÈS LONG LIBELLÉ DE BOUTON QUI NE TIENDRA JAMAIS', 100, 24, 1, DISPLAY_CHAR_WIDTH)).toBe(LABEL_MIN_SCALE)
     expect(fittedLabelScale('CONTINUER', 0, 24, 1, DISPLAY_CHAR_WIDTH)).toBe(1)
+  })
+
+  test('une seule ligne (« Reprendre la partie ») : la police descend jusqu’à 50 % pour garder le code', () => {
+    // 360 de large, police du système à 140 % : 18 × 1,4 points.
+    const scale = fittedLabelScale('REPRENDRE LA PARTIE 6J2R', 276, 18 * 1.4, 1, DISPLAY_CHAR_WIDTH, SINGLE_LINE_MIN_SCALE)
+    expect(scale).toBeLessThan(LABEL_MIN_SCALE)
+    expect(24 * DISPLAY_CHAR_WIDTH * 18 * 1.4 * scale).toBeLessThanOrEqual(276)
   })
 })

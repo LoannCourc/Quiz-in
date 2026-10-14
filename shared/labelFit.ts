@@ -8,6 +8,9 @@ export const DISPLAY_CHAR_WIDTH = 0.74
 export const TEXT_CHAR_WIDTH = 0.62
 
 export const LABEL_MIN_SCALE = 0.7
+// Bouton d'une seule ligne à hauteur fixe (« REPRENDRE LA PARTIE 6J2R ») : il ne peut pas passer sur deux
+// lignes, la police descend plus bas pour que le dernier mot (le code) reste visible.
+export const SINGLE_LINE_MIN_SCALE = 0.5
 const SCALE_STEP = 0.05
 
 // Lignes nécessaires pour ce texte, coupé aux espaces, à cette largeur de caractère (pixels) dans cette largeur.
@@ -31,11 +34,18 @@ function linesNeeded(text: string, charWidth: number, width: number): number {
 
 // Échelle (1, puis par pas jusqu'à LABEL_MIN_SCALE) pour que le texte tienne sur maxLines lignes. fontSize :
 // taille réellement rendue (police du système comprise). Largeur inconnue (0) : 1.
-export function fittedLabelScale(text: string, width: number, fontSize: number, maxLines: number, charRatio: number): number {
+export function fittedLabelScale(
+  text: string,
+  width: number,
+  fontSize: number,
+  maxLines: number,
+  charRatio: number,
+  minScale = LABEL_MIN_SCALE,
+): number {
   if (width <= 0) return 1
   let scale = 1
-  while (scale > LABEL_MIN_SCALE && linesNeeded(text, fontSize * scale * charRatio, width) > maxLines) {
-    scale = Math.max(LABEL_MIN_SCALE, scale - SCALE_STEP)
+  while (scale > minScale && linesNeeded(text, fontSize * scale * charRatio, width) > maxLines) {
+    scale = Math.max(minScale, scale - SCALE_STEP)
   }
   return Math.round(scale * 100) / 100
 }
