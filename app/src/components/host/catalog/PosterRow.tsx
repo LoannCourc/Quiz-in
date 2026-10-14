@@ -1,3 +1,4 @@
+import { quizLevel } from '@shared/quizCatalog';
 import type { QuizEntry } from '@shared/quizValidation';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -41,6 +42,7 @@ export function PosterRow({ title, quizzes, posterWidth, ranked = false, onOpenQ
               accessibilityLabel={posterLabel(quiz, ranked, played.has(quiz.id))}
               onPress={() => onOpenQuiz(quiz.id)}
               isPlayed={played.has(quiz.id)}
+              level={quizLevel(quiz)}
             />
           </View>
         ))}

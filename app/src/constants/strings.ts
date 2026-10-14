@@ -240,6 +240,7 @@ export const strings = {
     allPlayed: 'Tu as déjà fait tous ces quiz.',
     played: 'Déjà fait',
     playedLabel: (title: string) => `${title}, déjà fait`,
+    withLevel: (label: string, level: string) => `${label}, ${level}`,
     gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Dessine-moi' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,

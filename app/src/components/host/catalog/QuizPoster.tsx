@@ -1,6 +1,7 @@
+import { levelDots } from '@shared/blindTestCatalog';
 import { fittedFontSize } from '@shared/fontSize';
 import { quizIconOf, type QuizIconName } from '@shared/themeIcons';
-import type { PosterPalette } from '@shared/types';
+import type { DifficultyLevel, PosterPalette } from '@shared/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { gradientStyle } from '@/components/ui/gradient';
@@ -22,8 +23,10 @@ interface QuizPosterProps {
   accessibilityLabel?: string;
   // Sans onPress, l'affiche n'est pas un bouton (grande affiche de la fiche).
   onPress?: () => void;
-  // Quiz déjà joué sur ce téléphone (lot E) : pastille « Déjà fait » en haut à droite.
+  // Quiz déjà joué sur ce téléphone (lot E) : coche ronde sur l'icône.
   isPlayed?: boolean;
+  // Difficulté (maquette QT1) : pastille encre en haut à gauche, points or et libellé.
+  level?: DifficultyLevel;
 }
 
 // Largeur moyenne d'une capitale en Nunito Black, en fraction de la taille de police (avec marge).
@@ -42,10 +45,54 @@ function titleSizeFor(title: string, width: number): number {
 // Côté maximal de l'icône de thème sur une affiche.
 const ICON_MAX_SIZE = 64;
 const PLAYED_MARK_SIZE = 10;
+const PLAYED_BADGE_SIZE = 18;
+// Pastille de difficulté : trois points (un niveau de quiz : facile, moyen, difficile), libellé ajusté à
+// la largeur de l'affiche (grille de 320 points : 85 de large).
+const LEVEL_DOTS = 3;
+const LEVEL_DOT = 5;
+const LEVEL_DOT_GAP = 2;
+const LEVEL_FONT_SIZE = 9;
+const LEVEL_FONT_MIN = 7;
+// Largeur moyenne d'un caractère en Nunito Black, en fraction de la taille (avec marge).
+const LEVEL_CHAR_WIDTH = 0.62;
+
+function levelFontSizeFor(label: string, width: number): number {
+  const dotsWidth = LEVEL_DOTS * LEVEL_DOT + (LEVEL_DOTS - 1) * LEVEL_DOT_GAP;
+  const available = width - 2 * Spacing.one - 2 * (Spacing.one + 1) - dotsWidth - Spacing.one;
+  return fittedFontSize(LEVEL_FONT_SIZE, available, label.length, LEVEL_CHAR_WIDTH, LEVEL_FONT_MIN);
+}
+
+// Lecteur d'écran : la difficulté après le titre.
+function withLevel(label: string, level: DifficultyLevel | undefined): string {
+  return level ? strings.catalog.withLevel(label, strings.catalog.difficultyLevels[level]) : label;
+}
+
+function LevelPill({ level, width }: { level: DifficultyLevel; width: number }) {
+  const label = strings.catalog.difficultyLevels[level];
+  const filled = Math.min(LEVEL_DOTS, levelDots(level));
+  const fontSize = levelFontSizeFor(label, width);
+  return (
+    <View style={styles.levelPill}>
+      <View style={styles.levelDots}>
+        {Array.from({ length: LEVEL_DOTS }, (_, index) => (
+          <View key={index} style={[styles.levelDot, index < filled ? styles.levelDotFilled : styles.levelDotEmpty]} />
+        ))}
+      </View>
+      {/* Taille déjà ajustée à la largeur de l'affiche : la police du système ne l'agrandit pas (sinon le mot
+          serait coupé) ; le lecteur d'écran lit le niveau dans le libellé de l'affiche. */}
+      <Text
+        style={[styles.levelText, { fontSize, lineHeight: Math.round(fontSize * 1.3) }]}
+        numberOfLines={1}
+        maxFontSizeMultiplier={1}>
+        {label}
+      </Text>
+    </View>
+  );
+}
 
 // Affiche portrait d'un quiz : dégradé propre au quiz (champ poster), icône du quiz (ou grand « ? »)
 // et titre en bas.
-export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress, isPlayed = false }: QuizPosterProps) {
+export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress, isPlayed = false, level }: QuizPosterProps) {
   const icon = quizIconOf({ theme, icon: ownIcon });
   const height = Math.round(width * AppSizes.posterRatio);
   // Taille de l'icône : jamais négative (largeur pas encore mesurée).
@@ -53,16 +100,16 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
   const titleSize = titleSizeFor(title, width);
   const content = (
     <>
-      {isPlayed && (
-        <View style={styles.playedBadge}>
-          <MarkIcon kind="check" size={PLAYED_MARK_SIZE} color={AppColors.onCorrect} />
-          <Text style={styles.playedText} numberOfLines={1}>
-            {strings.catalog.played}
-          </Text>
-        </View>
-      )}
+      {level && <LevelPill level={level} width={width} />}
       <View style={styles.icon}>
-        <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
+        <View>
+          <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
+          {isPlayed && (
+            <View style={styles.playedBadge}>
+              <MarkIcon kind="check" size={PLAYED_MARK_SIZE} color={AppColors.onCorrect} />
+            </View>
+          )}
+        </View>
       </View>
       <Text numberOfLines={3} style={[styles.title, { fontSize: titleSize, lineHeight: Math.round(titleSize * 1.15) }]}>
         {title}
@@ -70,10 +117,11 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
     </>
   );
   const posterStyle = [styles.poster, { width, height }, gradientStyle(AppPosterGradients[poster])];
+  const label = withLevel(accessibilityLabel ?? title, level);
 
   if (!onPress) {
     return (
-      <View accessible accessibilityLabel={accessibilityLabel ?? title} style={posterStyle}>
+      <View accessible accessibilityLabel={label} style={posterStyle}>
         {content}
       </View>
     );
@@ -81,7 +129,7 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel ?? title}
+      accessibilityLabel={label}
       onPress={onPress}
       style={({ pressed }) => [...posterStyle, pressed && styles.pressed]}>
       {content}
@@ -99,23 +147,50 @@ const styles = StyleSheet.create({
   },
   playedBadge: {
     position: 'absolute',
+    right: -PLAYED_BADGE_SIZE / 3,
+    bottom: -PLAYED_BADGE_SIZE / 3,
+    width: PLAYED_BADGE_SIZE,
+    height: PLAYED_BADGE_SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: PLAYED_BADGE_SIZE / 2,
+    borderWidth: 2,
+    borderColor: AppColors.ink,
+    backgroundColor: AppColors.correct,
+  },
+  levelPill: {
+    position: 'absolute',
     top: Spacing.one,
-    right: Spacing.one,
+    left: Spacing.one,
     zIndex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
-    paddingHorizontal: Spacing.one + 2,
+    gap: Spacing.one,
+    paddingHorizontal: Spacing.one + 1,
     paddingVertical: 2,
     borderRadius: AppSizes.radiusPill,
-    backgroundColor: AppColors.correct,
+    backgroundColor: AppColors.ink,
   },
-  playedText: {
+  levelDots: {
+    flexDirection: 'row',
+    gap: LEVEL_DOT_GAP,
+  },
+  levelDot: {
+    width: LEVEL_DOT,
+    height: LEVEL_DOT,
+    borderRadius: LEVEL_DOT / 2,
+  },
+  levelDotFilled: {
+    backgroundColor: AppColors.levelDot,
+  },
+  levelDotEmpty: {
+    borderWidth: 1,
+    borderColor: AppColors.levelDotEmpty,
+  },
+  levelText: {
     ...TEXT_FIT_SAFETY,
-    color: AppColors.onCorrect,
+    color: AppColors.text,
     fontFamily: AppFonts.black,
-    fontSize: 9,
-    textTransform: 'uppercase',
   },
   pressed: {
     transform: [{ translateY: 4 }],

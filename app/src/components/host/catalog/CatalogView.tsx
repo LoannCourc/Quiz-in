@@ -12,6 +12,7 @@ import {
   type ThemeSelection,
 } from '@shared/catalogRows';
 import { availableQuestionCounts, poolQuestionTotal, poolQuizzes, QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
+import { quizLevel } from '@shared/quizCatalog';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -231,6 +232,7 @@ function PosterGrid({ quizzes, emptyText, posterWidth, onOpenQuiz, played }: Pos
           accessibilityLabel={played.has(quiz.id) ? strings.catalog.playedLabel(quiz.title) : quiz.title}
           onPress={() => onOpenQuiz(quiz.id)}
           isPlayed={played.has(quiz.id)}
+          level={quizLevel(quiz)}
         />
       ))}
     </View>
