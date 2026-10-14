@@ -6,13 +6,12 @@ import {
   NO_THEME,
   searchByTitle,
   selectedThemes,
-  sortCatalog,
   toggleTheme,
-  type CatalogSortId,
   type ThemeSelection,
 } from '@shared/catalogRows';
 import { availableQuestionCounts, poolQuestionTotal, poolQuizzes, QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
 import { quizLevel } from '@shared/quizCatalog';
+import { activeFilterCount, filterQuizzes, isFiltering, NO_QUIZ_FILTERS, removeFilter, type QuizFilters } from '@shared/quizFilters';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -28,8 +27,9 @@ import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
 import { QuestionCountBar } from './QuestionCountBar';
 import { QuizPoster } from './QuizPoster';
-import { SortChips } from './SortChips';
 import { ThemeChips } from './ThemeChips';
+import { ActiveFilters, FiltersButton } from './filters/CatalogFilterBar';
+import { QuizFiltersSheet } from './filters/QuizFiltersSheet';
 
 const POSTERS_PER_SCREEN = 3;
 
@@ -67,10 +67,10 @@ function threeAcross(columnWidth: number): number {
 export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, onContinueThemes }: CatalogViewProps) {
   const [themeSelection, setThemeSelection] = useState<ThemeSelection>(NO_THEME);
   const [questionCount, setQuestionCount] = useState(QUIZ_QUESTION_COUNTS[0]);
-  // null : les rangées ; sinon une grille dans l'ordre du tri.
-  const [sort, setSort] = useState<CatalogSortId | null>(null);
-  // null : recherche fermée.
-  const [query, setQuery] = useState<string | null>(null);
+  // Tri et filtres (maquette QT1) : sans rien, les rangées ; sinon une grille dans l'ordre du tri.
+  const [filters, setFilters] = useState<QuizFilters>(NO_QUIZ_FILTERS);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [query, setQuery] = useState('');
   // Largeur réelle de la colonne, mesurée à l'affichage (0 tant qu'elle n'est pas connue).
   const [columnWidth, setColumnWidth] = useState(0);
   const posterWidth = posterWidthFor(columnWidth);
@@ -79,7 +79,8 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   const themes = useMemo(() => catalogThemes(entries), [entries]);
   const chosenThemes = selectedThemes(themeSelection, themes);
   const shown = filterByThemes(entries, chosenThemes);
-  const isSearching = query !== null && query.trim() !== '';
+  const isSearching = query.trim() !== '';
+  const filtered = isFiltering(filters) ? filterQuizzes(shown, filters, played) : shown;
   const footer =
     onContinueThemes && chosenThemes.length > 0 ? (
       <ThemesCountBar
@@ -96,51 +97,61 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
       <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
         <View style={styles.header}>
           <BackButton onPress={onBack} label={strings.home.back} />
-          {query === null ? (
-            <Text style={styles.brand} numberOfLines={1}>
-              {strings.home.games[gameType].name}
-            </Text>
-          ) : (
-            <TextInput
-              autoFocus
-              value={query}
-              onChangeText={setQuery}
-              placeholder={strings.catalog.searchPlaceholder}
-              placeholderTextColor={AppColors.textMuted}
-              accessibilityLabel={strings.catalog.search}
-              returnKeyType="search"
-              style={styles.searchInput}
-            />
-          )}
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={query === null ? strings.catalog.search : strings.catalog.closeSearch}
-            hitSlop={Spacing.two}
-            onPress={() => setQuery(query === null ? '' : null)}
-            style={styles.iconButton}>
-            <LineIcon name={query === null ? 'search' : 'close'} />
-          </Pressable>
+          <Text style={styles.brand} numberOfLines={1}>
+            {strings.home.games[gameType].name}
+          </Text>
         </View>
+        {entries.length > 0 && (
+          <View style={styles.searchRow}>
+            <View style={styles.searchField}>
+              <View style={styles.searchIcon} importantForAccessibility="no-hide-descendants">
+                <LineIcon name="search" />
+              </View>
+              <TextInput
+                value={query}
+                onChangeText={setQuery}
+                placeholder={strings.catalog.searchPlaceholder}
+                placeholderTextColor={AppColors.textMuted}
+                accessibilityLabel={strings.catalog.search}
+                returnKeyType="search"
+                style={styles.searchInput}
+              />
+              {isSearching && (
+                <Pressable accessibilityRole="button" accessibilityLabel={strings.catalog.clearSearch} onPress={() => setQuery('')} style={styles.clearSearch}>
+                  <LineIcon name="close" />
+                </Pressable>
+              )}
+            </View>
+            <FiltersButton count={activeFilterCount(filters)} onPress={() => setIsFiltersOpen(true)} />
+          </View>
+        )}
 
         {entries.length > 0 && (
           <ThemeChips themes={themes} selection={themeSelection} onToggle={(theme) => setThemeSelection((current) => toggleTheme(current, theme))} />
         )}
-        {entries.length > 0 && !isSearching && <SortChips selected={sort} onSelect={setSort} />}
+        {isFiltering(filters) && (
+          <ActiveFilters
+            filters={filters}
+            shownCount={filtered.length}
+            onRemove={(key) => setFilters((current) => removeFilter(current, key))}
+            onClearAll={() => setFilters(NO_QUIZ_FILTERS)}
+          />
+        )}
 
         {entries.length === 0 ? (
           <Text style={textStyles.body}>{strings.catalog.emptyCatalog}</Text>
         ) : isSearching ? (
           <PosterGrid
-            quizzes={searchByTitle(shown, query)}
+            quizzes={searchByTitle(filtered, query)}
             emptyText={strings.catalog.noSearchResult}
             posterWidth={gridPosterWidth}
             onOpenQuiz={onOpenQuiz}
             played={played}
           />
-        ) : sort !== null ? (
+        ) : isFiltering(filters) ? (
           <PosterGrid
-            quizzes={sortCatalog(shown, sort, played)}
-            emptyText={sort === 'notPlayed' ? strings.catalog.allPlayed : strings.catalog.noMatch}
+            quizzes={filtered}
+            emptyText={strings.catalog.filters.noMatch}
             posterWidth={gridPosterWidth}
             onOpenQuiz={onOpenQuiz}
             played={played}
@@ -149,6 +160,17 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
           <Rows entries={shown} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
         )}
       </View>
+      {isFiltersOpen && (
+        <QuizFiltersSheet
+          filters={filters}
+          countFor={(draft) => (isFiltering(draft) ? filterQuizzes(shown, draft, played) : shown).length}
+          onApply={(draft) => {
+            setFilters(draft);
+            setIsFiltersOpen(false);
+          }}
+          onClose={() => setIsFiltersOpen(false)}
+        />
+      )}
     </Screen>
   );
 }
@@ -257,23 +279,37 @@ const styles = StyleSheet.create({
     lineHeight: Math.round(AppSizes.textLarge * DISPLAY_LINE_HEIGHT),
     textTransform: 'uppercase',
   },
-  searchInput: {
+  searchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  searchField: {
     flex: 1,
     height: 48,
-    paddingHorizontal: Spacing.three,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: Spacing.two,
     borderRadius: AppSizes.radiusPill,
-    backgroundColor: AppColors.card,
-    color: AppColors.ink,
+    backgroundColor: AppColors.surface,
+  },
+  searchIcon: {
+    opacity: 0.7,
+  },
+  searchInput: {
+    flex: 1,
+    minWidth: 0,
+    height: 48,
+    paddingHorizontal: Spacing.one,
+    color: AppColors.text,
     fontFamily: AppFonts.extraBold,
     fontSize: AppSizes.textBody,
   },
-  iconButton: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  clearSearch: {
+    width: 44,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: AppColors.surface,
   },
   grid: {
     flexDirection: 'row',

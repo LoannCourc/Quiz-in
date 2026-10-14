@@ -67,14 +67,15 @@ export function BlindTestTile({ facet, count, playedCount, accent, width, onPres
   );
 }
 
-// Quatre points de difficulté : pleins jusqu'au niveau, le 4e niveau (« Impossible ») tout en rose.
-export function LevelDots({ level }: { level: DifficultyLevel }) {
+// Points de difficulté : pleins jusqu'au niveau, le 4e niveau (« Impossible ») tout en rose. total : 4 pour
+// un blind test, 3 pour un quiz (feuille « Trier et filtrer ») ; color : points pleins sur un fond or.
+export function LevelDots({ level, total = 4, color }: { level: DifficultyLevel; total?: number; color?: string }) {
   const filled = levelDots(level);
-  const color = level === 'impossible' ? AppColors.levelDotImpossible : AppColors.levelDot;
+  const filledColor = color ?? (level === 'impossible' ? AppColors.levelDotImpossible : AppColors.levelDot);
   return (
     <View style={styles.dots}>
-      {[1, 2, 3, 4].map((dot) => (
-        <View key={dot} style={[styles.dot, dot <= filled ? { backgroundColor: color } : styles.dotEmpty]} />
+      {Array.from({ length: total }, (_, index) => index + 1).map((dot) => (
+        <View key={dot} style={[styles.dot, dot <= filled ? { backgroundColor: filledColor } : [styles.dotEmpty, color !== undefined && { borderColor: color }]]} />
       ))}
     </View>
   );

@@ -12,13 +12,17 @@ interface BottomSheetProps {
   // En-tête (maquette R4) : titre à gauche, information courte à droite (« 2 joueurs »).
   title?: string;
   aside?: string;
+  // Lien d'en-tête à droite, à la place de aside (« Tout effacer »).
+  action?: { label: string; onPress: () => void };
+  // Bas de la feuille, à la place de « Terminé » (« VOIR 5 QUIZ »).
+  footer?: ReactNode;
   children: ReactNode;
 }
 
 // Feuille du bas, par-dessus l'écran (salon de l'hôte : son, réglages) : poignée, en-tête facultatif, contenu
 // qui défile (petit écran, grande police), « Terminé » jaune. Appui en dehors, bouton retour d'Android ou
 // « Terminé » : fermeture.
-export function BottomSheet({ isOpen, onClose, title, aside, children }: BottomSheetProps) {
+export function BottomSheet({ isOpen, onClose, title, aside, action, footer, children }: BottomSheetProps) {
   return (
     <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
@@ -28,11 +32,17 @@ export function BottomSheet({ isOpen, onClose, title, aside, children }: BottomS
           {title && (
             <View style={styles.header}>
               <Text style={styles.title}>{title}</Text>
-              {aside && <Text style={styles.aside}>{aside}</Text>}
+              {action ? (
+                <Pressable accessibilityRole="button" onPress={action.onPress} hitSlop={Spacing.three} style={styles.action}>
+                  <Text style={styles.actionLabel}>{action.label}</Text>
+                </Pressable>
+              ) : (
+                aside && <Text style={styles.aside}>{aside}</Text>
+              )}
             </View>
           )}
           <ScrollView contentContainerStyle={styles.content}>{children}</ScrollView>
-          <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />
+          {footer ?? <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />}
         </View>
       </View>
     </Modal>
@@ -91,6 +101,17 @@ const styles = StyleSheet.create({
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
     fontSize: 14,
+  },
+  action: {
+    minHeight: 44,
+    justifyContent: 'center',
+  },
+  actionLabel: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
+    textDecorationLine: 'underline',
   },
   content: {
     gap: Spacing.three,

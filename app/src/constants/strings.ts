@@ -8,6 +8,7 @@ import {
   PLAYER_NAME_MIN_LENGTH,
 } from '@shared/constants';
 import type { CatalogRowId, CatalogSortId } from '@shared/catalogRows';
+import type { QuizSortId } from '@shared/quizFilters';
 import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine';
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
@@ -161,7 +162,7 @@ export const strings = {
       searchPlaceholder: (count: number) => `Chercher parmi ${count} quiz…`,
       surprise: 'Surprends-moi',
       surpriseHint: 'Un mélange au hasard',
-      sorts: { popular: 'Populaires', new: 'Nouveaux', alphabetical: 'A–Z', questionCount: 'Nombre de questions' } satisfies Record<BluffSortId, string>,
+      sorts: { popular: 'Populaires', new: 'Nouveautés', alphabetical: 'A–Z', questionCount: 'Nombre de questions' } satisfies Record<BluffSortId, string>,
       sortTitle: 'Trier',
       quizCount: (count: number) => `${count} quiz`,
       rowMeta: (theme: string, questions: number) => `${theme} · ${questions} questions`,
@@ -226,8 +227,8 @@ export const strings = {
       continue: 'Continuer',
     },
     search: 'Rechercher un quiz',
-    searchPlaceholder: 'Titre du quiz',
-    closeSearch: 'Fermer la recherche',
+    searchPlaceholder: 'Chercher un quiz…',
+    clearSearch: 'Effacer la recherche',
     noSearchResult: 'Aucun quiz ne porte ce titre.',
     // Lot E : tris du catalogue et repère des quiz déjà joués sur ce téléphone.
     sortLabel: 'Trier',
@@ -237,7 +238,31 @@ export const strings = {
       easiest: 'Plus faciles',
       alphabetical: 'A à Z',
     } satisfies Record<CatalogSortId, string>,
-    allPlayed: 'Tu as déjà fait tous ces quiz.',
+    // Tri et filtres du Quiz (maquette QT1) ; même vocabulaire que le Bluff.
+    filters: {
+      button: 'Filtres',
+      buttonCount: (count: number) => `Filtres · ${count}`,
+      buttonLabel: (count: number) =>
+        count === 0 ? 'Trier et filtrer' : `Trier et filtrer, ${count} filtre${count > 1 ? 's' : ''} actif${count > 1 ? 's' : ''}`,
+      sheetTitle: 'Trier et filtrer',
+      clearAll: 'Tout effacer',
+      sortTitle: 'Trier par',
+      levelTitle: 'Difficulté',
+      audienceTitle: 'Pour qui ?',
+      hidePlayed: 'Cacher ceux déjà faits',
+      hidePlayedChip: 'Pas encore faits',
+      removeChip: (label: string) => `Retirer le filtre ${label}`,
+      apply: (count: number) => `Voir ${count} quiz`,
+      summary: (count: number, sort: string) => `${count} quiz · triés par ${sort}`,
+      noMatch: 'Aucun quiz ne correspond à ces filtres.',
+      sorts: {
+        popular: 'Populaires',
+        new: 'Nouveautés',
+        easiest: 'Plus faciles',
+        hardest: 'Plus difficiles',
+        alphabetical: 'A–Z',
+      } satisfies Record<QuizSortId, string>,
+    },
     played: 'Déjà fait',
     playedLabel: (title: string) => `${title}, déjà fait`,
     withLevel: (label: string, level: string) => `${label}, difficulté : ${level}`,

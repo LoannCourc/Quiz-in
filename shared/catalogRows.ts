@@ -13,7 +13,7 @@ export interface CatalogRow {
   quizzes: QuizEntry[]
 }
 
-function byTitle(a: QuizEntry, b: QuizEntry): number {
+export function byTitle(a: QuizEntry, b: QuizEntry): number {
   return a.title.localeCompare(b.title, 'fr')
 }
 
@@ -113,14 +113,22 @@ export const CATALOG_SORTS: readonly CatalogSortId[] = ['new', 'notPlayed', 'eas
 const LEVEL_ORDER: Record<DifficultyLevel, number> = { easy: 0, medium: 1, hard: 2, impossible: 3 }
 
 // Plus récents d'abord ; une fiche sans date en dernier.
-function byNewest(a: QuizEntry, b: QuizEntry): number {
+export function byNewest(a: QuizEntry, b: QuizEntry): number {
   if (a.addedAt === '' || b.addedAt === '') return (a.addedAt === '' ? 1 : 0) - (b.addedAt === '' ? 1 : 0) || byTitle(a, b)
   return b.addedAt.localeCompare(a.addedAt) || byTitle(a, b)
 }
 
 // Niveau du quiz, puis moyenne de ses questions, puis titre.
-function byEasiest(a: QuizEntry, b: QuizEntry): number {
+export function byEasiest(a: QuizEntry, b: QuizEntry): number {
   return LEVEL_ORDER[quizLevel(a)] - LEVEL_ORDER[quizLevel(b)] || a.difficulty - b.difficulty || byTitle(a, b)
+}
+
+// Populaires (pas une vraie statistique, comme au Bluff) : le Top 10 manuel (featuredRank) d'abord, puis les
+// plus récents.
+export function byPopular(a: QuizEntry, b: QuizEntry): number {
+  const rankA = a.featuredRank ?? Number.POSITIVE_INFINITY
+  const rankB = b.featuredRank ?? Number.POSITIVE_INFINITY
+  return rankA - rankB || byNewest(a, b)
 }
 
 // Tous les quiz visibles dans l'ordre du tri ; « Pas encore faits » retire ceux déjà joués sur ce

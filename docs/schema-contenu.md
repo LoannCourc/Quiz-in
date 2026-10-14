@@ -30,7 +30,7 @@ quiz de 10 questions dans le thème.
 - **`title`** : court, sans préfixe de jeu (pas de « Bluff : »).
 - **`description`** : 160 caractères au plus.
 - **`audience`** : `all`, `kids` ou `experts`. **`poster`** : `pink`, `blue`, `green`, `orange`, `red`, `cyan`,
-  `violet` ou `gold`. **`addedAt`** : date `AAAA-MM-JJ`. **`featuredRank`** (facultatif) : place 1 à 10 du Top 10.
+  `violet` ou `gold`. **`addedAt`** : date `AAAA-MM-JJ` (tri « Nouveautés » du Quiz et du Bluff, du plus récent au plus ancien). **`featuredRank`** (facultatif) : place 1 à 10 du Top 10. Le tri « Populaires » (Quiz et Bluff) n'est **pas une vraie statistique** : il range d'abord le Top 10 manuel (`featuredRank`), puis les autres quiz du plus récent au plus ancien ; aucune partie n'est comptée.
 - **`level`** (facultatif) : `easy`, `medium` ou `hard` (sinon déduit de la moyenne des difficultés).
 - **`difficulty`** de chaque question : 1, 2 ou 3.
 - **`reviewStatus`** : note libre de relecture, jamais importée.
