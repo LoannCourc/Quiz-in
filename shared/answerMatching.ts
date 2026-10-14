@@ -4,7 +4,7 @@ import { CLOSE_ANSWER_MIN_LETTERS, TYPO_TOLERANCE_MIN_LETTERS, TYPO_TOLERANCE_TW
 // vaut « beatles ». « de », « d' » seuls ne sont pas des articles : « de Gaulle » reste intact.
 const LEADING_ARTICLE = /^(?:(?:le|la|les|un|une|des|du|de la|the)\s+|(?:de l|l)'\s*)/
 
-function removeDiacritics(text: string): string {
+export function removeDiacritics(text: string): string {
   // NFD sépare chaque lettre de son accent (é = e + ´), puis on retire les accents.
   // œ et æ ne sont pas des lettres accentuées : on les écrit en deux lettres.
   return text

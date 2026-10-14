@@ -1,4 +1,4 @@
-import { containsForbiddenWord } from './answerFilter'
+import { containsForbiddenNameWord } from './answerFilter'
 import { PLAYER_NAME_MAX_LENGTH, PLAYER_NAME_MIN_LENGTH } from './constants'
 
 // Pseudo tel qu'il sera enregistré : sans espace au début ni à la fin (spec 6.6).
@@ -27,7 +27,7 @@ export function playerNameScale(name: string): number {
   return Math.max(NAME_MIN_SCALE, Math.round((1 - extra * NAME_SCALE_STEP) * 100) / 100)
 }
 
-// Pseudo acceptable : sans mot interdit (même filtre que les réponses affichées sur la TV, answerFilter.ts).
+// Pseudo acceptable : sans mot interdit (liste des réponses, plus « hitler » et « nazi », answerFilter.ts).
 export function isAllowedPlayerName(name: string): boolean {
-  return !containsForbiddenWord(name)
+  return !containsForbiddenNameWord(name)
 }
