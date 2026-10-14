@@ -4,7 +4,7 @@ import { gameQuestionCount, poolOf } from '@shared/questionPool';
 import { estimateGameMinutes } from '@shared/quizCatalog';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { QuizSummary, SessionSettings } from '@shared/types';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -45,17 +45,35 @@ export function LobbyQuizTitle({ quiz }: { quiz: QuizSummary }) {
 }
 
 function LobbyTitle({ title, meta }: { title: string; meta: string }) {
+  // Méta toujours sur une ligne (« environ 6 min » passait à la ligne à 320 de large) : sa largeur naturelle en
+  // 15 est mesurée par un texte invisible, puis la taille est réduite pour tenir dans la colonne (11 au moins).
+  const [columnWidth, setColumnWidth] = useState(0);
+  const [metaWidth, setMetaWidth] = useState(0);
+  const metaSize = columnWidth > 0 && metaWidth > columnWidth ? Math.max(META_MIN_SIZE, Math.floor((META_SIZE * columnWidth) / metaWidth)) : META_SIZE;
   return (
-    <View>
+    <View onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
       <Text style={styles.title} numberOfLines={1}>
         {title}
       </Text>
-      <Text style={styles.meta}>{meta}</Text>
+      <Text style={[styles.meta, { fontSize: metaSize }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
+        {meta}
+      </Text>
+      <View style={styles.measureBox} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden pointerEvents="none">
+        <View style={styles.measureRow}>
+          <Text style={[styles.meta, styles.measure]} maxFontSizeMultiplier={1.2} onLayout={(event) => setMetaWidth(event.nativeEvent.layout.width)}>
+            {meta}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 }
 
 const TITLE_SIZE = 18;
+const META_SIZE = 15;
+const META_MIN_SIZE = 11;
+// Largeur laissée au texte de mesure (bien plus que la méta la plus longue).
+const MEASURE_WIDTH = 1000;
 
 const styles = StyleSheet.create({
   title: {
@@ -68,6 +86,22 @@ const styles = StyleSheet.create({
   meta: {
     color: AppColors.textMuted,
     fontFamily: AppFonts.extraBold,
-    fontSize: 15,
+    fontSize: META_SIZE,
+  },
+  // Boîte vide qui cache le texte de mesure sans gêner la mise en page.
+  measureBox: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+    overflow: 'hidden',
+  },
+  measureRow: {
+    width: MEASURE_WIDTH,
+    alignItems: 'flex-start',
+  },
+  measure: {
+    opacity: 0,
   },
 });

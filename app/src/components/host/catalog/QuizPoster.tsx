@@ -3,7 +3,7 @@ import { fittedFontSize } from '@shared/fontSize';
 import { quizIconOf, type QuizIconName } from '@shared/themeIcons';
 import type { DifficultyLevel, PosterPalette } from '@shared/types';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { gradientStyle } from '@/components/ui/gradient';
 import { ThemeIcon } from '@/components/ui/ThemeIcon';
@@ -45,6 +45,19 @@ function titleSizeFor(title: string, width: number): number {
 
 // Côté maximal de l'icône de thème sur une affiche.
 const ICON_MAX_SIZE = 64;
+// Le titre garde toujours la place de ses trois lignes : l'icône rétrécit au besoin (pastille de difficulté
+// plus haute, grande police du système), jamais le titre.
+const TITLE_LINES = 3;
+const TITLE_MAX_FONT_SCALE = 1.2;
+const TITLE_GAP = Spacing.one;
+
+// Côté de l'icône : la moitié de la largeur, plafonné, et ce qui reste en hauteur une fois le titre placé.
+function iconSizeFor(width: number, height: number, titleLineHeight: number, hasLevel: boolean): number {
+  const iconTop = hasLevel ? LEVEL_PILL_HEIGHT : Spacing.three;
+  const titleHeight = TITLE_LINES * titleLineHeight * Math.min(PixelRatio.getFontScale(), TITLE_MAX_FONT_SCALE);
+  const room = height - 2 * Spacing.two - iconTop - titleHeight - TITLE_GAP;
+  return Math.max(0, Math.round(Math.min(ICON_MAX_SIZE, width * 0.5, room)));
+}
 const PLAYED_MARK_SIZE = 10;
 const PLAYED_BADGE_SIZE = 18;
 // Pastille de difficulté (28 de haut) : trois points (un niveau de quiz : facile, moyen, difficile) et libellé en
@@ -113,15 +126,16 @@ function LevelPill({ level, width }: { level: DifficultyLevel; width: number }) 
 export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessibilityLabel, onPress, isPlayed = false, level }: QuizPosterProps) {
   const icon = quizIconOf({ theme, icon: ownIcon });
   const height = Math.round(width * AppSizes.posterRatio);
-  // Taille de l'icône : jamais négative (largeur pas encore mesurée).
-  const markSize = Math.max(0, Math.round(width * 0.5));
   const titleSize = titleSizeFor(title, width);
+  const titleLineHeight = Math.round(titleSize * 1.15);
+  // Taille de l'icône : jamais négative (largeur pas encore mesurée).
+  const iconSize = iconSizeFor(width, height, titleLineHeight, level !== undefined);
   const content = (
     <>
       {level && <LevelPill level={level} width={width} />}
       <View style={[styles.icon, level && styles.iconBelowLevel]}>
         <View>
-          <ThemeIcon name={icon} size={Math.min(ICON_MAX_SIZE, markSize)} />
+          <ThemeIcon name={icon} size={iconSize} />
           {isPlayed && (
             <View style={styles.playedBadge}>
               <MarkIcon kind="check" size={PLAYED_MARK_SIZE} color={AppColors.onCorrect} />
@@ -129,7 +143,7 @@ export function QuizPoster({ title, poster, theme, icon: ownIcon, width, accessi
           )}
         </View>
       </View>
-      <Text numberOfLines={3} style={[styles.title, { fontSize: titleSize, lineHeight: Math.round(titleSize * 1.15) }]}>
+      <Text numberOfLines={TITLE_LINES} maxFontSizeMultiplier={TITLE_MAX_FONT_SCALE} style={[styles.title, { fontSize: titleSize, lineHeight: titleLineHeight }]}>
         {title}
       </Text>
     </>
