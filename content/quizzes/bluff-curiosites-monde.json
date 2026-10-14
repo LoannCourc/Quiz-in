@@ -1,0 +1,135 @@
+{
+  "id": "bluff-curiosites-monde",
+  "gameType": "bluff",
+  "title": "Curiosités du monde",
+  "theme": "Géographie",
+  "description": "Une île qui change de pays, un lac qui momifie, une terre dont personne ne veut : inventez une curiosité crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "green",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B1)",
+  "questions": [
+    {
+      "id": "bcm-01",
+      "text": "Qu'a de particulier le nom complet du village gallois surnommé Llanfair PG ?",
+      "answer": "Il compte 58 lettres : le plus long nom de lieu d'Europe en un seul mot.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il ne contient aucune voyelle, seulement des consonnes.",
+        "Il change d'orthographe chaque année, par tirage au sort.",
+        "Il se lit de la même façon à l'endroit et à l'envers."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-02",
+      "text": "Qu'utilise le Bhoutan, en plus de la richesse produite, pour guider sa politique ?",
+      "answer": "Le « bonheur national brut », qui mesure le bien-être de ses habitants.",
+      "acceptedAnswers": [
+        "bonheur national brut"
+      ],
+      "decoys": [
+        "Le nombre de sourires comptés chaque matin par des fonctionnaires.",
+        "La hauteur moyenne des arbres plantés par chaque habitant.",
+        "Le temps passé en famille, déclaré chaque mois."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-03",
+      "text": "Qu'est-ce que le point Nemo, dans le Pacifique Sud ?",
+      "answer": "Le point de l'océan le plus éloigné de toute terre, où l'on fait tomber les vieux satellites.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une fosse si profonde qu'aucun sous-marin n'en a jamais touché le fond.",
+        "Une île qui apparaît et disparaît au rythme des marées.",
+        "L'endroit où le capitaine Cook a perdu son navire."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-04",
+      "text": "Qu'a d'étonnant le lac Natron, en Tanzanie ?",
+      "answer": "Son eau très alcaline momifie les oiseaux morts sur ses rives.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Son eau est si salée qu'elle ne gèle jamais, même la nuit.",
+        "Il se déplace de plusieurs mètres chaque année.",
+        "Il se vide entièrement en une nuit, une fois par siècle."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-05",
+      "text": "Quelle est la particularité du territoire de Bir Tawil, entre l'Égypte et le Soudan ?",
+      "answer": "Aucun des deux pays ne le revendique : c'est une terre sans maître.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il appartient aux deux pays à la fois, un jour sur deux.",
+        "Il est loué à une compagnie pétrolière pour 99 ans.",
+        "C'est le seul endroit du Sahara où il neige chaque hiver."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-06",
+      "text": "Qu'a d'unique l'île des Faisans, sur la Bidassoa ?",
+      "answer": "Elle change de pays tous les six mois, entre la France et l'Espagne.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Seuls les faisans ont le droit d'y vivre, par décret royal.",
+        "Elle n'est accessible qu'à marée basse, deux heures par an.",
+        "Elle a sa propre monnaie, le faisan d'argent."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-07",
+      "text": "Qu'ont fait les Kiribati en 1995, pour que tout le pays vive le même jour ?",
+      "answer": "Ils ont déplacé la ligne de changement de date autour de leurs îles.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils ont supprimé le dimanche pour rattraper le décalage.",
+        "Ils ont adopté l'heure de Londres sur tout leur territoire.",
+        "Ils ont cédé leurs îles les plus à l'est à un pays voisin."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-08",
+      "text": "Pourquoi la rivière Caño Cristales, en Colombie, est-elle surnommée « la rivière aux cinq couleurs » ?",
+      "answer": "Une plante aquatique teinte son lit de rouge, de rose, de jaune et de vert.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des minerais colorés se dissolvent dans l'eau après les orages.",
+        "Cinq villages y déversent chacun une teinture différente.",
+        "Le soleil s'y reflète sur des cristaux de quartz."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcm-09",
+      "text": "À quoi le salar d'Uyuni, en Bolivie, sert-il pour les satellites ?",
+      "answer": "Il est si plat qu'il sert à régler leurs altimètres.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Son sel renvoie les signaux radio vers l'espace.",
+        "C'est le seul endroit sans aucun nuage de toute l'année.",
+        "Il sert de piste d'atterrissage d'urgence aux capsules."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bcm-10",
+      "text": "Que conserve-t-on dans un coffre-fort creusé dans une montagne du Svalbard, en Norvège ?",
+      "answer": "Des graines de cultures du monde entier, en cas de catastrophe.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Les originaux de toutes les cartes du pôle Nord.",
+        "La réserve d'or des pays nordiques.",
+        "Des carottes de glace vieilles d'un million d'années."
+      ],
+      "difficulty": 1
+    }
+  ]
+}

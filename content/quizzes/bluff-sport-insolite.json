@@ -1,0 +1,140 @@
+{
+  "id": "bluff-sport-insolite",
+  "gameType": "bluff",
+  "title": "Sport insolite",
+  "theme": "Sport",
+  "description": "Un marathon en voiture, des médailles de poésie, un chien héros du football : inventez une histoire crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "blue",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B1)",
+  "questions": [
+    {
+      "id": "bsp-01",
+      "text": "Comment Fred Lorz a-t-il franchi en premier la ligne du marathon olympique de 1904 ?",
+      "answer": "Il avait fait une partie du parcours en voiture.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il avait couru pieds nus pour aller plus vite.",
+        "Il avait coupé à travers un champ de maïs.",
+        "Il était parti dix minutes avant les autres."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-02",
+      "text": "Qu'a reçu Thomas Hicks, le vrai vainqueur de ce marathon de 1904, pour tenir jusqu'au bout ?",
+      "answer": "Des blancs d'œufs, du cognac et de la strychnine, un poison.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un litre de café salé et des morceaux de sucre.",
+        "Des tranches de citron trempées dans du miel.",
+        "Un bain de pieds glacé à chaque kilomètre."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-03",
+      "text": "Quelle épreuve a fait partie des Jeux olympiques de 1900 à 1920 ?",
+      "answer": "Le tir à la corde, par équipes.",
+      "acceptedAnswers": [
+        "tir a la corde"
+      ],
+      "decoys": [
+        "La course en sac.",
+        "Le lancer de tronc d'arbre.",
+        "La course à dos d'âne."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bsp-04",
+      "text": "Quelle épreuve très controversée s'est tenue lors des Jeux de Paris, en 1900 ?",
+      "answer": "Un tir aux pigeons vivants : environ 300 oiseaux ont été tués.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une course de chevaux à travers les rues de Paris.",
+        "Un concours de plongeon depuis la tour Eiffel.",
+        "Un combat de boxe entre deux kangourous."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-05",
+      "text": "Quelles médailles a-t-on décernées aux Jeux olympiques de 1912 à 1948 ?",
+      "answer": "Des médailles d'art : peinture, sculpture, musique, littérature et architecture.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des médailles de cuisine, pour les chefs du village olympique.",
+        "Des médailles de bonne conduite pour les supporters.",
+        "Des médailles d'élégance pour les plus belles tenues."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-06",
+      "text": "Quelle médaille Pierre de Coubertin a-t-il remportée en 1912 ?",
+      "answer": "L'or en littérature, pour un poème signé de faux noms.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "L'argent au tir au pistolet.",
+        "Le bronze en aviron, à 49 ans.",
+        "L'or en escrime, face à son propre neveu."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bsp-07",
+      "text": "Qui a retrouvé le trophée de la Coupe du monde, volé à Londres en 1966 ?",
+      "answer": "Un chien nommé Pickles, sous une haie, enveloppé dans du papier journal.",
+      "acceptedAnswers": [
+        "pickles",
+        "un chien"
+      ],
+      "decoys": [
+        "Un enfant qui jouait au football dans un parc.",
+        "Un éboueur, dans une poubelle près de Wembley.",
+        "Un chauffeur de taxi, sur sa banquette arrière."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-08",
+      "text": "Pourquoi les quatre premiers du Tour de France 1904 ont-ils été disqualifiés ?",
+      "answer": "Pour tricherie : on les accusait notamment d'avoir pris le train.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils s'étaient fait remorquer par des chevaux.",
+        "Ils avaient échangé leurs vélos en pleine course.",
+        "Ils avaient roulé de nuit, ce qui était interdit."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-09",
+      "text": "Qu'a fait l'astronaute Alan Shepard sur la Lune, en 1971 ?",
+      "answer": "Il a frappé deux balles de golf, d'une seule main.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a planté le fanion de son équipe de baseball.",
+        "Il a lancé un frisbee pour mesurer la gravité.",
+        "Il a couru un 100 mètres chronométré."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bsp-10",
+      "text": "Avec quoi James Naismith a-t-il fabriqué les premiers paniers de basket, en 1891 ?",
+      "answer": "Des paniers à pêches sans trou : il fallait récupérer le ballon avec une échelle.",
+      "acceptedAnswers": [
+        "paniers a peches"
+      ],
+      "decoys": [
+        "Des seaux à lait percés au fond.",
+        "Des chapeaux de paille cousus ensemble.",
+        "Des cercles de tonneau tendus de filet de pêche."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

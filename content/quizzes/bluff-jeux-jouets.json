@@ -1,0 +1,144 @@
+{
+  "id": "bluff-jeux-jouets",
+  "gameType": "bluff",
+  "title": "Jeux et jouets",
+  "theme": "Loisirs",
+  "description": "Monopoly d'évasion, Uno de barbier, Trivial Pursuit né d'un Scrabble incomplet : inventez une histoire crédible, démasquez la vraie.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B1)",
+  "questions": [
+    {
+      "id": "bjj-01",
+      "text": "Que voulait dénoncer « The Landlord's Game », l'ancêtre du Monopoly breveté en 1904 ?",
+      "answer": "Les propriétaires qui s'enrichissent grâce aux loyers et aux monopoles.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Les tricheurs aux cartes, très nombreux dans les trains américains.",
+        "La passion des enfants pour les jeux d'argent.",
+        "La lenteur des banques à prêter de l'argent."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-02",
+      "text": "Que cachaient certains Monopoly envoyés aux prisonniers alliés, pendant la Seconde Guerre mondiale ?",
+      "answer": "Des cartes en soie, des boussoles et de vrais billets pour s'évader.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des messages codés de leurs familles, dans les cartes Chance.",
+        "Des graines de légumes à planter dans la cour du camp.",
+        "Des pièces de radio à assembler en secret."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-03",
+      "text": "Selon la légende, d'où vient le nom du Frisbee ?",
+      "answer": "Des moules à tarte de la Frisbie Pie Company, que des étudiants s'amusaient à lancer.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'un chien nommé Frisbee qui rattrapait tout ce qu'on lui lançait.",
+        "Du sifflement que fait le disque en fendant l'air.",
+        "De son inventeur, un pilote nommé Fred Frisbee."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-04",
+      "text": "Combien de combinaisons différentes peut prendre un Rubik's Cube classique ?",
+      "answer": "Plus de 43 milliards de milliards.",
+      "acceptedAnswers": [
+        "43 milliards de milliards"
+      ],
+      "decoys": [
+        "Environ 4 millions.",
+        "Un peu moins d'un milliard.",
+        "Exactement 362 880."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-05",
+      "text": "Au jeu de l'oie classique, sur quelles cases trouve-t-on les oies ?",
+      "answer": "Toutes les neuf cases : 9, 18, 27, 36, 45 et 54.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sur toutes les cases paires.",
+        "Une case sur sept, comme les jours de la semaine.",
+        "Uniquement aux quatre coins du plateau."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-06",
+      "text": "Quel était le métier de l'inventeur du jeu Uno, en 1971 ?",
+      "answer": "Barbier, dans l'Ohio : il vendait ses premiers jeux dans son salon.",
+      "acceptedAnswers": [
+        "barbier",
+        "coiffeur"
+      ],
+      "decoys": [
+        "Facteur, il testait le jeu pendant ses tournées.",
+        "Professeur de mathématiques à la retraite.",
+        "Chauffeur de taxi à New York."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-07",
+      "text": "Que signifie le nom du jeu Jenga ?",
+      "answer": "Il vient du swahili et veut dire « construire ».",
+      "acceptedAnswers": [
+        "construire"
+      ],
+      "decoys": [
+        "C'est le prénom de la fille de son inventrice.",
+        "Il veut dire « tour qui tremble » en japonais.",
+        "C'est le nom d'une montagne d'Afrique de l'Est."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-08",
+      "text": "Que fabriquait l'entreprise Lego avant ses briques en plastique ?",
+      "answer": "Des jouets en bois, comme des cubes et des petits animaux.",
+      "acceptedAnswers": [
+        "jouets en bois"
+      ],
+      "decoys": [
+        "Des boutons de vêtements en os.",
+        "Des moules à gaufres en fonte.",
+        "Des pièces de rechange pour vélos."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bjj-09",
+      "text": "Comment est né le Trivial Pursuit, en 1979 ?",
+      "answer": "Deux amis voulaient jouer au Scrabble, mais il manquait des lettres.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un professeur l'a créé pour faire réviser ses élèves.",
+        "Deux frères l'ont imaginé pendant une panne d'électricité.",
+        "Un animateur de jeu télévisé l'a inventé pour s'entraîner."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bjj-10",
+      "text": "Où a été publiée la première grille de mots croisés, en 1913 ?",
+      "answer": "Dans un journal de New York, le New York World.",
+      "acceptedAnswers": [
+        "new york world"
+      ],
+      "decoys": [
+        "Dans un manuel scolaire anglais.",
+        "Sur le menu d'un restaurant parisien.",
+        "Dans le programme d'un théâtre de Londres."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

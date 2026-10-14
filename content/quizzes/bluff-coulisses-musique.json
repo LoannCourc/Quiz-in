@@ -1,0 +1,140 @@
+{
+  "id": "bluff-coulisses-musique",
+  "gameType": "bluff",
+  "title": "Les coulisses de la musique",
+  "theme": "Musique",
+  "description": "Des œufs brouillés chez les Beatles, un concert de 639 ans, une chanson d'anniversaire payante : inventez une anecdote, trouvez la vraie.",
+  "audience": "all",
+  "poster": "pink",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B1)",
+  "questions": [
+    {
+      "id": "bcmu-01",
+      "text": "Quel était le titre provisoire de « Yesterday », des Beatles ?",
+      "answer": "« Scrambled Eggs », c'est-à-dire « œufs brouillés ».",
+      "acceptedAnswers": [
+        "scrambled eggs",
+        "oeufs brouilles"
+      ],
+      "decoys": [
+        "« Tomorrow », jusqu'à la dernière minute.",
+        "« Sad Sunday », un dimanche triste.",
+        "« Blue Morning », un matin bleu."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-02",
+      "text": "Que se passe-t-il pendant « 4′33″ », l'œuvre de John Cage (1952) ?",
+      "answer": "Le musicien ne joue pas une seule note pendant 4 minutes 33.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le pianiste joue 433 notes, toutes différentes.",
+        "Le public chante pendant que l'orchestre se tait.",
+        "Chaque musicien joue un morceau différent en même temps."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-03",
+      "text": "Combien de temps doit durer le concert d'orgue de John Cage commencé en 2001 à Halberstadt, en Allemagne ?",
+      "answer": "639 ans : il ne s'achèvera pas avant le XXVIIe siècle.",
+      "acceptedAnswers": [
+        "639 ans"
+      ],
+      "decoys": [
+        "72 heures, sans aucune pause.",
+        "Un an, jour pour jour.",
+        "Aussi longtemps que vivra l'organiste."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-04",
+      "text": "Que faisait Freddie Mercury avant le succès de Queen ?",
+      "answer": "Il vendait des vêtements d'occasion sur un marché de Londres.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il était coiffeur dans un salon de Kensington.",
+        "Il réparait des radios dans une boutique.",
+        "Il était guide dans un musée de Londres."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-05",
+      "text": "Avec qui le groupe ABBA a-t-il dû s'entendre pour garder son nom ?",
+      "answer": "Une conserverie de poisson suédoise, qui s'appelait déjà Abba.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une marque suédoise de skis du même nom.",
+        "Un monastère dont les moines s'appelaient « abba ».",
+        "Un groupe de jazz norvégien plus ancien."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-06",
+      "text": "Qu'a fait Jimi Hendrix à sa guitare au festival de Monterey, en 1967 ?",
+      "answer": "Il l'a arrosée de liquide à briquet et y a mis le feu.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il l'a offerte à un spectateur tiré au sort.",
+        "Il en a joué avec les pieds pendant tout un morceau.",
+        "Il l'a accordée sur scène pendant vingt minutes."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-07",
+      "text": "Pourquoi « Happy Birthday to You » a-t-elle longtemps coûté cher aux films américains ?",
+      "answer": "Un éditeur réclamait des droits d'auteur dessus, jusqu'en 2016.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle était réservée à la télévision par un contrat.",
+        "Sa mélodie appartenait à une marque de gâteaux.",
+        "Il fallait payer chaque bougie montrée à l'écran."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-08",
+      "text": "Qu'emportent les sondes Voyager, lancées en 1977 ?",
+      "answer": "Un disque doré avec des musiques et des sons de la Terre, pour des extraterrestres.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une boîte à musique qui joue l'hymne américain.",
+        "Les partitions complètes de Mozart gravées sur métal.",
+        "Un haut-parleur qui diffuse des chansons dans l'espace."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bcmu-09",
+      "text": "D'où vient le nom du groupe Led Zeppelin ?",
+      "answer": "D'une blague : le groupe allait couler « comme un ballon de plomb ».",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Du dirigeable de son premier vol, pris par le guitariste.",
+        "D'un groupe de jazz allemand des années 1920.",
+        "Du surnom du batteur, à cause de son poids."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bcmu-10",
+      "text": "Quel morceau a été le premier joué avec un instrument dans l'espace, en 1965 ?",
+      "answer": "« Jingle Bells », à l'harmonica, par les astronautes de Gemini 6.",
+      "acceptedAnswers": [
+        "jingle bells"
+      ],
+      "decoys": [
+        "« La Marseillaise », au violon.",
+        "« Happy Birthday », à la flûte.",
+        "« Twinkle, Twinkle, Little Star », au xylophone."
+      ],
+      "difficulty": 2
+    }
+  ]
+}
