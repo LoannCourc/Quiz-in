@@ -1,3 +1,4 @@
+import { firstValue } from '@shared/firstValue';
 import { resumeDecision, type ResumeDecision, type ResumeRead } from '@shared/hostEngine';
 import type { GameStatus } from '@shared/types';
 import { useFocusEffect } from 'expo-router';
@@ -19,18 +20,17 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 }
 
 // Décalage de l'horloge du serveur, comme useServerTimeOffset (onValue : get() n'est pas fait pour .info).
+// onValue rappelle tout de suite quand la valeur est en cache : firstValue le supporte.
 function readServerOffset(): Promise<number> {
-  return new Promise((resolve) => {
-    const timer = setTimeout(() => {
-      unsubscribe();
-      resolve(0);
-    }, OFFSET_TIMEOUT_MS);
-    const unsubscribe = onValue(ref(db, '.info/serverTimeOffset'), (snapshot) => {
-      clearTimeout(timer);
-      unsubscribe();
-      resolve(typeof snapshot.val() === 'number' ? (snapshot.val() as number) : 0);
-    });
-  });
+  return firstValue<number>(
+    (onOffset) =>
+      onValue(ref(db, '.info/serverTimeOffset'), (snapshot) => {
+        const offset: unknown = snapshot.val();
+        onOffset(typeof offset === 'number' ? offset : 0);
+      }),
+    OFFSET_TIMEOUT_MS,
+    0,
+  );
 }
 
 // Champs publics seulement : hostUid, status et hostLeftAt. Toute erreur (refus au relancement, avant que la
@@ -98,7 +98,11 @@ export function useResumableGame(): string | null {
             setCode(result.code);
             if (result.decision === 'retry') retryTimer = setTimeout(check, RETRY_DELAY_MS);
           })
-          .catch((error: unknown) => console.warn('[resume] Vérification de la partie à reprendre impossible', error));
+          .catch((error: unknown) => {
+            // Erreur imprévue : le code gardé n'est jamais effacé, nouvel essai.
+            console.warn('[resume] Vérification de la partie à reprendre impossible : nouvel essai', error);
+            if (isActive) retryTimer = setTimeout(check, RETRY_DELAY_MS);
+          });
       };
       check();
       return () => {
