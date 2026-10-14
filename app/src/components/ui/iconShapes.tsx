@@ -72,8 +72,8 @@ export function ring(pen: Pen, key: string, cx: number, cy: number, w: number, h
   return <View key={key} style={style} />;
 }
 
-// Contour de rectangle arrondi.
-export function box(pen: Pen, key: string, x: number, y: number, w: number, h: number, radius: number): ReactNode {
+// Contour de rectangle arrondi (filled : rectangle plein).
+export function box(pen: Pen, key: string, x: number, y: number, w: number, h: number, radius: number, filled = false): ReactNode {
   const corner = at(pen, x, y);
   const style: ViewStyle = {
     position: 'absolute',
@@ -82,8 +82,7 @@ export function box(pen: Pen, key: string, x: number, y: number, w: number, h: n
     width: w * pen.k,
     height: h * pen.k,
     borderRadius: radius * pen.k,
-    borderWidth: STROKE * pen.k,
-    borderColor: pen.color,
+    ...(filled ? { backgroundColor: pen.color } : { borderWidth: STROKE * pen.k, borderColor: pen.color }),
   };
   return <View key={key} style={style} />;
 }
@@ -161,4 +160,36 @@ export function clipped(
       {draw(inner)}
     </View>
   );
+}
+
+// Épaisseur du « ? » (proche de la graisse de Bowlby One, bien plus épais qu'un trait d'icône).
+const QUESTION_WEIGHT = 3.8;
+
+// Anneau d'épaisseur donnée, centré en (cx, cy), de diamètre extérieur d.
+function thickRing(pen: Pen, key: string, cx: number, cy: number, d: number, weight: number): ReactNode {
+  const corner = at(pen, cx - d / 2, cy - d / 2);
+  const style: ViewStyle = {
+    position: 'absolute',
+    left: corner.x,
+    top: corner.y,
+    width: d * pen.k,
+    height: d * pen.k,
+    borderRadius: (d / 2) * pen.k,
+    borderWidth: weight * pen.k,
+    borderColor: pen.color,
+  };
+  return <View key={key} style={style} />;
+}
+
+// Point d'interrogation dessiné (Quiz, Culture générale) : crochet (anneau épais privé de son quart bas
+// gauche), tige et point. Mêmes proportions sur Android, iOS et le web : jamais de glyphe de police, dont
+// les métriques (hauteur de ligne, montée) diffèrent selon le système et décentraient le « ? » sur iPhone.
+export function questionMark(pen: Pen): ReactNode[] {
+  const hook = (inner: Pen) => [thickRing(inner, 'ring', 12, 8.5, 12, QUESTION_WEIGHT)];
+  return [
+    clipped(pen, 'hookTop', { x: 5, y: 2, w: 14, h: 6.5, radius: 0 }, hook),
+    clipped(pen, 'hookRight', { x: 12, y: 8.5, w: 7, h: 6.5, radius: 0 }, hook),
+    box(pen, 'stem', 12 - QUESTION_WEIGHT / 2, 12.6, QUESTION_WEIGHT, 3.9, QUESTION_WEIGHT / 2, true),
+    dot(pen, 'dot', 12, 20.4, QUESTION_WEIGHT * 1.1),
+  ];
 }

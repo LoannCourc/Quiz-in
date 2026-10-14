@@ -1,11 +1,11 @@
 import type { QuizIconName } from '@shared/themeIcons';
 import type { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { AppColors, AppFonts } from '@/constants/appTheme';
+import { AppColors } from '@/constants/appTheme';
 
 import { GENRE_DRAWINGS } from './genreIcons';
-import { box, clipped, dot, GRID, line, ring, roof, STROKE, type Pen } from './iconShapes';
+import { box, clipped, dot, GRID, line, questionMark, ring, roof, STROKE, type Pen } from './iconShapes';
 
 // Icônes des quiz : thèmes (maquette I2) et genres de blind test (I3, genreIcons), dessinées avec des
 // View comme SettingsIcon : aucune image ni bibliothèque, même rendu sur Android et le web. Traits
@@ -88,7 +88,8 @@ export function ball(pen: Pen): ReactNode[] {
   ];
 }
 
-const DRAWINGS: Record<Exclude<QuizIconName, 'question'>, (pen: Pen) => ReactNode[]> = {
+const DRAWINGS: Record<QuizIconName, (pen: Pen) => ReactNode[]> = {
+  question: questionMark,
   clapper,
   globe,
   columns,
@@ -108,7 +109,6 @@ interface ThemeIconProps {
 export function ThemeIcon({ name, size }: ThemeIconProps) {
   // Ombre dure bleu nuit, décalée vers le bas comme celle des badges.
   const shadowOffset = Math.max(1, Math.round(size * 0.05));
-  if (name === 'question') return <QuestionMark size={size} shadowOffset={shadowOffset} />;
   const draw = DRAWINGS[name];
   const k = size / GRID;
   return (
@@ -119,32 +119,3 @@ export function ThemeIcon({ name, size }: ThemeIconProps) {
   );
 }
 
-// Culture générale : le « ? » de l'affiche, en police d'affichage.
-function QuestionMark({ size, shadowOffset }: { size: number; shadowOffset: number }) {
-  const style = {
-    fontSize: size,
-    lineHeight: Math.round(size * 1.15),
-    textShadowOffset: { width: 0, height: shadowOffset },
-  };
-  return (
-    <View style={[styles.questionBox, { width: size, height: size + shadowOffset }]}>
-      <Text style={[styles.question, style]} accessibilityElementsHidden importantForAccessibility="no">
-        ?
-      </Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  questionBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  question: {
-    color: AppColors.themeIcon,
-    fontFamily: AppFonts.display,
-    textAlign: 'center',
-    textShadowColor: AppColors.themeIconShadow,
-    textShadowRadius: 0,
-  },
-});
