@@ -1,0 +1,147 @@
+{
+  "id": "bluff-histoires-cinema",
+  "gameType": "bluff",
+  "title": "Drôles d'histoires de cinéma",
+  "theme": "Cinéma et séries",
+  "description": "Des Oscars en plâtre, un Mickey nommé Mortimer, un film sauvé par une copie à la maison : inventez une anecdote, démasquez la vraie.",
+  "audience": "all",
+  "poster": "gold",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B2)",
+  "questions": [
+    {
+      "id": "bhc-01",
+      "text": "Pendant la Seconde Guerre mondiale, en quoi étaient faites les statuettes des Oscars ?",
+      "answer": "En plâtre peint, à cause de la pénurie de métal.",
+      "acceptedAnswers": [
+        "platre",
+        "en platre"
+      ],
+      "decoys": [
+        "En bois doré, sculpté à la main.",
+        "En chocolat recouvert de feuille d'or.",
+        "En verre soufflé, trop fragile pour voyager."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-02",
+      "text": "De quelle couleur étaient les souliers magiques de Dorothy dans le livre « Le Magicien d'Oz » ?",
+      "answer": "Argentés : le film les a faits rouges pour briller en Technicolor.",
+      "acceptedAnswers": [
+        "argentes"
+      ],
+      "decoys": [
+        "Dorés, comme la route de briques jaunes.",
+        "Verts, comme la Cité d'émeraude.",
+        "Bleus, la couleur préférée de l'auteur."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-03",
+      "text": "Comment Walt Disney voulait-il d'abord appeler Mickey ?",
+      "answer": "Mortimer : sa femme trouvait ce nom trop prétentieux.",
+      "acceptedAnswers": [
+        "mortimer"
+      ],
+      "decoys": [
+        "Marty, comme son coiffeur.",
+        "Mouse Junior, tout simplement.",
+        "Maxime, en souvenir d'un voyage en France."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-04",
+      "text": "Comment Alfred Hitchcock apparaît-il dans « Lifeboat » (1944), tourné entièrement dans un canot ?",
+      "answer": "Sur une publicité pour un régime, dans un journal, en photos avant-après.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "En noyé qui passe à côté du canot.",
+        "Dans le reflet d'une bouteille de whisky.",
+        "En portrait tatoué sur le bras d'un marin."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bhc-05",
+      "text": "D'où vient le nom de R2-D2, dans « Star Wars » ?",
+      "answer": "D'un code de montage : « Reel 2, Dialogue 2 », bobine 2, piste 2.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des initiales des deux enfants de George Lucas.",
+        "D'une plaque d'immatriculation vue à Los Angeles.",
+        "D'un modèle d'aspirateur des années 1970."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-06",
+      "text": "Quel animal donne la partie aiguë du rugissement du tyrannosaure de « Jurassic Park » ?",
+      "answer": "Un bébé éléphant, mélangé à un alligator et à d'autres animaux.",
+      "acceptedAnswers": [
+        "elephant",
+        "bebe elephant"
+      ],
+      "decoys": [
+        "Un chat siamois, ralenti dix fois.",
+        "Un cochon, mélangé au moteur d'un camion.",
+        "Un aigle, enregistré dans un zoo."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-07",
+      "text": "Quels bonbons E.T. suit-il pour entrer dans la maison d'Elliott ?",
+      "answer": "Des Reese's Pieces : le fabricant des M&M's aurait refusé.",
+      "acceptedAnswers": [
+        "reese's pieces"
+      ],
+      "decoys": [
+        "Des guimauves, les seules qu'Elliott avait.",
+        "Des réglisses, collées les unes aux autres.",
+        "Des chewing-gums à la fraise."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-08",
+      "text": "Selon la légende, que s'est-il passé lors des premières projections de « L'Arrivée d'un train en gare de La Ciotat » ?",
+      "answer": "Des spectateurs auraient fui, croyant que le train allait les écraser.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le projecteur aurait pris feu au passage du train.",
+        "Le public aurait réclamé le film trois fois de suite.",
+        "Un conducteur de train aurait porté plainte pour son image."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bhc-09",
+      "text": "Comment « Toy Story 2 » a-t-il été sauvé, après l'effacement accidentel de ses fichiers en 1998 ?",
+      "answer": "Une employée en congé maternité en gardait une copie sur son ordinateur, chez elle.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un stagiaire l'avait gravé en secret sur des CD.",
+        "Les animateurs ont tout refait en trois semaines.",
+        "Un concurrent en avait volé une copie et l'a rendue."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bhc-10",
+      "text": "Quel film remporte le tout premier Oscar du meilleur film d'animation, en 2002 ?",
+      "answer": "Shrek, face à « Monstres et Cie ».",
+      "acceptedAnswers": [
+        "shrek"
+      ],
+      "decoys": [
+        "Le Roi lion, récompensé des années après sa sortie.",
+        "Toy Story, premier film tout en images de synthèse.",
+        "Le Voyage de Chihiro, film japonais."
+      ],
+      "difficulty": 1
+    }
+  ]
+}

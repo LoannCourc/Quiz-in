@@ -1,0 +1,137 @@
+{
+  "id": "bluff-records-sport",
+  "gameType": "bluff",
+  "title": "Records et règles du sport",
+  "theme": "Sport",
+  "description": "Un match de 11 heures, un marathon allongé pour une reine, un volley appelé « mintonette » : inventez, démasquez la vraie histoire.",
+  "audience": "all",
+  "poster": "red",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B2)",
+  "questions": [
+    {
+      "id": "brs-01",
+      "text": "Combien de temps a duré le match entre John Isner et Nicolas Mahut, à Wimbledon en 2010 ?",
+      "answer": "11 heures et 5 minutes, réparties sur trois jours.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "6 heures, sans aucune pause.",
+        "Deux jours entiers, à cause de la pluie.",
+        "14 heures, un record battu depuis."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-02",
+      "text": "Pourquoi le marathon mesure-t-il 42,195 km ?",
+      "answer": "En 1908, on l'a allongé pour partir sous les fenêtres du château de Windsor.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "C'est la distance exacte entre Marathon et Athènes.",
+        "Un mile a été ajouté par une erreur de mesure.",
+        "Le premier vainqueur s'était perdu et avait couru plus."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-03",
+      "text": "Comment s'appelait le volley-ball à son invention, en 1895 ?",
+      "answer": "La « mintonette ».",
+      "acceptedAnswers": [
+        "mintonette"
+      ],
+      "decoys": [
+        "Le « tennis-ballon ».",
+        "La « paume volante ».",
+        "Le « filet-ball »."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-04",
+      "text": "Qui était Roland Garros, dont le stade de tennis porte le nom ?",
+      "answer": "Un aviateur, le premier à traverser la Méditerranée en avion, en 1913.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Le premier champion de France de tennis.",
+        "L'architecte qui a dessiné les courts en terre battue.",
+        "Le maire de Paris qui a offert le terrain."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-05",
+      "text": "Qu'a fait le Français Lucien Laurent le 13 juillet 1930, en Uruguay ?",
+      "answer": "Il a marqué le tout premier but de l'histoire de la Coupe du monde.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a arbitré la finale de la première Coupe du monde.",
+        "Il a été le premier joueur expulsé d'une Coupe du monde.",
+        "Il a dessiné le premier ballon officiel du tournoi."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-06",
+      "text": "D'où vient le surnom de « lanterne rouge » donné au dernier du Tour de France ?",
+      "answer": "Du feu rouge accroché au dernier wagon des trains.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "D'une lampe qu'il devait porter pour rouler de nuit.",
+        "Du maillot rouge qu'il portait autrefois.",
+        "D'un café parisien où il recevait un repas offert."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "brs-07",
+      "text": "Comment concouraient les athlètes des Jeux olympiques antiques ?",
+      "answer": "Nus : le mot « gymnase » vient du grec « gymnos », nu.",
+      "acceptedAnswers": [
+        "nus"
+      ],
+      "decoys": [
+        "Masqués, pour que les juges ne les reconnaissent pas.",
+        "Avec des sandales lestées de plomb.",
+        "En armure, pour rappeler la guerre."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "brs-08",
+      "text": "Pourquoi les lutteurs de sumo jettent-ils du sel avant leurs combats ?",
+      "answer": "Pour purifier l'arène, selon une tradition shinto.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour que leurs pieds ne glissent pas sur la terre battue.",
+        "Pour saluer la mer, d'où venaient les premiers lutteurs.",
+        "Pour compter les combats gagnés pendant le tournoi."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "brs-09",
+      "text": "D'où vient le nom « ping-pong » ?",
+      "answer": "Du bruit de la balle sur la raquette, puis sur la table.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "De ses deux inventeurs chinois, Ping et Pong.",
+        "D'une marque de raquettes japonaise.",
+        "D'un mot anglais qui veut dire « aller-retour »."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "brs-10",
+      "text": "Pourquoi un parcours de golf compte-t-il 18 trous ?",
+      "answer": "En 1764, St Andrews a fusionné des trous trop courts et est passé de 22 à 18.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "C'est le nombre de gorgées d'une bouteille de whisky.",
+        "Il fallait 18 balles pour remplir un seau réglementaire.",
+        "Un roi d'Écosse avait 18 enfants, un trou chacun."
+      ],
+      "difficulty": 2
+    }
+  ]
+}

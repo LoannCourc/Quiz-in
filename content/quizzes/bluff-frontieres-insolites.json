@@ -1,0 +1,142 @@
+{
+  "id": "bluff-frontieres-insolites",
+  "gameType": "bluff",
+  "title": "Frontières insolites",
+  "theme": "Géographie",
+  "description": "Une marine sans mer, une ville espagnole en France, un pays sans capitale : inventez une curiosité crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "blue",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B2)",
+  "questions": [
+    {
+      "id": "bfi-01",
+      "text": "Qu'a de particulier Point Roberts, une petite ville américaine ?",
+      "answer": "Par la route, on ne peut l'atteindre qu'en traversant le Canada.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle n'a pas de rues, seulement des canaux.",
+        "Elle change d'État américain chaque année.",
+        "Elle est construite sur un ancien porte-avions."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-02",
+      "text": "Qu'a d'étonnant la ville de Llívia, dans les Pyrénées ?",
+      "answer": "C'est une ville espagnole entièrement entourée par la France.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle ne reçoit jamais d'ombre à midi.",
+        "Ses habitants votent à la fois en France et en Espagne.",
+        "Elle appartient à Andorre depuis un pari perdu."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-03",
+      "text": "Où la Bolivie, qui n'a aucun accès à la mer, entretient-elle une marine militaire ?",
+      "answer": "Sur le lac Titicaca, à près de 3 800 mètres d'altitude.",
+      "acceptedAnswers": [
+        "lac titicaca",
+        "titicaca"
+      ],
+      "decoys": [
+        "Sur l'Amazone, dans un port loué au Brésil.",
+        "Dans un port chilien prêté une semaine par an.",
+        "En mer, sur des navires loués à l'Argentine."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-04",
+      "text": "Quelle dimension de l'Australie dépasse celle de la Lune ?",
+      "answer": "Sa largeur : environ 4 000 km, contre 3 474 km pour le diamètre de la Lune.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Sa surface, deux fois plus grande.",
+        "Son périmètre, plus long que l'équateur lunaire.",
+        "Son plus haut sommet, plus haut que les montagnes lunaires."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bfi-05",
+      "text": "Qu'a d'unique la république de Nauru, dans le Pacifique ?",
+      "answer": "Elle n'a pas de capitale officielle : le gouvernement siège à Yaren.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Elle n'a ni routes ni voitures, seulement des vélos.",
+        "Elle a deux drapeaux, un pour le jour et un pour la nuit.",
+        "Elle est dirigée par un conseil de dix enfants."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-06",
+      "text": "Qu'ont en commun le Liechtenstein et l'Ouzbékistan ?",
+      "answer": "Ils sont doublement enclavés : tous leurs voisins sont eux aussi privés de mer.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Ils n'ont aucune rivière sur leur territoire.",
+        "Leur capitale est la ville la plus haute du pays.",
+        "Ils interdisent les voitures le dimanche."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bfi-07",
+      "text": "Quelle part des lacs du monde se trouve au Canada ?",
+      "answer": "Environ 60 % : plus que dans tout le reste du monde réuni.",
+      "acceptedAnswers": [
+        "60 %",
+        "environ 60 %"
+      ],
+      "decoys": [
+        "Environ 10 %, surtout près des Grands Lacs.",
+        "Un quart, presque tous gelés toute l'année.",
+        "Un tiers, partagé avec les États-Unis."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-08",
+      "text": "Pourquoi flotte-t-on sans effort dans la mer Morte ?",
+      "answer": "Son eau est environ huit fois plus salée que celle de l'océan.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Des bulles de gaz remontent sans cesse du fond.",
+        "Une source chaude pousse l'eau vers le haut.",
+        "Le fond n'est qu'à un mètre de profondeur partout."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bfi-09",
+      "text": "Combien de fuseaux horaires traversent la Russie ?",
+      "answer": "11, de Kaliningrad au Kamtchatka.",
+      "acceptedAnswers": [
+        "11",
+        "onze"
+      ],
+      "decoys": [
+        "5, un par grande région.",
+        "24, un pour chaque heure.",
+        "Un seul : tout le pays vit à l'heure de Moscou."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bfi-10",
+      "text": "Quelle forme a le territoire du Chili ?",
+      "answer": "Une bande d'environ 4 300 km de long sur 180 km de large en moyenne.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un carré presque parfait de 1 000 km de côté.",
+        "Un anneau autour d'un immense lac central.",
+        "Un triangle dont chaque côté touche un océan."
+      ],
+      "difficulty": 1
+    }
+  ]
+}

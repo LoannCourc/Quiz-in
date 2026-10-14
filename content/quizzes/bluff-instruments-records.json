@@ -1,0 +1,146 @@
+{
+  "id": "bluff-instruments-records",
+  "gameType": "bluff",
+  "title": "Instruments et partitions",
+  "theme": "Musique",
+  "description": "Un instrument qu'on ne touche pas, un morceau à jouer 840 fois, une Élise qui s'appelait peut-être Thérèse : inventez, démasquez.",
+  "audience": "all",
+  "poster": "cyan",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B2)",
+  "questions": [
+    {
+      "id": "bir-01",
+      "text": "Comment s'appelait le piano à son invention, vers 1700 ?",
+      "answer": "Un « clavecin qui joue doux et fort » : gravicembalo col piano e forte.",
+      "acceptedAnswers": [
+        "gravicembalo col piano e forte"
+      ],
+      "decoys": [
+        "Un « tambour à cordes », car on frappe les cordes.",
+        "Un « orgue de salon », sans tuyaux.",
+        "Une « harpe couchée », jouée avec des touches."
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "bir-02",
+      "text": "Sur quel air Mozart a-t-il écrit douze variations pour piano ?",
+      "answer": "« Ah ! vous dirai-je, maman », l'air de « Twinkle, Twinkle, Little Star ».",
+      "acceptedAnswers": [
+        "ah vous dirai-je maman"
+      ],
+      "decoys": [
+        "« Au clair de la lune », pour sa sœur.",
+        "« Frère Jacques », sous le titre « Bruder Jakob ».",
+        "« Il était une bergère », un air de Vienne."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-03",
+      "text": "Selon le récit, que s'est-il passé à la fin de la création de la Neuvième Symphonie de Beethoven, en 1824 ?",
+      "answer": "Sourd, il n'entendait pas les applaudissements : une chanteuse l'a tourné vers le public.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il a dirigé tout le concert dos au public, en silence.",
+        "Il a quitté la salle avant la fin, croyant à un échec.",
+        "Il a demandé de rejouer l'œuvre entière le soir même."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-04",
+      "text": "Selon une hypothèse répandue, à qui la « Lettre à Élise » était-elle vraiment dédiée ?",
+      "answer": "À une Thérèse : un éditeur aurait mal lu l'écriture de Beethoven.",
+      "acceptedAnswers": [
+        "therese"
+      ],
+      "decoys": [
+        "À sa cuisinière, qui s'appelait Élise.",
+        "À la fille de son éditeur, âgée de six ans.",
+        "À une élève anglaise nommée Alice."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-05",
+      "text": "Quels sont les premiers mots enregistrés par Edison sur son phonographe, en 1877 ?",
+      "answer": "Une comptine : « Mary had a little lamb ».",
+      "acceptedAnswers": [
+        "mary had a little lamb"
+      ],
+      "decoys": [
+        "« Allô, allô, m'entendez-vous ? »",
+        "Les premières notes de l'hymne américain.",
+        "« Bonne année 1878 ! », pour un ami."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-06",
+      "text": "Qu'a de particulier le thérémine, inventé vers 1920 ?",
+      "answer": "On en joue sans le toucher, en bougeant les mains près de deux antennes.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "On en joue avec les pieds, comme un orgue.",
+        "Il ne joue qu'une seule note, plus ou moins fort.",
+        "Il se joue à deux, chacun tenant une poignée."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-07",
+      "text": "Combien de fois la partition de « Vexations », d'Erik Satie, invite-t-elle à jouer son motif ?",
+      "answer": "840 fois : un concert complet a duré plus de 18 heures.",
+      "acceptedAnswers": [
+        "840",
+        "840 fois"
+      ],
+      "decoys": [
+        "100 fois, une pour chaque année du siècle.",
+        "Jusqu'à ce que le dernier spectateur soit parti.",
+        "12 fois, une par mois de l'année."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-08",
+      "text": "Pourquoi le batteur des Beatles s'appelle-t-il Ringo ?",
+      "answer": "À cause des nombreuses bagues (« rings ») qu'il portait aux doigts.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "C'était le nom de son premier chien.",
+        "Il sonnait les cloches (« ring ») de son église.",
+        "Un journaliste l'avait confondu avec un boxeur."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-09",
+      "text": "Combien l'étudiant qui a dessiné la langue des Rolling Stones a-t-il été payé, en 1970 ?",
+      "answer": "50 livres, puis 200 de plus deux ans après, pour le succès du logo.",
+      "acceptedAnswers": [
+        "50 livres"
+      ],
+      "decoys": [
+        "Rien : il a été payé en places de concert.",
+        "Un pourcentage sur chaque t-shirt vendu.",
+        "10 000 livres, une fortune pour l'époque."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bir-10",
+      "text": "Pourquoi surnommait-on Vivaldi « le Prêtre roux » ?",
+      "answer": "Il avait été ordonné prêtre et avait les cheveux roux.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Il célébrait la messe en habit rouge.",
+        "Il buvait du vin rouge pendant ses concerts.",
+        "Il habitait le quartier des teinturiers de Venise."
+      ],
+      "difficulty": 1
+    }
+  ]
+}

@@ -18,15 +18,15 @@ quiz de 10 questions dans le thème.
 | Thème (texte exact du champ `theme`) | Quiz : manque pour 20 / 30 | Bluff : manque pour 15 / 20 |
 |---|---|---|
 | Culture générale | 0 / 0 | 0 / 0 |
-| Cinéma et séries | 0 / 0 | 5 / 10 |
+| Cinéma et séries | 0 / 0 | 0 / 0 |
 | Loisirs | 0 / 0 | 0 / 0 |
 | Sciences et nature | 0 / 0 | 0 / 0 |
 | Géographie | 0 / 0 | 0 / 0 |
 | Histoire | 0 / 0 | 0 / 0 |
-| Musique | 0 / 0 | 5 / 10 |
-| Sport | 0 / 0 | 5 / 10 |
+| Musique | 0 / 0 | 0 / 0 |
+| Sport | 0 / 0 | 0 / 0 |
 
-Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 30 questions. Bluff : état après le lot B1.
+Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 30 questions. Bluff : état après le lot B2 (chaque catégorie a au moins 20 questions).
 
 ## Règles communes à tous les jeux
 

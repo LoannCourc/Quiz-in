@@ -1,0 +1,140 @@
+{
+  "id": "bluff-histoires-cuisine",
+  "gameType": "bluff",
+  "title": "Histoires de cuisine",
+  "theme": "Loisirs",
+  "description": "Un comte qui ne quittait pas sa table de jeu, un ketchup sans tomate, une tarte à l'envers : inventez une origine crédible, trouvez la vraie.",
+  "audience": "all",
+  "poster": "orange",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot B2)",
+  "questions": [
+    {
+      "id": "bch-01",
+      "text": "Selon la légende, pourquoi le comte de Sandwich se faisait-il servir de la viande entre deux tranches de pain ?",
+      "answer": "Pour manger sans quitter sa table de jeu.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour cacher sa viande à son médecin.",
+        "Pour nourrir son cheval pendant une course.",
+        "Pour déjeuner sur un bateau qui tanguait."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bch-02",
+      "text": "De quelles couleurs étaient le plus souvent les carottes avant le XVIIe siècle ?",
+      "answer": "Violettes, jaunes ou blanches : l'orange a été sélectionnée aux Pays-Bas.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Rouge vif, comme les radis.",
+        "Noires, et on n'en mangeait que les feuilles.",
+        "Vertes, car on les récoltait avant maturité."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-03",
+      "text": "Selon la tradition, pour qui la pizza Margherita a-t-elle été créée, en 1889 ?",
+      "answer": "Pour la reine Marguerite d'Italie, aux couleurs du drapeau italien.",
+      "acceptedAnswers": [
+        "la reine marguerite",
+        "reine marguerite"
+      ],
+      "decoys": [
+        "Pour une serveuse de Naples nommée Margherita.",
+        "Pour la fille du pizzaïolo, le jour de ses noces.",
+        "Pour une chanteuse d'opéra en tournée à Naples."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-04",
+      "text": "Qu'était le ketchup à l'origine, en Asie ?",
+      "answer": "Une sauce de poisson fermentée, sans aucune tomate.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Une confiture de mangue épicée.",
+        "Un sirop de riz contre la toux.",
+        "Une pâte de piment pour conserver la viande."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-05",
+      "text": "Que signifie le mot italien « tiramisu » ?",
+      "answer": "« Tire-moi vers le haut », c'est-à-dire « remonte-moi le moral ».",
+      "acceptedAnswers": [
+        "tire-moi vers le haut"
+      ],
+      "decoys": [
+        "« Petit nuage de Trévise ».",
+        "« Gâteau du dimanche », en dialecte vénitien.",
+        "« Café des amoureux »."
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "bch-06",
+      "text": "Où sont nés les cookies aux pépites de chocolat, vers 1938 ?",
+      "answer": "Dans une auberge du Massachusetts, le Toll House Inn.",
+      "acceptedAnswers": [
+        "toll house inn"
+      ],
+      "decoys": [
+        "Dans une usine de biscuits pour soldats.",
+        "Dans les cuisines de la Maison-Blanche.",
+        "Dans une boulangerie française de New York."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-07",
+      "text": "Qui a inventé l'esquimau glacé Popsicle, en 1905 ?",
+      "answer": "Un garçon de 11 ans, qui avait oublié sa boisson dehors une nuit froide.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un vendeur de glaces de Coney Island.",
+        "Un médecin qui voulait soigner les maux de gorge.",
+        "Un explorateur de retour du pôle Nord."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-08",
+      "text": "Comment le Coca-Cola a-t-il d'abord été vendu, en 1886 ?",
+      "answer": "Comme une boisson tonique, dans une pharmacie d'Atlanta.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Comme une limonade pour enfants, dans les fêtes foraines.",
+        "Comme un colorant pour les gâteaux.",
+        "Comme une boisson réservée à l'armée."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-09",
+      "text": "Pourquoi l'ancêtre du Nutella a-t-il été inventé, après la Seconde Guerre mondiale ?",
+      "answer": "Le cacao manquait : on l'a mélangé à des noisettes, abondantes dans le Piémont.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Pour écouler les stocks de lait en poudre de l'armée.",
+        "Pour remplacer le beurre, interdit pendant la guerre.",
+        "Pour un concours de pâtissiers organisé à Turin."
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "bch-10",
+      "text": "Selon la légende, comment est née la tarte Tatin ?",
+      "answer": "Une des sœurs Tatin aurait oublié la pâte et l'aurait ajoutée par-dessus les pommes.",
+      "acceptedAnswers": [],
+      "decoys": [
+        "Un client aurait renversé sa tarte et exigé de la manger ainsi.",
+        "Elle serait née d'un pari entre deux chefs parisiens.",
+        "Elle aurait été servie à l'envers à un roi qui mangeait couché."
+      ],
+      "difficulty": 2
+    }
+  ]
+}
