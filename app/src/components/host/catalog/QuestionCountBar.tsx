@@ -20,15 +20,17 @@ interface QuestionCountBarProps {
   onShowSummary?: () => void;
   onContinue: () => void;
   isContinueDisabled?: boolean;
+  // Quiz (maquette Q1) : barre compacte, environ 130 de haut sans ligne d'explication.
+  compact?: boolean;
 }
 
 // Barre fixe en bas du catalogue (maquettes S2 et BL4) : « NOMBRE DE QUESTIONS », contrôle segmenté
-// (options impossibles grisées) et CONTINUER. Commune au Quiz et au Bluff.
+// (options impossibles grisées) et CONTINUER. Commune au Quiz (compacte) et au Bluff.
 export function QuestionCountBar(props: QuestionCountBarProps) {
-  const { options, available, value, onChange, summary, note, onShowSummary, onContinue, isContinueDisabled = false } = props;
+  const { options, available, value, onChange, summary, note, onShowSummary, onContinue, isContinueDisabled = false, compact = false } = props;
   const texts = strings.catalog.questionCount;
   return (
-    <View style={styles.bar}>
+    <View style={[styles.bar, compact && styles.compactBar]}>
       <View style={styles.header}>
         <Text style={styles.title} numberOfLines={1}>
           {texts.title}
@@ -56,7 +58,8 @@ export function QuestionCountBar(props: QuestionCountBarProps) {
               accessibilityState={{ selected: isSelected, disabled: !isAvailable }}
               disabled={!isAvailable}
               onPress={() => onChange(count)}
-              style={[styles.segment, isSelected && styles.segmentSelected]}>
+              hitSlop={compact ? COMPACT_SEGMENT_SLOP : undefined}
+              style={[styles.segment, compact && styles.compactSegment, isSelected && styles.segmentSelected]}>
               <ButtonLabel style={[styles.segmentLabel, isSelected && styles.segmentLabelSelected, !isAvailable && styles.segmentLabelDisabled]}>
                 {String(count)}
               </ButtonLabel>
@@ -64,13 +67,16 @@ export function QuestionCountBar(props: QuestionCountBarProps) {
           );
         })}
       </View>
-      {note && <Text style={styles.note}>{note}</Text>}
-      <SubmitButton label={texts.continue} onPress={onContinue} disabled={isContinueDisabled} />
+      {note && <Text style={[styles.note, compact && styles.compactNote]}>{note}</Text>}
+      <SubmitButton label={texts.continue} onPress={onContinue} disabled={isContinueDisabled} compact={compact} />
     </View>
   );
 }
 
 const SEGMENT_HEIGHT = 44;
+const COMPACT_SEGMENT_HEIGHT = 30;
+// Zone de toucher d'un segment compact : 44 de haut avec le contour encre.
+const COMPACT_SEGMENT_SLOP = { top: 7, bottom: 7 };
 
 const styles = StyleSheet.create({
   bar: {
@@ -78,6 +84,22 @@ const styles = StyleSheet.create({
     padding: Spacing.three,
     borderRadius: AppSizes.radius,
     backgroundColor: AppColors.panel,
+  },
+  // Maquette Q1 : fond violet foncé, coins de 20, collée en bas (12 autour), blocs serrés.
+  compactBar: {
+    gap: 6,
+    padding: 10,
+    marginHorizontal: -Spacing.one,
+    marginBottom: -Spacing.one,
+    borderRadius: 20,
+    backgroundColor: AppColors.countBar,
+  },
+  compactSegment: {
+    height: COMPACT_SEGMENT_HEIGHT,
+  },
+  compactNote: {
+    fontSize: 12,
+    lineHeight: 15,
   },
   // Le résumé passe sous le titre quand la place manque (écran étroit, « 3 quiz · 30 questions »).
   header: {

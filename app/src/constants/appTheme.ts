@@ -67,6 +67,8 @@ export const AppColors = {
   // Interrupteur « Cacher ceux déjà faits » (maquette QT1) : or et rond encre actif, gris-violet et rond blanc sinon.
   toggleOffTrack: Palette.violetTrack,
   toggleOffKnob: Palette.white,
+  // Barre « Nombre de questions » du catalogue Quiz (maquette Q1).
+  countBar: Palette.violetPanel,
   // Rose décoratif (anneaux, cadres, pastilles) : rose adouci. Le rose vif (wrong) est réservé aux alertes.
   highlight: Palette.pinkSoft,
   // Texte sur le rose (pastilles) : encre, contraste 5,4:1 (le blanc n'atteint que 3,3:1).

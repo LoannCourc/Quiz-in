@@ -57,8 +57,8 @@ function threeAcross(columnWidth: number): number {
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
 // démo. En-tête : retour à l'accueil, nom du jeu, recherche et « Filtres » ; puis les rangées.
-// Quiz : dès qu'un thème est choisi dans la feuille des filtres (« Tout » compris), la barre « Nombre de
-// questions » apparaît en bas ; les affiches restent des quiz de 10 questions (fiche, sans barre).
+// Quiz : barre « Nombre de questions » toujours en bas (maquette Q1), sur les thèmes choisis dans la feuille
+// des filtres, sinon sur tous ; les affiches restent des quiz de 10 questions (fiche, sans barre).
 export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, onContinueThemes }: CatalogViewProps) {
   const [questionCount, setQuestionCount] = useState(QUIZ_QUESTION_COUNTS[0]);
   // Tri et filtres (maquette QT1) : sans rien, les rangées ; sinon une grille dans l'ordre du tri.
@@ -74,14 +74,17 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   const chosenThemes = selectedThemes(filters.themes, themes);
   const isSearching = query.trim() !== '';
   const filtered = isFiltering(filters) ? filterQuizzes(entries, filters, played) : entries;
+  // Sans thème choisi, la barre porte sur tous les thèmes.
+  const barThemes = chosenThemes.length > 0 ? chosenThemes : themes;
   const footer =
-    onContinueThemes && chosenThemes.length > 0 ? (
+    onContinueThemes && entries.length > 0 ? (
       <ThemesCountBar
         entries={entries}
-        themes={chosenThemes}
+        themes={barThemes}
+        scope={barThemes.length === themes.length ? strings.catalog.themesGame.allThemes : barThemes.length === 1 ? barThemes[0] : strings.catalog.themesGame.themes(barThemes.length)}
         value={questionCount}
         onChange={setQuestionCount}
-        onContinue={(count) => onContinueThemes(chosenThemes, count)}
+        onContinue={(count) => onContinueThemes(barThemes, count)}
       />
     ) : undefined;
 
@@ -168,14 +171,18 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
 interface ThemesCountBarProps {
   entries: QuizEntry[];
   themes: string[];
+  // À droite du titre : « Tous les thèmes », le thème, ou « 2 thèmes ».
+  scope: string;
   value: number;
   onChange: (count: number) => void;
   onContinue: (count: number) => void;
 }
 
-// Quiz : nombre de questions tirées dans les thèmes choisis ; options au-delà de leurs questions grisées.
+// Quiz : nombre de questions tirées dans les thèmes choisis ; options au-delà de leurs questions grisées
+// (leur total est alors dit dessous). À droite du titre, le périmètre seul : avec le total, il passait sur
+// une seconde ligne dès 360 de large.
 // Choix devenu impossible (thème retiré) : le plus grand possible.
-function ThemesCountBar({ entries, themes, value, onChange, onContinue }: ThemesCountBarProps) {
+function ThemesCountBar({ entries, themes, scope, value, onChange, onContinue }: ThemesCountBarProps) {
   const total = poolQuestionTotal(poolQuizzes(entries, { kind: 'themes', themes }, 'quiz'));
   const available = availableQuestionCounts(QUIZ_QUESTION_COUNTS, total);
   const count = available.includes(value) ? value : (available.at(-1) ?? value);
@@ -185,10 +192,11 @@ function ThemesCountBar({ entries, themes, value, onChange, onContinue }: Themes
       available={available}
       value={count}
       onChange={onChange}
-      summary={strings.catalog.questionCount.themesSummary(total)}
+      summary={scope}
       note={available.length < QUIZ_QUESTION_COUNTS.length ? strings.catalog.questionCount.themesTooSmall(themes.length, total) : undefined}
       onContinue={() => onContinue(count)}
       isContinueDisabled={available.length === 0}
+      compact
     />
   );
 }

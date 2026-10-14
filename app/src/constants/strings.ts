@@ -211,9 +211,7 @@ export const strings = {
       option: (count: number) => `${count} questions`,
       continue: 'Continuer',
       show: 'Voir',
-      themesTooSmall: (themes: number, total: number) =>
-        `${themes > 1 ? 'Ces thèmes n’ont' : 'Ce thème n’a'} que ${total} questions : les options grisées sont impossibles.`,
-      themesSummary: (total: number) => `${total} questions`,
+      themesTooSmall: (themes: number, total: number) => `${themes > 1 ? 'Ces thèmes n’ont' : 'Ce thème n’a'} que ${total} questions.`,
     },
     // Dessine-moi : catégories des mots de la partie.
     drawCategories: {
