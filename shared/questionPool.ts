@@ -51,6 +51,12 @@ export function availableQuestionCounts(options: readonly number[], total: numbe
   return options.filter((count) => count <= total)
 }
 
+// Identifiant d'une question dans son quiz (contenu) : minuscules, chiffres et tirets, 32 caractères au plus.
+// La règle de questionRefs n'accepte que ce format : jamais un énoncé, une proposition ni une réponse.
+export function isValidQuestionId(questionId: string): boolean {
+  return /^[a-z0-9-]{1,32}$/.test(questionId)
+}
+
 // Identifiant d'une question dans tout le catalogue : « quizId/questionId ».
 export function questionRef(quizId: string, questionId: string): string {
   return `${quizId}/${questionId}`

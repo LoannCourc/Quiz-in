@@ -28,7 +28,7 @@
           ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 64 && (!data.exists() || newData.val() == data.val() || ((data.parent().child('status').val() == 'ended' || data.parent().child('status').val() == 'lobby') && newData.parent().child('status').val() == 'lobby'))"
         },
         "questionRefs": {
-          "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^[a-z0-9-]{1,64}\\/[^\\/]{1,64}$/)" }
+          "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^[a-z0-9-]{1,64}\\/[a-z0-9-]{1,32}$/)" }
         },
         "nextGameAt": {
           ".read": "auth != null",

@@ -7,6 +7,7 @@ import {
   BLUFF_QUESTION_COUNTS,
   drawPoolQuestions,
   gameQuestionCount,
+  isValidQuestionId,
   parseQuestionRef,
   poolOf,
   poolQuestionTotal,
@@ -15,6 +16,7 @@ import {
   questionRef,
   withPool,
 } from '../../shared/questionPool'
+import { PUBLIC_SESSION_FIELDS } from '../../shared/publicFields'
 import type { QuizEntry } from '../../shared/quizValidation'
 import { makeSession, player, QUESTIONS } from './engineFixtures'
 
@@ -76,6 +78,28 @@ describe('Ensemble de questions', () => {
     expect(questionRef('cg-1', 'q3')).toBe('cg-1/q3')
     expect(parseQuestionRef('cg-1/q3')).toEqual({ quizId: 'cg-1', questionId: 'q3' })
     expect(parseQuestionRef('sans-question/')).toBeNull()
+  })
+})
+
+describe('questionRefs : des identifiants seulement', () => {
+  test('format des identifiants de questions du contenu', () => {
+    expect(isValidQuestionId('hf2-01')).toBe(true)
+    expect(isValidQuestionId('Mercure')).toBe(false)
+    expect(isValidQuestionId('la planète Mercure')).toBe(false)
+    expect(isValidQuestionId('q1/0')).toBe(false)
+  })
+
+  test('un tirage ne contient que des « quizId/questionId » pris dans l’ensemble', () => {
+    const candidates = ['cg-1', 'cg-2'].flatMap((quizId) => ['q1', 'q2', 'q3'].map((id) => questionRef(quizId, id)))
+    const drawn = drawPoolQuestions(candidates, {}, 4)
+    for (const ref of drawn) {
+      expect(candidates).toContain(ref)
+      expect(ref).toMatch(/^[a-z0-9-]{1,64}\/[a-z0-9-]{1,32}$/)
+    }
+  })
+
+  test('jamais un champ public de la session', () => {
+    expect(PUBLIC_SESSION_FIELDS).not.toContain('questionRefs')
   })
 })
 

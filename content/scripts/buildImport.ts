@@ -4,6 +4,7 @@
 // Usage (depuis content/) : npm run build
 // Blind test : les identifiants des morceaux viennent de music-check/<quizId>.json, seulement s'ils sont vérifiés.
 // Bluff : questions sans propositions (vraie réponse et leurres), contrôlées par bluffContent.ts.
+import { isValidQuestionId } from '../../shared/questionPool'
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -126,6 +127,8 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (quiz.questions.length < QUESTIONS_PER_GAME) errors.push(`au moins ${QUESTIONS_PER_GAME} questions`)
   const ids = quiz.questions.map((question) => question.id)
   if (new Set(ids).size !== ids.length) errors.push('ids de questions en double')
+  const badIds = ids.filter((id) => !isValidQuestionId(id))
+  if (badIds.length > 0) errors.push(`ids de questions : minuscules, chiffres et tirets, 32 caractères au plus (${badIds.join(', ')})`)
   if (quiz.gameType === 'bluff') {
     quiz.questions.forEach((question, index) => {
       bluffQuestionErrors(question).forEach((error) => errors.push(`question ${index + 1} (${question.id}) : ${error}`))

@@ -1001,7 +1001,14 @@ describe("Contrôles de l'hôte : Terminer, Rejouer, Quitter", () => {
     expect((await db(PLAYER).ref(`${settings}/themes`).once('value')).val()).toEqual(['Culture générale', 'Histoire'])
     await assertSucceeds(db(HOST).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/q1', 'histoire-de-france/q4']))
     await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set(['sans-barre']))
+    // Seulement des identifiants : ni texte d'énoncé ou de proposition, ni réponse.
+    await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/Mercure']))
+    await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/la planète Mercure']))
+    await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set([{ text: 'Quelle planète ?', correctIndex: 1 }]))
+    await assertFails(db(HOST).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/q1/0']))
     await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs/0`).once('value'))
+    await assertFails(db(null).ref(`${SESSION}/questionRefs`).once('value'))
     await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs`).set(['culture-generale-1/q1']))
   })
 
