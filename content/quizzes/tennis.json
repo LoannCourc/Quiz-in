@@ -1,0 +1,182 @@
+{
+  "id": "tennis",
+  "title": "Le tennis",
+  "theme": "Sport",
+  "description": "Jeux, sets et grands tournois : dix questions pour réviser les règles et les champions du tennis.",
+  "audience": "all",
+  "poster": "cyan",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "tn-01",
+      "text": "Au tennis, comment appelle-t-on un score de 40 partout ?",
+      "options": [
+        "Égalité",
+        "Avantage",
+        "Jeu blanc",
+        "Balle de match"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "egalite"
+      ],
+      "difficulty": 1,
+      "explanation": "Il faut ensuite gagner deux points d'affilée pour remporter le jeu."
+    },
+    {
+      "id": "tn-02",
+      "text": "Sur quelle surface se joue le tournoi de Wimbledon ?",
+      "options": [
+        "La terre battue",
+        "Le dur",
+        "Le gazon",
+        "La moquette"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "gazon",
+        "le gazon",
+        "herbe"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est le plus ancien tournoi de tennis du monde."
+    },
+    {
+      "id": "tn-03",
+      "text": "Quel joueur espagnol a remporté quatorze fois Roland-Garros ?",
+      "options": [
+        "Carlos Alcaraz",
+        "David Ferrer",
+        "Rafael Nadal",
+        "Carlos Moyá"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "nadal",
+        "rafael nadal"
+      ],
+      "difficulty": 2,
+      "explanation": "Il a remporté son premier titre à Paris en 2005."
+    },
+    {
+      "id": "tn-04",
+      "text": "Combien de tournois forment le Grand Chelem ?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Open d'Australie, Roland-Garros, Wimbledon et US Open."
+    },
+    {
+      "id": "tn-05",
+      "text": "Comment appelle-t-on un service gagnant que l'adversaire ne touche même pas ?",
+      "options": [
+        "Un let",
+        "Une volée",
+        "Un lob",
+        "Un ace"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "ace",
+        "as"
+      ],
+      "difficulty": 2,
+      "explanation": "On dit aussi « un as »."
+    },
+    {
+      "id": "tn-06",
+      "text": "Quelle compétition oppose, depuis 1900, des équipes nationales masculines de tennis ?",
+      "options": [
+        "La coupe Hopman",
+        "La coupe Davis",
+        "La Laver Cup",
+        "Le Masters"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "coupe davis",
+        "davis"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle porte le nom de son fondateur, l'Américain Dwight Davis."
+    },
+    {
+      "id": "tn-07",
+      "text": "Dans quelle ville se joue l'US Open ?",
+      "options": [
+        "New York",
+        "Los Angeles",
+        "Miami",
+        "Chicago"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "new york"
+      ],
+      "difficulty": 1,
+      "explanation": "Il se joue à Flushing Meadows, dans le quartier du Queens."
+    },
+    {
+      "id": "tn-08",
+      "text": "Après zéro, quel est le premier score annoncé dans un jeu ?",
+      "options": [
+        "10",
+        "1",
+        "15",
+        "5"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "15",
+        "quinze"
+      ],
+      "difficulty": 1,
+      "explanation": "Puis viennent 30, 40 et le jeu."
+    },
+    {
+      "id": "tn-09",
+      "text": "En simple messieurs, combien de sets faut-il gagner pour remporter un match de Grand Chelem ?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "3",
+        "trois"
+      ],
+      "difficulty": 2,
+      "explanation": "Les matchs se jouent au meilleur des cinq sets."
+    },
+    {
+      "id": "tn-10",
+      "text": "Quel Français a remporté Roland-Garros en 1983 ?",
+      "options": [
+        "Henri Leconte",
+        "Guy Forget",
+        "Gaël Monfils",
+        "Yannick Noah"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "noah",
+        "yannick noah"
+      ],
+      "difficulty": 2,
+      "explanation": "Il bat le Suédois Mats Wilander en finale."
+    }
+  ]
+}

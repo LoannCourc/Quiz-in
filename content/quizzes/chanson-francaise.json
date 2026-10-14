@@ -1,0 +1,181 @@
+{
+  "id": "chanson-francaise",
+  "title": "La chanson française",
+  "theme": "Musique",
+  "description": "Brel, Barbara, Gainsbourg et les autres : dix questions sur les grands noms de la chanson.",
+  "audience": "all",
+  "poster": "violet",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "chf-01",
+      "text": "Quel chanteur belge a écrit « Ne me quitte pas » ?",
+      "options": [
+        "Salvatore Adamo",
+        "Julos Beaucarne",
+        "Jacques Brel",
+        "Arno"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "brel",
+        "jacques brel"
+      ],
+      "difficulty": 1,
+      "explanation": "La chanson date de 1959."
+    },
+    {
+      "id": "chf-02",
+      "text": "Quel chanteur a interprété « La Bohème » et « Emmenez-moi » ?",
+      "options": [
+        "Charles Aznavour",
+        "Gilbert Bécaud",
+        "Serge Reggiani",
+        "Yves Montand"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "aznavour",
+        "charles aznavour"
+      ],
+      "difficulty": 2,
+      "explanation": "Il a chanté dans de nombreuses langues à travers le monde."
+    },
+    {
+      "id": "chf-03",
+      "text": "Quel chanteur à la moustache et à la pipe a écrit « Les copains d'abord » ?",
+      "options": [
+        "Jean Ferrat",
+        "Léo Ferré",
+        "Maxime Le Forestier",
+        "Georges Brassens"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "brassens",
+        "georges brassens"
+      ],
+      "difficulty": 2,
+      "explanation": "Il s'accompagnait à la guitare."
+    },
+    {
+      "id": "chf-04",
+      "text": "Quelle chanteuse a écrit et chanté « L'Aigle noir » ?",
+      "options": [
+        "Juliette Gréco",
+        "Barbara",
+        "Anne Sylvestre",
+        "Dalida"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "barbara"
+      ],
+      "difficulty": 2,
+      "explanation": "On la surnommait « la longue dame brune »."
+    },
+    {
+      "id": "chf-05",
+      "text": "Quel artiste publie en 1971 l'album « Histoire de Melody Nelson » ?",
+      "options": [
+        "Serge Gainsbourg",
+        "Michel Polnareff",
+        "Alain Bashung",
+        "Christophe"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "gainsbourg",
+        "serge gainsbourg"
+      ],
+      "difficulty": 3,
+      "explanation": "Jane Birkin y prête sa voix au personnage de Melody."
+    },
+    {
+      "id": "chf-06",
+      "text": "Quel chanteur a créé « Comme d'habitude », dont « My Way » est l'adaptation anglaise ?",
+      "options": [
+        "Johnny Hallyday",
+        "Michel Sardou",
+        "Claude François",
+        "Eddy Mitchell"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "claude francois",
+        "cloclo"
+      ],
+      "difficulty": 2,
+      "explanation": "Frank Sinatra en a fait un succès mondial sous le titre « My Way »."
+    },
+    {
+      "id": "chf-07",
+      "text": "Avec quelle chanson France Gall remporte-t-elle l'Eurovision 1965 pour le Luxembourg ?",
+      "options": [
+        "Ella, elle l'a",
+        "Poupée de cire, poupée de son",
+        "Résiste",
+        "Laisse tomber les filles"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "poupee de cire poupee de son",
+        "poupee de cire"
+      ],
+      "difficulty": 3,
+      "explanation": "La chanson est écrite par Serge Gainsbourg."
+    },
+    {
+      "id": "chf-08",
+      "text": "Quel chanteur a chanté « Le Sud » et « Le Téléfon » ?",
+      "options": [
+        "Michel Delpech",
+        "Joe Dassin",
+        "Hugues Aufray",
+        "Nino Ferrer"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "nino ferrer",
+        "ferrer"
+      ],
+      "difficulty": 2,
+      "explanation": "Il était d'origine italienne, né à Gênes."
+    },
+    {
+      "id": "chf-09",
+      "text": "Quel groupe a chanté « L'Aventurier » au début des années 1980 ?",
+      "options": [
+        "Indochine",
+        "Téléphone",
+        "Noir Désir",
+        "Les Rita Mitsouko"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "indochine"
+      ],
+      "difficulty": 2,
+      "explanation": "Le chanteur du groupe est Nicola Sirkis."
+    },
+    {
+      "id": "chf-10",
+      "text": "Quel écrivain et musicien a écrit la chanson « Le Déserteur » ?",
+      "options": [
+        "Jacques Prévert",
+        "Raymond Queneau",
+        "Boris Vian",
+        "Serge Reggiani"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "boris vian",
+        "vian"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est aussi l'auteur du roman « L'Écume des jours »."
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "id": "au-jardin",
+  "title": "Au jardin",
+  "theme": "Loisirs",
+  "description": "Graines, outils et petites bêtes : dix questions pour les jardiniers, petits et grands.",
+  "audience": "all",
+  "poster": "green",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "jar-01",
+      "text": "Quel outil sert à arroser les plantes ?",
+      "options": [
+        "Le râteau",
+        "L'arrosoir",
+        "La brouette",
+        "La bêche"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "arrosoir",
+        "l'arrosoir"
+      ],
+      "difficulty": 1,
+      "explanation": "Sa pomme percée de trous fait une pluie douce."
+    },
+    {
+      "id": "jar-02",
+      "text": "Comment appelle-t-on le tas où les épluchures se transforment en engrais ?",
+      "options": [
+        "Le compost",
+        "Le paillis",
+        "Le gazon",
+        "Le terrier"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "compost",
+        "le compost"
+      ],
+      "difficulty": 1,
+      "explanation": "Les vers de terre aident à décomposer les déchets."
+    },
+    {
+      "id": "jar-03",
+      "text": "Quelle partie de la plante pousse sous la terre et puise l'eau ?",
+      "options": [
+        "Les feuilles",
+        "Les pétales",
+        "Les racines",
+        "Les tiges"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "racines",
+        "les racines",
+        "racine"
+      ],
+      "difficulty": 1,
+      "explanation": "Elles servent aussi à bien ancrer la plante dans le sol."
+    },
+    {
+      "id": "jar-04",
+      "text": "Quel légume orange les lapins adorent-ils dans les dessins animés ?",
+      "options": [
+        "Le poireau",
+        "La carotte",
+        "Le navet",
+        "Le chou"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "carotte",
+        "la carotte"
+      ],
+      "difficulty": 1,
+      "explanation": "On en mange la racine."
+    },
+    {
+      "id": "jar-05",
+      "text": "Quel petit insecte rouge à points noirs mange les pucerons ?",
+      "options": [
+        "L'abeille",
+        "La sauterelle",
+        "La fourmi",
+        "La coccinelle"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "coccinelle",
+        "la coccinelle"
+      ],
+      "difficulty": 1,
+      "explanation": "C'est une précieuse alliée du jardinier."
+    },
+    {
+      "id": "jar-06",
+      "text": "En quelle saison sème-t-on la plupart des graines du potager ?",
+      "options": [
+        "Au printemps",
+        "En été",
+        "En automne",
+        "En hiver"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "printemps",
+        "au printemps"
+      ],
+      "difficulty": 1,
+      "explanation": "Le sol se réchauffe et les jours rallongent."
+    },
+    {
+      "id": "jar-07",
+      "text": "Quel fruit rouge pousse au ras du sol, sur des plants qui forment des stolons ?",
+      "options": [
+        "La cerise",
+        "La framboise",
+        "La fraise",
+        "La groseille"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "fraise",
+        "la fraise"
+      ],
+      "difficulty": 2,
+      "explanation": "Les stolons sont de longues tiges qui donnent de nouveaux plants."
+    },
+    {
+      "id": "jar-08",
+      "text": "Quelle grande fleur jaune se tourne vers le soleil quand elle est jeune ?",
+      "options": [
+        "Le pissenlit",
+        "La jonquille",
+        "Le tournesol",
+        "La marguerite"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "tournesol",
+        "le tournesol"
+      ],
+      "difficulty": 1,
+      "explanation": "Ses graines donnent une huile très utilisée en cuisine."
+    },
+    {
+      "id": "jar-09",
+      "text": "Comment appelle-t-on une plante qui repousse chaque année sans être replantée ?",
+      "options": [
+        "Une vivace",
+        "Une annuelle",
+        "Une bisannuelle",
+        "Une grimpante"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "vivace",
+        "une vivace"
+      ],
+      "difficulty": 2,
+      "explanation": "Une annuelle, elle, vit une seule saison."
+    },
+    {
+      "id": "jar-10",
+      "text": "Quel outil à deux lames sert à couper les tiges et les petites branches ?",
+      "options": [
+        "Le râteau",
+        "La binette",
+        "La bêche",
+        "Le sécateur"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "secateur",
+        "le secateur"
+      ],
+      "difficulty": 2,
+      "explanation": "On le tient d'une seule main."
+    }
+  ]
+}

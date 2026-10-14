@@ -1,0 +1,179 @@
+{
+  "id": "revolution-empire",
+  "title": "Révolution et Empire",
+  "theme": "Histoire",
+  "description": "De la Bastille à Waterloo, en passant par Brumaire et la Moskova : dix questions pour les passionnés d'histoire.",
+  "audience": "experts",
+  "poster": "red",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "re-01",
+      "text": "En quelle année la Première République française est-elle proclamée ?",
+      "options": [
+        "1789",
+        "1793",
+        "1799",
+        "1792"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "1792"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle est proclamée le 21 septembre 1792, au lendemain de Valmy."
+    },
+    {
+      "id": "re-02",
+      "text": "Quelle victoire de Napoléon, en 1805, est surnommée la « bataille des Trois Empereurs » ?",
+      "options": [
+        "Austerlitz",
+        "Iéna",
+        "Wagram",
+        "Eylau"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "austerlitz"
+      ],
+      "difficulty": 2,
+      "explanation": "Napoléon y bat le tsar Alexandre Ier et l'empereur d'Autriche François II."
+    },
+    {
+      "id": "re-03",
+      "text": "Sur quelle île Napoléon est-il exilé une première fois, en 1814 ?",
+      "options": [
+        "La Corse",
+        "Sainte-Hélène",
+        "L'île d'Elbe",
+        "L'île de Ré"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "elbe",
+        "ile d'elbe"
+      ],
+      "difficulty": 2,
+      "explanation": "Il s'en échappe en 1815 pour les Cent-Jours."
+    },
+    {
+      "id": "re-04",
+      "text": "Sur quelle île Napoléon meurt-il, en 1821 ?",
+      "options": [
+        "L'île d'Elbe",
+        "Malte",
+        "Sainte-Hélène",
+        "La Martinique"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "sainte-helene",
+        "sainte helene"
+      ],
+      "difficulty": 2,
+      "explanation": "Il y meurt le 5 mai 1821, en plein Atlantique Sud."
+    },
+    {
+      "id": "re-05",
+      "text": "Comment appelle-t-on la période de 1793-1794 marquée par de très nombreuses exécutions ?",
+      "options": [
+        "La Terreur",
+        "La Restauration",
+        "Le Directoire",
+        "Le Consulat"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "terreur",
+        "la terreur"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle prend fin avec la chute de Robespierre, en juillet 1794."
+    },
+    {
+      "id": "re-06",
+      "text": "Sous quel nom de mois révolutionnaire est connu le coup d'État de Bonaparte du 9 novembre 1799 ?",
+      "options": [
+        "Thermidor",
+        "Germinal",
+        "Vendémiaire",
+        "Brumaire"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "brumaire",
+        "18 brumaire"
+      ],
+      "difficulty": 3,
+      "explanation": "Le 18 brumaire an VIII met fin au Directoire et ouvre le Consulat."
+    },
+    {
+      "id": "re-07",
+      "text": "Comment s'appelle le serment prêté le 20 juin 1789 à Versailles par les députés du tiers état ?",
+      "options": [
+        "Le serment des Horaces",
+        "Le serment du Jeu de paume",
+        "Le serment de Strasbourg",
+        "Le serment du Grütli"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "jeu de paume",
+        "serment du jeu de paume"
+      ],
+      "difficulty": 2,
+      "explanation": "Ils jurent de ne pas se séparer avant d'avoir donné une constitution à la France."
+    },
+    {
+      "id": "re-08",
+      "text": "En quelle année Napoléon épouse-t-il Marie-Louise d'Autriche ?",
+      "options": [
+        "1810",
+        "1804",
+        "1807",
+        "1812"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "1810"
+      ],
+      "difficulty": 3,
+      "explanation": "Le mariage religieux a lieu le 2 avril 1810, au Louvre."
+    },
+    {
+      "id": "re-09",
+      "text": "Sous quel nom les Russes désignent-ils la bataille de 1812 que les Français appellent « la Moskova » ?",
+      "options": [
+        "Smolensk",
+        "La Bérézina",
+        "Borodino",
+        "Friedland"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "borodino"
+      ],
+      "difficulty": 3,
+      "explanation": "Elle a lieu le 7 septembre 1812, à une centaine de kilomètres de Moscou."
+    },
+    {
+      "id": "re-10",
+      "text": "Quel texte, promulgué le 21 mars 1804, rassemble les lois civiles des Français ?",
+      "options": [
+        "Le Concordat",
+        "Le Code civil",
+        "La Déclaration des droits de l'homme",
+        "La Constitution de l'an VIII"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "code civil",
+        "code napoleon"
+      ],
+      "difficulty": 2,
+      "explanation": "On l'appelle aussi Code Napoléon."
+    }
+  ]
+}

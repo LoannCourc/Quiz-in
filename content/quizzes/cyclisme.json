@@ -1,0 +1,183 @@
+{
+  "id": "cyclisme",
+  "title": "Le cyclisme et le Tour de France",
+  "theme": "Sport",
+  "description": "Maillots, cols mythiques et champions légendaires : dix questions pour les fans de la Grande Boucle.",
+  "audience": "all",
+  "poster": "gold",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "cy-01",
+      "text": "En quelle année a eu lieu le premier Tour de France ?",
+      "options": [
+        "1899",
+        "1910",
+        "1903",
+        "1921"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "1903"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est créé par le journal L'Auto."
+    },
+    {
+      "id": "cy-02",
+      "text": "Quel maillot distingue le meilleur grimpeur du Tour de France ?",
+      "options": [
+        "Le maillot vert",
+        "Le maillot blanc",
+        "Le maillot à pois",
+        "Le maillot jaune"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "maillot a pois",
+        "a pois",
+        "pois"
+      ],
+      "difficulty": 2,
+      "explanation": "Il est blanc à pois rouges."
+    },
+    {
+      "id": "cy-03",
+      "text": "De quelle couleur est le maillot du leader du classement par points, souvent un sprinteur ?",
+      "options": [
+        "Vert",
+        "Blanc",
+        "Rouge",
+        "Bleu"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "vert",
+        "maillot vert"
+      ],
+      "difficulty": 2,
+      "explanation": "Les points se gagnent surtout aux arrivées et aux sprints intermédiaires."
+    },
+    {
+      "id": "cy-04",
+      "text": "Quel Breton a remporté cinq fois le Tour de France, la dernière fois en 1985 ?",
+      "options": [
+        "Laurent Fignon",
+        "Louison Bobet",
+        "Raymond Poulidor",
+        "Bernard Hinault"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "hinault",
+        "bernard hinault"
+      ],
+      "difficulty": 2,
+      "explanation": "On le surnommait « le Blaireau »."
+    },
+    {
+      "id": "cy-05",
+      "text": "Comment appelle-t-on le groupe principal des coureurs pendant une course ?",
+      "options": [
+        "L'échappée",
+        "Le peloton",
+        "La bordure",
+        "Le gruppetto"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "peloton",
+        "le peloton"
+      ],
+      "difficulty": 1,
+      "explanation": "Rouler à l'abri dans le peloton fait économiser beaucoup d'énergie."
+    },
+    {
+      "id": "cy-06",
+      "text": "Quelle montée des Alpes, célèbre sur le Tour, compte 21 virages numérotés ?",
+      "options": [
+        "L'Alpe d'Huez",
+        "Le col du Galibier",
+        "Le col de l'Izoard",
+        "Le col de la Madeleine"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "alpe d'huez",
+        "l'alpe d'huez"
+      ],
+      "difficulty": 2,
+      "explanation": "Chaque virage porte le nom d'un vainqueur d'étape."
+    },
+    {
+      "id": "cy-07",
+      "text": "Quel sommet du Vaucluse est surnommé le « Géant de Provence » ?",
+      "options": [
+        "Le mont Aigoual",
+        "La montagne Sainte-Victoire",
+        "Le mont Ventoux",
+        "Le mont Lozère"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "ventoux",
+        "mont ventoux"
+      ],
+      "difficulty": 2,
+      "explanation": "Son sommet, battu par les vents, ressemble à un paysage lunaire."
+    },
+    {
+      "id": "cy-08",
+      "text": "Quelle course d'un jour, célèbre pour ses pavés, est surnommée « l'Enfer du Nord » ?",
+      "options": [
+        "Milan-San Remo",
+        "Paris-Roubaix",
+        "Liège-Bastogne-Liège",
+        "Paris-Tours"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "paris-roubaix",
+        "paris roubaix"
+      ],
+      "difficulty": 2,
+      "explanation": "L'arrivée se juge sur le vélodrome de Roubaix."
+    },
+    {
+      "id": "cy-09",
+      "text": "Quel coureur belge, surnommé « le Cannibale », a remporté cinq Tours de France ?",
+      "options": [
+        "Tom Boonen",
+        "Lucien Van Impe",
+        "Philippe Gilbert",
+        "Eddy Merckx"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "merckx",
+        "eddy merckx"
+      ],
+      "difficulty": 2,
+      "explanation": "Il voulait gagner toutes les courses, d'où son surnom."
+    },
+    {
+      "id": "cy-10",
+      "text": "Quel coureur a été le premier à remporter cinq fois le Tour de France ?",
+      "options": [
+        "Jacques Anquetil",
+        "Eddy Merckx",
+        "Bernard Hinault",
+        "Louison Bobet"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "anquetil",
+        "jacques anquetil"
+      ],
+      "difficulty": 3,
+      "explanation": "Il gagne en 1957, puis de 1961 à 1964."
+    }
+  ]
+}

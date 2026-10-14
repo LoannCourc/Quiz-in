@@ -1,0 +1,176 @@
+{
+  "id": "systeme-solaire",
+  "title": "Le système solaire",
+  "theme": "Sciences et nature",
+  "description": "Planètes, satellites et lumière du Soleil : dix questions pour voyager de Mercure à Neptune.",
+  "audience": "all",
+  "poster": "violet",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "ss-01",
+      "text": "Combien de planètes compte le système solaire ?",
+      "options": [
+        "9",
+        "7",
+        "8",
+        "10"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "8",
+        "huit"
+      ],
+      "difficulty": 1,
+      "explanation": "Mercure, Vénus, la Terre, Mars, Jupiter, Saturne, Uranus et Neptune."
+    },
+    {
+      "id": "ss-02",
+      "text": "Quelle planète est surnommée la « planète rouge » ?",
+      "options": [
+        "Vénus",
+        "Mars",
+        "Jupiter",
+        "Mercure"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "mars"
+      ],
+      "difficulty": 1,
+      "explanation": "Sa couleur vient de l'oxyde de fer de son sol."
+    },
+    {
+      "id": "ss-03",
+      "text": "Quelle planète est célèbre pour ses anneaux bien visibles au télescope ?",
+      "options": [
+        "Mars",
+        "Vénus",
+        "Mercure",
+        "Saturne"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "saturne"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils sont faits de glace et de poussières."
+    },
+    {
+      "id": "ss-04",
+      "text": "Quelle est la planète la plus chaude du système solaire ?",
+      "options": [
+        "Vénus",
+        "Mercure",
+        "Mars",
+        "Jupiter"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "venus"
+      ],
+      "difficulty": 2,
+      "explanation": "Son épaisse atmosphère retient la chaleur, plus encore que sur Mercure."
+    },
+    {
+      "id": "ss-05",
+      "text": "Depuis 2006, quel astre n'est plus considéré comme une planète, mais comme une planète naine ?",
+      "options": [
+        "Neptune",
+        "Mercure",
+        "Pluton",
+        "La Lune"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "pluton"
+      ],
+      "difficulty": 2,
+      "explanation": "La décision est prise par l'Union astronomique internationale."
+    },
+    {
+      "id": "ss-06",
+      "text": "Combien de temps la lumière du Soleil met-elle, environ, pour atteindre la Terre ?",
+      "options": [
+        "8 secondes",
+        "8 heures",
+        "8 minutes",
+        "1 seconde"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "8 minutes",
+        "huit minutes"
+      ],
+      "difficulty": 3,
+      "explanation": "Environ 8 minutes et 20 secondes : on voit donc le Soleil tel qu'il était un peu plus tôt."
+    },
+    {
+      "id": "ss-07",
+      "text": "Quelle planète tourne presque couchée sur le côté, avec un axe incliné d'environ 98° ?",
+      "options": [
+        "Uranus",
+        "Neptune",
+        "Saturne",
+        "Mars"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "uranus"
+      ],
+      "difficulty": 3,
+      "explanation": "Chacun de ses pôles connaît un « été » d'une vingtaine d'années."
+    },
+    {
+      "id": "ss-08",
+      "text": "Comment s'appelle la zone de petits corps rocheux située entre Mars et Jupiter ?",
+      "options": [
+        "La ceinture de Kuiper",
+        "Le nuage d'Oort",
+        "La Voie lactée",
+        "La ceinture d'astéroïdes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "ceinture d'asteroides",
+        "ceinture principale"
+      ],
+      "difficulty": 2,
+      "explanation": "La ceinture de Kuiper, elle, se trouve au-delà de Neptune."
+    },
+    {
+      "id": "ss-09",
+      "text": "Depuis le déclassement de Pluton, quelle est la planète la plus éloignée du Soleil ?",
+      "options": [
+        "Uranus",
+        "Neptune",
+        "Saturne",
+        "Jupiter"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "neptune"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle met environ 165 ans à faire le tour du Soleil."
+    },
+    {
+      "id": "ss-10",
+      "text": "Quel satellite de Jupiter est le plus grand satellite naturel du système solaire ?",
+      "options": [
+        "Ganymède",
+        "Io",
+        "Europe",
+        "Callisto"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "ganymede"
+      ],
+      "difficulty": 3,
+      "explanation": "Il est même plus grand que la planète Mercure."
+    }
+  ]
+}

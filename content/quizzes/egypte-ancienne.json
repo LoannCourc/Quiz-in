@@ -1,0 +1,181 @@
+{
+  "id": "egypte-ancienne",
+  "title": "L'Égypte des pharaons",
+  "theme": "Histoire",
+  "description": "Pyramides, momies et hiéroglyphes : dix questions pour remonter le Nil au temps des pharaons.",
+  "audience": "all",
+  "poster": "gold",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "eg-01",
+      "text": "Grâce à quel fleuve la civilisation de l'Égypte ancienne a-t-elle pu prospérer ?",
+      "options": [
+        "Le Tigre",
+        "Le Nil",
+        "L'Euphrate",
+        "Le Jourdain"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "nil",
+        "le nil"
+      ],
+      "difficulty": 1,
+      "explanation": "Ses crues annuelles fertilisaient les terres le long de ses rives."
+    },
+    {
+      "id": "eg-02",
+      "text": "Comment appelait-on les rois de l'Égypte ancienne ?",
+      "options": [
+        "Les sultans",
+        "Les califes",
+        "Les tsars",
+        "Les pharaons"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "pharaons",
+        "les pharaons",
+        "pharaon"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils étaient considérés comme des dieux vivants."
+    },
+    {
+      "id": "eg-03",
+      "text": "Près de quelle ville se dressent les grandes pyramides de Gizeh ?",
+      "options": [
+        "Le Caire",
+        "Alexandrie",
+        "Louxor",
+        "Assouan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "le caire",
+        "caire"
+      ],
+      "difficulty": 1,
+      "explanation": "Gizeh fait aujourd'hui partie de l'agglomération du Caire."
+    },
+    {
+      "id": "eg-04",
+      "text": "Quelle créature à corps de lion et tête humaine veille près des pyramides de Gizeh ?",
+      "options": [
+        "Le griffon",
+        "La chimère",
+        "Le Sphinx",
+        "Le centaure"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "sphinx",
+        "le sphinx"
+      ],
+      "difficulty": 1,
+      "explanation": "Il est taillé directement dans la roche du plateau."
+    },
+    {
+      "id": "eg-05",
+      "text": "Quel jeune pharaon est célèbre pour son tombeau découvert presque intact en 1922 ?",
+      "options": [
+        "Ramsès II",
+        "Khéops",
+        "Toutânkhamon",
+        "Akhenaton"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "toutankhamon"
+      ],
+      "difficulty": 2,
+      "explanation": "Le tombeau est découvert par l'archéologue Howard Carter."
+    },
+    {
+      "id": "eg-06",
+      "text": "Comment appelle-t-on un corps conservé par embaumement et enveloppé de bandelettes ?",
+      "options": [
+        "Une momie",
+        "Un sarcophage",
+        "Une statue",
+        "Un fossile"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "momie",
+        "une momie"
+      ],
+      "difficulty": 1,
+      "explanation": "Le sarcophage, lui, est le cercueil qui la contient."
+    },
+    {
+      "id": "eg-07",
+      "text": "Quel Français a déchiffré les hiéroglyphes grâce à la pierre de Rosette ?",
+      "options": [
+        "Auguste Mariette",
+        "Gaston Maspero",
+        "Vivant Denon",
+        "Jean-François Champollion"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "champollion",
+        "jean-francois champollion"
+      ],
+      "difficulty": 2,
+      "explanation": "Il présente sa découverte en 1822."
+    },
+    {
+      "id": "eg-08",
+      "text": "Quelle reine d'Égypte fut l'alliée de Jules César puis de Marc Antoine ?",
+      "options": [
+        "Néfertiti",
+        "Cléopâtre",
+        "Hatchepsout",
+        "Néfertari"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "cleopatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle est la dernière reine de l'Égypte ancienne."
+    },
+    {
+      "id": "eg-09",
+      "text": "Sur quel support, fabriqué à partir d'une plante, les Égyptiens écrivaient-ils ?",
+      "options": [
+        "Le papyrus",
+        "Le parchemin",
+        "Le bambou",
+        "La soie"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "papyrus",
+        "le papyrus"
+      ],
+      "difficulty": 1,
+      "explanation": "La plante poussait en abondance au bord du Nil."
+    },
+    {
+      "id": "eg-10",
+      "text": "Quel dieu égyptien à tête de chacal veillait sur l'embaumement des morts ?",
+      "options": [
+        "Horus",
+        "Râ",
+        "Anubis",
+        "Osiris"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "anubis"
+      ],
+      "difficulty": 2,
+      "explanation": "Horus, lui, a une tête de faucon."
+    }
+  ]
+}

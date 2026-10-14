@@ -1,0 +1,182 @@
+{
+  "id": "iles-archipels",
+  "title": "Îles et archipels",
+  "theme": "Géographie",
+  "description": "Des Açores à Bornéo, de Mayotte à Hispaniola : dix questions pour les explorateurs des océans.",
+  "audience": "experts",
+  "poster": "cyan",
+  "level": "hard",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "ia-01",
+      "text": "Dans quel océan se trouve l'île de La Réunion ?",
+      "options": [
+        "L'océan Atlantique",
+        "L'océan Pacifique",
+        "L'océan Arctique",
+        "L'océan Indien"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "ocean indien",
+        "indien"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle fait partie de l'archipel des Mascareignes, à l'est de Madagascar."
+    },
+    {
+      "id": "ia-02",
+      "text": "De quel royaume le Groenland est-il un territoire autonome ?",
+      "options": [
+        "La Norvège",
+        "Le Danemark",
+        "La Suède",
+        "Le Royaume-Uni"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "danemark",
+        "le danemark"
+      ],
+      "difficulty": 2,
+      "explanation": "Il dispose d'un large gouvernement autonome depuis 1979."
+    },
+    {
+      "id": "ia-03",
+      "text": "Quelle est la plus grande île de la Méditerranée ?",
+      "options": [
+        "La Sicile",
+        "La Sardaigne",
+        "Chypre",
+        "La Corse"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "sicile",
+        "la sicile"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle couvre environ 25 700 km²."
+    },
+    {
+      "id": "ia-04",
+      "text": "À quel archipel espagnol appartient l'île de Tenerife ?",
+      "options": [
+        "Les Baléares",
+        "Les Açores",
+        "Les Canaries",
+        "Les Bermudes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "canaries",
+        "les canaries",
+        "iles canaries"
+      ],
+      "difficulty": 2,
+      "explanation": "C'est la plus grande île de l'archipel ; le Teide y culmine à 3 718 m."
+    },
+    {
+      "id": "ia-05",
+      "text": "Quel archipel portugais se trouve au milieu de l'Atlantique Nord ?",
+      "options": [
+        "Les Canaries",
+        "Les Açores",
+        "Le Cap-Vert",
+        "Les Bermudes"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "acores",
+        "les acores"
+      ],
+      "difficulty": 2,
+      "explanation": "Ses neuf îles forment une région autonome du Portugal."
+    },
+    {
+      "id": "ia-06",
+      "text": "À quel pays appartiennent les îles Galápagos ?",
+      "options": [
+        "Le Pérou",
+        "Le Chili",
+        "La Colombie",
+        "L'Équateur"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "equateur",
+        "l'equateur"
+      ],
+      "difficulty": 3,
+      "explanation": "Elles forment une province de l'Équateur, à environ 1 000 km de ses côtes."
+    },
+    {
+      "id": "ia-07",
+      "text": "Quelle île des Caraïbes est partagée entre Haïti et la République dominicaine ?",
+      "options": [
+        "Hispaniola",
+        "Cuba",
+        "La Jamaïque",
+        "Porto Rico"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "hispaniola",
+        "saint-domingue"
+      ],
+      "difficulty": 3,
+      "explanation": "Haïti en occupe la partie ouest, la République dominicaine la partie est."
+    },
+    {
+      "id": "ia-08",
+      "text": "Quelle île de l'océan Indien est devenue en 2011 le 101e département français ?",
+      "options": [
+        "La Réunion",
+        "La Martinique",
+        "Mayotte",
+        "La Guadeloupe"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "mayotte"
+      ],
+      "difficulty": 3,
+      "explanation": "La départementalisation est effective le 31 mars 2011."
+    },
+    {
+      "id": "ia-09",
+      "text": "À quelle collectivité française d'outre-mer appartient l'île de Tahiti ?",
+      "options": [
+        "La Nouvelle-Calédonie",
+        "Wallis-et-Futuna",
+        "La Polynésie française",
+        "Clipperton"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "polynesie francaise",
+        "polynesie"
+      ],
+      "difficulty": 2,
+      "explanation": "Sa ville principale, Papeete, est la capitale de la Polynésie française."
+    },
+    {
+      "id": "ia-10",
+      "text": "Quelle île est partagée entre l'Indonésie, la Malaisie et le Brunei ?",
+      "options": [
+        "Bornéo",
+        "Sumatra",
+        "Java",
+        "Célèbes"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "borneo"
+      ],
+      "difficulty": 3,
+      "explanation": "La partie indonésienne, au sud, s'appelle Kalimantan."
+    }
+  ]
+}

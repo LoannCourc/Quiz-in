@@ -1,0 +1,173 @@
+{
+  "id": "capitales-europe",
+  "title": "Les capitales d'Europe",
+  "theme": "Géographie",
+  "description": "De Lisbonne à Varsovie : dix capitales européennes à retrouver, pour voyager sans quitter le canapé.",
+  "audience": "all",
+  "poster": "blue",
+  "level": "easy",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "ce-01",
+      "text": "Quelle est la capitale de l'Espagne ?",
+      "options": [
+        "Madrid",
+        "Barcelone",
+        "Séville",
+        "Valence"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "madrid"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle se trouve au centre du pays."
+    },
+    {
+      "id": "ce-02",
+      "text": "Quelle est la capitale de l'Allemagne ?",
+      "options": [
+        "Munich",
+        "Francfort",
+        "Hambourg",
+        "Berlin"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "berlin"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle est redevenue la capitale de l'Allemagne réunifiée en 1990."
+    },
+    {
+      "id": "ce-03",
+      "text": "Quelle est la capitale du Portugal ?",
+      "options": [
+        "Porto",
+        "Lisbonne",
+        "Faro",
+        "Coimbra"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "lisbonne"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle est construite sur sept collines, au bord du Tage."
+    },
+    {
+      "id": "ce-04",
+      "text": "Quelle est la capitale de la Belgique ?",
+      "options": [
+        "Bruxelles",
+        "Anvers",
+        "Liège",
+        "Bruges"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "bruxelles"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle accueille aussi de nombreuses institutions européennes."
+    },
+    {
+      "id": "ce-05",
+      "text": "Quelle est la capitale de la Grèce ?",
+      "options": [
+        "Thessalonique",
+        "Sparte",
+        "Athènes",
+        "Héraklion"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "athenes"
+      ],
+      "difficulty": 1,
+      "explanation": "L'Acropole la domine depuis l'Antiquité."
+    },
+    {
+      "id": "ce-06",
+      "text": "Quelle est la capitale de l'Autriche ?",
+      "options": [
+        "Salzbourg",
+        "Vienne",
+        "Graz",
+        "Innsbruck"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "vienne"
+      ],
+      "difficulty": 1,
+      "explanation": "Elle est traversée par le Danube."
+    },
+    {
+      "id": "ce-07",
+      "text": "Quelle ville accueille le gouvernement de la Suisse ?",
+      "options": [
+        "Genève",
+        "Zurich",
+        "Lausanne",
+        "Berne"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "berne"
+      ],
+      "difficulty": 2,
+      "explanation": "La Suisse l'appelle officiellement « ville fédérale »."
+    },
+    {
+      "id": "ce-08",
+      "text": "Quelle est la capitale de la Norvège ?",
+      "options": [
+        "Oslo",
+        "Bergen",
+        "Trondheim",
+        "Stavanger"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "oslo"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle se trouve au fond d'un fjord."
+    },
+    {
+      "id": "ce-09",
+      "text": "Quelle est la capitale de l'Irlande ?",
+      "options": [
+        "Cork",
+        "Galway",
+        "Dublin",
+        "Belfast"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "dublin"
+      ],
+      "difficulty": 1,
+      "explanation": "Belfast est la capitale de l'Irlande du Nord, au Royaume-Uni."
+    },
+    {
+      "id": "ce-10",
+      "text": "Quelle est la capitale de la Pologne ?",
+      "options": [
+        "Cracovie",
+        "Gdańsk",
+        "Varsovie",
+        "Łódź"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "varsovie"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle est traversée par la Vistule."
+    }
+  ]
+}

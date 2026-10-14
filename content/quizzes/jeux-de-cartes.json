@@ -1,0 +1,183 @@
+{
+  "id": "jeux-de-cartes",
+  "title": "Les jeux de cartes",
+  "theme": "Loisirs",
+  "description": "Belote, tarot, poker et bridge : dix questions pour les amateurs de cartes, qu'ils jouent au salon ou en famille.",
+  "audience": "all",
+  "poster": "red",
+  "level": "medium",
+  "addedAt": "2026-10-14",
+  "reviewStatus": "provisoire, à relire (lot Q2)",
+  "questions": [
+    {
+      "id": "jc-01",
+      "text": "Combien de cartes compte un jeu classique, sans les jokers ?",
+      "options": [
+        "52",
+        "32",
+        "54",
+        "78"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "52",
+        "cinquante-deux"
+      ],
+      "difficulty": 1,
+      "explanation": "Quatre couleurs de treize cartes."
+    },
+    {
+      "id": "jc-02",
+      "text": "Combien de cartes utilise-t-on pour jouer à la belote ?",
+      "options": [
+        "52",
+        "24",
+        "32",
+        "40"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "32",
+        "trente-deux"
+      ],
+      "difficulty": 2,
+      "explanation": "On garde les cartes du 7 à l'as dans chaque couleur."
+    },
+    {
+      "id": "jc-03",
+      "text": "Au tarot, combien y a-t-il d'atouts, sans compter l'Excuse ?",
+      "options": [
+        "22",
+        "21",
+        "20",
+        "18"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "21",
+        "vingt et un"
+      ],
+      "difficulty": 2,
+      "explanation": "Ils vont du Petit (le 1) au 21."
+    },
+    {
+      "id": "jc-04",
+      "text": "Au tarot, quelle carte permet de ne pas fournir la couleur demandée ?",
+      "options": [
+        "Le Petit",
+        "Le joker",
+        "Le cavalier",
+        "L'Excuse"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "excuse",
+        "l'excuse"
+      ],
+      "difficulty": 2,
+      "explanation": "Elle est représentée par un musicien, parfois appelé le Fou."
+    },
+    {
+      "id": "jc-05",
+      "text": "Au poker, comment appelle-t-on cinq cartes qui se suivent dans la même couleur ?",
+      "options": [
+        "Une quinte flush",
+        "Un carré",
+        "Un full",
+        "Une couleur"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "quinte flush",
+        "straight flush"
+      ],
+      "difficulty": 2,
+      "explanation": "Avec l'as en tête, c'est une quinte flush royale."
+    },
+    {
+      "id": "jc-06",
+      "text": "Quel jeu de cartes se joue seul, en rangeant les cartes par couleur et par ordre ?",
+      "options": [
+        "La belote",
+        "Le rami",
+        "Le solitaire",
+        "Le poker"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "solitaire",
+        "le solitaire"
+      ],
+      "difficulty": 1,
+      "explanation": "On l'appelle aussi une patience."
+    },
+    {
+      "id": "jc-07",
+      "text": "À la belote, que doit-on annoncer en jouant le roi et la dame d'atout ?",
+      "options": [
+        "Capot",
+        "Dix de der",
+        "Belote et rebelote",
+        "Tierce"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "belote et rebelote",
+        "belote rebelote"
+      ],
+      "difficulty": 2,
+      "explanation": "L'annonce rapporte 20 points."
+    },
+    {
+      "id": "jc-08",
+      "text": "Combien y a-t-il de figures (valets, dames et rois) dans un jeu de 52 cartes ?",
+      "options": [
+        "12",
+        "16",
+        "8",
+        "13"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "12",
+        "douze"
+      ],
+      "difficulty": 2,
+      "explanation": "Trois figures dans chacune des quatre couleurs."
+    },
+    {
+      "id": "jc-09",
+      "text": "Au tarot, comment appelle-t-on le fait de remporter le dernier pli avec le Petit ?",
+      "options": [
+        "Le chelem",
+        "La poignée",
+        "La garde",
+        "Le Petit au bout"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "petit au bout",
+        "le petit au bout"
+      ],
+      "difficulty": 3,
+      "explanation": "Cette prime rapporte 10 points, multipliés selon le contrat."
+    },
+    {
+      "id": "jc-10",
+      "text": "Combien de joueurs faut-il pour une partie de bridge classique ?",
+      "options": [
+        "2",
+        "4",
+        "3",
+        "6"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "4",
+        "quatre"
+      ],
+      "difficulty": 1,
+      "explanation": "Ils jouent deux contre deux, en équipes fixes."
+    }
+  ]
+}
