@@ -209,7 +209,7 @@ export const strings = {
     } satisfies Record<CatalogRowId, string>,
     posterLabel: (title: string, rank?: number) => (rank === undefined ? title : `${rank}. ${title}`),
     demoCatalogLink: 'Outils de développement : catalogue fictif',
-    difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' } satisfies Record<DifficultyLevel, string>,
+    difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
     debugLink: 'Outils de développement : compteur partagé',
     playerDemoLink: 'Outils de développement : écrans du joueur',
     resumeGame: (code: string) => `Reprendre la partie ${code}`,

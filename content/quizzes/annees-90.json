@@ -7,6 +7,8 @@
   "audience": "all",
   "poster": "cyan",
   "icon": "cd",
+  "genre": "pop",
+  "decade": 1990,
   "addedAt": "2026-10-04",
   "featuredRank": 6,
   "reviewStatus": "provisoire, morceaux vérifiés, propositions « Titre – Artiste » à relire",

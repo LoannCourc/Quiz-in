@@ -7,6 +7,8 @@
   "audience": "all",
   "poster": "gold",
   "icon": "speechBubble",
+  "genre": "chanson",
+  "decade": "all",
   "addedAt": "2026-10-04",
   "featuredRank": 1,
   "reviewStatus": "provisoire, morceaux vérifiés",

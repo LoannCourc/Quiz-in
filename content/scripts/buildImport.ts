@@ -4,6 +4,7 @@
 // Usage (depuis content/) : npm run build
 // Blind test : les identifiants des morceaux viennent de music-check/<quizId>.json, seulement s'ils sont vérifiés.
 // Bluff : questions sans propositions (vraie réponse et leurres), contrôlées par bluffContent.ts.
+import { BLIND_TEST_DECADES, BLIND_TEST_GENRES, isBlindTestDecade, isBlindTestGenre } from '../../shared/blindTestCatalog'
 import { isValidQuestionId } from '../../shared/questionPool'
 import { TRACK_OPTION_SEPARATOR, trackOptionAnswer, trackOptionParts } from '../../shared/trackOption'
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -57,6 +58,8 @@ interface QuizFileBase {
   featuredRank?: number
   // Niveau du quiz choisi par l'auteur (tri « Plus faciles ») ; absent : déduit de ses questions.
   level?: DifficultyLevel
+  genre?: unknown
+  decade?: unknown
   // Icône propre au quiz (identifiant de shared/themeIcons.ts) ; absente : celle du thème.
   icon?: string
   reviewStatus?: string
@@ -76,7 +79,7 @@ interface BluffQuizFile extends QuizFileBase {
 
 type QuizFile = ClassicQuizFile | BluffQuizFile
 
-const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile' }
+const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' }
 
 const outputDir = join(contentDir, 'import')
 
@@ -124,7 +127,14 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (!QUIZ_AUDIENCES.includes(quiz.audience)) errors.push(`audience : ${QUIZ_AUDIENCES.join(', ')}`)
   if (!POSTER_PALETTES.includes(quiz.poster)) errors.push(`poster : ${POSTER_PALETTES.join(', ')}`)
   if (!isQuizDate(quiz.addedAt)) errors.push('addedAt : date AAAA-MM-JJ')
-  if (quiz.level !== undefined && !['easy', 'medium', 'hard'].includes(quiz.level)) errors.push('level : easy, medium ou hard')
+  if (quiz.level === 'impossible' && quiz.gameType !== 'blindTest') errors.push('level « impossible » : blind tests seulement')
+  if (quiz.level !== undefined && !['easy', 'medium', 'hard', 'impossible'].includes(quiz.level)) errors.push('level : easy, medium, hard ou impossible')
+  if (quiz.gameType === 'blindTest') {
+    if (!isBlindTestGenre(quiz.genre)) errors.push(`genre obligatoire pour un blind test : ${BLIND_TEST_GENRES.join(', ')}`)
+    if (!isBlindTestDecade(quiz.decade)) errors.push(`decade obligatoire pour un blind test : ${BLIND_TEST_DECADES.join(', ')}`)
+  } else if (quiz.genre !== undefined || quiz.decade !== undefined) {
+    errors.push('genre et decade : blind tests seulement')
+  }
   if (quiz.featuredRank !== undefined && !isFeaturedRank(quiz.featuredRank)) errors.push('featuredRank : entier de 1 à 10')
   if (quiz.icon !== undefined && !isQuizIconName(quiz.icon)) errors.push(`icon « ${quiz.icon} » inconnue (shared/themeIcons.ts)`)
   if (quiz.questions.length < QUESTIONS_PER_GAME) errors.push(`au moins ${QUESTIONS_PER_GAME} questions`)
@@ -301,6 +311,8 @@ function toSummary(quiz: QuizFile): QuizSummary {
     addedAt: quiz.addedAt,
     ...(quiz.featuredRank !== undefined && { featuredRank: quiz.featuredRank }),
     ...(isQuizIconName(quiz.icon) && { icon: quiz.icon }),
+    ...(isBlindTestGenre(quiz.genre) && { genre: quiz.genre }),
+    ...(isBlindTestDecade(quiz.decade) && { decade: quiz.decade }),
   }
 }
 

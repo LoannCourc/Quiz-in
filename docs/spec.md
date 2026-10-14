@@ -249,6 +249,11 @@ quizzes/{quizId}                      // lisible par tout utilisateur connecté
   poster: "pink|blue|green|orange|red|cyan|violet|gold"   // palette du dégradé de l'affiche
   addedAt: "AAAA-MM-JJ"               // rangée « Nouveautés »
   featuredRank?: 1 à 10               // place dans le « Top 10 cette semaine » de son onglet (quiz ou blind test), choisie à la main
+  level?: "easy|medium|hard|impossible"   // sinon déduit de difficulty ; « impossible » : blind tests seulement
+  genre: "pop|rock|rap|chanson|discoFunk|electro"   // blind test seulement (obligatoire) : genre principal (catalogue BT5)
+  decade: 1960…2020 | "all"           // blind test seulement (obligatoire) : décennie, « all » = Toutes époques
+  // Catalogue BT5 : onglets Genre / Années / Difficulté en tuiles, compteurs calculés dans l'app ; une tuile
+  // ou un niveau sans blind test n'est pas affiché (« Impossible », « Électro » tant qu'ils sont vides).
   // Champs d'affichage facultatifs à la lecture : valeur par défaut si absents (fiches importées avant leur ajout)
 
 questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par tout utilisateur connecté au MVP (voir « Limites connues »)

@@ -13,6 +13,7 @@ import {
 import { isValidQuizId } from './quizCatalog'
 import { extractOf } from './audioPlayback'
 import { questionDurationS } from './gameFlow'
+import { isBlindTestDecade, isBlindTestGenre } from './blindTestCatalog'
 import { isQuizIconName } from './themeIcons'
 import type {
   AudioSourceId,
@@ -129,9 +130,9 @@ export function isFeaturedRank(value: unknown): value is number {
 // Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
 function catalogDisplayFields(value: Record<string, unknown>): Pick<
   QuizSummary,
-  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level'
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level' | 'genre' | 'decade'
 > {
-  const { description, audience, poster, addedAt, featuredRank, icon, level } = value
+  const { description, audience, poster, addedAt, featuredRank, icon, level, genre, decade } = value
   return {
     description:
       typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
@@ -141,11 +142,13 @@ function catalogDisplayFields(value: Record<string, unknown>): Pick<
     ...(isFeaturedRank(featuredRank) && { featuredRank }),
     ...(isQuizIconName(icon) && { icon }),
     ...(isDifficultyLevel(level) && { level }),
+    ...(isBlindTestGenre(genre) && { genre }),
+    ...(isBlindTestDecade(decade) && { decade }),
   }
 }
 
 function isDifficultyLevel(value: unknown): value is DifficultyLevel {
-  return value === 'easy' || value === 'medium' || value === 'hard'
+  return value === 'easy' || value === 'medium' || value === 'hard' || value === 'impossible'
 }
 
 // Fiche d'un quiz (quizzes/{quizId}), ou null si elle est absente ou mal formée.

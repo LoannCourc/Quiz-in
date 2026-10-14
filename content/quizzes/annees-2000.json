@@ -7,6 +7,8 @@
   "audience": "all",
   "poster": "green",
   "icon": "headphones",
+  "genre": "pop",
+  "decade": 2000,
   "addedAt": "2026-10-04",
   "featuredRank": 4,
   "reviewStatus": "provisoire, morceaux vérifiés, propositions « Titre – Artiste » à relire",

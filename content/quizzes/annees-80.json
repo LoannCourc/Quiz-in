@@ -7,6 +7,8 @@
   "audience": "all",
   "poster": "pink",
   "icon": "cassette",
+  "genre": "pop",
+  "decade": 1980,
   "addedAt": "2026-10-04",
   "featuredRank": 2,
   "reviewStatus": "provisoire, morceaux vérifiés, propositions « Titre – Artiste » à relire",

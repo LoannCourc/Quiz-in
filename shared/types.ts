@@ -21,7 +21,12 @@ export type AnswerMode = 'free' | 'choice' | 'bluff' | 'draw';
 export type Difficulty = 1 | 2 | 3;
 
 // Niveau d'un quiz, déduit de la moyenne des difficultés de ses questions (spec 8).
-export type DifficultyLevel = 'easy' | 'medium' | 'hard';
+// « Impossible » : blind tests très pointus (affiché dans les filtres seulement s'il a du contenu).
+export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'impossible';
+
+// Blind test (maquette BT5) : genre principal et décennie (« all » : toutes époques).
+export type BlindTestGenre = 'pop' | 'rock' | 'rap' | 'chanson' | 'discoFunk' | 'electro';
+export type BlindTestDecade = 1960 | 1970 | 1980 | 1990 | 2000 | 2010 | 2020 | 'all';
 
 // Type de jeu d'un quiz : questions classiques, blind test (extraits musicaux joués par la TV), ou
 // Bluff (fausses réponses inventées par les joueurs, spec 16).
@@ -57,6 +62,9 @@ export interface QuizSummary {
   featuredRank?: number;
   // Icône propre au quiz (affiches) ; absente : celle de son thème.
   icon?: QuizIconName;
+  // Blind test seulement (obligatoires dans content/) : genre principal et décennie.
+  genre?: BlindTestGenre;
+  decade?: BlindTestDecade;
 }
 
 export type ChoiceOptions = [string, string, string, string];
