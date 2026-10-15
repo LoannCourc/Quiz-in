@@ -239,6 +239,18 @@ describe('Hôte et état de la partie', () => {
     expect(await readAsAdmin(`${SESSION}/status`)).toBe('lobby')
   })
 
+  // Thèmes du Quiz (maquette QN1-F) : les questions tirées sur la fiche sont écrites avec la partie.
+  test('création avec les questions tirées sur la fiche acceptée', async () => {
+    const initial = initialSession()
+    const withDraw = {
+      ...initial,
+      settings: { ...initial.settings, themes: ['Histoire', 'Sport'], questionCount: 20 },
+      questionRefs: ['histoire-de-france/hf-01', 'sport-1/sp-04'],
+    }
+    await assertSucceeds(db(HOST).ref(SESSION).set(withDraw))
+    expect(await readAsAdmin(`${SESSION}/questionRefs`)).toEqual(['histoire-de-france/hf-01', 'sport-1/sp-04'])
+  })
+
   test("création sur un code déjà pris par un autre hôte refusée", async () => {
     await seedSession({ hostUid: OTHER, status: 'lobby' })
     await assertFails(db(HOST).ref(SESSION).set(initialSession()))

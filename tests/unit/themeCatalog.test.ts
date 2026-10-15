@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest'
 import { DEFAULT_SESSION_SETTINGS } from '../../shared/constants'
 import { estimateGameMinutes } from '../../shared/quizCatalog'
 import { parseQuizSummary, type QuizEntry } from '../../shared/quizValidation'
-import { countLevels, featuredThemeOf, quizLevelCounts, themeGameMinutes, themeStats } from '../../shared/themeCatalog'
+import { countLevels, featuredThemeOf, gameProgramme, programmeLevels, themeGameChoice, quizLevelCounts, themeGameMinutes, themeStats } from '../../shared/themeCatalog'
 
 function entry(id: string, theme: string, extra: Partial<QuizEntry> = {}): QuizEntry {
   return {
@@ -66,5 +66,39 @@ describe('Thèmes du catalogue Quiz', () => {
 
   test('durée : la même estimation que la fiche, réglages par défaut', () => {
     expect([10, 20, 30].map((count) => themeGameMinutes(count))).toEqual([10, 20, 30].map((count) => estimateGameMinutes(count, DEFAULT_SESSION_SETTINGS)))
+  })
+})
+
+describe('Au programme de la fiche', () => {
+  test('répartition des questions tirées par thème (ordre des thèmes choisis) et par niveau', () => {
+    const drawn = [
+      { theme: 'Sport', level: 'easy' as const },
+      { theme: 'Histoire', level: 'hard' as const },
+      { theme: 'Histoire', level: 'easy' as const },
+    ]
+    const programme = gameProgramme(drawn, ['Histoire', 'Sport'])
+    expect(programme).toEqual({
+      byTheme: [
+        { theme: 'Histoire', count: 2 },
+        { theme: 'Sport', count: 1 },
+      ],
+      byLevel: { easy: 2, medium: 0, hard: 1 },
+    })
+    expect(programmeLevels(programme)).toEqual(['easy', 'hard'])
+  })
+})
+
+describe('Choix reçu par la fiche', () => {
+  const entries = [entry('h1', 'Histoire'), entry('h2', 'Histoire'), entry('s1', 'Sport'), entry('s2', 'Sport'), entry('m1', 'Musique')]
+
+  test('1 à 3 thèmes connus, sans doublon, et un nombre proposé que leurs questions permettent', () => {
+    expect(themeGameChoice(entries, ['Histoire'], 20)).toEqual({ themes: ['Histoire'], count: 20 })
+    expect(themeGameChoice(entries, ['Histoire', 'Sport'], 30)).toEqual({ themes: ['Histoire', 'Sport'], count: 30 })
+    expect(themeGameChoice(entries, ['Histoire'], 30)).toBeNull()
+    expect(themeGameChoice(entries, ['Histoire'], 15)).toBeNull()
+    expect(themeGameChoice(entries, ['Inconnu'], 10)).toBeNull()
+    expect(themeGameChoice(entries, ['Sport', 'Sport'], 10)).toBeNull()
+    expect(themeGameChoice(entries, [], 10)).toBeNull()
+    expect(themeGameChoice([...entries, entry('g1', 'Géographie')], ['Histoire', 'Sport', 'Musique', 'Géographie'], 10)).toBeNull()
   })
 })

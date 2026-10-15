@@ -14,7 +14,7 @@ import { db, ensureSignedIn } from './firebase';
 export class NoFreeRoomCodeError extends Error {}
 
 // Tente d'occuper un code. Faux s'il est déjà pris (par n'importe quel hôte).
-async function tryClaimCode(code: string, hostUid: string, quizId: string, settings: SessionSettings, sound: SoundSettings) {
+async function tryClaimCode(code: string, hostUid: string, quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
   // On ne peut pas lire sessions/CODE d'un bloc sans en être l'hôte ; hostUid est lisible par tous.
   const existingHost = await get(ref(db, `sessions/${code}/hostUid`));
   if (existingHost.exists()) return false;
@@ -29,6 +29,8 @@ async function tryClaimCode(code: string, hostUid: string, quizId: string, setti
       phaseStartedAt: serverTimestamp(),
       // Le lobby n'a pas de fin automatique.
       phaseEndsAt: 0,
+      // Thèmes du Quiz : questions déjà tirées sur la fiche (sinon, tirage au salon).
+      ...(questionRefs && { questionRefs: [...questionRefs] }),
     });
     return true;
   } catch (error) {
@@ -40,11 +42,11 @@ async function tryClaimCode(code: string, hostUid: string, quizId: string, setti
 
 // Crée la session initiale en LOBBY, avec le son de la TV choisi par l'hôte, et renvoie son code
 // (au plus ROOM_CODE_MAX_ATTEMPTS tirages).
-export async function createGame(quizId: string, settings: SessionSettings, sound: SoundSettings): Promise<string> {
+export async function createGame(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]): Promise<string> {
   const user = await ensureSignedIn();
   for (let attempt = 0; attempt < ROOM_CODE_MAX_ATTEMPTS; attempt++) {
     const code = generateRoomCode();
-    if (await tryClaimCode(code, user.uid, quizId, settings, sound)) return code;
+    if (await tryClaimCode(code, user.uid, quizId, settings, sound, questionRefs)) return code;
   }
   throw new NoFreeRoomCodeError();
 }

@@ -219,6 +219,12 @@ export const AppColors = {
   levelDot: Palette.gold,
   levelDotImpossible: Palette.pink,
   levelDotEmpty: Palette.lavenderMuted,
+  // Fiche d'une partie tirée dans des thèmes (maquette QN1-F) : bloc « Au programme », barres par niveau,
+  // fondu du visuel vers le fond, bouton « Modifier mon choix ».
+  programmePanel: 'rgba(255, 255, 255, 0.07)',
+  programmeLevels: { easy: Palette.green, medium: Palette.gold, hard: Palette.pink },
+  themeVisualFade: Palette.bgMiddle,
+  outlineButton: Palette.violetTrack,
   blindTestTile: Palette.violetPanel,
 } as const;
 

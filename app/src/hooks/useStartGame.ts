@@ -11,7 +11,8 @@ import { applyHostAction } from '@/lib/hostGame';
 import { saveHostedGameCode } from '@/lib/hostedGameStorage';
 
 export interface GameStarter {
-  start: (quizId: string, settings: SessionSettings, sound: SoundSettings) => Promise<void>;
+  // questionRefs : questions déjà tirées sur la fiche (thèmes du Quiz), écrites avec la partie.
+  start: (quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) => Promise<void>;
   isStarting: boolean;
   error: string | null;
 }
@@ -23,9 +24,9 @@ export function useStartGame(room: string | undefined): GameStarter {
   const [isStarting, setIsStarting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function create(quizId: string, settings: SessionSettings, sound: SoundSettings) {
+  async function create(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
     try {
-      const code = await createGame(quizId, settings, sound);
+      const code = await createGame(quizId, settings, sound, questionRefs);
       // Mémorisé sur l'appareil : « Reprendre la partie » si l'app est relancée en pleine partie.
       await saveHostedGameCode(code);
       // replace : le retour arrière depuis le lobby ramène au catalogue, pas à cette fiche.
@@ -36,9 +37,9 @@ export function useStartGame(room: string | undefined): GameStarter {
     }
   }
 
-  async function changeGame(code: string, quizId: string, settings: SessionSettings) {
+  async function changeGame(code: string, quizId: string, settings: SessionSettings, questionRefs?: readonly string[]) {
     try {
-      const applied = await applyHostAction(code, (session, now) => changeGameUpdate(session, quizId, settings, now), Date.now() + serverOffsetMs);
+      const applied = await applyHostAction(code, (session, now) => changeGameUpdate(session, quizId, settings, now, questionRefs ?? null), Date.now() + serverOffsetMs);
       if (applied) {
         router.dismissTo({ pathname: '/host/[code]', params: { code } });
         return;
@@ -50,11 +51,11 @@ export function useStartGame(room: string | undefined): GameStarter {
     setIsStarting(false);
   }
 
-  async function start(quizId: string, settings: SessionSettings, sound: SoundSettings) {
+  async function start(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
     setIsStarting(true);
     setError(null);
-    if (room) await changeGame(room, quizId, settings);
-    else await create(quizId, settings, sound);
+    if (room) await changeGame(room, quizId, settings, questionRefs);
+    else await create(quizId, settings, sound, questionRefs);
   }
 
   return { start, isStarting, error };

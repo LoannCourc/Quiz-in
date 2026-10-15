@@ -1,18 +1,19 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { settingsForGameType } from '@shared/quizCatalog';
-import { themeStats } from '@shared/themeCatalog';
+import { themeGameChoice, themeStats } from '@shared/themeCatalog';
 import { GENRE_ICONS, ICON_THEMES, themeIconOf, type GenreIconName, type QuizIconName } from '@shared/themeIcons';
 import { DEFAULT_SOUND_SETTINGS } from '@shared/sound';
 import type { SessionSettings, SoundSettings } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { BlindTestCatalog } from '@/components/host/catalog/blindtest/BlindTestCatalog';
 import { BluffCatalog } from '@/components/host/catalog/bluff/BluffCatalog';
 import { CatalogView } from '@/components/host/catalog/CatalogView';
 import { AllThemesView } from '@/components/host/catalog/themes/AllThemesView';
+import { ThemeGameScreen } from '@/components/host/catalog/themes/ThemeGameScreen';
 import { DrawCategoryPicker } from '@/components/host/catalog/DrawCategoryPicker';
 import { GameIcon } from '@/components/host/home/GameIcon';
 import { HomeView } from '@/components/host/home/HomeView';
@@ -24,6 +25,11 @@ import type { GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 import { DEMO_CATALOG, DEMO_THEME_CATALOG } from './demoCatalog';
+import { demoThemeSource } from './demoThemeSource';
+
+function openDemoPool(themes: string[], questionCount: number) {
+  router.push({ pathname: '/debug/catalog', params: { pool: themes.join('|'), count: String(questionCount) } });
+}
 
 // Dessine-moi : fiche locale, comme dans le vrai catalogue.
 const DEMO_ENTRIES = [...DEMO_CATALOG, ...DEMO_THEME_CATALOG, { id: DRAW_QUIZ_ID, ...DRAW_QUIZ_SUMMARY }];
@@ -34,7 +40,10 @@ const DEMO_ENTRIES = [...DEMO_CATALOG, ...DEMO_THEME_CATALOG, { id: DRAW_QUIZ_ID
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories, played: playedParam, allThemes } = useLocalSearchParams<{
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories, played: playedParam, allThemes, pool, count } = useLocalSearchParams<{
+    // ?pool=Histoire|Sport&count=20 : fiche d'une partie tirée dans ces thèmes (questions fictives).
+    pool?: string;
+    count?: string;
     // &allThemes=1 (avec game=quiz) : grille « Tout voir » des thèmes.
     allThemes?: string;
     quiz?: string;
@@ -48,8 +57,13 @@ export default function CatalogDemoScreen() {
     played?: string;
   }>();
   const played = new Set(playedParam ? playedParam.split(',') : []);
+  const themeSource = useMemo(() => demoThemeSource(DEMO_ENTRIES), []);
   const [settings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
+  const choice = pool ? themeGameChoice(DEMO_ENTRIES, pool.split('|'), Number(count)) : null;
+  if (choice) {
+    return <ThemeGameScreen entries={DEMO_ENTRIES} themes={choice.themes} count={choice.count} source={themeSource} start={() => router.back()} isCreating={false} />;
+  }
   const quiz = DEMO_ENTRIES.find((entry) => entry.id === quizId);
 
   if (icons === '1' || icons === 'genres') return <ThemeIconGallery onlyGenres={icons === 'genres'} />;
@@ -93,7 +107,7 @@ export default function CatalogDemoScreen() {
     );
   }
   if (game === 'quiz' && allThemes === '1') {
-    return <AllThemesView themes={themeStats(DEMO_ENTRIES, played)} onBack={() => router.setParams({ allThemes: undefined })} onPlay={() => undefined} />;
+    return <AllThemesView themes={themeStats(DEMO_ENTRIES, played)} onBack={() => router.setParams({ allThemes: undefined })} onPlay={openDemoPool} />;
   }
   // CatalogView porte son propre écran.
   if (game) {
@@ -107,7 +121,7 @@ export default function CatalogDemoScreen() {
         themes={
           game === 'quiz'
             ? {
-                onPlay: () => undefined,
+                onPlay: openDemoPool,
                 onSeeAll: () => router.setParams({ allThemes: '1' }),
               }
             : undefined

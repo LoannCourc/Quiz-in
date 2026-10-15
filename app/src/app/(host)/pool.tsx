@@ -1,23 +1,17 @@
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
-import { catalogThemes, filterByGameType } from '@shared/catalogRows';
+import { filterByGameType } from '@shared/catalogRows';
 import { areSettingsCompatible, settingsForGameType } from '@shared/quizCatalog';
-import {
-  availableQuestionCounts,
-  BLUFF_QUESTION_COUNTS,
-  poolQuestionTotal,
-  poolQuizzes,
-  QUIZ_QUESTION_COUNTS,
-  withPool,
-  type QuestionPool,
-} from '@shared/questionPool';
+import { availableQuestionCounts, BLUFF_QUESTION_COUNTS, poolQuestionTotal, poolQuizzes, withPool, type QuestionPool } from '@shared/questionPool';
 import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
-import type { QuizGameType, QuizSummary, SessionSettings } from '@shared/types';
+import { themeGameChoice } from '@shared/themeCatalog';
+import type { QuizSummary, SessionSettings } from '@shared/types';
 import { isValidRoomCode } from '@shared/roomCode';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Text } from 'react-native';
 
 import { QuizDetails } from '@/components/host/catalog/QuizDetails';
+import { ThemeGameScreen } from '@/components/host/catalog/themes/ThemeGameScreen';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -25,86 +19,50 @@ import { strings } from '@/constants/strings';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useSoundPreferences } from '@/hooks/useSoundPreferences';
 import { useStartGame } from '@/hooks/useStartGame';
+import { databaseQuestionSource } from '@/lib/themeGameDraw';
 
-// Thème générique (icône « ? ») quand l'ensemble mêle plusieurs thèmes.
-const MIXED_THEMES_ICON_THEME = 'Culture générale';
-
-interface PoolGame {
+interface MixGame {
   pool: QuestionPool;
-  gameType: QuizGameType;
   questionCount: number;
   quizzes: QuizEntry[];
   summary: QuizSummary;
 }
 
-interface PoolParams {
-  // Quiz : thèmes séparés par « | ». Bluff (Mon mélange) : identifiants séparés par « , ».
-  themes?: string;
-  quizIds?: string;
-  count?: string;
-}
-
-// Ensemble demandé, d'après le catalogue : thèmes du Quiz, ou quiz de Bluff du mélange. null si rien de
-// jouable (thème ou quiz inconnu, nombre de questions impossible).
-function poolOfParams(entries: QuizEntry[], params: PoolParams): { pool: QuestionPool; gameType: QuizGameType; titleOf: (quizzes: QuizEntry[]) => string } | null {
-  if (params.quizIds) {
-    const bluffIds = new Set(filterByGameType(entries, 'bluff').map((entry) => entry.id));
-    const quizIds = params.quizIds.split(',').filter((id) => bluffIds.has(id));
-    if (quizIds.length === 0) return null;
-    return {
-      pool: { kind: 'mix', quizIds },
-      gameType: 'bluff',
-      titleOf: (quizzes) => (quizzes.length === 1 ? quizzes[0].title : strings.hostLobby.mixTitle(quizzes.length)),
-    };
-  }
-  const allThemes = catalogThemes(filterByGameType(entries, 'quiz'));
-  const themes = (params.themes ?? '').split('|').filter((theme) => allThemes.includes(theme));
-  if (themes.length === 0) return null;
-  const texts = strings.catalog.themesGame;
-  return {
-    pool: { kind: 'themes', themes },
-    gameType: 'quiz',
-    titleOf: () => (themes.length === allThemes.length ? texts.allThemes : themes.length <= 2 ? themes.join(' + ') : texts.themes(themes.length)),
-  };
-}
-
-function poolGame(entries: QuizEntry[], params: PoolParams): PoolGame | null {
-  const found = poolOfParams(entries, params);
-  if (!found) return null;
-  const { pool, gameType, titleOf } = found;
-  const quizzes = poolQuizzes(entries, pool, gameType);
+// Bluff, « Mon mélange » : quiz choisis (identifiants séparés par « , ») et nombre de questions possible ;
+// null si rien de jouable.
+function mixGame(entries: QuizEntry[], quizIdsParam: string, countParam: string | undefined): MixGame | null {
+  const bluffIds = new Set(filterByGameType(entries, 'bluff').map((entry) => entry.id));
+  const quizIds = quizIdsParam.split(',').filter((id) => bluffIds.has(id));
+  if (quizIds.length === 0) return null;
+  const pool: QuestionPool = { kind: 'mix', quizIds };
+  const quizzes = poolQuizzes(entries, pool, 'bluff');
   const total = poolQuestionTotal(quizzes);
-  const questionCount = Number(params.count);
-  const options = gameType === 'bluff' ? BLUFF_QUESTION_COUNTS : QUIZ_QUESTION_COUNTS;
-  if (quizzes.length === 0 || !availableQuestionCounts(options, total).includes(questionCount)) return null;
-  const themes = new Set(quizzes.map((quiz) => quiz.theme));
+  const questionCount = Number(countParam);
+  if (quizzes.length === 0 || !availableQuestionCounts(BLUFF_QUESTION_COUNTS, total).includes(questionCount)) return null;
   const summary: QuizSummary = {
-    title: titleOf(quizzes),
-    theme: themes.size === 1 ? quizzes[0].theme : MIXED_THEMES_ICON_THEME,
-    gameType,
+    title: quizzes.length === 1 ? quizzes[0].title : strings.hostLobby.mixTitle(quizzes.length),
+    theme: quizzes[0].theme,
+    gameType: 'bluff',
     language: 'fr',
     difficulty: quizzes.reduce((sum, quiz) => sum + quiz.difficulty, 0) / quizzes.length,
     difficultyLabel: '',
     questionCount,
     estimatedMinutes: 0,
-    description: (gameType === 'bluff' ? strings.catalog.mixGame.description : strings.catalog.themesGame.description)(questionCount, total),
+    description: strings.catalog.mixGame.description(questionCount, total),
     audience: 'all',
     poster: quizzes[0].poster,
     addedAt: '',
   };
-  return { pool, gameType, questionCount, quizzes, summary };
+  return { pool, questionCount, quizzes, summary };
 }
 
-// Fiche d'une partie tirée dans un ensemble : thèmes du Quiz (barre « Nombre de questions ») ou « Mon
-// mélange » du Bluff. Mêmes réglages et même « Choisir » qu'un quiz ; les questions sont tirées au salon
-// (useGameQuestions).
+// Fiche d'une partie tirée dans un ensemble : thèmes du Quiz (maquette QN1-F, ?themes=Histoire|Sport&count=20 :
+// tirage sur la fiche) ou « Mon mélange » du Bluff (?quizIds=a,b&count=15 : tirage au salon).
 export default function PoolGameRoute() {
   const { themes, quizIds, count, room } = useLocalSearchParams<{ themes?: string; quizIds?: string; count?: string; room?: string }>();
   const catalog = useLiveValue<unknown>('quizzes');
-  const game = useMemo(
-    () => (catalog.kind === 'ready' ? poolGame(parseQuizCatalog(catalog.value).valid, { themes, quizIds, count }) : null),
-    [catalog, themes, quizIds, count],
-  );
+  const entries = useMemo(() => (catalog.kind === 'ready' ? parseQuizCatalog(catalog.value).valid : []), [catalog]);
+  const roomCode = room && isValidRoomCode(room) ? room : undefined;
   if (catalog.kind === 'loading') {
     return (
       <Screen>
@@ -112,27 +70,44 @@ export default function PoolGameRoute() {
       </Screen>
     );
   }
-  if (game === null) {
-    return (
-      <Screen>
-        <Text style={textStyles.error}>{strings.catalog.themesGame.unavailable}</Text>
-        <BigButton label={strings.quizSetup.backToCatalog} variant="secondary" onPress={() => router.back()} />
-      </Screen>
-    );
-  }
-  return <PoolGameScreen game={game} room={room && isValidRoomCode(room) ? room : undefined} />;
+  const choice = themes ? themeGameChoice(entries, themes.split('|'), Number(count)) : null;
+  if (choice) return <ThemeGameRoute entries={entries} themes={choice.themes} count={choice.count} room={roomCode} />;
+  const mix = quizIds ? mixGame(entries, quizIds, count) : null;
+  if (mix) return <MixGameScreen game={mix} room={roomCode} />;
+  return (
+    <Screen>
+      <Text style={textStyles.error}>{strings.catalog.themesGame.unavailable}</Text>
+      <BigButton label={strings.quizSetup.backToCatalog} variant="secondary" onPress={() => router.back()} />
+    </Screen>
+  );
 }
 
-function PoolGameScreen({ game, room }: { game: PoolGame; room?: string }) {
+function ThemeGameRoute({ entries, themes, count, room }: { entries: QuizEntry[]; themes: string[]; count: number; room?: string }) {
+  const starter = useStartGame(room);
+  return (
+    <ThemeGameScreen
+      entries={entries}
+      themes={themes}
+      count={count}
+      source={databaseQuestionSource}
+      start={(quizId, settings, sound, questionRefs) => void starter.start(quizId, settings, sound, questionRefs)}
+      isCreating={starter.isStarting}
+      error={starter.error}
+    />
+  );
+}
+
+// Bluff, Mon mélange : même fiche qu'un quiz (réglages du Bluff imposés), questions tirées au salon.
+function MixGameScreen({ game, room }: { game: MixGame; room?: string }) {
   const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   // Bluff : mode bluff imposé, sans Contrôle ni Rapidité (spec 16).
-  const settings = withPool(settingsForGameType(chosenSettings, game.gameType), game.pool, game.questionCount);
+  const settings = withPool(settingsForGameType(chosenSettings, 'bluff'), game.pool, game.questionCount);
   const [sound, setSound] = useSoundPreferences();
   const starter = useStartGame(room);
 
   function choose() {
     if (!areSettingsCompatible(settings)) return;
-    // quizId : le premier quiz de l'ensemble (type du jeu pour la TV et les joueurs ; les questions viennent du tirage).
+    // quizId : le premier quiz du mélange (type du jeu pour la TV et les joueurs ; les questions viennent du tirage).
     void starter.start(game.quizzes[0].id, settings, sound);
   }
 

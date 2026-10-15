@@ -596,6 +596,11 @@ describe('Changer de jeu', () => {
     expect(changeGameUpdate(makeSession({ status: 'question' }), 'x', bluff, NOW)).toBeNull()
   })
 
+  test('questions tirées : celles de la fiche, sinon effacées ; jamais celles du jeu précédent', () => {
+    const previous = { ...ended, questionRefs: ['histoire-1/h1-01'] }
+    expect(changeGameUpdate(previous, 'sport-1', bluff, NOW, ['sport-1/s1-02', 'sport-1/s1-05'])?.questionRefs).toEqual(['sport-1/s1-02', 'sport-1/s1-05'])
+    expect(changeGameUpdate(previous, 'sport-1', bluff, NOW)?.questionRefs).toBeNull()
+  })
 })
 
 describe('hostControls', () => {

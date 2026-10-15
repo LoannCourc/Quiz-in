@@ -199,13 +199,39 @@ export const strings = {
       description: (count: number, total: number) =>
         `${count} questions tirées au hasard parmi les ${total} des quiz choisis, en commençant par celles jamais jouées sur ce téléphone.`,
     },
-    // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool).
+    // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool, maquette QN1-F).
     themesGame: {
-      allThemes: 'Tous les thèmes',
-      themes: (count: number) => `${count} thèmes`,
-      description: (count: number, total: number) =>
-        `${count} questions tirées au hasard parmi les ${total} de ces thèmes, en commençant par celles jamais jouées sur ce téléphone.`,
       unavailable: 'Cette sélection de thèmes n’est plus disponible.',
+      loading: 'Préparation des questions…',
+      drawFailed: 'Impossible de préparer les questions.',
+      meta: (count: number, minutes: number | null) =>
+        `${count} questions · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · ${MIN_PLAYERS} à ${MAX_PLAYERS} joueurs`,
+      mixedLevels: 'Niveaux mélangés',
+      // Une phrase par thème, sous « N questions tirées au hasard dans le thème X. » (thème inconnu : rien).
+      themeBlurbs: {
+        Histoire: 'Des dates, des personnages et des événements qui ont marqué leur époque.',
+        Sport: 'Des questions pour les sportifs comme pour les supporters du canapé.',
+        'Cinéma et séries': 'De quoi réveiller les souvenirs des fans de grand et de petit écran.',
+        Musique: 'Pour les mélomanes, même ceux qui chantent faux.',
+        Géographie: 'De quoi faire le tour du monde sans quitter le salon.',
+        Loisirs: 'Des questions sur les passe-temps et la vie de tous les jours.',
+        'Sciences et nature': 'Pour les curieux de la nature, du corps humain et de l’univers.',
+        'Culture générale': 'Un peu de tout, pour que chacun ait sa chance.',
+      } as Record<string, string>,
+      oneTheme: (count: number, theme: string) => `${count} questions tirées au hasard dans le thème ${theme}.`,
+      // « 10 d'Histoire et 10 de Sport ».
+      themeShare: (count: number, theme: string) => `${count} ${/^[aeiouyhéèêàâîôû]/i.test(theme) ? 'd’' : 'de '}${theme}`,
+      severalThemes: (count: number, shares: string[]) =>
+        `${count} questions tirées au hasard dans ${shares.length === 2 ? 'deux' : 'trois'} thèmes : ${shares.slice(0, -1).join(', ')} et ${shares.at(-1)}, pour un mélange qui change.`,
+      programme: 'Au programme',
+      byTheme: 'Par thème',
+      byLevel: 'Par niveau',
+      share: (label: string, count: number) => `${label} · ${count}`,
+      unplayedFirst: 'Les questions que tu n’as jamais jouées passent en premier.',
+      modify: 'Modifier mon choix',
+      create: 'Créer la partie',
+      creating: 'Création…',
+      help: 'Tu auras ensuite le code et le QR code pour inviter les joueurs.',
     },
     // Catalogue Quiz (maquette QN1-A) : thème à la une et tuiles des thèmes.
     themesHome: {

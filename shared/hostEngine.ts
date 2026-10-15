@@ -724,10 +724,22 @@ export function nextGameSettings(previous: SessionSettings, chosen: SessionSetti
 
 // Changer de jeu, étape 2 : le jeu choisi remplace le précédent, retour au LOBBY avec le même code,
 // les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, Bluff
-// et Dessine-moi remis à zéro (newGameReset). Choisir le même jeu le relance.
-export function changeGameUpdate(session: Session, quizId: string, settings: SessionSettings, nowServer: number): SessionUpdate | null {
+// et Dessine-moi remis à zéro (newGameReset). Choisir le même jeu le relance. questionRefs : questions déjà
+// tirées sur la fiche (thèmes du Quiz) ; sinon effacées, jamais celles du jeu précédent.
+export function changeGameUpdate(
+  session: Session,
+  quizId: string,
+  settings: SessionSettings,
+  nowServer: number,
+  questionRefs: readonly string[] | null = null,
+): SessionUpdate | null {
   if (session.status !== 'ended') return null
-  return { ...newGameReset(session, nowServer), quizId, settings: nextGameSettings(session.settings, settings), questionRefs: null }
+  return {
+    ...newGameReset(session, nowServer),
+    quizId,
+    settings: nextGameSettings(session.settings, settings),
+    questionRefs: questionRefs ? [...questionRefs] : null,
+  }
 }
 
 // Remise à zéro d'un nouveau jeu dans le même salon (Changer de jeu) : Groupe, les équipes sont gardées

@@ -1,4 +1,5 @@
 import { DEFAULT_SESSION_SETTINGS } from './constants'
+import { QUIZ_QUESTION_COUNTS } from './questionPool'
 import { quizLevel, estimateGameMinutes } from './quizCatalog'
 import type { QuizEntry } from './quizValidation'
 import type { Difficulty, QuestionLevel, QuestionLevelCounts, SessionSettings } from './types'
@@ -76,4 +77,41 @@ export function themesQuestionTotal(stats: readonly ThemeStats[], themes: readon
 // thème, la fiche et « Ta partie » (réglages par défaut tant que l'hôte ne les a pas changés).
 export function themeGameMinutes(questionCount: number, settings: SessionSettings = DEFAULT_SESSION_SETTINGS): number | null {
   return estimateGameMinutes(questionCount, settings)
+}
+
+// Question tirée pour une partie, vue par la fiche : son thème et son niveau.
+export interface DrawnQuestionInfo {
+  theme: string
+  level: QuestionLevel
+}
+
+export interface GameProgramme {
+  // Questions par thème, dans l'ordre des thèmes choisis.
+  byTheme: { theme: string; count: number }[]
+  byLevel: QuestionLevelCounts
+}
+
+// « Au programme » de la fiche (maquette QN1-F) : répartition réelle des questions tirées.
+export function gameProgramme(questions: readonly DrawnQuestionInfo[], themes: readonly string[]): GameProgramme {
+  const byLevel: QuestionLevelCounts = { easy: 0, medium: 0, hard: 0 }
+  for (const question of questions) byLevel[question.level] += 1
+  const byTheme = themes.map((theme) => ({ theme, count: questions.filter((question) => question.theme === theme).length }))
+  return { byTheme, byLevel }
+}
+
+// Niveaux présents dans la partie : un seul (« Difficile ») ou plusieurs (« Niveaux mélangés »).
+export function programmeLevels(programme: GameProgramme): QuestionLevel[] {
+  return QUESTION_LEVELS.filter((level) => programme.byLevel[level] > 0)
+}
+
+// Choix reçu par la fiche (paramètres de la route) : 1 à 3 thèmes connus du Quiz, sans doublon, et un nombre
+// proposé (10, 20, 30) que leurs questions permettent ; null sinon.
+export function themeGameChoice(entries: readonly QuizEntry[], themes: readonly string[], count: number): { themes: string[]; count: number } | null {
+  const stats = themeStats(entries, new Set())
+  const known = new Set(stats.map((theme) => theme.theme))
+  const unique = [...new Set(themes)]
+  if (unique.length === 0 || unique.length > MAX_POOL_THEMES || unique.length !== themes.length) return null
+  if (!unique.every((theme) => known.has(theme))) return null
+  if (!QUIZ_QUESTION_COUNTS.includes(count) || count > themesQuestionTotal(stats, unique)) return null
+  return { themes: unique, count }
 }
