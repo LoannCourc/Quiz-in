@@ -1,0 +1,298 @@
+{
+  "quizId": "rap-impossible-2000",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "rpi00-01",
+      "query": {
+        "artist": "Saïan Supa Crew",
+        "title": "Adieu Babylone"
+      },
+      "found": {
+        "id": "3285944",
+        "title": "Adieu Babylone",
+        "artist": "Saïan Supa Crew",
+        "album": "Saian Supa Crew",
+        "durationS": 161,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3285944",
+        "explicit": false,
+        "rank": 117546
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-02",
+      "query": {
+        "artist": "Diam's",
+        "title": "Le fléau"
+      },
+      "found": {
+        "id": "3437817",
+        "title": "Le fléau",
+        "artist": "Diam's",
+        "album": "Premier mandat",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3437817",
+        "explicit": false,
+        "rank": 115237
+      },
+      "alternatives": [
+        {
+          "id": "3395667671",
+          "title": "Raio Diamante da Consciência",
+          "artist": "Carlos Positivo",
+          "album": "Ativação dos Chakras com Luz Diamante para Renovação Celular Profunda",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3395667671",
+          "explicit": false,
+          "rank": 39536
+        },
+        {
+          "id": "3221510841",
+          "title": "Diamants & bijoux",
+          "artist": "Mig",
+          "album": "02 Géné",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3221510841",
+          "explicit": true,
+          "rank": 356318
+        },
+        {
+          "id": "576754312",
+          "title": "Baby (feat. MARINA & Luis Fonsi)",
+          "artist": "Clean Bandit",
+          "album": "Baby (feat. MARINA & Luis Fonsi)",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/576754312",
+          "explicit": false,
+          "rank": 492437
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-03",
+      "query": {
+        "artist": "Oxmo Puccino",
+        "title": "Nous aurions pu"
+      },
+      "found": {
+        "id": "365911811",
+        "title": "Nous aurions pu",
+        "artist": "Oxmo Puccino",
+        "album": "Le cactus de Sibérie",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/365911811",
+        "explicit": false,
+        "rank": 132052
+      },
+      "alternatives": [
+        {
+          "id": "483173382",
+          "title": "Nous aurions pu (Remasterisé)",
+          "artist": "Oxmo Puccino",
+          "album": "Le cactus de Sibérie (Remasterisé)",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/483173382",
+          "explicit": false,
+          "rank": 244749
+        },
+        {
+          "id": "365912141",
+          "title": "Nous aurions pu (Live)",
+          "artist": "Oxmo Puccino",
+          "album": "Black Tour Desperado (Live)",
+          "durationS": 82,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365912141",
+          "explicit": false,
+          "rank": 27319
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-04",
+      "query": {
+        "artist": "Disiz",
+        "title": "Cours d'histoire"
+      },
+      "found": {
+        "id": "2293471",
+        "title": "Cours d'histoire",
+        "artist": "disiz",
+        "album": "Jeu De Societe",
+        "durationS": 415,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2293471",
+        "explicit": false,
+        "rank": 68225
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-05",
+      "query": {
+        "artist": "Abd Al Malik",
+        "title": "Conte Alsacien"
+      },
+      "found": {
+        "id": "585646832",
+        "title": "Conte Alsacien",
+        "artist": "Abd Al Malik",
+        "album": "Dante",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/585646832",
+        "explicit": false,
+        "rank": 158171
+      },
+      "alternatives": [
+        {
+          "id": "4305275212",
+          "title": "Conte alsacien (Live à la Cité nationale de l'Histoire de L'Immigration / 14 Juillet 2009)",
+          "artist": "Abd Al Malik",
+          "album": "Live à la Cité nationale de l'histoire de l'Immigration, le 14 juillet 2009",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4305275212",
+          "explicit": false,
+          "rank": 211477
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-06",
+      "query": {
+        "artist": "Keny Arkana",
+        "title": "Tout le monde debout"
+      },
+      "found": {
+        "id": "515843822",
+        "title": "Tout le monde debout",
+        "artist": "Keny Arkana",
+        "album": "L'Esquisse",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/515843822",
+        "explicit": false,
+        "rank": 198707
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-07",
+      "query": {
+        "artist": "Saïan Supa Crew",
+        "title": "C'est le déluge"
+      },
+      "found": {
+        "id": "3285940",
+        "title": "C'est le déluge",
+        "artist": "Saïan Supa Crew",
+        "album": "Saian Supa Crew",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3285940",
+        "explicit": false,
+        "rank": 123936
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-08",
+      "query": {
+        "artist": "Oxmo Puccino",
+        "title": "Arrivé sur terre"
+      },
+      "found": {
+        "id": "365911821",
+        "title": "Arrivé sur terre",
+        "artist": "Oxmo Puccino",
+        "album": "Le cactus de Sibérie",
+        "durationS": 246,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/365911821",
+        "explicit": false,
+        "rank": 160913
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-09",
+      "query": {
+        "artist": "Disiz",
+        "title": "N'Jillou"
+      },
+      "found": {
+        "id": "2292272",
+        "title": "N'Jillou",
+        "artist": "disiz",
+        "album": "Itineraire D'Un Enfant Bronze",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2292272",
+        "explicit": false,
+        "rank": 79624
+      },
+      "alternatives": [
+        {
+          "id": "2292284",
+          "title": "N'Jillou (Part II)",
+          "artist": "disiz",
+          "album": "Itineraire D'Un Enfant Bronze",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2292284",
+          "explicit": false,
+          "rank": 35605
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rpi00-10",
+      "query": {
+        "artist": "Abd Al Malik",
+        "title": "HLM Tango"
+      },
+      "found": {
+        "id": "585646852",
+        "title": "HLM Tango",
+        "artist": "Abd Al Malik",
+        "album": "Dante",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/585646852",
+        "explicit": false,
+        "rank": 123890
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

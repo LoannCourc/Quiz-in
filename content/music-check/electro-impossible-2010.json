@@ -1,0 +1,434 @@
+{
+  "quizId": "electro-impossible-2010",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ei10-01",
+      "query": {
+        "artist": "Vitalic",
+        "title": "The March of Skabah"
+      },
+      "found": {
+        "id": "3625529702",
+        "title": "The March of Skabah",
+        "artist": "Vitalic",
+        "album": "Rave Age",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3625529702",
+        "explicit": false,
+        "rank": 163898
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-02",
+      "query": {
+        "artist": "Rone",
+        "title": "Roads"
+      },
+      "found": {
+        "id": "90603865",
+        "title": "Roads",
+        "artist": "Rone",
+        "album": "Creatures",
+        "durationS": 101,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/90603865",
+        "explicit": false,
+        "rank": 122089
+      },
+      "alternatives": [
+        {
+          "id": "53462241",
+          "title": "Rare Roads",
+          "artist": "Bassface Sascha",
+          "album": "Bassface Sascha - Different Faces (MP3 Album)",
+          "durationS": 353,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/53462241",
+          "explicit": false,
+          "rank": 42041
+        },
+        {
+          "id": "2911274451",
+          "title": "Country Roads (Radio Version)",
+          "artist": "Hermes House Band",
+          "album": "Winners",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2911274451",
+          "explicit": false,
+          "rank": 565861
+        },
+        {
+          "id": "3872042691",
+          "title": "Take Me Home, Country Roads / Pagode Brasília",
+          "artist": "Lu & Robertinho",
+          "album": "Sertanejo Mashup 2",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3872042691",
+          "explicit": false,
+          "rank": 213977
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-03",
+      "query": {
+        "artist": "Breakbot",
+        "title": "Intersection"
+      },
+      "found": {
+        "id": "57630681",
+        "title": "Intersection",
+        "artist": "Breakbot",
+        "album": "By Your Side",
+        "durationS": 153,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/57630681",
+        "explicit": false,
+        "rank": 164081
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-04",
+      "query": {
+        "artist": "SebastiAn",
+        "title": "Yebo"
+      },
+      "found": {
+        "id": "809833692",
+        "title": "Yebo",
+        "artist": "SebastiAn",
+        "album": "Thirst",
+        "durationS": 232,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/809833692",
+        "explicit": false,
+        "rank": 141039
+      },
+      "alternatives": [
+        {
+          "id": "947220032",
+          "title": "Sweet Dreams (Are Made of This)",
+          "artist": "Sebastian Böhm",
+          "album": "Sweet Dreams (Are Made of This)",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/947220032",
+          "explicit": false,
+          "rank": 366166
+        },
+        {
+          "id": "11272939",
+          "title": "Yes",
+          "artist": "SebastiAn",
+          "album": "Total",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11272939",
+          "explicit": false,
+          "rank": 211677
+        },
+        {
+          "id": "11272924",
+          "title": "Embody",
+          "artist": "SebastiAn",
+          "album": "Total",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11272924",
+          "explicit": false,
+          "rank": 488881
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-05",
+      "query": {
+        "artist": "Yelle",
+        "title": "Toho"
+      },
+      "found": {
+        "id": "606769472",
+        "title": "Toho",
+        "artist": "Yelle",
+        "album": "Complètement fou",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/606769472",
+        "explicit": false,
+        "rank": 189912
+      },
+      "alternatives": [
+        {
+          "id": "2086537997",
+          "title": "Top Fan",
+          "artist": "Yelle",
+          "album": "Top Fan",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2086537997",
+          "explicit": false,
+          "rank": 262435
+        },
+        {
+          "id": "2552072342",
+          "title": "Top Fan (Sutus Remix)",
+          "artist": "Yelle",
+          "album": "Top Fan",
+          "durationS": 139,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2552072342",
+          "explicit": false,
+          "rank": 26387
+        },
+        {
+          "id": "1490772952",
+          "title": "Too Dead Inside",
+          "artist": "yeule",
+          "album": "Glitch Princess",
+          "durationS": 206,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1490772952",
+          "explicit": true,
+          "rank": 199457
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-06",
+      "query": {
+        "artist": "Cassius",
+        "title": "Walking In The Sunshine"
+      },
+      "found": {
+        "id": "678190322",
+        "title": "Walking In The Sunshine",
+        "artist": "Cassius",
+        "album": "Dreems",
+        "durationS": 317,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/678190322",
+        "explicit": false,
+        "rank": 152401
+      },
+      "alternatives": [
+        {
+          "id": "678190322",
+          "title": "Walking In The Sunshine",
+          "artist": "Cassius",
+          "album": "Dreems",
+          "durationS": 317,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/678190322",
+          "explicit": false,
+          "rank": 152401
+        },
+        {
+          "id": "518993982",
+          "title": "Walking In the Sunshine",
+          "artist": "DIK DIK",
+          "album": "Italian Classics: Dik Dik Collection, Vol. 2",
+          "durationS": 177,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/518993982",
+          "explicit": false,
+          "rank": 26880
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-07",
+      "query": {
+        "artist": "Gesaffelstein",
+        "title": "Humanity Gone"
+      },
+      "found": {
+        "id": "644296862",
+        "title": "Humanity Gone",
+        "artist": "Gesaffelstein",
+        "album": "Hyperion",
+        "durationS": 642,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/644296862",
+        "explicit": false,
+        "rank": 194698
+      },
+      "alternatives": [
+        {
+          "id": "644296862",
+          "title": "Humanity Gone",
+          "artist": "Gesaffelstein",
+          "album": "Hyperion",
+          "durationS": 642,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/644296862",
+          "explicit": false,
+          "rank": 194698
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-08",
+      "query": {
+        "artist": "Møme",
+        "title": "Routine"
+      },
+      "found": {
+        "id": "134527354",
+        "title": "Routine",
+        "artist": "Møme",
+        "album": "Panorama",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/134527354",
+        "explicit": false,
+        "rank": 169630
+      },
+      "alternatives": [
+        {
+          "id": "2102570067",
+          "title": "Routine",
+          "artist": "Motivation Moments",
+          "album": "Routine",
+          "durationS": 81,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2102570067",
+          "explicit": false,
+          "rank": 40145
+        },
+        {
+          "id": "1156156672",
+          "title": "Routine",
+          "artist": "Moko",
+          "album": "Eighteen",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1156156672",
+          "explicit": true,
+          "rank": 25953
+        },
+        {
+          "id": "826579662",
+          "title": "Routine",
+          "artist": "AMIN",
+          "album": "Galaxie",
+          "durationS": 169,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/826579662",
+          "explicit": false,
+          "rank": 188913
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-09",
+      "query": {
+        "artist": "Fakear",
+        "title": "Prelude"
+      },
+      "found": {
+        "id": "468663242",
+        "title": "Prelude",
+        "artist": "Fakear",
+        "album": "All Glows",
+        "durationS": 102,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/468663242",
+        "explicit": false,
+        "rank": 193096
+      },
+      "alternatives": [
+        {
+          "id": "2636115882",
+          "title": "Caesar on a TV Screen",
+          "artist": "The Last Dinner Party",
+          "album": "Prelude to Ecstasy",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2636115882",
+          "explicit": false,
+          "rank": 275358
+        },
+        {
+          "id": "2805727272",
+          "title": "Danses gothiques: III. En faveur d'un malheureux",
+          "artist": "Ulrich Gumpert",
+          "album": "Satie: Danses gothiques - 4 Préludes - Petite ouverture à danser",
+          "durationS": 37,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2805727272",
+          "explicit": false,
+          "rank": 10122
+        },
+        {
+          "id": "3029751771",
+          "title": "Caesar on a TV Screen (Acoustic)",
+          "artist": "The Last Dinner Party",
+          "album": "Prelude to Ecstasy: Acoustics & Covers",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3029751771",
+          "explicit": false,
+          "rank": 195493
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ei10-10",
+      "query": {
+        "artist": "Vitalic",
+        "title": "Vigipirate"
+      },
+      "found": {
+        "id": "3625529662",
+        "title": "Vigipirate",
+        "artist": "Vitalic",
+        "album": "Rave Age",
+        "durationS": 134,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3625529662",
+        "explicit": false,
+        "rank": 187636
+      },
+      "alternatives": [
+        {
+          "id": "3625529662",
+          "title": "Vigipirate",
+          "artist": "Vitalic",
+          "album": "Rave Age",
+          "durationS": 134,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3625529662",
+          "explicit": false,
+          "rank": 187636
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

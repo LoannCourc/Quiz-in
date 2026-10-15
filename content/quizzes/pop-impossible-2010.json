@@ -1,0 +1,220 @@
+{
+  "id": "pop-impossible-2010",
+  "gameType": "blindTest",
+  "title": "Pop française, faces cachées",
+  "theme": "Musique",
+  "description": "Les titres d’album les moins écoutés de chanteurs et chanteuses pop connus des années 2010.",
+  "audience": "experts",
+  "poster": "pink",
+  "icon": "star",
+  "genre": "pop",
+  "decade": 2010,
+  "level": "impossible",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
+  "questions": [
+    {
+      "id": "pi10-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Puppet – Yael Naim",
+        "Rise – Superbus",
+        "The stranger – Christine and the Queens",
+        "Tumbleweed – Brigitte"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The stranger"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Christine and the Queens",
+        "title": "The stranger"
+      }
+    },
+    {
+      "id": "pi10-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Game Is Over – Yael Naim",
+        "Make some sense – Christine and the Queens",
+        "All The Rain – Charlotte Gainsbourg",
+        "The Lighter – Superbus"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Yael Naim"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Yael Naim",
+        "title": "Game Is Over"
+      }
+    },
+    {
+      "id": "pi10-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tumbleweed – Brigitte",
+        "Make a Child – Yael Naim",
+        "Rise – Superbus",
+        "Le bal du moulin de la Galette – Calogero"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Le bal du moulin de la Galette"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Calogero",
+        "title": "Le bal du moulin de la Galette"
+      }
+    },
+    {
+      "id": "pi10-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Puppet – Yael Naim",
+        "Out Of Touch – Charlotte Gainsbourg",
+        "The Lighter – Superbus",
+        "Make some sense – Christine and the Queens"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Charlotte Gainsbourg"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Charlotte Gainsbourg",
+        "title": "Out Of Touch"
+      }
+    },
+    {
+      "id": "pi10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hippocampe – Brigitte",
+        "All The Rain – Charlotte Gainsbourg",
+        "Rise – Superbus",
+        "Make a Child – Yael Naim"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hippocampe"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Brigitte",
+        "title": "Hippocampe"
+      }
+    },
+    {
+      "id": "pi10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tumbleweed – Brigitte",
+        "Puppet – Yael Naim",
+        "Cry – MIKA",
+        "The Lighter – Superbus"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "MIKA"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "MIKA",
+        "title": "Cry",
+        "artistAliases": [
+          "Mika"
+        ]
+      }
+    },
+    {
+      "id": "pi10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Make some sense – Christine and the Queens",
+        "Robin Miller – Lou Doillon",
+        "All The Rain – Charlotte Gainsbourg",
+        "Rise – Superbus"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Robin Miller"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Lou Doillon",
+        "title": "Robin Miller"
+      }
+    },
+    {
+      "id": "pi10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Make a Child – Yael Naim",
+        "Tumbleweed – Brigitte",
+        "All The Rain – Charlotte Gainsbourg",
+        "Impensablement – Superbus"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Superbus"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Superbus",
+        "title": "Impensablement"
+      }
+    },
+    {
+      "id": "pi10-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "White Telephone – Charlotte Gainsbourg",
+        "Puppet – Yael Naim",
+        "Make some sense – Christine and the Queens",
+        "The Lighter – Superbus"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "White Telephone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Charlotte Gainsbourg",
+        "title": "White Telephone"
+      }
+    },
+    {
+      "id": "pi10-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Rise – Superbus",
+        "Make a Child – Yael Naim",
+        "What's-her-face – Christine and the Queens",
+        "Tumbleweed – Brigitte"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Christine and the Queens"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Christine and the Queens",
+        "title": "What's-her-face"
+      }
+    }
+  ]
+}

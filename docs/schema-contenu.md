@@ -136,9 +136,22 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
 - `level` (facultatif) : `easy`, `medium`, `hard` ou `impossible`. S'il est écrit, toutes les questions ont la
   même `difficulty` (1, 2, 3 ; Impossible : 3) : le build refuse un morceau « facile » dans un blind test
   « difficile ».
-- **Impossible** : chaque morceau est d'un artiste qui a **moins de 800 fans sur Deezer** (`nb_fan`) le jour
-  de la vérification, avec un extrait lisible ; titre et artiste écrits tels que Deezer les affiche ; les
-  propositions sont aussi peu connues (même genre, même époque).
+- **Impossible** (octobre 2026) : 10 titres **très peu écoutés d'artistes connus** : titres d'album et faces
+  B, jamais les singles ni les tubes (hors du top 10 de l'artiste chez Deezer). Le jour de la vérification :
+  - popularité Deezer du morceau (`rank`) **sous 200 000**, sur toutes ses éditions propres (ni live ni
+    remix) : une édition secondaire peu écoutée ne suffit pas si l'édition principale dépasse le seuil (à titre
+    de comparaison, les tubes des autres blind tests sont entre 500 000 et 900 000) ;
+  - artiste à **50 000 fans ou plus** (`nb_fan`), pour que le marquage « non explicite » soit fiable ;
+  - mêmes règles qu'ailleurs : version d'origine, extrait présent, paroles non explicites, genre et époque
+    garantis par l'album Deezer (genre de l'album, date de sortie) ; titres vulgaires ou suggestifs écartés à
+    la main, même marqués non explicites ; ni reprise, ni live, ni album hommage.
+  - Les dates d'album des années 60 à 90 sont souvent celles d'une réédition chez Deezer : préférer des
+    époques où la date de l'album est celle d'origine (années 2000 et 2010). Deezer range aussi beaucoup
+    d'albums de chanson en « Pop » : pour le genre Chanson, l'album doit être classé « Chanson française ».
+  - Les propositions sont d'autres titres d'album des mêmes artistes ou de la même scène, aussi peu connus,
+    même genre et même époque.
+  - L'ancienne définition (artistes à moins de 800 fans) est abandonnée : trop de reprises, de titres
+    douteux et de paroles impossibles à garantir.
 - `music.title` et `music.artist` : tels que Deezer les écrit (ce sont eux qui sont vérifiés).
 - `music.displayTitle` et `music.displayArtist` (facultatifs) : l'orthographe affichée à l'écran quand celle
   de Deezer est fausse (accents, casse d'un titre français, ponctuation) : « Téléphone » pour « Telephone »,
@@ -166,10 +179,12 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
    acceptées : « feat. », « Remastered », « Radio Edit », bande originale d'un film),
    version originale (ni live ni remix), extrait présent, paroles non explicites, extrait qui tient dans le
    minuteur. Sinon, la raison est affichée : remplacer le morceau.
-3. `npm run music:fans -- <lot> <quizId> [<quizId>…]` : écrit `docs/relecture-lot-bt-<lot>.md` (fans
-   `nb_fan` et date de vérification, extrait, paroles, qui a vérifié, 5 morceaux à écouter en priorité). Les
-   fans changent avec le temps : ils ne sont écrits que dans la relecture, jamais dans le contenu publié.
-   Relancer le script pour revérifier un « Impossible ».
+3. `npm run music:review -- <lot> <quizId> [<quizId>…]` : écrit `docs/relecture-lot-bt-<lot>.md` (rank du
+   morceau, fans de l'artiste, date de vérification, extrait, paroles, qui a vérifié, 5 morceaux à écouter en
+   priorité) et signale un « Impossible » hors règle (rank de 200 000 ou plus, artiste sous 50 000 fans). Rank
+   et fans changent avec le temps : ils ne sont écrits que dans la relecture, jamais dans le contenu publié.
+   Relancer le script pour revérifier un « Impossible ». (Les relectures BT-1 à BT-5 ont été écrites par
+   l'ancien `music:fans`, sans rank.)
 4. `verifiedBy: "listened"` signifie **« approuvé par Loann »** (après écoute d'un échantillon ou relecture
    du lot) ; « auto » : contrôles automatiques passés, pas encore approuvé. Un morceau est coché `verified`
    dès que les contrôles automatiques passent ; Loann écoute un échantillon. Sans `verifiedBy` : morceau

@@ -1,0 +1,297 @@
+{
+  "quizId": "pop-impossible-2010",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "pi10-01",
+      "query": {
+        "artist": "Christine and the Queens",
+        "title": "The stranger"
+      },
+      "found": {
+        "id": "555962772",
+        "title": "The stranger",
+        "artist": "Christine and the Queens",
+        "album": "Chris",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/555962772",
+        "explicit": false,
+        "rank": 82157
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-02",
+      "query": {
+        "artist": "Yael Naim",
+        "title": "Game Is Over"
+      },
+      "found": {
+        "id": "605681392",
+        "title": "Game Is Over",
+        "artist": "Yael Naim",
+        "album": "She Was a Boy",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/605681392",
+        "explicit": false,
+        "rank": 176290
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-03",
+      "query": {
+        "artist": "Calogero",
+        "title": "Le bal du moulin de la Galette"
+      },
+      "found": {
+        "id": "682072162",
+        "title": "Le bal du moulin de la Galette",
+        "artist": "Calogero",
+        "album": "Les plus belles années d'une vie",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/682072162",
+        "explicit": false,
+        "rank": 149391
+      },
+      "alternatives": [
+        {
+          "id": "682072162",
+          "title": "Le bal du moulin de la Galette",
+          "artist": "Calogero",
+          "album": "Les plus belles années d'une vie",
+          "durationS": 167,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/682072162",
+          "explicit": false,
+          "rank": 149391
+        },
+        {
+          "id": "682072192",
+          "title": "Le bal du moulin de la Galette (Variation)",
+          "artist": "Calogero",
+          "album": "Les plus belles années d'une vie",
+          "durationS": 102,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/682072192",
+          "explicit": false,
+          "rank": 52317
+        },
+        {
+          "id": "682072212",
+          "title": "Le bal du moulin de la Galette (Variation version Piano)",
+          "artist": "Calogero",
+          "album": "Les plus belles années d'une vie",
+          "durationS": 103,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/682072212",
+          "explicit": false,
+          "rank": 74141
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-04",
+      "query": {
+        "artist": "Charlotte Gainsbourg",
+        "title": "Out Of Touch"
+      },
+      "found": {
+        "id": "623348962",
+        "title": "Out Of Touch",
+        "artist": "Charlotte Gainsbourg",
+        "album": "Stage Whisper",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623348962",
+        "explicit": false,
+        "rank": 108828
+      },
+      "alternatives": [
+        {
+          "id": "623348962",
+          "title": "Out Of Touch",
+          "artist": "Charlotte Gainsbourg",
+          "album": "Stage Whisper",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/623348962",
+          "explicit": false,
+          "rank": 108828
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-05",
+      "query": {
+        "artist": "Brigitte",
+        "title": "Hippocampe"
+      },
+      "found": {
+        "id": "10446175",
+        "title": "Hippocampe",
+        "artist": "Brigitte",
+        "album": "Et vous, tu m'aimes ?",
+        "durationS": 26,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10446175",
+        "explicit": false,
+        "rank": 15838
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-06",
+      "query": {
+        "artist": "MIKA",
+        "title": "Cry"
+      },
+      "found": {
+        "id": "765865402",
+        "title": "Cry",
+        "artist": "Mika",
+        "album": "My Name Is Michael Holbrook",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/765865402",
+        "explicit": false,
+        "rank": 169973
+      },
+      "alternatives": [
+        {
+          "id": "765865402",
+          "title": "Cry",
+          "artist": "Mika",
+          "album": "My Name Is Michael Holbrook",
+          "durationS": 193,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/765865402",
+          "explicit": false,
+          "rank": 169973
+        },
+        {
+          "id": "976098662",
+          "title": "Cry No More",
+          "artist": "Mika Nakashima",
+          "album": "Cry No More",
+          "durationS": 277,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/976098662",
+          "explicit": false,
+          "rank": 68468
+        },
+        {
+          "id": "976697352",
+          "title": "Love No Cry",
+          "artist": "Mika Nakashima",
+          "album": "Yuki No Hana 15th Anniversary Best Bible",
+          "durationS": 315,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/976697352",
+          "explicit": false,
+          "rank": 65742
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-07",
+      "query": {
+        "artist": "Lou Doillon",
+        "title": "Robin Miller"
+      },
+      "found": {
+        "id": "109213590",
+        "title": "Robin Miller",
+        "artist": "Lou Doillon",
+        "album": "Lay Low",
+        "durationS": 148,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/109213590",
+        "explicit": false,
+        "rank": 198501
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-08",
+      "query": {
+        "artist": "Superbus",
+        "title": "Impensablement"
+      },
+      "found": {
+        "id": "125641134",
+        "title": "Impensablement",
+        "artist": "Superbus",
+        "album": "Sixtape",
+        "durationS": 174,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/125641134",
+        "explicit": false,
+        "rank": 132086
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-09",
+      "query": {
+        "artist": "Charlotte Gainsbourg",
+        "title": "White Telephone"
+      },
+      "found": {
+        "id": "623348932",
+        "title": "White Telephone",
+        "artist": "Charlotte Gainsbourg",
+        "album": "Stage Whisper",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623348932",
+        "explicit": false,
+        "rank": 131848
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pi10-10",
+      "query": {
+        "artist": "Christine and the Queens",
+        "title": "What's-her-face"
+      },
+      "found": {
+        "id": "555962742",
+        "title": "What's-her-face",
+        "artist": "Christine and the Queens",
+        "album": "Chris",
+        "durationS": 303,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/555962742",
+        "explicit": false,
+        "rank": 119363
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

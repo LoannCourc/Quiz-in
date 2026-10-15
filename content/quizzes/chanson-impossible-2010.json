@@ -1,0 +1,217 @@
+{
+  "id": "chanson-impossible-2010",
+  "gameType": "blindTest",
+  "title": "Chanson française, faces cachées",
+  "theme": "Musique",
+  "description": "Des chansons d’album presque jamais écoutées, chez des auteurs-compositeurs connus des années 2010.",
+  "audience": "experts",
+  "poster": "green",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 2010,
+  "level": "impossible",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
+  "questions": [
+    {
+      "id": "ci10-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le roi – Miossec",
+        "La clairière – Dominique A",
+        "Perdre la raison – Bénabar",
+        "Le roi du monde – Debout sur le zinc"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Perdre la raison"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Bénabar",
+        "title": "Perdre la raison"
+      }
+    },
+    {
+      "id": "ci10-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Quelle histoire ! – Bénabar",
+        "Se décentrer – Dominique A",
+        "Merci – Miossec",
+        "Tout est dans mon sac – Sanseverino"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Miossec"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Miossec",
+        "title": "Merci"
+      }
+    },
+    {
+      "id": "ci10-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le reflet – Dominique A",
+        "Où est l'histoire – Debout sur le zinc",
+        "Son homme – Miossec",
+        "Faute de goût – Bénabar"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Le reflet"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dominique A",
+        "title": "Le reflet"
+      }
+    },
+    {
+      "id": "ci10-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La clairière – Dominique A",
+        "Tout est dans mon sac – Sanseverino",
+        "Le roi – Miossec",
+        "La rengaine – Debout sur le zinc"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Debout sur le zinc"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Debout sur le zinc",
+        "title": "La rengaine"
+      }
+    },
+    {
+      "id": "ci10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Quelle histoire ! – Bénabar",
+        "Du cinéma – Tryo",
+        "Le roi du monde – Debout sur le zinc",
+        "Se décentrer – Dominique A"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Du cinéma"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Tryo",
+        "title": "Du cinéma"
+      }
+    },
+    {
+      "id": "ci10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hey man – Jacques Higelin",
+        "Son homme – Miossec",
+        "Faute de goût – Bénabar",
+        "Où est l'histoire – Debout sur le zinc"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Jacques Higelin"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jacques Higelin",
+        "title": "Hey man"
+      }
+    },
+    {
+      "id": "ci10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tout est dans mon sac – Sanseverino",
+        "La clairière – Dominique A",
+        "Sur son passage – Bénabar",
+        "Le roi – Miossec"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sur son passage"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Bénabar",
+        "title": "Sur son passage"
+      }
+    },
+    {
+      "id": "ci10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le roi du monde – Debout sur le zinc",
+        "L'aventure – Miossec",
+        "Faute de goût – Bénabar",
+        "Se décentrer – Dominique A"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Miossec"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Miossec",
+        "title": "L'aventure"
+      }
+    },
+    {
+      "id": "ci10-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Son homme – Miossec",
+        "Quelle histoire ! – Bénabar",
+        "Tout est dans mon sac – Sanseverino",
+        "Loin du soleil – Dominique A"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Loin du soleil"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dominique A",
+        "title": "Loin du soleil"
+      }
+    },
+    {
+      "id": "ci10-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Désert – Debout sur le zinc",
+        "Le roi – Miossec",
+        "La clairière – Dominique A",
+        "Faute de goût – Bénabar"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Debout sur le zinc"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Debout sur le zinc",
+        "title": "Désert"
+      }
+    }
+  ]
+}

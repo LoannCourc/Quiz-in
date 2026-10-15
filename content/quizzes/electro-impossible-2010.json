@@ -1,0 +1,217 @@
+{
+  "id": "electro-impossible-2010",
+  "gameType": "blindTest",
+  "title": "Électro française, faces cachées",
+  "theme": "Musique",
+  "description": "Des titres d’album que presque personne n’a écoutés, chez les stars de l’électro française des années 2010.",
+  "audience": "experts",
+  "poster": "violet",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": 2010,
+  "level": "impossible",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
+  "questions": [
+    {
+      "id": "ei10-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Nexus – Vitalic",
+        "The March of Skabah – Vitalic",
+        "Programme – Breakbot",
+        "Movement – SebastiAn"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The March of Skabah"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Vitalic",
+        "title": "The March of Skabah"
+      }
+    },
+    {
+      "id": "ei10-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Altitude – Møme",
+        "Tonight – Fakear",
+        "Moteur action – Yelle",
+        "Roads – Rone"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Rone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Rone",
+        "title": "Roads"
+      }
+    },
+    {
+      "id": "ei10-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Intersection – Breakbot",
+        "Sev – SebastiAn",
+        "Moteur action – Yelle",
+        "Nexus – Vitalic"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Intersection"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Breakbot",
+        "title": "Intersection"
+      }
+    },
+    {
+      "id": "ei10-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tonight – Fakear",
+        "Programme – Breakbot",
+        "Yebo – SebastiAn",
+        "Altitude – Møme"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "SebastiAn"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "SebastiAn",
+        "title": "Yebo"
+      }
+    },
+    {
+      "id": "ei10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Movement – SebastiAn",
+        "Nexus – Vitalic",
+        "Toho – Yelle",
+        "Tonight – Fakear"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Toho"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Yelle",
+        "title": "Toho"
+      }
+    },
+    {
+      "id": "ei10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Walking In The Sunshine – Cassius",
+        "Programme – Breakbot",
+        "Altitude – Møme",
+        "Sev – SebastiAn"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Cassius"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Cassius",
+        "title": "Walking In The Sunshine"
+      }
+    },
+    {
+      "id": "ei10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Moteur action – Yelle",
+        "Nexus – Vitalic",
+        "Movement – SebastiAn",
+        "Humanity Gone – Gesaffelstein"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Humanity Gone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Gesaffelstein",
+        "title": "Humanity Gone"
+      }
+    },
+    {
+      "id": "ei10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tonight – Fakear",
+        "Routine – Møme",
+        "Sev – SebastiAn",
+        "Programme – Breakbot"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Møme"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Møme",
+        "title": "Routine"
+      }
+    },
+    {
+      "id": "ei10-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Prelude – Fakear",
+        "Altitude – Møme",
+        "Moteur action – Yelle",
+        "Nexus – Vitalic"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Prelude"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Fakear",
+        "title": "Prelude"
+      }
+    },
+    {
+      "id": "ei10-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Movement – SebastiAn",
+        "Programme – Breakbot",
+        "Vigipirate – Vitalic",
+        "Tonight – Fakear"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Vitalic"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Vitalic",
+        "title": "Vigipirate"
+      }
+    }
+  ]
+}

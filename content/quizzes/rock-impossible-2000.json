@@ -1,0 +1,217 @@
+{
+  "id": "rock-impossible-2000",
+  "gameType": "blindTest",
+  "title": "Rock français, faces cachées",
+  "theme": "Musique",
+  "description": "Les titres d’album oubliés de groupes de rock français bien connus, dans les années 2000.",
+  "audience": "experts",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": 2000,
+  "level": "impossible",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
+  "questions": [
+    {
+      "id": "ri00-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Un Seul Jour – Luke",
+        "Goodbye Green Day – Mickey 3D",
+        "Je n'aime que toi – Les Wampas",
+        "Giant John Et Le Sanglophone – Dionysos"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Giant John Et Le Sanglophone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dionysos",
+        "title": "Giant John Et Le Sanglophone"
+      }
+    },
+    {
+      "id": "ri00-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le pays – Luke",
+        "La Métamorphose De Mister Chat – Dionysos",
+        "Janis – Mickey 3D",
+        "Il n'y a rien que les lâches qui freinent – Les Wampas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Luke"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Luke",
+        "title": "Le pays"
+      }
+    },
+    {
+      "id": "ri00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "J'ai oublié – Luke",
+        "Mon Ombre Est Personne – Dionysos",
+        "Phénoménal – Mickey 3D",
+        "Je n'aime que toi – Les Wampas"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Phénoménal"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mickey 3D",
+        "title": "Phénoménal"
+      }
+    },
+    {
+      "id": "ri00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Goodbye Green Day – Mickey 3D",
+        "Un Seul Jour – Luke",
+        "J'écoutais les cramps – Les Wampas",
+        "La Métamorphose De Mister Chat – Dionysos"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Les Wampas"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Les Wampas",
+        "title": "J'écoutais les cramps"
+      }
+    },
+    {
+      "id": "ri00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hoo Doo – Noir Désir",
+        "Il n'y a rien que les lâches qui freinent – Les Wampas",
+        "Janis – Mickey 3D",
+        "J'ai oublié – Luke"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hoo Doo"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Noir Désir",
+        "title": "Hoo Doo"
+      }
+    },
+    {
+      "id": "ri00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Un Seul Jour – Luke",
+        "Je n'aime que toi – Les Wampas",
+        "Goodbye Green Day – Mickey 3D",
+        "Monsters In Love – Dionysos"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Dionysos"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dionysos",
+        "title": "Monsters In Love"
+      }
+    },
+    {
+      "id": "ri00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mon Ombre Est Personne – Dionysos",
+        "Stella – Luke",
+        "Janis – Mickey 3D",
+        "Il n'y a rien que les lâches qui freinent – Les Wampas"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Stella"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Luke",
+        "title": "Stella"
+      }
+    },
+    {
+      "id": "ri00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La Saint Glinglin – Mickey 3D",
+        "La Métamorphose De Mister Chat – Dionysos",
+        "J'ai oublié – Luke",
+        "Je n'aime que toi – Les Wampas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Mickey 3D"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mickey 3D",
+        "title": "La Saint Glinglin"
+      }
+    },
+    {
+      "id": "ri00-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Janis – Mickey 3D",
+        "Mon Ombre Est Personne – Dionysos",
+        "Un dimanche à Strasbourg – Les Wampas",
+        "Un Seul Jour – Luke"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Un dimanche à Strasbourg"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Les Wampas",
+        "title": "Un dimanche à Strasbourg"
+      }
+    },
+    {
+      "id": "ri00-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Il n'y a rien que les lâches qui freinent – Les Wampas",
+        "Storiz – Mickey 3D",
+        "J'ai oublié – Luke",
+        "La Métamorphose De Mister Chat – Dionysos"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Mickey 3D"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mickey 3D",
+        "title": "Storiz"
+      }
+    }
+  ]
+}

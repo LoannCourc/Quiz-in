@@ -1,0 +1,217 @@
+{
+  "id": "rap-impossible-2000",
+  "gameType": "blindTest",
+  "title": "Rap français, faces cachées",
+  "theme": "Musique",
+  "description": "Les titres d’album méconnus de rappeurs français reconnus, dans les années 2000.",
+  "audience": "experts",
+  "poster": "gold",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 2000,
+  "level": "impossible",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
+  "questions": [
+    {
+      "id": "rpi00-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Adieu Babylone – Saïan Supa Crew",
+        "Royality – Diam's",
+        "L'amour est mort, mais – Oxmo Puccino",
+        "91 Unda – Disiz"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Adieu Babylone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Saïan Supa Crew",
+        "title": "Adieu Babylone"
+      }
+    },
+    {
+      "id": "rpi00-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mama – Saïan Supa Crew",
+        "Paris mais ... – Abd Al Malik",
+        "Le fléau – Diam's",
+        "Medley – Keny Arkana"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Diam's"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Diam's",
+        "title": "Le fléau"
+      }
+    },
+    {
+      "id": "rpi00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Fly – Saïan Supa Crew",
+        "Le Faqir – Abd Al Malik",
+        "Nous aurions pu – Oxmo Puccino",
+        "91 Unda – Disiz"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Nous aurions pu"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Oxmo Puccino",
+        "title": "Nous aurions pu"
+      }
+    },
+    {
+      "id": "rpi00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Cours d'histoire – Disiz",
+        "Royality – Diam's",
+        "Mama – Saïan Supa Crew",
+        "L'amour est mort, mais – Oxmo Puccino"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Disiz"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Disiz",
+        "title": "Cours d'histoire"
+      }
+    },
+    {
+      "id": "rpi00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Medley – Keny Arkana",
+        "91 Unda – Disiz",
+        "Fly – Saïan Supa Crew",
+        "Conte Alsacien – Abd Al Malik"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Conte Alsacien"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Abd Al Malik",
+        "title": "Conte Alsacien"
+      }
+    },
+    {
+      "id": "rpi00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le Faqir – Abd Al Malik",
+        "Tout le monde debout – Keny Arkana",
+        "Royality – Diam's",
+        "L'amour est mort, mais – Oxmo Puccino"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Keny Arkana"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Keny Arkana",
+        "title": "Tout le monde debout"
+      }
+    },
+    {
+      "id": "rpi00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "C'est le déluge – Saïan Supa Crew",
+        "Paris mais ... – Abd Al Malik",
+        "91 Unda – Disiz",
+        "Medley – Keny Arkana"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "C'est le déluge"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Saïan Supa Crew",
+        "title": "C'est le déluge"
+      }
+    },
+    {
+      "id": "rpi00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mama – Saïan Supa Crew",
+        "Royality – Diam's",
+        "Arrivé sur terre – Oxmo Puccino",
+        "Le Faqir – Abd Al Malik"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Oxmo Puccino"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Oxmo Puccino",
+        "title": "Arrivé sur terre"
+      }
+    },
+    {
+      "id": "rpi00-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'amour est mort, mais – Oxmo Puccino",
+        "N'Jillou – Disiz",
+        "Fly – Saïan Supa Crew",
+        "Paris mais ... – Abd Al Malik"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "N'Jillou"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Disiz",
+        "title": "N'Jillou"
+      }
+    },
+    {
+      "id": "rpi00-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Medley – Keny Arkana",
+        "Royality – Diam's",
+        "Mama – Saïan Supa Crew",
+        "HLM Tango – Abd Al Malik"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Abd Al Malik"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Abd Al Malik",
+        "title": "HLM Tango"
+      }
+    }
+  ]
+}

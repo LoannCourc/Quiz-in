@@ -1,15 +1,18 @@
-// Relecture d'un lot de blind tests : pour chaque morceau, l'artiste, ses fans sur Deezer (nb_fan) à la date
-// du jour, l'extrait et les paroles, d'après l'API publique Deezer ; puis les 5 morceaux à écouter en priorité.
-// Usage (depuis content/) : npm run music:fans -- <lot> <quizId> [<quizId>…]
-// Écrit seulement docs/relecture-lot-bt-<lot>.md : nb_fan change avec le temps, il n'entre jamais dans le
-// contenu publié ni dans music-check. Un blind test « Impossible » exige moins de IMPOSSIBLE_MAX_FANS fans par
-// artiste le jour de la vérification (relancer le script pour revérifier).
+// Relecture d'un lot de blind tests : pour chaque morceau, sa popularité Deezer (rank) et les fans de l'artiste
+// (nb_fan) à la date du jour, l'extrait et les paroles, d'après l'API publique Deezer ; puis les 5 morceaux à
+// écouter en priorité.
+// Usage (depuis content/) : npm run music:review -- <lot> <quizId> [<quizId>…]
+// Écrit seulement docs/relecture-lot-bt-<lot>.md : rank et nb_fan changent avec le temps, ils n'entrent jamais
+// dans le contenu publié ni dans music-check. Un blind test « Impossible » : chaque morceau a un rank sous
+// IMPOSSIBLE_MAX_RANK (titre d'album très peu écouté) et vient d'un artiste connu (IMPOSSIBLE_MIN_FANS fans ou
+// plus, pour que le marquage « non explicite » soit fiable), le jour de la vérification (relancer pour revérifier).
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { contentDir, quizzesDir, readMusicCheck, type SourceMusic } from './musicCheck'
 
-export const IMPOSSIBLE_MAX_FANS = 800
+export const IMPOSSIBLE_MAX_RANK = 200000
+export const IMPOSSIBLE_MIN_FANS = 50000
 const API_URL = 'https://api.deezer.com'
 // L'API limite à 50 requêtes par 5 s.
 const PAUSE_MS = 150
@@ -42,6 +45,7 @@ interface TrackReview {
   explicit: boolean
   artistId: number | null
   fans: number | null
+  rank: number | null
   homonyms: number
 }
 
@@ -60,7 +64,7 @@ async function review(quiz: SourceQuiz): Promise<TrackReview[]> {
   for (const question of quiz.questions) {
     const entry = check.tracks.find((track) => track.questionId === question.id)
     if (!question.music || !entry?.found) throw new Error(`${quiz.id}/${question.id} : morceau introuvable dans music-check`)
-    const track = await get<{ readable: boolean; preview: string; explicit_lyrics: boolean; explicit_content_lyrics: number; artist: { id: number } }>(
+    const track = await get<{ readable: boolean; preview: string; explicit_lyrics: boolean; explicit_content_lyrics: number; rank: number; artist: { id: number } }>(
       `/track/${entry.found.id}`,
     )
     const artist = await get<{ nb_fan: number; name: string }>(`/artist/${track.artist.id}`)
@@ -76,6 +80,7 @@ async function review(quiz: SourceQuiz): Promise<TrackReview[]> {
       explicit: track.explicit_lyrics || [1, 4].includes(track.explicit_content_lyrics),
       artistId: track.artist.id,
       fans: artist.nb_fan,
+      rank: track.rank,
       homonyms: sameName.data.filter((candidate) => candidate.name.toLowerCase() === artist.name.toLowerCase()).length,
     })
   }
@@ -121,11 +126,26 @@ function priorities(tracks: TrackReview[]): { track: TrackReview; reason: string
   return chosen
 }
 
+// « Impossible » : titre très peu écouté (rank) d'un artiste connu (fans) ; null si la règle est tenue.
+function impossibleFailure(track: TrackReview): string | null {
+  if (track.quiz.level !== 'impossible') return null
+  if ((track.rank ?? Infinity) >= IMPOSSIBLE_MAX_RANK) return `rank ${track.rank ?? '?'} ≥ ${IMPOSSIBLE_MAX_RANK}`
+  if ((track.fans ?? 0) < IMPOSSIBLE_MIN_FANS) return `artiste à ${track.fans ?? '?'} fans (< ${IMPOSSIBLE_MIN_FANS})`
+  return null
+}
+
+function rankCheck(track: TrackReview): string {
+  if (track.rank === null) return '?'
+  const rank = track.rank.toLocaleString('fr-FR')
+  if (track.quiz.level !== 'impossible') return rank
+  return track.rank < IMPOSSIBLE_MAX_RANK ? `${rank} ✓` : `**${rank} ✗**`
+}
+
 function fansCheck(track: TrackReview): string {
   if (track.fans === null) return '?'
   const fans = track.fans.toLocaleString('fr-FR')
   if (track.quiz.level !== 'impossible') return fans
-  return track.fans < IMPOSSIBLE_MAX_FANS ? `${fans} ✓` : `**${fans} ✗ (≥ ${IMPOSSIBLE_MAX_FANS})**`
+  return track.fans >= IMPOSSIBLE_MIN_FANS ? `${fans} ✓` : `**${fans} ✗**`
 }
 
 function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], date: string): string {
@@ -133,9 +153,10 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
   const lines = [
     `# Relecture du lot BT-${lot} : ${quizzes.length} blind tests`,
     '',
-    `Vérification Deezer du ${date} (\`npm run music:fans -- ${lot} ${quizzes.map((quiz) => quiz.id).join(' ')}\`). Fans (nb_fan) à cette date ;`,
-    `ils changent avec le temps et ne sont jamais publiés. « Impossible » : chaque artiste a moins de ${IMPOSSIBLE_MAX_FANS} fans le jour de la`,
-    'vérification. Morceaux cochés par `npm run music:verify` (« auto ») : artiste et titre identiques à Deezer, version',
+    `Vérification Deezer du ${date} (\`npm run music:review -- ${lot} ${quizzes.map((quiz) => quiz.id).join(' ')}\`). Popularité du morceau (rank) et`,
+    `fans de l'artiste (nb_fan) à cette date ; ils changent avec le temps et ne sont jamais publiés. « Impossible » : rank sous`,
+    `${IMPOSSIBLE_MAX_RANK.toLocaleString('fr-FR')} (titre d'album très peu écouté) et artiste à ${IMPOSSIBLE_MIN_FANS.toLocaleString('fr-FR')} fans ou plus, le jour de la vérification.`,
+    'Morceaux cochés par `npm run music:verify` (« auto ») : artiste et titre identiques à Deezer, version',
     'originale, extrait présent, paroles non explicites, extrait qui tient dans le minuteur. Après écoute, passer',
     '`verifiedBy` à `"listened"` dans `content/music-check/<quizId>.json`.',
     '',
@@ -157,11 +178,11 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
   ]
   for (const quiz of quizzes) {
     lines.push(`## ${quiz.title} (\`${quiz.id}\`)`, '')
-    lines.push('| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |')
-    lines.push('|---|---|---|---|---|---|---|---|---|---|---|')
+    lines.push('| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |')
+    lines.push('|---|---|---|---|---|---|---|---|---|---|---|---|')
     for (const track of tracks.filter((item) => item.quiz === quiz)) {
       lines.push(
-        `| ${track.questionId} | [${track.trackId}](${link(track)}) | ${shownArtist(track.music)} | ${shownTitle(track.music)} | ${GENRE_LABELS[quiz.genre ?? ''] ?? '?'} | ${LEVEL_LABELS[quiz.level ?? ''] ?? '?'} | ${fansCheck(track)} | ${date} | ${track.previewAvailable ? 'oui' : '**non**'} | ${track.explicit ? '**oui**' : 'non'} | ${track.verifiedBy} |`,
+        `| ${track.questionId} | [${track.trackId}](${link(track)}) | ${shownArtist(track.music)} | ${shownTitle(track.music)} | ${GENRE_LABELS[quiz.genre ?? ''] ?? '?'} | ${LEVEL_LABELS[quiz.level ?? ''] ?? '?'} | ${rankCheck(track)} | ${fansCheck(track)} | ${date} | ${track.previewAvailable ? 'oui' : '**non**'} | ${track.explicit ? '**oui**' : 'non'} | ${track.verifiedBy} |`,
       )
     }
     lines.push('')
@@ -171,7 +192,7 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
 
 async function main() {
   const [lot, ...quizIds] = process.argv.slice(2)
-  if (!lot || quizIds.length === 0) throw new Error('Usage : npm run music:fans -- <lot> <quizId> [<quizId>…]')
+  if (!lot || quizIds.length === 0) throw new Error('Usage : npm run music:review -- <lot> <quizId> [<quizId>…]')
   const quizzes = quizIds.map((quizId) => JSON.parse(readFileSync(join(quizzesDir, `${quizId}.json`), 'utf8')) as SourceQuiz)
   const tracks: TrackReview[] = []
   for (const quiz of quizzes) tracks.push(...(await review(quiz)))
@@ -179,9 +200,12 @@ async function main() {
   const path = join(contentDir, '..', 'docs', `relecture-lot-bt-${lot.toLowerCase()}.md`)
   writeFileSync(path, toMarkdown(lot, quizzes, tracks, date))
   const problems = tracks.filter(
-    (track) => !track.previewAvailable || track.explicit || (track.quiz.level === 'impossible' && (track.fans ?? Infinity) >= IMPOSSIBLE_MAX_FANS),
+    (track) => !track.previewAvailable || track.explicit || impossibleFailure(track) !== null,
   )
-  for (const track of problems) console.log(`✗ ${track.quiz.id}/${track.questionId} ${shownArtist(track.music)} — ${shownTitle(track.music)} : extrait, paroles ou fans hors règle`)
+  for (const track of problems) {
+    const reason = impossibleFailure(track) ?? 'extrait absent ou paroles explicites'
+    console.log(`✗ ${track.quiz.id}/${track.questionId} ${shownArtist(track.music)} — ${shownTitle(track.music)} : ${reason}`)
+  }
   console.log(`${path} écrit : ${tracks.length} morceaux, ${problems.length} à remplacer.`)
   if (problems.length > 0) process.exitCode = 1
 }
