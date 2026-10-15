@@ -1,0 +1,221 @@
+{
+  "id": "rap-us-annees-90",
+  "gameType": "blindTest",
+  "title": "Rap US des années 90",
+  "theme": "Musique",
+  "description": "Des refrains que tout le monde connaît : dix tubes du rap américain des années 90.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 1990,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-1)",
+  "questions": [
+    {
+      "id": "ru90-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "U Can't Touch This – MC Hammer",
+        "Bust a Move – Young MC",
+        "Funky Cold Medina – Tone Lōc",
+        "The Humpty Dance – Digital Underground"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "U Can't Touch This"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "MC Hammer",
+        "title": "U Can't Touch This"
+      }
+    },
+    {
+      "id": "ru90-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mama Said Knock You Out – LL Cool J",
+        "Gonna Make You Sweat – C+C Music Factory",
+        "Ice Ice Baby – Vanilla Ice",
+        "I Wish – Skee-Lo"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Vanilla Ice"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Vanilla Ice",
+        "title": "Ice Ice Baby"
+      }
+    },
+    {
+      "id": "ru90-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "This Is How We Do It – Montell Jordan",
+        "Flava in Ya Ear – Craig Mack",
+        "Gangsta's Paradise – Coolio",
+        "Feel So Good – Mase"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Gangsta's Paradise"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Coolio",
+        "title": "Gangsta's Paradise"
+      }
+    },
+    {
+      "id": "ru90-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Summertime – DJ Jazzy Jeff & The Fresh Prince",
+        "Can I Kick It? – A Tribe Called Quest",
+        "The Choice Is Yours – Black Sheep",
+        "Tennessee – Arrested Development"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "DJ Jazzy Jeff & The Fresh Prince"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "DJ Jazzy Jeff & The Fresh Prince",
+        "title": "Summertime"
+      }
+    },
+    {
+      "id": "ru90-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Boombastic – Shaggy",
+        "I Wish – Skee-Lo",
+        "Bust a Move – Young MC",
+        "Jump – Kris Kross"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jump"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kris Kross",
+        "title": "Jump"
+      }
+    },
+    {
+      "id": "ru90-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Insane in the Brain – Cypress Hill",
+        "Jump Around – House of Pain",
+        "Mama Said Knock You Out – LL Cool J",
+        "Can I Kick It? – A Tribe Called Quest"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "House of Pain"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "House of Pain",
+        "title": "Jump Around"
+      }
+    },
+    {
+      "id": "ru90-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Men In Black – Will Smith",
+        "This Is How We Do It – Montell Jordan",
+        "Feel So Good – Mase",
+        "Boombastic – Shaggy"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Men In Black"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Will Smith",
+        "title": "Men In Black"
+      }
+    },
+    {
+      "id": "ru90-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Whoomp! (There It Is) – Tag Team",
+        "The Choice Is Yours – Black Sheep",
+        "Tennessee – Arrested Development",
+        "I Wish – Skee-Lo"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Arrested Development"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Arrested Development",
+        "title": "Tennessee"
+      }
+    },
+    {
+      "id": "ru90-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Insane in the Brain – Cypress Hill",
+        "Hip Hop Hooray – Naughty by Nature",
+        "Flava in Ya Ear – Craig Mack",
+        "The Humpty Dance – Digital Underground"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Hip Hop Hooray"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Naughty by Nature",
+        "title": "Hip Hop Hooray"
+      }
+    },
+    {
+      "id": "ru90-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Feel So Good – Mase",
+        "This Is How We Do It – Montell Jordan",
+        "Funky Cold Medina – Tone Lōc",
+        "I'll Be Missing You – Diddy"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Diddy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Diddy",
+        "title": "I'll Be Missing You",
+        "artistAliases": [
+          "Puff Daddy",
+          "P. Diddy"
+        ]
+      }
+    }
+  ]
+}

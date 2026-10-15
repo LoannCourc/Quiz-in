@@ -1,0 +1,217 @@
+{
+  "id": "dance-annees-90",
+  "gameType": "blindTest",
+  "title": "Dance des années 90",
+  "theme": "Musique",
+  "description": "Synthés, refrains à crier et boîtes de nuit : dix tubes dance des années 90.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": 1990,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-1)",
+  "questions": [
+    {
+      "id": "d90-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Close to You – Fun Factory",
+        "The Rhythm Of The Night – Corona",
+        "Feel the Heat of the Night – Masterboy",
+        "Somebody Dance with Me – DJ BoBo"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The Rhythm Of The Night"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Corona",
+        "title": "The Rhythm Of The Night"
+      }
+    },
+    {
+      "id": "d90-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Coco Jamboo – Mr. President",
+        "2 Times – Ann Lee",
+        "Lonely – Nana",
+        "No Limit – 2 Unlimited"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "2 Unlimited"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "2 Unlimited",
+        "title": "No Limit"
+      }
+    },
+    {
+      "id": "d90-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rhythm Is a Dancer – Snap!",
+        "Pump Up the Jam – Technotronic",
+        "Ride on Time – Black Box",
+        "Dreamer – Livin' Joy"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Rhythm Is a Dancer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Snap!",
+        "title": "Rhythm Is a Dancer"
+      }
+    },
+    {
+      "id": "d90-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "U Got 2 Let the Music – Cappella",
+        "Another Night – Real McCoy",
+        "It's My Life – Dr. Alban",
+        "I Like to Move It – Reel 2 Real"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dr. Alban"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dr. Alban",
+        "title": "It's My Life"
+      }
+    },
+    {
+      "id": "d90-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Show Me Love – Robin S",
+        "The Summer Is Magic – Playahitty",
+        "Mr. Vain – Culture Beat",
+        "Is It Love – Twenty 4 Seven"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mr. Vain"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Culture Beat",
+        "title": "Mr. Vain"
+      }
+    },
+    {
+      "id": "d90-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Be My Lover – La Bouche",
+        "Lonely – Nana",
+        "Ecuador – Sash!",
+        "Tonight Is the Night – Le Click"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "La Bouche"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "La Bouche",
+        "title": "Be My Lover"
+      }
+    },
+    {
+      "id": "d90-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Dreams – 2 Brothers on the 4th Floor",
+        "The Key the Secret – Urban Cookie Collective",
+        "Think About the Way – Ice MC",
+        "Uh La La La – Alexia"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Uh La La La"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Alexia",
+        "title": "Uh La La La"
+      }
+    },
+    {
+      "id": "d90-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Life – Haddaway",
+        "More And More – Captain Hollywood Project",
+        "Boom, Boom, Boom, Boom!! – Vengaboys",
+        "Feel the Heat of the Night – Masterboy"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Captain Hollywood Project"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Captain Hollywood Project",
+        "title": "More And More"
+      }
+    },
+    {
+      "id": "d90-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Another Night – Real McCoy",
+        "It Must Be Love – Fun Factory",
+        "Everybody – DJ BoBo",
+        "The Rhythm Of The Night – Corona"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Another Night"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Real McCoy",
+        "title": "Another Night"
+      }
+    },
+    {
+      "id": "d90-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Coco Jamboo – Mr. President",
+        "Dreamer – Livin' Joy",
+        "Saturday Night – Whigfield",
+        "Blue (Da Ba Dee) – Eiffel 65"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Whigfield"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Whigfield",
+        "title": "Saturday Night"
+      }
+    }
+  ]
+}

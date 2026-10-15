@@ -1,7 +1,8 @@
 // Fichiers de contrôle des morceaux de blind test (content/music-check/<quizId>.json) : pour chaque
-// question, le morceau trouvé chez Deezer par npm run music:lookup, et la case « verified » que le
-// développeur passe à true après avoir écouté le morceau. npm run build n'utilise que les morceaux vérifiés :
-// aucun identifiant n'entre dans la base sans cette vérification.
+// question, le morceau trouvé chez Deezer par npm run music:lookup, et la case « verified » : cochée par
+// npm run music:verify quand tous les contrôles automatiques passent (verifiedBy « auto »), ou par le
+// développeur après écoute (« listened »). npm run build n'utilise que les morceaux vérifiés : aucun
+// identifiant n'entre dans la base sans cette vérification.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -42,6 +43,9 @@ export interface MusicCheckEntry {
   found: FoundTrack | null
   alternatives: FoundTrack[]
   verified: boolean
+  // Qui a vérifié : contrôles automatiques (npm run music:verify) ou écoute par le développeur. Absent :
+  // vérifié avant ce champ, après écoute.
+  verifiedBy?: 'auto' | 'listened'
 }
 
 export interface MusicCheckFile {

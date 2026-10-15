@@ -1,0 +1,557 @@
+{
+  "quizId": "dance-annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "d90-01",
+      "query": {
+        "artist": "Corona",
+        "title": "The Rhythm Of The Night"
+      },
+      "found": {
+        "id": "3413806581",
+        "title": "The Rhythm Of The Night",
+        "artist": "Corona",
+        "album": "The Rhythm of the Night",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3413806581",
+        "explicit": false,
+        "rank": 811892
+      },
+      "alternatives": [
+        {
+          "id": "13191346",
+          "title": "The Rhythm Of The Night",
+          "artist": "Corona",
+          "album": "One Day (Motion Picture Soundtrack)",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13191346",
+          "explicit": false,
+          "rank": 344892
+        },
+        {
+          "id": "3413806641",
+          "title": "The Rhythm of the Night (Rapino Bros 7)",
+          "artist": "Corona",
+          "album": "The Rhythm of the Night",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3413806641",
+          "explicit": false,
+          "rank": 315776
+        },
+        {
+          "id": "3413811821",
+          "title": "The Rhythm of the Night (Acappella)",
+          "artist": "Corona",
+          "album": "The Rhythm of the Night",
+          "durationS": 338,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3413811821",
+          "explicit": false,
+          "rank": 32827
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-02",
+      "query": {
+        "artist": "2 Unlimited",
+        "title": "No Limit"
+      },
+      "found": {
+        "id": "134706074",
+        "title": "No Limit",
+        "artist": "2 Unlimited",
+        "album": "No Limits",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/134706074",
+        "explicit": false,
+        "rank": 714348
+      },
+      "alternatives": [
+        {
+          "id": "312109",
+          "title": "No Limit",
+          "artist": "2 Unlimited",
+          "album": "Compilation années 90 : 90's Classics",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/312109",
+          "explicit": false,
+          "rank": 453432
+        },
+        {
+          "id": "77325276",
+          "title": "No Limit (Extended)",
+          "artist": "2 Unlimited",
+          "album": "No Limit",
+          "durationS": 341,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/77325276",
+          "explicit": false,
+          "rank": 388809
+        },
+        {
+          "id": "2877084522",
+          "title": "2 Unlimited - No Limit",
+          "artist": "한용진",
+          "album": "DJ 한용진 Car Drive Music 2014",
+          "durationS": 98,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2877084522",
+          "explicit": false,
+          "rank": 17937
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-03",
+      "query": {
+        "artist": "Snap!",
+        "title": "Rhythm Is a Dancer"
+      },
+      "found": {
+        "id": "3785942552",
+        "title": "Rhythm Is a Dancer",
+        "artist": "Snap!",
+        "album": "The Madman's Return",
+        "durationS": 332,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785942552",
+        "explicit": false,
+        "rank": 837549
+      },
+      "alternatives": [
+        {
+          "id": "3786416082",
+          "title": "Rhythm Is A Dancer (12'' Version)",
+          "artist": "Snap!",
+          "album": "Rhythm Is a Dancer 2008",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786416082",
+          "explicit": false,
+          "rank": 621726
+        },
+        {
+          "id": "3785942592",
+          "title": "Rhythm Is a Dancer (7\" Edit)",
+          "artist": "Snap!",
+          "album": "The Madman's Return",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3785942592",
+          "explicit": false,
+          "rank": 733921
+        },
+        {
+          "id": "3785940612",
+          "title": "Rhythm Is A Dancer 2003 (SNAP! vs. CJ Stone)",
+          "artist": "Snap!",
+          "album": "Cult of SNAP! (1990-2003)",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3785940612",
+          "explicit": false,
+          "rank": 391243
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-04",
+      "query": {
+        "artist": "Dr. Alban",
+        "title": "It's My Life"
+      },
+      "found": {
+        "id": "3801448032",
+        "title": "It's My Life (Radio Edit)",
+        "artist": "Dr. Alban",
+        "album": "The Very Best of 1990-1997",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3801448032",
+        "explicit": false,
+        "rank": 656198
+      },
+      "alternatives": [
+        {
+          "id": "3808711702",
+          "title": "It's My Life (2011 Version)",
+          "artist": "Dr. Alban",
+          "album": "Best of Dr. Alban",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3808711702",
+          "explicit": false,
+          "rank": 264559
+        },
+        {
+          "id": "3808711742",
+          "title": "It's My Life (Radio Edit)",
+          "artist": "Dr. Alban",
+          "album": "Best of Dr. Alban",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3808711742",
+          "explicit": false,
+          "rank": 260134
+        },
+        {
+          "id": "3801448102",
+          "title": "It's My Life (Sash! RMX)",
+          "artist": "Dr. Alban",
+          "album": "The Very Best of 1990-1997",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3801448102",
+          "explicit": false,
+          "rank": 194634
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-05",
+      "query": {
+        "artist": "Culture Beat",
+        "title": "Mr. Vain"
+      },
+      "found": {
+        "id": "17347911",
+        "title": "Mr. Vain (Original Radio Edit)",
+        "artist": "Culture Beat",
+        "album": "Mr. Vain",
+        "durationS": 257,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/17347911",
+        "explicit": false,
+        "rank": 787955
+      },
+      "alternatives": [
+        {
+          "id": "29794781",
+          "title": "Mr. Vain",
+          "artist": "Culture Beat",
+          "album": "Serenity",
+          "durationS": 336,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/29794781",
+          "explicit": false,
+          "rank": 626305
+        },
+        {
+          "id": "17347913",
+          "title": "Mr. Vain (Mr. House)",
+          "artist": "Culture Beat",
+          "album": "Mr. Vain",
+          "durationS": 379,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17347913",
+          "explicit": false,
+          "rank": 154349
+        },
+        {
+          "id": "17347912",
+          "title": "Mr. Vain (Intense Radio Edit)",
+          "artist": "Culture Beat",
+          "album": "Mr. Vain",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17347912",
+          "explicit": false,
+          "rank": 74903
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-06",
+      "query": {
+        "artist": "La Bouche",
+        "title": "Be My Lover"
+      },
+      "found": {
+        "id": "4096754",
+        "title": "Be My Lover",
+        "artist": "La Bouche",
+        "album": "Produced by: Frank Farian",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4096754",
+        "explicit": false,
+        "rank": 810289
+      },
+      "alternatives": [
+        {
+          "id": "1815680417",
+          "title": "Be My Lover",
+          "artist": "La Bouche",
+          "album": "Be My Lover",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1815680417",
+          "explicit": false,
+          "rank": 138108
+        },
+        {
+          "id": "76489781",
+          "title": "Be My Lover (Club Mix)",
+          "artist": "La Bouche",
+          "album": "All Mixed Up",
+          "durationS": 386,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/76489781",
+          "explicit": false,
+          "rank": 460445
+        },
+        {
+          "id": "96461680",
+          "title": "Be My Lover (House Mix)",
+          "artist": "La Bouche",
+          "album": "Sweet Dreams",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/96461680",
+          "explicit": false,
+          "rank": 203316
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-07",
+      "query": {
+        "artist": "Alexia",
+        "title": "Uh La La La"
+      },
+      "found": {
+        "id": "3413853181",
+        "title": "Uh La La La",
+        "artist": "Alexia",
+        "album": "Uh La La La",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3413853181",
+        "explicit": false,
+        "rank": 478060
+      },
+      "alternatives": [
+        {
+          "id": "3413853231",
+          "title": "Uh La La La (Original Mix)",
+          "artist": "Alexia",
+          "album": "Uh La La La",
+          "durationS": 401,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3413853231",
+          "explicit": false,
+          "rank": 251871
+        },
+        {
+          "id": "3413864951",
+          "title": "Uh La La La (Almighty's Radio Edit)",
+          "artist": "Alexia",
+          "album": "The Party",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3413864951",
+          "explicit": false,
+          "rank": 99980
+        },
+        {
+          "id": "3685507452",
+          "title": "Uh La La La (F.O.S. With Alexia Beats)",
+          "artist": "Alexia",
+          "album": "Uh La La La",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3685507452",
+          "explicit": false,
+          "rank": 11222
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-08",
+      "query": {
+        "artist": "Captain Hollywood Project",
+        "title": "More And More"
+      },
+      "found": {
+        "id": "143154464",
+        "title": "More And More (Single Version)",
+        "artist": "Captain Hollywood Project",
+        "album": "More And More",
+        "durationS": 253,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/143154464",
+        "explicit": false,
+        "rank": 671187
+      },
+      "alternatives": [
+        {
+          "id": "143661028",
+          "title": "More And More (Underground Mix)",
+          "artist": "Captain Hollywood Project",
+          "album": "Love Is Not Sex",
+          "durationS": 359,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/143661028",
+          "explicit": false,
+          "rank": 200735
+        },
+        {
+          "id": "143154468",
+          "title": "More And More (Trance Mix)",
+          "artist": "Captain Hollywood Project",
+          "album": "More And More",
+          "durationS": 373,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/143154468",
+          "explicit": false,
+          "rank": 117411
+        },
+        {
+          "id": "143154466",
+          "title": "More And More (Extended Mix)",
+          "artist": "Captain Hollywood Project",
+          "album": "More And More",
+          "durationS": 420,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/143154466",
+          "explicit": false,
+          "rank": 141046
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-09",
+      "query": {
+        "artist": "Real McCoy",
+        "title": "Another Night"
+      },
+      "found": {
+        "id": "1042543",
+        "title": "Another Night",
+        "artist": "Real McCoy",
+        "album": "Another Night",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1042543",
+        "explicit": false,
+        "rank": 690816
+      },
+      "alternatives": [
+        {
+          "id": "2163805897",
+          "title": "Another Night (U.S. Club Mix)",
+          "artist": "Real McCoy",
+          "album": "Another Night (The Essential 90s Mixes)",
+          "durationS": 346,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2163805897",
+          "explicit": false,
+          "rank": 303644
+        },
+        {
+          "id": "3287232941",
+          "title": "Another Night (1993 Club Mix)",
+          "artist": "Real McCoy",
+          "album": "Another Night (European Release)",
+          "durationS": 312,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3287232941",
+          "explicit": false,
+          "rank": 196756
+        },
+        {
+          "id": "1042288",
+          "title": "Another Night (House Mix)",
+          "artist": "Real McCoy",
+          "album": "Another Night",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1042288",
+          "explicit": false,
+          "rank": 72232
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d90-10",
+      "query": {
+        "artist": "Whigfield",
+        "title": "Saturday Night"
+      },
+      "found": {
+        "id": "6907036",
+        "title": "Saturday Night (Radio Edit)",
+        "artist": "Whigfield",
+        "album": "Saturday Night Single",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6907036",
+        "explicit": false,
+        "rank": 679512
+      },
+      "alternatives": [
+        {
+          "id": "1461774052",
+          "title": "Saturday Night",
+          "artist": "Whigfield",
+          "album": "All In One",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1461774052",
+          "explicit": false,
+          "rank": 154259
+        },
+        {
+          "id": "6907045",
+          "title": "Saturday Night (2003 Villa Radio Cut)",
+          "artist": "Whigfield",
+          "album": "Saturday Night Single",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6907045",
+          "explicit": false,
+          "rank": 233775
+        },
+        {
+          "id": "6907043",
+          "title": "Saturday Night (2003 Lion Project Radio Cut)",
+          "artist": "Whigfield",
+          "album": "Saturday Night Single",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6907043",
+          "explicit": false,
+          "rank": 88094
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,535 @@
+{
+  "quizId": "pop-annees-2020",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "p20-01",
+      "query": {
+        "artist": "Harry Styles",
+        "title": "As It Was"
+      },
+      "found": {
+        "id": "1703487577",
+        "title": "As It Was",
+        "artist": "Harry Styles",
+        "album": "As It Was",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1703487577",
+        "explicit": false,
+        "rank": 969095
+      },
+      "alternatives": [
+        {
+          "id": "2205276547",
+          "title": "As It Was - Piano Cover",
+          "artist": "Harry Styles - Piano Covers",
+          "album": "Harry Styles - Harry's House (Piano Covers)",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2205276547",
+          "explicit": false,
+          "rank": 58721
+        },
+        {
+          "id": "2205277327",
+          "title": "As It Was - Harry Styles - Calm Piano Cover",
+          "artist": "Harry Styles Piano Cover",
+          "album": "Harry Styles - As It Was - Piano Cover",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2205277327",
+          "explicit": false,
+          "rank": 22066
+        },
+        {
+          "id": "3139537531",
+          "title": "As It Was (Piano rendition of Harry Styles)",
+          "artist": "The Lullabeats",
+          "album": "2020's Pop Lullabies for Babies",
+          "durationS": 131,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3139537531",
+          "explicit": false,
+          "rank": 724011
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-02",
+      "query": {
+        "artist": "Dua Lipa",
+        "title": "Levitating"
+      },
+      "found": {
+        "id": "1124841682",
+        "title": "Levitating",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1124841682",
+        "explicit": false,
+        "rank": 902185
+      },
+      "alternatives": [
+        {
+          "id": "1234638792",
+          "title": "Levitating (feat. DaBaby)",
+          "artist": "Dua Lipa",
+          "album": "Future Nostalgia (The Moonlight Edition)",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1234638792",
+          "explicit": false,
+          "rank": 711092
+        },
+        {
+          "id": "2497506761",
+          "title": "Levitating (Originally performed by Dua Lipa)",
+          "artist": "The Dua Lipa Cover Band",
+          "album": "Levitating (Originally performed by Dua Lipa)",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2497506761",
+          "explicit": false,
+          "rank": 52126
+        },
+        {
+          "id": "4038634461",
+          "title": "Levitating (Live From Mexico)",
+          "artist": "Dua Lipa",
+          "album": "Dua Lipa - Live From Mexico",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4038634461",
+          "explicit": false,
+          "rank": 467359
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-03",
+      "query": {
+        "artist": "Miley Cyrus",
+        "title": "Flowers"
+      },
+      "found": {
+        "id": "2105158337",
+        "title": "Flowers",
+        "artist": "Miley Cyrus",
+        "album": "Flowers",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2105158337",
+        "explicit": false,
+        "rank": 966114
+      },
+      "alternatives": [
+        {
+          "id": "2182389257",
+          "title": "Flowers (Demo)",
+          "artist": "Miley Cyrus",
+          "album": "Endless Summer Vacation",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2182389257",
+          "explicit": false,
+          "rank": 608189
+        },
+        {
+          "id": "1730821637",
+          "title": "Jolene (Live)",
+          "artist": "Miley Cyrus",
+          "album": "ATTENTION: MILEY LIVE",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1730821637",
+          "explicit": false,
+          "rank": 688763
+        },
+        {
+          "id": "1730821587",
+          "title": "23 (Live)",
+          "artist": "Miley Cyrus",
+          "album": "ATTENTION: MILEY LIVE",
+          "durationS": 534,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1730821587",
+          "explicit": true,
+          "rank": 281459
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-04",
+      "query": {
+        "artist": "Benson Boone",
+        "title": "Beautiful Things"
+      },
+      "found": {
+        "id": "2704682202",
+        "title": "Beautiful Things",
+        "artist": "Benson Boone",
+        "album": "Fireworks & Rollerblades",
+        "durationS": 180,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2704682202",
+        "explicit": false,
+        "rank": 920263
+      },
+      "alternatives": [
+        {
+          "id": "2782819682",
+          "title": "Beautiful Things (Enregistré à Paris)",
+          "artist": "Benson Boone",
+          "album": "Deezer Sessions",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2782819682",
+          "explicit": false,
+          "rank": 618182
+        },
+        {
+          "id": "2674548872",
+          "title": "Beautiful Things (Slowed Down)",
+          "artist": "Benson Boone",
+          "album": "Beautiful Things (Alternate Versions)",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2674548872",
+          "explicit": false,
+          "rank": 462212
+        },
+        {
+          "id": "2674548862",
+          "title": "Beautiful Things (Sped Up)",
+          "artist": "Benson Boone",
+          "album": "Beautiful Things (Alternate Versions)",
+          "durationS": 154,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2674548862",
+          "explicit": false,
+          "rank": 383133
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-05",
+      "query": {
+        "artist": "Ed Sheeran",
+        "title": "Bad Habits"
+      },
+      "found": {
+        "id": "1529509472",
+        "title": "Bad Habits",
+        "artist": "Ed Sheeran",
+        "album": "=",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1529509472",
+        "explicit": false,
+        "rank": 703639
+      },
+      "alternatives": [
+        {
+          "id": "1653237582",
+          "title": "Bad Habits (feat. Bring Me The Horizon)",
+          "artist": "Ed Sheeran",
+          "album": "Bad Habits (feat. Bring Me The Horizon)",
+          "durationS": 250,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1653237582",
+          "explicit": false,
+          "rank": 649951
+        },
+        {
+          "id": "1555231722",
+          "title": "Bad Habits (Recorded at the Centre Pompidou, Paris)",
+          "artist": "Ed Sheeran",
+          "album": "Deezer Sessions",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1555231722",
+          "explicit": false,
+          "rank": 353801
+        },
+        {
+          "id": "1422438472",
+          "title": "Bad Habits (Acoustic Version)",
+          "artist": "Ed Sheeran",
+          "album": "Bad Habits (Acoustic Version)",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1422438472",
+          "explicit": false,
+          "rank": 682949
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-06",
+      "query": {
+        "artist": "Glass Animals",
+        "title": "Heat Waves"
+      },
+      "found": {
+        "id": "1040154662",
+        "title": "Heat Waves",
+        "artist": "Glass Animals",
+        "album": "Dreamland",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1040154662",
+        "explicit": false,
+        "rank": 948600
+      },
+      "alternatives": [
+        {
+          "id": "1633318122",
+          "title": "Heat Waves (Slowed)",
+          "artist": "Glass Animals",
+          "album": "Heat Waves (Expansion Pack)",
+          "durationS": 262,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1633318122",
+          "explicit": false,
+          "rank": 590642
+        },
+        {
+          "id": "1483914592",
+          "title": "Heat Waves",
+          "artist": "Glass Animals",
+          "album": "Dreamland (+ Bonus Levels)",
+          "durationS": 175,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1483914592",
+          "explicit": false,
+          "rank": 500390
+        },
+        {
+          "id": "1633312802",
+          "title": "Heat Waves (Stripped Back)",
+          "artist": "Glass Animals",
+          "album": "Heat Waves (Expansion Pack)",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1633312802",
+          "explicit": false,
+          "rank": 395731
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-07",
+      "query": {
+        "artist": "Taylor Swift",
+        "title": "Anti-Hero"
+      },
+      "found": {
+        "id": "1976903157",
+        "title": "Anti-Hero",
+        "artist": "Taylor Swift",
+        "album": "Midnights",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1976903157",
+        "explicit": false,
+        "rank": 836499
+      },
+      "alternatives": [
+        {
+          "id": "2006112637",
+          "title": "Anti-Hero",
+          "artist": "Taylor Swift",
+          "album": "Anti-Hero",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2006112637",
+          "explicit": true,
+          "rank": 272418
+        },
+        {
+          "id": "2035609347",
+          "title": "Anti-Hero (Acoustic Version)",
+          "artist": "Taylor Swift",
+          "album": "Anti-Hero (Acoustic Version)",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2035609347",
+          "explicit": false,
+          "rank": 621944
+        },
+        {
+          "id": "2010957157",
+          "title": "Anti-Hero (Kungs Remix)",
+          "artist": "Taylor Swift",
+          "album": "Anti-Hero (Remixes)",
+          "durationS": 194,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2010957157",
+          "explicit": false,
+          "rank": 343617
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-08",
+      "query": {
+        "artist": "Billie Eilish",
+        "title": "What Was I Made For?"
+      },
+      "found": {
+        "id": "2366043655",
+        "title": "What Was I Made For? [From The Motion Picture \"Barbie\"]",
+        "artist": "Billie Eilish",
+        "album": "What Was I Made For? [From The Motion Picture \"Barbie\"]",
+        "durationS": 222,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2366043655",
+        "explicit": false,
+        "rank": 911507
+      },
+      "alternatives": [
+        {
+          "id": "3429668001",
+          "title": "What Was I Made For?",
+          "artist": "Vitamin String Quartet",
+          "album": "VSQ Performs Billie Eilish",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3429668001",
+          "explicit": false,
+          "rank": 134636
+        },
+        {
+          "id": "3480266781",
+          "title": "What Was I Made For? (from \"Barbie\")",
+          "artist": "HAUSER",
+          "album": "What Was I Made For? (from \"Barbie\")",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3480266781",
+          "explicit": false,
+          "rank": 167845
+        },
+        {
+          "id": "2689733692",
+          "title": "What Was I Made For",
+          "artist": "LORDFI",
+          "album": "LoFi Meets Billie Eilish.",
+          "durationS": 192,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2689733692",
+          "explicit": false,
+          "rank": 39389
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-09",
+      "query": {
+        "artist": "Hozier",
+        "title": "Too Sweet"
+      },
+      "found": {
+        "id": "2704610682",
+        "title": "Too Sweet",
+        "artist": "Hozier",
+        "album": "Unheard",
+        "durationS": 251,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2704610682",
+        "explicit": false,
+        "rank": 958340
+      },
+      "alternatives": [
+        {
+          "id": "2883129902",
+          "title": "Too Sweet (made popular by Hozier) [vocal version]",
+          "artist": "Party Tyme",
+          "album": "Pop Male Hits 36-S - Party Tyme (Vocal Versions)",
+          "durationS": 249,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2883129902",
+          "explicit": false,
+          "rank": 22175
+        },
+        {
+          "id": "2945245671",
+          "title": "Too Sweet",
+          "artist": "Roma Symphony Orchestra",
+          "album": "RSO Performs Hozier",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2945245671",
+          "explicit": false,
+          "rank": 2953
+        },
+        {
+          "id": "2871916892",
+          "title": "Too Sweet - Hozier for Babies",
+          "artist": "Thomas The Beat Engine",
+          "album": "Too Sweet - Hozier for Babies",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2871916892",
+          "explicit": false,
+          "rank": 18917
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p20-10",
+      "query": {
+        "artist": "Angèle",
+        "title": "Bruxelles je t'aime"
+      },
+      "found": {
+        "id": "1573406502",
+        "title": "Bruxelles je t’aime",
+        "artist": "Angèle",
+        "album": "Nonante-Cinq",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1573406502",
+        "explicit": false,
+        "rank": 864533
+      },
+      "alternatives": [
+        {
+          "id": "3382675901",
+          "title": "Bruxelles je t’aime – Angèle (remastered by Psykup)",
+          "artist": "Manimal",
+          "album": "Remaster by Psykup",
+          "durationS": 64,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3382675901",
+          "explicit": false,
+          "rank": 18153
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

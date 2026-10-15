@@ -1,0 +1,217 @@
+{
+  "id": "rock-annees-70",
+  "gameType": "blindTest",
+  "title": "Rock des années 70",
+  "theme": "Musique",
+  "description": "Riffs, solos et refrains de stade : dix classiques du rock des années 70.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": 1970,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-1)",
+  "questions": [
+    {
+      "id": "r70-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hotel California – Eagles",
+        "Mr. Blue Sky – Electric Light Orchestra",
+        "Dream On – Aerosmith",
+        "Bohemian Rhapsody – Queen"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bohemian Rhapsody"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Queen",
+        "title": "Bohemian Rhapsody"
+      }
+    },
+    {
+      "id": "r70-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hotel California – Eagles",
+        "The Boys Are Back In Town – Thin Lizzy",
+        "Go Your Own Way – Fleetwood Mac",
+        "More Than a Feeling – Boston"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Eagles"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Eagles",
+        "title": "Hotel California"
+      }
+    },
+    {
+      "id": "r70-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Carry On Wayward Son – Kansas",
+        "Come Sail Away – Styx",
+        "Dream On – Aerosmith",
+        "Cold as Ice – Foreigner"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dream On"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Aerosmith",
+        "title": "Dream On"
+      }
+    },
+    {
+      "id": "r70-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Joker – Steve Miller Band",
+        "All Right Now – Free",
+        "More Than a Feeling – Boston",
+        "Radar Love – Golden Earring"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Boston"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Boston",
+        "title": "More Than a Feeling"
+      }
+    },
+    {
+      "id": "r70-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Was Made For Lovin' You – KISS",
+        "I Want You to Want Me – Cheap Trick",
+        "My Sharona – The Knack",
+        "Ballroom Blitz – Sweet"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "I Was Made For Lovin' You"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "KISS",
+        "title": "I Was Made For Lovin' You"
+      }
+    },
+    {
+      "id": "r70-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mr. Blue Sky – Electric Light Orchestra",
+        "Go Your Own Way – Fleetwood Mac",
+        "Live and Let Die – Wings",
+        "The Logical Song – Supertramp"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Supertramp"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Supertramp",
+        "title": "The Logical Song"
+      }
+    },
+    {
+      "id": "r70-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Get It On – T. Rex",
+        "My Sharona – The Knack",
+        "School's Out – Alice Cooper",
+        "La Grange – ZZ Top"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "My Sharona"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Knack",
+        "title": "My Sharona"
+      }
+    },
+    {
+      "id": "r70-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mr. Blue Sky – Electric Light Orchestra",
+        "Rockin' All Over the World – Status Quo",
+        "Paranoid – Black Sabbath",
+        "Lady in Black – Uriah Heep"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Electric Light Orchestra"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Electric Light Orchestra",
+        "title": "Mr. Blue Sky"
+      }
+    },
+    {
+      "id": "r70-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hotel California – Eagles",
+        "The Logical Song – Supertramp",
+        "Go Your Own Way – Fleetwood Mac",
+        "Carry On Wayward Son – Kansas"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Go Your Own Way"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Fleetwood Mac",
+        "title": "Go Your Own Way"
+      }
+    },
+    {
+      "id": "r70-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "All Right Now – Free",
+        "The Boys Are Back In Town – Thin Lizzy",
+        "Radar Love – Golden Earring",
+        "You Ain't Seen Nothing Yet – Bachman-Turner Overdrive"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Thin Lizzy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Thin Lizzy",
+        "title": "The Boys Are Back In Town"
+      }
+    }
+  ]
+}

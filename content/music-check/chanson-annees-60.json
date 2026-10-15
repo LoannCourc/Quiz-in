@@ -1,0 +1,557 @@
+{
+  "quizId": "chanson-annees-60",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "c60-01",
+      "query": {
+        "artist": "Françoise Hardy",
+        "title": "Tous les garçons et les filles"
+      },
+      "found": {
+        "id": "487451822",
+        "title": "Tous les garçons et les filles (Remastered)",
+        "artist": "Françoise Hardy",
+        "album": "Tous les garçons et les filles (Remastered)",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/487451822",
+        "explicit": false,
+        "rank": 188497
+      },
+      "alternatives": [
+        {
+          "id": "540002",
+          "title": "Tous les garçons et les filles (Slow)",
+          "artist": "Françoise Hardy",
+          "album": "Françoise Hardy (Tous les garçons et les filles)",
+          "durationS": 187,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/540002",
+          "explicit": false,
+          "rank": 629296
+        },
+        {
+          "id": "89414659",
+          "title": "Tous Les Garçons Et Les Filles",
+          "artist": "Françoise Hardy",
+          "album": "Tous Les Garçons Et Les Filles",
+          "durationS": 179,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/89414659",
+          "explicit": false,
+          "rank": 257476
+        },
+        {
+          "id": "113133810",
+          "title": "Tous les garcons et les filles",
+          "artist": "Françoise Hardy",
+          "album": "Francoise Hardy 2",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/113133810",
+          "explicit": false,
+          "rank": 83286
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-02",
+      "query": {
+        "artist": "Sylvie Vartan",
+        "title": "La plus belle pour aller danser"
+      },
+      "found": {
+        "id": "3819673981",
+        "title": "La plus belle pour aller danser",
+        "artist": "Sylvie Vartan",
+        "album": "La plus belle pour aller danser",
+        "durationS": 154,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3819673981",
+        "explicit": false,
+        "rank": 567460
+      },
+      "alternatives": [
+        {
+          "id": "2504262",
+          "title": "La plus belle pour aller danser",
+          "artist": "Sylvie Vartan",
+          "album": "Sylvie Vartan",
+          "durationS": 157,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2504262",
+          "explicit": false,
+          "rank": 501940
+        },
+        {
+          "id": "92551300",
+          "title": "La plus belle pour aller danser (Remastered)",
+          "artist": "Sylvie Vartan",
+          "album": "Si je chante (Remastered)",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92551300",
+          "explicit": false,
+          "rank": 222429
+        },
+        {
+          "id": "109702938",
+          "title": "La plus belle pour aller danser",
+          "artist": "Sylvie Vartan",
+          "album": "Une vie en musique",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/109702938",
+          "explicit": false,
+          "rank": 147044
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-03",
+      "query": {
+        "artist": "Jacques Dutronc",
+        "title": "Et moi, et moi, et moi"
+      },
+      "found": {
+        "id": "539703",
+        "title": "Et moi, et moi, et moi",
+        "artist": "Jacques Dutronc",
+        "album": "Et moi, et moi, et moi",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/539703",
+        "explicit": false,
+        "rank": 588161
+      },
+      "alternatives": [
+        {
+          "id": "1906677127",
+          "title": "Et moi, et moi, et moi",
+          "artist": "Jacques Dutronc",
+          "album": "Dutronc & Dutronc",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1906677127",
+          "explicit": false,
+          "rank": 256320
+        },
+        {
+          "id": "540444",
+          "title": "Et moi, et moi, et moi (Version Italienne)",
+          "artist": "Jacques Dutronc",
+          "album": "En Vogue",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/540444",
+          "explicit": false,
+          "rank": 187791
+        },
+        {
+          "id": "6685925",
+          "title": "Et moi, et moi, et moi (Live)",
+          "artist": "Jacques Dutronc",
+          "album": "Dutronc au Casino",
+          "durationS": 238,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6685925",
+          "explicit": false,
+          "rank": 204163
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-04",
+      "query": {
+        "artist": "France Gall",
+        "title": "Poupée de cire, poupée de son"
+      },
+      "found": {
+        "id": "917404772",
+        "title": "Poupée de cire, poupée de son",
+        "artist": "France Gall",
+        "album": "Chansons Françaises",
+        "durationS": 150,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/917404772",
+        "explicit": false,
+        "rank": 454290
+      },
+      "alternatives": [
+        {
+          "id": "92700338",
+          "title": "Poupée de cire, poupée de son (Remastered)",
+          "artist": "France Gall",
+          "album": "Poupée de cire, poupée de son (Remastered)",
+          "durationS": 154,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92700338",
+          "explicit": false,
+          "rank": 276458
+        },
+        {
+          "id": "2190814417",
+          "title": "Poupée de cire, poupée de son",
+          "artist": "France Gall",
+          "album": "All the Best",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2190814417",
+          "explicit": false,
+          "rank": 258586
+        },
+        {
+          "id": "92700340",
+          "title": "Sacré Charlemagne (Remastered)",
+          "artist": "France Gall",
+          "album": "Poupée de cire, poupée de son (Remastered)",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92700340",
+          "explicit": false,
+          "rank": 317751
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-05",
+      "query": {
+        "artist": "Claude François",
+        "title": "Comme d'habitude"
+      },
+      "found": {
+        "id": "1090312",
+        "title": "Comme d'habitude",
+        "artist": "Claude François",
+        "album": "Comme D'Habitude",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1090312",
+        "explicit": false,
+        "rank": 741817
+      },
+      "alternatives": [
+        {
+          "id": "12881169",
+          "title": "Comme d'habitude",
+          "artist": "Claude François",
+          "album": "Comme d'habitude",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/12881169",
+          "explicit": false,
+          "rank": 114072
+        },
+        {
+          "id": "120351466",
+          "title": "Comme d'habitude",
+          "artist": "Claude François",
+          "album": "Les grands noms de la chanson Française",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120351466",
+          "explicit": false,
+          "rank": 27151
+        },
+        {
+          "id": "16579996",
+          "title": "Comme d'habitude (Forest National 1974)",
+          "artist": "Claude François",
+          "album": "Claude François 100% concert (Live)",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/16579996",
+          "explicit": false,
+          "rank": 153701
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-06",
+      "query": {
+        "artist": "Hugues Aufray",
+        "title": "Céline"
+      },
+      "found": {
+        "id": "2150021",
+        "title": "Céline",
+        "artist": "Hugues Aufray",
+        "album": "Cèline-Vol 3",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2150021",
+        "explicit": false,
+        "rank": 677477
+      },
+      "alternatives": [
+        {
+          "id": "1570747",
+          "title": "Céline",
+          "artist": "Hugues Aufray",
+          "album": "Best Of",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1570747",
+          "explicit": false,
+          "rank": 392888
+        },
+        {
+          "id": "14113910",
+          "title": "Céline",
+          "artist": "Hugues Aufray",
+          "album": "Troubador Since 1948",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14113910",
+          "explicit": false,
+          "rank": 92602
+        },
+        {
+          "id": "3039763",
+          "title": "Céline (Live au Théâtre du Gymnase 2005)",
+          "artist": "Hugues Aufray",
+          "album": "Plus LIVE que jamais",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3039763",
+          "explicit": false,
+          "rank": 78780
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-07",
+      "query": {
+        "artist": "Gilbert Bécaud",
+        "title": "Et maintenant"
+      },
+      "found": {
+        "id": "14406696",
+        "title": "Et maintenant",
+        "artist": "Gilbert Bécaud",
+        "album": "Gilbert Becaud (1963-1964) [2011 Remastered] [Deluxe version]",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14406696",
+        "explicit": false,
+        "rank": 671805
+      },
+      "alternatives": [
+        {
+          "id": "3105014",
+          "title": "Et maintenant",
+          "artist": "Gilbert Bécaud",
+          "album": "20 chansons d'or",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3105014",
+          "explicit": false,
+          "rank": 612023
+        },
+        {
+          "id": "67616885",
+          "title": "Et maintenant (version BO du film \"Toute une vie\")",
+          "artist": "Gilbert Bécaud",
+          "album": "Platinum collection",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67616885",
+          "explicit": false,
+          "rank": 164653
+        },
+        {
+          "id": "294360",
+          "title": "Et maintenant",
+          "artist": "Gilbert Bécaud",
+          "album": "La ballade d'un baladin",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/294360",
+          "explicit": false,
+          "rank": 40093
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-08",
+      "query": {
+        "artist": "Sheila",
+        "title": "L'école est finie"
+      },
+      "found": {
+        "id": "795210",
+        "title": "L'école est finie (Version stéréo)",
+        "artist": "Sheila",
+        "album": "Sheila (Compilation 2006)",
+        "durationS": 159,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/795210",
+        "explicit": false,
+        "rank": 519022
+      },
+      "alternatives": [
+        {
+          "id": "134522306",
+          "title": "L'Ecole est finie (Live)",
+          "artist": "Sheila",
+          "album": "Olympia 89 (Live)",
+          "durationS": 154,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/134522306",
+          "explicit": false,
+          "rank": 114014
+        },
+        {
+          "id": "416154112",
+          "title": "L'Ecole est finie (Live au Zénith 85)",
+          "artist": "Sheila",
+          "album": "Sheila au Zénith 85 (Live)",
+          "durationS": 162,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/416154112",
+          "explicit": false,
+          "rank": 10623
+        },
+        {
+          "id": "144891496",
+          "title": "L’école est finie (live)",
+          "artist": "Sheila",
+          "album": "Age Tendre, La Tournée des Idoles - Le Concert des 10 Ans",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144891496",
+          "explicit": false,
+          "rank": 12720
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-09",
+      "query": {
+        "artist": "Johnny Hallyday",
+        "title": "Retiens la nuit"
+      },
+      "found": {
+        "id": "2178419",
+        "title": "Retiens la nuit",
+        "artist": "Johnny Hallyday",
+        "album": "Anthologie Vol. 1",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2178419",
+        "explicit": false,
+        "rank": 612050
+      },
+      "alternatives": [
+        {
+          "id": "2461958",
+          "title": "Retiens la nuit (Bande originale du film \"Les Parisiennes\")",
+          "artist": "Johnny Hallyday",
+          "album": "Retiens La Nuit",
+          "durationS": 173,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2461958",
+          "explicit": false,
+          "rank": 603478
+        },
+        {
+          "id": "2113109",
+          "title": "Retiens la nuit (Bande originale du film \"Les Parisiennes\")",
+          "artist": "Johnny Hallyday",
+          "album": "Tendres Annees 60",
+          "durationS": 173,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2113109",
+          "explicit": false,
+          "rank": 358471
+        },
+        {
+          "id": "2792571262",
+          "title": "Retiens la nuit",
+          "artist": "Johnny Hallyday",
+          "album": "Milestones of 17 International Legends Twist Around The World, Vol. 2",
+          "durationS": 170,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2792571262",
+          "explicit": false,
+          "rank": 25276
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c60-10",
+      "query": {
+        "artist": "Nino Ferrer",
+        "title": "Mirza"
+      },
+      "found": {
+        "id": "2628773",
+        "title": "Mirza",
+        "artist": "Nino Ferrer",
+        "album": "Nino Ferrer",
+        "durationS": 146,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2628773",
+        "explicit": false,
+        "rank": 570316
+      },
+      "alternatives": [
+        {
+          "id": "391124752",
+          "title": "Mirza",
+          "artist": "Nino Ferrer",
+          "album": "Nino Ferrer - Ses Premières Chansons",
+          "durationS": 140,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/391124752",
+          "explicit": false,
+          "rank": 254604
+        },
+        {
+          "id": "70696404",
+          "title": "Mirza (Emission TV Sebastien C'Est)",
+          "artist": "Nino Ferrer",
+          "album": "Nino Ferrer Et Cie - La Vie Chez Les Automobilistes",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70696404",
+          "explicit": false,
+          "rank": 153223
+        },
+        {
+          "id": "70696424",
+          "title": "Mirza (Live)",
+          "artist": "Nino Ferrer",
+          "album": "Concert Chez Harry",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70696424",
+          "explicit": false,
+          "rank": 171101
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+{
+  "quizId": "rap-us-annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ru90-01",
+      "query": {
+        "artist": "MC Hammer",
+        "title": "U Can't Touch This"
+      },
+      "found": {
+        "id": "3136389",
+        "title": "U Can't Touch This",
+        "artist": "MC Hammer",
+        "album": "Greatest Hits",
+        "durationS": 256,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3136389",
+        "explicit": false,
+        "rank": 734953
+      },
+      "alternatives": [
+        {
+          "id": "7369736",
+          "title": "U Can't Touch This (Karaoke Version)",
+          "artist": "MC Hammer",
+          "album": "U Can't Touch This (Karaoke Version)",
+          "durationS": 262,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7369736",
+          "explicit": false,
+          "rank": 97848
+        },
+        {
+          "id": "7703232",
+          "title": "This Is The Way We Roll (Radio Edit)",
+          "artist": "MC Hammer",
+          "album": "U Can't Touch This: The Collection",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7703232",
+          "explicit": false,
+          "rank": 59806
+        },
+        {
+          "id": "7703230",
+          "title": "Addams Groove",
+          "artist": "MC Hammer",
+          "album": "U Can't Touch This: The Collection",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7703230",
+          "explicit": false,
+          "rank": 132843
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-02",
+      "query": {
+        "artist": "Vanilla Ice",
+        "title": "Ice Ice Baby"
+      },
+      "found": {
+        "id": "2397026",
+        "title": "Ice Ice Baby",
+        "artist": "Vanilla Ice",
+        "album": "Vanilla Ice Is Back! - Hip Hop Classics",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2397026",
+        "explicit": false,
+        "rank": 714129
+      },
+      "alternatives": [
+        {
+          "id": "3366332",
+          "title": "Ice Ice Baby",
+          "artist": "Vanilla Ice",
+          "album": "To The Extreme",
+          "durationS": 271,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3366332",
+          "explicit": false,
+          "rank": 550068
+        },
+        {
+          "id": "3153876",
+          "title": "Ice Ice Baby (Radio Edit)",
+          "artist": "Vanilla Ice",
+          "album": "Ice Ice Baby",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3153876",
+          "explicit": false,
+          "rank": 511097
+        },
+        {
+          "id": "12107579",
+          "title": "Ice Ice Baby",
+          "artist": "Vanilla Ice",
+          "album": "Platinum Underground",
+          "durationS": 250,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/12107579",
+          "explicit": true,
+          "rank": 150794
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-03",
+      "query": {
+        "artist": "Coolio",
+        "title": "Gangsta's Paradise"
+      },
+      "found": {
+        "id": "1584416372",
+        "title": "Gangsta's Paradise",
+        "artist": "Coolio",
+        "album": "Gangsta's Paradise",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1584416372",
+        "explicit": false,
+        "rank": 968342
+      },
+      "alternatives": [
+        {
+          "id": "142401467",
+          "title": "Gangsta's Paradise",
+          "artist": "Coolio",
+          "album": "Gangsta's Paradise",
+          "durationS": 237,
+          "previewAvailable": false,
+          "link": "https://www.deezer.com/track/142401467",
+          "explicit": false,
+          "rank": 161086
+        },
+        {
+          "id": "2040506697",
+          "title": "Gangsta's Paradise",
+          "artist": "Coolio",
+          "album": "Gangsta's Paradise",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2040506697",
+          "explicit": true,
+          "rank": 444387
+        },
+        {
+          "id": "2663874602",
+          "title": "Gangsta's Paradise",
+          "artist": "Coolio",
+          "album": "Gangsta's Paradise",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2663874602",
+          "explicit": true,
+          "rank": 672651
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-04",
+      "query": {
+        "artist": "DJ Jazzy Jeff & The Fresh Prince",
+        "title": "Summertime"
+      },
+      "found": {
+        "id": "831351",
+        "title": "Summertime",
+        "artist": "DJ Jazzy Jeff & The Fresh Prince",
+        "album": "Greatest Hits",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/831351",
+        "explicit": false,
+        "rank": 436522
+      },
+      "alternatives": [
+        {
+          "id": "546826",
+          "title": "Summertime",
+          "artist": "DJ Jazzy Jeff & The Fresh Prince",
+          "album": "Collections",
+          "durationS": 271,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/546826",
+          "explicit": false,
+          "rank": 361106
+        },
+        {
+          "id": "579005582",
+          "title": "Summertime",
+          "artist": "The Fresh Prince",
+          "album": "Hip-Hop Classics 1991-1992",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/579005582",
+          "explicit": false,
+          "rank": 159288
+        },
+        {
+          "id": "139873231",
+          "title": "Summertime (Instrumental)",
+          "artist": "DJ Jazzy Jeff & The Fresh Prince",
+          "album": "Homebase: The Remixes",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/139873231",
+          "explicit": false,
+          "rank": 120930
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-05",
+      "query": {
+        "artist": "Kris Kross",
+        "title": "Jump"
+      },
+      "found": {
+        "id": "1056838",
+        "title": "Jump",
+        "artist": "Kris Kross",
+        "album": "Totally Krossed Out",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1056838",
+        "explicit": false,
+        "rank": 651222
+      },
+      "alternatives": [
+        {
+          "id": "1057239",
+          "title": "Jump (Extended Mix)",
+          "artist": "Kris Kross",
+          "album": "Totally Krossed Out",
+          "durationS": 311,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1057239",
+          "explicit": false,
+          "rank": 354580
+        },
+        {
+          "id": "1719353657",
+          "title": "Jump (Super Cat Mix)",
+          "artist": "Kris Kross",
+          "album": "Jump (30th Annversary Edition)",
+          "durationS": 275,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1719353657",
+          "explicit": false,
+          "rank": 160007
+        },
+        {
+          "id": "1719353667",
+          "title": "Jump (Instrumental)",
+          "artist": "Kris Kross",
+          "album": "Jump (30th Annversary Edition)",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1719353667",
+          "explicit": false,
+          "rank": 149999
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-06",
+      "query": {
+        "artist": "House of Pain",
+        "title": "Jump Around"
+      },
+      "found": {
+        "id": "1584589772",
+        "title": "Jump Around",
+        "artist": "House of Pain",
+        "album": "Hi-Five: House Of Pain",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1584589772",
+        "explicit": false,
+        "rank": 784922
+      },
+      "alternatives": [
+        {
+          "id": "1584432492",
+          "title": "Jump Around (Pete Rock Remix)",
+          "artist": "House of Pain",
+          "album": "House of Pain (Fine Malt Lyrics)",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1584432492",
+          "explicit": false,
+          "rank": 402600
+        },
+        {
+          "id": "1696886337",
+          "title": "Jump Around (25 Year Remix) (30 Years Remaster)",
+          "artist": "House of Pain",
+          "album": "House of Pain (Fine Malt Lyrics) [30 Years] (Deluxe Edition)",
+          "durationS": 193,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1696886337",
+          "explicit": true,
+          "rank": 263871
+        },
+        {
+          "id": "1587017452",
+          "title": "Jump Around (House of Pain vs. Micky Slim Radio Edit)",
+          "artist": "House of Pain",
+          "album": "House Of Pain vs. Micky Slim (Remixes)",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1587017452",
+          "explicit": false,
+          "rank": 149539
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-07",
+      "query": {
+        "artist": "Will Smith",
+        "title": "Men In Black"
+      },
+      "found": {
+        "id": "626417",
+        "title": "Men In Black (From \"Men In Black\" Soundtrack)",
+        "artist": "Will Smith",
+        "album": "Greatest Hits",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/626417",
+        "explicit": false,
+        "rank": 734325
+      },
+      "alternatives": [
+        {
+          "id": "13147182",
+          "title": "Just Cruisin'",
+          "artist": "Will Smith",
+          "album": "Men In Black The Album",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13147182",
+          "explicit": false,
+          "rank": 165767
+        },
+        {
+          "id": "849060",
+          "title": "Black Suits Comin' (Nod Ya Head) (Album Version)",
+          "artist": "Will Smith introducing TRÂ-KNOX",
+          "album": "Men In Black II - Music From The Motion Picture",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/849060",
+          "explicit": false,
+          "rank": 117075
+        },
+        {
+          "id": "1138526332",
+          "title": "Men In Black : Originally Performed By Will Smith (Karaoke Verison)",
+          "artist": "코케",
+          "album": "Men In Black : Originally Performed By Will Smith (Karaoke Verison)",
+          "durationS": 144,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1138526332",
+          "explicit": false,
+          "rank": 9
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-08",
+      "query": {
+        "artist": "Arrested Development",
+        "title": "Tennessee"
+      },
+      "found": {
+        "id": "3100809",
+        "title": "Tennessee",
+        "artist": "Arrested Development",
+        "album": "Greatest Hits",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3100809",
+        "explicit": false,
+        "rank": 441996
+      },
+      "alternatives": [
+        {
+          "id": "579005682",
+          "title": "Tennessee",
+          "artist": "Arrested Development",
+          "album": "Hip-Hop Classics 1991-1992",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/579005682",
+          "explicit": false,
+          "rank": 54239
+        },
+        {
+          "id": "554323392",
+          "title": "Tennessee",
+          "artist": "Arrested Development",
+          "album": "Raw & Live",
+          "durationS": 539,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/554323392",
+          "explicit": false,
+          "rank": 68238
+        },
+        {
+          "id": "3385791",
+          "title": "Tennessee (Pirate Radio Mix)",
+          "artist": "Arrested Development",
+          "album": "Extended Revolution",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3385791",
+          "explicit": false,
+          "rank": 37525
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-09",
+      "query": {
+        "artist": "Naughty by Nature",
+        "title": "Hip Hop Hooray"
+      },
+      "found": {
+        "id": "1584431742",
+        "title": "Hip Hop Hooray",
+        "artist": "Naughty by Nature",
+        "album": "19NaughtyIII",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1584431742",
+        "explicit": false,
+        "rank": 625607
+      },
+      "alternatives": [
+        {
+          "id": "73629174",
+          "title": "Hip Hop Hooray (Re-Recorded)",
+          "artist": "Naughty by Nature",
+          "album": "O.P.P. - Best of Naughty by Nature (Re-Recorded)",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73629174",
+          "explicit": false,
+          "rank": 273069
+        },
+        {
+          "id": "2356019855",
+          "title": "Hip Hop Hooray (Re-Recorded) [Acapella]",
+          "artist": "Naughty by Nature",
+          "album": "Hip Hop Hooray (Re-Recorded) [Acapella] - Single",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2356019855",
+          "explicit": false,
+          "rank": 141810
+        },
+        {
+          "id": "2990517861",
+          "title": "Mourn You Til I Join You (Album Version)",
+          "artist": "Naughty by Nature",
+          "album": "The Naughtiest",
+          "durationS": 319,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2990517861",
+          "explicit": true,
+          "rank": 116057
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ru90-10",
+      "query": {
+        "artist": "Diddy",
+        "title": "I'll Be Missing You"
+      },
+      "found": {
+        "id": "82487070",
+        "title": "I'll Be Missing You (feat. Faith Evans & 112) (2014 Remaster)",
+        "artist": "Diddy",
+        "album": "No Way Out (2014 Remaster)",
+        "durationS": 306,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/82487070",
+        "explicit": false,
+        "rank": 784324
+      },
+      "alternatives": [
+        {
+          "id": "3829297",
+          "title": "I'll Be Missing You (feat. Faith Evans & 112)",
+          "artist": "Diddy",
+          "album": "No Way Out",
+          "durationS": 343,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3829297",
+          "explicit": true,
+          "rank": 457438
+        },
+        {
+          "id": "82743066",
+          "title": "I'll Be Missing You (feat. 112) (Instrumental)",
+          "artist": "P. Diddy & Faith Evans (Featuring 112)",
+          "album": "Tribute to The Notorious B.I.G.",
+          "durationS": 308,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/82743066",
+          "explicit": false,
+          "rank": 324838
+        },
+        {
+          "id": "1505168",
+          "title": "I'll Be Missing You",
+          "artist": "Juneya Feat. 40 Oz.",
+          "album": "A Tribute To P. Diddy",
+          "durationS": 246,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1505168",
+          "explicit": false,
+          "rank": 94674
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

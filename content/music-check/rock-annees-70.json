@@ -1,0 +1,557 @@
+{
+  "quizId": "rock-annees-70",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "r70-01",
+      "query": {
+        "artist": "Queen",
+        "title": "Bohemian Rhapsody"
+      },
+      "found": {
+        "id": "4091937401",
+        "title": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "album": "A Night At The Opera",
+        "durationS": 354,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4091937401",
+        "explicit": false,
+        "rank": 958949
+      },
+      "alternatives": [
+        {
+          "id": "3434337581",
+          "title": "Bohemian Rhapsody",
+          "artist": "Queen",
+          "album": "Rock In Rio",
+          "durationS": 317,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3434337581",
+          "explicit": false,
+          "rank": 62920
+        },
+        {
+          "id": "3569841351",
+          "title": "Bohemian Rhapsody",
+          "artist": "Queen",
+          "album": "Sun City 1984",
+          "durationS": 334,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3569841351",
+          "explicit": false,
+          "rank": 21717
+        },
+        {
+          "id": "3430403301",
+          "title": "Bohemian Rhapsody",
+          "artist": "Unrisen Queen",
+          "album": "Unrisen Queen",
+          "durationS": 306,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3430403301",
+          "explicit": false,
+          "rank": 91057
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-02",
+      "query": {
+        "artist": "Eagles",
+        "title": "Hotel California"
+      },
+      "found": {
+        "id": "426703682",
+        "title": "Hotel California (2013 Remaster)",
+        "artist": "Eagles",
+        "album": "Hotel California (40th Anniversary Expanded Edition)",
+        "durationS": 391,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/426703682",
+        "explicit": false,
+        "rank": 977590
+      },
+      "alternatives": [
+        {
+          "id": "11858169",
+          "title": "Hotel California",
+          "artist": "Eagles",
+          "album": "The Eagles",
+          "durationS": 243,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11858169",
+          "explicit": false,
+          "rank": 246933
+        },
+        {
+          "id": "1271673622",
+          "title": "Hotel California",
+          "artist": "Eagles Experience",
+          "album": "Hotel California",
+          "durationS": 182,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1271673622",
+          "explicit": false,
+          "rank": 145009
+        },
+        {
+          "id": "642692332",
+          "title": "Hotel California (Live On MTV, 1994)",
+          "artist": "Eagles",
+          "album": "Hell Freezes Over (Remaster 2018)",
+          "durationS": 432,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/642692332",
+          "explicit": false,
+          "rank": 721743
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-03",
+      "query": {
+        "artist": "Aerosmith",
+        "title": "Dream On"
+      },
+      "found": {
+        "id": "2431707315",
+        "title": "Dream On",
+        "artist": "Aerosmith",
+        "album": "Greatest Hits (Deluxe)",
+        "durationS": 265,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2431707315",
+        "explicit": false,
+        "rank": 944126
+      },
+      "alternatives": [
+        {
+          "id": "1705335307",
+          "title": "Dream On",
+          "artist": "Aerosmith",
+          "album": "1971: The Road Starts Hear",
+          "durationS": 274,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1705335307",
+          "explicit": false,
+          "rank": 285606
+        },
+        {
+          "id": "1650552012",
+          "title": "Dream On",
+          "artist": "Aerosmith",
+          "album": "Japan Calling",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1650552012",
+          "explicit": false,
+          "rank": 38572
+        },
+        {
+          "id": "841629712",
+          "title": "Dream On (Live Acoustic 1990)",
+          "artist": "Aerosmith",
+          "album": "Unplugged (Live 1990)",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/841629712",
+          "explicit": false,
+          "rank": 482965
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-04",
+      "query": {
+        "artist": "Boston",
+        "title": "More Than a Feeling"
+      },
+      "found": {
+        "id": "1037414",
+        "title": "More Than a Feeling",
+        "artist": "Boston",
+        "album": "Greatest Hits",
+        "durationS": 285,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1037414",
+        "explicit": false,
+        "rank": 709459
+      },
+      "alternatives": [
+        {
+          "id": "857972",
+          "title": "More Than a Feeling",
+          "artist": "Boston",
+          "album": "Rock: The Train Kept A Rollin'",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/857972",
+          "explicit": false,
+          "rank": 408389
+        },
+        {
+          "id": "108584520",
+          "title": "More Than a Feeling (Live)",
+          "artist": "Boston",
+          "album": "Boston Live (Cleveland 1976)",
+          "durationS": 528,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/108584520",
+          "explicit": false,
+          "rank": 204268
+        },
+        {
+          "id": "3057016601",
+          "title": "More Than A Feeling (Live, Massachusetts 1987)",
+          "artist": "Boston",
+          "album": "The Centrum, Massachusetts - 16th August 1987 (Live from Massachusetts)",
+          "durationS": 679,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3057016601",
+          "explicit": false,
+          "rank": 94679
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-05",
+      "query": {
+        "artist": "KISS",
+        "title": "I Was Made For Lovin' You"
+      },
+      "found": {
+        "id": "2267042",
+        "title": "I Was Made For Lovin' You",
+        "artist": "KISS",
+        "album": "Dynasty",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2267042",
+        "explicit": false,
+        "rank": 922154
+      },
+      "alternatives": [
+        {
+          "id": "620238622",
+          "title": "I Was Made For Lovin' You",
+          "artist": "KISS",
+          "album": "KISSWORLD - The Best Of KISS",
+          "durationS": 242,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/620238622",
+          "explicit": false,
+          "rank": 657424
+        },
+        {
+          "id": "78530528",
+          "title": "I Was Made For Lovin' You",
+          "artist": "KISS",
+          "album": "Killers",
+          "durationS": 258,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/78530528",
+          "explicit": false,
+          "rank": 224951
+        },
+        {
+          "id": "65031415",
+          "title": "I Was Made for Lovin' You",
+          "artist": "Juliet Kiss",
+          "album": "Greatest Hits! From 60's to 80's... (Light My Fire, Music, Alone Again, Ali Shuffle, Hey Jude, Play That Funky Music, the Jean Jeanie, M",
+          "durationS": 268,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/65031415",
+          "explicit": false,
+          "rank": 86239
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-06",
+      "query": {
+        "artist": "Supertramp",
+        "title": "The Logical Song"
+      },
+      "found": {
+        "id": "1006442262",
+        "title": "The Logical Song",
+        "artist": "Supertramp",
+        "album": "The Logical Song",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1006442262",
+        "explicit": false,
+        "rank": 238434
+      },
+      "alternatives": [
+        {
+          "id": "3680230282",
+          "title": "The Logical Song",
+          "artist": "Supertramp",
+          "album": "Transmission Impossible",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3680230282",
+          "explicit": false,
+          "rank": 3082
+        },
+        {
+          "id": "3039994",
+          "title": "The Logical Song (Live At Pavillon de Paris/1979)",
+          "artist": "Supertramp",
+          "album": "Paris",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3039994",
+          "explicit": false,
+          "rank": 432389
+        },
+        {
+          "id": "3258808",
+          "title": "The Logical Song (Live)",
+          "artist": "Supertramp",
+          "album": "Live",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3258808",
+          "explicit": false,
+          "rank": 312856
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-07",
+      "query": {
+        "artist": "The Knack",
+        "title": "My Sharona"
+      },
+      "found": {
+        "id": "3248376",
+        "title": "My Sharona",
+        "artist": "The Knack",
+        "album": "Get The Knack",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3248376",
+        "explicit": false,
+        "rank": 722761
+      },
+      "alternatives": [
+        {
+          "id": "6812046",
+          "title": "My Sharona",
+          "artist": "The Knack",
+          "album": "Countdown To The New Year",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6812046",
+          "explicit": false,
+          "rank": 412204
+        },
+        {
+          "id": "99616630",
+          "title": "My Sharona (Terry Bozzio Version)",
+          "artist": "The Knack",
+          "album": "Zoom",
+          "durationS": 294,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/99616630",
+          "explicit": false,
+          "rank": 95888
+        },
+        {
+          "id": "1068416702",
+          "title": "My Sharona (Live)",
+          "artist": "The Knack",
+          "album": "Live from the Rock 'N' Roll Fun House",
+          "durationS": 313,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1068416702",
+          "explicit": false,
+          "rank": 210945
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-08",
+      "query": {
+        "artist": "Electric Light Orchestra",
+        "title": "Mr. Blue Sky"
+      },
+      "found": {
+        "id": "112662184",
+        "title": "Mr. Blue Sky",
+        "artist": "Electric Light Orchestra",
+        "album": "Out of the Blue",
+        "durationS": 305,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/112662184",
+        "explicit": false,
+        "rank": 841921
+      },
+      "alternatives": [
+        {
+          "id": "447077652",
+          "title": "Mr. Blue Sky (2012 Version)",
+          "artist": "Electric Light Orchestra",
+          "album": "Mr. Blue Sky: The Very Best of Electric Light Orchestra",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/447077652",
+          "explicit": false,
+          "rank": 512532
+        },
+        {
+          "id": "144469614",
+          "title": "Mr Blue Sky",
+          "artist": "Electric Light Orchestra",
+          "album": "The Best Of ELO",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144469614",
+          "explicit": false,
+          "rank": 537404
+        },
+        {
+          "id": "447078122",
+          "title": "Mr. Blue Sky (Live)",
+          "artist": "Electric Light Orchestra",
+          "album": "Electric Light Orchestra Live",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/447078122",
+          "explicit": false,
+          "rank": 232074
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-09",
+      "query": {
+        "artist": "Fleetwood Mac",
+        "title": "Go Your Own Way"
+      },
+      "found": {
+        "id": "63480990",
+        "title": "Go Your Own Way (2004 Remaster)",
+        "artist": "Fleetwood Mac",
+        "album": "Rumours",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63480990",
+        "explicit": false,
+        "rank": 825917
+      },
+      "alternatives": [
+        {
+          "id": "67549288",
+          "title": "Go Your Own Way (Early Take)",
+          "artist": "Fleetwood Mac",
+          "album": "Rumours (Super Deluxe)",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67549288",
+          "explicit": false,
+          "rank": 181901
+        },
+        {
+          "id": "67549305",
+          "title": "Go Your Own Way (Sessions, Roughs & Outtakes)",
+          "artist": "Fleetwood Mac",
+          "album": "Rumours (Super Deluxe)",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67549305",
+          "explicit": false,
+          "rank": 171227
+        },
+        {
+          "id": "1259354942",
+          "title": "Go Your Own Way",
+          "artist": "Fleetwood Mac Experience",
+          "album": "Go Your Own Way",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1259354942",
+          "explicit": false,
+          "rank": 39458
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r70-10",
+      "query": {
+        "artist": "Thin Lizzy",
+        "title": "The Boys Are Back In Town"
+      },
+      "found": {
+        "id": "1101200",
+        "title": "The Boys Are Back In Town",
+        "artist": "Thin Lizzy",
+        "album": "Jailbreak",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1101200",
+        "explicit": false,
+        "rank": 704042
+      },
+      "alternatives": [
+        {
+          "id": "1110661732",
+          "title": "The Boys Are Back In Town (7\" Edit)",
+          "artist": "Thin Lizzy",
+          "album": "Greatest Hits",
+          "durationS": 187,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1110661732",
+          "explicit": false,
+          "rank": 111248
+        },
+        {
+          "id": "3004103251",
+          "title": "The Boys Are Back In Town (New Stereo Version / 2024)",
+          "artist": "Thin Lizzy",
+          "album": "1976",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3004103251",
+          "explicit": false,
+          "rank": 99966
+        },
+        {
+          "id": "2150121",
+          "title": "The Boys Are Back In Town (Live At The Tower Theatre, Philadelphia, USA / 1977)",
+          "artist": "Thin Lizzy",
+          "album": "Live And Dangerous",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2150121",
+          "explicit": false,
+          "rank": 230513
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

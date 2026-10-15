@@ -351,9 +351,40 @@ function featuredThemeErrors(): string[] {
     : [`featuredTheme.json : « ${String(featuredTheme)} » n'est le thème d'aucun quiz classique`]
 }
 
+// Un morceau n'apparaît que dans un seul blind test (même artiste et même titre, sans casse ni accents).
+function duplicateTrackErrors(): string[] {
+  const seen = new Map<string, string>()
+  const errors: string[] = []
+  for (const { quiz } of quizzes) {
+    if (quiz.gameType !== 'blindTest') continue
+    for (const question of quiz.questions) {
+      if (!question.music) continue
+      const key = `${normalizeAnswer(question.music.artist)}|${normalizeAnswer(question.music.title)}`
+      const first = seen.get(key)
+      if (first) errors.push(`${quiz.id}/${question.id} : « ${question.music.artist} — ${question.music.title} » déjà utilisé dans ${first}`)
+      else seen.set(key, `${quiz.id}/${question.id}`)
+    }
+  }
+  return errors
+}
+
+// Blind test avec un niveau : toutes ses questions à la difficulté de ce niveau (Impossible : 3).
+const LEVEL_DIFFICULTY: Record<DifficultyLevel, number> = { easy: 1, medium: 2, hard: 3, impossible: 3 }
+
+function levelCoherenceErrors(): string[] {
+  return quizzes.flatMap(({ quiz }) => {
+    if (quiz.gameType !== 'blindTest' || quiz.level === undefined) return []
+    const expected = LEVEL_DIFFICULTY[quiz.level]
+    const off = quiz.questions.filter((question) => question.difficulty !== expected).map((question) => question.id)
+    return off.length > 0 ? [`${quiz.id} : niveau ${quiz.level}, difficulté ${expected} attendue pour ${off.join(', ')}`] : []
+  })
+}
+
 const allErrors = [
   ...quizzes.flatMap(({ fileName, quiz }) => quizErrors(quiz, fileName).map((error) => `${fileName} : ${error}`)),
   ...featuredRankErrors(),
+  ...duplicateTrackErrors(),
+  ...levelCoherenceErrors(),
   ...featuredThemeErrors(),
 ]
 if (allErrors.length > 0) {

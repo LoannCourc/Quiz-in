@@ -1,0 +1,221 @@
+{
+  "id": "pop-annees-2020",
+  "gameType": "blindTest",
+  "title": "Pop des années 2020",
+  "theme": "Musique",
+  "description": "Les refrains qui tournent en boucle depuis 2020 : dix tubes pop récents.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "smartphone",
+  "genre": "pop",
+  "decade": 2020,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-1)",
+  "questions": [
+    {
+      "id": "p20-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Vampire – Olivia Rodrigo",
+        "Lose Control – Teddy Swims",
+        "As It Was – Harry Styles",
+        "Paint The Town Red – Doja Cat"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "As It Was"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Harry Styles",
+        "title": "As It Was"
+      }
+    },
+    {
+      "id": "p20-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Levitating – Dua Lipa",
+        "Save Your Tears – The Weeknd",
+        "Cold Heart – Elton John",
+        "Easy on Me – Adele"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Dua Lipa"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dua Lipa",
+        "title": "Levitating"
+      }
+    },
+    {
+      "id": "p20-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Kings & Queens – Ava Max",
+        "Calm Down – Rema",
+        "Light Switch – Charlie Puth",
+        "Flowers – Miley Cyrus"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Flowers"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Miley Cyrus",
+        "title": "Flowers"
+      }
+    },
+    {
+      "id": "p20-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Enemy – Imagine Dragons",
+        "Beautiful Things – Benson Boone",
+        "Higher Power – Coldplay",
+        "Miracle – Calvin Harris"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Benson Boone"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Benson Boone",
+        "title": "Beautiful Things"
+      }
+    },
+    {
+      "id": "p20-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bad Habits – Ed Sheeran",
+        "Save Your Tears – The Weeknd",
+        "Paint The Town Red – Doja Cat",
+        "Enemy – Imagine Dragons"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bad Habits"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ed Sheeran",
+        "title": "Bad Habits"
+      }
+    },
+    {
+      "id": "p20-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lose Control – Teddy Swims",
+        "Kings & Queens – Ava Max",
+        "Heat Waves – Glass Animals",
+        "Lovin On Me – Jack Harlow"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Glass Animals"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Glass Animals",
+        "title": "Heat Waves"
+      }
+    },
+    {
+      "id": "p20-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Easy on Me – Adele",
+        "Anti-Hero – Taylor Swift",
+        "Light Switch – Charlie Puth",
+        "Higher Power – Coldplay"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Anti-Hero"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Taylor Swift",
+        "title": "Anti-Hero",
+        "titleAliases": [
+          "Anti Hero",
+          "Antihero"
+        ]
+      }
+    },
+    {
+      "id": "p20-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Good Luck, Babe! – Chappell Roan",
+        "Calm Down – Rema",
+        "Cold Heart – Elton John",
+        "What Was I Made For? – Billie Eilish"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Billie Eilish"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Billie Eilish",
+        "title": "What Was I Made For?"
+      }
+    },
+    {
+      "id": "p20-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Too Sweet – Hozier",
+        "Miracle – Calvin Harris",
+        "Vampire – Olivia Rodrigo",
+        "Good Luck, Babe! – Chappell Roan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Too Sweet"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Hozier",
+        "title": "Too Sweet"
+      }
+    },
+    {
+      "id": "p20-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le reste – Clara Luciani",
+        "Easy on Me – Adele",
+        "Bruxelles je t'aime – Angèle",
+        "Save Your Tears – The Weeknd"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Angèle"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Angèle",
+        "title": "Bruxelles je t'aime"
+      }
+    }
+  ]
+}

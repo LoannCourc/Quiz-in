@@ -1,0 +1,217 @@
+{
+  "id": "chanson-annees-60",
+  "gameType": "blindTest",
+  "title": "Chanson française des années 60",
+  "theme": "Musique",
+  "description": "Yéyés, crooners et premiers tubes : dix chansons françaises des années 60.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 1960,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-1)",
+  "questions": [
+    {
+      "id": "c60-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Et j'entends siffler le train – Richard Anthony",
+        "Aline – Christophe",
+        "Tous les garçons et les filles – Françoise Hardy",
+        "Tombe la neige – Adamo"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Tous les garçons et les filles"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Françoise Hardy",
+        "title": "Tous les garçons et les filles"
+      }
+    },
+    {
+      "id": "c60-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La poupée qui fait non – Michel Polnareff",
+        "Biche oh ma biche – Frank Alamo",
+        "La plus belle pour aller danser – Sylvie Vartan",
+        "Capri c'est fini – Hervé Vilard"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sylvie Vartan"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Sylvie Vartan",
+        "title": "La plus belle pour aller danser"
+      }
+    },
+    {
+      "id": "c60-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Et moi, et moi, et moi – Jacques Dutronc",
+        "Inventaire 66 – Michel Delpech",
+        "Aline – Christophe",
+        "Viens me faire oublier – Dick Rivers"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Et moi, et moi, et moi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jacques Dutronc",
+        "title": "Et moi, et moi, et moi"
+      }
+    },
+    {
+      "id": "c60-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mon crédo – Mireille Mathieu",
+        "La Javanaise – Serge Gainsbourg",
+        "Enfants de tous pays – Enrico Macias",
+        "Poupée de cire, poupée de son – France Gall"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "France Gall"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "France Gall",
+        "title": "Poupée de cire, poupée de son"
+      }
+    },
+    {
+      "id": "c60-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Nathalie – Gilbert Bécaud",
+        "Comme d'habitude – Claude François",
+        "Inch Allah – Adamo",
+        "Je n'aurai pas le temps – Michel Fugain"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Comme d'habitude"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Claude François",
+        "title": "Comme d'habitude"
+      }
+    },
+    {
+      "id": "c60-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Céline – Hugues Aufray",
+        "Tombe la neige – Adamo",
+        "Et j'entends siffler le train – Richard Anthony",
+        "La poupée qui fait non – Michel Polnareff"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hugues Aufray"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Hugues Aufray",
+        "title": "Céline"
+      }
+    },
+    {
+      "id": "c60-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mon crédo – Mireille Mathieu",
+        "Inventaire 66 – Michel Delpech",
+        "Et maintenant – Gilbert Bécaud",
+        "Enfants de tous pays – Enrico Macias"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Et maintenant"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Gilbert Bécaud",
+        "title": "Et maintenant"
+      }
+    },
+    {
+      "id": "c60-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Biche oh ma biche – Frank Alamo",
+        "L'école est finie – Sheila",
+        "Capri c'est fini – Hervé Vilard",
+        "Aline – Christophe"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sheila"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Sheila",
+        "title": "L'école est finie"
+      }
+    },
+    {
+      "id": "c60-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Viens me faire oublier – Dick Rivers",
+        "Et j'entends siffler le train – Richard Anthony",
+        "La Javanaise – Serge Gainsbourg",
+        "Retiens la nuit – Johnny Hallyday"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Retiens la nuit"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Johnny Hallyday",
+        "title": "Retiens la nuit"
+      }
+    },
+    {
+      "id": "c60-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mirza – Nino Ferrer",
+        "La poupée qui fait non – Michel Polnareff",
+        "Je n'aurai pas le temps – Michel Fugain",
+        "Tombe la neige – Adamo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Nino Ferrer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nino Ferrer",
+        "title": "Mirza"
+      }
+    }
+  ]
+}

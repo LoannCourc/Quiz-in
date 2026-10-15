@@ -130,10 +130,39 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
 - `ask` : `title` (« Quel est ce titre ? »), `artist` (« Quel artiste ? ») ou `both` ; alterner titre et artiste.
 - `options` : 4 titres ou 4 artistes de la même époque et du même genre ; `acceptedAnswers` contient la bonne.
 - `music` : `artist`, `title`, `startS` (0 à 10), `titleAliases` et `artistAliases` facultatifs.
-- Un morceau n'apparaît que dans un seul blind test ; aucune version explicite.
-- À venir (point 5, pas encore dans le modèle) : `genre` (Pop, Rock, Rap, Chanson, Disco/Funk, Électro),
-  `decade` et le niveau `impossible`. Ne pas les écrire avant que le build les accepte.
-- Après rédaction : `npm run music:lookup -- <quizId>`, écoute et vérification, puis `npm run build`.
+- Un morceau n'apparaît que dans un seul blind test (le build refuse un doublon) ; aucune version explicite.
+- `genre` (obligatoire, un genre principal) : `pop`, `rock`, `rap`, `chanson`, `discoFunk`, `electro`.
+  `decade` (obligatoire) : `1960` à `2020`, ou `all` (toutes époques).
+- `level` (facultatif) : `easy`, `medium`, `hard` ou `impossible`. S'il est écrit, toutes les questions ont la
+  même `difficulty` (1, 2, 3 ; Impossible : 3) : le build refuse un morceau « facile » dans un blind test
+  « difficile ».
+- **Impossible** : chaque morceau est d'un artiste qui a **moins de 800 fans sur Deezer** (`nb_fan`) le jour
+  de la vérification, avec un extrait lisible ; titre et artiste écrits tels que Deezer les affiche ; les
+  propositions sont aussi peu connues (même genre, même époque).
+- `startS` : début de l'extrait (0 à 10 avec le minuteur de 20 s).
+- Alias (`titleAliases`, `artistAliases`) pour la Réponse libre : titre sans « feat. » ni parenthèses,
+  autres noms de l'artiste (« Puff Daddy » pour « Diddy »). Casse, accents, article et petites fautes sont
+  déjà tolérés.
+- On ne stocke que des identifiants et des métadonnées : ni audio, ni lien d'extrait (ils expirent ; l'hôte
+  les demande à Deezer au salon).
+
+### Vérification des morceaux (dans `content/`)
+
+1. `npm run music:lookup -- <quizId>` : cherche chaque morceau chez Deezer et écrit
+   `music-check/<quizId>.json` (identifiant, titre et artiste affichés, album, extrait, paroles explicites,
+   alternatives) et sa version lisible `.md`. Pour choisir une alternative : la copier dans `found`.
+2. `npm run music:verify -- <quizId> [<quizId>…]` : coche `verified: true` avec `verifiedBy: "auto"` seulement
+   si TOUS les contrôles passent : artiste et titre identiques à ceux affichés par Deezer (les mentions du même
+   enregistrement sont acceptées : « feat. », « Remastered », « Radio Edit », bande originale d'un film),
+   version originale (ni live ni remix), extrait présent, paroles non explicites, extrait qui tient dans le
+   minuteur. Sinon, la raison est affichée : remplacer le morceau.
+3. `npm run music:fans -- <lot> <quizId> [<quizId>…]` : écrit `docs/relecture-lot-bt-<lot>.md` (fans
+   `nb_fan` et date de vérification, extrait, paroles, qui a vérifié, 5 morceaux à écouter en priorité). Les
+   fans changent avec le temps : ils ne sont écrits que dans la relecture, jamais dans le contenu publié.
+   Relancer le script pour revérifier un « Impossible ».
+4. Après écoute : `verifiedBy: "listened"` dans `music-check/<quizId>.json`. Sans `verifiedBy` : morceau
+   vérifié à l'écoute avant ce champ.
+5. `npm run build` : n'importe qu'un blind test dont tous les morceaux sont vérifiés.
 
 ```json
 {
@@ -145,6 +174,9 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
   "audience": "all",
   "poster": "violet",
   "icon": "cassette",
+  "genre": "pop",
+  "decade": 1990,
+  "level": "medium",
   "addedAt": "2026-10-20",
   "reviewStatus": "à relire",
   "questions": [
@@ -152,7 +184,7 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
       "id": "a92-01",
       "text": "Quel artiste ?",
       "ask": "artist",
-      "options": ["Alliage", "2Be3", "G-Squad", "Worlds Apart"],
+      "options": ["Te garder près de moi – Alliage", "Partir un jour – 2Be3", "Raide dingue de toi – G-Squad", "Je te donne – Worlds Apart"],
       "correctIndex": 1,
       "acceptedAnswers": ["2Be3"],
       "difficulty": 2,
