@@ -1,0 +1,557 @@
+{
+  "quizId": "electro-annees-80",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "e80-01",
+      "query": {
+        "artist": "Depeche Mode",
+        "title": "Just Can't Get Enough"
+      },
+      "found": {
+        "id": "68513610",
+        "title": "Just Can't Get Enough",
+        "artist": "Depeche Mode",
+        "album": "The Best of Depeche Mode, Vol. 1 (Deluxe)",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/68513610",
+        "explicit": false,
+        "rank": 876524
+      },
+      "alternatives": [
+        {
+          "id": "2182193647",
+          "title": "Just Can't Get Enough",
+          "artist": "Depeche Mode",
+          "album": "New Life In The Netherlands",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2182193647",
+          "explicit": false,
+          "rank": 148923
+        },
+        {
+          "id": "68510598",
+          "title": "Just Can't Get Enough (Live at Rose Bowl, Pasadena, CA - June 18, 1988)",
+          "artist": "Depeche Mode",
+          "album": "101 (Live)",
+          "durationS": 242,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68510598",
+          "explicit": false,
+          "rank": 403945
+        },
+        {
+          "id": "3694956342",
+          "title": "Just Can't Get Enough (Live in Mexico City)",
+          "artist": "Depeche Mode",
+          "album": "Memento Mori: Mexico City",
+          "durationS": 379,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3694956342",
+          "explicit": false,
+          "rank": 373641
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-02",
+      "query": {
+        "artist": "New Order",
+        "title": "Blue Monday"
+      },
+      "found": {
+        "id": "131744046",
+        "title": "Blue Monday (2016 Remaster)",
+        "artist": "New Order",
+        "album": "Singles (2016 Remaster)",
+        "durationS": 450,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/131744046",
+        "explicit": false,
+        "rank": 731593
+      },
+      "alternatives": [
+        {
+          "id": "7337280",
+          "title": "Blue Monday",
+          "artist": "New Order",
+          "album": "The Wedding Singer (Music From The Motion Picture)",
+          "durationS": 376,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7337280",
+          "explicit": false,
+          "rank": 525112
+        },
+        {
+          "id": "1094267562",
+          "title": "Blue Monday (1982 Writing Session Recording)",
+          "artist": "New Order",
+          "album": "Power Corruption and Lies (Definitive Edition)",
+          "durationS": 350,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1094267562",
+          "explicit": false,
+          "rank": 137267
+        },
+        {
+          "id": "3510130211",
+          "title": "Blue Monday (Hardfloor Dub)",
+          "artist": "New Order",
+          "album": "BlueMonday-95",
+          "durationS": 496,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3510130211",
+          "explicit": false,
+          "rank": 145407
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-03",
+      "query": {
+        "artist": "Soft Cell",
+        "title": "Tainted Love"
+      },
+      "found": {
+        "id": "1173622",
+        "title": "Tainted Love",
+        "artist": "Soft Cell",
+        "album": "The Very Best Of Soft Cell",
+        "durationS": 160,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1173622",
+        "explicit": false,
+        "rank": 900695
+      },
+      "alternatives": [
+        {
+          "id": "2674013",
+          "title": "Tainted Love",
+          "artist": "Soft Cell",
+          "album": "Non Stop Erotic Cabaret (Deluxe Edition)",
+          "durationS": 153,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2674013",
+          "explicit": false,
+          "rank": 797218
+        },
+        {
+          "id": "1421630842",
+          "title": "Tainted Love (Original Version / Remastered 2021)",
+          "artist": "Soft Cell",
+          "album": "Tainted Love",
+          "durationS": 155,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1421630842",
+          "explicit": false,
+          "rank": 157527
+        },
+        {
+          "id": "2665024212",
+          "title": "Tainted Love (2023 Version)",
+          "artist": "Soft Cell",
+          "album": "Tainted Love / Where Did Our Love Go? E.P.",
+          "durationS": 181,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2665024212",
+          "explicit": false,
+          "rank": 68460
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-04",
+      "query": {
+        "artist": "Yello",
+        "title": "Oh Yeah"
+      },
+      "found": {
+        "id": "131741644",
+        "title": "Oh Yeah (Remastered 2005)",
+        "artist": "Yello",
+        "album": "Stella (Remastered 2005)",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/131741644",
+        "explicit": false,
+        "rank": 513260
+      },
+      "alternatives": [
+        {
+          "id": "131741250",
+          "title": "Oh Yeah",
+          "artist": "Yello",
+          "album": "Essential",
+          "durationS": 185,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/131741250",
+          "explicit": false,
+          "rank": 373214
+        },
+        {
+          "id": "131741632",
+          "title": "Oh Yeah (2009)",
+          "artist": "Yello",
+          "album": "Touch Yello (Deluxe)",
+          "durationS": 153,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/131741632",
+          "explicit": false,
+          "rank": 246796
+        },
+        {
+          "id": "422200922",
+          "title": "Oh Yeah (Live In Berlin)",
+          "artist": "Yello",
+          "album": "Live In Berlin",
+          "durationS": 254,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/422200922",
+          "explicit": false,
+          "rank": 88897
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-05",
+      "query": {
+        "artist": "Harold Faltermeyer",
+        "title": "Axel F"
+      },
+      "found": {
+        "id": "80538212",
+        "title": "Axel F (From \"Beverly Hills Cop\" Soundtrack)",
+        "artist": "Harold Faltermeyer",
+        "album": "Beverly Hills Cop (Music From The Motion Picture Soundtrack)",
+        "durationS": 184,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/80538212",
+        "explicit": false,
+        "rank": 536600
+      },
+      "alternatives": [
+        {
+          "id": "131085554",
+          "title": "Axel F. (2016 Composers Cut)",
+          "artist": "Harold Faltermeyer",
+          "album": "The Best of Harold Faltermeyer Composers Cut, Vol. 1",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/131085554",
+          "explicit": false,
+          "rank": 190621
+        },
+        {
+          "id": "2963795321",
+          "title": "Axel F (From \"Beverly Hills Cop\")",
+          "artist": "Harold Faltermeyer",
+          "album": "Axel F (From \"Beverly Hills Cop\")",
+          "durationS": 132,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2963795321",
+          "explicit": false,
+          "rank": 256882
+        },
+        {
+          "id": "1559217862",
+          "title": "Axel F (Extended Version)",
+          "artist": "Harold Faltermeyer",
+          "album": "Axel F (The M & M Mix)",
+          "durationS": 431,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1559217862",
+          "explicit": false,
+          "rank": 302472
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-06",
+      "query": {
+        "artist": "Vangelis",
+        "title": "Chariots Of Fire"
+      },
+      "found": {
+        "id": "41319291",
+        "title": "Chariots Of Fire",
+        "artist": "Vangelis",
+        "album": "Chariots Of Fire - The Play",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/41319291",
+        "explicit": false,
+        "rank": 594866
+      },
+      "alternatives": [
+        {
+          "id": "2202130847",
+          "title": "Chariots of Fire",
+          "artist": "Vangelis",
+          "album": "Chariots of Fire",
+          "durationS": 507,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2202130847",
+          "explicit": false,
+          "rank": 114821
+        },
+        {
+          "id": "72974461",
+          "title": "Chariots of Fire",
+          "artist": "Vangelis",
+          "album": "Piano Espetacular",
+          "durationS": 167,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/72974461",
+          "explicit": false,
+          "rank": 360967
+        },
+        {
+          "id": "624844652",
+          "title": "Chariots Of Fire",
+          "artist": "Vangelis",
+          "album": "Chariots Of Fire (Original Motion Picture Soundtrack / Remastered)",
+          "durationS": 1241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/624844652",
+          "explicit": false,
+          "rank": 225296
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-07",
+      "query": {
+        "artist": "Herbie Hancock",
+        "title": "Rockit"
+      },
+      "found": {
+        "id": "623838",
+        "title": "Rockit",
+        "artist": "Herbie Hancock",
+        "album": "Future Shock",
+        "durationS": 324,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623838",
+        "explicit": false,
+        "rank": 479091
+      },
+      "alternatives": [
+        {
+          "id": "1037137",
+          "title": "Rockit",
+          "artist": "Herbie Hancock",
+          "album": "100% Dance - Dancing Through The 80ties",
+          "durationS": 217,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1037137",
+          "explicit": false,
+          "rank": 272724
+        },
+        {
+          "id": "82727956",
+          "title": "Rockit",
+          "artist": "Herbie Hancock",
+          "album": "Ken Burns Jazz-The Story Of America's Music",
+          "durationS": 235,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/82727956",
+          "explicit": false,
+          "rank": 104920
+        },
+        {
+          "id": "75970351",
+          "title": "Rockit",
+          "artist": "Herbie Hancock",
+          "album": "Pure... Electronic 80s",
+          "durationS": 202,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/75970351",
+          "explicit": false,
+          "rank": 94601
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-08",
+      "query": {
+        "artist": "Orchestral Manoeuvres In The Dark",
+        "title": "Enola Gay"
+      },
+      "found": {
+        "id": "3153778",
+        "title": "Enola Gay",
+        "artist": "Orchestral Manoeuvres In The Dark",
+        "album": "The Best Of Orchestral Manoeuvres In The Dark",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3153778",
+        "explicit": false,
+        "rank": 842104
+      },
+      "alternatives": [
+        {
+          "id": "3157174",
+          "title": "Enola Gay",
+          "artist": "Orchestral Manoeuvres In The Dark",
+          "album": "Peel Sessions (1979-1983)",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3157174",
+          "explicit": false,
+          "rank": 113696
+        },
+        {
+          "id": "3156239",
+          "title": "Enola Gay (OMD Vs. Sash!)",
+          "artist": "Orchestral Manoeuvres In The Dark",
+          "album": "The OMD Singles",
+          "durationS": 318,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3156239",
+          "explicit": false,
+          "rank": 188977
+        },
+        {
+          "id": "1157038212",
+          "title": "Enola Gay (Extended Mix)",
+          "artist": "Orchestral Manoeuvres In The Dark",
+          "album": "Enola Gay (Remixes)",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1157038212",
+          "explicit": false,
+          "rank": 385120
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-09",
+      "query": {
+        "artist": "The Human League",
+        "title": "Don't You Want Me"
+      },
+      "found": {
+        "id": "3092940",
+        "title": "Don't You Want Me",
+        "artist": "The Human League",
+        "album": "Dare!",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3092940",
+        "explicit": false,
+        "rank": 760999
+      },
+      "alternatives": [
+        {
+          "id": "17105919",
+          "title": "Don't You Want Me (Alternative Version / 2012 Remaster)",
+          "artist": "The Human League",
+          "album": "Dare/Fascination! (2012 - Remaster)",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17105919",
+          "explicit": false,
+          "rank": 166454
+        },
+        {
+          "id": "1559281752",
+          "title": "Don't You Want Me (Purple Disco Machine Extended Mix)",
+          "artist": "The Human League",
+          "album": "Don't You Want Me (Purple Disco Machine Remix)",
+          "durationS": 467,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1559281752",
+          "explicit": false,
+          "rank": 391572
+        },
+        {
+          "id": "1559281742",
+          "title": "Don't You Want Me (Purple Disco Machine Remix)",
+          "artist": "The Human League",
+          "album": "Don't You Want Me (Purple Disco Machine Remix)",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1559281742",
+          "explicit": false,
+          "rank": 380691
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e80-10",
+      "query": {
+        "artist": "Jean-Michel Jarre",
+        "title": "Fourth Rendez-Vous"
+      },
+      "found": {
+        "id": "4273260462",
+        "title": "Fourth Rendez-Vous (Remastered 2014)",
+        "artist": "Jean-Michel Jarre",
+        "album": "Rendez-Vous",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4273260462",
+        "explicit": false,
+        "rank": 507557
+      },
+      "alternatives": [
+        {
+          "id": "4273244092",
+          "title": "Fourth Rendez-Vous",
+          "artist": "Jean-Michel Jarre",
+          "album": "Essential Recollection",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4273244092",
+          "explicit": false,
+          "rank": 308050
+        },
+        {
+          "id": "4273261572",
+          "title": "Fourth Rendez-Vous (Remastered 2014)",
+          "artist": "Jean-Michel Jarre",
+          "album": "Planet Jarre",
+          "durationS": 249,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4273261572",
+          "explicit": false,
+          "rank": 236121
+        },
+        {
+          "id": "4273278892",
+          "title": "Fourth Rendez-vous (Live)",
+          "artist": "Jean-Michel Jarre",
+          "album": "Hong Kong",
+          "durationS": 383,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4273278892",
+          "explicit": false,
+          "rank": 137126
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

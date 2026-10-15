@@ -1,0 +1,220 @@
+{
+  "id": "electro-annees-80",
+  "gameType": "blindTest",
+  "title": "Électro des années 80",
+  "theme": "Musique",
+  "description": "Synthés, boîtes à rythmes et premiers samples : dix morceaux électro des années 80.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "cassette",
+  "genre": "electro",
+  "decade": 1980,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-3)",
+  "questions": [
+    {
+      "id": "e80-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Vienna – Ultravox",
+        "Just Can't Get Enough – Depeche Mode",
+        "Fade to Grey – Visage",
+        "A Little Respect – Erasure"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Just Can't Get Enough"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Depeche Mode",
+        "title": "Just Can't Get Enough"
+      }
+    },
+    {
+      "id": "e80-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "West End Girls – Pet Shop Boys",
+        "Smalltown Boy – Bronski Beat",
+        "Such a Shame – Talk Talk",
+        "Blue Monday – New Order"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "New Order"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "New Order",
+        "title": "Blue Monday"
+      }
+    },
+    {
+      "id": "e80-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tainted Love – Soft Cell",
+        "Don't Go – Yazoo",
+        "Big in Japan – Alphaville",
+        "Cambodia – Kim Wilde"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Tainted Love"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Soft Cell",
+        "title": "Tainted Love"
+      }
+    },
+    {
+      "id": "e80-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Moments in Love – Art of Noise",
+        "19 – Paul Hardcastle",
+        "Oh Yeah – Yello",
+        "Crockett's Theme – Jan Hammer"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Yello"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Yello",
+        "title": "Oh Yeah"
+      }
+    },
+    {
+      "id": "e80-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Crockett's Theme – Jan Hammer",
+        "She Blinded Me with Science – Thomas Dolby",
+        "Axel F – Harold Faltermeyer",
+        "Computer Love – Kraftwerk"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Axel F"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Harold Faltermeyer",
+        "title": "Axel F"
+      }
+    },
+    {
+      "id": "e80-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Chariots Of Fire – Vangelis",
+        "Moments in Love – Art of Noise",
+        "Computer Love – Kraftwerk",
+        "Cars – Gary Numan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Vangelis"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Vangelis",
+        "title": "Chariots Of Fire"
+      }
+    },
+    {
+      "id": "e80-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "19 – Paul Hardcastle",
+        "She Blinded Me with Science – Thomas Dolby",
+        "Shout – Tears for Fears",
+        "Rockit – Herbie Hancock"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Rockit"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Herbie Hancock",
+        "title": "Rockit"
+      }
+    },
+    {
+      "id": "e80-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Vienna – Ultravox",
+        "Enola Gay – Orchestral Manoeuvres In The Dark",
+        "Sweet Dreams (Are Made of This) – Eurythmics",
+        "Fade to Grey – Visage"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Orchestral Manoeuvres In The Dark"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Orchestral Manoeuvres In The Dark",
+        "title": "Enola Gay",
+        "artistAliases": [
+          "OMD"
+        ]
+      }
+    },
+    {
+      "id": "e80-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Don't You Want Me – The Human League",
+        "Smalltown Boy – Bronski Beat",
+        "Don't Go – Yazoo",
+        "West End Girls – Pet Shop Boys"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Don't You Want Me"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Human League",
+        "title": "Don't You Want Me"
+      }
+    },
+    {
+      "id": "e80-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Cars – Gary Numan",
+        "Big in Japan – Alphaville",
+        "Fourth Rendez-Vous – Jean-Michel Jarre",
+        "Such a Shame – Talk Talk"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Jean-Michel Jarre"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Jean-Michel Jarre",
+        "title": "Fourth Rendez-Vous"
+      }
+    }
+  ]
+}

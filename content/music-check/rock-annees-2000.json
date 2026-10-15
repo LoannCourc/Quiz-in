@@ -1,0 +1,557 @@
+{
+  "quizId": "rock-annees-2000",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "r00-01",
+      "query": {
+        "artist": "The White Stripes",
+        "title": "Seven Nation Army"
+      },
+      "found": {
+        "id": "1153182282",
+        "title": "Seven Nation Army",
+        "artist": "The White Stripes",
+        "album": "The White Stripes Greatest Hits",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1153182282",
+        "explicit": false,
+        "rank": 918131
+      },
+      "alternatives": [
+        {
+          "id": "1349398472",
+          "title": "Seven Nation Army (The Glitch Mob Remix)",
+          "artist": "The White Stripes",
+          "album": "Seven Nation Army (The Glitch Mob Remix)",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1349398472",
+          "explicit": false,
+          "rank": 486545
+        },
+        {
+          "id": "1241729662",
+          "title": "Seven Nation Army (Live)",
+          "artist": "The White Stripes",
+          "album": "Under Great White Northern Lights (Live)",
+          "durationS": 452,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1241729662",
+          "explicit": false,
+          "rank": 397705
+        },
+        {
+          "id": "2210446497",
+          "title": "Seven Nation Army (Live at The Aragon Ballroom, July 2, 2003)",
+          "artist": "The White Stripes",
+          "album": "Elephant (Deluxe)",
+          "durationS": 272,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2210446497",
+          "explicit": false,
+          "rank": 203052
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-02",
+      "query": {
+        "artist": "The Killers",
+        "title": "Mr. Brightside"
+      },
+      "found": {
+        "id": "953097",
+        "title": "Mr. Brightside",
+        "artist": "The Killers",
+        "album": "Nu Rock",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/953097",
+        "explicit": false,
+        "rank": 936416
+      },
+      "alternatives": [
+        {
+          "id": "71955269",
+          "title": "Mr. Brightside (Original Demo)",
+          "artist": "The Killers",
+          "album": "Direct Hits",
+          "durationS": 261,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/71955269",
+          "explicit": false,
+          "rank": 246665
+        },
+        {
+          "id": "689411472",
+          "title": "Mr. Brightside (Jacques Lu Cont's Thin White Duke Radio Remix)",
+          "artist": "The Killers",
+          "album": "Mr. Brightside (Remixes)",
+          "durationS": 279,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/689411472",
+          "explicit": false,
+          "rank": 465327
+        },
+        {
+          "id": "511061402",
+          "title": "Mr. Brightside (Live From The Royal Albert Hall / 2009)",
+          "artist": "The Killers",
+          "album": "Live From The Royal Albert Hall",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/511061402",
+          "explicit": false,
+          "rank": 337261
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-03",
+      "query": {
+        "artist": "Franz Ferdinand",
+        "title": "Take Me Out"
+      },
+      "found": {
+        "id": "4315684",
+        "title": "Take Me Out",
+        "artist": "Franz Ferdinand",
+        "album": "Franz Ferdinand",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4315684",
+        "explicit": false,
+        "rank": 919670
+      },
+      "alternatives": [
+        {
+          "id": "4642492",
+          "title": "Take Me Out",
+          "artist": "Franz Ferdinand",
+          "album": "Take Me Out",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4642492",
+          "explicit": false,
+          "rank": 594619
+        },
+        {
+          "id": "69760234",
+          "title": "Take Me Out (Daft Punk Remix)",
+          "artist": "Franz Ferdinand",
+          "album": "Take Me Out (Remixes)",
+          "durationS": 272,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/69760234",
+          "explicit": false,
+          "rank": 395045
+        },
+        {
+          "id": "69760235",
+          "title": "Take Me Out (Naum Gabo Remix)",
+          "artist": "Franz Ferdinand",
+          "album": "Take Me Out (Remixes)",
+          "durationS": 304,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/69760235",
+          "explicit": false,
+          "rank": 69186
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-04",
+      "query": {
+        "artist": "Muse",
+        "title": "Plug in Baby"
+      },
+      "found": {
+        "id": "13636688",
+        "title": "Plug in Baby",
+        "artist": "Muse",
+        "album": "Origin of Symmetry",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13636688",
+        "explicit": false,
+        "rank": 803526
+      },
+      "alternatives": [
+        {
+          "id": "1399725462",
+          "title": "Plug In Baby (XX Anniversary RemiXX)",
+          "artist": "Muse",
+          "album": "Origin of Symmetry (XX Anniversary RemiXX)",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1399725462",
+          "explicit": false,
+          "rank": 363333
+        },
+        {
+          "id": "3824102",
+          "title": "Plug in Baby (Live)",
+          "artist": "Muse",
+          "album": "New Born",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3824102",
+          "explicit": false,
+          "rank": 269942
+        },
+        {
+          "id": "3824593",
+          "title": "Execution Commentary",
+          "artist": "Muse",
+          "album": "Plug in Baby",
+          "durationS": 147,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3824593",
+          "explicit": false,
+          "rank": 174644
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-05",
+      "query": {
+        "artist": "Arctic Monkeys",
+        "title": "I Bet You Look Good On The Dancefloor"
+      },
+      "found": {
+        "id": "4315310",
+        "title": "I Bet You Look Good On The Dancefloor",
+        "artist": "Arctic Monkeys",
+        "album": "Whatever People Say I Am, That's What I'm Not",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4315310",
+        "explicit": false,
+        "rank": 780137
+      },
+      "alternatives": [
+        {
+          "id": "4637227",
+          "title": "I Bet You Look Good On The Dancefloor",
+          "artist": "Arctic Monkeys",
+          "album": "I Bet You Look Good On The Dancefloor",
+          "durationS": 176,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4637227",
+          "explicit": false,
+          "rank": 414637
+        },
+        {
+          "id": "1120498862",
+          "title": "I Bet You Look Good On The Dancefloor (Live)",
+          "artist": "Arctic Monkeys",
+          "album": "Live at the Royal Albert Hall",
+          "durationS": 293,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1120498862",
+          "explicit": false,
+          "rank": 297653
+        },
+        {
+          "id": "4637228",
+          "title": "Bigger Boys and Stolen Sweethearts",
+          "artist": "Arctic Monkeys",
+          "album": "I Bet You Look Good On The Dancefloor",
+          "durationS": 180,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4637228",
+          "explicit": true,
+          "rank": 493195
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-06",
+      "query": {
+        "artist": "The Strokes",
+        "title": "Last Nite"
+      },
+      "found": {
+        "id": "958109",
+        "title": "Last Nite",
+        "artist": "The Strokes",
+        "album": "Is This It",
+        "durationS": 192,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/958109",
+        "explicit": false,
+        "rank": 792052
+      },
+      "alternatives": [
+        {
+          "id": "2155576957",
+          "title": "Last Nite (Rough Trade Version - The Modern Age B-Side)",
+          "artist": "The Strokes",
+          "album": "The Singles - Volume 01",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2155576957",
+          "explicit": false,
+          "rank": 288801
+        },
+        {
+          "id": "3516882541",
+          "title": "Last Nite (live)",
+          "artist": "The Strokes",
+          "album": "Live in Paris 2002",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3516882541",
+          "explicit": false,
+          "rank": 210991
+        },
+        {
+          "id": "2155576997",
+          "title": "When It Started (Last Nite B-Side)",
+          "artist": "The Strokes",
+          "album": "The Singles - Volume 01",
+          "durationS": 173,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2155576997",
+          "explicit": false,
+          "rank": 399876
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-07",
+      "query": {
+        "artist": "Kings of Leon",
+        "title": "Use Somebody"
+      },
+      "found": {
+        "id": "2924841",
+        "title": "Use Somebody",
+        "artist": "Kings of Leon",
+        "album": "Use Somebody",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2924841",
+        "explicit": false,
+        "rank": 826218
+      },
+      "alternatives": [
+        {
+          "id": "15531177",
+          "title": "Be Somebody",
+          "artist": "Kings of Leon",
+          "album": "Only By The Night",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15531177",
+          "explicit": false,
+          "rank": 413485
+        },
+        {
+          "id": "2924843",
+          "title": "Frontier City",
+          "artist": "Kings of Leon",
+          "album": "Use Somebody",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2924843",
+          "explicit": false,
+          "rank": 245257
+        },
+        {
+          "id": "2924842",
+          "title": "Knocked Up (Lykke Li vs. Rodeo Remix)",
+          "artist": "Kings of Leon",
+          "album": "Use Somebody",
+          "durationS": 334,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2924842",
+          "explicit": false,
+          "rank": 274088
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-08",
+      "query": {
+        "artist": "Linkin Park",
+        "title": "In the End"
+      },
+      "found": {
+        "id": "676183",
+        "title": "In the End",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory (Bonus Edition)",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/676183",
+        "explicit": false,
+        "rank": 982895
+      },
+      "alternatives": [
+        {
+          "id": "4175528232",
+          "title": "In the End - Unshatter Film Soundtrack (Live in São Paulo)",
+          "artist": "Linkin Park",
+          "album": "Unshatter Film Soundtrack (Live in São Paulo)",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4175528232",
+          "explicit": false,
+          "rank": 679141
+        },
+        {
+          "id": "676934",
+          "title": "In the End (Live)",
+          "artist": "Linkin Park",
+          "album": "Live in Texas",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/676934",
+          "explicit": false,
+          "rank": 511789
+        },
+        {
+          "id": "439281702",
+          "title": "In the End (One More Light Live)",
+          "artist": "Linkin Park",
+          "album": "One More Light Live",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/439281702",
+          "explicit": false,
+          "rank": 403201
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-09",
+      "query": {
+        "artist": "Kaiser Chiefs",
+        "title": "Ruby"
+      },
+      "found": {
+        "id": "26608051",
+        "title": "Ruby",
+        "artist": "Kaiser Chiefs",
+        "album": "Souvenir : The Singles 2004 - 2012",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/26608051",
+        "explicit": false,
+        "rank": 723899
+      },
+      "alternatives": [
+        {
+          "id": "93915740",
+          "title": "Ruby (Live In Berlin)",
+          "artist": "Kaiser Chiefs",
+          "album": "Yours Truly, Angry Mob (Deluxe)",
+          "durationS": 201,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/93915740",
+          "explicit": false,
+          "rank": 207108
+        },
+        {
+          "id": "76027025",
+          "title": "Ruffians On Parade",
+          "artist": "Kaiser Chiefs",
+          "album": "Education, Education, Education & War",
+          "durationS": 215,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/76027025",
+          "explicit": false,
+          "rank": 148102
+        },
+        {
+          "id": "3454556481",
+          "title": "Run Again",
+          "artist": "Kaiser Chiefs",
+          "album": "Employment 20 (China Anniversary Edition)",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3454556481",
+          "explicit": false,
+          "rank": 65137
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r00-10",
+      "query": {
+        "artist": "Queens of the Stone Age",
+        "title": "No One Knows"
+      },
+      "found": {
+        "id": "7179758",
+        "title": "No One Knows",
+        "artist": "Queens of the Stone Age",
+        "album": "Songs For The Deaf",
+        "durationS": 278,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7179758",
+        "explicit": false,
+        "rank": 800674
+      },
+      "alternatives": [
+        {
+          "id": "2452974975",
+          "title": "No One Knows (Edit Without Radio Talk At End)",
+          "artist": "Queens of the Stone Age",
+          "album": "The Best Summer Songs 2023",
+          "durationS": 256,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2452974975",
+          "explicit": false,
+          "rank": 467113
+        },
+        {
+          "id": "373989351",
+          "title": "No One Knows (Live At Brixton Academy / 2005)",
+          "artist": "Queens of the Stone Age",
+          "album": "No One Knows/Burn The Witch (Live)",
+          "durationS": 454,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/373989351",
+          "explicit": false,
+          "rank": 195110
+        },
+        {
+          "id": "561863792",
+          "title": "No One Knows (Live At Brixton Academy / 2005)",
+          "artist": "Queens of the Stone Age",
+          "album": "Over The Years And Through The Woods (Live At Brixton Academy / 2005)",
+          "durationS": 467,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/561863792",
+          "explicit": false,
+          "rank": 164589
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

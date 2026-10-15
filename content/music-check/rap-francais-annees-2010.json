@@ -1,0 +1,457 @@
+{
+  "quizId": "rap-francais-annees-2010",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "rf10-01",
+      "query": {
+        "artist": "Orelsan",
+        "title": "Basique"
+      },
+      "found": {
+        "id": "414838122",
+        "title": "Basique",
+        "artist": "Orelsan",
+        "album": "La fête est finie",
+        "durationS": 164,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/414838122",
+        "explicit": false,
+        "rank": 866947
+      },
+      "alternatives": [
+        {
+          "id": "3608977092",
+          "title": "Basique par Emmanuel Macron / la réforme des retraites (parodie OrelSan)",
+          "artist": "Le grand Meaulnes",
+          "album": "Basique par Emmanuel Macron / la réforme des retraites (parodie OrelSan)",
+          "durationS": 131,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3608977092",
+          "explicit": true,
+          "rank": 420288
+        },
+        {
+          "id": "4217134982",
+          "title": "odio (feat. Mala Luna) (MaxXx, Basique Orelsan, Boukan San & Suno Remix)",
+          "artist": "Le Boukan",
+          "album": "Reborn",
+          "durationS": 174,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4217134982",
+          "explicit": false,
+          "rank": 22025
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-02",
+      "query": {
+        "artist": "Nekfeu",
+        "title": "On verra"
+      },
+      "found": {
+        "id": "101764813",
+        "title": "On verra",
+        "artist": "Nekfeu",
+        "album": "Feu",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/101764813",
+        "explicit": false,
+        "rank": 940197
+      },
+      "alternatives": [
+        {
+          "id": "114438570",
+          "title": "On verra (Instrumental)",
+          "artist": "Nekfeu",
+          "album": "Feu (Ré-édition)",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/114438570",
+          "explicit": false,
+          "rank": 332214
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-03",
+      "query": {
+        "artist": "Alonzo",
+        "title": "Binta"
+      },
+      "found": {
+        "id": "125089724",
+        "title": "Binta",
+        "artist": "Alonzo",
+        "album": "Avenue de St Antoine",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/125089724",
+        "explicit": false,
+        "rank": 858606
+      },
+      "alternatives": [
+        {
+          "id": "481510382",
+          "title": "Santana",
+          "artist": "Alonzo",
+          "album": "Taxi 5 (Bande originale inspirée du film)",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/481510382",
+          "explicit": true,
+          "rank": 874349
+        },
+        {
+          "id": "4082864831",
+          "title": "Anita",
+          "artist": "Alonzo",
+          "album": "Anita",
+          "durationS": 162,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4082864831",
+          "explicit": true,
+          "rank": 358679
+        },
+        {
+          "id": "1285255122",
+          "title": "Nineta",
+          "artist": "Alonzo",
+          "album": "Capo Dei Capi Vol. II & III",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1285255122",
+          "explicit": true,
+          "rank": 321006
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-04",
+      "query": {
+        "artist": "Bigflo & Oli",
+        "title": "Plus tard"
+      },
+      "found": {
+        "id": "714021812",
+        "title": "Plus tard",
+        "artist": "Bigflo & Oli",
+        "album": "La vie de rêve",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/714021812",
+        "explicit": false,
+        "rank": 740474
+      },
+      "alternatives": [
+        {
+          "id": "712521852",
+          "title": "Plus tard (Bigflo & Oli) (Karaoke Version)",
+          "artist": "Fredo",
+          "album": "Les Karaoke de Fredo",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/712521852",
+          "explicit": false,
+          "rank": 18657
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-05",
+      "query": {
+        "artist": "Soprano",
+        "title": "Clown"
+      },
+      "found": {
+        "id": "576822222",
+        "title": "Clown",
+        "artist": "Soprano",
+        "album": "Cosmopolitanie (Deluxe Edition)",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/576822222",
+        "explicit": false,
+        "rank": 801597
+      },
+      "alternatives": [
+        {
+          "id": "452733702",
+          "title": "Clown (L'Everest à l'Orange Vélodrome; Live)",
+          "artist": "Soprano",
+          "album": "L'Everest à l'Orange Vélodrome (Live)",
+          "durationS": 299,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/452733702",
+          "explicit": false,
+          "rank": 297791
+        },
+        {
+          "id": "2512790691",
+          "title": "Clown (Live au Stade de France, 2023)",
+          "artist": "Soprano",
+          "album": "Un peu plus près du Stade de France (Live au Stade de France, 2023)",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2512790691",
+          "explicit": false,
+          "rank": 194345
+        },
+        {
+          "id": "3551100521",
+          "title": "soprano plexus clown glider*",
+          "artist": "sopranoson",
+          "album": "soprano plexus clown glider*",
+          "durationS": 159,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3551100521",
+          "explicit": true,
+          "rank": 21144
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-06",
+      "query": {
+        "artist": "Black M",
+        "title": "Le prince Aladin"
+      },
+      "found": {
+        "id": "107030958",
+        "title": "Le prince Aladin (feat. Kev Adams)",
+        "artist": "Black M",
+        "album": "Le prince Aladin (feat. Kev Adams)",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/107030958",
+        "explicit": false,
+        "rank": 737572
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-07",
+      "query": {
+        "artist": "Lartiste",
+        "title": "Chocolat"
+      },
+      "found": {
+        "id": "135203382",
+        "title": "Chocolat (feat. Awa Imani)",
+        "artist": "Lartiste",
+        "album": "Clandestino",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/135203382",
+        "explicit": false,
+        "rank": 857476
+      },
+      "alternatives": [
+        {
+          "id": "3265250791",
+          "title": "Ik werd altijd als laatste gekozen en nu maak ik kutmuziek",
+          "artist": "Combi Magnetron",
+          "album": "Chocolade Zeester en de Knakworst Smakende Water",
+          "durationS": 125,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3265250791",
+          "explicit": false,
+          "rank": 13283
+        },
+        {
+          "id": "14232525",
+          "title": "L'artiste",
+          "artist": "Whisky Chocolat",
+          "album": "Live At Ze Bijou",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14232525",
+          "explicit": false,
+          "rank": 2474
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-08",
+      "query": {
+        "artist": "Georgio",
+        "title": "Héra"
+      },
+      "found": {
+        "id": "130900292",
+        "title": "Héra",
+        "artist": "Georgio",
+        "album": "Héra",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/130900292",
+        "explicit": false,
+        "rank": 763625
+      },
+      "alternatives": [
+        {
+          "id": "3551940821",
+          "title": "Oasis",
+          "artist": "Georgio",
+          "album": "Gloria",
+          "durationS": 181,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3551940821",
+          "explicit": true,
+          "rank": 656099
+        },
+        {
+          "id": "3601439902",
+          "title": "Héros",
+          "artist": "Georgio",
+          "album": "Bleu noir",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3601439902",
+          "explicit": false,
+          "rank": 522328
+        },
+        {
+          "id": "130900296",
+          "title": "Brûle",
+          "artist": "Georgio",
+          "album": "Héra",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/130900296",
+          "explicit": false,
+          "rank": 667363
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-09",
+      "query": {
+        "artist": "GIMS",
+        "title": "Bella"
+      },
+      "found": {
+        "id": "72717420",
+        "title": "Bella",
+        "artist": "GIMS",
+        "album": "Subliminal (La face cachée)",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72717420",
+        "explicit": false,
+        "rank": 915419
+      },
+      "alternatives": [
+        {
+          "id": "1302152722",
+          "title": "BELLE",
+          "artist": "GIMS",
+          "album": "BELLE",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1302152722",
+          "explicit": false,
+          "rank": 813086
+        },
+        {
+          "id": "130855276",
+          "title": "Tout donner (Pilule violette)",
+          "artist": "GIMS",
+          "album": "À contrecoeur (Pilule Violette)",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/130855276",
+          "explicit": false,
+          "rank": 897615
+        },
+        {
+          "id": "68473211",
+          "title": "Bavon (feat. Charly Bell)",
+          "artist": "GIMS",
+          "album": "Les chroniques du Wati Boss",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68473211",
+          "explicit": false,
+          "rank": 616600
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf10-10",
+      "query": {
+        "artist": "KeBlack",
+        "title": "Bazardée"
+      },
+      "found": {
+        "id": "136127850",
+        "title": "Bazardée",
+        "artist": "KeBlack",
+        "album": "Bazardée",
+        "durationS": 201,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136127850",
+        "explicit": false,
+        "rank": 844303
+      },
+      "alternatives": [
+        {
+          "id": "4256478651",
+          "title": "Bazardée (Mashup Remix)",
+          "artist": "Dj Blax",
+          "album": "Bazardée (Mashup Remix)",
+          "durationS": 153,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4256478651",
+          "explicit": false,
+          "rank": 269824
+        },
+        {
+          "id": "140797895",
+          "title": "Bazardée : Bazardée (Reprise Electro Keblack)",
+          "artist": "Amin Cruiser",
+          "album": "Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You)",
+          "durationS": 156,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/140797895",
+          "explicit": false,
+          "rank": 69065
+        },
+        {
+          "id": "140797899",
+          "title": "Shape of You : Shape of You (Reprise Ed Sheeran)",
+          "artist": "Steevy Cruz",
+          "album": "Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You)",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/140797899",
+          "explicit": false,
+          "rank": 19024
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

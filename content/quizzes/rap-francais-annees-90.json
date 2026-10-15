@@ -1,0 +1,231 @@
+{
+  "id": "rap-francais-annees-90",
+  "gameType": "blindTest",
+  "title": "Rap français des années 90",
+  "theme": "Musique",
+  "description": "L’âge d’or du rap d’ici, de Paris à Marseille : dix classiques des années 90.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 1990,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-3)",
+  "questions": [
+    {
+      "id": "rf90-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bouge de là (Part. 1) – MC Solaar",
+        "Show ce soir – Bisso Na Bisso",
+        "Bois d'ébène – Les Sages Poètes de la Rue",
+        "Mama Lova – Oxmo Puccino"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bouge de là (Part. 1)"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "MC Solaar",
+        "title": "Bouge de là (Part. 1)",
+        "titleAliases": [
+          "Bouge de là"
+        ]
+      }
+    },
+    {
+      "id": "rf90-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Simple et funky – Alliance Ethnik",
+        "Le spectateur – Sens Unik",
+        "Petit frère – IAM",
+        "Si loin de toi – Pit Baccardi"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "IAM"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "IAM",
+        "title": "Petit frère"
+      }
+    },
+    {
+      "id": "rf90-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Atout point de vue – Soon E MC",
+        "Le spectateur – Sens Unik",
+        "Respect – Alliance Ethnik",
+        "Show ce soir – Bisso Na Bisso"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Respect"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Alliance Ethnik",
+        "title": "Respect"
+      }
+    },
+    {
+      "id": "rf90-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bye Bye – Menelik",
+        "Correspondance – Fabe",
+        "L'odyssée suit son cours – Assassin",
+        "Bois d'ébène – Les Sages Poètes de la Rue"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Menelik"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Menelik",
+        "title": "Bye Bye",
+        "artistAliases": [
+          "Ménélik"
+        ]
+      }
+    },
+    {
+      "id": "rf90-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Simple et funky – Alliance Ethnik",
+        "Mama Lova – Oxmo Puccino",
+        "Correspondance – Fabe",
+        "Bad Boys de Marseille – Akhenaton"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bad Boys de Marseille"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Akhenaton",
+        "title": "Bad Boys de Marseille"
+      }
+    },
+    {
+      "id": "rf90-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Si loin de toi – Pit Baccardi",
+        "Je zappe et je mate – Passi",
+        "Atout point de vue – Soon E MC",
+        "Correspondance – Fabe"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Passi"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Passi",
+        "title": "Je zappe et je mate"
+      }
+    },
+    {
+      "id": "rf90-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tonton du bled – 113",
+        "Show ce soir – Bisso Na Bisso",
+        "Le spectateur – Sens Unik",
+        "L'odyssée suit son cours – Assassin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Tonton du bled"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "113",
+        "title": "Tonton du bled"
+      }
+    },
+    {
+      "id": "rf90-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mama Lova – Oxmo Puccino",
+        "Bois d'ébène – Les Sages Poètes de la Rue",
+        "Mon papa à moi est un gangster – Stomy Bugsy",
+        "Simple et funky – Alliance Ethnik"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Stomy Bugsy"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Stomy Bugsy",
+        "title": "Mon papa à moi est un gangster"
+      }
+    },
+    {
+      "id": "rf90-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le spectateur – Sens Unik",
+        "Samuraï – Shurik'N",
+        "Correspondance – Fabe",
+        "Si loin de toi – Pit Baccardi"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Samuraï"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Shurik'N",
+        "title": "Samuraï",
+        "titleAliases": [
+          "Samouraï",
+          "Samurai"
+        ],
+        "artistAliases": [
+          "Shurik'n",
+          "Shurikn"
+        ]
+      }
+    },
+    {
+      "id": "rf90-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le spectateur – Sens Unik",
+        "Atout point de vue – Soon E MC",
+        "L'odyssée suit son cours – Assassin",
+        "Né ici – Doc Gynéco"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Doc Gynéco"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Doc Gynéco",
+        "title": "Né ici"
+      }
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "id": "rap-francais-annees-2010",
+  "gameType": "blindTest",
+  "title": "Rap français des années 2010",
+  "theme": "Musique",
+  "description": "La nouvelle génération qui a fait exploser les compteurs : dix morceaux des années 2010.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 2010,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-3)",
+  "questions": [
+    {
+      "id": "rf10-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Eurotrap – Vald",
+        "Château de sable – Columbine",
+        "Basique – Orelsan",
+        "Toka – Sofiane"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Basique"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Orelsan",
+        "title": "Basique"
+      }
+    },
+    {
+      "id": "rf10-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La kiffance – Naps",
+        "Désaccordé – Vald",
+        "On verra – Nekfeu",
+        "Habitué – Dosseh"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Nekfeu"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Nekfeu",
+        "title": "On verra"
+      }
+    },
+    {
+      "id": "rf10-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Binta – Alonzo",
+        "Lettre à la République – Kery James",
+        "Château de sable – Columbine",
+        "Réseaux – Niska"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Binta"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Alonzo",
+        "title": "Binta"
+      }
+    },
+    {
+      "id": "rf10-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Corleone – Lacrim",
+        "Tchikita – Jul",
+        "La kiffance – Naps",
+        "Plus tard – Bigflo & Oli"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bigflo & Oli"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bigflo & Oli",
+        "title": "Plus tard",
+        "artistAliases": [
+          "Bigflo et Oli"
+        ]
+      }
+    },
+    {
+      "id": "rf10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Toka – Sofiane",
+        "Clown – Soprano",
+        "Habitué – Dosseh",
+        "Eurotrap – Vald"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Clown"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Soprano",
+        "title": "Clown"
+      }
+    },
+    {
+      "id": "rf10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le prince Aladin – Black M",
+        "Réseaux – Niska",
+        "Corleone – Lacrim",
+        "Lettre à la République – Kery James"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Black M"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Black M",
+        "title": "Le prince Aladin"
+      }
+    },
+    {
+      "id": "rf10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tchikita – Jul",
+        "La kiffance – Naps",
+        "Chocolat – Lartiste",
+        "Château de sable – Columbine"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Chocolat"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Lartiste",
+        "title": "Chocolat"
+      }
+    },
+    {
+      "id": "rf10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Habitué – Dosseh",
+        "Héra – Georgio",
+        "Désaccordé – Vald",
+        "Corleone – Lacrim"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Georgio"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Georgio",
+        "title": "Héra"
+      }
+    },
+    {
+      "id": "rf10-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Toka – Sofiane",
+        "Réseaux – Niska",
+        "Tchikita – Jul",
+        "Bella – GIMS"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bella"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "GIMS",
+        "title": "Bella",
+        "artistAliases": [
+          "Maître Gims",
+          "Gims"
+        ]
+      }
+    },
+    {
+      "id": "rf10-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bazardée – KeBlack",
+        "Lettre à la République – Kery James",
+        "Corleone – Lacrim",
+        "La kiffance – Naps"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "KeBlack"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "KeBlack",
+        "title": "Bazardée"
+      }
+    }
+  ]
+}

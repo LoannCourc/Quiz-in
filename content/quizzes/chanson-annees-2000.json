@@ -1,0 +1,221 @@
+{
+  "id": "chanson-annees-2000",
+  "gameType": "blindTest",
+  "title": "Chanson française des années 2000",
+  "theme": "Musique",
+  "description": "La nouvelle scène française et ses refrains malins : dix chansons des années 2000.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 2000,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-3)",
+  "questions": [
+    {
+      "id": "c00-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "À la faveur de l'automne – Tété",
+        "Jardin d'hiver – Keren Ann",
+        "Le dîner – Bénabar",
+        "La superbe – Benjamin Biolay"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le dîner"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bénabar",
+        "title": "Le dîner"
+      }
+    },
+    {
+      "id": "c00-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fanny ardant et moi – Vincent Delerm",
+        "L'autre bout du monde – Emily Loizeau",
+        "Je voudrais dormir – Jeanne Cherhal",
+        "Deux pieds – Thomas Fersen"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Vincent Delerm"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Vincent Delerm",
+        "title": "Fanny ardant et moi"
+      }
+    },
+    {
+      "id": "c00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Est-ce que tu aimes ? – Arthur H",
+        "Bien mérité – Clarika",
+        "Les embouteillages – Sanseverino",
+        "Caravane – Raphaël"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Caravane"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Raphaël",
+        "title": "Caravane"
+      }
+    },
+    {
+      "id": "c00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jardin d'hiver – Keren Ann",
+        "C'est quand le bonheur ? – Cali",
+        "À la faveur de l'automne – Tété",
+        "La superbe – Benjamin Biolay"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Cali"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Cali",
+        "title": "C'est quand le bonheur ?"
+      }
+    },
+    {
+      "id": "c00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "J'traine des pieds – Olivia Ruiz",
+        "Je voudrais dormir – Jeanne Cherhal",
+        "L'autre bout du monde – Emily Loizeau",
+        "Bien mérité – Clarika"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "J'traine des pieds"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Olivia Ruiz",
+        "title": "J'traine des pieds"
+      }
+    },
+    {
+      "id": "c00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Deux pieds – Thomas Fersen",
+        "Les embouteillages – Sanseverino",
+        "Les voisines – Renan Luce",
+        "Est-ce que tu aimes ? – Arthur H"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Renan Luce"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Renan Luce",
+        "title": "Les voisines"
+      }
+    },
+    {
+      "id": "c00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jardin d'hiver – Keren Ann",
+        "Ta douleur – Camille",
+        "Je voudrais dormir – Jeanne Cherhal",
+        "L'autre bout du monde – Emily Loizeau"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ta douleur"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Camille",
+        "title": "Ta douleur"
+      }
+    },
+    {
+      "id": "c00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La superbe – Benjamin Biolay",
+        "Deux pieds – Thomas Fersen",
+        "À la faveur de l'automne – Tété",
+        "J'aime plus Paris – Thomas Dutronc"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Thomas Dutronc"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Thomas Dutronc",
+        "title": "J'aime plus Paris"
+      }
+    },
+    {
+      "id": "c00-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "En apesanteur – Calogero",
+        "Est-ce que tu aimes ? – Arthur H",
+        "Bien mérité – Clarika",
+        "Les embouteillages – Sanseverino"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "En apesanteur"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Calogero",
+        "title": "En apesanteur"
+      }
+    },
+    {
+      "id": "c00-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "À la faveur de l'automne – Tété",
+        "La superbe – Benjamin Biolay",
+        "Qui de nous deux – -M-",
+        "Jardin d'hiver – Keren Ann"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "-M-"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "-M-",
+        "title": "Qui de nous deux",
+        "artistAliases": [
+          "M",
+          "Matthieu Chedid"
+        ]
+      }
+    }
+  ]
+}

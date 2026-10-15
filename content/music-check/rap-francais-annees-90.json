@@ -1,0 +1,468 @@
+{
+  "quizId": "rap-francais-annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "rf90-01",
+      "query": {
+        "artist": "MC Solaar",
+        "title": "Bouge de là (Part. 1)"
+      },
+      "found": {
+        "id": "1410517042",
+        "title": "Bouge de là (Part. 1)",
+        "artist": "MC Solaar",
+        "album": "Bouge de là",
+        "durationS": 191,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1410517042",
+        "explicit": false,
+        "rank": 633151
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-02",
+      "query": {
+        "artist": "IAM",
+        "title": "Petit frère"
+      },
+      "found": {
+        "id": "73956352",
+        "title": "Petit frère",
+        "artist": "IAM",
+        "album": "L'école du micro d'argent",
+        "durationS": 285,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/73956352",
+        "explicit": false,
+        "rank": 857438
+      },
+      "alternatives": [
+        {
+          "id": "883196",
+          "title": "Petit Frère (Live Retour Aux Pyramides 14/03/2008)",
+          "artist": "IAM",
+          "album": "Live Retour Aux Pyramides",
+          "durationS": 280,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/883196",
+          "explicit": false,
+          "rank": 271302
+        },
+        {
+          "id": "70707509",
+          "title": "Petit frère (Instrumental)",
+          "artist": "IAM",
+          "album": "L'école Du Micro D'argent (Edition Collector)",
+          "durationS": 315,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70707509",
+          "explicit": false,
+          "rank": 225728
+        },
+        {
+          "id": "2434732575",
+          "title": "Petit frère (Live Studio)",
+          "artist": "IAM",
+          "album": "Warrior Tour (Live Studio)",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2434732575",
+          "explicit": true,
+          "rank": 219199
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-03",
+      "query": {
+        "artist": "Alliance Ethnik",
+        "title": "Respect"
+      },
+      "found": {
+        "id": "881064042",
+        "title": "Respect (feat. Vinia Mojica)",
+        "artist": "Alliance Ethnik",
+        "album": "Simple et funky (Edition Deluxe)",
+        "durationS": 274,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/881064042",
+        "explicit": false,
+        "rank": 664066
+      },
+      "alternatives": [
+        {
+          "id": "3088067",
+          "title": "Respect (Radio Edit)",
+          "artist": "Alliance Ethnik",
+          "album": "Le Best Of",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3088067",
+          "explicit": false,
+          "rank": 619470
+        },
+        {
+          "id": "3373708801",
+          "title": "Respect",
+          "artist": "Alliance Ethnik",
+          "album": "Meilleur duo rap & RnB français",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3373708801",
+          "explicit": false,
+          "rank": 297334
+        },
+        {
+          "id": "368705061",
+          "title": "Respect",
+          "artist": "Alliance Ethnik",
+          "album": "Flashback RnB 90",
+          "durationS": 258,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/368705061",
+          "explicit": false,
+          "rank": 264797
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-04",
+      "query": {
+        "artist": "Menelik",
+        "title": "Bye Bye"
+      },
+      "found": {
+        "id": "955752",
+        "title": "Bye Bye (feat. Imane D.)",
+        "artist": "Menelik",
+        "album": "Je me souviens",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/955752",
+        "explicit": false,
+        "rank": 586201
+      },
+      "alternatives": [
+        {
+          "id": "955759",
+          "title": "Bye Bye (Refugee Camp Band Remix)",
+          "artist": "Menelik",
+          "album": "Je me souviens",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/955759",
+          "explicit": false,
+          "rank": 732831
+        },
+        {
+          "id": "2323309",
+          "title": "Tribut",
+          "artist": "Menelik",
+          "album": "Phenomenelik",
+          "durationS": 180,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2323309",
+          "explicit": false,
+          "rank": 178691
+        },
+        {
+          "id": "2323301",
+          "title": "Ma belle",
+          "artist": "Menelik",
+          "album": "Phenomenelik",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2323301",
+          "explicit": false,
+          "rank": 126285
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-05",
+      "query": {
+        "artist": "Akhenaton",
+        "title": "Bad Boys de Marseille"
+      },
+      "found": {
+        "id": "3134123",
+        "title": "Bad Boys de Marseille",
+        "artist": "Akhenaton",
+        "album": "Métèque et mat",
+        "durationS": 276,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3134123",
+        "explicit": false,
+        "rank": 632395
+      },
+      "alternatives": [
+        {
+          "id": "4017228131",
+          "title": "Bad Boys de Marseille (Version sauvage)",
+          "artist": "Akhenaton",
+          "album": "Métèque et Mat (Édition Deluxe)",
+          "durationS": 280,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4017228131",
+          "explicit": false,
+          "rank": 224582
+        },
+        {
+          "id": "4017228121",
+          "title": "Bad Boys de Marseille (Spanish Version)",
+          "artist": "Akhenaton",
+          "album": "Métèque et Mat (Édition Deluxe)",
+          "durationS": 228,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4017228121",
+          "explicit": false,
+          "rank": 126083
+        },
+        {
+          "id": "3871287131",
+          "title": "Bad Boys de Marseille (Version Sauvage)",
+          "artist": "Akhenaton",
+          "album": "Hip Hop Soul Party 3",
+          "durationS": 297,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3871287131",
+          "explicit": true,
+          "rank": 434517
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-06",
+      "query": {
+        "artist": "Passi",
+        "title": "Je zappe et je mate"
+      },
+      "found": {
+        "id": "2106872967",
+        "title": "Je zappe et je mate",
+        "artist": "Passi",
+        "album": "Les tentations",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2106872967",
+        "explicit": false,
+        "rank": 638618
+      },
+      "alternatives": [
+        {
+          "id": "1923643997",
+          "title": "I",
+          "artist": "Iliès",
+          "album": "Aux Alentours, Vol. 1",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1923643997",
+          "explicit": false,
+          "rank": 38469
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-07",
+      "query": {
+        "artist": "113",
+        "title": "Tonton du bled"
+      },
+      "found": {
+        "id": "3217059461",
+        "title": "Tonton du bled",
+        "artist": "113",
+        "album": "Tonton du bled",
+        "durationS": 294,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3217059461",
+        "explicit": false,
+        "rank": 804833
+      },
+      "alternatives": [
+        {
+          "id": "69389120",
+          "title": "Tonton du bled (Karaoke Version) (Originally Performed By 113)",
+          "artist": "La-Le-Lu",
+          "album": "French Rap, Vol. 1 (Karaoke Version)",
+          "durationS": 274,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/69389120",
+          "explicit": false,
+          "rank": 53659
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-08",
+      "query": {
+        "artist": "Stomy Bugsy",
+        "title": "Mon papa à moi est un gangster"
+      },
+      "found": {
+        "id": "1041554",
+        "title": "Mon papa à moi est un gangster",
+        "artist": "Stomy Bugsy",
+        "album": "Le calibre qu'il te faut",
+        "durationS": 361,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1041554",
+        "explicit": false,
+        "rank": 629360
+      },
+      "alternatives": [
+        {
+          "id": "1041037",
+          "title": "Mon papa à moi est un gangster (Remix)",
+          "artist": "Stomy Bugsy",
+          "album": "Quelques balles de plus pour... le calibre qu'il te faut",
+          "durationS": 295,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1041037",
+          "explicit": false,
+          "rank": 448936
+        },
+        {
+          "id": "1569842512",
+          "title": "Mon papa à moi est un gangster (Mon papa à moi Remix)",
+          "artist": "Stomy Bugsy",
+          "album": "Mon papa à moi est un gangster (Remix)",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1569842512",
+          "explicit": false,
+          "rank": 403938
+        },
+        {
+          "id": "1569842522",
+          "title": "Un rep qui fait reup",
+          "artist": "Stomy Bugsy",
+          "album": "Mon papa à moi est un gangster (Remix)",
+          "durationS": 406,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1569842522",
+          "explicit": false,
+          "rank": 199888
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-09",
+      "query": {
+        "artist": "Shurik'N",
+        "title": "Samuraï"
+      },
+      "found": {
+        "id": "3134395",
+        "title": "Samuraï",
+        "artist": "Shurik'N",
+        "album": "Où je vis",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3134395",
+        "explicit": false,
+        "rank": 510670
+      },
+      "alternatives": [
+        {
+          "id": "4059452691",
+          "title": "Samuraï (Instrumental)",
+          "artist": "Shurik'N",
+          "album": "Où je vis (Edition Deluxe)",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4059452691",
+          "explicit": false,
+          "rank": 283969
+        },
+        {
+          "id": "3668487382",
+          "title": "Samuraï _ L'empire Du Côté Obscur",
+          "artist": "Shurik'N",
+          "album": "Pour Tous Les Quartiers En France 2",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3668487382",
+          "explicit": true,
+          "rank": 222536
+        },
+        {
+          "id": "2182462057",
+          "title": "Funa (Samuraï)",
+          "artist": "Shurik'N",
+          "album": "Samuraï Remix",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2182462057",
+          "explicit": true,
+          "rank": 110711
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf90-10",
+      "query": {
+        "artist": "Doc Gynéco",
+        "title": "Né ici"
+      },
+      "found": {
+        "id": "3134133",
+        "title": "Né ici",
+        "artist": "Doc Gynéco",
+        "album": "Premiere consultation",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3134133",
+        "explicit": false,
+        "rank": 624583
+      },
+      "alternatives": [
+        {
+          "id": "3090033",
+          "title": "Né rue Case Nègres (feat. Janik MC)",
+          "artist": "Doc Gynéco",
+          "album": "Menu Best Of",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3090033",
+          "explicit": false,
+          "rank": 461405
+        },
+        {
+          "id": "69170260",
+          "title": "Né Ici (Karaoke Version) (Originally Performed By Doc Gyneco)",
+          "artist": "La-Le-Lu",
+          "album": "Pop, Vol. 8 (Karaoke Version)",
+          "durationS": 278,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/69170260",
+          "explicit": false,
+          "rank": 25338
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,535 @@
+{
+  "quizId": "chanson-annees-2000",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "c00-01",
+      "query": {
+        "artist": "Bénabar",
+        "title": "Le dîner"
+      },
+      "found": {
+        "id": "583033",
+        "title": "Le dîner",
+        "artist": "Bénabar",
+        "album": "Le dîner",
+        "durationS": 180,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/583033",
+        "explicit": false,
+        "rank": 766579
+      },
+      "alternatives": [
+        {
+          "id": "671634832",
+          "title": "Le diner (Live Grand Rex 2018)",
+          "artist": "Bénabar",
+          "album": "EP Live - Grand Rex 2018",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/671634832",
+          "explicit": false,
+          "rank": 209820
+        },
+        {
+          "id": "124314598",
+          "title": "Le Dîner (Originally Performed by Bénabar) [Karaoke Version]",
+          "artist": "The Karaoke Channel",
+          "album": "The Karaoke Channel - Karaoke Hits of 2005, Vol. 22",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/124314598",
+          "explicit": false,
+          "rank": 55290
+        },
+        {
+          "id": "2951085691",
+          "title": "Finalement (Par Kad Merad et Barbara Pravi)",
+          "artist": "Ibrahim Maalouf",
+          "album": "Finalement (Bande originale du film)",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2951085691",
+          "explicit": false,
+          "rank": 386091
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-02",
+      "query": {
+        "artist": "Vincent Delerm",
+        "title": "Fanny ardant et moi"
+      },
+      "found": {
+        "id": "605653282",
+        "title": "Fanny ardant et moi",
+        "artist": "Vincent Delerm",
+        "album": "Vincent delerm",
+        "durationS": 169,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/605653282",
+        "explicit": false,
+        "rank": 511046
+      },
+      "alternatives": [
+        {
+          "id": "1727015057",
+          "title": "Fanny Ardant et moi (Version piano)",
+          "artist": "Vincent Delerm",
+          "album": "Sans paroles (Version piano)",
+          "durationS": 184,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1727015057",
+          "explicit": false,
+          "rank": 187524
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-03",
+      "query": {
+        "artist": "Raphaël",
+        "title": "Caravane"
+      },
+      "found": {
+        "id": "3129431",
+        "title": "Caravane",
+        "artist": "Raphaël",
+        "album": "Caravane",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3129431",
+        "explicit": false,
+        "rank": 898199
+      },
+      "alternatives": [
+        {
+          "id": "3112409",
+          "title": "Caravane (Live 2006)",
+          "artist": "Raphaël",
+          "album": "Résistance À La Nuit",
+          "durationS": 289,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3112409",
+          "explicit": false,
+          "rank": 310381
+        },
+        {
+          "id": "3109356",
+          "title": "Caravane (Live 2006)",
+          "artist": "Raphaël",
+          "album": "Une Nuit Au Châtelet",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3109356",
+          "explicit": false,
+          "rank": 342657
+        },
+        {
+          "id": "14483214",
+          "title": "Caravane (Live 2011)",
+          "artist": "Raphaël",
+          "album": "Raphael Live",
+          "durationS": 372,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14483214",
+          "explicit": false,
+          "rank": 280519
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-04",
+      "query": {
+        "artist": "Cali",
+        "title": "C'est quand le bonheur ?"
+      },
+      "found": {
+        "id": "3092236",
+        "title": "C'est quand le bonheur ?",
+        "artist": "Cali",
+        "album": "L'amour Parfait",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3092236",
+        "explicit": false,
+        "rank": 689496
+      },
+      "alternatives": [
+        {
+          "id": "2563177202",
+          "title": "C'est quand le bonheur ?",
+          "artist": "Cali",
+          "album": "20 ans d'amour parfait",
+          "durationS": 318,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2563177202",
+          "explicit": false,
+          "rank": 418640
+        },
+        {
+          "id": "72370553",
+          "title": "C'est quand le bonheur? (version électrique)",
+          "artist": "Cali",
+          "album": "La Vie Cowboy",
+          "durationS": 217,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/72370553",
+          "explicit": false,
+          "rank": 99809
+        },
+        {
+          "id": "3112565",
+          "title": "C'est quand le bonheur ? (Live)",
+          "artist": "Cali",
+          "album": "Le Bordel Magnifique",
+          "durationS": 347,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3112565",
+          "explicit": false,
+          "rank": 402098
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-05",
+      "query": {
+        "artist": "Olivia Ruiz",
+        "title": "J'traine des pieds"
+      },
+      "found": {
+        "id": "1148350",
+        "title": "J'traine des pieds",
+        "artist": "Olivia Ruiz",
+        "album": "J'Traîne Des Pieds",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1148350",
+        "explicit": false,
+        "rank": 741846
+      },
+      "alternatives": [
+        {
+          "id": "7419777",
+          "title": "J'Traîne Des Pieds (Mi Cara Aranada - Cirque d'Hiver 2007)",
+          "artist": "Olivia Ruiz",
+          "album": "Chocolat Show",
+          "durationS": 405,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7419777",
+          "explicit": false,
+          "rank": 343211
+        },
+        {
+          "id": "6062554",
+          "title": "J'Traîne Des Pieds (Mi Cara Arañada)",
+          "artist": "Olivia Ruiz",
+          "album": "Miss Météores Live",
+          "durationS": 388,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6062554",
+          "explicit": false,
+          "rank": 271277
+        },
+        {
+          "id": "1148351",
+          "title": "Pour te dire tout",
+          "artist": "Olivia Ruiz",
+          "album": "J'Traîne Des Pieds",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1148351",
+          "explicit": true,
+          "rank": 206890
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-06",
+      "query": {
+        "artist": "Renan Luce",
+        "title": "Les voisines"
+      },
+      "found": {
+        "id": "371636691",
+        "title": "Les voisines",
+        "artist": "Renan Luce",
+        "album": "Repenti",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/371636691",
+        "explicit": false,
+        "rank": 762287
+      },
+      "alternatives": [
+        {
+          "id": "371636821",
+          "title": "Les voisines (Live)",
+          "artist": "Renan Luce",
+          "album": "Repenti",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/371636821",
+          "explicit": false,
+          "rank": 281223
+        },
+        {
+          "id": "4174787172",
+          "title": "Les voisines (Live Orchestral / 2021)",
+          "artist": "Renan Luce",
+          "album": "Repenti - Il y a 20 ans peut-être",
+          "durationS": 207,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4174787172",
+          "explicit": false,
+          "rank": 293796
+        },
+        {
+          "id": "1565783",
+          "title": "La lettre",
+          "artist": "Renan Luce",
+          "album": "Les Voisines",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1565783",
+          "explicit": false,
+          "rank": 495658
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-07",
+      "query": {
+        "artist": "Camille",
+        "title": "Ta douleur"
+      },
+      "found": {
+        "id": "355636791",
+        "title": "Ta douleur",
+        "artist": "Camille",
+        "album": "Le fil",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/355636791",
+        "explicit": false,
+        "rank": 686439
+      },
+      "alternatives": [
+        {
+          "id": "355613861",
+          "title": "Ta douleur",
+          "artist": "Camille",
+          "album": "Ilo Lympia",
+          "durationS": 339,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/355613861",
+          "explicit": false,
+          "rank": 179941
+        },
+        {
+          "id": "355614601",
+          "title": "Ta douleur",
+          "artist": "Camille",
+          "album": "Live au Trianon",
+          "durationS": 254,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/355614601",
+          "explicit": false,
+          "rank": 203928
+        },
+        {
+          "id": "8771681",
+          "title": "Ta Douleur — Karaoké Playback Avec Choeurs — Rendu Célèbre Par Camille",
+          "artist": "Karaoké Playback Français",
+          "album": "Tubes 2005 Vol. 4",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/8771681",
+          "explicit": false,
+          "rank": 32479
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-08",
+      "query": {
+        "artist": "Thomas Dutronc",
+        "title": "J'aime plus Paris"
+      },
+      "found": {
+        "id": "580647992",
+        "title": "J'aime plus Paris",
+        "artist": "Thomas Dutronc",
+        "album": "Comme un manouche sans guitare",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/580647992",
+        "explicit": false,
+        "rank": 562002
+      },
+      "alternatives": [
+        {
+          "id": "4308905",
+          "title": "J'Aime Plus Paris",
+          "artist": "Thomas Dutronc",
+          "album": "Le Live-Comme Un Manouche Sans Guitare",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4308905",
+          "explicit": false,
+          "rank": 344543
+        },
+        {
+          "id": "535913062",
+          "title": "J'aime plus Paris (Live in Arlon / 2018)",
+          "artist": "Thomas Dutronc",
+          "album": "Live Is Love",
+          "durationS": 440,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/535913062",
+          "explicit": false,
+          "rank": 231905
+        },
+        {
+          "id": "2482278871",
+          "title": "J’aime plus Paris (Live)",
+          "artist": "Jacques Dutronc",
+          "album": "Dutronc & Dutronc - La tournée générale (Live)",
+          "durationS": 455,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2482278871",
+          "explicit": false,
+          "rank": 246346
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-09",
+      "query": {
+        "artist": "Calogero",
+        "title": "En apesanteur"
+      },
+      "found": {
+        "id": "132629150",
+        "title": "En apesanteur (Single Version)",
+        "artist": "Calogero",
+        "album": "Calogero",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/132629150",
+        "explicit": false,
+        "rank": 861494
+      },
+      "alternatives": [
+        {
+          "id": "7532971",
+          "title": "En Apesanteur (Version Symphonique)",
+          "artist": "Calogero",
+          "album": "Best Of - Version Originale & Version Symphonique",
+          "durationS": 195,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7532971",
+          "explicit": false,
+          "rank": 216850
+        },
+        {
+          "id": "2113912",
+          "title": "En apesanteur",
+          "artist": "Calogero",
+          "album": "Live 1.0",
+          "durationS": 286,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2113912",
+          "explicit": false,
+          "rank": 358560
+        },
+        {
+          "id": "790202522",
+          "title": "En apesanteur (Remix 2019)",
+          "artist": "Calogero",
+          "album": "Best Of",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/790202522",
+          "explicit": false,
+          "rank": 480025
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "c00-10",
+      "query": {
+        "artist": "-M-",
+        "title": "Qui de nous deux"
+      },
+      "found": {
+        "id": "3130099",
+        "title": "Qui de nous deux",
+        "artist": "-M-",
+        "album": "Qui de nous deux",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3130099",
+        "explicit": false,
+        "rank": 760059
+      },
+      "alternatives": [
+        {
+          "id": "110150522",
+          "title": "Qui de nous deux ?",
+          "artist": "Louis, Matthieu, Joseph & Anna Chedid",
+          "album": "Louis, Matthieu, Joseph & Anna Chedid (Deluxe)",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/110150522",
+          "explicit": false,
+          "rank": 320516
+        },
+        {
+          "id": "2506021991",
+          "title": "Qui de nous deux (Live AccorArena 2023)",
+          "artist": "-M-",
+          "album": "En Rêvalité (Live AccorArena 2023)",
+          "durationS": 322,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2506021991",
+          "explicit": false,
+          "rank": 372907
+        },
+        {
+          "id": "797661902",
+          "title": "Qui de nous deux (Live 2019)",
+          "artist": "-M-",
+          "album": "Le Grand Petit Concert",
+          "durationS": 280,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/797661902",
+          "explicit": false,
+          "rank": 320069
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

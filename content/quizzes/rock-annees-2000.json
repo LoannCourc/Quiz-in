@@ -1,0 +1,217 @@
+{
+  "id": "rock-annees-2000",
+  "gameType": "blindTest",
+  "title": "Rock des années 2000",
+  "theme": "Musique",
+  "description": "Le retour des guitares, du garage à l’indie : dix morceaux rock des années 2000.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": 2000,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-3)",
+  "questions": [
+    {
+      "id": "r00-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mr. Brightside – The Killers",
+        "Hate to Say I Told You So – The Hives",
+        "Are You Gonna Be My Girl – Jet",
+        "Seven Nation Army – The White Stripes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Seven Nation Army"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The White Stripes",
+        "title": "Seven Nation Army"
+      }
+    },
+    {
+      "id": "r00-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mr. Brightside – The Killers",
+        "Somewhere Only We Know – Keane",
+        "Chasing Cars – Snow Patrol",
+        "Naive – The Kooks"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The Killers"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Killers",
+        "title": "Mr. Brightside"
+      }
+    },
+    {
+      "id": "r00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Banquet – Bloc Party",
+        "America – Razorlight",
+        "Take Me Out – Franz Ferdinand",
+        "Chelsea Dagger – The Fratellis"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Take Me Out"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Franz Ferdinand",
+        "title": "Take Me Out"
+      }
+    },
+    {
+      "id": "r00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Munich – Editors",
+        "Club Foot – Kasabian",
+        "Plug in Baby – Muse",
+        "Woman – Wolfmother"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Muse"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Muse",
+        "title": "Plug in Baby"
+      }
+    },
+    {
+      "id": "r00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Bet You Look Good On The Dancefloor – Arctic Monkeys",
+        "Can't Stand Me Now – The Libertines",
+        "Naive – The Kooks",
+        "Mr. Brightside – The Killers"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "I Bet You Look Good On The Dancefloor"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Arctic Monkeys",
+        "title": "I Bet You Look Good On The Dancefloor"
+      }
+    },
+    {
+      "id": "r00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Evil – Interpol",
+        "Maps – Yeah Yeah Yeahs",
+        "Get Free – The Vines",
+        "Last Nite – The Strokes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Strokes"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Strokes",
+        "title": "Last Nite"
+      }
+    },
+    {
+      "id": "r00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Chasing Cars – Snow Patrol",
+        "Use Somebody – Kings of Leon",
+        "Somewhere Only We Know – Keane",
+        "Dance with Somebody – Mando Diao"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Use Somebody"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Kings of Leon",
+        "title": "Use Somebody"
+      }
+    },
+    {
+      "id": "r00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "In the End – Linkin Park",
+        "Woman – Wolfmother",
+        "Club Foot – Kasabian",
+        "Munich – Editors"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Linkin Park"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Linkin Park",
+        "title": "In the End"
+      }
+    },
+    {
+      "id": "r00-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "America – Razorlight",
+        "Are You Gonna Be My Girl – Jet",
+        "Ruby – Kaiser Chiefs",
+        "Banquet – Bloc Party"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Ruby"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Kaiser Chiefs",
+        "title": "Ruby"
+      }
+    },
+    {
+      "id": "r00-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Get Free – The Vines",
+        "No One Knows – Queens of the Stone Age",
+        "Hate to Say I Told You So – The Hives",
+        "Evil – Interpol"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Queens of the Stone Age"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Queens of the Stone Age",
+        "title": "No One Knows"
+      }
+    }
+  ]
+}
