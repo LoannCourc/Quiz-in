@@ -35,7 +35,7 @@ import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type Public
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
-import { BLUFF_QUESTIONS, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
+import { BLUFF_QUESTIONS, makeQuestion, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
 
 const PROJECT_ID = 'demo-quiz-in'
 const CODE = 'K7PX'
@@ -481,6 +481,71 @@ describe('Nombre de questions (questionCount)', () => {
     await seedSession({ status: 'lobby', questionCount: 10 })
     await assertSucceeds(launch(HOST, 7))
     expect(await readAsAdmin(`${SESSION}/questionCount`)).toBe(7)
+  })
+})
+
+describe('Partie tirée dans des thèmes (« Ta partie », maquette QN1-G)', () => {
+  const settingsPath = `${SESSION}/settings`
+
+  test('settings.levels : easy, medium, hard seulement, 1 à 3, sans doublon', async () => {
+    await seedSession({ status: 'lobby' })
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/levels`).set(['hard']))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/levels`).set(['easy', 'hard']))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/levels`).set(['easy', 'medium', 'hard']))
+    await assertFails(db(HOST).ref(`${settingsPath}/levels`).set(['facile']))
+    await assertFails(db(HOST).ref(`${settingsPath}/levels`).set(['hard', 'hard']))
+    await assertFails(db(HOST).ref(`${settingsPath}/levels`).set(['easy', 'medium', 'hard', 'easy']))
+    await assertFails(db(HOST).ref(`${settingsPath}/levels`).set([3]))
+    await assertFails(db(PLAYER).ref(`${settingsPath}/levels`).set(['easy']))
+  })
+
+  test('settings.themes : 3 thèmes au plus', async () => {
+    await seedSession({ status: 'lobby' })
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/themes`).set(['Histoire', 'Sport', 'Musique']))
+    await assertFails(db(HOST).ref(`${settingsPath}/themes`).set(['Histoire', 'Sport', 'Musique', 'Géographie']))
+  })
+
+  test('settings.questionCount : tout entier de 1 à 30', async () => {
+    await seedSession({ status: 'lobby' })
+    for (const value of [1, 18, 30]) await assertSucceeds(db(HOST).ref(`${settingsPath}/questionCount`).set(value))
+    for (const value of [0, 31, 12.5, '20']) await assertFails(db(HOST).ref(`${settingsPath}/questionCount`).set(value))
+  })
+
+  test('partie de 18 questions de bout en bout : création, lancement, champ public lu par un joueur et la TV', async () => {
+    await seed({})
+    const questions = Array.from({ length: 18 }, (_, index) => makeQuestion(index))
+    const refs = questions.map((question) => `sport-1/${question.id}`)
+    await assertSucceeds(
+      db(HOST)
+        .ref(SESSION)
+        .set({
+          hostUid: HOST,
+          quizId: 'sport-1',
+          status: 'lobby',
+          settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false, themes: ['Sport'], levels: ['hard'], questionCount: 18 },
+          currentIndex: 0,
+          phaseStartedAt: SERVER_TIME,
+          phaseEndsAt: 0,
+          questionRefs: refs,
+        }),
+    )
+    // Deux joueurs dans le salon (inscription testée ailleurs).
+    await env.withSecurityRulesDisabled(async (context) => {
+      await context.database().ref(`${SESSION}/players`).set({ [HOST]: player('Hôte'), [PLAYER]: player('Léa') })
+    })
+    const lobby = (await readAsAdmin(SESSION)) as Session
+    const launch = launchUpdate(lobby, questions, Date.now())
+    expect(launch.ok).toBe(true)
+    await assertSucceeds(db(HOST).ref(SESSION).update(launch.ok ? launch.update : {}))
+    expect(await readAsAdmin(`${SESSION}/questionCount`)).toBe(18)
+    expect((await assertSucceeds(db(PLAYER).ref(`${SESSION}/questionCount`).once('value'))).val()).toBe(18)
+    expect((await assertSucceeds(db(OTHER).ref(`${SESSION}/questionCount`).once('value'))).val()).toBe(18)
+    expect((await assertSucceeds(db(PLAYER).ref(`${settingsPath}/questionCount`).once('value'))).val()).toBe(18)
+    // Première question : le moteur passe à QUESTION sans toucher au nombre.
+    const started = (await readAsAdmin(SESSION)) as Session
+    const toQuestion = transitionUpdate(started, questions, { status: 'starting', currentIndex: 0 }, Date.now())
+    await assertSucceeds(db(HOST).ref(SESSION).update(toQuestion as SessionUpdate))
+    expect(await readAsAdmin(SESSION)).toMatchObject({ status: 'question', currentIndex: 0, questionCount: 18 })
   })
 })
 
@@ -1005,7 +1070,7 @@ describe("Contrôles de l'hôte : Terminer, Changer de jeu, Quitter", () => {
     const settings = `${SESSION}/settings`
     await assertSucceeds(db(HOST).ref(`${settings}/themes`).set(['Culture générale', 'Histoire']))
     await assertSucceeds(db(HOST).ref(`${settings}/questionCount`).set(20))
-    await assertFails(db(HOST).ref(`${settings}/questionCount`).set(25))
+    await assertFails(db(HOST).ref(`${settings}/questionCount`).set(31))
     await assertSucceeds(db(HOST).ref(`${settings}/quizIds`).set(['bluff-betes', 'bluff-objets']))
     await assertFails(db(HOST).ref(`${settings}/quizIds`).set(['Pas Un Identifiant']))
     // Les réglages restent publics (aucune réponse dedans) ; le tirage, non.

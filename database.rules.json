@@ -58,9 +58,12 @@
           "teamMode": { ".validate": "newData.isString() && newData.val().matches(/^(random|host|players)$/)" },
           "teamCount": { ".validate": "newData.isNumber() && (newData.val() == 2 || newData.val() == 3 || newData.val() == 4)" },
           "drawRounds": { ".validate": "newData.isNumber() && (newData.val() == 4 || newData.val() == 6 || newData.val() == 8)" },
-          "questionCount": { ".validate": "newData.isNumber() && (newData.val() == 10 || newData.val() == 15 || newData.val() == 20 || newData.val() == 30)" },
+          "questionCount": { ".validate": "newData.isNumber() && newData.val() % 1 == 0 && newData.val() >= 1 && newData.val() <= 30" },
           "themes": {
-            "$i": { ".validate": "$i.matches(/^[0-9]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" }
+            "$i": { ".validate": "$i.matches(/^[0-2]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" }
+          },
+          "levels": {
+            "$i": { ".validate": "$i.matches(/^[0-2]$/) && newData.isString() && newData.val().matches(/^(easy|medium|hard)$/) && ($i == '0' || newData.parent().child('0').val() != newData.val()) && ($i == '1' || newData.parent().child('1').val() != newData.val()) && ($i == '2' || newData.parent().child('2').val() != newData.val())" }
           },
           "quizIds": {
             "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.isString() && newData.val().matches(/^[a-z0-9-]{1,64}$/)" }
