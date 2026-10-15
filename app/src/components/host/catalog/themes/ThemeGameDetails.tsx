@@ -45,7 +45,7 @@ const VISUAL_HEIGHT = 170;
 const WATERMARK_SIZE = 130;
 
 // Fiche d'une partie tirée dans des thèmes du Quiz (maquette QN1-F) : grand visuel aux couleurs des thèmes,
-// titre, durée, pastilles, description, « Au programme » (répartition réelle des questions tirées), réglages ;
+// titre, durée, pastilles, « Au programme » (répartition réelle des questions tirées), réglages ;
 // en bas, « Modifier mon choix », CRÉER LA PARTIE et la ligne d'aide.
 export function ThemeGameDetails(props: ThemeGameDetailsProps) {
   const { themes, count, draw, levels, audience, settings, onSettingsChange, sound, onSoundChange, onCreate, isCreating, error, onModify } = props;
@@ -77,7 +77,6 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
           <Tag label={strings.quizSetup.audiences[audience]} color={AppColors.tags.audience} />
           <Tag label={strings.catalog.gameTypes.quiz} color={AppColors.tags.gameType} />
         </View>
-        <Text style={styles.description}>{description(themes, questionCount, programme)}</Text>
         <View style={styles.programme}>
           <Text style={styles.programmeTitle}>{texts.programme}</Text>
           {draw.kind === 'loading' && <Text style={styles.small}>{texts.loading}</Text>}
@@ -102,19 +101,6 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
 // Pastille de difficulté : « Niveaux mélangés », ou les niveaux choisis (« Facile · Difficile »).
 function levelsLabel(levels: LevelChoice): string {
   return levels === 'all' ? texts.mixedLevels : levels.map((level) => strings.catalog.difficultyLevels[level]).join(' · ');
-}
-
-// Une phrase : le thème et sa phrase de présentation, ou la part de chaque thème.
-function description(themes: string[], questionCount: number, programme: GameProgramme | null): string {
-  if (themes.length === 1) {
-    const blurb = texts.themeBlurbs[themes[0]];
-    return blurb ? `${texts.oneTheme(questionCount, themes[0])} ${blurb}` : texts.oneTheme(questionCount, themes[0]);
-  }
-  if (!programme) return '';
-  return texts.severalThemes(
-    questionCount,
-    programme.byTheme.map(({ theme, count }) => texts.themeShare(count, theme)),
-  );
 }
 
 // Visuel en dégradé, icône de chaque thème en filigrane, flèche retour par-dessus.
@@ -238,12 +224,6 @@ const styles = StyleSheet.create({
     color: AppColors.onTag,
     fontFamily: AppFonts.black,
     fontSize: 13,
-  },
-  description: {
-    color: AppColors.text,
-    fontFamily: AppFonts.extraBold,
-    fontSize: 15,
-    lineHeight: 21,
   },
   programme: {
     gap: Spacing.three,
