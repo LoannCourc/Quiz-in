@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest'
 import { DEFAULT_SESSION_SETTINGS } from '../../shared/constants'
 import { estimateGameMinutes } from '../../shared/quizCatalog'
 import { parseQuizSummary, type QuizEntry } from '../../shared/quizValidation'
-import { countLevels, featuredThemeOf, gameProgramme, programmeLevels, themeGameChoice, quizLevelCounts, themeGameMinutes, themeStats } from '../../shared/themeCatalog'
+import { countLevels, featuredThemeOf, gameProgramme, themeGameChoice, quizLevelCounts, themeGameMinutes, themeStats } from '../../shared/themeCatalog'
 
 function entry(id: string, theme: string, extra: Partial<QuizEntry> = {}): QuizEntry {
   return {
@@ -84,7 +84,6 @@ describe('Au programme de la fiche', () => {
       ],
       byLevel: { easy: 2, medium: 0, hard: 1 },
     })
-    expect(programmeLevels(programme)).toEqual(['easy', 'hard'])
   })
 })
 

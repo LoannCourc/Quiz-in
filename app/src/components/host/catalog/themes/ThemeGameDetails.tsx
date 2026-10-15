@@ -1,4 +1,5 @@
-import { gameProgramme, programmeLevels, QUESTION_LEVELS, themeGameMinutes, type GameProgramme } from '@shared/themeCatalog';
+import { gameProgramme, QUESTION_LEVELS, themeGameMinutes, type GameProgramme } from '@shared/themeCatalog';
+import type { LevelChoice } from '@shared/themePool';
 import { themeIconOf } from '@shared/themeIcons';
 import type { QuizAudience, SessionSettings, SoundSettings } from '@shared/types';
 import { useState } from 'react';
@@ -24,6 +25,8 @@ interface ThemeGameDetailsProps {
   // Nombre demandé ; une fois le tirage fait, celui des questions tirées.
   count: number;
   draw: ThemeGameDrawState;
+  // Difficulté choisie (« Ta partie ») : la pastille la reprend.
+  levels: LevelChoice;
   audience: QuizAudience;
   settings: SessionSettings;
   onSettingsChange: (settings: SessionSettings) => void;
@@ -45,11 +48,10 @@ const WATERMARK_SIZE = 130;
 // titre, durée, pastilles, description, « Au programme » (répartition réelle des questions tirées), réglages ;
 // en bas, « Modifier mon choix », CRÉER LA PARTIE et la ligne d'aide.
 export function ThemeGameDetails(props: ThemeGameDetailsProps) {
-  const { themes, count, draw, audience, settings, onSettingsChange, sound, onSoundChange, onCreate, isCreating, error, onModify } = props;
+  const { themes, count, draw, levels, audience, settings, onSettingsChange, sound, onSoundChange, onCreate, isCreating, error, onModify } = props;
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const programme = draw.kind === 'ready' ? gameProgramme(draw.draw.info, themes) : null;
   const questionCount = draw.kind === 'ready' ? draw.draw.refs.length : count;
-  const levels = programme ? programmeLevels(programme) : [];
 
   const footer = (
     <View style={styles.footer}>
@@ -71,9 +73,7 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
         <Text style={styles.title}>{themes.join(' + ')}</Text>
         <Text style={styles.meta}>{texts.meta(questionCount, themeGameMinutes(questionCount, settings))}</Text>
         <View style={styles.tags}>
-          {levels.length > 0 && (
-            <Tag label={levels.length === 1 ? strings.catalog.difficultyLevels[levels[0]] : texts.mixedLevels} color={AppColors.tags.difficulty} />
-          )}
+          <Tag label={levelsLabel(levels)} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[audience]} color={AppColors.tags.audience} />
           <Tag label={strings.catalog.gameTypes.quiz} color={AppColors.tags.gameType} />
         </View>
@@ -97,6 +97,11 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
       />
     </Screen>
   );
+}
+
+// Pastille de difficulté : « Niveaux mélangés », ou les niveaux choisis (« Facile · Difficile »).
+function levelsLabel(levels: LevelChoice): string {
+  return levels === 'all' ? texts.mixedLevels : levels.map((level) => strings.catalog.difficultyLevels[level]).join(' · ');
 }
 
 // Une phrase : le thème et sa phrase de présentation, ou la part de chaque thème.

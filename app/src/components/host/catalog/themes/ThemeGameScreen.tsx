@@ -76,6 +76,7 @@ export function ThemeGameScreen({ entries, themes, count, source, start, isCreat
       themes={choice.themes}
       count={choice.count}
       draw={draw}
+      levels={choice.levels}
       audience={poolAudience(quizzes)}
       settings={settings}
       onSettingsChange={setSettings}

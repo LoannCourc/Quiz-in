@@ -99,10 +99,6 @@ export function gameProgramme(questions: readonly DrawnQuestionInfo[], themes: r
   return { byTheme, byLevel }
 }
 
-// Niveaux présents dans la partie : un seul (« Difficile ») ou plusieurs (« Niveaux mélangés »).
-export function programmeLevels(programme: GameProgramme): QuestionLevel[] {
-  return QUESTION_LEVELS.filter((level) => programme.byLevel[level] > 0)
-}
 
 // Choix reçu par la fiche (paramètres de la route) : 1 à 3 thèmes connus du Quiz, sans doublon, et un nombre
 // proposé (10, 20, 30) que leurs questions permettent ; null sinon.

@@ -11,6 +11,7 @@ import {
   themeQuotas,
   type PoolCandidate,
 } from '../../shared/themePool'
+import { gameProgramme } from '../../shared/themeCatalog'
 import type { QuestionLevel, QuestionLevelCounts } from '../../shared/types'
 
 function entry(id: string, theme: string, levelCounts: QuestionLevelCounts, gameType: QuizEntry['gameType'] = 'quiz'): QuizEntry {
@@ -137,5 +138,47 @@ describe('Thèmes en double', () => {
     expect(drawn).toHaveLength(20)
     expect(new Set(drawn).size).toBe(20)
     expect(countByTheme(drawn)).toEqual({ sport: 10, histoire: 10 })
+  })
+})
+
+describe('Fiche : niveaux choisis et « Au programme »', () => {
+  // Candidats aux trois niveaux : Histoire 15 difficiles, Sport 10, Musique 9 (comme le vrai contenu).
+  const pool = [
+    ...candidates('Histoire', 15, 'hard'),
+    ...candidates('Histoire', 55, 'easy', 15),
+    ...candidates('Sport', 10, 'hard'),
+    ...candidates('Sport', 60, 'medium', 10),
+    ...candidates('Musique', 9, 'hard'),
+    ...candidates('Musique', 51, 'easy', 9),
+  ]
+  const infoOf = (refs: readonly string[]) =>
+    refs.map((ref) => {
+      const candidate = pool.find((item) => item.ref === ref)
+      return { theme: candidate?.theme ?? '', level: candidate?.level ?? 'easy' }
+    })
+
+  test('Difficile seul, 3 thèmes, 20 questions : « Par niveau » ne montre que du Difficile, 7 + 7 + 6', () => {
+    const themes = ['Histoire', 'Sport', 'Musique']
+    const drawn = drawThemeQuestions(pool, themes, ['hard'], 20, {})
+    const programme = gameProgramme(infoOf(drawn), themes)
+    expect(programme.byLevel).toEqual({ easy: 0, medium: 0, hard: 20 })
+    expect(programme.byTheme).toEqual([
+      { theme: 'Histoire', count: 7 },
+      { theme: 'Sport', count: 7 },
+      { theme: 'Musique', count: 6 },
+    ])
+    expect(programme.byTheme.reduce((sum, theme) => sum + theme.count, 0)).toBe(drawn.length)
+  })
+
+  test('moins de questions que demandé : le nombre tiré est le nombre réel, « Par niveau » le suit', () => {
+    const drawn = drawThemeQuestions(pool, ['Sport'], ['hard'], 30, {})
+    expect(drawn).toHaveLength(effectiveQuestionCount(30, availableTotal(ENTRIES, ['Sport'], ['hard'])))
+    expect(gameProgramme(infoOf(drawn), ['Sport']).byLevel).toEqual({ easy: 0, medium: 0, hard: 10 })
+  })
+
+  test('Facile et Difficile : jamais de Moyen', () => {
+    const drawn = drawThemeQuestions(pool, ['Histoire', 'Sport'], ['easy', 'hard'], 20, {})
+    expect(gameProgramme(infoOf(drawn), ['Histoire', 'Sport']).byLevel.medium).toBe(0)
+    expect(drawn).toHaveLength(20)
   })
 })
