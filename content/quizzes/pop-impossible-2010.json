@@ -1,9 +1,9 @@
 {
   "id": "pop-impossible-2010",
   "gameType": "blindTest",
-  "title": "Pop française, faces cachées",
+  "title": "Pop, faces cachées",
   "theme": "Musique",
-  "description": "Les titres d’album les moins écoutés de chanteurs et chanteuses pop connus des années 2010.",
+  "description": "Les titres d’album les moins écoutés de chanteurs et chanteuses pop connus des années 2010, en France et ailleurs.",
   "audience": "experts",
   "poster": "pink",
   "icon": "star",
@@ -18,19 +18,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Puppet – Yael Naim",
-        "Rise – Superbus",
-        "The stranger – Christine and the Queens",
-        "Tumbleweed – Brigitte"
+        "She Said – Yael Naim",
+        "Robin Miller – Lou Doillon",
+        "Comme si – Christine and the Queens",
+        "Terrible Angels – Charlotte Gainsbourg"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "The stranger"
+        "Comme si"
       ],
       "difficulty": 3,
       "music": {
         "artist": "Christine and the Queens",
-        "title": "The stranger"
+        "title": "Comme si"
       }
     },
     {
@@ -38,19 +38,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Game Is Over – Yael Naim",
-        "Make some sense – Christine and the Queens",
-        "All The Rain – Charlotte Gainsbourg",
-        "The Lighter – Superbus"
+        "Plastic Rose – Maroon 5",
+        "Until Tomorrow – Charlie Winston",
+        "This Is Your World – Émilie Simon",
+        "À l'autre bout du monde – Nach"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Yael Naim"
+        "Maroon 5"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Yael Naim",
-        "title": "Game Is Over"
+        "artist": "Maroon 5",
+        "title": "Plastic Rose"
       }
     },
     {
@@ -58,19 +58,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Tumbleweed – Brigitte",
-        "Make a Child – Yael Naim",
-        "Rise – Superbus",
-        "Le bal du moulin de la Galette – Calogero"
+        "Odessa, odyssée – Keren Ann",
+        "No Stone Unturned – Asaf Avidan",
+        "No One's Here II – Piers Faccini",
+        "La chute – Coeur De Pirate"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Le bal du moulin de la Galette"
+        "La chute"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Calogero",
-        "title": "Le bal du moulin de la Galette"
+        "artist": "Coeur De Pirate",
+        "title": "La chute"
       }
     },
     {
@@ -78,19 +78,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Puppet – Yael Naim",
-        "Out Of Touch – Charlotte Gainsbourg",
-        "The Lighter – Superbus",
-        "Make some sense – Christine and the Queens"
+        "Everybody Knows – Cocoon",
+        "Big Girl Little Girl – Sia",
+        "Wrong Kind of War – IMANY",
+        "Elle n'ose pas – Pauline Croze"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Charlotte Gainsbourg"
+        "Sia"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Charlotte Gainsbourg",
-        "title": "Out Of Touch"
+        "artist": "Sia",
+        "title": "Big Girl Little Girl"
       }
     },
     {
@@ -98,19 +98,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Hippocampe – Brigitte",
-        "All The Rain – Charlotte Gainsbourg",
-        "Rise – Superbus",
-        "Make a Child – Yael Naim"
+        "Dans notre monde – Vanessa Paradis",
+        "Chambre 29 – Étienne Daho",
+        "La Fille Qui Fait Tchic Ti Tchi – Élodie Frégé",
+        "49 States – Revolver"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Hippocampe"
+        "Dans notre monde"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Brigitte",
-        "title": "Hippocampe"
+        "artist": "Vanessa Paradis",
+        "title": "Dans notre monde"
       }
     },
     {
@@ -118,22 +118,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Tumbleweed – Brigitte",
-        "Puppet – Yael Naim",
-        "Cry – MIKA",
-        "The Lighter – Superbus"
+        "Sister – Mina Tindle",
+        "My Escape – Marina Kaye",
+        "Halcyon – Ellie Goulding",
+        "22.11.2013 – Madame Monsieur"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "MIKA"
+        "Ellie Goulding"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "MIKA",
-        "title": "Cry",
-        "artistAliases": [
-          "Mika"
-        ]
+        "artist": "Ellie Goulding",
+        "title": "Halcyon"
       }
     },
     {
@@ -141,19 +138,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Make some sense – Christine and the Queens",
-        "Robin Miller – Lou Doillon",
-        "All The Rain – Charlotte Gainsbourg",
-        "Rise – Superbus"
+        "Aujourd’hui – Jenifer",
+        "Rouler sur l'or – Joyce Jonathan",
+        "Peur de rien – Anne Sila",
+        "Homegirl – King Princess"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Robin Miller"
+        "Rouler sur l'or"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Lou Doillon",
-        "title": "Robin Miller"
+        "artist": "Joyce Jonathan",
+        "title": "Rouler sur l'or"
       }
     },
     {
@@ -161,19 +158,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Make a Child – Yael Naim",
-        "Tumbleweed – Brigitte",
-        "All The Rain – Charlotte Gainsbourg",
-        "Impensablement – Superbus"
+        "Temple Bar – Kodaline",
+        "Mine – Bebe Rexha",
+        "Preacher – Olly Alexander (Years & Years)",
+        "Little Tin Buddhas – Sam Smith"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Superbus"
+        "Sam Smith"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Superbus",
-        "title": "Impensablement"
+        "artist": "Sam Smith",
+        "title": "Little Tin Buddhas"
       }
     },
     {
@@ -181,19 +178,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "White Telephone – Charlotte Gainsbourg",
-        "Puppet – Yael Naim",
-        "Make some sense – Christine and the Queens",
-        "The Lighter – Superbus"
+        "Blue – MIKA",
+        "All These Things – OneRepublic",
+        "Wanna Be Your Baby – Zara Larsson",
+        "Glorious – Foxes"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "White Telephone"
+        "Blue"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Charlotte Gainsbourg",
-        "title": "White Telephone"
+        "artist": "MIKA",
+        "title": "Blue"
       }
     },
     {
@@ -201,19 +198,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Rise – Superbus",
-        "Make a Child – Yael Naim",
-        "What's-her-face – Christine and the Queens",
-        "Tumbleweed – Brigitte"
+        "The Projectionist – Sleeping At Last",
+        "Raise Your Love – Rhodes",
+        "Hear You Calling – Birdy",
+        "Jealous – Ingrid Michaelson"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Christine and the Queens"
+        "Birdy"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Christine and the Queens",
-        "title": "What's-her-face"
+        "artist": "Birdy",
+        "title": "Hear You Calling"
       }
     }
   ]

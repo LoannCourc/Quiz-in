@@ -1,69 +1,68 @@
-# Contrôle des morceaux : Rock français, faces cachées
+# Contrôle des morceaux : Rock, faces cachées
 
 Recherche Deezer du 2026-10-15. Pour chaque morceau : ouvrir le lien, écouter, vérifier que c'est
 la bonne version (pas un remix, une reprise ni un karaoké) et le passage joué (startS), puis passer `verified` à `true` dans
 `rock-impossible-2000.json`. Si une alternative est meilleure, la copier dans `found` avant de cocher.
 Ensuite : `npm run build`, qui refuse tout morceau non vérifié.
 
-## 1. Dionysos — Giant John Et Le Sanglophone (ri00-01) ✅ vérifié
+## 1. Kasabian — Happiness (ri00-01) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Dionysos — Giant John Et Le Sanglophone (album « Monsters In Love », 88 s, extrait disponible, popularité 80 307) : https://www.deezer.com/track/2440264
+- Proposé : Kasabian — Happiness (album « West Ryder Pauper Lunatic Asylum », 311 s, extrait disponible, popularité 191 122) : https://www.deezer.com/track/3437884
 
-## 2. Luke — Le pays (ri00-02) ✅ vérifié
+## 2. Dionysos — I Love Liou (ri00-02) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Luke — Le pays (album « Les enfants de saturne », 274 s, extrait disponible, popularité 75 651) : https://www.deezer.com/track/826152242
-- Alternative : Luke — Le pays (Live) (album « Où en est la nuit », 290 s, extrait disponible, popularité 130 627) : https://www.deezer.com/track/2553254
-- Alternative : Luke Howard — Passion / Sleep (album « World Sleep Day », 317 s, extrait disponible, popularité 315 740) : https://www.deezer.com/track/1272774432
-- Alternative : Luke Howard — A Bad Dream That Will Pass Away (album « A Bad Dream That Will Pass Away », 176 s, extrait disponible, popularité 285 141) : https://www.deezer.com/track/1659975452
+- Proposé : Dionysos — I Love Liou (album « Monsters In Love », 120 s, extrait disponible, popularité 171 084) : https://www.deezer.com/track/2440262
+- Alternative : Dionysos — I Love You (Album Version) (album « Western Sous La Neige », 70 s, extrait disponible, popularité 241 599) : https://www.deezer.com/track/2712473
+- Alternative : Dionysos — I Love You (album « L'Extraordinarium », 179 s, extrait disponible, popularité 166 752) : https://www.deezer.com/track/2452290595
+- Alternative : Dionysos — I Love You (Live Electrique) (album « Whatever The Weather », 248 s, extrait disponible, popularité 64 129) : https://www.deezer.com/track/2535455
 
-## 3. Mickey 3D — Phénoménal (ri00-03) ✅ vérifié
+## 3. Cage The Elephant — Judas (ri00-03) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Mickey 3D — Phénoménal (album « Mistigri Torture », 264 s, extrait disponible, popularité 72 362) : https://www.deezer.com/track/3335185
+- Proposé : Cage The Elephant — Judas (album « Cage The Elephant », 206 s, extrait disponible, popularité 192 334) : https://www.deezer.com/track/1280074222
 
-## 4. Les Wampas — J'écoutais les cramps (ri00-04) ✅ vérifié
+## 4. Mickey 3D — 2, 3 jours à Paris (ri00-04) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Les Wampas — J'Ecoutais Les Cramps (album « Les Wampas Sont La Preuve Que Dieu Existe », 215 s, extrait disponible, popularité 139 476) : https://www.deezer.com/track/2796816
-- Alternative : Les Wampas — J'écoutais les cramps (album « Les Wampas sont la preuve que Dieu existe », 215 s, extrait disponible, popularité 29 277) : https://www.deezer.com/track/121593540
+- Proposé : Mickey 3D — 2, 3 jours à Paris (album « La Trêve », 231 s, extrait disponible, popularité 189 957) : https://www.deezer.com/track/3335078
 
-## 5. Noir Désir — Hoo Doo (ri00-05) ✅ vérifié
+## 5. Yeah Yeah Yeahs — Mysteries (ri00-05) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Noir Désir — Hoo Doo (album « Du ciment sous les plaines », 43 s, extrait disponible, popularité 192 681) : https://www.deezer.com/track/2202858
+- Proposé : Yeah Yeah Yeahs — Mysteries (album « Show Your Bones », 155 s, extrait disponible, popularité 157 381) : https://www.deezer.com/track/4308596
+- Alternative : ? and the Mysterians — 96 Tears (Mono) (album « The Best Of ? & The Mysterians 1966-1967 », 178 s, extrait disponible, popularité 479 845) : https://www.deezer.com/track/2950821
+- Alternative : Baby Mammoth — Mysterious Muses (album « 10,000 Years Beneath The Street », 373 s, extrait disponible, popularité 134 679) : https://www.deezer.com/track/6333430
+- Alternative : Bobina — Mysterious Times (album « 15 Years The Best of, Vol. 1 », 229 s, extrait disponible, popularité 65 318) : https://www.deezer.com/track/728785412
 
-## 6. Dionysos — Monsters In Love (ri00-06) ✅ vérifié
+## 6. Les Wampas — Elle Est Où Ma Loge ? (ri00-06) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Dionysos — Monsters In Love (album « Monsters In Love », 166 s, extrait disponible, popularité 94 635) : https://www.deezer.com/track/2440267
-- Alternative : Dionysos — Monsters In Love (Live) (album « Monsters In Live (Live) », 297 s, extrait disponible, popularité 133 414) : https://www.deezer.com/track/135872968
-- Alternative : Dionysos — L'homme Qui Pondait Des Oeufs (album « Monsters In Love », 220 s, extrait disponible, popularité 187 790) : https://www.deezer.com/track/2440257
-- Alternative : Dionysos — I Love Liou (album « Monsters In Love », 120 s, extrait disponible, popularité 171 084) : https://www.deezer.com/track/2440262
+- Proposé : Les Wampas — Elle Est Où Ma Loge ? (album « Les Wampas Sont La Preuve Que Dieu Existe », 121 s, extrait disponible, popularité 178 841) : https://www.deezer.com/track/2796808
 
-## 7. Luke — Stella (ri00-07) ✅ vérifié
+## 7. The Hives — Giddy Up! (ri00-07) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Luke — Stella (album « Les enfants de saturne », 221 s, extrait disponible, popularité 87 482) : https://www.deezer.com/track/826152182
-- Alternative : Luke — Stella (album « Stella EP Live », 218 s, extrait disponible, popularité 170 322) : https://www.deezer.com/track/365156
-- Alternative : Luke — Stella (Live) (album « Stella EP Live », 490 s, extrait disponible, popularité 78 246) : https://www.deezer.com/track/365159
-- Alternative : Luke Steele — Get Out Now (album « Listen To The Water », 235 s, extrait disponible, popularité 104 322) : https://www.deezer.com/track/1742507927
+- Proposé : The Hives — Giddy Up! (album « The Black and White album », 171 s, extrait disponible, popularité 166 279) : https://www.deezer.com/track/1112825
+- Alternative : Teddy Swims — Are You Even Real (album « I've Tried Everything But Therapy (Part 2) », 147 s, extrait disponible, popularité 652 584) : https://www.deezer.com/track/3167895991
+- Alternative : Birdy — Give Up (album « Beautiful Lies (Deluxe) », 240 s, extrait disponible, popularité 249 049) : https://www.deezer.com/track/120832634
 
-## 8. Mickey 3D — La Saint Glinglin (ri00-08) ✅ vérifié
+## 8. Luke — La Nuit Et Le Jour (ri00-08) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Mickey 3D — La Saint Glinglin (album « Mistigri Torture », 168 s, extrait disponible, popularité 77 338) : https://www.deezer.com/track/3335183
+- Proposé : Luke — La nuit et le jour (album « Les enfants de saturne », 298 s, extrait disponible, popularité 166 907) : https://www.deezer.com/track/826152172
+- Alternative : Luke — Un seul jour (Live) (album « Où en est la nuit », 237 s, extrait disponible, popularité 125 082) : https://www.deezer.com/track/2553259
+- Alternative : Rina Ketty — Marechiare (Serenade du Pecheur de Lune) (album « J'attendrai le jour et la nuit - Des chansons de Rina Ketty », 151 s, extrait disponible, popularité 32 860) : https://www.deezer.com/track/1637226302
+- Alternative : Rozett — C'était par un beau clair de lune (album « Reviens le jour, reviens la nuit », 244 s, extrait disponible, popularité 18 405) : https://www.deezer.com/track/3728456822
 
-## 9. Les Wampas — Un dimanche à Strasbourg (ri00-09) ✅ vérifié
+## 9. Editors — Bricks and Mortar (ri00-09) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Les Wampas — Un Dimanche A Strasbourg (album « Les Wampas Sont La Preuve Que Dieu Existe », 156 s, extrait disponible, popularité 123 747) : https://www.deezer.com/track/2796809
-- Alternative : Les Wampas — Un dimanche à Strasbourg (album « Les Wampas sont la preuve que Dieu existe », 156 s, extrait disponible, popularité 37 274) : https://www.deezer.com/track/121593526
+- Proposé : Editors — Bricks and Mortar (album « In This Light and on This Evening », 380 s, extrait disponible, popularité 160 225) : https://www.deezer.com/track/4217718
 
-## 10. Mickey 3D — Storiz (ri00-10) ✅ vérifié
+## 10. Wolfmother — Pilgrim (ri00-10) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Mickey 3D — Storiz (album « La Trêve », 1101 s, extrait disponible, popularité 101 241) : https://www.deezer.com/track/3335087
-- Alternative : Mickey 3D — Storiz (album « La trêve (Edition Deluxe) », 287 s, extrait disponible, popularité 72 776) : https://www.deezer.com/track/1302243122
+- Proposé : Wolfmother — Pilgrim (album « Cosmic Egg », 288 s, extrait disponible, popularité 192 689) : https://www.deezer.com/track/4255747
 

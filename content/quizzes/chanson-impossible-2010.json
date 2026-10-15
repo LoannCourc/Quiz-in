@@ -18,19 +18,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Le roi – Miossec",
-        "La clairière – Dominique A",
-        "Perdre la raison – Bénabar",
-        "Le roi du monde – Debout sur le zinc"
+        "Nous – Alexis HK",
+        "J'écris – Les Tit' Nassels",
+        "Mourir la mort – Tryo",
+        "Pétales – Karpatt"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Perdre la raison"
+        "Mourir la mort"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Bénabar",
-        "title": "Perdre la raison"
+        "artist": "Tryo",
+        "title": "Mourir la mort"
       }
     },
     {
@@ -38,10 +38,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Quelle histoire ! – Bénabar",
-        "Se décentrer – Dominique A",
-        "Merci – Miossec",
-        "Tout est dans mon sac – Sanseverino"
+        "Les mêmes – Yves Jamait",
+        "Le complot – Les Wriggles",
+        "La mer, quand elle mord, c'est méchant – Miossec",
+        "Pas de requiem – Volo"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -50,7 +50,7 @@
       "difficulty": 3,
       "music": {
         "artist": "Miossec",
-        "title": "Merci"
+        "title": "La mer, quand elle mord, c'est méchant"
       }
     },
     {
@@ -58,19 +58,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Le reflet – Dominique A",
-        "Où est l'histoire – Debout sur le zinc",
-        "Son homme – Miossec",
-        "Faute de goût – Bénabar"
+        "Le soleil – Dominique A",
+        "Rosa – HK",
+        "Quelle heure est-il ? – Pauline Croze",
+        "Aigre-doux – Carmen Maria Vega"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Le reflet"
+        "Le soleil"
       ],
       "difficulty": 3,
       "music": {
         "artist": "Dominique A",
-        "title": "Le reflet"
+        "title": "Le soleil"
       }
     },
     {
@@ -78,19 +78,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "La clairière – Dominique A",
-        "Tout est dans mon sac – Sanseverino",
-        "Le roi – Miossec",
-        "La rengaine – Debout sur le zinc"
+        "Le retour d'un amour – Pierre Lapointe",
+        "Prends soin de moi – Rose",
+        "La carte bleue – Java",
+        "De velours et de soie – Debout Sur Le Zinc"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Debout sur le zinc"
+        "Debout Sur Le Zinc"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Debout sur le zinc",
-        "title": "La rengaine"
+        "artist": "Debout Sur Le Zinc",
+        "title": "De velours et de soie"
       }
     },
     {
@@ -98,19 +98,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Quelle histoire ! – Bénabar",
-        "Du cinéma – Tryo",
-        "Le roi du monde – Debout sur le zinc",
-        "Se décentrer – Dominique A"
+        "Cerf-volant – Marcel et son Orchestre",
+        "Bec – Bertrand Belin",
+        "Les pompiers – Les Yeux D'La Tête",
+        "Schizophrenia – Anaïs"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Du cinéma"
+        "Bec"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Tryo",
-        "title": "Du cinéma"
+        "artist": "Bertrand Belin",
+        "title": "Bec"
       }
     },
     {
@@ -118,19 +118,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Hey man – Jacques Higelin",
-        "Son homme – Miossec",
-        "Faute de goût – Bénabar",
-        "Où est l'histoire – Debout sur le zinc"
+        "J'ai froid – Sanseverino",
+        "Bye Bye – Tété",
+        "Au revoir chagrin – Da Silva",
+        "On attendait Noël – Isabelle Boulay"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Jacques Higelin"
+        "Sanseverino"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Jacques Higelin",
-        "title": "Hey man"
+        "artist": "Sanseverino",
+        "title": "J'ai froid"
       }
     },
     {
@@ -138,19 +138,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Tout est dans mon sac – Sanseverino",
-        "La clairière – Dominique A",
-        "Sur son passage – Bénabar",
-        "Le roi – Miossec"
+        "J'ai un secret – Ycare",
+        "Sous mes pas – Christophe Willem",
+        "Point noir sur feuille blanche – Philippe Katerine",
+        "Scoop – Louis Chedid"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Sur son passage"
+        "Point noir sur feuille blanche"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Bénabar",
-        "title": "Sur son passage"
+        "artist": "Philippe Katerine",
+        "title": "Point noir sur feuille blanche"
       }
     },
     {
@@ -158,19 +158,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Le roi du monde – Debout sur le zinc",
-        "L'aventure – Miossec",
-        "Faute de goût – Bénabar",
-        "Se décentrer – Dominique A"
+        "Peau lisse Man – Yannick Noah",
+        "Tombée du jour sur la plage de Grumari – Laurent Voulzy",
+        "La sentinelle endormie – Patrick Fiori",
+        "Hendaye – Archimède"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Miossec"
+        "Laurent Voulzy"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Miossec",
-        "title": "L'aventure"
+        "artist": "Laurent Voulzy",
+        "title": "Tombée du jour sur la plage de Grumari"
       }
     },
     {
@@ -178,19 +178,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Son homme – Miossec",
-        "Quelle histoire ! – Bénabar",
-        "Tout est dans mon sac – Sanseverino",
-        "Loin du soleil – Dominique A"
+        "Samia Olivera Gaoling Bintou et moi – Brigitte",
+        "A tire d'ailes – Soan",
+        "Toi tu marches – Blankass",
+        "Mon homme – Les Innocents"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Loin du soleil"
+        "Mon homme"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Dominique A",
-        "title": "Loin du soleil"
+        "artist": "Les Innocents",
+        "title": "Mon homme"
       }
     },
     {
@@ -198,19 +198,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Désert – Debout sur le zinc",
-        "Le roi – Miossec",
-        "La clairière – Dominique A",
-        "Faute de goût – Bénabar"
+        "On the Run – Boulevard des Airs",
+        "Mon insuline – Suarez",
+        "J'te serre – Pep's",
+        "Chanson dégagée – Anne Sylvestre"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Debout sur le zinc"
+        "Boulevard des Airs"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Debout sur le zinc",
-        "title": "Désert"
+        "artist": "Boulevard des Airs",
+        "title": "On the Run"
       }
     }
   ]

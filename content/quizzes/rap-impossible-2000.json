@@ -3,12 +3,12 @@
   "gameType": "blindTest",
   "title": "Rap français, faces cachées",
   "theme": "Musique",
-  "description": "Les titres d’album méconnus de rappeurs français reconnus, dans les années 2000.",
+  "description": "Les titres d’album méconnus de rappeurs français reconnus, des années 2000 et 2010.",
   "audience": "experts",
   "poster": "gold",
   "icon": "microphone",
   "genre": "rap",
-  "decade": 2000,
+  "decade": "all",
   "level": "impossible",
   "addedAt": "2026-10-15",
   "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-6)",
@@ -18,19 +18,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Adieu Babylone – Saïan Supa Crew",
-        "Royality – Diam's",
-        "L'amour est mort, mais – Oxmo Puccino",
-        "91 Unda – Disiz"
+        "Machine arrière – La Fouine",
+        "Habitus – Rocé",
+        "Faites du bruit – Svinkels",
+        "32 ans que j'bouffe des pâtes – La Rumeur"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Adieu Babylone"
+        "Machine arrière"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Saïan Supa Crew",
-        "title": "Adieu Babylone"
+        "artist": "La Fouine",
+        "title": "Machine arrière"
       }
     },
     {
@@ -38,19 +38,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Mama – Saïan Supa Crew",
-        "Paris mais ... – Abd Al Malik",
-        "Le fléau – Diam's",
-        "Medley – Keny Arkana"
+        "To Be Or Not To Be – Abd al Malik",
+        "Sans mal – Nemir",
+        "Sélection naturelle – Nessbeal",
+        "Memento Mori – Ol'Kainry"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Diam's"
+        "Nessbeal"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Diam's",
-        "title": "Le fléau"
+        "artist": "Nessbeal",
+        "title": "Sélection naturelle"
       }
     },
     {
@@ -58,19 +58,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Fly – Saïan Supa Crew",
-        "Le Faqir – Abd Al Malik",
-        "Nous aurions pu – Oxmo Puccino",
-        "91 Unda – Disiz"
+        "Rodeo – Don Choa",
+        "Prison de vers – Salif",
+        "Elle était là – Sinik",
+        "T.M.D.M – Tiers"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Nous aurions pu"
+        "Elle était là"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Oxmo Puccino",
-        "title": "Nous aurions pu"
+        "artist": "Sinik",
+        "title": "Elle était là"
       }
     },
     {
@@ -78,19 +78,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Cours d'histoire – Disiz",
-        "Royality – Diam's",
-        "Mama – Saïan Supa Crew",
-        "L'amour est mort, mais – Oxmo Puccino"
+        "D’arobaz à zéro – Médine",
+        "À partir d'aujourd'hui – Flynt",
+        "Feuilles blanches pour exutoire – ATK",
+        "Qui Vivra Verra – Fabe"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Disiz"
+        "Médine"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Disiz",
-        "title": "Cours d'histoire"
+        "artist": "Médine",
+        "title": "D’arobaz à zéro"
       }
     },
     {
@@ -98,19 +98,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Medley – Keny Arkana",
-        "91 Unda – Disiz",
-        "Fly – Saïan Supa Crew",
-        "Conte Alsacien – Abd Al Malik"
+        "André – Les Sages Poètes de la Rue",
+        "Quand je claque des doigts – TTC",
+        "Fantômes – Klub des Loosers",
+        "Malheureux – Mac Tyer"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Conte Alsacien"
+        "Malheureux"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Abd Al Malik",
-        "title": "Conte Alsacien"
+        "artist": "Mac Tyer",
+        "title": "Malheureux"
       }
     },
     {
@@ -118,19 +118,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Le Faqir – Abd Al Malik",
-        "Tout le monde debout – Keny Arkana",
-        "Royality – Diam's",
-        "L'amour est mort, mais – Oxmo Puccino"
+        "Ca sent la patate – Scred Connexion",
+        "TMCP #5 - Ça va mal terminer – Lefa",
+        "Baby – A2H",
+        "Demain – Lord Esperanza"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Keny Arkana"
+        "Lefa"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Keny Arkana",
-        "title": "Tout le monde debout"
+        "artist": "Lefa",
+        "title": "TMCP #5 - Ça va mal terminer"
       }
     },
     {
@@ -138,19 +138,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "C'est le déluge – Saïan Supa Crew",
-        "Paris mais ... – Abd Al Malik",
-        "91 Unda – Disiz",
-        "Medley – Keny Arkana"
+        "En bas de chez nous – MZ",
+        "T'es la meilleure – KIK",
+        "Roule – Deen Burbigo",
+        "La rage au ventre – Jewel Usain"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "C'est le déluge"
+        "En bas de chez nous"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Saïan Supa Crew",
-        "title": "C'est le déluge"
+        "artist": "MZ",
+        "title": "En bas de chez nous"
       }
     },
     {
@@ -158,19 +158,20 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Mama – Saïan Supa Crew",
-        "Royality – Diam's",
-        "Arrivé sur terre – Oxmo Puccino",
-        "Le Faqir – Abd Al Malik"
+        "J'aurais voulu – Le 3ème Œil",
+        "Bouge! – Tandem",
+        "Lotus – Disiz",
+        "Envie – Sopico"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Oxmo Puccino"
+        "Disiz"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Oxmo Puccino",
-        "title": "Arrivé sur terre"
+        "artist": "disiz",
+        "title": "Lotus",
+        "displayArtist": "Disiz"
       }
     },
     {
@@ -178,19 +179,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "L'amour est mort, mais – Oxmo Puccino",
-        "N'Jillou – Disiz",
-        "Fly – Saïan Supa Crew",
-        "Paris mais ... – Abd Al Malik"
+        "Abîmes – Zed Yun Pavarotti",
+        "Le miracle – STUPEFLIP",
+        "Villa – nelick",
+        "Pour de vrai – Ichon"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "N'Jillou"
+        "Le miracle"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Disiz",
-        "title": "N'Jillou"
+        "artist": "STUPEFLIP",
+        "title": "Le miracle"
       }
     },
     {
@@ -198,19 +199,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Medley – Keny Arkana",
-        "Royality – Diam's",
-        "Mama – Saïan Supa Crew",
-        "HLM Tango – Abd Al Malik"
+        "Spotless – Melan",
+        "L'encre de nos veines – Furax Barbarossa",
+        "Bourbon – Swift Guad",
+        "Affamé – JoeyStarr"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Abd Al Malik"
+        "JoeyStarr"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Abd Al Malik",
-        "title": "HLM Tango"
+        "artist": "JoeyStarr",
+        "title": "Affamé"
       }
     }
   ]

@@ -5,60 +5,59 @@ la bonne version (pas un remix, une reprise ni un karaoké) et le passage joué 
 `rap-impossible-2000.json`. Si une alternative est meilleure, la copier dans `found` avant de cocher.
 Ensuite : `npm run build`, qui refuse tout morceau non vérifié.
 
-## 1. Saïan Supa Crew — Adieu Babylone (rpi00-01) ✅ vérifié
+## 1. La Fouine — Machine arrière (rpi00-01) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Saïan Supa Crew — Adieu Babylone (album « Saian Supa Crew », 161 s, extrait disponible, popularité 117 546) : https://www.deezer.com/track/3285944
+- Proposé : La Fouine — Machine arrière (album « Nouveau monde », 208 s, extrait disponible, popularité 191 414) : https://www.deezer.com/track/120308060
 
-## 2. Diam's — Le fléau (rpi00-02) ✅ vérifié
+## 2. Nessbeal — Sélection naturelle (rpi00-02) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Diam's — Le fléau (album « Premier mandat », 237 s, extrait disponible, popularité 115 237) : https://www.deezer.com/track/3437817
-- Alternative : Carlos Positivo — Raio Diamante da Consciência (album « Ativação dos Chakras com Luz Diamante para Renovação Celular Profunda », 214 s, extrait disponible, popularité 39 536) : https://www.deezer.com/track/3395667671
-- Alternative : Mig — Diamants & bijoux (album « 02 Géné », 158 s, extrait disponible, **paroles explicites**, popularité 356 318) : https://www.deezer.com/track/3221510841
-- Alternative : Clean Bandit — Baby (feat. MARINA & Luis Fonsi) (album « Baby (feat. MARINA & Luis Fonsi) », 205 s, extrait disponible, popularité 492 437) : https://www.deezer.com/track/576754312
+- Proposé : Nessbeal — Sélection naturelle (album « Sélection naturelle », 256 s, extrait disponible, popularité 188 950) : https://www.deezer.com/track/14477901
+- Alternative : Nessbeal — Zbeule (album « Sélection naturelle », 229 s, extrait disponible, popularité 253 206) : https://www.deezer.com/track/14477894
+- Alternative : Nessbeal — Gunshot (album « Sélection naturelle », 297 s, extrait disponible, popularité 273 977) : https://www.deezer.com/track/14477891
+- Alternative : Nessbeal — Soldat (album « Sélection naturelle », 251 s, extrait disponible, popularité 205 292) : https://www.deezer.com/track/14477897
 
-## 3. Oxmo Puccino — Nous aurions pu (rpi00-03) ✅ vérifié
+## 3. Sinik — Elle était là (rpi00-03) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Oxmo Puccino — Nous aurions pu (album « Le cactus de Sibérie », 212 s, extrait disponible, popularité 132 052) : https://www.deezer.com/track/365911811
-- Alternative : Oxmo Puccino — Nous aurions pu (Remasterisé) (album « Le cactus de Sibérie (Remasterisé) », 212 s, extrait disponible, popularité 244 749) : https://www.deezer.com/track/483173382
-- Alternative : Oxmo Puccino — Nous aurions pu (Live) (album « Black Tour Desperado (Live) », 82 s, extrait disponible, popularité 27 319) : https://www.deezer.com/track/365912141
+- Proposé : Sinik — Elle était là (album « Invincible », 212 s, extrait disponible, popularité 194 558) : https://www.deezer.com/track/643827922
 
-## 4. Disiz — Cours d'histoire (rpi00-04) ✅ vérifié
+## 4. Médine — D’arobaz à zéro (rpi00-04) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : disiz — Cours d'histoire (album « Jeu De Societe », 415 s, extrait disponible, popularité 68 225) : https://www.deezer.com/track/2293471
+- Proposé : Médine — D’arobaz à zéro (album « Protest Song », 257 s, extrait disponible, popularité 199 659) : https://www.deezer.com/track/68132490
 
-## 5. Abd Al Malik — Conte Alsacien (rpi00-05) ✅ vérifié
+## 5. Mac Tyer — Malheureux (rpi00-05) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Abd Al Malik — Conte Alsacien (album « Dante », 212 s, extrait disponible, popularité 158 171) : https://www.deezer.com/track/585646832
-- Alternative : Abd Al Malik — Conte alsacien (Live à la Cité nationale de l'Histoire de L'Immigration / 14 Juillet 2009) (album « Live à la Cité nationale de l'histoire de l'Immigration, le 14 juillet 2009 », 216 s, extrait disponible, popularité 211 477) : https://www.deezer.com/track/4305275212
+- Proposé : Mac Tyer — Malheureux (album « Je suis une légende », 247 s, extrait disponible, popularité 190 223) : https://www.deezer.com/track/99550230
 
-## 6. Keny Arkana — Tout le monde debout (rpi00-06) ✅ vérifié
+## 6. Lefa — TMCP #5 - Ça va mal terminer (rpi00-06) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Keny Arkana — Tout le monde debout (album « L'Esquisse », 206 s, extrait disponible, popularité 198 707) : https://www.deezer.com/track/515843822
+- Proposé : Lefa — TMCP #5 - Ça va mal terminer (album « #TMCP », 169 s, extrait disponible, popularité 185 482) : https://www.deezer.com/track/132628032
 
-## 7. Saïan Supa Crew — C'est le déluge (rpi00-07) ✅ vérifié
+## 7. MZ — En bas de chez nous (rpi00-07) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Saïan Supa Crew — C'est le déluge (album « Saian Supa Crew », 212 s, extrait disponible, popularité 123 936) : https://www.deezer.com/track/3285940
+- Proposé : MZ — En bas de chez nous (album « MZ Music, Vol. 3 », 315 s, extrait disponible, popularité 199 916) : https://www.deezer.com/track/75769319
 
-## 8. Oxmo Puccino — Arrivé sur terre (rpi00-08) ✅ vérifié
+## 8. disiz — Lotus (rpi00-08) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Oxmo Puccino — Arrivé sur terre (album « Le cactus de Sibérie », 246 s, extrait disponible, popularité 160 913) : https://www.deezer.com/track/365911821
+- Proposé : disiz — Lotus (album « Transe-lucide », 277 s, extrait disponible, popularité 196 175) : https://www.deezer.com/track/3938039831
+- Alternative : disiz — Toussa Toussa (album « Lucide », 187 s, extrait disponible, **paroles explicites**, popularité 478 625) : https://www.deezer.com/track/3472100671
+- Alternative : disiz — Toussa Toussa - New Version (album « Extra-lucide », 177 s, extrait disponible, popularité 390 256) : https://www.deezer.com/track/3974628561
+- Alternative : The Vacant Lots — Disintegration (album « Closure », 156 s, extrait disponible, popularité 102 065) : https://www.deezer.com/track/2714265632
 
-## 9. Disiz — N'Jillou (rpi00-09) ✅ vérifié
+## 9. STUPEFLIP — Le miracle (rpi00-09) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : disiz — N'Jillou (album « Itineraire D'Un Enfant Bronze », 225 s, extrait disponible, popularité 79 624) : https://www.deezer.com/track/2292272
-- Alternative : disiz — N'Jillou (Part II) (album « Itineraire D'Un Enfant Bronze », 197 s, extrait disponible, popularité 35 605) : https://www.deezer.com/track/2292284
+- Proposé : Stupeflip — Le miracle (album « Stup Religion », 18 s, extrait disponible, popularité 22 573) : https://www.deezer.com/track/2581716092
 
-## 10. Abd Al Malik — HLM Tango (rpi00-10) ✅ vérifié
+## 10. JoeyStarr — Affamé (rpi00-10) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Abd Al Malik — HLM Tango (album « Dante », 244 s, extrait disponible, popularité 123 890) : https://www.deezer.com/track/585646852
+- Proposé : JoeyStarr — Affamé (album « Egomaniac », 220 s, extrait disponible, popularité 163 916) : https://www.deezer.com/track/14172327
 

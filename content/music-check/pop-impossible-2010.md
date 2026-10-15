@@ -1,64 +1,74 @@
-# Contrôle des morceaux : Pop française, faces cachées
+# Contrôle des morceaux : Pop, faces cachées
 
 Recherche Deezer du 2026-10-15. Pour chaque morceau : ouvrir le lien, écouter, vérifier que c'est
 la bonne version (pas un remix, une reprise ni un karaoké) et le passage joué (startS), puis passer `verified` à `true` dans
 `pop-impossible-2010.json`. Si une alternative est meilleure, la copier dans `found` avant de cocher.
 Ensuite : `npm run build`, qui refuse tout morceau non vérifié.
 
-## 1. Christine and the Queens — The stranger (pi10-01) ✅ vérifié
+## 1. Christine and the Queens — Comme si (pi10-01) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Christine and the Queens — The stranger (album « Chris », 242 s, extrait disponible, popularité 82 157) : https://www.deezer.com/track/555962772
+- Proposé : Christine and the Queens — Comme si (Edit version) (album « Comme si (Edit version) », 189 s, extrait disponible, popularité 88 224) : https://www.deezer.com/track/625600232
+- Alternative : Christine and the Queens — Comme si on s'aimait (album « Chris », 232 s, extrait disponible, popularité 338 478) : https://www.deezer.com/track/555962552
+- Alternative : Christine and the Queens — Comme si (EASYFUN Remix) (album « Comme si (Remixes) », 172 s, extrait disponible, popularité 253 291) : https://www.deezer.com/track/644087702
+- Alternative : Christine and the Queens — Comme si (Fred again Remix) (album « Comme si (Remixes) », 263 s, extrait disponible, popularité 145 147) : https://www.deezer.com/track/644087722
 
-## 2. Yael Naim — Game Is Over (pi10-02) ✅ vérifié
+## 2. Maroon 5 — Plastic Rose (pi10-02) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Yael Naim — Game Is Over (album « She Was a Boy », 202 s, extrait disponible, popularité 176 290) : https://www.deezer.com/track/605681392
+- Proposé : Maroon 5 — Plastic Rose (album « Red Pill Blues », 222 s, extrait disponible, popularité 169 175) : https://www.deezer.com/track/511053942
+- Alternative : Molotov Cocktail Piano — Plastic Rose (Instrumental) (album « MCP Performs Maroon 5: Red Pill Blues (Instrumental) », 224 s, extrait disponible, popularité 1 317) : https://www.deezer.com/track/432161062
 
-## 3. Calogero — Le bal du moulin de la Galette (pi10-03) ✅ vérifié
+## 3. Coeur De Pirate — La chute (pi10-03) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Calogero — Le bal du moulin de la Galette (album « Les plus belles années d'une vie », 167 s, extrait disponible, popularité 149 391) : https://www.deezer.com/track/682072162
-- Alternative : Calogero — Le bal du moulin de la Galette (album « Les plus belles années d'une vie », 167 s, extrait disponible, popularité 149 391) : https://www.deezer.com/track/682072162
-- Alternative : Calogero — Le bal du moulin de la Galette (Variation) (album « Les plus belles années d'une vie », 102 s, extrait disponible, popularité 52 317) : https://www.deezer.com/track/682072192
-- Alternative : Calogero — Le bal du moulin de la Galette (Variation version Piano) (album « Les plus belles années d'une vie », 103 s, extrait disponible, popularité 74 141) : https://www.deezer.com/track/682072212
+- Proposé : Coeur de pirate — La chute (album « Les souliers rouges », 233 s, extrait disponible, popularité 193 206) : https://www.deezer.com/track/130008232
+- Alternative : Coeur de pirate — Château de sable (Piano Edit) (album « Château de sable (Piano Edit) », 161 s, extrait disponible, popularité 544 016) : https://www.deezer.com/track/3644008992
+- Alternative : Coeur de pirate — Château de sable (album « Château de sable (Piano Edit) », 198 s, extrait disponible, popularité 165 275) : https://www.deezer.com/track/3644009002
 
-## 4. Charlotte Gainsbourg — Out Of Touch (pi10-04) ✅ vérifié
+## 4. Sia — Big Girl Little Girl (pi10-04) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Charlotte Gainsbourg — Out Of Touch (album « Stage Whisper », 228 s, extrait disponible, popularité 108 828) : https://www.deezer.com/track/623348962
-- Alternative : Charlotte Gainsbourg — Out Of Touch (album « Stage Whisper », 228 s, extrait disponible, popularité 108 828) : https://www.deezer.com/track/623348962
+- Proposé : Sia — Big Girl Little Girl (album « We Are Born », 258 s, extrait disponible, popularité 172 728) : https://www.deezer.com/track/6304691
+- Alternative : Twinkle Twinkle Little Rock Star — Big Girls Cry (album « Lullaby Versions of Sia », 244 s, extrait disponible, popularité 10 345) : https://www.deezer.com/track/125225836
 
-## 5. Brigitte — Hippocampe (pi10-05) ✅ vérifié
+## 5. Vanessa Paradis — Dans notre monde (pi10-05) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Brigitte — Hippocampe (album « Et vous, tu m'aimes ? », 26 s, extrait disponible, popularité 15 838) : https://www.deezer.com/track/10446175
+- Proposé : Vanessa Paradis — Dans notre monde (album « Les sources », 216 s, extrait disponible, popularité 192 761) : https://www.deezer.com/track/569643522
 
-## 6. MIKA — Cry (pi10-06) ✅ vérifié
+## 6. Ellie Goulding — Halcyon (pi10-06) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Mika — Cry (album « My Name Is Michael Holbrook », 193 s, extrait disponible, popularité 169 973) : https://www.deezer.com/track/765865402
-- Alternative : Mika — Cry (album « My Name Is Michael Holbrook », 193 s, extrait disponible, popularité 169 973) : https://www.deezer.com/track/765865402
-- Alternative : Mika Nakashima — Cry No More (album « Cry No More », 277 s, extrait disponible, popularité 68 468) : https://www.deezer.com/track/976098662
-- Alternative : Mika Nakashima — Love No Cry (album « Yuki No Hana 15th Anniversary Best Bible », 315 s, extrait disponible, popularité 65 742) : https://www.deezer.com/track/976697352
+- Proposé : Ellie Goulding — Halcyon (album « Halcyon Days (Deluxe) », 205 s, extrait disponible, popularité 183 633) : https://www.deezer.com/track/78176575
+- Alternative : Ellie Goulding — Burn (album « Halcyon Days (Deluxe) », 228 s, extrait disponible, popularité 545 537) : https://www.deezer.com/track/78176590
+- Alternative : Ellie Goulding — My Blood (album « Halcyon Days », 234 s, extrait disponible, popularité 710 003) : https://www.deezer.com/track/78281877
+- Alternative : Ellie Goulding — The Ending (album « Halcyon Nights », 281 s, extrait disponible, popularité 390 453) : https://www.deezer.com/track/1948297137
 
-## 7. Lou Doillon — Robin Miller (pi10-07) ✅ vérifié
+## 7. Joyce Jonathan — Rouler sur l'or (pi10-07) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Lou Doillon — Robin Miller (album « Lay Low », 148 s, extrait disponible, popularité 198 501) : https://www.deezer.com/track/109213590
+- Proposé : Joyce Jonathan — Rouler sur l'or (album « On », 220 s, extrait disponible, popularité 197 951) : https://www.deezer.com/track/564224032
 
-## 8. Superbus — Impensablement (pi10-08) ✅ vérifié
+## 8. Sam Smith — Little Tin Buddhas (pi10-08) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Superbus — Impensablement (album « Sixtape », 174 s, extrait disponible, popularité 132 086) : https://www.deezer.com/track/125641134
+- Proposé : Sam Smith — Little Tin Buddhas (album « Sam Smith Diva Boy - Film Soundtrack », 191 s, extrait disponible, popularité 108 599) : https://www.deezer.com/track/608488932
+- Alternative : Sam Smith — Little Tin Buddhas (Berger & Shaqiri Remix) (album « The Lost Tapes - Remixed », 211 s, extrait disponible, popularité 62 227) : https://www.deezer.com/track/2045606987
 
-## 9. Charlotte Gainsbourg — White Telephone (pi10-09) ✅ vérifié
+## 9. MIKA — Blue (pi10-09) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Charlotte Gainsbourg — White Telephone (album « Stage Whisper », 208 s, extrait disponible, popularité 131 848) : https://www.deezer.com/track/623348932
+- Proposé : Mika — Blue (album « My Name Is Michael Holbrook », 191 s, extrait disponible, popularité 199 724) : https://www.deezer.com/track/765865612
+- Alternative : Sadistic Mika Band — Blue (Remastered 2023) (album « Hot! Menu (Remastered 2023) », 244 s, extrait disponible, popularité 88 653) : https://www.deezer.com/track/2373546905
+- Alternative : Mika — Blue Eyes (album « The Boy Who Knew Too Much (Orange Version) », 169 s, extrait disponible, popularité 395 386) : https://www.deezer.com/track/852371762
+- Alternative : Mika — Blue (Live) (album « Live At Brooklyn Steel », 204 s, extrait disponible, popularité 100 613) : https://www.deezer.com/track/860771442
 
-## 10. Christine and the Queens — What's-her-face (pi10-10) ✅ vérifié
+## 10. Birdy — Hear You Calling (pi10-10) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Christine and the Queens — What's-her-face (album « Chris », 303 s, extrait disponible, popularité 119 363) : https://www.deezer.com/track/555962742
+- Proposé : Birdy — Hear You Calling (album « Beautiful Lies (Deluxe) », 241 s, extrait disponible, popularité 191 885) : https://www.deezer.com/track/120832620
+- Alternative : Tom West — Can You Hear The Birds Calling? (album « I'm Livin' », 245 s, extrait disponible, popularité 18 198) : https://www.deezer.com/track/3564160341
+- Alternative : John McCormack — A Brown Bird Singing (Remastered 2004) (album « I Hear You Calling Me (Remastered 2004) », 148 s, extrait disponible, popularité 100 000) : https://www.deezer.com/track/3726742182
+- Alternative : John McCormack — Bird Songs At Eventide (Remastered 2004) (album « I Hear You Calling Me (Remastered 2004) », 181 s, extrait disponible, popularité 100 000) : https://www.deezer.com/track/3726742432
 

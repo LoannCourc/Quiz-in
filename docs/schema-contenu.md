@@ -131,6 +131,17 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
 - `options` : 4 titres ou 4 artistes de la même époque et du même genre ; `acceptedAnswers` contient la bonne.
 - `music` : `artist`, `title`, `startS` (0 à 10), `titleAliases` et `artistAliases` facultatifs.
 - Un morceau n'apparaît que dans un seul blind test (le build refuse un doublon) ; aucune version explicite.
+- **Variété** (octobre 2026, refusée par le build) : dans un blind test, les 40 propositions ont 40 titres
+  différents (précisions entre parenthèses ignorées ; un même titre sous deux noms d'artiste, « Jimi Hendrix »
+  et « The Jimi Hendrix Experience », est refusé aussi) et chaque artiste n'y apparaît qu'une fois ; une
+  mauvaise proposition n'est jamais la bonne réponse d'un autre blind test. « Impossible » : un artiste n'est
+  bonne réponse qu'une fois sur l'ensemble des « Impossible », et jamais s'il est bonne réponse d'un autre
+  blind test des lots BT-1 à BT-6.
+- Mauvaises propositions : même genre et même époque que le blind test, notoriété comparable, présentes
+  chez Deezer en version d'origine (ni live, ni remix, ni reprise), non explicites, titre convenable.
+  `npm run music:decoys [-- <quizId> …]` cherche chaque proposition chez Deezer (cache
+  `music-check/decoys.json`, une recherche par proposition ; supprimer une entrée pour la refaire) et finit en
+  erreur s'il en manque une.
 - `genre` (obligatoire, un genre principal) : `pop`, `rock`, `rap`, `chanson`, `discoFunk`, `electro`.
   `decade` (obligatoire) : `1960` à `2020`, ou `all` (toutes époques).
 - `level` (facultatif) : `easy`, `medium`, `hard` ou `impossible`. S'il est écrit, toutes les questions ont la
@@ -148,8 +159,8 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
   - Les dates d'album des années 60 à 90 sont souvent celles d'une réédition chez Deezer : préférer des
     époques où la date de l'album est celle d'origine (années 2000 et 2010). Deezer range aussi beaucoup
     d'albums de chanson en « Pop » : pour le genre Chanson, l'album doit être classé « Chanson française ».
-  - Les propositions sont d'autres titres d'album des mêmes artistes ou de la même scène, aussi peu connus,
-    même genre et même époque.
+  - Les propositions sont des titres d'album d'autres artistes de la même scène (30 artistes différents des
+    10 bonnes réponses), aussi peu connus, même genre et même époque.
   - L'ancienne définition (artistes à moins de 800 fans) est abandonnée : trop de reprises, de titres
     douteux et de paroles impossibles à garantir.
 - `music.title` et `music.artist` : tels que Deezer les écrit (ce sont eux qui sont vérifiés).

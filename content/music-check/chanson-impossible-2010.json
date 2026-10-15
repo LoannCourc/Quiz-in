@@ -6,21 +6,55 @@
     {
       "questionId": "ci10-01",
       "query": {
-        "artist": "Bénabar",
-        "title": "Perdre la raison"
+        "artist": "Tryo",
+        "title": "Mourir la mort"
       },
       "found": {
-        "id": "14477869",
-        "title": "Perdre la raison",
-        "artist": "Bénabar",
-        "album": "Les bénéfices du doute",
-        "durationS": 139,
+        "id": "3762670942",
+        "title": "Mourir la mort",
+        "artist": "Tryo",
+        "album": "Ladilafé",
+        "durationS": 171,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/14477869",
+        "link": "https://www.deezer.com/track/3762670942",
         "explicit": false,
-        "rank": 163117
+        "rank": 189578
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "3414201311",
+          "title": "Si No Regresas Morire",
+          "artist": "Trio Aurora Hidalguense",
+          "album": "Con Dedicatoria",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3414201311",
+          "explicit": false,
+          "rank": 110813
+        },
+        {
+          "id": "3261792571",
+          "title": "Dime quien puede morirse de amor",
+          "artist": "Young Rebxl",
+          "album": "Dime quien puede morirse de amor",
+          "durationS": 192,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3261792571",
+          "explicit": true,
+          "rank": 119445
+        },
+        {
+          "id": "125875027",
+          "title": "Sin Ti Es Mejor Morir",
+          "artist": "Trio America",
+          "album": "Me Recordarás",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/125875027",
+          "explicit": false,
+          "rank": 26164
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
@@ -28,52 +62,30 @@
       "questionId": "ci10-02",
       "query": {
         "artist": "Miossec",
-        "title": "Merci"
+        "title": "La mer, quand elle mord, c'est méchant"
       },
       "found": {
-        "id": "134523346",
-        "title": "Merci",
+        "id": "555959882",
+        "title": "La mer, quand elle mord, c'est méchant",
         "artist": "Miossec",
-        "album": "Mammifères",
-        "durationS": 193,
+        "album": "Les rescapés",
+        "durationS": 198,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/134523346",
+        "link": "https://www.deezer.com/track/555959882",
         "explicit": false,
-        "rank": 108517
+        "rank": 180617
       },
       "alternatives": [
         {
-          "id": "1030542982",
-          "title": "Merci pour la joie",
+          "id": "651170992",
+          "title": "La mer, quand elle mord, c'est méchant (Live session)",
           "artist": "Miossec",
-          "album": "Boire (25ème Anniversaire)",
-          "durationS": 217,
+          "album": "Les rescapés (Deluxe)",
+          "durationS": 199,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1030542982",
+          "link": "https://www.deezer.com/track/651170992",
           "explicit": false,
-          "rank": 232492
-        },
-        {
-          "id": "2071720707",
-          "title": "Meilleur jeune espoir masculin",
-          "artist": "Miossec",
-          "album": "Simplifier",
-          "durationS": 165,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2071720707",
-          "explicit": false,
-          "rank": 237026
-        },
-        {
-          "id": "3960293811",
-          "title": "Mercy Missed Me",
-          "artist": "Adelia Rucci IV",
-          "album": "Dead Men Don't Pray",
-          "durationS": 206,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/3960293811",
-          "explicit": false,
-          "rank": 102423
+          "rank": 99030
         }
       ],
       "verified": true,
@@ -83,192 +95,31 @@
       "questionId": "ci10-03",
       "query": {
         "artist": "Dominique A",
-        "title": "Le reflet"
+        "title": "Le soleil"
       },
       "found": {
-        "id": "441379662",
-        "title": "Le reflet",
+        "id": "523074732",
+        "title": "Le soleil",
         "artist": "Dominique A",
-        "album": "Toute latitude",
-        "durationS": 254,
+        "album": "La fragilité",
+        "durationS": 277,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/441379662",
+        "link": "https://www.deezer.com/track/523074732",
         "explicit": false,
-        "rank": 99154
+        "rank": 199554
       },
       "alternatives": [
         {
-          "id": "2129601377",
-          "title": "Maison d'ambre",
+          "id": "60890389",
+          "title": "Loin du soleil",
           "artist": "Dominique A",
-          "album": "Reflets du monde lointain",
-          "durationS": 123,
+          "album": "Vers les lueurs (Deluxe Edition)",
+          "durationS": 262,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2129601377",
+          "link": "https://www.deezer.com/track/60890389",
           "explicit": false,
-          "rank": 150939
+          "rank": 148069
         },
-        {
-          "id": "2129601367",
-          "title": "La plaine",
-          "artist": "Dominique A",
-          "album": "Reflets du monde lointain",
-          "durationS": 224,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2129601367",
-          "explicit": false,
-          "rank": 178818
-        },
-        {
-          "id": "2129601307",
-          "title": "Le dénouement",
-          "artist": "Dominique A",
-          "album": "Reflets du monde lointain",
-          "durationS": 34,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2129601307",
-          "explicit": false,
-          "rank": 187079
-        }
-      ],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-04",
-      "query": {
-        "artist": "Debout sur le zinc",
-        "title": "La rengaine"
-      },
-      "found": {
-        "id": "1223153682",
-        "title": "La rengaine",
-        "artist": "Debout Sur Le Zinc",
-        "album": "L'homme à tue-tête",
-        "durationS": 158,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/1223153682",
-        "explicit": false,
-        "rank": 96456
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-05",
-      "query": {
-        "artist": "Tryo",
-        "title": "Du cinéma"
-      },
-      "found": {
-        "id": "3762670982",
-        "title": "Du cinéma",
-        "artist": "Tryo",
-        "album": "Ladilafé",
-        "durationS": 188,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/3762670982",
-        "explicit": false,
-        "rank": 164748
-      },
-      "alternatives": [
-        {
-          "id": "450667662",
-          "title": "Cravo e Canela",
-          "artist": "George Duke",
-          "album": "Brazilian Love Affair (Expanded Edition)",
-          "durationS": 185,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/450667662",
-          "explicit": false,
-          "rank": 74235
-        }
-      ],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-06",
-      "query": {
-        "artist": "Jacques Higelin",
-        "title": "Hey man"
-      },
-      "found": {
-        "id": "65441197",
-        "title": "Hey man",
-        "artist": "Jacques Higelin",
-        "album": "Beau repaire",
-        "durationS": 221,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/65441197",
-        "explicit": false,
-        "rank": 103189
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-07",
-      "query": {
-        "artist": "Bénabar",
-        "title": "Sur son passage"
-      },
-      "found": {
-        "id": "82826962",
-        "title": "Sur son passage",
-        "artist": "Bénabar",
-        "album": "Inspiré de faits réels",
-        "durationS": 197,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/82826962",
-        "explicit": false,
-        "rank": 186117
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-08",
-      "query": {
-        "artist": "Miossec",
-        "title": "L'aventure"
-      },
-      "found": {
-        "id": "555959862",
-        "title": "L'aventure",
-        "artist": "Miossec",
-        "album": "Les rescapés",
-        "durationS": 151,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/555959862",
-        "explicit": false,
-        "rank": 122202
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ci10-09",
-      "query": {
-        "artist": "Dominique A",
-        "title": "Loin du soleil"
-      },
-      "found": {
-        "id": "16710856",
-        "title": "Loin du soleil",
-        "artist": "Dominique A",
-        "album": "Vers les lueurs",
-        "durationS": 262,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/16710856",
-        "explicit": false,
-        "rank": 155764
-      },
-      "alternatives": [
         {
           "id": "2129601337",
           "title": "Les yeux dans soleil",
@@ -279,6 +130,211 @@
           "link": "https://www.deezer.com/track/2129601337",
           "explicit": false,
           "rank": 208440
+        },
+        {
+          "id": "3774583",
+          "title": "Agonie d'un Soleil",
+          "artist": "Dominique A",
+          "album": "Les Sons Cardinaux",
+          "durationS": 301,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3774583",
+          "explicit": false,
+          "rank": 22205
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-04",
+      "query": {
+        "artist": "Debout Sur Le Zinc",
+        "title": "De velours et de soie"
+      },
+      "found": {
+        "id": "750509572",
+        "title": "De velours et de soie",
+        "artist": "Debout Sur Le Zinc",
+        "album": "Vian par Debout sur le Zinc",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/750509572",
+        "explicit": false,
+        "rank": 194548
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-05",
+      "query": {
+        "artist": "Bertrand Belin",
+        "title": "Bec"
+      },
+      "found": {
+        "id": "580885242",
+        "title": "Bec",
+        "artist": "Bertrand Belin",
+        "album": "Persona",
+        "durationS": 124,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/580885242",
+        "explicit": false,
+        "rank": 175467
+      },
+      "alternatives": [
+        {
+          "id": "3407766741",
+          "title": "L'inconnu en personne",
+          "artist": "Bertrand Belin",
+          "album": "Watt",
+          "durationS": 292,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3407766741",
+          "explicit": false,
+          "rank": 595005
+        },
+        {
+          "id": "107216392",
+          "title": "Je parle en fou",
+          "artist": "Bertrand Belin",
+          "album": "Cap Waller",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/107216392",
+          "explicit": false,
+          "rank": 420096
+        },
+        {
+          "id": "123375366",
+          "title": "Le mot juste (le beau geste) [avec Camélia Jordana]",
+          "artist": "Bertrand Belin",
+          "album": "Cap Waller (Inédits) - EP",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/123375366",
+          "explicit": false,
+          "rank": 485329
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-06",
+      "query": {
+        "artist": "Sanseverino",
+        "title": "J'ai froid"
+      },
+      "found": {
+        "id": "726877612",
+        "title": "J'ai froid",
+        "artist": "Sanseverino",
+        "album": "Sanseverino & Tangomotán",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/726877612",
+        "explicit": false,
+        "rank": 152454
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-07",
+      "query": {
+        "artist": "Philippe Katerine",
+        "title": "Point noir sur feuille blanche"
+      },
+      "found": {
+        "id": "758852212",
+        "title": "Point noir sur feuille blanche",
+        "artist": "Philippe Katerine",
+        "album": "Confessions",
+        "durationS": 114,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/758852212",
+        "explicit": false,
+        "rank": 197370
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-08",
+      "query": {
+        "artist": "Laurent Voulzy",
+        "title": "Tombée du jour sur la plage de Grumari"
+      },
+      "found": {
+        "id": "400291882",
+        "title": "Tombée du jour sur la plage de Grumari",
+        "artist": "Laurent Voulzy",
+        "album": "Belem",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/400291882",
+        "explicit": false,
+        "rank": 193897
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ci10-09",
+      "query": {
+        "artist": "Les Innocents",
+        "title": "Mon homme"
+      },
+      "found": {
+        "id": "629311582",
+        "title": "Mon homme",
+        "artist": "Les Innocents",
+        "album": "6 ½",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/629311582",
+        "explicit": false,
+        "rank": 199565
+      },
+      "alternatives": [
+        {
+          "id": "355615151",
+          "title": "Un homme extraordinaire",
+          "artist": "Les Innocents",
+          "album": "Fous à lier",
+          "durationS": 342,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/355615151",
+          "explicit": false,
+          "rank": 774067
+        },
+        {
+          "id": "355615401",
+          "title": "Un homme extraordinaire (radio edit)",
+          "artist": "Les Innocents",
+          "album": "Meilleurs souvenirs - Best Of",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/355615401",
+          "explicit": false,
+          "rank": 531006
+        },
+        {
+          "id": "136349972",
+          "title": "You're Welcome",
+          "artist": "Dwayne Johnson",
+          "album": "Vaiana (English Version/Original Motion Picture Soundtrack)",
+          "durationS": 164,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136349972",
+          "explicit": false,
+          "rank": 391052
         }
       ],
       "verified": true,
@@ -287,42 +343,31 @@
     {
       "questionId": "ci10-10",
       "query": {
-        "artist": "Debout sur le zinc",
-        "title": "Désert"
+        "artist": "Boulevard des Airs",
+        "title": "On the Run"
       },
       "found": {
-        "id": "1223153652",
-        "title": "Désert",
-        "artist": "Debout Sur Le Zinc",
-        "album": "L'homme à tue-tête",
-        "durationS": 258,
+        "id": "66982951",
+        "title": "On the Run",
+        "artist": "Boulevard des airs",
+        "album": "Les appareuses trompences",
+        "durationS": 176,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/1223153652",
+        "link": "https://www.deezer.com/track/66982951",
         "explicit": false,
-        "rank": 121958
+        "rank": 195340
       },
       "alternatives": [
         {
-          "id": "750509492",
-          "title": "Le déserteur",
-          "artist": "Debout Sur Le Zinc",
-          "album": "Vian par Debout sur le Zinc",
-          "durationS": 286,
+          "id": "3366856261",
+          "title": "Je rentre à la maison",
+          "artist": "Boulevard des airs",
+          "album": "Je rentre à la maison",
+          "durationS": 194,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/750509492",
+          "link": "https://www.deezer.com/track/3366856261",
           "explicit": false,
-          "rank": 314920
-        },
-        {
-          "id": "1220777452",
-          "title": "Les déserteurs",
-          "artist": "Debout Sur Le Zinc",
-          "album": "Récréations",
-          "durationS": 179,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1220777452",
-          "explicit": false,
-          "rank": 74048
+          "rank": 629374
         }
       ],
       "verified": true,

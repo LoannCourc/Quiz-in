@@ -1,9 +1,9 @@
 {
   "id": "rock-impossible-2000",
   "gameType": "blindTest",
-  "title": "Rock français, faces cachées",
+  "title": "Rock, faces cachées",
   "theme": "Musique",
-  "description": "Les titres d’album oubliés de groupes de rock français bien connus, dans les années 2000.",
+  "description": "Les titres d’album oubliés de groupes de rock connus des années 2000, en France et ailleurs.",
   "audience": "experts",
   "poster": "red",
   "icon": "guitar",
@@ -18,19 +18,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Un Seul Jour – Luke",
-        "Goodbye Green Day – Mickey 3D",
-        "Je n'aime que toi – Les Wampas",
-        "Giant John Et Le Sanglophone – Dionysos"
+        "Beat On Repeat – Jet",
+        "Get Out – The Vines",
+        "Blood For Wild Blood – Razorlight",
+        "Happiness – Kasabian"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Giant John Et Le Sanglophone"
+        "Happiness"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Dionysos",
-        "title": "Giant John Et Le Sanglophone"
+        "artist": "Kasabian",
+        "title": "Happiness"
       }
     },
     {
@@ -38,10 +38,130 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Le pays – Luke",
-        "La Métamorphose De Mister Chat – Dionysos",
-        "Janis – Mickey 3D",
-        "Il n'y a rien que les lâches qui freinent – Les Wampas"
+        "I Love Liou – Dionysos",
+        "To China with Love – Mando Diao",
+        "American X – Black Rebel Motorcycle Club",
+        "Dragqueen – Eiffel"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Dionysos"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dionysos",
+        "title": "I Love Liou"
+      }
+    },
+    {
+      "id": "ri00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Au Costes A Coté – Blankass",
+        "La goutte d'or – Pigalle",
+        "Judas – Cage The Elephant",
+        "Arthur – Les Garçons Bouchers"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Judas"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Cage The Elephant",
+        "title": "Judas"
+      }
+    },
+    {
+      "id": "ri00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Kreutzfeld Jacob – Ludwig Von 88",
+        "+ de bombes – Les Sheriff",
+        "2, 3 jours à Paris – Mickey 3D",
+        "Sauvons Vivendi – Les Fatals Picards"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mickey 3D"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mickey 3D",
+        "title": "2, 3 jours à Paris"
+      }
+    },
+    {
+      "id": "ri00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mysteries – Yeah Yeah Yeahs",
+        "ADHD – Blood Red Shoes",
+        "Ghouls – We Are Scientists",
+        "Tron – Foals"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Mysteries"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Yeah Yeah Yeahs",
+        "title": "Mysteries"
+      }
+    },
+    {
+      "id": "ri00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "This Is Not The End – The Bravery",
+        "Easy – The Dandy Warhols",
+        "Baby's Eyes – The Kills",
+        "Elle Est Où Ma Loge ? – Les Wampas"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Les Wampas"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Les Wampas",
+        "title": "Elle Est Où Ma Loge ?"
+      }
+    },
+    {
+      "id": "ri00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bad Blood – Supergrass",
+        "Giddy Up! – The Hives",
+        "The Price Of Love – White Lies",
+        "Faith Hope Love – Starsailor"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Giddy Up!"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Hives",
+        "title": "Giddy Up!"
+      }
+    },
+    {
+      "id": "ri00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La Nuit Et Le Jour – Luke",
+        "My Life in Reverse – Maxïmo Park",
+        "Elaine Paige – Suede",
+        "Stragglers Moon – The Fratellis"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -50,127 +170,7 @@
       "difficulty": 3,
       "music": {
         "artist": "Luke",
-        "title": "Le pays"
-      }
-    },
-    {
-      "id": "ri00-03",
-      "text": "Quel est ce titre ?",
-      "ask": "title",
-      "options": [
-        "J'ai oublié – Luke",
-        "Mon Ombre Est Personne – Dionysos",
-        "Phénoménal – Mickey 3D",
-        "Je n'aime que toi – Les Wampas"
-      ],
-      "correctIndex": 2,
-      "acceptedAnswers": [
-        "Phénoménal"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Mickey 3D",
-        "title": "Phénoménal"
-      }
-    },
-    {
-      "id": "ri00-04",
-      "text": "Quel artiste ?",
-      "ask": "artist",
-      "options": [
-        "Goodbye Green Day – Mickey 3D",
-        "Un Seul Jour – Luke",
-        "J'écoutais les cramps – Les Wampas",
-        "La Métamorphose De Mister Chat – Dionysos"
-      ],
-      "correctIndex": 2,
-      "acceptedAnswers": [
-        "Les Wampas"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Les Wampas",
-        "title": "J'écoutais les cramps"
-      }
-    },
-    {
-      "id": "ri00-05",
-      "text": "Quel est ce titre ?",
-      "ask": "title",
-      "options": [
-        "Hoo Doo – Noir Désir",
-        "Il n'y a rien que les lâches qui freinent – Les Wampas",
-        "Janis – Mickey 3D",
-        "J'ai oublié – Luke"
-      ],
-      "correctIndex": 0,
-      "acceptedAnswers": [
-        "Hoo Doo"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Noir Désir",
-        "title": "Hoo Doo"
-      }
-    },
-    {
-      "id": "ri00-06",
-      "text": "Quel artiste ?",
-      "ask": "artist",
-      "options": [
-        "Un Seul Jour – Luke",
-        "Je n'aime que toi – Les Wampas",
-        "Goodbye Green Day – Mickey 3D",
-        "Monsters In Love – Dionysos"
-      ],
-      "correctIndex": 3,
-      "acceptedAnswers": [
-        "Dionysos"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Dionysos",
-        "title": "Monsters In Love"
-      }
-    },
-    {
-      "id": "ri00-07",
-      "text": "Quel est ce titre ?",
-      "ask": "title",
-      "options": [
-        "Mon Ombre Est Personne – Dionysos",
-        "Stella – Luke",
-        "Janis – Mickey 3D",
-        "Il n'y a rien que les lâches qui freinent – Les Wampas"
-      ],
-      "correctIndex": 1,
-      "acceptedAnswers": [
-        "Stella"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Luke",
-        "title": "Stella"
-      }
-    },
-    {
-      "id": "ri00-08",
-      "text": "Quel artiste ?",
-      "ask": "artist",
-      "options": [
-        "La Saint Glinglin – Mickey 3D",
-        "La Métamorphose De Mister Chat – Dionysos",
-        "J'ai oublié – Luke",
-        "Je n'aime que toi – Les Wampas"
-      ],
-      "correctIndex": 0,
-      "acceptedAnswers": [
-        "Mickey 3D"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Mickey 3D",
-        "title": "La Saint Glinglin"
+        "title": "La Nuit Et Le Jour"
       }
     },
     {
@@ -178,19 +178,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Janis – Mickey 3D",
-        "Mon Ombre Est Personne – Dionysos",
-        "Un dimanche à Strasbourg – Les Wampas",
-        "Un Seul Jour – Luke"
+        "Wear You Out – TV on the Radio",
+        "Good Things Don't Always Come To You – Skunk Anansie",
+        "Bricks and Mortar – Editors",
+        "I Want More – Rival Sons"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Un dimanche à Strasbourg"
+        "Bricks and Mortar"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Les Wampas",
-        "title": "Un dimanche à Strasbourg"
+        "artist": "Editors",
+        "title": "Bricks and Mortar"
       }
     },
     {
@@ -198,19 +198,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Il n'y a rien que les lâches qui freinent – Les Wampas",
-        "Storiz – Mickey 3D",
-        "J'ai oublié – Luke",
-        "La Métamorphose De Mister Chat – Dionysos"
+        "Holding My Own – The Darkness",
+        "Pilgrim – Wolfmother",
+        "Commotion – Triggerfinger",
+        "Whose Authority – Nada Surf"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Mickey 3D"
+        "Wolfmother"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Mickey 3D",
-        "title": "Storiz"
+        "artist": "Wolfmother",
+        "title": "Pilgrim"
       }
     }
   ]

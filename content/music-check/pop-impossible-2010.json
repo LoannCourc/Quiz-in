@@ -7,94 +7,129 @@
       "questionId": "pi10-01",
       "query": {
         "artist": "Christine and the Queens",
-        "title": "The stranger"
+        "title": "Comme si"
       },
       "found": {
-        "id": "555962772",
-        "title": "The stranger",
+        "id": "555962672",
+        "title": "Comme si",
         "artist": "Christine and the Queens",
         "album": "Chris",
-        "durationS": 242,
+        "durationS": 232,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/555962772",
+        "link": "https://www.deezer.com/track/555962672",
         "explicit": false,
-        "rank": 82157
+        "rank": 197941
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "625600232",
+          "title": "Comme si (Edit version)",
+          "artist": "Christine and the Queens",
+          "album": "Comme si (Edit version)",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/625600232",
+          "explicit": false,
+          "rank": 88224
+        },
+        {
+          "id": "555962552",
+          "title": "Comme si on s'aimait",
+          "artist": "Christine and the Queens",
+          "album": "Chris",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/555962552",
+          "explicit": false,
+          "rank": 338478
+        },
+        {
+          "id": "644087702",
+          "title": "Comme si (EASYFUN Remix)",
+          "artist": "Christine and the Queens",
+          "album": "Comme si (Remixes)",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/644087702",
+          "explicit": false,
+          "rank": 253291
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-02",
       "query": {
-        "artist": "Yael Naim",
-        "title": "Game Is Over"
+        "artist": "Maroon 5",
+        "title": "Plastic Rose"
       },
       "found": {
-        "id": "605681392",
-        "title": "Game Is Over",
-        "artist": "Yael Naim",
-        "album": "She Was a Boy",
-        "durationS": 202,
+        "id": "511053942",
+        "title": "Plastic Rose",
+        "artist": "Maroon 5",
+        "album": "Red Pill Blues",
+        "durationS": 222,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/605681392",
+        "link": "https://www.deezer.com/track/511053942",
         "explicit": false,
-        "rank": 176290
+        "rank": 169175
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "432161062",
+          "title": "Plastic Rose (Instrumental)",
+          "artist": "Molotov Cocktail Piano",
+          "album": "MCP Performs Maroon 5: Red Pill Blues (Instrumental)",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/432161062",
+          "explicit": false,
+          "rank": 1317
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-03",
       "query": {
-        "artist": "Calogero",
-        "title": "Le bal du moulin de la Galette"
+        "artist": "Coeur De Pirate",
+        "title": "La chute"
       },
       "found": {
-        "id": "682072162",
-        "title": "Le bal du moulin de la Galette",
-        "artist": "Calogero",
-        "album": "Les plus belles années d'une vie",
-        "durationS": 167,
+        "id": "130008232",
+        "title": "La chute",
+        "artist": "Coeur de pirate",
+        "album": "Les souliers rouges",
+        "durationS": 233,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/682072162",
+        "link": "https://www.deezer.com/track/130008232",
         "explicit": false,
-        "rank": 149391
+        "rank": 193206
       },
       "alternatives": [
         {
-          "id": "682072162",
-          "title": "Le bal du moulin de la Galette",
-          "artist": "Calogero",
-          "album": "Les plus belles années d'une vie",
-          "durationS": 167,
+          "id": "3644008992",
+          "title": "Château de sable (Piano Edit)",
+          "artist": "Coeur de pirate",
+          "album": "Château de sable (Piano Edit)",
+          "durationS": 161,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/682072162",
+          "link": "https://www.deezer.com/track/3644008992",
           "explicit": false,
-          "rank": 149391
+          "rank": 544016
         },
         {
-          "id": "682072192",
-          "title": "Le bal du moulin de la Galette (Variation)",
-          "artist": "Calogero",
-          "album": "Les plus belles années d'une vie",
-          "durationS": 102,
+          "id": "3644009002",
+          "title": "Château de sable",
+          "artist": "Coeur de pirate",
+          "album": "Château de sable (Piano Edit)",
+          "durationS": 198,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/682072192",
+          "link": "https://www.deezer.com/track/3644009002",
           "explicit": false,
-          "rank": 52317
-        },
-        {
-          "id": "682072212",
-          "title": "Le bal du moulin de la Galette (Variation version Piano)",
-          "artist": "Calogero",
-          "album": "Les plus belles années d'une vie",
-          "durationS": 103,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/682072212",
-          "explicit": false,
-          "rank": 74141
+          "rank": 165275
         }
       ],
       "verified": true,
@@ -103,31 +138,31 @@
     {
       "questionId": "pi10-04",
       "query": {
-        "artist": "Charlotte Gainsbourg",
-        "title": "Out Of Touch"
+        "artist": "Sia",
+        "title": "Big Girl Little Girl"
       },
       "found": {
-        "id": "623348962",
-        "title": "Out Of Touch",
-        "artist": "Charlotte Gainsbourg",
-        "album": "Stage Whisper",
-        "durationS": 228,
+        "id": "6304691",
+        "title": "Big Girl Little Girl",
+        "artist": "Sia",
+        "album": "We Are Born",
+        "durationS": 258,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/623348962",
+        "link": "https://www.deezer.com/track/6304691",
         "explicit": false,
-        "rank": 108828
+        "rank": 172728
       },
       "alternatives": [
         {
-          "id": "623348962",
-          "title": "Out Of Touch",
-          "artist": "Charlotte Gainsbourg",
-          "album": "Stage Whisper",
-          "durationS": 228,
+          "id": "125225836",
+          "title": "Big Girls Cry",
+          "artist": "Twinkle Twinkle Little Rock Star",
+          "album": "Lullaby Versions of Sia",
+          "durationS": 244,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/623348962",
+          "link": "https://www.deezer.com/track/125225836",
           "explicit": false,
-          "rank": 108828
+          "rank": 10345
         }
       ],
       "verified": true,
@@ -136,19 +171,19 @@
     {
       "questionId": "pi10-05",
       "query": {
-        "artist": "Brigitte",
-        "title": "Hippocampe"
+        "artist": "Vanessa Paradis",
+        "title": "Dans notre monde"
       },
       "found": {
-        "id": "10446175",
-        "title": "Hippocampe",
-        "artist": "Brigitte",
-        "album": "Et vous, tu m'aimes ?",
-        "durationS": 26,
+        "id": "569643522",
+        "title": "Dans notre monde",
+        "artist": "Vanessa Paradis",
+        "album": "Les sources",
+        "durationS": 216,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/10446175",
+        "link": "https://www.deezer.com/track/569643522",
         "explicit": false,
-        "rank": 15838
+        "rank": 192761
       },
       "alternatives": [],
       "verified": true,
@@ -157,53 +192,53 @@
     {
       "questionId": "pi10-06",
       "query": {
-        "artist": "MIKA",
-        "title": "Cry"
+        "artist": "Ellie Goulding",
+        "title": "Halcyon"
       },
       "found": {
-        "id": "765865402",
-        "title": "Cry",
-        "artist": "Mika",
-        "album": "My Name Is Michael Holbrook",
-        "durationS": 193,
+        "id": "78281880",
+        "title": "Halcyon",
+        "artist": "Ellie Goulding",
+        "album": "Halcyon Days",
+        "durationS": 205,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/765865402",
+        "link": "https://www.deezer.com/track/78281880",
         "explicit": false,
-        "rank": 169973
+        "rank": 192215
       },
       "alternatives": [
         {
-          "id": "765865402",
-          "title": "Cry",
-          "artist": "Mika",
-          "album": "My Name Is Michael Holbrook",
-          "durationS": 193,
+          "id": "78176575",
+          "title": "Halcyon",
+          "artist": "Ellie Goulding",
+          "album": "Halcyon Days (Deluxe)",
+          "durationS": 205,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/765865402",
+          "link": "https://www.deezer.com/track/78176575",
           "explicit": false,
-          "rank": 169973
+          "rank": 183633
         },
         {
-          "id": "976098662",
-          "title": "Cry No More",
-          "artist": "Mika Nakashima",
-          "album": "Cry No More",
-          "durationS": 277,
+          "id": "78176590",
+          "title": "Burn",
+          "artist": "Ellie Goulding",
+          "album": "Halcyon Days (Deluxe)",
+          "durationS": 228,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/976098662",
+          "link": "https://www.deezer.com/track/78176590",
           "explicit": false,
-          "rank": 68468
+          "rank": 545537
         },
         {
-          "id": "976697352",
-          "title": "Love No Cry",
-          "artist": "Mika Nakashima",
-          "album": "Yuki No Hana 15th Anniversary Best Bible",
-          "durationS": 315,
+          "id": "78281877",
+          "title": "My Blood",
+          "artist": "Ellie Goulding",
+          "album": "Halcyon Days",
+          "durationS": 234,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/976697352",
+          "link": "https://www.deezer.com/track/78281877",
           "explicit": false,
-          "rank": 65742
+          "rank": 710003
         }
       ],
       "verified": true,
@@ -212,19 +247,19 @@
     {
       "questionId": "pi10-07",
       "query": {
-        "artist": "Lou Doillon",
-        "title": "Robin Miller"
+        "artist": "Joyce Jonathan",
+        "title": "Rouler sur l'or"
       },
       "found": {
-        "id": "109213590",
-        "title": "Robin Miller",
-        "artist": "Lou Doillon",
-        "album": "Lay Low",
-        "durationS": 148,
+        "id": "564224032",
+        "title": "Rouler sur l'or",
+        "artist": "Joyce Jonathan",
+        "album": "On",
+        "durationS": 220,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/109213590",
+        "link": "https://www.deezer.com/track/564224032",
         "explicit": false,
-        "rank": 198501
+        "rank": 197951
       },
       "alternatives": [],
       "verified": true,
@@ -233,63 +268,143 @@
     {
       "questionId": "pi10-08",
       "query": {
-        "artist": "Superbus",
-        "title": "Impensablement"
+        "artist": "Sam Smith",
+        "title": "Little Tin Buddhas"
       },
       "found": {
-        "id": "125641134",
-        "title": "Impensablement",
-        "artist": "Superbus",
-        "album": "Sixtape",
-        "durationS": 174,
+        "id": "608488932",
+        "title": "Little Tin Buddhas",
+        "artist": "Sam Smith",
+        "album": "Sam Smith Diva Boy - Film Soundtrack",
+        "durationS": 191,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/125641134",
+        "link": "https://www.deezer.com/track/608488932",
         "explicit": false,
-        "rank": 132086
+        "rank": 108599
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "2045606987",
+          "title": "Little Tin Buddhas (Berger & Shaqiri Remix)",
+          "artist": "Sam Smith",
+          "album": "The Lost Tapes - Remixed",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2045606987",
+          "explicit": false,
+          "rank": 62227
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-09",
       "query": {
-        "artist": "Charlotte Gainsbourg",
-        "title": "White Telephone"
+        "artist": "MIKA",
+        "title": "Blue"
       },
       "found": {
-        "id": "623348932",
-        "title": "White Telephone",
-        "artist": "Charlotte Gainsbourg",
-        "album": "Stage Whisper",
-        "durationS": 208,
+        "id": "765865612",
+        "title": "Blue",
+        "artist": "Mika",
+        "album": "My Name Is Michael Holbrook",
+        "durationS": 191,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/623348932",
+        "link": "https://www.deezer.com/track/765865612",
         "explicit": false,
-        "rank": 131848
+        "rank": 199724
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "2373546905",
+          "title": "Blue (Remastered 2023)",
+          "artist": "Sadistic Mika Band",
+          "album": "Hot! Menu (Remastered 2023)",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2373546905",
+          "explicit": false,
+          "rank": 88653
+        },
+        {
+          "id": "852371762",
+          "title": "Blue Eyes",
+          "artist": "Mika",
+          "album": "The Boy Who Knew Too Much (Orange Version)",
+          "durationS": 169,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/852371762",
+          "explicit": false,
+          "rank": 395386
+        },
+        {
+          "id": "860771442",
+          "title": "Blue (Live)",
+          "artist": "Mika",
+          "album": "Live At Brooklyn Steel",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/860771442",
+          "explicit": false,
+          "rank": 100613
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-10",
       "query": {
-        "artist": "Christine and the Queens",
-        "title": "What's-her-face"
+        "artist": "Birdy",
+        "title": "Hear You Calling"
       },
       "found": {
-        "id": "555962742",
-        "title": "What's-her-face",
-        "artist": "Christine and the Queens",
-        "album": "Chris",
-        "durationS": 303,
+        "id": "120832222",
+        "title": "Hear You Calling",
+        "artist": "Birdy",
+        "album": "Beautiful Lies",
+        "durationS": 241,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/555962742",
+        "link": "https://www.deezer.com/track/120832222",
         "explicit": false,
-        "rank": 119363
+        "rank": 194440
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "120832620",
+          "title": "Hear You Calling",
+          "artist": "Birdy",
+          "album": "Beautiful Lies (Deluxe)",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120832620",
+          "explicit": false,
+          "rank": 191885
+        },
+        {
+          "id": "3564160341",
+          "title": "Can You Hear The Birds Calling?",
+          "artist": "Tom West",
+          "album": "I'm Livin'",
+          "durationS": 245,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3564160341",
+          "explicit": false,
+          "rank": 18198
+        },
+        {
+          "id": "3726742182",
+          "title": "A Brown Bird Singing (Remastered 2004)",
+          "artist": "John McCormack",
+          "album": "I Hear You Calling Me (Remastered 2004)",
+          "durationS": 148,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3726742182",
+          "explicit": false,
+          "rank": 100000
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     }

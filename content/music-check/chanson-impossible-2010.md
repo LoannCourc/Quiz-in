@@ -5,63 +5,67 @@ la bonne version (pas un remix, une reprise ni un karaoké) et le passage joué 
 `chanson-impossible-2010.json`. Si une alternative est meilleure, la copier dans `found` avant de cocher.
 Ensuite : `npm run build`, qui refuse tout morceau non vérifié.
 
-## 1. Bénabar — Perdre la raison (ci10-01) ✅ vérifié
+## 1. Tryo — Mourir la mort (ci10-01) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Bénabar — Perdre la raison (album « Les bénéfices du doute », 139 s, extrait disponible, popularité 163 117) : https://www.deezer.com/track/14477869
+- Proposé : Tryo — Mourir la mort (album « Ladilafé », 171 s, extrait disponible, popularité 189 578) : https://www.deezer.com/track/3762670942
+- Alternative : Trio Aurora Hidalguense — Si No Regresas Morire (album « Con Dedicatoria », 168 s, extrait disponible, popularité 110 813) : https://www.deezer.com/track/3414201311
+- Alternative : Young Rebxl — Dime quien puede morirse de amor (album « Dime quien puede morirse de amor », 192 s, extrait disponible, **paroles explicites**, popularité 119 445) : https://www.deezer.com/track/3261792571
+- Alternative : Trio America — Sin Ti Es Mejor Morir (album « Me Recordarás », 158 s, extrait disponible, popularité 26 164) : https://www.deezer.com/track/125875027
 
-## 2. Miossec — Merci (ci10-02) ✅ vérifié
+## 2. Miossec — La mer, quand elle mord, c'est méchant (ci10-02) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Miossec — Merci (album « Mammifères », 193 s, extrait disponible, popularité 108 517) : https://www.deezer.com/track/134523346
-- Alternative : Miossec — Merci pour la joie (album « Boire (25ème Anniversaire) », 217 s, extrait disponible, popularité 232 492) : https://www.deezer.com/track/1030542982
-- Alternative : Miossec — Meilleur jeune espoir masculin (album « Simplifier », 165 s, extrait disponible, popularité 237 026) : https://www.deezer.com/track/2071720707
-- Alternative : Adelia Rucci IV — Mercy Missed Me (album « Dead Men Don't Pray », 206 s, extrait disponible, popularité 102 423) : https://www.deezer.com/track/3960293811
+- Proposé : Miossec — La mer, quand elle mord, c'est méchant (album « Les rescapés », 198 s, extrait disponible, popularité 180 617) : https://www.deezer.com/track/555959882
+- Alternative : Miossec — La mer, quand elle mord, c'est méchant (Live session) (album « Les rescapés (Deluxe) », 199 s, extrait disponible, popularité 99 030) : https://www.deezer.com/track/651170992
 
-## 3. Dominique A — Le reflet (ci10-03) ✅ vérifié
+## 3. Dominique A — Le soleil (ci10-03) ⬜ à vérifier
 
 - Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Dominique A — Le reflet (album « Toute latitude », 254 s, extrait disponible, popularité 99 154) : https://www.deezer.com/track/441379662
-- Alternative : Dominique A — Maison d'ambre (album « Reflets du monde lointain », 123 s, extrait disponible, popularité 150 939) : https://www.deezer.com/track/2129601377
-- Alternative : Dominique A — La plaine (album « Reflets du monde lointain », 224 s, extrait disponible, popularité 178 818) : https://www.deezer.com/track/2129601367
-- Alternative : Dominique A — Le dénouement (album « Reflets du monde lointain », 34 s, extrait disponible, popularité 187 079) : https://www.deezer.com/track/2129601307
-
-## 4. Debout sur le zinc — La rengaine (ci10-04) ✅ vérifié
-
-- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Debout Sur Le Zinc — La rengaine (album « L'homme à tue-tête », 158 s, extrait disponible, popularité 96 456) : https://www.deezer.com/track/1223153682
-
-## 5. Tryo — Du cinéma (ci10-05) ✅ vérifié
-
-- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Tryo — Du cinéma (album « Ladilafé », 188 s, extrait disponible, popularité 164 748) : https://www.deezer.com/track/3762670982
-- Alternative : George Duke — Cravo e Canela (album « Brazilian Love Affair (Expanded Edition) », 185 s, extrait disponible, popularité 74 235) : https://www.deezer.com/track/450667662
-
-## 6. Jacques Higelin — Hey man (ci10-06) ✅ vérifié
-
-- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Jacques Higelin — Hey man (album « Beau repaire », 221 s, extrait disponible, popularité 103 189) : https://www.deezer.com/track/65441197
-
-## 7. Bénabar — Sur son passage (ci10-07) ✅ vérifié
-
-- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Bénabar — Sur son passage (album « Inspiré de faits réels », 197 s, extrait disponible, popularité 186 117) : https://www.deezer.com/track/82826962
-
-## 8. Miossec — L'aventure (ci10-08) ✅ vérifié
-
-- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Miossec — L'aventure (album « Les rescapés », 151 s, extrait disponible, popularité 122 202) : https://www.deezer.com/track/555959862
-
-## 9. Dominique A — Loin du soleil (ci10-09) ✅ vérifié
-
-- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Dominique A — Loin du soleil (album « Vers les lueurs », 262 s, extrait disponible, popularité 155 764) : https://www.deezer.com/track/16710856
+- Proposé : Dominique A — Le soleil (album « La fragilité », 277 s, extrait disponible, popularité 199 554) : https://www.deezer.com/track/523074732
+- Alternative : Dominique A — Loin du soleil (album « Vers les lueurs (Deluxe Edition) », 262 s, extrait disponible, popularité 148 069) : https://www.deezer.com/track/60890389
 - Alternative : Dominique A — Les yeux dans soleil (album « Reflets du monde lointain », 226 s, extrait disponible, popularité 208 440) : https://www.deezer.com/track/2129601337
+- Alternative : Dominique A — Agonie d'un Soleil (album « Les Sons Cardinaux », 301 s, extrait disponible, popularité 22 205) : https://www.deezer.com/track/3774583
 
-## 10. Debout sur le zinc — Désert (ci10-10) ✅ vérifié
+## 4. Debout Sur Le Zinc — De velours et de soie (ci10-04) ⬜ à vérifier
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : Debout Sur Le Zinc — Désert (album « L'homme à tue-tête », 258 s, extrait disponible, popularité 121 958) : https://www.deezer.com/track/1223153652
-- Alternative : Debout Sur Le Zinc — Le déserteur (album « Vian par Debout sur le Zinc », 286 s, extrait disponible, popularité 314 920) : https://www.deezer.com/track/750509492
-- Alternative : Debout Sur Le Zinc — Les déserteurs (album « Récréations », 179 s, extrait disponible, popularité 74 048) : https://www.deezer.com/track/1220777452
+- Proposé : Debout Sur Le Zinc — De velours et de soie (album « Vian par Debout sur le Zinc », 237 s, extrait disponible, popularité 194 548) : https://www.deezer.com/track/750509572
+
+## 5. Bertrand Belin — Bec (ci10-05) ⬜ à vérifier
+
+- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Bertrand Belin — Bec (album « Persona », 124 s, extrait disponible, popularité 175 467) : https://www.deezer.com/track/580885242
+- Alternative : Bertrand Belin — L'inconnu en personne (album « Watt », 292 s, extrait disponible, popularité 595 005) : https://www.deezer.com/track/3407766741
+- Alternative : Bertrand Belin — Je parle en fou (album « Cap Waller », 251 s, extrait disponible, popularité 420 096) : https://www.deezer.com/track/107216392
+- Alternative : Bertrand Belin — Le mot juste (le beau geste) [avec Camélia Jordana] (album « Cap Waller (Inédits) - EP », 296 s, extrait disponible, popularité 485 329) : https://www.deezer.com/track/123375366
+
+## 6. Sanseverino — J'ai froid (ci10-06) ⬜ à vérifier
+
+- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Sanseverino — J'ai froid (album « Sanseverino & Tangomotán », 224 s, extrait disponible, popularité 152 454) : https://www.deezer.com/track/726877612
+
+## 7. Philippe Katerine — Point noir sur feuille blanche (ci10-07) ⬜ à vérifier
+
+- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Philippe Katerine — Point noir sur feuille blanche (album « Confessions », 114 s, extrait disponible, popularité 197 370) : https://www.deezer.com/track/758852212
+
+## 8. Laurent Voulzy — Tombée du jour sur la plage de Grumari (ci10-08) ⬜ à vérifier
+
+- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Laurent Voulzy — Tombée du jour sur la plage de Grumari (album « Belem », 231 s, extrait disponible, popularité 193 897) : https://www.deezer.com/track/400291882
+
+## 9. Les Innocents — Mon homme (ci10-09) ⬜ à vérifier
+
+- Question : « Quel est ce titre ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Les Innocents — Mon homme (album « 6 ½ », 193 s, extrait disponible, popularité 199 565) : https://www.deezer.com/track/629311582
+- Alternative : Les Innocents — Un homme extraordinaire (album « Fous à lier », 342 s, extrait disponible, popularité 774 067) : https://www.deezer.com/track/355615151
+- Alternative : Les Innocents — Un homme extraordinaire (radio edit) (album « Meilleurs souvenirs - Best Of », 240 s, extrait disponible, popularité 531 006) : https://www.deezer.com/track/355615401
+- Alternative : Dwayne Johnson — You're Welcome (album « Vaiana (English Version/Original Motion Picture Soundtrack) », 164 s, extrait disponible, popularité 391 052) : https://www.deezer.com/track/136349972
+
+## 10. Boulevard des Airs — On the Run (ci10-10) ⬜ à vérifier
+
+- Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
+- Proposé : Boulevard des airs — On the Run (album « Les appareuses trompences », 176 s, extrait disponible, popularité 195 340) : https://www.deezer.com/track/66982951
+- Alternative : Boulevard des airs — Je rentre à la maison (album « Je rentre à la maison », 194 s, extrait disponible, popularité 629 374) : https://www.deezer.com/track/3366856261
 

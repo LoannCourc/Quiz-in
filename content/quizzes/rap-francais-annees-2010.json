@@ -38,7 +38,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Lotus – Disiz",
+        "Le monde ou rien – PNL",
         "Reine – Dadju",
         "On verra – Nekfeu",
         "Pièces détachées – Gringe"
@@ -104,7 +104,7 @@
         "Ce soir ne sors pas – Lacrim",
         "Clown – Soprano",
         "Missile – Alrima",
-        "Rien qu'une fois – Keen' V"
+        "La vie qu'on mène – Ninho"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -123,7 +123,7 @@
       "options": [
         "Le prince Aladin – Black M",
         "Com'dab – DJ Kayz",
-        "Tourner la page – Zaho",
+        "Olala – Rémy",
         "On se connaît – Youssoupha"
       ],
       "correctIndex": 0,
@@ -142,7 +142,7 @@
       "ask": "title",
       "options": [
         "Rien sans les autres – Maska",
-        "Flemme – Angèle",
+        "Quelques minutes – Lefa",
         "Chocolat – Lartiste",
         "Le Temps D'Un Instant – Psy 4 de la Rime"
       ],
@@ -164,7 +164,7 @@
         "Ramenez la coupe à la maison – Vegedream",
         "Héra – Georgio",
         "Laisse moi te dire – Mac Tyer",
-        "Game Over – Vitaa"
+        "Jamais – Gradur"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -182,7 +182,7 @@
       "ask": "title",
       "options": [
         "La Suite – 1995",
-        "Tombé – M. Pokora",
+        "Grand Paris – Médine",
         "Team BS – Team BS",
         "Bella – GIMS"
       ],
@@ -208,7 +208,7 @@
         "Ma direction – Sexion d'Assaut",
         "A chaque jour suffit sa peine – Nessbeal",
         "La dernière fois que je parle de toi – KIK",
-        "A l'international – TAL"
+        "Sonotone – MC Solaar"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [

@@ -1,6 +1,6 @@
 # Relecture du lot BT-6 : 5 blind tests
 
-Vérification Deezer du 2026-10-15 (`npm run music:review -- 6 electro-impossible-2010 rock-impossible-2000 rap-impossible-2000 chanson-impossible-2010 pop-impossible-2010`). Popularité du morceau (rank) et
+Vérification Deezer du 2026-10-15 (`npm run music:review -- 6 electro-impossible-2010 rock-impossible-2000 pop-impossible-2010 rap-impossible-2000 chanson-impossible-2010`). Popularité du morceau (rank) et
 fans de l'artiste (nb_fan) à cette date ; ils changent avec le temps et ne sont jamais publiés. « Impossible » : rank sous
 200 000 (titre d'album très peu écouté) et artiste à 50 000 fans ou plus, le jour de la vérification.
 Morceaux cochés par `npm run music:verify` (« auto ») : artiste et titre identiques à Deezer, version
@@ -9,94 +9,94 @@ originale, extrait présent, paroles non explicites, extrait qui tient dans le m
 
 ## À écouter en priorité (5)
 
-- `electro-impossible-2010/ei10-01` Vitalic — The March of Skabah (2 artistes « Vitalic » sur Deezer) : <https://www.deezer.com/track/3625529702>
-- `electro-impossible-2010/ei10-04` SebastiAn — Yebo (3 artistes « SebastiAn » sur Deezer) : <https://www.deezer.com/track/809833692>
-- `electro-impossible-2010/ei10-05` Yelle — Toho (2 artistes « Yelle » sur Deezer) : <https://www.deezer.com/track/606769472>
-- `rock-impossible-2000/ri00-01` Dionysos — Giant John Et Le Sanglophone (échantillon de ce blind test) : <https://www.deezer.com/track/2440264>
-- `rap-impossible-2000/rpi00-01` Saïan Supa Crew — Adieu Babylone (échantillon de ce blind test) : <https://www.deezer.com/track/3285944>
+- `electro-impossible-2010/ei10-01` Vitalic — The Legend of Kaspar Hauser (2 artistes « Vitalic » sur Deezer) : <https://www.deezer.com/track/3625529742>
+- `electro-impossible-2010/ei10-06` Fakear — Tonight (titre très générique) : <https://www.deezer.com/track/468663332>
+- `rock-impossible-2000/ri00-01` Kasabian — Happiness (2 artistes « Kasabian » sur Deezer) : <https://www.deezer.com/track/3437884>
+- `pop-impossible-2010/pi10-01` Christine and the Queens — Comme si (échantillon de ce blind test) : <https://www.deezer.com/track/555962672>
+- `rap-impossible-2000/rpi00-01` La Fouine — Machine arrière (échantillon de ce blind test) : <https://www.deezer.com/track/120308060>
 
 ## Les blind tests
 
 | Blind test | Identifiant | Genre | Décennie | Niveau |
 |---|---|---|---|---|
-| Électro française, faces cachées | `electro-impossible-2010` | Électro | 2010 | Impossible |
-| Rock français, faces cachées | `rock-impossible-2000` | Rock | 2000 | Impossible |
-| Rap français, faces cachées | `rap-impossible-2000` | Rap | 2000 | Impossible |
+| Électro, faces cachées | `electro-impossible-2010` | Électro | 2010 | Impossible |
+| Rock, faces cachées | `rock-impossible-2000` | Rock | 2000 | Impossible |
+| Pop, faces cachées | `pop-impossible-2010` | Pop | 2010 | Impossible |
+| Rap français, faces cachées | `rap-impossible-2000` | Rap | toutes époques | Impossible |
 | Chanson française, faces cachées | `chanson-impossible-2010` | Chanson | 2010 | Impossible |
-| Pop française, faces cachées | `pop-impossible-2010` | Pop | 2010 | Impossible |
 
-## Électro française, faces cachées (`electro-impossible-2010`)
-
-| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ei10-01 | [3625529702](https://www.deezer.com/track/3625529702) | Vitalic | The March of Skabah | Électro | Impossible | 163 898 ✓ | 341 200 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-02 | [90603865](https://www.deezer.com/track/90603865) | Rone | Roads | Électro | Impossible | 122 089 ✓ | 140 436 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-03 | [57630681](https://www.deezer.com/track/57630681) | Breakbot | Intersection | Électro | Impossible | 164 081 ✓ | 184 458 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-04 | [809833692](https://www.deezer.com/track/809833692) | SebastiAn | Yebo | Électro | Impossible | 141 039 ✓ | 77 434 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-05 | [606769472](https://www.deezer.com/track/606769472) | Yelle | Toho | Électro | Impossible | 189 912 ✓ | 87 679 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-06 | [678190322](https://www.deezer.com/track/678190322) | Cassius | Walking In The Sunshine | Électro | Impossible | 152 401 ✓ | 135 359 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-07 | [644296862](https://www.deezer.com/track/644296862) | Gesaffelstein | Humanity Gone | Électro | Impossible | 194 698 ✓ | 330 444 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-08 | [134527354](https://www.deezer.com/track/134527354) | Møme | Routine | Électro | Impossible | 169 630 ✓ | 300 391 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-09 | [468663242](https://www.deezer.com/track/468663242) | Fakear | Prelude | Électro | Impossible | 193 096 ✓ | 210 248 ✓ | 2026-10-15 | oui | non | auto |
-| ei10-10 | [3625529662](https://www.deezer.com/track/3625529662) | Vitalic | Vigipirate | Électro | Impossible | 187 636 ✓ | 341 200 ✓ | 2026-10-15 | oui | non | auto |
-
-## Rock français, faces cachées (`rock-impossible-2000`)
+## Électro, faces cachées (`electro-impossible-2010`)
 
 | Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| ri00-01 | [2440264](https://www.deezer.com/track/2440264) | Dionysos | Giant John Et Le Sanglophone | Rock | Impossible | 80 307 ✓ | 130 774 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-02 | [826152242](https://www.deezer.com/track/826152242) | Luke | Le pays | Rock | Impossible | 75 651 ✓ | 68 310 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-03 | [3335185](https://www.deezer.com/track/3335185) | Mickey 3D | Phénoménal | Rock | Impossible | 72 362 ✓ | 116 800 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-04 | [2796816](https://www.deezer.com/track/2796816) | Les Wampas | J'écoutais les cramps | Rock | Impossible | 139 476 ✓ | 92 798 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-05 | [2202858](https://www.deezer.com/track/2202858) | Noir Désir | Hoo Doo | Rock | Impossible | 192 681 ✓ | 1 051 429 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-06 | [2440267](https://www.deezer.com/track/2440267) | Dionysos | Monsters In Love | Rock | Impossible | 94 635 ✓ | 130 774 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-07 | [826152182](https://www.deezer.com/track/826152182) | Luke | Stella | Rock | Impossible | 87 482 ✓ | 68 310 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-08 | [3335183](https://www.deezer.com/track/3335183) | Mickey 3D | La Saint Glinglin | Rock | Impossible | 77 338 ✓ | 116 800 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-09 | [2796809](https://www.deezer.com/track/2796809) | Les Wampas | Un dimanche à Strasbourg | Rock | Impossible | 123 747 ✓ | 92 798 ✓ | 2026-10-15 | oui | non | auto |
-| ri00-10 | [3335087](https://www.deezer.com/track/3335087) | Mickey 3D | Storiz | Rock | Impossible | 101 241 ✓ | 116 800 ✓ | 2026-10-15 | oui | non | auto |
+| ei10-01 | [3625529742](https://www.deezer.com/track/3625529742) | Vitalic | The Legend of Kaspar Hauser | Électro | Impossible | 193 141 ✓ | 341 212 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-02 | [412059012](https://www.deezer.com/track/412059012) | Four Tet | 10 Midi | Électro | Impossible | 198 452 ✓ | 447 874 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-03 | [644296862](https://www.deezer.com/track/644296862) | Gesaffelstein | Humanity Gone | Électro | Impossible | 194 698 ✓ | 330 491 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-04 | [124701812](https://www.deezer.com/track/124701812) | Flume | Pika | Électro | Impossible | 180 997 ✓ | 375 895 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-05 | [134527348](https://www.deezer.com/track/134527348) | Møme | Wagga | Électro | Impossible | 191 766 ✓ | 300 394 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-06 | [468663332](https://www.deezer.com/track/468663332) | Fakear | Tonight | Électro | Impossible | 194 187 ✓ | 210 259 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-07 | [130727768](https://www.deezer.com/track/130727768) | Birdy Nam Nam | Can't Do Me | Électro | Impossible | 198 998 ✓ | 255 452 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-08 | [90603859](https://www.deezer.com/track/90603859) | Rone | Memory | Électro | Impossible | 196 129 ✓ | 140 442 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-09 | [1754080647](https://www.deezer.com/track/1754080647) | Moderat | Ilona | Électro | Impossible | 198 784 ✓ | 144 674 ✓ | 2026-10-15 | oui | non | listened |
+| ei10-10 | [445790732](https://www.deezer.com/track/445790732) | Mr. Oizo | Oiseaux | Électro | Impossible | 118 515 ✓ | 176 975 ✓ | 2026-10-15 | oui | non | listened |
+
+## Rock, faces cachées (`rock-impossible-2000`)
+
+| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ri00-01 | [3437884](https://www.deezer.com/track/3437884) | Kasabian | Happiness | Rock | Impossible | 191 122 ✓ | 813 986 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-02 | [1156041](https://www.deezer.com/track/1156041) | Dionysos | I Love Liou | Rock | Impossible | 143 169 ✓ | 130 777 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-03 | [1280074222](https://www.deezer.com/track/1280074222) | Cage The Elephant | Judas | Rock | Impossible | 192 334 ✓ | 579 673 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-04 | [3335078](https://www.deezer.com/track/3335078) | Mickey 3D | 2, 3 jours à Paris | Rock | Impossible | 189 957 ✓ | 116 804 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-05 | [2498715](https://www.deezer.com/track/2498715) | Yeah Yeah Yeahs | Mysteries | Rock | Impossible | 66 362 ✓ | 350 868 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-06 | [2796808](https://www.deezer.com/track/2796808) | Les Wampas | Elle Est Où Ma Loge ? | Rock | Impossible | 178 841 ✓ | 92 806 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-07 | [1112825](https://www.deezer.com/track/1112825) | The Hives | Giddy Up! | Rock | Impossible | 166 279 ✓ | 247 746 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-08 | [553973](https://www.deezer.com/track/553973) | Luke | La Nuit Et Le Jour | Rock | Impossible | 153 982 ✓ | 68 313 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-09 | [4217718](https://www.deezer.com/track/4217718) | Editors | Bricks and Mortar | Rock | Impossible | 160 225 ✓ | 239 712 ✓ | 2026-10-15 | oui | non | listened |
+| ri00-10 | [4255747](https://www.deezer.com/track/4255747) | Wolfmother | Pilgrim | Rock | Impossible | 192 689 ✓ | 143 791 ✓ | 2026-10-15 | oui | non | listened |
+
+## Pop, faces cachées (`pop-impossible-2010`)
+
+| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| pi10-01 | [555962672](https://www.deezer.com/track/555962672) | Christine and the Queens | Comme si | Pop | Impossible | 197 941 ✓ | 683 608 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-02 | [511053942](https://www.deezer.com/track/511053942) | Maroon 5 | Plastic Rose | Pop | Impossible | 169 175 ✓ | 11 425 488 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-03 | [130008232](https://www.deezer.com/track/130008232) | Coeur De Pirate | La chute | Pop | Impossible | 193 206 ✓ | 946 484 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-04 | [6304691](https://www.deezer.com/track/6304691) | Sia | Big Girl Little Girl | Pop | Impossible | 172 728 ✓ | 8 723 292 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-05 | [569643522](https://www.deezer.com/track/569643522) | Vanessa Paradis | Dans notre monde | Pop | Impossible | 192 761 ✓ | 447 127 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-06 | [78281880](https://www.deezer.com/track/78281880) | Ellie Goulding | Halcyon | Pop | Impossible | 192 215 ✓ | 6 242 245 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-07 | [564224032](https://www.deezer.com/track/564224032) | Joyce Jonathan | Rouler sur l'or | Pop | Impossible | 197 951 ✓ | 499 854 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-08 | [608488932](https://www.deezer.com/track/608488932) | Sam Smith | Little Tin Buddhas | Pop | Impossible | 108 599 ✓ | 5 586 291 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-09 | [765865612](https://www.deezer.com/track/765865612) | MIKA | Blue | Pop | Impossible | 199 724 ✓ | 1 075 711 ✓ | 2026-10-15 | oui | non | listened |
+| pi10-10 | [120832222](https://www.deezer.com/track/120832222) | Birdy | Hear You Calling | Pop | Impossible | 194 440 ✓ | 1 382 243 ✓ | 2026-10-15 | oui | non | listened |
 
 ## Rap français, faces cachées (`rap-impossible-2000`)
 
 | Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| rpi00-01 | [3285944](https://www.deezer.com/track/3285944) | Saïan Supa Crew | Adieu Babylone | Rap | Impossible | 117 546 ✓ | 86 956 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-02 | [3437817](https://www.deezer.com/track/3437817) | Diam's | Le fléau | Rap | Impossible | 115 237 ✓ | 688 058 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-03 | [365911811](https://www.deezer.com/track/365911811) | Oxmo Puccino | Nous aurions pu | Rap | Impossible | 132 052 ✓ | 341 049 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-04 | [2293471](https://www.deezer.com/track/2293471) | Disiz | Cours d'histoire | Rap | Impossible | 68 225 ✓ | 455 359 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-05 | [585646832](https://www.deezer.com/track/585646832) | Abd Al Malik | Conte Alsacien | Rap | Impossible | 158 171 ✓ | 67 657 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-06 | [515843822](https://www.deezer.com/track/515843822) | Keny Arkana | Tout le monde debout | Rap | Impossible | 198 707 ✓ | 312 616 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-07 | [3285940](https://www.deezer.com/track/3285940) | Saïan Supa Crew | C'est le déluge | Rap | Impossible | 123 936 ✓ | 86 956 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-08 | [365911821](https://www.deezer.com/track/365911821) | Oxmo Puccino | Arrivé sur terre | Rap | Impossible | 160 913 ✓ | 341 049 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-09 | [2292272](https://www.deezer.com/track/2292272) | Disiz | N'Jillou | Rap | Impossible | 79 624 ✓ | 455 359 ✓ | 2026-10-15 | oui | non | auto |
-| rpi00-10 | [585646852](https://www.deezer.com/track/585646852) | Abd Al Malik | HLM Tango | Rap | Impossible | 123 890 ✓ | 67 657 ✓ | 2026-10-15 | oui | non | auto |
+| rpi00-01 | [120308060](https://www.deezer.com/track/120308060) | La Fouine | Machine arrière | Rap | Impossible | 191 414 ✓ | 2 122 842 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-02 | [14477901](https://www.deezer.com/track/14477901) | Nessbeal | Sélection naturelle | Rap | Impossible | 188 950 ✓ | 109 651 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-03 | [643827922](https://www.deezer.com/track/643827922) | Sinik | Elle était là | Rap | Impossible | 194 558 ✓ | 346 251 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-04 | [68132490](https://www.deezer.com/track/68132490) | Médine | D’arobaz à zéro | Rap | Impossible | 199 659 ✓ | 398 381 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-05 | [99550230](https://www.deezer.com/track/99550230) | Mac Tyer | Malheureux | Rap | Impossible | 190 223 ✓ | 442 132 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-06 | [132628032](https://www.deezer.com/track/132628032) | Lefa | TMCP #5 - Ça va mal terminer | Rap | Impossible | 185 482 ✓ | 517 501 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-07 | [75769319](https://www.deezer.com/track/75769319) | MZ | En bas de chez nous | Rap | Impossible | 199 916 ✓ | 510 718 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-08 | [3938039831](https://www.deezer.com/track/3938039831) | Disiz (Deezer : disiz) | Lotus | Rap | Impossible | 196 175 ✓ | 455 444 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-09 | [2581716092](https://www.deezer.com/track/2581716092) | STUPEFLIP | Le miracle | Rap | Impossible | 22 573 ✓ | 351 641 ✓ | 2026-10-15 | oui | non | listened |
+| rpi00-10 | [14172327](https://www.deezer.com/track/14172327) | JoeyStarr | Affamé | Rap | Impossible | 163 916 ✓ | 210 245 ✓ | 2026-10-15 | oui | non | listened |
 
 ## Chanson française, faces cachées (`chanson-impossible-2010`)
 
 | Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| ci10-01 | [14477869](https://www.deezer.com/track/14477869) | Bénabar | Perdre la raison | Chanson | Impossible | 163 117 ✓ | 326 526 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-02 | [134523346](https://www.deezer.com/track/134523346) | Miossec | Merci | Chanson | Impossible | 108 517 ✓ | 78 937 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-03 | [441379662](https://www.deezer.com/track/441379662) | Dominique A | Le reflet | Chanson | Impossible | 99 154 ✓ | 92 868 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-04 | [1223153682](https://www.deezer.com/track/1223153682) | Debout sur le zinc | La rengaine | Chanson | Impossible | 96 456 ✓ | 114 045 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-05 | [3762670982](https://www.deezer.com/track/3762670982) | Tryo | Du cinéma | Chanson | Impossible | 164 748 ✓ | 1 002 134 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-06 | [65441197](https://www.deezer.com/track/65441197) | Jacques Higelin | Hey man | Chanson | Impossible | 103 189 ✓ | 172 355 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-07 | [82826962](https://www.deezer.com/track/82826962) | Bénabar | Sur son passage | Chanson | Impossible | 186 117 ✓ | 326 526 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-08 | [555959862](https://www.deezer.com/track/555959862) | Miossec | L'aventure | Chanson | Impossible | 122 202 ✓ | 78 937 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-09 | [16710856](https://www.deezer.com/track/16710856) | Dominique A | Loin du soleil | Chanson | Impossible | 155 764 ✓ | 92 868 ✓ | 2026-10-15 | oui | non | auto |
-| ci10-10 | [1223153652](https://www.deezer.com/track/1223153652) | Debout sur le zinc | Désert | Chanson | Impossible | 121 958 ✓ | 114 045 ✓ | 2026-10-15 | oui | non | auto |
-
-## Pop française, faces cachées (`pop-impossible-2010`)
-
-| Question | Id Deezer | Artiste | Titre | Genre | Niveau | Rank | Fans (nb_fan) | Vérifié le | Extrait | Explicite | Vérifié par |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| pi10-01 | [555962772](https://www.deezer.com/track/555962772) | Christine and the Queens | The stranger | Pop | Impossible | 82 157 ✓ | 683 590 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-02 | [605681392](https://www.deezer.com/track/605681392) | Yael Naim | Game Is Over | Pop | Impossible | 176 290 ✓ | 127 055 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-03 | [682072162](https://www.deezer.com/track/682072162) | Calogero | Le bal du moulin de la Galette | Pop | Impossible | 149 391 ✓ | 1 174 181 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-04 | [623348962](https://www.deezer.com/track/623348962) | Charlotte Gainsbourg | Out Of Touch | Pop | Impossible | 108 828 ✓ | 110 105 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-05 | [10446175](https://www.deezer.com/track/10446175) | Brigitte | Hippocampe | Pop | Impossible | 15 838 ✓ | 369 607 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-06 | [765865402](https://www.deezer.com/track/765865402) | MIKA | Cry | Pop | Impossible | 169 973 ✓ | 1 075 661 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-07 | [109213590](https://www.deezer.com/track/109213590) | Lou Doillon | Robin Miller | Pop | Impossible | 198 501 ✓ | 70 845 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-08 | [125641134](https://www.deezer.com/track/125641134) | Superbus | Impensablement | Pop | Impossible | 132 086 ✓ | 291 751 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-09 | [623348932](https://www.deezer.com/track/623348932) | Charlotte Gainsbourg | White Telephone | Pop | Impossible | 131 848 ✓ | 110 105 ✓ | 2026-10-15 | oui | non | auto |
-| pi10-10 | [555962742](https://www.deezer.com/track/555962742) | Christine and the Queens | What's-her-face | Pop | Impossible | 119 363 ✓ | 683 590 ✓ | 2026-10-15 | oui | non | auto |
+| ci10-01 | [3762670942](https://www.deezer.com/track/3762670942) | Tryo | Mourir la mort | Chanson | Impossible | 189 578 ✓ | 1 002 176 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-02 | [555959882](https://www.deezer.com/track/555959882) | Miossec | La mer, quand elle mord, c'est méchant | Chanson | Impossible | 180 617 ✓ | 78 945 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-03 | [523074732](https://www.deezer.com/track/523074732) | Dominique A | Le soleil | Chanson | Impossible | 199 554 ✓ | 92 877 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-04 | [750509572](https://www.deezer.com/track/750509572) | Debout Sur Le Zinc | De velours et de soie | Chanson | Impossible | 194 548 ✓ | 114 051 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-05 | [580885242](https://www.deezer.com/track/580885242) | Bertrand Belin | Bec | Chanson | Impossible | 175 467 ✓ | 70 721 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-06 | [726877612](https://www.deezer.com/track/726877612) | Sanseverino | J'ai froid | Chanson | Impossible | 152 454 ✓ | 71 855 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-07 | [758852212](https://www.deezer.com/track/758852212) | Philippe Katerine | Point noir sur feuille blanche | Chanson | Impossible | 197 370 ✓ | 145 746 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-08 | [400291882](https://www.deezer.com/track/400291882) | Laurent Voulzy | Tombée du jour sur la plage de Grumari | Chanson | Impossible | 193 897 ✓ | 432 965 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-09 | [629311582](https://www.deezer.com/track/629311582) | Les Innocents | Mon homme | Chanson | Impossible | 199 565 ✓ | 61 066 ✓ | 2026-10-15 | oui | non | listened |
+| ci10-10 | [66982951](https://www.deezer.com/track/66982951) | Boulevard des Airs | On the Run | Chanson | Impossible | 195 340 ✓ | 575 659 ✓ | 2026-10-15 | oui | non | listened |
 

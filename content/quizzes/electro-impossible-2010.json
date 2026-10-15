@@ -1,9 +1,9 @@
 {
   "id": "electro-impossible-2010",
   "gameType": "blindTest",
-  "title": "Électro française, faces cachées",
+  "title": "Électro, faces cachées",
   "theme": "Musique",
-  "description": "Des titres d’album que presque personne n’a écoutés, chez les stars de l’électro française des années 2010.",
+  "description": "Des titres d’album que presque personne n’a écoutés, chez des artistes reconnus de l’électro des années 2010, en France et ailleurs.",
   "audience": "experts",
   "poster": "violet",
   "icon": "headphones",
@@ -18,19 +18,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Nexus – Vitalic",
-        "The March of Skabah – Vitalic",
-        "Programme – Breakbot",
-        "Movement – SebastiAn"
+        "Thirst – SebastiAn",
+        "The Legend of Kaspar Hauser – Vitalic",
+        "The Only Thing We Know – Bob Moses",
+        "Japan – Tycho"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "The March of Skabah"
+        "The Legend of Kaspar Hauser"
       ],
       "difficulty": 3,
       "music": {
         "artist": "Vitalic",
-        "title": "The March of Skabah"
+        "title": "The Legend of Kaspar Hauser"
       }
     },
     {
@@ -38,19 +38,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Altitude – Møme",
-        "Tonight – Fakear",
-        "Moteur action – Yelle",
-        "Roads – Rone"
+        "Purple – NTO",
+        "Apretime – Etienne de Crécy",
+        "The Preacher – Nasser",
+        "10 Midi – Four Tet"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
-        "Rone"
+        "Four Tet"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Rone",
-        "title": "Roads"
+        "artist": "Four Tet",
+        "title": "10 Midi"
       }
     },
     {
@@ -58,92 +58,12 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Intersection – Breakbot",
-        "Sev – SebastiAn",
-        "Moteur action – Yelle",
-        "Nexus – Vitalic"
+        "Humanity Gone – Gesaffelstein",
+        "One United Power – Modeselektor",
+        "No Data – Digitalism",
+        "Distort Me – Boys Noize"
       ],
       "correctIndex": 0,
-      "acceptedAnswers": [
-        "Intersection"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Breakbot",
-        "title": "Intersection"
-      }
-    },
-    {
-      "id": "ei10-04",
-      "text": "Quel artiste ?",
-      "ask": "artist",
-      "options": [
-        "Tonight – Fakear",
-        "Programme – Breakbot",
-        "Yebo – SebastiAn",
-        "Altitude – Møme"
-      ],
-      "correctIndex": 2,
-      "acceptedAnswers": [
-        "SebastiAn"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "SebastiAn",
-        "title": "Yebo"
-      }
-    },
-    {
-      "id": "ei10-05",
-      "text": "Quel est ce titre ?",
-      "ask": "title",
-      "options": [
-        "Movement – SebastiAn",
-        "Nexus – Vitalic",
-        "Toho – Yelle",
-        "Tonight – Fakear"
-      ],
-      "correctIndex": 2,
-      "acceptedAnswers": [
-        "Toho"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Yelle",
-        "title": "Toho"
-      }
-    },
-    {
-      "id": "ei10-06",
-      "text": "Quel artiste ?",
-      "ask": "artist",
-      "options": [
-        "Walking In The Sunshine – Cassius",
-        "Programme – Breakbot",
-        "Altitude – Møme",
-        "Sev – SebastiAn"
-      ],
-      "correctIndex": 0,
-      "acceptedAnswers": [
-        "Cassius"
-      ],
-      "difficulty": 3,
-      "music": {
-        "artist": "Cassius",
-        "title": "Walking In The Sunshine"
-      }
-    },
-    {
-      "id": "ei10-07",
-      "text": "Quel est ce titre ?",
-      "ask": "title",
-      "options": [
-        "Moteur action – Yelle",
-        "Nexus – Vitalic",
-        "Movement – SebastiAn",
-        "Humanity Gone – Gesaffelstein"
-      ],
-      "correctIndex": 3,
       "acceptedAnswers": [
         "Humanity Gone"
       ],
@@ -154,23 +74,103 @@
       }
     },
     {
-      "id": "ei10-08",
+      "id": "ei10-04",
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Tonight – Fakear",
-        "Routine – Møme",
-        "Sev – SebastiAn",
-        "Programme – Breakbot"
+        "Dominae – Agoria",
+        "Miaw – Irène Drésel",
+        "Pika – Flume",
+        "Hey Sister – Simian Mobile Disco"
       ],
-      "correctIndex": 1,
+      "correctIndex": 2,
       "acceptedAnswers": [
-        "Møme"
+        "Flume"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Flume",
+        "title": "Pika"
+      }
+    },
+    {
+      "id": "ei10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mob – The Toxic Avenger",
+        "Thousand Exploding Suns – Superpoze",
+        "Wagga – Møme",
+        "Aleph 2 – Max Cooper"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Wagga"
       ],
       "difficulty": 3,
       "music": {
         "artist": "Møme",
-        "title": "Routine"
+        "title": "Wagga"
+      }
+    },
+    {
+      "id": "ei10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tonight – Fakear",
+        "Make It Easy – Yuksek",
+        "Bedroom Calling, Pt. 1 – Chromeo",
+        "Apollo – Flight Facilities"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Fakear"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Fakear",
+        "title": "Tonight"
+      }
+    },
+    {
+      "id": "ei10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Another Rise, Another Fall – Miami Horror",
+        "You – Para One",
+        "Flirting With June – Les Gordon",
+        "Can't Do Me – Birdy Nam Nam"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Can't Do Me"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Birdy Nam Nam",
+        "title": "Can't Do Me"
+      }
+    },
+    {
+      "id": "ei10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Night Time – Jabberwocky",
+        "Memory – Rone",
+        "Miss is Ou – Parra For Cuva",
+        "Under Control – Uppermost"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Rone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Rone",
+        "title": "Memory"
       }
     },
     {
@@ -178,19 +178,19 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Prelude – Fakear",
-        "Altitude – Møme",
-        "Moteur action – Yelle",
-        "Nexus – Vitalic"
+        "Ilona – Moderat",
+        "Time X – The Hacker",
+        "Clear – Daniel Avery",
+        "Bat Country – Emancipator"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Prelude"
+        "Ilona"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Fakear",
-        "title": "Prelude"
+        "artist": "Moderat",
+        "title": "Ilona"
       }
     },
     {
@@ -198,19 +198,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Movement – SebastiAn",
-        "Programme – Breakbot",
-        "Vigipirate – Vitalic",
-        "Tonight – Fakear"
+        "On It Maestro – Nightmares on Wax",
+        "T.A.M.E.D – Mount Kimbie",
+        "Oiseaux – Mr. Oizo",
+        "L.U.V – Romare"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Vitalic"
+        "Mr. Oizo"
       ],
       "difficulty": 3,
       "music": {
-        "artist": "Vitalic",
-        "title": "Vigipirate"
+        "artist": "Mr. Oizo",
+        "title": "Oiseaux"
       }
     }
   ]

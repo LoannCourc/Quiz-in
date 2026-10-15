@@ -6,19 +6,19 @@
     {
       "questionId": "ri00-01",
       "query": {
-        "artist": "Dionysos",
-        "title": "Giant John Et Le Sanglophone"
+        "artist": "Kasabian",
+        "title": "Happiness"
       },
       "found": {
-        "id": "2440264",
-        "title": "Giant John Et Le Sanglophone",
-        "artist": "Dionysos",
-        "album": "Monsters In Love",
-        "durationS": 88,
+        "id": "3437884",
+        "title": "Happiness",
+        "artist": "Kasabian",
+        "album": "West Ryder Pauper Lunatic Asylum",
+        "durationS": 311,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/2440264",
+        "link": "https://www.deezer.com/track/3437884",
         "explicit": false,
-        "rank": 80307
+        "rank": 191122
       },
       "alternatives": [],
       "verified": true,
@@ -27,173 +27,21 @@
     {
       "questionId": "ri00-02",
       "query": {
-        "artist": "Luke",
-        "title": "Le pays"
-      },
-      "found": {
-        "id": "826152242",
-        "title": "Le pays",
-        "artist": "Luke",
-        "album": "Les enfants de saturne",
-        "durationS": 274,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/826152242",
-        "explicit": false,
-        "rank": 75651
-      },
-      "alternatives": [
-        {
-          "id": "2553254",
-          "title": "Le pays (Live)",
-          "artist": "Luke",
-          "album": "Où en est la nuit",
-          "durationS": 290,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2553254",
-          "explicit": false,
-          "rank": 130627
-        },
-        {
-          "id": "1272774432",
-          "title": "Passion / Sleep",
-          "artist": "Luke Howard",
-          "album": "World Sleep Day",
-          "durationS": 317,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1272774432",
-          "explicit": false,
-          "rank": 315740
-        },
-        {
-          "id": "1659975452",
-          "title": "A Bad Dream That Will Pass Away",
-          "artist": "Luke Howard",
-          "album": "A Bad Dream That Will Pass Away",
-          "durationS": 176,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1659975452",
-          "explicit": false,
-          "rank": 285141
-        }
-      ],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ri00-03",
-      "query": {
-        "artist": "Mickey 3D",
-        "title": "Phénoménal"
-      },
-      "found": {
-        "id": "3335185",
-        "title": "Phénoménal",
-        "artist": "Mickey 3D",
-        "album": "Mistigri Torture",
-        "durationS": 264,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/3335185",
-        "explicit": false,
-        "rank": 72362
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ri00-04",
-      "query": {
-        "artist": "Les Wampas",
-        "title": "J'écoutais les cramps"
-      },
-      "found": {
-        "id": "2796816",
-        "title": "J'Ecoutais Les Cramps",
-        "artist": "Les Wampas",
-        "album": "Les Wampas Sont La Preuve Que Dieu Existe",
-        "durationS": 215,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/2796816",
-        "explicit": false,
-        "rank": 139476
-      },
-      "alternatives": [
-        {
-          "id": "121593540",
-          "title": "J'écoutais les cramps",
-          "artist": "Les Wampas",
-          "album": "Les Wampas sont la preuve que Dieu existe",
-          "durationS": 215,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/121593540",
-          "explicit": false,
-          "rank": 29277
-        }
-      ],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ri00-05",
-      "query": {
-        "artist": "Noir Désir",
-        "title": "Hoo Doo"
-      },
-      "found": {
-        "id": "2202858",
-        "title": "Hoo Doo",
-        "artist": "Noir Désir",
-        "album": "Du ciment sous les plaines",
-        "durationS": 43,
-        "previewAvailable": true,
-        "link": "https://www.deezer.com/track/2202858",
-        "explicit": false,
-        "rank": 192681
-      },
-      "alternatives": [],
-      "verified": true,
-      "verifiedBy": "listened"
-    },
-    {
-      "questionId": "ri00-06",
-      "query": {
         "artist": "Dionysos",
-        "title": "Monsters In Love"
+        "title": "I Love Liou"
       },
       "found": {
-        "id": "2440267",
-        "title": "Monsters In Love",
+        "id": "1156041",
+        "title": "I Love Liou",
         "artist": "Dionysos",
-        "album": "Monsters In Love",
-        "durationS": 166,
+        "album": "Monsters In Love + Olympia",
+        "durationS": 121,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/2440267",
+        "link": "https://www.deezer.com/track/1156041",
         "explicit": false,
-        "rank": 94635
+        "rank": 143169
       },
       "alternatives": [
-        {
-          "id": "135872968",
-          "title": "Monsters In Love (Live)",
-          "artist": "Dionysos",
-          "album": "Monsters In Live (Live)",
-          "durationS": 297,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/135872968",
-          "explicit": false,
-          "rank": 133414
-        },
-        {
-          "id": "2440257",
-          "title": "L'homme Qui Pondait Des Oeufs",
-          "artist": "Dionysos",
-          "album": "Monsters In Love",
-          "durationS": 220,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/2440257",
-          "explicit": false,
-          "rank": 187790
-        },
         {
           "id": "2440262",
           "title": "I Love Liou",
@@ -204,61 +52,190 @@
           "link": "https://www.deezer.com/track/2440262",
           "explicit": false,
           "rank": 171084
+        },
+        {
+          "id": "2712473",
+          "title": "I Love You (Album Version)",
+          "artist": "Dionysos",
+          "album": "Western Sous La Neige",
+          "durationS": 70,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2712473",
+          "explicit": false,
+          "rank": 241599
+        },
+        {
+          "id": "2452290595",
+          "title": "I Love You",
+          "artist": "Dionysos",
+          "album": "L'Extraordinarium",
+          "durationS": 179,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2452290595",
+          "explicit": false,
+          "rank": 166752
         }
       ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
-      "questionId": "ri00-07",
+      "questionId": "ri00-03",
       "query": {
-        "artist": "Luke",
-        "title": "Stella"
+        "artist": "Cage The Elephant",
+        "title": "Judas"
       },
       "found": {
-        "id": "826152182",
-        "title": "Stella",
-        "artist": "Luke",
-        "album": "Les enfants de saturne",
-        "durationS": 221,
+        "id": "1280074222",
+        "title": "Judas",
+        "artist": "Cage The Elephant",
+        "album": "Cage The Elephant",
+        "durationS": 206,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/826152182",
+        "link": "https://www.deezer.com/track/1280074222",
         "explicit": false,
-        "rank": 87482
+        "rank": 192334
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ri00-04",
+      "query": {
+        "artist": "Mickey 3D",
+        "title": "2, 3 jours à Paris"
+      },
+      "found": {
+        "id": "3335078",
+        "title": "2, 3 jours à Paris",
+        "artist": "Mickey 3D",
+        "album": "La Trêve",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3335078",
+        "explicit": false,
+        "rank": 189957
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ri00-05",
+      "query": {
+        "artist": "Yeah Yeah Yeahs",
+        "title": "Mysteries"
+      },
+      "found": {
+        "id": "2498715",
+        "title": "Mysteries",
+        "artist": "Yeah Yeah Yeahs",
+        "album": "Show Your Bones",
+        "durationS": 155,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2498715",
+        "explicit": false,
+        "rank": 66362
       },
       "alternatives": [
         {
-          "id": "365156",
-          "title": "Stella",
-          "artist": "Luke",
-          "album": "Stella EP Live",
-          "durationS": 218,
+          "id": "4308596",
+          "title": "Mysteries",
+          "artist": "Yeah Yeah Yeahs",
+          "album": "Show Your Bones",
+          "durationS": 155,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/365156",
+          "link": "https://www.deezer.com/track/4308596",
           "explicit": false,
-          "rank": 170322
+          "rank": 157381
         },
         {
-          "id": "365159",
-          "title": "Stella (Live)",
-          "artist": "Luke",
-          "album": "Stella EP Live",
-          "durationS": 490,
+          "id": "2950821",
+          "title": "96 Tears (Mono)",
+          "artist": "? and the Mysterians",
+          "album": "The Best Of ? & The Mysterians 1966-1967",
+          "durationS": 178,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/365159",
+          "link": "https://www.deezer.com/track/2950821",
           "explicit": false,
-          "rank": 78246
+          "rank": 479845
         },
         {
-          "id": "1742507927",
-          "title": "Get Out Now",
-          "artist": "Luke Steele",
-          "album": "Listen To The Water",
-          "durationS": 235,
+          "id": "6333430",
+          "title": "Mysterious Muses",
+          "artist": "Baby Mammoth",
+          "album": "10,000 Years Beneath The Street",
+          "durationS": 373,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1742507927",
+          "link": "https://www.deezer.com/track/6333430",
           "explicit": false,
-          "rank": 104322
+          "rank": 134679
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ri00-06",
+      "query": {
+        "artist": "Les Wampas",
+        "title": "Elle Est Où Ma Loge ?"
+      },
+      "found": {
+        "id": "2796808",
+        "title": "Elle Est Où Ma Loge ?",
+        "artist": "Les Wampas",
+        "album": "Les Wampas Sont La Preuve Que Dieu Existe",
+        "durationS": 121,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2796808",
+        "explicit": false,
+        "rank": 178841
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "listened"
+    },
+    {
+      "questionId": "ri00-07",
+      "query": {
+        "artist": "The Hives",
+        "title": "Giddy Up!"
+      },
+      "found": {
+        "id": "1112825",
+        "title": "Giddy Up!",
+        "artist": "The Hives",
+        "album": "The Black and White album",
+        "durationS": 171,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1112825",
+        "explicit": false,
+        "rank": 166279
+      },
+      "alternatives": [
+        {
+          "id": "3167895991",
+          "title": "Are You Even Real",
+          "artist": "Teddy Swims",
+          "album": "I've Tried Everything But Therapy (Part 2)",
+          "durationS": 147,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3167895991",
+          "explicit": false,
+          "rank": 652584
+        },
+        {
+          "id": "120832634",
+          "title": "Give Up",
+          "artist": "Birdy",
+          "album": "Beautiful Lies (Deluxe)",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120832634",
+          "explicit": false,
+          "rank": 249049
         }
       ],
       "verified": true,
@@ -267,87 +244,97 @@
     {
       "questionId": "ri00-08",
       "query": {
-        "artist": "Mickey 3D",
-        "title": "La Saint Glinglin"
+        "artist": "Luke",
+        "title": "La Nuit Et Le Jour"
       },
       "found": {
-        "id": "3335183",
-        "title": "La Saint Glinglin",
-        "artist": "Mickey 3D",
-        "album": "Mistigri Torture",
-        "durationS": 168,
+        "id": "553973",
+        "title": "La Nuit Et Le Jour",
+        "artist": "Luke",
+        "album": "Les Enfants de Saturne",
+        "durationS": 298,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/3335183",
+        "link": "https://www.deezer.com/track/553973",
         "explicit": false,
-        "rank": 77338
+        "rank": 153982
       },
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "826152172",
+          "title": "La nuit et le jour",
+          "artist": "Luke",
+          "album": "Les enfants de saturne",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/826152172",
+          "explicit": false,
+          "rank": 166907
+        },
+        {
+          "id": "2553259",
+          "title": "Un seul jour (Live)",
+          "artist": "Luke",
+          "album": "Où en est la nuit",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2553259",
+          "explicit": false,
+          "rank": 125082
+        },
+        {
+          "id": "1637226302",
+          "title": "Marechiare (Serenade du Pecheur de Lune)",
+          "artist": "Rina Ketty",
+          "album": "J'attendrai le jour et la nuit - Des chansons de Rina Ketty",
+          "durationS": 151,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1637226302",
+          "explicit": false,
+          "rank": 32860
+        }
+      ],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "ri00-09",
       "query": {
-        "artist": "Les Wampas",
-        "title": "Un dimanche à Strasbourg"
+        "artist": "Editors",
+        "title": "Bricks and Mortar"
       },
       "found": {
-        "id": "2796809",
-        "title": "Un Dimanche A Strasbourg",
-        "artist": "Les Wampas",
-        "album": "Les Wampas Sont La Preuve Que Dieu Existe",
-        "durationS": 156,
+        "id": "4217718",
+        "title": "Bricks and Mortar",
+        "artist": "Editors",
+        "album": "In This Light and on This Evening",
+        "durationS": 380,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/2796809",
+        "link": "https://www.deezer.com/track/4217718",
         "explicit": false,
-        "rank": 123747
+        "rank": 160225
       },
-      "alternatives": [
-        {
-          "id": "121593526",
-          "title": "Un dimanche à Strasbourg",
-          "artist": "Les Wampas",
-          "album": "Les Wampas sont la preuve que Dieu existe",
-          "durationS": 156,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/121593526",
-          "explicit": false,
-          "rank": 37274
-        }
-      ],
+      "alternatives": [],
       "verified": true,
       "verifiedBy": "listened"
     },
     {
       "questionId": "ri00-10",
       "query": {
-        "artist": "Mickey 3D",
-        "title": "Storiz"
+        "artist": "Wolfmother",
+        "title": "Pilgrim"
       },
       "found": {
-        "id": "3335087",
-        "title": "Storiz",
-        "artist": "Mickey 3D",
-        "album": "La Trêve",
-        "durationS": 1101,
+        "id": "4255747",
+        "title": "Pilgrim",
+        "artist": "Wolfmother",
+        "album": "Cosmic Egg",
+        "durationS": 288,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/3335087",
+        "link": "https://www.deezer.com/track/4255747",
         "explicit": false,
-        "rank": 101241
+        "rank": 192689
       },
-      "alternatives": [
-        {
-          "id": "1302243122",
-          "title": "Storiz",
-          "artist": "Mickey 3D",
-          "album": "La trêve (Edition Deluxe)",
-          "durationS": 287,
-          "previewAvailable": true,
-          "link": "https://www.deezer.com/track/1302243122",
-          "explicit": false,
-          "rank": 72776
-        }
-      ],
+      "alternatives": [],
       "verified": true,
       "verifiedBy": "listened"
     }
