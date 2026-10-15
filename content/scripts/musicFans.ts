@@ -82,6 +82,15 @@ async function review(quiz: SourceQuiz): Promise<TrackReview[]> {
   return reviews
 }
 
+// Orthographe affichée à l'écran, et celle de Deezer entre parenthèses quand elle diffère.
+function shownArtist(music: SourceMusic): string {
+  return music.displayArtist ? `${music.displayArtist} (Deezer : ${music.artist})` : music.artist
+}
+
+function shownTitle(music: SourceMusic): string {
+  return music.displayTitle ? `${music.displayTitle} (Deezer : ${music.title})` : music.title
+}
+
 // Risques d'un mauvais extrait : artiste homonyme, titre très générique, album d'une autre version.
 function risks(track: TrackReview): string[] {
   const found: string[] = []
@@ -133,7 +142,7 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
     `## À écouter en priorité (${PRIORITY_COUNT})`,
     '',
     ...priorities(tracks).map(
-      ({ track, reason }) => `- \`${track.quiz.id}/${track.questionId}\` ${track.music.artist} — ${track.music.title} (${reason}) : <${link(track)}>`,
+      ({ track, reason }) => `- \`${track.quiz.id}/${track.questionId}\` ${shownArtist(track.music)} — ${shownTitle(track.music)} (${reason}) : <${link(track)}>`,
     ),
     '',
     '## Les blind tests',
@@ -152,7 +161,7 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
     lines.push('|---|---|---|---|---|---|---|---|---|---|---|')
     for (const track of tracks.filter((item) => item.quiz === quiz)) {
       lines.push(
-        `| ${track.questionId} | [${track.trackId}](${link(track)}) | ${track.music.artist} | ${track.music.title} | ${GENRE_LABELS[quiz.genre ?? ''] ?? '?'} | ${LEVEL_LABELS[quiz.level ?? ''] ?? '?'} | ${fansCheck(track)} | ${date} | ${track.previewAvailable ? 'oui' : '**non**'} | ${track.explicit ? '**oui**' : 'non'} | ${track.verifiedBy} |`,
+        `| ${track.questionId} | [${track.trackId}](${link(track)}) | ${shownArtist(track.music)} | ${shownTitle(track.music)} | ${GENRE_LABELS[quiz.genre ?? ''] ?? '?'} | ${LEVEL_LABELS[quiz.level ?? ''] ?? '?'} | ${fansCheck(track)} | ${date} | ${track.previewAvailable ? 'oui' : '**non**'} | ${track.explicit ? '**oui**' : 'non'} | ${track.verifiedBy} |`,
       )
     }
     lines.push('')
@@ -172,7 +181,7 @@ async function main() {
   const problems = tracks.filter(
     (track) => !track.previewAvailable || track.explicit || (track.quiz.level === 'impossible' && (track.fans ?? Infinity) >= IMPOSSIBLE_MAX_FANS),
   )
-  for (const track of problems) console.log(`✗ ${track.quiz.id}/${track.questionId} ${track.music.artist} — ${track.music.title} : extrait, paroles ou fans hors règle`)
+  for (const track of problems) console.log(`✗ ${track.quiz.id}/${track.questionId} ${shownArtist(track.music)} — ${shownTitle(track.music)} : extrait, paroles ou fans hors règle`)
   console.log(`${path} écrit : ${tracks.length} morceaux, ${problems.length} à remplacer.`)
   if (problems.length > 0) process.exitCode = 1
 }

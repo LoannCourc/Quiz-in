@@ -401,53 +401,53 @@
     {
       "questionId": "rf10-10",
       "query": {
-        "artist": "KeBlack",
-        "title": "Bazardée"
+        "artist": "Sexion d'Assaut",
+        "title": "Ma direction"
       },
       "found": {
-        "id": "136127850",
-        "title": "Bazardée",
-        "artist": "KeBlack",
-        "album": "Bazardée",
-        "durationS": 201,
+        "id": "71844509",
+        "title": "Ma direction",
+        "artist": "Sexion d'Assaut",
+        "album": "Best of",
+        "durationS": 263,
         "previewAvailable": true,
-        "link": "https://www.deezer.com/track/136127850",
+        "link": "https://www.deezer.com/track/71844509",
         "explicit": false,
-        "rank": 844303
+        "rank": 909362
       },
       "alternatives": [
         {
-          "id": "4256478651",
-          "title": "Bazardée (Mashup Remix)",
-          "artist": "Dj Blax",
-          "album": "Bazardée (Mashup Remix)",
-          "durationS": 153,
+          "id": "62028657",
+          "title": "Ma direction (Live à Bercy 2012)",
+          "artist": "Sexion d'Assaut",
+          "album": "L'Apogée à Bercy",
+          "durationS": 317,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/4256478651",
+          "link": "https://www.deezer.com/track/62028657",
           "explicit": false,
-          "rank": 269824
+          "rank": 313239
         },
         {
-          "id": "140797895",
-          "title": "Bazardée : Bazardée (Reprise Electro Keblack)",
-          "artist": "Amin Cruiser",
-          "album": "Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You)",
-          "durationS": 156,
+          "id": "10018839",
+          "title": "Routine",
+          "artist": "Sexion d'Assaut",
+          "album": "L'écrasement de Tête 2011",
+          "durationS": 335,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/140797895",
+          "link": "https://www.deezer.com/track/10018839",
           "explicit": false,
-          "rank": 69065
+          "rank": 510145
         },
         {
-          "id": "140797899",
-          "title": "Shape of You : Shape of You (Reprise Ed Sheeran)",
-          "artist": "Steevy Cruz",
-          "album": "Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You)",
-          "durationS": 158,
+          "id": "10018846",
+          "title": "Cascadé",
+          "artist": "Sexion d'Assaut",
+          "album": "L'écrasement de Tête 2011",
+          "durationS": 348,
           "previewAvailable": true,
-          "link": "https://www.deezer.com/track/140797899",
+          "link": "https://www.deezer.com/track/10018846",
           "explicit": false,
-          "rank": 19024
+          "rank": 367873
         }
       ],
       "verified": true,

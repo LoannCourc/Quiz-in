@@ -68,11 +68,11 @@ Ensuite : `npm run build`, qui refuse tout morceau non vérifié.
 - Alternative : GIMS — Tout donner (Pilule violette) (album « À contrecoeur (Pilule Violette) », 203 s, extrait disponible, popularité 897 615) : https://www.deezer.com/track/130855276
 - Alternative : GIMS — Bavon (feat. Charly Bell) (album « Les chroniques du Wati Boss », 186 s, extrait disponible, popularité 616 600) : https://www.deezer.com/track/68473211
 
-## 10. KeBlack — Bazardée (rf10-10) ✅ vérifié
+## 10. Sexion d'Assaut — Ma direction (rf10-10) ✅ vérifié
 
 - Question : « Quel artiste ? », extrait à partir de 0 s (startS, à ajuster à l'écoute)
-- Proposé : KeBlack — Bazardée (album « Bazardée », 201 s, extrait disponible, popularité 844 303) : https://www.deezer.com/track/136127850
-- Alternative : Dj Blax — Bazardée (Mashup Remix) (album « Bazardée (Mashup Remix) », 153 s, extrait disponible, popularité 269 824) : https://www.deezer.com/track/4256478651
-- Alternative : Amin Cruiser — Bazardée : Bazardée (Reprise Electro Keblack) (album « Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You) », 156 s, extrait disponible, popularité 69 065) : https://www.deezer.com/track/140797895
-- Alternative : Steevy Cruz — Shape of You : Shape of You (Reprise Ed Sheeran) (album « Bazardée (Reprise Electro Keblack Elle Est Bazarder, Shed a Light, Shape of You) », 158 s, extrait disponible, popularité 19 024) : https://www.deezer.com/track/140797899
+- Proposé : Sexion d'Assaut — Ma direction (album « Best of », 263 s, extrait disponible, popularité 909 362) : https://www.deezer.com/track/71844509
+- Alternative : Sexion d'Assaut — Ma direction (Live à Bercy 2012) (album « L'Apogée à Bercy », 317 s, extrait disponible, popularité 313 239) : https://www.deezer.com/track/62028657
+- Alternative : Sexion d'Assaut — Routine (album « L'écrasement de Tête 2011 », 335 s, extrait disponible, popularité 510 145) : https://www.deezer.com/track/10018839
+- Alternative : Sexion d'Assaut — Cascadé (album « L'écrasement de Tête 2011 », 348 s, extrait disponible, popularité 367 873) : https://www.deezer.com/track/10018846
 

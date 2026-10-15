@@ -21,7 +21,7 @@
         "La Sentinelle – Luke",
         "Respire – Mickey 3D",
         "Osez Joséphine – Alain Bashung",
-        "Un autre monde – Telephone"
+        "Un autre monde – Téléphone"
       ],
       "correctIndex": 3,
       "acceptedAnswers": [
@@ -31,9 +31,7 @@
       "music": {
         "artist": "Telephone",
         "title": "Un autre monde",
-        "artistAliases": [
-          "Téléphone"
-        ]
+        "displayArtist": "Téléphone"
       }
     },
     {
@@ -142,18 +140,19 @@
       "ask": "title",
       "options": [
         "L'hymne de nos campagnes – Tryo",
-        "Lambé An Dro – Matmatah",
+        "Lambé an dro – Matmatah",
         "Song for Jedi – Dionysos",
         "L'autre Finistère – Les Innocents"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
-        "Lambé An Dro"
+        "Lambé an dro"
       ],
       "difficulty": 1,
       "music": {
         "artist": "Matmatah",
-        "title": "Lambé An Dro"
+        "title": "Lambé An Dro",
+        "displayTitle": "Lambé an dro"
       }
     },
     {

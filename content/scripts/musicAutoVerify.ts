@@ -1,9 +1,9 @@
 // Vérification automatique des morceaux d'un blind test, après npm run music:lookup.
 // Usage (depuis content/) : npm run music:verify -- <quizId> [<quizId>…]
 // Un morceau est coché (verified: true, verifiedBy: "auto") seulement si TOUS les contrôles passent :
-// artiste et titre identiques à ceux affichés par Deezer, version originale (ni live, ni remix…), extrait
-// disponible, paroles non explicites, extrait qui tient dans le minuteur. Sinon, la raison est affichée et le
-// morceau est à remplacer. Un morceau écouté par Loann porte verifiedBy: "listened" (à écrire à la main).
+// artiste et titre identiques à ceux affichés par Deezer (sans tenir compte des accents ni de la casse),
+// version originale (ni live, ni remix…), extrait disponible, paroles non explicites, extrait qui tient dans le
+// minuteur. Sinon, la raison est affichée et le morceau est à remplacer. Un morceau écouté par Loann porte verifiedBy: "listened" (à écrire à la main).
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -16,9 +16,17 @@ interface SourceQuiz {
   questions: { id: string; timeLimit?: number; music?: SourceMusic }[]
 }
 
-// Apostrophes et espaces typographiques ramenés à leur forme simple ; la casse compte (« telle qu'affichée »).
+// Texte comparé à celui de Deezer : sans accents ni casse, apostrophes et espaces typographiques ramenés à leur
+// forme simple ; tout autre écart (ponctuation, mot) est signalé. L'orthographe affichée à l'écran, si celle de
+// Deezer est fausse, va dans displayTitle / displayArtist (jamais vérifiés ici).
 function displayed(text: string): string {
-  return text.replace(/[’‘`´]/g, "'").replace(/\s+/g, ' ').trim()
+  return text
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[’‘`´]/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 // Précisions acceptées après le titre, une ou plusieurs : même enregistrement (artiste invité, remasterisation,

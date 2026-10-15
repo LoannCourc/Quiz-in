@@ -81,22 +81,21 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Bye Bye – Menelik",
+        "Bye bye – Ménélik",
         "Correspondance – Fabe",
         "L'odyssée suit son cours – Assassin",
         "Bois d'ébène – Les Sages Poètes de la Rue"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "Menelik"
+        "Ménélik"
       ],
       "difficulty": 2,
       "music": {
         "artist": "Menelik",
         "title": "Bye Bye",
-        "artistAliases": [
-          "Ménélik"
-        ]
+        "displayTitle": "Bye bye",
+        "displayArtist": "Ménélik"
       }
     },
     {
@@ -185,7 +184,7 @@
       "ask": "title",
       "options": [
         "Le spectateur – Sens Unik",
-        "Samuraï – Shurik'N",
+        "Samuraï – Shurik'n",
         "Correspondance – Fabe",
         "Si loin de toi – Pit Baccardi"
       ],
@@ -198,13 +197,9 @@
         "artist": "Shurik'N",
         "title": "Samuraï",
         "titleAliases": [
-          "Samouraï",
-          "Samurai"
+          "Samouraï"
         ],
-        "artistAliases": [
-          "Shurik'n",
-          "Shurikn"
-        ]
+        "displayArtist": "Shurik'n"
       }
     },
     {

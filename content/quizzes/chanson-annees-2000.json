@@ -38,7 +38,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Fanny ardant et moi – Vincent Delerm",
+        "Fanny Ardant et moi – Vincent Delerm",
         "L'autre bout du monde – Emily Loizeau",
         "Je voudrais dormir – Jeanne Cherhal",
         "Deux pieds – Thomas Fersen"
@@ -50,7 +50,8 @@
       "difficulty": 2,
       "music": {
         "artist": "Vincent Delerm",
-        "title": "Fanny ardant et moi"
+        "title": "Fanny ardant et moi",
+        "displayTitle": "Fanny Ardant et moi"
       }
     },
     {
@@ -98,19 +99,20 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "J'traine des pieds – Olivia Ruiz",
+        "J'traîne des pieds – Olivia Ruiz",
         "Je voudrais dormir – Jeanne Cherhal",
         "L'autre bout du monde – Emily Loizeau",
         "Bien mérité – Clarika"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "J'traine des pieds"
+        "J'traîne des pieds"
       ],
       "difficulty": 2,
       "music": {
         "artist": "Olivia Ruiz",
-        "title": "J'traine des pieds"
+        "title": "J'traine des pieds",
+        "displayTitle": "J'traîne des pieds"
       }
     },
     {

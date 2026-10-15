@@ -139,6 +139,15 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
 - **Impossible** : chaque morceau est d'un artiste qui a **moins de 800 fans sur Deezer** (`nb_fan`) le jour
   de la vérification, avec un extrait lisible ; titre et artiste écrits tels que Deezer les affiche ; les
   propositions sont aussi peu connues (même genre, même époque).
+- `music.title` et `music.artist` : tels que Deezer les écrit (ce sont eux qui sont vérifiés).
+- `music.displayTitle` et `music.displayArtist` (facultatifs) : l'orthographe affichée à l'écran quand celle
+  de Deezer est fausse (accents, casse d'un titre français, ponctuation) : « Téléphone » pour « Telephone »,
+  « J'traîne des pieds » pour « J'traine des pieds », « Word Up! » pour « Word Up ». Ils remplacent
+  titre et artiste partout où ils s'affichent (propositions, révélation) et dans la correction de la Réponse
+  libre, sans changer ce qui est vérifié. Une fois normalisés (sans accents, casse ni ponctuation), ils doivent
+  être identiques au titre et à l'artiste de Deezer : le build refuse sinon (on corrige l'écriture, jamais le
+  morceau). Les propositions écrivent le morceau avec cette orthographe. Les majuscules des titres anglais
+  (« The Rhythm Of The Night ») ne sont pas des fautes.
 - `startS` : début de l'extrait (0 à 10 avec le minuteur de 20 s).
 - Alias (`titleAliases`, `artistAliases`) pour la Réponse libre : titre sans « feat. » ni parenthèses,
   autres noms de l'artiste (« Puff Daddy » pour « Diddy »). Casse, accents, article et petites fautes sont
@@ -152,8 +161,9 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
    `music-check/<quizId>.json` (identifiant, titre et artiste affichés, album, extrait, paroles explicites,
    alternatives) et sa version lisible `.md`. Pour choisir une alternative : la copier dans `found`.
 2. `npm run music:verify -- <quizId> [<quizId>…]` : coche `verified: true` avec `verifiedBy: "auto"` seulement
-   si TOUS les contrôles passent : artiste et titre identiques à ceux affichés par Deezer (les mentions du même
-   enregistrement sont acceptées : « feat. », « Remastered », « Radio Edit », bande originale d'un film),
+   si TOUS les contrôles passent : artiste et titre identiques à ceux affichés par Deezer, sans tenir compte
+   des accents ni de la casse (tout autre écart est signalé ; les mentions du même enregistrement sont
+   acceptées : « feat. », « Remastered », « Radio Edit », bande originale d'un film),
    version originale (ni live ni remix), extrait présent, paroles non explicites, extrait qui tient dans le
    minuteur. Sinon, la raison est affichée : remplacer le morceau.
 3. `npm run music:fans -- <lot> <quizId> [<quizId>…]` : écrit `docs/relecture-lot-bt-<lot>.md` (fans

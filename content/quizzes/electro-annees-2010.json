@@ -178,7 +178,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Clarity – ZEDD",
+        "Clarity – Zedd",
         "Alone – Marshmello",
         "Ocean Drive – Duke Dumont",
         "Pop Culture – Madeon"
@@ -190,7 +190,8 @@
       "difficulty": 1,
       "music": {
         "artist": "ZEDD",
-        "title": "Clarity"
+        "title": "Clarity",
+        "displayArtist": "Zedd"
       }
     },
     {

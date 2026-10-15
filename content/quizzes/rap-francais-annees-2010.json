@@ -205,19 +205,19 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Bazardée – KeBlack",
+        "Ma direction – Sexion d'Assaut",
         "Lettre à la République – Kery James",
         "Corleone – Lacrim",
         "La kiffance – Naps"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
-        "KeBlack"
+        "Sexion d'Assaut"
       ],
       "difficulty": 2,
       "music": {
-        "artist": "KeBlack",
-        "title": "Bazardée"
+        "artist": "Sexion d'Assaut",
+        "title": "Ma direction"
       }
     }
   ]

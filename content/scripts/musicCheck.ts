@@ -20,6 +20,11 @@ export interface SourceMusic {
   // Réponse libre : autres écritures acceptées du titre et de l'artiste (« Satisfaction », « Gims »).
   titleAliases?: string[]
   artistAliases?: string[]
+  // Orthographe affichée à l'écran quand celle de Deezer est fausse (accents, casse, ponctuation) : remplace
+  // title / artist partout où ils s'affichent ; title et artist restent ceux vérifiés chez Deezer. Même texte
+  // une fois normalisé (le build le vérifie) : jamais un autre morceau.
+  displayTitle?: string
+  displayArtist?: string
 }
 
 export interface FoundTrack {

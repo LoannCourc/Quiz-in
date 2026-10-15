@@ -157,6 +157,7 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
     errors.push(...trackOptionErrors(question, quiz.gameType === 'blindTest').map((error) => prefix + error))
     if (quiz.gameType === 'blindTest') {
       askErrors(question).forEach((error) => errors.push(prefix + error))
+      displayErrors(question.music).forEach((error) => errors.push(prefix + error))
       freeAnswerTargetErrors(question).forEach((error) => errors.push(prefix + error))
     }
   })
@@ -209,10 +210,31 @@ function trackOptionErrors(question: SourceQuestion, isBlindTest: boolean): stri
   })
 }
 
+// Morceau tel qu'il s'affiche et se corrige : l'orthographe d'affichage (displayTitle, displayArtist) remplace
+// celle de Deezer, qui ne sert qu'à la vérification (music-check).
+function shownMusic(music: SourceMusic): Omit<SourceMusic, 'displayTitle' | 'displayArtist'> {
+  const { displayTitle, displayArtist, ...rest } = music
+  return { ...rest, title: displayTitle ?? music.title, artist: displayArtist ?? music.artist }
+}
+
+// Orthographe d'affichage : un texte non vide, identique à celui de Deezer une fois normalisé (accents, casse,
+// ponctuation) : elle corrige l'écriture, jamais le morceau.
+function displayErrors(music: SourceMusic | undefined): string[] {
+  if (!music) return []
+  return (['Title', 'Artist'] as const).flatMap((part) => {
+    const shown = music[`display${part}`]
+    if (shown === undefined) return []
+    const verified = part === 'Title' ? music.title : music.artist
+    return typeof shown === 'string' && shown.trim() !== '' && normalizeAnswer(shown) === normalizeAnswer(verified)
+      ? []
+      : [`music.display${part} « ${String(shown)} » : même texte que « ${verified} » une fois normalisé`]
+  })
+}
+
 // Question telle qu'elle sera corrigée en Réponse libre (identifiant du morceau inutile ici).
 function asQuestion(question: SourceQuestion): Question {
   const { music, ...rest } = question
-  return music ? { ...rest, music: { source: 'deezer', id: '', ...music } } : rest
+  return music ? { ...rest, music: { source: 'deezer', id: '', ...shownMusic(music) } } : rest
 }
 
 // Blind test « titre » ou « artiste » : en Réponse libre, la question accepte aussi le titre, l'artiste
@@ -246,7 +268,7 @@ function freeAnswerWarnings(quiz: QuizFile): string[] {
 
 function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
-  const { title, artist, startS, titleAliases, artistAliases } = question.music
+  const { title, artist, startS, titleAliases, artistAliases } = shownMusic(question.music)
   // La bonne proposition doit citer le titre (ou l'artiste) du morceau : évite d'associer le mauvais extrait.
   const cited = question.ask === 'artist' ? artist : title
   const correct = normalizeAnswer(question.options[question.correctIndex] ?? '')

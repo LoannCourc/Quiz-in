@@ -63,17 +63,18 @@
       "options": [
         "Just Be Good to Me – The S.O.S. Band",
         "Don't Stop the Music – Yarbrough & Peoples",
-        "Word Up – Cameo",
+        "Word Up! – Cameo",
         "Criticize – Alexander O'Neal"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
-        "Word Up"
+        "Word Up!"
       ],
       "difficulty": 1,
       "music": {
         "artist": "Cameo",
-        "title": "Word Up"
+        "title": "Word Up",
+        "displayTitle": "Word Up!"
       }
     },
     {
