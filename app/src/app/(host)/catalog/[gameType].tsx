@@ -1,6 +1,5 @@
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { gameAccess } from '@shared/quizCatalog';
-import { RECOMMENDED_QUESTION_COUNT } from '@shared/themeCatalog';
 import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useMemo } from 'react';
@@ -94,7 +93,6 @@ export default function CatalogRoute() {
           game === 'quiz'
             ? {
                 onPlay: (themes, count) => openThemesGame(themes, count, room),
-                onOpenTheme: (theme) => openThemesGame([theme], RECOMMENDED_QUESTION_COUNT, room),
                 onSeeAll: () => openAllThemes(room),
               }
             : undefined

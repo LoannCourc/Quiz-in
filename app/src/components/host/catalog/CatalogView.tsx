@@ -21,6 +21,7 @@ import { ActiveFilters, FiltersButton } from './filters/CatalogFilterBar';
 import { QuizFiltersSheet } from './filters/QuizFiltersSheet';
 import { ThemeHeroCard } from './themes/ThemeHeroCard';
 import { ThemeRail } from './themes/ThemeRail';
+import { ThemeSheet } from './themes/ThemeSheet';
 
 const POSTERS_PER_SCREEN = 3;
 
@@ -34,10 +35,10 @@ interface CatalogViewProps {
   // Quiz déjà joués sur ce téléphone (lot E) : repère sur l'affiche, tri « Pas encore faits ».
   played: ReadonlySet<string>;
   // Quiz (maquette QN1-A) : thème à la une et tuiles des thèmes. JOUER de la carte héro : fiche de la
-  // partie tirée dans le thème ; une tuile : le thème touché ; « Tout voir » : grille des thèmes.
+  // partie tirée dans le thème ; une tuile : feuille du thème (nombre, mélange), puis la même fiche ;
+  // « Tout voir » : grille des thèmes.
   themes?: {
     onPlay: (themes: string[], questionCount: number) => void;
-    onOpenTheme: (theme: string) => void;
     onSeeAll: () => void;
   };
 }
@@ -179,6 +180,7 @@ interface ThemesBlockProps {
 // défaut ; s'il dépasse les questions du thème, le plus grand possible.
 function ThemesBlock({ entries, played, tileWidth, actions }: ThemesBlockProps) {
   const [count, setCount] = useState(RECOMMENDED_QUESTION_COUNT);
+  const [openTheme, setOpenTheme] = useState<string | null>(null);
   const stats = useMemo(() => themeStats(entries, played), [entries, played]);
   const featured = featuredThemeOf(entries, stats);
   if (!featured) return null;
@@ -187,7 +189,16 @@ function ThemesBlock({ entries, played, tileWidth, actions }: ThemesBlockProps) 
   return (
     <>
       <ThemeHeroCard theme={featured} count={heroCount} onCountChange={setCount} onPlay={() => actions.onPlay([featured.theme], heroCount)} />
-      <ThemeRail themes={stats} tileWidth={tileWidth} onOpenTheme={actions.onOpenTheme} onSeeAll={actions.onSeeAll} />
+      <ThemeRail themes={stats} tileWidth={tileWidth} onOpenTheme={setOpenTheme} onSeeAll={actions.onSeeAll} />
+      <ThemeSheet
+        theme={openTheme}
+        themes={stats}
+        onClose={() => setOpenTheme(null)}
+        onContinue={(themes, questionCount) => {
+          setOpenTheme(null);
+          actions.onPlay(themes, questionCount);
+        }}
+      />
     </>
   );
 }

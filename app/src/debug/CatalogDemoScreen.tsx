@@ -93,7 +93,7 @@ export default function CatalogDemoScreen() {
     );
   }
   if (game === 'quiz' && allThemes === '1') {
-    return <AllThemesView themes={themeStats(DEMO_ENTRIES, played)} onBack={() => router.setParams({ allThemes: undefined })} onOpenTheme={() => undefined} />;
+    return <AllThemesView themes={themeStats(DEMO_ENTRIES, played)} onBack={() => router.setParams({ allThemes: undefined })} onPlay={() => undefined} />;
   }
   // CatalogView porte son propre écran.
   if (game) {
@@ -108,7 +108,6 @@ export default function CatalogDemoScreen() {
           game === 'quiz'
             ? {
                 onPlay: () => undefined,
-                onOpenTheme: () => undefined,
                 onSeeAll: () => router.setParams({ allThemes: '1' }),
               }
             : undefined

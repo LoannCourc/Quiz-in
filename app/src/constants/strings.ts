@@ -220,6 +220,23 @@ export const strings = {
       seeAllLabel: 'Voir tous les thèmes',
       tileCount: (count: number) => `${count} questions`,
     },
+    // Feuille d'un thème (maquette QN1-A, V1) : nombre de questions et mélange avec d'autres thèmes.
+    themeSheet: {
+      available: (count: number) => `${count} questions disponibles`,
+      close: 'Fermer',
+      howMany: 'Combien de questions ?',
+      questions: 'questions',
+      // Nom de chaque carte, selon son nombre de questions.
+      cardNames: { 10: 'Express', 20: 'Classique', 30: 'Marathon' } as Record<number, string>,
+      recommended: 'Conseillé',
+      minutes: (minutes: number) => `≈ ${minutes} min`,
+      cardLabel: (count: number, name: string, minutes: number | null, isRecommended: boolean) =>
+        `${count} questions, ${name}${minutes === null ? '' : `, environ ${minutes} minutes`}${isRecommended ? ', conseillé' : ''}`,
+      mixTitle: 'Mélanger avec un autre thème ?',
+      addTheme: (theme: string) => `Ajouter le thème ${theme}`,
+      removeTheme: (theme: string) => `Retirer le thème ${theme}`,
+      continue: (count: number) => `Continuer · ${count} questions`,
+    },
     // Barre « Nombre de questions » du Bluff (Mon mélange).
     questionCount: {
       title: 'Nombre de questions',

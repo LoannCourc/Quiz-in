@@ -8,6 +8,9 @@ import type { Difficulty, QuestionLevel, QuestionLevelCounts, SessionSettings } 
 
 export const QUESTION_LEVELS: readonly QuestionLevel[] = ['easy', 'medium', 'hard']
 
+// Thèmes d'une partie au plus (feuille d'un thème, « Ta partie », règle de la base).
+export const MAX_POOL_THEMES = 3
+
 // Nombre de questions proposé d'abord (carte héro, feuille d'un thème) : la carte « Conseillé ».
 export const RECOMMENDED_QUESTION_COUNT = 20
 
@@ -62,6 +65,11 @@ export function featuredThemeOf(entries: readonly QuizEntry[], stats: readonly T
   const mostPlayed = byMost('playedCount')
   if (mostPlayed && mostPlayed.playedCount > 0) return mostPlayed
   return byMost('questionCount') ?? null
+}
+
+// Questions de plusieurs thèmes (feuille d'un thème : « N questions disponibles »).
+export function themesQuestionTotal(stats: readonly ThemeStats[], themes: readonly string[]): number {
+  return stats.filter((theme) => themes.includes(theme.theme)).reduce((total, theme) => total + theme.questionCount, 0)
 }
 
 // Durée estimée d'une partie tirée dans des thèmes : la même fonction sur la carte héro, la feuille d'un

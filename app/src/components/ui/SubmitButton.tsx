@@ -15,12 +15,14 @@ interface SubmitButtonProps {
   disabled?: boolean;
   // Plus bas (44) et texte en 16 : barre compacte « Nombre de questions » (maquette Q1).
   compact?: boolean;
+  // Sur une ligne, texte réduit au besoin (« CONTINUER · 20 QUESTIONS » des écrans du Quiz).
+  singleLine?: boolean;
 }
 
 // Bouton d'envoi des réponses écrites (maquette S1 : Quiz et Blind test en saisie libre, Bluff, Dessine-moi) :
 // pilule or de 58 points, ombre encre décalée de 5. Désactivé : comme BigButton (pilule translucide).
 // Posé en bas de la colonne : Screen le garde au-dessus du clavier (useKeyboardInset).
-export function SubmitButton({ label, onPress, disabled = false, compact = false }: SubmitButtonProps) {
+export function SubmitButton({ label, onPress, disabled = false, compact = false, singleLine = false }: SubmitButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
@@ -28,7 +30,9 @@ export function SubmitButton({ label, onPress, disabled = false, compact = false
       onPress={onPress}
       disabled={disabled}
       style={({ pressed }) => [styles.button, compact && styles.compact, pressed && styles.pressed, disabled && styles.disabled]}>
-      <ButtonLabel style={[styles.label, compact && styles.compactLabel, disabled && styles.disabledLabel]}>{label}</ButtonLabel>
+      <ButtonLabel maxLines={singleLine ? 1 : undefined} style={[styles.label, compact && styles.compactLabel, singleLine && styles.singleLineLabel, disabled && styles.disabledLabel]}>
+        {label}
+      </ButtonLabel>
     </Pressable>
   );
 }
@@ -64,6 +68,10 @@ const styles = StyleSheet.create({
     fontSize: LABEL_SIZE,
     letterSpacing: 1,
     textTransform: 'uppercase',
+  },
+  // Sans espacement des lettres : le calcul de la taille sur une ligne (ButtonLabel) n'en tient pas compte.
+  singleLineLabel: {
+    letterSpacing: 0,
   },
   disabledLabel: {
     color: AppColors.textMuted,

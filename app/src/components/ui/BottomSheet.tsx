@@ -14,6 +14,8 @@ interface BottomSheetProps {
   aside?: string;
   // Lien d'en-tête à droite, à la place de aside (« Tout effacer »).
   action?: { label: string; onPress: () => void };
+  // En-tête libre, à la place du titre (feuille d'un thème du Quiz : tuile, nom, fermer).
+  header?: ReactNode;
   // Bas de la feuille, à la place de « Terminé » (« VOIR 5 QUIZ »).
   footer?: ReactNode;
   children: ReactNode;
@@ -22,13 +24,14 @@ interface BottomSheetProps {
 // Feuille du bas, par-dessus l'écran (salon de l'hôte : son, réglages) : poignée, en-tête facultatif, contenu
 // qui défile (petit écran, grande police), « Terminé » jaune. Appui en dehors, bouton retour d'Android ou
 // « Terminé » : fermeture.
-export function BottomSheet({ isOpen, onClose, title, aside, action, footer, children }: BottomSheetProps) {
+export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, children }: BottomSheetProps) {
   return (
     <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
         <Pressable accessibilityRole="button" accessibilityLabel={strings.quizSetup.settingsDone} style={styles.backdrop} onPress={onClose} />
         <View style={styles.sheet}>
           <View style={styles.handle} />
+          {header}
           {title && (
             <View style={styles.header}>
               <Text style={styles.title}>{title}</Text>

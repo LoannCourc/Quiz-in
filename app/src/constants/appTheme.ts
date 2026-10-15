@@ -90,6 +90,11 @@ export const AppColors = {
   themeHeroTrack: 'rgba(23, 6, 70, 0.55)',
   themeHeroBadge: Palette.gold,
   themeHeroTitleShadow: Palette.ink,
+  // Cartes 10 / 20 / 30 (feuille d'un thème, « Ta partie ») et puces « + Thème » en pointillés.
+  countCard: Palette.violetPanel,
+  countCardBorder: Palette.violetTrack,
+  countCardBadge: Palette.pink,
+  mixChipBorder: Palette.lavenderMuted,
   // Poignée des feuilles du bas.
   sheetHandle: Palette.track,
   card: Palette.white,
