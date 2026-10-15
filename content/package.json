@@ -7,7 +7,8 @@
     "music:lookup": "tsx scripts/musicLookup.ts",
     "music:pairs": "tsx scripts/musicPairs.ts",
     "music:verify": "tsx scripts/musicAutoVerify.ts",
-    "music:review": "tsx scripts/musicReview.ts"
+    "music:review": "tsx scripts/musicReview.ts",
+    "music:decoys": "tsx scripts/musicDecoys.ts"
   },
   "devDependencies": {
     "tsx": "^4.23.15"

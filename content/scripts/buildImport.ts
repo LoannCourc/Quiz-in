@@ -378,6 +378,59 @@ function featuredThemeErrors(): string[] {
     : [`featuredTheme.json : « ${String(featuredTheme)} » n'est le thème d'aucun quiz classique`]
 }
 
+// Variété des blind tests (octobre 2026) :
+// - dans un blind test, les 40 propositions sont toutes différentes et chaque artiste n'y apparaît qu'une fois
+//   (donc 10 artistes différents pour les bonnes réponses, et une bonne réponse ne ressert jamais de leurre) ;
+// - une mauvaise proposition n'est jamais la bonne réponse d'un autre blind test ;
+// - « Impossible » : un artiste de bonne réponse au plus une fois sur l'ensemble des « Impossible », et jamais
+//   bonne réponse d'un autre blind test des lots BT-1 à BT-6.
+const NEW_BLIND_TEST_LOT = /\(lot BT-\d+\)/
+
+function optionArtistKey(option: string): string {
+  return compact(trackOptionParts(option).artist ?? '')
+}
+
+function optionKey(option: string): string {
+  return `${optionArtistKey(option)}|${compact(trackOptionParts(option).title)}`
+}
+
+function repeated(keys: readonly string[]): string[] {
+  return [...new Set(keys.filter((key, index) => keys.indexOf(key) !== index))]
+}
+
+function blindTestVarietyErrors(): string[] {
+  const blindTests = quizzes.map(({ quiz }) => quiz).filter((quiz) => quiz.gameType === 'blindTest')
+  const correctOf = (quiz: QuizFile) => quiz.questions.map((question) => question.options[question.correctIndex])
+  const correctTracks = new Map(blindTests.flatMap((quiz) => correctOf(quiz).map((option) => [optionKey(option), quiz.id] as const)))
+  const errors: string[] = []
+  for (const quiz of blindTests) {
+    const options = quiz.questions.flatMap((question) => question.options)
+    for (const key of repeated(options.map(optionKey))) errors.push(`${quiz.id} : proposition répétée « ${options.find((option) => optionKey(option) === key)} »`)
+    for (const key of repeated(options.map(optionArtistKey))) {
+      const count = options.filter((option) => optionArtistKey(option) === key).length
+      errors.push(`${quiz.id} : artiste « ${trackOptionParts(options.find((option) => optionArtistKey(option) === key) ?? '').artist} » dans ${count} propositions`)
+    }
+    for (const question of quiz.questions) {
+      question.options.forEach((option, index) => {
+        const owner = correctTracks.get(optionKey(option))
+        if (index !== question.correctIndex && owner && owner !== quiz.id) errors.push(`${quiz.id}/${question.id} : « ${option} » est la bonne réponse de ${owner}`)
+      })
+    }
+  }
+  const impossible = blindTests.filter((quiz) => quiz.level === 'impossible')
+  const impossibleArtists = impossible.flatMap((quiz) => correctOf(quiz).map(optionArtistKey))
+  for (const key of repeated(impossibleArtists)) errors.push(`« Impossible » : artiste « ${key} » bonne réponse dans plusieurs blind tests`)
+  const otherNewArtists = new Set(
+    blindTests.filter((quiz) => quiz.level !== 'impossible' && NEW_BLIND_TEST_LOT.test(quiz.reviewStatus ?? '')).flatMap((quiz) => correctOf(quiz).map(optionArtistKey)),
+  )
+  for (const quiz of impossible) {
+    for (const option of correctOf(quiz)) {
+      if (otherNewArtists.has(optionArtistKey(option))) errors.push(`${quiz.id} : « ${option} » : artiste déjà bonne réponse d'un autre blind test des lots BT`)
+    }
+  }
+  return errors
+}
+
 // Un morceau n'apparaît que dans un seul blind test (même artiste et même titre, sans casse ni accents).
 function duplicateTrackErrors(): string[] {
   const seen = new Map<string, string>()
@@ -412,6 +465,7 @@ const allErrors = [
   ...featuredRankErrors(),
   ...duplicateTrackErrors(),
   ...levelCoherenceErrors(),
+  ...blindTestVarietyErrors(),
   ...featuredThemeErrors(),
 ]
 if (allErrors.length > 0) {
