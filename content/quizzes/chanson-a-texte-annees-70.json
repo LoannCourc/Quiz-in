@@ -1,0 +1,218 @@
+{
+  "id": "chanson-a-texte-annees-70",
+  "gameType": "blindTest",
+  "title": "Chanson à texte des années 70",
+  "theme": "Musique",
+  "description": "Les grandes plumes de la chanson française des années 70 : dix chansons pour connaisseurs.",
+  "audience": "experts",
+  "poster": "green",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 1970,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-5)",
+  "questions": [
+    {
+      "id": "ct70-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Super Nana – Michel Jonasz",
+        "Ma préférence – Julien Clerc",
+        "J'ai dix ans – Alain Souchon",
+        "Mon vieux – Daniel Guichard"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "J'ai dix ans"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Alain Souchon",
+        "title": "J'ai dix ans"
+      }
+    },
+    {
+      "id": "ct70-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "San Francisco – Maxime Le Forestier",
+        "Au pays des merveilles de Juliet – Yves Simon",
+        "La ballade des gens heureux – Gérard Lenorman",
+        "Le chanteur – Daniel Balavoine"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Maxime Le Forestier"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Maxime Le Forestier",
+        "title": "San Francisco"
+      }
+    },
+    {
+      "id": "ct70-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Une belle histoire – Michel Fugain",
+        "L'Été indien – Joe Dassin",
+        "Il voyage en solitaire – Gérard Manset",
+        "Il y avait un jardin – Georges Moustaki"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Il y avait un jardin"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Georges Moustaki",
+        "title": "Il y avait un jardin"
+      }
+    },
+    {
+      "id": "ct70-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le Sud – Nino Ferrer",
+        "Champagne – Jacques Higelin",
+        "Laisse béton – Renaud",
+        "Super Nana – Michel Jonasz"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Jacques Higelin"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jacques Higelin",
+        "title": "Champagne"
+      }
+    },
+    {
+      "id": "ct70-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Avec le temps – Léo Ferré",
+        "Mon vieux – Daniel Guichard",
+        "Il voyage en solitaire – Gérard Manset",
+        "Le Lac Majeur – Mort Shuman"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Avec le temps"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Léo Ferré",
+        "title": "Avec le temps"
+      }
+    },
+    {
+      "id": "ct70-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ma préférence – Julien Clerc",
+        "Le chanteur – Daniel Balavoine",
+        "Les Marquises – Jacques Brel",
+        "Une belle histoire – Michel Fugain"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Jacques Brel"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jacques Brel",
+        "title": "Les Marquises"
+      }
+    },
+    {
+      "id": "ct70-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La ballade des gens heureux – Gérard Lenorman",
+        "Amoureuse – Véronique Sanson",
+        "L'Été indien – Joe Dassin",
+        "Au pays des merveilles de Juliet – Yves Simon"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Amoureuse"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Véronique Sanson",
+        "title": "Amoureuse"
+      }
+    },
+    {
+      "id": "ct70-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Laisse béton – Renaud",
+        "Le Lac Majeur – Mort Shuman",
+        "Le Sud – Nino Ferrer",
+        "Je l'aime à mourir – Francis Cabrel"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Francis Cabrel"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Francis Cabrel",
+        "title": "Je l'aime à mourir"
+      }
+    },
+    {
+      "id": "ct70-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Seras-tu là ? – Michel Berger",
+        "Super Nana – Michel Jonasz",
+        "Mon vieux – Daniel Guichard",
+        "Ma préférence – Julien Clerc"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Seras-tu là ?"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Michel Berger",
+        "title": "Seras-tu là",
+        "displayTitle": "Seras-tu là ?"
+      }
+    },
+    {
+      "id": "ct70-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Il voyage en solitaire – Gérard Manset",
+        "Une belle histoire – Michel Fugain",
+        "Comme ils disent – Charles Aznavour",
+        "Le chanteur – Daniel Balavoine"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Charles Aznavour"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Charles Aznavour",
+        "title": "Comme ils disent"
+      }
+    }
+  ]
+}

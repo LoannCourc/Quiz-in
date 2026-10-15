@@ -1,0 +1,557 @@
+{
+  "quizId": "house-techno-annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ht90-01",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Da Funk"
+      },
+      "found": {
+        "id": "3129772",
+        "title": "Da Funk",
+        "artist": "Daft Punk",
+        "album": "Homework",
+        "durationS": 328,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3129772",
+        "explicit": false,
+        "rank": 776740
+      },
+      "alternatives": [
+        {
+          "id": "3428770",
+          "title": "Da Funk (Radio Edit)",
+          "artist": "Daft Punk",
+          "album": "Da Funk",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3428770",
+          "explicit": false,
+          "rank": 321706
+        },
+        {
+          "id": "3167849",
+          "title": "Da Funk / Daftendirekt",
+          "artist": "Daft Punk",
+          "album": "Alive 2007",
+          "durationS": 396,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3167849",
+          "explicit": false,
+          "rank": 508105
+        },
+        {
+          "id": "3129784",
+          "title": "Funk Ad",
+          "artist": "Daft Punk",
+          "album": "Homework",
+          "durationS": 51,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3129784",
+          "explicit": false,
+          "rank": 381426
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-02",
+      "query": {
+        "artist": "Underworld",
+        "title": "Born Slippy (Nuxx)"
+      },
+      "found": {
+        "id": "82265248",
+        "title": "Born Slippy (Nuxx)",
+        "artist": "Underworld",
+        "album": "1992 - 2012",
+        "durationS": 454,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/82265248",
+        "explicit": false,
+        "rank": 766102
+      },
+      "alternatives": [
+        {
+          "id": "82265248",
+          "title": "Born Slippy (Nuxx)",
+          "artist": "Underworld",
+          "album": "1992 - 2012",
+          "durationS": 454,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/82265248",
+          "explicit": false,
+          "rank": 766102
+        },
+        {
+          "id": "121126078",
+          "title": "Born Slippy (Nuxx / Remastered)",
+          "artist": "Underworld",
+          "album": "A Collection 2",
+          "durationS": 705,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/121126078",
+          "explicit": false,
+          "rank": 342602
+        },
+        {
+          "id": "140857827",
+          "title": "Born Slippy (Nuxx) (Radio Edit)",
+          "artist": "Underworld",
+          "album": "Born Slippy (Nuxx) (Radio Edit)",
+          "durationS": 264,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/140857827",
+          "explicit": false,
+          "rank": 648765
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-03",
+      "query": {
+        "artist": "The Chemical Brothers",
+        "title": "Block Rockin' Beats"
+      },
+      "found": {
+        "id": "3252242",
+        "title": "Block Rockin' Beats",
+        "artist": "The Chemical Brothers",
+        "album": "Dig Your Own Hole",
+        "durationS": 313,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3252242",
+        "explicit": false,
+        "rank": 588050
+      },
+      "alternatives": [
+        {
+          "id": "3141581",
+          "title": "Block Rockin' Beats",
+          "artist": "The Chemical Brothers",
+          "album": "Brotherhood",
+          "durationS": 292,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3141581",
+          "explicit": false,
+          "rank": 420713
+        },
+        {
+          "id": "723069492",
+          "title": "Block Rockin' Beats (Radio Edit)",
+          "artist": "The Chemical Brothers",
+          "album": "Block Rockin’ Beats",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/723069492",
+          "explicit": false,
+          "rank": 327488
+        },
+        {
+          "id": "723069542",
+          "title": "Block Rockin' Beats (The Micronauts Bonus Beats)",
+          "artist": "The Chemical Brothers",
+          "album": "Block Rockin’ Beats",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/723069542",
+          "explicit": false,
+          "rank": 70770
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-04",
+      "query": {
+        "artist": "Faithless",
+        "title": "Insomnia"
+      },
+      "found": {
+        "id": "7035328",
+        "title": "Insomnia (Radio Edit)",
+        "artist": "Faithless",
+        "album": "Essential - The 90s",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7035328",
+        "explicit": false,
+        "rank": 769918
+      },
+      "alternatives": [
+        {
+          "id": "15641322",
+          "title": "Insomnia",
+          "artist": "Faithless",
+          "album": "Reverence / Irreverence",
+          "durationS": 526,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15641322",
+          "explicit": false,
+          "rank": 505857
+        },
+        {
+          "id": "3641932622",
+          "title": "Insomnia (Disclosure's 2025 Edit)",
+          "artist": "Faithless",
+          "album": "Insomnia (Disclosure's 2025 Edit)",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3641932622",
+          "explicit": false,
+          "rank": 389751
+        },
+        {
+          "id": "3684683402",
+          "title": "Insomnia (Disclosure's 2025 Edit - Extended)",
+          "artist": "Faithless",
+          "album": "Insomnia (Disclosure's 2025 Edit)",
+          "durationS": 467,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3684683402",
+          "explicit": false,
+          "rank": 144599
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-05",
+      "query": {
+        "artist": "Robert Miles",
+        "title": "Children"
+      },
+      "found": {
+        "id": "91348522",
+        "title": "Children",
+        "artist": "Robert Miles",
+        "album": "2gether 90 (Années 90)",
+        "durationS": 246,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/91348522",
+        "explicit": false,
+        "rank": 791898
+      },
+      "alternatives": [
+        {
+          "id": "877468462",
+          "title": "Children (Dream Version)",
+          "artist": "Robert Miles",
+          "album": "Dreamland (Album)",
+          "durationS": 426,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/877468462",
+          "explicit": false,
+          "rank": 612496
+        },
+        {
+          "id": "1628123602",
+          "title": "Children",
+          "artist": "Robert Miles",
+          "album": "Children",
+          "durationS": 453,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1628123602",
+          "explicit": false,
+          "rank": 411431
+        },
+        {
+          "id": "877468542",
+          "title": "Children (Original Version)",
+          "artist": "Robert Miles",
+          "album": "Dreamland (Album)",
+          "durationS": 391,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/877468542",
+          "explicit": false,
+          "rank": 292613
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-06",
+      "query": {
+        "artist": "Fatboy Slim",
+        "title": "Praise You"
+      },
+      "found": {
+        "id": "3801561902",
+        "title": "Praise You (Radio Edit)",
+        "artist": "Fatboy Slim",
+        "album": "Why Try Harder - The Greatest Hits",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3801561902",
+        "explicit": false,
+        "rank": 715906
+      },
+      "alternatives": [
+        {
+          "id": "3806160462",
+          "title": "Praise You (Full \"Hit\" Version)",
+          "artist": "Fatboy Slim",
+          "album": "You've Come a Long Way Baby (10th Anniversary Edition)",
+          "durationS": 324,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3806160462",
+          "explicit": false,
+          "rank": 590996
+        },
+        {
+          "id": "3706333492",
+          "title": "Praise You (Riva Starr Dub)",
+          "artist": "Fatboy Slim",
+          "album": "The Bootlegs (Vol. 4.5 / Riva Starr & Ronario Bootlegs)",
+          "durationS": 404,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3706333492",
+          "explicit": false,
+          "rank": 137062
+        },
+        {
+          "id": "3806160582",
+          "title": "Praise You (Original Version/Trip Hop Version)",
+          "artist": "Fatboy Slim",
+          "album": "You've Come a Long Way Baby (10th Anniversary Edition)",
+          "durationS": 322,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3806160582",
+          "explicit": false,
+          "rank": 25556
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-07",
+      "query": {
+        "artist": "Moby",
+        "title": "Go"
+      },
+      "found": {
+        "id": "3806165162",
+        "title": "Go",
+        "artist": "Moby",
+        "album": "Go - The Very Best of Moby (Deluxe)",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3806165162",
+        "explicit": false,
+        "rank": 376742
+      },
+      "alternatives": [
+        {
+          "id": "3806165312",
+          "title": "Go (2006)",
+          "artist": "Moby",
+          "album": "Go - The Very Best of Moby (Deluxe)",
+          "durationS": 401,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3806165312",
+          "explicit": false,
+          "rank": 184521
+        },
+        {
+          "id": "3806165322",
+          "title": "Go",
+          "artist": "Moby",
+          "album": "Go - The Very Best of Moby (Deluxe)",
+          "durationS": 313,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3806165322",
+          "explicit": false,
+          "rank": 96321
+        },
+        {
+          "id": "1893368057",
+          "title": "Go (Radio Edit)",
+          "artist": "Moby",
+          "album": "Go (Remixes)",
+          "durationS": 218,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1893368057",
+          "explicit": false,
+          "rank": 572775
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-08",
+      "query": {
+        "artist": "Darude",
+        "title": "Sandstorm"
+      },
+      "found": {
+        "id": "63653810",
+        "title": "Sandstorm (Radio Edit)",
+        "artist": "Darude",
+        "album": "Sandstorm",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63653810",
+        "explicit": false,
+        "rank": 660211
+      },
+      "alternatives": [
+        {
+          "id": "63653811",
+          "title": "Sandstorm",
+          "artist": "Darude",
+          "album": "Sandstorm",
+          "durationS": 446,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/63653811",
+          "explicit": false,
+          "rank": 529808
+        },
+        {
+          "id": "4244350962",
+          "title": "Sandstorm (Storm 25 Mix)",
+          "artist": "Darude",
+          "album": "Sandstorm (Storm 25 Mix)",
+          "durationS": 188,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4244350962",
+          "explicit": false,
+          "rank": 376369
+        },
+        {
+          "id": "4271347812",
+          "title": "Sandstorm (Dimension Remix)",
+          "artist": "Darude",
+          "album": "Sandstorm (Dimension Remix)",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4271347812",
+          "explicit": false,
+          "rank": 262509
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-09",
+      "query": {
+        "artist": "The Prodigy",
+        "title": "Out of Space"
+      },
+      "found": {
+        "id": "128973850",
+        "title": "Out of Space",
+        "artist": "The Prodigy",
+        "album": "Their Law The Singles 1990 - 2005",
+        "durationS": 302,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/128973850",
+        "explicit": false,
+        "rank": 596846
+      },
+      "alternatives": [
+        {
+          "id": "620495872",
+          "title": "Out of Space (Edit)",
+          "artist": "The Prodigy",
+          "album": "Out of Space",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/620495872",
+          "explicit": false,
+          "rank": 309060
+        },
+        {
+          "id": "3658500122",
+          "title": "Out of Space (Live at Milton Keynes Bowl- 2020 Remaster)",
+          "artist": "The Prodigy",
+          "album": "World's on Fire (Live at Milton Keynes Bowl- 2020 Remaster)",
+          "durationS": 272,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3658500122",
+          "explicit": true,
+          "rank": 211615
+        },
+        {
+          "id": "620495882",
+          "title": "Out of Space (Techno Underworld Remix)",
+          "artist": "The Prodigy",
+          "album": "Out of Space",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/620495882",
+          "explicit": false,
+          "rank": 137652
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ht90-10",
+      "query": {
+        "artist": "Laurent Garnier",
+        "title": "Crispy Bacon"
+      },
+      "found": {
+        "id": "3780534",
+        "title": "Crispy Bacon",
+        "artist": "Laurent Garnier",
+        "album": "30",
+        "durationS": 352,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3780534",
+        "explicit": false,
+        "rank": 505119
+      },
+      "alternatives": [
+        {
+          "id": "3781923",
+          "title": "Crispy Bacon (Bitten By The Black Dog) (Remixed By The Black Dog)",
+          "artist": "Laurent Garnier",
+          "album": "Coloured City",
+          "durationS": 449,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3781923",
+          "explicit": false,
+          "rank": 46727
+        },
+        {
+          "id": "3962016",
+          "title": "Crispy Bacon (Remix by Aux 88)",
+          "artist": "Laurent Garnier",
+          "album": "Crispy Bacon",
+          "durationS": 374,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3962016",
+          "explicit": false,
+          "rank": 70646
+        },
+        {
+          "id": "3962015",
+          "title": "Crispy Bacon (Gilb'R Versatile Mix)",
+          "artist": "Laurent Garnier",
+          "album": "Crispy Bacon",
+          "durationS": 362,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3962015",
+          "explicit": false,
+          "rank": 66215
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "quizId": "rap-francais-annees-2000",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "rf00-01",
+      "query": {
+        "artist": "Diam's",
+        "title": "DJ"
+      },
+      "found": {
+        "id": "3437460",
+        "title": "DJ",
+        "artist": "Diam's",
+        "album": "Brut de femme",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3437460",
+        "explicit": false,
+        "rank": 845357
+      },
+      "alternatives": [
+        {
+          "id": "3437777",
+          "title": "DJ (Live)",
+          "artist": "Diam's",
+          "album": "ma vie / mon live",
+          "durationS": 239,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3437777",
+          "explicit": false,
+          "rank": 236231
+        },
+        {
+          "id": "3359806",
+          "title": "DJ (Live 2006)",
+          "artist": "Diam's",
+          "album": "Au Tour De Ma Bulle",
+          "durationS": 94,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3359806",
+          "explicit": false,
+          "rank": 254268
+        },
+        {
+          "id": "3437034",
+          "title": "La Boulette (Génération Nan Nan)",
+          "artist": "Diam's",
+          "album": "La boulette (Génération nan nan)",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3437034",
+          "explicit": false,
+          "rank": 936660
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-02",
+      "query": {
+        "artist": "Sniper",
+        "title": "Gravé dans la roche"
+      },
+      "found": {
+        "id": "15044236",
+        "title": "Gravé dans la roche",
+        "artist": "Sniper",
+        "album": "Best Of - 1997 / 2009",
+        "durationS": 287,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15044236",
+        "explicit": false,
+        "rank": 906346
+      },
+      "alternatives": [
+        {
+          "id": "18232393",
+          "title": "Gravé dans la roche",
+          "artist": "Sniper",
+          "album": "L'Anthologie du Rap Français",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/18232393",
+          "explicit": false,
+          "rank": 420446
+        },
+        {
+          "id": "15554978",
+          "title": "Pourquoi",
+          "artist": "Sniper",
+          "album": "Gravé dans la roche",
+          "durationS": 306,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15554978",
+          "explicit": false,
+          "rank": 580529
+        },
+        {
+          "id": "15554981",
+          "title": "Recette maison",
+          "artist": "Sniper",
+          "album": "Gravé dans la roche",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15554981",
+          "explicit": false,
+          "rank": 479248
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-03",
+      "query": {
+        "artist": "Grand Corps Malade",
+        "title": "Saint-Denis"
+      },
+      "found": {
+        "id": "142750160",
+        "title": "Saint-Denis",
+        "artist": "Grand Corps Malade",
+        "album": "Midi 20",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/142750160",
+        "explicit": false,
+        "rank": 328069
+      },
+      "alternatives": [
+        {
+          "id": "2997461171",
+          "title": "Saint-Denis (en musique)",
+          "artist": "Grand Corps Malade",
+          "album": "PLUS DE REFLETS",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2997461171",
+          "explicit": false,
+          "rank": 463467
+        },
+        {
+          "id": "739426572",
+          "title": "Saint-Denis (Live)",
+          "artist": "Grand Corps Malade",
+          "album": "Collection (2003-2019)",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/739426572",
+          "explicit": false,
+          "rank": 147346
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-04",
+      "query": {
+        "artist": "Keny Arkana",
+        "title": "La rage"
+      },
+      "found": {
+        "id": "615784812",
+        "title": "La rage",
+        "artist": "Keny Arkana",
+        "album": "Entre ciment et belle étoile",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/615784812",
+        "explicit": false,
+        "rank": 673011
+      },
+      "alternatives": [
+        {
+          "id": "615784782",
+          "title": "La mère des enfants perdus",
+          "artist": "Keny Arkana",
+          "album": "Entre ciment et belle étoile",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/615784782",
+          "explicit": false,
+          "rank": 713407
+        },
+        {
+          "id": "10285032",
+          "title": "La rue nous appartient",
+          "artist": "Keny Arkana",
+          "album": "Désobéissance",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/10285032",
+          "explicit": false,
+          "rank": 348066
+        },
+        {
+          "id": "3449048191",
+          "title": "Feinstaub (feat. Yung Obama, Slowmoe, 9T9, DJ Crossfaded & NoTypeBeats)",
+          "artist": "€$¥",
+          "album": "Feinstaub (feat. Yung Obama, Slowmoe, 9T9, DJ Crossfaded & NoTypeBeats)",
+          "durationS": 128,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3449048191",
+          "explicit": true,
+          "rank": 24626
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-05",
+      "query": {
+        "artist": "Kamini",
+        "title": "Marly-Gomont"
+      },
+      "found": {
+        "id": "105966812",
+        "title": "Marly-Gomont",
+        "artist": "Kamini",
+        "album": "Psychostar World",
+        "durationS": 308,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/105966812",
+        "explicit": false,
+        "rank": 689477
+      },
+      "alternatives": [
+        {
+          "id": "16935392",
+          "title": "Marly-Gomont (Karaoke With Backing Vocals) (Originally Performed By Kamini)",
+          "artist": "Le Meilleur des Tubes en Karaoke",
+          "album": "Le meilleur des tubes en karaoké (2008, vol. 2)",
+          "durationS": 309,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/16935392",
+          "explicit": false,
+          "rank": 27031
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-06",
+      "query": {
+        "artist": "Oxmo Puccino",
+        "title": "Toucher l'horizon"
+      },
+      "found": {
+        "id": "483173352",
+        "title": "Toucher l'horizon (Remasterisé)",
+        "artist": "Oxmo Puccino",
+        "album": "Le cactus de Sibérie (Remasterisé)",
+        "durationS": 178,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/483173352",
+        "explicit": false,
+        "rank": 659383
+      },
+      "alternatives": [
+        {
+          "id": "365912191",
+          "title": "Toucher l'horizon (Live)",
+          "artist": "Oxmo Puccino",
+          "album": "Black Tour Desperado (Live)",
+          "durationS": 215,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365912191",
+          "explicit": false,
+          "rank": 152973
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-07",
+      "query": {
+        "artist": "Psy 4 De La Rime",
+        "title": "Le son des bandits"
+      },
+      "found": {
+        "id": "15904504",
+        "title": "Le son des bandits (feat. Saleem)",
+        "artist": "Psy 4 De La Rime",
+        "album": "Block Party",
+        "durationS": 296,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15904504",
+        "explicit": false,
+        "rank": 794157
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-08",
+      "query": {
+        "artist": "Kery James",
+        "title": "Banlieusards"
+      },
+      "found": {
+        "id": "365936531",
+        "title": "Banlieusards",
+        "artist": "Kery James",
+        "album": "À l'ombre du show business",
+        "durationS": 469,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/365936531",
+        "explicit": false,
+        "rank": 722920
+      },
+      "alternatives": [
+        {
+          "id": "17481153",
+          "title": "Banlieusards",
+          "artist": "Kery James",
+          "album": "92.2012",
+          "durationS": 536,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17481153",
+          "explicit": false,
+          "rank": 260549
+        },
+        {
+          "id": "365936381",
+          "title": "Banlieusards (Live au Zénith de Paris le 18 décembre 2009)",
+          "artist": "Kery James",
+          "album": "À mon public (Live au Zénith de Paris le 18 décembre 2009)",
+          "durationS": 506,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365936381",
+          "explicit": false,
+          "rank": 253841
+        },
+        {
+          "id": "3962837731",
+          "title": "Je voulais faire un film",
+          "artist": "Kery James",
+          "album": "Banlieusards 3 (Bande Originale du film)",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3962837731",
+          "explicit": false,
+          "rank": 360754
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-09",
+      "query": {
+        "artist": "113",
+        "title": "Partir loin"
+      },
+      "found": {
+        "id": "555305",
+        "title": "Partir loin (feat. Taliani)",
+        "artist": "113",
+        "album": "Partir Loin",
+        "durationS": 246,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/555305",
+        "explicit": false,
+        "rank": 669755
+      },
+      "alternatives": [
+        {
+          "id": "555308",
+          "title": "On est ensemble (feat. Molare)",
+          "artist": "113",
+          "album": "Partir Loin",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/555308",
+          "explicit": true,
+          "rank": 192711
+        },
+        {
+          "id": "123211642",
+          "title": "Loin d'ici (feat. Blacko)",
+          "artist": "Shaniz",
+          "album": "Loin d'ici (feat. Blacko)",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/123211642",
+          "explicit": false,
+          "rank": 245412
+        },
+        {
+          "id": "2735899731",
+          "title": "Youths Dem",
+          "artist": "Blacko",
+          "album": "Chakras",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2735899731",
+          "explicit": false,
+          "rank": 289097
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rf00-10",
+      "query": {
+        "artist": "Saïan Supa Crew",
+        "title": "Raz de marée"
+      },
+      "found": {
+        "id": "3135171",
+        "title": "Raz de marée",
+        "artist": "Saïan Supa Crew",
+        "album": "Klr",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135171",
+        "explicit": false,
+        "rank": 580576
+      },
+      "alternatives": [
+        {
+          "id": "3285414",
+          "title": "Raz de marée (Live)",
+          "artist": "Saïan Supa Crew",
+          "album": "Live Au Bataclan",
+          "durationS": 81,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3285414",
+          "explicit": false,
+          "rank": 73926
+        },
+        {
+          "id": "391601182",
+          "title": "Raz de marée",
+          "artist": "Sir Samuel",
+          "album": "De Saïan Supa Crew à Sir Samuel",
+          "durationS": 202,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/391601182",
+          "explicit": false,
+          "rank": 38678
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

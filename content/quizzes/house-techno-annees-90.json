@@ -1,0 +1,226 @@
+{
+  "id": "house-techno-annees-90",
+  "gameType": "blindTest",
+  "title": "House et techno des années 90",
+  "theme": "Musique",
+  "description": "Raves, clubs et premiers DJ stars : dix morceaux house et techno des années 90, pour connaisseurs.",
+  "audience": "experts",
+  "poster": "cyan",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": 1990,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-5)",
+  "questions": [
+    {
+      "id": "ht90-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Higher State of Consciousness – Josh Wink",
+        "Da Funk – Daft Punk",
+        "Flat Beat – Mr. Oizo",
+        "Plastic Dreams – Jaydee"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Da Funk"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "Da Funk"
+      }
+    },
+    {
+      "id": "ht90-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Phat Planet – Leftfield",
+        "Pacific State – 808 State",
+        "Energy Flash – Joey Beltram",
+        "Born Slippy (Nuxx) – Underworld"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Underworld"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Underworld",
+        "title": "Born Slippy (Nuxx)",
+        "titleAliases": [
+          "Born Slippy"
+        ]
+      }
+    },
+    {
+      "id": "ht90-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Block Rockin' Beats – The Chemical Brothers",
+        "Children – Robert Miles",
+        "Kernkraft 400 – Zombie Nation",
+        "Positive Education – Slam"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Block Rockin' Beats"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Chemical Brothers",
+        "title": "Block Rockin' Beats",
+        "artistAliases": [
+          "Chemical Brothers"
+        ]
+      }
+    },
+    {
+      "id": "ht90-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Café del Mar – Energy 52",
+        "Your Love – Frankie Knuckles",
+        "Insomnia – Faithless",
+        "Higher State of Consciousness – Josh Wink"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Faithless"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Faithless",
+        "title": "Insomnia"
+      }
+    },
+    {
+      "id": "ht90-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Encore une fois – Sash!",
+        "Your Love – Frankie Knuckles",
+        "Children – Robert Miles",
+        "Café del Mar – Energy 52"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Children"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Robert Miles",
+        "title": "Children"
+      }
+    },
+    {
+      "id": "ht90-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Praise You – Fatboy Slim",
+        "Flat Beat – Mr. Oizo",
+        "Phat Planet – Leftfield",
+        "Music Sounds Better with You – Stardust"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Fatboy Slim"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Fatboy Slim",
+        "title": "Praise You"
+      }
+    },
+    {
+      "id": "ht90-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pacific State – 808 State",
+        "Your Love – Frankie Knuckles",
+        "Plastic Dreams – Jaydee",
+        "Go – Moby"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Go"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Moby",
+        "title": "Go"
+      }
+    },
+    {
+      "id": "ht90-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Energy Flash – Joey Beltram",
+        "Sandstorm – Darude",
+        "Positive Education – Slam",
+        "Chime – Orbital"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Darude"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Darude",
+        "title": "Sandstorm"
+      }
+    },
+    {
+      "id": "ht90-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Out of Space – The Prodigy",
+        "Music Sounds Better with You – Stardust",
+        "Encore une fois – Sash!",
+        "Phat Planet – Leftfield"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Out of Space"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Prodigy",
+        "title": "Out of Space",
+        "artistAliases": [
+          "Prodigy"
+        ]
+      }
+    },
+    {
+      "id": "ht90-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Flat Beat – Mr. Oizo",
+        "Higher State of Consciousness – Josh Wink",
+        "Crispy Bacon – Laurent Garnier",
+        "Café del Mar – Energy 52"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Laurent Garnier"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Laurent Garnier",
+        "title": "Crispy Bacon"
+      }
+    }
+  ]
+}

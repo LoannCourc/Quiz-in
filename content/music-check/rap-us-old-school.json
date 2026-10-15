@@ -1,0 +1,557 @@
+{
+  "quizId": "rap-us-old-school",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ros-01",
+      "query": {
+        "artist": "The Sugarhill Gang",
+        "title": "Rapper's Delight"
+      },
+      "found": {
+        "id": "3785968522",
+        "title": "Rapper's Delight (Single Version)",
+        "artist": "The Sugarhill Gang",
+        "album": "The Sugarhill Gang (30th Anniversary Edition / Expanded Version)",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785968522",
+        "explicit": false,
+        "rank": 530796
+      },
+      "alternatives": [
+        {
+          "id": "3785968562",
+          "title": "Rapper's Delight (Long Version)",
+          "artist": "The Sugarhill Gang",
+          "album": "The Sugarhill Gang (30th Anniversary Edition / Expanded Version)",
+          "durationS": 870,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3785968562",
+          "explicit": false,
+          "rank": 145527
+        },
+        {
+          "id": "3806126752",
+          "title": "Rapper's Delight",
+          "artist": "The Sugarhill Gang",
+          "album": "The Greatest Hits",
+          "durationS": 430,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3806126752",
+          "explicit": false,
+          "rank": 489626
+        },
+        {
+          "id": "3771641002",
+          "title": "Rapper's Delight",
+          "artist": "The Sugarhill Gang",
+          "album": "Rapper's Delight",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3771641002",
+          "explicit": false,
+          "rank": 215053
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-02",
+      "query": {
+        "artist": "Grandmaster Flash & The Furious Five",
+        "title": "The Message"
+      },
+      "found": {
+        "id": "3782933752",
+        "title": "The Message",
+        "artist": "Grandmaster Flash & The Furious Five",
+        "album": "The Message (EP)",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3782933752",
+        "explicit": false,
+        "rank": 340360
+      },
+      "alternatives": [
+        {
+          "id": "3801443842",
+          "title": "The Message (Extended Version)",
+          "artist": "Grandmaster Flash & The Furious Five",
+          "album": "The Message (Expanded Edition)",
+          "durationS": 432,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3801443842",
+          "explicit": false,
+          "rank": 524588
+        },
+        {
+          "id": "4877444",
+          "title": "The Message (Re-Recorded / Remastered Version)",
+          "artist": "Grandmaster Flash & The Furious Five",
+          "album": "The Message (Re-Recorded / Remastered Version)",
+          "durationS": 265,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4877444",
+          "explicit": false,
+          "rank": 138281
+        },
+        {
+          "id": "3801443882",
+          "title": "The Message (Instrumental)",
+          "artist": "Grandmaster Flash & The Furious Five",
+          "album": "The Message (Expanded Edition)",
+          "durationS": 426,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3801443882",
+          "explicit": false,
+          "rank": 134065
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-03",
+      "query": {
+        "artist": "Run-DMC",
+        "title": "It's Tricky"
+      },
+      "found": {
+        "id": "994699",
+        "title": "It's Tricky",
+        "artist": "Run-DMC",
+        "album": "RUN DMC \"High Profile: The Original Rhymes\"",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/994699",
+        "explicit": false,
+        "rank": 612246
+      },
+      "alternatives": [
+        {
+          "id": "1379102732",
+          "title": "It's Tricky (Scratchapella)",
+          "artist": "Run-DMC",
+          "album": "It's Tricky (And More)",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1379102732",
+          "explicit": false,
+          "rank": 47172
+        },
+        {
+          "id": "16667868",
+          "title": "It's Tricky (SSX Pretty Lights Remix)",
+          "artist": "Run-DMC",
+          "album": "It's Tricky (SSX Pretty Lights Remix)",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/16667868",
+          "explicit": false,
+          "rank": 150457
+        },
+        {
+          "id": "2244748",
+          "title": "It's Tricky 2003 (feat. Jacknife Lee) (Radio Edit)",
+          "artist": "Run-DMC",
+          "album": "The Greatest Hits",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2244748",
+          "explicit": false,
+          "rank": 113156
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-04",
+      "query": {
+        "artist": "Beastie Boys",
+        "title": "Fight For Your Right"
+      },
+      "found": {
+        "id": "1085495",
+        "title": "Fight For Your Right",
+        "artist": "Beastie Boys",
+        "album": "Licensed To Ill",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1085495",
+        "explicit": false,
+        "rank": 641183
+      },
+      "alternatives": [
+        {
+          "id": "115878354",
+          "title": "Fight For Your Right (Made Famous by Beastie Boys)",
+          "artist": "Guitar Warriors",
+          "album": "Guitar Lick Ringtones",
+          "durationS": 30,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/115878354",
+          "explicit": false,
+          "rank": 11685
+        },
+        {
+          "id": "579578632",
+          "title": "Fight for Your Right",
+          "artist": "8-Bit Misfits",
+          "album": "8-Bit Versions of Beastie Boys",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/579578632",
+          "explicit": false,
+          "rank": 25926
+        },
+        {
+          "id": "468255492",
+          "title": "Fight for Your Right",
+          "artist": "Rockabye Baby!",
+          "album": "Lullaby Renditions of Beastie Boys",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/468255492",
+          "explicit": false,
+          "rank": 55883
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-05",
+      "query": {
+        "artist": "Kurtis Blow",
+        "title": "The Breaks"
+      },
+      "found": {
+        "id": "1580525",
+        "title": "The Breaks",
+        "artist": "Kurtis Blow",
+        "album": "The Best Of Kurtis Blow",
+        "durationS": 466,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1580525",
+        "explicit": false,
+        "rank": 445410
+      },
+      "alternatives": [
+        {
+          "id": "4256183",
+          "title": "The Breaks",
+          "artist": "Kurtis Blow",
+          "album": "Cool - Funk",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4256183",
+          "explicit": false,
+          "rank": 312333
+        },
+        {
+          "id": "2329857",
+          "title": "The Breaks",
+          "artist": "Kurtis Blow",
+          "album": "Kurtis Blow",
+          "durationS": 352,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2329857",
+          "explicit": false,
+          "rank": 117931
+        },
+        {
+          "id": "62524957",
+          "title": "The Breaks",
+          "artist": "Kurtis Blow",
+          "album": "Hip Hop Anniversary Europe Tour",
+          "durationS": 338,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62524957",
+          "explicit": false,
+          "rank": 38909
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-06",
+      "query": {
+        "artist": "Afrika Bambaataa",
+        "title": "Planet Rock"
+      },
+      "found": {
+        "id": "1587016002",
+        "title": "Planet Rock",
+        "artist": "Afrika Bambaataa",
+        "album": "Planet Rock (Digital 45)",
+        "durationS": 320,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1587016002",
+        "explicit": false,
+        "rank": 512419
+      },
+      "alternatives": [
+        {
+          "id": "1584337012",
+          "title": "Planet Rock",
+          "artist": "Afrika Bambaataa",
+          "album": "Looking for the Perfect Beat 1980 -1985",
+          "durationS": 382,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1584337012",
+          "explicit": false,
+          "rank": 366058
+        },
+        {
+          "id": "2941087171",
+          "title": "Planet Rock (Original 12\" Mix)",
+          "artist": "Afrika Bambaataa",
+          "album": "Planet Rock: The Album (2024 Remaster)",
+          "durationS": 453,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2941087171",
+          "explicit": false,
+          "rank": 166682
+        },
+        {
+          "id": "1584589832",
+          "title": "Planet Rock (Bonus Beats)",
+          "artist": "Afrika Bambaataa",
+          "album": "Planet Rock",
+          "durationS": 68,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1584589832",
+          "explicit": false,
+          "rank": 99069
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-07",
+      "query": {
+        "artist": "Eric B. & Rakim",
+        "title": "Paid in Full"
+      },
+      "found": {
+        "id": "1158616",
+        "title": "Paid In Full",
+        "artist": "Eric B. & Rakim",
+        "album": "Paid In Full",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1158616",
+        "explicit": false,
+        "rank": 455445
+      },
+      "alternatives": [
+        {
+          "id": "25858131",
+          "title": "Paid In Full",
+          "artist": "Eric B. & Rakim",
+          "album": "Paid In Full",
+          "durationS": 217,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/25858131",
+          "explicit": false,
+          "rank": 255717
+        },
+        {
+          "id": "2246667",
+          "title": "Paid In Full",
+          "artist": "Eric B. & Rakim",
+          "album": "Dame Dash Presents Paid In Full / Dream Team (Soundtrack)",
+          "durationS": 230,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2246667",
+          "explicit": false,
+          "rank": 115883
+        },
+        {
+          "id": "620280262",
+          "title": "Paid In Full (Derek B's Urban Respray Version)",
+          "artist": "Eric B. & Rakim",
+          "album": "Paid In Full (Deluxe Edition)",
+          "durationS": 315,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/620280262",
+          "explicit": false,
+          "rank": 72835
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-08",
+      "query": {
+        "artist": "Young MC",
+        "title": "Bust A Move"
+      },
+      "found": {
+        "id": "120302496",
+        "title": "Bust A Move",
+        "artist": "Young MC",
+        "album": "The Replacements (Music From The Motion Picture)",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/120302496",
+        "explicit": false,
+        "rank": 455348
+      },
+      "alternatives": [
+        {
+          "id": "86101755",
+          "title": "Bust A Move (Diplo RMX Instrumental)",
+          "artist": "Young MC",
+          "album": "Bust A Move (12\" Remixes)",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/86101755",
+          "explicit": false,
+          "rank": 25247
+        },
+        {
+          "id": "86101747",
+          "title": "Bust A Move (Don Rimini Ravekid Extended RMX)",
+          "artist": "Young MC",
+          "album": "Bust A Move (12\" Remixes)",
+          "durationS": 331,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/86101747",
+          "explicit": false,
+          "rank": 48101
+        },
+        {
+          "id": "22719501",
+          "title": "Bust A Move (Y2K Mix)",
+          "artist": "Young MC",
+          "album": "Ain't Goin' Out Like That",
+          "durationS": 416,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/22719501",
+          "explicit": false,
+          "rank": 33622
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-09",
+      "query": {
+        "artist": "De La Soul",
+        "title": "Me Myself and I"
+      },
+      "found": {
+        "id": "2048503687",
+        "title": "Me Myself and I",
+        "artist": "De La Soul",
+        "album": "3 Feet High and Rising",
+        "durationS": 229,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2048503687",
+        "explicit": false,
+        "rank": 489002
+      },
+      "alternatives": [
+        {
+          "id": "2726819421",
+          "title": "Me Myself And I (Live Version)",
+          "artist": "De La Soul",
+          "album": "Live At Tramps, NYC, 1996",
+          "durationS": 139,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2726819421",
+          "explicit": false,
+          "rank": 15340
+        },
+        {
+          "id": "618897022",
+          "title": "Me Myself and I (Soul Version)",
+          "artist": "DJ De La Groove",
+          "album": "Me Myself and I (Soul Version)",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/618897022",
+          "explicit": false,
+          "rank": 48506
+        },
+        {
+          "id": "144135228",
+          "title": "Me, Myself and I",
+          "artist": "Soul Proxy",
+          "album": "Soul Proxy",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/144135228",
+          "explicit": false,
+          "rank": 10064
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ros-10",
+      "query": {
+        "artist": "Salt-N-Pepa",
+        "title": "Push It"
+      },
+      "found": {
+        "id": "537989342",
+        "title": "Push It",
+        "artist": "Salt-N-Pepa",
+        "album": "Hot, Cool & Vicious",
+        "durationS": 272,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/537989342",
+        "explicit": false,
+        "rank": 569187
+      },
+      "alternatives": [
+        {
+          "id": "720626052",
+          "title": "Push It (Radio Version)",
+          "artist": "Salt-N-Pepa",
+          "album": "The Best Of Salt-N-Pepa",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/720626052",
+          "explicit": false,
+          "rank": 295006
+        },
+        {
+          "id": "58478931",
+          "title": "Push It (Re-Recorded) [Remastered]",
+          "artist": "Salt-N-Pepa",
+          "album": "Push It",
+          "durationS": 273,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/58478931",
+          "explicit": false,
+          "rank": 191961
+        },
+        {
+          "id": "3938541631",
+          "title": "Push It (Re-Recorded) (NXSTY & Delato Remix)",
+          "artist": "Salt-N-Pepa",
+          "album": "Push It (Re-Recorded) (NXSTY & Delato Remix)",
+          "durationS": 169,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3938541631",
+          "explicit": false,
+          "rank": 78320
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

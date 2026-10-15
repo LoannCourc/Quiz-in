@@ -1,0 +1,557 @@
+{
+  "quizId": "chanson-a-texte-annees-70",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ct70-01",
+      "query": {
+        "artist": "Alain Souchon",
+        "title": "J'ai dix ans"
+      },
+      "found": {
+        "id": "2242551",
+        "title": "J'ai dix ans",
+        "artist": "Alain Souchon",
+        "album": "J'ai dix ans",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2242551",
+        "explicit": false,
+        "rank": 696289
+      },
+      "alternatives": [
+        {
+          "id": "3537675421",
+          "title": "J'ai dix ans",
+          "artist": "Alain Souchon",
+          "album": "Studio Saint-Germain (avec Ours & Pierre Souchon)",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3537675421",
+          "explicit": false,
+          "rank": 431723
+        },
+        {
+          "id": "14407536",
+          "title": "J'ai dix ans",
+          "artist": "Alain Souchon",
+          "album": "A cause d'elles (Edition Deluxe)",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14407536",
+          "explicit": false,
+          "rank": 211627
+        },
+        {
+          "id": "134033842",
+          "title": "J'ai dix ans (Live au Zenith de Paris 2015)",
+          "artist": "Alain Souchon",
+          "album": "Souchon Voulzy - Le concert (Live au Zénith de Paris 2015)",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/134033842",
+          "explicit": false,
+          "rank": 367048
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-02",
+      "query": {
+        "artist": "Maxime Le Forestier",
+        "title": "San Francisco"
+      },
+      "found": {
+        "id": "12711462",
+        "title": "San Francisco",
+        "artist": "Maxime Le Forestier",
+        "album": "Mon Frère",
+        "durationS": 165,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12711462",
+        "explicit": false,
+        "rank": 794777
+      },
+      "alternatives": [
+        {
+          "id": "2172227",
+          "title": "San Francisco",
+          "artist": "Maxime Le Forestier",
+          "album": "Bataclan 89",
+          "durationS": 282,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2172227",
+          "explicit": false,
+          "rank": 180898
+        },
+        {
+          "id": "2232387",
+          "title": "San Francisco",
+          "artist": "Maxime Le Forestier",
+          "album": "Chienne De Route",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2232387",
+          "explicit": false,
+          "rank": 122224
+        },
+        {
+          "id": "86490313",
+          "title": "San Francisco (Live)",
+          "artist": "Maxime Le Forestier",
+          "album": "Olympia 2014 (Live)",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/86490313",
+          "explicit": false,
+          "rank": 355335
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-03",
+      "query": {
+        "artist": "Georges Moustaki",
+        "title": "Il y avait un jardin"
+      },
+      "found": {
+        "id": "2430033",
+        "title": "Il y avait un jardin",
+        "artist": "Georges Moustaki",
+        "album": "Ma Liberté",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2430033",
+        "explicit": false,
+        "rank": 443913
+      },
+      "alternatives": [
+        {
+          "id": "125027758",
+          "title": "Il y avait un jardin",
+          "artist": "Georges Moustaki",
+          "album": "Grandes Chansons",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/125027758",
+          "explicit": false,
+          "rank": 274059
+        },
+        {
+          "id": "4709090",
+          "title": "Il Y Avait Un Jardin (Live Olympia 2000)",
+          "artist": "Georges Moustaki",
+          "album": "Olympia 2000",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4709090",
+          "explicit": false,
+          "rank": 161332
+        },
+        {
+          "id": "91792752",
+          "title": "Il y avait un jardin (Live)",
+          "artist": "Georges Moustaki",
+          "album": "Presqu'en solo - Live a la Philharmonie de Berlin (Live)",
+          "durationS": 266,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/91792752",
+          "explicit": false,
+          "rank": 62180
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-04",
+      "query": {
+        "artist": "Jacques Higelin",
+        "title": "Champagne"
+      },
+      "found": {
+        "id": "365911091",
+        "title": "Champagne",
+        "artist": "Jacques Higelin",
+        "album": "Au cœur de Jacques Higelin",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/365911091",
+        "explicit": false,
+        "rank": 583897
+      },
+      "alternatives": [
+        {
+          "id": "365926551",
+          "title": "Champagne (Live)",
+          "artist": "Jacques Higelin",
+          "album": "Higelin live 2000",
+          "durationS": 624,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365926551",
+          "explicit": false,
+          "rank": 236796
+        },
+        {
+          "id": "365925801",
+          "title": "Champagne (Live)",
+          "artist": "Jacques Higelin",
+          "album": "Higelin Le Rex (Live)",
+          "durationS": 685,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365925801",
+          "explicit": false,
+          "rank": 208705
+        },
+        {
+          "id": "365914591",
+          "title": "Champagne (Live au Zénith de Paris, octobre 2010)",
+          "artist": "Jacques Higelin",
+          "album": "Higelin Paris Zénith 18.10.2010 (Live) [Integral Version]",
+          "durationS": 815,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/365914591",
+          "explicit": false,
+          "rank": 224077
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-05",
+      "query": {
+        "artist": "Léo Ferré",
+        "title": "Avec le temps"
+      },
+      "found": {
+        "id": "70335739",
+        "title": "Avec le temps",
+        "artist": "Léo Ferré",
+        "album": "Intégrale Barclay 1960 - 1974",
+        "durationS": 263,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70335739",
+        "explicit": false,
+        "rank": 634366
+      },
+      "alternatives": [
+        {
+          "id": "293585",
+          "title": "Avec le temps",
+          "artist": "Léo Ferré",
+          "album": "Poète…vos chansons",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/293585",
+          "explicit": false,
+          "rank": 105755
+        },
+        {
+          "id": "1171524602",
+          "title": "Avec le temps",
+          "artist": "Léo Ferré",
+          "album": "Au théâtre des champs élysées",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1171524602",
+          "explicit": false,
+          "rank": 53546
+        },
+        {
+          "id": "2807940652",
+          "title": "Avec Le Temps",
+          "artist": "Léo Ferré",
+          "album": "Paris Chante - The Masterpieces",
+          "durationS": 264,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2807940652",
+          "explicit": false,
+          "rank": 113133
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-06",
+      "query": {
+        "artist": "Jacques Brel",
+        "title": "Les Marquises"
+      },
+      "found": {
+        "id": "65626236",
+        "title": "Les marquises",
+        "artist": "Jacques Brel",
+        "album": "Les Marquises",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/65626236",
+        "explicit": false,
+        "rank": 523797
+      },
+      "alternatives": [
+        {
+          "id": "2296949",
+          "title": "Les marquises",
+          "artist": "Jacques Brel",
+          "album": "Infiniment",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2296949",
+          "explicit": false,
+          "rank": 431489
+        },
+        {
+          "id": "2297210",
+          "title": "Les Marquises",
+          "artist": "Jacques Brel",
+          "album": "Raconte Aux Enfants",
+          "durationS": 328,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2297210",
+          "explicit": false,
+          "rank": 45014
+        },
+        {
+          "id": "65626227",
+          "title": "Vieillir",
+          "artist": "Jacques Brel",
+          "album": "Les Marquises",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/65626227",
+          "explicit": false,
+          "rank": 387862
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-07",
+      "query": {
+        "artist": "Véronique Sanson",
+        "title": "Amoureuse"
+      },
+      "found": {
+        "id": "800576",
+        "title": "Amoureuse",
+        "artist": "Véronique Sanson",
+        "album": "Les moments importants - Best of Véronique Sanson",
+        "durationS": 222,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/800576",
+        "explicit": false,
+        "rank": 750527
+      },
+      "alternatives": [
+        {
+          "id": "549796722",
+          "title": "Amoureuse",
+          "artist": "Véronique Sanson",
+          "album": "Duos volatils",
+          "durationS": 229,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/549796722",
+          "explicit": false,
+          "rank": 661232
+        },
+        {
+          "id": "666187552",
+          "title": "Amoureuse (feat. Fanny Ardant)",
+          "artist": "Véronique Sanson",
+          "album": "Amoureuse (Edition Deluxe)",
+          "durationS": 264,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/666187552",
+          "explicit": false,
+          "rank": 332698
+        },
+        {
+          "id": "3077484051",
+          "title": "Amoureuse (Hasta Luego ! Le concert au Dôme de Paris 2024)",
+          "artist": "Véronique Sanson",
+          "album": "Hasta Luego ! Le concert au Dôme de Paris",
+          "durationS": 242,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3077484051",
+          "explicit": false,
+          "rank": 214369
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-08",
+      "query": {
+        "artist": "Francis Cabrel",
+        "title": "Je l'aime à mourir"
+      },
+      "found": {
+        "id": "72064735",
+        "title": "Je l'aime à mourir (Remastered)",
+        "artist": "Francis Cabrel",
+        "album": "Les chemins de traverse (Remastered)",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72064735",
+        "explicit": false,
+        "rank": 919317
+      },
+      "alternatives": [
+        {
+          "id": "70492244",
+          "title": "Je l'aime à mourir (Public)",
+          "artist": "Francis Cabrel",
+          "album": "Cabrel en public",
+          "durationS": 183,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70492244",
+          "explicit": false,
+          "rank": 370180
+        },
+        {
+          "id": "1554083702",
+          "title": "Je l'aime à mourir (Live)",
+          "artist": "Francis Cabrel",
+          "album": "Trobador Tour (Live)",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1554083702",
+          "explicit": false,
+          "rank": 369307
+        },
+        {
+          "id": "596328",
+          "title": "Je l'aime à mourir (Live)",
+          "artist": "Francis Cabrel",
+          "album": "Double Tour",
+          "durationS": 195,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/596328",
+          "explicit": false,
+          "rank": 288360
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-09",
+      "query": {
+        "artist": "Michel Berger",
+        "title": "Seras-tu là"
+      },
+      "found": {
+        "id": "46299441",
+        "title": "Seras-tu là (Remasterisé en 2002)",
+        "artist": "Michel Berger",
+        "album": "Que l'amour est bizarre (Remasterisé en 2002)",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/46299441",
+        "explicit": false,
+        "rank": 691235
+      },
+      "alternatives": [
+        {
+          "id": "46260281",
+          "title": "Seras-tu là (Live au Palais des Sports, 1983) (Remasterisé en 2002)",
+          "artist": "Michel Berger",
+          "album": "En public au Palais des Sports (Live 1983) (Remasterisé en 2002)",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/46260281",
+          "explicit": false,
+          "rank": 378794
+        },
+        {
+          "id": "2182447",
+          "title": "Seras-Tu Là (Album Version)",
+          "artist": "Star Academy",
+          "album": "Star Academy 2 Chante Michel Berger",
+          "durationS": 217,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2182447",
+          "explicit": false,
+          "rank": 226574
+        },
+        {
+          "id": "3415113531",
+          "title": "Seras-tu La (In the Style of Michel Berger)",
+          "artist": "Los Originales",
+          "album": "Cantar Como Un idolo Latino: Grandes Exitos Latinos 10",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3415113531",
+          "explicit": false,
+          "rank": 10631
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ct70-10",
+      "query": {
+        "artist": "Charles Aznavour",
+        "title": "Comme ils disent"
+      },
+      "found": {
+        "id": "3148132",
+        "title": "Comme Ils Disent",
+        "artist": "Charles Aznavour",
+        "album": "40 Chansons D'or",
+        "durationS": 293,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3148132",
+        "explicit": false,
+        "rank": 867000
+      },
+      "alternatives": [
+        {
+          "id": "89312281",
+          "title": "Comme ils disent",
+          "artist": "Charles Aznavour",
+          "album": "Charles Aznavour & The Clayton-Hamilton Jazz Orchestra",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/89312281",
+          "explicit": false,
+          "rank": 104568
+        },
+        {
+          "id": "2767487281",
+          "title": "Comme ils disent (Instrumental)",
+          "artist": "Charles Aznavour",
+          "album": "Instrumental Hits Versions",
+          "durationS": 297,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2767487281",
+          "explicit": false,
+          "rank": 303416
+        },
+        {
+          "id": "115033688",
+          "title": "Comme ils disent (Live)",
+          "artist": "Charles Aznavour",
+          "album": "Aznavour Live - Palais des Sports 2015",
+          "durationS": 267,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/115033688",
+          "explicit": false,
+          "rank": 261556
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

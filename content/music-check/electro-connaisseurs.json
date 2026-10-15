@@ -1,0 +1,535 @@
+{
+  "quizId": "electro-connaisseurs",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "eco-01",
+      "query": {
+        "artist": "Jean-Michel Jarre",
+        "title": "Oxygène, Pt. 4"
+      },
+      "found": {
+        "id": "3788146542",
+        "title": "Oxygène, Pt. 4",
+        "artist": "Jean-Michel Jarre",
+        "album": "Oxygène",
+        "durationS": 246,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3788146542",
+        "explicit": false,
+        "rank": 645446
+      },
+      "alternatives": [
+        {
+          "id": "4273244012",
+          "title": "Oxygène, Pt. 4",
+          "artist": "Jean-Michel Jarre",
+          "album": "Essential Recollection",
+          "durationS": 246,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4273244012",
+          "explicit": false,
+          "rank": 131024
+        },
+        {
+          "id": "3786010812",
+          "title": "Oxygène, Pt. 4 (Pt. 4)",
+          "artist": "Jean-Michel Jarre",
+          "album": "Motors",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786010812",
+          "explicit": false,
+          "rank": 135715
+        },
+        {
+          "id": "4273252852",
+          "title": "Oxygène, Pt. 4 (JMJ Rework Of Astral Projection Remix)",
+          "artist": "Jean-Michel Jarre",
+          "album": "Welcome To The Other Side",
+          "durationS": 218,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4273252852",
+          "explicit": false,
+          "rank": 201053
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-02",
+      "query": {
+        "artist": "Röyksopp",
+        "title": "Eple"
+      },
+      "found": {
+        "id": "3286437",
+        "title": "Eple",
+        "artist": "Röyksopp",
+        "album": "Eple",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3286437",
+        "explicit": false,
+        "rank": 556424
+      },
+      "alternatives": [
+        {
+          "id": "3286438",
+          "title": "Eple (Bjorn Torske Remix)",
+          "artist": "Röyksopp",
+          "album": "Eple",
+          "durationS": 414,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3286438",
+          "explicit": false,
+          "rank": 37218
+        },
+        {
+          "id": "3286439",
+          "title": "Röyksopp's Night Out",
+          "artist": "Röyksopp",
+          "album": "Eple",
+          "durationS": 490,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3286439",
+          "explicit": false,
+          "rank": 104468
+        },
+        {
+          "id": "1867802507",
+          "title": "Speed King",
+          "artist": "Röyksopp",
+          "album": "Profound Mysteries III",
+          "durationS": 593,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1867802507",
+          "explicit": false,
+          "rank": 328283
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-03",
+      "query": {
+        "artist": "Justice",
+        "title": "Genesis"
+      },
+      "found": {
+        "id": "10284907",
+        "title": "Genesis",
+        "artist": "Justice",
+        "album": "Justice",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10284907",
+        "explicit": false,
+        "rank": 707755
+      },
+      "alternatives": [
+        {
+          "id": "543489162",
+          "title": "Genesis x Phantom (WWW)",
+          "artist": "Justice",
+          "album": "Woman Worldwide",
+          "durationS": 285,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/543489162",
+          "explicit": false,
+          "rank": 379659
+        },
+        {
+          "id": "623468862",
+          "title": "Genesis (Live Version)",
+          "artist": "Justice",
+          "album": "A Cross The Universe",
+          "durationS": 439,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/623468862",
+          "explicit": false,
+          "rank": 254103
+        },
+        {
+          "id": "445827362",
+          "title": "Genesis (Live / AAA)",
+          "artist": "Justice",
+          "album": "Access All Arenas",
+          "durationS": 465,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/445827362",
+          "explicit": false,
+          "rank": 232613
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-04",
+      "query": {
+        "artist": "Kavinsky",
+        "title": "Nightcall"
+      },
+      "found": {
+        "id": "2992806421",
+        "title": "Nightcall",
+        "artist": "Kavinsky",
+        "album": "Nightcall",
+        "durationS": 179,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2992806421",
+        "explicit": false,
+        "rank": 967923
+      },
+      "alternatives": [
+        {
+          "id": "62496771",
+          "title": "Nightcall",
+          "artist": "Kavinsky",
+          "album": "Nightcall",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62496771",
+          "explicit": false,
+          "rank": 724252
+        },
+        {
+          "id": "2570298852",
+          "title": "Nightcall (Original Mix)",
+          "artist": "Anna Kavinsky",
+          "album": "Nightcall",
+          "durationS": 72,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2570298852",
+          "explicit": false,
+          "rank": 76335
+        },
+        {
+          "id": "62496775",
+          "title": "Nightcall (Breakbot Remix)",
+          "artist": "Kavinsky",
+          "album": "Nightcall",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62496775",
+          "explicit": false,
+          "rank": 403136
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-05",
+      "query": {
+        "artist": "M83",
+        "title": "Midnight City"
+      },
+      "found": {
+        "id": "92213550",
+        "title": "Midnight City",
+        "artist": "M83",
+        "album": "Hurry up, We're Dreaming",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92213550",
+        "explicit": false,
+        "rank": 634195
+      },
+      "alternatives": [
+        {
+          "id": "92198180",
+          "title": "Midnight City",
+          "artist": "M83",
+          "album": "Midnight City (Remix EP)",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92198180",
+          "explicit": false,
+          "rank": 909964
+        },
+        {
+          "id": "139691215",
+          "title": "Midnight City (Eric Prydz Private Remix)",
+          "artist": "M83",
+          "album": "Midnight City (Eric Prydz Private Remix)",
+          "durationS": 362,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/139691215",
+          "explicit": false,
+          "rank": 466919
+        },
+        {
+          "id": "92198184",
+          "title": "Midnight City (Trentemoller Remix)",
+          "artist": "M83",
+          "album": "Midnight City (Remix EP)",
+          "durationS": 449,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/92198184",
+          "explicit": false,
+          "rank": 300706
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-06",
+      "query": {
+        "artist": "Boards of Canada",
+        "title": "Roygbiv"
+      },
+      "found": {
+        "id": "29373661",
+        "title": "Roygbiv",
+        "artist": "Boards of Canada",
+        "album": "Music Has The Right To Children",
+        "durationS": 149,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/29373661",
+        "explicit": false,
+        "rank": 484194
+      },
+      "alternatives": [
+        {
+          "id": "3484930021",
+          "title": "Roygbiv (Boards Of Canada Rendition)",
+          "artist": "Coda Nautica",
+          "album": "Algorhythms",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3484930021",
+          "explicit": false,
+          "rank": 21049
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-07",
+      "query": {
+        "artist": "Aphex Twin",
+        "title": "Windowlicker"
+      },
+      "found": {
+        "id": "29392051",
+        "title": "Windowlicker",
+        "artist": "Aphex Twin",
+        "album": "Windowlicker",
+        "durationS": 368,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/29392051",
+        "explicit": false,
+        "rank": 499646
+      },
+      "alternatives": [
+        {
+          "id": "29392061",
+          "title": "Formula",
+          "artist": "Aphex Twin",
+          "album": "Windowlicker",
+          "durationS": 347,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/29392061",
+          "explicit": false,
+          "rank": 206137
+        },
+        {
+          "id": "29392071",
+          "title": "Nannou",
+          "artist": "Aphex Twin",
+          "album": "Windowlicker",
+          "durationS": 255,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/29392071",
+          "explicit": false,
+          "rank": 181311
+        },
+        {
+          "id": "2172858867",
+          "title": "Windowlicker (8-Bit Aphex Twin Emulation)",
+          "artist": "8-Bit Arcade",
+          "album": "By Request, Vol. 202",
+          "durationS": 365,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2172858867",
+          "explicit": false,
+          "rank": 18183
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-08",
+      "query": {
+        "artist": "Air",
+        "title": "La femme d'argent"
+      },
+      "found": {
+        "id": "3148103",
+        "title": "La femme d'argent",
+        "artist": "Air",
+        "album": "Moon Safari",
+        "durationS": 426,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3148103",
+        "explicit": false,
+        "rank": 677145
+      },
+      "alternatives": [
+        {
+          "id": "3148104",
+          "title": "Sexy Boy",
+          "artist": "Air",
+          "album": "Moon Safari",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3148104",
+          "explicit": false,
+          "rank": 731306
+        },
+        {
+          "id": "3148108",
+          "title": "Remember",
+          "artist": "Air",
+          "album": "Moon Safari",
+          "durationS": 154,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3148108",
+          "explicit": false,
+          "rank": 479450
+        },
+        {
+          "id": "3148105",
+          "title": "All I Need (feat. Beth Hirsch)",
+          "artist": "Air",
+          "album": "Moon Safari",
+          "durationS": 268,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3148105",
+          "explicit": false,
+          "rank": 650215
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-09",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Around the World"
+      },
+      "found": {
+        "id": "3129775",
+        "title": "Around the World",
+        "artist": "Daft Punk",
+        "album": "Homework",
+        "durationS": 429,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3129775",
+        "explicit": false,
+        "rank": 830730
+      },
+      "alternatives": [
+        {
+          "id": "14598347",
+          "title": "Around the World (Radio Edit)",
+          "artist": "Daft Punk",
+          "album": "Musique, Vol. 1",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14598347",
+          "explicit": false,
+          "rank": 629139
+        },
+        {
+          "id": "1651462692",
+          "title": "Around the World (Original Lead On Mix)",
+          "artist": "Daft Punk",
+          "album": "Homework (25th Anniversary Edition)",
+          "durationS": 450,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1651462692",
+          "explicit": false,
+          "rank": 158587
+        },
+        {
+          "id": "1651462712",
+          "title": "Around the World (RAW Dub)",
+          "artist": "Daft Punk",
+          "album": "Homework (25th Anniversary Edition)",
+          "durationS": 414,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1651462712",
+          "explicit": false,
+          "rank": 133759
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eco-10",
+      "query": {
+        "artist": "Caribou",
+        "title": "Can't Do Without You"
+      },
+      "found": {
+        "id": "2583057732",
+        "title": "Can't Do Without You",
+        "artist": "Caribou",
+        "album": "Our Love (Expanded Edition)",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2583057732",
+        "explicit": false,
+        "rank": 447635
+      },
+      "alternatives": [
+        {
+          "id": "2583057832",
+          "title": "Can't Do Without You (Extended Mix)",
+          "artist": "Caribou",
+          "album": "Our Love (Expanded Edition)",
+          "durationS": 394,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2583057832",
+          "explicit": false,
+          "rank": 495568
+        },
+        {
+          "id": "2583057892",
+          "title": "Can't Do Without You (Tale of Us & Mano Le Tough Remix)",
+          "artist": "Caribou",
+          "album": "Our Love (Expanded Edition)",
+          "durationS": 456,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2583057892",
+          "explicit": false,
+          "rank": 370166
+        },
+        {
+          "id": "394234782",
+          "title": "Can't Do Without You (Tale Of Us & Mano Le Tough Remix) (Mix Cut)",
+          "artist": "Caribou",
+          "album": "Balance Presents Kölsch (Mixed Version) Mixed Version",
+          "durationS": 399,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/394234782",
+          "explicit": false,
+          "rank": 72350
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

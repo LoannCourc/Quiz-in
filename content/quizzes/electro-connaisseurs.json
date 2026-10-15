@@ -1,0 +1,224 @@
+{
+  "id": "electro-connaisseurs",
+  "gameType": "blindTest",
+  "title": "Électro pour connaisseurs",
+  "theme": "Musique",
+  "description": "Des pionniers aux bandes originales culte : dix morceaux électro de toutes les époques.",
+  "audience": "experts",
+  "poster": "violet",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": "all",
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-5)",
+  "questions": [
+    {
+      "id": "eco-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "The Robots – Kraftwerk",
+        "Halcyon – Orbital",
+        "Teardrop – Massive Attack",
+        "Oxygène, Pt. 4 – Jean-Michel Jarre"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Oxygène, Pt. 4"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jean-Michel Jarre",
+        "title": "Oxygène, Pt. 4",
+        "titleAliases": [
+          "Oxygène 4",
+          "Oxygène"
+        ]
+      }
+    },
+    {
+      "id": "eco-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Eple – Röyksopp",
+        "Kerala – Bonobo",
+        "Open Eye Signal – Jon Hopkins",
+        "Glory Box – Portishead"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Röyksopp"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Röyksopp",
+        "title": "Eple",
+        "artistAliases": [
+          "Royksopp"
+        ]
+      }
+    },
+    {
+      "id": "eco-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pursuit – Gesaffelstein",
+        "Bad Kingdom – Moderat",
+        "Genesis – Justice",
+        "Opus – Eric Prydz"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Genesis"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Justice",
+        "title": "Genesis"
+      }
+    },
+    {
+      "id": "eco-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Innerbloom – RÜFÜS DU SOL",
+        "Atlas – Battles",
+        "Nightcall – Kavinsky",
+        "Pursuit – Gesaffelstein"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Kavinsky"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kavinsky",
+        "title": "Nightcall"
+      }
+    },
+    {
+      "id": "eco-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Midnight City – M83",
+        "Cola – CamelPhat",
+        "Kerala – Bonobo",
+        "Teardrop – Massive Attack"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Midnight City"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "M83",
+        "title": "Midnight City"
+      }
+    },
+    {
+      "id": "eco-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Halcyon – Orbital",
+        "The Robots – Kraftwerk",
+        "Open Eye Signal – Jon Hopkins",
+        "Roygbiv – Boards of Canada"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Boards of Canada"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Boards of Canada",
+        "title": "Roygbiv"
+      }
+    },
+    {
+      "id": "eco-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Atlas – Battles",
+        "Windowlicker – Aphex Twin",
+        "Bad Kingdom – Moderat",
+        "Glory Box – Portishead"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Windowlicker"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Aphex Twin",
+        "title": "Windowlicker"
+      }
+    },
+    {
+      "id": "eco-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La femme d'argent – Air",
+        "Innerbloom – RÜFÜS DU SOL",
+        "Opus – Eric Prydz",
+        "Kerala – Bonobo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Air"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Air",
+        "title": "La femme d'argent"
+      }
+    },
+    {
+      "id": "eco-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cola – CamelPhat",
+        "Pursuit – Gesaffelstein",
+        "Around the World – Daft Punk",
+        "The Robots – Kraftwerk"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Around the World"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "Around the World"
+      }
+    },
+    {
+      "id": "eco-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Open Eye Signal – Jon Hopkins",
+        "Can't Do Without You – Caribou",
+        "Teardrop – Massive Attack",
+        "Bad Kingdom – Moderat"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Caribou"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Caribou",
+        "title": "Can't Do Without You"
+      }
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "id": "rap-francais-annees-2000",
+  "gameType": "blindTest",
+  "title": "Rap français des années 2000",
+  "theme": "Musique",
+  "description": "Du rap engagé au slam : dix morceaux du rap français des années 2000, pour connaisseurs.",
+  "audience": "experts",
+  "poster": "red",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 2000,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-5)",
+  "questions": [
+    {
+      "id": "rf00-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les autres – Abd al Malik",
+        "Art de rue – Fonky Family",
+        "DJ – Diam's",
+        "En noir et blanc – Sefyu"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "DJ"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Diam's",
+        "title": "DJ"
+      }
+    },
+    {
+      "id": "rf00-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pas le temps – Faf Larage",
+        "J'pète les plombs – Disiz",
+        "Gravé dans la roche – Sniper",
+        "Ferme les yeux et imagine-toi – Soprano"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sniper"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Sniper",
+        "title": "Gravé dans la roche"
+      }
+    },
+    {
+      "id": "rf00-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Saint-Denis – Grand Corps Malade",
+        "Les autres – Abd al Malik",
+        "En noir et blanc – Sefyu",
+        "Qui est l'exemple ? – Rohff"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Saint-Denis"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Grand Corps Malade",
+        "title": "Saint-Denis"
+      }
+    },
+    {
+      "id": "rf00-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Art de rue – Fonky Family",
+        "Pas le temps – Faf Larage",
+        "Ferme les yeux et imagine-toi – Soprano",
+        "La rage – Keny Arkana"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Keny Arkana"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Keny Arkana",
+        "title": "La rage"
+      }
+    },
+    {
+      "id": "rf00-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "J'pète les plombs – Disiz",
+        "Marly-Gomont – Kamini",
+        "Qui est l'exemple ? – Rohff",
+        "Les autres – Abd al Malik"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Marly-Gomont"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kamini",
+        "title": "Marly-Gomont"
+      }
+    },
+    {
+      "id": "rf00-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Toucher l'horizon – Oxmo Puccino",
+        "En noir et blanc – Sefyu",
+        "Ferme les yeux et imagine-toi – Soprano",
+        "Art de rue – Fonky Family"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Oxmo Puccino"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Oxmo Puccino",
+        "title": "Toucher l'horizon"
+      }
+    },
+    {
+      "id": "rf00-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pas le temps – Faf Larage",
+        "Les autres – Abd al Malik",
+        "Le son des bandits – Psy 4 de la Rime",
+        "J'pète les plombs – Disiz"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le son des bandits"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Psy 4 De La Rime",
+        "title": "Le son des bandits",
+        "displayArtist": "Psy 4 de la Rime"
+      }
+    },
+    {
+      "id": "rf00-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Qui est l'exemple ? – Rohff",
+        "Banlieusards – Kery James",
+        "Art de rue – Fonky Family",
+        "En noir et blanc – Sefyu"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Kery James"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kery James",
+        "title": "Banlieusards"
+      }
+    },
+    {
+      "id": "rf00-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ferme les yeux et imagine-toi – Soprano",
+        "Pas le temps – Faf Larage",
+        "Les autres – Abd al Malik",
+        "Partir loin – 113"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Partir loin"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "113",
+        "title": "Partir loin"
+      }
+    },
+    {
+      "id": "rf00-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Raz de marée – Saïan Supa Crew",
+        "J'pète les plombs – Disiz",
+        "En noir et blanc – Sefyu",
+        "Qui est l'exemple ? – Rohff"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Saïan Supa Crew"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Saïan Supa Crew",
+        "title": "Raz de marée"
+      }
+    }
+  ]
+}

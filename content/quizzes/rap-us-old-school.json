@@ -1,0 +1,239 @@
+{
+  "id": "rap-us-old-school",
+  "gameType": "blindTest",
+  "title": "Rap US old school",
+  "theme": "Musique",
+  "description": "Aux origines du hip-hop, du Bronx aux premiers tubes : dix morceaux des années 80.",
+  "audience": "experts",
+  "poster": "gold",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 1980,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-5)",
+  "questions": [
+    {
+      "id": "ros-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rapper's Delight – The Sugarhill Gang",
+        "Friends – Whodini",
+        "Roxanne, Roxanne – UTFO",
+        "Jam on It – Newcleus"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Rapper's Delight"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Sugarhill Gang",
+        "title": "Rapper's Delight",
+        "artistAliases": [
+          "Sugarhill Gang"
+        ]
+      }
+    },
+    {
+      "id": "ros-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Show – Doug E. Fresh",
+        "It Takes Two – Rob Base & DJ E-Z Rock",
+        "The Message – Grandmaster Flash & The Furious Five",
+        "Supersonic – J.J. Fad"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Grandmaster Flash & The Furious Five"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Grandmaster Flash & The Furious Five",
+        "title": "The Message",
+        "artistAliases": [
+          "Grandmaster Flash"
+        ]
+      }
+    },
+    {
+      "id": "ros-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Going Back to Cali – LL Cool J",
+        "Ain't No Half-Steppin' – Big Daddy Kane",
+        "It's Tricky – Run-DMC",
+        "Ladies First – Queen Latifah"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "It's Tricky"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Run-DMC",
+        "title": "It's Tricky",
+        "artistAliases": [
+          "Run DMC"
+        ]
+      }
+    },
+    {
+      "id": "ros-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fight For Your Right – Beastie Boys",
+        "Wild Thing – Tone Lōc",
+        "Parents Just Don’t Understand – DJ Jazzy Jeff & The Fresh Prince",
+        "The Show – Doug E. Fresh"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Beastie Boys"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Beastie Boys",
+        "title": "Fight For Your Right",
+        "titleAliases": [
+          "(You Gotta) Fight for Your Right (To Party!)",
+          "Fight for Your Right to Party"
+        ]
+      }
+    },
+    {
+      "id": "ros-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jam on It – Newcleus",
+        "White Lines – Grandmaster Melle Mel",
+        "Friends – Whodini",
+        "The Breaks – Kurtis Blow"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Breaks"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kurtis Blow",
+        "title": "The Breaks"
+      }
+    },
+    {
+      "id": "ros-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Roxanne, Roxanne – UTFO",
+        "Planet Rock – Afrika Bambaataa",
+        "Supersonic – J.J. Fad",
+        "It Takes Two – Rob Base & DJ E-Z Rock"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Afrika Bambaataa"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Afrika Bambaataa",
+        "title": "Planet Rock"
+      }
+    },
+    {
+      "id": "ros-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Paid in Full – Eric B. & Rakim",
+        "Rock the Bells – LL Cool J",
+        "Ladies First – Queen Latifah",
+        "Wild Thing – Tone Lōc"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Paid in Full"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Eric B. & Rakim",
+        "title": "Paid in Full",
+        "artistAliases": [
+          "Eric B. and Rakim"
+        ]
+      }
+    },
+    {
+      "id": "ros-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "White Lines – Grandmaster Melle Mel",
+        "Ain't No Half-Steppin' – Big Daddy Kane",
+        "Bust A Move – Young MC",
+        "Going Back to Cali – LL Cool J"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Young MC"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Young MC",
+        "title": "Bust A Move",
+        "titleAliases": [
+          "Bust a Move"
+        ]
+      }
+    },
+    {
+      "id": "ros-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Parents Just Don’t Understand – DJ Jazzy Jeff & The Fresh Prince",
+        "Me Myself and I – De La Soul",
+        "Rock the Bells – LL Cool J",
+        "Friends – Whodini"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Me Myself and I"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "De La Soul",
+        "title": "Me Myself and I"
+      }
+    },
+    {
+      "id": "ros-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "It Takes Two – Rob Base & DJ E-Z Rock",
+        "Supersonic – J.J. Fad",
+        "The Show – Doug E. Fresh",
+        "Push It – Salt-N-Pepa"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Salt-N-Pepa"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Salt-N-Pepa",
+        "title": "Push It",
+        "artistAliases": [
+          "Salt N Pepa"
+        ]
+      }
+    }
+  ]
+}
