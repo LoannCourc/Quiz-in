@@ -225,6 +225,9 @@ export const AppColors = {
   programmeLevels: { easy: Palette.green, medium: Palette.gold, hard: Palette.pink },
   themeVisualFade: Palette.bgMiddle,
   outlineButton: Palette.violetTrack,
+  // « Ta partie » : encadré rose quand il manque des questions.
+  shortageBorder: Palette.pink,
+  shortageBackground: 'rgba(255, 61, 139, 0.14)',
   blindTestTile: Palette.violetPanel,
 } as const;
 

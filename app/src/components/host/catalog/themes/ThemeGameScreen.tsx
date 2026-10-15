@@ -2,14 +2,16 @@ import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
 import { areSettingsCompatible, settingsForGameType } from '@shared/quizCatalog';
 import { withPool } from '@shared/questionPool';
 import type { QuizEntry } from '@shared/quizValidation';
+import { themeStats } from '@shared/themeCatalog';
 import type { QuizAudience, SessionSettings, SoundSettings } from '@shared/types';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { useSoundPreferences } from '@/hooks/useSoundPreferences';
 import { useThemeGameDraw } from '@/hooks/useThemeGameDraw';
 import type { ThemeQuestionSource } from '@/lib/themeGameDraw';
 
 import { ThemeGameDetails } from './ThemeGameDetails';
+import { ThemePickerView, type ThemeGameChoice } from './ThemePickerView';
 
 interface ThemeGameScreenProps {
   // Fiches du catalogue (déjà validées) ; themes et count : choix vérifiés par la route.
@@ -21,7 +23,8 @@ interface ThemeGameScreenProps {
   start: (quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs: readonly string[]) => void;
   isCreating: boolean;
   error?: string | null;
-  onModify?: () => void;
+  // Démo : « Ta partie » ouvert d'emblée.
+  initialEditing?: boolean;
 }
 
 // Public de la partie : celui de tous ses quiz s'il est commun, sinon tout public.
@@ -31,13 +34,18 @@ function poolAudience(quizzes: readonly QuizEntry[]): QuizAudience {
 }
 
 // Fiche d'une partie tirée dans des thèmes du Quiz : tirage sur la fiche (useThemeGameDraw), réglages,
-// puis création avec ces questions (questionRefs écrit avec la partie).
-export function ThemeGameScreen({ entries, themes, count, source, start, isCreating, error, onModify }: ThemeGameScreenProps) {
+// puis création avec ces questions (questionRefs écrit avec la partie). « Modifier mon choix » affiche
+// « Ta partie » à la place de la fiche ; VALIDER y revient avec le nouveau choix (nouveau tirage).
+export function ThemeGameScreen({ entries, themes, count, source, start, isCreating, error, initialEditing = false }: ThemeGameScreenProps) {
+  const [choice, setChoice] = useState<ThemeGameChoice>({ themes, count, levels: 'all' });
+  const [isEditing, setIsEditing] = useState(initialEditing);
   const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useSoundPreferences();
-  const draw = useThemeGameDraw(source, entries, themes, count);
-  const settings = withPool(settingsForGameType(chosenSettings, 'quiz'), { kind: 'themes', themes }, count);
+  const allThemes = useMemo(() => themeStats(entries, new Set()), [entries]);
+  const draw = useThemeGameDraw(source, entries, choice.themes, choice.count);
+  const settings = withPool(settingsForGameType(chosenSettings, 'quiz'), { kind: 'themes', themes: choice.themes }, choice.count);
   const quizzes = draw.kind === 'ready' ? draw.draw.quizzes : [];
+  const closeEditor = useCallback(() => setIsEditing(false), []);
 
   function create() {
     if (draw.kind !== 'ready' || draw.draw.quizzes.length === 0 || !areSettingsCompatible(settings)) return;
@@ -45,10 +53,25 @@ export function ThemeGameScreen({ entries, themes, count, source, start, isCreat
     start(draw.draw.quizzes[0].id, settings, sound, draw.draw.refs);
   }
 
+  if (isEditing) {
+    return (
+      <ThemePickerView
+        themes={allThemes}
+        entries={entries}
+        initial={choice}
+        onCancel={closeEditor}
+        onValidate={(next) => {
+          setChoice(next);
+          setIsEditing(false);
+        }}
+      />
+    );
+  }
+
   return (
     <ThemeGameDetails
-      themes={themes}
-      count={count}
+      themes={choice.themes}
+      count={choice.count}
       draw={draw}
       audience={poolAudience(quizzes)}
       settings={settings}
@@ -58,7 +81,7 @@ export function ThemeGameScreen({ entries, themes, count, source, start, isCreat
       onCreate={create}
       isCreating={isCreating}
       error={error}
-      onModify={onModify}
+      onModify={() => setIsEditing(true)}
     />
   );
 }

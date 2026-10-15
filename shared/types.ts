@@ -277,10 +277,13 @@ export interface SessionSettings {
   // Dessine-moi : nombre de manches choisi dans les réglages du salon (4, 6 ou 8). Absent : 8.
   drawRounds?: number;
   // Partie tirée dans un ensemble (shared/questionPool.ts) : thèmes du Quiz (noms des thèmes) ou quiz de
-  // « Mon mélange » (Bluff), et nombre de questions (10, 15, 20 ou 30). Absents : un quiz seul, 10 questions.
+  // « Mon mélange » (Bluff), et nombre de questions (1 à 30 : le nombre réel quand il en manque). Absents : un
+  // quiz seul, 10 questions. levels : niveaux des questions d'une partie tirée dans des thèmes (« Ta partie »,
+  // shared/themePool.ts) ; absent : tous les niveaux.
   themes?: string[];
   quizIds?: string[];
   questionCount?: number;
+  levels?: QuestionLevel[];
 }
 
 // Groupe : 4 équipes fixes (Rose, Cyan, Or, Vert), chacune avec un symbole dessiné (étoile, rond,

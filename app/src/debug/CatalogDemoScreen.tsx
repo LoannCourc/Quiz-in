@@ -40,8 +40,9 @@ const DEMO_ENTRIES = [...DEMO_CATALOG, ...DEMO_THEME_CATALOG, { id: DRAW_QUIZ_ID
 // « Choisir ce quiz » revient au catalogue sans créer de partie. /debug/catalog?icons=1 (ou icons=genres) : icônes de
 // thème de 18 à 64 px, sur la couleur de leur pastille, puis icônes des genres de blind test.
 export default function CatalogDemoScreen() {
-  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories, played: playedParam, allThemes, pool, count } = useLocalSearchParams<{
-    // ?pool=Histoire|Sport&count=20 : fiche d'une partie tirée dans ces thèmes (questions fictives).
+  const { quiz: quizId, settings: openSettings, icons, game, blindtest, draw, categories, played: playedParam, allThemes, pool, count, edit } = useLocalSearchParams<{
+    // ?pool=Histoire|Sport&count=20 : fiche d'une partie tirée dans ces thèmes (questions fictives) ; &edit=1 : « Ta partie ».
+    edit?: string;
     pool?: string;
     count?: string;
     // &allThemes=1 (avec game=quiz) : grille « Tout voir » des thèmes.
@@ -62,7 +63,7 @@ export default function CatalogDemoScreen() {
   const [sound, setSound] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS);
   const choice = pool ? themeGameChoice(DEMO_ENTRIES, pool.split('|'), Number(count)) : null;
   if (choice) {
-    return <ThemeGameScreen entries={DEMO_ENTRIES} themes={choice.themes} count={choice.count} source={themeSource} start={() => router.back()} isCreating={false} />;
+    return <ThemeGameScreen entries={DEMO_ENTRIES} themes={choice.themes} count={choice.count} source={themeSource} start={() => router.back()} isCreating={false} initialEditing={edit === '1'} />;
   }
   const quiz = DEMO_ENTRIES.find((entry) => entry.id === quizId);
 

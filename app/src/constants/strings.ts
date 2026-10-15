@@ -13,7 +13,7 @@ import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
 import type { BluffSortId } from '@shared/bluffCatalog';
-import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
+import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuestionLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
 import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
@@ -229,6 +229,7 @@ export const strings = {
       share: (label: string, count: number) => `${label} · ${count}`,
       unplayedFirst: 'Les questions que tu n’as jamais jouées passent en premier.',
       modify: 'Modifier mon choix',
+      modifyLabel: 'Modifier mon choix : thèmes, nombre de questions et difficulté',
       create: 'Créer la partie',
       creating: 'Création…',
       help: 'Tu auras ensuite le code et le QR code pour inviter les joueurs.',
@@ -255,13 +256,41 @@ export const strings = {
       // Nom de chaque carte, selon son nombre de questions.
       cardNames: { 10: 'Express', 20: 'Classique', 30: 'Marathon' } as Record<number, string>,
       recommended: 'Conseillé',
-      minutes: (minutes: number) => `≈ ${minutes} min`,
+      // Espaces insécables : « ≈ 11 min » ne se coupe jamais.
+      minutes: (minutes: number) => `≈ ${minutes} min`,
       cardLabel: (count: number, name: string, minutes: number | null, isRecommended: boolean) =>
         `${count} questions, ${name}${minutes === null ? '' : `, environ ${minutes} minutes`}${isRecommended ? ', conseillé' : ''}`,
       mixTitle: 'Mélanger avec un autre thème ?',
       addTheme: (theme: string) => `Ajouter le thème ${theme}`,
       removeTheme: (theme: string) => `Retirer le thème ${theme}`,
       continue: (count: number) => `Continuer · ${count} questions`,
+    },
+    // « Ta partie » (maquette QN1-G), ouvert par « Modifier mon choix » sur la fiche.
+    themePicker: {
+      title: 'Ta partie',
+      back: 'Revenir à la fiche sans rien changer',
+      subtitle: 'Change ce que tu veux, tout se met à jour.',
+      themes: 'Thèmes',
+      themesCount: (count: number, max: number) => `${count} sur ${max} max`,
+      // Noms courts des thèmes dans les tuiles (les autres gardent leur nom).
+      shortNames: { 'Cinéma et séries': 'Cinéma', 'Culture générale': 'Culture gé.' } as Record<string, string>,
+      themeLabel: (theme: string, isChecked: boolean) => `${theme}${isChecked ? ', choisi' : ''}`,
+      questionCount: 'Nombre de questions',
+      difficulty: 'Difficulté',
+      allLevels: 'Tous niveaux',
+      summary: (themes: string[], count: number, minutes: number | null) =>
+        `${themes.join(' + ')} · ${count} questions${minutes === null ? '' : ` · ≈ ${minutes} min`}`,
+      validate: (count: number) => `Valider · ${count} questions`,
+      // Avertissement quand il manque des questions : nombre réel, niveaux, thèmes, conseil.
+      levelAdjectives: { easy: 'faciles', medium: 'moyennes', hard: 'difficiles' } satisfies Record<QuestionLevel, string>,
+      themeList: (themes: string[]) => (themes.length === 1 ? themes[0] : `${themes.slice(0, -1).join(', ')} et ${themes.at(-1)}`),
+      shortage: (available: number, levels: string, themes: string, advice: string) =>
+        `Seulement ${available} question${available > 1 ? 's' : ''}${levels === '' ? '' : ` ${levels}`} en ${themes} : ${advice}`,
+      advice: {
+        addTheme: 'ajoute un thème pour en avoir plus.',
+        widenLevels: 'choisis un autre niveau pour en avoir plus.',
+        fewerQuestions: 'choisis moins de questions.',
+      },
     },
     // Barre « Nombre de questions » du Bluff (Mon mélange).
     questionCount: {
