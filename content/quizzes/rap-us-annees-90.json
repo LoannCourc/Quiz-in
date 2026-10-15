@@ -19,7 +19,7 @@
       "ask": "title",
       "options": [
         "U Can't Touch This – MC Hammer",
-        "Bust a Move – Young MC",
+        "Now That We Found Love – Heavy D & The Boyz",
         "Funky Cold Medina – Tone Lōc",
         "The Humpty Dance – Digital Underground"
       ],
@@ -38,7 +38,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Mama Said Knock You Out – LL Cool J",
+        "Ring Ring Ring (Ha Ha Hey) – De La Soul",
         "Gonna Make You Sweat – C+C Music Factory",
         "Ice Ice Baby – Vanilla Ice",
         "I Wish – Skee-Lo"
@@ -61,7 +61,7 @@
         "This Is How We Do It – Montell Jordan",
         "Flava in Ya Ear – Craig Mack",
         "Gangsta's Paradise – Coolio",
-        "Feel So Good – Mase"
+        "Set Adrift on Memory Bliss – P.M. Dawn"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -81,7 +81,7 @@
         "Summertime – DJ Jazzy Jeff & The Fresh Prince",
         "Can I Kick It? – A Tribe Called Quest",
         "The Choice Is Yours – Black Sheep",
-        "Tennessee – Arrested Development"
+        "Here Comes the Hotstepper – Ini Kamoze"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -99,8 +99,8 @@
       "ask": "title",
       "options": [
         "Boombastic – Shaggy",
-        "I Wish – Skee-Lo",
-        "Bust a Move – Young MC",
+        "I Got a Man – Positive K",
+        "Loungin (Who Do Ya Luv) – LL Cool J",
         "Jump – Kris Kross"
       ],
       "correctIndex": 3,
@@ -118,10 +118,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Insane in the Brain – Cypress Hill",
+        "Me So Horny – The 2 Live Crew",
         "Jump Around – House of Pain",
-        "Mama Said Knock You Out – LL Cool J",
-        "Can I Kick It? – A Tribe Called Quest"
+        "I'm Leavin' U – MC Lyte",
+        "Hi De Ho – K7"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -139,9 +139,9 @@
       "ask": "title",
       "options": [
         "Men In Black – Will Smith",
-        "This Is How We Do It – Montell Jordan",
-        "Feel So Good – Mase",
-        "Boombastic – Shaggy"
+        "Informer – SNoW",
+        "Space Jam – Quad City DJ's",
+        "Whoomp! There It Is – Tag Team"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -158,10 +158,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Whoomp! (There It Is) – Tag Team",
-        "The Choice Is Yours – Black Sheep",
+        "Passin' Me By – The Pharcyde",
+        "Just a Friend – Biz Markie",
         "Tennessee – Arrested Development",
-        "I Wish – Skee-Lo"
+        "I Got 5 On It – Luniz"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -178,10 +178,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Insane in the Brain – Cypress Hill",
+        "Lifesaver – Guru",
         "Hip Hop Hooray – Naughty by Nature",
-        "Flava in Ya Ear – Craig Mack",
-        "The Humpty Dance – Digital Underground"
+        "Ain't Gonna Hurt Nobody – Kid 'n Play",
+        "How Ya Like Me Now – Kool Moe Dee"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -198,9 +198,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Feel So Good – Mase",
-        "This Is How We Do It – Montell Jordan",
-        "Funky Cold Medina – Tone Lōc",
+        "Treat 'Em Right – Chubb Rock",
+        "Shoop – Salt-N-Pepa",
+        "Doo Wop (That Thing) – Lauryn Hill",
         "I'll Be Missing You – Diddy"
       ],
       "correctIndex": 3,

@@ -79,7 +79,7 @@
       "ask": "artist",
       "options": [
         "U Got 2 Let the Music – Cappella",
-        "Another Night – Real McCoy",
+        "Barbie Girl – Aqua",
         "It's My Life – Dr. Alban",
         "I Like to Move It – Reel 2 Real"
       ],
@@ -119,7 +119,7 @@
       "ask": "artist",
       "options": [
         "Be My Lover – La Bouche",
-        "Lonely – Nana",
+        "Gonna Make You Sweat (Everybody Dance Now) – C+C Music Factory",
         "Ecuador – Sash!",
         "Tonight Is the Night – Le Click"
       ],
@@ -161,7 +161,7 @@
         "Life – Haddaway",
         "More And More – Captain Hollywood Project",
         "Boom, Boom, Boom, Boom!! – Vengaboys",
-        "Feel the Heat of the Night – Masterboy"
+        "All That She Wants – Ace of Base"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -179,9 +179,9 @@
       "ask": "title",
       "options": [
         "Another Night – Real McCoy",
-        "It Must Be Love – Fun Factory",
-        "Everybody – DJ BoBo",
-        "The Rhythm Of The Night – Corona"
+        "Can't Stop Raving – Dune",
+        "Heaven Is a Place on Earth – Belinda Carlisle",
+        "Because the Night – Co.Ro."
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -198,8 +198,8 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Coco Jamboo – Mr. President",
-        "Dreamer – Livin' Joy",
+        "The Colour of My Dreams – B. G. the Prince of Rap",
+        "Please Don't Go – Double You",
         "Saturday Night – Whigfield",
         "Blue (Da Ba Dee) – Eiffel 65"
       ],

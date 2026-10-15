@@ -18,7 +18,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Mr. Brightside – The Killers",
+        "The Bitter End – Placebo",
         "Hate to Say I Told You So – The Hives",
         "Are You Gonna Be My Girl – Jet",
         "Seven Nation Army – The White Stripes"
@@ -99,9 +99,9 @@
       "ask": "title",
       "options": [
         "I Bet You Look Good On The Dancefloor – Arctic Monkeys",
-        "Can't Stand Me Now – The Libertines",
-        "Naive – The Kooks",
-        "Mr. Brightside – The Killers"
+        "Ain't No Rest For The Wicked – Cage The Elephant",
+        "New Fang – Them Crooked Vultures",
+        "Maybe Tomorrow – Stereophonics"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -138,9 +138,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Chasing Cars – Snow Patrol",
+        "Float On – Modest Mouse",
         "Use Somebody – Kings of Leon",
-        "Somewhere Only We Know – Keane",
+        "Kings And Queens – Thirty Seconds to Mars",
         "Dance with Somebody – Mando Diao"
       ],
       "correctIndex": 1,
@@ -159,9 +159,9 @@
       "ask": "artist",
       "options": [
         "In the End – Linkin Park",
-        "Woman – Wolfmother",
-        "Club Foot – Kasabian",
-        "Munich – Editors"
+        "Wannabe in L.A – Eagles of Death Metal",
+        "Carry on up the Morning – Babyshambles",
+        "Standing Next To Me – The Last Shadow Puppets"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -178,10 +178,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "America – Razorlight",
-        "Are You Gonna Be My Girl – Jet",
+        "Burn It to the Ground – Nickelback",
+        "Steady, As She Goes – The Raconteurs",
         "Ruby – Kaiser Chiefs",
-        "Banquet – Bloc Party"
+        "Don't Look Back into the Sun – The Libertines"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -198,10 +198,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Get Free – The Vines",
+        "Can't Stop – Red Hot Chili Peppers",
         "No One Knows – Queens of the Stone Age",
-        "Hate to Say I Told You So – The Hives",
-        "Evil – Interpol"
+        "Spread Your Love – Black Rebel Motorcycle Club",
+        "Bohemian Like You – The Dandy Warhols"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [

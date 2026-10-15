@@ -65,7 +65,7 @@
       "ask": "title",
       "options": [
         "Going Back to Cali – LL Cool J",
-        "Ain't No Half-Steppin' – Big Daddy Kane",
+        "Wild Wild West – Kool Moe Dee",
         "It's Tricky – Run-DMC",
         "Ladies First – Queen Latifah"
       ],
@@ -90,7 +90,7 @@
         "Fight For Your Right – Beastie Boys",
         "Wild Thing – Tone Lōc",
         "Parents Just Don’t Understand – DJ Jazzy Jeff & The Fresh Prince",
-        "The Show – Doug E. Fresh"
+        "My Philosophy – Boogie Down Productions"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -111,9 +111,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Jam on It – Newcleus",
+        "You Gots to Chill – EPMD",
         "White Lines – Grandmaster Melle Mel",
-        "Friends – Whodini",
+        "Just a Friend – Biz Markie",
         "The Breaks – Kurtis Blow"
       ],
       "correctIndex": 3,
@@ -131,10 +131,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Roxanne, Roxanne – UTFO",
+        "Talkin' All That Jazz – Stetsasonic",
         "Planet Rock – Afrika Bambaataa",
-        "Supersonic – J.J. Fad",
-        "It Takes Two – Rob Base & DJ E-Z Rock"
+        "Fresh Is the Word – Mantronix",
+        "Wipeout – Fat Boys"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -152,9 +152,9 @@
       "ask": "title",
       "options": [
         "Paid in Full – Eric B. & Rakim",
-        "Rock the Bells – LL Cool J",
-        "Ladies First – Queen Latifah",
-        "Wild Thing – Tone Lōc"
+        "Rollin' with Kid 'n Play – Kid 'n Play",
+        "Bang Zoom (Let's Go-Go) – The Real Roxanne",
+        "The F--k Shop – The 2 Live Crew"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -174,10 +174,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "White Lines – Grandmaster Melle Mel",
-        "Ain't No Half-Steppin' – Big Daddy Kane",
+        "Doin' Our Own Dang – Jungle Brothers",
+        "Al-Naafyish (The Soul) (It's Time) – Hashim",
         "Bust A Move – Young MC",
-        "Going Back to Cali – LL Cool J"
+        "Boogie Down Bronx – Man Parrish"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -197,10 +197,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Parents Just Don’t Understand – DJ Jazzy Jeff & The Fresh Prince",
+        "Fight the Power – Public Enemy",
         "Me Myself and I – De La Soul",
-        "Rock the Bells – LL Cool J",
-        "Friends – Whodini"
+        "Buffalo Gals – Malcolm McLaren",
+        "Bonita Applebum – A Tribe Called Quest"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -217,9 +217,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "It Takes Two – Rob Base & DJ E-Z Rock",
-        "Supersonic – J.J. Fad",
-        "The Show – Doug E. Fresh",
+        "Roxanne's Revenge – Roxanne Shanté",
+        "Smooth Operator – Big Daddy Kane",
+        "Feel the Heartbeat – The Treacherous Three",
         "Push It – Salt-N-Pepa"
       ],
       "correctIndex": 3,

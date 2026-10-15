@@ -62,7 +62,7 @@
       "ask": "title",
       "options": [
         "Block Rockin' Beats – The Chemical Brothers",
-        "Children – Robert Miles",
+        "Greece 2000 – Three Drives",
         "Kernkraft 400 – Zombie Nation",
         "Positive Education – Slam"
       ],
@@ -87,7 +87,7 @@
         "Café del Mar – Energy 52",
         "Your Love – Frankie Knuckles",
         "Insomnia – Faithless",
-        "Higher State of Consciousness – Josh Wink"
+        "For an Angel – Paul van Dyk"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -105,9 +105,9 @@
       "ask": "title",
       "options": [
         "Encore une fois – Sash!",
-        "Your Love – Frankie Knuckles",
+        "Show Me Love – Robin S",
         "Children – Robert Miles",
-        "Café del Mar – Energy 52"
+        "Gypsy Woman (She's Homeless) – Crystal Waters"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -125,8 +125,8 @@
       "ask": "artist",
       "options": [
         "Praise You – Fatboy Slim",
-        "Flat Beat – Mr. Oizo",
-        "Phat Planet – Leftfield",
+        "Everybody's Free (To Feel Good) – Rozalla",
+        "Sweet Harmony – The Beloved",
         "Music Sounds Better with You – Stardust"
       ],
       "correctIndex": 0,
@@ -144,9 +144,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Pacific State – 808 State",
-        "Your Love – Frankie Knuckles",
-        "Plastic Dreams – Jaydee",
+        "Things Can Only Get Better – D:Ream",
+        "Why? – GusGus",
+        "Red Alert – Basement Jaxx",
         "Go – Moby"
       ],
       "correctIndex": 3,
@@ -164,9 +164,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Energy Flash – Joey Beltram",
+        "The Bells – Jeff Mills",
         "Sandstorm – Darude",
-        "Positive Education – Slam",
+        "Little Fluffy Clouds – The Orb",
         "Chime – Orbital"
       ],
       "correctIndex": 1,
@@ -185,9 +185,9 @@
       "ask": "title",
       "options": [
         "Out of Space – The Prodigy",
-        "Music Sounds Better with You – Stardust",
-        "Encore une fois – Sash!",
-        "Phat Planet – Leftfield"
+        "Stop the Rock – Apollo 440",
+        "The Child – Alex Gopher",
+        "9Pm (Till I Come) – ATB"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -207,10 +207,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Flat Beat – Mr. Oizo",
-        "Higher State of Consciousness – Josh Wink",
+        "Out Of The Blue – System F",
+        "Spastik – Plastikman",
         "Crispy Bacon – Laurent Garnier",
-        "Café del Mar – Energy 52"
+        "What Can You Do for Me – Utah Saints"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

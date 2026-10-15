@@ -18,10 +18,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Vampire – Olivia Rodrigo",
+        "Espresso – Sabrina Carpenter",
         "Lose Control – Teddy Swims",
         "As It Was – Harry Styles",
-        "Paint The Town Red – Doja Cat"
+        "Unholy – Sam Smith"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -40,7 +40,7 @@
       "options": [
         "Levitating – Dua Lipa",
         "Save Your Tears – The Weeknd",
-        "Cold Heart – Elton John",
+        "golden hour – JVKE",
         "Easy on Me – Adele"
       ],
       "correctIndex": 0,
@@ -99,9 +99,9 @@
       "ask": "title",
       "options": [
         "Bad Habits – Ed Sheeran",
-        "Save Your Tears – The Weeknd",
-        "Paint The Town Red – Doja Cat",
-        "Enemy – Imagine Dragons"
+        "Peaches – Justin Bieber",
+        "Stay – The Kid LAROI",
+        "FEVER DREAM – Alex Warren"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -118,10 +118,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Lose Control – Teddy Swims",
-        "Kings & Queens – Ava Max",
+        "Say Yes To Heaven – Lana Del Rey",
+        "sous influence – Eddy de Pretto",
         "Heat Waves – Glass Animals",
-        "Lovin On Me – Jack Harlow"
+        "stupid song – Olivia Rodrigo"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -138,10 +138,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Easy on Me – Adele",
+        "Survive – Lewis Capaldi",
         "Anti-Hero – Taylor Swift",
-        "Light Switch – Charlie Puth",
-        "Higher Power – Coldplay"
+        "Never Felt So Alone – Labrinth",
+        "Je pense à vous – Pierre de Maere"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -163,8 +163,8 @@
       "ask": "artist",
       "options": [
         "Good Luck, Babe! – Chappell Roan",
-        "Calm Down – Rema",
-        "Cold Heart – Elton John",
+        "People You Know – Selena Gomez",
+        "Good Reason – Gracie Abrams",
         "What Was I Made For? – Billie Eilish"
       ],
       "correctIndex": 3,
@@ -183,9 +183,9 @@
       "ask": "title",
       "options": [
         "Too Sweet – Hozier",
-        "Miracle – Calvin Harris",
-        "Vampire – Olivia Rodrigo",
-        "Good Luck, Babe! – Chappell Roan"
+        "Eté 90 – Therapie TAXI",
+        "Midnight Sun – Zara Larsson",
+        "All For You – Dean Lewis"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -203,9 +203,9 @@
       "ask": "artist",
       "options": [
         "Le reste – Clara Luciani",
-        "Easy on Me – Adele",
+        "I Ain't Worried – OneRepublic",
         "Bruxelles je t'aime – Angèle",
-        "Save Your Tears – The Weeknd"
+        "Drive Safe – Myles Smith"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

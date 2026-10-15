@@ -80,7 +80,7 @@
       "ask": "artist",
       "options": [
         "Hush – Deep Purple",
-        "Gloria – Them",
+        "For Your Love – The Yardbirds",
         "Good Vibrations – The Beach Boys",
         "Purple Haze – Jimi Hendrix"
       ],
@@ -102,7 +102,7 @@
         "I'm a Believer – The Monkees",
         "Sunshine of Your Love – Cream",
         "Mr. Tambourine Man – The Byrds",
-        "Itchycoo Park – Small Faces"
+        "Bus Stop – The Hollies"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -120,9 +120,9 @@
       "ask": "artist",
       "options": [
         "The House of the Rising Sun – The Animals",
-        "For What It's Worth – Buffalo Springfield",
-        "A Whiter Shade of Pale – Procol Harum",
-        "Louie Louie – The Kingsmen"
+        "Nights in White Satin – The Moody Blues",
+        "On the Road Again – Canned Heat",
+        "California Dreamin' – The Mamas & The Papas"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -142,10 +142,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Happy Together – The Turtles",
-        "Hush – Deep Purple",
+        "The Letter – The Box Tops",
+        "You Keep Me Hangin' On – Vanilla Fudge",
         "Wild Thing – The Troggs",
-        "Paint It Black – The Rolling Stones"
+        "Pictures of Matchstick Men – Status Quo"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -162,10 +162,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Fortunate Son – Creedence Clearwater Revival",
+        "Friday on My Mind – The Easybeats",
         "Born to Be Wild – Steppenwolf",
-        "In-A-Gadda-Da-Vida – Iron Butterfly",
-        "I'm a Believer – The Monkees"
+        "Pushin' Too Hard – The Seeds",
+        "Mellow Yellow – Donovan"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -182,9 +182,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Mr. Tambourine Man – The Byrds",
-        "Good Vibrations – The Beach Boys",
-        "Gloria – Them",
+        "Whole Lotta Love – Led Zeppelin",
+        "Good Thing – Paul Revere & The Raiders",
+        "Green Onions – Booker T. & the M.G.'s",
         "She's Not There – The Zombies"
       ],
       "correctIndex": 3,
@@ -203,9 +203,9 @@
       "ask": "artist",
       "options": [
         "Somebody to Love – Jefferson Airplane",
-        "Itchycoo Park – Small Faces",
-        "Happy Together – The Turtles",
-        "A Whiter Shade of Pale – Procol Harum"
+        "Venus – Shocking Blue",
+        "Hang On Sloopy – The McCoys",
+        "Psychotic Reaction – Count Five"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [

@@ -20,8 +20,8 @@
       "options": [
         "Bouge de là (Part. 1) – MC Solaar",
         "Show ce soir – Bisso Na Bisso",
-        "Bois d'ébène – Les Sages Poètes de la Rue",
-        "Mama Lova – Oxmo Puccino"
+        "Le Bilan – Neg'Marrons",
+        "J'attaque du mic – X-Men"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -41,10 +41,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Simple et funky – Alliance Ethnik",
-        "Le spectateur – Sens Unik",
+        "Les jeunes de l'univers – Rocca",
+        "L'palais de justice – Freeman",
         "Petit frère – IAM",
-        "Si loin de toi – Pit Baccardi"
+        "Sacrifice de poulets – Ministère A.M.E.R."
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -61,10 +61,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Atout point de vue – Soon E MC",
-        "Le spectateur – Sens Unik",
+        "Quelques gouttes suffisent – Ärsenik",
+        "Pourquoi? – Busta Flex",
         "Respect – Alliance Ethnik",
-        "Show ce soir – Bisso Na Bisso"
+        "La voie du mellow – Mellowman"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -82,9 +82,9 @@
       "ask": "artist",
       "options": [
         "Bye bye – Ménélik",
-        "Correspondance – Fabe",
+        "Arrête-ca – Mafia Trece",
         "L'odyssée suit son cours – Assassin",
-        "Bois d'ébène – Les Sages Poètes de la Rue"
+        "Libres comme l'air... – Réciprok"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -103,9 +103,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Simple et funky – Alliance Ethnik",
-        "Mama Lova – Oxmo Puccino",
-        "Correspondance – Fabe",
+        "J'rap pour les mino(rités) – Les Sages Poètes de la Rue",
+        "Rap musique que j'aime – Zoxea",
+        "Hymne à la racaille – Le 3ème Œil",
         "Bad Boys de Marseille – Akhenaton"
       ],
       "correctIndex": 3,
@@ -123,10 +123,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Si loin de toi – Pit Baccardi",
+        "Sad Hill – Kheops",
         "Je zappe et je mate – Passi",
-        "Atout point de vue – Soon E MC",
-        "Correspondance – Fabe"
+        "Peuples du monde – Tonton David",
+        "Belsunce Breakdown – Bouga"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -144,9 +144,9 @@
       "ask": "title",
       "options": [
         "Tonton du bled – 113",
-        "Show ce soir – Bisso Na Bisso",
-        "Le spectateur – Sens Unik",
-        "L'odyssée suit son cours – Assassin"
+        "Le Ghetto Français – Ideal J",
+        "Pucc Fiction – Oxmo Puccino",
+        "Comme Une Sarbacane – La Cliqua"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -163,10 +163,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Mama Lova – Oxmo Puccino",
-        "Bois d'ébène – Les Sages Poètes de la Rue",
+        "Le Vent Tourne – Sens Unik",
+        "La tribu de Dana – Manau",
         "Mon papa à moi est un gangster – Stomy Bugsy",
-        "Simple et funky – Alliance Ethnik"
+        "Il est fou ce monde – Le Rat Luciano"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -183,10 +183,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Le spectateur – Sens Unik",
+        "Qui est l'exemple ? – Rohff",
         "Samuraï – Shurik'n",
-        "Correspondance – Fabe",
-        "Si loin de toi – Pit Baccardi"
+        "Comme Oswald – Expression Direkt",
+        "Ca Fait Partie De Mon Passé – Fabe"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -207,9 +207,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Le spectateur – Sens Unik",
-        "Atout point de vue – Soon E MC",
-        "L'odyssée suit son cours – Assassin",
+        "Un peu de respect – Lady Laistee",
+        "L'amour du risque – Fonky Family",
+        "Les vrais le savent – Lunatic",
         "Né ici – Doc Gynéco"
       ],
       "correctIndex": 3,

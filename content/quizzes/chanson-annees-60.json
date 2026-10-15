@@ -18,10 +18,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Et j'entends siffler le train – Richard Anthony",
+        "Tombe la neige – Salvatore Adamo",
         "Aline – Christophe",
         "Tous les garçons et les filles – Françoise Hardy",
-        "Tombe la neige – Adamo"
+        "Chariot – Petula Clark"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -39,7 +39,7 @@
       "ask": "artist",
       "options": [
         "La poupée qui fait non – Michel Polnareff",
-        "Biche oh ma biche – Frank Alamo",
+        "Daniela – Les Chaussettes Noires",
         "La plus belle pour aller danser – Sylvie Vartan",
         "Capri c'est fini – Hervé Vilard"
       ],
@@ -60,7 +60,7 @@
       "options": [
         "Et moi, et moi, et moi – Jacques Dutronc",
         "Inventaire 66 – Michel Delpech",
-        "Aline – Christophe",
+        "La Bohème – Charles Aznavour",
         "Viens me faire oublier – Dick Rivers"
       ],
       "correctIndex": 0,
@@ -98,9 +98,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Nathalie – Gilbert Bécaud",
+        "Amsterdam – Jacques Brel",
         "Comme d'habitude – Claude François",
-        "Inch Allah – Adamo",
+        "Que serais-je sans toi – Jean Ferrat",
         "Je n'aurai pas le temps – Michel Fugain"
       ],
       "correctIndex": 1,
@@ -119,9 +119,9 @@
       "ask": "artist",
       "options": [
         "Céline – Hugues Aufray",
-        "Tombe la neige – Adamo",
-        "Et j'entends siffler le train – Richard Anthony",
-        "La poupée qui fait non – Michel Polnareff"
+        "Göttingen – Barbara",
+        "Viens sur la montagne – Marie Laforêt",
+        "Le jazz et la java – Claude Nougaro"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -138,10 +138,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Mon crédo – Mireille Mathieu",
-        "Inventaire 66 – Michel Delpech",
+        "Zorro est arrivé – Henri Salvador",
+        "La tendresse – Bourvil",
         "Et maintenant – Gilbert Bécaud",
-        "Enfants de tous pays – Enrico Macias"
+        "Scoubidou – Sacha Distel"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -158,10 +158,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Biche oh ma biche – Frank Alamo",
+        "Reviens vite et oublie – Les Surfs",
         "L'école est finie – Sheila",
-        "Capri c'est fini – Hervé Vilard",
-        "Aline – Christophe"
+        "Les élucubrations d'Antoine – Antoine",
+        "Le temps des fleurs – Dalida"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -178,9 +178,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Viens me faire oublier – Dick Rivers",
-        "Et j'entends siffler le train – Richard Anthony",
-        "La Javanaise – Serge Gainsbourg",
+        "Tonton Cristobal – Pierre Perret",
+        "Le Twist du canotier – Maurice Chevalier",
+        "Siffler sur la colline – Joe Dassin",
         "Retiens la nuit – Johnny Hallyday"
       ],
       "correctIndex": 3,
@@ -199,9 +199,9 @@
       "ask": "artist",
       "options": [
         "Mirza – Nino Ferrer",
-        "La poupée qui fait non – Michel Polnareff",
-        "Je n'aurai pas le temps – Michel Fugain",
-        "Tombe la neige – Adamo"
+        "Le Déserteur – Boris Vian",
+        "Il est mort le soleil – Nicoletta",
+        "Le Métèque – Georges Moustaki"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [

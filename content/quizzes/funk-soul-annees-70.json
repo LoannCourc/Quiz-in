@@ -80,8 +80,8 @@
       "options": [
         "Jungle Boogie – Kool & The Gang",
         "Get Down Tonight – KC & The Sunshine Band",
-        "What Is Hip? – Tower of Power",
-        "Tell Me Something Good – Rufus"
+        "That Lady – The Isley Brothers",
+        "Use Me – Bill Withers"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -101,9 +101,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Chameleon – Herbie Hancock",
-        "Cissy Strut – The Meters",
-        "Play That Funky Music – Wild Cherry",
+        "Higher Ground – Stevie Wonder",
+        "Got to Give It Up – Marvin Gaye",
+        "Love Train – The O'Jays",
         "Fire – Ohio Players"
       ],
       "correctIndex": 3,
@@ -124,10 +124,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band",
+        "Nothing from Nothing – Billy Preston",
         "Family Affair – Sly & The Family Stone",
-        "Theme from Shaft – Isaac Hayes",
-        "Shining Star – Earth, Wind & Fire"
+        "ABC – The Jackson 5",
+        "(Do the) Spanish Hustle – Fatback Band"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -148,9 +148,9 @@
       "ask": "title",
       "options": [
         "Low Rider – War",
-        "Boogie Oogie Oogie – A Taste of Honey",
-        "Get Down Tonight – KC & The Sunshine Band",
-        "Chameleon – Herbie Hancock"
+        "Papa Was A Rollin' Stone – The Temptations",
+        "Thinking of You – Sister Sledge",
+        "Blame It on the Boogie – The Jacksons"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -167,10 +167,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "What Is Hip? – Tower of Power",
-        "Tell Me Something Good – Rufus",
+        "Strawberry Letter 23 – The Brothers Johnson",
+        "The Memory – Roy Ayers",
         "Pick Up the Pieces – Average White Band",
-        "Theme from Shaft – Isaac Hayes"
+        "Love and Happiness – Al Green"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -187,10 +187,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Cissy Strut – The Meters",
+        "You're The First, The Last, My Everything – Barry White",
         "Move On Up – Curtis Mayfield",
-        "Shining Star – Earth, Wind & Fire",
-        "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band"
+        "The Rap – Millie Jackson",
+        "Hot Pants Road – The J.B.'s"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -207,9 +207,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Play That Funky Music – Wild Cherry",
-        "Get Down Tonight – KC & The Sunshine Band",
-        "Boogie Oogie Oogie – A Taste of Honey",
+        "Method to the Madness – The Undisputed Truth",
+        "The Ghetto – Donny Hathaway",
+        "Mary Jane – Rick James",
         "Brick House – Commodores"
       ],
       "correctIndex": 3,

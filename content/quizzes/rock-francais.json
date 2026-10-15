@@ -79,10 +79,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Respire – Mickey 3D",
-        "L'hymne de nos campagnes – Tryo",
+        "Ça plane pour moi – Plastic Bertrand",
+        "Hexagone – Renaud",
         "J't'emmène au vent – Louise Attaque",
-        "La Sentinelle – Luke"
+        "Solenzara – Louis Bertignac"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -100,9 +100,9 @@
       "ask": "title",
       "options": [
         "Marcia Baïla – Les Rita Mitsouko",
-        "Cherchez le garçon – Taxi Girl",
-        "Osez Joséphine – Alain Bashung",
-        "L'amour à la plage – Niagara"
+        "La ruelle des morts – Hubert-Félix Thiéfaine",
+        "Nains de jardins – Merzhin",
+        "Le Creux De Ta Main – Detroit"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -119,7 +119,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Danse avec moi – Bijou",
+        "La croisée – Blankass",
         "Manu Chao – Les Wampas",
         "Ghost – Skip The Use",
         "Antisocial – Trust"
@@ -139,10 +139,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "L'hymne de nos campagnes – Tryo",
+        "Elle m'a dit – Cali",
         "Lambé an dro – Matmatah",
-        "Song for Jedi – Dionysos",
-        "L'autre Finistère – Les Innocents"
+        "Tombé du ciel – Jacques Higelin",
+        "La Sécurité de l'emploi – Les Fatals Picards"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -161,9 +161,9 @@
       "ask": "artist",
       "options": [
         "Butterfly – Superbus",
-        "Ghost – Skip The Use",
+        "Help Myself (Nous Ne Faisons Que Passer) – Gaëtan Roussel",
         "My Name Is Stain – Shaka Ponk",
-        "À tout moment la rue – Eiffel"
+        "La peau – No One Is Innocent"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -180,10 +180,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Respire – Mickey 3D",
-        "La Sentinelle – Luke",
+        "Mala Vida – Mano Negra",
+        "Rock'n'roll attitude – Johnny Hallyday",
         "Le chemin – Kyo",
-        "My Name Is Stain – Shaka Ponk"
+        "Tomber la chemise – Zebda"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -200,10 +200,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Manu Chao – Les Wampas",
+        "Voilà, c'est fini – Jean-Louis Aubert",
         "Dis-moi – BB Brunes",
-        "Ghost – Skip The Use",
-        "Song for Jedi – Dionysos"
+        "Lisztomania – Phoenix",
+        "Week-end à Rome – Étienne Daho"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [

@@ -124,7 +124,7 @@
         "Pure Morning – Placebo",
         "Tonight, Tonight – The Smashing Pumpkins",
         "Karma Police – Radiohead",
-        "Bitter Sweet Symphony – The Verve"
+        "Hallelujah – Jeff Buckley"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -143,7 +143,7 @@
       "options": [
         "Rooster – Alice in Chains",
         "Alive – Pearl Jam",
-        "Plush – Stone Temple Pilots",
+        "Where Is My Mind? – Pixies",
         "Tomorrow – Silverchair"
       ],
       "correctIndex": 1,
@@ -162,8 +162,8 @@
       "ask": "artist",
       "options": [
         "Self Esteem – The Offspring",
-        "Buddy Holly – Weezer",
-        "Semi-Charmed Life – Third Eye Blind",
+        "Drive – Incubus",
+        "Nothing Else Matters – Metallica",
         "Basket Case – Green Day"
       ],
       "correctIndex": 3,
@@ -182,9 +182,9 @@
       "ask": "title",
       "options": [
         "Black Hole Sun – Soundgarden",
-        "Glycerine – Bush",
-        "Rooster – Alice in Chains",
-        "Lightning Crashes – Live"
+        "It Ain't Over 'Til It's Over – Lenny Kravitz",
+        "Easy – Faith No More",
+        "Wake Up – Rage Against the Machine"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -201,10 +201,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Tomorrow – Silverchair",
-        "Self Esteem – The Offspring",
+        "Hunger Strike – Temple of the Dog",
+        "All I Wanna Do – Sheryl Crow",
         "Everlong – Foo Fighters",
-        "Shine – Collective Soul"
+        "American Jesus – Bad Religion"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

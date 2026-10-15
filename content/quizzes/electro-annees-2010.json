@@ -98,7 +98,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Faded – Alan Walker",
+        "Ritual – Tiësto",
         "Runaway (U & I) – Galantis",
         "Firestone – Kygo",
         "Alone – Marshmello"
@@ -121,7 +121,7 @@
         "Lean On – Major Lazer",
         "Booyah – Showtek",
         "Take Over Control – Afrojack",
-        "Heroes – Alesso"
+        "Let Me Love You – DJ Snake"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -138,9 +138,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Spaceman – Hardwell",
-        "Toulouse – Nicky Romero",
-        "Booyah – Showtek",
+        "Only You – Cheat Codes",
+        "She Doesn't Mind – Sean Paul",
+        "Azukita – Steve Aoki",
         "Animals – Martin Garrix"
       ],
       "correctIndex": 3,
@@ -158,10 +158,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Fast Car – Jonas Blue",
+        "Stay Young – Mike Perry",
         "Rather Be – Clean Bandit",
-        "Are You With Me – Lost Frequencies",
-        "Easy Love – Sigala"
+        "More Than You Know – Axwell /\\ Ingrosso",
+        "All Stars – Martin Solveig"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -179,9 +179,9 @@
       "ask": "title",
       "options": [
         "Clarity – Zedd",
-        "Alone – Marshmello",
-        "Ocean Drive – Duke Dumont",
-        "Pop Culture – Madeon"
+        "Breathe – SeeB",
+        "Without You – John Newman",
+        "Be Mine – Ofenbach"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -199,10 +199,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "This Girl – Kungs",
-        "Ain't Nobody – Felix Jaehn",
+        "Strobe – Deadmau5",
+        "Tie Me Down – Gryffin",
         "Closer – The Chainsmokers",
-        "Jubel – Klingande"
+        "Bailar – Deorro"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

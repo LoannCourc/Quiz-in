@@ -21,7 +21,7 @@
         "Les autres – Abd al Malik",
         "Art de rue – Fonky Family",
         "DJ – Diam's",
-        "En noir et blanc – Sefyu"
+        "Les Blancs Ne Savent Pas Danser – James Deano"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -38,7 +38,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Pas le temps – Faf Larage",
+        "Vivre Dans L'Urgence – Kool Shen",
         "J'pète les plombs – Disiz",
         "Gravé dans la roche – Sniper",
         "Ferme les yeux et imagine-toi – Soprano"
@@ -59,8 +59,8 @@
       "ask": "title",
       "options": [
         "Saint-Denis – Grand Corps Malade",
-        "Les autres – Abd al Malik",
-        "En noir et blanc – Sefyu",
+        "L'ombre sur la mesure – La Rumeur",
+        "Tapage nocturne – El Matador",
         "Qui est l'exemple ? – Rohff"
       ],
       "correctIndex": 0,
@@ -78,9 +78,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Art de rue – Fonky Family",
-        "Pas le temps – Faf Larage",
-        "Ferme les yeux et imagine-toi – Soprano",
+        "Jamais – Ol'Kainry",
+        "Pour ceux – Mafia K'1 Fry",
+        "Ma conscience le morceau – Tunisiano",
         "La rage – Keny Arkana"
       ],
       "correctIndex": 3,
@@ -98,10 +98,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "J'pète les plombs – Disiz",
+        "J'Hésite – Salif",
         "Marly-Gomont – Kamini",
-        "Qui est l'exemple ? – Rohff",
-        "Les autres – Abd al Malik"
+        "Vieux avant l'âge – Scred Connexion",
+        "Le fruit de mon époque – Mino"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -119,9 +119,9 @@
       "ask": "artist",
       "options": [
         "Toucher l'horizon – Oxmo Puccino",
-        "En noir et blanc – Sefyu",
-        "Ferme les yeux et imagine-toi – Soprano",
-        "Art de rue – Fonky Family"
+        "Résistant – Iron Sy",
+        "Street Fight – Alibi Montana",
+        "Don't Panik – Médine"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -138,10 +138,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Pas le temps – Faf Larage",
-        "Les autres – Abd al Malik",
+        "Je chante la France – Rocé",
+        "Molotov 4 – Sefyu",
         "Le son des bandits – Psy 4 de la Rime",
-        "J'pète les plombs – Disiz"
+        "Les vrais le savent – Lunatic"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -159,10 +159,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Qui est l'exemple ? – Rohff",
+        "Métèque – JoeyStarr",
         "Banlieusards – Kery James",
-        "Art de rue – Fonky Family",
-        "En noir et blanc – Sefyu"
+        "Bienvenue dans la Secte – La secte phonétik",
+        "Comment Ca – Triptik"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -179,9 +179,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Ferme les yeux et imagine-toi – Soprano",
-        "Pas le temps – Faf Larage",
-        "Les autres – Abd al Malik",
+        "A quoi bon sert – kamelancien",
+        "Qu'est ce qu'tu croyais – Mafia Trece",
+        "Si triste – Le 3ème Œil",
         "Partir loin – 113"
       ],
       "correctIndex": 3,
@@ -200,9 +200,9 @@
       "ask": "artist",
       "options": [
         "Raz de marée – Saïan Supa Crew",
-        "J'pète les plombs – Disiz",
-        "En noir et blanc – Sefyu",
-        "Qui est l'exemple ? – Rohff"
+        "Le jugement – Tandem",
+        "Quelque chose de spécial – La Fouine",
+        "Smile – Hocus Pocus"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [

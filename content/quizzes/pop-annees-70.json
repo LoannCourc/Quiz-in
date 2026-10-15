@@ -86,7 +86,7 @@
       "options": [
         "You Make Me Feel Like Dancing – Leo Sayer",
         "Dreams – Fleetwood Mac",
-        "Wild World – Cat Stevens",
+        "Mamma Mia – ABBA",
         "Rhinestone Cowboy – Glen Campbell"
       ],
       "correctIndex": 1,
@@ -106,8 +106,8 @@
       "options": [
         "Band on the Run – Wings",
         "Take Me Home, Country Roads – John Denver",
-        "Baker Street – Gerry Rafferty",
-        "American Pie – Don McLean"
+        "The Air That I Breathe – The Hollies",
+        "Breakfast in America – Supertramp"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -128,8 +128,8 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Year of the Cat – Al Stewart",
-        "Sailing – Rod Stewart",
+        "Living Next Door to Alice – Smokie",
+        "Mandy – Barry Manilow",
         "Piano Man – Billy Joel",
         "I Just Want to Be Your Everything – Andy Gibb"
       ],
@@ -148,10 +148,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Seasons in the Sun – Terry Jacks",
+        "Have You Never Been Mellow – Olivia Newton-John",
         "Alone Again (Naturally) – Gilbert O'Sullivan",
-        "Wild World – Cat Stevens",
-        "Love Will Keep Us Together – Captain & Tennille"
+        "50 Ways to Leave Your Lover – Paul Simon",
+        "A Horse with No Name – America"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -171,9 +171,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "How Deep Is Your Love – Bee Gees",
-        "Killing Me Softly with His Song – Roberta Flack",
-        "Rhinestone Cowboy – Glen Campbell",
+        "Make It with You – Bread",
+        "If You Leave Me Now – Chicago",
+        "Waters of March – Art Garfunkel",
         "Without You – Harry Nilsson"
       ],
       "correctIndex": 3,
@@ -195,9 +195,9 @@
       "ask": "title",
       "options": [
         "Bridge over Troubled Water – Simon & Garfunkel",
-        "Take Me Home, Country Roads – John Denver",
-        "You Make Me Feel Like Dancing – Leo Sayer",
-        "Kung Fu Fighting – Carl Douglas"
+        "It's Too Late – Carole King",
+        "Gloria – Laura Branigan",
+        "Heart of Gold – Neil Young"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -217,10 +217,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "I Just Want to Be Your Everything – Andy Gibb",
-        "American Pie – Don McLean",
+        "California – Joni Mitchell",
+        "Don't Give Up on Us – David Soul",
         "It's a Heartache – Bonnie Tyler",
-        "Year of the Cat – Al Stewart"
+        "Feelings – Morris Albert"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

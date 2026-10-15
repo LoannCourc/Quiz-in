@@ -18,7 +18,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Supernature – Cerrone",
+        "Fly, Robin, Fly – Silver Convention",
         "Y.M.C.A. – Village People",
         "Don't Leave Me This Way – Thelma Houston",
         "Car Wash – Rose Royce"
@@ -85,7 +85,7 @@
         "You Make Me Feel (Mighty Real) – Sylvester",
         "Heaven Must Be Missing an Angel – Tavares",
         "Hot Stuff – Donna Summer",
-        "Supernature – Cerrone"
+        "Yes Sir, I Can Boogie – Baccara"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -102,10 +102,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Car Wash – Rose Royce",
-        "Boogie Wonderland – Earth, Wind & Fire",
+        "Follow Me – Amanda Lear",
+        "Native New Yorker – Odyssey",
         "That's the Way (I Like It) – KC & The Sunshine Band",
-        "Love Is in the Air – John Paul Young"
+        "Boogie Oogie Oogie – A Taste of Honey"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -129,9 +129,9 @@
       "ask": "artist",
       "options": [
         "Ring My Bell – Anita Ward",
-        "Got to Be Real – Cheryl Lynn",
-        "I'm Every Woman – Chaka Khan",
-        "Don't Leave Me This Way – Thelma Houston"
+        "Boogie Nights – Heatwave",
+        "Shake Your Body (Down to the Ground) – The Jacksons",
+        "Shake Your Groove Thing – Peaches & Herb"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -148,9 +148,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Instant Replay – Dan Hartman",
-        "Shame – Evelyn \"Champagne\" King",
-        "You Make Me Feel (Mighty Real) – Sylvester",
+        "If I Can't Have You – Yvonne Elliman",
+        "Kung Fu Fighting – Carl Douglas",
+        "The Best Disco in Town – The Ritchie Family",
         "Night Fever – Bee Gees"
       ],
       "correctIndex": 3,
@@ -168,10 +168,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Heaven Must Be Missing an Angel – Tavares",
+        "I Was Made for Dancin' – Leif Garrett",
         "Disco Inferno – The Trammps",
-        "Car Wash – Rose Royce",
-        "Boogie Wonderland – Earth, Wind & Fire"
+        "Runaway Love – Linda Clifford",
+        "Ain't No Stoppin' Us Now – McFadden & Whitehead"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -189,9 +189,9 @@
       "ask": "title",
       "options": [
         "Knock on Wood – Amii Stewart",
-        "Supernature – Cerrone",
-        "Love Is in the Air – John Paul Young",
-        "Got to Be Real – Cheryl Lynn"
+        "Play That Funky Music – Wild Cherry",
+        "Disco Duck – Rick Dees",
+        "Thinking of You – Sister Sledge"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -208,10 +208,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Don't Leave Me This Way – Thelma Houston",
-        "Instant Replay – Dan Hartman",
+        "Strawberry Letter 23 – The Brothers Johnson",
+        "Can't Get By Without You – The Real Thing",
         "Good Times – Chic",
-        "I'm Every Woman – Chaka Khan"
+        "The Runner – The Three Degrees"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

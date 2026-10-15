@@ -60,7 +60,7 @@
       "options": [
         "Une belle histoire – Michel Fugain",
         "L'Été indien – Joe Dassin",
-        "Il voyage en solitaire – Gérard Manset",
+        "Je suis malade – Serge Lama",
         "Il y avait un jardin – Georges Moustaki"
       ],
       "correctIndex": 3,
@@ -81,7 +81,7 @@
         "Le Sud – Nino Ferrer",
         "Champagne – Jacques Higelin",
         "Laisse béton – Renaud",
-        "Super Nana – Michel Jonasz"
+        "Rock'n'dollars – William Sheller"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -99,8 +99,8 @@
       "ask": "title",
       "options": [
         "Avec le temps – Léo Ferré",
-        "Mon vieux – Daniel Guichard",
-        "Il voyage en solitaire – Gérard Manset",
+        "Manureva – Alain Chamfort",
+        "Les vieux mariés – Michel Sardou",
         "Le Lac Majeur – Mort Shuman"
       ],
       "correctIndex": 0,
@@ -118,10 +118,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Ma préférence – Julien Clerc",
-        "Le chanteur – Daniel Balavoine",
+        "Qui c'est celui-là ? – Pierre Vassiliu",
+        "Le loir et cher – Michel Delpech",
         "Les Marquises – Jacques Brel",
-        "Une belle histoire – Michel Fugain"
+        "Les mots bleus – Christophe"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -138,10 +138,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "La ballade des gens heureux – Gérard Lenorman",
+        "Il suffirait de presque rien – Serge Reggiani",
         "Amoureuse – Véronique Sanson",
-        "L'Été indien – Joe Dassin",
-        "Au pays des merveilles de Juliet – Yves Simon"
+        "Y'a une route – Manset",
+        "Prendre un enfant – Yves Duteil"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -158,9 +158,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Laisse béton – Renaud",
-        "Le Lac Majeur – Mort Shuman",
-        "Le Sud – Nino Ferrer",
+        "Lily – Pierre Perret",
+        "Je reviendrai à Montréal – Robert Charlebois",
+        "Gens du pays – Gilles Vigneault",
         "Je l'aime à mourir – Francis Cabrel"
       ],
       "correctIndex": 3,
@@ -179,9 +179,9 @@
       "ask": "title",
       "options": [
         "Seras-tu là ? – Michel Berger",
-        "Super Nana – Michel Jonasz",
-        "Mon vieux – Daniel Guichard",
-        "Ma préférence – Julien Clerc"
+        "So Far Away from L.A. – Nicolas Peyrac",
+        "Rockollection – Laurent Voulzy",
+        "Les Gens qui doutent – Anne Sylvestre"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -199,10 +199,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Il voyage en solitaire – Gérard Manset",
-        "Une belle histoire – Michel Fugain",
+        "Mourir pour des idées – Georges Brassens",
+        "J'ai rencontré l'homme de ma vie – Diane Dufresne",
         "Comme ils disent – Charles Aznavour",
-        "Le chanteur – Daniel Balavoine"
+        "Message personnel – Françoise Hardy"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

@@ -42,7 +42,7 @@
       "ask": "artist",
       "options": [
         "Juicy Fruit – Mtume",
-        "Freak-A-Zoid – Midnight Star",
+        "Operator – Midnight Star",
         "Super Freak – Rick James",
         "Computer Love – Zapp"
       ],
@@ -102,7 +102,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Give Me the Night – George Benson",
+        "You're the One for Me – D Train",
         "Forget Me Nots – Patrice Rushen",
         "A Lover's Holiday – Change",
         "Let's Groove – Earth, Wind & Fire"
@@ -125,10 +125,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "I.O.U. – Freeez",
+        "Night Birds – Shakatak",
         "Just An Illusion – Imagination",
         "Going Back to My Roots – Odyssey",
-        "Juicy Fruit – Mtume"
+        "Lessons in Love – Level 42"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -146,9 +146,9 @@
       "ask": "title",
       "options": [
         "Last Night a D.J. Saved My Life – Indeep",
-        "Love Come Down – Evelyn \"Champagne\" King",
-        "Just Be Good to Me – The S.O.S. Band",
-        "Freak-A-Zoid – Midnight Star"
+        "Call Me – Skyy",
+        "Out On a Limb – Teena Marie",
+        "Modern Love – David Bowie"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -168,10 +168,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Don't Stop the Music – Yarbrough & Peoples",
-        "Forget Me Nots – Patrice Rushen",
+        "She Works Hard For The Money – Donna Summer",
+        "I'm So Excited – The Pointer Sisters",
         "A Night To Remember – Shalamar",
-        "Computer Love – Zapp"
+        "She Talks To Me With Her Body – Bar-Kays"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -188,10 +188,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Criticize – Alexander O'Neal",
+        "Double Dutch Bus – Frankie Smith",
         "Oops Upside Your Head – The Gap Band",
-        "A Lover's Holiday – Change",
-        "Going Back to My Roots – Odyssey"
+        "Act Like You Know – Fat Larry's Band",
+        "Raid – Lakeside"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -208,9 +208,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "I Feel for You – Chaka Khan",
-        "Ghostbusters – Ray Parker Jr.",
-        "Caribbean Queen – Billy Ocean",
+        "777-9311 – The Time",
+        "Can You Handle It – Sharon Redd",
+        "Sign Your Name – Sananda Maitreya",
         "And The Beat Goes On – The Whispers"
       ],
       "correctIndex": 3,

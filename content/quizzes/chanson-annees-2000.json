@@ -79,10 +79,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Jardin d'hiver – Keren Ann",
+        "Mon coeur, mon amour – Anaïs",
         "C'est quand le bonheur ? – Cali",
-        "À la faveur de l'automne – Tété",
-        "La superbe – Benjamin Biolay"
+        "Une mère – Lynda Lemay",
+        "Dis Quand Reviendras-Tu ? – La Grande Sophie"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -100,9 +100,9 @@
       "ask": "title",
       "options": [
         "J'traîne des pieds – Olivia Ruiz",
-        "Je voudrais dormir – Jeanne Cherhal",
-        "L'autre bout du monde – Emily Loizeau",
-        "Bien mérité – Clarika"
+        "Dès que j'te vois – Vanessa Paradis",
+        "Ma liberté de penser – Florent Pagny",
+        "Manhattan-Kaboul – Renaud"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -120,10 +120,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Deux pieds – Thomas Fersen",
-        "Les embouteillages – Sanseverino",
+        "Je suis un homme – Zazie",
+        "Quelqu'un m'a dit – Carla Bruni",
         "Les voisines – Renan Luce",
-        "Est-ce que tu aimes ? – Arthur H"
+        "Musicamor – Daphné"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -140,10 +140,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Jardin d'hiver – Keren Ann",
+        "La liste – Rose",
         "Ta douleur – Camille",
-        "Je voudrais dormir – Jeanne Cherhal",
-        "L'autre bout du monde – Emily Loizeau"
+        "Respire – Mickey 3D",
+        "T'es beau – Pauline Croze"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -160,9 +160,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "La superbe – Benjamin Biolay",
-        "Deux pieds – Thomas Fersen",
-        "À la faveur de l'automne – Tété",
+        "Toi + Moi – Grégoire",
+        "Ulysse – Ridan",
+        "Fleur De Saison – Émilie Simon",
         "J'aime plus Paris – Thomas Dutronc"
       ],
       "correctIndex": 3,
@@ -181,9 +181,9 @@
       "ask": "title",
       "options": [
         "En apesanteur – Calogero",
-        "Est-ce que tu aimes ? – Arthur H",
-        "Bien mérité – Clarika",
-        "Les embouteillages – Sanseverino"
+        "Comme Elle Est Belle – Cyril Mokaiesh",
+        "Parce qu'on vient de loin – Corneille",
+        "Tout le bonheur du monde – Sinsemilia"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -200,10 +200,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "À la faveur de l'automne – Tété",
-        "La superbe – Benjamin Biolay",
+        "Mademoiselle Juliette – Alizée",
+        "Aux arbres citoyens – Yannick Noah",
         "Qui de nous deux – -M-",
-        "Jardin d'hiver – Keren Ann"
+        "Tu trouveras – Natasha St-Pier"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

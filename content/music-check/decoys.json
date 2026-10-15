@@ -1,8 +1,38 @@
 {
+ "(Do the) Spanish Hustle – Fatback Band": {
+  "id": "1734024797",
+  "artist": "Fatback Band",
+  "title": "Spanish Hustle",
+  "checkedAt": "2026-10-15"
+ },
+ "(Everything I Do) I Do It For You – Bryan Adams": {
+  "id": "1182159",
+  "artist": "Bryan Adams",
+  "title": "(Everything I Do) I Do It For You",
+  "checkedAt": "2026-10-15"
+ },
+ "#thatPOWER – will.i.am": {
+  "id": "72787799",
+  "artist": "will.i.am",
+  "title": "#thatPOWER",
+  "checkedAt": "2026-10-15"
+ },
  "19 – Paul Hardcastle": {
   "id": "1787615147",
   "artist": "Paul Hardcastle",
   "title": "19",
+  "checkedAt": "2026-10-15"
+ },
+ "1901 – Phoenix": {
+  "id": "3026048721",
+  "artist": "Phoenix",
+  "title": "1901",
+  "checkedAt": "2026-10-15"
+ },
+ "1979 – The Smashing Pumpkins": {
+  "id": "68976286",
+  "artist": "The Smashing Pumpkins",
+  "title": "1979",
   "checkedAt": "2026-10-15"
  },
  "2 Times – Ann Lee": {
@@ -11,16 +41,82 @@
   "title": "2 Times (Original)",
   "checkedAt": "2026-10-15"
  },
+ "2 Wicky – Hooverphonic": {
+  "id": "10349324",
+  "artist": "Hooverphonic",
+  "title": "2 Wicky",
+  "checkedAt": "2026-10-15"
+ },
+ "50 Ways to Leave Your Lover – Paul Simon": {
+  "id": "6581143",
+  "artist": "Paul Simon",
+  "title": "50 Ways to Leave Your Lover",
+  "checkedAt": "2026-10-15"
+ },
+ "6.24 – Danger": {
+  "id": "128000467",
+  "artist": "Danger",
+  "title": "6.24",
+  "checkedAt": "2026-10-15"
+ },
+ "777-9311 – The Time": {
+  "id": "3929331",
+  "artist": "The Time",
+  "title": "777-9311",
+  "checkedAt": "2026-10-15"
+ },
  "91 Unda – Disiz": {
   "id": "2293458",
   "artist": "disiz",
   "title": "91 Unda",
   "checkedAt": "2026-10-15"
  },
+ "9Pm (Till I Come) – ATB": {
+  "id": "61639624",
+  "artist": "ATB",
+  "title": "9Pm (Till I Come)",
+  "checkedAt": "2026-10-15"
+ },
  "À bicyclette – Yves Montand": {
   "id": "2296224",
   "artist": "Yves Montand",
   "title": "À bicyclette",
+  "checkedAt": "2026-10-15"
+ },
+ "A chaque jour suffit sa peine – Nessbeal": {
+  "id": "6270616",
+  "artist": "Nessbeal",
+  "title": "A chaque jour suffit sa peine",
+  "checkedAt": "2026-10-15"
+ },
+ "A Forest – The Cure": {
+  "id": "2498167",
+  "artist": "The Cure",
+  "title": "A Forest",
+  "checkedAt": "2026-10-15"
+ },
+ "A Good Song Never Dies – Saint Motel": {
+  "id": "900576682",
+  "artist": "Saint Motel",
+  "title": "A Good Song Never Dies",
+  "checkedAt": "2026-10-15"
+ },
+ "A grand love theme – Kid Loco": {
+  "id": "4254482",
+  "artist": "Kid Loco",
+  "title": "A grand love theme",
+  "checkedAt": "2026-10-15"
+ },
+ "A Horse with No Name – America": {
+  "id": "727720",
+  "artist": "America",
+  "title": "A Horse with No Name",
+  "checkedAt": "2026-10-15"
+ },
+ "A l'international – TAL": {
+  "id": "69249408",
+  "artist": "TAL",
+  "title": "A l'international",
   "checkedAt": "2026-10-15"
  },
  "À la faveur de l'automne – Tété": {
@@ -41,6 +137,30 @@
   "title": "A Lover's Holiday (Single Version)",
   "checkedAt": "2026-10-15"
  },
+ "A New Error – Moderat": {
+  "id": "486399342",
+  "artist": "Moderat",
+  "title": "A New Error",
+  "checkedAt": "2026-10-15"
+ },
+ "A quoi bon sert – kamelancien": {
+  "id": "3065743",
+  "artist": "kamelancien",
+  "title": "A quoi bon sert",
+  "checkedAt": "2026-10-15"
+ },
+ "A Real Hero – College": {
+  "id": "5092738",
+  "artist": "College",
+  "title": "A Real Hero",
+  "checkedAt": "2026-10-15"
+ },
+ "A Tout Moment La Rue – Eiffel": {
+  "id": "4107589",
+  "artist": "Eiffel",
+  "title": "A Tout Moment La Rue",
+  "checkedAt": "2026-10-15"
+ },
  "À tout moment la rue – Eiffel": {
   "id": "4107589",
   "artist": "Eiffel",
@@ -51,6 +171,36 @@
   "id": "109300764",
   "artist": "Procol Harum",
   "title": "A Whiter Shade of Pale (2007 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "ABC – The Jackson 5": {
+  "id": "920082",
+  "artist": "Jackson 5",
+  "title": "ABC",
+  "checkedAt": "2026-10-15"
+ },
+ "About You – The 1975": {
+  "id": "3631973792",
+  "artist": "The 1975",
+  "title": "About You",
+  "checkedAt": "2026-10-15"
+ },
+ "Act Like You Know – Fat Larry's Band": {
+  "id": "68686011",
+  "artist": "Fat Larry's Band",
+  "title": "Act Like You Know",
+  "checkedAt": "2026-10-15"
+ },
+ "Addicted To Love – Robert Palmer": {
+  "id": "2461767",
+  "artist": "Robert Palmer",
+  "title": "Addicted To Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Afro Trap Pt. 4 (Fais le mouv) – MHD": {
+  "id": "122927590",
+  "artist": "MHD",
+  "title": "Afro Trap Pt. 4 (Fais le mouv)",
   "checkedAt": "2026-10-15"
  },
  "Ai se eu te pego – Michel Teló": {
@@ -65,14 +215,50 @@
   "title": "Aïcha (Version Mixte)",
   "checkedAt": "2026-10-15"
  },
+ "Ain't Gonna Hurt Nobody – Kid 'n Play": {
+  "id": "3245593021",
+  "artist": "Kid 'n Play",
+  "title": "Ain't Gonna Hurt Nobody",
+  "checkedAt": "2026-10-15"
+ },
  "Ain't No Half-Steppin' – Big Daddy Kane": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ain't No Rest For The Wicked – Cage The Elephant": {
+  "id": "1280074172",
+  "artist": "Cage The Elephant",
+  "title": "Ain't No Rest For The Wicked",
+  "checkedAt": "2026-10-15"
+ },
+ "Ain't No Stoppin' Us Now – McFadden & Whitehead": {
+  "id": "72089252",
+  "artist": "Mcfadden & Whitehead",
+  "title": "Ain't No Stoppin' Us Now",
+  "checkedAt": "2026-10-15"
+ },
+ "Ain't No Sunshine – Bill Withers": {
+  "id": "2312047",
+  "artist": "Bill Withers",
+  "title": "Ain't No Sunshine",
   "checkedAt": "2026-10-15"
  },
  "Ain't Nobody – Felix Jaehn": {
   "id": "95978792",
   "artist": "Felix Jaehn",
   "title": "Ain't Nobody (Loves Me Better)",
+  "checkedAt": "2026-10-15"
+ },
+ "Ainsi soit-il – Louis Chedid": {
+  "id": "606080",
+  "artist": "Louis Chedid",
+  "title": "Ainsi soit-il",
+  "checkedAt": "2026-10-15"
+ },
+ "Al-Naafyish (The Soul) (It's Time) – Hashim": {
+  "id": "11691318",
+  "artist": "Hashim",
+  "title": "Al-Naafyish (The Soul) (It's Time)",
   "checkedAt": "2026-10-15"
  },
  "Alexandrie Alexandra – Claude François": {
@@ -87,10 +273,58 @@
   "title": "Aline",
   "checkedAt": "2026-10-15"
  },
+ "Alive – Krewella": {
+  "id": "38019911",
+  "artist": "Krewella",
+  "title": "Alive",
+  "checkedAt": "2026-10-15"
+ },
  "Alive – Mondotek": {
   "id": "7417812",
   "artist": "Mondotek",
   "title": "Alive (Vinyl Lickers Short Cut)",
+  "checkedAt": "2026-10-15"
+ },
+ "Alive – Pearl Jam": {
+  "id": "7675130",
+  "artist": "Pearl Jam",
+  "title": "Alive",
+  "checkedAt": "2026-10-15"
+ },
+ "All Along the Watchtower – Jimi Hendrix": {
+  "id": "4952889",
+  "artist": "Jimi Hendrix",
+  "title": "All Along the Watchtower",
+  "checkedAt": "2026-10-15"
+ },
+ "All For You – Dean Lewis": {
+  "id": "1988499887",
+  "artist": "Dean Lewis",
+  "title": "All For You",
+  "checkedAt": "2026-10-15"
+ },
+ "All Good – De La Soul": {
+  "id": "368705221",
+  "artist": "De La Soul",
+  "title": "All Good",
+  "checkedAt": "2026-10-15"
+ },
+ "All I Wanna Do – Sheryl Crow": {
+  "id": "922014",
+  "artist": "Sheryl Crow",
+  "title": "All I Wanna Do",
+  "checkedAt": "2026-10-15"
+ },
+ "All I Want for Christmas Is You – Mariah Carey": {
+  "id": "62710442",
+  "artist": "Mariah Carey",
+  "title": "All I Want for Christmas Is You",
+  "checkedAt": "2026-10-15"
+ },
+ "All Night Long (All Night) – Lionel Richie": {
+  "id": "920062",
+  "artist": "Lionel Richie",
+  "title": "All Night Long (All Night)",
   "checkedAt": "2026-10-15"
  },
  "All of Me – John Legend": {
@@ -105,10 +339,28 @@
   "title": "All Right Now",
   "checkedAt": "2026-10-15"
  },
+ "All Stars – Martin Solveig": {
+  "id": "373219601",
+  "artist": "Martin Solveig",
+  "title": "All Stars",
+  "checkedAt": "2026-10-15"
+ },
+ "All That She Wants – Ace of Base": {
+  "id": "94676692",
+  "artist": "Ace of Base",
+  "title": "All That She Wants",
+  "checkedAt": "2026-10-15"
+ },
  "All The Rain – Charlotte Gainsbourg": {
   "id": "623348922",
   "artist": "Charlotte Gainsbourg",
   "title": "All The Rain",
+  "checkedAt": "2026-10-15"
+ },
+ "All the Young Dudes – Mott the Hoople": {
+  "id": "13149413",
+  "artist": "Mott the Hoople",
+  "title": "All the Young Dudes",
   "checkedAt": "2026-10-15"
  },
  "Alone – Marshmello": {
@@ -123,6 +375,12 @@
   "title": "Alright",
   "checkedAt": "2026-10-15"
  },
+ "Alter ego – Jean-Louis Aubert": {
+  "id": "3088341",
+  "artist": "Jean-Louis Aubert",
+  "title": "Alter ego",
+  "checkedAt": "2026-10-15"
+ },
  "Altitude – Møme": {
   "id": "134527360",
   "artist": "Møme",
@@ -135,9 +393,21 @@
   "title": "Always and Forever (Single Version)",
   "checkedAt": "2026-10-15"
  },
+ "Am I Wrong – Etienne de Crécy": {
+  "id": "2553669",
+  "artist": "Etienne de Crécy",
+  "title": "Am I Wrong",
+  "checkedAt": "2026-10-15"
+ },
  "Am I Wrong – Étienne de Crécy": {
   "id": "2553669",
   "artist": "Etienne de Crécy",
+  "title": "Am I Wrong",
+  "checkedAt": "2026-10-15"
+ },
+ "Am I Wrong – Nico & Vinz": {
+  "id": "86646433",
+  "artist": "Nico & Vinz",
   "title": "Am I Wrong",
   "checkedAt": "2026-10-15"
  },
@@ -147,16 +417,64 @@
   "title": "America",
   "checkedAt": "2026-10-15"
  },
+ "American Jesus – Bad Religion": {
+  "id": "378129111",
+  "artist": "Bad Religion",
+  "title": "American Jesus",
+  "checkedAt": "2026-10-15"
+ },
  "American Pie – Don McLean": {
   "id": "3156285",
   "artist": "Don McLean",
   "title": "American Pie",
   "checkedAt": "2026-10-15"
  },
+ "Amigos Con Derechos – Reik": {
+  "id": "682602682",
+  "artist": "Reik",
+  "title": "Amigos Con Derechos",
+  "checkedAt": "2026-10-15"
+ },
+ "Amor y dolor – Carlos Baute": {
+  "id": "126848295",
+  "artist": "Carlos Baute",
+  "title": "Amor y dolor",
+  "checkedAt": "2026-10-15"
+ },
+ "Amsterdam – Jacques Brel": {
+  "id": "659532922",
+  "artist": "Jacques Brel",
+  "title": "Amsterdam",
+  "checkedAt": "2026-10-15"
+ },
+ "Ana's Song (Open Fire) – Silverchair": {
+  "id": "858629",
+  "artist": "Silverchair",
+  "title": "Ana's Song (Open Fire)",
+  "checkedAt": "2026-10-15"
+ },
+ "Anastasia – Slash": {
+  "id": "28123001",
+  "artist": "Slash",
+  "title": "Anastasia",
+  "checkedAt": "2026-10-15"
+ },
  "Andalouse – Kendji Girac": {
   "id": "98356864",
   "artist": "Kendji Girac",
   "title": "Andalouse",
+  "checkedAt": "2026-10-15"
+ },
+ "Angel – Massive Attack": {
+  "id": "3129746",
+  "artist": "Massive Attack",
+  "title": "Angel",
+  "checkedAt": "2026-10-15"
+ },
+ "Another Brick in the Wall, Pt. 2 – Pink Floyd": {
+  "id": "116914094",
+  "artist": "Pink Floyd",
+  "title": "Another Brick in the Wall, Pt. 2",
   "checkedAt": "2026-10-15"
  },
  "Another Day – Whigfield": {
@@ -189,6 +507,12 @@
   "title": "Anywhere",
   "checkedAt": "2026-10-15"
  },
+ "Apologize – OneRepublic": {
+  "id": "916829",
+  "artist": "OneRepublic",
+  "title": "Apologize",
+  "checkedAt": "2026-10-15"
+ },
  "Are You Gonna Be My Girl – Jet": {
   "id": "1148692172",
   "artist": "Jet",
@@ -201,10 +525,28 @@
   "title": "Are You With Me",
   "checkedAt": "2026-10-15"
  },
+ "Around the Bend – The Asteroids Galaxy Tour": {
+  "id": "106938422",
+  "artist": "The Asteroids Galaxy Tour",
+  "title": "Around the Bend",
+  "checkedAt": "2026-10-15"
+ },
+ "Arrête-ca – Mafia Trece": {
+  "id": "895716",
+  "artist": "Mafia Trece",
+  "title": "Arrête-ca",
+  "checkedAt": "2026-10-15"
+ },
  "Art de rue – Fonky Family": {
   "id": "367489141",
   "artist": "Fonky Family",
   "title": "Art de rue (A cappella)",
+  "checkedAt": "2026-10-15"
+ },
+ "As – Stevie Wonder": {
+  "id": "676011722",
+  "artist": "Stevie Wonder",
+  "title": "As",
   "checkedAt": "2026-10-15"
  },
  "Aserejé – Las Ketchup": {
@@ -229,6 +571,16 @@
   "title": "Au pays des merveilles de Juliet",
   "checkedAt": "2026-10-15"
  },
+ "Au summum – Fonky Family": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Aux arbres citoyens – Yannick Noah": {
+  "id": "365234",
+  "artist": "Yannick Noah",
+  "title": "Aux arbres citoyens",
+  "checkedAt": "2026-10-15"
+ },
  "Avec le temps – Léo Ferré": {
   "id": "70335739",
   "artist": "Léo Ferré",
@@ -239,6 +591,18 @@
   "id": "3260573431",
   "artist": "Louane",
   "title": "Avenir",
+  "checkedAt": "2026-10-15"
+ },
+ "Azukita – Steve Aoki": {
+  "id": "451060672",
+  "artist": "Steve Aoki",
+  "title": "Azukita",
+  "checkedAt": "2026-10-15"
+ },
+ "Baba O'Riley – The Who": {
+  "id": "2121805",
+  "artist": "The Who",
+  "title": "Baba O'Riley",
   "checkedAt": "2026-10-15"
  },
  "Baby Baby – Corona": {
@@ -253,8 +617,50 @@
   "title": "Baby I'm Yours",
   "checkedAt": "2026-10-15"
  },
+ "Baby Jane – Rod Stewart": {
+  "id": "2550611",
+  "artist": "Rod Stewart",
+  "title": "Baby Jane (2008 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Back At One – Brian McKnight": {
+  "id": "2173612",
+  "artist": "Brian McKnight",
+  "title": "Back At One",
+  "checkedAt": "2026-10-15"
+ },
  "Back for Good – Take That": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Back in the Night – Dr. Feelgood": {
+  "id": "3142764",
+  "artist": "Dr. Feelgood",
+  "title": "Back in the Night",
+  "checkedAt": "2026-10-15"
+ },
+ "Back to Basics – Alex Gopher": {
+  "id": "120533682",
+  "artist": "Alex Gopher",
+  "title": "Back to Basics",
+  "checkedAt": "2026-10-15"
+ },
+ "Bad boy – Marwa Loud": {
+  "id": "453659072",
+  "artist": "Marwa Loud",
+  "title": "Bad boy",
+  "checkedAt": "2026-10-15"
+ },
+ "Bad Boy – Marwa Loud": {
+  "id": "453659072",
+  "artist": "Marwa Loud",
+  "title": "Bad boy",
+  "checkedAt": "2026-10-15"
+ },
+ "Bad Boys de Marseille – Akhenaton": {
+  "id": "3134123",
+  "artist": "Akhenaton",
+  "title": "Bad Boys de Marseille",
   "checkedAt": "2026-10-15"
  },
  "Bad Kingdom – Moderat": {
@@ -275,10 +681,22 @@
   "title": "Bailando (Spanish Version)",
   "checkedAt": "2026-10-15"
  },
+ "Bailar – Deorro": {
+  "id": "123373232",
+  "artist": "Deorro",
+  "title": "Bailar",
+  "checkedAt": "2026-10-15"
+ },
  "Baker Street – Gerry Rafferty": {
   "id": "3169189",
   "artist": "Gerry Rafferty",
   "title": "Baker Street",
+  "checkedAt": "2026-10-15"
+ },
+ "Ballade à deux – Tunisiano": {
+  "id": "2256618287",
+  "artist": "Tunisiano",
+  "title": "Ballade à deux",
   "checkedAt": "2026-10-15"
  },
  "Ballroom Blitz – Sweet": {
@@ -293,6 +711,12 @@
   "title": "Bamboléo",
   "checkedAt": "2026-10-15"
  },
+ "Bang Zoom (Let's Go-Go) – The Real Roxanne": {
+  "id": "85144532",
+  "artist": "The Real Roxanne",
+  "title": "Bang Zoom (Let's Go-Go)",
+  "checkedAt": "2026-10-15"
+ },
  "Banlieusards – Kery James": {
   "id": "365936531",
   "artist": "Kery James",
@@ -305,14 +729,56 @@
   "title": "Banquet",
   "checkedAt": "2026-10-15"
  },
+ "Barbie Girl – Aqua": {
+  "id": "1115044",
+  "artist": "Aqua",
+  "title": "Barbie Girl",
+  "checkedAt": "2026-10-15"
+ },
+ "Bazardée – KeBlack": {
+  "id": "136127850",
+  "artist": "KeBlack",
+  "title": "Bazardée",
+  "checkedAt": "2026-10-15"
+ },
+ "Be Mine – Ofenbach": {
+  "id": "136802580",
+  "artist": "Ofenbach",
+  "title": "Be Mine",
+  "checkedAt": "2026-10-15"
+ },
  "Beautiful – Christina Aguilera": {
   "id": "967334",
   "artist": "Christina Aguilera",
   "title": "Beautiful",
   "checkedAt": "2026-10-15"
  },
+ "Because the Night – Co.Ro.": {
+  "id": "84624249",
+  "artist": "Co.Ro.",
+  "title": "Because the Night",
+  "checkedAt": "2026-10-15"
+ },
  "Bella – Maître Gims": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Bella Ciao – Naestro": {
+  "id": "571858272",
+  "artist": "Naestro",
+  "title": "Bella Ciao",
+  "checkedAt": "2026-10-15"
+ },
+ "Belong Together – Mark Ambor": {
+  "id": "2676462772",
+  "artist": "Mark Ambor",
+  "title": "Belong Together",
+  "checkedAt": "2026-10-15"
+ },
+ "Belsunce Breakdown – Bouga": {
+  "id": "3747691",
+  "artist": "Bouga",
+  "title": "Belsunce Breakdown",
   "checkedAt": "2026-10-15"
  },
  "Best of My Love – The Emotions": {
@@ -335,10 +801,42 @@
   "title": "Bien Mérité",
   "checkedAt": "2026-10-15"
  },
+ "Bien Mérité – Clarika": {
+  "id": "7405454",
+  "artist": "Clarika",
+  "title": "Bien Mérité",
+  "checkedAt": "2026-10-15"
+ },
+ "Bienvenue – Pit Baccardi": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Bienvenue à Raggasonic – Raggasonic": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Bienvenue dans la Secte – La secte phonétik": {
+  "id": "4727551",
+  "artist": "La secte phonétik",
+  "title": "Bienvenue dans la Secte",
+  "checkedAt": "2026-10-15"
+ },
+ "Big Day – Tahiti 80": {
+  "id": "2286079",
+  "artist": "Tahiti 80",
+  "title": "Big Day",
+  "checkedAt": "2026-10-15"
+ },
  "Big in Japan – Alphaville": {
   "id": "2223021177",
   "artist": "Alphaville",
   "title": "Big in Japan (Bassroque Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Binta – Alonzo": {
+  "id": "125089724",
+  "artist": "Alonzo",
+  "title": "Binta",
   "checkedAt": "2026-10-15"
  },
  "Bitter Sweet Symphony – The Verve": {
@@ -353,10 +851,28 @@
   "title": "Black",
   "checkedAt": "2026-10-15"
  },
+ "Black Betty – Ram Jam": {
+  "id": "550518",
+  "artist": "Ram Jam",
+  "title": "Black Betty",
+  "checkedAt": "2026-10-15"
+ },
  "Black Hole Sun – Soundgarden": {
   "id": "78631539",
   "artist": "Soundgarden",
   "title": "Black Hole Sun",
+  "checkedAt": "2026-10-15"
+ },
+ "Black Out Days (Sped Up) – PHANTOGRAM": {
+  "id": "1768242477",
+  "artist": "PHANTOGRAM",
+  "title": "Black Out Days (Sped Up)",
+  "checkedAt": "2026-10-15"
+ },
+ "Blame It on the Boogie – The Jacksons": {
+  "id": "72208034",
+  "artist": "The Jacksons",
+  "title": "Blame It on the Boogie",
   "checkedAt": "2026-10-15"
  },
  "Bleeding Love – Leona Lewis": {
@@ -365,14 +881,44 @@
   "title": "Bleeding Love",
   "checkedAt": "2026-10-15"
  },
+ "Blind Vision – Blancmange": {
+  "id": "546841542",
+  "artist": "Blancmange",
+  "title": "Blind Vision",
+  "checkedAt": "2026-10-15"
+ },
  "Blue (Da Ba Dee) – Eiffel 65": {
   "id": "89629797",
   "artist": "Eiffel 65",
   "title": "Blue (Da Ba Dee) (Video Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Blue (Da Ba Dee) (DJ Ponte Ice Pop Radio) – Eiffel 65": {
+  "id": "89629717",
+  "artist": "Eiffel 65",
+  "title": "Blue (Da Ba Dee) (DJ Ponte Ice Pop Radio)",
+  "checkedAt": "2026-10-15"
+ },
+ "Bohemian Like You – The Dandy Warhols": {
+  "id": "2126030457",
+  "artist": "The Dandy Warhols",
+  "title": "Bohemian Like You",
+  "checkedAt": "2026-10-15"
+ },
  "Bois d'ébène – Les Sages Poètes de la Rue": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Bonita Applebum – A Tribe Called Quest": {
+  "id": "14878499",
+  "artist": "A Tribe Called Quest",
+  "title": "Bonita Applebum",
+  "checkedAt": "2026-10-15"
+ },
+ "Boogie Down Bronx – Man Parrish": {
+  "id": "77038135",
+  "artist": "Man Parrish",
+  "title": "Boogie Down Bronx",
   "checkedAt": "2026-10-15"
  },
  "Boogie Nights – Heatwave": {
@@ -393,6 +939,12 @@
   "title": "Boogie Wonderland (with The Emotions)",
   "checkedAt": "2026-10-15"
  },
+ "Boogie Woogie Dancin' Shoes – Claudja Barry": {
+  "id": "2537987741",
+  "artist": "Claudja Barry",
+  "title": "Boogie Woogie Dancin' Shoes (USA Version)",
+  "checkedAt": "2026-10-15"
+ },
  "Boom, Boom, Boom, Boom!! – Vengaboys": {
   "id": "1802253187",
   "artist": "Vengaboys",
@@ -411,7 +963,19 @@
   "title": "Booyah",
   "checkedAt": "2026-10-15"
  },
+ "Born in the U.S.A. – Bruce Springsteen": {
+  "id": "15586213",
+  "artist": "Bruce Springsteen",
+  "title": "Born in the U.S.A.",
+  "checkedAt": "2026-10-15"
+ },
  "Born to Be Alive – Patrick Hernandez": {
+  "id": "4077573",
+  "artist": "Patrick Hernandez",
+  "title": "Born to Be Alive (The Original)",
+  "checkedAt": "2026-10-15"
+ },
+ "Born to Be Alive (The Original) – Patrick Hernandez": {
   "id": "4077573",
   "artist": "Patrick Hernandez",
   "title": "Born to Be Alive (The Original)",
@@ -435,10 +999,58 @@
   "title": "Boys Don't Cry",
   "checkedAt": "2026-10-15"
  },
+ "Break on Through (To the Other Side) – The Doors": {
+  "id": "3614124",
+  "artist": "The Doors",
+  "title": "Break on Through (To the Other Side)",
+  "checkedAt": "2026-10-15"
+ },
+ "Breakfast in America – Supertramp": {
+  "id": "7087539",
+  "artist": "Supertramp",
+  "title": "Breakfast In America (Remastered 2010)",
+  "checkedAt": "2026-10-15"
+ },
+ "Breathe – SeeB": {
+  "id": "120737372",
+  "artist": "SeeB",
+  "title": "Breathe",
+  "checkedAt": "2026-10-15"
+ },
+ "Breathless – The Corrs": {
+  "id": "733262",
+  "artist": "The Corrs",
+  "title": "Breathless",
+  "checkedAt": "2026-10-15"
+ },
  "Buddy Holly – Weezer": {
   "id": "2542117",
   "artist": "Weezer",
   "title": "Buddy Holly",
+  "checkedAt": "2026-10-15"
+ },
+ "Buffalo Gals – Malcolm McLaren": {
+  "id": "3353695",
+  "artist": "Malcolm McLaren",
+  "title": "Buffalo Gals",
+  "checkedAt": "2026-10-15"
+ },
+ "Bullet With Butterfly Wings – The Smashing Pumpkins": {
+  "id": "62791738",
+  "artist": "The Smashing Pumpkins",
+  "title": "Bullet With Butterfly Wings (Remastered 2012)",
+  "checkedAt": "2026-10-15"
+ },
+ "Burn It to the Ground – Nickelback": {
+  "id": "2551685",
+  "artist": "Nickelback",
+  "title": "Burn It to the Ground",
+  "checkedAt": "2026-10-15"
+ },
+ "Bus Stop – The Hollies": {
+  "id": "66692455",
+  "artist": "The Hollies",
+  "title": "Bus Stop",
   "checkedAt": "2026-10-15"
  },
  "Bust a Move – Young MC": {
@@ -459,16 +1071,56 @@
   "title": "C'est extra",
   "checkedAt": "2026-10-15"
  },
+ "C'est ma cause – Faf Larage": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ca Fait Partie De Mon Passé – Fabe": {
+  "id": "1718961077",
+  "artist": "Fabe",
+  "title": "Ca Fait Partie De Mon Passé",
+  "checkedAt": "2026-10-15"
+ },
  "Ça m'énerve – Helmut Fritz": {
   "id": "2862281",
   "artist": "Helmut Fritz",
   "title": "Ça m'énerve (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Ça plane pour moi – Plastic Bertrand": {
+  "id": "12216125",
+  "artist": "Plastic Bertrand",
+  "title": "Ca Plane Pour Moi",
+  "checkedAt": "2026-10-15"
+ },
  "Café del Mar – Energy 52": {
   "id": "633930282",
   "artist": "Energy 52",
   "title": "Café Del Mar (Three 'N One Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "California – Joni Mitchell": {
+  "id": "2607672",
+  "artist": "Joni Mitchell",
+  "title": "California",
+  "checkedAt": "2026-10-15"
+ },
+ "California Dreamin' – The Mamas & The Papas": {
+  "id": "2321278",
+  "artist": "The Mamas & The Papas",
+  "title": "California Dreamin' (Single Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Californication – Red Hot Chili Peppers": {
+  "id": "725274",
+  "artist": "Red Hot Chili Peppers",
+  "title": "Californication",
+  "checkedAt": "2026-10-15"
+ },
+ "Call Me – Skyy": {
+  "id": "3783893532",
+  "artist": "Skyy",
+  "title": "Call Me",
   "checkedAt": "2026-10-15"
  },
  "Call Me Maybe – Carly Rae Jepsen": {
@@ -489,6 +1141,12 @@
   "title": "Calm Down",
   "checkedAt": "2026-10-15"
  },
+ "Calma – Pedro Capó": {
+  "id": "528929701",
+  "artist": "Pedro Capó",
+  "title": "Calma",
+  "checkedAt": "2026-10-15"
+ },
  "Cambodia – Kim Wilde": {
   "id": "2896479041",
   "artist": "Kim Wilde",
@@ -499,6 +1157,12 @@
   "id": "873321",
   "artist": "A Tribe Called Quest",
   "title": "Can I Kick It?",
+  "checkedAt": "2026-10-15"
+ },
+ "Can You Handle It – Sharon Redd": {
+  "id": "72004824",
+  "artist": "Sharon Redd",
+  "title": "Can You Handle It",
   "checkedAt": "2026-10-15"
  },
  "Can't Fight the Moonlight – LeAnn Rimes": {
@@ -513,6 +1177,12 @@
   "title": "Can't Fight This Feeling",
   "checkedAt": "2026-10-15"
  },
+ "Can't Get By Without You – The Real Thing": {
+  "id": "3785913092",
+  "artist": "The Real Thing",
+  "title": "Can't Get By Without You",
+  "checkedAt": "2026-10-15"
+ },
  "Can't Get You out of My Head – Kylie Minogue": {
   "id": "3098100",
   "artist": "Kylie Minogue",
@@ -521,6 +1191,18 @@
  },
  "Can't Stand Me Now – The Libertines": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Can't Stop – Red Hot Chili Peppers": {
+  "id": "725971",
+  "artist": "Red Hot Chili Peppers",
+  "title": "Can't Stop",
+  "checkedAt": "2026-10-15"
+ },
+ "Can't Stop Raving – Dune": {
+  "id": "3289112371",
+  "artist": "Dune",
+  "title": "Can't Stop Raving",
   "checkedAt": "2026-10-15"
  },
  "Can't Stop the Feeling! – Justin Timberlake": {
@@ -547,6 +1229,18 @@
   "title": "Caribbean Queen (No More Love on the Run)",
   "checkedAt": "2026-10-15"
  },
+ "Caribbean Queen (No More Love On the Run) – Billy Ocean": {
+  "id": "13707572",
+  "artist": "Billy Ocean",
+  "title": "Caribbean Queen (No More Love On the Run)",
+  "checkedAt": "2026-10-15"
+ },
+ "Carry on up the Morning – Babyshambles": {
+  "id": "3152315",
+  "artist": "Babyshambles",
+  "title": "Carry on up the Morning",
+  "checkedAt": "2026-10-15"
+ },
  "Carry On Wayward Son – Kansas": {
   "id": "4006895",
   "artist": "Kansas",
@@ -559,10 +1253,30 @@
   "title": "Cars",
   "checkedAt": "2026-10-15"
  },
+ "Casatchok – Rika Zaraï": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Casseurs Flowters Infinity – Gringe": {
+  "id": "1544258402",
+  "artist": "Gringe",
+  "title": "Casseurs Flowters Infinity",
+  "checkedAt": "2026-10-15"
+ },
+ "Ce soir ne sors pas – Lacrim": {
+  "id": "428974522",
+  "artist": "Lacrim",
+  "title": "Ce soir ne sors pas",
+  "checkedAt": "2026-10-15"
+ },
  "Celebrity Skin – Hole": {
   "id": "2229884",
   "artist": "Hole",
   "title": "Celebrity Skin",
+  "checkedAt": "2026-10-15"
+ },
+ "Chacun sa route – Tonton David": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Chameleon – Herbie Hancock": {
@@ -575,6 +1289,24 @@
   "id": "79587580",
   "artist": "Sia",
   "title": "Chandelier",
+  "checkedAt": "2026-10-15"
+ },
+ "Chanson sur ma drôle de vie – Véronique Sanson": {
+  "id": "800613",
+  "artist": "Véronique Sanson",
+  "title": "Chanson sur ma drôle de vie",
+  "checkedAt": "2026-10-15"
+ },
+ "Chariot – Petula Clark": {
+  "id": "550331",
+  "artist": "Petula Clark",
+  "title": "Chariot",
+  "checkedAt": "2026-10-15"
+ },
+ "Chase – Giorgio Moroder": {
+  "id": "2446608",
+  "artist": "Giorgio Moroder",
+  "title": "Chase",
   "checkedAt": "2026-10-15"
  },
  "Chasing Cars – Snow Patrol": {
@@ -611,6 +1343,10 @@
   "title": "Children",
   "checkedAt": "2026-10-15"
  },
+ "Children's Story – Slick Rick": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Chime – Orbital": {
   "id": "589674192",
   "artist": "Orbital",
@@ -627,6 +1363,12 @@
   "id": "735862",
   "artist": "The Meters",
   "title": "Cissy Strut",
+  "checkedAt": "2026-10-15"
+ },
+ "Clarity – ZEDD": {
+  "id": "60904700",
+  "artist": "ZEDD",
+  "title": "Clarity",
   "checkedAt": "2026-10-15"
  },
  "Close to You – Fun Factory": {
@@ -663,6 +1405,12 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Com'dab – DJ Kayz": {
+  "id": "1460415662",
+  "artist": "DJ Kayz",
+  "title": "Com'dab",
+  "checkedAt": "2026-10-15"
+ },
  "Come & Get It – Selena Gomez": {
   "id": "66404487",
   "artist": "Selena Gomez",
@@ -683,6 +1431,30 @@
  },
  "Comme des enfants – Cœur de pirate": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Comme Elle Est Belle – Cyril Mokaiesh": {
+  "id": "7274561",
+  "artist": "Cyril Mokaiesh",
+  "title": "Comme Elle Est Belle",
+  "checkedAt": "2026-10-15"
+ },
+ "Comme Oswald – Expression Direkt": {
+  "id": "827436552",
+  "artist": "Expression Direkt",
+  "title": "Comme Oswald",
+  "checkedAt": "2026-10-15"
+ },
+ "Comme Une Sarbacane – La Cliqua": {
+  "id": "65319480",
+  "artist": "La Cliqua",
+  "title": "Comme Une Sarbacane",
+  "checkedAt": "2026-10-15"
+ },
+ "Comment Ca – Triptik": {
+  "id": "3729900",
+  "artist": "Triptik",
+  "title": "Comment Ca",
   "checkedAt": "2026-10-15"
  },
  "Common People – Pulp": {
@@ -709,6 +1481,22 @@
   "title": "Computer Love",
   "checkedAt": "2026-10-15"
  },
+ "Conquistador – Procol Harum": {
+  "id": "2215403117",
+  "artist": "Procol Harum",
+  "title": "Conquistador (2009 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Conte de la mort subite – La Cliqua": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Controlling Crowds – Archive": {
+  "id": "476972622",
+  "artist": "Archive",
+  "title": "Controlling Crowds",
+  "checkedAt": "2026-10-15"
+ },
  "Cool for the Summer – Demi Lovato": {
   "id": null,
   "checkedAt": "2026-10-15"
@@ -719,6 +1507,24 @@
  },
  "Correspondance – Fabe": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Cotton Eye Joe – Rednex": {
+  "id": "419139102",
+  "artist": "Rednex",
+  "title": "Cotton Eye Joe",
+  "checkedAt": "2026-10-15"
+ },
+ "Cotton Eyed Joe – Cotton Eyed Joe": {
+  "id": "15976106",
+  "artist": "Cotton Eyed Joe",
+  "title": "Cotton Eyed Joe",
+  "checkedAt": "2026-10-15"
+ },
+ "Couleur menthe à l'eau – Eddy Mitchell": {
+  "id": "14268341",
+  "artist": "Eddy Mitchell",
+  "title": "Couleur menthe à l'eau",
   "checkedAt": "2026-10-15"
  },
  "Counting Stars – OneRepublic": {
@@ -739,6 +1545,18 @@
   "title": "Crockett's Theme (From \"Miami Vice II\" Soundtrack)",
   "checkedAt": "2026-10-15"
  },
+ "Crystalised – The xx": {
+  "id": "3787857",
+  "artist": "The xx",
+  "title": "Crystalised",
+  "checkedAt": "2026-10-15"
+ },
+ "Cutting Shapes – Don Diablo": {
+  "id": "452768722",
+  "artist": "Don Diablo",
+  "title": "Cutting Shapes",
+  "checkedAt": "2026-10-15"
+ },
  "D.A.N.C.E. – Justice": {
   "id": "1777967547",
   "artist": "Justice",
@@ -749,6 +1567,10 @@
   "id": "1436213772",
   "artist": "Ottawan",
   "title": "D.I.S.C.O. (Single Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Da Da Da – Trio": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Da Ya Think I'm Sexy? – Rod Stewart": {
@@ -775,6 +1597,48 @@
   "title": "Dance with Somebody (Radio Version)",
   "checkedAt": "2026-10-15"
  },
+ "Dancing with Tears in My Eyes – Ultravox": {
+  "id": "1787621717",
+  "artist": "Ultravox",
+  "title": "Dancing with Tears in My Eyes",
+  "checkedAt": "2026-10-15"
+ },
+ "Daniela – Les Chaussettes Noires": {
+  "id": "1109265",
+  "artist": "Les Chaussettes Noires",
+  "title": "Daniela (de quoi te mêles-tu Daniela)",
+  "checkedAt": "2026-10-15"
+ },
+ "Dans les yeux d'Emilie – Collectif Métissé": {
+  "id": "2376936595",
+  "artist": "Collectif Métissé",
+  "title": "Dans les yeux d'Emilie",
+  "checkedAt": "2026-10-15"
+ },
+ "Dans les yeux d'Émilie – Joe Dassin": {
+  "id": "596537",
+  "artist": "Joe Dassin",
+  "title": "Dans les yeux d'Émilie",
+  "checkedAt": "2026-10-15"
+ },
+ "Dans ma rue – Doc Gynéco": {
+  "id": "3134130",
+  "artist": "Doc Gynéco",
+  "title": "Dans ma rue (High for the Chronic !)",
+  "checkedAt": "2026-10-15"
+ },
+ "Dans Ma Rue – Féfé": {
+  "id": "6682788",
+  "artist": "Féfé",
+  "title": "Dans Ma Rue",
+  "checkedAt": "2026-10-15"
+ },
+ "Dans ma rue (High for the Chronic !) – Doc Gynéco": {
+  "id": "3134130",
+  "artist": "Doc Gynéco",
+  "title": "Dans ma rue (High for the Chronic !)",
+  "checkedAt": "2026-10-15"
+ },
  "Danse avec moi – Bijou": {
   "id": "506605072",
   "artist": "Bijou",
@@ -793,6 +1657,30 @@
   "title": "Daydream",
   "checkedAt": "2026-10-15"
  },
+ "Deceive – Trentemøller": {
+  "id": "1366518512",
+  "artist": "Trentemøller",
+  "title": "Deceive",
+  "checkedAt": "2026-10-15"
+ },
+ "Demain – Lyna Mahyem": {
+  "id": "623192612",
+  "artist": "Lyna Mahyem",
+  "title": "Demain",
+  "checkedAt": "2026-10-15"
+ },
+ "Der Kommissar – Falco": {
+  "id": "142334565",
+  "artist": "Falco",
+  "title": "Der Kommissar",
+  "checkedAt": "2026-10-15"
+ },
+ "Dès que j'te vois – Vanessa Paradis": {
+  "id": "906719",
+  "artist": "Vanessa Paradis",
+  "title": "Dès que j'te vois",
+  "checkedAt": "2026-10-15"
+ },
  "Dès que le vent soufflera – Nolwenn Leroy": {
   "id": null,
   "checkedAt": "2026-10-15"
@@ -801,10 +1689,52 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Désenchantée – Mylène Farmer": {
+  "id": "2425807",
+  "artist": "Mylène Farmer",
+  "title": "Désenchantée",
+  "checkedAt": "2026-10-15"
+ },
+ "Destination Calabria – Alex Gaudino": {
+  "id": "5406699",
+  "artist": "Alex Gaudino",
+  "title": "Destination Calabria (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
  "Deux pieds – Thomas Fersen": {
   "id": "365909671",
   "artist": "Thomas Fersen",
   "title": "Deux pieds",
+  "checkedAt": "2026-10-15"
+ },
+ "Dieu m'a donné la foi – Ophélie Winter": {
+  "id": "881109182",
+  "artist": "Ophélie Winter",
+  "title": "Dieu m'a donné la foi",
+  "checkedAt": "2026-10-15"
+ },
+ "Dígale – David Bisbal": {
+  "id": "63460906",
+  "artist": "David Bisbal",
+  "title": "Dígale",
+  "checkedAt": "2026-10-15"
+ },
+ "Dile – Raya Real": {
+  "id": "136332676",
+  "artist": "Raya Real",
+  "title": "Dile",
+  "checkedAt": "2026-10-15"
+ },
+ "Dis Quand Reviendras-Tu ? – La Grande Sophie": {
+  "id": "2797695",
+  "artist": "La Grande Sophie",
+  "title": "Dis Quand Reviendras-Tu ?",
+  "checkedAt": "2026-10-15"
+ },
+ "Disco Duck – Rick Dees": {
+  "id": "1249424012",
+  "artist": "Rick Dees And His Cast Of Idiots",
+  "title": "Disco Duck (Pt. 1 Vocal)",
   "checkedAt": "2026-10-15"
  },
  "Disco Inferno – The Trammps": {
@@ -817,6 +1747,52 @@
   "id": "3152785",
   "artist": "Culture Club",
   "title": "Do You Really Want To Hurt Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Do You Wanna Get Funky? – C+C Music Factory": {
+  "id": "13201335",
+  "artist": "C+C Music Factory",
+  "title": "Do You Wanna Get Funky?",
+  "checkedAt": "2026-10-15"
+ },
+ "Doctor Doctor – UFO": {
+  "id": "1787639967",
+  "artist": "UFO",
+  "title": "Doctor Doctor (2007 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Doctor Doctor (2007 Remaster) – UFO": {
+  "id": "1787639967",
+  "artist": "UFO",
+  "title": "Doctor Doctor (2007 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Doctor Jones – Aqua": {
+  "id": "1115046",
+  "artist": "Aqua",
+  "title": "Doctor Jones",
+  "checkedAt": "2026-10-15"
+ },
+ "Doin' Our Own Dang – Jungle Brothers": {
+  "id": "5619076",
+  "artist": "Jungle Brothers",
+  "title": "Doin' Our Own Dang",
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Cha – The Pussycat Dolls": {
+  "id": "1161005",
+  "artist": "The Pussycat Dolls",
+  "title": "Don't Cha",
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Fear the Reaper – Blue Öyster Cult": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Give Up on Us – David Soul": {
+  "id": "551939172",
+  "artist": "David Soul",
+  "title": "Don't Give up on Us",
   "checkedAt": "2026-10-15"
  },
  "Don't Go – Yazoo": {
@@ -837,10 +1813,34 @@
   "title": "Don't Leave Me This Way",
   "checkedAt": "2026-10-15"
  },
+ "Don't Let Me Be Misunderstood – Santa Esmeralda": {
+  "id": "1648027122",
+  "artist": "Santa Esmeralda",
+  "title": "Don't Let Me Be Misunderstood",
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Look Back into the Sun – The Libertines": {
+  "id": "945223",
+  "artist": "The Libertines",
+  "title": "Don't Look Back into the Sun",
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Panik – Médine": {
+  "id": "2640425",
+  "artist": "Médine",
+  "title": "Don't Panik",
+  "checkedAt": "2026-10-15"
+ },
  "Don't Stop Believin' – Journey": {
   "id": "625643",
   "artist": "Journey",
   "title": "Don't Stop Believin'",
+  "checkedAt": "2026-10-15"
+ },
+ "Don't Stop The Music – Rihanna": {
+  "id": "925108",
+  "artist": "Rihanna",
+  "title": "Don't Stop The Music",
   "checkedAt": "2026-10-15"
  },
  "Don't Stop the Music – Yarbrough & Peoples": {
@@ -855,10 +1855,34 @@
   "title": "Don't You (Forget About Me) (2001 Remastered Version)",
   "checkedAt": "2026-10-15"
  },
+ "Donne-moi le temps – Jenifer": {
+  "id": "880679",
+  "artist": "Jenifer",
+  "title": "Donne-moi le temps",
+  "checkedAt": "2026-10-15"
+ },
+ "Doo Wop (That Thing) – Lauryn Hill": {
+  "id": "15194515",
+  "artist": "Lauryn Hill",
+  "title": "Doo Wop (That Thing)",
+  "checkedAt": "2026-10-15"
+ },
+ "Double Dutch Bus – Frankie Smith": {
+  "id": "62984313",
+  "artist": "Frankie Smith",
+  "title": "Double Dutch Bus",
+  "checkedAt": "2026-10-15"
+ },
  "Douce France – Charles Trenet": {
   "id": "413669852",
   "artist": "Charles Trenet",
   "title": "Douce France (Remasterisé en 2017)",
+  "checkedAt": "2026-10-15"
+ },
+ "Drapeau noir – Lord Esperanza": {
+  "id": "2700416792",
+  "artist": "Lord Esperanza",
+  "title": "Drapeau noir",
   "checkedAt": "2026-10-15"
  },
  "Dream On – Aerosmith": {
@@ -879,6 +1903,28 @@
   "title": "Dreams (Will Come Alive)",
   "checkedAt": "2026-10-15"
  },
+ "Drive – Incubus": {
+  "id": "14876844",
+  "artist": "Incubus",
+  "title": "Drive",
+  "checkedAt": "2026-10-15"
+ },
+ "Drive Safe – Myles Smith": {
+  "id": "3811288132",
+  "artist": "Myles Smith",
+  "title": "Drive Safe",
+  "checkedAt": "2026-10-15"
+ },
+ "drivers license – Olivia Rodrigo": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Duel – Propaganda": {
+  "id": "1483921922",
+  "artist": "Propaganda",
+  "title": "Duel (Stephen Lipson's Digital Variation)",
+  "checkedAt": "2026-10-15"
+ },
  "E Samba – Junior Jack": {
   "id": "3843591",
   "artist": "Junior Jack",
@@ -888,6 +1934,12 @@
  "Easy – Commodores": {
   "id": "2177862",
   "artist": "Commodores",
+  "title": "Easy",
+  "checkedAt": "2026-10-15"
+ },
+ "Easy – Faith No More": {
+  "id": "813837",
+  "artist": "Faith No More",
   "title": "Easy",
   "checkedAt": "2026-10-15"
  },
@@ -909,10 +1961,58 @@
   "title": "Ecuador (Original Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Égaré – M. Pokora": {
+  "id": "3630231462",
+  "artist": "M. Pokora",
+  "title": "Égaré",
+  "checkedAt": "2026-10-15"
+ },
  "Ego – Willy William": {
   "id": "1532967882",
   "artist": "Willy William",
   "title": "Ego (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "El Perdón – Enrique Iglesias": {
+  "id": "140421809",
+  "artist": "Enrique Iglesias",
+  "title": "El Perdón (with Enrique Iglesias)",
+  "checkedAt": "2026-10-15"
+ },
+ "Electric Relaxation – A Tribe Called Quest": {
+  "id": "13159670",
+  "artist": "A Tribe Called Quest",
+  "title": "Electric Relaxation",
+  "checkedAt": "2026-10-15"
+ },
+ "Ella, elle l'a – Louane": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Elle a les yeux revolver – Marc Lavoine": {
+  "id": "993913",
+  "artist": "Marc Lavoine",
+  "title": "Elle a les yeux revolver",
+  "checkedAt": "2026-10-15"
+ },
+ "Elle danse seule – Yannick Noah": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Elle est d'ailleurs – Pierre Bachelet": {
+  "id": "1060044",
+  "artist": "Pierre Bachelet",
+  "title": "Elle est d'ailleurs",
+  "checkedAt": "2026-10-15"
+ },
+ "Elle m'a dit – Cali": {
+  "id": "3092237",
+  "artist": "Cali",
+  "title": "Elle m'a dit",
+  "checkedAt": "2026-10-15"
+ },
+ "Elle me contrôle – Corneille": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Elle me dit – Mika": {
@@ -921,14 +2021,42 @@
   "title": "Elle me dit",
   "checkedAt": "2026-10-15"
  },
+ "Elle me dit – MIKA": {
+  "id": "60741780",
+  "artist": "MIKA",
+  "title": "Elle me dit",
+  "checkedAt": "2026-10-15"
+ },
+ "Elle rame – Rim'K": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Embody – SebastiAn": {
   "id": "11272924",
   "artist": "SebastiAn",
   "title": "Embody",
   "checkedAt": "2026-10-15"
  },
+ "Emmenez-moi – Charles Aznavour": {
+  "id": "89572411",
+  "artist": "Charles Aznavour",
+  "title": "Emmenez-moi",
+  "checkedAt": "2026-10-15"
+ },
+ "En feu – Soprano": {
+  "id": "576857882",
+  "artist": "Soprano",
+  "title": "En feu",
+  "checkedAt": "2026-10-15"
+ },
  "En noir et blanc – Sefyu": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Encore et encore – Francis Cabrel": {
+  "id": "72064788",
+  "artist": "Francis Cabrel",
+  "title": "Encore et encore (Remastered)",
   "checkedAt": "2026-10-15"
  },
  "Encore une fois – Sash!": {
@@ -961,6 +2089,22 @@
   "title": "Enjoy the Silence",
   "checkedAt": "2026-10-15"
  },
+ "Équinoxe (Pt. 4) – Jean-Michel Jarre": {
+  "id": "3794343642",
+  "artist": "Jean-Michel Jarre",
+  "title": "Équinoxe (Pt. 4)",
+  "checkedAt": "2026-10-15"
+ },
+ "Espresso – Sabrina Carpenter": {
+  "id": "2805375282",
+  "artist": "Sabrina Carpenter",
+  "title": "Espresso (On Vacation Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Esprit mafiosi – Busta Flex": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Est-ce que tu aimes ? – Arthur H": {
   "id": "2156625",
   "artist": "Arthur H",
@@ -987,6 +2131,12 @@
   "title": "Et si ... ?",
   "checkedAt": "2026-10-15"
  },
+ "Eté 90 – Therapie TAXI": {
+  "id": "1174144532",
+  "artist": "Therapie TAXI",
+  "title": "Eté 90",
+  "checkedAt": "2026-10-15"
+ },
  "Eurotrap – Vald": {
   "id": null,
   "checkedAt": "2026-10-15"
@@ -1009,16 +2159,52 @@
   "title": "Everybody Wants To Rule The World",
   "checkedAt": "2026-10-15"
  },
+ "Everybody's Free (To Feel Good) – Rozalla": {
+  "id": "12169961",
+  "artist": "Rozalla",
+  "title": "Everybody's Free (To Feel Good)",
+  "checkedAt": "2026-10-15"
+ },
+ "Everyday Is Like Sunday – Morrissey": {
+  "id": "16927993",
+  "artist": "Morrissey",
+  "title": "Everyday Is Like Sunday (2011 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Everytime We Touch – Cascada": {
+  "id": "79976878",
+  "artist": "Cascada",
+  "title": "Everytime We Touch",
+  "checkedAt": "2026-10-15"
+ },
  "Evil – Interpol": {
   "id": "1108606082",
   "artist": "Interpol",
   "title": "Evil",
   "checkedAt": "2026-10-15"
  },
+ "Expecting to Fly – Buffalo Springfield": {
+  "id": "7967950",
+  "artist": "Buffalo Springfield",
+  "title": "Expecting to Fly",
+  "checkedAt": "2026-10-15"
+ },
  "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band": {
   "id": "767430",
   "artist": "Charles Wright & The Watts 103rd. Street Rhythm Band",
   "title": "Express Yourself (Remastered Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Eyen – Plaid": {
+  "id": "29376541",
+  "artist": "Plaid",
+  "title": "Eyen",
+  "checkedAt": "2026-10-15"
+ },
+ "Face à la mer – Calogero": {
+  "id": "132629130",
+  "artist": "Calogero",
+  "title": "Face à la mer",
   "checkedAt": "2026-10-15"
  },
  "Fade to Grey – Visage": {
@@ -1037,6 +2223,12 @@
   "id": "959183",
   "artist": "Alicia Keys",
   "title": "Fallin'",
+  "checkedAt": "2026-10-15"
+ },
+ "Fantastic Baby – BIGBANG": {
+  "id": "45616751",
+  "artist": "BIGBANG",
+  "title": "Fantastic Baby",
   "checkedAt": "2026-10-15"
  },
  "Fast Car – Jonas Blue": {
@@ -1067,6 +2259,12 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Feel the Heartbeat – The Treacherous Three": {
+  "id": "1791641327",
+  "artist": "Treacherous Three",
+  "title": "Feel the Heartbeat (Have Fun)",
+  "checkedAt": "2026-10-15"
+ },
  "Feel the Heat of the Night – Masterboy": {
   "id": "2776806",
   "artist": "Masterboy",
@@ -1077,6 +2275,12 @@
   "id": "120536274",
   "artist": "Cassius",
   "title": "Feeling for You",
+  "checkedAt": "2026-10-15"
+ },
+ "Feelings – Morris Albert": {
+  "id": "14207490",
+  "artist": "Morris Albert",
+  "title": "Feelings",
   "checkedAt": "2026-10-15"
  },
  "Femme libérée – Cookie Dingler": {
@@ -1097,6 +2301,28 @@
   "title": "Ferme les yeux et imagine toi (feat.Blacko)",
   "checkedAt": "2026-10-15"
  },
+ "FEVER DREAM – Alex Warren": {
+  "id": "3869647201",
+  "artist": "Alex Warren",
+  "title": "FEVER DREAM",
+  "checkedAt": "2026-10-15"
+ },
+ "Fight the Power – Public Enemy": {
+  "id": "89805497",
+  "artist": "Public Enemy",
+  "title": "Fight The Power (Powersax)",
+  "checkedAt": "2026-10-15"
+ },
+ "Fit Your Heart (Bonus Track) – Benjamin Diamond": {
+  "id": "996283532",
+  "artist": "Benjamin Diamond",
+  "title": "Fit Your Heart (Bonus Track)",
+  "checkedAt": "2026-10-15"
+ },
+ "Flashback – Fred Falke": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Flashdance... What a Feeling – Irene Cara": {
   "id": "62419007",
   "artist": "Irene Cara",
@@ -1113,6 +2339,30 @@
   "id": "391375302",
   "artist": "Craig Mack",
   "title": "Flava in ya ear",
+  "checkedAt": "2026-10-15"
+ },
+ "Flemme – Angèle": {
+  "id": "546875662",
+  "artist": "Angèle",
+  "title": "Flemme",
+  "checkedAt": "2026-10-15"
+ },
+ "Fleur De Saison – Émilie Simon": {
+  "id": "2541497",
+  "artist": "Émilie Simon",
+  "title": "Fleur De Saison",
+  "checkedAt": "2026-10-15"
+ },
+ "Float On – Modest Mouse": {
+  "id": "581923",
+  "artist": "Modest Mouse",
+  "title": "Float On",
+  "checkedAt": "2026-10-15"
+ },
+ "Flowers – Miley Cyrus": {
+  "id": "2105158337",
+  "artist": "Miley Cyrus",
+  "title": "Flowers",
   "checkedAt": "2026-10-15"
  },
  "Fly – Saïan Supa Crew": {
@@ -1133,10 +2383,52 @@
   "title": "Flying Without Wings",
   "checkedAt": "2026-10-15"
  },
+ "Folie arcadienne – Arcadian": {
+  "id": "145435982",
+  "artist": "Arcadian",
+  "title": "Folie arcadienne",
+  "checkedAt": "2026-10-15"
+ },
+ "Follow Me – Amanda Lear": {
+  "id": "1003804",
+  "artist": "Amanda Lear",
+  "title": "Follow Me (Single Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Footsteps in the Dark, Pts. 1 & 2 – The Isley Brothers": {
+  "id": "106026900",
+  "artist": "The Isley Brothers",
+  "title": "Footsteps in the Dark, Pts. 1 & 2",
+  "checkedAt": "2026-10-15"
+ },
+ "For an Angel – Paul van Dyk": {
+  "id": "1626487942",
+  "artist": "Paul van Dyk",
+  "title": "For An Angel (PvD Angel In Heaven Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
  "For What It's Worth – Buffalo Springfield": {
   "id": "3586842",
   "artist": "Buffalo Springfield",
   "title": "For What It's Worth",
+  "checkedAt": "2026-10-15"
+ },
+ "For Your Love – The Yardbirds": {
+  "id": "1915902",
+  "artist": "The Yardbirds",
+  "title": "For Your Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Forever Young – Alphaville": {
+  "id": "698274",
+  "artist": "Alphaville",
+  "title": "Forever Young",
+  "checkedAt": "2026-10-15"
+ },
+ "Forever Your Girl – Paula Abdul": {
+  "id": "3311527",
+  "artist": "Paula Abdul",
+  "title": "Forever Your Girl",
   "checkedAt": "2026-10-15"
  },
  "Forget Me Nots – Patrice Rushen": {
@@ -1157,8 +2449,38 @@
   "title": "Foule sentimentale",
   "checkedAt": "2026-10-15"
  },
+ "Four Seasons – Digitalism": {
+  "id": "3908240191",
+  "artist": "Digitalism",
+  "title": "Four Seasons",
+  "checkedAt": "2026-10-15"
+ },
  "Freak-A-Zoid – Midnight Star": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Freaky Like Me – Madcon": {
+  "id": "17148429",
+  "artist": "Madcon",
+  "title": "Freaky Like Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Freed From Desire – Gala": {
+  "id": "6907156",
+  "artist": "Gala",
+  "title": "Freed From Desire",
+  "checkedAt": "2026-10-15"
+ },
+ "Fresh Is the Word – Mantronix": {
+  "id": "92150836",
+  "artist": "Mantronix",
+  "title": "Fresh Is the Word",
+  "checkedAt": "2026-10-15"
+ },
+ "Friday on My Mind – The Easybeats": {
+  "id": "3761241412",
+  "artist": "The Easybeats",
+  "title": "Friday on My Mind (Remastered 2017)",
   "checkedAt": "2026-10-15"
  },
  "FRIENDS – Anne-Marie": {
@@ -1175,6 +2497,46 @@
   "id": "84364037",
   "artist": "Tone-Loc",
   "title": "Funky Cold Medina",
+  "checkedAt": "2026-10-15"
+ },
+ "Galvanize – The Chemical Brothers": {
+  "id": "3130293",
+  "artist": "The Chemical Brothers",
+  "title": "Galvanize",
+  "checkedAt": "2026-10-15"
+ },
+ "Game Over – Vitaa": {
+  "id": "72544835",
+  "artist": "Vitaa",
+  "title": "Game Over",
+  "checkedAt": "2026-10-15"
+ },
+ "Gare du Nord – Dimitri from Paris": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Gasolina – The Latino Hit Machine": {
+  "id": "10734950",
+  "artist": "The Latino Hit Machine",
+  "title": "Gasolina",
+  "checkedAt": "2026-10-15"
+ },
+ "Genesis – Justice": {
+  "id": "10284907",
+  "artist": "Justice",
+  "title": "Genesis",
+  "checkedAt": "2026-10-15"
+ },
+ "Genie In a Bottle – Christina Aguilera": {
+  "id": "15627386",
+  "artist": "Christina Aguilera",
+  "title": "Genie In a Bottle",
+  "checkedAt": "2026-10-15"
+ },
+ "Gens du pays – Gilles Vigneault": {
+  "id": "1713040637",
+  "artist": "Gilles Vigneault",
+  "title": "Gens du pays",
   "checkedAt": "2026-10-15"
  },
  "Get Down On It – Kool & the Gang": {
@@ -1201,6 +2563,18 @@
   "title": "Get It On",
   "checkedAt": "2026-10-15"
  },
+ "Get Up and Boogie (That's Right) – Silver Convention": {
+  "id": "11941237",
+  "artist": "Silver Convention",
+  "title": "Get Up and Boogie (That's Right)",
+  "checkedAt": "2026-10-15"
+ },
+ "Gettin' Out – The J. Geils Band": {
+  "id": "6617112",
+  "artist": "The J. Geils Band",
+  "title": "Gettin' Out",
+  "checkedAt": "2026-10-15"
+ },
  "Ghost – Skip The Use": {
   "id": "63564832",
   "artist": "Skip the Use",
@@ -1213,10 +2587,40 @@
   "title": "Ghostbusters (from the \"Ghostbusters\" Original Motion Picture Soundtrack)",
   "checkedAt": "2026-10-15"
  },
+ "Gimme Some – Weval": {
+  "id": "89580621",
+  "artist": "Weval",
+  "title": "Gimme Some",
+  "checkedAt": "2026-10-15"
+ },
+ "Gimme Some Lovin' – The Spencer Davis Group": {
+  "id": "6435677",
+  "artist": "The Spencer Davis Group",
+  "title": "Gimme Some Lovin' (Remastered 2010)",
+  "checkedAt": "2026-10-15"
+ },
+ "Gimme! Gimme! Gimme! – ABBA": {
+  "id": "2545088",
+  "artist": "ABBA",
+  "title": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+  "checkedAt": "2026-10-15"
+ },
+ "Girls Just Want to Have Fun – Cyndi Lauper": {
+  "id": "72194071",
+  "artist": "Cyndi Lauper",
+  "title": "Girls Just Want to Have Fun",
+  "checkedAt": "2026-10-15"
+ },
  "Give Me the Night – George Benson": {
   "id": "5094396",
   "artist": "George Benson",
   "title": "Give Me the Night",
+  "checkedAt": "2026-10-15"
+ },
+ "Gloria – Laura Branigan": {
+  "id": "675801",
+  "artist": "Laura Branigan",
+  "title": "Gloria",
   "checkedAt": "2026-10-15"
  },
  "Gloria – Them": {
@@ -1235,6 +2639,12 @@
   "id": "361116571",
   "artist": "Bush",
   "title": "Glycerine (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
+ "Go Stetsa I – Stetsasonic": {
+  "id": "1587015172",
+  "artist": "Stetsasonic",
+  "title": "Go Stetsa I",
   "checkedAt": "2026-10-15"
  },
  "Go Your Own Way – Fleetwood Mac": {
@@ -1261,6 +2671,12 @@
   "title": "Gold",
   "checkedAt": "2026-10-15"
  },
+ "golden hour – JVKE": {
+  "id": "1898901177",
+  "artist": "Jvke",
+  "title": "golden hour",
+  "checkedAt": "2026-10-15"
+ },
  "GoldenEye – Tina Turner": {
   "id": "3147390",
   "artist": "Tina Turner",
@@ -1273,10 +2689,28 @@
   "title": "Gonna Make You Sweat (Everybody Dance Now) (feat. Freedom Williams)",
   "checkedAt": "2026-10-15"
  },
+ "Gonna Make You Sweat (Everybody Dance Now) – C+C Music Factory": {
+  "id": "1065728",
+  "artist": "C+C Music Factory",
+  "title": "Gonna Make You Sweat (Everybody Dance Now) (feat. Freedom Williams)",
+  "checkedAt": "2026-10-15"
+ },
  "Good Luck, Babe! – Chappell Roan": {
   "id": "2728070371",
   "artist": "Chappell Roan",
   "title": "Good Luck, Babe!",
+  "checkedAt": "2026-10-15"
+ },
+ "Good Reason – Gracie Abrams": {
+  "id": "4154987152",
+  "artist": "Gracie Abrams",
+  "title": "Good Reason",
+  "checkedAt": "2026-10-15"
+ },
+ "Good Thing – Paul Revere & The Raiders": {
+  "id": "73137676",
+  "artist": "Paul Revere & The Raiders",
+  "title": "Good Thing",
   "checkedAt": "2026-10-15"
  },
  "Good Vibrations – The Beach Boys": {
@@ -1291,16 +2725,70 @@
   "title": "Goodbye Green Day",
   "checkedAt": "2026-10-15"
  },
+ "Goodbye My Lover – James Blunt": {
+  "id": "784331",
+  "artist": "James Blunt",
+  "title": "Goodbye My Lover",
+  "checkedAt": "2026-10-15"
+ },
  "Got to Be Real – Cheryl Lynn": {
   "id": "8014760",
   "artist": "Cheryl Lynn",
   "title": "Got to Be Real",
   "checkedAt": "2026-10-15"
  },
+ "Got to Give It Up – Marvin Gaye": {
+  "id": "4760900",
+  "artist": "Marvin Gaye",
+  "title": "Got To Give It Up (Pt. 1)",
+  "checkedAt": "2026-10-15"
+ },
+ "Göttingen – Barbara": {
+  "id": "916049",
+  "artist": "Barbara",
+  "title": "Göttingen",
+  "checkedAt": "2026-10-15"
+ },
  "Gravé dans la roche – Sniper": {
   "id": "15044236",
   "artist": "Sniper",
   "title": "Gravé dans la roche",
+  "checkedAt": "2026-10-15"
+ },
+ "Greece 2000 – Three Drives": {
+  "id": "504525632",
+  "artist": "Three Drives On A Vinyl",
+  "title": "Greece 2000",
+  "checkedAt": "2026-10-15"
+ },
+ "Green Onions – Booker T. & the M.G.'s": {
+  "id": "358680521",
+  "artist": "Booker T. & the M.G.'s",
+  "title": "Green Onions",
+  "checkedAt": "2026-10-15"
+ },
+ "Groovejet (If This Ain't Love) – Spiller": {
+  "id": "3156066381",
+  "artist": "Spiller",
+  "title": "Groovejet (If This Ain't Love)",
+  "checkedAt": "2026-10-15"
+ },
+ "GTA V - We We're Set Up – Tangerine Dream": {
+  "id": "117921498",
+  "artist": "Tangerine Dream",
+  "title": "GTA V - We We're Set Up",
+  "checkedAt": "2026-10-15"
+ },
+ "Guitar Man – Bread": {
+  "id": "675138",
+  "artist": "Bread",
+  "title": "Guitar Man",
+  "checkedAt": "2026-10-15"
+ },
+ "Gypsy Woman (She's Homeless) – Crystal Waters": {
+  "id": "907649",
+  "artist": "Crystal Waters",
+  "title": "Gypsy Woman (She's Homeless) (La Da Dee La Da Da) (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
  "Habitué – Dosseh": {
@@ -1311,6 +2799,18 @@
   "id": "1916917667",
   "artist": "Orbital",
   "title": "Halcyon (Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "HALCYON + ON + ON – Orbital": {
+  "id": "428937302",
+  "artist": "Orbital",
+  "title": "HALCYON + ON + ON",
+  "checkedAt": "2026-10-15"
+ },
+ "Hallelujah – Jeff Buckley": {
+  "id": "108733464",
+  "artist": "Jeff Buckley",
+  "title": "Hallelujah",
   "checkedAt": "2026-10-15"
  },
  "Halo – Beyoncé": {
@@ -1329,16 +2829,62 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Hang On Sloopy – The McCoys": {
+  "id": "1027618",
+  "artist": "The McCoys",
+  "title": "Hang On Sloopy",
+  "checkedAt": "2026-10-15"
+ },
  "Happy Together – The Turtles": {
   "id": "2043943",
   "artist": "The Turtles",
   "title": "Happy Together",
   "checkedAt": "2026-10-15"
  },
+ "Hardcore – Ideal J": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Hate to Say I Told You So – The Hives": {
   "id": "378310131",
   "artist": "The Hives",
   "title": "Hate To Say I Told You So",
+  "checkedAt": "2026-10-15"
+ },
+ "Have You Never Been Mellow – Olivia Newton-John": {
+  "id": "3319776",
+  "artist": "Olivia Newton-John",
+  "title": "Have You Never Been Mellow",
+  "checkedAt": "2026-10-15"
+ },
+ "Heart of Gold – Neil Young": {
+  "id": "3826694",
+  "artist": "Neil Young",
+  "title": "Heart of Gold (2009 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Heartbreaker – MSTRKRFT": {
+  "id": "2458909455",
+  "artist": "MSTRKRFT",
+  "title": "Heartbreaker",
+  "checkedAt": "2026-10-15"
+ },
+ "Heater – Samim": {
+  "id": "1917660537",
+  "artist": "Samim",
+  "title": "Heater (2019 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Heather – Conan Gray": {
+  "id": "903771442",
+  "artist": "Conan Gray",
+  "title": "Heather",
+  "checkedAt": "2026-10-15"
+ },
+ "Heaven Is a Place on Earth – Belinda Carlisle": {
+  "id": "3808827462",
+  "artist": "Belinda Carlisle",
+  "title": "Heaven Is A Place On Earth",
   "checkedAt": "2026-10-15"
  },
  "Heaven Must Be Missing an Angel – Tavares": {
@@ -1353,10 +2899,58 @@
   "title": "Heaven Must Be Missing An Angel (Pt. 1)",
   "checkedAt": "2026-10-15"
  },
+ "Hedonism (Just Because You Feel Good) – Skunk Anansie": {
+  "id": "2629609432",
+  "artist": "Skunk Anansie",
+  "title": "Hedonism (Just Because You Feel Good)",
+  "checkedAt": "2026-10-15"
+ },
+ "Hélène – Roch Voisine": {
+  "id": "602705",
+  "artist": "Roch Voisine",
+  "title": "Hélène",
+  "checkedAt": "2026-10-15"
+ },
+ "Hello Mr. Monkey – Arabesque": {
+  "id": "18228308",
+  "artist": "Arabesque",
+  "title": "Hello Mr. Monkey",
+  "checkedAt": "2026-10-15"
+ },
+ "Help Myself (Nous Ne Faisons Que Passer) – Gaëtan Roussel": {
+  "id": "5401389",
+  "artist": "Gaëtan Roussel",
+  "title": "Help Myself (Nous Ne Faisons Que Passer)",
+  "checkedAt": "2026-10-15"
+ },
+ "Helsinki – Dinos": {
+  "id": "597230672",
+  "artist": "Dinos",
+  "title": "Helsinki",
+  "checkedAt": "2026-10-15"
+ },
+ "Héra – Georgio": {
+  "id": "130900292",
+  "artist": "Georgio",
+  "title": "Héra",
+  "checkedAt": "2026-10-15"
+ },
+ "Here Comes The Hotstepper – Dirty Dance": {
+  "id": "4468059",
+  "artist": "Dirty Dance",
+  "title": "Here Comes The Hotstepper",
+  "checkedAt": "2026-10-15"
+ },
+ "Here Comes the Hotstepper – Ini Kamoze": {
+  "id": "564869292",
+  "artist": "Ini Kamoze",
+  "title": "Here Comes The Hotstepper",
+  "checkedAt": "2026-10-15"
+ },
  "Here I Go Again – Whitesnake": {
-  "id": "3158017",
+  "id": "66692979",
   "artist": "Whitesnake",
-  "title": "Here I Go Again (2008 Remaster)",
+  "title": "Here I Go Again (2011 Remaster)",
   "checkedAt": "2026-10-15"
  },
  "Hero – Mariah Carey": {
@@ -1371,6 +2965,24 @@
   "title": "Heroes (we could be)",
   "checkedAt": "2026-10-15"
  },
+ "Heroes (we could be) – Alesso": {
+  "id": "100068938",
+  "artist": "Alesso",
+  "title": "Heroes (we could be)",
+  "checkedAt": "2026-10-15"
+ },
+ "Hexagone – Renaud": {
+  "id": "128093263",
+  "artist": "Renaud",
+  "title": "Hexagone",
+  "checkedAt": "2026-10-15"
+ },
+ "Hey Boy Hey Girl – The Chemical Brothers": {
+  "id": "3135034",
+  "artist": "The Chemical Brothers",
+  "title": "Hey Boy Hey Girl",
+  "checkedAt": "2026-10-15"
+ },
  "Hey Ya! – OutKast": {
   "id": "2168996937",
   "artist": "Outkast",
@@ -1381,6 +2993,18 @@
   "id": "563683852",
   "artist": "Train",
   "title": "Hey, Soul Sister",
+  "checkedAt": "2026-10-15"
+ },
+ "Hi De Ho – K7": {
+  "id": "1584432142",
+  "artist": "K7",
+  "title": "Hi De Ho",
+  "checkedAt": "2026-10-15"
+ },
+ "Higher Ground – Stevie Wonder": {
+  "id": "2319297",
+  "artist": "Stevie Wonder",
+  "title": "Higher Ground",
   "checkedAt": "2026-10-15"
  },
  "Higher Power – Coldplay": {
@@ -1395,10 +3019,28 @@
   "title": "Higher State of Consciousness",
   "checkedAt": "2026-10-15"
  },
+ "Highway to Hell – AC/DC": {
+  "id": "92719900",
+  "artist": "AC/DC",
+  "title": "Highway to Hell",
+  "checkedAt": "2026-10-15"
+ },
+ "HIP – MAMAMOO": {
+  "id": "806276532",
+  "artist": "MAMAMOO",
+  "title": "HIP",
+  "checkedAt": "2026-10-15"
+ },
  "Hiro – Soprano": {
   "id": "354537121",
   "artist": "Soprano",
   "title": "Hiro (feat. Indila)",
+  "checkedAt": "2026-10-15"
+ },
+ "Hold the Line – Toto": {
+  "id": "1078779",
+  "artist": "Toto",
+  "title": "Hold the Line",
   "checkedAt": "2026-10-15"
  },
  "Hot n Cold – Katy Perry": {
@@ -1407,16 +3049,52 @@
   "title": "Hot N Cold",
   "checkedAt": "2026-10-15"
  },
+ "Hot Pants Road – The J.B.'s": {
+  "id": "115026512",
+  "artist": "The J.B.'s",
+  "title": "Hot Pants Road",
+  "checkedAt": "2026-10-15"
+ },
  "Hotel California – Eagles": {
   "id": "426703682",
   "artist": "Eagles",
   "title": "Hotel California (2013 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Hotel Room Service – Pitbull": {
+  "id": "3731410",
+  "artist": "Pitbull",
+  "title": "Hotel Room Service",
+  "checkedAt": "2026-10-15"
+ },
  "How Deep Is Your Love – Bee Gees": {
   "id": "350027751",
   "artist": "Bee Gees",
   "title": "How Deep Is Your Love",
+  "checkedAt": "2026-10-15"
+ },
+ "How Ya Like Me Now – Kool Moe Dee": {
+  "id": "1195396",
+  "artist": "Kool Moe Dee",
+  "title": "How Ya Like Me Now",
+  "checkedAt": "2026-10-15"
+ },
+ "Human – Rag'n'Bone Man": {
+  "id": "140869461",
+  "artist": "Rag'n'Bone Man",
+  "title": "Human",
+  "checkedAt": "2026-10-15"
+ },
+ "Hung Up – Madonna": {
+  "id": "679217",
+  "artist": "Madonna",
+  "title": "Hung Up",
+  "checkedAt": "2026-10-15"
+ },
+ "Hunger Strike – Temple of the Dog": {
+  "id": "1762614667",
+  "artist": "Temple of the Dog",
+  "title": "Hunger Strike",
   "checkedAt": "2026-10-15"
  },
  "Hungry Like the Wolf – Duran Duran": {
@@ -1431,6 +3109,30 @@
   "title": "Hush (1998 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Hymn for the Weekend – Coldplay": {
+  "id": "114811546",
+  "artist": "Coldplay",
+  "title": "Hymn for the Weekend",
+  "checkedAt": "2026-10-15"
+ },
+ "Hymne à la racaille – Le 3ème Œil": {
+  "id": "990791002",
+  "artist": "Le 3ème Œil",
+  "title": "Hymne à la racaille",
+  "checkedAt": "2026-10-15"
+ },
+ "I Ain't Worried – OneRepublic": {
+  "id": "1764283667",
+  "artist": "OneRepublic",
+  "title": "I Ain't Worried",
+  "checkedAt": "2026-10-15"
+ },
+ "I Alone – Live": {
+  "id": "2521074",
+  "artist": "Live",
+  "title": "I Alone",
+  "checkedAt": "2026-10-15"
+ },
  "I Don't Feel Like Dancin' – Scissor Sisters": {
   "id": "3168145421",
   "artist": "Scissor Sisters",
@@ -1443,10 +3145,40 @@
   "title": "I Feel for You",
   "checkedAt": "2026-10-15"
  },
+ "I Feel Love – Bronski Beat": {
+  "id": "428690162",
+  "artist": "Bronski Beat",
+  "title": "I Feel Love",
+  "checkedAt": "2026-10-15"
+ },
+ "I Feel The Love – Tritonal": {
+  "id": "131762036",
+  "artist": "Tritonal",
+  "title": "I Feel The Love",
+  "checkedAt": "2026-10-15"
+ },
+ "I Got 5 On It – Luniz": {
+  "id": "6587648",
+  "artist": "Luniz",
+  "title": "I Got 5 On It",
+  "checkedAt": "2026-10-15"
+ },
+ "I Got a Man – Positive K": {
+  "id": "4444459",
+  "artist": "Positive K",
+  "title": "I Got A Man (Re-Recorded / Remastered)",
+  "checkedAt": "2026-10-15"
+ },
  "I Just Want to Be Your Everything – Andy Gibb": {
   "id": "483554552",
   "artist": "Andy Gibb",
   "title": "I Just Want To Be Your Everything",
+  "checkedAt": "2026-10-15"
+ },
+ "I Kissed A Girl – Katy Perry": {
+  "id": "3169161",
+  "artist": "Katy Perry",
+  "title": "I Kissed A Girl",
   "checkedAt": "2026-10-15"
  },
  "I Like to Move It – Reel 2 Real": {
@@ -1479,6 +3211,24 @@
   "title": "I Want You to Want Me",
   "checkedAt": "2026-10-15"
  },
+ "I Want Your Soul – Armand van Helden": {
+  "id": "14155727",
+  "artist": "Armand van Helden",
+  "title": "I Want Your Soul",
+  "checkedAt": "2026-10-15"
+ },
+ "I Was Made for Dancin' – Leif Garrett": {
+  "id": "1195476",
+  "artist": "Leif Garrett",
+  "title": "I Was Made for Dancin'",
+  "checkedAt": "2026-10-15"
+ },
+ "I Was Made For Lovin' You – KISS": {
+  "id": "2267042",
+  "artist": "KISS",
+  "title": "I Was Made For Lovin' You",
+  "checkedAt": "2026-10-15"
+ },
  "I Wish – Skee-Lo": {
   "id": "73219987",
   "artist": "Skee-Lo",
@@ -1489,6 +3239,12 @@
   "id": "936925",
   "artist": "Freeez",
   "title": "I.O.U. (7\" Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "I'll Make Love To You – Boyz II Men": {
+  "id": "7314701",
+  "artist": "Boyz II Men",
+  "title": "I'll Make Love To You",
   "checkedAt": "2026-10-15"
  },
  "I'm a Believer – The Monkees": {
@@ -1509,16 +3265,76 @@
   "title": "I'm Every Woman",
   "checkedAt": "2026-10-15"
  },
+ "I'm In Love – Evelyn \"champagne\" King": {
+  "id": "392461342",
+  "artist": "Evelyn \"champagne\" King",
+  "title": "I'm In Love",
+  "checkedAt": "2026-10-15"
+ },
+ "I'm Leavin' U – MC Lyte": {
+  "id": "595646912",
+  "artist": "MC Lyte",
+  "title": "I'm Leavin' U",
+  "checkedAt": "2026-10-15"
+ },
  "I'm So Excited – The Pointer Sisters": {
   "id": "346967941",
   "artist": "The Pointer Sisters",
   "title": "I'm So Excited",
   "checkedAt": "2026-10-15"
  },
+ "I'm Still Standing – Elton John": {
+  "id": "1171163",
+  "artist": "Elton John",
+  "title": "I'm Still Standing",
+  "checkedAt": "2026-10-15"
+ },
+ "Idées noires – Bernard Lavilliers": {
+  "id": "2307737",
+  "artist": "Bernard Lavilliers",
+  "title": "Idées noires",
+  "checkedAt": "2026-10-15"
+ },
+ "If I Can't Have You – Yvonne Elliman": {
+  "id": "2780958001",
+  "artist": "Yvonne Elliman",
+  "title": "If I Can't Have You",
+  "checkedAt": "2026-10-15"
+ },
+ "If You Can't Give Me Love – Suzi Quatro": {
+  "id": "1787375817",
+  "artist": "Suzi Quatro",
+  "title": "If You Can't Give Me Love (2017 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "If You Can't Give Me Love (2017 Remaster) – Suzi Quatro": {
+  "id": "1787375817",
+  "artist": "Suzi Quatro",
+  "title": "If You Can't Give Me Love (2017 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "If You Leave Me Now – Chicago": {
+  "id": "3616306",
+  "artist": "Chicago",
+  "title": "If You Leave Me Now",
+  "checkedAt": "2026-10-15"
+ },
  "Il est cinq heures, Paris s'éveille – Jacques Dutronc": {
   "id": "540432",
   "artist": "Jacques Dutronc",
   "title": "Il est cinq heures, Paris s'éveille",
+  "checkedAt": "2026-10-15"
+ },
+ "Il est fou ce monde – Le Rat Luciano": {
+  "id": "896148",
+  "artist": "Le Rat Luciano",
+  "title": "Il est fou ce monde",
+  "checkedAt": "2026-10-15"
+ },
+ "Il est mort le soleil – Nicoletta": {
+  "id": "2738154801",
+  "artist": "Nicoletta",
+  "title": "Il est mort le soleil",
   "checkedAt": "2026-10-15"
  },
  "Il n'y a rien que les lâches qui freinent – Les Wampas": {
@@ -1549,10 +3365,46 @@
   "title": "Il y a trop de gens qui t'aiment",
   "checkedAt": "2026-10-15"
  },
+ "Imagine – John Lennon": {
+  "id": "7193834",
+  "artist": "John Lennon",
+  "title": "Imagine (Remastered 2010)",
+  "checkedAt": "2026-10-15"
+ },
+ "Immigrant Song – Led Zeppelin": {
+  "id": "78652582",
+  "artist": "Led Zeppelin",
+  "title": "Immigrant Song (Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Immigrant Song (Remaster) – Led Zeppelin": {
+  "id": "78652582",
+  "artist": "Led Zeppelin",
+  "title": "Immigrant Song (Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "In My Arms – Mylo": {
+  "id": "1893428457",
+  "artist": "Mylo",
+  "title": "In My Arms (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "In My Gut – The Toxic Avenger": {
+  "id": "3776188082",
+  "artist": "The Toxic Avenger",
+  "title": "In My Gut",
+  "checkedAt": "2026-10-15"
+ },
  "In the Air Tonight – Phil Collins": {
   "id": "134036212",
   "artist": "Phil Collins",
   "title": "In the Air Tonight (2015 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "In the Navy – Village People": {
+  "id": "3809085952",
+  "artist": "Village People",
+  "title": "In The Navy",
   "checkedAt": "2026-10-15"
  },
  "In The Navy – Village People": {
@@ -1561,14 +3413,44 @@
   "title": "In The Navy",
   "checkedAt": "2026-10-15"
  },
+ "In the Shadows – The Rasmus": {
+  "id": "61914316",
+  "artist": "The Rasmus",
+  "title": "In the Shadows",
+  "checkedAt": "2026-10-15"
+ },
+ "In This World – Moby": {
+  "id": "3785448172",
+  "artist": "Moby",
+  "title": "In This World",
+  "checkedAt": "2026-10-15"
+ },
  "In-A-Gadda-Da-Vida – Iron Butterfly": {
   "id": "73516758",
   "artist": "Iron Butterfly",
   "title": "In-A-Gadda-Da-Vida (2006 Remaster Full-Length)",
   "checkedAt": "2026-10-15"
  },
+ "Inachevés – Casseurs Flowters": {
+  "id": "112342328",
+  "artist": "Casseurs Flowters",
+  "title": "Inachevés",
+  "checkedAt": "2026-10-15"
+ },
  "Inch Allah – Adamo": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Informer – SNoW": {
+  "id": "3884974",
+  "artist": "SNoW",
+  "title": "Informer",
+  "checkedAt": "2026-10-15"
+ },
+ "Initials B.B. – Serge Gainsbourg": {
+  "id": "119874072",
+  "artist": "Serge Gainsbourg",
+  "title": "Initials B.B.",
   "checkedAt": "2026-10-15"
  },
  "Innerbloom – RÜFÜS DU SOL": {
@@ -1611,6 +3493,12 @@
   "title": "Is It Love",
   "checkedAt": "2026-10-15"
  },
+ "It Ain't Over 'Til It's Over – Lenny Kravitz": {
+  "id": "3151232",
+  "artist": "Lenny Kravitz",
+  "title": "It Ain't Over 'Til It's Over",
+  "checkedAt": "2026-10-15"
+ },
  "It Must Be Love – Fun Factory": {
   "id": null,
   "checkedAt": "2026-10-15"
@@ -1621,10 +3509,28 @@
   "title": "It Takes Two",
   "checkedAt": "2026-10-15"
  },
+ "It's Oh So Quiet – Björk": {
+  "id": "2629694192",
+  "artist": "Björk",
+  "title": "It's Oh So Quiet",
+  "checkedAt": "2026-10-15"
+ },
+ "It's Too Late – Carole King": {
+  "id": "119819702",
+  "artist": "Carole King",
+  "title": "It's Too Late",
+  "checkedAt": "2026-10-15"
+ },
  "Itchycoo Park – Small Faces": {
   "id": "4381839",
   "artist": "Small Faces",
   "title": "Itchycoo Park",
+  "checkedAt": "2026-10-15"
+ },
+ "J'ai les loves – Maska": {
+  "id": "1780266497",
+  "artist": "Maska",
+  "title": "J'ai les loves",
   "checkedAt": "2026-10-15"
  },
  "J'ai oublié – Luke": {
@@ -1633,10 +3539,46 @@
   "title": "J'Ai Oublié",
   "checkedAt": "2026-10-15"
  },
+ "J'ai rencontré l'homme de ma vie – Diane Dufresne": {
+  "id": "10316470",
+  "artist": "Diane Dufresne",
+  "title": "J'ai rencontré l'homme de ma vie (Version originale)",
+  "checkedAt": "2026-10-15"
+ },
+ "J'attaque du mic – X-Men": {
+  "id": "87397725",
+  "artist": "X-Men",
+  "title": "J'attaque du mic",
+  "checkedAt": "2026-10-15"
+ },
+ "J'Hésite – Salif": {
+  "id": "4254540",
+  "artist": "Salif",
+  "title": "J'Hésite",
+  "checkedAt": "2026-10-15"
+ },
  "J'pète les plombs – Disiz": {
   "id": "69911225",
   "artist": "disiz",
   "title": "J'pète les plombs (Urban Peace)",
+  "checkedAt": "2026-10-15"
+ },
+ "J'rap pour les mino(rités) – Les Sages Poètes de la Rue": {
+  "id": "142799902",
+  "artist": "Les Sages Poètes de la Rue",
+  "title": "J'rap pour les mino(rités)",
+  "checkedAt": "2026-10-15"
+ },
+ "J't'emmène au vent – Louise Attaque": {
+  "id": "983238",
+  "artist": "Louise Attaque",
+  "title": "J't'emmène au vent",
+  "checkedAt": "2026-10-15"
+ },
+ "J'traine des pieds – Olivia Ruiz": {
+  "id": "1148350",
+  "artist": "Olivia Ruiz",
+  "title": "J'traine des pieds",
   "checkedAt": "2026-10-15"
  },
  "Jam on It – Newcleus": {
@@ -1645,10 +3587,40 @@
   "title": "Jam On It",
   "checkedAt": "2026-10-15"
  },
+ "Jam On It – Newcleus": {
+  "id": "11684064",
+  "artist": "Newcleus",
+  "title": "Jam On It",
+  "checkedAt": "2026-10-15"
+ },
+ "Jamais – Ol'Kainry": {
+  "id": "71892802",
+  "artist": "Ol'Kainry",
+  "title": "Jamais",
+  "checkedAt": "2026-10-15"
+ },
+ "Janis – MC Jean Gab'1": {
+  "id": "3442464",
+  "artist": "MC Jean Gab'1",
+  "title": "Janis",
+  "checkedAt": "2026-10-15"
+ },
  "Janis – Mickey 3D": {
   "id": "3335188",
   "artist": "Mickey 3D",
   "title": "Janis",
+  "checkedAt": "2026-10-15"
+ },
+ "Japanese Boy – Aneka": {
+  "id": "6162649",
+  "artist": "Aneka",
+  "title": "Japanese Boy",
+  "checkedAt": "2026-10-15"
+ },
+ "Jardin d'hiver – Henri Salvador": {
+  "id": "3129603",
+  "artist": "Henri Salvador",
+  "title": "Jardin d'hiver",
   "checkedAt": "2026-10-15"
  },
  "Jardin d'hiver – Keren Ann": {
@@ -1657,16 +3629,32 @@
   "title": "Jardin d'hiver",
   "checkedAt": "2026-10-15"
  },
+ "Je chante la France – Rocé": {
+  "id": "5107595",
+  "artist": "Rocé",
+  "title": "Je chante la France",
+  "checkedAt": "2026-10-15"
+ },
  "Je danse le mia – IAM": {
   "id": "91045659",
   "artist": "IAM",
   "title": "Je danse le Mia",
   "checkedAt": "2026-10-15"
  },
+ "Je fais de toi mon essentiel – Emmanuel Moire": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Je l'aime à mourir – Francis Cabrel": {
   "id": "72064735",
   "artist": "Francis Cabrel",
   "title": "Je l'aime à mourir (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
+ "Je m'en vais – Vianney": {
+  "id": "612486382",
+  "artist": "Vianney",
+  "title": "Je m'en vais",
   "checkedAt": "2026-10-15"
  },
  "Je me bats – Kenza Farah": {
@@ -1687,10 +3675,44 @@
   "title": "Je n'aurai pas le temps",
   "checkedAt": "2026-10-15"
  },
+ "Je ne sais pas – Joyce Jonathan": {
+  "id": "551785942",
+  "artist": "Joyce Jonathan",
+  "title": "Je ne sais pas",
+  "checkedAt": "2026-10-15"
+ },
+ "Je pense à vous – Pierre de Maere": {
+  "id": "3921630701",
+  "artist": "Pierre de Maere",
+  "title": "Je pense à vous",
+  "checkedAt": "2026-10-15"
+ },
+ "Je reviendrai à Montréal – Robert Charlebois": {
+  "id": "1168022",
+  "artist": "Robert Charlebois",
+  "title": "Je reviendrai à Montréal",
+  "checkedAt": "2026-10-15"
+ },
  "Je reviens te chercher – Gilbert Bécaud": {
   "id": "14407038",
   "artist": "Gilbert Bécaud",
   "title": "Je reviens te chercher",
+  "checkedAt": "2026-10-15"
+ },
+ "Je suis l'Arabe – Yazid": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Je suis malade – Serge Lama": {
+  "id": "2326603",
+  "artist": "Serge Lama",
+  "title": "Je suis malade",
+  "checkedAt": "2026-10-15"
+ },
+ "Je suis un homme – Zazie": {
+  "id": "2576083",
+  "artist": "Zazie",
+  "title": "Je suis un homme",
   "checkedAt": "2026-10-15"
  },
  "Je t'aime – Lara Fabian": {
@@ -1701,6 +3723,18 @@
  },
  "Je te pardonne – Maître Gims": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Je te promets – Johnny Hallyday": {
+  "id": "2308590",
+  "artist": "Johnny Hallyday",
+  "title": "Je te promets",
+  "checkedAt": "2026-10-15"
+ },
+ "Je te promets – Zaho": {
+  "id": "2243981467",
+  "artist": "Zaho",
+  "title": "Je te promets",
   "checkedAt": "2026-10-15"
  },
  "Je vole – Louane": {
@@ -1715,10 +3749,44 @@
   "title": "Je voudrais dormir",
   "checkedAt": "2026-10-15"
  },
+ "Je zappe et je mate – Sinik": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Jealousy – Martin Solveig": {
+  "id": "3786009792",
+  "artist": "Martin Solveig",
+  "title": "Jealousy",
+  "checkedAt": "2026-10-15"
+ },
+ "Jealousy – Paris Hilton": {
+  "id": "676535",
+  "artist": "Paris Hilton",
+  "title": "Jealousy",
+  "checkedAt": "2026-10-15"
+ },
  "Jerusalema – Master KG": {
   "id": "1015793062",
   "artist": "Master KG",
   "title": "Jerusalema (feat. Nomcebo Zikode)",
+  "checkedAt": "2026-10-15"
+ },
+ "Jobi joba – Fuego de Rumba": {
+  "id": "589844",
+  "artist": "Fuego de Rumba",
+  "title": "Jobi joba",
+  "checkedAt": "2026-10-15"
+ },
+ "Joker And The Thief – Wolfmother": {
+  "id": "1182053",
+  "artist": "Wolfmother",
+  "title": "Joker And The Thief",
+  "checkedAt": "2026-10-15"
+ },
+ "Josephine – Chris Rea": {
+  "id": "661421",
+  "artist": "Chris Rea",
+  "title": "Josephine",
   "checkedAt": "2026-10-15"
  },
  "Jubel – Klingande": {
@@ -1745,6 +3813,12 @@
   "title": "Jungle Boogie",
   "checkedAt": "2026-10-15"
  },
+ "Just a Friend – Biz Markie": {
+  "id": "6627454",
+  "artist": "Biz Markie",
+  "title": "Just a Friend",
+  "checkedAt": "2026-10-15"
+ },
  "Just a Step from Heaven – Eternal": {
   "id": "3163065",
   "artist": "Eternal",
@@ -1755,6 +3829,18 @@
   "id": "16400989",
   "artist": "The S.O.S. Band",
   "title": "Just Be Good To Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Just Can’t Get Enough – Black Eyed Peas": {
+  "id": "7706014",
+  "artist": "Black Eyed Peas",
+  "title": "Just Can’t Get Enough",
+  "checkedAt": "2026-10-15"
+ },
+ "Just Need Your Love – HYPHEN HYPHEN": {
+  "id": "100063586",
+  "artist": "HYPHEN HYPHEN",
+  "title": "Just Need Your Love",
   "checkedAt": "2026-10-15"
  },
  "Karma Chameleon – Culture Club": {
@@ -1781,10 +3867,40 @@
   "title": "Killing Me Softly With His Song",
   "checkedAt": "2026-10-15"
  },
+ "Kim & Jessie – M83": {
+  "id": "105267360",
+  "artist": "M83",
+  "title": "Kim & Jessie",
+  "checkedAt": "2026-10-15"
+ },
+ "King – Olly Alexander (Years & Years)": {
+  "id": "120307594",
+  "artist": "Olly Alexander (Years & Years)",
+  "title": "King",
+  "checkedAt": "2026-10-15"
+ },
  "Kings & Queens – Ava Max": {
   "id": "899198132",
   "artist": "Ava Max",
   "title": "Kings & Queens",
+  "checkedAt": "2026-10-15"
+ },
+ "Kings And Queens – Thirty Seconds to Mars": {
+  "id": "4672193",
+  "artist": "Thirty Seconds to Mars",
+  "title": "Kings And Queens",
+  "checkedAt": "2026-10-15"
+ },
+ "Kiss – Prince": {
+  "id": "664178",
+  "artist": "Prince",
+  "title": "Kiss",
+  "checkedAt": "2026-10-15"
+ },
+ "Kiss from a Rose – Seal": {
+  "id": "730428",
+  "artist": "Seal",
+  "title": "Kiss from a Rose",
   "checkedAt": "2026-10-15"
  },
  "Knock On Wood – Amii Stewart": {
@@ -1799,10 +3915,22 @@
   "title": "Kung Fu Fighting",
   "checkedAt": "2026-10-15"
  },
+ "L.S.F. – Kasabian": {
+  "id": "598675",
+  "artist": "Kasabian",
+  "title": "L.S.F.",
+  "checkedAt": "2026-10-15"
+ },
  "L'amour à la plage – Niagara": {
   "id": "984876",
   "artist": "Niagara",
   "title": "L'amour à la plage",
+  "checkedAt": "2026-10-15"
+ },
+ "L'amour c'est comme une cigarette – Sylvie Vartan": {
+  "id": "3786102682",
+  "artist": "Sylvie Vartan",
+  "title": "L'amour c'est comme une cigarette",
   "checkedAt": "2026-10-15"
  },
  "L'amour du risque – Fonky Family": {
@@ -1841,6 +3969,18 @@
   "title": "L'école est finie (Version stéréo)",
   "checkedAt": "2026-10-15"
  },
+ "L'enfant seul – Oxmo Puccino": {
+  "id": "491549412",
+  "artist": "Oxmo Puccino",
+  "title": "L'enfant seul (Remasterisé)",
+  "checkedAt": "2026-10-15"
+ },
+ "L'etat assassine – Assassin": {
+  "id": "237392",
+  "artist": "Assassin",
+  "title": "L'etat assassine",
+  "checkedAt": "2026-10-15"
+ },
  "L'Été indien – Joe Dassin": {
   "id": "561683",
   "artist": "Joe Dassin",
@@ -1851,10 +3991,28 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "L'Obsession d'Archibald – Space Art": {
+  "id": "135320464",
+  "artist": "Space Art",
+  "title": "L'Obsession d'Archibald",
+  "checkedAt": "2026-10-15"
+ },
  "L'odyssée suit son cours – Assassin": {
   "id": "237386",
   "artist": "Assassin",
   "title": "L'odyssée suit son cours",
+  "checkedAt": "2026-10-15"
+ },
+ "L'ombre sur la mesure – La Rumeur": {
+  "id": "80610074",
+  "artist": "La Rumeur",
+  "title": "L'ombre sur la mesure",
+  "checkedAt": "2026-10-15"
+ },
+ "L'palais de justice – Freeman": {
+  "id": "3134647",
+  "artist": "Freeman",
+  "title": "L'Palais de justice",
   "checkedAt": "2026-10-15"
  },
  "La ballade des gens heureux – Gérard Lenorman": {
@@ -1887,16 +4045,40 @@
   "title": "La Bomba",
   "checkedAt": "2026-10-15"
  },
+ "Là c'est die – RIDSA": {
+  "id": "112713966",
+  "artist": "RIDSA",
+  "title": "Là c'est die",
+  "checkedAt": "2026-10-15"
+ },
  "La clairière – Dominique A": {
   "id": "441379612",
   "artist": "Dominique A",
   "title": "La clairière",
   "checkedAt": "2026-10-15"
  },
+ "La croisée – Blankass": {
+  "id": "681153",
+  "artist": "Blankass",
+  "title": "La croisée",
+  "checkedAt": "2026-10-15"
+ },
  "La Dame de Haute-Savoie – Francis Cabrel": {
   "id": "433389392",
   "artist": "Francis Cabrel",
   "title": "La dame de Haute-Savoie (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
+ "La dernière fois que je parle de toi – KIK": {
+  "id": "488038532",
+  "artist": "KIK",
+  "title": "La dernière fois que je parle de toi",
+  "checkedAt": "2026-10-15"
+ },
+ "La femme d'argent – Air": {
+  "id": "3148103",
+  "artist": "Air",
+  "title": "La femme d'argent",
   "checkedAt": "2026-10-15"
  },
  "La Grange – ZZ Top": {
@@ -1921,6 +4103,24 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "La liste – Rose": {
+  "id": "3114299",
+  "artist": "Rose",
+  "title": "La liste",
+  "checkedAt": "2026-10-15"
+ },
+ "La lune – Christophe Maé": {
+  "id": "3760706922",
+  "artist": "Christophe Maé",
+  "title": "La lune",
+  "checkedAt": "2026-10-15"
+ },
+ "La Macarena – Chansons Du Soleil": {
+  "id": "1434873",
+  "artist": "Chansons Du Soleil",
+  "title": "La Macarena",
+  "checkedAt": "2026-10-15"
+ },
  "La Maritza – Sylvie Vartan": {
   "id": "3786127122",
   "artist": "Sylvie Vartan",
@@ -1933,10 +4133,34 @@
   "title": "La mer",
   "checkedAt": "2026-10-15"
  },
+ "La mère des enfants perdus – Keny Arkana": {
+  "id": "615784782",
+  "artist": "Keny Arkana",
+  "title": "La mère des enfants perdus",
+  "checkedAt": "2026-10-15"
+ },
  "La Métamorphose De Mister Chat – Dionysos": {
   "id": "2440256",
   "artist": "Dionysos",
   "title": "La métamorphose de Mister Chat",
+  "checkedAt": "2026-10-15"
+ },
+ "La montagne – Jean Ferrat": {
+  "id": "6683159",
+  "artist": "Jean Ferrat",
+  "title": "La montagne",
+  "checkedAt": "2026-10-15"
+ },
+ "La nuit je mens – Alain Bashung": {
+  "id": "921901",
+  "artist": "Alain Bashung",
+  "title": "La nuit je mens",
+  "checkedAt": "2026-10-15"
+ },
+ "La peau – No One Is Innocent": {
+  "id": "2125285",
+  "artist": "No One Is Innocent",
+  "title": "La peau",
   "checkedAt": "2026-10-15"
  },
  "La poupée qui fait non – Michel Polnareff": {
@@ -1951,10 +4175,34 @@
   "title": "La rage",
   "checkedAt": "2026-10-15"
  },
+ "La Rock 01 – Vitalic": {
+  "id": "3546420241",
+  "artist": "Vitalic",
+  "title": "La Rock 01 (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
+ "La ruelle des morts – Hubert-Félix Thiéfaine": {
+  "id": "14107870",
+  "artist": "Hubert-Félix Thiéfaine",
+  "title": "La ruelle des morts",
+  "checkedAt": "2026-10-15"
+ },
+ "La Sécurité de l'emploi – Les Fatals Picards": {
+  "id": "794737",
+  "artist": "Les Fatals Picards",
+  "title": "La Sécurité de l'emploi",
+  "checkedAt": "2026-10-15"
+ },
  "La Seine – Vanessa Paradis et -M-": {
   "id": "794969812",
   "artist": "Vanessa Paradis",
   "title": "La Seine (Extrait de la bande originale un monstre à Paris)",
+  "checkedAt": "2026-10-15"
+ },
+ "La sentinelle – Luke": {
+  "id": "2312106",
+  "artist": "Luke",
+  "title": "La sentinelle",
   "checkedAt": "2026-10-15"
  },
  "La Sentinelle – Luke": {
@@ -1963,10 +4211,44 @@
   "title": "La sentinelle",
   "checkedAt": "2026-10-15"
  },
+ "LA SONG – RAIN": {
+  "id": "1847940067",
+  "artist": "RAIN",
+  "title": "LA SONG ",
+  "checkedAt": "2026-10-15"
+ },
+ "La Suite – 1995": {
+  "id": "16488723",
+  "artist": "1995",
+  "title": "La Suite",
+  "checkedAt": "2026-10-15"
+ },
  "La superbe – Benjamin Biolay": {
   "id": "92366738",
   "artist": "Benjamin Biolay",
   "title": "La Superbe",
+  "checkedAt": "2026-10-15"
+ },
+ "La tendresse – Bourvil": {
+  "id": "410213492",
+  "artist": "Bourvil",
+  "title": "La Tendresse",
+  "checkedAt": "2026-10-15"
+ },
+ "La tribu de Dana – Manau": {
+  "id": "2150228",
+  "artist": "Manau",
+  "title": "La tribu de Dana",
+  "checkedAt": "2026-10-15"
+ },
+ "La voie du mellow – Mellowman": {
+  "id": "368705031",
+  "artist": "Mellowman",
+  "title": "La voie du mellow",
+  "checkedAt": "2026-10-15"
+ },
+ "Lâche-moi – Starshooter": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Ladies First – Queen Latifah": {
@@ -1981,6 +4263,12 @@
   "title": "Lady (Hear Me Tonight)",
   "checkedAt": "2026-10-15"
  },
+ "Lady Bump – Penny McLean": {
+  "id": "11941210",
+  "artist": "Penny McLean",
+  "title": "Lady Bump",
+  "checkedAt": "2026-10-15"
+ },
  "Lady in Black – Uriah Heep": {
   "id": "3783168112",
   "artist": "Uriah Heep",
@@ -1993,6 +4281,12 @@
   "title": "Laisse béton (2013 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Laisse moi te dire – Mac Tyer": {
+  "id": "99550214",
+  "artist": "Mac Tyer",
+  "title": "Laisse moi te dire",
+  "checkedAt": "2026-10-15"
+ },
  "Laisse parler les gens – Dj Team": {
   "id": "3150617901",
   "artist": "Dj Team",
@@ -2003,16 +4297,48 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Laisse-les parler – Mac Tyer": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Latch – Disclosure": {
   "id": "75526535",
   "artist": "Disclosure",
   "title": "Latch",
   "checkedAt": "2026-10-15"
  },
+ "Lay Your Head Down – Keren Ann": {
+  "id": "365927921",
+  "artist": "Keren Ann",
+  "title": "Lay Your Head Down",
+  "checkedAt": "2026-10-15"
+ },
+ "Layla – Derek & The Dominos": {
+  "id": "1175612",
+  "artist": "Derek & The Dominos",
+  "title": "Layla",
+  "checkedAt": "2026-10-15"
+ },
+ "Lazy – X-Press 2": {
+  "id": "3785914052",
+  "artist": "X-Press 2",
+  "title": "Lazy",
+  "checkedAt": "2026-10-15"
+ },
  "Le Bal masqué – La Compagnie Créole": {
   "id": "13025821",
   "artist": "La Compagnie Créole",
   "title": "Le bal masqué",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Bilan – Neg'Marrons": {
+  "id": "895161",
+  "artist": "Neg'Marrons",
+  "title": "Le bilan",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Bon Son – KDD": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Le chanteur – Daniel Balavoine": {
@@ -2027,10 +4353,30 @@
   "title": "Le chanteur",
   "checkedAt": "2026-10-15"
  },
+ "Le Combat continue – Mafia K'1 Fry": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le Creux De Ta Main – Detroit": {
+  "id": "72573855",
+  "artist": "Detroit",
+  "title": "Le Creux De Ta Main",
+  "checkedAt": "2026-10-15"
+ },
+ "Le crime paie – Démocrates D": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Le Déserteur – Boris Vian": {
   "id": "2424001",
   "artist": "Boris Vian",
   "title": "Le déserteur",
+  "checkedAt": "2026-10-15"
+ },
+ "Le dîner – Bénabar": {
+  "id": "583033",
+  "artist": "Bénabar",
+  "title": "Le dîner",
   "checkedAt": "2026-10-15"
  },
  "Le Faqir – Abd Al Malik": {
@@ -2039,10 +4385,58 @@
   "title": "Le Faqir",
   "checkedAt": "2026-10-15"
  },
+ "Le fruit de mon époque – Mino": {
+  "id": "2677842",
+  "artist": "Mino",
+  "title": "Le fruit de mon époque",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Ghetto Français – Ideal J": {
+  "id": "1111413222",
+  "artist": "Ideal J",
+  "title": "Le ghetto français",
+  "checkedAt": "2026-10-15"
+ },
+ "Le jazz et la java – Claude Nougaro": {
+  "id": "1101582",
+  "artist": "Claude Nougaro",
+  "title": "Le jazz et la java",
+  "checkedAt": "2026-10-15"
+ },
+ "Le jugement – Tandem": {
+  "id": "515861702",
+  "artist": "Tandem",
+  "title": "Le jugement",
+  "checkedAt": "2026-10-15"
+ },
+ "Le lac – Julien Doré": {
+  "id": "132479808",
+  "artist": "Julien Doré",
+  "title": "Le lac",
+  "checkedAt": "2026-10-15"
+ },
  "Le Lac Majeur – Mort Shuman": {
   "id": "1118371",
   "artist": "Mort Shuman",
   "title": "Le lac majeur",
+  "checkedAt": "2026-10-15"
+ },
+ "Le loir et cher – Michel Delpech": {
+  "id": "3812307172",
+  "artist": "Michel Delpech",
+  "title": "Le Loir et Cher",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Maillot – Yanns": {
+  "id": "4057648011",
+  "artist": "Yanns",
+  "title": "Le Maillot",
+  "checkedAt": "2026-10-15"
+ },
+ "Le maton me guette – Passi": {
+  "id": "2106872977",
+  "artist": "Passi",
+  "title": "Le maton me guette",
   "checkedAt": "2026-10-15"
  },
  "Le métèque – Georges Moustaki": {
@@ -2057,8 +4451,44 @@
   "title": "Le métèque",
   "checkedAt": "2026-10-15"
  },
+ "Le Monde de demain – Suprême NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le monde est à nous – Fonky Family": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le Monde ou rien – PNL": {
+  "id": "110805984",
+  "artist": "PNL",
+  "title": "Le monde ou rien",
+  "checkedAt": "2026-10-15"
+ },
+ "Le parking des anges – Marc Lavoine": {
+  "id": "742375952",
+  "artist": "Marc Lavoine",
+  "title": "Le parking des anges",
+  "checkedAt": "2026-10-15"
+ },
  "Le Petit Bal perdu – Bourvil": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le Premier jour (Du reste de ta vie) – Étienne Daho": {
+  "id": "3456566",
+  "artist": "Étienne Daho",
+  "title": "Le Premier jour (Du reste de ta vie)",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Prix du sang – Médine": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le prochain rêve – Grand Corps Malade": {
+  "id": "4039206471",
+  "artist": "Grand Corps Malade",
+  "title": "Le prochain rêve",
   "checkedAt": "2026-10-15"
  },
  "Le reste – Clara Luciani": {
@@ -2101,10 +4531,36 @@
   "title": "Le sud",
   "checkedAt": "2026-10-15"
  },
+ "Le Sud – Nolwenn Leroy": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Le Temps D'Un Instant – Psy 4 de la Rime": {
+  "id": "66205438",
+  "artist": "Psy 4 de la Rime",
+  "title": "Le Temps D'Un Instant",
+  "checkedAt": "2026-10-15"
+ },
+ "Le temps des fleurs – Dalida": {
+  "id": "139876159",
+  "artist": "Dalida",
+  "title": "Le temps des fleurs",
+  "checkedAt": "2026-10-15"
+ },
+ "Le temps passe – Fabe": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Le Tourbillon – Jeanne Moreau": {
   "id": "2145176507",
   "artist": "Jeanne Moreau",
   "title": "Le tourbillon (Version inédite avec orchestre)",
+  "checkedAt": "2026-10-15"
+ },
+ "Le Twist du canotier – Maurice Chevalier": {
+  "id": "3601641912",
+  "artist": "Maurice Chevalier",
+  "title": "Le twist du canotier",
   "checkedAt": "2026-10-15"
  },
  "Le Vent nous portera – Noir Désir": {
@@ -2113,10 +4569,32 @@
   "title": "Le vent nous portera",
   "checkedAt": "2026-10-15"
  },
+ "Le Vent Tourne – Sens Unik": {
+  "id": "61998550",
+  "artist": "Sens Unik",
+  "title": "Le Vent Tourne",
+  "checkedAt": "2026-10-15"
+ },
+ "Le vent, le cri (Premier thème) – Ennio Morricone": {
+  "id": "836537152",
+  "artist": "Ennio Morricone",
+  "title": "Le vent, le cri (Premier thème)",
+  "checkedAt": "2026-10-15"
+ },
  "Lean On – Major Lazer": {
   "id": "113876568",
   "artist": "Major Lazer",
   "title": "Lean On",
+  "checkedAt": "2026-10-15"
+ },
+ "Lemonade – Louis Tomlinson": {
+  "id": "3806724662",
+  "artist": "Louis Tomlinson",
+  "title": "Lemonade",
+  "checkedAt": "2026-10-15"
+ },
+ "Les apparences nous mentent – Youssoupha": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Les autres – Abd al Malik": {
@@ -2125,16 +4603,36 @@
   "title": "Les Autres",
   "checkedAt": "2026-10-15"
  },
+ "Les Blancs Ne Savent Pas Danser – James Deano": {
+  "id": "515846372",
+  "artist": "James Deano",
+  "title": "Les Blancs Ne Savent Pas Danser",
+  "checkedAt": "2026-10-15"
+ },
  "Les choses simples – Jenifer": {
   "id": "2109785417",
   "artist": "Jenifer",
   "title": "Les choses simples",
   "checkedAt": "2026-10-15"
  },
+ "Les Daltons – Joe Dassin": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Les Démons de minuit – Images": {
   "id": "4108057",
   "artist": "Images",
   "title": "Les démons de minuit",
+  "checkedAt": "2026-10-15"
+ },
+ "Les disques de mon père – Youssoupha": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Les élucubrations d'Antoine – Antoine": {
+  "id": "71303352",
+  "artist": "Antoine",
+  "title": "Les élucubrations d'Antoine",
   "checkedAt": "2026-10-15"
  },
  "Les embouteillages – Sanseverino": {
@@ -2149,10 +4647,60 @@
   "title": "Les feuilles mortes",
   "checkedAt": "2026-10-15"
  },
+ "Les filles d'aujourd'hui – Joyce Jonathan": {
+  "id": "118587182",
+  "artist": "Joyce Jonathan",
+  "title": "Les filles d'aujourd'hui",
+  "checkedAt": "2026-10-15"
+ },
+ "Les Gens qui doutent – Anne Sylvestre": {
+  "id": "13312763",
+  "artist": "Anne Sylvestre",
+  "title": "Les gens qui doutent",
+  "checkedAt": "2026-10-15"
+ },
+ "Les gens qui doutent – Jeanne Cherhal": {
+  "id": "608710472",
+  "artist": "Jeanne Cherhal",
+  "title": "Les gens qui doutent",
+  "checkedAt": "2026-10-15"
+ },
+ "Les jeunes de l'univers – Rocca": {
+  "id": "2281299",
+  "artist": "Rocca",
+  "title": "Les jeunes de l'univers",
+  "checkedAt": "2026-10-15"
+ },
+ "Les lacs du Connemara – Michel Sardou": {
+  "id": "882920",
+  "artist": "Michel Sardou",
+  "title": "Les lacs du Connemara",
+  "checkedAt": "2026-10-15"
+ },
+ "Les Lacs du Connemara – x": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Les mots bleus – Christophe": {
+  "id": "3783163382",
+  "artist": "Christophe",
+  "title": "Les mots bleus",
+  "checkedAt": "2026-10-15"
+ },
  "Les Mots bleus – Christophe": {
   "id": "3783163382",
   "artist": "Christophe",
   "title": "Les mots bleus",
+  "checkedAt": "2026-10-15"
+ },
+ "Les Neiges du Kilimandjaro – Pascal Danel": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Les Parisiennes – S-Crew": {
+  "id": "75562248",
+  "artist": "S-Crew",
+  "title": "Les Parisiennes",
   "checkedAt": "2026-10-15"
  },
  "Les Petits Papiers – Régine": {
@@ -2169,16 +4717,92 @@
   "title": "Les ronds dans l'eau",
   "checkedAt": "2026-10-15"
  },
+ "Les vacances au bord de la mer – Michel Jonasz": {
+  "id": "365933821",
+  "artist": "Michel Jonasz",
+  "title": "Les vacances au bord de la mer",
+  "checkedAt": "2026-10-15"
+ },
+ "Les vieux mariés – Michel Sardou": {
+  "id": "774810472",
+  "artist": "Michel Sardou",
+  "title": "Les vieux mariés",
+  "checkedAt": "2026-10-15"
+ },
+ "Les vrais le savent – Lunatic": {
+  "id": "3373737151",
+  "artist": "Lunatic",
+  "title": "Les vrais le savent",
+  "checkedAt": "2026-10-15"
+ },
+ "Les yeux de ma mère (en concert) – Arno": {
+  "id": "355683191",
+  "artist": "Arno",
+  "title": "Les yeux de ma mère (en concert)",
+  "checkedAt": "2026-10-15"
+ },
+ "Lessons in Love – Level 42": {
+  "id": "1174675",
+  "artist": "Level 42",
+  "title": "Lessons In Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Let 'Em In – Billy Paul": {
+  "id": "16161543",
+  "artist": "Billy Paul",
+  "title": "Let 'Em In",
+  "checkedAt": "2026-10-15"
+ },
+ "Let Me Love You – DJ Snake": {
+  "id": "129632340",
+  "artist": "DJ Snake",
+  "title": "Let Me Love You",
+  "checkedAt": "2026-10-15"
+ },
+ "Let the Dream Come True – DJ BoBo": {
+  "id": "918197312",
+  "artist": "DJ BoBo",
+  "title": "Let the Dream Come True",
+  "checkedAt": "2026-10-15"
+ },
+ "Let You Love Me – Rita Ora": {
+  "id": "556352852",
+  "artist": "Rita Ora",
+  "title": "Let You Love Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Lettre à France – Michel Polnareff": {
+  "id": "1117105",
+  "artist": "Michel Polnareff",
+  "title": "Lettre à France",
+  "checkedAt": "2026-10-15"
+ },
  "Lettre à la République – Kery James": {
   "id": "16691977",
   "artist": "Kery James",
   "title": "Lettre à la République",
   "checkedAt": "2026-10-15"
  },
+ "Liberté – Karen Cheryl": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Libres comme l'air... – Réciprok": {
+  "id": "131851898",
+  "artist": "Réciprok",
+  "title": "Libres comme l'air...",
+  "checkedAt": "2026-10-15"
+ },
  "Life – Haddaway": {
   "id": "3782976022",
   "artist": "Haddaway",
   "title": "Life (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "Lifesaver – Guru": {
+  "id": "3131899",
+  "artist": "Guru",
+  "title": "Lifesaver",
   "checkedAt": "2026-10-15"
  },
  "Light Switch – Charlie Puth": {
@@ -2191,6 +4815,42 @@
   "id": "1763652627",
   "artist": "Live",
   "title": "Lightning Crashes",
+  "checkedAt": "2026-10-15"
+ },
+ "Like A Hobo – Charlie Winston": {
+  "id": "3785998772",
+  "artist": "Charlie Winston",
+  "title": "Like A Hobo",
+  "checkedAt": "2026-10-15"
+ },
+ "Lily – Pierre Perret": {
+  "id": "3487037741",
+  "artist": "Pierre Perret",
+  "title": "Lily",
+  "checkedAt": "2026-10-15"
+ },
+ "Lips Like Sugar – Echo and the Bunnymen": {
+  "id": "846543",
+  "artist": "Echo and the Bunnymen",
+  "title": "Lips Like Sugar",
+  "checkedAt": "2026-10-15"
+ },
+ "Lisztomania – Phoenix": {
+  "id": "3026048701",
+  "artist": "Phoenix",
+  "title": "Lisztomania",
+  "checkedAt": "2026-10-15"
+ },
+ "Little Feet – Apparat": {
+  "id": "4324021772",
+  "artist": "Apparat",
+  "title": "Little Feet",
+  "checkedAt": "2026-10-15"
+ },
+ "Little Fluffy Clouds – The Orb": {
+  "id": "2157805",
+  "artist": "The Orb",
+  "title": "Little Fluffy Clouds",
   "checkedAt": "2026-10-15"
  },
  "Live and Let Die – Wings": {
@@ -2209,10 +4869,64 @@
   "title": "Livin' On A Prayer",
   "checkedAt": "2026-10-15"
  },
+ "Living Next Door to Alice – Smokie": {
+  "id": "69883086",
+  "artist": "Smokie",
+  "title": "Living Next Door to Alice",
+  "checkedAt": "2026-10-15"
+ },
+ "Living on the Ceiling – Blancmange": {
+  "id": "432017662",
+  "artist": "Blancmange",
+  "title": "Living On The Ceiling",
+  "checkedAt": "2026-10-15"
+ },
+ "Locked out of Heaven – Bruno Mars": {
+  "id": "62724015",
+  "artist": "Bruno Mars",
+  "title": "Locked out of Heaven",
+  "checkedAt": "2026-10-15"
+ },
+ "Loco Enamorado – Abraham Mateo": {
+  "id": "372868531",
+  "artist": "Abraham Mateo",
+  "title": "Loco Enamorado",
+  "checkedAt": "2026-10-15"
+ },
+ "Lola's Theme – The Shapeshifters": {
+  "id": "3156196771",
+  "artist": "The Shapeshifters",
+  "title": "Lola's Theme",
+  "checkedAt": "2026-10-15"
+ },
  "Lonely – Nana": {
   "id": "390221301",
   "artist": "NANA DARKMAN",
   "title": "Lonely (2K17)",
+  "checkedAt": "2026-10-15"
+ },
+ "Long Train Runnin' – The Doobie Brothers": {
+  "id": "3616544",
+  "artist": "The Doobie Brothers",
+  "title": "Long Train Runnin'",
+  "checkedAt": "2026-10-15"
+ },
+ "Longtemps – Amir": {
+  "id": "581235412",
+  "artist": "Amir",
+  "title": "Longtemps",
+  "checkedAt": "2026-10-15"
+ },
+ "Look Who's Talking (Short) – Dr. Alban": {
+  "id": "13210221",
+  "artist": "Dr. Alban",
+  "title": "Look Who's Talking (Short)",
+  "checkedAt": "2026-10-15"
+ },
+ "Look-A-Here – Ramsey Lewis": {
+  "id": "796295782",
+  "artist": "Ramsey Lewis",
+  "title": "Look-A-Here",
   "checkedAt": "2026-10-15"
  },
  "Lose Control – Teddy Swims": {
@@ -2221,10 +4935,46 @@
   "title": "Lose Control",
   "checkedAt": "2026-10-15"
  },
+ "Loser – Beck": {
+  "id": "422033092",
+  "artist": "Beck",
+  "title": "Loser",
+  "checkedAt": "2026-10-15"
+ },
+ "Losing My Religion – R.E.M.": {
+  "id": "136334560",
+  "artist": "R.E.M.",
+  "title": "Losing My Religion",
+  "checkedAt": "2026-10-15"
+ },
+ "Lotus – Disiz": {
+  "id": "3938039831",
+  "artist": "disiz",
+  "title": "Lotus",
+  "checkedAt": "2026-10-15"
+ },
+ "Loud Places – Jamie xx": {
+  "id": "101009324",
+  "artist": "Jamie xx",
+  "title": "Loud Places",
+  "checkedAt": "2026-10-15"
+ },
  "Louie Louie – The Kingsmen": {
   "id": "1601661",
   "artist": "The Kingsmen",
   "title": "Louie Louie",
+  "checkedAt": "2026-10-15"
+ },
+ "Loungin (Who Do Ya Luv) – LL Cool J": {
+  "id": "920894",
+  "artist": "LL Cool J",
+  "title": "Loungin (Who Do Ya Luv)",
+  "checkedAt": "2026-10-15"
+ },
+ "Love and Happiness – Al Green": {
+  "id": "141688205",
+  "artist": "Al Green",
+  "title": "Love and Happiness",
   "checkedAt": "2026-10-15"
  },
  "Love Come Down – Evelyn \"Champagne\" King": {
@@ -2251,10 +5001,34 @@
   "title": "Love Is In The Air",
   "checkedAt": "2026-10-15"
  },
+ "Love Like Ghosts – Lord Huron": {
+  "id": "3309760301",
+  "artist": "Lord Huron",
+  "title": "Love Like Ghosts",
+  "checkedAt": "2026-10-15"
+ },
  "Love Me Like You Do – Ellie Goulding": {
   "id": "111780476",
   "artist": "Ellie Goulding",
   "title": "Love Me Like You Do (From \"Fifty Shades Of Grey\")",
+  "checkedAt": "2026-10-15"
+ },
+ "Love Me To Heaven – Jonas Brothers": {
+  "id": "3278141801",
+  "artist": "Jonas Brothers",
+  "title": "Love Me To Heaven",
+  "checkedAt": "2026-10-15"
+ },
+ "Love Missile F1-11 – Sigue Sigue Sputnik": {
+  "id": "3786405842",
+  "artist": "Sigue Sigue Sputnik",
+  "title": "Love Missile F1-11",
+  "checkedAt": "2026-10-15"
+ },
+ "Love Train – The O'Jays": {
+  "id": "13183903",
+  "artist": "The O'Jays",
+  "title": "Love Train",
   "checkedAt": "2026-10-15"
  },
  "Love Will Keep Us Together – Captain & Tennille": {
@@ -2273,6 +5047,30 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Ma Benz – NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ma Benz – Suprême NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ma conscience le morceau – Tunisiano": {
+  "id": "4696423",
+  "artist": "Tunisiano",
+  "title": "Ma conscience le morceau",
+  "checkedAt": "2026-10-15"
+ },
+ "Ma définition – Booba": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ma liberté de penser – Florent Pagny": {
+  "id": "983377",
+  "artist": "Florent Pagny",
+  "title": "Ma liberté de penser",
+  "checkedAt": "2026-10-15"
+ },
  "Ma philosophie – Amel Bent": {
   "id": "565420",
   "artist": "Amel Bent",
@@ -2285,10 +5083,50 @@
   "title": "Ma préférence",
   "checkedAt": "2026-10-15"
  },
+ "Ma vie – Kenza Farah": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Mad About You – Hooverphonic": {
+  "id": "850423",
+  "artist": "Hooverphonic",
+  "title": "Mad About You",
+  "checkedAt": "2026-10-15"
+ },
+ "Mademoiselle Juliette – Alizée": {
+  "id": "3636478492",
+  "artist": "Alizée",
+  "title": "Mademoiselle Juliette (Radio edit)",
+  "checkedAt": "2026-10-15"
+ },
  "Magic Fly – Space": {
   "id": "3039725731",
   "artist": "Space",
   "title": "Magic Fly",
+  "checkedAt": "2026-10-15"
+ },
+ "Main Event – RuPaul": {
+  "id": "2348493945",
+  "artist": "RuPaul",
+  "title": "Main Event",
+  "checkedAt": "2026-10-15"
+ },
+ "Main Title (I Had A Farm In Africa) – John Barry": {
+  "id": "60725001",
+  "artist": "John Barry",
+  "title": "Main Title (I Had A Farm In Africa)",
+  "checkedAt": "2026-10-15"
+ },
+ "Mais qui est la belette – Manau": {
+  "id": "907865",
+  "artist": "Manau",
+  "title": "Mais qui est la belette",
+  "checkedAt": "2026-10-15"
+ },
+ "Major Tom (Coming Home) – Peter Schilling": {
+  "id": "14683660",
+  "artist": "Peter Schilling",
+  "title": "Major Tom (Coming Home)",
   "checkedAt": "2026-10-15"
  },
  "Make a Child – Yael Naim": {
@@ -2297,10 +5135,40 @@
   "title": "Make a Child",
   "checkedAt": "2026-10-15"
  },
+ "Make It with You – Bread": {
+  "id": "675093",
+  "artist": "Bread",
+  "title": "Make It with You",
+  "checkedAt": "2026-10-15"
+ },
  "Make some sense – Christine and the Queens": {
   "id": "555962762",
   "artist": "Christine and the Queens",
   "title": "Make some sense",
+  "checkedAt": "2026-10-15"
+ },
+ "Making Moves with Puff – Craig Mack": {
+  "id": "59966621",
+  "artist": "Craig Mack",
+  "title": "Making Moves with Puff",
+  "checkedAt": "2026-10-15"
+ },
+ "Mala Vida – Mano Negra": {
+  "id": "370304431",
+  "artist": "Mano Negra",
+  "title": "Mala Vida",
+  "checkedAt": "2026-10-15"
+ },
+ "Mama – Genesis": {
+  "id": "14639826",
+  "artist": "Genesis",
+  "title": "Mama (2007 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Mama – Jonas Blue": {
+  "id": "355724441",
+  "artist": "Jonas Blue",
+  "title": "Mama",
   "checkedAt": "2026-10-15"
  },
  "Mama – Saïan Supa Crew": {
@@ -2317,10 +5185,28 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Mamma Mia – ABBA": {
+  "id": "884030",
+  "artist": "ABBA",
+  "title": "Mamma Mia",
+  "checkedAt": "2026-10-15"
+ },
+ "Mandy – Barry Manilow": {
+  "id": "548250",
+  "artist": "Barry Manilow",
+  "title": "Mandy",
+  "checkedAt": "2026-10-15"
+ },
  "Maneater – Nelly Furtado": {
   "id": "1151141",
   "artist": "Nelly Furtado",
   "title": "Maneater",
+  "checkedAt": "2026-10-15"
+ },
+ "Manhattan-Kaboul – Renaud": {
+  "id": "624630922",
+  "artist": "Renaud",
+  "title": "Manhattan-Kaboul",
   "checkedAt": "2026-10-15"
  },
  "Manu Chao – Les Wampas": {
@@ -2329,10 +5215,28 @@
   "title": "Manu Chao (Single Version)",
   "checkedAt": "2026-10-15"
  },
+ "Manureva – Alain Chamfort": {
+  "id": "3567948341",
+  "artist": "Alain Chamfort",
+  "title": "Manureva",
+  "checkedAt": "2026-10-15"
+ },
  "Maps – Yeah Yeah Yeahs": {
   "id": "417368992",
   "artist": "Yeah Yeah Yeahs",
   "title": "Maps",
+  "checkedAt": "2026-10-15"
+ },
+ "Mar de emoções – Beto Barbosa": {
+  "id": "1418810752",
+  "artist": "Beto Barbosa",
+  "title": "Mar de emoções",
+  "checkedAt": "2026-10-15"
+ },
+ "Marche – Akhenaton": {
+  "id": "95683306",
+  "artist": "Akhenaton",
+  "title": "Marche",
   "checkedAt": "2026-10-15"
  },
  "Marcia Baila – Les Rita Mitsouko": {
@@ -2347,10 +5251,52 @@
   "title": "María",
   "checkedAt": "2026-10-15"
  },
+ "Mary Jane – Rick James": {
+  "id": "80295840",
+  "artist": "Rick James",
+  "title": "Mary Jane",
+  "checkedAt": "2026-10-15"
+ },
+ "Mauvais film – Bekar": {
+  "id": "4319295232",
+  "artist": "Bekar",
+  "title": "Mauvais film",
+  "checkedAt": "2026-10-15"
+ },
+ "Maybe Tomorrow – Stereophonics": {
+  "id": "2420463",
+  "artist": "Stereophonics",
+  "title": "Maybe Tomorrow",
+  "checkedAt": "2026-10-15"
+ },
+ "Me Enamore – RIDSA": {
+  "id": "3194543841",
+  "artist": "RIDSA",
+  "title": "Me Enamore",
+  "checkedAt": "2026-10-15"
+ },
+ "Me So Horny – The 2 Live Crew": {
+  "id": "143736452",
+  "artist": "The 2 Live Crew",
+  "title": "Me So Horny",
+  "checkedAt": "2026-10-15"
+ },
  "Medley – Keny Arkana": {
   "id": "515843892",
   "artist": "Keny Arkana",
   "title": "Medley",
+  "checkedAt": "2026-10-15"
+ },
+ "Mellow Yellow – Donovan": {
+  "id": "14926547",
+  "artist": "Donovan",
+  "title": "Mellow Yellow",
+  "checkedAt": "2026-10-15"
+ },
+ "melodrama – disiz": {
+  "id": "3558373981",
+  "artist": "disiz",
+  "title": "melodrama",
   "checkedAt": "2026-10-15"
  },
  "Memories – David Guetta": {
@@ -2365,6 +5311,36 @@
   "title": "Mercy",
   "checkedAt": "2026-10-15"
  },
+ "Mercy – Shawn Mendes": {
+  "id": "351594971",
+  "artist": "Shawn Mendes",
+  "title": "Mercy",
+  "checkedAt": "2026-10-15"
+ },
+ "Merry Xmas Everybody – Slade": {
+  "id": "4093543081",
+  "artist": "Slade",
+  "title": "Merry Xmas Everybody",
+  "checkedAt": "2026-10-15"
+ },
+ "Message personnel – Françoise Hardy": {
+  "id": "2534981481",
+  "artist": "Françoise Hardy",
+  "title": "Message personnel (Remasterisé en 2013)",
+  "checkedAt": "2026-10-15"
+ },
+ "Métèque – JoeyStarr": {
+  "id": "566277",
+  "artist": "JoeyStarr",
+  "title": "Métèque",
+  "checkedAt": "2026-10-15"
+ },
+ "Method to the Madness – The Undisputed Truth": {
+  "id": "391727082",
+  "artist": "The Undisputed Truth",
+  "title": "Method to the Madness",
+  "checkedAt": "2026-10-15"
+ },
  "Mi chico latino – Geri Halliwell": {
   "id": "3471322",
   "artist": "Geri Halliwell",
@@ -2375,6 +5351,12 @@
   "id": "373362011",
   "artist": "J Balvin",
   "title": "Mi Gente",
+  "checkedAt": "2026-10-15"
+ },
+ "Midnight Sun – Zara Larsson": {
+  "id": "3401554271",
+  "artist": "Zara Larsson",
+  "title": "Midnight Sun",
   "checkedAt": "2026-10-15"
  },
  "Mille colombes – Mireille Mathieu": {
@@ -2389,6 +5371,30 @@
   "title": "Miracle",
   "checkedAt": "2026-10-15"
  },
+ "Missile – Alrima": {
+  "id": "131070826",
+  "artist": "Alrima",
+  "title": "Missile",
+  "checkedAt": "2026-10-15"
+ },
+ "Mister Saxobeat – The Flashers Brothers": {
+  "id": "74462692",
+  "artist": "The Flashers Brothers",
+  "title": "Mister Saxobeat",
+  "checkedAt": "2026-10-15"
+ },
+ "Modern Love – David Bowie": {
+  "id": "730342582",
+  "artist": "David Bowie",
+  "title": "Modern Love (2018 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Molotov 4 – Sefyu": {
+  "id": "10285069",
+  "artist": "Sefyu",
+  "title": "Molotov 4",
+  "checkedAt": "2026-10-15"
+ },
  "Moments in Love – Art of Noise": {
   "id": "482782582",
   "artist": "Art of Noise",
@@ -2401,10 +5407,28 @@
   "title": "Mon amant de Saint-Jean",
   "checkedAt": "2026-10-15"
  },
+ "Mon amie la rose – Françoise Hardy": {
+  "id": "7956107",
+  "artist": "Françoise Hardy",
+  "title": "Mon amie la rose",
+  "checkedAt": "2026-10-15"
+ },
+ "Mon coeur, mon amour – Anaïs": {
+  "id": "1087766",
+  "artist": "Anaïs",
+  "title": "Mon coeur, mon amour",
+  "checkedAt": "2026-10-15"
+ },
  "Mon crédo – Mireille Mathieu": {
   "id": "3556104411",
   "artist": "Mireille Mathieu",
   "title": "Mon crédo",
+  "checkedAt": "2026-10-15"
+ },
+ "Mon fils, ma bataille – Daniel Balavoine": {
+  "id": "886320",
+  "artist": "Daniel Balavoine",
+  "title": "Mon fils ma bataille",
   "checkedAt": "2026-10-15"
  },
  "Mon homme – Mistinguett": {
@@ -2419,10 +5443,28 @@
   "title": "Mon Ombre Est Personne",
   "checkedAt": "2026-10-15"
  },
+ "Mon papa à moi est un gangster – Stomy Bugsy": {
+  "id": "1041554",
+  "artist": "Stomy Bugsy",
+  "title": "Mon papa à moi est un gangster",
+  "checkedAt": "2026-10-15"
+ },
+ "Mon roi (facile x fragile +) – Camélia Jordana": {
+  "id": "1699782437",
+  "artist": "Camélia Jordana",
+  "title": "Mon roi (facile x fragile +)",
+  "checkedAt": "2026-10-15"
+ },
  "Mon vieux – Daniel Guichard": {
   "id": "2150191",
   "artist": "Daniel Guichard",
   "title": "Mon vieux",
+  "checkedAt": "2026-10-15"
+ },
+ "Moonlight Shadow – Mike Oldfield": {
+  "id": "70093876",
+  "artist": "Mike Oldfield",
+  "title": "Moonlight Shadow (Remastered 2013)",
   "checkedAt": "2026-10-15"
  },
  "More Than a Feeling – Boston": {
@@ -2431,10 +5473,28 @@
   "title": "More Than a Feeling",
   "checkedAt": "2026-10-15"
  },
+ "More Than You Know – Axwell /\\ Ingrosso": {
+  "id": "362795841",
+  "artist": "Axwell /\\ Ingrosso",
+  "title": "More Than You Know",
+  "checkedAt": "2026-10-15"
+ },
+ "Moskow Diskow – Telex": {
+  "id": "1541708392",
+  "artist": "Telex",
+  "title": "Moskow Diskow (2021 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
  "Moteur action – Yelle": {
   "id": "606769482",
   "artist": "Yelle",
   "title": "Moteur action",
+  "checkedAt": "2026-10-15"
+ },
+ "Mourir pour des idées – Georges Brassens": {
+  "id": "2305241",
+  "artist": "Georges Brassens",
+  "title": "Mourir pour des idées",
   "checkedAt": "2026-10-15"
  },
  "Movement – SebastiAn": {
@@ -2479,6 +5539,12 @@
   "title": "Mr. Vain (Original Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Mujeres – Ricardo Arjona": {
+  "id": "69008106",
+  "artist": "Ricardo Arjona",
+  "title": "Mujeres",
+  "checkedAt": "2026-10-15"
+ },
  "Munich – Editors": {
   "id": "93858274",
   "artist": "Editors",
@@ -2497,6 +5563,12 @@
   "title": "Music Sounds Better With You (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Musicamor – Daphné": {
+  "id": "132629180",
+  "artist": "Daphné",
+  "title": "Musicamor",
+  "checkedAt": "2026-10-15"
+ },
  "My Generation – The Who": {
   "id": "136341550",
   "artist": "The Who",
@@ -2509,10 +5581,34 @@
   "title": "My Heart Will Go On (Love Theme from \"Titanic\")",
   "checkedAt": "2026-10-15"
  },
+ "My My My – Armand Van Helden": {
+  "id": "71110252",
+  "artist": "Armand van Helden",
+  "title": "My My My",
+  "checkedAt": "2026-10-15"
+ },
  "My Name Is Stain – Shaka Ponk": {
   "id": "4126793151",
   "artist": "Shaka Ponk",
   "title": "My Name Is Stain",
+  "checkedAt": "2026-10-15"
+ },
+ "My Philosophy – Boogie Down Productions": {
+  "id": "75785642",
+  "artist": "Boogie Down Productions",
+  "title": "My Philosophy",
+  "checkedAt": "2026-10-15"
+ },
+ "My Regards – Maisie Peters": {
+  "id": "3763377362",
+  "artist": "Maisie Peters",
+  "title": "My Regards",
+  "checkedAt": "2026-10-15"
+ },
+ "My Romeo – JESSI": {
+  "id": "130518642",
+  "artist": "JESSI",
+  "title": "My Romeo",
   "checkedAt": "2026-10-15"
  },
  "My Sharona – The Knack": {
@@ -2521,10 +5617,34 @@
   "title": "My Sharona",
   "checkedAt": "2026-10-15"
  },
+ "My Song – Jerry Cantrell": {
+  "id": "829822",
+  "artist": "Jerry Cantrell",
+  "title": "My Song",
+  "checkedAt": "2026-10-15"
+ },
+ "My Sweet Lord – George Harrison": {
+  "id": "84791527",
+  "artist": "George Harrison",
+  "title": "My Sweet Lord (Remastered 2014)",
+  "checkedAt": "2026-10-15"
+ },
+ "My Sweet Lord (Remastered 2014) – George Harrison": {
+  "id": "84791527",
+  "artist": "George Harrison",
+  "title": "My Sweet Lord (Remastered 2014)",
+  "checkedAt": "2026-10-15"
+ },
  "Mystère et suspense – Fonky Family": {
   "id": "367489201",
   "artist": "Fonky Family",
   "title": "Mystère et suspense (A cappella)",
+  "checkedAt": "2026-10-15"
+ },
+ "Nains de jardins – Merzhin": {
+  "id": "118296262",
+  "artist": "Merzhin",
+  "title": "Nains de jardins",
   "checkedAt": "2026-10-15"
  },
  "Naive – The Kooks": {
@@ -2539,10 +5659,56 @@
   "title": "Nathalie (Remasterisé en 2011)",
   "checkedAt": "2026-10-15"
  },
+ "Native New Yorker – Odyssey": {
+  "id": "428984982",
+  "artist": "Odyssey",
+  "title": "Native New Yorker",
+  "checkedAt": "2026-10-15"
+ },
+ "Ne m'attends pas – Lino": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Never Felt So Alone – Labrinth": {
+  "id": "2223592697",
+  "artist": "Labrinth",
+  "title": "Never Felt So Alone",
+  "checkedAt": "2026-10-15"
+ },
+ "Never Tear Us Apart – INXS": {
+  "id": "11282935",
+  "artist": "INXS",
+  "title": "Never Tear Us Apart",
+  "checkedAt": "2026-10-15"
+ },
+ "New Fang – Them Crooked Vultures": {
+  "id": "363657111",
+  "artist": "Them Crooked Vultures",
+  "title": "New Fang",
+  "checkedAt": "2026-10-15"
+ },
  "Nexus – Vitalic": {
   "id": "3625529692",
   "artist": "Vitalic",
   "title": "Nexus",
+  "checkedAt": "2026-10-15"
+ },
+ "Nicolas – Sylvie Vartan": {
+  "id": "3786050362",
+  "artist": "Sylvie Vartan",
+  "title": "Nicolas",
+  "checkedAt": "2026-10-15"
+ },
+ "Night Birds – Shakatak": {
+  "id": "75179450",
+  "artist": "Shakatak",
+  "title": "Night Birds",
+  "checkedAt": "2026-10-15"
+ },
+ "Night Moves – Bob Seger": {
+  "id": "1445506692",
+  "artist": "Bob Seger & The Silver Bullet Band",
+  "title": "Night Moves",
   "checkedAt": "2026-10-15"
  },
  "Nightcall – Kavinsky": {
@@ -2557,10 +5723,22 @@
   "title": "Nights In White Satin",
   "checkedAt": "2026-10-15"
  },
+ "Nil – Autechre": {
+  "id": "29371031",
+  "artist": "Autechre",
+  "title": "Nil",
+  "checkedAt": "2026-10-15"
+ },
  "No Limit – 2 Unlimited": {
   "id": "134706074",
   "artist": "2 Unlimited",
   "title": "No Limit",
+  "checkedAt": "2026-10-15"
+ },
+ "No Money – Galantis": {
+  "id": "121107876",
+  "artist": "Galantis",
+  "title": "No Money",
   "checkedAt": "2026-10-15"
  },
  "No Rain – Blind Melon": {
@@ -2581,10 +5759,34 @@
   "title": "No Stress",
   "checkedAt": "2026-10-15"
  },
+ "Nothing Else – Archive": {
+  "id": "1152229",
+  "artist": "Archive",
+  "title": "Nothing Else",
+  "checkedAt": "2026-10-15"
+ },
+ "Nothing Else Matters – Metallica": {
+  "id": "1483825282",
+  "artist": "Metallica",
+  "title": "Nothing Else Matters (Remastered 2021)",
+  "checkedAt": "2026-10-15"
+ },
+ "Nothing from Nothing – Billy Preston": {
+  "id": "115025002",
+  "artist": "Billy Preston",
+  "title": "Nothing From Nothing",
+  "checkedAt": "2026-10-15"
+ },
  "Nougayork – Claude Nougaro": {
   "id": "74971698",
   "artist": "Claude Nougaro",
   "title": "Nougayork",
+  "checkedAt": "2026-10-15"
+ },
+ "Now That We Found Love – Heavy D & The Boyz": {
+  "id": "14935057",
+  "artist": "Heavy D & The Boyz",
+  "title": "Now That We Found Love",
   "checkedAt": "2026-10-15"
  },
  "Nutshell – Alice in Chains": {
@@ -2611,10 +5813,32 @@
   "title": "Oh, Pretty Woman",
   "checkedAt": "2026-10-15"
  },
+ "On fait le taf – Tunisiano": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "On se connaît – Youssoupha": {
+  "id": "62766452",
+  "artist": "Youssoupha",
+  "title": "On se connaît",
+  "checkedAt": "2026-10-15"
+ },
+ "On the Road Again – Canned Heat": {
+  "id": "3359885",
+  "artist": "Canned Heat",
+  "title": "On The Road Again (Single Version)",
+  "checkedAt": "2026-10-15"
+ },
  "On verra – Nekfeu": {
   "id": "101764813",
   "artist": "Nekfeu",
   "title": "On verra",
+  "checkedAt": "2026-10-15"
+ },
+ "One Consciousness – Psy": {
+  "id": "530505401",
+  "artist": "Psy",
+  "title": "One Consciousness",
   "checkedAt": "2026-10-15"
  },
  "One Day – Bakermat": {
@@ -2623,10 +5847,70 @@
   "title": "One Day (Vandaag) (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "One for You, One for Me – La Bionda": {
+  "id": "1056216",
+  "artist": "La Bionda",
+  "title": "One for You, One for Me",
+  "checkedAt": "2026-10-15"
+ },
+ "One More Night – Maroon 5": {
+  "id": "44230981",
+  "artist": "Maroon 5",
+  "title": "One More Night",
+  "checkedAt": "2026-10-15"
+ },
+ "One More Night – Phil Collins": {
+  "id": "122015000",
+  "artist": "Phil Collins",
+  "title": "One More Night (2016 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "One Of Your Girls – Troye Sivan": {
+  "id": "2347250785",
+  "artist": "Troye Sivan",
+  "title": "One Of Your Girls",
+  "checkedAt": "2026-10-15"
+ },
+ "Only Love Can Hurt Like This – Paloma Faith": {
+  "id": "87789163",
+  "artist": "Paloma Faith",
+  "title": "Only Love Can Hurt Like This",
+  "checkedAt": "2026-10-15"
+ },
+ "Only You – Cheat Codes": {
+  "id": "515558682",
+  "artist": "Cheat Codes",
+  "title": "Only You",
+  "checkedAt": "2026-10-15"
+ },
+ "Ooh La La – Goldfrapp": {
+  "id": "1014440232",
+  "artist": "Goldfrapp",
+  "title": "Ooh La La",
+  "checkedAt": "2026-10-15"
+ },
+ "Oowatanite – April Wine": {
+  "id": "103393848",
+  "artist": "April Wine",
+  "title": "Oowatanite",
+  "checkedAt": "2026-10-15"
+ },
  "Open Eye Signal – Jon Hopkins": {
   "id": "2294072235",
   "artist": "Jon Hopkins",
   "title": "Open Eye Signal (Remaster 2023)",
+  "checkedAt": "2026-10-15"
+ },
+ "Open Up – Leftfield": {
+  "id": "348244671",
+  "artist": "Leftfield",
+  "title": "Open Up (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
+ "Operator – Midnight Star": {
+  "id": "3786075922",
+  "artist": "Midnight Star",
+  "title": "Operator",
   "checkedAt": "2026-10-15"
  },
  "Opus – Eric Prydz": {
@@ -2641,6 +5925,12 @@
   "title": "Osez Joséphine",
   "checkedAt": "2026-10-15"
  },
+ "Otherwise – Morcheeba": {
+  "id": "685405",
+  "artist": "Morcheeba",
+  "title": "Otherwise",
+  "checkedAt": "2026-10-15"
+ },
  "Où est l'histoire – Debout sur le zinc": {
   "id": "1223153712",
   "artist": "Debout Sur Le Zinc",
@@ -2651,6 +5941,18 @@
   "id": "13394793",
   "artist": "Stephanie",
   "title": "Ouragan",
+  "checkedAt": "2026-10-15"
+ },
+ "Out Of The Blue – System F": {
+  "id": "937659352",
+  "artist": "System F",
+  "title": "Out Of The Blue",
+  "checkedAt": "2026-10-15"
+ },
+ "Out On a Limb – Teena Marie": {
+  "id": "423270492",
+  "artist": "Teena Marie",
+  "title": "Out On a Limb",
   "checkedAt": "2026-10-15"
  },
  "Outstanding – The Gap Band": {
@@ -2681,10 +5983,26 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Palladium – Alan Braxe": {
+  "id": "1702170377",
+  "artist": "Alan Braxe",
+  "title": "Palladium",
+  "checkedAt": "2026-10-15"
+ },
+ "Papa Was A Rollin' Stone – The Temptations": {
+  "id": "538637072",
+  "artist": "The Temptations",
+  "title": "Papa Was A Rollin' Stone",
+  "checkedAt": "2026-10-15"
+ },
  "Papaoutai – Stromae": {
   "id": "69879250",
   "artist": "Stromae",
   "title": "Papaoutai",
+  "checkedAt": "2026-10-15"
+ },
+ "Paper Thin – MC Lyte": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Papi chulo – Lorna": {
@@ -2699,6 +6017,12 @@
   "title": "Paranoid (Remastered 2009)",
   "checkedAt": "2026-10-15"
  },
+ "Parce qu'on vient de loin – Corneille": {
+  "id": "138782813",
+  "artist": "Corneille",
+  "title": "Parce qu'on vient de loin",
+  "checkedAt": "2026-10-15"
+ },
  "Parents Just Don’t Understand – DJ Jazzy Jeff & The Fresh Prince": {
   "id": "13138682",
   "artist": "DJ Jazzy Jeff & The Fresh Prince",
@@ -2711,14 +6035,50 @@
   "title": "Paris mais ...",
   "checkedAt": "2026-10-15"
  },
+ "Paris sous les bombes – Suprême NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Pas d'problèmes – Naza": {
   "id": "4329630512",
   "artist": "Naza",
   "title": "Pas d'problèmes",
   "checkedAt": "2026-10-15"
  },
+ "Pas de temps à perdre – Lord Kossity": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Pas le temps – Faf Larage": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Pas le temps pour les regrets – Booba": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Passin' Me By – The Pharcyde": {
+  "id": "84107655",
+  "artist": "The Pharcyde",
+  "title": "Passin' Me By",
+  "checkedAt": "2026-10-15"
+ },
+ "Peace - Nouvelle École – JYEUHAIR": {
+  "id": "2884801462",
+  "artist": "JYEUHAIR",
+  "title": "Peace - Nouvelle École",
+  "checkedAt": "2026-10-15"
+ },
+ "Peaches – Justin Bieber": {
+  "id": "2497506791",
+  "artist": "The Justin Bieber Cover Band",
+  "title": "Peaches (Originally performed by Justin Bieber)",
+  "checkedAt": "2026-10-15"
+ },
+ "Pendant que les champs brûlent – Niagara": {
+  "id": "984872",
+  "artist": "Niagara",
+  "title": "Pendant que les champs brûlent",
   "checkedAt": "2026-10-15"
  },
  "People Help the People – Birdy": {
@@ -2727,10 +6087,28 @@
   "title": "People Help the People",
   "checkedAt": "2026-10-15"
  },
+ "People You Know – Selena Gomez": {
+  "id": "926219252",
+  "artist": "Selena Gomez",
+  "title": "People You Know",
+  "checkedAt": "2026-10-15"
+ },
  "Perfect – Ed Sheeran": {
   "id": "142986206",
   "artist": "Ed Sheeran",
   "title": "Perfect",
+  "checkedAt": "2026-10-15"
+ },
+ "Petite – L (Raphaële Lannadère)": {
+  "id": "11126992",
+  "artist": "L (Raphaële Lannadère)",
+  "title": "Petite",
+  "checkedAt": "2026-10-15"
+ },
+ "Peuples du monde – Tonton David": {
+  "id": "355628011",
+  "artist": "Tonton David",
+  "title": "Peuples du monde",
   "checkedAt": "2026-10-15"
  },
  "Phat Planet – Leftfield": {
@@ -2745,6 +6123,18 @@
   "title": "Pick up the Pieces",
   "checkedAt": "2026-10-15"
  },
+ "Pictures of Matchstick Men – Status Quo": {
+  "id": "9807208",
+  "artist": "Status Quo",
+  "title": "Pictures Of Matchstick Men",
+  "checkedAt": "2026-10-15"
+ },
+ "Pièces détachées – Gringe": {
+  "id": "570313812",
+  "artist": "Gringe",
+  "title": "Pièces détachées",
+  "checkedAt": "2026-10-15"
+ },
  "Plastic Dreams – Jaydee": {
   "id": "461011172",
   "artist": "Jaydee",
@@ -2755,6 +6145,18 @@
   "id": "1067076",
   "artist": "Wild Cherry",
   "title": "Play That Funky Music",
+  "checkedAt": "2026-10-15"
+ },
+ "Play To The World – Barclay James Harvest": {
+  "id": "63564798",
+  "artist": "Barclay James Harvest",
+  "title": "Play To The World",
+  "checkedAt": "2026-10-15"
+ },
+ "Please Don't Go – Double You": {
+  "id": "3413801451",
+  "artist": "Double You",
+  "title": "Please Don't Go",
   "checkedAt": "2026-10-15"
  },
  "Plush – Stone Temple Pilots": {
@@ -2779,10 +6181,32 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Pop Muzik – M": {
+  "id": "3793892652",
+  "artist": "M / Robin Scott",
+  "title": "Pop Muzik (12 Inch Version)",
+  "checkedAt": "2026-10-15"
+ },
  "Pop the Glock – Uffie": {
   "id": "445871972",
   "artist": "Uffie",
   "title": "Pop The Glock",
+  "checkedAt": "2026-10-15"
+ },
+ "Por Amarte Así – Cristian Castro": {
+  "id": "13233289",
+  "artist": "Cristian Castro",
+  "title": "Por Amarte Así",
+  "checkedAt": "2026-10-15"
+ },
+ "Pose ton gun – Suprême NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Positif – Mr. Oizo": {
+  "id": "445983842",
+  "artist": "Mr. Oizo",
+  "title": "Positif",
   "checkedAt": "2026-10-15"
  },
  "Positive Education – Slam": {
@@ -2809,10 +6233,22 @@
   "title": "Pour Some Sugar On Me",
   "checkedAt": "2026-10-15"
  },
+ "Pourquoi? – Busta Flex": {
+  "id": "749752",
+  "artist": "Busta Flex",
+  "title": "Pourquoi?",
+  "checkedAt": "2026-10-15"
+ },
  "Prayer in C – Lilly Wood And The Prick": {
   "id": "7155162",
   "artist": "Lilly Wood And The Prick",
   "title": "Prayer In C",
+  "checkedAt": "2026-10-15"
+ },
+ "Prendre un enfant – Yves Duteil": {
+  "id": "365936121",
+  "artist": "Yves Duteil",
+  "title": "Prendre un enfant",
   "checkedAt": "2026-10-15"
  },
  "Problem – Ariana Grande": {
@@ -2825,6 +6261,18 @@
   "id": "57630621",
   "artist": "Breakbot",
   "title": "Programme",
+  "checkedAt": "2026-10-15"
+ },
+ "Psychotic Reaction – Count Five": {
+  "id": "86490499",
+  "artist": "Count Five",
+  "title": "Psychotic Reaction",
+  "checkedAt": "2026-10-15"
+ },
+ "Pucc Fiction – Oxmo Puccino": {
+  "id": "515870242",
+  "artist": "Oxmo Puccino",
+  "title": "Pucc' Fiction",
   "checkedAt": "2026-10-15"
  },
  "Pull Up to the Bumper – Grace Jones": {
@@ -2857,10 +6305,40 @@
   "title": "Pure Shores",
   "checkedAt": "2026-10-15"
  },
+ "Purple Haze – The Jimi Hendrix Experience": {
+  "id": "4952885",
+  "artist": "Jimi Hendrix",
+  "title": "Purple Haze",
+  "checkedAt": "2026-10-15"
+ },
  "Pursuit – Gesaffelstein": {
   "id": "71148361",
   "artist": "Gesaffelstein",
   "title": "Pursuit",
+  "checkedAt": "2026-10-15"
+ },
+ "Pushin' Too Hard – The Seeds": {
+  "id": "7822199",
+  "artist": "The Seeds",
+  "title": "Pushin' Too Hard",
+  "checkedAt": "2026-10-15"
+ },
+ "Put Your Hands Up for Detroit – Fedde Le Grand": {
+  "id": "1134280742",
+  "artist": "Fedde Le Grand",
+  "title": "Put Your Hands Up For Detroit (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "Qu'est ce qu'tu croyais – Mafia Trece": {
+  "id": "3521947",
+  "artist": "Mafia Trece",
+  "title": "Qu'est ce qu'tu croyais",
+  "checkedAt": "2026-10-15"
+ },
+ "Quand la musique est bonne – Jean-Jacques Goldman": {
+  "id": "7120489",
+  "artist": "Jean-Jacques Goldman",
+  "title": "Quand la musique est bonne",
   "checkedAt": "2026-10-15"
  },
  "Quand tu chantes – Nana Mouskouri": {
@@ -2869,10 +6347,46 @@
   "title": "Quand tu chantes",
   "checkedAt": "2026-10-15"
  },
+ "Que serais-je sans toi – Jean Ferrat": {
+  "id": "95961176",
+  "artist": "Jean Ferrat",
+  "title": "Que serais-je sans toi",
+  "checkedAt": "2026-10-15"
+ },
  "Quelle histoire ! – Bénabar": {
   "id": "14477873",
   "artist": "Bénabar",
   "title": "Quelle histoire !",
+  "checkedAt": "2026-10-15"
+ },
+ "Quelqu'un m'a dit – Carla Bruni": {
+  "id": "78749541",
+  "artist": "Carla Bruni",
+  "title": "Quelqu'un m'a dit",
+  "checkedAt": "2026-10-15"
+ },
+ "Quelque chose de spécial – La Fouine": {
+  "id": "569436",
+  "artist": "La Fouine",
+  "title": "Quelque chose de spécial (Album Version)",
+  "checkedAt": "2026-10-15"
+ },
+ "Quelques gouttes suffisent – Ärsenik": {
+  "id": "3134415",
+  "artist": "Ärsenik",
+  "title": "Quelques gouttes suffisent",
+  "checkedAt": "2026-10-15"
+ },
+ "Qui c'est celui-là ? – Pierre Vassiliu": {
+  "id": "5660631",
+  "artist": "Pierre Vassiliu",
+  "title": "Qui c'est celui-là ?",
+  "checkedAt": "2026-10-15"
+ },
+ "Qui de nous deux – -M-": {
+  "id": "3130099",
+  "artist": "-M-",
+  "title": "Qui de nous deux",
   "checkedAt": "2026-10-15"
  },
  "Qui est l'exemple ? – Rohff": {
@@ -2881,16 +6395,88 @@
   "title": "Qui est l'exemple ?",
   "checkedAt": "2026-10-15"
  },
+ "Quitte A T'Aimer – Hocus Pocus": {
+  "id": "1109700",
+  "artist": "Hocus Pocus",
+  "title": "Quitte A T'Aimer",
+  "checkedAt": "2026-10-15"
+ },
+ "Quoi – Jane Birkin": {
+  "id": "7321345",
+  "artist": "Jane Birkin",
+  "title": "Quoi",
+  "checkedAt": "2026-10-15"
+ },
+ "R.I.P. – half·alive": {
+  "id": "3268393861",
+  "artist": "half·alive",
+  "title": "R.I.P.",
+  "checkedAt": "2026-10-15"
+ },
  "Radar Love – Golden Earring": {
   "id": "60702996",
   "artist": "Golden Earring",
   "title": "Radar Love",
   "checkedAt": "2026-10-15"
  },
+ "Raid – Lakeside": {
+  "id": "3801549202",
+  "artist": "Lakeside",
+  "title": "Raid",
+  "checkedAt": "2026-10-15"
+ },
+ "Rainbow Man – Busy P": {
+  "id": "10284863",
+  "artist": "Busy P",
+  "title": "Rainbow Man",
+  "checkedAt": "2026-10-15"
+ },
+ "Ramenez la coupe à la maison – Vegedream": {
+  "id": "529239981",
+  "artist": "Vegedream",
+  "title": "Ramenez la coupe à la maison",
+  "checkedAt": "2026-10-15"
+ },
+ "Rap musique que j'aime – Zoxea": {
+  "id": "3887342",
+  "artist": "Zoxea",
+  "title": "Rap musique que j'aime",
+  "checkedAt": "2026-10-15"
+ },
  "Rasputin – Boney M.": {
   "id": "998635",
   "artist": "Boney M.",
   "title": "Rasputin",
+  "checkedAt": "2026-10-15"
+ },
+ "Ready For The Floor – Hot Chip": {
+  "id": "376022961",
+  "artist": "Hot Chip",
+  "title": "Ready For The Floor",
+  "checkedAt": "2026-10-15"
+ },
+ "Reality – Lost Frequencies": {
+  "id": "100654376",
+  "artist": "Lost Frequencies",
+  "title": "Reality",
+  "checkedAt": "2026-10-15"
+ },
+ "Rebel Rebel – David Bowie": {
+  "id": "3155590",
+  "artist": "David Bowie",
+  "title": "Rebel Rebel (1999 Digital Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Red Alert – Basement Jaxx": {
+  "id": "1095034112",
+  "artist": "Basement Jaxx",
+  "title": "Red Alert",
+  "checkedAt": "2026-10-15"
+ },
+ "Reine – Dadju": {
+  "id": "429974992",
+  "artist": "Dadju",
+  "title": "Reine",
   "checkedAt": "2026-10-15"
  },
  "Relax – Frankie Goes to Hollywood": {
@@ -2905,6 +6491,12 @@
   "title": "Relax, Take It Easy",
   "checkedAt": "2026-10-15"
  },
+ "Remedy – Agoria": {
+  "id": "662540622",
+  "artist": "Agoria",
+  "title": "Remedy",
+  "checkedAt": "2026-10-15"
+ },
  "Repenti – Renan Luce": {
   "id": "371636701",
   "artist": "Renan Luce",
@@ -2915,10 +6507,26 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Résistant – Iron Sy": {
+  "id": "2764976",
+  "artist": "Iron Sy",
+  "title": "Résistant",
+  "checkedAt": "2026-10-15"
+ },
+ "Respect – Lunatic": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Respire – Mickey 3D": {
   "id": "3092637",
   "artist": "Mickey 3D",
   "title": "Respire",
+  "checkedAt": "2026-10-15"
+ },
+ "Reviens vite et oublie – Les Surfs": {
+  "id": "2113319",
+  "artist": "Les Surfs",
+  "title": "Reviens vite et oublie (Album Version)",
   "checkedAt": "2026-10-15"
  },
  "Rhinestone Cowboy – Glen Campbell": {
@@ -2939,10 +6547,40 @@
   "title": "Ride on Time",
   "checkedAt": "2026-10-15"
  },
+ "Rien qu'une fois – Keen' V": {
+  "id": "107184118",
+  "artist": "Keen' V",
+  "title": "Rien qu'une fois",
+  "checkedAt": "2026-10-15"
+ },
+ "Rien sans les autres – Maska": {
+  "id": "87991489",
+  "artist": "Maska",
+  "title": "Rien sans les autres",
+  "checkedAt": "2026-10-15"
+ },
+ "Right Round – Flo Rida": {
+  "id": "4162078",
+  "artist": "Flo Rida",
+  "title": "Right Round",
+  "checkedAt": "2026-10-15"
+ },
+ "Rimini – Les Wampas": {
+  "id": "2462530",
+  "artist": "Les Wampas",
+  "title": "Rimini",
+  "checkedAt": "2026-10-15"
+ },
  "Ring My Bell – Anita Ward": {
   "id": "404691712",
   "artist": "Anita Ward",
   "title": "Ring My Bell",
+  "checkedAt": "2026-10-15"
+ },
+ "Ring Ring Ring (Ha Ha Hey) – De La Soul": {
+  "id": "2104714087",
+  "artist": "De La Soul",
+  "title": "Ring Ring Ring (Ha Ha Hey)",
   "checkedAt": "2026-10-15"
  },
  "Rise – Superbus": {
@@ -2951,10 +6589,22 @@
   "title": "Rise",
   "checkedAt": "2026-10-15"
  },
+ "Ritual – Tiësto": {
+  "id": "685843722",
+  "artist": "Tiësto",
+  "title": "Ritual",
+  "checkedAt": "2026-10-15"
+ },
  "Rock and Roll All Nite – KISS": {
   "id": "2675537",
   "artist": "KISS",
   "title": "Rock And Roll All Nite",
+  "checkedAt": "2026-10-15"
+ },
+ "Rock DJ – Robbie Williams": {
+  "id": "3102419",
+  "artist": "Robbie Williams",
+  "title": "Rock DJ",
   "checkedAt": "2026-10-15"
  },
  "Rock the Bells – LL Cool J": {
@@ -2963,10 +6613,44 @@
   "title": "Rock The Bells",
   "checkedAt": "2026-10-15"
  },
+ "Rock'n'dollars – William Sheller": {
+  "id": "2282283",
+  "artist": "William Sheller",
+  "title": "Rock'N'Dollars",
+  "checkedAt": "2026-10-15"
+ },
+ "Rock'n'roll attitude – Johnny Hallyday": {
+  "id": "2461760",
+  "artist": "Johnny Hallyday",
+  "title": "Rock'n'roll attitude",
+  "checkedAt": "2026-10-15"
+ },
  "Rockin' All Over the World – Status Quo": {
   "id": "2718504",
   "artist": "Status Quo",
   "title": "Rockin' All Over The World",
+  "checkedAt": "2026-10-15"
+ },
+ "Rockin' in the Free World – Neil Young": {
+  "id": "4094888",
+  "artist": "Neil Young",
+  "title": "Rockin' in the Free World",
+  "checkedAt": "2026-10-15"
+ },
+ "Rockollection – Laurent Voulzy": {
+  "id": "89134501",
+  "artist": "Laurent Voulzy",
+  "title": "Rockollection (Version intégrale)",
+  "checkedAt": "2026-10-15"
+ },
+ "Rollin' with Kid 'n Play – Kid 'n Play": {
+  "id": "85144436",
+  "artist": "Kid 'n Play",
+  "title": "Rollin' With Kid 'N Play",
+  "checkedAt": "2026-10-15"
+ },
+ "Romeo & Juliet – Alec R. Costandinos": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Rooster – Alice in Chains": {
@@ -2975,10 +6659,28 @@
   "title": "Rooster",
   "checkedAt": "2026-10-15"
  },
+ "Rose rouge – St Germain": {
+  "id": "35946821",
+  "artist": "St Germain",
+  "title": "Rose rouge",
+  "checkedAt": "2026-10-15"
+ },
+ "Roxanne – The Police": {
+  "id": "2525877",
+  "artist": "The Police",
+  "title": "Roxanne",
+  "checkedAt": "2026-10-15"
+ },
  "Roxanne, Roxanne – UTFO": {
   "id": "85144414",
   "artist": "Utfo",
   "title": "Roxanne, Roxanne",
+  "checkedAt": "2026-10-15"
+ },
+ "Roxanne's Revenge – Roxanne Shanté": {
+  "id": "4437249",
+  "artist": "Roxanne Shante",
+  "title": "Roxanne's Revenge (Re-Recorded / Remastered)",
   "checkedAt": "2026-10-15"
  },
  "Royality – Diam's": {
@@ -2993,16 +6695,38 @@
   "title": "Royals",
   "checkedAt": "2026-10-15"
  },
+ "Rubber Band – The Trammps": {
+  "id": "507119772",
+  "artist": "The Trammps",
+  "title": "Rubber Band",
+  "checkedAt": "2026-10-15"
+ },
  "Runaway (U & I) – Galantis": {
   "id": "86453925",
   "artist": "Galantis",
   "title": "Runaway (U & I)",
   "checkedAt": "2026-10-15"
  },
+ "Runaway Love – Linda Clifford": {
+  "id": "2120388517",
+  "artist": "Linda Clifford",
+  "title": "Runaway Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Running with the Devil – Van Halen": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Sacrifice de poulets – Ministère A.M.E.R.": {
-  "id": "84860359",
+  "id": "3046865101",
   "artist": "Ministère A.M.E.R.",
   "title": "Sacrifice de poulets (Remasterisé)",
+  "checkedAt": "2026-10-15"
+ },
+ "Sad Hill – Kheops": {
+  "id": "3521911",
+  "artist": "Kheops",
+  "title": "Sad Hill",
   "checkedAt": "2026-10-15"
  },
  "Saga Africa – Yannick Noah": {
@@ -3017,10 +6741,24 @@
   "title": "Sailing (2008 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Saint-Claude – Christophe": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Saint-Denis – Grand Corps Malade": {
   "id": "2997461171",
   "artist": "Grand Corps Malade",
   "title": "Saint-Denis (en musique)",
+  "checkedAt": "2026-10-15"
+ },
+ "Sale môme – Pleymo": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Salomé – Chayanne": {
+  "id": "895695",
+  "artist": "Chayanne",
+  "title": "Salomé",
   "checkedAt": "2026-10-15"
  },
  "Samba de Janeiro – Bellini": {
@@ -3029,16 +6767,44 @@
   "title": "Samba de Janeiro (Album Version)",
   "checkedAt": "2026-10-15"
  },
+ "Same Old Love – Selena Gomez": {
+  "id": "109169058",
+  "artist": "Selena Gomez",
+  "title": "Same Old Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Samuraï – Shurik'n": {
+  "id": "3276708",
+  "artist": "Shurik'n",
+  "title": "Samuraï",
+  "checkedAt": "2026-10-15"
+ },
  "San Francisco – Maxime Le Forestier": {
   "id": "12711462",
   "artist": "Maxime Le Forestier",
   "title": "San Francisco",
   "checkedAt": "2026-10-15"
  },
+ "Sans (re)pères – Sens Unik": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Sans contrefaçon – Mylène Farmer": {
+  "id": "2157280",
+  "artist": "Mylène Farmer",
+  "title": "Sans contrefaçon",
+  "checkedAt": "2026-10-15"
+ },
  "Santiano – Hugues Aufray": {
-  "id": "1570740",
+  "id": "2235136",
   "artist": "Hugues Aufray",
   "title": "Santiano",
+  "checkedAt": "2026-10-15"
+ },
+ "Satisfaction – Benny Benassi": {
+  "id": "3412442321",
+  "artist": "Benny Benassi",
+  "title": "Satisfaction",
   "checkedAt": "2026-10-15"
  },
  "Saturday Night – Whigfield": {
@@ -3047,10 +6813,22 @@
   "title": "Saturday Night (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Saut périlleux – Lujipeka": {
+  "id": "3453803401",
+  "artist": "Lujipeka",
+  "title": "Saut périlleux",
+  "checkedAt": "2026-10-15"
+ },
  "Save Your Tears – The Weeknd": {
   "id": "908604632",
   "artist": "The Weeknd",
   "title": "Save Your Tears",
+  "checkedAt": "2026-10-15"
+ },
+ "Say Yes To Heaven – Lana Del Rey": {
+  "id": "2287764037",
+  "artist": "Lana Del Rey",
+  "title": "Say Yes To Heaven",
   "checkedAt": "2026-10-15"
  },
  "Say You Won't Let Go – James Arthur": {
@@ -3059,10 +6837,22 @@
   "title": "Say You Won't Let Go",
   "checkedAt": "2026-10-15"
  },
+ "Scatman (ski-ba-bop-ba-dop-bop) – Scatman John": {
+  "id": "99360002",
+  "artist": "Scatman John",
+  "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+  "checkedAt": "2026-10-15"
+ },
  "School's Out – Alice Cooper": {
   "id": "730866",
   "artist": "Alice Cooper",
   "title": "School's Out",
+  "checkedAt": "2026-10-15"
+ },
+ "Scoubidou – Sacha Distel": {
+  "id": "91943940",
+  "artist": "Sacha Distel",
+  "title": "Scoubidou (Des pommes et des poires et des...)",
   "checkedAt": "2026-10-15"
  },
  "Se décentrer – Dominique A": {
@@ -3071,10 +6861,32 @@
   "title": "Se décentrer",
   "checkedAt": "2026-10-15"
  },
+ "Sea of Tranquility, Pt. 2 – Madis": {
+  "id": "880542522",
+  "artist": "Madis",
+  "title": "Sea of Tranquility, Pt. 2",
+  "checkedAt": "2026-10-15"
+ },
  "Seasons in the Sun – Terry Jacks": {
   "id": "1353054752",
   "artist": "Terry Jacks",
   "title": "Seasons in the Sun",
+  "checkedAt": "2026-10-15"
+ },
+ "Secret – Louane": {
+  "id": "1953253637",
+  "artist": "Louane",
+  "title": "Secret",
+  "checkedAt": "2026-10-15"
+ },
+ "Secretly – Skunk Anansie": {
+  "id": "2954595551",
+  "artist": "Skunk Anansie",
+  "title": "Secretly",
+  "checkedAt": "2026-10-15"
+ },
+ "Seine-Saint-Denis Style – Suprême NTM": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Self Control – Laura Branigan": {
@@ -3095,6 +6907,12 @@
   "title": "Semi-Charmed Life (2006 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Send Me an Angel – Real Life": {
+  "id": "75766534",
+  "artist": "Real Life",
+  "title": "Send Me An Angel",
+  "checkedAt": "2026-10-15"
+ },
  "Señorita – Shawn Mendes": {
   "id": "698905582",
   "artist": "Shawn Mendes",
@@ -3107,6 +6925,18 @@
   "title": "Separate Ways (Worlds Apart)",
   "checkedAt": "2026-10-15"
  },
+ "Set Adrift on Memory Bliss – P.M. Dawn": {
+  "id": "2721775672",
+  "artist": "P.M. Dawn",
+  "title": "Set Adrift On Memory Bliss",
+  "checkedAt": "2026-10-15"
+ },
+ "Seul – Garou": {
+  "id": "871452",
+  "artist": "Garou",
+  "title": "Seul",
+  "checkedAt": "2026-10-15"
+ },
  "Sev – SebastiAn": {
   "id": "809833702",
   "artist": "SebastiAn",
@@ -3117,10 +6947,22 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Shake Your Body (Down to the Ground) – The Jacksons": {
+  "id": "611491",
+  "artist": "The Jacksons",
+  "title": "Shake Your Body (Down to the Ground)",
+  "checkedAt": "2026-10-15"
+ },
  "Shake Your Groove Thing – Peaches & Herb": {
   "id": "598046552",
   "artist": "Peaches & Herb",
   "title": "Shake Your Groove Thing",
+  "checkedAt": "2026-10-15"
+ },
+ "Shallow – Lady Gaga": {
+  "id": "561856742",
+  "artist": "Lady Gaga",
+  "title": "Shallow",
   "checkedAt": "2026-10-15"
  },
  "Shame – Evelyn \"Champagne\" King": {
@@ -3135,6 +6977,24 @@
   "title": "She Blinded Me With Science (Remastered 2009)",
   "checkedAt": "2026-10-15"
  },
+ "She Doesn't Mind – Sean Paul": {
+  "id": "16944546",
+  "artist": "Sean Paul",
+  "title": "She Doesn't Mind",
+  "checkedAt": "2026-10-15"
+ },
+ "She Talks To Me With Her Body – Bar-Kays": {
+  "id": "2953035",
+  "artist": "Bar-Kays",
+  "title": "She Talks To Me With Her Body",
+  "checkedAt": "2026-10-15"
+ },
+ "She Works Hard For The Money – Donna Summer": {
+  "id": "34180931",
+  "artist": "Donna Summer",
+  "title": "She Works Hard For The Money",
+  "checkedAt": "2026-10-15"
+ },
  "Shine – Collective Soul": {
   "id": "1444387612",
   "artist": "Collective Soul",
@@ -3145,6 +7005,16 @@
   "id": "15636886",
   "artist": "Earth, Wind & Fire",
   "title": "Shining Star",
+  "checkedAt": "2026-10-15"
+ },
+ "Shoop – Salt-N-Pepa": {
+  "id": "537989562",
+  "artist": "Salt-N-Pepa",
+  "title": "Shoop",
+  "checkedAt": "2026-10-15"
+ },
+ "Short Dick Man – 20 Fingers": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Shout – Tears for Fears": {
@@ -3177,8 +7047,50 @@
   "title": "Si facile",
   "checkedAt": "2026-10-15"
  },
+ "Si j'étais – The Shin Sekaï": {
+  "id": "63454990",
+  "artist": "The Shin Sekaï",
+  "title": "Si j'étais",
+  "checkedAt": "2026-10-15"
+ },
+ "Si je devais manquer de toi – Jean-Louis Murat": {
+  "id": "380719931",
+  "artist": "Jean-Louis Murat",
+  "title": "Si je devais manquer de toi (2019 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
  "Si loin de toi – Pit Baccardi": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Si triste – Le 3ème Œil": {
+  "id": "663121862",
+  "artist": "Le 3ème Œil",
+  "title": "Si triste",
+  "checkedAt": "2026-10-15"
+ },
+ "Siffler sur la colline – Joe Dassin": {
+  "id": "561690",
+  "artist": "Joe Dassin",
+  "title": "Siffler sur la colline",
+  "checkedAt": "2026-10-15"
+ },
+ "Sign Your Name – Sananda Maitreya": {
+  "id": "1082528",
+  "artist": "Sananda Maitreya",
+  "title": "Sign Your Name",
+  "checkedAt": "2026-10-15"
+ },
+ "Signatune – DJ Mehdi": {
+  "id": "515837262",
+  "artist": "DJ Mehdi",
+  "title": "Signatune (Thomas Bangalter Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "Silly Love Songs – Paul McCartney": {
+  "id": "126368801",
+  "artist": "Paul McCartney",
+  "title": "Silly Love Songs",
   "checkedAt": "2026-10-15"
  },
  "Simple et funky – Alliance Ethnik": {
@@ -3187,16 +7099,64 @@
   "title": "Simple et funky",
   "checkedAt": "2026-10-15"
  },
+ "Since U Been Gone – Kelly Clarkson": {
+  "id": "62118993",
+  "artist": "Kelly Clarkson",
+  "title": "Since U Been Gone",
+  "checkedAt": "2026-10-15"
+ },
  "Since You Been Gone – Rainbow": {
   "id": "2262518",
   "artist": "Rainbow",
   "title": "Since You Been Gone",
   "checkedAt": "2026-10-15"
  },
+ "Sing – Travis": {
+  "id": "657204992",
+  "artist": "Travis",
+  "title": "Sing",
+  "checkedAt": "2026-10-15"
+ },
+ "Six Days – DJ Shadow": {
+  "id": "2093943927",
+  "artist": "DJ Shadow",
+  "title": "Six Days",
+  "checkedAt": "2026-10-15"
+ },
  "Smalltown Boy – Bronski Beat": {
   "id": "428690122",
   "artist": "Bronski Beat",
   "title": "Smalltown Boy",
+  "checkedAt": "2026-10-15"
+ },
+ "Smile – Hocus Pocus": {
+  "id": "1109703",
+  "artist": "Hocus Pocus",
+  "title": "Smile",
+  "checkedAt": "2026-10-15"
+ },
+ "Smooth Operator – Big Daddy Kane": {
+  "id": "12343556",
+  "artist": "Big Daddy Kane",
+  "title": "Smooth Operator",
+  "checkedAt": "2026-10-15"
+ },
+ "So Far Away from L.A. – Nicolas Peyrac": {
+  "id": "71440642",
+  "artist": "Nicolas Peyrac",
+  "title": "So Far Away From L.A. (avec Sofia Essaïdi)",
+  "checkedAt": "2026-10-15"
+ },
+ "So Very Hard to Go – Tower of Power": {
+  "id": "4089707",
+  "artist": "Tower of Power",
+  "title": "So Very Hard to Go",
+  "checkedAt": "2026-10-15"
+ },
+ "Solenzara – Louis Bertignac": {
+  "id": "107685578",
+  "artist": "Louis Bertignac",
+  "title": "Solenzara",
   "checkedAt": "2026-10-15"
  },
  "Somebody Dance with Me – DJ BoBo": {
@@ -3247,10 +7207,32 @@
   "title": "Song For Jedi",
   "checkedAt": "2026-10-15"
  },
+ "Song For Jedi – Dionysos": {
+  "id": "2712475",
+  "artist": "Dionysos",
+  "title": "Song For Jedi",
+  "checkedAt": "2026-10-15"
+ },
+ "sous influence – Eddy de Pretto": {
+  "id": "4250840701",
+  "artist": "Eddy de Pretto",
+  "title": "sous influence",
+  "checkedAt": "2026-10-15"
+ },
  "Sous le ciel de Paris – Juliette Gréco": {
   "id": "2447559",
   "artist": "Juliette Gréco",
   "title": "Sous le ciel de Paris",
+  "checkedAt": "2026-10-15"
+ },
+ "Sous le vent – Garou": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Space Jam – Quad City DJ's": {
+  "id": "135872772",
+  "artist": "Quad City DJ's",
+  "title": "Space Jam",
   "checkedAt": "2026-10-15"
  },
  "Spaceman – Hardwell": {
@@ -3259,10 +7241,92 @@
   "title": "SPACEMAN (REBELS NEVER DIE REWORK)",
   "checkedAt": "2026-10-15"
  },
+ "Spacer – Sheila": {
+  "id": "740773",
+  "artist": "Sheila",
+  "title": "Spacer",
+  "checkedAt": "2026-10-15"
+ },
+ "Spastik – Plastikman": {
+  "id": "932289392",
+  "artist": "Plastikman",
+  "title": "Spastik",
+  "checkedAt": "2026-10-15"
+ },
+ "Speedway – Space Art": {
+  "id": "135320456",
+  "artist": "Space Art",
+  "title": "Speedway",
+  "checkedAt": "2026-10-15"
+ },
+ "Spread Your Love – Black Rebel Motorcycle Club": {
+  "id": "2077577727",
+  "artist": "Black Rebel Motorcycle Club",
+  "title": "Spread Your Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Squatter les terrasses – James Deano": {
+  "id": "37168721",
+  "artist": "James Deano",
+  "title": "Squatter les terrasses",
+  "checkedAt": "2026-10-15"
+ },
+ "Stairway to Heaven – Led Zeppelin": {
+  "id": "88003859",
+  "artist": "Led Zeppelin",
+  "title": "Stairway to Heaven (Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Standing Next To Me – The Last Shadow Puppets": {
+  "id": "4315519",
+  "artist": "The Last Shadow Puppets",
+  "title": "Standing Next To Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Starlight – The Supermen Lovers": {
+  "id": "3370719321",
+  "artist": "The Supermen Lovers",
+  "title": "Starlight",
+  "checkedAt": "2026-10-15"
+ },
+ "Starman – David Bowie": {
+  "id": "107471926",
+  "artist": "David Bowie",
+  "title": "Starman (2012 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Stay – The Kid LAROI": {
+  "id": "1499844912",
+  "artist": "歌っちゃ王",
+  "title": "STAY (カラオケ)[原曲歌手: The Kid LAROI & Justin Bieber]",
+  "checkedAt": "2026-10-15"
+ },
  "Stay With Me – Sam Smith": {
   "id": "111780376",
   "artist": "Sam Smith",
   "title": "Stay With Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Stay Young – Mike Perry": {
+  "id": "397112282",
+  "artist": "Mike Perry",
+  "title": "Stay Young",
+  "checkedAt": "2026-10-15"
+ },
+ "Stayin' Alive – x": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Steady, As She Goes – The Raconteurs": {
+  "id": "1238177942",
+  "artist": "The Raconteurs",
+  "title": "Steady, As She Goes",
+  "checkedAt": "2026-10-15"
+ },
+ "Step by Step – New Kids on the Block": {
+  "id": "1065849",
+  "artist": "New Kids on the Block",
+  "title": "Step by Step",
   "checkedAt": "2026-10-15"
  },
  "Still Loving You – Scorpions": {
@@ -3283,16 +7347,64 @@
   "title": "Stole the Show",
   "checkedAt": "2026-10-15"
  },
+ "Stop the Rock – Apollo 440": {
+  "id": "13197476",
+  "artist": "Apollo 440",
+  "title": "Stop the Rock",
+  "checkedAt": "2026-10-15"
+ },
+ "Stop The Wedding! – Ashe": {
+  "id": "4209416002",
+  "artist": "Ashe",
+  "title": "Stop The Wedding!",
+  "checkedAt": "2026-10-15"
+ },
+ "Strawberry Letter 23 – The Brothers Johnson": {
+  "id": "2462128",
+  "artist": "The Brothers Johnson",
+  "title": "Strawberry Letter 23",
+  "checkedAt": "2026-10-15"
+ },
+ "Street Fight – Alibi Montana": {
+  "id": "515849552",
+  "artist": "Alibi Montana",
+  "title": "Street Fight",
+  "checkedAt": "2026-10-15"
+ },
+ "Strobe – Deadmau5": {
+  "id": "5150304",
+  "artist": "Deadmau5",
+  "title": "Strobe",
+  "checkedAt": "2026-10-15"
+ },
  "Stupid Girl – Garbage": {
   "id": "3788156282",
   "artist": "Garbage",
   "title": "Stupid Girl (Remastered 2015)",
   "checkedAt": "2026-10-15"
  },
+ "stupid song – Olivia Rodrigo": {
+  "id": "4078104881",
+  "artist": "Olivia Rodrigo",
+  "title": "stupid song",
+  "checkedAt": "2026-10-15"
+ },
+ "Stupidisco – Junior Jack": {
+  "id": "57840151",
+  "artist": "Junior Jack",
+  "title": "Stupidisco",
+  "checkedAt": "2026-10-15"
+ },
  "Such a Shame – Talk Talk": {
   "id": "3257505",
   "artist": "Talk Talk",
   "title": "Such a Shame (1997 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Suedehead – Morrissey": {
+  "id": "3137135",
+  "artist": "Morrissey",
+  "title": "Suedehead",
   "checkedAt": "2026-10-15"
  },
  "Sugar – Maroon 5": {
@@ -3303,6 +7415,12 @@
   "id": "2505140",
   "artist": "The Rubettes",
   "title": "Sugar Baby Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Summer – Calvin Harris": {
+  "id": "88936747",
+  "artist": "Calvin Harris",
+  "title": "Summer",
   "checkedAt": "2026-10-15"
  },
  "Super Nana – Michel Jonasz": {
@@ -3323,10 +7441,22 @@
   "title": "Supersonic",
   "checkedAt": "2026-10-15"
  },
+ "Sur la route – De Palmas": {
+  "id": "3435031",
+  "artist": "De Palmas",
+  "title": "Sur la route",
+  "checkedAt": "2026-10-15"
+ },
  "Sur ma route – Black M": {
   "id": "76395840",
   "artist": "Black M",
   "title": "Sur ma route",
+  "checkedAt": "2026-10-15"
+ },
+ "Survive – Lewis Capaldi": {
+  "id": "3423848071",
+  "artist": "Lewis Capaldi",
+  "title": "Survive",
   "checkedAt": "2026-10-15"
  },
  "Sweet but Psycho – Ava Max": {
@@ -3341,16 +7471,46 @@
   "title": "Sweet Dreams (Are Made of This) (2005 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "Sweet Harmony – The Beloved": {
+  "id": "3375877811",
+  "artist": "The Beloved",
+  "title": "Sweet Harmony",
+  "checkedAt": "2026-10-15"
+ },
  "Syracuse – Henri Salvador": {
   "id": "3484555",
   "artist": "Henri Salvador",
   "title": "Syracuse",
   "checkedAt": "2026-10-15"
  },
+ "T.N.T. – AC/DC": {
+  "id": "92720006",
+  "artist": "AC/DC",
+  "title": "T.N.T.",
+  "checkedAt": "2026-10-15"
+ },
+ "T'es beau – Pauline Croze": {
+  "id": "2532284361",
+  "artist": "Pauline Croze",
+  "title": "T'es beau",
+  "checkedAt": "2026-10-15"
+ },
  "Tacata – Tacabro": {
   "id": "2512495531",
   "artist": "Tacabro",
   "title": "Tacatà (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "Tahiti – Keen' V": {
+  "id": "949897382",
+  "artist": "Keen' V",
+  "title": "Tahiti",
+  "checkedAt": "2026-10-15"
+ },
+ "TAKE A HINT, LET ME GO – dodie": {
+  "id": "4293650672",
+  "artist": "dodie",
+  "title": "TAKE A HINT, LET ME GO",
   "checkedAt": "2026-10-15"
  },
  "Take Me Home, Country Roads – John Denver": {
@@ -3365,8 +7525,32 @@
   "title": "Take Over Control (feat. Eva Simons) (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Talkin' All That Jazz – Stetsasonic": {
+  "id": "1587017342",
+  "artist": "Stetsasonic",
+  "title": "Talkin' All That Jazz",
+  "checkedAt": "2026-10-15"
+ },
+ "Tapage nocturne – El Matador": {
+  "id": "3088148391",
+  "artist": "El Matador",
+  "title": "Tapage nocturne",
+  "checkedAt": "2026-10-15"
+ },
+ "Tarzan Boy – Baltimora": {
+  "id": "3389903",
+  "artist": "Baltimora",
+  "title": "Tarzan Boy",
+  "checkedAt": "2026-10-15"
+ },
  "Tchikita – Jul": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Team BS – Team BS": {
+  "id": "75388161",
+  "artist": "Team BS",
+  "title": "Team BS",
   "checkedAt": "2026-10-15"
  },
  "Teardrop – Massive Attack": {
@@ -3381,10 +7565,22 @@
   "title": "Tearin' up My Heart (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Tears – Sabrina Carpenter": {
+  "id": "3529873491",
+  "artist": "Sabrina Carpenter",
+  "title": "Tears",
+  "checkedAt": "2026-10-15"
+ },
  "Tell Me Something Good – Rufus": {
   "id": "10202440",
   "artist": "Rufus",
   "title": "Tell Me Something Good",
+  "checkedAt": "2026-10-15"
+ },
+ "Tell Me Why – Supermode": {
+  "id": "997537362",
+  "artist": "Supermode",
+  "title": "Tell Me Why (Radio Edit)",
   "checkedAt": "2026-10-15"
  },
  "Temperature – Sean Paul": {
@@ -3411,10 +7607,50 @@
   "title": "Thank You",
   "checkedAt": "2026-10-15"
  },
+ "That Lady – The Isley Brothers": {
+  "id": "586293",
+  "artist": "The Isley Brothers",
+  "title": "That Lady (Part 1 & 2) (Ahmir \"?uest Love\" Thompson)",
+  "checkedAt": "2026-10-15"
+ },
+ "That Look You Give That Guy – Eels": {
+  "id": "69000284",
+  "artist": "Eels",
+  "title": "That Look You Give That Guy",
+  "checkedAt": "2026-10-15"
+ },
+ "The Air That I Breathe – The Hollies": {
+  "id": "3358791",
+  "artist": "The Hollies",
+  "title": "The Air That I Breathe",
+  "checkedAt": "2026-10-15"
+ },
+ "The Bells – Jeff Mills": {
+  "id": "623893232",
+  "artist": "Jeff Mills",
+  "title": "The Bells",
+  "checkedAt": "2026-10-15"
+ },
+ "The Best Disco in Town – The Ritchie Family": {
+  "id": "7080766",
+  "artist": "The Ritchie Family",
+  "title": "The Best Disco In Town",
+  "checkedAt": "2026-10-15"
+ },
+ "The Bitter End – Placebo": {
+  "id": "1892440847",
+  "artist": "Placebo",
+  "title": "The Bitter End",
+  "checkedAt": "2026-10-15"
+ },
  "The Boys Are Back In Town – Thin Lizzy": {
   "id": "1101200",
   "artist": "Thin Lizzy",
   "title": "The Boys Are Back In Town",
+  "checkedAt": "2026-10-15"
+ },
+ "The Bridge – MC Shan": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "The Chain – Fleetwood Mac": {
@@ -3423,16 +7659,50 @@
   "title": "The Chain (2004 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "The Child – Alex Gopher": {
+  "id": "2766285",
+  "artist": "Alex Gopher",
+  "title": "The Child",
+  "checkedAt": "2026-10-15"
+ },
  "The Choice Is Yours – Black Sheep": {
   "id": "2157958",
   "artist": "Black Sheep",
   "title": "The Choice Is Yours (Revisited)",
   "checkedAt": "2026-10-15"
  },
+ "The Color Violet – Tory Lanez": {
+  "id": "1579438382",
+  "artist": "Tory Lanez",
+  "title": "The Color Violet",
+  "checkedAt": "2026-10-15"
+ },
+ "The Colour of My Dreams – B. G. the Prince of Rap": {
+  "id": "1134733492",
+  "artist": "B. G. the Prince of Rap",
+  "title": "The Colour of My Dreams",
+  "checkedAt": "2026-10-15"
+ },
+ "The F--k Shop – The 2 Live Crew": {
+  "id": "143725098",
+  "artist": "The 2 Live Crew",
+  "title": "The F--k Shop",
+  "checkedAt": "2026-10-15"
+ },
+ "The Ghetto – Donny Hathaway": {
+  "id": "7358665",
+  "artist": "Donny Hathaway",
+  "title": "The Ghetto",
+  "checkedAt": "2026-10-15"
+ },
  "The Humpty Dance – Digital Underground": {
   "id": "1584428782",
   "artist": "Digital Underground",
   "title": "The Humpty Dance",
+  "checkedAt": "2026-10-15"
+ },
+ "The Hustle – Van McCoy": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "The Joker – Steve Miller Band": {
@@ -3445,6 +7715,12 @@
   "id": "12159134",
   "artist": "Urban Cookie Collective",
   "title": "The Key, The Secret",
+  "checkedAt": "2026-10-15"
+ },
+ "The Letter – The Box Tops": {
+  "id": "1093255",
+  "artist": "The Box Tops",
+  "title": "The Letter",
   "checkedAt": "2026-10-15"
  },
  "The Lighter – Superbus": {
@@ -3460,9 +7736,37 @@
   "checkedAt": "2026-10-15"
  },
  "The Logical Song – Supertramp": {
-  "id": "1006442262",
+  "id": "2503274",
   "artist": "Supertramp",
   "title": "The Logical Song",
+  "checkedAt": "2026-10-15"
+ },
+ "The Look – Metronomy": {
+  "id": "10240179",
+  "artist": "Metronomy",
+  "title": "The Look",
+  "checkedAt": "2026-10-15"
+ },
+ "The Memory – Roy Ayers": {
+  "id": "982379",
+  "artist": "Roy Ayers",
+  "title": "The Memory",
+  "checkedAt": "2026-10-15"
+ },
+ "The Overweight Lover's in the House – Heavy D & The Boyz": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "The Paris Track – Squarepusher": {
+  "id": "923410212",
+  "artist": "Squarepusher",
+  "title": "The Paris Track",
+  "checkedAt": "2026-10-15"
+ },
+ "The Rap – Millie Jackson": {
+  "id": "1734042037",
+  "artist": "Millie Jackson",
+  "title": "The Rap",
   "checkedAt": "2026-10-15"
  },
  "The Rhythm of the Night – Corona": {
@@ -3477,10 +7781,28 @@
   "title": "The Rhythm Of The Night",
   "checkedAt": "2026-10-15"
  },
+ "The Road to Babylon – Manfred Mann's Earth Band": {
+  "id": "1867100017",
+  "artist": "Manfred Mann's Earth Band",
+  "title": "The Road to Babylon",
+  "checkedAt": "2026-10-15"
+ },
  "The Robots – Kraftwerk": {
   "id": "4262786",
   "artist": "Kraftwerk",
   "title": "The Robots (2009 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "The Runner – The Three Degrees": {
+  "id": "2618358522",
+  "artist": "The Three Degrees",
+  "title": "The Runner",
+  "checkedAt": "2026-10-15"
+ },
+ "The Sea – Morcheeba": {
+  "id": "750460",
+  "artist": "Morcheeba",
+  "title": "The Sea",
   "checkedAt": "2026-10-15"
  },
  "The Show – Doug E. Fresh": {
@@ -3489,10 +7811,22 @@
   "title": "The Show",
   "checkedAt": "2026-10-15"
  },
+ "The Sign – Ace of Base": {
+  "id": "93851026",
+  "artist": "Ace of Base",
+  "title": "The Sign",
+  "checkedAt": "2026-10-15"
+ },
  "The Summer Is Magic – Playahitty": {
   "id": "101286522",
   "artist": "Playahitty",
   "title": "The Summer Is Magic (John Marks 2008 Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
+ "The Summer Is Magic (Acappella) – Playahitty": {
+  "id": "25880231",
+  "artist": "Playahitty",
+  "title": "The Summer Is Magic (Acappella)",
   "checkedAt": "2026-10-15"
  },
  "The Sweet Escape – Gwen Stefani": {
@@ -3501,16 +7835,34 @@
   "title": "The Sweet Escape",
   "checkedAt": "2026-10-15"
  },
+ "The Way I Are – Timbaland": {
+  "id": "4685514",
+  "artist": "Timbaland",
+  "title": "The Way I Are",
+  "checkedAt": "2026-10-15"
+ },
  "Theme from Shaft – Isaac Hayes": {
   "id": "4639913",
   "artist": "Isaac Hayes",
   "title": "Theme From Shaft (Remastered 2009)",
   "checkedAt": "2026-10-15"
  },
+ "Things Can Only Get Better – D:Ream": {
+  "id": "3388506901",
+  "artist": "D:Ream",
+  "title": "Things Can Only Get Better (Remastered)",
+  "checkedAt": "2026-10-15"
+ },
  "Think About the Way – Ice MC": {
   "id": "3413834971",
   "artist": "Ice MC",
   "title": "Think About The Way (Acappella)",
+  "checkedAt": "2026-10-15"
+ },
+ "Thinking of You – Sister Sledge": {
+  "id": "6640574",
+  "artist": "Sister Sledge",
+  "title": "Thinking of You (1995 Remaster)",
   "checkedAt": "2026-10-15"
  },
  "This Girl – Kungs": {
@@ -3525,10 +7877,34 @@
   "title": "This Is How We Do It",
   "checkedAt": "2026-10-15"
  },
+ "This World – Zero 7": {
+  "id": "3366810071",
+  "artist": "Zero 7",
+  "title": "This World",
+  "checkedAt": "2026-10-15"
+ },
  "Tic Tic Tac – Carrapicho": {
   "id": "3030263841",
   "artist": "Carrapicho",
   "title": "Tic, tic, tac",
+  "checkedAt": "2026-10-15"
+ },
+ "Tic tic tac – Génération Latina": {
+  "id": "226519",
+  "artist": "Génération Latina",
+  "title": "Tic tic tac",
+  "checkedAt": "2026-10-15"
+ },
+ "Tic, tic, tac – Carrapicho": {
+  "id": "3030263841",
+  "artist": "Carrapicho",
+  "title": "Tic, tic, tac",
+  "checkedAt": "2026-10-15"
+ },
+ "Tie Me Down – Gryffin": {
+  "id": "537132502",
+  "artist": "Gryffin",
+  "title": "Tie Me Down",
   "checkedAt": "2026-10-15"
  },
  "TiK ToK – Kesha": {
@@ -3537,15 +7913,25 @@
   "title": "TiK ToK",
   "checkedAt": "2026-10-15"
  },
+ "Timber – Pitbull": {
+  "id": "71403230",
+  "artist": "Pitbull",
+  "title": "Timber",
+  "checkedAt": "2026-10-15"
+ },
  "Titanium – David Guetta": {
   "id": "62847142",
   "artist": "David Guetta",
   "title": "Titanium (feat. Sia)",
   "checkedAt": "2026-10-15"
  },
+ "Together – Together": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Toi + Moi – Grégoire": {
   "id": "14338038",
-  "artist": "Gregoire",
+  "artist": "Grégoire",
   "title": "Toi + Moi",
   "checkedAt": "2026-10-15"
  },
@@ -3553,8 +7939,32 @@
   "id": null,
   "checkedAt": "2026-10-15"
  },
+ "Tombé – M. Pokora": {
+  "id": "662153222",
+  "artist": "M. Pokora",
+  "title": "Tombé",
+  "checkedAt": "2026-10-15"
+ },
+ "Tombé du ciel – Jacques Higelin": {
+  "id": "365931171",
+  "artist": "Jacques Higelin",
+  "title": "Tombé du ciel",
+  "checkedAt": "2026-10-15"
+ },
  "Tombe la neige – Adamo": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Tombe la neige – Salvatore Adamo": {
+  "id": "854688952",
+  "artist": "Salvatore Adamo",
+  "title": "Tombe La Neige",
+  "checkedAt": "2026-10-15"
+ },
+ "Tomber la chemise – Zebda": {
+  "id": "2277531",
+  "artist": "Zebda",
+  "title": "Tomber la chemise",
   "checkedAt": "2026-10-15"
  },
  "Tomorrow – Silverchair": {
@@ -3569,7 +7979,19 @@
   "title": "Tonight",
   "checkedAt": "2026-10-15"
  },
+ "Tonight – Yuksek": {
+  "id": "2149179",
+  "artist": "Yuksek",
+  "title": "Tonight (Radio Edit)",
+  "checkedAt": "2026-10-15"
+ },
  "Tonight Is the Night – Le Click": {
+  "id": "798810542",
+  "artist": "Le Click",
+  "title": "Tonight Is The Night",
+  "checkedAt": "2026-10-15"
+ },
+ "Tonight Is The Night – Le Click": {
   "id": "798810542",
   "artist": "Le Click",
   "title": "Tonight Is The Night",
@@ -3579,6 +8001,12 @@
   "id": "62791734",
   "artist": "The Smashing Pumpkins",
   "title": "Tonight, Tonight (Remastered 2012)",
+  "checkedAt": "2026-10-15"
+ },
+ "Tonton Cristobal – Pierre Perret": {
+  "id": "3884583931",
+  "artist": "Pierre Perret",
+  "title": "Tonton Cristobal",
   "checkedAt": "2026-10-15"
  },
  "Tonton du bled – 113": {
@@ -3593,6 +8021,12 @@
   "title": "Too Shy",
   "checkedAt": "2026-10-15"
  },
+ "Toop Toop – Cassius": {
+  "id": "120536314",
+  "artist": "Cassius",
+  "title": "Toop Toop",
+  "checkedAt": "2026-10-15"
+ },
  "Torn – Natalie Imbruglia": {
   "id": "992131",
   "artist": "Natalie Imbruglia",
@@ -3603,6 +8037,22 @@
   "id": "466984412",
   "artist": "Nicky Romero",
   "title": "Toulouse",
+  "checkedAt": "2026-10-15"
+ },
+ "Tourner la page – Zaho": {
+  "id": "2243980637",
+  "artist": "Zaho",
+  "title": "Tourner la page",
+  "checkedAt": "2026-10-15"
+ },
+ "Tout baigne – Ménélik": {
+  "id": "2323295",
+  "artist": "Ménélik",
+  "title": "Tout baigne",
+  "checkedAt": "2026-10-15"
+ },
+ "Tout ce qu'on a – Passi": {
+  "id": null,
   "checkedAt": "2026-10-15"
  },
  "Tout est dans mon sac – Sanseverino": {
@@ -3617,14 +8067,36 @@
   "title": "Tout le bonheur du monde",
   "checkedAt": "2026-10-15"
  },
+ "Tout le monde lève les bras – Sniper": {
+  "id": "509534912",
+  "artist": "Sniper",
+  "title": "Tout le monde lève les bras",
+  "checkedAt": "2026-10-15"
+ },
+ "Tout n'est pas si facile – Suprême NTM": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
  "Toute première fois – Jeanne Mas": {
   "id": "3099813",
   "artist": "Jeanne Mas",
   "title": "Toute première fois",
   "checkedAt": "2026-10-15"
  },
+ "Tragedy – Steps": {
+  "id": "2452707",
+  "artist": "Steps",
+  "title": "Tragedy",
+  "checkedAt": "2026-10-15"
+ },
  "Treasure – Bruno Mars": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Treat 'Em Right – Chubb Rock": {
+  "id": "85144492",
+  "artist": "Chubb Rock",
+  "title": "Treat 'Em Right",
   "checkedAt": "2026-10-15"
  },
  "True – Spandau Ballet": {
@@ -3633,10 +8105,22 @@
   "title": "True (Single Edit)",
   "checkedAt": "2026-10-15"
  },
+ "Try – P!nk": {
+  "id": "60200381",
+  "artist": "P!nk",
+  "title": "Try",
+  "checkedAt": "2026-10-15"
+ },
  "TSOP (The Sound of Philadelphia) – The Three Degrees": {
   "id": "29741071",
   "artist": "The Three Degrees",
   "title": "TSOP (The Sound of Philadelphia)",
+  "checkedAt": "2026-10-15"
+ },
+ "Tu Es Mon Autre (Duo with Maurane) – Lara Fabian": {
+  "id": "80920774",
+  "artist": "Lara Fabian",
+  "title": "Tu Es Mon Autre (Duo with Maurane)",
   "checkedAt": "2026-10-15"
  },
  "Tu trouveras – Natasha St-Pier": {
@@ -3657,6 +8141,12 @@
   "title": "Two Princes",
   "checkedAt": "2026-10-15"
  },
+ "Two Thousand and Seventeen – Four Tet": {
+  "id": "410613892",
+  "artist": "Four Tet",
+  "title": "Two Thousand and Seventeen",
+  "checkedAt": "2026-10-15"
+ },
  "U Got 2 Let the Music – Cappella": {
   "id": "61405980",
   "artist": "Cappella",
@@ -3665,6 +8155,24 @@
  },
  "Uber – Keblack": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ulysse – Ridan": {
+  "id": "568043",
+  "artist": "Ridan",
+  "title": "Ulysse",
+  "checkedAt": "2026-10-15"
+ },
+ "Un homme debout – Claudio Capéo": {
+  "id": "136216916",
+  "artist": "Claudio Capéo",
+  "title": "Un homme debout",
+  "checkedAt": "2026-10-15"
+ },
+ "Un peu de respect – Lady Laistee": {
+  "id": "1107603",
+  "artist": "Lady Laistee",
+  "title": "Un Peu De Respect (Version Edit)",
   "checkedAt": "2026-10-15"
  },
  "Un Seul Jour – Luke": {
@@ -3679,10 +8187,62 @@
   "title": "Un-Break My Heart",
   "checkedAt": "2026-10-15"
  },
+ "Undaground connexion – Assassin": {
+  "id": "237337",
+  "artist": "Assassin",
+  "title": "Undaground connexion",
+  "checkedAt": "2026-10-15"
+ },
+ "Une autre histoire – Gérard Blanc": {
+  "id": "1009243502",
+  "artist": "Gérard Blanc",
+  "title": "Une autre histoire",
+  "checkedAt": "2026-10-15"
+ },
  "Une belle histoire – Michel Fugain": {
   "id": "3335680",
   "artist": "Michel Fugain",
   "title": "Une belle histoire (Version 2005)",
+  "checkedAt": "2026-10-15"
+ },
+ "Une couleur de plus – KDD": {
+  "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Une mère – Lynda Lemay": {
+  "id": "731444",
+  "artist": "Lynda Lemay",
+  "title": "Une mère",
+  "checkedAt": "2026-10-15"
+ },
+ "Unfinished Sympathy – Massive Attack": {
+  "id": "3157624",
+  "artist": "Massive Attack",
+  "title": "Unfinished Sympathy",
+  "checkedAt": "2026-10-15"
+ },
+ "Unholy – Sam Smith": {
+  "id": "1905751117",
+  "artist": "Sam Smith",
+  "title": "Unholy",
+  "checkedAt": "2026-10-15"
+ },
+ "Unplugged #4: La nuit – Sopico": {
+  "id": "467133042",
+  "artist": "Sopico",
+  "title": "Unplugged #4: La nuit",
+  "checkedAt": "2026-10-15"
+ },
+ "Upside Down – Diana Ross": {
+  "id": "4677572",
+  "artist": "Diana Ross",
+  "title": "Upside Down",
+  "checkedAt": "2026-10-15"
+ },
+ "Uptown Funk – Mark Ronson": {
+  "id": "92734438",
+  "artist": "Mark Ronson",
+  "title": "Uptown Funk (feat. Bruno Mars)",
   "checkedAt": "2026-10-15"
  },
  "Uptown Girl – Billy Joel": {
@@ -3691,8 +8251,44 @@
   "title": "Uptown Girl",
   "checkedAt": "2026-10-15"
  },
+ "Use Me – Bill Withers": {
+  "id": "70016820",
+  "artist": "Bill Withers",
+  "title": "Use Me",
+  "checkedAt": "2026-10-15"
+ },
+ "Vai et viens – Lartiste": {
+  "id": "450365142",
+  "artist": "Lartiste",
+  "title": "Vai et viens",
+  "checkedAt": "2026-10-15"
+ },
  "Vampire – Olivia Rodrigo": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Ventura Highway – America": {
+  "id": "727733",
+  "artist": "America",
+  "title": "Ventura Highway",
+  "checkedAt": "2026-10-15"
+ },
+ "Venus – Bananarama": {
+  "id": "420143322",
+  "artist": "Bananarama",
+  "title": "Venus",
+  "checkedAt": "2026-10-15"
+ },
+ "Venus – Shocking Blue": {
+  "id": "60703394",
+  "artist": "Shocking Blue",
+  "title": "Venus",
+  "checkedAt": "2026-10-15"
+ },
+ "Video Killed the Radio Star – The Buggles": {
+  "id": "2509817",
+  "artist": "The Buggles",
+  "title": "Video Killed The Radio Star",
   "checkedAt": "2026-10-15"
  },
  "Vienna – Ultravox": {
@@ -3707,10 +8303,34 @@
   "title": "Viens me faire oublier (Remasterisé)",
   "checkedAt": "2026-10-15"
  },
+ "Viens sur la montagne – Marie Laforêt": {
+  "id": "903701232",
+  "artist": "Marie Laforêt",
+  "title": "Viens sur la montagne",
+  "checkedAt": "2026-10-15"
+ },
+ "Vieux avant l'âge – Scred Connexion": {
+  "id": "3449965251",
+  "artist": "Scred Connexion",
+  "title": "Vieux avant l'âge",
+  "checkedAt": "2026-10-15"
+ },
+ "VIVE LA MONNAIE – GIMS": {
+  "id": "4155445532",
+  "artist": "GIMS",
+  "title": "VIVE LA MONNAIE",
+  "checkedAt": "2026-10-15"
+ },
  "Vivir mi vida – Marc Anthony": {
   "id": "68771815",
   "artist": "Marc Anthony",
   "title": "Vivir Mi Vida",
+  "checkedAt": "2026-10-15"
+ },
+ "Vivre Dans L'Urgence – Kool Shen": {
+  "id": "4586345",
+  "artist": "Kool Shen",
+  "title": "Vivre Dans L'Urgence",
   "checkedAt": "2026-10-15"
  },
  "Vogue – Madonna": {
@@ -3719,16 +8339,40 @@
   "title": "Vogue",
   "checkedAt": "2026-10-15"
  },
+ "Voici les clés – Gérard Lenorman": {
+  "id": "1041861",
+  "artist": "Gérard Lenorman",
+  "title": "Voici les clés",
+  "checkedAt": "2026-10-15"
+ },
+ "Voilà, c'est fini – Jean-Louis Aubert": {
+  "id": "3089507",
+  "artist": "Jean-Louis Aubert",
+  "title": "Voilà c'est fini",
+  "checkedAt": "2026-10-15"
+ },
  "Waka Waka (This Time for Africa) – Shakira": {
   "id": "68473089",
   "artist": "Shakira",
   "title": "Waka Waka (This Time for Africa) (feat. Freshlyground)",
   "checkedAt": "2026-10-15"
  },
+ "Wake Up – Rage Against the Machine": {
+  "id": "15177271",
+  "artist": "Rage Against the Machine",
+  "title": "Wake Up",
+  "checkedAt": "2026-10-15"
+ },
  "Walking on Sunshine – Katrina & The Waves": {
   "id": "3166724",
   "artist": "Katrina & The Waves",
   "title": "Walking On Sunshine",
+  "checkedAt": "2026-10-15"
+ },
+ "Wannabe in L.A – Eagles of Death Metal": {
+  "id": "69000467",
+  "artist": "Eagles of Death Metal",
+  "title": "Wannabe in L.A",
   "checkedAt": "2026-10-15"
  },
  "Waterloo Sunset – The Kinks": {
@@ -3743,10 +8387,34 @@
   "title": "Watermelon Sugar",
   "checkedAt": "2026-10-15"
  },
+ "Waters of March – Art Garfunkel": {
+  "id": "868254",
+  "artist": "Art Garfunkel",
+  "title": "Waters of March",
+  "checkedAt": "2026-10-15"
+ },
+ "Waves – Dean Lewis": {
+  "id": "133577362",
+  "artist": "Dean Lewis",
+  "title": "Waves",
+  "checkedAt": "2026-10-15"
+ },
+ "Week-end à Rome – Étienne Daho": {
+  "id": "775737962",
+  "artist": "Etienne Daho",
+  "title": "Week-end à Rome (2014 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
  "West End Girls – Pet Shop Boys": {
-  "id": "3122969",
+  "id": "462775272",
   "artist": "Pet Shop Boys",
-  "title": "West End Girls",
+  "title": "West End Girls (2018 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "What Can You Do for Me – Utah Saints": {
+  "id": "436140142",
+  "artist": "Utah Saints",
+  "title": "What Can You Do for Me",
   "checkedAt": "2026-10-15"
  },
  "What Is Hip? – Tower of Power": {
@@ -3755,10 +8423,28 @@
   "title": "What Is Hip?",
   "checkedAt": "2026-10-15"
  },
+ "What Makes You Beautiful – One Direction": {
+  "id": "16667911",
+  "artist": "One Direction",
+  "title": "What Makes You Beautiful",
+  "checkedAt": "2026-10-15"
+ },
+ "What You Want – Angèle": {
+  "id": "3827212511",
+  "artist": "Angèle",
+  "title": "What You Want",
+  "checkedAt": "2026-10-15"
+ },
  "What's Up? – 4 Non Blondes": {
   "id": "2184743",
   "artist": "4 Non Blondes",
   "title": "What's Up?",
+  "checkedAt": "2026-10-15"
+ },
+ "When I See You Smile – Bad English": {
+  "id": "1053549",
+  "artist": "Bad English",
+  "title": "When I See You Smile",
   "checkedAt": "2026-10-15"
  },
  "When Love Takes Over – David Guetta": {
@@ -3767,14 +8453,50 @@
   "title": "When Love Takes Over (feat. Kelly Rowland)",
   "checkedAt": "2026-10-15"
  },
+ "Where Do You Go – No Mercy": {
+  "id": "1044489",
+  "artist": "No Mercy",
+  "title": "Where Do You Go",
+  "checkedAt": "2026-10-15"
+ },
+ "Where Is My Mind? – Pixies": {
+  "id": "936899",
+  "artist": "Pixies",
+  "title": "Where Is My Mind?",
+  "checkedAt": "2026-10-15"
+ },
+ "Wherever I Go – OneRepublic": {
+  "id": "133584912",
+  "artist": "OneRepublic",
+  "title": "Wherever I Go",
+  "checkedAt": "2026-10-15"
+ },
  "White Lines – Grandmaster Melle Mel": {
   "id": "62524964",
   "artist": "Grandmaster Melle Mel",
   "title": "White Lines",
   "checkedAt": "2026-10-15"
  },
+ "Whole Lotta Love – Led Zeppelin": {
+  "id": "78671026",
+  "artist": "Led Zeppelin",
+  "title": "Whole Lotta Love (Remaster)",
+  "checkedAt": "2026-10-15"
+ },
  "Whoomp! (There It Is) – Tag Team": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Whoomp! There It Is – Tag Team": {
+  "id": "1377753782",
+  "artist": "Tag Team",
+  "title": "Whoomp! There It Is",
+  "checkedAt": "2026-10-15"
+ },
+ "Why? – GusGus": {
+  "id": "66537636",
+  "artist": "GusGus",
+  "title": "Why?",
   "checkedAt": "2026-10-15"
  },
  "Wild Thing – Tone Lōc": {
@@ -3783,8 +8505,44 @@
   "title": "Wild Thing",
   "checkedAt": "2026-10-15"
  },
+ "Wild Wild West – Kool Moe Dee": {
+  "id": "1195388",
+  "artist": "Kool Moe Dee",
+  "title": "Wild Wild West",
+  "checkedAt": "2026-10-15"
+ },
  "Wild World – Cat Stevens": {
   "id": null,
+  "checkedAt": "2026-10-15"
+ },
+ "Wildfire – SBTRKT": {
+  "id": "12292186",
+  "artist": "SBTRKT",
+  "title": "Wildfire",
+  "checkedAt": "2026-10-15"
+ },
+ "Wings – Birdy": {
+  "id": "69417695",
+  "artist": "Birdy",
+  "title": "Wings",
+  "checkedAt": "2026-10-15"
+ },
+ "Wipeout – Fat Boys": {
+  "id": "1287209272",
+  "artist": "Fat Boys",
+  "title": "Wipeout",
+  "checkedAt": "2026-10-15"
+ },
+ "Wish You Were Here – Pink Floyd": {
+  "id": "116914042",
+  "artist": "Pink Floyd",
+  "title": "Wish You Were Here",
+  "checkedAt": "2026-10-15"
+ },
+ "Without You – John Newman": {
+  "id": "739429262",
+  "artist": "John Newman",
+  "title": "Without You",
   "checkedAt": "2026-10-15"
  },
  "Woman – Wolfmother": {
@@ -3793,10 +8551,46 @@
   "title": "Woman",
   "checkedAt": "2026-10-15"
  },
+ "Wonderwall – Oasis": {
+  "id": "985745702",
+  "artist": "Oasis",
+  "title": "Wonderwall",
+  "checkedAt": "2026-10-15"
+ },
  "Words – F. R. David": {
   "id": "1180418342",
   "artist": "F. R. David",
   "title": "Words",
+  "checkedAt": "2026-10-15"
+ },
+ "Words – F.R. David": {
+  "id": "5367498",
+  "artist": "F.R. David",
+  "title": "Words (Original Version 1983)",
+  "checkedAt": "2026-10-15"
+ },
+ "Would? – Alice in Chains": {
+  "id": "15178233",
+  "artist": "Alice in Chains",
+  "title": "Would? (2022 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "Wouldn't It Be Good – Nik Kershaw": {
+  "id": "65200263",
+  "artist": "Nik Kershaw",
+  "title": "Wouldn't It Be Good",
+  "checkedAt": "2026-10-15"
+ },
+ "Writer's Block – Just Jack": {
+  "id": "1113703",
+  "artist": "Just Jack",
+  "title": "Writer's Block",
+  "checkedAt": "2026-10-15"
+ },
+ "Y Viva España – Manolo Escobar": {
+  "id": "11914110",
+  "artist": "Manolo Escobar",
+  "title": "Y Viva España",
   "checkedAt": "2026-10-15"
  },
  "Y.M.C.A. – Village People": {
@@ -3805,16 +8599,58 @@
   "title": "YMCA",
   "checkedAt": "2026-10-15"
  },
+ "Y'a une route – Manset": {
+  "id": "296960881",
+  "artist": "Manset",
+  "title": "Y'a une route (Remasterisé en 2016)",
+  "checkedAt": "2026-10-15"
+ },
  "Year of the Cat – Al Stewart": {
   "id": "3100130",
   "artist": "Al Stewart",
   "title": "Year of the Cat (2001 Remaster)",
   "checkedAt": "2026-10-15"
  },
+ "YES MOM – Tessa Violet": {
+  "id": "1615069092",
+  "artist": "Tessa Violet",
+  "title": "YES MOM",
+  "checkedAt": "2026-10-15"
+ },
+ "Yes Sir, I Can Boogie – Baccara": {
+  "id": "16235816",
+  "artist": "Baccara",
+  "title": "Yes Sir, I Can Boogie",
+  "checkedAt": "2026-10-15"
+ },
+ "Yo Te Esperaré – Cali Y El Dandee": {
+  "id": "41149901",
+  "artist": "Cali Y El Dandee",
+  "title": "Yo Te Esperaré",
+  "checkedAt": "2026-10-15"
+ },
+ "You – Etienne de Crécy": {
+  "id": "1465854542",
+  "artist": "Etienne de Crécy",
+  "title": "You",
+  "checkedAt": "2026-10-15"
+ },
  "You Ain't Seen Nothing Yet – Bachman-Turner Overdrive": {
   "id": "2447245",
   "artist": "Bachman-Turner Overdrive",
   "title": "You Ain't Seen Nothing Yet",
+  "checkedAt": "2026-10-15"
+ },
+ "You Gots to Chill – EPMD": {
+  "id": "5400328",
+  "artist": "EPMD",
+  "title": "You Gots To Chill",
+  "checkedAt": "2026-10-15"
+ },
+ "You Keep Me Hangin' On – Vanilla Fudge": {
+  "id": "744419",
+  "artist": "Vanilla Fudge",
+  "title": "You Keep Me Hangin' On",
   "checkedAt": "2026-10-15"
  },
  "You Make Me Feel (Mighty Real) – Sylvester": {
@@ -3835,16 +8671,58 @@
   "title": "You Really Got Me",
   "checkedAt": "2026-10-15"
  },
+ "You Really Got Me – Van Halen": {
+  "id": "97173550",
+  "artist": "Van Halen",
+  "title": "You Really Got Me (2015 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
+ "You Really Got Me (2015 Remaster) – Van Halen": {
+  "id": "97173550",
+  "artist": "Van Halen",
+  "title": "You Really Got Me (2015 Remaster)",
+  "checkedAt": "2026-10-15"
+ },
  "You're Beautiful – James Blunt": {
   "id": "73419239",
   "artist": "James Blunt",
   "title": "You're Beautiful",
   "checkedAt": "2026-10-15"
  },
+ "You're The First, The Last, My Everything – Barry White": {
+  "id": "537995772",
+  "artist": "Barry White",
+  "title": "You're The First, The Last, My Everything",
+  "checkedAt": "2026-10-15"
+ },
+ "You're the One for Me – D Train": {
+  "id": "73236802",
+  "artist": "D Train",
+  "title": "You're the One for Me",
+  "checkedAt": "2026-10-15"
+ },
  "Your Love – Frankie Knuckles": {
   "id": "1600906202",
   "artist": "Frankie Knuckles",
   "title": "Your Love",
+  "checkedAt": "2026-10-15"
+ },
+ "Zdarlight – Digitalism": {
+  "id": "2692037762",
+  "artist": "Digitalism",
+  "title": "Zdarlight",
+  "checkedAt": "2026-10-15"
+ },
+ "Zombie – The Cranberries": {
+  "id": "952788",
+  "artist": "The Cranberries",
+  "title": "Zombie",
+  "checkedAt": "2026-10-15"
+ },
+ "Zorro est arrivé – Henri Salvador": {
+  "id": "3130426",
+  "artist": "Henri Salvador",
+  "title": "Zorro est arrivé",
   "checkedAt": "2026-10-15"
  },
  "Zouk la sé sèl médikaman nou ni – Kassav'": {

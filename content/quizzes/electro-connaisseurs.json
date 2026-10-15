@@ -88,7 +88,7 @@
         "Innerbloom – RÜFÜS DU SOL",
         "Atlas – Battles",
         "Nightcall – Kavinsky",
-        "Pursuit – Gesaffelstein"
+        "In My Gut – The Toxic Avenger"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -107,8 +107,8 @@
       "options": [
         "Midnight City – M83",
         "Cola – CamelPhat",
-        "Kerala – Bonobo",
-        "Teardrop – Massive Attack"
+        "The Look – Metronomy",
+        "Nil – Autechre"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -125,9 +125,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Halcyon – Orbital",
-        "The Robots – Kraftwerk",
-        "Open Eye Signal – Jon Hopkins",
+        "Loud Places – Jamie xx",
+        "Little Feet – Apparat",
+        "Embody – SebastiAn",
         "Roygbiv – Boards of Canada"
       ],
       "correctIndex": 3,
@@ -145,10 +145,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Atlas – Battles",
+        "A Real Hero – College",
         "Windowlicker – Aphex Twin",
-        "Bad Kingdom – Moderat",
-        "Glory Box – Portishead"
+        "Ooh La La – Goldfrapp",
+        "Two Thousand and Seventeen – Four Tet"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -166,9 +166,9 @@
       "ask": "artist",
       "options": [
         "La femme d'argent – Air",
-        "Innerbloom – RÜFÜS DU SOL",
-        "Opus – Eric Prydz",
-        "Kerala – Bonobo"
+        "Remedy – Agoria",
+        "Four Seasons – Digitalism",
+        "Crystalised – The xx"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -185,10 +185,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Cola – CamelPhat",
-        "Pursuit – Gesaffelstein",
+        "Eyen – Plaid",
+        "The Paris Track – Squarepusher",
         "Around the World – Daft Punk",
-        "The Robots – Kraftwerk"
+        "Hey Boy Hey Girl – The Chemical Brothers"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -205,10 +205,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Open Eye Signal – Jon Hopkins",
+        "Gimme Some – Weval",
         "Can't Do Without You – Caribou",
-        "Teardrop – Massive Attack",
-        "Bad Kingdom – Moderat"
+        "Wildfire – SBTRKT",
+        "Deceive – Trentemøller"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [

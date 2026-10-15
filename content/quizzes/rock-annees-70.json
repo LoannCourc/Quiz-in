@@ -18,9 +18,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Hotel California – Eagles",
-        "Mr. Blue Sky – Electric Light Orchestra",
-        "Dream On – Aerosmith",
+        "Stairway to Heaven – Led Zeppelin",
+        "Born to Run – Bruce Springsteen",
+        "Rebel Rebel – David Bowie",
         "Bohemian Rhapsody – Queen"
       ],
       "correctIndex": 3,
@@ -39,9 +39,9 @@
       "ask": "artist",
       "options": [
         "Hotel California – Eagles",
-        "The Boys Are Back In Town – Thin Lizzy",
-        "Go Your Own Way – Fleetwood Mac",
-        "More Than a Feeling – Boston"
+        "Roxanne – The Police",
+        "Layla – Derek & The Dominos",
+        "Black Betty – Ram Jam"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -100,7 +100,7 @@
       "options": [
         "I Was Made For Lovin' You – KISS",
         "I Want You to Want Me – Cheap Trick",
-        "My Sharona – The Knack",
+        "Night Moves – Bob Seger",
         "Ballroom Blitz – Sweet"
       ],
       "correctIndex": 0,
@@ -118,9 +118,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Mr. Blue Sky – Electric Light Orchestra",
-        "Go Your Own Way – Fleetwood Mac",
-        "Live and Let Die – Wings",
+        "Baba O'Riley – The Who",
+        "Hold the Line – Toto",
+        "Heart of Gold – Neil Young",
         "The Logical Song – Supertramp"
       ],
       "correctIndex": 3,
@@ -178,10 +178,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Hotel California – Eagles",
-        "The Logical Song – Supertramp",
+        "Gettin' Out – The J. Geils Band",
+        "Another Brick in the Wall, Pt. 2 – Pink Floyd",
         "Go Your Own Way – Fleetwood Mac",
-        "Carry On Wayward Son – Kansas"
+        "Back in the Night – Dr. Feelgood"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -198,9 +198,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "All Right Now – Free",
+        "Doctor Doctor – UFO",
         "The Boys Are Back In Town – Thin Lizzy",
-        "Radar Love – Golden Earring",
+        "T.N.T. – AC/DC",
         "You Ain't Seen Nothing Yet – Bachman-Turner Overdrive"
       ],
       "correctIndex": 1,

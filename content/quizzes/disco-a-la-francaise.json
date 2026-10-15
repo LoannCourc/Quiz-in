@@ -18,7 +18,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Hands Up – Ottawan",
+        "Follow Me – Amanda Lear",
         "Pop Corn – Hot Butter",
         "Fly, Robin, Fly – Silver Convention",
         "Où sont les femmes ? – Patrick Juvet"
@@ -40,9 +40,9 @@
       "ask": "artist",
       "options": [
         "Magnolias for ever – Claude François",
-        "Love in C Minor – Cerrone",
-        "Born to Be Alive – Patrick Hernandez",
-        "Hands Up – Ottawan"
+        "Yes Sir, I Can Boogie – Baccara",
+        "One for You, One for Me – La Bionda",
+        "The Best Disco in Town – The Ritchie Family"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -59,10 +59,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Pop Corn – Hot Butter",
-        "Fly, Robin, Fly – Silver Convention",
+        "In the Navy – Village People",
+        "Rasputin – Boney M.",
         "Laissez-moi danser – Dalida",
-        "Love in C Minor – Cerrone"
+        "Chase – Giorgio Moroder"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -79,10 +79,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Born to Be Alive – Patrick Hernandez",
-        "Hands Up – Ottawan",
+        "L'Obsession d'Archibald – Space Art",
+        "Hello Mr. Monkey – Arabesque",
         "Spacer – Sheila",
-        "Magic Fly – Space"
+        "Lady Bump – Penny McLean"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -104,9 +104,9 @@
       "ask": "title",
       "options": [
         "Supernature – Cerrone",
-        "Pop Corn – Hot Butter",
-        "Alexandrie Alexandra – Claude François",
-        "Fly, Robin, Fly – Silver Convention"
+        "Don't Let Me Be Misunderstood – Santa Esmeralda",
+        "Boogie Woogie Dancin' Shoes – Claudja Barry",
+        "Gimme! Gimme! Gimme! – ABBA"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -123,9 +123,9 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Love in C Minor – Cerrone",
-        "Born to Be Alive – Patrick Hernandez",
-        "Hands Up – Ottawan",
+        "Kung Fu Fighting – Carl Douglas",
+        "If I Can't Have You – Yvonne Elliman",
+        "Native New Yorker – Odyssey",
         "Magic Fly – Space"
       ],
       "correctIndex": 3,
@@ -143,10 +143,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Alexandrie Alexandra – Claude François",
+        "Boogie Nights – Heatwave",
         "D.I.S.C.O. – Ottawan",
-        "Pop Corn – Hot Butter",
-        "Magic Fly – Space"
+        "Shake Your Groove Thing – Peaches & Herb",
+        "Love Is in the Air – John Paul Young"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -167,9 +167,9 @@
       "ask": "artist",
       "options": [
         "Cuba – Gibson Brothers",
-        "Fly, Robin, Fly – Silver Convention",
-        "Love in C Minor – Cerrone",
-        "Born to Be Alive – Patrick Hernandez"
+        "I Was Made for Dancin' – Leif Garrett",
+        "Got to Be Real – Cheryl Lynn",
+        "Car Wash – Rose Royce"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -186,10 +186,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Magic Fly – Space",
-        "Hands Up – Ottawan",
+        "Heaven Must Be Missing an Angel – Tavares",
+        "Équinoxe (Pt. 4) – Jean-Michel Jarre",
         "Musique – France Gall",
-        "Alexandrie Alexandra – Claude François"
+        "Nicolas – Sylvie Vartan"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -206,10 +206,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Pop Corn – Hot Butter",
+        "Upside Down – Diana Ross",
         "Souvenirs – Voyage",
-        "Love in C Minor – Cerrone",
-        "Fly, Robin, Fly – Silver Convention"
+        "Don't Leave Me This Way – Thelma Houston",
+        "Boogie Wonderland – Earth, Wind & Fire"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [

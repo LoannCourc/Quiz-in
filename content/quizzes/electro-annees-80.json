@@ -98,7 +98,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Crockett's Theme – Jan Hammer",
+        "Relax – Frankie Goes to Hollywood",
         "She Blinded Me with Science – Thomas Dolby",
         "Axel F – Harold Faltermeyer",
         "Computer Love – Kraftwerk"
@@ -119,9 +119,9 @@
       "ask": "artist",
       "options": [
         "Chariots Of Fire – Vangelis",
-        "Moments in Love – Art of Noise",
-        "Computer Love – Kraftwerk",
-        "Cars – Gary Numan"
+        "Send Me an Angel – Real Life",
+        "Japanese Boy – Aneka",
+        "Duel – Propaganda"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -138,8 +138,8 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "19 – Paul Hardcastle",
-        "She Blinded Me with Science – Thomas Dolby",
+        "Living on the Ceiling – Blancmange",
+        "Love Missile F1-11 – Sigue Sigue Sputnik",
         "Shout – Tears for Fears",
         "Rockit – Herbie Hancock"
       ],
@@ -158,10 +158,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Vienna – Ultravox",
+        "Wouldn't It Be Good – Nik Kershaw",
         "Enola Gay – Orchestral Manoeuvres In The Dark",
         "Sweet Dreams (Are Made of This) – Eurythmics",
-        "Fade to Grey – Visage"
+        "Pop Muzik – M"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -182,9 +182,9 @@
       "ask": "title",
       "options": [
         "Don't You Want Me – The Human League",
-        "Smalltown Boy – Bronski Beat",
-        "Don't Go – Yazoo",
-        "West End Girls – Pet Shop Boys"
+        "Der Kommissar – Falco",
+        "Video Killed the Radio Star – The Buggles",
+        "Major Tom (Coming Home) – Peter Schilling"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -201,10 +201,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Cars – Gary Numan",
-        "Big in Japan – Alphaville",
+        "Self Control – Laura Branigan",
+        "Tarzan Boy – Baltimora",
         "Fourth Rendez-Vous – Jean-Michel Jarre",
-        "Such a Shame – Talk Talk"
+        "Words – F.R. David"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [

@@ -18,7 +18,7 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Music Sounds Better with You – Stardust",
+        "Destination Calabria – Alex Gaudino",
         "E Samba – Junior Jack",
         "Lady (Hear Me Tonight) – Modjo",
         "No Stress – Laurent Wolf"
@@ -41,7 +41,7 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Embody – SebastiAn",
+        "Heater – Samim",
         "Testarossa Autodrive – Kavinsky",
         "Harder, Better, Faster, Stronger – Daft Punk",
         "Am I Wrong – Étienne de Crécy"
@@ -62,9 +62,9 @@
       "ask": "title",
       "options": [
         "Love Generation – Bob Sinclar",
-        "No Stress – Laurent Wolf",
+        "1901 – Phoenix",
         "Gold – Antoine Clamaran",
-        "Feeling for You – Cassius"
+        "Rose rouge – St Germain"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -82,8 +82,8 @@
       "ask": "artist",
       "options": [
         "Pop the Glock – Uffie",
-        "Embody – SebastiAn",
-        "Baby I’m Yours – Breakbot",
+        "Starlight – The Supermen Lovers",
+        "Lazy – X-Press 2",
         "D.A.N.C.E. – Justice"
       ],
       "correctIndex": 3,
@@ -105,10 +105,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Am I Wrong – Étienne de Crécy",
+        "Jealousy – Martin Solveig",
         "The Sound of Violence – Cassius",
-        "Music Sounds Better with You – Stardust",
-        "Intro – Alan Braxe & Fred Falke"
+        "La Rock 01 – Vitalic",
+        "Kim & Jessie – M83"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -126,9 +126,9 @@
       "ask": "artist",
       "options": [
         "Love Don't Let Me Go – David Guetta",
-        "E Samba – Junior Jack",
-        "Gold – Antoine Clamaran",
-        "No Stress – Laurent Wolf"
+        "Signatune – DJ Mehdi",
+        "Tonight – Yuksek",
+        "Palladium – Alan Braxe"
       ],
       "correctIndex": 0,
       "acceptedAnswers": [
@@ -145,10 +145,10 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Testarossa Autodrive – Kavinsky",
-        "Pop the Glock – Uffie",
+        "Positif – Mr. Oizo",
+        "Rainbow Man – Busy P",
         "Cherry Blossom Girl – Air",
-        "Intro – Alan Braxe & Fred Falke"
+        "A grand love theme – Kid Loco"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
@@ -165,10 +165,10 @@
       "text": "Quel artiste ?",
       "ask": "artist",
       "options": [
-        "Baby I’m Yours – Breakbot",
+        "Groovejet (If This Ain't Love) – Spiller",
         "La ritournelle – Sébastien Tellier",
-        "Feeling for You – Cassius",
-        "Embody – SebastiAn"
+        "Call on Me – Eric Prydz",
+        "Satisfaction – Benny Benassi"
       ],
       "correctIndex": 1,
       "acceptedAnswers": [
@@ -185,9 +185,9 @@
       "text": "Quel est ce titre ?",
       "ask": "title",
       "options": [
-        "Music Sounds Better with You – Stardust",
-        "Am I Wrong – Étienne de Crécy",
-        "Pop the Glock – Uffie",
+        "Put Your Hands Up for Detroit – Fedde Le Grand",
+        "In My Arms – Mylo",
+        "My My My – Armand Van Helden",
         "À cause des garçons – Yelle"
       ],
       "correctIndex": 3,
@@ -206,8 +206,8 @@
       "ask": "artist",
       "options": [
         "Lucky Star – Superfunk",
-        "Gold – Antoine Clamaran",
-        "E Samba – Junior Jack",
+        "Lola's Theme – The Shapeshifters",
+        "Tell Me Why – Supermode",
         "Alive – Mondotek"
       ],
       "correctIndex": 0,
