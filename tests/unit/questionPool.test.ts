@@ -59,6 +59,13 @@ describe('Ensemble de questions', () => {
     expect(poolOf(mix)).toEqual({ kind: 'mix', quizIds: ['bluff-betes'] })
   })
 
+  test('niveaux d’une partie tirée dans des thèmes : écrits s’ils sont choisis, jamais gardés d’un choix précédent', () => {
+    const hard = withPool(DEFAULT_SESSION_SETTINGS, { kind: 'themes', themes: ['Sport'] }, 18, ['hard'])
+    expect(hard).toMatchObject({ themes: ['Sport'], questionCount: 18, levels: ['hard'] })
+    expect(withPool(hard, { kind: 'themes', themes: ['Sport'] }, 20)).not.toHaveProperty('levels')
+    expect(withPool(hard, { kind: 'mix', quizIds: ['bluff-betes'] }, 15)).not.toHaveProperty('levels')
+  })
+
   test('quiz d’un ensemble : thèmes du même jeu seulement, ou quiz choisis', () => {
     expect(poolQuizzes(CATALOG, { kind: 'themes', themes: ['Histoire'] }, 'quiz').map((quiz) => quiz.id)).toEqual(['histoire'])
     expect(poolQuizzes(CATALOG, { kind: 'mix', quizIds: ['bluff-betes', 'bluff-histoire'] }, 'bluff').map((quiz) => quiz.id)).toEqual([

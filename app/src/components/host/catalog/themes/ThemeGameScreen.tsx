@@ -42,13 +42,16 @@ export function ThemeGameScreen({ entries, themes, count, source, start, isCreat
   const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
   const [sound, setSound] = useSoundPreferences();
   const allThemes = useMemo(() => themeStats(entries, new Set()), [entries]);
-  const draw = useThemeGameDraw(source, entries, choice.themes, choice.count);
-  const settings = withPool(settingsForGameType(chosenSettings, 'quiz'), { kind: 'themes', themes: choice.themes }, choice.count);
+  const draw = useThemeGameDraw(source, entries, choice.themes, choice.count, choice.levels);
+  // Nombre réel de la partie : celui des questions tirées (moins que demandé s'il en manque).
+  const questionCount = draw.kind === 'ready' ? draw.draw.refs.length : choice.count;
+  const levels = choice.levels === 'all' ? undefined : choice.levels;
+  const settings = withPool(settingsForGameType(chosenSettings, 'quiz'), { kind: 'themes', themes: choice.themes }, questionCount, levels);
   const quizzes = draw.kind === 'ready' ? draw.draw.quizzes : [];
   const closeEditor = useCallback(() => setIsEditing(false), []);
 
   function create() {
-    if (draw.kind !== 'ready' || draw.draw.quizzes.length === 0 || !areSettingsCompatible(settings)) return;
+    if (draw.kind !== 'ready' || draw.draw.refs.length === 0 || !areSettingsCompatible(settings)) return;
     // quizId : le premier quiz des thèmes (type du jeu pour la TV et les joueurs ; les questions viennent du tirage).
     start(draw.draw.quizzes[0].id, settings, sound, draw.draw.refs);
   }

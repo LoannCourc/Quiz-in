@@ -1,5 +1,7 @@
 import { drawPoolQuestions, parseQuestionRef, poolQuizzes, questionRef, type QuestionPool } from '@shared/questionPool';
 import { parseQuizCatalog } from '@shared/quizValidation';
+import { questionLevelOf } from '@shared/themeCatalog';
+import { drawThemeQuestions, type LevelChoice } from '@shared/themePool';
 import type { GameQuestion } from '@shared/types';
 import { get, ref, set } from 'firebase/database';
 
@@ -37,13 +39,26 @@ export async function loadDrawnQuestions(refs: readonly string[], isBluff: boole
   return pick(refs, await questionsByQuiz(quizIds, isBluff));
 }
 
-// Nouveau tirage dans l'ensemble (jamais jouées d'abord), mémorisé dans la partie avant d'être utilisé.
-export async function drawPoolGame(code: string, pool: QuestionPool, count: number, isBluff: boolean): Promise<LoadedQuestions> {
+// Nouveau tirage dans l'ensemble (jamais jouées d'abord), mémorisé dans la partie avant d'être utilisé. Secours
+// quand la partie n'a pas encore de tirage (Bluff, ou partie par thèmes créée sans tirage sur la fiche) :
+// thèmes du Quiz, même tirage que la fiche (niveaux choisis, parts égales entre les thèmes).
+export async function drawPoolGame(code: string, pool: QuestionPool, count: number, isBluff: boolean, levels: LevelChoice): Promise<LoadedQuestions> {
   const catalog = parseQuizCatalog((await get(ref(db, 'quizzes'))).val()).valid;
-  const quizIds = poolQuizzes(catalog, pool, isBluff ? 'bluff' : 'quiz').map((quiz) => quiz.id);
-  const byQuiz = await questionsByQuiz(quizIds, isBluff);
-  const candidates = [...byQuiz].flatMap(([quizId, questions]) => questions.map((question) => questionRef(quizId, question.id)));
-  const drawn = drawPoolQuestions(candidates, await loadPlayedQuestions(), count);
+  const quizzes = poolQuizzes(catalog, pool, isBluff ? 'bluff' : 'quiz');
+  const byQuiz = await questionsByQuiz(quizzes.map((quiz) => quiz.id), isBluff);
+  const playedAt = await loadPlayedQuestions();
+  const drawn =
+    pool.kind === 'themes'
+      ? drawThemeQuestions(
+          quizzes.flatMap((quiz) =>
+            (byQuiz.get(quiz.id) ?? []).map((question) => ({ ref: questionRef(quiz.id, question.id), theme: quiz.theme, level: questionLevelOf(question.difficulty) })),
+          ),
+          pool.themes,
+          levels,
+          count,
+          playedAt,
+        )
+      : drawPoolQuestions([...byQuiz].flatMap(([quizId, questions]) => questions.map((question) => questionRef(quizId, question.id))), playedAt, count);
   await set(ref(db, `sessions/${code}/questionRefs`), drawn);
   return pick(drawn, byQuiz);
 }

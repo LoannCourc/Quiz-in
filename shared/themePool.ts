@@ -21,10 +21,10 @@ export function includesLevel(levels: LevelChoice, level: QuestionLevel): boolea
   return levels === 'all' || levels.includes(level)
 }
 
-// Questions disponibles pour chaque thème choisi (dans leur ordre), aux niveaux choisis, d'après les fiches
-// du catalogue (levelCounts).
+// Questions disponibles pour chaque thème choisi (dans leur ordre, sans doublon), aux niveaux choisis, d'après
+// les fiches du catalogue (levelCounts).
 export function availableByTheme(entries: readonly QuizEntry[], themes: readonly string[], levels: LevelChoice): { theme: string; count: number }[] {
-  return themes.map((theme) => ({
+  return [...new Set(themes)].map((theme) => ({
     theme,
     count: entries
       .filter((entry) => entry.gameType === 'quiz' && entry.theme === theme)
@@ -55,10 +55,11 @@ export interface PoolShortage {
 }
 
 export function poolShortage(entries: readonly QuizEntry[], themes: readonly string[], levels: LevelChoice, requested: number): PoolShortage | null {
-  const available = availableTotal(entries, themes, levels)
+  const unique = [...new Set(themes)]
+  const available = availableTotal(entries, unique, levels)
   if (available >= requested) return null
-  const advice = themes.length < MAX_POOL_THEMES ? 'addTheme' : levels === 'all' ? 'fewerQuestions' : 'widenLevels'
-  return { available, themes: [...themes], levels, advice }
+  const advice = unique.length < MAX_POOL_THEMES ? 'addTheme' : levels === 'all' ? 'fewerQuestions' : 'widenLevels'
+  return { available, themes: unique, levels, advice }
 }
 
 // Question candidate au tirage : « quizId/questionId », son thème et son niveau.
@@ -78,7 +79,7 @@ export function themeQuotas(count: number, themeCount: number): number[] {
 // Tirage de la partie : seulement les niveaux choisis ; parts égales entre les thèmes, complétées par les
 // autres thèmes quand l'un manque de questions ; partout, d'abord les questions jamais jouées sur ce téléphone
 // (au hasard), puis les plus anciennement jouées. playedAt : heure du dernier lancement de chaque question
-// jouée. Renvoie les identifiants dans un ordre mélangé, au plus count.
+// jouée. Un thème en double ne compte qu'une fois. Renvoie les identifiants dans un ordre mélangé, au plus count.
 export function drawThemeQuestions(
   candidates: readonly PoolCandidate[],
   themes: readonly string[],
@@ -87,10 +88,11 @@ export function drawThemeQuestions(
   playedAt: Readonly<Record<string, number>>,
   random: () => number = Math.random,
 ): string[] {
-  const eligible = candidates.filter((candidate) => themes.includes(candidate.theme) && includesLevel(levels, candidate.level))
+  const uniqueThemes = [...new Set(themes)]
+  const eligible = candidates.filter((candidate) => uniqueThemes.includes(candidate.theme) && includesLevel(levels, candidate.level))
   const ordered = (items: readonly PoolCandidate[]) => priorityOrder(items.map((item) => item.ref), playedAt, random)
-  const byTheme = themes.map((theme) => ordered(eligible.filter((candidate) => candidate.theme === theme)))
-  const quotas = themeQuotas(count, themes.length)
+  const byTheme = uniqueThemes.map((theme) => ordered(eligible.filter((candidate) => candidate.theme === theme)))
+  const quotas = themeQuotas(count, uniqueThemes.length)
   const picked = byTheme.flatMap((refs, index) => refs.slice(0, quotas[index]))
   const pickedSet = new Set(picked)
   // Complément : les questions restantes des autres thèmes, dans le même ordre de priorité.

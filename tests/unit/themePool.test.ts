@@ -129,3 +129,13 @@ describe('Tirage réparti entre les thèmes', () => {
     expect(countByTheme(drawn)).toEqual({ sport: 5 })
   })
 })
+
+describe('Thèmes en double', () => {
+  test('un thème en double ne compte qu’une fois : ni questions comptées deux fois, ni part en plus', () => {
+    expect(availableTotal(ENTRIES, ['Sport', 'Sport'], ['hard'])).toBe(10)
+    const drawn = drawThemeQuestions([...candidates('Histoire', 70), ...candidates('Sport', 70)], ['Sport', 'Sport', 'Histoire'], 'all', 20, {})
+    expect(drawn).toHaveLength(20)
+    expect(new Set(drawn).size).toBe(20)
+    expect(countByTheme(drawn)).toEqual({ sport: 10, histoire: 10 })
+  })
+})

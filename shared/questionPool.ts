@@ -1,6 +1,6 @@
 import { QUESTIONS_PER_GAME } from './constants'
 import type { QuizEntry } from './quizValidation'
-import type { QuizGameType, SessionSettings } from './types'
+import type { QuestionLevel, QuizGameType, SessionSettings } from './types'
 
 // Nombre de questions et tirage dans un ensemble de quiz (plan docs/plan-catalogues-et-rejouer.md, point 1).
 // Quiz : un ou plusieurs thèmes (« Tout » compris), 10 / 20 / 30 questions. Bluff : « Mon mélange », une
@@ -21,14 +21,15 @@ export function poolOf(settings: SessionSettings): QuestionPool | null {
   return null
 }
 
-// Réglages d'une partie tirée dans un ensemble : l'ensemble et le nombre de questions.
-export function withPool(settings: SessionSettings, pool: QuestionPool, questionCount: number): SessionSettings {
+// Réglages d'une partie tirée dans un ensemble : l'ensemble, le nombre de questions et, pour des thèmes, les
+// niveaux choisis (absents : tous).
+export function withPool(settings: SessionSettings, pool: QuestionPool, questionCount: number, levels?: readonly QuestionLevel[]): SessionSettings {
   const rest = { ...settings }
   delete rest.themes
   delete rest.quizIds
-  return pool.kind === 'themes'
-    ? { ...rest, themes: [...pool.themes], questionCount }
-    : { ...rest, quizIds: [...pool.quizIds], questionCount }
+  delete rest.levels
+  if (pool.kind === 'mix') return { ...rest, quizIds: [...pool.quizIds], questionCount }
+  return { ...rest, themes: [...pool.themes], questionCount, ...(levels && levels.length > 0 && { levels: [...levels] }) }
 }
 
 // Nombre de questions de la partie : celui des réglages, sinon QUESTIONS_PER_GAME.

@@ -2,6 +2,7 @@ import { drawGameQuestions, drawRoundsOf } from '@shared/drawGame';
 import { drawCategoriesOf, drawCategoryId } from '@shared/drawWords';
 import { selectGameQuestions } from '@shared/hostEngine';
 import { gameQuestionCount, poolOf, questionRef, type QuestionPool } from '@shared/questionPool';
+import { normalizeLevels, type LevelChoice } from '@shared/themePool';
 import type { GameQuestion, Session } from '@shared/types';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -28,7 +29,14 @@ export function useGameQuestions(code: string, session: Session): GameQuestionsS
   const categoriesKey = drawCategoriesOf(settings.drawCategories ?? []).map(drawCategoryId).join(',');
   const drawRounds = drawRoundsOf(settings);
   const pool = poolOf(settings);
-  const loadKey = JSON.stringify({ quizId, isBluff, pool, count: gameQuestionCount(settings), refs: questionRefs ?? null } satisfies LoadInput);
+  const loadKey = JSON.stringify({
+    quizId,
+    isBluff,
+    pool,
+    count: gameQuestionCount(settings),
+    levels: normalizeLevels(settings.levels),
+    refs: questionRefs ?? null,
+  } satisfies LoadInput);
   // État étiqueté par sa clé : après « Changer de jeu », les questions de l'ancien jeu ne sont jamais rendues
   // (chargement tant que les nouvelles ne sont pas arrivées).
   const [loaded, setLoaded] = useState<{ key: string; state: GameQuestionsState }>({ key: loadKey, state: { kind: 'loading' } });
@@ -63,14 +71,15 @@ interface LoadInput {
   isBluff: boolean;
   pool: QuestionPool | null;
   count: number;
+  levels: LevelChoice;
   refs: string[] | null;
 }
 
-async function loadQuestions(code: string, { quizId, isBluff, pool, count, refs }: LoadInput): Promise<LoadedQuestions> {
+async function loadQuestions(code: string, { quizId, isBluff, pool, count, levels, refs }: LoadInput): Promise<LoadedQuestions> {
   if (pool === null) {
     const questions = selectGameQuestions(await loadQuizQuestions(quizId, isBluff));
     return { questions, refs: questions.map((question) => questionRef(quizId, question.id)) };
   }
   if (refs) return loadDrawnQuestions(refs, isBluff);
-  return drawPoolGame(code, pool, count, isBluff);
+  return drawPoolGame(code, pool, count, isBluff, levels);
 }
