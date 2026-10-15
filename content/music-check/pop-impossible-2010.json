@@ -22,7 +22,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-02",
@@ -43,7 +43,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-03",
@@ -98,7 +98,7 @@
         }
       ],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-04",
@@ -131,7 +131,7 @@
         }
       ],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-05",
@@ -152,7 +152,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-06",
@@ -207,7 +207,7 @@
         }
       ],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-07",
@@ -228,7 +228,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-08",
@@ -249,7 +249,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-09",
@@ -270,7 +270,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     },
     {
       "questionId": "pi10-10",
@@ -291,7 +291,7 @@
       },
       "alternatives": [],
       "verified": true,
-      "verifiedBy": "auto"
+      "verifiedBy": "listened"
     }
   ]
 }
