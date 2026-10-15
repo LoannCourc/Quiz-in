@@ -1,0 +1,557 @@
+{
+  "quizId": "pop-annees-70",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "p70-01",
+      "query": {
+        "artist": "Elton John",
+        "title": "Crocodile Rock"
+      },
+      "found": {
+        "id": "1124103",
+        "title": "Crocodile Rock",
+        "artist": "Elton John",
+        "album": "Don't Shoot Me I'm Only The Piano Player",
+        "durationS": 236,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1124103",
+        "explicit": false,
+        "rank": 755902
+      },
+      "alternatives": [
+        {
+          "id": "757992762",
+          "title": "Crocodile Rock",
+          "artist": "Elton John Experience",
+          "album": "The Best of Elton John",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/757992762",
+          "explicit": false,
+          "rank": 228211
+        },
+        {
+          "id": "2378827",
+          "title": "Crocodile Rock (In The Style Of Elton John)",
+          "artist": "Simply The Best Sax: The Hits Of Elton John",
+          "album": "Simply The Best Sax: The Hits Of Elton John",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2378827",
+          "explicit": false,
+          "rank": 20371
+        },
+        {
+          "id": "7273384",
+          "title": "Crocodile Rock (Live At Madison Square Garden)",
+          "artist": "Elton John",
+          "album": "Elton 60 - Live At Madison Square Garden",
+          "durationS": 276,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7273384",
+          "explicit": false,
+          "rank": 238857
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-02",
+      "query": {
+        "artist": "Carpenters",
+        "title": "(They Long To Be) Close To You"
+      },
+      "found": {
+        "id": "74790480",
+        "title": "(They Long To Be) Close To You",
+        "artist": "Carpenters",
+        "album": "Close To You",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/74790480",
+        "explicit": false,
+        "rank": 688183
+      },
+      "alternatives": [
+        {
+          "id": "548725742",
+          "title": "(They Long To Be) Close To You",
+          "artist": "Carpenters",
+          "album": "The Singles 1969 - 1973",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/548725742",
+          "explicit": false,
+          "rank": 410538
+        },
+        {
+          "id": "598224202",
+          "title": "(They Long To Be) Close To You",
+          "artist": "Carpenters",
+          "album": "Carpenters With The Royal Philharmonic Orchestra",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/598224202",
+          "explicit": false,
+          "rank": 251779
+        },
+        {
+          "id": "529915801",
+          "title": "(They Long To Be) Close To You (1991 Remix)",
+          "artist": "Carpenters",
+          "album": "Gold - Greatest Hits",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/529915801",
+          "explicit": false,
+          "rank": 549823
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-03",
+      "query": {
+        "artist": "10cc",
+        "title": "I'm Not in Love"
+      },
+      "found": {
+        "id": "1581601",
+        "title": "I'm Not In Love",
+        "artist": "10cc",
+        "album": "The Original Soundtrack",
+        "durationS": 366,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1581601",
+        "explicit": false,
+        "rank": 868985
+      },
+      "alternatives": [
+        {
+          "id": "1052647012",
+          "title": "I'm Not In Love",
+          "artist": "10cc",
+          "album": "With Love From ... PolyGram 50th Anniversary",
+          "durationS": 364,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1052647012",
+          "explicit": false,
+          "rank": 535221
+        },
+        {
+          "id": "80207568",
+          "title": "I'm Not In Love",
+          "artist": "10cc",
+          "album": "Bloodblue",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/80207568",
+          "explicit": false,
+          "rank": 129921
+        },
+        {
+          "id": "985702852",
+          "title": "I'M NOT IN LOVE (我沒有戀愛 穿越時空 傾心吐意)",
+          "artist": "10cc",
+          "album": "天籟美聲 (當歌聲響起 就聽見天籟之音)",
+          "durationS": 291,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/985702852",
+          "explicit": false,
+          "rank": 24138
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-04",
+      "query": {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams"
+      },
+      "found": {
+        "id": "63480987",
+        "title": "Dreams (2004 Remaster)",
+        "artist": "Fleetwood Mac",
+        "album": "Rumours",
+        "durationS": 257,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63480987",
+        "explicit": false,
+        "rank": 907653
+      },
+      "alternatives": [
+        {
+          "id": "67549302",
+          "title": "Dreams (Sessions, Roughs & Outtakes)",
+          "artist": "Fleetwood Mac",
+          "album": "Rumours (Super Deluxe)",
+          "durationS": 261,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67549302",
+          "explicit": false,
+          "rank": 474333
+        },
+        {
+          "id": "67549286",
+          "title": "Dreams (Take 2)",
+          "artist": "Fleetwood Mac",
+          "album": "Rumours (Super Deluxe)",
+          "durationS": 335,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/67549286",
+          "explicit": false,
+          "rank": 309893
+        },
+        {
+          "id": "4063236311",
+          "title": "Dreams",
+          "artist": "Fleetwood Mac",
+          "album": "Greatest Hits (Deluxe Edition)",
+          "durationS": 254,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4063236311",
+          "explicit": false,
+          "rank": 258347
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-05",
+      "query": {
+        "artist": "Wings",
+        "title": "Band on the Run"
+      },
+      "found": {
+        "id": "2660357262",
+        "title": "Band On The Run",
+        "artist": "Wings",
+        "album": "The Covers Album, Vol. 1",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2660357262",
+        "explicit": false,
+        "rank": 100000
+      },
+      "alternatives": [
+        {
+          "id": "127129383",
+          "title": "Band On The Run",
+          "artist": "Denny Lane (Wings & Moody Blues)",
+          "album": "Go Now - The Songs of The Moody Blues and Wings",
+          "durationS": 323,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/127129383",
+          "explicit": false,
+          "rank": 10205
+        },
+        {
+          "id": "7340163",
+          "title": "Band On The Run (2010 Remaster)",
+          "artist": "Paul McCartney",
+          "album": "Band On The Run",
+          "durationS": 311,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7340163",
+          "explicit": false,
+          "rank": 675159
+        },
+        {
+          "id": "2836098212",
+          "title": "Band On The Run (One Hand Clapping Sessions)",
+          "artist": "Paul McCartney",
+          "album": "One Hand Clapping",
+          "durationS": 320,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2836098212",
+          "explicit": false,
+          "rank": 170869
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-06",
+      "query": {
+        "artist": "Billy Joel",
+        "title": "Piano Man"
+      },
+      "found": {
+        "id": "14333215",
+        "title": "Piano Man",
+        "artist": "Billy Joel",
+        "album": "Piano Man (Legacy Edition)",
+        "durationS": 336,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14333215",
+        "explicit": false,
+        "rank": 804725
+      },
+      "alternatives": [
+        {
+          "id": "1701077607",
+          "title": "Piano Man",
+          "artist": "Billy Joel",
+          "album": "Piano Man - The Very Best of Billy Joel",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1701077607",
+          "explicit": false,
+          "rank": 591970
+        },
+        {
+          "id": "3521385851",
+          "title": "Piano Man (The Old Grey Whistle Test)",
+          "artist": "Billy Joel",
+          "album": "And So It Goes",
+          "durationS": 320,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3521385851",
+          "explicit": false,
+          "rank": 240536
+        },
+        {
+          "id": "1068686",
+          "title": "Piano Man (Album Version)",
+          "artist": "Billy Joel",
+          "album": "Rock Classics Of The 70's",
+          "durationS": 336,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1068686",
+          "explicit": false,
+          "rank": 207736
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-07",
+      "query": {
+        "artist": "Gilbert O'Sullivan",
+        "title": "Alone Again (Naturally)"
+      },
+      "found": {
+        "id": "3785439982",
+        "title": "Alone Again (Naturally)",
+        "artist": "Gilbert O'Sullivan",
+        "album": "Back to Front (Deluxe Edition)",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785439982",
+        "explicit": false,
+        "rank": 585196
+      },
+      "alternatives": [
+        {
+          "id": "3794178692",
+          "title": "Alone Again (Naturally) (Songbook Version) (Songbook Version)",
+          "artist": "Gilbert O'Sullivan",
+          "album": "Alone Again (Naturally) (Songbook Version)",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3794178692",
+          "explicit": false,
+          "rank": 128264
+        },
+        {
+          "id": "1151525252",
+          "title": "Alone Again (Naturally)",
+          "artist": "Gilbert O'Sullivan",
+          "album": "Thunder And Lightning",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1151525252",
+          "explicit": false,
+          "rank": 53913
+        },
+        {
+          "id": "3782948112",
+          "title": "Save It",
+          "artist": "Gilbert O'Sullivan",
+          "album": "Alone Again (Naturally)",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3782948112",
+          "explicit": false,
+          "rank": 193022
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-08",
+      "query": {
+        "artist": "Harry Nilsson",
+        "title": "Without You"
+      },
+      "found": {
+        "id": "717104332",
+        "title": "Without You",
+        "artist": "Harry Nilsson",
+        "album": "The Essential Nilsson",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/717104332",
+        "explicit": false,
+        "rank": 664486
+      },
+      "alternatives": [
+        {
+          "id": "418452402",
+          "title": "Without You (Demo)",
+          "artist": "Harry Nilsson",
+          "album": "Nilsson Sessions 1971-1974",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/418452402",
+          "explicit": false,
+          "rank": 152005
+        },
+        {
+          "id": "418452482",
+          "title": "Per Chi (Without You)",
+          "artist": "Harry Nilsson",
+          "album": "Nilsson Sessions 1971-1974",
+          "durationS": 195,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/418452482",
+          "explicit": false,
+          "rank": 207890
+        },
+        {
+          "id": "417843782",
+          "title": "Living Without You",
+          "artist": "Harry Nilsson",
+          "album": "Nilsson Sings Newman",
+          "durationS": 155,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/417843782",
+          "explicit": false,
+          "rank": 150140
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-09",
+      "query": {
+        "artist": "Simon & Garfunkel",
+        "title": "Bridge over Troubled Water"
+      },
+      "found": {
+        "id": "13174764",
+        "title": "Bridge Over Troubled Water",
+        "artist": "Simon & Garfunkel",
+        "album": "Bridge Over Troubled Water",
+        "durationS": 293,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13174764",
+        "explicit": false,
+        "rank": 649494
+      },
+      "alternatives": [
+        {
+          "id": "757964322",
+          "title": "Bridge over Troubled Water",
+          "artist": "Simon & Garfunkel Experience",
+          "album": "The Best of Simon & Garfunkel",
+          "durationS": 265,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/757964322",
+          "explicit": false,
+          "rank": 57072
+        },
+        {
+          "id": "1266357802",
+          "title": "Bridge Over Troubled Water",
+          "artist": "Simon & Garfunkel Experience",
+          "album": "Mrs. Robinson / Bridge Over Troubled Water / the Boxer",
+          "durationS": 248,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1266357802",
+          "explicit": false,
+          "rank": 54114
+        },
+        {
+          "id": "66619217",
+          "title": "Bridge Over Troubled Water",
+          "artist": "Simon & Garfunkel Revival Band",
+          "album": "Feelin' Groovy",
+          "durationS": 276,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/66619217",
+          "explicit": false,
+          "rank": 31098
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "p70-10",
+      "query": {
+        "artist": "Bonnie Tyler",
+        "title": "It's a Heartache"
+      },
+      "found": {
+        "id": "3806167112",
+        "title": "It's a Heartache",
+        "artist": "Bonnie Tyler",
+        "album": "It's a Heartache",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3806167112",
+        "explicit": false,
+        "rank": 761373
+      },
+      "alternatives": [
+        {
+          "id": "417415642",
+          "title": "It's a Heartache",
+          "artist": "Bonnie Tyler",
+          "album": "Bonnie",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/417415642",
+          "explicit": false,
+          "rank": 473429
+        },
+        {
+          "id": "1976687827",
+          "title": "It's A Heartache",
+          "artist": "Bonnie Tyler",
+          "album": "Was wir haben, ist für immer (Das Beste aus 5 Jahren)",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1976687827",
+          "explicit": false,
+          "rank": 241307
+        },
+        {
+          "id": "2709974082",
+          "title": "It's a Heartache (Live in Berlin)",
+          "artist": "Bonnie Tyler",
+          "album": "In Berlin",
+          "durationS": 301,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2709974082",
+          "explicit": false,
+          "rank": 192835
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

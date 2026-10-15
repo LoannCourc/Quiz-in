@@ -1,0 +1,557 @@
+{
+  "quizId": "disco-a-la-francaise",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "dfr-01",
+      "query": {
+        "artist": "Patrick Juvet",
+        "title": "Où sont les femmes"
+      },
+      "found": {
+        "id": "953339",
+        "title": "Où sont les femmes",
+        "artist": "Patrick Juvet",
+        "album": "Best Of Disco",
+        "durationS": 375,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/953339",
+        "explicit": false,
+        "rank": 578832
+      },
+      "alternatives": [
+        {
+          "id": "2554648",
+          "title": "Où sont les femmes",
+          "artist": "Patrick Juvet",
+          "album": "Age tendre... La tournée des idoles, Vol. 3: La magie des années 60-70-80",
+          "durationS": 137,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2554648",
+          "explicit": false,
+          "rank": 318522
+        },
+        {
+          "id": "11252808",
+          "title": "Où sont les femmes",
+          "artist": "Patrick Juvet",
+          "album": "Age tendre… La tournée des idoles, Vol. 6",
+          "durationS": 186,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11252808",
+          "explicit": false,
+          "rank": 68891
+        },
+        {
+          "id": "3702809412",
+          "title": "Où sont les femmes ? (Pure Class Radio Edit)",
+          "artist": "Joe T Vannelli",
+          "album": "Où sont les femmes ?",
+          "durationS": 193,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3702809412",
+          "explicit": false,
+          "rank": 291902
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-02",
+      "query": {
+        "artist": "Claude François",
+        "title": "Magnolias for ever"
+      },
+      "found": {
+        "id": "743754",
+        "title": "Magnolias for Ever",
+        "artist": "Claude François",
+        "album": "Best Of",
+        "durationS": 260,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/743754",
+        "explicit": false,
+        "rank": 763853
+      },
+      "alternatives": [
+        {
+          "id": "1984836197",
+          "title": "Magnolias for Ever (Fred Falke Remix) (Radio Edit)",
+          "artist": "Claude François",
+          "album": "Magnolias for Ever (Fred Falke Remixes)",
+          "durationS": 331,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1984836197",
+          "explicit": false,
+          "rank": 527116
+        },
+        {
+          "id": "1785774307",
+          "title": "Magnolias for Ever (Mikeandtess Extended Mix)",
+          "artist": "Claude François",
+          "album": "Magnolias for Ever (2022 Extended Mixes)",
+          "durationS": 507,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1785774307",
+          "explicit": false,
+          "rank": 361384
+        },
+        {
+          "id": "1984836207",
+          "title": "Magnolias for Ever (Fred Falke Club Remix)",
+          "artist": "Claude François",
+          "album": "Magnolias for Ever (Fred Falke Remixes)",
+          "durationS": 431,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1984836207",
+          "explicit": false,
+          "rank": 379406
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-03",
+      "query": {
+        "artist": "Dalida",
+        "title": "Laissez-moi danser"
+      },
+      "found": {
+        "id": "7314746",
+        "title": "Laissez-moi danser",
+        "artist": "Dalida",
+        "album": "Comme Si J'Etais La",
+        "durationS": 352,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7314746",
+        "explicit": false,
+        "rank": 700674
+      },
+      "alternatives": [
+        {
+          "id": "1149273",
+          "title": "Monday, Tuesday... Laissez-moi danser",
+          "artist": "Dalida",
+          "album": "La Legende",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1149273",
+          "explicit": false,
+          "rank": 757769
+        },
+        {
+          "id": "1438390852",
+          "title": "Monday Tuesday (Laissez-moi danser) (Cerrone Remix 2001)",
+          "artist": "Dalida",
+          "album": "Laissez-moi danser",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1438390852",
+          "explicit": false,
+          "rank": 305909
+        },
+        {
+          "id": "1438390842",
+          "title": "Jusqu'au bout du rêve (Laissez-moi danser) (Remix 1995)",
+          "artist": "Dalida",
+          "album": "Laissez-moi danser",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1438390842",
+          "explicit": false,
+          "rank": 179224
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-04",
+      "query": {
+        "artist": "Sheila",
+        "title": "Spacer"
+      },
+      "found": {
+        "id": "740773",
+        "title": "Spacer",
+        "artist": "Sheila",
+        "album": "King Of The World",
+        "durationS": 354,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/740773",
+        "explicit": false,
+        "rank": 699769
+      },
+      "alternatives": [
+        {
+          "id": "3899177",
+          "title": "Spacer (Version single)",
+          "artist": "Sheila",
+          "album": "Spacer (Version 45 Tours n°1)",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3899177",
+          "explicit": false,
+          "rank": 499520
+        },
+        {
+          "id": "2507693041",
+          "title": "Spacer (7'' Edit)",
+          "artist": "Sheila",
+          "album": "From Paris to L.A. / English Tracks Collection",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2507693041",
+          "explicit": false,
+          "rank": 384083
+        },
+        {
+          "id": "68955590",
+          "title": "Spacer",
+          "artist": "Sheila",
+          "album": "Nile Rodgers Presents: The Chic Organization: Up All Night (The Greatest Hits)",
+          "durationS": 375,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68955590",
+          "explicit": false,
+          "rank": 409807
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-05",
+      "query": {
+        "artist": "Cerrone",
+        "title": "Supernature"
+      },
+      "found": {
+        "id": "1013210122",
+        "title": "Supernature",
+        "artist": "Cerrone",
+        "album": "3 - Supernature",
+        "durationS": 585,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1013210122",
+        "explicit": false,
+        "rank": 715965
+      },
+      "alternatives": [
+        {
+          "id": "1731101887",
+          "title": "Supernature",
+          "artist": "Cerrone",
+          "album": "Addict",
+          "durationS": 262,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1731101887",
+          "explicit": false,
+          "rank": 154017
+        },
+        {
+          "id": "445773232",
+          "title": "Supernature",
+          "artist": "Cerrone",
+          "album": "Cerrone by Bob Sinclar",
+          "durationS": 375,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/445773232",
+          "explicit": false,
+          "rank": 512878
+        },
+        {
+          "id": "3068785351",
+          "title": "Supernature (Symphonic Version)",
+          "artist": "Cerrone",
+          "album": "Disco Symphony",
+          "durationS": 485,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3068785351",
+          "explicit": false,
+          "rank": 449858
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-06",
+      "query": {
+        "artist": "Space",
+        "title": "Magic Fly"
+      },
+      "found": {
+        "id": "3039725731",
+        "title": "Magic Fly",
+        "artist": "Space",
+        "album": "Magic Fly",
+        "durationS": 260,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3039725731",
+        "explicit": false,
+        "rank": 529424
+      },
+      "alternatives": [
+        {
+          "id": "3090232491",
+          "title": "Magic Fly",
+          "artist": "Space",
+          "album": "Symphonic Space Dream",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3090232491",
+          "explicit": false,
+          "rank": 130023
+        },
+        {
+          "id": "17356694",
+          "title": "Magic Fly (Maincrashers Extraterrestrial Edit)",
+          "artist": "Space Aliens",
+          "album": "Magic Fly",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17356694",
+          "explicit": false,
+          "rank": 39436
+        },
+        {
+          "id": "5713374",
+          "title": "Magic Fly",
+          "artist": "Image Space Orchestra",
+          "album": "Star Wars Episode 1 (Duel Of The Fates)",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5713374",
+          "explicit": false,
+          "rank": 17564
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-07",
+      "query": {
+        "artist": "Ottawan",
+        "title": "D.I.S.C.O."
+      },
+      "found": {
+        "id": "1436213772",
+        "title": "D.I.S.C.O. (Single Version)",
+        "artist": "Ottawan",
+        "album": "D.I.S.C.O.",
+        "durationS": 196,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1436213772",
+        "explicit": false,
+        "rank": 567220
+      },
+      "alternatives": [
+        {
+          "id": "1431802532",
+          "title": "D.I.S.C.O. (Version française)",
+          "artist": "Ottawan",
+          "album": "D.I.S.C.O.",
+          "durationS": 302,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1431802532",
+          "explicit": false,
+          "rank": 669629
+        },
+        {
+          "id": "1431802592",
+          "title": "D.I.S.C.O.",
+          "artist": "Ottawan",
+          "album": "D.I.S.C.O.",
+          "durationS": 301,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1431802592",
+          "explicit": false,
+          "rank": 410282
+        },
+        {
+          "id": "1434934542",
+          "title": "D.I.S.C.O.",
+          "artist": "Ottawan",
+          "album": "D.I.S.C.O.",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1434934542",
+          "explicit": false,
+          "rank": 175058
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-08",
+      "query": {
+        "artist": "Gibson Brothers",
+        "title": "Cuba"
+      },
+      "found": {
+        "id": "13025896",
+        "title": "Cuba",
+        "artist": "Gibson Brothers",
+        "album": "The Complete Of Gibson Brothers",
+        "durationS": 453,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13025896",
+        "explicit": false,
+        "rank": 526199
+      },
+      "alternatives": [
+        {
+          "id": "2670189872",
+          "title": "Cuba",
+          "artist": "Gibson Brothers",
+          "album": "Hitparade Brasil Vol. 1",
+          "durationS": 436,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2670189872",
+          "explicit": false,
+          "rank": 324112
+        },
+        {
+          "id": "6284811",
+          "title": "Cuba",
+          "artist": "Gibson Brothers",
+          "album": "Greatest Hits",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6284811",
+          "explicit": false,
+          "rank": 232922
+        },
+        {
+          "id": "3318389511",
+          "title": "Cuba (edit)",
+          "artist": "Gibson Brothers",
+          "album": "Mi Vida - The Original Singles Album",
+          "durationS": 203,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3318389511",
+          "explicit": false,
+          "rank": 193357
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-09",
+      "query": {
+        "artist": "France Gall",
+        "title": "Musique"
+      },
+      "found": {
+        "id": "46328881",
+        "title": "Musique (Remasterisé en 2004)",
+        "artist": "France Gall",
+        "album": "Dancing Disco (Remasterisé en 2004)",
+        "durationS": 325,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/46328881",
+        "explicit": false,
+        "rank": 713882
+      },
+      "alternatives": [
+        {
+          "id": "61397203",
+          "title": "Musique",
+          "artist": "France Gall",
+          "album": "Évidemment (Version standard)",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/61397203",
+          "explicit": false,
+          "rank": 629983
+        },
+        {
+          "id": "46306031",
+          "title": "Musique (Acoustique) [Live 1997] (Remasterisé en 2004)",
+          "artist": "France Gall",
+          "album": "Concert public / Concert privé (Live 1997)",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/46306031",
+          "explicit": false,
+          "rank": 242041
+        },
+        {
+          "id": "61424474",
+          "title": "Musique (Live au Palais des Sports, 1982) (Remasterisé en 2004)",
+          "artist": "France Gall",
+          "album": "France Gall: Intégrale des albums studios (+ 3 concerts)",
+          "durationS": 345,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/61424474",
+          "explicit": false,
+          "rank": 146852
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dfr-10",
+      "query": {
+        "artist": "Voyage",
+        "title": "Souvenirs"
+      },
+      "found": {
+        "id": "7978344",
+        "title": "Souvenirs",
+        "artist": "Voyage",
+        "album": "Twelve Inch Classics from the 70s, Vol. 1",
+        "durationS": 306,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7978344",
+        "explicit": false,
+        "rank": 387997
+      },
+      "alternatives": [
+        {
+          "id": "3786029512",
+          "title": "Souvenirs",
+          "artist": "Voyage",
+          "album": "Fly Away",
+          "durationS": 390,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786029512",
+          "explicit": false,
+          "rank": 337269
+        },
+        {
+          "id": "2740843171",
+          "title": "Souvenirs",
+          "artist": "Voyage",
+          "album": "Souvenirs",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2740843171",
+          "explicit": false,
+          "rank": 197637
+        },
+        {
+          "id": "2740843181",
+          "title": "Souvenirs (Extended Mix)",
+          "artist": "Voyage",
+          "album": "Souvenirs",
+          "durationS": 415,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2740843181",
+          "explicit": false,
+          "rank": 138438
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

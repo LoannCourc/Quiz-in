@@ -1,0 +1,229 @@
+{
+  "id": "funk-soul-annees-70",
+  "gameType": "blindTest",
+  "title": "Funk et soul des années 70",
+  "theme": "Musique",
+  "description": "Groove, cuivres et basses rondes : dix morceaux funk et soul pour connaisseurs.",
+  "audience": "experts",
+  "poster": "orange",
+  "icon": "discoBall",
+  "genre": "discoFunk",
+  "decade": 1970,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-4)",
+  "questions": [
+    {
+      "id": "fs70-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Get Up Offa That Thing – James Brown",
+        "What Is Hip? – Tower of Power",
+        "Chameleon – Herbie Hancock",
+        "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Get Up Offa That Thing"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "James Brown",
+        "title": "Get Up Offa That Thing"
+      }
+    },
+    {
+      "id": "fs70-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tell Me Something Good – Rufus",
+        "Play That Funky Music – Wild Cherry",
+        "Flash Light – Parliament",
+        "Cissy Strut – The Meters"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Parliament"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Parliament",
+        "title": "Flash Light"
+      }
+    },
+    {
+      "id": "fs70-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Theme from Shaft – Isaac Hayes",
+        "Shining Star – Earth, Wind & Fire",
+        "One Nation Under a Groove – Funkadelic",
+        "Boogie Oogie Oogie – A Taste of Honey"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "One Nation Under a Groove"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Funkadelic",
+        "title": "One Nation Under a Groove"
+      }
+    },
+    {
+      "id": "fs70-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jungle Boogie – Kool & The Gang",
+        "Get Down Tonight – KC & The Sunshine Band",
+        "What Is Hip? – Tower of Power",
+        "Tell Me Something Good – Rufus"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Kool & The Gang"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kool & The Gang",
+        "title": "Jungle Boogie",
+        "artistAliases": [
+          "Kool and the Gang"
+        ]
+      }
+    },
+    {
+      "id": "fs70-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Chameleon – Herbie Hancock",
+        "Cissy Strut – The Meters",
+        "Play That Funky Music – Wild Cherry",
+        "Fire – Ohio Players"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Fire"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Ohio Players",
+        "title": "Fire",
+        "artistAliases": [
+          "The Ohio Players"
+        ]
+      }
+    },
+    {
+      "id": "fs70-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band",
+        "Family Affair – Sly & The Family Stone",
+        "Theme from Shaft – Isaac Hayes",
+        "Shining Star – Earth, Wind & Fire"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sly & The Family Stone"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Sly & The Family Stone",
+        "title": "Family Affair",
+        "artistAliases": [
+          "Sly and the Family Stone"
+        ]
+      }
+    },
+    {
+      "id": "fs70-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Low Rider – War",
+        "Boogie Oogie Oogie – A Taste of Honey",
+        "Get Down Tonight – KC & The Sunshine Band",
+        "Chameleon – Herbie Hancock"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Low Rider"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "War",
+        "title": "Low Rider"
+      }
+    },
+    {
+      "id": "fs70-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "What Is Hip? – Tower of Power",
+        "Tell Me Something Good – Rufus",
+        "Pick Up the Pieces – Average White Band",
+        "Theme from Shaft – Isaac Hayes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Average White Band"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Average White Band",
+        "title": "Pick Up the Pieces"
+      }
+    },
+    {
+      "id": "fs70-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cissy Strut – The Meters",
+        "Move On Up – Curtis Mayfield",
+        "Shining Star – Earth, Wind & Fire",
+        "Express Yourself – Charles Wright & The Watts 103rd Street Rhythm Band"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Move On Up"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Curtis Mayfield",
+        "title": "Move On Up"
+      }
+    },
+    {
+      "id": "fs70-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Play That Funky Music – Wild Cherry",
+        "Get Down Tonight – KC & The Sunshine Band",
+        "Boogie Oogie Oogie – A Taste of Honey",
+        "Brick House – Commodores"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Commodores"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Commodores",
+        "title": "Brick House",
+        "artistAliases": [
+          "The Commodores"
+        ]
+      }
+    }
+  ]
+}

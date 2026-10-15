@@ -1,0 +1,557 @@
+{
+  "quizId": "rock-annees-60",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "r60-01",
+      "query": {
+        "artist": "Kinks",
+        "title": "You Really Got Me"
+      },
+      "found": {
+        "id": "2319655705",
+        "title": "You Really Got Me",
+        "artist": "Kinks",
+        "album": "You Really Got Me - Kinks - Best",
+        "durationS": 134,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2319655705",
+        "explicit": false,
+        "rank": 676009
+      },
+      "alternatives": [
+        {
+          "id": "3803575372",
+          "title": "You Really Got Me (Live From The Playhouse Theatre, London / 1964)",
+          "artist": "The Kinks",
+          "album": "Kinks (Deluxe Edition)",
+          "durationS": 133,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3803575372",
+          "explicit": false,
+          "rank": 349317
+        },
+        {
+          "id": "3730832022",
+          "title": "You Really Got Me (Live at Lowell Memorial Auditorium, Lowell, MA - March 1979)",
+          "artist": "The Kinks",
+          "album": "One for the Road (Live)",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3730832022",
+          "explicit": false,
+          "rank": 216887
+        },
+        {
+          "id": "3803613212",
+          "title": "You Really Got Me (Live From The Playhouse Theatre, London / 1964)",
+          "artist": "The Kinks",
+          "album": "BBC Sessions: 1964-1977",
+          "durationS": 133,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3803613212",
+          "explicit": false,
+          "rank": 176334
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-02",
+      "query": {
+        "artist": "The Who",
+        "title": "My Generation"
+      },
+      "found": {
+        "id": "136341550",
+        "title": "My Generation",
+        "artist": "The Who",
+        "album": "My Generation (50th Anniversary / Super Deluxe)",
+        "durationS": 197,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136341550",
+        "explicit": false,
+        "rank": 646589
+      },
+      "alternatives": [
+        {
+          "id": "94848458",
+          "title": "My Generation (Stereo Version)",
+          "artist": "The Who",
+          "album": "My Generation (Stereo Version)",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/94848458",
+          "explicit": false,
+          "rank": 391699
+        },
+        {
+          "id": "2171360",
+          "title": "My Generation (Shel Talmy Stereo Version)",
+          "artist": "The Who",
+          "album": "My Generation (Deluxe Edition)",
+          "durationS": 201,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2171360",
+          "explicit": false,
+          "rank": 302962
+        },
+        {
+          "id": "1756400637",
+          "title": "My Generation",
+          "artist": "The Who",
+          "album": "Transmission Impossible",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1756400637",
+          "explicit": false,
+          "rank": 18348
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-03",
+      "query": {
+        "artist": "The Doors",
+        "title": "Light My Fire"
+      },
+      "found": {
+        "id": "3614129",
+        "title": "Light My Fire",
+        "artist": "The Doors",
+        "album": "The Doors",
+        "durationS": 429,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3614129",
+        "explicit": false,
+        "rank": 636537
+      },
+      "alternatives": [
+        {
+          "id": "401776882",
+          "title": "Light My Fire (2017 Remaster)",
+          "artist": "The Doors",
+          "album": "The Singles (2017 Remaster)",
+          "durationS": 176,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/401776882",
+          "explicit": false,
+          "rank": 432792
+        },
+        {
+          "id": "3820027",
+          "title": "Light My Fire (Mono)",
+          "artist": "The Doors",
+          "album": "Light My Fire / Crystal Ship",
+          "durationS": 173,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3820027",
+          "explicit": false,
+          "rank": 360095
+        },
+        {
+          "id": "709951052",
+          "title": "Light My Fire",
+          "artist": "The Doors",
+          "album": "The Doors (Original Soundtrack Recording)",
+          "durationS": 412,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/709951052",
+          "explicit": false,
+          "rank": 223793
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-04",
+      "query": {
+        "artist": "Jimi Hendrix",
+        "title": "Purple Haze"
+      },
+      "found": {
+        "id": "4952885",
+        "title": "Purple Haze",
+        "artist": "Jimi Hendrix",
+        "album": "Experience Hendrix: The Best Of Jimi Hendrix",
+        "durationS": 170,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4952885",
+        "explicit": false,
+        "rank": 682823
+      },
+      "alternatives": [
+        {
+          "id": "69505581",
+          "title": "Purple Haze (DeLane Lea Studios, London, UK, January 11, 1967)",
+          "artist": "Jimi Hendrix",
+          "album": "The Jimi Hendrix Experience (Deluxe Reissue)",
+          "durationS": 206,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/69505581",
+          "explicit": false,
+          "rank": 221345
+        },
+        {
+          "id": "757920742",
+          "title": "Purple Haze",
+          "artist": "Jimi Hendrix",
+          "album": "This is Jimi Hendrix",
+          "durationS": 144,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/757920742",
+          "explicit": false,
+          "rank": 83104
+        },
+        {
+          "id": "70331406",
+          "title": "Purple Haze",
+          "artist": "Jimi Hendrix",
+          "album": "Miami Pop Festival",
+          "durationS": 259,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70331406",
+          "explicit": false,
+          "rank": 72084
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-05",
+      "query": {
+        "artist": "Cream",
+        "title": "Sunshine of Your Love"
+      },
+      "found": {
+        "id": "1175615",
+        "title": "Sunshine Of Your Love",
+        "artist": "Cream",
+        "album": "The Cream Of Clapton",
+        "durationS": 250,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1175615",
+        "explicit": false,
+        "rank": 687473
+      },
+      "alternatives": [
+        {
+          "id": "2173194",
+          "title": "Sunshine Of Your Love (BBC Sessions)",
+          "artist": "Cream",
+          "album": "BBC Sessions",
+          "durationS": 250,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2173194",
+          "explicit": false,
+          "rank": 146627
+        },
+        {
+          "id": "4298450662",
+          "title": "Sunshine Of Your Love (The Historic Final Tour, Winterland ’68)",
+          "artist": "Cream",
+          "album": "Broadcast Editions (Rush & Cream - The Rare Cleveland Masters ’74 / The Historic Final Tour, Winterland ’68)",
+          "durationS": 292,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4298450662",
+          "explicit": false,
+          "rank": 66618
+        },
+        {
+          "id": "807159592",
+          "title": "Sunshine Of Your Love (Live At Oakland Coliseum Arena, California / 1968)",
+          "artist": "Cream",
+          "album": "Goodbye Tour – Live 1968",
+          "durationS": 336,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/807159592",
+          "explicit": false,
+          "rank": 259141
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-06",
+      "query": {
+        "artist": "The Animals",
+        "title": "The House of the Rising Sun"
+      },
+      "found": {
+        "id": "107659972",
+        "title": "The House of the Rising Sun",
+        "artist": "The Animals",
+        "album": "The Animals (The Best)",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/107659972",
+        "explicit": false,
+        "rank": 387207
+      },
+      "alternatives": [
+        {
+          "id": "1340893992",
+          "title": "The House of the Rising Sun",
+          "artist": "The Animals",
+          "album": "Absolute 60's",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1340893992",
+          "explicit": false,
+          "rank": 345401
+        },
+        {
+          "id": "9495906",
+          "title": "The House Of The Rising Sun",
+          "artist": "Eric Burdon & the Animals",
+          "album": "Greatest Hits",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/9495906",
+          "explicit": false,
+          "rank": 203606
+        },
+        {
+          "id": "6066262",
+          "title": "The House of the Rising Sun (Rerecorded)",
+          "artist": "The Animals",
+          "album": "The Animals: All-Time Greatest Hits (Rerecorded Version)",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6066262",
+          "explicit": false,
+          "rank": 623178
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-07",
+      "query": {
+        "artist": "The Troggs",
+        "title": "Wild Thing"
+      },
+      "found": {
+        "id": "729595152",
+        "title": "Wild Thing",
+        "artist": "The Troggs",
+        "album": "From Nowhere",
+        "durationS": 157,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/729595152",
+        "explicit": false,
+        "rank": 521751
+      },
+      "alternatives": [
+        {
+          "id": "6884496",
+          "title": "Wild Thing",
+          "artist": "The Troggs",
+          "album": "The Best of The Troggs",
+          "durationS": 148,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6884496",
+          "explicit": false,
+          "rank": 347241
+        },
+        {
+          "id": "1973045",
+          "title": "Wild Thing",
+          "artist": "The Troggs",
+          "album": "Wild Thing",
+          "durationS": 162,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1973045",
+          "explicit": false,
+          "rank": 349184
+        },
+        {
+          "id": "2301087",
+          "title": "Wild Thing",
+          "artist": "The Troggs",
+          "album": "Greatest Hits",
+          "durationS": 157,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2301087",
+          "explicit": false,
+          "rank": 218093
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-08",
+      "query": {
+        "artist": "Steppenwolf",
+        "title": "Born to Be Wild"
+      },
+      "found": {
+        "id": "540202122",
+        "title": "Born To Be Wild",
+        "artist": "Steppenwolf",
+        "album": "Born To Be Wild (Best Of....)",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/540202122",
+        "explicit": false,
+        "rank": 844758
+      },
+      "alternatives": [
+        {
+          "id": "867050522",
+          "title": "Born To Be Wild (Mono Single Version)",
+          "artist": "Steppenwolf",
+          "album": "The ABC/Dunhill Singles Collection",
+          "durationS": 185,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/867050522",
+          "explicit": false,
+          "rank": 165310
+        },
+        {
+          "id": "879780072",
+          "title": "Born To Be Wild (Mathclub Remix)",
+          "artist": "Steppenwolf",
+          "album": "Born To Be Wild",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/879780072",
+          "explicit": false,
+          "rank": 274654
+        },
+        {
+          "id": "1151228",
+          "title": "Born To Be Wild",
+          "artist": "Steppenwolf",
+          "album": "Live Steppenwolf",
+          "durationS": 351,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1151228",
+          "explicit": false,
+          "rank": 263841
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-09",
+      "query": {
+        "artist": "The Zombies",
+        "title": "She's Not There"
+      },
+      "found": {
+        "id": "757921442",
+        "title": "She's Not There",
+        "artist": "The Zombies",
+        "album": "This is the Zombies",
+        "durationS": 142,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/757921442",
+        "explicit": false,
+        "rank": 514033
+      },
+      "alternatives": [
+        {
+          "id": "1983886097",
+          "title": "She's Not There",
+          "artist": "The Zombies",
+          "album": "She's Not There / You Make Me Feel Good",
+          "durationS": 141,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1983886097",
+          "explicit": false,
+          "rank": 436312
+        },
+        {
+          "id": "116809850",
+          "title": "She' S Not There",
+          "artist": "The Zombies",
+          "album": "Grande Éxitos de los 60",
+          "durationS": 152,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/116809850",
+          "explicit": false,
+          "rank": 6823
+        },
+        {
+          "id": "73638243",
+          "title": "She's Not There (Live)",
+          "artist": "The Zombies",
+          "album": "Odessey & Oracle - 40th Anniversary Concert",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73638243",
+          "explicit": false,
+          "rank": 430641
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r60-10",
+      "query": {
+        "artist": "Jefferson Airplane",
+        "title": "Somebody to Love"
+      },
+      "found": {
+        "id": "570650",
+        "title": "Somebody to Love",
+        "artist": "Jefferson Airplane",
+        "album": "The Essential Jefferson Airplane",
+        "durationS": 174,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/570650",
+        "explicit": false,
+        "rank": 683517
+      },
+      "alternatives": [
+        {
+          "id": "597106",
+          "title": "Somebody To Love",
+          "artist": "Jefferson Airplane",
+          "album": "Volunteers",
+          "durationS": 250,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/597106",
+          "explicit": false,
+          "rank": 174357
+        },
+        {
+          "id": "113536472",
+          "title": "Somebody To Love",
+          "artist": "Jefferson Airplane",
+          "album": "Somebody To Love",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/113536472",
+          "explicit": false,
+          "rank": 111549
+        },
+        {
+          "id": "614606",
+          "title": "Somebody to Love (Mono Single Version)",
+          "artist": "Jefferson Airplane",
+          "album": "Surrealistic Pillow",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/614606",
+          "explicit": false,
+          "rank": 336353
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

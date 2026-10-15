@@ -217,6 +217,11 @@ function shownMusic(music: SourceMusic): Omit<SourceMusic, 'displayTitle' | 'dis
   return { ...rest, title: displayTitle ?? music.title, artist: displayArtist ?? music.artist }
 }
 
+// Texte comparé sans accents, casse, article initial, ponctuation ni espaces (« Y.M.C.A. » = « YMCA »).
+function compact(text: string): string {
+  return normalizeAnswer(text).replace(/ /g, '')
+}
+
 // Orthographe d'affichage : un texte non vide, identique à celui de Deezer une fois normalisé (accents, casse,
 // ponctuation) : elle corrige l'écriture, jamais le morceau.
 function displayErrors(music: SourceMusic | undefined): string[] {
@@ -225,7 +230,7 @@ function displayErrors(music: SourceMusic | undefined): string[] {
     const shown = music[`display${part}`]
     if (shown === undefined) return []
     const verified = part === 'Title' ? music.title : music.artist
-    return typeof shown === 'string' && shown.trim() !== '' && normalizeAnswer(shown) === normalizeAnswer(verified)
+    return typeof shown === 'string' && shown.trim() !== '' && compact(shown) === compact(verified)
       ? []
       : [`music.display${part} « ${String(shown)} » : même texte que « ${verified} » une fois normalisé`]
   })

@@ -1,0 +1,221 @@
+{
+  "id": "rock-annees-60",
+  "gameType": "blindTest",
+  "title": "Rock des années 60",
+  "theme": "Musique",
+  "description": "Les pionniers des guitares électriques : dix morceaux rock des années 60, pour connaisseurs.",
+  "audience": "experts",
+  "poster": "blue",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": 1960,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-4)",
+  "questions": [
+    {
+      "id": "r60-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Gloria – Them",
+        "Louie Louie – The Kingsmen",
+        "You Really Got Me – The Kinks",
+        "Itchycoo Park – Small Faces"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "You Really Got Me"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kinks",
+        "title": "You Really Got Me",
+        "displayArtist": "The Kinks"
+      }
+    },
+    {
+      "id": "r60-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Paint It Black – The Rolling Stones",
+        "Happy Together – The Turtles",
+        "My Generation – The Who",
+        "Fortunate Son – Creedence Clearwater Revival"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Who"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Who",
+        "title": "My Generation"
+      }
+    },
+    {
+      "id": "r60-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Light My Fire – The Doors",
+        "A Whiter Shade of Pale – Procol Harum",
+        "In-A-Gadda-Da-Vida – Iron Butterfly",
+        "For What It's Worth – Buffalo Springfield"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Light My Fire"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Doors",
+        "title": "Light My Fire"
+      }
+    },
+    {
+      "id": "r60-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hush – Deep Purple",
+        "Gloria – Them",
+        "Good Vibrations – The Beach Boys",
+        "Purple Haze – Jimi Hendrix"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jimi Hendrix"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jimi Hendrix",
+        "title": "Purple Haze"
+      }
+    },
+    {
+      "id": "r60-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I'm a Believer – The Monkees",
+        "Sunshine of Your Love – Cream",
+        "Mr. Tambourine Man – The Byrds",
+        "Itchycoo Park – Small Faces"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sunshine of Your Love"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Cream",
+        "title": "Sunshine of Your Love"
+      }
+    },
+    {
+      "id": "r60-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The House of the Rising Sun – The Animals",
+        "For What It's Worth – Buffalo Springfield",
+        "A Whiter Shade of Pale – Procol Harum",
+        "Louie Louie – The Kingsmen"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The Animals"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Animals",
+        "title": "The House of the Rising Sun",
+        "titleAliases": [
+          "House of the Rising Sun"
+        ]
+      }
+    },
+    {
+      "id": "r60-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Happy Together – The Turtles",
+        "Hush – Deep Purple",
+        "Wild Thing – The Troggs",
+        "Paint It Black – The Rolling Stones"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Wild Thing"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Troggs",
+        "title": "Wild Thing"
+      }
+    },
+    {
+      "id": "r60-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fortunate Son – Creedence Clearwater Revival",
+        "Born to Be Wild – Steppenwolf",
+        "In-A-Gadda-Da-Vida – Iron Butterfly",
+        "I'm a Believer – The Monkees"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Steppenwolf"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Steppenwolf",
+        "title": "Born to Be Wild"
+      }
+    },
+    {
+      "id": "r60-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mr. Tambourine Man – The Byrds",
+        "Good Vibrations – The Beach Boys",
+        "Gloria – Them",
+        "She's Not There – The Zombies"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "She's Not There"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Zombies",
+        "title": "She's Not There"
+      }
+    },
+    {
+      "id": "r60-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Somebody to Love – Jefferson Airplane",
+        "Itchycoo Park – Small Faces",
+        "Happy Together – The Turtles",
+        "A Whiter Shade of Pale – Procol Harum"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Jefferson Airplane"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jefferson Airplane",
+        "title": "Somebody to Love"
+      }
+    }
+  ]
+}

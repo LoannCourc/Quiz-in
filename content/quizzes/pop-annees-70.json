@@ -1,0 +1,236 @@
+{
+  "id": "pop-annees-70",
+  "gameType": "blindTest",
+  "title": "Pop des années 70",
+  "theme": "Musique",
+  "description": "Ballades au piano et refrains soignés : dix chansons pop des années 70, pour connaisseurs.",
+  "audience": "experts",
+  "poster": "violet",
+  "icon": "star",
+  "genre": "pop",
+  "decade": 1970,
+  "level": "hard",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-4)",
+  "questions": [
+    {
+      "id": "p70-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "American Pie – Don McLean",
+        "Year of the Cat – Al Stewart",
+        "Crocodile Rock – Elton John",
+        "Kung Fu Fighting – Carl Douglas"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Crocodile Rock"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Elton John",
+        "title": "Crocodile Rock"
+      }
+    },
+    {
+      "id": "p70-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "(They Long To Be) Close To You – Carpenters",
+        "Love Will Keep Us Together – Captain & Tennille",
+        "Seasons in the Sun – Terry Jacks",
+        "Killing Me Softly with His Song – Roberta Flack"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Carpenters"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Carpenters",
+        "title": "(They Long To Be) Close To You",
+        "titleAliases": [
+          "Close to You"
+        ],
+        "artistAliases": [
+          "The Carpenters"
+        ]
+      }
+    },
+    {
+      "id": "p70-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Baker Street – Gerry Rafferty",
+        "Sailing – Rod Stewart",
+        "How Deep Is Your Love – Bee Gees",
+        "I'm Not in Love – 10cc"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "I'm Not in Love"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "10cc",
+        "title": "I'm Not in Love"
+      }
+    },
+    {
+      "id": "p70-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "You Make Me Feel Like Dancing – Leo Sayer",
+        "Dreams – Fleetwood Mac",
+        "Wild World – Cat Stevens",
+        "Rhinestone Cowboy – Glen Campbell"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Fleetwood Mac"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams"
+      }
+    },
+    {
+      "id": "p70-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Band on the Run – Wings",
+        "Take Me Home, Country Roads – John Denver",
+        "Baker Street – Gerry Rafferty",
+        "American Pie – Don McLean"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Band on the Run"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Wings",
+        "title": "Band on the Run",
+        "artistAliases": [
+          "Paul McCartney & Wings",
+          "Paul McCartney"
+        ]
+      }
+    },
+    {
+      "id": "p70-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Year of the Cat – Al Stewart",
+        "Sailing – Rod Stewart",
+        "Piano Man – Billy Joel",
+        "I Just Want to Be Your Everything – Andy Gibb"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Billy Joel"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Billy Joel",
+        "title": "Piano Man"
+      }
+    },
+    {
+      "id": "p70-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Seasons in the Sun – Terry Jacks",
+        "Alone Again (Naturally) – Gilbert O'Sullivan",
+        "Wild World – Cat Stevens",
+        "Love Will Keep Us Together – Captain & Tennille"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Alone Again (Naturally)"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Gilbert O'Sullivan",
+        "title": "Alone Again (Naturally)",
+        "titleAliases": [
+          "Alone Again"
+        ]
+      }
+    },
+    {
+      "id": "p70-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "How Deep Is Your Love – Bee Gees",
+        "Killing Me Softly with His Song – Roberta Flack",
+        "Rhinestone Cowboy – Glen Campbell",
+        "Without You – Harry Nilsson"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Harry Nilsson"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Harry Nilsson",
+        "title": "Without You",
+        "artistAliases": [
+          "Nilsson"
+        ]
+      }
+    },
+    {
+      "id": "p70-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bridge over Troubled Water – Simon & Garfunkel",
+        "Take Me Home, Country Roads – John Denver",
+        "You Make Me Feel Like Dancing – Leo Sayer",
+        "Kung Fu Fighting – Carl Douglas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bridge over Troubled Water"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Simon & Garfunkel",
+        "title": "Bridge over Troubled Water",
+        "artistAliases": [
+          "Simon and Garfunkel"
+        ]
+      }
+    },
+    {
+      "id": "p70-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Just Want to Be Your Everything – Andy Gibb",
+        "American Pie – Don McLean",
+        "It's a Heartache – Bonnie Tyler",
+        "Year of the Cat – Al Stewart"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Bonnie Tyler"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Bonnie Tyler",
+        "title": "It's a Heartache"
+      }
+    }
+  ]
+}

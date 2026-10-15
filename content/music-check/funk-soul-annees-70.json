@@ -1,0 +1,557 @@
+{
+  "quizId": "funk-soul-annees-70",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "fs70-01",
+      "query": {
+        "artist": "James Brown",
+        "title": "Get Up Offa That Thing"
+      },
+      "found": {
+        "id": "102811506",
+        "title": "Get Up Offa That Thing",
+        "artist": "James Brown",
+        "album": "20 All-Time Greatest Hits!",
+        "durationS": 250,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/102811506",
+        "explicit": false,
+        "rank": 556168
+      },
+      "alternatives": [
+        {
+          "id": "548876832",
+          "title": "Get Up Offa That Thing (Release The Pressure)",
+          "artist": "James Brown",
+          "album": "Greatest Breakbeats",
+          "durationS": 374,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/548876832",
+          "explicit": false,
+          "rank": 294540
+        },
+        {
+          "id": "73704168",
+          "title": "Get up Offa That Thing",
+          "artist": "James Brown",
+          "album": "I Feel Good",
+          "durationS": 133,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73704168",
+          "explicit": false,
+          "rank": 144269
+        },
+        {
+          "id": "13164291",
+          "title": "Get Up Offa That Thing",
+          "artist": "James Brown",
+          "album": "Best Of",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13164291",
+          "explicit": false,
+          "rank": 49897
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-02",
+      "query": {
+        "artist": "Parliament",
+        "title": "Flash Light"
+      },
+      "found": {
+        "id": "2515096",
+        "title": "Flash Light",
+        "artist": "Parliament",
+        "album": "The Best Of Parliament: Give Up The Funk",
+        "durationS": 346,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2515096",
+        "explicit": false,
+        "rank": 534083
+      },
+      "alternatives": [
+        {
+          "id": "1141811",
+          "title": "Flash Light",
+          "artist": "Parliament",
+          "album": "Funked!: Volume 3 1977-1980",
+          "durationS": 346,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1141811",
+          "explicit": false,
+          "rank": 143718
+        },
+        {
+          "id": "549290442",
+          "title": "Flash Light",
+          "artist": "Parliament",
+          "album": "Greatest Hits (The Bomb) - Parliament",
+          "durationS": 264,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/549290442",
+          "explicit": false,
+          "rank": 232954
+        },
+        {
+          "id": "116945538",
+          "title": "Flash Light",
+          "artist": "Parliament",
+          "album": "Straight Outta Compton (Music From The Motion Picture)",
+          "durationS": 269,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/116945538",
+          "explicit": false,
+          "rank": 234747
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-03",
+      "query": {
+        "artist": "Funkadelic",
+        "title": "One Nation Under a Groove"
+      },
+      "found": {
+        "id": "136922594",
+        "title": "One Nation Under a Groove (Album Version - 2015 Remaster)",
+        "artist": "Funkadelic",
+        "album": "One Nation Under a Groove - 2015 Remastered Edition",
+        "durationS": 449,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136922594",
+        "explicit": false,
+        "rank": 216782
+      },
+      "alternatives": [
+        {
+          "id": "136922680",
+          "title": "One Nation Under a Groove (2016 Remaster - 7-inch Version)",
+          "artist": "Funkadelic",
+          "album": "One Nation Under a Groove - The Mixes (2016 Remastered)",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136922680",
+          "explicit": false,
+          "rank": 73153
+        },
+        {
+          "id": "136922612",
+          "title": "One Nation Under a Groove (Instrumental Disco Mix - 2016 Remaster)",
+          "artist": "Funkadelic",
+          "album": "One Nation Under a Groove - 2015 Remastered Edition",
+          "durationS": 339,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136922612",
+          "explicit": false,
+          "rank": 108408
+        },
+        {
+          "id": "136922682",
+          "title": "One Nation Under a Groove (Pt. 2 - 2016 Remaster - 7-inch Version)",
+          "artist": "Funkadelic",
+          "album": "One Nation Under a Groove - The Mixes (2016 Remastered)",
+          "durationS": 323,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/136922682",
+          "explicit": false,
+          "rank": 18584
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-04",
+      "query": {
+        "artist": "Kool & The Gang",
+        "title": "Jungle Boogie"
+      },
+      "found": {
+        "id": "646290872",
+        "title": "Jungle Boogie",
+        "artist": "Kool & The Gang",
+        "album": "Pulp Fiction (Music From The Motion Picture)",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/646290872",
+        "explicit": false,
+        "rank": 618223
+      },
+      "alternatives": [
+        {
+          "id": "3466064001",
+          "title": "Jungle Boogie (The Reflex Revision Radio Edit)",
+          "artist": "Kool & The Gang",
+          "album": "KOOL SUMMER",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3466064001",
+          "explicit": false,
+          "rank": 140544
+        },
+        {
+          "id": "13999861",
+          "title": "Jungle Boogie",
+          "artist": "Kool & The Gang",
+          "album": "Party Hits",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13999861",
+          "explicit": false,
+          "rank": 2572
+        },
+        {
+          "id": "99542374",
+          "title": "Jungle Boogie",
+          "artist": "Kool & The Gang",
+          "album": "Live at Montreux 2009",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/99542374",
+          "explicit": false,
+          "rank": 102922
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-05",
+      "query": {
+        "artist": "Ohio Players",
+        "title": "Fire"
+      },
+      "found": {
+        "id": "549335232",
+        "title": "Fire",
+        "artist": "Ohio Players",
+        "album": "Funk On Fire - The Mercury Anthology",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/549335232",
+        "explicit": false,
+        "rank": 481728
+      },
+      "alternatives": [
+        {
+          "id": "1110871",
+          "title": "Fire (Single Version)",
+          "artist": "Ohio Players",
+          "album": "'70s Soul #1's",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1110871",
+          "explicit": false,
+          "rank": 81317
+        },
+        {
+          "id": "1125763",
+          "title": "Fire",
+          "artist": "Ohio Players",
+          "album": "Disco Nights",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1125763",
+          "explicit": false,
+          "rank": 106054
+        },
+        {
+          "id": "68743671",
+          "title": "Fire",
+          "artist": "Ohio Players",
+          "album": "Ol' School (On Tour)",
+          "durationS": 672,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68743671",
+          "explicit": false,
+          "rank": 25921
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-06",
+      "query": {
+        "artist": "Sly & The Family Stone",
+        "title": "Family Affair"
+      },
+      "found": {
+        "id": "549579",
+        "title": "Family Affair (Single Version)",
+        "artist": "Sly & The Family Stone",
+        "album": "There's A Riot Goin' On (Expanded Edition)",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/549579",
+        "explicit": false,
+        "rank": 549592
+      },
+      "alternatives": [
+        {
+          "id": "77724919",
+          "title": "Family Affair (Studio Rio Version)",
+          "artist": "Sly & The Family Stone",
+          "album": "Studio Rio Presents: The Brazil Connection",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/77724919",
+          "explicit": false,
+          "rank": 244913
+        },
+        {
+          "id": "3220015491",
+          "title": "Family Affair (Questlove Rhythm King Edit)",
+          "artist": "Sly & The Family Stone",
+          "album": "SLY LIVES! (Aka The Burden Of Black Genius)",
+          "durationS": 274,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3220015491",
+          "explicit": false,
+          "rank": 130076
+        },
+        {
+          "id": "3220015551",
+          "title": "Family Affair (Wedding Band Interlude)",
+          "artist": "Sly & The Family Stone",
+          "album": "SLY LIVES! (Aka The Burden Of Black Genius)",
+          "durationS": 39,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3220015551",
+          "explicit": false,
+          "rank": 95164
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-07",
+      "query": {
+        "artist": "War",
+        "title": "Low Rider"
+      },
+      "found": {
+        "id": "143042822",
+        "title": "Low Rider",
+        "artist": "War",
+        "album": "Anthology 1970-1974",
+        "durationS": 190,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/143042822",
+        "explicit": false,
+        "rank": 650472
+      },
+      "alternatives": [
+        {
+          "id": "3321881111",
+          "title": "Low Rider (Original Unedited Mix)",
+          "artist": "War",
+          "album": "Low Rider (Original Unedited Mix)",
+          "durationS": 574,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3321881111",
+          "explicit": false,
+          "rank": 205029
+        },
+        {
+          "id": "143043146",
+          "title": "Low Rider (Espanol)",
+          "artist": "War",
+          "album": "Colección Latina",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/143043146",
+          "explicit": false,
+          "rank": 48477
+        },
+        {
+          "id": "2764620421",
+          "title": "Low Rider",
+          "artist": "War",
+          "album": "Feel the Rhythm - Party Classics for the Soul",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2764620421",
+          "explicit": false,
+          "rank": 2219
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-08",
+      "query": {
+        "artist": "Average White Band",
+        "title": "Pick Up the Pieces"
+      },
+      "found": {
+        "id": "12164497",
+        "title": "Pick up the Pieces",
+        "artist": "Average White Band",
+        "album": "Average White Band",
+        "durationS": 234,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12164497",
+        "explicit": false,
+        "rank": 601815
+      },
+      "alternatives": [
+        {
+          "id": "119182932",
+          "title": "Pick up the Pieces",
+          "artist": "Average White Band",
+          "album": "AWB R&B",
+          "durationS": 391,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/119182932",
+          "explicit": false,
+          "rank": 84081
+        },
+        {
+          "id": "80240908",
+          "title": "Pick up the Pieces",
+          "artist": "Average White Band",
+          "album": "How Sweet Can You Get",
+          "durationS": 236,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/80240908",
+          "explicit": false,
+          "rank": 116445
+        },
+        {
+          "id": "3804212642",
+          "title": "Pick Up the Pieces (Full Version)",
+          "artist": "Average White Band",
+          "album": "Sessions (Average White Band Sessions)",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3804212642",
+          "explicit": false,
+          "rank": 110041
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-09",
+      "query": {
+        "artist": "Curtis Mayfield",
+        "title": "Move On Up"
+      },
+      "found": {
+        "id": "115195420",
+        "title": "Move on Up (Single Edit)",
+        "artist": "Curtis Mayfield",
+        "album": "Move on Up (Single Edit)",
+        "durationS": 165,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/115195420",
+        "explicit": false,
+        "rank": 827565
+      },
+      "alternatives": [
+        {
+          "id": "903466",
+          "title": "Move on Up (Extended Version)",
+          "artist": "Curtis Mayfield",
+          "album": "Curtis (Expanded Edition)",
+          "durationS": 535,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/903466",
+          "explicit": false,
+          "rank": 697943
+        },
+        {
+          "id": "3697779152",
+          "title": "Move On Up",
+          "artist": "Curtis Mayfield",
+          "album": "The Berlin Sessions",
+          "durationS": 258,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3697779152",
+          "explicit": false,
+          "rank": 74704
+        },
+        {
+          "id": "2807371852",
+          "title": "Move On Up (Mark Knight Remix)",
+          "artist": "Curtis Mayfield",
+          "album": "Move On Up (Mark Knight Remix)",
+          "durationS": 149,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2807371852",
+          "explicit": false,
+          "rank": 325035
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fs70-10",
+      "query": {
+        "artist": "Commodores",
+        "title": "Brick House"
+      },
+      "found": {
+        "id": "1119126",
+        "title": "Brick House",
+        "artist": "Commodores",
+        "album": "The Very Best Of The Commodores",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1119126",
+        "explicit": false,
+        "rank": 593382
+      },
+      "alternatives": [
+        {
+          "id": "2163785457",
+          "title": "Brick House",
+          "artist": "Commodores",
+          "album": "Nightshift & More, Vol. I & II",
+          "durationS": 199,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2163785457",
+          "explicit": false,
+          "rank": 108527
+        },
+        {
+          "id": "72221975",
+          "title": "Brick House",
+          "artist": "Commodores",
+          "album": "D.J. Disco Mix, Vol. 2",
+          "durationS": 182,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/72221975",
+          "explicit": false,
+          "rank": 110927
+        },
+        {
+          "id": "2430724",
+          "title": "Brick House (Live / 1977)",
+          "artist": "Commodores",
+          "album": "Live!",
+          "durationS": 620,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2430724",
+          "explicit": false,
+          "rank": 108497
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

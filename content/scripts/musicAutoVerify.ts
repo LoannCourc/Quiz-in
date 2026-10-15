@@ -32,7 +32,7 @@ function displayed(text: string): string {
 // Précisions acceptées après le titre, une ou plusieurs : même enregistrement (artiste invité, remasterisation,
 // version du single, bande originale d'un film), jamais une autre version (live, remix…).
 const SAME_RECORDING_PART =
-  /(\s*[([]\s*(feat\.? [^)\]]+|with [^)\]]+|(\d{4} )?remaster(ed)?( \d{4})?( version)?|single version|(original )?radio edit|original( mix| version)?|mono|stereo|version (mono|stéréo|stereo)|7" (mix|version)|from [^)\]]*(soundtrack|motion picture)[^)\]]*)\s*[)\]]|\s+-\s+((\d{4} )?remaster(ed)?( \d{4})?|single version|radio edit|mono|stereo))\s*$/i
+  /(\s*[([]\s*(feat\.? [^)\]]+|with [^)\]]+|(\d{4} )?remaster(ed)?( \d{4})?( version)?|remasteris[ée]e?( en \d{4})?|album version( - (\d{4} )?remaster(ed)?( \d{4})?)?|single (version|edit)|(original )?radio edit|original( mix| version)?( \d{4})?|mono|stereo|version (mono|stéréo|stereo)|7" (mix|version)|from [^)\]]*(soundtrack|motion picture)[^)\]]*)\s*[)\]]|\s+-\s+((\d{4} )?remaster(ed)?( \d{4})?|single version|radio edit|mono|stereo))\s*$/i
 
 // Titre affiché sans ses précisions de même enregistrement, retirées de la fin une à une.
 function recordingTitle(title: string): string {
@@ -50,7 +50,8 @@ export function autoCheckFailure(music: SourceMusic, found: FoundTrack | null, t
   if (found.explicit) return 'paroles explicites'
   if (displayed(found.artist) !== displayed(music.artist)) return `artiste affiché par Deezer : « ${found.artist} »`
   if (displayed(recordingTitle(found.title)) !== displayed(music.title)) return `titre affiché par Deezer : « ${found.title} »`
-  if (OTHER_VERSION.test(found.album) && !/remaster/i.test(found.album)) return `album d'une autre version : « ${found.album} »`
+  // Album d'une autre version (live, remix…) ; un album nommé d'après le single (« Move on Up (Single Edit) ») passe.
+  if (OTHER_VERSION.test(recordingTitle(found.album)) && !/remaster/i.test(found.album)) return `album d'une autre version : « ${found.album} »`
   if (!fitsBlindTestTimer({ startS: music.startS ?? 0 }, timeLimit)) return 'extrait trop court pour le minuteur (startS)'
   return null
 }

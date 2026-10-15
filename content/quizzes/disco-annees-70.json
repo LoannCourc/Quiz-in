@@ -1,0 +1,227 @@
+{
+  "id": "disco-annees-70",
+  "gameType": "blindTest",
+  "title": "Disco des années 70",
+  "theme": "Musique",
+  "description": "Paillettes, cordes et boules à facettes : dix tubes disco de la grande époque.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "discoBall",
+  "genre": "discoFunk",
+  "decade": 1970,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-4)",
+  "questions": [
+    {
+      "id": "d70-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Supernature – Cerrone",
+        "Y.M.C.A. – Village People",
+        "Don't Leave Me This Way – Thelma Houston",
+        "Car Wash – Rose Royce"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Y.M.C.A."
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Village People",
+        "title": "YMCA",
+        "displayTitle": "Y.M.C.A."
+      }
+    },
+    {
+      "id": "d70-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Boogie Wonderland – Earth, Wind & Fire",
+        "Got to Be Real – Cheryl Lynn",
+        "Shame – Evelyn \"Champagne\" King",
+        "Daddy Cool – Boney M."
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Boney M."
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Boney M.",
+        "title": "Daddy Cool",
+        "artistAliases": [
+          "Boney M"
+        ]
+      }
+    },
+    {
+      "id": "d70-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Voulez-Vous – ABBA",
+        "Love Is in the Air – John Paul Young",
+        "Instant Replay – Dan Hartman",
+        "I'm Every Woman – Chaka Khan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Voulez-Vous"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "ABBA",
+        "title": "Voulez-Vous"
+      }
+    },
+    {
+      "id": "d70-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "You Make Me Feel (Mighty Real) – Sylvester",
+        "Heaven Must Be Missing an Angel – Tavares",
+        "Hot Stuff – Donna Summer",
+        "Supernature – Cerrone"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Donna Summer"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Donna Summer",
+        "title": "Hot Stuff"
+      }
+    },
+    {
+      "id": "d70-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Car Wash – Rose Royce",
+        "Boogie Wonderland – Earth, Wind & Fire",
+        "That's the Way (I Like It) – KC & The Sunshine Band",
+        "Love Is in the Air – John Paul Young"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "That's the Way (I Like It)"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "KC & The Sunshine Band",
+        "title": "That's the Way (I Like It)",
+        "titleAliases": [
+          "That's the Way"
+        ],
+        "artistAliases": [
+          "KC and the Sunshine Band"
+        ]
+      }
+    },
+    {
+      "id": "d70-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ring My Bell – Anita Ward",
+        "Got to Be Real – Cheryl Lynn",
+        "I'm Every Woman – Chaka Khan",
+        "Don't Leave Me This Way – Thelma Houston"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Anita Ward"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Anita Ward",
+        "title": "Ring My Bell"
+      }
+    },
+    {
+      "id": "d70-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Instant Replay – Dan Hartman",
+        "Shame – Evelyn \"Champagne\" King",
+        "You Make Me Feel (Mighty Real) – Sylvester",
+        "Night Fever – Bee Gees"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Night Fever"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bee Gees",
+        "title": "Night Fever"
+      }
+    },
+    {
+      "id": "d70-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Heaven Must Be Missing an Angel – Tavares",
+        "Disco Inferno – The Trammps",
+        "Car Wash – Rose Royce",
+        "Boogie Wonderland – Earth, Wind & Fire"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The Trammps"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Trammps",
+        "title": "Disco Inferno"
+      }
+    },
+    {
+      "id": "d70-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Knock on Wood – Amii Stewart",
+        "Supernature – Cerrone",
+        "Love Is in the Air – John Paul Young",
+        "Got to Be Real – Cheryl Lynn"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Knock on Wood"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Amii Stewart",
+        "title": "Knock on Wood"
+      }
+    },
+    {
+      "id": "d70-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't Leave Me This Way – Thelma Houston",
+        "Instant Replay – Dan Hartman",
+        "Good Times – Chic",
+        "I'm Every Woman – Chaka Khan"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Chic"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Chic",
+        "title": "Good Times"
+      }
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+{
+  "quizId": "disco-annees-70",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "d70-01",
+      "query": {
+        "artist": "Village People",
+        "title": "YMCA"
+      },
+      "found": {
+        "id": "3809086042",
+        "title": "YMCA (Original Version 1978)",
+        "artist": "Village People",
+        "album": "YMCA (Original Version 1978)",
+        "durationS": 284,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3809086042",
+        "explicit": false,
+        "rank": 786369
+      },
+      "alternatives": [
+        {
+          "id": "3809084112",
+          "title": "YMCA",
+          "artist": "Village People",
+          "album": "Can't Stop the Music (Original Soundtrack)",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3809084112",
+          "explicit": false,
+          "rank": 680977
+        },
+        {
+          "id": "3821521371",
+          "title": "YMCA (Live)",
+          "artist": "Village People",
+          "album": "Live and Sleazy (Live)",
+          "durationS": 482,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3821521371",
+          "explicit": false,
+          "rank": 204749
+        },
+        {
+          "id": "2877084732",
+          "title": "Village People - YMCA",
+          "artist": "한용진",
+          "album": "DJ 한용진 Car Drive Music 2014",
+          "durationS": 170,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2877084732",
+          "explicit": false,
+          "rank": 16018
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-02",
+      "query": {
+        "artist": "Boney M.",
+        "title": "Daddy Cool"
+      },
+      "found": {
+        "id": "364951",
+        "title": "Daddy Cool",
+        "artist": "Boney M.",
+        "album": "Take The Heat Off Me",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/364951",
+        "explicit": false,
+        "rank": 826618
+      },
+      "alternatives": [
+        {
+          "id": "985211",
+          "title": "Daddy Cool",
+          "artist": "Boney M. 2000",
+          "album": "20th Century Hits",
+          "durationS": 231,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/985211",
+          "explicit": false,
+          "rank": 202102
+        },
+        {
+          "id": "96061308",
+          "title": "Daddy Cool (Nick Raider Radio Mix)",
+          "artist": "Boney M.",
+          "album": "Diamonds (40th Anniversary Edition)",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/96061308",
+          "explicit": false,
+          "rank": 465764
+        },
+        {
+          "id": "96461608",
+          "title": "Daddy Cool (Remix '88)",
+          "artist": "Boney M.",
+          "album": "Greatest Hits Of All Times - Remix '88",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/96461608",
+          "explicit": false,
+          "rank": 229090
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-03",
+      "query": {
+        "artist": "ABBA",
+        "title": "Voulez-Vous"
+      },
+      "found": {
+        "id": "884040",
+        "title": "Voulez-Vous",
+        "artist": "ABBA",
+        "album": "ABBA Gold",
+        "durationS": 305,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/884040",
+        "explicit": false,
+        "rank": 822295
+      },
+      "alternatives": [
+        {
+          "id": "1073822292",
+          "title": "Voulez-Vous",
+          "artist": "ABBA",
+          "album": "Thank You For The Music",
+          "durationS": 261,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1073822292",
+          "explicit": false,
+          "rank": 148359
+        },
+        {
+          "id": "10002632",
+          "title": "Voulez Vous",
+          "artist": "Abba Cover Band",
+          "album": "A Tribute to Abba: The Great Pop Music Band",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/10002632",
+          "explicit": false,
+          "rank": 110558
+        },
+        {
+          "id": "383603031",
+          "title": "Voulez Vous",
+          "artist": "Abbacadabra",
+          "album": "Revival",
+          "durationS": 423,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/383603031",
+          "explicit": false,
+          "rank": 34179
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-04",
+      "query": {
+        "artist": "Donna Summer",
+        "title": "Hot Stuff"
+      },
+      "found": {
+        "id": "538706952",
+        "title": "Hot Stuff",
+        "artist": "Donna Summer",
+        "album": "Bad Girls",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/538706952",
+        "explicit": false,
+        "rank": 784022
+      },
+      "alternatives": [
+        {
+          "id": "487042512",
+          "title": "Hot Stuff (Single Version)",
+          "artist": "Donna Summer",
+          "album": "Summer: The Original Hits",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/487042512",
+          "explicit": false,
+          "rank": 559356
+        },
+        {
+          "id": "1175278",
+          "title": "Hot Stuff",
+          "artist": "Donna Summer",
+          "album": "The Dance Collection",
+          "durationS": 406,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1175278",
+          "explicit": false,
+          "rank": 531445
+        },
+        {
+          "id": "538708862",
+          "title": "Hot Stuff (Single Version)",
+          "artist": "Donna Summer",
+          "album": "On The Radio: Greatest Hits Volumes I & II",
+          "durationS": 224,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/538708862",
+          "explicit": false,
+          "rank": 447669
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-05",
+      "query": {
+        "artist": "KC & The Sunshine Band",
+        "title": "That's the Way (I Like It)"
+      },
+      "found": {
+        "id": "3151321",
+        "title": "That's the Way (I Like It)",
+        "artist": "Kc & The Sunshine Band",
+        "album": "The Best of KC & the Sunshine Band",
+        "durationS": 306,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3151321",
+        "explicit": false,
+        "rank": 683630
+      },
+      "alternatives": [
+        {
+          "id": "107118556",
+          "title": "That's the Way (I Like It) (2004 Remaster)",
+          "artist": "Kc & The Sunshine Band",
+          "album": "KC & the Sunshine Band",
+          "durationS": 185,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/107118556",
+          "explicit": false,
+          "rank": 576594
+        },
+        {
+          "id": "73885217",
+          "title": "That's the Way (I Like It)",
+          "artist": "Kc & The Sunshine Band",
+          "album": "Novelty & Nostalgia Ringtones",
+          "durationS": 71,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73885217",
+          "explicit": false,
+          "rank": 60906
+        },
+        {
+          "id": "263313",
+          "title": "That's the way i like it",
+          "artist": "Kc & The Sunshine Band",
+          "album": "Compilation années 70 : 70's incontournables",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/263313",
+          "explicit": false,
+          "rank": 289459
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-06",
+      "query": {
+        "artist": "Anita Ward",
+        "title": "Ring My Bell"
+      },
+      "found": {
+        "id": "404691712",
+        "title": "Ring My Bell",
+        "artist": "Anita Ward",
+        "album": "Ring My Bell",
+        "durationS": 491,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/404691712",
+        "explicit": false,
+        "rank": 730638
+      },
+      "alternatives": [
+        {
+          "id": "417568052",
+          "title": "Ring My Bell",
+          "artist": "Anita Ward",
+          "album": "Ring My Bell",
+          "durationS": 212,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/417568052",
+          "explicit": false,
+          "rank": 557359
+        },
+        {
+          "id": "532630092",
+          "title": "Ring My Bell",
+          "artist": "Anita Ward",
+          "album": "Ring My Bell",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/532630092",
+          "explicit": false,
+          "rank": 151279
+        },
+        {
+          "id": "88483219",
+          "title": "Ring My Bell",
+          "artist": "Anita Ward",
+          "album": "Best of Funk (Années Funk)",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/88483219",
+          "explicit": false,
+          "rank": 187590
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-07",
+      "query": {
+        "artist": "Bee Gees",
+        "title": "Night Fever"
+      },
+      "found": {
+        "id": "139138751",
+        "title": "Night Fever (From \"Saturday Night Fever\" Soundtrack)",
+        "artist": "Bee Gees",
+        "album": "The Ultimate Bee Gees",
+        "durationS": 210,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/139138751",
+        "explicit": false,
+        "rank": 808760
+      },
+      "alternatives": [
+        {
+          "id": "405255092",
+          "title": "Night Fever (From \"Saturday Night Fever\" Soundtrack)",
+          "artist": "Bee Gees",
+          "album": "Saturday Night Fever (The Original Movie Soundtrack)",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/405255092",
+          "explicit": false,
+          "rank": 498058
+        },
+        {
+          "id": "95944974",
+          "title": "Night Fever (From \"Saturday Night Fever\")",
+          "artist": "Bee Gees",
+          "album": "Soundtracks of Stage and Screen",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/95944974",
+          "explicit": false,
+          "rank": 199459
+        },
+        {
+          "id": "5893403",
+          "title": "Night-Fever",
+          "artist": "The Bee Gees (Karaoke)",
+          "album": "Zoom Platinum Artists - Volume 28",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/5893403",
+          "explicit": false,
+          "rank": 54113
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-08",
+      "query": {
+        "artist": "The Trammps",
+        "title": "Disco Inferno"
+      },
+      "found": {
+        "id": "12276222",
+        "title": "Disco Inferno",
+        "artist": "The Trammps",
+        "album": "Disco Inferno",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12276222",
+        "explicit": false,
+        "rank": 609433
+      },
+      "alternatives": [
+        {
+          "id": "721611",
+          "title": "Disco Inferno",
+          "artist": "The Trammps",
+          "album": "Disco Inferno",
+          "durationS": 659,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/721611",
+          "explicit": false,
+          "rank": 569049
+        },
+        {
+          "id": "126844977",
+          "title": "Disco Inferno (Edit)",
+          "artist": "The Trammps",
+          "album": "Playlist: The Best Of The Trammps",
+          "durationS": 215,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/126844977",
+          "explicit": false,
+          "rank": 544204
+        },
+        {
+          "id": "510108952",
+          "title": "Disco Inferno (Single Edit)",
+          "artist": "The Trammps",
+          "album": "Out Of Office - After Work Pop",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/510108952",
+          "explicit": false,
+          "rank": 437157
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-09",
+      "query": {
+        "artist": "Amii Stewart",
+        "title": "Knock on Wood"
+      },
+      "found": {
+        "id": "10370275",
+        "title": "Knock On Wood",
+        "artist": "Amii Stewart",
+        "album": "Knock On Wood",
+        "durationS": 251,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10370275",
+        "explicit": false,
+        "rank": 661011
+      },
+      "alternatives": [
+        {
+          "id": "3782964362",
+          "title": "Knock On Wood (7” Edit)",
+          "artist": "Amii Stewart",
+          "album": "Knock on Wood",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3782964362",
+          "explicit": false,
+          "rank": 423319
+        },
+        {
+          "id": "3786001722",
+          "title": "Knock on Wood (Long Disco Version)",
+          "artist": "Amii Stewart",
+          "album": "Knock on Wood: The Anthology",
+          "durationS": 380,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3786001722",
+          "explicit": false,
+          "rank": 339518
+        },
+        {
+          "id": "3594373062",
+          "title": "Knock on Wood",
+          "artist": "Amii Stewart",
+          "album": "Hits 70's",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3594373062",
+          "explicit": false,
+          "rank": 225599
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "d70-10",
+      "query": {
+        "artist": "Chic",
+        "title": "Good Times"
+      },
+      "found": {
+        "id": "6614292",
+        "title": "Good Times",
+        "artist": "Chic",
+        "album": "Risqué",
+        "durationS": 495,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6614292",
+        "explicit": false,
+        "rank": 689161
+      },
+      "alternatives": [
+        {
+          "id": "689479",
+          "title": "Good Times (Original 12\" Mix; 2006 Remaster)",
+          "artist": "Chic",
+          "album": "Definitive Groove: Chic",
+          "durationS": 490,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/689479",
+          "explicit": false,
+          "rank": 611842
+        },
+        {
+          "id": "589631532",
+          "title": "Good Times (7\" Edit; 2018 Remaster)",
+          "artist": "Chic",
+          "album": "The Chic Organization 1977-1979 (2018 Remaster)",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/589631532",
+          "explicit": false,
+          "rank": 538812
+        },
+        {
+          "id": "3093884611",
+          "title": "Good Times",
+          "artist": "Chic",
+          "album": "The Best of Disco Music, Vol. 1",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3093884611",
+          "explicit": false,
+          "rank": 138389
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

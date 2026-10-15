@@ -1,0 +1,225 @@
+{
+  "id": "disco-a-la-francaise",
+  "gameType": "blindTest",
+  "title": "Disco à la française",
+  "theme": "Musique",
+  "description": "Quand la France dansait sous la boule à facettes : dix tubes disco d’ici.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "discoBall",
+  "genre": "discoFunk",
+  "decade": 1970,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-4)",
+  "questions": [
+    {
+      "id": "dfr-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hands Up – Ottawan",
+        "Pop Corn – Hot Butter",
+        "Fly, Robin, Fly – Silver Convention",
+        "Où sont les femmes ? – Patrick Juvet"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Où sont les femmes ?"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Patrick Juvet",
+        "title": "Où sont les femmes",
+        "displayTitle": "Où sont les femmes ?"
+      }
+    },
+    {
+      "id": "dfr-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Magnolias for ever – Claude François",
+        "Love in C Minor – Cerrone",
+        "Born to Be Alive – Patrick Hernandez",
+        "Hands Up – Ottawan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Claude François"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Claude François",
+        "title": "Magnolias for ever"
+      }
+    },
+    {
+      "id": "dfr-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pop Corn – Hot Butter",
+        "Fly, Robin, Fly – Silver Convention",
+        "Laissez-moi danser – Dalida",
+        "Love in C Minor – Cerrone"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Laissez-moi danser"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Dalida",
+        "title": "Laissez-moi danser"
+      }
+    },
+    {
+      "id": "dfr-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Born to Be Alive – Patrick Hernandez",
+        "Hands Up – Ottawan",
+        "Spacer – Sheila",
+        "Magic Fly – Space"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sheila"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Sheila",
+        "title": "Spacer",
+        "artistAliases": [
+          "Sheila & B. Devotion",
+          "Sheila and B. Devotion"
+        ]
+      }
+    },
+    {
+      "id": "dfr-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Supernature – Cerrone",
+        "Pop Corn – Hot Butter",
+        "Alexandrie Alexandra – Claude François",
+        "Fly, Robin, Fly – Silver Convention"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Supernature"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Cerrone",
+        "title": "Supernature"
+      }
+    },
+    {
+      "id": "dfr-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Love in C Minor – Cerrone",
+        "Born to Be Alive – Patrick Hernandez",
+        "Hands Up – Ottawan",
+        "Magic Fly – Space"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Space"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Space",
+        "title": "Magic Fly"
+      }
+    },
+    {
+      "id": "dfr-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Alexandrie Alexandra – Claude François",
+        "D.I.S.C.O. – Ottawan",
+        "Pop Corn – Hot Butter",
+        "Magic Fly – Space"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "D.I.S.C.O."
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Ottawan",
+        "title": "D.I.S.C.O.",
+        "titleAliases": [
+          "DISCO"
+        ]
+      }
+    },
+    {
+      "id": "dfr-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Cuba – Gibson Brothers",
+        "Fly, Robin, Fly – Silver Convention",
+        "Love in C Minor – Cerrone",
+        "Born to Be Alive – Patrick Hernandez"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Gibson Brothers"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Gibson Brothers",
+        "title": "Cuba"
+      }
+    },
+    {
+      "id": "dfr-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Magic Fly – Space",
+        "Hands Up – Ottawan",
+        "Musique – France Gall",
+        "Alexandrie Alexandra – Claude François"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Musique"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "France Gall",
+        "title": "Musique"
+      }
+    },
+    {
+      "id": "dfr-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pop Corn – Hot Butter",
+        "Souvenirs – Voyage",
+        "Love in C Minor – Cerrone",
+        "Fly, Robin, Fly – Silver Convention"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Voyage"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Voyage",
+        "title": "Souvenirs"
+      }
+    }
+  ]
+}
