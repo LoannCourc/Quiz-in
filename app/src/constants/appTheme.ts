@@ -50,12 +50,46 @@ export const AppPosterGradients = Object.fromEntries(
   Object.entries(PosterColors).map(([palette, [from, to]]) => [palette, `linear-gradient(160deg, ${from} 0%, ${to} 100%)`]),
 ) as Record<PosterPalette, string>;
 
+// Thèmes du catalogue Quiz (maquettes QN1) : début et fin du dégradé de la carte héro, de la feuille d'un thème
+// et de la fiche de la partie, d'après la couleur de la pastille du thème.
+const ThemeHeroColors: Record<ThemeIconName, readonly [string, string]> = {
+  columns: PosterColors.orange,
+  ball: PosterColors.pink,
+  clapper: PosterColors.blue,
+  note: PosterColors.cyan,
+  globe: PosterColors.green,
+  gamepad: ['#ff8fc0', '#c2408f'],
+  flask: PosterColors.violet,
+  question: PosterColors.red,
+};
+
+// Dégradé d'un ou plusieurs thèmes : un thème en diagonale ; plusieurs, côte à côte en bandes obliques.
+export function themeHeroGradient(icons: readonly ThemeIconName[]): string {
+  if (icons.length <= 1) {
+    const [from, to] = ThemeHeroColors[icons[0] ?? 'question'];
+    return `linear-gradient(160deg, ${from} 0%, ${to} 100%)`;
+  }
+  const share = 100 / icons.length;
+  const stops = icons.flatMap((icon, index) => {
+    const [from, to] = ThemeHeroColors[icon];
+    return [`${from} ${Math.round(index * share)}%`, `${to} ${Math.round((index + 1) * share)}%`];
+  });
+  return `linear-gradient(110deg, ${stops.join(', ')})`;
+}
+
 export const AppColors = {
   // Couleur unie sous le dégradé (avant son affichage, et partout où un dégradé n'a pas de sens).
   background: Palette.bgBottom,
   surface: 'rgba(255, 255, 255, 0.12)',
   // Salon (maquette N2) : panneau plein de la ligne « Réglages ».
   lobbyPanel: Palette.violetPanel,
+  // Catalogue Quiz (maquettes QN1) : tuile d'un thème, bas assombri et piste 10 / 20 / 30 de la carte héro,
+  // filigrane de l'icône du thème.
+  themeTile: Palette.violetPanel,
+  themeHeroScrim: 'rgba(23, 6, 70, 0.6)',
+  themeHeroTrack: 'rgba(23, 6, 70, 0.55)',
+  themeHeroBadge: Palette.gold,
+  themeHeroTitleShadow: Palette.ink,
   // Poignée des feuilles du bas.
   sheetHandle: Palette.track,
   card: Palette.white,

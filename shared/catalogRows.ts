@@ -32,16 +32,11 @@ export function filterByTheme(entries: readonly QuizEntry[], theme: string | nul
   return entries.filter((entry) => theme === null || entry.theme === theme)
 }
 
-// Thèmes choisis dans le catalogue : aucun (rangées complètes, pas de partie tirée), « Tout », ou une
-// liste. Quiz : un choix ouvre la barre « Nombre de questions » (questions tirées dans l'union des thèmes).
+// Thèmes choisis dans la feuille des filtres du Quiz : aucun (rangées complètes), « Tout », ou une liste ;
+// filtre de la grille d'affiches.
 export type ThemeSelection = 'all' | readonly string[]
 
 export const NO_THEME: ThemeSelection = []
-
-// Thèmes de la sélection (« Tout » : tous ceux du catalogue).
-export function selectedThemes(selection: ThemeSelection, allThemes: readonly string[]): string[] {
-  return selection === 'all' ? [...allThemes] : [...selection]
-}
 
 export function isThemeSelected(selection: ThemeSelection, theme: string | null): boolean {
   return theme === null ? selection === 'all' : selection !== 'all' && selection.includes(theme)

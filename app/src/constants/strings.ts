@@ -207,13 +207,25 @@ export const strings = {
         `${count} questions tirées au hasard parmi les ${total} de ces thèmes, en commençant par celles jamais jouées sur ce téléphone.`,
       unavailable: 'Cette sélection de thèmes n’est plus disponible.',
     },
-    // Barre « Nombre de questions » (Quiz : thèmes choisis ; Bluff : Mon mélange).
+    // Catalogue Quiz (maquette QN1-A) : thème à la une et tuiles des thèmes.
+    themesHome: {
+      weekTheme: 'Thème de la semaine',
+      heroMeta: (questions: number, quizzes: number, played: number) =>
+        `${questions} questions · ${quizzes} quiz${played > 0 ? ` · ${played} déjà joué${played > 1 ? 's' : ''}` : ''}`,
+      play: 'Jouer',
+      playLabel: (theme: string, count: number) => `Jouer ${count} questions, thème ${theme}`,
+      countOption: (count: number) => `${count} questions`,
+      allThemes: 'Tous les thèmes',
+      seeAll: 'Tout voir',
+      seeAllLabel: 'Voir tous les thèmes',
+      tileCount: (count: number) => `${count} questions`,
+    },
+    // Barre « Nombre de questions » du Bluff (Mon mélange).
     questionCount: {
       title: 'Nombre de questions',
       option: (count: number) => `${count} questions`,
       continue: 'Continuer',
       show: 'Voir',
-      themesTooSmall: (themes: number, total: number) => `${themes > 1 ? 'Ces thèmes n’ont' : 'Ce thème n’a'} que ${total} questions.`,
     },
     // Dessine-moi : catégories des mots de la partie.
     drawCategories: {

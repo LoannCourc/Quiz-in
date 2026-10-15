@@ -10,7 +10,6 @@ import {
   filterByThemes,
   isThemeSelected,
   NO_THEME,
-  selectedThemes,
   toggleTheme,
   newestQuizzes,
   searchByTitle,
@@ -115,16 +114,14 @@ describe('tris du catalogue (lot E)', () => {
 })
 
 describe('Choix des thèmes', () => {
-  const all = ['Histoire', 'Sport', 'Géo']
-
   test('Tout, puis un thème : il devient le seul ; un second s’ajoute ; un appui le retire', () => {
     let selection = toggleTheme(NO_THEME, null)
-    expect(selectedThemes(selection, all)).toEqual(all)
+    expect(selection).toBe('all')
     expect(isThemeSelected(selection, null)).toBe(true)
     selection = toggleTheme(selection, 'Sport')
     expect(selection).toEqual(['Sport'])
     selection = toggleTheme(selection, 'Histoire')
-    expect(selectedThemes(selection, all)).toEqual(['Sport', 'Histoire'])
+    expect(selection).toEqual(['Sport', 'Histoire'])
     selection = toggleTheme(selection, 'Sport')
     expect(selection).toEqual(['Histoire'])
     expect(toggleTheme('all', null)).toEqual([])

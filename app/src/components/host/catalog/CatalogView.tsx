@@ -1,12 +1,7 @@
-import {
-  catalogRows,
-  catalogThemes,
-  filterByGameType,
-  searchByTitle,
-  selectedThemes,
-} from '@shared/catalogRows';
-import { availableQuestionCounts, poolQuestionTotal, poolQuizzes, QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
+import { catalogRows, catalogThemes, filterByGameType, searchByTitle, type CatalogRow } from '@shared/catalogRows';
+import { QUIZ_QUESTION_COUNTS } from '@shared/questionPool';
 import { quizLevel } from '@shared/quizCatalog';
+import { featuredThemeOf, RECOMMENDED_QUESTION_COUNT, themeStats } from '@shared/themeCatalog';
 import { activeFilterCount, filterQuizzes, isFiltering, NO_QUIZ_FILTERS, removeFilter, type QuizFilters } from '@shared/quizFilters';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
@@ -21,10 +16,11 @@ import { Spacing } from '@/constants/theme';
 
 import { LineIcon } from './LineIcon';
 import { PosterRow } from './PosterRow';
-import { QuestionCountBar } from './QuestionCountBar';
 import { QuizPoster } from './QuizPoster';
 import { ActiveFilters, FiltersButton } from './filters/CatalogFilterBar';
 import { QuizFiltersSheet } from './filters/QuizFiltersSheet';
+import { ThemeHeroCard } from './themes/ThemeHeroCard';
+import { ThemeRail } from './themes/ThemeRail';
 
 const POSTERS_PER_SCREEN = 3;
 
@@ -37,8 +33,13 @@ interface CatalogViewProps {
   onBack: () => void;
   // Quiz déjà joués sur ce téléphone (lot E) : repère sur l'affiche, tri « Pas encore faits ».
   played: ReadonlySet<string>;
-  // Quiz : thèmes choisis et nombre de questions (barre du bas), vers la fiche de la partie tirée.
-  onContinueThemes?: (themes: string[], questionCount: number) => void;
+  // Quiz (maquette QN1-A) : thème à la une et tuiles des thèmes. JOUER de la carte héro : fiche de la
+  // partie tirée dans le thème ; une tuile : le thème touché ; « Tout voir » : grille des thèmes.
+  themes?: {
+    onPlay: (themes: string[], questionCount: number) => void;
+    onOpenTheme: (theme: string) => void;
+    onSeeAll: () => void;
+  };
 }
 
 // Largeur d'une affiche : trois par largeur de colonne, dans les bornes du thème.
@@ -51,16 +52,24 @@ function gridPosterWidthFor(columnWidth: number): number {
   return Math.min(AppSizes.posterMaxWidth, threeAcross(columnWidth));
 }
 
+// Tuiles du rail des thèmes : un peu plus de trois par largeur (la quatrième dépasse : la rangée défile),
+// jamais assez étroites pour couper un nom de thème.
+const THEME_TILE_MIN_WIDTH = 104;
+const THEME_TILES_PER_SCREEN = 3.3;
+
+function themeTileWidthFor(columnWidth: number): number {
+  return Math.max(THEME_TILE_MIN_WIDTH, Math.floor((columnWidth - 2 * Spacing.two) / THEME_TILES_PER_SCREEN));
+}
+
 function threeAcross(columnWidth: number): number {
   return Math.floor((columnWidth - (POSTERS_PER_SCREEN - 1) * Spacing.three) / POSTERS_PER_SCREEN);
 }
 
 // Catalogue d'un jeu (maquette S2), ouvert depuis l'accueil, à partir de fiches déjà validées : base ou
 // démo. En-tête : retour à l'accueil, nom du jeu, recherche et « Filtres » ; puis les rangées.
-// Quiz : barre « Nombre de questions » toujours en bas (maquette Q1), sur les thèmes choisis dans la feuille
-// des filtres, sinon sur tous ; les affiches restent des quiz de 10 questions (fiche, sans barre).
-export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, onContinueThemes }: CatalogViewProps) {
-  const [questionCount, setQuestionCount] = useState(QUIZ_QUESTION_COUNTS[0]);
+// Quiz (maquette QN1-A) : carte « Thème de la semaine », rail « Tous les thèmes », puis les rangées
+// d'affiches (Nouveautés d'abord) ; une affiche reste un quiz fixe de 10 questions.
+export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack, played, themes: themeActions }: CatalogViewProps) {
   // Tri et filtres (maquette QT1) : sans rien, les rangées ; sinon une grille dans l'ordre du tri.
   const [filters, setFilters] = useState<QuizFilters>(NO_QUIZ_FILTERS);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -71,25 +80,11 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   const gridPosterWidth = gridPosterWidthFor(columnWidth);
   const entries = useMemo(() => filterByGameType(allEntries, gameType), [allEntries, gameType]);
   const themes = useMemo(() => catalogThemes(entries), [entries]);
-  const chosenThemes = selectedThemes(filters.themes, themes);
   const isSearching = query.trim() !== '';
   const filtered = isFiltering(filters) ? filterQuizzes(entries, filters, played) : entries;
-  // Sans thème choisi, la barre porte sur tous les thèmes.
-  const barThemes = chosenThemes.length > 0 ? chosenThemes : themes;
-  const footer =
-    onContinueThemes && entries.length > 0 ? (
-      <ThemesCountBar
-        entries={entries}
-        themes={barThemes}
-        scope={barThemes.length === themes.length ? strings.catalog.themesGame.allThemes : barThemes.length === 1 ? barThemes[0] : strings.catalog.themesGame.themes(barThemes.length)}
-        value={questionCount}
-        onChange={setQuestionCount}
-        onContinue={(count) => onContinueThemes(barThemes, count)}
-      />
-    ) : undefined;
 
   return (
-    <Screen footer={footer}>
+    <Screen>
       <View style={styles.column} onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
         <View style={styles.header}>
           <BackButton onPress={onBack} label={strings.home.back} />
@@ -149,7 +144,12 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
             played={played}
           />
         ) : (
-          <Rows entries={entries} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} />
+          <>
+            {themeActions && (
+              <ThemesBlock entries={entries} played={played} tileWidth={themeTileWidthFor(columnWidth)} actions={themeActions} />
+            )}
+            <Rows entries={entries} posterWidth={posterWidth} onOpenQuiz={onOpenQuiz} played={played} newFirst={themeActions !== undefined} />
+          </>
         )}
       </View>
       {isFiltersOpen && (
@@ -168,35 +168,27 @@ export function CatalogView({ entries: allEntries, gameType, onOpenQuiz, onBack,
   );
 }
 
-interface ThemesCountBarProps {
+interface ThemesBlockProps {
   entries: QuizEntry[];
-  themes: string[];
-  // À droite du titre : « Tous les thèmes », le thème, ou « 2 thèmes ».
-  scope: string;
-  value: number;
-  onChange: (count: number) => void;
-  onContinue: (count: number) => void;
+  played: ReadonlySet<string>;
+  tileWidth: number;
+  actions: NonNullable<CatalogViewProps['themes']>;
 }
 
-// Quiz : nombre de questions tirées dans les thèmes choisis ; options au-delà de leurs questions grisées
-// (leur total est alors dit dessous). À droite du titre, le périmètre seul : avec le total, il passait sur
-// une seconde ligne dès 360 de large.
-// Choix devenu impossible (thème retiré) : le plus grand possible.
-function ThemesCountBar({ entries, themes, scope, value, onChange, onContinue }: ThemesCountBarProps) {
-  const total = poolQuestionTotal(poolQuizzes(entries, { kind: 'themes', themes }, 'quiz'));
-  const available = availableQuestionCounts(QUIZ_QUESTION_COUNTS, total);
-  const count = available.includes(value) ? value : (available.at(-1) ?? value);
+// Carte du thème à la une et rail des thèmes (maquette QN1-A). Nombre de questions de la carte : 20 par
+// défaut ; s'il dépasse les questions du thème, le plus grand possible.
+function ThemesBlock({ entries, played, tileWidth, actions }: ThemesBlockProps) {
+  const [count, setCount] = useState(RECOMMENDED_QUESTION_COUNT);
+  const stats = useMemo(() => themeStats(entries, played), [entries, played]);
+  const featured = featuredThemeOf(entries, stats);
+  if (!featured) return null;
+  const possible = QUIZ_QUESTION_COUNTS.filter((option) => option <= featured.questionCount);
+  const heroCount = possible.includes(count) ? count : (possible.at(-1) ?? count);
   return (
-    <QuestionCountBar
-      options={QUIZ_QUESTION_COUNTS}
-      available={available}
-      value={count}
-      onChange={onChange}
-      summary={scope}
-      note={available.length < QUIZ_QUESTION_COUNTS.length ? strings.catalog.questionCount.themesTooSmall(themes.length, total) : undefined}
-      onContinue={() => onContinue(count)}
-      isContinueDisabled={available.length === 0}
-    />
+    <>
+      <ThemeHeroCard theme={featured} count={heroCount} onCountChange={setCount} onPlay={() => actions.onPlay([featured.theme], heroCount)} />
+      <ThemeRail themes={stats} tileWidth={tileWidth} onOpenTheme={actions.onOpenTheme} onSeeAll={actions.onSeeAll} />
+    </>
   );
 }
 
@@ -205,10 +197,17 @@ interface RowsProps {
   posterWidth: number;
   onOpenQuiz: (quizId: string) => void;
   played: ReadonlySet<string>;
+  // Quiz (maquette QN1-A) : « Nouveautés » d'abord, sous le rail des thèmes.
+  newFirst: boolean;
 }
 
-function Rows({ entries, posterWidth, onOpenQuiz, played }: RowsProps) {
-  const rows = catalogRows(entries, null);
+function byNewFirst(a: CatalogRow, b: CatalogRow): number {
+  return (a.id === 'new' ? 0 : 1) - (b.id === 'new' ? 0 : 1);
+}
+
+function Rows({ entries, posterWidth, onOpenQuiz, played, newFirst }: RowsProps) {
+  const all = catalogRows(entries, null);
+  const rows = newFirst ? [...all].sort(byNewFirst) : all;
   if (rows.length === 0) return <Text style={textStyles.body}>{strings.catalog.noMatch}</Text>;
   return (
     <>

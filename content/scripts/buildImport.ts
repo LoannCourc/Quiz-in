@@ -7,7 +7,7 @@
 import { BLIND_TEST_DECADES, BLIND_TEST_GENRES, isBlindTestDecade, isBlindTestGenre } from '../../shared/blindTestCatalog'
 import { isValidQuestionId } from '../../shared/questionPool'
 import { TRACK_OPTION_SEPARATOR, trackOptionAnswer, trackOptionParts } from '../../shared/trackOption'
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { isAnswerCorrect, normalizeAnswer } from '../../shared/answerMatching'
@@ -28,6 +28,7 @@ import {
 import { answerTargets } from '../../shared/freeAnswers'
 import { averageDifficulty, difficultyLevel, estimateQuizMinutes, isValidQuizId } from '../../shared/quizCatalog'
 import { fitsBlindTestTimer, isBlindTestAsk, isFeaturedRank, isQuizDate, parseMusicTrack } from '../../shared/quizValidation'
+import { countLevels } from '../../shared/themeCatalog'
 import { isQuizIconName } from '../../shared/themeIcons'
 import type {
   BlindTestAsk,
@@ -289,7 +290,7 @@ function toQuestions(quiz: QuizFile): (Question | BluffQuestion)[] {
   })
 }
 
-function toSummary(quiz: QuizFile): QuizSummary {
+function toSummary(quiz: QuizFile, featuredTheme: string | null): QuizSummary {
   const difficulty = averageDifficulty(quiz.questions.map((question) => question.difficulty))
   const level = quiz.level ?? difficultyLevel(difficulty)
   return {
@@ -313,6 +314,8 @@ function toSummary(quiz: QuizFile): QuizSummary {
     ...(isQuizIconName(quiz.icon) && { icon: quiz.icon }),
     ...(isBlindTestGenre(quiz.genre) && { genre: quiz.genre }),
     ...(isBlindTestDecade(quiz.decade) && { decade: quiz.decade }),
+    levelCounts: countLevels(quiz.questions.map((question) => question.difficulty)),
+    ...((quiz.gameType ?? 'quiz') === 'quiz' && quiz.theme === featuredTheme && { featuredTheme: true as const }),
   }
 }
 
@@ -335,9 +338,23 @@ function featuredRankErrors(): string[] {
   })
 }
 
+// Thème à la une du catalogue Quiz (carte « Thème de la semaine ») : content/featuredTheme.json,
+// { "theme": "Histoire" } ; absent : l'app choisit (thème le plus joué sur le téléphone, puis le plus fourni).
+const featuredThemeFile = join(contentDir, 'featuredTheme.json')
+const featuredTheme: unknown = existsSync(featuredThemeFile) ? (JSON.parse(readFileSync(featuredThemeFile, 'utf8')) as { theme?: unknown }).theme : null
+
+function featuredThemeErrors(): string[] {
+  if (featuredTheme === null) return []
+  const themes = new Set(quizzes.filter(({ quiz }) => (quiz.gameType ?? 'quiz') === 'quiz').map(({ quiz }) => quiz.theme))
+  return typeof featuredTheme === 'string' && themes.has(featuredTheme)
+    ? []
+    : [`featuredTheme.json : « ${String(featuredTheme)} » n'est le thème d'aucun quiz classique`]
+}
+
 const allErrors = [
   ...quizzes.flatMap(({ fileName, quiz }) => quizErrors(quiz, fileName).map((error) => `${fileName} : ${error}`)),
   ...featuredRankErrors(),
+  ...featuredThemeErrors(),
 ]
 if (allErrors.length > 0) {
   console.error(`Contenu invalide, aucun fichier généré :\n- ${allErrors.join('\n- ')}`)
@@ -360,7 +377,7 @@ for (const { quiz, issues } of pending.filter(({ issues }) => issues.length > 0)
   console.warn(`⚠ ${quiz.id} non importé, morceaux à vérifier :\n  - ${issues.join('\n  - ')}`)
 }
 
-const summaries = Object.fromEntries(imported.map(({ quiz }) => [quiz.id, toSummary(quiz)]))
+const summaries = Object.fromEntries(imported.map(({ quiz }) => [quiz.id, toSummary(quiz, typeof featuredTheme === 'string' ? featuredTheme : null)]))
 const questions = Object.fromEntries(imported.map(({ quiz }) => [quiz.id, toQuestions(quiz)]))
 
 mkdirSync(outputDir, { recursive: true })

@@ -1,5 +1,6 @@
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { gameAccess } from '@shared/quizCatalog';
+import { RECOMMENDED_QUESTION_COUNT } from '@shared/themeCatalog';
 import { parseQuizCatalog, type QuizEntry } from '@shared/quizValidation';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useMemo } from 'react';
@@ -17,6 +18,7 @@ import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { usePlayedQuizzes } from '@/hooks/usePlayedQuizzes';
 import { warnIgnoredEntries } from '@/lib/devLog';
+import { openAllThemes, openThemesGame } from '@/lib/themeGameNavigation';
 
 // Fiches valides ; les entrées mal formées de la base sont ignorées. Dessine-moi (pas de quiz dans la
 // base) : fiche locale.
@@ -36,11 +38,6 @@ function openQuiz(quizId: string, room: string | undefined) {
 function openDrawGame(drawCategories: string[], room: string | undefined) {
   const categories = drawCategories.length > 0 ? { categories: drawCategories.join(',') } : {};
   router.push({ pathname: '/quiz/[quizId]', params: { quizId: DRAW_QUIZ_ID, ...categories, ...(room && { room }) } });
-}
-
-// Quiz, thèmes choisis : fiche de la partie tirée dans leur union (thèmes séparés par « | »).
-function openThemesGame(themes: string[], questionCount: number, room: string | undefined) {
-  router.push({ pathname: '/pool', params: { themes: themes.join('|'), count: String(questionCount), ...(room && { room }) } });
 }
 
 // Bluff, Mon mélange : fiche de la partie tirée dans les quiz choisis.
@@ -93,7 +90,15 @@ export default function CatalogRoute() {
         onOpenQuiz={(quizId) => openQuiz(quizId, room)}
         onBack={backHome}
         played={played}
-        onContinueThemes={game === 'quiz' ? (themes, count) => openThemesGame(themes, count, room) : undefined}
+        themes={
+          game === 'quiz'
+            ? {
+                onPlay: (themes, count) => openThemesGame(themes, count, room),
+                onOpenTheme: (theme) => openThemesGame([theme], RECOMMENDED_QUESTION_COUNT, room),
+                onSeeAll: () => openAllThemes(room),
+              }
+            : undefined
+        }
       />
     );
   }

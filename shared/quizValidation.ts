@@ -28,6 +28,7 @@ import type {
   QuizAudience,
   QuizGameType,
   QuizSummary,
+  QuestionLevelCounts,
 } from './types'
 
 // Validation des lectures de quizzes/ et questions/ : la base peut contenir des données mal formées
@@ -130,9 +131,9 @@ export function isFeaturedRank(value: unknown): value is number {
 // Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
 function catalogDisplayFields(value: Record<string, unknown>): Pick<
   QuizSummary,
-  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level' | 'genre' | 'decade'
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level' | 'genre' | 'decade' | 'levelCounts' | 'featuredTheme'
 > {
-  const { description, audience, poster, addedAt, featuredRank, icon, level, genre, decade } = value
+  const { description, audience, poster, addedAt, featuredRank, icon, level, genre, decade, levelCounts, featuredTheme } = value
   return {
     description:
       typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
@@ -144,7 +145,14 @@ function catalogDisplayFields(value: Record<string, unknown>): Pick<
     ...(isDifficultyLevel(level) && { level }),
     ...(isBlindTestGenre(genre) && { genre }),
     ...(isBlindTestDecade(decade) && { decade }),
+    ...(isLevelCounts(levelCounts) && { levelCounts }),
+    ...(featuredTheme === true && { featuredTheme }),
   }
+}
+
+function isLevelCounts(value: unknown): value is QuestionLevelCounts {
+  if (!isRecord(value)) return false
+  return (['easy', 'medium', 'hard'] as const).every((level) => Number.isInteger(value[level]) && (value[level] as number) >= 0)
 }
 
 function isDifficultyLevel(value: unknown): value is DifficultyLevel {

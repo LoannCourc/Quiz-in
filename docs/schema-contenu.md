@@ -51,6 +51,13 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
   Inutile d'y mettre casse, accents, article ou petites fautes : déjà acceptés.
 - Pas d'énoncé du type « Lequel de ces… » (il doit marcher sans les propositions).
 - `explanation` (facultatif) : une phrase. `timeLimit` (facultatif) : secondes.
+- La `difficulty` de chaque question (1 Facile, 2 Moyen, 3 Difficile) sert aussi au choix « Difficulté » d'une partie
+  tirée dans des thèmes (écran « Ta partie ») : le build calcule pour chaque quiz le nombre de questions par niveau
+  (`levelCounts`, écrit dans `import/quizzes.json`, jamais à la main).
+- **Thème à la une** (carte « Thème de la semaine » du catalogue Quiz) : fichier `content/featuredTheme.json`,
+  `{ "theme": "Histoire" }`, le texte exact du champ `theme` d'un quiz classique (le build refuse un thème inconnu).
+  Pour changer de thème : modifier ce fichier, `npm run build`, puis réimporter `/quizzes`. Fichier absent : l'app
+  prend le thème le plus joué sur le téléphone de l'hôte, sinon celui qui a le plus de questions.
 
 ```json
 {

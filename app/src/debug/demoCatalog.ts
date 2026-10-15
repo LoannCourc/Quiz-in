@@ -62,3 +62,49 @@ export const DEMO_CATALOG: QuizEntry[] = DEMO_QUIZZES.map(({ featuredRank, gameT
   estimatedMinutes: estimateQuizMinutes(QUESTIONS_PER_GAME),
   ...(featuredRank !== undefined && { featuredRank }),
 }));
+
+// Thèmes du catalogue Quiz (maquettes QN1) : pour chaque thème, des quiz de 10 questions sans date ni rang
+// (absents des rangées d'affiches), répartis par niveau comme le vrai contenu d'octobre 2026 (Facile, Moyen,
+// Difficile). Histoire est le thème à la une.
+const DEMO_THEME_LEVELS: Record<string, readonly [number, number, number]> = {
+  Histoire: [24, 31, 15],
+  Sport: [24, 36, 10],
+  'Cinéma et séries': [26, 34, 10],
+  Musique: [24, 27, 9],
+  Géographie: [24, 35, 11],
+  Loisirs: [30, 34, 6],
+  'Sciences et nature': [28, 32, 10],
+  'Culture générale': [30, 27, 13],
+};
+const DEMO_FEATURED_THEME = 'Histoire';
+
+// Répartit les questions d'un thème en quiz de 10 : les faciles d'abord, puis les moyennes, puis les difficiles.
+function demoThemeQuizzes(theme: string, [easy, medium, hard]: readonly [number, number, number], index: number): QuizEntry[] {
+  const levels = [...Array<'easy'>(easy).fill('easy'), ...Array<'medium'>(medium).fill('medium'), ...Array<'hard'>(hard).fill('hard')];
+  const quizCount = Math.ceil(levels.length / QUESTIONS_PER_GAME);
+  return Array.from({ length: quizCount }, (_, quiz) => {
+    const slice = levels.slice(quiz * QUESTIONS_PER_GAME, (quiz + 1) * QUESTIONS_PER_GAME);
+    const levelCounts = { easy: 0, medium: 0, hard: 0 };
+    for (const level of slice) levelCounts[level] += 1;
+    return {
+      id: `demo-theme-${index}-${quiz + 1}`,
+      title: `${theme} ${quiz + 1}`,
+      theme,
+      gameType: 'quiz',
+      language: 'fr',
+      difficulty: 2,
+      difficultyLabel: strings.catalog.difficultyLevels.medium,
+      level: 'medium',
+      questionCount: slice.length,
+      estimatedMinutes: estimateQuizMinutes(slice.length),
+      description: '',
+      audience: 'all',
+      poster: 'violet',
+      addedAt: '',
+      levelCounts,
+      ...(theme === DEMO_FEATURED_THEME && { featuredTheme: true as const }),
+    } satisfies QuizEntry;
+  });
+}
+
+export const DEMO_THEME_CATALOG: QuizEntry[] = Object.entries(DEMO_THEME_LEVELS).flatMap(([theme, levels], index) => demoThemeQuizzes(theme, levels, index));

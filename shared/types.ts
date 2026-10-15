@@ -24,6 +24,12 @@ export type Difficulty = 1 | 2 | 3;
 // « Impossible » : blind tests très pointus (affiché dans les filtres seulement s'il a du contenu).
 export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'impossible';
 
+// Niveau d'une question (difficulté 1, 2, 3) : choix « Difficulté » d'une partie tirée dans des thèmes.
+export type QuestionLevel = 'easy' | 'medium' | 'hard';
+
+// Nombre de questions d'un quiz par niveau (calculé par le build du contenu).
+export type QuestionLevelCounts = Record<QuestionLevel, number>;
+
 // Blind test (maquette BT5) : genre principal et décennie (« all » : toutes époques).
 export type BlindTestGenre = 'pop' | 'rock' | 'rap' | 'chanson' | 'discoFunk' | 'electro';
 export type BlindTestDecade = 1960 | 1970 | 1980 | 1990 | 2000 | 2010 | 2020 | 'all';
@@ -65,6 +71,10 @@ export interface QuizSummary {
   // Blind test seulement (obligatoires dans content/) : genre principal et décennie.
   genre?: BlindTestGenre;
   decade?: BlindTestDecade;
+  // Questions par niveau (build) ; absent (fiche importée avant) : toutes au niveau du quiz.
+  levelCounts?: QuestionLevelCounts;
+  // Quiz du thème à la une (content/featuredTheme.json) : carte « Thème de la semaine » du catalogue Quiz.
+  featuredTheme?: true;
 }
 
 export type ChoiceOptions = [string, string, string, string];
