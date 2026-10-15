@@ -1,0 +1,557 @@
+{
+  "quizId": "rock-annees-90",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "r90-01",
+      "query": {
+        "artist": "Nirvana",
+        "title": "Smells Like Teen Spirit"
+      },
+      "found": {
+        "id": "13791930",
+        "title": "Smells Like Teen Spirit",
+        "artist": "Nirvana",
+        "album": "Nevermind (Remastered)",
+        "durationS": 301,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13791930",
+        "explicit": false,
+        "rank": 985641
+      },
+      "alternatives": [
+        {
+          "id": "1543592472",
+          "title": "Smells Like Teen Spirit (Live In Del Mar, California/1991)",
+          "artist": "Nirvana",
+          "album": "Nevermind (30th Anniversary Super Deluxe)",
+          "durationS": 289,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1543592472",
+          "explicit": false,
+          "rank": 590384
+        },
+        {
+          "id": "4601811",
+          "title": "Smells Like Teen Spirit (1992/Live at Reading)",
+          "artist": "Nirvana",
+          "album": "Live at Reading",
+          "durationS": 285,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/4601811",
+          "explicit": false,
+          "rank": 400922
+        },
+        {
+          "id": "661518662",
+          "title": "Smells Like Teen Spirit (Live At The Paramount/1991)",
+          "artist": "Nirvana",
+          "album": "Live At The Paramount (Live)",
+          "durationS": 285,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/661518662",
+          "explicit": false,
+          "rank": 363945
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-02",
+      "query": {
+        "artist": "R.E.M.",
+        "title": "Losing My Religion"
+      },
+      "found": {
+        "id": "136334560",
+        "title": "Losing My Religion",
+        "artist": "R.E.M.",
+        "album": "Out Of Time",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136334560",
+        "explicit": false,
+        "rank": 973013
+      },
+      "alternatives": [
+        {
+          "id": "1109972392",
+          "title": "Losing My Religion",
+          "artist": "R.E.M.",
+          "album": "All The Way To The End",
+          "durationS": 295,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1109972392",
+          "explicit": false,
+          "rank": 25437
+        },
+        {
+          "id": "1090979322",
+          "title": "Losing My Religion (Live / Acoustic)",
+          "artist": "R.E.M.",
+          "album": "Losing My Religion",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1090979322",
+          "explicit": false,
+          "rank": 697292
+        },
+        {
+          "id": "122882002",
+          "title": "Losing My Religion (Live At The Point Depot, Dublin, Ireland / February, 2005)",
+          "artist": "R.E.M.",
+          "album": "R.E.M. Live",
+          "durationS": 293,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/122882002",
+          "explicit": false,
+          "rank": 556176
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-03",
+      "query": {
+        "artist": "The Cranberries",
+        "title": "Zombie"
+      },
+      "found": {
+        "id": "952788",
+        "title": "Zombie",
+        "artist": "The Cranberries",
+        "album": "Girls And Guitars",
+        "durationS": 307,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/952788",
+        "explicit": false,
+        "rank": 955297
+      },
+      "alternatives": [
+        {
+          "id": "3498055251",
+          "title": "Zombie (2025 Remastered)",
+          "artist": "The Cranberries",
+          "album": "No Need To Argue (2025 Remastered)",
+          "durationS": 307,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3498055251",
+          "explicit": false,
+          "rank": 716651
+        },
+        {
+          "id": "2458106645",
+          "title": "Zombie (Edit)",
+          "artist": "The Cranberries",
+          "album": "Rock'n'roll Party",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2458106645",
+          "explicit": false,
+          "rank": 435035
+        },
+        {
+          "id": "2959694211",
+          "title": "Zombie (Sped Up)",
+          "artist": "The Cranberries",
+          "album": "Zombie",
+          "durationS": 278,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2959694211",
+          "explicit": false,
+          "rank": 220031
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-04",
+      "query": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Under the Bridge"
+      },
+      "found": {
+        "id": "785176",
+        "title": "Under the Bridge",
+        "artist": "Red Hot Chili Peppers",
+        "album": "Greatest Hits",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/785176",
+        "explicit": false,
+        "rank": 951375
+      },
+      "alternatives": [
+        {
+          "id": "1230088532",
+          "title": "Under The Bridge",
+          "artist": "Red Hot Chili Peppers",
+          "album": "Malevolent Mob",
+          "durationS": 316,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1230088532",
+          "explicit": false,
+          "rank": 232633
+        },
+        {
+          "id": "673720662",
+          "title": "Under the Bridge (Live)",
+          "artist": "Red Hot Chili Peppers",
+          "album": "Red Hot Chili Peppers - Live at Woodstock (Live)",
+          "durationS": 290,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/673720662",
+          "explicit": false,
+          "rank": 495039
+        },
+        {
+          "id": "1421081912",
+          "title": "Under The Bridge",
+          "artist": "Red Hot Chili Peppers",
+          "album": "The Psycho's House (Live)",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1421081912",
+          "explicit": false,
+          "rank": 132370
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-05",
+      "query": {
+        "artist": "Blur",
+        "title": "Song 2"
+      },
+      "found": {
+        "id": "3102130",
+        "title": "Song 2",
+        "artist": "Blur",
+        "album": "Blur: The Best Of",
+        "durationS": 121,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3102130",
+        "explicit": false,
+        "rank": 896833
+      },
+      "alternatives": [
+        {
+          "id": "93696786",
+          "title": "Song 2 (Live)",
+          "artist": "Blur",
+          "album": "Parklive",
+          "durationS": 170,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/93696786",
+          "explicit": false,
+          "rank": 285807
+        },
+        {
+          "id": "2875443452",
+          "title": "Song 2 (Live at Wembley Stadium)",
+          "artist": "Blur",
+          "album": "Live at Wembley Stadium",
+          "durationS": 202,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2875443452",
+          "explicit": true,
+          "rank": 246098
+        },
+        {
+          "id": "38442101",
+          "title": "Song 2 (Live in Utrecht; 2012 Remaster)",
+          "artist": "Blur",
+          "album": "Blur (Special Edition)",
+          "durationS": 127,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/38442101",
+          "explicit": false,
+          "rank": 228216
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-06",
+      "query": {
+        "artist": "Radiohead",
+        "title": "Karma Police"
+      },
+      "found": {
+        "id": "138539981",
+        "title": "Karma Police",
+        "artist": "Radiohead",
+        "album": "OK Computer",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/138539981",
+        "explicit": false,
+        "rank": 898957
+      },
+      "alternatives": [
+        {
+          "id": "491630992",
+          "title": "Karma Police (Live)",
+          "artist": "Radiohead",
+          "album": "Get Up! Stand Up! (Highlights from the Human Rights Concerts 1986-1998)",
+          "durationS": 248,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/491630992",
+          "explicit": false,
+          "rank": 307167
+        },
+        {
+          "id": "138540653",
+          "title": "Meeting in the Aisle",
+          "artist": "Radiohead",
+          "album": "Karma Police",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/138540653",
+          "explicit": false,
+          "rank": 194833
+        },
+        {
+          "id": "138540655",
+          "title": "Lull",
+          "artist": "Radiohead",
+          "album": "Karma Police",
+          "durationS": 149,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/138540655",
+          "explicit": false,
+          "rank": 187108
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-07",
+      "query": {
+        "artist": "Pearl Jam",
+        "title": "Alive"
+      },
+      "found": {
+        "id": "7675130",
+        "title": "Alive",
+        "artist": "Pearl Jam",
+        "album": "Ten",
+        "durationS": 341,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7675130",
+        "explicit": false,
+        "rank": 815370
+      },
+      "alternatives": [
+        {
+          "id": "13784288",
+          "title": "Alive (Mookie Blaylock - The Moore Theatre - Seattle, WA 12/22/1990)",
+          "artist": "Pearl Jam",
+          "album": "Pearl Jam Twenty Original Motion Picture Soundtrack",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13784288",
+          "explicit": false,
+          "rank": 192511
+        },
+        {
+          "id": "1107653512",
+          "title": "Alive (Live MTV Unplugged)",
+          "artist": "Pearl Jam",
+          "album": "MTV Unplugged",
+          "durationS": 331,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1107653512",
+          "explicit": false,
+          "rank": 602604
+        },
+        {
+          "id": "70029906",
+          "title": "Alive (Brendan O'Brien Mix)",
+          "artist": "Pearl Jam",
+          "album": "Ten Redux",
+          "durationS": 340,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70029906",
+          "explicit": false,
+          "rank": 331090
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-08",
+      "query": {
+        "artist": "Green Day",
+        "title": "Basket Case"
+      },
+      "found": {
+        "id": "678044",
+        "title": "Basket Case",
+        "artist": "Green Day",
+        "album": "Dookie",
+        "durationS": 181,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/678044",
+        "explicit": false,
+        "rank": 883330
+      },
+      "alternatives": [
+        {
+          "id": "892937362",
+          "title": "Basket Case",
+          "artist": "Green Day",
+          "album": "House Of Blues",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/892937362",
+          "explicit": false,
+          "rank": 38761
+        },
+        {
+          "id": "2125323897",
+          "title": "Basket Case (Live at the Electric Factory, Philadelphia 11/14/97)",
+          "artist": "Green Day",
+          "album": "Nimrod (25th Anniversary Edition)",
+          "durationS": 168,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2125323897",
+          "explicit": false,
+          "rank": 449939
+        },
+        {
+          "id": "679774",
+          "title": "Basket Case (Live at Milton Keynes National Bowl, Milton Keynes, England, 6/18/05)",
+          "artist": "Green Day",
+          "album": "Bullet in a Bible",
+          "durationS": 178,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/679774",
+          "explicit": false,
+          "rank": 405354
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-09",
+      "query": {
+        "artist": "Soundgarden",
+        "title": "Black Hole Sun"
+      },
+      "found": {
+        "id": "78631539",
+        "title": "Black Hole Sun",
+        "artist": "Soundgarden",
+        "album": "Superunknown (Super Deluxe)",
+        "durationS": 318,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/78631539",
+        "explicit": false,
+        "rank": 870385
+      },
+      "alternatives": [
+        {
+          "id": "78631578",
+          "title": "Black Hole Sun (Rehearsal Version)",
+          "artist": "Soundgarden",
+          "album": "Superunknown (Super Deluxe)",
+          "durationS": 344,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/78631578",
+          "explicit": false,
+          "rank": 224007
+        },
+        {
+          "id": "78631568",
+          "title": "Black Hole Sun (Demo Version)",
+          "artist": "Soundgarden",
+          "album": "Superunknown (Super Deluxe)",
+          "durationS": 339,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/78631568",
+          "explicit": false,
+          "rank": 106887
+        },
+        {
+          "id": "716521772",
+          "title": "Black Hole Sun (Live From The Artists Den)",
+          "artist": "Soundgarden",
+          "album": "Live From The Artists Den",
+          "durationS": 350,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/716521772",
+          "explicit": false,
+          "rank": 183112
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "r90-10",
+      "query": {
+        "artist": "Foo Fighters",
+        "title": "Everlong"
+      },
+      "found": {
+        "id": "4762041",
+        "title": "Everlong",
+        "artist": "Foo Fighters",
+        "album": "Greatest Hits",
+        "durationS": 250,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4762041",
+        "explicit": false,
+        "rank": 883031
+      },
+      "alternatives": [
+        {
+          "id": "1972268927",
+          "title": "Everlong (Acoustic Version)",
+          "artist": "Foo Fighters",
+          "album": "The Essential Foo Fighters",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1972268927",
+          "explicit": false,
+          "rank": 650387
+        },
+        {
+          "id": "710364362",
+          "title": "Everlong (Live at the Roundhouse, London, UK - July 2011)",
+          "artist": "Foo Fighters",
+          "album": "00111125 - Live In London",
+          "durationS": 324,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/710364362",
+          "explicit": false,
+          "rank": 504674
+        },
+        {
+          "id": "15603982",
+          "title": "Everlong (Live at the Pantages Theatre, Los Angeles, CA - August 2006)",
+          "artist": "Foo Fighters",
+          "album": "Skin And Bones (Live)",
+          "durationS": 395,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15603982",
+          "explicit": false,
+          "rank": 297192
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

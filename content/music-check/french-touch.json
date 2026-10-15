@@ -1,0 +1,557 @@
+{
+  "quizId": "french-touch",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "ftc-01",
+      "query": {
+        "artist": "Modjo",
+        "title": "Lady (Hear Me Tonight)"
+      },
+      "found": {
+        "id": "70179720",
+        "title": "Lady (Hear Me Tonight)",
+        "artist": "Modjo",
+        "album": "Modjo (Remastered)",
+        "durationS": 307,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70179720",
+        "explicit": false,
+        "rank": 870128
+      },
+      "alternatives": [
+        {
+          "id": "70232967",
+          "title": "Lady (Hear Me Tonight) (Harry Choo Choo Romero's Original Recipe)",
+          "artist": "Modjo",
+          "album": "Modjo Remixes",
+          "durationS": 462,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70232967",
+          "explicit": false,
+          "rank": 239044
+        },
+        {
+          "id": "3548645421",
+          "title": "Lady (Hear Me Tonight) - Remix",
+          "artist": "Modjo",
+          "album": "Lady (Hear Me Tonight) - Remix",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3548645421",
+          "explicit": false,
+          "rank": 542001
+        },
+        {
+          "id": "70232964",
+          "title": "Lady (Hear Me Tonight) (Modjo's Dyrt Remix)",
+          "artist": "Modjo",
+          "album": "Modjo Remixes",
+          "durationS": 428,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/70232964",
+          "explicit": false,
+          "rank": 448215
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-02",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Harder, Better, Faster, Stronger"
+      },
+      "found": {
+        "id": "3135556",
+        "title": "Harder, Better, Faster, Stronger",
+        "artist": "Daft Punk",
+        "album": "Discovery",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135556",
+        "explicit": false,
+        "rank": 810329
+      },
+      "alternatives": [
+        {
+          "id": "14994128",
+          "title": "Harder Better Faster Stronger",
+          "artist": "Daft Punk",
+          "album": "Harder is Better, Faster is Stronger",
+          "durationS": 390,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14994128",
+          "explicit": false,
+          "rank": 25762
+        },
+        {
+          "id": "3167843",
+          "title": "Around the World / Harder, Better, Faster, Stronger",
+          "artist": "Daft Punk",
+          "album": "Alive 2007",
+          "durationS": 342,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3167843",
+          "explicit": false,
+          "rank": 694738
+        },
+        {
+          "id": "73953389",
+          "title": "Harder, Better, Faster, Stronger (Alive Radio Edit 2007)",
+          "artist": "Daft Punk",
+          "album": "Harder, Better, Faster, Stronger (Live)",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/73953389",
+          "explicit": false,
+          "rank": 251171
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-03",
+      "query": {
+        "artist": "Bob Sinclar",
+        "title": "Love Generation"
+      },
+      "found": {
+        "id": "2676362252",
+        "title": "Love Generation",
+        "artist": "Bob Sinclar",
+        "album": "Love Generation",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2676362252",
+        "explicit": false,
+        "rank": 306273
+      },
+      "alternatives": [
+        {
+          "id": "2635211862",
+          "title": "Love Generation (Edit)",
+          "artist": "Bob Sinclar",
+          "album": "Love Generation (Edit)",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2635211862",
+          "explicit": false,
+          "rank": 769293
+        },
+        {
+          "id": "3420337401",
+          "title": "Love Generation",
+          "artist": "Bob Sinclar",
+          "album": "Western Dream",
+          "durationS": 532,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3420337401",
+          "explicit": true,
+          "rank": 641838
+        },
+        {
+          "id": "2858064222",
+          "title": "Love Generation (Reimagined)",
+          "artist": "Bob Sinclar",
+          "album": "Love Generation (Reimagined)",
+          "durationS": 221,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2858064222",
+          "explicit": false,
+          "rank": 277514
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-04",
+      "query": {
+        "artist": "Justice",
+        "title": "D.A.N.C.E."
+      },
+      "found": {
+        "id": "10284909",
+        "title": "D.A.N.C.E.",
+        "artist": "Justice",
+        "album": "Justice",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10284909",
+        "explicit": false,
+        "rank": 681413
+      },
+      "alternatives": [
+        {
+          "id": "1777967547",
+          "title": "D.A.N.C.E. (Extended)",
+          "artist": "Justice",
+          "album": "D.A.N.C.E. (Extended)",
+          "durationS": 274,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1777967547",
+          "explicit": false,
+          "rank": 132499
+        },
+        {
+          "id": "543489142",
+          "title": "D.A.N.C.E. (WWW)",
+          "artist": "Justice",
+          "album": "Woman Worldwide",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/543489142",
+          "explicit": false,
+          "rank": 347742
+        },
+        {
+          "id": "1777967537",
+          "title": "D.A.N.C.E. (Radio Edit)",
+          "artist": "Justice",
+          "album": "D.A.N.C.E. (Extended)",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1777967537",
+          "explicit": false,
+          "rank": 128569
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-05",
+      "query": {
+        "artist": "Cassius",
+        "title": "The Sound of Violence"
+      },
+      "found": {
+        "id": "120536226",
+        "title": "The Sound of Violence",
+        "artist": "Cassius",
+        "album": "Au Rêve (Deluxe Edition)",
+        "durationS": 433,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/120536226",
+        "explicit": false,
+        "rank": 459838
+      },
+      "alternatives": [
+        {
+          "id": "120536256",
+          "title": "The Sound of Violence (Cosmo Vitelli)",
+          "artist": "Cassius",
+          "album": "Au Rêve (Deluxe Edition)",
+          "durationS": 312,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120536256",
+          "explicit": false,
+          "rank": 379920
+        },
+        {
+          "id": "120536258",
+          "title": "The Sound of Violence (Narcotic Thrust Remix)",
+          "artist": "Cassius",
+          "album": "Au Rêve (Deluxe Edition)",
+          "durationS": 454,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120536258",
+          "explicit": false,
+          "rank": 358092
+        },
+        {
+          "id": "120536254",
+          "title": "The Sound of Violence (Reggae Rock Mix)",
+          "artist": "Cassius",
+          "album": "Au Rêve (Deluxe Edition)",
+          "durationS": 207,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/120536254",
+          "explicit": false,
+          "rank": 189218
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-06",
+      "query": {
+        "artist": "David Guetta",
+        "title": "Love Don't Let Me Go"
+      },
+      "found": {
+        "id": "3087828",
+        "title": "Love Don't Let Me Go",
+        "artist": "David Guetta",
+        "album": "Just a Little More Love",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3087828",
+        "explicit": false,
+        "rank": 901803
+      },
+      "alternatives": [
+        {
+          "id": "3153533",
+          "title": "Love Don't Let Me Go (Main Mix)",
+          "artist": "David Guetta",
+          "album": "Love, Don't Let Me Go",
+          "durationS": 446,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3153533",
+          "explicit": false,
+          "rank": 217091
+        },
+        {
+          "id": "3097548",
+          "title": "Love Don't Let Me Go (Scream Mix)",
+          "artist": "David Guetta",
+          "album": "Love, Don't Let Me Go",
+          "durationS": 475,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3097548",
+          "explicit": false,
+          "rank": 106959
+        },
+        {
+          "id": "3153535",
+          "title": "Love Don't Let Me Go (1987 Rister Remix)",
+          "artist": "David Guetta",
+          "album": "Love, Don't Let Me Go",
+          "durationS": 404,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3153535",
+          "explicit": false,
+          "rank": 90251
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-07",
+      "query": {
+        "artist": "Air",
+        "title": "Cherry Blossom Girl"
+      },
+      "found": {
+        "id": "3369072",
+        "title": "Cherry Blossom Girl",
+        "artist": "Air",
+        "album": "Talkie Walkie",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3369072",
+        "explicit": false,
+        "rank": 631412
+      },
+      "alternatives": [
+        {
+          "id": "3811042742",
+          "title": "Cherry Blossom Girl (Simian Mobile Disco Mix)",
+          "artist": "Air",
+          "album": "The Remixes, Vol. 2",
+          "durationS": 353,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3811042742",
+          "explicit": false,
+          "rank": 113383
+        },
+        {
+          "id": "3811042732",
+          "title": "Cherry Blossom Girl (Hope Sandoval Version)",
+          "artist": "Air",
+          "album": "The Remixes, Vol. 2",
+          "durationS": 173,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3811042732",
+          "explicit": false,
+          "rank": 75287
+        },
+        {
+          "id": "3811042752",
+          "title": "Cherry Blossom Girl (Fanny Demo Version)",
+          "artist": "Air",
+          "album": "The Remixes, Vol. 2",
+          "durationS": 189,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3811042752",
+          "explicit": false,
+          "rank": 39535
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-08",
+      "query": {
+        "artist": "Sébastien Tellier",
+        "title": "La ritournelle"
+      },
+      "found": {
+        "id": "2751407851",
+        "title": "La ritournelle",
+        "artist": "Sébastien Tellier",
+        "album": "La ritournelle",
+        "durationS": 454,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2751407851",
+        "explicit": false,
+        "rank": 820919
+      },
+      "alternatives": [
+        {
+          "id": "2749372191",
+          "title": "La ritournelle",
+          "artist": "Sébastien Tellier",
+          "album": "Sessions",
+          "durationS": 335,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2749372191",
+          "explicit": false,
+          "rank": 406122
+        },
+        {
+          "id": "2751407891",
+          "title": "La ritournelle (\"Sébastien Tellier's Return in Hell\" by Turzi)",
+          "artist": "Sébastien Tellier",
+          "album": "La ritournelle",
+          "durationS": 381,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2751407891",
+          "explicit": false,
+          "rank": 214941
+        },
+        {
+          "id": "3106124741",
+          "title": "La Ritournelle",
+          "artist": "Sébastien Tellier",
+          "album": "2021 - CC22 - JR Ewing x DJ Mirage - Jingle Ballz",
+          "durationS": 409,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3106124741",
+          "explicit": true,
+          "rank": 38296
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-09",
+      "query": {
+        "artist": "Yelle",
+        "title": "À cause des garçons"
+      },
+      "found": {
+        "id": "3107362",
+        "title": "À cause des garçons",
+        "artist": "Yelle",
+        "album": "Pop-Up",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3107362",
+        "explicit": false,
+        "rank": 539160
+      },
+      "alternatives": [
+        {
+          "id": "3154719",
+          "title": "A cause des garçons (Edit)",
+          "artist": "Yelle",
+          "album": "A Cause Des Garçons",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3154719",
+          "explicit": false,
+          "rank": 231360
+        },
+        {
+          "id": "2491193001",
+          "title": "À cause des garçons (Tepr Remix Edit)",
+          "artist": "Yelle",
+          "album": "Pop-Up (Extended Version)",
+          "durationS": 174,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2491193001",
+          "explicit": false,
+          "rank": 447167
+        },
+        {
+          "id": "2491193011",
+          "title": "À cause des garçons (Tepr Remix)",
+          "artist": "Yelle",
+          "album": "Pop-Up (Extended Version)",
+          "durationS": 362,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2491193011",
+          "explicit": false,
+          "rank": 180941
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ftc-10",
+      "query": {
+        "artist": "Superfunk",
+        "title": "Lucky Star"
+      },
+      "found": {
+        "id": "3106327481",
+        "title": "Lucky Star",
+        "artist": "Superfunk",
+        "album": "Hold Up",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3106327481",
+        "explicit": false,
+        "rank": 742516
+      },
+      "alternatives": [
+        {
+          "id": "3531806531",
+          "title": "Lucky Star",
+          "artist": "Superfunk",
+          "album": "Lucky Star",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3531806531",
+          "explicit": false,
+          "rank": 541101
+        },
+        {
+          "id": "3531806541",
+          "title": "Lucky Star (Extended)",
+          "artist": "Superfunk",
+          "album": "Lucky Star",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3531806541",
+          "explicit": false,
+          "rank": 427782
+        },
+        {
+          "id": "3379296681",
+          "title": "Lucky Star",
+          "artist": "Superfunk",
+          "album": "Lucky Star",
+          "durationS": 151,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3379296681",
+          "explicit": false,
+          "rank": 263613
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

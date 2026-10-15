@@ -1,0 +1,557 @@
+{
+  "quizId": "funk-annees-80",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "f80-01",
+      "query": {
+        "artist": "Kool & The Gang",
+        "title": "Celebration"
+      },
+      "found": {
+        "id": "95873824",
+        "title": "Celebration",
+        "artist": "Kool & The Gang",
+        "album": "Celebrate!",
+        "durationS": 298,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/95873824",
+        "explicit": false,
+        "rank": 769489
+      },
+      "alternatives": [
+        {
+          "id": "906583",
+          "title": "Celebration (Single Version)",
+          "artist": "Kool & The Gang",
+          "album": "'80s Pop #1's",
+          "durationS": 220,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/906583",
+          "explicit": false,
+          "rank": 669572
+        },
+        {
+          "id": "3466064011",
+          "title": "Celebration (The Reflex Revision Radio Edit)",
+          "artist": "Kool & The Gang",
+          "album": "KOOL SUMMER",
+          "durationS": 277,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3466064011",
+          "explicit": false,
+          "rank": 270602
+        },
+        {
+          "id": "62479312",
+          "title": "Celebration (feat. Lulu & London Community Gospel Choir)",
+          "artist": "Kool & The Gang",
+          "album": "The Best of Kool & The Gang",
+          "durationS": 253,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/62479312",
+          "explicit": false,
+          "rank": 294293
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-02",
+      "query": {
+        "artist": "Rick James",
+        "title": "Super Freak"
+      },
+      "found": {
+        "id": "543150512",
+        "title": "Super Freak",
+        "artist": "Rick James",
+        "album": "Street Songs (Expanded Edition)",
+        "durationS": 205,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/543150512",
+        "explicit": false,
+        "rank": 749411
+      },
+      "alternatives": [
+        {
+          "id": "2500458",
+          "title": "Super Freak (12\" Version)",
+          "artist": "Rick James",
+          "album": "Street Songs (Deluxe Edition)",
+          "durationS": 425,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2500458",
+          "explicit": false,
+          "rank": 292396
+        },
+        {
+          "id": "1125762",
+          "title": "Super Freak",
+          "artist": "Rick James",
+          "album": "Disco Nights",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1125762",
+          "explicit": false,
+          "rank": 357019
+        },
+        {
+          "id": "2500470",
+          "title": "Super Freak (1981/Live In Long Beach, CA)",
+          "artist": "Rick James",
+          "album": "Street Songs (Deluxe Edition)",
+          "durationS": 261,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2500470",
+          "explicit": false,
+          "rank": 64252
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-03",
+      "query": {
+        "artist": "Cameo",
+        "title": "Word Up"
+      },
+      "found": {
+        "id": "2600934",
+        "title": "Word Up",
+        "artist": "Cameo",
+        "album": "Word Up",
+        "durationS": 260,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2600934",
+        "explicit": false,
+        "rank": 589679
+      },
+      "alternatives": [
+        {
+          "id": "11527341",
+          "title": "Word Up",
+          "artist": "Cameo",
+          "album": "Original Artist Hit List: Cameo",
+          "durationS": 404,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11527341",
+          "explicit": false,
+          "rank": 235884
+        },
+        {
+          "id": "7375795",
+          "title": "Word Up!",
+          "artist": "Cameo",
+          "album": "The 12\" Collection And More (Funk Essentials)",
+          "durationS": 356,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/7375795",
+          "explicit": false,
+          "rank": 159222
+        },
+        {
+          "id": "2376926145",
+          "title": "Word Up! (Sped Up)",
+          "artist": "Cameo",
+          "album": "Word Up! (Sped Up)",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2376926145",
+          "explicit": false,
+          "rank": 75948
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-04",
+      "query": {
+        "artist": "Prince",
+        "title": "Kiss"
+      },
+      "found": {
+        "id": "664178",
+        "title": "Kiss",
+        "artist": "Prince",
+        "album": "Parade - Music from the Motion Picture Under the Cherry Moon",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/664178",
+        "explicit": false,
+        "rank": 839151
+      },
+      "alternatives": [
+        {
+          "id": "732445",
+          "title": "Kiss (Extended)",
+          "artist": "Prince",
+          "album": "Kiss",
+          "durationS": 437,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/732445",
+          "explicit": false,
+          "rank": 417171
+        },
+        {
+          "id": "671997212",
+          "title": "Kiss (Live)",
+          "artist": "Prince",
+          "album": "Prince - Live in Rio (Live)",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/671997212",
+          "explicit": false,
+          "rank": 131049
+        },
+        {
+          "id": "692406032",
+          "title": "Kiss (Live)",
+          "artist": "Prince",
+          "album": "I Am One (Live)",
+          "durationS": 214,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/692406032",
+          "explicit": false,
+          "rank": 92086
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-05",
+      "query": {
+        "artist": "Earth, Wind & Fire",
+        "title": "Let's Groove"
+      },
+      "found": {
+        "id": "27533911",
+        "title": "Let's Groove",
+        "artist": "Earth, Wind & Fire",
+        "album": "Raise!",
+        "durationS": 336,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/27533911",
+        "explicit": false,
+        "rank": 848455
+      },
+      "alternatives": [
+        {
+          "id": "12000362",
+          "title": "Let's Groove",
+          "artist": "Earth, Wind & Fire",
+          "album": "Pure... 80's Dance Party",
+          "durationS": 244,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/12000362",
+          "explicit": false,
+          "rank": 217978
+        },
+        {
+          "id": "13138494",
+          "title": "Let's Groove",
+          "artist": "Earth, Wind & Fire",
+          "album": "Blame It On The Boogie",
+          "durationS": 210,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13138494",
+          "explicit": false,
+          "rank": 134067
+        },
+        {
+          "id": "650418712",
+          "title": "Let's Groove (Holiday Version Remix)",
+          "artist": "Earth, Wind & Fire",
+          "album": "Constellations: The Universe of Earth, Wind & Fire",
+          "durationS": 410,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/650418712",
+          "explicit": false,
+          "rank": 296662
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-06",
+      "query": {
+        "artist": "Imagination",
+        "title": "Just An Illusion"
+      },
+      "found": {
+        "id": "13394789",
+        "title": "Just An Illusion",
+        "artist": "Imagination",
+        "album": "Années 80",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13394789",
+        "explicit": false,
+        "rank": 802216
+      },
+      "alternatives": [
+        {
+          "id": "90917359",
+          "title": "Just an Illusion",
+          "artist": "Imagination",
+          "album": "Night Dubbing",
+          "durationS": 400,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/90917359",
+          "explicit": false,
+          "rank": 246585
+        },
+        {
+          "id": "3165255941",
+          "title": "Just an Illusion - 21st Century Version",
+          "artist": "Imagination",
+          "album": "Retropia",
+          "durationS": 298,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3165255941",
+          "explicit": false,
+          "rank": 110460
+        },
+        {
+          "id": "79110655",
+          "title": "Just an Illusion",
+          "artist": "Imagination",
+          "album": "Imagination - Greatest Hits",
+          "durationS": 387,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/79110655",
+          "explicit": false,
+          "rank": 581717
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-07",
+      "query": {
+        "artist": "Indeep",
+        "title": "Last Night a D.J. Saved My Life"
+      },
+      "found": {
+        "id": "62960815",
+        "title": "Last Night a D.J. Saved My Life",
+        "artist": "Indeep",
+        "album": "The Collection",
+        "durationS": 341,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/62960815",
+        "explicit": false,
+        "rank": 765768
+      },
+      "alternatives": [
+        {
+          "id": "570529362",
+          "title": "Last Night a D.J. Saved My Life",
+          "artist": "Indeep",
+          "album": "Last Night a D.J. Saved My Life",
+          "durationS": 340,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/570529362",
+          "explicit": false,
+          "rank": 561990
+        },
+        {
+          "id": "570529532",
+          "title": "Last Night a D.J. Saved My Life (Radio Version) (Bonus Track)",
+          "artist": "Indeep",
+          "album": "Last Night a D.J. Saved My Life",
+          "durationS": 282,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/570529532",
+          "explicit": false,
+          "rank": 294133
+        },
+        {
+          "id": "2016218757",
+          "title": "Last Night a D.J. Saved My Life (Acappella)",
+          "artist": "Indeep",
+          "album": "Last Night a D.J. Saved My Life",
+          "durationS": 190,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2016218757",
+          "explicit": false,
+          "rank": 38747
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-08",
+      "query": {
+        "artist": "Shalamar",
+        "title": "A Night To Remember"
+      },
+      "found": {
+        "id": "5448339",
+        "title": "A Night To Remember",
+        "artist": "Shalamar",
+        "album": "The Very Best Of",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/5448339",
+        "explicit": false,
+        "rank": 621813
+      },
+      "alternatives": [
+        {
+          "id": "3807036522",
+          "title": "A Night To Remember",
+          "artist": "Shalamar",
+          "album": "Friends / Go For It",
+          "durationS": 307,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3807036522",
+          "explicit": false,
+          "rank": 334656
+        },
+        {
+          "id": "3832971861",
+          "title": "A Night To Remember (DJ Bronco Mix)",
+          "artist": "Shalamar",
+          "album": "Solar Mix: By DJ Bronco",
+          "durationS": 158,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3832971861",
+          "explicit": false,
+          "rank": 378965
+        },
+        {
+          "id": "3807029692",
+          "title": "A Night To Remember (M&M Remix)",
+          "artist": "Shalamar",
+          "album": "Nights to Remember",
+          "durationS": 440,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3807029692",
+          "explicit": false,
+          "rank": 262978
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-09",
+      "query": {
+        "artist": "The Gap Band",
+        "title": "Oops Upside Your Head"
+      },
+      "found": {
+        "id": "2400896",
+        "title": "Oops Upside Your Head",
+        "artist": "The Gap Band",
+        "album": "Soul Masters: Gap Band Party",
+        "durationS": 312,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2400896",
+        "explicit": false,
+        "rank": 236865
+      },
+      "alternatives": [
+        {
+          "id": "714900412",
+          "title": "Oops Upside Your Head",
+          "artist": "Ronnie Wilson of The Gap Band",
+          "album": "All the Best Hits!",
+          "durationS": 510,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/714900412",
+          "explicit": false,
+          "rank": 18841
+        },
+        {
+          "id": "17267708",
+          "title": "You Dropped the Bomb On Me (Live)",
+          "artist": "The Gap Band",
+          "album": "Oops Upside Your Head (Live)",
+          "durationS": 288,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17267708",
+          "explicit": false,
+          "rank": 39579
+        },
+        {
+          "id": "17267707",
+          "title": "Party Train (Live)",
+          "artist": "The Gap Band",
+          "album": "Oops Upside Your Head (Live)",
+          "durationS": 419,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17267707",
+          "explicit": false,
+          "rank": 55120
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "f80-10",
+      "query": {
+        "artist": "The Whispers",
+        "title": "And The Beat Goes On"
+      },
+      "found": {
+        "id": "3803021252",
+        "title": "And The Beat Goes On (Single Version)",
+        "artist": "The Whispers",
+        "album": "The Whispers",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3803021252",
+        "explicit": false,
+        "rank": 770768
+      },
+      "alternatives": [
+        {
+          "id": "3825392751",
+          "title": "And The Beat Goes On",
+          "artist": "The Whispers",
+          "album": "The Whispers / Happy Holidays To You",
+          "durationS": 296,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3825392751",
+          "explicit": false,
+          "rank": 595559
+        },
+        {
+          "id": "103790334",
+          "title": "And the Beat Goes On",
+          "artist": "The Whispers",
+          "album": "And the Beat Goes On",
+          "durationS": 405,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/103790334",
+          "explicit": false,
+          "rank": 461552
+        },
+        {
+          "id": "100432672",
+          "title": "And the Beat Goes On",
+          "artist": "The Whispers",
+          "album": "Funk et disco, vol. 1",
+          "durationS": 162,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/100432672",
+          "explicit": false,
+          "rank": 373566
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

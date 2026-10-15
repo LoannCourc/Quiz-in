@@ -1,0 +1,226 @@
+{
+  "id": "funk-annees-80",
+  "gameType": "blindTest",
+  "title": "Funk des années 80",
+  "theme": "Musique",
+  "description": "Basses qui claquent et cuivres qui brillent : dix tubes funk des années 80.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "discoBall",
+  "genre": "discoFunk",
+  "decade": 1980,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-2)",
+  "questions": [
+    {
+      "id": "f80-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Celebration – Kool & The Gang",
+        "I.O.U. – Freeez",
+        "Give Me the Night – George Benson",
+        "Love Come Down – Evelyn \"Champagne\" King"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Celebration"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kool & The Gang",
+        "title": "Celebration",
+        "artistAliases": [
+          "Kool and the Gang"
+        ]
+      }
+    },
+    {
+      "id": "f80-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Juicy Fruit – Mtume",
+        "Freak-A-Zoid – Midnight Star",
+        "Super Freak – Rick James",
+        "Computer Love – Zapp"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Rick James"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Rick James",
+        "title": "Super Freak"
+      }
+    },
+    {
+      "id": "f80-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Just Be Good to Me – The S.O.S. Band",
+        "Don't Stop the Music – Yarbrough & Peoples",
+        "Word Up – Cameo",
+        "Criticize – Alexander O'Neal"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Word Up"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Cameo",
+        "title": "Word Up"
+      }
+    },
+    {
+      "id": "f80-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Kiss – Prince",
+        "I Feel for You – Chaka Khan",
+        "Caribbean Queen – Billy Ocean",
+        "Ghostbusters – Ray Parker Jr."
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Prince"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Prince",
+        "title": "Kiss"
+      }
+    },
+    {
+      "id": "f80-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Give Me the Night – George Benson",
+        "Forget Me Nots – Patrice Rushen",
+        "A Lover's Holiday – Change",
+        "Let's Groove – Earth, Wind & Fire"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Let's Groove"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Earth, Wind & Fire",
+        "title": "Let's Groove",
+        "artistAliases": [
+          "Earth Wind and Fire"
+        ]
+      }
+    },
+    {
+      "id": "f80-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I.O.U. – Freeez",
+        "Just An Illusion – Imagination",
+        "Going Back to My Roots – Odyssey",
+        "Juicy Fruit – Mtume"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Imagination"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Imagination",
+        "title": "Just An Illusion"
+      }
+    },
+    {
+      "id": "f80-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Last Night a D.J. Saved My Life – Indeep",
+        "Love Come Down – Evelyn \"Champagne\" King",
+        "Just Be Good to Me – The S.O.S. Band",
+        "Freak-A-Zoid – Midnight Star"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Last Night a D.J. Saved My Life"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Indeep",
+        "title": "Last Night a D.J. Saved My Life",
+        "titleAliases": [
+          "Last Night a DJ Saved My Life"
+        ]
+      }
+    },
+    {
+      "id": "f80-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't Stop the Music – Yarbrough & Peoples",
+        "Forget Me Nots – Patrice Rushen",
+        "A Night To Remember – Shalamar",
+        "Computer Love – Zapp"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Shalamar"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Shalamar",
+        "title": "A Night To Remember"
+      }
+    },
+    {
+      "id": "f80-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Criticize – Alexander O'Neal",
+        "Oops Upside Your Head – The Gap Band",
+        "A Lover's Holiday – Change",
+        "Going Back to My Roots – Odyssey"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Oops Upside Your Head"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Gap Band",
+        "title": "Oops Upside Your Head"
+      }
+    },
+    {
+      "id": "f80-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Feel for You – Chaka Khan",
+        "Ghostbusters – Ray Parker Jr.",
+        "Caribbean Queen – Billy Ocean",
+        "And The Beat Goes On – The Whispers"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Whispers"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Whispers",
+        "title": "And The Beat Goes On"
+      }
+    }
+  ]
+}

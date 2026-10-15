@@ -1,0 +1,220 @@
+{
+  "id": "rock-annees-90",
+  "gameType": "blindTest",
+  "title": "Rock des années 90",
+  "theme": "Musique",
+  "description": "Grunge, britpop et guitares saturées : dix morceaux phares du rock des années 90.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": 1990,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-2)",
+  "questions": [
+    {
+      "id": "r90-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Buddy Holly – Weezer",
+        "Plush – Stone Temple Pilots",
+        "Smells Like Teen Spirit – Nirvana",
+        "Glycerine – Bush"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Smells Like Teen Spirit"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Nirvana",
+        "title": "Smells Like Teen Spirit"
+      }
+    },
+    {
+      "id": "r90-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Losing My Religion – R.E.M.",
+        "Mr. Jones – Counting Crows",
+        "No Rain – Blind Melon",
+        "Two Princes – Spin Doctors"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "R.E.M."
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "R.E.M.",
+        "title": "Losing My Religion",
+        "artistAliases": [
+          "REM"
+        ]
+      }
+    },
+    {
+      "id": "r90-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Stupid Girl – Garbage",
+        "What's Up? – 4 Non Blondes",
+        "Celebrity Skin – Hole",
+        "Zombie – The Cranberries"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Zombie"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Cranberries",
+        "title": "Zombie"
+      }
+    },
+    {
+      "id": "r90-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lightning Crashes – Live",
+        "Under the Bridge – Red Hot Chili Peppers",
+        "Shine – Collective Soul",
+        "Semi-Charmed Life – Third Eye Blind"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Red Hot Chili Peppers"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Under the Bridge"
+      }
+    },
+    {
+      "id": "r90-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Song 2 – Blur",
+        "Alright – Supergrass",
+        "Common People – Pulp",
+        "Bitter Sweet Symphony – The Verve"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Song 2"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Blur",
+        "title": "Song 2"
+      }
+    },
+    {
+      "id": "r90-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pure Morning – Placebo",
+        "Tonight, Tonight – The Smashing Pumpkins",
+        "Karma Police – Radiohead",
+        "Bitter Sweet Symphony – The Verve"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Radiohead"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Radiohead",
+        "title": "Karma Police"
+      }
+    },
+    {
+      "id": "r90-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rooster – Alice in Chains",
+        "Alive – Pearl Jam",
+        "Plush – Stone Temple Pilots",
+        "Tomorrow – Silverchair"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Alive"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Pearl Jam",
+        "title": "Alive"
+      }
+    },
+    {
+      "id": "r90-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Self Esteem – The Offspring",
+        "Buddy Holly – Weezer",
+        "Semi-Charmed Life – Third Eye Blind",
+        "Basket Case – Green Day"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Green Day"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Green Day",
+        "title": "Basket Case"
+      }
+    },
+    {
+      "id": "r90-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Black Hole Sun – Soundgarden",
+        "Glycerine – Bush",
+        "Rooster – Alice in Chains",
+        "Lightning Crashes – Live"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Black Hole Sun"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Soundgarden",
+        "title": "Black Hole Sun"
+      }
+    },
+    {
+      "id": "r90-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tomorrow – Silverchair",
+        "Self Esteem – The Offspring",
+        "Everlong – Foo Fighters",
+        "Shine – Collective Soul"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Foo Fighters"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Foo Fighters",
+        "title": "Everlong"
+      }
+    }
+  ]
+}

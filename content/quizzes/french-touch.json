@@ -1,0 +1,224 @@
+{
+  "id": "french-touch",
+  "gameType": "blindTest",
+  "title": "French Touch",
+  "theme": "Musique",
+  "description": "La house à la française qui a conquis le monde : dix morceaux des années 2000.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": 2000,
+  "level": "medium",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-2)",
+  "questions": [
+    {
+      "id": "ftc-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Music Sounds Better with You – Stardust",
+        "E Samba – Junior Jack",
+        "Lady (Hear Me Tonight) – Modjo",
+        "No Stress – Laurent Wolf"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Lady (Hear Me Tonight)"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Modjo",
+        "title": "Lady (Hear Me Tonight)",
+        "titleAliases": [
+          "Lady"
+        ]
+      }
+    },
+    {
+      "id": "ftc-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Embody – SebastiAn",
+        "Testarossa Autodrive – Kavinsky",
+        "Harder, Better, Faster, Stronger – Daft Punk",
+        "Am I Wrong – Étienne de Crécy"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Daft Punk"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "Harder, Better, Faster, Stronger"
+      }
+    },
+    {
+      "id": "ftc-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Love Generation – Bob Sinclar",
+        "No Stress – Laurent Wolf",
+        "Gold – Antoine Clamaran",
+        "Feeling for You – Cassius"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Love Generation"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bob Sinclar",
+        "title": "Love Generation"
+      }
+    },
+    {
+      "id": "ftc-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pop the Glock – Uffie",
+        "Embody – SebastiAn",
+        "Baby I’m Yours – Breakbot",
+        "D.A.N.C.E. – Justice"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Justice"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Justice",
+        "title": "D.A.N.C.E.",
+        "titleAliases": [
+          "DANCE",
+          "Dance"
+        ]
+      }
+    },
+    {
+      "id": "ftc-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Am I Wrong – Étienne de Crécy",
+        "The Sound of Violence – Cassius",
+        "Music Sounds Better with You – Stardust",
+        "Intro – Alan Braxe & Fred Falke"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The Sound of Violence"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Cassius",
+        "title": "The Sound of Violence"
+      }
+    },
+    {
+      "id": "ftc-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Love Don't Let Me Go – David Guetta",
+        "E Samba – Junior Jack",
+        "Gold – Antoine Clamaran",
+        "No Stress – Laurent Wolf"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "David Guetta"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "David Guetta",
+        "title": "Love Don't Let Me Go"
+      }
+    },
+    {
+      "id": "ftc-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Testarossa Autodrive – Kavinsky",
+        "Pop the Glock – Uffie",
+        "Cherry Blossom Girl – Air",
+        "Intro – Alan Braxe & Fred Falke"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Cherry Blossom Girl"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Air",
+        "title": "Cherry Blossom Girl"
+      }
+    },
+    {
+      "id": "ftc-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Baby I’m Yours – Breakbot",
+        "La ritournelle – Sébastien Tellier",
+        "Feeling for You – Cassius",
+        "Embody – SebastiAn"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sébastien Tellier"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Sébastien Tellier",
+        "title": "La ritournelle"
+      }
+    },
+    {
+      "id": "ftc-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Music Sounds Better with You – Stardust",
+        "Am I Wrong – Étienne de Crécy",
+        "Pop the Glock – Uffie",
+        "À cause des garçons – Yelle"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "À cause des garçons"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Yelle",
+        "title": "À cause des garçons"
+      }
+    },
+    {
+      "id": "ftc-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lucky Star – Superfunk",
+        "Gold – Antoine Clamaran",
+        "E Samba – Junior Jack",
+        "Alive – Mondotek"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Superfunk"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Superfunk",
+        "title": "Lucky Star"
+      }
+    }
+  ]
+}

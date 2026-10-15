@@ -1,0 +1,217 @@
+{
+  "id": "electro-annees-2010",
+  "gameType": "blindTest",
+  "title": "Électro des années 2010",
+  "theme": "Musique",
+  "description": "Les DJ stars et leurs refrains géants : dix tubes électro des années 2010.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": 2010,
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-2)",
+  "questions": [
+    {
+      "id": "e10-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Heroes – Alesso",
+        "Titanium – David Guetta",
+        "Faded – Alan Walker",
+        "Fast Car – Jonas Blue"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Titanium"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "David Guetta",
+        "title": "Titanium"
+      }
+    },
+    {
+      "id": "e10-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Spaceman – Hardwell",
+        "Toulouse – Nicky Romero",
+        "Jubel – Klingande",
+        "Levels – Avicii"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Avicii"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Avicii",
+        "title": "Levels"
+      }
+    },
+    {
+      "id": "e10-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Don't You Worry Child – Swedish House Mafia",
+        "Are You With Me – Lost Frequencies",
+        "Easy Love – Sigala",
+        "Ain't Nobody – Felix Jaehn"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Don't You Worry Child"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Swedish House Mafia",
+        "title": "Don't You Worry Child"
+      }
+    },
+    {
+      "id": "e10-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "This Girl – Kungs",
+        "Ocean Drive – Duke Dumont",
+        "Feel So Close – Calvin Harris",
+        "One Day – Bakermat"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Calvin Harris"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Calvin Harris",
+        "title": "Feel So Close"
+      }
+    },
+    {
+      "id": "e10-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Faded – Alan Walker",
+        "Runaway (U & I) – Galantis",
+        "Firestone – Kygo",
+        "Alone – Marshmello"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Firestone"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kygo",
+        "title": "Firestone"
+      }
+    },
+    {
+      "id": "e10-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lean On – Major Lazer",
+        "Booyah – Showtek",
+        "Take Over Control – Afrojack",
+        "Heroes – Alesso"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Major Lazer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Major Lazer",
+        "title": "Lean On"
+      }
+    },
+    {
+      "id": "e10-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Spaceman – Hardwell",
+        "Toulouse – Nicky Romero",
+        "Booyah – Showtek",
+        "Animals – Martin Garrix"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Animals"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Martin Garrix",
+        "title": "Animals"
+      }
+    },
+    {
+      "id": "e10-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fast Car – Jonas Blue",
+        "Rather Be – Clean Bandit",
+        "Are You With Me – Lost Frequencies",
+        "Easy Love – Sigala"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Clean Bandit"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Clean Bandit",
+        "title": "Rather Be"
+      }
+    },
+    {
+      "id": "e10-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Clarity – ZEDD",
+        "Alone – Marshmello",
+        "Ocean Drive – Duke Dumont",
+        "Pop Culture – Madeon"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Clarity"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "ZEDD",
+        "title": "Clarity"
+      }
+    },
+    {
+      "id": "e10-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "This Girl – Kungs",
+        "Ain't Nobody – Felix Jaehn",
+        "Closer – The Chainsmokers",
+        "Jubel – Klingande"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Chainsmokers"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Chainsmokers",
+        "title": "Closer"
+      }
+    }
+  ]
+}

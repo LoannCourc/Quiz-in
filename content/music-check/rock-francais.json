@@ -1,0 +1,546 @@
+{
+  "quizId": "rock-francais",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "rfr-01",
+      "query": {
+        "artist": "Telephone",
+        "title": "Un autre monde"
+      },
+      "found": {
+        "id": "3135726",
+        "title": "Un autre monde",
+        "artist": "Telephone",
+        "album": "Best of",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135726",
+        "explicit": false,
+        "rank": 896909
+      },
+      "alternatives": [
+        {
+          "id": "111976554",
+          "title": "Un autre monde (Live) (Remasterisé en 2015)",
+          "artist": "Telephone",
+          "album": "Le Live (Remasterisé en 2015)",
+          "durationS": 392,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/111976554",
+          "explicit": false,
+          "rank": 432255
+        },
+        {
+          "id": "3132699",
+          "title": "Un autre monde (Live)",
+          "artist": "Telephone",
+          "album": "dure limite-un autre monde-le live",
+          "durationS": 390,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3132699",
+          "explicit": false,
+          "rank": 171401
+        },
+        {
+          "id": "3256015",
+          "title": "Les Dunes (Remasterisé en 2006)",
+          "artist": "Telephone",
+          "album": "Un Autre Monde",
+          "durationS": 251,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3256015",
+          "explicit": false,
+          "rank": 385243
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-02",
+      "query": {
+        "artist": "Noir Désir",
+        "title": "Le vent nous portera"
+      },
+      "found": {
+        "id": "14352333",
+        "title": "Le vent nous portera",
+        "artist": "Noir Désir",
+        "album": "Soyons désinvoltes, n'ayons l'air de rien",
+        "durationS": 288,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14352333",
+        "explicit": false,
+        "rank": 812534
+      },
+      "alternatives": [
+        {
+          "id": "2174772",
+          "title": "Le vent nous portera (Live / 2002)",
+          "artist": "Noir Désir",
+          "album": "Noir Désir en public",
+          "durationS": 277,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2174772",
+          "explicit": false,
+          "rank": 606864
+        },
+        {
+          "id": "855950982",
+          "title": "Le vent nous portera (Live à Radio Popolare, Milan / 2002)",
+          "artist": "Noir Désir",
+          "album": "Débranché (Live)",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/855950982",
+          "explicit": false,
+          "rank": 299070
+        },
+        {
+          "id": "1976657097",
+          "title": "Le vent nous portera (Live à Évry / 2002)",
+          "artist": "Noir Désir",
+          "album": "Comme elle vient - Live 2002",
+          "durationS": 270,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1976657097",
+          "explicit": false,
+          "rank": 272998
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-03",
+      "query": {
+        "artist": "Indochine",
+        "title": "L'aventurier"
+      },
+      "found": {
+        "id": "1132150",
+        "title": "L'aventurier",
+        "artist": "Indochine",
+        "album": "L'aventurier",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1132150",
+        "explicit": false,
+        "rank": 935412
+      },
+      "alternatives": [
+        {
+          "id": "2093656897",
+          "title": "L'aventurier (Central Tour 2022)",
+          "artist": "Indochine",
+          "album": "Central Tour 2022",
+          "durationS": 564,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2093656897",
+          "explicit": false,
+          "rank": 450172
+        },
+        {
+          "id": "8079245",
+          "title": "L'aventurier",
+          "artist": "Indochine",
+          "album": "Putain de stade",
+          "durationS": 511,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/8079245",
+          "explicit": false,
+          "rank": 306030
+        },
+        {
+          "id": "114392268",
+          "title": "L'aventurier",
+          "artist": "Indochine",
+          "album": "Black City concerts",
+          "durationS": 591,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/114392268",
+          "explicit": false,
+          "rank": 223139
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-04",
+      "query": {
+        "artist": "Louise Attaque",
+        "title": "J't'emmène au vent"
+      },
+      "found": {
+        "id": "983238",
+        "title": "J't'emmène au vent",
+        "artist": "Louise Attaque",
+        "album": "Louise Attaque",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/983238",
+        "explicit": false,
+        "rank": 956347
+      },
+      "alternatives": [
+        {
+          "id": "2998622731",
+          "title": "J't'emmène au vent (Live 2023)",
+          "artist": "Louise Attaque",
+          "album": "Amours (Live 2023)",
+          "durationS": 162,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2998622731",
+          "explicit": false,
+          "rank": 418677
+        },
+        {
+          "id": "1682753987",
+          "title": "J't'emmène au vent (Live à la salle de la Cité, Rennes / Février 1998)",
+          "artist": "Louise Attaque",
+          "album": "J't'emmène au vent (Live)",
+          "durationS": 144,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1682753987",
+          "explicit": false,
+          "rank": 362331
+        },
+        {
+          "id": "134956488",
+          "title": "J' t'emmène au vent (Live – La Cigale 2016)",
+          "artist": "Louise Attaque",
+          "album": "Anomalie (Deluxe)",
+          "durationS": 252,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/134956488",
+          "explicit": false,
+          "rank": 347386
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-05",
+      "query": {
+        "artist": "Les Rita Mitsouko",
+        "title": "Marcia Baïla"
+      },
+      "found": {
+        "id": "355774881",
+        "title": "Marcia Baïla",
+        "artist": "Les Rita Mitsouko",
+        "album": "Rita Mitsouko",
+        "durationS": 335,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/355774881",
+        "explicit": false,
+        "rank": 916198
+      },
+      "alternatives": [
+        {
+          "id": "515846032",
+          "title": "Marcia Baila (Acoustique)",
+          "artist": "Les Rita Mitsouko",
+          "album": "Acoustiques",
+          "durationS": 370,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/515846032",
+          "explicit": false,
+          "rank": 623751
+        },
+        {
+          "id": "355774791",
+          "title": "Marcia Baïla (Remix by Tony Visconti & Les Rita Mitsouko)",
+          "artist": "Les Rita Mitsouko",
+          "album": "Re",
+          "durationS": 356,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/355774791",
+          "explicit": false,
+          "rank": 415448
+        },
+        {
+          "id": "515846012",
+          "title": "Andy (Acoustique)",
+          "artist": "Les Rita Mitsouko",
+          "album": "Acoustiques",
+          "durationS": 373,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/515846012",
+          "explicit": false,
+          "rank": 487609
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-06",
+      "query": {
+        "artist": "Trust",
+        "title": "Antisocial"
+      },
+      "found": {
+        "id": "606908",
+        "title": "Antisocial",
+        "artist": "Trust",
+        "album": "Antisocial - Le Meilleur Des Années CBS",
+        "durationS": 310,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/606908",
+        "explicit": false,
+        "rank": 775614
+      },
+      "alternatives": [
+        {
+          "id": "1169623262",
+          "title": "Antisocial",
+          "artist": "Trust",
+          "album": "RE.CI.DIV - Session II (Répression)",
+          "durationS": 283,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1169623262",
+          "explicit": false,
+          "rank": 282625
+        },
+        {
+          "id": "2483453",
+          "title": "Antisocial (Version Anglaise)",
+          "artist": "Trust",
+          "album": "Best Of",
+          "durationS": 302,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2483453",
+          "explicit": false,
+          "rank": 92217
+        },
+        {
+          "id": "1486299072",
+          "title": "Antisocial",
+          "artist": "Anti-Trust",
+          "album": "Guilty!",
+          "durationS": 146,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1486299072",
+          "explicit": false,
+          "rank": 29756
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-07",
+      "query": {
+        "artist": "Matmatah",
+        "title": "Lambé An Dro"
+      },
+      "found": {
+        "id": "17143858",
+        "title": "Lambé An Dro",
+        "artist": "Matmatah",
+        "album": "La Ouache",
+        "durationS": 234,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/17143858",
+        "explicit": false,
+        "rank": 778194
+      },
+      "alternatives": [
+        {
+          "id": "107898500",
+          "title": "Lambé An Dro (Cuvée 97)",
+          "artist": "Matmatah",
+          "album": "Antaology",
+          "durationS": 237,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/107898500",
+          "explicit": false,
+          "rank": 284727
+        },
+        {
+          "id": "3014197261",
+          "title": "Lambé An Dro (Live à Brest Arena, 2023)",
+          "artist": "Matmatah",
+          "album": "Brest (Live à Brest Arena, 2023)",
+          "durationS": 272,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3014197261",
+          "explicit": false,
+          "rank": 336215
+        },
+        {
+          "id": "17143875",
+          "title": "Lambé An Dro (Live à Caen, 2001)",
+          "artist": "Matmatah",
+          "album": "Lust for a Live (Live 2001)",
+          "durationS": 241,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/17143875",
+          "explicit": false,
+          "rank": 307850
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-08",
+      "query": {
+        "artist": "Superbus",
+        "title": "Butterfly"
+      },
+      "found": {
+        "id": "3386759271",
+        "title": "Butterfly",
+        "artist": "Superbus",
+        "album": "Butterfly",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3386759271",
+        "explicit": false,
+        "rank": 811046
+      },
+      "alternatives": [
+        {
+          "id": "1180673",
+          "title": "Butterfly",
+          "artist": "Superbus",
+          "album": "Wow",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1180673",
+          "explicit": false,
+          "rank": 720358
+        },
+        {
+          "id": "3668539392",
+          "title": "Butterfly (feat. Chantal Lauby)",
+          "artist": "Superbus",
+          "album": "OK KO (Nouvelle Édition)",
+          "durationS": 223,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3668539392",
+          "explicit": false,
+          "rank": 309000
+        },
+        {
+          "id": "3441949761",
+          "title": "Butterfly (feat. RORI) (Remix)",
+          "artist": "Superbus",
+          "album": "Butterfly (feat. RORI) (Remix)",
+          "durationS": 155,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3441949761",
+          "explicit": false,
+          "rank": 396563
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-09",
+      "query": {
+        "artist": "Kyo",
+        "title": "Le chemin"
+      },
+      "found": {
+        "id": "614689",
+        "title": "Le chemin (feat. Sita)",
+        "artist": "Kyo",
+        "album": "Le chemin",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/614689",
+        "explicit": false,
+        "rank": 831014
+      },
+      "alternatives": [
+        {
+          "id": "2527592681",
+          "title": "Le chemin",
+          "artist": "Kyo",
+          "album": "Le chemin - 20 ans",
+          "durationS": 191,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2527592681",
+          "explicit": false,
+          "rank": 698340
+        },
+        {
+          "id": "1487918802",
+          "title": "Le chemin",
+          "artist": "K",
+          "album": "La femme en boîte",
+          "durationS": 207,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1487918802",
+          "explicit": false,
+          "rank": 33421
+        },
+        {
+          "id": "2527592781",
+          "title": "Le chemin (feat. Aurélie Saada) (Demo version)",
+          "artist": "Kyo",
+          "album": "Le chemin - 20 ans",
+          "durationS": 209,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2527592781",
+          "explicit": false,
+          "rank": 287836
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfr-10",
+      "query": {
+        "artist": "BB Brunes",
+        "title": "Dis-moi"
+      },
+      "found": {
+        "id": "714554",
+        "title": "Dis-moi",
+        "artist": "BB Brunes",
+        "album": "Dis Moi (single digital)",
+        "durationS": 144,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/714554",
+        "explicit": false,
+        "rank": 855118
+      },
+      "alternatives": [
+        {
+          "id": "797506032",
+          "title": "Dis-moi (Acoustique)",
+          "artist": "BB Brunes",
+          "album": "Blonde comme moi (Edition Deluxe)",
+          "durationS": 165,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/797506032",
+          "explicit": false,
+          "rank": 379126
+        },
+        {
+          "id": "797388582",
+          "title": "Dis-moi (Live à l'Olympia)",
+          "artist": "BB Brunes",
+          "album": "Nico Teen Live (Edition Deluxe)",
+          "durationS": 157,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/797388582",
+          "explicit": false,
+          "rank": 240441
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

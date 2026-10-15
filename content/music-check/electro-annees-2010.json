@@ -1,0 +1,557 @@
+{
+  "quizId": "electro-annees-2010",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-15",
+  "tracks": [
+    {
+      "questionId": "e10-01",
+      "query": {
+        "artist": "David Guetta",
+        "title": "Titanium"
+      },
+      "found": {
+        "id": "62847142",
+        "title": "Titanium (feat. Sia)",
+        "artist": "David Guetta",
+        "album": "Nothing but the Beat (Ultimate Edition)",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/62847142",
+        "explicit": false,
+        "rank": 956365
+      },
+      "alternatives": [
+        {
+          "id": "14959858",
+          "title": "Titanium (feat. Sia) (Extended)",
+          "artist": "David Guetta",
+          "album": "Titanium (feat. Sia)",
+          "durationS": 312,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14959858",
+          "explicit": false,
+          "rank": 410263
+        },
+        {
+          "id": "18418871",
+          "title": "Titanium",
+          "artist": "David Guetta",
+          "album": "The Biggest Hits of 2011 - Vol.6",
+          "durationS": 240,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/18418871",
+          "explicit": false,
+          "rank": 77600
+        },
+        {
+          "id": "1461868062",
+          "title": "Titanium (feat. Sia) (David Guetta & MORTEN Future Rave Remix)",
+          "artist": "David Guetta",
+          "album": "Titanium (feat. Sia) (David Guetta & MORTEN Future Rave Remix)",
+          "durationS": 211,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1461868062",
+          "explicit": false,
+          "rank": 636540
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-02",
+      "query": {
+        "artist": "Avicii",
+        "title": "Levels"
+      },
+      "found": {
+        "id": "14383880",
+        "title": "Levels (Radio Edit)",
+        "artist": "Avicii",
+        "album": "Levels",
+        "durationS": 199,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14383880",
+        "explicit": false,
+        "rank": 898187
+      },
+      "alternatives": [
+        {
+          "id": "14383881",
+          "title": "Levels (Original Version)",
+          "artist": "Avicii",
+          "album": "Levels",
+          "durationS": 339,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14383881",
+          "explicit": false,
+          "rank": 611014
+        },
+        {
+          "id": "15175255",
+          "title": "Levels",
+          "artist": "Avicii Cover Band",
+          "album": "Levels",
+          "durationS": 205,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15175255",
+          "explicit": false,
+          "rank": 197939
+        },
+        {
+          "id": "15421140",
+          "title": "Levels (Skrillex Remix)",
+          "artist": "Avicii",
+          "album": "Levels (Remixes)",
+          "durationS": 281,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/15421140",
+          "explicit": false,
+          "rank": 426307
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-03",
+      "query": {
+        "artist": "Swedish House Mafia",
+        "title": "Don't You Worry Child"
+      },
+      "found": {
+        "id": "60842359",
+        "title": "Don't You Worry Child (Radio Edit)",
+        "artist": "Swedish House Mafia",
+        "album": "Don't You Worry Child",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60842359",
+        "explicit": false,
+        "rank": 865370
+      },
+      "alternatives": [
+        {
+          "id": "60842360",
+          "title": "Don't You Worry Child",
+          "artist": "Swedish House Mafia",
+          "album": "Don't You Worry Child",
+          "durationS": 403,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/60842360",
+          "explicit": false,
+          "rank": 583919
+        },
+        {
+          "id": "1504371572",
+          "title": "Don't You Worry Child",
+          "artist": "Swedish House Mafia",
+          "album": "Miami Classics",
+          "durationS": 319,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1504371572",
+          "explicit": false,
+          "rank": 180857
+        },
+        {
+          "id": "60842361",
+          "title": "Don't You Worry Child (Acoustic Version)",
+          "artist": "Swedish House Mafia",
+          "album": "Don't You Worry Child",
+          "durationS": 257,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/60842361",
+          "explicit": false,
+          "rank": 546413
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-04",
+      "query": {
+        "artist": "Calvin Harris",
+        "title": "Feel So Close"
+      },
+      "found": {
+        "id": "61142285",
+        "title": "Feel So Close (Radio Edit)",
+        "artist": "Calvin Harris",
+        "album": "18 Months",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/61142285",
+        "explicit": false,
+        "rank": 855231
+      },
+      "alternatives": [
+        {
+          "id": "13040257",
+          "title": "Feel So Close (Nero Dub)",
+          "artist": "Calvin Harris",
+          "album": "Feel So Close",
+          "durationS": 284,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13040257",
+          "explicit": false,
+          "rank": 181522
+        },
+        {
+          "id": "13040253",
+          "title": "Feel So Close (Extended Mix)",
+          "artist": "Calvin Harris",
+          "album": "Feel So Close",
+          "durationS": 330,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13040253",
+          "explicit": false,
+          "rank": 428466
+        },
+        {
+          "id": "13040255",
+          "title": "Feel So Close (Benny Benassi Remix)",
+          "artist": "Calvin Harris",
+          "album": "Feel So Close",
+          "durationS": 321,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/13040255",
+          "explicit": false,
+          "rank": 237564
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-05",
+      "query": {
+        "artist": "Kygo",
+        "title": "Firestone"
+      },
+      "found": {
+        "id": "90726629",
+        "title": "Firestone",
+        "artist": "Kygo",
+        "album": "Firestone",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/90726629",
+        "explicit": false,
+        "rank": 839587
+      },
+      "alternatives": [
+        {
+          "id": "106314292",
+          "title": "Firestone (Fireworks Version)",
+          "artist": "Kygo",
+          "album": "Firestone",
+          "durationS": 234,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/106314292",
+          "explicit": false,
+          "rank": 225328
+        },
+        {
+          "id": "106314294",
+          "title": "Firestone (Live Acoustic Version)",
+          "artist": "Kygo",
+          "album": "Firestone",
+          "durationS": 226,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/106314294",
+          "explicit": false,
+          "rank": 538971
+        },
+        {
+          "id": "3124204511",
+          "title": "Firestone (Live From Madison Square Garden)",
+          "artist": "Kygo",
+          "album": "Firestone (Live From Madison Square Garden)",
+          "durationS": 242,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3124204511",
+          "explicit": false,
+          "rank": 288509
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-06",
+      "query": {
+        "artist": "Major Lazer",
+        "title": "Lean On"
+      },
+      "found": {
+        "id": "113876568",
+        "title": "Lean On",
+        "artist": "Major Lazer",
+        "album": "Peace Is The Mission : Extended",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/113876568",
+        "explicit": false,
+        "rank": 937997
+      },
+      "alternatives": [
+        {
+          "id": "2000387967",
+          "title": "Lean On - Sped Up (Major Lazer x MØ x DJ Snake) (Sped Up)",
+          "artist": "Major Lazer",
+          "album": "Major Lazer Sped Up",
+          "durationS": 147,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2000387967",
+          "explicit": false,
+          "rank": 227502
+        },
+        {
+          "id": "3690071522",
+          "title": "Lean On (Robin Schulz Remix)",
+          "artist": "Major Lazer",
+          "album": "Lean On (10th Anniversary EP)",
+          "durationS": 135,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3690071522",
+          "explicit": false,
+          "rank": 537194
+        },
+        {
+          "id": "3855423121",
+          "title": "Lean On (Alfa Remix)",
+          "artist": "Major Lazer",
+          "album": "Lean On (Alfa Remix)",
+          "durationS": 176,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3855423121",
+          "explicit": false,
+          "rank": 418199
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-07",
+      "query": {
+        "artist": "Martin Garrix",
+        "title": "Animals"
+      },
+      "found": {
+        "id": "2102633427",
+        "title": "Animals",
+        "artist": "Martin Garrix",
+        "album": "Animals",
+        "durationS": 304,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2102633427",
+        "explicit": false,
+        "rank": 828029
+      },
+      "alternatives": [
+        {
+          "id": "2102633437",
+          "title": "Animals (Radio Edit)",
+          "artist": "Martin Garrix",
+          "album": "Animals",
+          "durationS": 176,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2102633437",
+          "explicit": false,
+          "rank": 686082
+        },
+        {
+          "id": "2103563737",
+          "title": "Animals (Botnek Edit)",
+          "artist": "Martin Garrix",
+          "album": "Animals (The Remixes Pt. 1)",
+          "durationS": 260,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2103563737",
+          "explicit": false,
+          "rank": 311809
+        },
+        {
+          "id": "2103563727",
+          "title": "Animals (Victor Niglio & Martin Garrix Festival Trap Remix)",
+          "artist": "Martin Garrix",
+          "album": "Animals (The Remixes Pt. 1)",
+          "durationS": 198,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2103563727",
+          "explicit": false,
+          "rank": 226908
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-08",
+      "query": {
+        "artist": "Clean Bandit",
+        "title": "Rather Be"
+      },
+      "found": {
+        "id": "73982869",
+        "title": "Rather Be (feat. Jess Glynne)",
+        "artist": "Clean Bandit",
+        "album": "Rather Be (feat. Jess Glynne)",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/73982869",
+        "explicit": false,
+        "rank": 918105
+      },
+      "alternatives": [
+        {
+          "id": "84908535",
+          "title": "Rather Be (feat. Jess Glynne) (Robin Schulz Edit)",
+          "artist": "Clean Bandit",
+          "album": "Prayer",
+          "durationS": 192,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/84908535",
+          "explicit": false,
+          "rank": 258119
+        },
+        {
+          "id": "446937092",
+          "title": "Rather Be",
+          "artist": "Clean Bandit",
+          "album": "One Day",
+          "durationS": 227,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/446937092",
+          "explicit": false,
+          "rank": 97519
+        },
+        {
+          "id": "89860999",
+          "title": "Rather Be (feat. BBC Philharmonic Orchestra & Jess Glynne)",
+          "artist": "Clean Bandit",
+          "album": "New Eyes (Special Edition)",
+          "durationS": 255,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/89860999",
+          "explicit": false,
+          "rank": 54055
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-09",
+      "query": {
+        "artist": "ZEDD",
+        "title": "Clarity"
+      },
+      "found": {
+        "id": "60904700",
+        "title": "Clarity",
+        "artist": "ZEDD",
+        "album": "Clarity",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60904700",
+        "explicit": false,
+        "rank": 713034
+      },
+      "alternatives": [
+        {
+          "id": "3893647911",
+          "title": "Clarity (BUNT. Remix)",
+          "artist": "ZEDD",
+          "album": "Clarity (BUNT. Remix)",
+          "durationS": 204,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3893647911",
+          "explicit": false,
+          "rank": 438638
+        },
+        {
+          "id": "64650095",
+          "title": "Clarity (Zedd Union Mix)",
+          "artist": "ZEDD",
+          "album": "Clarity (Remixes)",
+          "durationS": 208,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/64650095",
+          "explicit": false,
+          "rank": 185084
+        },
+        {
+          "id": "64650096",
+          "title": "Clarity (Tiesto Remix)",
+          "artist": "ZEDD",
+          "album": "Clarity (Remixes)",
+          "durationS": 355,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/64650096",
+          "explicit": false,
+          "rank": 165520
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "e10-10",
+      "query": {
+        "artist": "The Chainsmokers",
+        "title": "Closer"
+      },
+      "found": {
+        "id": "129310248",
+        "title": "Closer",
+        "artist": "The Chainsmokers",
+        "album": "Closer",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/129310248",
+        "explicit": false,
+        "rank": 840234
+      },
+      "alternatives": [
+        {
+          "id": "132634792",
+          "title": "Closer (R3hab Remix)",
+          "artist": "The Chainsmokers",
+          "album": "Closer (Remixes)",
+          "durationS": 160,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/132634792",
+          "explicit": false,
+          "rank": 392128
+        },
+        {
+          "id": "135815396",
+          "title": "Closer (T-Mass Remix)",
+          "artist": "The Chainsmokers",
+          "album": "Closer (Remixes)",
+          "durationS": 247,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/135815396",
+          "explicit": false,
+          "rank": 280384
+        },
+        {
+          "id": "132634796",
+          "title": "Closer (Wuki Remix)",
+          "artist": "The Chainsmokers",
+          "album": "Closer (Remixes)",
+          "durationS": 246,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/132634796",
+          "explicit": false,
+          "rank": 124254
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

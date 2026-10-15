@@ -1,0 +1,220 @@
+{
+  "id": "rock-francais",
+  "gameType": "blindTest",
+  "title": "Rock français",
+  "theme": "Musique",
+  "description": "Guitares et paroles en français, des années 80 à aujourd’hui : dix classiques du rock d’ici.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-10-15",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-2)",
+  "questions": [
+    {
+      "id": "rfr-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La Sentinelle – Luke",
+        "Respire – Mickey 3D",
+        "Osez Joséphine – Alain Bashung",
+        "Un autre monde – Telephone"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Un autre monde"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Telephone",
+        "title": "Un autre monde",
+        "artistAliases": [
+          "Téléphone"
+        ]
+      }
+    },
+    {
+      "id": "rfr-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le vent nous portera – Noir Désir",
+        "L'autre Finistère – Les Innocents",
+        "À tout moment la rue – Eiffel",
+        "Song for Jedi – Dionysos"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Noir Désir"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Noir Désir",
+        "title": "Le vent nous portera"
+      }
+    },
+    {
+      "id": "rfr-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cherchez le garçon – Taxi Girl",
+        "L'amour à la plage – Niagara",
+        "L'aventurier – Indochine",
+        "Danse avec moi – Bijou"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "L'aventurier"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Indochine",
+        "title": "L'aventurier"
+      }
+    },
+    {
+      "id": "rfr-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Respire – Mickey 3D",
+        "L'hymne de nos campagnes – Tryo",
+        "J't'emmène au vent – Louise Attaque",
+        "La Sentinelle – Luke"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Louise Attaque"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Louise Attaque",
+        "title": "J't'emmène au vent"
+      }
+    },
+    {
+      "id": "rfr-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Marcia Baïla – Les Rita Mitsouko",
+        "Cherchez le garçon – Taxi Girl",
+        "Osez Joséphine – Alain Bashung",
+        "L'amour à la plage – Niagara"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Marcia Baïla"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Les Rita Mitsouko",
+        "title": "Marcia Baïla"
+      }
+    },
+    {
+      "id": "rfr-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Danse avec moi – Bijou",
+        "Manu Chao – Les Wampas",
+        "Ghost – Skip The Use",
+        "Antisocial – Trust"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Trust"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Trust",
+        "title": "Antisocial"
+      }
+    },
+    {
+      "id": "rfr-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'hymne de nos campagnes – Tryo",
+        "Lambé An Dro – Matmatah",
+        "Song for Jedi – Dionysos",
+        "L'autre Finistère – Les Innocents"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Lambé An Dro"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Matmatah",
+        "title": "Lambé An Dro"
+      }
+    },
+    {
+      "id": "rfr-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Butterfly – Superbus",
+        "Ghost – Skip The Use",
+        "My Name Is Stain – Shaka Ponk",
+        "À tout moment la rue – Eiffel"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Superbus"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Superbus",
+        "title": "Butterfly"
+      }
+    },
+    {
+      "id": "rfr-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Respire – Mickey 3D",
+        "La Sentinelle – Luke",
+        "Le chemin – Kyo",
+        "My Name Is Stain – Shaka Ponk"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le chemin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kyo",
+        "title": "Le chemin"
+      }
+    },
+    {
+      "id": "rfr-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Manu Chao – Les Wampas",
+        "Dis-moi – BB Brunes",
+        "Ghost – Skip The Use",
+        "Song for Jedi – Dionysos"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "BB Brunes"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "BB Brunes",
+        "title": "Dis-moi"
+      }
+    }
+  ]
+}
