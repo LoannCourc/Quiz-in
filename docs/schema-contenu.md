@@ -170,8 +170,10 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
    `nb_fan` et date de vérification, extrait, paroles, qui a vérifié, 5 morceaux à écouter en priorité). Les
    fans changent avec le temps : ils ne sont écrits que dans la relecture, jamais dans le contenu publié.
    Relancer le script pour revérifier un « Impossible ».
-4. Après écoute : `verifiedBy: "listened"` dans `music-check/<quizId>.json`. Sans `verifiedBy` : morceau
-   vérifié à l'écoute avant ce champ.
+4. `verifiedBy: "listened"` signifie **« approuvé par Loann »** (après écoute d'un échantillon ou relecture
+   du lot) ; « auto » : contrôles automatiques passés, pas encore approuvé. Un morceau est coché `verified`
+   dès que les contrôles automatiques passent ; Loann écoute un échantillon. Sans `verifiedBy` : morceau
+   vérifié à l'écoute avant ce champ. Lots BT-1 à BT-5 : approuvés par Loann (octobre 2026).
 5. `npm run build` : n'importe qu'un blind test dont tous les morceaux sont vérifiés.
 
 ```json
