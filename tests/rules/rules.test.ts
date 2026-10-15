@@ -499,10 +499,44 @@ describe('Partie tirée dans des thèmes (« Ta partie », maquette QN1-G)', () 
     await assertFails(db(PLAYER).ref(`${settingsPath}/levels`).set(['easy']))
   })
 
-  test('settings.themes : 3 thèmes au plus', async () => {
+  // La limite de 3 thèmes est appliquée par l'appli ; les règles acceptent jusqu'à 10 thèmes, car des versions
+  // déjà installées (ancienne barre « Tous les thèmes ») en envoient jusqu'à 8.
+  test('settings.themes : jusqu’à 10 thèmes (anciennes versions de l’appli : 8)', async () => {
     await seedSession({ status: 'lobby' })
+    const eightThemes = ['Cinéma et séries', 'Culture générale', 'Géographie', 'Histoire', 'Loisirs', 'Musique', 'Sciences et nature', 'Sport']
     await assertSucceeds(db(HOST).ref(`${settingsPath}/themes`).set(['Histoire', 'Sport', 'Musique']))
-    await assertFails(db(HOST).ref(`${settingsPath}/themes`).set(['Histoire', 'Sport', 'Musique', 'Géographie']))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/themes`).set(eightThemes))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/themes`).set([...eightThemes, 'Thème 9', 'Thème 10']))
+    await assertFails(db(HOST).ref(`${settingsPath}/themes`).set([...eightThemes, 'Thème 9', 'Thème 10', 'Thème 11']))
+  })
+
+  // Réglages tels que les écrivent les versions de l'appli d'avant « Ta partie » (sans levels, 10 / 20 / 30
+  // questions, « Tous les thèmes ») : toujours acceptés.
+  test('création par une ancienne version de l’appli acceptée', async () => {
+    await seed({})
+    await assertSucceeds(
+      db(HOST)
+        .ref(SESSION)
+        .set({
+          hostUid: HOST,
+          quizId: 'histoire-de-france',
+          status: 'lobby',
+          settings: {
+            answerMode: 'choice',
+            speedBonus: true,
+            control: false,
+            teams: false,
+            themes: ['Cinéma et séries', 'Culture générale', 'Géographie', 'Histoire', 'Loisirs', 'Musique', 'Sciences et nature', 'Sport'],
+            questionCount: 30,
+          },
+          currentIndex: 0,
+          phaseStartedAt: SERVER_TIME,
+          phaseEndsAt: 0,
+        }),
+    )
+    await assertSucceeds(db(HOST).ref(`${SESSION}/questionRefs`).set(['histoire-de-france/hf-01']))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/quizIds`).set(['bluff-betes']))
+    await assertSucceeds(db(HOST).ref(`${settingsPath}/questionCount`).set(15))
   })
 
   test('settings.questionCount : tout entier de 1 à 30', async () => {
