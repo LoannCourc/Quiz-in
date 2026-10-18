@@ -4,6 +4,13 @@ import type { Session } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
 import GoogleCast, { CastState, useCastChannel, useCastState } from 'react-native-google-cast';
 
+import {
+  loadLocalNetworkAsked,
+  needsExplicitDiscovery,
+  saveLocalNetworkAsked,
+  startCastDiscovery,
+  stopCastDiscovery,
+} from '@/lib/castDiscovery';
 import { applyHostAction } from '@/lib/hostGame';
 
 // Recherche des TV sans résultat depuis ce délai : le salon propose l'aide « Je ne trouve pas ma TV ».
@@ -32,6 +39,11 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   const latest = useRef({ canWrite, serverOffsetMs });
   const isSearchEmpty = useCastState() === CastState.NO_DEVICES_AVAILABLE;
   const [hasWaitedForTv, setHasWaitedForTv] = useState(false);
+  // iOS : la recherche des TV tourne dans le salon tant qu'aucune TV n'est connectée, une fois la demande
+  // d'accès au réseau local faite (jamais avant : elle s'afficherait sans explication).
+  const [isLocalNetworkAsked, setIsLocalNetworkAsked] = useState(false);
+  const isTvConnected = channel !== null;
+  const isDiscovering = needsExplicitDiscovery && isLocalNetworkAsked && session.status === 'lobby' && !isTvConnected;
 
   // Le message disparaît dès que la partie quitte la pause (reprise, fin).
   if (session.status !== previousStatus) {
@@ -53,6 +65,24 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   }, [isSearchEmpty]);
 
   useEffect(() => {
+    if (!needsExplicitDiscovery) return;
+    let isActive = true;
+    loadLocalNetworkAsked().then((asked) => {
+      if (isActive && asked) setIsLocalNetworkAsked(true);
+    });
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  // Arrêtée en quittant le salon (partie lancée, retour à l'accueil) ou dès qu'une TV est connectée.
+  useEffect(() => {
+    if (!isDiscovering) return;
+    void startCastDiscovery();
+    return () => stopCastDiscovery();
+  }, [isDiscovering]);
+
+  useEffect(() => {
     if (!channel) return;
     const message: CastShowGameMessage = { code };
     channel.sendMessage(message).catch((error: unknown) => console.warn('[cast] Code non envoyé à la TV', error));
@@ -71,13 +101,20 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
     return () => subscription.remove();
   }, [code]);
 
+  // iOS : la liste n'est remplie que si la recherche tourne ; la lancer ici déclenche, la première fois,
+  // la demande d'accès au réseau local. La liste se met à jour au fil des TV trouvées.
   function showTvPicker() {
-    GoogleCast.showCastDialog()
+    if (needsExplicitDiscovery) {
+      setIsLocalNetworkAsked(true);
+      void saveLocalNetworkAsked();
+    }
+    startCastDiscovery()
+      .then(() => GoogleCast.showCastDialog())
       .then((shown) => {
         if (!shown) console.warn('[cast] Liste des TV non affichée : aucun bouton Cast à l’écran');
       })
       .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
   }
 
-  return { isAvailable: true, isTvConnected: channel !== null, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv, showTvPicker };
+  return { isAvailable: true, isTvConnected, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv, showTvPicker };
 }

@@ -12,7 +12,7 @@
       "supportsTablet": false,
       "icon": "./assets/images/icon-ios.png",
       "infoPlist": {
-        "NSLocalNetworkUsageDescription": "Quiz'in utilise le réseau local pour trouver ta TV (Google Cast) et y afficher la partie.",
+        "NSLocalNetworkUsageDescription": "Quiz'in utilise ton réseau local pour trouver ton Chromecast et afficher le jeu sur la TV.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
