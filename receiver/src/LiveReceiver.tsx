@@ -13,6 +13,7 @@ import { useKeepAwake } from './hooks/useKeepAwake'
 import { useLiveSession } from './hooks/useLiveSession'
 import { usePerfEnabled } from './hooks/usePerfEnabled'
 import { usePhaseStale } from './hooks/usePhaseStale'
+import { usePlayedQuizName } from './hooks/usePlayedQuizName'
 import { useTvMusic } from './hooks/useTvMusic'
 import { useTvPresence } from './hooks/useTvPresence'
 import { useTvSound } from './hooks/useTvSound'
@@ -99,11 +100,12 @@ function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioP
 // depuis plus de 5 s : « En attente de l'hôte… » à la place du chrono figé.
 function LiveSessionScreen({ session, roomCode }: { session: PublicSession; roomCode: string }) {
   const isStale = usePhaseStale(session)
+  const quizName = usePlayedQuizName(session)
   usePerfDisplayed(session.phaseStartedAt)
   perfMonitor.noteRender()
   if (isHostAway(session)) return <HostAwayStatus session={session} />
   if (isStale) return <StatusScreen title={strings.waitingHost.title} hint={strings.waitingHost.message} />
-  return <ReceiverScreen session={session} roomCode={roomCode} />
+  return <ReceiverScreen session={session} roomCode={roomCode} quizName={quizName} />
 }
 
 // Panneau ?perf=1 : heure de la première image qui montre une nouvelle phase. L'effet de mise en page

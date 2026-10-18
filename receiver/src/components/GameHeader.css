@@ -4,6 +4,20 @@
   column-gap: 1.2rem;
 }
 
+.game-header-progress {
+  display: grid;
+  flex: 1 1 0;
+  min-width: 0;
+  row-gap: 0.3rem;
+  justify-items: start;
+}
+
+.game-header-badges {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+}
+
 .game-header-question {
   padding: 0.35rem 1.1rem;
   border-radius: var(--radius-pill);

@@ -5,6 +5,7 @@ import { JOIN_URL_BASE, PLAYERS_SITE_HOST } from '../config'
 import { strings } from '../strings'
 import { DifficultyBadge } from './DifficultyBadge'
 import { Logo } from './Logo'
+import { QuizNameLine } from './QuizNameLine'
 import './GameHeader.css'
 
 interface GameHeaderProps {
@@ -23,10 +24,17 @@ export function GameHeader({ roomCode, questionIndex, questionCount, difficulty,
   return (
     <header className="game-header">
       <Logo size="small" />
-      {questionIndex !== undefined && (
-        <span className="game-header-question">{(isRound ? strings.question.roundProgress : strings.question.progress)(questionIndex + 1, questionCount)}</span>
-      )}
-      {difficulty !== undefined && <DifficultyBadge difficulty={difficulty} />}
+      {/* Pastille et difficulté, puis le quiz joué en petit dessous : plus bas que le QR code, le bandeau ne
+          grandit pas ; le quiz joué prend toute la place entre le logo et l'adresse. */}
+      <div className="game-header-progress">
+        <div className="game-header-badges">
+          {questionIndex !== undefined && (
+            <span className="game-header-question">{(isRound ? strings.question.roundProgress : strings.question.progress)(questionIndex + 1, questionCount)}</span>
+          )}
+          {difficulty !== undefined && <DifficultyBadge difficulty={difficulty} />}
+        </div>
+        <QuizNameLine place="header" />
+      </div>
       <span className="game-header-join">
         <span>
           {strings.header.joinAt(PLAYERS_SITE_HOST)} <strong className="game-header-code">{roomCode}</strong>

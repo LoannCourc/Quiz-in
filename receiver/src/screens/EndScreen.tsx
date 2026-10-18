@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { Confetti, ConfettiRain } from '../components/Confetti'
 import { Podium } from '../components/Podium'
+import { QuizNameLine } from '../components/QuizNameLine'
 import { RankingList } from '../components/RankingList'
 import { TeamPodium } from '../components/TeamBoards'
 import { useEntryDelay } from '../hooks/useEntryDelay'
@@ -46,6 +47,7 @@ export function EndScreen({ session }: { session: PublicSession }) {
   if (!isDrumrollOver) {
     return (
       <main className="screen end end-suspense">
+        <QuizNameLine place="end" />
         <h1 className="hero-title end-suspense-title">{session.settings.teams ? strings.end.suspenseTeams : strings.end.suspense}</h1>
       </main>
     )
@@ -77,6 +79,7 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
     return (
       <main className="screen end">
         {confetti}
+        <QuizNameLine place="end" />
         <h1 className="hero-title end-team-title">{teamEndTitle(session)}</h1>
         <TeamPodium session={session} delays={delays} dance={isDancing} />
       </main>
@@ -86,6 +89,7 @@ function EndPodium({ session, podiumStartMs }: { session: PublicSession; podiumS
   return (
     <main className="screen end">
       {confetti}
+      <QuizNameLine place="end" />
       <h1 className="hero-title">{strings.end.title}</h1>
       <div className={isCrowded ? 'end-body is-crowded' : 'end-body'}>
         <Podium players={players.slice(0, PODIUM_SIZE)} delays={delays} dance={isDancing} />

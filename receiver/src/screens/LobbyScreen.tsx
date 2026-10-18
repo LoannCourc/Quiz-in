@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { Avatar } from '../components/Avatar'
 import { Logo } from '../components/Logo'
+import { QuizNameLine } from '../components/QuizNameLine'
 import { TeamColumns } from '../components/TeamColumns'
 import { useFitScale } from '../hooks/useFitScale'
 import { JOIN_URL_BASE, PLAYERS_SITE_HOST } from '../config'
@@ -66,6 +67,8 @@ export function LobbyScreen({ session, roomCode, message = strings.lobby.waiting
 
       <section className="lobby-players" ref={playersRef}>
         <Logo size="large" as="h1" className="lobby-logo" />
+        {/* Changer de jeu : l'ancien quiz ne s'affiche plus pendant que l'hôte choisit. */}
+        {session.nextGameAt == null && <QuizNameLine place="lobby" />}
         <p className="lobby-count">{strings.lobby.playerCount(countConnected(players), MAX_PLAYERS)}</p>
         {session.settings.teams ? (
           // Groupe : les joueurs dans leur équipe (et ceux qui n'en ont pas encore).

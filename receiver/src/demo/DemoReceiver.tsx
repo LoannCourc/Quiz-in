@@ -10,6 +10,7 @@ import { useTvMusic } from '../hooks/useTvMusic'
 import { useTvSound } from '../hooks/useTvSound'
 import { perfMonitor } from '../lib/perf/perfMonitor'
 import { ReceiverScreen } from '../screens/ReceiverScreen'
+import { strings } from '../strings'
 import { DevPanel } from './DevPanel'
 import { SoundGallery } from './SoundGallery'
 import {
@@ -63,6 +64,13 @@ function initialOptions(params: URLSearchParams): DemoOptions {
 }
 
 // Mode démo (sans code dans l'URL) : session fictive pilotée par le panneau ; ?sounds=1 : galerie des sons.
+// &quizname=1 : quiz fixe ou blind test joué (salon, bandeau en jeu, fin) ; &quizname=long : titre long.
+function demoQuizName(param: string | null): string | null {
+  if (param === '1') return strings.playedQuiz('Électro des années 80', 'medium')
+  if (param === 'long') return strings.playedQuiz('Rap français des années 2000 et 2010, faces cachées', 'impossible')
+  return null
+}
+
 export function DemoReceiver() {
   const [params] = useState(() => new URLSearchParams(window.location.search))
   return params.get('sounds') === '1' ? <SoundGallery withSelfTest={params.get('selftest') === '1'} /> : <DemoGame params={params} />
@@ -159,7 +167,7 @@ function DemoGame({ params }: { params: URLSearchParams }) {
   return (
     <>
       <GameAudioStateContext value={audioState}>
-        <ReceiverScreen session={session} roomCode={DEMO_ROOM_CODE} />
+        <ReceiverScreen session={session} roomCode={DEMO_ROOM_CODE} quizName={demoQuizName(params.get('quizname'))} />
       </GameAudioStateContext>
       {isPerfEnabled && <PerfPanel serverOffsetMs={0} />}
       {!isCapture && (

@@ -1,6 +1,7 @@
 import { withHiddenBluffChoices } from '@shared/bluff'
 import type { PublicSession } from '@shared/types'
 
+import { PlayedQuizNameContext } from '../lib/playedQuizName'
 import { strings } from '../strings'
 
 import { DrawRevealScreen, DrawRoundScreen } from './DrawRoundScreen'
@@ -16,10 +17,20 @@ import { StartingScreen } from './StartingScreen'
 interface ReceiverScreenProps {
   session: PublicSession
   roomCode: string
+  // Quiz fixe ou blind test joué (salon, bandeau en jeu, fin) ; null : rien à afficher.
+  quizName?: string | null
 }
 
 // Un écran par état de la partie (spec 4.3 et 5). Bluff : propositions masquées par l'hôte en « ••• ».
-export function ReceiverScreen({ session: received, roomCode }: ReceiverScreenProps) {
+export function ReceiverScreen({ quizName = null, ...props }: ReceiverScreenProps) {
+  return (
+    <PlayedQuizNameContext value={quizName}>
+      <ScreenForStatus {...props} />
+    </PlayedQuizNameContext>
+  )
+}
+
+function ScreenForStatus({ session: received, roomCode }: ReceiverScreenProps) {
   const session = withHiddenBluffChoices(received)
   switch (session.status) {
     case 'lobby':
