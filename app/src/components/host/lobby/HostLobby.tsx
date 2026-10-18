@@ -24,6 +24,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
 import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
+import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
@@ -45,6 +46,7 @@ import { LobbyHeader } from './LobbyHeader';
 import { LobbyPlayerGrid } from './LobbyPlayerGrid';
 import { LobbySettingsRow, LobbySettingsSheet } from './LobbySettings';
 import { TeamsPage } from './TeamsPage';
+import { InviteSheet } from './InviteSheet';
 import { LocalNetworkSheet } from './LocalNetworkSheet';
 import { TvCastPill } from './TvCastPill';
 import { TvConnectedBar } from './TvConnectedBar';
@@ -59,6 +61,7 @@ interface HostLobbyProps {
   header?: ReactNode;
   initialNoTvOpen?: boolean;
   initialTvDetailsOpen?: boolean;
+  initialInviteOpen?: boolean;
   initialTeamsOpen?: boolean;
   initialSettingsOpen?: boolean;
   // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
@@ -79,7 +82,7 @@ const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined,
 // défile s'il le faut (grande police) ; au-delà de 8 joueurs, la grille défile dans sa propre zone.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
-  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialSettingsOpen = false } = props;
+  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialSettingsOpen = false, initialInviteOpen = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -102,6 +105,8 @@ export function HostLobby(props: HostLobbyProps) {
     }, [openTvPicker]),
   );
   const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
+  // Feuille « Inviter des joueurs » (QR code et lien des joueurs).
+  const [isInviteOpen, setIsInviteOpen] = useState(initialInviteOpen);
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
   const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
@@ -226,7 +231,7 @@ export function HostLobby(props: HostLobbyProps) {
           <TvConnectedBar code={code} isOpen={isTvDetailsOpen} onToggle={() => setIsTvDetailsOpen((open) => !open)} />
         ) : (
           <>
-            <LobbyCodeHero code={code} isQrOpen={isQrOpen} onToggleQr={() => setIsQrOpen((open) => !open)} />
+            <LobbyCodeHero code={code} />
             {isQrOpen && <JoinWithoutTv code={code} onHide={() => setIsQrOpen(false)} />}
             {/* QR code affiché (« Je n'ai pas de TV ») : pas de TV, ni son aide, jusqu'à « Masquer ». */}
             {cast.isAvailable && !isQrOpen && (
@@ -256,8 +261,13 @@ export function HostLobby(props: HostLobbyProps) {
 
       <View style={styles.players}>
         <View style={styles.playersHeader}>
-          <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
-          <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
+          <View style={styles.playersTitleRow}>
+            <Text style={styles.playersTitle}>{strings.hostLobby.playersTitle}</Text>
+            <Text style={styles.playersCount}>{strings.hostLobby.connectedCount(connectedCount)}</Text>
+          </View>
+          <Pressable accessibilityRole="button" onPress={() => setIsInviteOpen(true)} style={({ pressed }) => [styles.inviteButton, pressed && styles.pressed]}>
+            <ButtonLabel stretch={false} style={styles.inviteLabel}>{`+ ${strings.hostLobby.inviteButton}`}</ButtonLabel>
+          </Pressable>
         </View>
         <LobbyPlayerGrid
           players={players}
@@ -281,6 +291,7 @@ export function HostLobby(props: HostLobbyProps) {
         isSingleDrawer={isSingleDrawer}
         onSingleDrawer={setIsSingleDrawer}
       />
+      <InviteSheet code={code} isOpen={isInviteOpen} onClose={() => setIsInviteOpen(false)} />
       <LocalNetworkSheet
         isOpen={isLocalNetworkSheetOpen}
         onContinue={() => {
@@ -389,9 +400,33 @@ const styles = StyleSheet.create({
   },
   playersHeader: {
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     justifyContent: 'space-between',
+    gap: Spacing.two,
     paddingHorizontal: Spacing.one,
+  },
+  playersTitleRow: {
+    flexShrink: 1,
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    flexWrap: 'wrap',
+    columnGap: Spacing.two,
+  },
+  inviteButton: {
+    minHeight: 44,
+    justifyContent: 'center',
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radiusPill,
+    borderWidth: 2,
+    borderColor: AppColors.link,
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+  inviteLabel: {
+    color: AppColors.link,
+    fontFamily: AppFonts.black,
+    fontSize: 15,
   },
   playersTitle: {
     color: AppColors.text,

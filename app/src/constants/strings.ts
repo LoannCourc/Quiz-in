@@ -529,9 +529,18 @@ export const strings = {
       planBLink: 'Écran sur un PC : copier le lien de l’écran',
       planBCopied: 'Lien de l’écran copié : ouvre-le en plein écran sur le PC.',
     },
-    // Salon sans TV (maquette N2) : sous le code, le QR (et le lien) à la demande.
-    qrButton: 'QR code',
-    hideQr: 'Masquer le QR',
+    // Feuille « Inviter » (à droite de « Joueurs ») : QR code et lien des joueurs.
+    inviteButton: 'Inviter',
+    invite: {
+      title: 'Inviter des joueurs',
+      intro: 'Chacun scanne le QR code avec l’appareil photo de son téléphone.',
+      typeCode: (host: string) => `ou tape le code sur ${host}`,
+      share: 'Partager',
+      copy: 'Copier le lien',
+      close: 'Fermer',
+      shareMessage: (code: string, url: string) => `Rejoins ma partie Quiz’in ! Code ${code} : ${url}`,
+      qrLabel: (url: string) => `QR code du lien ${url}`,
+    },
     noPlayersShort: 'Aucun joueur pour l’instant',
     waitingPlayers: 'En attente des joueurs…',
     // Dessine-moi : des manches, pas des questions.

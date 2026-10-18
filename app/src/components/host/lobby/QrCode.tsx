@@ -34,22 +34,24 @@ function darkRuns(text: string): { count: number; runs: DarkRun[] } {
 }
 
 // Taille d'un module : un nombre entier de pixels physiques (pas de fines lignes entre les rangées),
-// pour que le QR avec sa marge tienne dans AppSizes.qrSize.
-function moduleSizeFor(totalModules: number): number {
+// pour que le QR avec sa marge tienne dans maxSize.
+function moduleSizeFor(totalModules: number, maxSize: number): number {
   const ratio = PixelRatio.get();
-  return Math.floor((AppSizes.qrSize * ratio) / totalModules) / ratio;
+  return Math.floor((maxSize * ratio) / totalModules) / ratio;
 }
 
 interface QrCodeProps {
   value: string;
   accessibilityLabel: string;
+  // Côté maximal, marge comprise (AppSizes.qrSize par défaut).
+  maxSize?: number;
 }
 
 // QR code encre sur fond blanc, avec sa marge blanche (quiet zone) de AppSizes.qrQuietZone modules.
-export function QrCode({ value, accessibilityLabel }: QrCodeProps) {
+export function QrCode({ value, accessibilityLabel, maxSize = AppSizes.qrSize }: QrCodeProps) {
   const { count, runs } = useMemo(() => darkRuns(value), [value]);
   const quiet = AppSizes.qrQuietZone;
-  const size = moduleSizeFor(count + 2 * quiet);
+  const size = moduleSizeFor(count + 2 * quiet, maxSize);
 
   return (
     <View
