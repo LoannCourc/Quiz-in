@@ -17,6 +17,7 @@ import {
   gradeAnswer,
   hostControls,
   resumeDecision,
+  hostScreenFailure,
   isTransitionLocked,
   launchUpdate,
   nextDeadline,
@@ -632,5 +633,17 @@ describe('hostControls', () => {
     const none = { skip: null, canPause: false, canResume: false, canEnd: false, awaitingNext: null, canValidate: false, canCloseVote: false, canCancelDraw: false }
     expect(hostControls(makeSession({ status: 'lobby' }))).toEqual({ ...none, canChangeGame: false })
     expect(hostControls(makeSession({ status: 'ended' }))).toEqual({ ...none, canChangeGame: true })
+  })
+})
+
+describe('hostScreenFailure (écran de l’hôte sans partie lisible)', () => {
+  const HOST = 'host-uid'
+  test('partie absente ou d’un autre hôte : introuvable, le code peut être oublié', () => {
+    expect(hostScreenFailure({ kind: 'missing' }, HOST)).toBe('gone')
+    expect(hostScreenFailure({ kind: 'found', game: { hostUid: 'autre', status: 'lobby' } }, HOST)).toBe('gone')
+  })
+  test('lecture échouée ou partie bien à cet hôte : doute de connexion, le code est gardé', () => {
+    expect(hostScreenFailure({ kind: 'failed' }, HOST)).toBe('connection')
+    expect(hostScreenFailure({ kind: 'found', game: { hostUid: HOST, status: 'lobby' } }, HOST)).toBe('connection')
   })
 })

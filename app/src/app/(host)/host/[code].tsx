@@ -27,6 +27,7 @@ import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { BigButton } from '@/components/ui/BigButton';
+import { GameUnavailable } from '@/components/ui/GameUnavailable';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { strings } from '@/constants/strings';
@@ -39,6 +40,7 @@ import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useCastGame, type CastGame } from '@/hooks/useCastGame';
 import { useGameQuestions } from '@/hooks/useGameQuestions';
 import { useHostEngine } from '@/hooks/useHostEngine';
+import { useHostScreenProblem } from '@/hooks/useHostScreenProblem';
 import { useHostAbsence, type HostConnection } from '@/hooks/useHostAbsence';
 import { useEndScreenLeave, useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
@@ -58,7 +60,7 @@ export default function HostScreen() {
   const code = normalizeRoomCode(params.code ?? '');
 
   return isValidRoomCode(code) ? (
-    <HostSession code={code} />
+    <RetryableHostSession code={code} />
   ) : (
     <Screen>
       <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>
@@ -66,9 +68,16 @@ export default function HostScreen() {
   );
 }
 
-function HostSession({ code }: { code: string }) {
-  // Seul l'hôte peut lire sa session d'un bloc : un refus signifie « pas l'hôte » ou « introuvable ».
+// « Réessayer » (connexion impossible) : la partie est relue depuis le début.
+function RetryableHostSession({ code }: { code: string }) {
+  const [attempt, setAttempt] = useState(0);
+  return <HostSession key={attempt} code={code} onRetry={() => setAttempt((count) => count + 1)} />;
+}
+
+function HostSession({ code, onRetry }: { code: string; onRetry: () => void }) {
+  // Seul l'hôte peut lire sa session d'un bloc : un refus signifie « pas l'hôte », « introuvable » ou un doute.
   const session = useLiveValue<Session>(`sessions/${code}`);
+  const problem = useHostScreenProblem(code, session);
   // La base ne stocke pas les objets vides (players, reveal.stats) : complétés par withStoredDefaults.
   // Objet recréé seulement quand la session change (le moteur se recalcule sur ce changement).
   const value = session.kind === 'ready' ? session.value : null;
@@ -82,7 +91,21 @@ function HostSession({ code }: { code: string }) {
     void clearHostedGameCode();
   }, [code, wasRemoved]);
 
-  if (session.kind === 'loading') {
+  // Introuvable ou terminée : le code gardé (« Reprendre la partie ») est oublié en revenant à l'accueil ;
+  // connexion impossible : il est gardé (simple problème de réseau, peut-être).
+  if (problem) {
+    return (
+      <Screen>
+        <GameUnavailable
+          kind={problem.kind}
+          reference={problem.reference}
+          onRetry={onRetry}
+          onHome={problem.kind === 'gone' ? () => void clearHostedGameCode() : undefined}
+        />
+      </Screen>
+    );
+  }
+  if (session.kind !== 'ready') {
     return (
       <Screen>
         <Text style={textStyles.body}>{strings.hostLobby.loading}</Text>
@@ -97,13 +120,7 @@ function HostSession({ code }: { code: string }) {
       </Screen>
     );
   }
-  if (current === null) {
-    return (
-      <Screen>
-        <Text style={textStyles.error}>{strings.hostLobby.notHost}</Text>
-      </Screen>
-    );
-  }
+  if (current === null) return null;
   return <HostGame code={code} session={current} />;
 }
 

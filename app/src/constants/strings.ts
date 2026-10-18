@@ -610,6 +610,22 @@ export const strings = {
     localNetworkContinue: 'CONTINUER',
     localNetworkLater: 'Plus tard',
   },
+  // Partie impossible à ouvrir (« Reprendre la partie », lien, code) : hôte et joueurs.
+  gameUnavailable: {
+    goneTitle: 'Partie introuvable ou terminée',
+    goneText: 'Elle a peut-être été supprimée, ou l’hôte l’a terminée.',
+    connectionTitle: 'Connexion impossible',
+    connectionText: 'Vérifie ta connexion internet, puis réessaie.',
+    retry: 'Réessayer',
+    home: 'Retour à l’accueil',
+    // Ligne grise pour les retours des testeurs : cause technique, jamais de donnée personnelle.
+    reference: (detail: string) => `Réf. : ${detail}`,
+    timeout: (seconds: number) => `délai de ${seconds} s dépassé`,
+    readRefused: 'lecture refusée',
+    networkError: 'erreur réseau',
+    missing: 'partie absente',
+    otherHost: 'autre hôte',
+  },
   hostGame: {
     inProgressTitle: 'Partie en cours',
     spectatorHint: 'Tu ne joues pas cette partie : suis-la sur la TV.',

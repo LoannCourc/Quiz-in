@@ -679,6 +679,17 @@ export function resumeDecision(read: ResumeRead, uid: PlayerId, nowServer: numbe
   return status === 'ended' ? 'forget' : 'resume'
 }
 
+// Écran de l'hôte qui ne peut pas lire sa partie (« Reprendre la partie », lien) : gone = partie certainement
+// introuvable ou d'un autre hôte (le code gardé peut être effacé) ; connection = doute (réseau, délai, refus
+// passager) : le code est gardé et l'écran propose « Réessayer ».
+export type HostScreenFailure = 'gone' | 'connection'
+
+export function hostScreenFailure(read: ResumeRead, uid: PlayerId): HostScreenFailure {
+  if (read.kind === 'missing') return 'gone'
+  if (read.kind === 'found' && read.game.hostUid !== uid) return 'gone'
+  return 'connection'
+}
+
 // États où une partie est en cours : de STARTING à PAUSED (LOBBY et END exclus).
 const IN_PROGRESS: readonly GameStatus[] = ['starting', 'question', 'vote', 'reveal', 'scores', 'validation', 'paused']
 
