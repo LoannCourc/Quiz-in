@@ -1,0 +1,45 @@
+# Archive envoyée à EAS pour les builds de l'app (eas build depuis app/).
+# Quand ce fichier existe, EAS n'applique plus .gitignore : ses règles utiles sont reprises ici.
+# Gardés : app/ (sauf fichiers générés et secrets locaux), shared/ (alias @shared), fichiers de la racine.
+# .git est gardé : rien ne garantit que le build EAS s'en passe.
+
+# Dépendances : EAS les réinstalle.
+node_modules/
+
+# Secrets locaux (les variables Firebase viennent de l'environnement EAS).
+.env
+.env.*
+!.env.example
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Journaux et caches.
+*.log
+.firebase/
+.cache/
+*.tsbuildinfo
+.eslintcache
+
+# Builds et fichiers générés de l'app.
+app/.expo/
+app/dist/
+app/web-build/
+app/ios/
+app/android/
+app/expo-env.d.ts
+
+# Inutiles au build de l'app : récepteur TV (captures comprises, 240 Mo), contenu, docs, tests.
+receiver/
+content/
+docs/
+tests/
+
+# Réglages des éditeurs et de Claude Code.
+.vscode/
+.claude/
+app/.vscode/
+app/.claude/
