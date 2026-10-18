@@ -26,6 +26,8 @@ export interface CastGame {
   noTvFound: boolean;
   // Liste des TV (dialogue Cast natif) ; exige un TvCastButton affiché à l'écran.
   showTvPicker: () => void;
+  // iOS, jamais encore demandé sur ce téléphone : expliquer l'accès au réseau local avant la liste.
+  needsLocalNetworkExplanation: boolean;
 }
 
 // Cast de l'hôte (spec 4.1 et 6.6), un seul appel par écran de partie :
@@ -41,9 +43,10 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   const [hasWaitedForTv, setHasWaitedForTv] = useState(false);
   // iOS : la recherche des TV tourne dans le salon tant qu'aucune TV n'est connectée, une fois la demande
   // d'accès au réseau local faite (jamais avant : elle s'afficherait sans explication).
-  const [isLocalNetworkAsked, setIsLocalNetworkAsked] = useState(false);
+  // null tant que la mémoire du téléphone n'est pas lue.
+  const [isLocalNetworkAsked, setIsLocalNetworkAsked] = useState<boolean | null>(needsExplicitDiscovery ? null : true);
   const isTvConnected = channel !== null;
-  const isDiscovering = needsExplicitDiscovery && isLocalNetworkAsked && session.status === 'lobby' && !isTvConnected;
+  const isDiscovering = needsExplicitDiscovery && isLocalNetworkAsked === true && session.status === 'lobby' && !isTvConnected;
 
   // Le message disparaît dès que la partie quitte la pause (reprise, fin).
   if (session.status !== previousStatus) {
@@ -68,7 +71,7 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
     if (!needsExplicitDiscovery) return;
     let isActive = true;
     loadLocalNetworkAsked().then((asked) => {
-      if (isActive && asked) setIsLocalNetworkAsked(true);
+      if (isActive) setIsLocalNetworkAsked((current) => current === true || asked);
     });
     return () => {
       isActive = false;
@@ -116,5 +119,8 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
       .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
   }
 
-  return { isAvailable: true, isTvConnected, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv, showTvPicker };
+  return { isAvailable: true, isTvConnected, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv,
+    showTvPicker,
+    needsLocalNetworkExplanation: isLocalNetworkAsked === false,
+  };
 }

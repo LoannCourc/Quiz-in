@@ -18,15 +18,17 @@ interface BottomSheetProps {
   header?: ReactNode;
   // Bas de la feuille, à la place de « Terminé » (« VOIR 5 QUIZ »).
   footer?: ReactNode;
+  // iOS : appelé quand la feuille a fini de disparaître (une fenêtre native ne peut s'ouvrir qu'après).
+  onDismissed?: () => void;
   children: ReactNode;
 }
 
 // Feuille du bas, par-dessus l'écran (salon de l'hôte : son, réglages) : poignée, en-tête facultatif, contenu
 // qui défile (petit écran, grande police), « Terminé » jaune. Appui en dehors, bouton retour d'Android ou
 // « Terminé » : fermeture.
-export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, children }: BottomSheetProps) {
+export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, onDismissed, children }: BottomSheetProps) {
   return (
-    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose} onDismiss={onDismissed}>
       <View style={styles.overlay}>
         <Pressable accessibilityRole="button" accessibilityLabel={strings.quizSetup.settingsDone} style={styles.backdrop} onPress={onClose} />
         <View style={styles.sheet}>

@@ -17,7 +17,7 @@ import {
 import { soundSettingsOf } from '@shared/sound';
 import { poolOf } from '@shared/questionPool';
 import type { Session, SoundSettings } from '@shared/types';
-import { useCallback, useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { router, useFocusEffect } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -45,6 +45,7 @@ import { LobbyHeader } from './LobbyHeader';
 import { LobbyPlayerGrid } from './LobbyPlayerGrid';
 import { LobbySettingsRow, LobbySettingsSheet } from './LobbySettings';
 import { TeamsPage } from './TeamsPage';
+import { LocalNetworkSheet } from './LocalNetworkSheet';
 import { TvCastPill } from './TvCastPill';
 import { TvConnectedBar } from './TvConnectedBar';
 
@@ -85,13 +86,20 @@ export function HostLobby(props: HostLobbyProps) {
   // Replié à chaque ouverture du salon : état local, jamais mémorisé. QR code et lien : « QR code » ou
   // « Je n'ai pas de TV ».
   const [isQrOpen, setIsQrOpen] = useState(initialNoTvOpen);
-  const { showTvPicker } = cast;
+  const { showTvPicker, needsLocalNetworkExplanation } = cast;
+  // iOS, première fois : explication du réseau local, puis la liste une fois la feuille disparue.
+  const [isLocalNetworkSheetOpen, setIsLocalNetworkSheetOpen] = useState(false);
+  const isTvPickerAfterSheet = useRef(false);
+  const openTvPicker = useCallback(() => {
+    if (needsLocalNetworkExplanation) setIsLocalNetworkSheetOpen(true);
+    else showTvPicker();
+  }, [needsLocalNetworkExplanation, showTvPicker]);
 
   // Retour de l'aide par « Réessayer » : la liste des TV se rouvre (l'icône Cast native est ici).
   useFocusEffect(
     useCallback(() => {
-      if (consumeTvRetry()) showTvPicker();
-    }, [showTvPicker]),
+      if (consumeTvRetry()) openTvPicker();
+    }, [openTvPicker]),
   );
   const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
@@ -223,7 +231,7 @@ export function HostLobby(props: HostLobbyProps) {
             {/* QR code affiché (« Je n'ai pas de TV ») : pas de TV, ni son aide, jusqu'à « Masquer ». */}
             {cast.isAvailable && !isQrOpen && (
               <>
-                <TvCastPill cast={cast} />
+                <TvCastPill onPress={openTvPicker} />
                 {cast.noTvFound ? (
                   <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
                     <Text style={styles.noTvFoundText}>
@@ -272,6 +280,19 @@ export function HostLobby(props: HostLobbyProps) {
         onShortGame={setIsShortGame}
         isSingleDrawer={isSingleDrawer}
         onSingleDrawer={setIsSingleDrawer}
+      />
+      <LocalNetworkSheet
+        isOpen={isLocalNetworkSheetOpen}
+        onContinue={() => {
+          isTvPickerAfterSheet.current = true;
+          setIsLocalNetworkSheetOpen(false);
+        }}
+        onLater={() => setIsLocalNetworkSheetOpen(false)}
+        onDismissed={() => {
+          if (!isTvPickerAfterSheet.current) return;
+          isTvPickerAfterSheet.current = false;
+          showTvPicker();
+        }}
       />
     </Screen>
   );

@@ -5,16 +5,16 @@ import { TvCastButton } from '@/components/host/TvCastButton';
 import { AppColors, AppFonts, AppShadows, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
-import type { CastGame } from '@/hooks/useCastGame';
 
 // « Afficher sur la TV » (spec 4.1) : la pilule ouvre la liste des TV via showCastDialog, qui exige
 // l'icône Cast native à l'écran : elle est donc dans la pilule. Une fois la TV connectée, la barre
-// « TV connectée » (TvConnectedBar) remplace la pilule.
-export function TvCastPill({ cast }: { cast: CastGame }) {
+// « TV connectée » (TvConnectedBar) remplace la pilule. onPress : liste des TV, précédée sur iOS de
+// l'explication du réseau local la première fois (HostLobby).
+export function TvCastPill({ onPress }: { onPress: () => void }) {
   return (
     <Pressable
       accessibilityRole="button"
-      onPress={cast.showTvPicker}
+      onPress={onPress}
       style={({ pressed }) => [styles.pill, pressed && styles.pressed]}>
       <TvCastButton />
       <ButtonLabel inRow style={styles.label}>{strings.cast.showButton}</ButtonLabel>

@@ -597,6 +597,11 @@ export const strings = {
   cast: {
     showButton: 'Afficher sur la TV',
     iconLabel: 'Choisir la TV',
+    // iOS, avant la première recherche des TV (demande d'accès au réseau local).
+    localNetworkTitle: 'Afficher sur la TV',
+    localNetworkText: 'Pour afficher le jeu sur ta TV, autorise l’accès au réseau local dans la fenêtre qui va s’afficher.',
+    localNetworkContinue: 'CONTINUER',
+    localNetworkLater: 'Plus tard',
   },
   hostGame: {
     inProgressTitle: 'Partie en cours',
