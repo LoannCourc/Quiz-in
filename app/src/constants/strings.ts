@@ -73,7 +73,6 @@ export const strings = {
       // Exclu par l'hôte : ne peut plus rejoindre cette partie (règles de la base).
       removed: 'Tu as été retiré de la partie par l’hôte.',
     } satisfies Record<JoinRefusal, string>,
-    joinFailed: 'Impossible de rejoindre la partie, réessaie.',
     gameOver: 'La partie est terminée. Merci d’avoir joué !',
     submitFailed: 'L’inscription a échoué. Réessaie dans un instant.',
   },
@@ -623,6 +622,9 @@ export const strings = {
     timeout: (seconds: number) => `délai de ${seconds} s dépassé`,
     readRefused: 'lecture refusée',
     networkError: 'erreur réseau',
+    signInFailed: 'connexion anonyme impossible',
+    // Champs de la partie sans réponse (3 au plus), après le délai.
+    noAnswer: (fields: string[]) => `sans réponse : ${fields.slice(0, 3).join(', ')}${fields.length > 3 ? '…' : ''}`,
     missing: 'partie absente',
     otherHost: 'autre hôte',
   },

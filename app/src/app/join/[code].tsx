@@ -13,9 +13,10 @@ import { JoinTopBar } from '@/components/player/JoinTopBar';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
 import { BigButton } from '@/components/ui/BigButton';
+import { GameUnavailable } from '@/components/ui/GameUnavailable';
 import { Screen } from '@/components/ui/Screen';
 import { strings } from '@/constants/strings';
-import { usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
+import { PLAYER_LOADING_TIMEOUT_S, usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
 import { useAbandonedGameCleanup } from '@/hooks/useAbandonedGameCleanup';
 import { useAnswer } from '@/hooks/useAnswer';
 import { useBluff } from '@/hooks/useBluff';
@@ -33,7 +34,7 @@ export default function JoinRoomScreen() {
 
   // Code validé avant toute lecture dans la base.
   return isValidRoomCode(code) ? (
-    <JoinRoom code={code} />
+    <RetryableJoinRoom code={code} />
   ) : (
     <WelcomeScreen>
       <PlayerNotice message={strings.join.invalidCode} tone="error" showOtherCode />
@@ -58,11 +59,31 @@ function WelcomeScreen({ code, children, footer }: WelcomeScreenProps) {
   );
 }
 
+// « Réessayer » (connexion impossible) : la partie est relue depuis le début.
+function RetryableJoinRoom({ code }: { code: string }) {
+  const [attempt, setAttempt] = useState(0);
+  return <JoinRoom key={attempt} code={code} onRetry={() => setAttempt((count) => count + 1)} />;
+}
+
+const unavailable = strings.gameUnavailable;
+
+// Ligne grise « Réf. : … » : cause technique courte, sans donnée personnelle.
+function errorReference(state: Extract<PlayerSessionState, { kind: 'error' }>): string {
+  switch (state.reason) {
+    case 'timeout':
+      return `${unavailable.timeout(PLAYER_LOADING_TIMEOUT_S)} · ${unavailable.noAnswer(state.fields)}`;
+    case 'refused':
+      return `${unavailable.readRefused} : ${state.fields.join(', ')}`;
+    case 'auth':
+      return unavailable.signInFailed;
+  }
+}
+
 function isRegistered(state: PlayerSessionState): boolean {
   return state.kind === 'ready' && state.players[state.uid] !== undefined;
 }
 
-function JoinRoom({ code }: { code: string }) {
+function JoinRoom({ code, onRetry }: { code: string; onRetry: () => void }) {
   const state = usePlayerSession(code);
   const registered = isRegistered(state);
   usePresence(code, registered && state.kind === 'ready' ? state.uid : null);
@@ -76,16 +97,22 @@ function JoinRoom({ code }: { code: string }) {
     case 'loading':
       return <WelcomeScreen code={code}><PlayerNotice message={strings.join.loading} /></WelcomeScreen>;
     case 'error':
-      // Le détail technique est dans la console (usePlayerSession).
-      return <WelcomeScreen code={code}><PlayerNotice message={strings.join.joinFailed} tone="error" /></WelcomeScreen>;
-    case 'notFound':
+      // Délai ou connexion anonyme : doute, « Réessayer » ; lecture refusée : partie inaccessible. Détail
+      // complet dans la console (usePlayerSession).
       return (
         <WelcomeScreen code={code}>
-          <PlayerNotice
-            message={state.wasRemoved ? strings.join.gameOver : strings.join.refusals.notFound}
-            tone={state.wasRemoved ? 'info' : 'error'}
-            showOtherCode
-          />
+          <GameUnavailable kind={state.reason === 'refused' ? 'gone' : 'connection'} reference={errorReference(state)} onRetry={onRetry} />
+        </WelcomeScreen>
+      );
+    case 'notFound':
+      // Supprimée pendant qu'on la suivait : fin normale (l'hôte a quitté).
+      return (
+        <WelcomeScreen code={code}>
+          {state.wasRemoved ? (
+            <PlayerNotice message={strings.join.gameOver} showOtherCode />
+          ) : (
+            <GameUnavailable kind="gone" reference={unavailable.missing} />
+          )}
         </WelcomeScreen>
       );
   }

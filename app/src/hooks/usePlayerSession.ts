@@ -11,14 +11,20 @@ export type PlayerSessionState =
   | { kind: 'loading' }
   // wasRemoved : la partie existait puis a été supprimée (l'hôte a quitté).
   | { kind: 'notFound'; wasRemoved: boolean }
-  | { kind: 'error'; detail: string }
+  // reason : délai dépassé ou connexion anonyme impossible (doute, « Réessayer »), ou lecture refusée par les
+  // règles ; fields : champs sans réponse ou refusés (affichés en petit pour les testeurs, aucune donnée
+  // personnelle) ; detail : cause technique complète (console).
+  | { kind: 'error'; reason: PlayerSessionFailure; fields: PublicField[]; detail: string }
   | { kind: 'ready'; uid: PlayerId; status: GameStatus; players: LobbyPlayers; session: PublicSession };
+
+export type PlayerSessionFailure = 'timeout' | 'auth' | 'refused';
 
 // Champs lisibles par un joueur : tous sauf answers (réservé à l'hôte), un abonnement par champ.
 const PUBLIC_FIELDS = PUBLIC_SESSION_FIELDS;
 
 // Au-delà, on remplace l'écran de chargement par un message d'erreur.
 const LOADING_TIMEOUT_MS = 10_000;
+export const PLAYER_LOADING_TIMEOUT_S = LOADING_TIMEOUT_MS / 1000;
 type FieldValues = Partial<Record<PublicField, unknown>>;
 
 function toState(uid: PlayerId, values: FieldValues, received: Set<PublicField>): PlayerSessionState {
@@ -46,17 +52,17 @@ export function usePlayerSession(code: string): PlayerSessionState {
     const values: FieldValues = {};
     const received = new Set<PublicField>();
 
-    const fail = (detail: string, error?: unknown) => {
+    const fail = (reason: PlayerSessionFailure, fields: PublicField[], detail: string, error?: unknown) => {
       if (!isActive || hasFailed) return;
       hasFailed = true;
       clearTimeout(timeoutId);
       console.error(`[join] Impossible de rejoindre la partie ${code} : ${detail}`, error ?? '');
-      setState({ kind: 'error', detail });
+      setState({ kind: 'error', reason, fields, detail });
     };
 
     const timeoutId = setTimeout(() => {
       const missing = PUBLIC_FIELDS.filter((field) => !received.has(field));
-      fail(`délai de ${LOADING_TIMEOUT_MS / 1000} s dépassé, champs sans réponse : ${missing.join(', ') || 'aucun'}`);
+      fail('timeout', missing, `délai de ${LOADING_TIMEOUT_MS / 1000} s dépassé, champs sans réponse : ${missing.join(', ') || 'aucun'}`);
     }, LOADING_TIMEOUT_MS);
 
     ensureSignedIn()
@@ -75,11 +81,11 @@ export function usePlayerSession(code: string): PlayerSessionState {
               if (next.kind !== 'loading') clearTimeout(timeoutId);
               setState(next);
             },
-            (error) => fail(`lecture refusée : ${field} (${toErrorMessage(error)})`, error),
+            (error) => fail('refused', [field], `lecture refusée : ${field} (${toErrorMessage(error)})`, error),
           ),
         );
       })
-      .catch((error: unknown) => fail(`connexion anonyme échouée (${toErrorMessage(error)})`, error));
+      .catch((error: unknown) => fail('auth', [], `connexion anonyme échouée (${toErrorMessage(error)})`, error));
 
     return () => {
       isActive = false;
