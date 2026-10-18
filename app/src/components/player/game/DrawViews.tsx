@@ -27,6 +27,7 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDrawerRotation } from '@/hooks/useDrawerRotation';
 import type { DrawGuessState, PlayerDraw } from '@/lib/playerDraw';
+import { isIosDevice } from '@/lib/platform';
 
 import { AnswerField } from './FreeQuestionView';
 import { useSecondsLeft, type PhaseTiming } from './phaseTiming';
@@ -52,6 +53,10 @@ const ZOOM_BUTTON = 30;
 const ZOOM_ICON = 18;
 // Écart entre le dessin et les outils (styles.drawer).
 const DRAWER_GAP = Spacing.three;
+// iPhone : distance du dessin au bord de l'écran (marge de Screen comprise) ; plus large que la zone du
+// geste « retour » d'iOS et de Safari (environ 20).
+const IOS_DRAW_EDGE = 24;
+const SCREEN_SIDE = Spacing.three;
 // Ligne d'aide sous le dessin : hauteur fixe (avec ou sans la pastille « Zoom ×2 »).
 const ZOOM_HINT_HEIGHT = 22;
 
@@ -220,7 +225,7 @@ export function DrawerView({ session, draw, header }: DrawerViewProps) {
     onClear: () => canvas.current?.clear(),
   };
   const canvasArea = (
-    <View style={styles.canvasArea} onLayout={(event) => setArea(event.nativeEvent.layout)}>
+    <View style={[styles.canvasArea, !isLandscape && isIosDevice && styles.iosEdgeGap]} onLayout={(event) => setArea(event.nativeEvent.layout)}>
       {canvasWidth > 0 && (
         <View style={{ width: canvasWidth }}>
           <DrawingCanvas
@@ -643,6 +648,12 @@ const styles = StyleSheet.create({
     minHeight: 0,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // iPhone, portrait : le dessin commence à IOS_DRAW_EDGE du bord de l'écran, hors de la zone du geste
+  // « retour » d'iOS et de Safari (qu'une page ne peut pas bloquer). Marge (et non retrait) : la place
+  // mesurée pour le canvas est celle qui reste.
+  iosEdgeGap: {
+    marginHorizontal: IOS_DRAW_EDGE - SCREEN_SIDE,
   },
   block: {
     flexGrow: 1,
