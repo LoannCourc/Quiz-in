@@ -156,6 +156,24 @@ export const strings = {
       openSettings: 'Ouvrir les réglages',
     },
   },
+  // « Sur un ordinateur » (maquette « Pas de TV · C ») : lien de l'écran TV de la partie, puis 3 étapes.
+  tvComputer: {
+    title: 'Sur un ordinateur',
+    linkLabel: 'Lien de l’écran TV',
+    copy: 'Copier',
+    copied: 'Copié !',
+    send: 'M’envoyer',
+    shareMessage: (url: string) => `Écran TV Quiz’in. Ouvre ce lien sur l’ordinateur branché à ta TV : ${url}`,
+    stepsLabel: 'À faire sur l’ordinateur',
+    steps: [
+      { lead: 'Ouvre le lien', text: ' dans le navigateur du PC relié à la TV (HDMI) ou de ta Smart TV' },
+      // Espaces insécables avant les deux-points : jamais un « : » seul en début de ligne.
+      { lead: 'Plein écran :', text: ' touche F11 (sur Mac : ctrl + cmd + F)' },
+      { lead: 'Reviens sur ton téléphone :', text: ' les joueurs rejoignent, tu lances la partie' },
+    ],
+    done: 'J’ai compris',
+    back: 'Retour',
+  },
   catalog: {
     loading: 'Chargement du catalogue…',
     errorPrefix: 'Erreur de chargement :',
