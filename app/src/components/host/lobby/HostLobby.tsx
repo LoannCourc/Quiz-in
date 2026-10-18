@@ -19,7 +19,7 @@ import { poolOf } from '@shared/questionPool';
 import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { router, useFocusEffect } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
 import { BackButton } from '@/components/ui/BackButton';
@@ -40,12 +40,12 @@ import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
 import { consumeTvRetry } from '@/lib/tvRetry';
 
-import { JoinWithoutTv } from './JoinWithoutTv';
 import { LobbyCodeHero } from './LobbyCodeHero';
 import { LobbyHeader } from './LobbyHeader';
 import { LobbyPlayerGrid } from './LobbyPlayerGrid';
 import { LobbySettingsRow, LobbySettingsSheet } from './LobbySettings';
 import { TeamsPage } from './TeamsPage';
+import { DisplayOptionsSheet, type DisplayOption } from './DisplayOptionsSheet';
 import { InviteSheet } from './InviteSheet';
 import { LocalNetworkSheet } from './LocalNetworkSheet';
 import { TvCastPill } from './TvCastPill';
@@ -59,8 +59,7 @@ interface HostLobbyProps {
   cast: CastGame;
   // Démo (/debug/lobby) : en-tête fourni sans lecture de la base, blocs déjà ouverts.
   header?: ReactNode;
-  initialNoTvOpen?: boolean;
-  initialTvDetailsOpen?: boolean;
+  initialDisplayOptionsOpen?: boolean;
   initialInviteOpen?: boolean;
   initialTeamsOpen?: boolean;
   initialSettingsOpen?: boolean;
@@ -81,14 +80,13 @@ const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined,
 // en bas, toujours visible. TV connectée : le bloc du code devient la barre « TV connectée ». La page
 // défile s'il le faut (grande police) ; au-delà de 8 joueurs, la grille défile dans sa propre zone.
 export function HostLobby(props: HostLobbyProps) {
-  const { code, session, questions, serverOffsetMs, cast, header, initialNoTvOpen = false, audio = NO_AUDIO, applyUpdate } = props;
-  const { initialTvDetailsOpen = false, initialTeamsOpen = false, initialSettingsOpen = false, initialInviteOpen = false } = props;
+  const { code, session, questions, serverOffsetMs, cast, header, initialDisplayOptionsOpen = false, audio = NO_AUDIO, applyUpdate } = props;
+  const { initialTeamsOpen = false, initialSettingsOpen = false, initialInviteOpen = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
   // Replié à chaque ouverture du salon : état local, jamais mémorisé. QR code et lien : « QR code » ou
   // « Je n'ai pas de TV ».
-  const [isQrOpen, setIsQrOpen] = useState(initialNoTvOpen);
   const { showTvPicker, needsLocalNetworkExplanation } = cast;
   // iOS, première fois : explication du réseau local, puis la liste une fois la feuille disparue.
   const [isLocalNetworkSheetOpen, setIsLocalNetworkSheetOpen] = useState(false);
@@ -104,7 +102,14 @@ export function HostLobby(props: HostLobbyProps) {
       if (consumeTvRetry()) openTvPicker();
     }, [openTvPicker]),
   );
-  const [isTvDetailsOpen, setIsTvDetailsOpen] = useState(initialTvDetailsOpen);
+  // « Autres façons d'afficher » : l'écran choisi s'ouvre une fois la feuille fermée (sur iOS, une feuille
+  // encore à l'écran resterait par-dessus le nouvel écran).
+  const [isDisplayOptionsOpen, setIsDisplayOptionsOpen] = useState(initialDisplayOptionsOpen);
+  const chosenDisplay = useRef<DisplayOption | null>(null);
+  const openDisplayOption = useCallback(
+    (option: DisplayOption) => (option === 'tvHelp' ? router.push('/tv-help') : router.push({ pathname: '/tv-computer', params: { code } })),
+    [code],
+  );
   // Feuille « Inviter des joueurs » (QR code et lien des joueurs).
   const [isInviteOpen, setIsInviteOpen] = useState(initialInviteOpen);
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
@@ -228,33 +233,22 @@ export function HostLobby(props: HostLobbyProps) {
           <SoundQuickAccess sound={soundSettingsOf(session)} onChange={changeSound} />
         </View>
         {cast.isTvConnected ? (
-          <TvConnectedBar code={code} isOpen={isTvDetailsOpen} onToggle={() => setIsTvDetailsOpen((open) => !open)} />
+          <TvConnectedBar code={code} onDetails={() => setIsInviteOpen(true)} />
         ) : (
           <>
             <LobbyCodeHero code={code} />
-            {isQrOpen && <JoinWithoutTv code={code} onHide={() => setIsQrOpen(false)} />}
-            {/* QR code affiché (« Je n'ai pas de TV ») : pas de TV, ni son aide, jusqu'à « Masquer ». */}
-            {cast.isAvailable && !isQrOpen && (
-              <>
-                <TvCastPill onPress={openTvPicker} />
-                {cast.noTvFound ? (
-                  <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
-                    <Text style={styles.noTvFoundText}>
-                      {strings.hostLobby.noTvFoundBanner} <Text style={styles.noTvFoundAction}>{strings.hostLobby.noTvFoundAction}</Text>
-                    </Text>
-                  </Pressable>
-                ) : (
-                  <Pressable accessibilityRole="link" hitSlop={Spacing.two} onPress={() => router.push('/tv-help')}>
-                    <Text style={styles.helpLink}>{strings.hostLobby.tvHelpLink}</Text>
-                  </Pressable>
-                )}
-              </>
-            )}
-            {!isQrOpen && (
-              <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={() => setIsQrOpen(true)}>
-                <Text style={styles.noTvLink}>{strings.hostLobby.noTvLink}</Text>
+            {cast.isAvailable && <TvCastPill onPress={openTvPicker} />}
+            {/* Recherche Cast sans résultat depuis 8 s : le bandeau mène tout droit à l'aide Chromecast. */}
+            {cast.noTvFound && (
+              <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
+                <Text style={styles.noTvFoundText}>
+                  {strings.hostLobby.noTvFoundBanner} <Text style={styles.noTvFoundAction}>{strings.hostLobby.noTvFoundAction}</Text>
+                </Text>
               </Pressable>
             )}
+            <Pressable accessibilityRole="button" onPress={() => setIsDisplayOptionsOpen(true)} style={styles.displayOptionsButton}>
+              <Text style={styles.displayOptionsLink}>{strings.hostLobby.displayOptionsLink}</Text>
+            </Pressable>
           </>
         )}
       </View>
@@ -292,6 +286,20 @@ export function HostLobby(props: HostLobbyProps) {
         onSingleDrawer={setIsSingleDrawer}
       />
       <InviteSheet code={code} isOpen={isInviteOpen} onClose={() => setIsInviteOpen(false)} />
+      <DisplayOptionsSheet
+        isOpen={isDisplayOptionsOpen}
+        onClose={() => setIsDisplayOptionsOpen(false)}
+        onChoose={(option) => {
+          setIsDisplayOptionsOpen(false);
+          if (Platform.OS === 'ios') chosenDisplay.current = option;
+          else openDisplayOption(option);
+        }}
+        onDismissed={() => {
+          const option = chosenDisplay.current;
+          chosenDisplay.current = null;
+          if (option) openDisplayOption(option);
+        }}
+      />
       <LocalNetworkSheet
         isOpen={isLocalNetworkSheetOpen}
         onContinue={() => {
@@ -362,22 +370,19 @@ const styles = StyleSheet.create({
   fill: {
     flex: 1,
   },
-  noTvLink: {
-    color: AppColors.link,
-    fontFamily: AppFonts.extraBold,
-    fontSize: 16,
-    textAlign: 'center',
-    textDecorationLine: 'underline',
+  // Lien discret sous « Afficher sur la TV » (zone de toucher de 44 au moins).
+  displayOptionsButton: {
+    minHeight: 44,
+    justifyContent: 'center',
   },
-  // Lien discret sous « Afficher sur la TV ».
-  helpLink: {
+  displayOptionsLink: {
     color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
     fontSize: 14,
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
-  // Recherche des TV sans résultat : le lien devient un bandeau.
+  // Recherche des TV sans résultat depuis 8 s : bandeau vers l'aide Chromecast.
   noTvFoundBanner: {
     paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.three,

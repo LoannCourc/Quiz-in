@@ -518,9 +518,7 @@ export const strings = {
     quizMeta: (questionCount: number, minutes: number) => `${questionCount} questions · environ ${minutes} min`,
     // Bluff, Mon mélange : partie tirée dans plusieurs quiz.
     mixTitle: (quizzes: number) => `Mon mélange · ${quizzes} quiz`,
-    noTvLink: 'Je n’ai pas de TV',
     // Aide « Je ne trouve pas ma TV » (écran tvHelp) : lien sous « Afficher sur la TV », bandeau si aucune TV.
-    tvHelpLink: 'Je ne trouve pas ma TV ?',
     noTvFoundBanner: 'Pas de TV trouvée ?',
     noTvFoundAction: 'Voir l’aide',
     playersTitle: 'Joueurs',
@@ -537,15 +535,15 @@ export const strings = {
     codeBoxAccessibility: (position: number, char: string | undefined) =>
       char ? `Caractère ${position} : ${char}. Toucher pour le corriger` : `Caractère ${position}, vide`,
     codeAccessibility: (code: string) => `Code de la partie : ${code.split('').join(' ')}`,
-    noTv: {
-      title: 'Rejoindre sans TV',
-      hide: 'Masquer',
-      linkLabel: 'Lien',
-      shareButton: 'Partager',
-      shareMessage: (url: string) => `Rejoins ma partie Quiz’in : ${url}`,
-      qrLabel: (url: string) => `QR code du lien ${url}`,
-      planBLink: 'Écran sur un PC : copier le lien de l’écran',
-      planBCopied: 'Lien de l’écran copié : ouvre-le en plein écran sur le PC.',
+    // Sous « Afficher sur la TV » : un seul lien, qui ouvre la feuille des autres façons d'afficher.
+    displayOptionsLink: 'Pas de Chromecast ? Autres façons d’afficher',
+    displayOptions: {
+      title: 'Autres façons d’afficher',
+      tvHelp: 'Je ne trouve pas ma TV',
+      tvHelpHint: 'Chromecast ou TV avec Google Cast : ce qu’il faut vérifier',
+      computer: 'Afficher sur un ordinateur',
+      computerHint: 'Un PC branché à la TV (HDMI), ou le navigateur d’une Smart TV',
+      close: 'Fermer',
     },
     // Feuille « Inviter » (à droite de « Joueurs ») : QR code et lien des joueurs.
     inviteButton: 'Inviter',
@@ -592,7 +590,6 @@ export const strings = {
       singleDrawerTitle: 'Un seul dessinateur : toutes les manches',
       singleDrawerHint: 'Développement uniquement : un même joueur dessine chaque manche.',
     },
-    copyButton: 'Copier le lien',
     copied: 'Lien copié !',
     copyFailed: 'Copie impossible : sélectionne le lien à la main.',
     // TV connectée : le bloc code, QR et lien se réduit à une barre (maquette L1).
@@ -600,8 +597,6 @@ export const strings = {
       connected: 'TV connectée',
       codeLabel: 'Code de la partie : ',
       details: 'Détails',
-      hide: 'Masquer',
-      intro: 'Les joueurs scannent le QR code ou ouvrent le lien.',
     },
     launchButton: 'Lancer la partie',
     launching: 'Lancement…',

@@ -7,17 +7,16 @@ import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 
 import { DetailsToggle } from './DetailsToggle';
-import { JoinWithoutTv } from './JoinWithoutTv';
 
 interface TvConnectedBarProps {
   code: string;
-  isOpen: boolean;
-  onToggle: () => void;
+  // « Détails » : feuille « Inviter des joueurs » (QR code et lien des joueurs).
+  onDetails: () => void;
 }
 
-// TV connectée (maquette L1) : le code, le QR et le lien se réduisent à une barre ; « Détails » les
-// déplie. L'icône Cast native reste dans la barre : elle ouvre la liste des TV (changer, déconnecter).
-export function TvConnectedBar({ code, isOpen, onToggle }: TvConnectedBarProps) {
+// TV connectée (maquette L1) : le code se réduit à une barre ; « Détails » ouvre la feuille « Inviter ».
+// L'icône Cast native reste dans la barre : elle ouvre la liste des TV (changer, déconnecter).
+export function TvConnectedBar({ code, onDetails }: TvConnectedBarProps) {
   const { tvBar } = strings.hostLobby;
   return (
     <View style={styles.container}>
@@ -33,9 +32,8 @@ export function TvConnectedBar({ code, isOpen, onToggle }: TvConnectedBarProps) 
           </Text>
         </View>
         <TvCastButton />
-        <DetailsToggle label={isOpen ? tvBar.hide : tvBar.details} isOpen={isOpen} onPress={onToggle} />
+        <DetailsToggle label={tvBar.details} isOpen={false} onPress={onDetails} />
       </View>
-      {isOpen && <JoinWithoutTv code={code} variant="details" />}
     </View>
   );
 }

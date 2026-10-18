@@ -14,11 +14,11 @@ import { applyLocalUpdate } from './localUpdate';
 import { DEMO_CODE } from './playerScenarios';
 
 // Démo du salon de l'hôte (développement uniquement), sans Firebase :
-// /debug/lobby?players=<0 à 20>&tv=<none|connected|unavailable|notfound>&host=<1|0>&notv=<0|1>
+// /debug/lobby?players=<0 à 20>&tv=<none|connected|unavailable|notfound>&host=<1|0>&display=<0|1>
 // host=0 : l'hôte n'a pas encore choisi son pseudo (formulaire au-dessus de la liste).
 // &teams=random|host|players : Groupe (composition des équipes, actions appliquées sur place) ;
 // &drawn=1 : équipes déjà tirées au sort ; &late=3 : 3 joueurs arrivés après le tirage (sans équipe) ; &page=teams : page « Équipes » ouverte ;
-// &details=1 (avec tv=connected) : QR et lien dépliés sous la barre « TV connectée » ;
+// &display=1 : feuille « Autres façons d'afficher » ouverte ;
 // &settings=1 : feuille « Réglages » ouverte ; &localnetwork=1 : explication du réseau local (iOS) avant la liste des TV ; &invite=1 : feuille « Inviter » ouverte ; &draw=1 : partie de Dessine-moi (à 2 : message du dessinateur unique).
 // Les actions (lancer, s'inscrire) écrivent dans la base : elles échouent ici, c'est attendu.
 
@@ -70,7 +70,7 @@ function demoCast(tv: string | undefined, localNetwork: boolean): CastGame {
 }
 
 export default function LobbyDemoScreen() {
-  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; notv?: string; teams?: string; drawn?: string; late?: string; page?: string; details?: string; settings?: string; draw?: string; names?: string; localnetwork?: string; invite?: string }>();
+  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; teams?: string; drawn?: string; late?: string; page?: string; display?: string; settings?: string; draw?: string; names?: string; localnetwork?: string; invite?: string }>();
   const playerCount = Math.min(20, Math.max(0, Number(params.players ?? 4) || 0));
   const teamMode = isTeamMode(params.teams) ? params.teams : undefined;
   // Session en mémoire : les actions du salon (équipes) s'y appliquent, rien n'est écrit dans la base.
@@ -88,8 +88,7 @@ export default function LobbyDemoScreen() {
       serverOffsetMs={0}
       cast={demoCast(params.tv, params.localnetwork === '1')}
       header={<LobbyQuizTitle quiz={DEMO_CATALOG[0]} />}
-      initialNoTvOpen={params.notv === '1'}
-      initialTvDetailsOpen={params.details === '1'}
+      initialDisplayOptionsOpen={params.display === '1'}
       initialInviteOpen={params.invite === '1'}
       initialTeamsOpen={params.page === 'teams'}
       initialSettingsOpen={params.settings === '1'}
