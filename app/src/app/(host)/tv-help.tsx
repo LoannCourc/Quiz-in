@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
 
 import { BackButton, goBackOrHome } from '@/components/ui/BackButton';
@@ -29,10 +29,33 @@ function retry() {
   goBackOrHome();
 }
 
+// iPhone : autorisation du réseau local et même Wi-Fi, avec un raccourci vers la page de Quiz'in dans
+// Réglages (l'interrupteur « Réseau local » y apparaît une fois la demande faite par l'app).
+function IosHelpCard() {
+  const ios = texts.ios;
+  return (
+    <View style={[styles.card, styles.iosCard]}>
+      <Text style={styles.stepTitle} maxFontSizeMultiplier={BUTTON_LABEL_MAX_FONT_SCALE}>
+        {ios.title}
+      </Text>
+      {[ios.localNetwork, ios.wifi].map((cause, index) => (
+        <View key={cause} style={styles.cause}>
+          <Text style={[textStyles.body, styles.causeNumber]}>{index + 1}.</Text>
+          <Text style={[textStyles.body, styles.causeText]}>{cause}</Text>
+        </View>
+      ))}
+      <BigButton label={ios.openSettings} variant="secondary" size="compact" onPress={() => void Linking.openSettings()} />
+    </View>
+  );
+}
+
 // Aide « Je ne trouve pas ma TV » (ouverte depuis le salon, sous « Afficher sur la TV ») : sept vérifications
 // dans des cartes numérotées, le contact, et « Réessayer ». Même texte que quizin-play.web.app/aide-tv.
+// iPhone : carte des deux causes iOS en tête (démo dans le navigateur, développement : /tv-help?ios=1).
 export default function TvHelpRoute() {
+  const { ios } = useLocalSearchParams<{ ios?: string }>();
   if (isPublishedWeb) return <Redirect href="/join" />;
+  const isIos = Platform.OS === 'ios' || (__DEV__ && ios === '1');
   return (
     <Screen footer={<BigButton label={texts.retry} onPress={retry} />}>
       <BackButton label={texts.back} />
@@ -40,6 +63,7 @@ export default function TvHelpRoute() {
         {texts.title}
       </Text>
       <Text style={[textStyles.body, styles.intro]}>{texts.intro}</Text>
+      {isIos && <IosHelpCard />}
       <View style={styles.steps}>
         {helpSteps().map((step, index) => (
           <View key={step.title} style={styles.card}>
@@ -120,5 +144,21 @@ const styles = StyleSheet.create({
   },
   steps: {
     gap: Spacing.two,
+  },
+  iosCard: {
+    gap: Spacing.three,
+    borderWidth: 2,
+    borderColor: AppColors.highlight,
+  },
+  cause: {
+    flexDirection: 'row',
+    gap: Spacing.two,
+  },
+  causeNumber: {
+    color: AppColors.highlight,
+    fontFamily: AppFonts.black,
+  },
+  causeText: {
+    flex: 1,
   },
 });

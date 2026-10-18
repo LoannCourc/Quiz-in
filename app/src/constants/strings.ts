@@ -149,6 +149,13 @@ export const strings = {
     contactEmail: 'quizinsupport@gmail.com',
     retry: 'Réessayer',
     back: 'Retour',
+    // iPhone : carte en tête de l'aide (les deux causes les plus fréquentes sur iOS).
+    ios: {
+      title: 'Ton iPhone ne trouve pas ta TV',
+      localNetwork: 'Autorise le réseau local : Réglages → Quiz’in → Réseau local.',
+      wifi: 'Sois sur le même Wi-Fi que ton Chromecast : pas de réseau invité, pas de VPN.',
+      openSettings: 'Ouvrir les réglages',
+    },
   },
   catalog: {
     loading: 'Chargement du catalogue…',
