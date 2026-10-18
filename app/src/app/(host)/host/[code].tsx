@@ -45,6 +45,7 @@ import { useHostAbsence, type HostConnection } from '@/hooks/useHostAbsence';
 import { useEndScreenLeave, useLeaveGuard } from '@/hooks/useLeaveGuard';
 import { useLiveValue } from '@/hooks/useLiveValue';
 import { useLobbyCleanup } from '@/hooks/useLobbyCleanup';
+import { usePlayedQuizName } from '@/hooks/usePlayedQuizName';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { confirmAction } from '@/lib/confirm';
@@ -239,6 +240,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
   const bluff = useBluff(code, session.hostUid, session);
   // Dessine-moi : l'hôte qui joue ne dessine jamais (D1), il regarde la TV.
   const draw = useDraw(code, session.hostUid, session);
+  const quizName = usePlayedQuizName(session.quizId, session.settings);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   // Contrôle : coches de l'hôte pour la question en cours, gardées dans l'app jusqu'à « Valider »
@@ -415,6 +417,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       onAnswer={onAnswer}
       bluff={bluff}
       draw={draw}
+      quizName={quizName}
       footer={footer}
       overlay={overlay}
     />

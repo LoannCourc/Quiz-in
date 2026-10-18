@@ -354,6 +354,8 @@ export const strings = {
     // Démos (développement seulement), sur une ligne en bas de l'accueil.
     demoCatalogLink: 'Démo catalogue',
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
+    // Quiz joué (salon, salle d'attente, fin) : « Électro des années 80 · Moyen ».
+    playedQuiz: (title: string, level: string) => `${title} · ${level}`,
     debugLink: 'Démo compteur',
     playerDemoLink: 'Démo joueur',
     // Un seul lien « Démos » sur la ligne d'À propos : l'accueil garde la mise en page du build publié.

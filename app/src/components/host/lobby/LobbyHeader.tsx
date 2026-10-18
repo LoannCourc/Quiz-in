@@ -1,17 +1,19 @@
-import { QUESTIONS_PER_GAME } from '@shared/constants';
+import { DEFAULT_SESSION_SETTINGS, QUESTIONS_PER_GAME } from '@shared/constants';
 import { DRAW_QUIZ_ID, DRAW_QUIZ_SUMMARY } from '@shared/drawGame';
 import { gameQuestionCount, poolOf } from '@shared/questionPool';
-import { estimateGameMinutes } from '@shared/quizCatalog';
+import { estimateGameMinutes, playedQuizName } from '@shared/quizCatalog';
 import { parseQuizSummary } from '@shared/quizValidation';
 import type { QuizSummary, SessionSettings } from '@shared/types';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
+import { FittedLine } from '@/components/ui/FittedLine';
 import { useLiveValue } from '@/hooks/useLiveValue';
+import { formatPlayedQuizName } from '@/lib/playedQuizName';
 
-// Nom du jeu (QUIZ, BLIND TEST, BLUFF, DESSINE-MOI ; jamais le titre du quiz) et la méta. Fiche absente ou
+// Nom du jeu (QUIZ, BLIND TEST, BLUFF, DESSINE-MOI), titre du quiz fixe ou du blind test, et la méta. Fiche absente ou
 // mal formée : rien n'est affiché (le salon reste utilisable). Dessine-moi : fiche locale (pas de quiz dans la
 // base). drawRounds : Dessine-moi, nombre de manches choisi dans les réglages (la durée suit).
 // Partie tirée dans des thèmes ou un mélange (settings.themes, settings.quizIds) : le nombre de questions choisi.
@@ -32,39 +34,29 @@ export function LobbyHeader({ quizId, drawRounds, settings }: { quizId: string; 
     drawRounds && summary.gameType === 'draw'
       ? { ...summary, questionCount: drawRounds, estimatedMinutes: Math.round((summary.estimatedMinutes * drawRounds) / summary.questionCount) }
       : summary;
-  return <LobbyQuizTitle quiz={shown} />;
+  return <LobbyQuizTitle quiz={shown} settings={settings} />;
 }
 
-// Affichage seul, à partir d'une fiche déjà validée.
-export function LobbyQuizTitle({ quiz }: { quiz: QuizSummary }) {
+// Affichage seul, à partir d'une fiche déjà validée. Quiz fixe ou blind test : son titre et son niveau sous le
+// nom du jeu (« Électro des années 80 · Moyen »).
+export function LobbyQuizTitle({ quiz, settings = DEFAULT_SESSION_SETTINGS }: { quiz: QuizSummary; settings?: SessionSettings }) {
   const meta =
     quiz.gameType === 'draw'
       ? strings.hostLobby.roundsMeta(quiz.questionCount, quiz.estimatedMinutes)
       : strings.hostLobby.quizMeta(Math.min(quiz.questionCount, QUESTIONS_PER_GAME), quiz.estimatedMinutes);
-  return <LobbyTitle title={strings.home.games[quiz.gameType].name} meta={meta} />;
+  return <LobbyTitle title={strings.home.games[quiz.gameType].name} name={formatPlayedQuizName(playedQuizName(quiz, settings))} meta={meta} />;
 }
 
-function LobbyTitle({ title, meta }: { title: string; meta: string }) {
-  // Méta toujours sur une ligne (« environ 6 min » passait à la ligne à 320 de large) : sa largeur naturelle en
-  // 15 est mesurée par un texte invisible, puis la taille est réduite pour tenir dans la colonne (11 au moins).
-  const [columnWidth, setColumnWidth] = useState(0);
-  const [metaWidth, setMetaWidth] = useState(0);
-  const metaSize = columnWidth > 0 && metaWidth > columnWidth ? Math.max(META_MIN_SIZE, Math.floor((META_SIZE * columnWidth) / metaWidth)) : META_SIZE;
+// Méta et nom du quiz toujours sur une ligne (« environ 6 min » passait à la ligne à 320 de large) : taille
+// réduite pour tenir dans la colonne.
+function LobbyTitle({ title, name, meta }: { title: string; name?: string | null; meta: string }) {
   return (
-    <View onLayout={(event) => setColumnWidth(event.nativeEvent.layout.width)}>
+    <View>
       <Text style={styles.title} numberOfLines={1}>
         {title}
       </Text>
-      <Text style={[styles.meta, { fontSize: metaSize }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
-        {meta}
-      </Text>
-      <View style={styles.measureBox} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden pointerEvents="none">
-        <View style={styles.measureRow}>
-          <Text style={[styles.meta, styles.measure]} maxFontSizeMultiplier={1.2} onLayout={(event) => setMetaWidth(event.nativeEvent.layout.width)}>
-            {meta}
-          </Text>
-        </View>
-      </View>
+      {name && <FittedLine text={name} style={styles.name} minSize={NAME_MIN_SIZE} />}
+      <FittedLine text={meta} style={styles.meta} minSize={META_MIN_SIZE} />
     </View>
   );
 }
@@ -72,8 +64,8 @@ function LobbyTitle({ title, meta }: { title: string; meta: string }) {
 const TITLE_SIZE = 18;
 const META_SIZE = 15;
 const META_MIN_SIZE = 11;
-// Largeur laissée au texte de mesure (bien plus que la méta la plus longue).
-const MEASURE_WIDTH = 1000;
+const NAME_SIZE = 16;
+const NAME_MIN_SIZE = 11;
 
 const styles = StyleSheet.create({
   title: {
@@ -88,20 +80,9 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.extraBold,
     fontSize: META_SIZE,
   },
-  // Boîte vide qui cache le texte de mesure sans gêner la mise en page.
-  measureBox: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: 0,
-    height: 0,
-    overflow: 'hidden',
-  },
-  measureRow: {
-    width: MEASURE_WIDTH,
-    alignItems: 'flex-start',
-  },
-  measure: {
-    opacity: 0,
+  name: {
+    color: AppColors.text,
+    fontFamily: AppFonts.extraBold,
+    fontSize: NAME_SIZE,
   },
 });

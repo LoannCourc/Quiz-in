@@ -10,7 +10,8 @@ import {
   VALIDATION_ESTIMATE_S,
 } from './constants'
 import { hasValidationPhase, revealDurationS } from './gameFlow'
-import type { AnswerMode, Difficulty, DifficultyLevel, QuizGameType, SessionSettings } from './types'
+import { poolOf } from './questionPool'
+import type { AnswerMode, Difficulty, DifficultyLevel, QuizGameType, QuizSummary, SessionSettings } from './types'
 
 // Identifiant de quiz : minuscules, chiffres et tirets (aussi utilisé comme clé dans la base).
 export function isValidQuizId(quizId: string): boolean {
@@ -126,4 +127,17 @@ export function gameAccess(game: string | undefined, switches: GameSwitches): Ga
   const value = switches[game]
   if (value === null) return 'loading'
   return value ? 'open' : 'closed'
+}
+
+// Quiz joué, affiché au salon, sur la TV et à la fin (« Électro des années 80 · Moyen ») : quiz fixe ou blind
+// test seulement ; jamais le Bluff, Dessine-moi ni une partie tirée dans des thèmes ou un mélange.
+export interface PlayedQuizName {
+  title: string
+  level: DifficultyLevel
+}
+
+export function playedQuizName(summary: QuizSummary | null, settings: SessionSettings): PlayedQuizName | null {
+  if (!summary || poolOf(settings)) return null
+  if (summary.gameType !== 'quiz' && summary.gameType !== 'blindTest') return null
+  return { title: summary.title, level: quizLevel(summary) }
 }

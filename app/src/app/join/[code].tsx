@@ -22,6 +22,7 @@ import { useAnswer } from '@/hooks/useAnswer';
 import { useBluff } from '@/hooks/useBluff';
 import { useDraw } from '@/hooks/useDraw';
 import { usePhaseStale } from '@/hooks/usePhaseStale';
+import { usePlayedQuizName } from '@/hooks/usePlayedQuizName';
 import { useIsRemoved } from '@/hooks/useIsRemoved';
 import { usePresence } from '@/hooks/usePresence';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
@@ -163,6 +164,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
   const draw = useDraw(code, uid, state.session);
   const me = players[uid];
   const isPhaseStale = usePhaseStale(state.session, serverOffsetMs);
+  const quizName = usePlayedQuizName(state.session.quizId, state.session.settings);
 
   // Groupe, mode « Ils choisissent » : choix de l'équipe (refusé par les règles hors du lobby).
   async function choose(team: TeamId) {
@@ -220,6 +222,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
         onAnswer={onAnswer}
         bluff={bluff}
         draw={draw}
+        quizName={quizName}
         notice={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : undefined}
       />
     );
@@ -239,6 +242,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
       <PlayerLobby
         uid={uid}
         players={players}
+        quizName={quizName}
         teams={
           state.session.settings.teams
             ? { settings: state.session.settings, onChoose: (team) => void choose(team), error: teamError }

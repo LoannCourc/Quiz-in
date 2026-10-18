@@ -11,9 +11,10 @@ import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
 import type { ReactNode } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
+import { FittedLine } from '@/components/ui/FittedLine';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
-import type { AppBackgroundName } from '@/constants/appTheme';
+import { AppColors, AppFonts, type AppBackgroundName } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDelayPassed } from '@/hooks/useDelayPassed';
@@ -62,6 +63,8 @@ export interface PlayerGameProps {
   bluff?: PlayerBluff | null;
   // Dessine-moi : mot du dessinateur et envoi de son dessin (useDraw) ; absent hors de ce jeu.
   draw?: PlayerDraw | null;
+  // Quiz fixe ou blind test : titre et niveau, en haut de l'écran de fin (jamais pendant les questions).
+  quizName?: string | null;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -101,6 +104,9 @@ function PlayerGameScreen(props: PlayerGameProps) {
         scrollable={!isDrawing}
         wide={isDrawingLandscape}>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
+        {isEndShown && session.status === 'ended' && props.quizName && (
+          <FittedLine text={props.quizName} style={styles.quizName} minSize={QUIZ_NAME_MIN_SIZE} />
+        )}
         {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
       {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
@@ -334,9 +340,18 @@ function renderView(props: PlayerGameProps): ReactNode {
   }
 }
 
+const QUIZ_NAME_SIZE = 16;
+const QUIZ_NAME_MIN_SIZE = 11;
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  quizName: {
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.extraBold,
+    fontSize: QUIZ_NAME_SIZE,
+    textAlign: 'center',
   },
   notice: {
     textAlign: 'center',
