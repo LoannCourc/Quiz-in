@@ -130,6 +130,12 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
 - `ask` : `title` (« Quel est ce titre ? »), `artist` (« Quel artiste ? ») ou `both` ; alterner titre et artiste.
 - `options` : 4 titres ou 4 artistes de la même époque et du même genre ; `acceptedAnswers` contient la bonne.
 - `music` : `artist`, `title`, `startS` (0 à 10), `titleAliases` et `artistAliases` facultatifs.
+- **Caractères** (octobre 2026, refusés par le build) : tout caractère affiché (titre, thème, description, énoncé,
+  propositions, réponse attendue, explication, Bluff, orthographe affichée d'un morceau) doit exister dans
+  toutes les polices des écrans : Bowlby One et Nunito de la TV (`@fontsource`, tous sous-ensembles), du site
+  des joueurs (`app/public/fonts`, latin seulement) et de l'appli (`@expo-google-fonts`). En pratique : alphabet
+  français et ponctuation courante ; pas de ő, ł, ń, ř, ō… ni de lettres décomposées (texte en NFC). Le build
+  donne le quiz, la question, le caractère et les polices qui ne l'ont pas (`content/scripts/fontCoverage.ts`).
 - Un morceau n'apparaît que dans un seul blind test (le build refuse un doublon) ; aucune version explicite.
 - **Variété** (octobre 2026, refusée par le build) : dans un blind test, les 40 propositions ont 40 titres
   différents (précisions entre parenthèses ignorées ; un même titre sous deux noms d'artiste, « Jimi Hendrix »

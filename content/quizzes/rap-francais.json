@@ -106,7 +106,7 @@
       "id": "rap-10",
       "text": "Quel artiste ?",
       "ask": "artist",
-      "options": ["Ballade à deux – Tunisiano", "Squatter les terrasses – James Deano", "Pas d'problèmes – Naza", "Sur ma route – Black M"],
+      "options": ["Ballade à deux – Tunisiano", "Squatter les terrasses – James Deano", "Pas d'problèmes – Naza", "Sur ma route – Black M"],
       "correctIndex": 3,
       "acceptedAnswers": ["Black M"],
       "difficulty": 3,

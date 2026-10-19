@@ -42,6 +42,7 @@ import type {
   QuizSummary,
 } from '../../shared/types'
 import { bluffQuestionErrors, bluffQuestionWarnings, toBluffQuestion } from './bluffContent'
+import { displayedFonts, displayedTexts, fontCodepoints, missingGlyphs } from './fontCoverage'
 import { contentDir, quizzesDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
 
 // Question du fichier source : un blind test donne l'artiste et le titre, pas l'identifiant du morceau.
@@ -466,6 +467,28 @@ function levelCoherenceErrors(): string[] {
   })
 }
 
+// Caractères du contenu affiché absents d'une police de l'écran (TV, site des joueurs, appli) : ils
+// s'afficheraient dans une police de secours (« Ernő » sur la TV). Polices lues dans receiver/ et app/.
+function fontErrors(): string[] {
+  const fonts = displayedFonts().map((font) => {
+    const codepoints = new Set<number>()
+    for (const file of font.files) for (const code of fontCodepoints(file)) codepoints.add(code)
+    return { label: font.label, codepoints, isMissing: font.files.length === 0 }
+  })
+  const missingFonts = fonts.filter((font) => font.isMissing).map((font) => font.label)
+  if (missingFonts.length > 0) {
+    return [`polices introuvables (npm install dans receiver/ et app/) : ${missingFonts.join(', ')}`]
+  }
+  return quizzes.flatMap(({ quiz }) =>
+    displayedTexts(quiz as unknown as Record<string, unknown>).flatMap(({ where, text }) =>
+      missingGlyphs(text, fonts).map(({ char, fonts: lacking }) => {
+        const code = char.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0')
+        return `${quiz.id}/${where} : « ${char} » (U+${code}) absent de ${lacking.join(', ')} — « ${text} »`
+      }),
+    ),
+  )
+}
+
 const allErrors = [
   ...quizzes.flatMap(({ fileName, quiz }) => quizErrors(quiz, fileName).map((error) => `${fileName} : ${error}`)),
   ...featuredRankErrors(),
@@ -473,6 +496,7 @@ const allErrors = [
   ...levelCoherenceErrors(),
   ...blindTestVarietyErrors(),
   ...featuredThemeErrors(),
+  ...fontErrors(),
 ]
 if (allErrors.length > 0) {
   console.error(`Contenu invalide, aucun fichier généré :\n- ${allErrors.join('\n- ')}`)
