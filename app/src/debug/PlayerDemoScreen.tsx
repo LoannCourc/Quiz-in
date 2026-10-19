@@ -15,6 +15,7 @@ import { TransitionSteps } from '@/components/player/game/TransitionSteps';
 import { HostControlsBar } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
+import { PlayerQuitLink } from '@/components/player/PlayerQuitLink';
 import { BigButton } from '@/components/ui/BigButton';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
@@ -76,11 +77,11 @@ function withDemoOptions(session: PublicSession, options: string | undefined): P
 // bouton de démo (captures d'écran) ; &host=1 ajoute la barre des contrôles de l'hôte ; &tv=1 : une
 // TV est présente (Bluff : pas d'énoncé sur le téléphone) ; &streak=4 : série du joueur (badge flamme sur
 // l'écran de résultat à partir de 3, après une bonne réponse) ; &choosing=1 (s=lobby) : l'hôte choisit le prochain jeu ;
-// &quizname=1 : nom du quiz joué (salle d'attente et fin) ; &bluffrules=open|closed (s=lobby) : carte des règles du Bluff ;
+// &quizname=1 : nom du quiz joué (salle d'attente et fin) ; &bluffrules=open|closed (s=lobby) : carte des règles du Bluff ; &quit=1 : lien « Quitter la partie » de l'appli ;
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string; options?: string; quizname?: string; bluffrules?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string; options?: string; quizname?: string; bluffrules?: string; quit?: string }>();
   // &quizname=1 : quiz fixe ou blind test joué (salle d'attente, écran de fin).
   const quizName = params.quizname === '1' ? strings.catalog.playedQuiz('Électro des années 80', strings.catalog.difficultyLevels.medium) : null;
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
@@ -206,6 +207,7 @@ export default function PlayerDemoScreen() {
           bluff={bluff}
           draw={draw}
           quizName={quizName}
+          quitLink={params.quit === '1' ? <PlayerQuitLink code={DEMO_CODE} showOnWeb /> : undefined}
           footer={hostFooter}
         />
       )}

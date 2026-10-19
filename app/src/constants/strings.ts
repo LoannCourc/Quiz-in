@@ -840,6 +840,14 @@ export const strings = {
   },
   game: {
     awaitingHost: 'En attente de l’hôte pour la suite…',
+    // Joueur dans l'appli : quitter la partie depuis un écran d'attente (jamais pendant une question).
+    quit: {
+      link: 'Quitter la partie',
+      title: 'Quitter la partie ?',
+      message: (code: string) => `Tu pourras revenir avec le code ${code}.`,
+      confirm: 'Quitter',
+      cancel: 'Rester',
+    },
     // Site resté ouvert depuis une version plus ancienne que le jeu de la partie.
     outdated: {
       title: 'Nouveau jeu !',

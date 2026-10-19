@@ -65,6 +65,8 @@ export interface PlayerGameProps {
   draw?: PlayerDraw | null;
   // Quiz fixe ou blind test : titre et niveau, en haut de l'écran de fin (jamais pendant les questions).
   quizName?: string | null;
+  // Joueur dans l'appli : lien « Quitter la partie », en pied d'écran sur les écrans d'attente seulement.
+  quitLink?: ReactNode;
 }
 
 // Bonus de rapidité contenu dans les points d'une bonne réponse (option Rapidité seulement).
@@ -100,7 +102,7 @@ function PlayerGameScreen(props: PlayerGameProps) {
       <Screen
         background={background}
         header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
-        footer={props.footer}
+        footer={props.footer ?? (isQuitShown(props) ? props.quitLink : undefined)}
         scrollable={!isDrawing}
         wide={isDrawingLandscape}
         keyboardShowsBottom>
@@ -114,6 +116,23 @@ function PlayerGameScreen(props: PlayerGameProps) {
       {props.overlay}
     </View>
   );
+}
+
+// Écrans où le joueur peut quitter sans rien perdre : attente après sa réponse, validation, révélation,
+// classement, pause et fin ; jamais pendant qu'il répond, écrit, vote ou dessine.
+function isQuitShown({ session, uid, answer, bluff, draw }: PlayerGameProps): boolean {
+  switch (session.status) {
+    case 'validation':
+    case 'reveal':
+    case 'scores':
+    case 'paused':
+    case 'ended':
+      return true;
+    case 'question':
+      return !bluff && !draw && effectiveAnswer(session, uid, answer).kind === 'sent';
+    default:
+      return false;
+  }
 }
 
 // Dessine-moi : le joueur est le dessinateur de la manche en cours (jamais l'hôte, décision D1).

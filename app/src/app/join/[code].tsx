@@ -1,7 +1,7 @@
 import { abandonedGameDeletableAt, isHostAway } from '@shared/hostAbsence';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import type { TeamId } from '@shared/types';
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
 import { PlayerGame } from '@/components/player/game/PlayerGame';
@@ -12,6 +12,7 @@ import { JoinHeader } from '@/components/player/JoinHeader';
 import { JoinTopBar } from '@/components/player/JoinTopBar';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerNotice } from '@/components/player/PlayerNotice';
+import { PlayerQuitLink } from '@/components/player/PlayerQuitLink';
 import { BigButton } from '@/components/ui/BigButton';
 import { GameUnavailable } from '@/components/ui/GameUnavailable';
 import { Screen } from '@/components/ui/Screen';
@@ -154,8 +155,19 @@ interface RegisteredPlayerProps {
   serverOffsetMs: number;
 }
 
-// Joueur déjà inscrit : lobby, modification du profil, ou partie en cours.
-function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps) {
+// Joueur déjà inscrit. Pendant la partie (après le salon), le geste de retour d'iOS est coupé : un glissement
+// du bord de l'écran ne fait plus sortir de la partie ; « Quitter la partie » le remplace.
+function RegisteredPlayer(props: RegisteredPlayerProps) {
+  return (
+    <>
+      <Stack.Screen options={{ gestureEnabled: props.state.status === 'lobby' }} />
+      <RegisteredPlayerContent {...props} />
+    </>
+  );
+}
+
+// Lobby, modification du profil, ou partie en cours.
+function RegisteredPlayerContent({ code, state, serverOffsetMs }: RegisteredPlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [teamError, setTeamError] = useState<string | null>(null);
   const { uid, status, players } = state;
@@ -185,7 +197,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
   const deletableAt = abandonedGameDeletableAt(state.session);
   if (isHostAway(state.session) && deletableAt !== null) {
     return (
-      <WelcomeScreen code={code}>
+      <WelcomeScreen code={code} footer={<PlayerQuitLink code={code} />}>
         <HostAwayNotice deletableAt={deletableAt} serverOffsetMs={serverOffsetMs} />
       </WelcomeScreen>
     );
@@ -195,7 +207,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
   // du chrono bloqué.
   if (isPhaseStale) {
     return (
-      <WelcomeScreen code={code}>
+      <WelcomeScreen code={code} footer={<PlayerQuitLink code={code} />}>
         <WaitingHostNotice />
       </WelcomeScreen>
     );
@@ -204,7 +216,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
   // Changer de jeu : l'écran de fin laisse place au salon d'attente pendant que l'hôte choisit.
   if (status === 'ended' && state.session.nextGameAt != null) {
     return (
-      <WelcomeScreen code={code}>
+      <WelcomeScreen code={code} footer={<PlayerQuitLink code={code} />}>
         <PlayerLobby uid={uid} players={players} message={strings.lobby.choosingNextGame} />
       </WelcomeScreen>
     );
@@ -223,6 +235,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
         bluff={bluff}
         draw={draw}
         quizName={quizName}
+        quitLink={<PlayerQuitLink code={code} />}
         notice={isEditing ? strings.profile.editInterrupted(me.avatar, me.name) : undefined}
       />
     );
