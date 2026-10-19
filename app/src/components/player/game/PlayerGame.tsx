@@ -102,7 +102,8 @@ function PlayerGameScreen(props: PlayerGameProps) {
         header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
         footer={props.footer}
         scrollable={!isDrawing}
-        wide={isDrawingLandscape}>
+        wide={isDrawingLandscape}
+        keyboardShowsBottom>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
         {isEndShown && session.status === 'ended' && props.quizName && (
           <FittedLine text={props.quizName} style={styles.quizName} minSize={QUIZ_NAME_MIN_SIZE} />

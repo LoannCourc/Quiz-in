@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
 
@@ -35,13 +35,27 @@ interface ScreenProps extends BackgroundProps {
   scrollable?: boolean;
   // Toute la largeur de l'écran, sans la colonne centrée (dessinateur en paysage, maquette E2).
   wide?: boolean;
+  // Écrans de saisie (Réponse libre, Bluff, « Ton idée » de Dessine-moi) : clavier ouvert, la zone qui
+  // défile descend jusqu'en bas (champ et bouton « Valider » visibles), aussi quand le contenu grandit.
+  keyboardShowsBottom?: boolean;
 }
+
+// Délai avant de descendre : la zone utile vient d'être réduite par le clavier.
+const SCROLL_TO_BOTTOM_DELAY_MS = 50;
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Clavier ouvert : la zone utile
 // s'arrête au-dessus du clavier (useKeyboardInset), le bas de la colonne (bouton « Valider ») reste visible.
-export function Screen({ children, background, header, footer, scrollable = true, wide = false }: ScreenProps) {
+export function Screen({ children, background, header, footer, scrollable = true, wide = false, keyboardShowsBottom = false }: ScreenProps) {
   const keyboardInset = useKeyboardInset();
   const hasKeyboard = keyboardInset > 0;
+  const scrollRef = useRef<ScrollView>(null);
+  const showsBottom = keyboardShowsBottom && hasKeyboard;
+  const scrollToBottom = () => scrollRef.current?.scrollToEnd({ animated: true });
+  useEffect(() => {
+    if (!showsBottom) return;
+    const timer = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), SCROLL_TO_BOTTOM_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [showsBottom, keyboardInset]);
   const bottomGap = hasKeyboard ? { paddingBottom: KEYBOARD_GAP } : null;
   const column = <View style={[styles.column, !scrollable && styles.fixedColumn, wide && styles.wideColumn]}>{children}</View>;
   return (
@@ -51,7 +65,11 @@ export function Screen({ children, background, header, footer, scrollable = true
         style={[styles.safeArea, hasKeyboard && { paddingBottom: keyboardInset }]}>
         {header && <View style={styles.header}>{header}</View>}
         {scrollable ? (
-          <ScrollView contentContainerStyle={[styles.scrollContent, !footer && bottomGap]} keyboardShouldPersistTaps="handled">
+          <ScrollView
+            ref={scrollRef}
+            contentContainerStyle={[styles.scrollContent, !footer && bottomGap]}
+            keyboardShouldPersistTaps="handled"
+            onContentSizeChange={showsBottom ? scrollToBottom : undefined}>
             {column}
           </ScrollView>
         ) : (
