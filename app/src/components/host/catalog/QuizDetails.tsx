@@ -8,6 +8,7 @@ import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
+import { BluffRulesLink, BluffRulesSheet } from '@/components/ui/BluffRules';
 import { Screen } from '@/components/ui/Screen';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -53,6 +54,7 @@ export function QuizDetails(props: QuizDetailsProps) {
   const { initialSettingsOpen = false, isPlayed = false } = props;
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
+  const [isRulesOpen, setIsRulesOpen] = useState(false);
   const level = quizLevel(quiz);
   const questionCount = poolOf(settings) ? gameQuestionCount(settings) : Math.min(quiz.questionCount, QUESTIONS_PER_GAME);
 
@@ -98,7 +100,9 @@ export function QuizDetails(props: QuizDetailsProps) {
         )}
         {/* Blind test : mention de la source des extraits (aussi à chaque révélation sur la TV). */}
         {quiz.gameType === 'blindTest' && <Text style={styles.credit}>{strings.quizSetup.audioCredit}</Text>}
+        {quiz.gameType === 'bluff' && <BluffRulesLink onPress={() => setIsRulesOpen(true)} />}
       </View>
+      {quiz.gameType === 'bluff' && <BluffRulesSheet isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />}
 
       <GameSettingsSheet
         visible={isSettingsOpen}

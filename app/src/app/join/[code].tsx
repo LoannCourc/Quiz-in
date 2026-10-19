@@ -243,6 +243,7 @@ function RegisteredPlayer({ code, state, serverOffsetMs }: RegisteredPlayerProps
         uid={uid}
         players={players}
         quizName={quizName}
+        bluffRules={state.session.settings.answerMode === 'bluff' ? {} : undefined}
         teams={
           state.session.settings.teams
             ? { settings: state.session.settings, onChoose: (team) => void choose(team), error: teamError }

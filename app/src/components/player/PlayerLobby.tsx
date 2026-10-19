@@ -1,6 +1,7 @@
 import type { PlayerId, SessionSettings, TeamId } from '@shared/types';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { BluffRulesCard } from '@/components/ui/BluffRules';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -21,11 +22,13 @@ interface PlayerLobbyProps {
   message?: string;
   // Quiz fixe ou blind test : son titre et son niveau (« Électro des années 80 · Moyen »).
   quizName?: string | null;
+  // Partie de Bluff : carte des règles (ouverte la première fois sur ce téléphone). Démos : état imposé.
+  bluffRules?: { initiallyOpen?: boolean };
 }
 
 // Lobby du joueur : son avatar en grand et le message principal, rien d'autre (la TV montre déjà
 // les joueurs et les équipes). Le bouton « Modifier mon profil » est fourni à part, en pied d'écran.
-export function PlayerLobby({ uid, players, teams, message = strings.lobby.waiting, quizName }: PlayerLobbyProps) {
+export function PlayerLobby({ uid, players, teams, message = strings.lobby.waiting, quizName, bluffRules }: PlayerLobbyProps) {
   const me = players[uid];
   const joinedTeam = useJoinedTeamNotice(teams ? me?.team : undefined);
   // Groupe, mode « Ils choisissent » : le choix de l'équipe remplace le lobby (maquette G1).
@@ -47,6 +50,7 @@ export function PlayerLobby({ uid, players, teams, message = strings.lobby.waiti
       <Text style={textStyles.hero}>{strings.lobby.inLobbyTitle}</Text>
       <Text style={[textStyles.label, styles.centered]}>{message}</Text>
       {quizName && <FittedLine text={quizName} style={styles.quizName} minSize={QUIZ_NAME_MIN_SIZE} />}
+      {bluffRules && <BluffRulesCard initiallyOpen={bluffRules.initiallyOpen} />}
     </View>
   );
 }

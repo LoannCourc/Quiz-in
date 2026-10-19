@@ -156,6 +156,21 @@ export const strings = {
       openSettings: 'Ouvrir les réglages',
     },
   },
+  // Règles du Bluff (spec 16) : feuille de l'hôte (catalogue, fiche) et carte du salon d'attente des joueurs.
+  bluffRules: {
+    title: 'Comment jouer au Bluff',
+    link: 'Comment jouer ?',
+    lines: [
+      'La question s’affiche sur la TV : invente une fausse réponse crédible (60 s).',
+      'Toutes les fausses réponses sont mélangées avec la vraie.',
+      'Vote pour celle que tu crois vraie (jamais la tienne).',
+      'Vraie réponse trouvée : 1 000 points.',
+      'Chaque joueur piégé par ta fausse réponse : 500 points pour toi.',
+      'Si tu écris la vraie réponse, elle est refusée : invente-en une autre (3 essais).',
+    ],
+    close: 'Fermer',
+    hide: 'Masquer',
+  },
   // « Sur un ordinateur » (maquette « Pas de TV · C ») : lien de l'écran TV de la partie, puis 3 étapes.
   tvComputer: {
     title: 'Sur un ordinateur',

@@ -19,6 +19,7 @@ import { QuestionCountBar } from '@/components/host/catalog/QuestionCountBar';
 import { ThemeChips } from '@/components/host/catalog/ThemeChips';
 import { BackButton } from '@/components/ui/BackButton';
 import { BigButton } from '@/components/ui/BigButton';
+import { BluffRulesLink, BluffRulesSheet } from '@/components/ui/BluffRules';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { ChoiceRow } from '@/components/ui/ChoiceRow';
 import { Screen } from '@/components/ui/Screen';
@@ -52,7 +53,7 @@ export function BluffCatalog({ entries: allEntries, played, onBack, onContinue }
   const [sort, setSort] = useState<BluffSortId>('popular');
   const [mix, setMix] = useState<string[]>([]);
   const [questionCount, setQuestionCount] = useState(BLUFF_QUESTION_COUNTS[0]);
-  const [sheet, setSheet] = useState<'sort' | 'mix' | null>(null);
+  const [sheet, setSheet] = useState<'sort' | 'mix' | 'rules' | null>(null);
   const shown = useMemo(() => bluffList(entries, category, query, sort), [entries, category, query, sort]);
   const summary = mixSummary(entries, mix);
   const available = availableQuestionCounts(BLUFF_QUESTION_COUNTS, summary.questionCount);
@@ -121,6 +122,7 @@ export function BluffCatalog({ entries: allEntries, played, onBack, onContinue }
           <Text style={styles.brand} numberOfLines={1}>
             {texts.title}
           </Text>
+          <BluffRulesLink onPress={() => setSheet('rules')} />
         </View>
         <FlatList
           ListHeaderComponent={listHeader}
@@ -136,6 +138,7 @@ export function BluffCatalog({ entries: allEntries, played, onBack, onContinue }
         />
       </View>
 
+      <BluffRulesSheet isOpen={sheet === 'rules'} onClose={() => setSheet(null)} />
       <BottomSheet isOpen={sheet === 'sort'} onClose={() => setSheet(null)} title={texts.sortTitle}>
         {BLUFF_SORTS.map((choice) => (
           <ChoiceRow key={choice} label={texts.sorts[choice]} isSelected={sort === choice} onPress={() => setSort(choice)} />
