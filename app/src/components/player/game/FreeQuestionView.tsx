@@ -111,7 +111,18 @@ interface AnswerFieldProps {
   maxLength?: number;
   // Bluff : proposition refusée (contour rose, maquette B1).
   isRefused?: boolean;
+  // exact (par défaut) : réponse jugée à la lettre (Réponse libre, Dessine-moi), sans correcteur du clavier ;
+  // sentence : phrase inventée (Bluff), avec correction automatique, majuscule et vérification orthographique.
+  writing?: AnswerWriting;
 }
+
+export type AnswerWriting = 'exact' | 'sentence';
+
+// Réglages du clavier selon ce qu'on écrit.
+const KEYBOARD_SETTINGS = {
+  exact: { autoCorrect: false, autoCapitalize: 'none', spellCheck: false },
+  sentence: { autoCorrect: true, autoCapitalize: 'sentences', spellCheck: true },
+} as const;
 
 // Champ de la maquette S1 : libellé espacé, champ blanc de 60 points, contour cyan de 3 points quand il a
 // le focus (violet sinon), texte de 22, compteur « 8 / 60 » à droite.
@@ -125,6 +136,7 @@ export function AnswerField({
   autoFocus = false,
   maxLength = FREE_ANSWER_MAX_LENGTH,
   isRefused = false,
+  writing = 'exact',
 }: AnswerFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
@@ -142,10 +154,8 @@ export function AnswerField({
           maxLength={maxLength}
           editable={!disabled}
           autoFocus={autoFocus}
-          autoCorrect={false}
-          autoCapitalize="none"
+          {...KEYBOARD_SETTINGS[writing]}
           autoComplete="off"
-          spellCheck={false}
           returnKeyType="send"
           submitBehavior="submit"
           accessibilityLabel={label}

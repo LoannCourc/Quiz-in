@@ -88,6 +88,7 @@ export function BluffWriteView(props: PhaseProps) {
         disabled={isBusy}
         maxLength={BLUFF_MAX_LENGTH}
         isRefused={verdict !== undefined && verdict !== 'ok'}
+        writing="sentence"
         autoFocus
       />
       {verdict !== undefined && verdict !== 'ok' ? (
