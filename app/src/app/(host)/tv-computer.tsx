@@ -6,6 +6,7 @@ import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 
 import { HowToIcon, type HowToIconName } from '@/components/host/lobby/HowToIcon';
 import { BackButton, goBackOrHome } from '@/components/ui/BackButton';
+import { ActionIcon } from '@/components/ui/ActionIcon';
 import { ButtonLabel, BUTTON_LABEL_MAX_FONT_SCALE } from '@/components/ui/ButtonLabel';
 import { Screen } from '@/components/ui/Screen';
 import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/appTheme';
@@ -76,10 +77,12 @@ function TvComputerScreen({ code }: { code: string }) {
           </Text>
           <View style={styles.buttons}>
             <Pressable accessibilityRole="button" onPress={copy} style={({ pressed }) => [styles.button, styles.copy, pressed && styles.pressed]}>
-              <ButtonLabel style={styles.copyLabel}>{copyStatus === 'copied' ? texts.copied : texts.copy}</ButtonLabel>
+              <ActionIcon name="copy" size={ACTION_ICON} color={AppColors.onHighlight} />
+              <ButtonLabel inRow maxLines={1} style={styles.copyLabel}>{copyStatus === 'copied' ? texts.copied : texts.copy}</ButtonLabel>
             </Pressable>
             <Pressable accessibilityRole="button" onPress={send} style={({ pressed }) => [styles.button, styles.send, pressed && styles.pressed]}>
-              <ButtonLabel style={styles.sendLabel}>{texts.send}</ButtonLabel>
+              <ActionIcon name="share" size={ACTION_ICON} color={AppColors.link} />
+              <ButtonLabel inRow maxLines={1} style={styles.sendLabel}>{texts.send}</ButtonLabel>
             </Pressable>
           </View>
           {copyStatus === 'failed' && <Text style={styles.error}>{strings.hostLobby.copyFailed}</Text>}
@@ -108,6 +111,7 @@ const TITLE_SIZE = 24;
 const STEP_DISC = 44;
 const STEP_ICON = 24;
 const BUTTON_HEIGHT = 52;
+const ACTION_ICON = 20;
 
 const styles = StyleSheet.create({
   titleRow: {
@@ -153,10 +157,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Spacing.two,
   },
+  // Icône et texte centrés ensemble dans la pilule.
   button: {
     flex: 1,
     minHeight: BUTTON_HEIGHT,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
+    gap: Spacing.two,
     paddingHorizontal: Spacing.two,
     borderRadius: AppSizes.radiusPill,
   },

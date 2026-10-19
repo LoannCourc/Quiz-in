@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Pressable, Share, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { BottomSheet } from '@/components/ui/BottomSheet';
+import { ActionIcon } from '@/components/ui/ActionIcon';
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { AppColors, AppFonts, AppShadows, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -72,10 +73,12 @@ export function InviteSheet({ code, isOpen, onClose }: InviteSheetProps) {
       </View>
       <View style={styles.buttons}>
         <Pressable accessibilityRole="button" onPress={share} style={({ pressed }) => [styles.button, styles.share, pressed && styles.pressed]}>
-          <ButtonLabel style={styles.shareLabel}>{texts.share}</ButtonLabel>
+          <ActionIcon name="share" size={ICON_SIZE} color={AppColors.onHighlight} />
+          <ButtonLabel inRow maxLines={1} style={styles.shareLabel}>{texts.share}</ButtonLabel>
         </Pressable>
         <Pressable accessibilityRole="button" onPress={copy} style={({ pressed }) => [styles.button, styles.copy, pressed && styles.pressed]}>
-          <ButtonLabel style={styles.copyLabel}>{copyStatus === 'copied' ? strings.hostLobby.copied : texts.copy}</ButtonLabel>
+          <ActionIcon name="copy" size={ICON_SIZE} color={AppColors.link} />
+          <ButtonLabel inRow maxLines={1} style={styles.copyLabel}>{copyStatus === 'copied' ? strings.hostLobby.copied : texts.copy}</ButtonLabel>
         </Pressable>
       </View>
       {copyStatus === 'failed' && <Text style={styles.error}>{strings.hostLobby.copyFailed}</Text>}
@@ -84,6 +87,10 @@ export function InviteSheet({ code, isOpen, onClose }: InviteSheetProps) {
 }
 
 const BUTTON_HEIGHT = 52;
+const ICON_SIZE = 20;
+// « Copier le lien » est bien plus long que « Partager » : plus de place pour lui (une ligne à 320 de large).
+const SHARE_FLEX = 1;
+const COPY_FLEX = 1.4;
 
 const styles = StyleSheet.create({
   intro: {
@@ -106,18 +113,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Spacing.two,
   },
+  // Icône et texte centrés ensemble dans la pilule.
   button: {
     flex: 1,
     minHeight: BUTTON_HEIGHT,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
+    gap: Spacing.one,
     paddingHorizontal: Spacing.two,
     borderRadius: AppSizes.radiusPill,
   },
   share: {
+    flex: SHARE_FLEX,
     backgroundColor: AppColors.highlight,
     boxShadow: AppShadows.hard,
   },
   copy: {
+    flex: COPY_FLEX,
     borderWidth: 2,
     borderColor: AppColors.link,
   },
