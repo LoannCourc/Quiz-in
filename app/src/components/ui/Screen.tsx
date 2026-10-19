@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
 
@@ -38,6 +38,8 @@ interface ScreenProps extends BackgroundProps {
   // Écrans de saisie (Réponse libre, Bluff, « Ton idée » de Dessine-moi) : clavier ouvert, la zone qui
   // défile descend jusqu'en bas (champ et bouton « Valider » visibles), aussi quand le contenu grandit.
   keyboardShowsBottom?: boolean;
+  // Trait au-dessus du pied fixe quand le contenu dépasse : le bas du contenu défile, il n'est pas coupé.
+  footerDivider?: boolean;
 }
 
 // Délai avant de descendre : la zone utile vient d'être réduite par le clavier.
@@ -45,12 +47,19 @@ const SCROLL_TO_BOTTOM_DELAY_MS = 50;
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Clavier ouvert : la zone utile
 // s'arrête au-dessus du clavier (useKeyboardInset), le bas de la colonne (bouton « Valider ») reste visible.
-export function Screen({ children, background, header, footer, scrollable = true, wide = false, keyboardShowsBottom = false }: ScreenProps) {
+export function Screen({ children, background, header, footer, scrollable = true, wide = false, keyboardShowsBottom = false, footerDivider = false }: ScreenProps) {
   const keyboardInset = useKeyboardInset();
   const hasKeyboard = keyboardInset > 0;
   const scrollRef = useRef<ScrollView>(null);
   const showsBottom = keyboardShowsBottom && hasKeyboard;
   const scrollToBottom = () => scrollRef.current?.scrollToEnd({ animated: true });
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const [contentHeight, setContentHeight] = useState(0);
+  const isOverflowing = footerDivider && contentHeight > viewportHeight + 1;
+  function onContentSizeChange(_width: number, height: number) {
+    setContentHeight(height);
+    if (showsBottom) scrollToBottom();
+  }
   useEffect(() => {
     if (!showsBottom) return;
     const timer = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), SCROLL_TO_BOTTOM_DELAY_MS);
@@ -69,13 +78,14 @@ export function Screen({ children, background, header, footer, scrollable = true
             ref={scrollRef}
             contentContainerStyle={[styles.scrollContent, !footer && bottomGap]}
             keyboardShouldPersistTaps="handled"
-            onContentSizeChange={showsBottom ? scrollToBottom : undefined}>
+            onLayout={footerDivider ? (event) => setViewportHeight(event.nativeEvent.layout.height) : undefined}
+            onContentSizeChange={showsBottom || footerDivider ? onContentSizeChange : undefined}>
             {column}
           </ScrollView>
         ) : (
           <View style={[styles.scrollContent, styles.fixedContent, !footer && bottomGap]}>{column}</View>
         )}
-        {footer && <View style={[styles.footer, bottomGap]}>{footer}</View>}
+        {footer && <View style={[styles.footer, isOverflowing && styles.footerDivider, bottomGap]}>{footer}</View>}
       </SafeAreaView>
     </ScreenBackground>
   );
@@ -118,6 +128,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingTop: Spacing.two,
     paddingBottom: Spacing.three,
+  },
+  footerDivider: {
+    borderTopWidth: StyleSheet.hairlineWidth * 2,
+    borderTopColor: AppColors.surface,
   },
   wideColumn: {
     maxWidth: '100%',

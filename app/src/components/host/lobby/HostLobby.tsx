@@ -245,10 +245,10 @@ export function HostLobby(props: HostLobbyProps) {
     }
   }
 
-  // Pied fixe (maquette N2) : la ligne « Réglages », puis ce qui empêche le lancement, puis le bouton.
+  // Pied fixe : ce qui empêche le lancement, puis le bouton. La ligne « Réglages » défile avec le salon (sur
+  // iPhone, dans le pied, elle cachait le bas de « Je joue aussi »).
   const footer = (
     <View style={styles.footer}>
-      <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
       <LaunchHint
         questions={questions}
         hasEnoughPlayers={hasEnoughPlayers}
@@ -285,7 +285,7 @@ export function HostLobby(props: HostLobbyProps) {
   }
 
   return (
-    <Screen footer={footer}>
+    <Screen footer={footer} footerDivider>
       <View style={styles.top}>
         <View style={styles.headerRow}>
           <BackButton />
@@ -332,10 +332,11 @@ export function HostLobby(props: HostLobbyProps) {
           }
         />
       </View>
-      {/* « Je joue aussi » : en bas de la zone qui défile, juste au-dessus de « Réglages » quand la place le
-          permet ; sur un petit écran (iPhone SE), elle défile avec les joueurs au lieu d'agrandir le pied fixe. */}
+      {/* « Je joue aussi » puis « Réglages » : en bas de la zone qui défile quand la place le permet ; sur un
+          petit écran, ils défilent avec les joueurs, jamais cachés par le pied fixe. */}
       <View style={styles.playAlso}>
         <PlayAlsoCard player={hostPlayer} onToggle={togglePlayAlso} onEdit={() => openProfileSheet()} isBusy={isJoiningAsPlayer} />
+        <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
       </View>
       <LobbySettingsSheet
         isOpen={isSettingsOpen}
@@ -491,6 +492,7 @@ const styles = StyleSheet.create({
   playAlso: {
     flexGrow: 1,
     justifyContent: 'flex-end',
+    gap: Spacing.three,
   },
   playersHeader: {
     flexDirection: 'row',
