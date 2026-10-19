@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -13,6 +13,9 @@ interface PlayAlsoCardProps {
 }
 
 const texts = strings.hostLobby.playAlso;
+// Pastille sombre quand l'option est activée : thumbColor suffit sur iOS et Android ; le web (démos, site)
+// prend activeThumbColor (vert sinon), propriété de react-native-web absente des types de React Native.
+const WEB_ACTIVE_THUMB: object = Platform.OS === 'web' ? { activeThumbColor: AppColors.ink } : {};
 
 // « Je joue aussi » (maquette « Salon · Je joue aussi bien visible ») : carte au-dessus de « Réglages »,
 // interrupteur à droite, bordure jaune quand l'hôte joue ; « Tu joues en tant que 🦊 Loann · Modifier ».
@@ -46,6 +49,7 @@ export function PlayAlsoCard({ player, onToggle, onEdit, isBusy = false }: PlayA
           trackColor={{ true: AppColors.accent, false: AppColors.inkSurface }}
           thumbColor={isOn ? AppColors.ink : AppColors.text}
           ios_backgroundColor={AppColors.inkSurface}
+          {...WEB_ACTIVE_THUMB}
         />
       </View>
     </View>
