@@ -38,6 +38,8 @@ import { applyHostAction, launchGame } from '@/lib/hostGame';
 import { markQuestionsPlayed } from '@/lib/playedQuestions';
 import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
+import { loadHostProfile, type HostProfile } from '@/lib/hostProfile';
+import { getJoinRefusal, registerPlayer } from '@/lib/joinGame';
 import { consumeTvRetry } from '@/lib/tvRetry';
 
 import { LobbyCodeHero } from './LobbyCodeHero';
@@ -46,8 +48,10 @@ import { LobbyPlayerGrid } from './LobbyPlayerGrid';
 import { LobbySettingsRow, LobbySettingsSheet } from './LobbySettings';
 import { TeamsPage } from './TeamsPage';
 import { DisplayOptionsSheet, type DisplayOption } from './DisplayOptionsSheet';
+import { HostProfileSheet } from './HostProfileSheet';
 import { InviteSheet } from './InviteSheet';
 import { LocalNetworkSheet } from './LocalNetworkSheet';
+import { PlayAlsoCard } from './PlayAlsoCard';
 import { TvCastPill } from './TvCastPill';
 import { TvConnectedBar } from './TvConnectedBar';
 
@@ -61,6 +65,7 @@ interface HostLobbyProps {
   header?: ReactNode;
   initialDisplayOptionsOpen?: boolean;
   initialInviteOpen?: boolean;
+  initialProfileOpen?: boolean;
   initialTeamsOpen?: boolean;
   initialSettingsOpen?: boolean;
   // Blind test : interrupteur et adresses des extraits (absent : quiz classique, démo).
@@ -81,7 +86,7 @@ const NO_AUDIO: LobbyAudio = { urls: {}, status: 'none', retry: () => undefined,
 // défile s'il le faut (grande police) ; au-delà de 8 joueurs, la grille défile dans sa propre zone.
 export function HostLobby(props: HostLobbyProps) {
   const { code, session, questions, serverOffsetMs, cast, header, initialDisplayOptionsOpen = false, audio = NO_AUDIO, applyUpdate } = props;
-  const { initialTeamsOpen = false, initialSettingsOpen = false, initialInviteOpen = false } = props;
+  const { initialTeamsOpen = false, initialSettingsOpen = false, initialInviteOpen = false, initialProfileOpen = false } = props;
   // L'hôte joue aussi (spec 4.1) : son uid de joueur est celui de l'hôte.
   const uid = session.hostUid;
   const players = session.players;
@@ -110,11 +115,53 @@ export function HostLobby(props: HostLobbyProps) {
     (option: DisplayOption) => (option === 'tvHelp' ? router.push('/tv-help') : router.push({ pathname: '/tv-computer', params: { code } })),
     [code],
   );
+  // « Je joue aussi » : mêmes écritures qu'avant (inscription comme un joueur, hostLeaveUpdate pour
+  // arrêter) ; le prénom et l'avatar gardés sur le téléphone inscrivent l'hôte d'un geste.
+  const hostPlayer = players[uid];
+  const [profileSheet, setProfileSheet] = useState<{ isOpen: boolean; error: string | null }>({ isOpen: initialProfileOpen, error: null });
+  const [storedProfile, setStoredProfile] = useState<HostProfile | null>(null);
+  const [isJoiningAsPlayer, setIsJoiningAsPlayer] = useState(false);
+  useEffect(() => {
+    let isActive = true;
+    loadHostProfile().then((profile) => {
+      if (isActive) setStoredProfile(profile);
+    });
+    return () => {
+      isActive = false;
+    };
+  }, [profileSheet.isOpen]);
+  function openProfileSheet(error: string | null = null) {
+    setProfileSheet({ isOpen: true, error });
+  }
+  async function togglePlayAlso(isOn: boolean) {
+    if (!isOn) {
+      lobbyAction((current) => hostLeaveUpdate(current));
+      return;
+    }
+    const profile = storedProfile ?? (await loadHostProfile());
+    if (!profile) {
+      openProfileSheet();
+      return;
+    }
+    const refusal = getJoinRefusal(session.status, players, uid, profile.name);
+    if (refusal) {
+      openProfileSheet(strings.join.refusals[refusal]);
+      return;
+    }
+    setIsJoiningAsPlayer(true);
+    try {
+      await registerPlayer(code, uid, profile.name, profile.avatar);
+    } catch {
+      openProfileSheet(strings.join.submitFailed);
+    } finally {
+      setIsJoiningAsPlayer(false);
+    }
+  }
   // Feuille « Inviter des joueurs » (QR code et lien des joueurs).
   const [isInviteOpen, setIsInviteOpen] = useState(initialInviteOpen);
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
   const [isTeamsOpen, setIsTeamsOpen] = useState(initialTeamsOpen);
-  const closeTeams = useCallback(() => setIsTeamsOpen(false), []);
+  const closeTeams = useCallback(() => setIsTeamsOpen(false), [setIsTeamsOpen]);
   const [isShortGame, setIsShortGame] = useState(false);
   // Dessine-moi, développement seulement : un seul dessinateur pour toutes les manches.
   const [isSingleDrawer, setIsSingleDrawer] = useState(false);
@@ -266,26 +313,38 @@ export function HostLobby(props: HostLobbyProps) {
         <LobbyPlayerGrid
           players={players}
           hostUid={uid}
+          onEditHost={() => openProfileSheet()}
           onRemove={(playerId, name) =>
             confirmAction(strings.hostLobby.removeConfirm(name), () => lobbyAction((current) => removePlayerUpdate(current, playerId)))
           }
         />
       </View>
+      {/* « Je joue aussi » : en bas de la zone qui défile, juste au-dessus de « Réglages » quand la place le
+          permet ; sur un petit écran (iPhone SE), elle défile avec les joueurs au lieu d'agrandir le pied fixe. */}
+      <View style={styles.playAlso}>
+        <PlayAlsoCard player={hostPlayer} onToggle={togglePlayAlso} onEdit={() => openProfileSheet()} isBusy={isJoiningAsPlayer} />
+      </View>
       <LobbySettingsSheet
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
-        code={code}
         session={session}
         onRounds={(rounds) => lobbyAction((current) => drawRoundsUpdate(current, rounds))}
         onTeamsEnabled={(enabled) => lobbyAction((current) => teamsEnabledUpdate(current, enabled))}
         onOpenTeams={() => setIsTeamsOpen(true)}
-        onHostLeave={() => lobbyAction((current) => hostLeaveUpdate(current))}
         isShortGame={isShortGame}
         onShortGame={setIsShortGame}
         isSingleDrawer={isSingleDrawer}
         onSingleDrawer={setIsSingleDrawer}
       />
       <InviteSheet code={code} isOpen={isInviteOpen} onClose={() => setIsInviteOpen(false)} />
+      <HostProfileSheet
+        code={code}
+        session={session}
+        isOpen={profileSheet.isOpen}
+        onClose={() => setProfileSheet({ isOpen: false, error: null })}
+        initial={hostPlayer ? { name: hostPlayer.name, avatar: hostPlayer.avatar } : storedProfile}
+        initialError={profileSheet.error}
+      />
       <DisplayOptionsSheet
         isOpen={isDisplayOptionsOpen}
         onClose={() => setIsDisplayOptionsOpen(false)}
@@ -402,6 +461,10 @@ const styles = StyleSheet.create({
   },
   players: {
     gap: Spacing.two,
+  },
+  playAlso: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
   },
   playersHeader: {
     flexDirection: 'row',

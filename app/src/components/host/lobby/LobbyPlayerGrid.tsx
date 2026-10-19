@@ -6,6 +6,7 @@ import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import type { LobbyPlayers } from '@/lib/joinGame';
+import { ToolIcon } from '@/components/player/draw/ToolIcon';
 import { MarkIcon } from '@/components/ui/MarkIcon';
 import { PlayerName } from '@/components/ui/PlayerName';
 
@@ -17,6 +18,8 @@ const SCROLL_FROM = 9;
 const SCROLL_ZONE_HEIGHT = 230;
 const REMOVE_SIZE = 22;
 const REMOVE_ICON = 10;
+const EDIT_SIZE = 22;
+const EDIT_ICON = 12;
 
 interface LobbyPlayerGridProps {
   players: LobbyPlayers;
@@ -24,11 +27,13 @@ interface LobbyPlayerGridProps {
   // Exclure un joueur (bouton × sur son avatar ; la confirmation est demandée par l'appelant). Absent :
   // pas de bouton (démos).
   onRemove?: (playerId: PlayerId, name: string) => void;
+  // L'hôte qui joue : toucher son avatar (« Toi », petit crayon) ouvre son prénom et son avatar.
+  onEditHost?: () => void;
 }
 
 // Joueurs du salon de l'hôte (maquette N2) : avatar et pseudo en grille qui revient à la ligne, l'hôte
-// en premier avec son étiquette ; un petit × sur l'avatar de chaque autre joueur pour l'exclure.
-export function LobbyPlayerGrid({ players, hostUid, onRemove }: LobbyPlayerGridProps) {
+// en premier (« Toi ») ; un petit × sur l'avatar de chaque autre joueur pour l'exclure.
+export function LobbyPlayerGrid({ players, hostUid, onRemove, onEditHost }: LobbyPlayerGridProps) {
   const shown = visiblePlayers(players, hostUid);
   if (shown.length === 0) {
     return (
@@ -41,11 +46,14 @@ export function LobbyPlayerGrid({ players, hostUid, onRemove }: LobbyPlayerGridP
   }
   const grid = (
     <View style={styles.grid}>
-      {shown.map((player) => (
+      {shown.map((player) =>
+        player.id === hostUid ? (
+          <HostCell key={player.id} avatar={player.avatar} onEdit={onEditHost} />
+        ) : (
         <View key={player.id} style={styles.cell}>
           <View style={styles.disc}>
             <Text style={styles.avatar}>{player.avatar}</Text>
-            {onRemove && player.id !== hostUid && (
+            {onRemove && (
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={strings.hostLobby.removePlayer(player.name)}
@@ -57,9 +65,9 @@ export function LobbyPlayerGrid({ players, hostUid, onRemove }: LobbyPlayerGridP
             )}
           </View>
           <PlayerName name={player.name} style={styles.name} />
-          {player.id === hostUid && <Text style={styles.badge}>{strings.hostLobby.hostBadge}</Text>}
         </View>
-      ))}
+        ),
+      )}
     </View>
   );
   if (shown.length < SCROLL_FROM) return grid;
@@ -67,6 +75,30 @@ export function LobbyPlayerGrid({ players, hostUid, onRemove }: LobbyPlayerGridP
     <ScrollView style={styles.scrollZone} nestedScrollEnabled persistentScrollbar>
       {grid}
     </ScrollView>
+  );
+}
+
+// L'hôte qui joue, en premier : son avatar avec un petit crayon, et « Toi » en jaune (maquette « Salon de
+// l'hôte (nouveau) »). Le toucher ouvre son profil (prénom et avatar).
+function HostCell({ avatar, onEdit }: { avatar: string; onEdit?: () => void }) {
+  const texts = strings.hostLobby.playAlso;
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={texts.editLabel}
+      disabled={!onEdit}
+      onPress={onEdit}
+      style={({ pressed }) => [styles.cell, pressed && styles.removePressed]}>
+      <View style={styles.disc}>
+        <Text style={styles.avatar}>{avatar}</Text>
+        {onEdit && (
+          <View style={styles.edit}>
+            <ToolIcon name="pen" size={EDIT_ICON} color={AppColors.ink} />
+          </View>
+        )}
+      </View>
+      <Text style={styles.you}>{texts.you}</Text>
+    </Pressable>
   );
 }
 
@@ -132,15 +164,24 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textAlign: 'center',
   },
-  badge: {
-    paddingHorizontal: Spacing.one,
-    borderRadius: 6,
-    overflow: 'hidden',
-    backgroundColor: AppColors.accent,
-    color: AppColors.onAccent,
+  you: {
+    color: AppColors.accent,
     fontFamily: AppFonts.black,
-    fontSize: 10,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
+    fontSize: 13,
+    textAlign: 'center',
+  },
+  // Petit crayon sur le coin bas droit de l'avatar de l'hôte.
+  edit: {
+    position: 'absolute',
+    right: -6,
+    bottom: -4,
+    width: EDIT_SIZE,
+    height: EDIT_SIZE,
+    borderRadius: EDIT_SIZE / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: AppColors.inkSurface,
+    backgroundColor: AppColors.accent,
   },
 });

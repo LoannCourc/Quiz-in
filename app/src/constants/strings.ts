@@ -523,7 +523,6 @@ export const strings = {
     noTvFoundAction: 'Voir l’aide',
     playersTitle: 'Joueurs',
     connectedCount: (count: number) => `${count} connecté${count > 1 ? 's' : ''}`,
-    hostBadge: 'Hôte',
     // Exclure un joueur (bouton × sur son avatar, puis confirmation).
     removePlayer: (name: string) => `Exclure ${name}`,
     removeConfirm: (name: string) => ({
@@ -561,10 +560,27 @@ export const strings = {
     waitingPlayers: 'En attente des joueurs…',
     // Dessine-moi : des manches, pas des questions.
     roundsMeta: (roundCount: number, minutes: number) => `${roundCount} manches · environ ${minutes} min`,
+    // Carte « Je joue aussi » au-dessus de « Réglages », et la feuille du prénom et de l'avatar de l'hôte.
+    playAlso: {
+      title: 'Je joue aussi',
+      hint: 'Tu réponds aux questions depuis ce téléphone.',
+      playingAs: (avatar: string, name: string) => `Tu joues en tant que ${avatar} ${name}`,
+      edit: 'Modifier',
+      you: 'Toi',
+      editLabel: 'Modifier ton prénom et ton avatar',
+      sheetTitle: 'Ton profil de joueur',
+      sheetIntro: 'Ton prénom et ton avatar, comme les autres joueurs.',
+      namePlaceholder: 'Ton prénom',
+      scrollHint: 'Fais défiler pour voir tous les avatars.',
+      joinButton: 'Rejoindre la partie',
+      saveButton: 'Enregistrer',
+      saving: 'Enregistrement…',
+      cancel: 'Annuler',
+    },
     // Ligne « Réglages » et sa feuille.
     settings: {
       title: 'Réglages',
-      summary: 'équipes, je joue aussi',
+      summary: 'équipes',
       playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''}`,
       // Dessine-moi.
       roundsTitle: 'Nombre de manches',
@@ -573,17 +589,6 @@ export const strings = {
       teamsTitle: 'Jouer en équipes',
       teamsHint: 'Le score d’une équipe est la moyenne de ses joueurs.',
       teamsMinPlayers: `Disponible dès ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
-      // « Je joue aussi » (maquette R4, états A, B, C).
-      playTitle: 'Je joue aussi',
-      playHint: 'Tu rejoins la partie avec ton téléphone.',
-      playHintOpen: 'Choisis ton prénom et ton avatar.',
-      namePlaceholder: 'Ton prénom',
-      scrollHint: 'Fais défiler pour voir tous les avatars.',
-      joinButton: 'Rejoindre la partie',
-      joining: 'Connexion…',
-      playing: (name: string) => `Tu joues : ${name}`,
-      playingHint: 'Tu es dans la partie.',
-      leave: 'Quitter',
       // Bloc réservé au développement (absent de l'app publiée).
       devTitle: 'Développement',
       devHint: 'Partie courte, un seul dessinateur. Absent de l’app publiée.',

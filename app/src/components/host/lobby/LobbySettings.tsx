@@ -1,27 +1,23 @@
 import { DRAW_ROUND_CHOICES, drawRoundsOf } from '@shared/drawGame';
-import { MIN_TEAM_GAME_PLAYERS, PLAYER_NAME_MAX_LENGTH } from '@shared/constants';
-import { cleanPlayerName, isValidPlayerName } from '@shared/playerName';
+import { MIN_TEAM_GAME_PLAYERS } from '@shared/constants';
 import { connectedPlayerIds } from '@shared/players';
 import type { Session } from '@shared/types';
 import { useState, type ReactNode } from 'react';
-import { Pressable, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
 import { GameIcon } from '@/components/host/home/GameIcon';
 import { OptionToggle } from '@/components/host/OptionToggle';
 import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
-import { AvatarPicker } from '@/components/player/AvatarPicker';
 import { BottomSheet } from '@/components/ui/BottomSheet';
-import { ButtonLabel } from '@/components/ui/ButtonLabel';
-import { AppColors, AppFonts, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
-import { firstFreeAvatar, getJoinRefusal, registerPlayer } from '@/lib/joinGame';
 
 import { TeamsSummaryRow } from './TeamsSummaryRow';
 
 const texts = strings.hostLobby.settings;
 
-// Ligne unique « Réglages · équipes, je joue aussi › » du salon (maquette N2) : elle ouvre la feuille.
+// Ligne unique « Réglages · équipes › » du salon : elle ouvre la feuille.
 export function LobbySettingsRow({ onPress }: { onPress: () => void }) {
   return (
     <Pressable
@@ -41,15 +37,12 @@ export function LobbySettingsRow({ onPress }: { onPress: () => void }) {
 interface LobbySettingsSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  code: string;
   session: Session;
   // Dessine-moi : nombre de manches (4, 6 ou 8).
   onRounds: (rounds: number) => void;
   // Groupe : activé ou coupé (dès MIN_TEAM_GAME_PLAYERS joueurs) ; page « Équipes ».
   onTeamsEnabled: (enabled: boolean) => void;
   onOpenTeams: () => void;
-  // « Quitter » : l'hôte qui jouait se retire de la partie.
-  onHostLeave: () => void;
   // Développement seulement : partie courte, un seul dessinateur (Dessine-moi).
   isShortGame: boolean;
   onShortGame: (value: boolean) => void;
@@ -57,10 +50,10 @@ interface LobbySettingsSheetProps {
   onSingleDrawer: (value: boolean) => void;
 }
 
-// Feuille « Réglages » du salon (maquette R4) : nombre de manches (Dessine-moi), équipes, « Je joue aussi »
-// (prénom, avatar, « Rejoindre la partie », puis « Tu joues : … » et « Quitter »), bloc Développement.
+// Feuille « Réglages » du salon (maquette R4) : nombre de manches (Dessine-moi), équipes, bloc Développement.
+// « Je joue aussi » est une carte du salon (PlayAlsoCard).
 export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
-  const { isOpen, onClose, code, session, onRounds, onTeamsEnabled, onOpenTeams, onHostLeave } = props;
+  const { isOpen, onClose, session, onRounds, onTeamsEnabled, onOpenTeams } = props;
   const isDraw = session.settings.answerMode === 'draw';
   const isTeams = session.settings.teams;
   const playerCount = Object.keys(session.players).length;
@@ -88,7 +81,6 @@ export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
         right={<Toggle value={isTeams} onChange={onTeamsEnabled} isDisabled={!canTeams} label={texts.teamsTitle} />}>
         {isTeams && <TeamsSummaryRow session={session} onPress={closeThen(onOpenTeams)} />}
       </SettingRow>
-      <HostPlayRow code={code} session={session} onLeave={onHostLeave} />
       {__DEV__ && <DevelopmentBlock {...props} isDraw={isDraw} />}
     </BottomSheet>
   );
@@ -100,25 +92,23 @@ interface SettingRowProps {
   icon: ReactNode;
   title: string;
   hint: string;
-  hintTone?: 'muted' | 'success';
   // À droite du titre : interrupteur, lien, ou rien (contrôle en dessous, dans children si trop large).
   right?: ReactNode;
-  // Sous la ligne : formulaire « Je joue aussi », ligne des équipes. Un contrôle trop large pour la ligne
+  // Sous la ligne : ligne des équipes. Un contrôle trop large pour la ligne
   // (4 / 6 / 8 avec une grande police) passe dessous tout seul.
   children?: ReactNode;
   isDisabled?: boolean;
-  isHighlighted?: boolean;
 }
 
 // Ligne de réglage homogène (maquette R4) : icône ronde, titre, phrase, et l'interrupteur ou le contrôle.
-function SettingRow({ icon, title, hint, hintTone = 'muted', right, children, isDisabled = false, isHighlighted = false }: SettingRowProps) {
+function SettingRow({ icon, title, hint, right, children, isDisabled = false }: SettingRowProps) {
   return (
-    <View style={[styles.card, isHighlighted && styles.highlighted]}>
+    <View style={styles.card}>
       <View style={[styles.row, isDisabled && styles.disabled]}>
         <View style={styles.iconDisc}>{icon}</View>
         <View style={styles.texts}>
           <Text style={styles.rowTitle}>{title}</Text>
-          <Text style={[styles.hint, hintTone === 'success' && styles.success]}>{hint}</Text>
+          <Text style={styles.hint}>{hint}</Text>
         </View>
         {right}
       </View>
@@ -158,99 +148,6 @@ function RoundsPicker({ value, onChange }: { value: number; onChange: (rounds: n
           </Pressable>
         );
       })}
-    </View>
-  );
-}
-
-// « Je joue aussi » : éteint (A), ouvert sur le prénom et l'avatar (B), puis « Tu joues : … » (C).
-function HostPlayRow({ code, session, onLeave }: { code: string; session: Session; onLeave: () => void }) {
-  const uid = session.hostUid;
-  const hostPlayer = session.players[uid];
-  const [isOpen, setIsOpen] = useState(false);
-  if (hostPlayer) {
-    return (
-      <SettingRow
-        icon={<Text style={styles.avatar}>{hostPlayer.avatar}</Text>}
-        title={texts.playing(hostPlayer.name)}
-        hint={texts.playingHint}
-        hintTone="success"
-        right={
-          <Pressable accessibilityRole="button" hitSlop={Spacing.two} onPress={onLeave}>
-            <Text style={styles.link}>{texts.leave}</Text>
-          </Pressable>
-        }
-      />
-    );
-  }
-  return (
-    <SettingRow
-      icon={<SettingsIcon name="person" color={AppColors.accent} />}
-      title={texts.playTitle}
-      hint={isOpen ? texts.playHintOpen : texts.playHint}
-      isHighlighted={isOpen}
-      right={<Toggle value={isOpen} onChange={setIsOpen} label={texts.playTitle} />}>
-      {isOpen && <HostJoinForm code={code} session={session} />}
-    </SettingRow>
-  );
-}
-
-// Prénom, avatars sur une ligne (même jeu et même rendu que les joueurs), « Rejoindre la partie ».
-function HostJoinForm({ code, session }: { code: string; session: Session }) {
-  const uid = session.hostUid;
-  const [rawName, setRawName] = useState('');
-  const [avatar, setAvatar] = useState(() => firstFreeAvatar(session.players));
-  const [error, setError] = useState<string | null>(null);
-  const [isJoining, setIsJoining] = useState(false);
-  const name = cleanPlayerName(rawName);
-  const canJoin = isValidPlayerName(name) && !isJoining;
-
-  async function join() {
-    if (!canJoin) return;
-    const refusal = getJoinRefusal(session.status, session.players, uid, name);
-    if (refusal) {
-      setError(strings.join.refusals[refusal]);
-      return;
-    }
-    setError(null);
-    setIsJoining(true);
-    try {
-      // La feuille passe d'elle-même à « Tu joues : … » quand le joueur apparaît dans la partie.
-      await registerPlayer(code, uid, name, avatar);
-    } catch {
-      setError(strings.join.submitFailed);
-      setIsJoining(false);
-    }
-  }
-
-  return (
-    <View style={styles.joinForm}>
-      <TextInput
-        value={rawName}
-        onChangeText={(text) => {
-          setRawName(text);
-          setError(null);
-        }}
-        onSubmitEditing={join}
-        placeholder={texts.namePlaceholder}
-        placeholderTextColor={AppColors.textMuted}
-        maxLength={PLAYER_NAME_MAX_LENGTH}
-        autoCorrect={false}
-        autoComplete="off"
-        returnKeyType="done"
-        accessibilityLabel={strings.join.nameLabel}
-        style={styles.nameInput}
-      />
-      <AvatarPicker layout="row" selected={avatar} onSelect={setAvatar} fadeColor={AppColors.lobbyPanel} />
-      <Text style={styles.hint}>{texts.scrollHint}</Text>
-      {error && <Text style={styles.error}>{error}</Text>}
-      <Pressable
-        accessibilityRole="button"
-        accessibilityState={{ disabled: !canJoin }}
-        disabled={!canJoin}
-        onPress={join}
-        style={({ pressed }) => [styles.joinButton, !canJoin && styles.disabled, pressed && styles.pressed]}>
-        <ButtonLabel style={styles.joinLabel}>{isJoining ? texts.joining : texts.joinButton}</ButtonLabel>
-      </Pressable>
     </View>
   );
 }
@@ -323,9 +220,6 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     backgroundColor: AppColors.lobbyPanel,
   },
-  highlighted: {
-    borderColor: AppColors.link,
-  },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -343,9 +237,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: AppColors.inkSurface,
   },
-  avatar: {
-    fontSize: 24,
-  },
   texts: {
     flex: 1,
     minWidth: 96,
@@ -361,20 +252,10 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.bold,
     fontSize: 13,
   },
-  success: {
-    color: AppColors.correct,
-  },
   error: {
     color: AppColors.wrong,
     fontFamily: AppFonts.bold,
     fontSize: 14,
-  },
-  link: {
-    ...TEXT_FIT_SAFETY,
-    color: AppColors.link,
-    fontFamily: AppFonts.black,
-    fontSize: 15,
-    textDecorationLine: 'underline',
   },
   rounds: {
     flexDirection: 'row',
@@ -401,32 +282,6 @@ const styles = StyleSheet.create({
   },
   roundLabelSelected: {
     color: AppColors.onAccent,
-  },
-  joinForm: {
-    gap: Spacing.two,
-  },
-  nameInput: {
-    minHeight: 52,
-    paddingHorizontal: Spacing.three,
-    borderRadius: AppSizes.radius,
-    backgroundColor: AppColors.inkSurface,
-    color: AppColors.text,
-    fontFamily: AppFonts.black,
-    fontSize: 18,
-  },
-  joinButton: {
-    minHeight: 52,
-    justifyContent: 'center',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    borderRadius: AppSizes.radiusPill,
-    backgroundColor: AppColors.link,
-    boxShadow: AppShadows.hard,
-  },
-  joinLabel: {
-    color: AppColors.ink,
-    fontFamily: AppFonts.black,
-    fontSize: 17,
   },
   devBlock: {
     gap: Spacing.three,
