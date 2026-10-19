@@ -19,6 +19,7 @@ import { DEMO_CODE } from './playerScenarios';
 // &teams=random|host|players : Groupe (composition des équipes, actions appliquées sur place) ;
 // &drawn=1 : équipes déjà tirées au sort ; &late=3 : 3 joueurs arrivés après le tirage (sans équipe) ; &page=teams : page « Équipes » ouverte ;
 // &display=1 : feuille « Autres façons d'afficher » ouverte ;
+// &tvsearch=searching|none : iOS, pilule « Recherche des TV… » ou feuille « Aucune TV trouvée » ;
 // &settings=1 : feuille « Réglages » ouverte ; &localnetwork=1 : explication du réseau local (iOS) avant la liste des TV ; &invite=1 : feuille « Inviter » ouverte ; &profile=1 : prénom et avatar de l'hôte (« Je joue aussi ») ; &draw=1 : partie de Dessine-moi (à 2 : message du dessinateur unique).
 // Les actions (lancer, s'inscrire) écrivent dans la base : elles échouent ici, c'est attendu.
 
@@ -58,7 +59,7 @@ function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: Te
   };
 }
 
-function demoCast(tv: string | undefined, localNetwork: boolean): CastGame {
+function demoCast(tv: string | undefined, localNetwork: boolean, search: string | undefined): CastGame {
   return {
     isAvailable: tv !== 'unavailable',
     isTvConnected: tv === 'connected',
@@ -66,11 +67,15 @@ function demoCast(tv: string | undefined, localNetwork: boolean): CastGame {
     noTvFound: tv === 'notfound',
     showTvPicker: () => undefined,
     needsLocalNetworkExplanation: localNetwork,
+    isSearchingTv: search === 'searching',
+    isNoTvSheetOpen: search === 'none',
+    closeNoTvSheet: () => undefined,
+    retryOnReturn: () => undefined,
   };
 }
 
 export default function LobbyDemoScreen() {
-  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; teams?: string; drawn?: string; late?: string; page?: string; display?: string; settings?: string; draw?: string; names?: string; localnetwork?: string; invite?: string; profile?: string }>();
+  const params = useLocalSearchParams<{ players?: string; tv?: string; host?: string; teams?: string; drawn?: string; late?: string; page?: string; display?: string; settings?: string; draw?: string; names?: string; localnetwork?: string; invite?: string; profile?: string; tvsearch?: string }>();
   const playerCount = Math.min(20, Math.max(0, Number(params.players ?? 4) || 0));
   const teamMode = isTeamMode(params.teams) ? params.teams : undefined;
   // Session en mémoire : les actions du salon (équipes) s'y appliquent, rien n'est écrit dans la base.
@@ -86,7 +91,7 @@ export default function LobbyDemoScreen() {
       applyUpdate={(build) => setSession((current) => applyLocalUpdate(current, build(current, Date.now())))}
       questions={{ kind: 'ready', questions: [], refs: [] }}
       serverOffsetMs={0}
-      cast={demoCast(params.tv, params.localnetwork === '1')}
+      cast={demoCast(params.tv, params.localnetwork === '1', params.tvsearch)}
       header={<LobbyQuizTitle quiz={DEMO_CATALOG[0]} />}
       initialDisplayOptionsOpen={params.display === '1'}
       initialInviteOpen={params.invite === '1'}

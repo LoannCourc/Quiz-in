@@ -1,12 +1,18 @@
 import { CAST_NAMESPACE, type CastShowGameMessage } from '@shared/cast';
+import { startCastSearch, type CastSearch, type CastSearchDeps } from '@shared/castSearch';
 import { pauseUpdate } from '@shared/hostEngine';
 import type { Session } from '@shared/types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useEffectEvent, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 import GoogleCast, { CastState, useCastChannel, useCastState } from 'react-native-google-cast';
 
 import {
+  castDeviceCount,
   loadLocalNetworkAsked,
+  logCastDiscovery,
   needsExplicitDiscovery,
+  onCastDevicesSeen,
+  restartCastDiscovery,
   saveLocalNetworkAsked,
   startCastDiscovery,
   stopCastDiscovery,
@@ -15,6 +21,23 @@ import { applyHostAction } from '@/lib/hostGame';
 
 // Recherche des TV sans résultat depuis ce délai : le salon propose l'aide « Je ne trouve pas ma TV ».
 const NO_TV_FOUND_DELAY_MS = 8000;
+
+// iOS : minuteries de l'attente des TV (shared/castSearch.ts), lignes [cast] dans la console.
+const CAST_SEARCH_DEPS: CastSearchDeps = {
+  now: () => Date.now(),
+  setTimer: (callback, delayMs) => setTimeout(callback, delayMs),
+  clearTimer: (timer) => clearTimeout(timer as ReturnType<typeof setTimeout>),
+  isForeground: () => AppState.currentState === 'active',
+  deviceCount: castDeviceCount,
+  restart: (reason) => void restartCastDiscovery(reason),
+  log: (message) => console.log(`[cast] ${message}`),
+};
+
+// Attente en cours : son minuteur et l'abonnement à la liste des TV du SDK.
+interface PendingTvSearch {
+  search: CastSearch | null;
+  unsubscribe: () => void;
+}
 
 export interface CastGame {
   // Faux sur le web (site des joueurs) : pas de Cast, l'interface TV est masquée.
@@ -28,6 +51,13 @@ export interface CastGame {
   showTvPicker: () => void;
   // iOS, jamais encore demandé sur ce téléphone : expliquer l'accès au réseau local avant la liste.
   needsLocalNetworkExplanation: boolean;
+  // iOS : recherche des TV avant d'ouvrir la liste (la pilule affiche « Recherche des TV… »).
+  isSearchingTv: boolean;
+  // iOS : aucune TV vue à la fin de l'attente, feuille « Aucune TV trouvée ».
+  isNoTvSheetOpen: boolean;
+  closeNoTvSheet: () => void;
+  // « Ouvrir les réglages » : la recherche reprend, puis la liste s'ouvre, au retour dans l'app.
+  retryOnReturn: () => void;
 }
 
 // Cast de l'hôte (spec 4.1 et 6.6), un seul appel par écran de partie :
@@ -47,6 +77,10 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   const [isLocalNetworkAsked, setIsLocalNetworkAsked] = useState<boolean | null>(needsExplicitDiscovery ? null : true);
   const isTvConnected = channel !== null;
   const isDiscovering = needsExplicitDiscovery && isLocalNetworkAsked === true && session.status === 'lobby' && !isTvConnected;
+  const [isSearchingTv, setIsSearchingTv] = useState(false);
+  const [isNoTvSheetOpen, setIsNoTvSheetOpen] = useState(false);
+  const pendingSearch = useRef<PendingTvSearch | null>(null);
+  const isRetryOnReturn = useRef(false);
 
   // Le message disparaît dès que la partie quitte la pause (reprise, fin).
   if (session.status !== previousStatus) {
@@ -78,12 +112,42 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
     };
   }, []);
 
-  // Arrêtée en quittant le salon (partie lancée, retour à l'accueil) ou dès qu'une TV est connectée.
+  // Arrêtée en quittant le salon (partie lancée, retour à l'accueil) ou dès qu'une TV est connectée ; l'attente
+  // des TV s'arrête avec elle.
+  const cancelSearchOnStop = useEffectEvent(() => cancelTvSearch());
   useEffect(() => {
     if (!isDiscovering) return;
-    void startCastDiscovery();
-    return () => stopCastDiscovery();
+    console.log('[cast] Recherche démarrée (salon)');
+    void startCastDiscovery().then(() => logCastDiscovery('après le démarrage'));
+    return () => {
+      cancelSearchOnStop();
+      stopCastDiscovery();
+    };
   }, [isDiscovering]);
+
+  // iOS : relance à chaque retour au premier plan (fenêtre d'accès au réseau local fermée, retour des
+  // Réglages ou d'une autre app), tant que la recherche doit tourner.
+  const onForeground = useEffectEvent(() => {
+    if (isRetryOnReturn.current) {
+      isRetryOnReturn.current = false;
+      searchThenShowTvPicker('retour des réglages');
+      return;
+    }
+    if (!isDiscovering && !pendingSearch.current) return;
+    void restartCastDiscovery('retour au premier plan');
+    pendingSearch.current?.search?.foreground();
+  });
+  useEffect(() => {
+    if (!needsExplicitDiscovery) return;
+    let previous = AppState.currentState;
+    const subscription = AppState.addEventListener('change', (next) => {
+      console.log(`[cast] App : ${previous} → ${next}`);
+      const isBack = previous !== 'active' && next === 'active';
+      previous = next;
+      if (isBack) onForeground();
+    });
+    return () => subscription.remove();
+  }, []);
 
   useEffect(() => {
     if (!channel) return;
@@ -104,23 +168,78 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
     return () => subscription.remove();
   }, [code]);
 
-  // iOS : la liste n'est remplie que si la recherche tourne ; la lancer ici déclenche, la première fois,
-  // la demande d'accès au réseau local. La liste se met à jour au fil des TV trouvées.
-  function showTvPicker() {
-    if (needsExplicitDiscovery) {
-      setIsLocalNetworkAsked(true);
-      void saveLocalNetworkAsked();
+  function cancelTvSearch() {
+    const pending = pendingSearch.current;
+    if (!pending) return;
+    pendingSearch.current = null;
+    pending.search?.cancel();
+    pending.unsubscribe();
+    setIsSearchingTv(false);
+  }
+
+  // iOS : la liste n'est ouverte qu'une fois une TV vue (shared/castSearch.ts). TV déjà vue : tout de suite,
+  // sans relance. Premier appui : l'effet ci-dessus démarre la recherche, ce qui affiche la demande d'accès
+  // au réseau local ; ensuite, relance à chaque appui.
+  function searchThenShowTvPicker(reason: string) {
+    if (pendingSearch.current) {
+      console.log('[cast] Recherche des TV déjà en cours : appui ignoré');
+      return;
     }
-    startCastDiscovery()
-      .then(() => GoogleCast.showCastDialog())
-      .then((shown) => {
-        if (!shown) console.warn('[cast] Liste des TV non affichée : aucun bouton Cast à l’écran');
-      })
-      .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
+    const isFirst = isLocalNetworkAsked !== true;
+    const pending: PendingTvSearch = { search: null, unsubscribe: () => {} };
+    pendingSearch.current = pending;
+    void castDeviceCount().then((count) => {
+      if (pendingSearch.current !== pending) return;
+      if (count > 0) {
+        console.log(`[cast] ${count} TV déjà vue(s) : liste ouverte sans relance`);
+        pendingSearch.current = null;
+        openCastDialog();
+        return;
+      }
+      if (isFirst) console.log('[cast] Premier appui : la recherche démarre (demande d’accès au réseau local)');
+      else void restartCastDiscovery(reason);
+      setIsSearchingTv(true);
+      pending.search = startCastSearch(CAST_SEARCH_DEPS, (found) => {
+        cancelTvSearch();
+        if (found) openCastDialog();
+        else setIsNoTvSheetOpen(true);
+      });
+      pending.unsubscribe = onCastDevicesSeen((seen) => {
+        console.log(`[cast] TV vues : ${seen}`);
+        pending.search?.devicesSeen(seen);
+      });
+    });
+  }
+
+  // Liste des TV : remplie seulement si la recherche tourne (iOS). Android : ouverte directement, comme avant.
+  function showTvPicker() {
+    if (!needsExplicitDiscovery) {
+      startCastDiscovery()
+        .then(openCastDialog)
+        .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
+      return;
+    }
+    setIsLocalNetworkAsked(true);
+    void saveLocalNetworkAsked();
+    searchThenShowTvPicker('appui');
   }
 
   return { isAvailable: true, isTvConnected, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv,
     showTvPicker,
     needsLocalNetworkExplanation: isLocalNetworkAsked === false,
+    isSearchingTv,
+    isNoTvSheetOpen,
+    closeNoTvSheet: () => setIsNoTvSheetOpen(false),
+    retryOnReturn: () => {
+      isRetryOnReturn.current = true;
+    },
   };
+}
+
+function openCastDialog() {
+  GoogleCast.showCastDialog()
+    .then((shown) => {
+      if (!shown) console.warn('[cast] Liste des TV non affichée : aucun bouton Cast à l’écran');
+    })
+    .catch((error: unknown) => console.warn('[cast] Liste des TV impossible à afficher', error));
 }

@@ -9,15 +9,18 @@ import { Spacing } from '@/constants/theme';
 // « Afficher sur la TV » (spec 4.1) : la pilule ouvre la liste des TV via showCastDialog, qui exige
 // l'icône Cast native à l'écran : elle est donc dans la pilule. Une fois la TV connectée, la barre
 // « TV connectée » (TvConnectedBar) remplace la pilule. onPress : liste des TV, précédée sur iOS de
-// l'explication du réseau local la première fois (HostLobby).
-export function TvCastPill({ onPress }: { onPress: () => void }) {
+// l'explication du réseau local la première fois (HostLobby). iOS : « Recherche des TV… » tant que la liste
+// attend une TV (isSearching), sans nouvel appui possible.
+export function TvCastPill({ onPress, isSearching = false }: { onPress: () => void; isSearching?: boolean }) {
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityState={{ busy: isSearching }}
+      disabled={isSearching}
       onPress={onPress}
-      style={({ pressed }) => [styles.pill, pressed && styles.pressed]}>
+      style={({ pressed }) => [styles.pill, pressed && styles.pressed, isSearching && styles.searching]}>
       <TvCastButton />
-      <ButtonLabel inRow style={styles.label}>{strings.cast.showButton}</ButtonLabel>
+      <ButtonLabel inRow style={styles.label}>{isSearching ? strings.cast.searching : strings.cast.showButton}</ButtonLabel>
       {/* Vide de la largeur de l'icône, à droite : le texte reste centré dans la pilule. */}
       {HAS_CAST_ICON && <View style={styles.iconMirror} />}
     </Pressable>
@@ -42,6 +45,9 @@ const styles = StyleSheet.create({
   pressed: {
     transform: [{ translateY: 4 }],
     boxShadow: AppShadows.pressed,
+  },
+  searching: {
+    opacity: 0.75,
   },
   iconMirror: {
     width: AppSizes.castIconSize,

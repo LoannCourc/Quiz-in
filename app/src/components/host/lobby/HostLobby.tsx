@@ -19,7 +19,7 @@ import { poolOf } from '@shared/questionPool';
 import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { router, useFocusEffect } from 'expo-router';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { SoundQuickAccess } from '@/components/host/settings/SoundQuickAccess';
 import { BackButton } from '@/components/ui/BackButton';
@@ -51,6 +51,7 @@ import { DisplayOptionsSheet, type DisplayOption } from './DisplayOptionsSheet';
 import { HostProfileSheet } from './HostProfileSheet';
 import { InviteSheet } from './InviteSheet';
 import { LocalNetworkSheet } from './LocalNetworkSheet';
+import { NoTvFoundSheet, type NoTvFoundAction } from './NoTvFoundSheet';
 import { PlayAlsoCard } from './PlayAlsoCard';
 import { TvCastPill } from './TvCastPill';
 import { TvConnectedBar } from './TvConnectedBar';
@@ -100,6 +101,18 @@ export function HostLobby(props: HostLobbyProps) {
     if (needsLocalNetworkExplanation) setIsLocalNetworkSheetOpen(true);
     else showTvPicker();
   }, [needsLocalNetworkExplanation, showTvPicker]);
+
+  // iOS, « Aucune TV trouvée » : l'action part une fois la feuille disparue. Réglages : la recherche reprend
+  // au retour dans l'app, puis la liste s'ouvre si une TV est vue.
+  const noTvAction = useRef<NoTvFoundAction | null>(null);
+  function runNoTvAction(action: NoTvFoundAction) {
+    if (action === 'retry') showTvPicker();
+    else if (action === 'help') router.push('/tv-help');
+    else {
+      cast.retryOnReturn();
+      void Linking.openSettings();
+    }
+  }
 
   // Retour de l'aide par « Réessayer » : la liste des TV se rouvre (l'icône Cast native est ici).
   useFocusEffect(
@@ -284,7 +297,7 @@ export function HostLobby(props: HostLobbyProps) {
         ) : (
           <>
             <LobbyCodeHero code={code} />
-            {cast.isAvailable && <TvCastPill onPress={openTvPicker} />}
+            {cast.isAvailable && <TvCastPill onPress={openTvPicker} isSearching={cast.isSearchingTv} />}
             {/* Recherche Cast sans résultat depuis 8 s : le bandeau mène tout droit à l'aide Chromecast. */}
             {cast.noTvFound && (
               <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
@@ -370,6 +383,19 @@ export function HostLobby(props: HostLobbyProps) {
           if (!isTvPickerAfterSheet.current) return;
           isTvPickerAfterSheet.current = false;
           showTvPicker();
+        }}
+      />
+      <NoTvFoundSheet
+        isOpen={cast.isNoTvSheetOpen}
+        onChoose={(action) => {
+          noTvAction.current = action;
+          cast.closeNoTvSheet();
+        }}
+        onClose={cast.closeNoTvSheet}
+        onDismissed={() => {
+          const action = noTvAction.current;
+          noTvAction.current = null;
+          if (action) runNoTvAction(action);
         }}
       />
     </Screen>

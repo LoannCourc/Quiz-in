@@ -652,6 +652,15 @@ export const strings = {
     localNetworkText: 'Pour afficher le jeu sur ta TV, autorise l’accès au réseau local dans la fenêtre qui va s’afficher.',
     localNetworkContinue: 'CONTINUER',
     localNetworkLater: 'Plus tard',
+    // iOS : la pilule pendant l'attente des TV, puis la feuille si aucune TV n'est vue.
+    searching: 'Recherche des TV…',
+    noTvFound: {
+      title: 'Aucune TV trouvée',
+      text: 'Vérifie que le réseau local est activé pour Quiz’in (Réglages → Quiz’in → Réseau local) et que ton téléphone est sur le même Wi-Fi que la TV.',
+      openSettings: 'OUVRIR LES RÉGLAGES',
+      retry: 'Réessayer',
+      help: 'Voir l’aide',
+    },
   },
   // Partie impossible à ouvrir (« Reprendre la partie », lien, code) : hôte et joueurs.
   gameUnavailable: {

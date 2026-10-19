@@ -41,3 +41,43 @@ export function stopCastDiscovery(): void {
     .stopDiscovery()
     .catch((error: unknown) => console.warn('[cast] Recherche des TV impossible à arrêter', error));
 }
+
+// Relance (arrêt puis démarrage) : une recherche lancée avant l'accord d'accès au réseau local ne trouvait
+// jamais rien ensuite (iPhone 16, build 4). Toujours arrêter d'abord : le SDK peut ignorer un démarrage
+// quand la recherche tourne déjà.
+export async function restartCastDiscovery(reason: string): Promise<void> {
+  if (!needsExplicitDiscovery) return;
+  console.log(`[cast] Relance de la recherche (${reason})`);
+  const manager = GoogleCast.getDiscoveryManager();
+  try {
+    await manager.stopDiscovery();
+    await manager.startDiscovery();
+  } catch (error) {
+    console.warn('[cast] Relance de la recherche impossible', error);
+  }
+  void logCastDiscovery(`après la relance (${reason})`);
+}
+
+// Ligne [cast] lue dans la console du build de test : la recherche tourne-t-elle, combien de TV vues.
+export async function logCastDiscovery(context: string): Promise<void> {
+  try {
+    const manager = GoogleCast.getDiscoveryManager();
+    const [isRunning, devices] = await Promise.all([manager.isRunning(), manager.getDevices()]);
+    console.log(`[cast] ${context} : recherche ${isRunning ? 'active' : 'arrêtée'}, ${devices.length} TV vue(s)`);
+  } catch (error) {
+    console.warn('[cast] État de la recherche illisible', error);
+  }
+}
+
+export async function castDeviceCount(): Promise<number> {
+  try {
+    return (await GoogleCast.getDiscoveryManager().getDevices()).length;
+  } catch {
+    return 0;
+  }
+}
+
+export function onCastDevicesSeen(listener: (count: number) => void): () => void {
+  const subscription = GoogleCast.getDiscoveryManager().onDevicesUpdated((devices) => listener(devices.length));
+  return () => subscription.remove();
+}
