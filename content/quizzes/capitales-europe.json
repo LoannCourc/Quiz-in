@@ -158,9 +158,9 @@
       "text": "Quelle est la capitale de la Pologne ?",
       "options": [
         "Cracovie",
-        "Gdańsk",
+        "Gdansk",
         "Varsovie",
-        "Łódź"
+        "Lodz"
       ],
       "correctIndex": 2,
       "acceptedAnswers": [
