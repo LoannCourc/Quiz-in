@@ -1,0 +1,54 @@
+# Nettoyage des parties de plus de 24 h (scripts/cleanup-sessions.mjs).
+# Toutes les heures (suppression réelle) et à la main depuis l'onglet Actions (simulation, sauf case cochée).
+# Clé du compte de service : secret FIREBASE_SERVICE_ACCOUNT. Adresse de la base : variable FIREBASE_DATABASE_URL.
+# Aucun déclencheur sur pull_request ni push : le secret ne sert qu'à ce workflow, depuis la branche par défaut.
+name: Nettoyage des parties
+
+on:
+  schedule:
+    # 17 min après l'heure : le début de chaque heure est la période la plus chargée chez GitHub.
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Supprimer vraiment (sinon simulation)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cleanup-sessions
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: scripts
+    steps:
+      # Actions officielles figées par empreinte de commit (v7.0.1 et v7.1.0) : une étiquette déplacée ne
+      # peut pas faire exécuter un autre code avec le secret.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 22
+      # Fichier de verrouillage écrit par npm 11 : le npm 10 fourni avec Node 22 le refuse.
+      - run: npm install -g npm@11.6.2
+      - run: npm ci --ignore-scripts
+      - name: Nettoyage
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: ${{ vars.FIREBASE_DATABASE_URL }}
+          APPLY: ${{ github.event_name == 'schedule' || inputs.apply }}
+        run: |
+          if [ "$APPLY" = "true" ]; then
+            node cleanup-sessions.mjs --apply
+          else
+            node cleanup-sessions.mjs
+          fi
