@@ -30,18 +30,22 @@ ${LEGAL_TABS.map((tab) => html`<a class="legal-tab" href="${t.paths[tab.id]}"${t
 `)}</nav>`
 }
 
+function legalSections(legal, sections) {
+  return html`<p class="legal-date">${legal.lastUpdate}</p>
+${sections.map((section) => html`<section class="legal-section"><h2>${section.h}</h2><p>${section.p}</p></section>
+`)}`
+}
+
 function legalBody(ctx) {
   const { legal } = ctx.t
   switch (ctx.pageId) {
     case 'privacy':
-      return html`<p class="legal-date">${legal.lastUpdate}</p>
-${legal.privacySections.map((section) => html`<section class="legal-section"><h2>${section.h}</h2><p>${section.p}</p></section>
-`)}`
+      return legalSections(legal, legal.privacySections)
     case 'terms':
-      return html`<p class="legal-date">${legal.lastUpdate}</p>
-<p class="legal-text">${legal.termsText}</p>`
+      return legalSections(legal, legal.termsSections)
     default:
-      return html`<p class="legal-text">${legal.noticeLines.map((line, index) => html`${index > 0 ? html`<br>` : ''}${line}`)}</p>`
+      return legal.noticeParagraphs.map((lines) => html`<p class="legal-text">${lines.map((line, index) => html`${index > 0 ? html`<br>` : ''}${line}`)}</p>
+`)
   }
 }
 

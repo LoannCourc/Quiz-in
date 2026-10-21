@@ -163,7 +163,7 @@
     "privacySections": [
       {
         "h": "Who is responsible?",
-        "p": "Quiz'in is published by [TO FILL IN: publisher name, see the legal notice]. The publisher decides how the data described here is used. Contact: quizinsupport@gmail.com."
+        "p": "Quiz'in is published by HeroCorp (full details in the legal notice). The publisher decides how the data described here is used. Contact: quizinsupport@gmail.com."
       },
       {
         "h": "What we collect",
@@ -210,11 +210,70 @@
         "p": "We may update this policy. The date of the last update is shown at the top of the page."
       }
     ],
-    "termsText": "[TO FILL IN: purpose of the app, free of charge, conduct rules, host responsibility, service availability, applicable law.]",
-    "noticeLines": [
-      "Publisher: [TO FILL IN]",
-      "Publication director: [TO FILL IN]",
-      "Site host: [TO FILL IN]"
+    "termsSections": [
+      {
+        "h": "Purpose",
+        "p": "These terms govern the use of the Quiz'in app and website, published by HeroCorp. By playing, you accept them."
+      },
+      {
+        "h": "The service",
+        "p": "Quiz'in is a quiz and mini-game party game for several players. The host starts the game from the app and shows it on a TV (with a Chromecast) or in a browser; guests join with a QR code or a code from their phone browser. The service is free, with no ads and no in-app purchases. We may change it: new games, new features, changes or removal of some content."
+      },
+      {
+        "h": "Access to the service",
+        "p": "No account is needed. You need an internet connection and, to show the game on a TV, a Chromecast or a Google Cast compatible TV. Equipment, connection and any internet access costs are yours."
+      },
+      {
+        "h": "Rules of conduct",
+        "p": "Choose a name or nickname and make drawings that respect others. Unlawful, abusive, hateful, discriminatory, sexual or violent content is forbidden, as is anything that violates a person's privacy and any attempt to disrupt the service or bypass its protections. The host may remove a player from the game."
+      },
+      {
+        "h": "Role of the host",
+        "p": "The host starts the game, picks the games and decides what is shown on the TV. They only share the code with their guests and remain responsible for how it is used in their home. When children play, an adult must accompany them."
+      },
+      {
+        "h": "Player content",
+        "p": "Your answers, nickname and drawings remain yours. You only allow us to show them to the players and on the TV for the duration of the game. They are deleted with it (see the privacy policy)."
+      },
+      {
+        "h": "Intellectual property",
+        "p": "The questions, design, logo, texts and code of Quiz'in belong to HeroCorp or its partners. You may use them to play, for personal use, but not copy or reuse them otherwise without written permission. Google, Chromecast, Google Cast and Deezer are trademarks of their owners; Quiz'in is neither affiliated with nor endorsed by them."
+      },
+      {
+        "h": "Availability and liability",
+        "p": "The service is provided as is, with no guarantee of continuous access: it may be interrupted for maintenance or in case of failure. Questions and answers may contain errors. To the extent permitted by law, HeroCorp is not liable for indirect damages related to the use of the service. Nothing here limits the rights the law gives you, in particular as a consumer."
+      },
+      {
+        "h": "Personal data",
+        "p": "How we handle your data is explained in the privacy policy."
+      },
+      {
+        "h": "Changes to the terms",
+        "p": "We may change these terms. The date of the last update is shown at the top of the page, and continuing to use Quiz'in after a change means you accept it."
+      },
+      {
+        "h": "Governing law and disputes",
+        "p": "These terms are governed by French law. In case of a dispute, write to us first: we will look for an amicable solution. [TO CHECK: consumer mediator, if the law requires one for HeroCorp.] Failing that, French courts have jurisdiction, without prejudice to the rules that protect consumers."
+      },
+      {
+        "h": "Contact",
+        "p": "quizinsupport@gmail.com"
+      }
+    ],
+    "noticeParagraphs": [
+      [
+        "Publisher: HeroCorp",
+        "Legal form, company number and registered address: [TO FILL IN]",
+        "Phone: [TO FILL IN]",
+        "Publication director: [TO FILL IN]",
+        "Contact: quizinsupport@gmail.com"
+      ],
+      [
+        "Site host: Google LLC (Firebase Hosting), 1600 Amphitheatre Parkway, Mountain View, CA 94043, United States. [TO CHECK: contracting entity named in Firebase's terms]"
+      ],
+      [
+        "Intellectual property: the Quiz'in name, logo, texts, questions and design are the property of HeroCorp. Bowlby One and Nunito fonts, under the SIL Open Font License."
+      ]
     ]
   },
   "soon": {

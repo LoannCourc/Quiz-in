@@ -163,7 +163,7 @@
     "privacySections": [
       {
         "h": "Qui est responsable ?",
-        "p": "Quiz'in est édité par [À COMPLÉTER : nom de l'éditeur, voir les mentions légales]. C'est l'éditeur qui décide de l'usage des données décrit ici. Contact : quizinsupport@gmail.com."
+        "p": "Quiz'in est édité par HeroCorp (coordonnées complètes dans les mentions légales). C'est l'éditeur qui décide de l'usage des données décrit ici. Contact : quizinsupport@gmail.com."
       },
       {
         "h": "Ce que nous collectons",
@@ -210,11 +210,70 @@
         "p": "Nous pouvons mettre à jour cette politique. La date de dernière mise à jour est indiquée en haut de la page."
       }
     ],
-    "termsText": "[À COMPLÉTER : objet de l'application, gratuité, règles de conduite, responsabilité de l'hôte, disponibilité du service, droit applicable.]",
-    "noticeLines": [
-      "Éditeur : [À COMPLÉTER]",
-      "Responsable de la publication : [À COMPLÉTER]",
-      "Hébergeur du site : [À COMPLÉTER]"
+    "termsSections": [
+      {
+        "h": "Objet",
+        "p": "Les présentes conditions encadrent l'utilisation de l'application et du site Quiz'in, édités par HeroCorp. En jouant, tu les acceptes."
+      },
+      {
+        "h": "Le service",
+        "p": "Quiz'in est un jeu de quiz et de mini-jeux à jouer à plusieurs. L'hôte lance la partie depuis l'application et l'affiche sur une TV (avec un Chromecast) ou dans un navigateur ; les invités rejoignent avec un QR code ou un code, depuis le navigateur de leur téléphone. Le service est gratuit, sans publicité ni achat intégré. Nous pouvons le faire évoluer : nouveaux jeux, nouvelles fonctions, changements ou retraits de certains contenus."
+      },
+      {
+        "h": "Accès au service",
+        "p": "Aucun compte n'est nécessaire. Il faut une connexion internet et, pour afficher sur une TV, un Chromecast ou une TV compatible Google Cast. Le matériel, la connexion et les éventuels frais d'accès à internet restent à ta charge."
+      },
+      {
+        "h": "Règles de conduite",
+        "p": "Choisis un prénom ou un pseudo et fais des dessins qui respectent les autres. Sont interdits les contenus illicites, injurieux, haineux, discriminatoires, sexuels ou violents, ceux qui portent atteinte à la vie privée d'une personne, ainsi que toute tentative de perturber le service ou de contourner ses protections. L'hôte peut exclure un joueur de la partie."
+      },
+      {
+        "h": "Rôle de l'hôte",
+        "p": "L'hôte lance la partie, choisit les jeux et décide de ce qui s'affiche sur la TV. Il ne partage le code qu'avec ses invités et reste responsable de l'usage qui en est fait chez lui. Quand des enfants jouent, un adulte doit les accompagner."
+      },
+      {
+        "h": "Contenus des joueurs",
+        "p": "Tes réponses, ton pseudo et tes dessins restent à toi. Tu nous autorises seulement à les afficher aux joueurs et sur la TV le temps de la partie. Ils sont supprimés avec elle (voir la politique de confidentialité)."
+      },
+      {
+        "h": "Propriété intellectuelle",
+        "p": "Les questions, le design, le logo, les textes et le code de Quiz'in appartiennent à HeroCorp ou à ses partenaires. Tu peux les utiliser pour jouer, à titre personnel, mais pas les copier ni les réutiliser autrement sans accord écrit. Google, Chromecast, Google Cast et Deezer sont des marques de leurs titulaires ; Quiz'in n'est ni affilié à elles, ni approuvé par elles."
+      },
+      {
+        "h": "Disponibilité et responsabilité",
+        "p": "Le service est fourni tel quel, sans garantie d'accès continu : il peut être interrompu pour maintenance ou en cas de panne. Les questions et réponses peuvent contenir des erreurs. Dans les limites permises par la loi, HeroCorp n'est pas responsable des dommages indirects liés à l'usage du service. Rien ici ne limite les droits que la loi te reconnaît, notamment comme consommateur."
+      },
+      {
+        "h": "Données personnelles",
+        "p": "La façon dont nous traitons tes données est expliquée dans la politique de confidentialité."
+      },
+      {
+        "h": "Modification des conditions",
+        "p": "Nous pouvons modifier ces conditions. La date de dernière mise à jour est indiquée en haut de la page, et continuer à utiliser Quiz'in après une modification vaut acceptation."
+      },
+      {
+        "h": "Droit applicable et litiges",
+        "p": "Ces conditions sont soumises au droit français. En cas de litige, écris-nous d'abord : nous chercherons une solution à l'amiable. [À VÉRIFIER : médiateur de la consommation, si la loi l'exige pour HeroCorp.] À défaut, les tribunaux français sont compétents, sans préjudice des règles qui protègent les consommateurs."
+      },
+      {
+        "h": "Contact",
+        "p": "quizinsupport@gmail.com"
+      }
+    ],
+    "noticeParagraphs": [
+      [
+        "Éditeur : HeroCorp",
+        "Forme juridique, SIREN/SIRET et adresse du siège : [À COMPLÉTER]",
+        "Téléphone : [À COMPLÉTER]",
+        "Responsable de la publication : [À COMPLÉTER]",
+        "Contact : quizinsupport@gmail.com"
+      ],
+      [
+        "Hébergeur du site : Google LLC (Firebase Hosting), 1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis. [À VÉRIFIER : entité contractuelle indiquée dans les conditions de Firebase]"
+      ],
+      [
+        "Propriété intellectuelle : le nom Quiz'in, le logo, les textes, les questions et le design sont la propriété de HeroCorp. Polices Bowlby One et Nunito, sous licence SIL Open Font License."
+      ]
     ]
   },
   "soon": {
