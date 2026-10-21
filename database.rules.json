@@ -10,10 +10,15 @@
       ".read": "auth != null"
     },
     "sessions": {
+      ".indexOn": ["createdAt"],
       "$code": {
         ".read": "auth != null && data.child('hostUid').val() == auth.uid",
         ".write": "auth != null && (data.exists() ? (data.child('hostUid').val() == auth.uid || (!newData.exists() && data.child('hostLeftAt').isNumber() && now > data.child('hostLeftAt').val() + 300000)) : newData.child('hostUid').val() == auth.uid)",
-        ".validate": "$code.matches(/^[A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9]$/) && newData.hasChildren(['hostUid', 'quizId', 'status'])",
+        ".validate": "$code.matches(/^[A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9][A-HJ-NP-Z2-9]$/) && newData.hasChildren(['hostUid', 'quizId', 'status']) && (!data.child('createdAt').exists() || newData.child('createdAt').exists())",
+
+        "createdAt": {
+          ".validate": "newData.isNumber() && (data.exists() ? newData.val() == data.val() : newData.val() == now)"
+        },
 
         "hostUid": {
           ".read": "auth != null",

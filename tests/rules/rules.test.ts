@@ -1219,6 +1219,84 @@ describe('Hôte absent : hostLeftAt et suppression après délai', () => {
   })
 })
 
+describe('Date de création (createdAt) et nettoyage des parties de plus de 24 h', () => {
+  const DAY_MS = 86_400_000
+  const lobby = (extra: Data = {}) => ({
+    hostUid: HOST,
+    quizId: 'culture-generale-1',
+    status: 'lobby',
+    settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false },
+    currentIndex: 0,
+    phaseStartedAt: SERVER_TIME,
+    phaseEndsAt: 0,
+    ...extra,
+  })
+
+  test('création avec createdAt à l’heure du serveur acceptée', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(lobby({ createdAt: SERVER_TIME })))
+    const createdAt = await readAsAdmin(`${SESSION}/createdAt`)
+    expect(typeof createdAt).toBe('number')
+    expect(Math.abs((createdAt as number) - Date.now())).toBeLessThan(10_000)
+  })
+
+  test('création sans createdAt acceptée (anciennes versions de l’app)', async () => {
+    await assertSucceeds(db(HOST).ref(SESSION).set(lobby()))
+  })
+
+  test('createdAt passé, futur ou qui n’est pas un nombre : refusé à la création', async () => {
+    await assertFails(db(HOST).ref(SESSION).set(lobby({ createdAt: Date.now() - DAY_MS })))
+    await assertFails(db(HOST).ref(SESSION).set(lobby({ createdAt: Date.now() + 60_000 })))
+    await assertFails(db(HOST).ref(SESSION).set(lobby({ createdAt: 'hier' })))
+  })
+
+  test('createdAt impossible à modifier ou à effacer, même par l’hôte', async () => {
+    await seedSession({ createdAt: Date.now() - 60_000 })
+    await assertFails(db(HOST).ref(`${SESSION}/createdAt`).set(SERVER_TIME))
+    await assertFails(db(HOST).ref(`${SESSION}/createdAt`).set(Date.now() - DAY_MS))
+    await assertFails(db(HOST).ref(`${SESSION}/createdAt`).remove())
+    await assertFails(db(HOST).ref(SESSION).update({ createdAt: null }))
+    await assertFails(db(HOST).ref(SESSION).set(session()))
+  })
+
+  test('createdAt jamais lisible par un joueur ni par un inconnu', async () => {
+    await seedSession({ createdAt: Date.now() - 60_000 })
+    await assertFails(db(PLAYER).ref(`${SESSION}/createdAt`).once('value'))
+    await assertFails(db(OTHER).ref(`${SESSION}/createdAt`).once('value'))
+  })
+
+  test('les mises à jour du moteur passent toujours sur une partie qui a createdAt', async () => {
+    await seedSession({ createdAt: Date.now() - 60_000 })
+    const current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(HOST).ref(SESSION).update(endUpdate(current, Date.now()) ?? {}))
+    expect(await readAsAdmin(`${SESSION}/status`)).toBe('ended')
+  })
+
+  test('suppression de toute la partie : permise à l’hôte, refusée à un joueur', async () => {
+    await seedSession({ createdAt: Date.now() - 2 * DAY_MS })
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+    await assertSucceeds(db(HOST).ref(SESSION).remove())
+  })
+
+  // Requête du script de nettoyage (scripts/cleanup-sessions.mjs), qui passe outre les règles : startAt(0)
+  // écarte les parties sans createdAt, classées en premier par la base.
+  test('requête du nettoyage : seulement les parties de plus de 24 h qui ont createdAt', async () => {
+    const now = Date.now()
+    await seed({
+      sessions: {
+        AAAA: session({ createdAt: now - DAY_MS - 3_600_000 }),
+        BBBB: session({ createdAt: now - 3_600_000 }),
+        CCCC: session(),
+      },
+    })
+    let codes: string[] = []
+    await env.withSecurityRulesDisabled(async (context) => {
+      const snapshot = await context.database().ref('sessions').orderByChild('createdAt').startAt(0).endAt(now - DAY_MS).limitToFirst(100).once('value')
+      codes = Object.keys(snapshot.val() ?? {})
+    })
+    expect(codes).toEqual(['AAAA'])
+  })
+})
+
 describe('Réponse libre et Contrôle', () => {
   const FREE_SETTINGS = { answerMode: 'free', speedBonus: true, control: false, teams: false }
   const CONTROL_SETTINGS = { ...FREE_SETTINGS, control: true }
