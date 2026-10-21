@@ -76,28 +76,150 @@
     "stepsTitle": "Prêt en 3 étapes",
     "stepsSub": "Pas de manette, pas de compte à créer.",
     "steps": [
-      { "title": "Choisis un jeu", "text": "L'hôte ouvre Quiz'in, puis choisit un jeu et un thème." },
-      { "title": "Affiche sur la TV", "text": "Il envoie la partie vers la TV avec un Chromecast, ou ouvre le lien sur l'ordinateur relié à la TV." },
-      { "title": "Les invités rejoignent", "text": "Un QR code ou un code à 4 caractères suffit. Ils jouent dans le navigateur de leur téléphone, sans rien installer." }
+      {
+        "title": "Choisis un jeu",
+        "text": "L'hôte ouvre Quiz'in, puis choisit un jeu et un thème."
+      },
+      {
+        "title": "Affiche sur la TV",
+        "text": "Il envoie la partie vers la TV avec un Chromecast, ou ouvre le lien sur l'ordinateur relié à la TV."
+      },
+      {
+        "title": "Les invités rejoignent",
+        "text": "Un QR code ou un code à 4 caractères suffit. Ils jouent dans le navigateur de leur téléphone, sans rien installer."
+      }
     ],
     "gamesTitle": "Les jeux",
     "soonTitle": "D'autres jeux arrivent",
     "soonText": "De nouveaux jeux sont en préparation.",
     "band": [
-      { "badge": "0 €", "title": "Gratuit", "text": "Sans pub, sans achat intégré" },
-      { "badge": "", "title": "Sans compte", "text": "On tape un prénom et on joue" },
-      { "badge": "", "title": "2 à 20 joueurs", "text": "Dès 4, jouez aussi en équipes" }
+      {
+        "badge": "0 €",
+        "title": "Gratuit",
+        "text": "Sans pub, sans achat intégré"
+      },
+      {
+        "badge": "",
+        "title": "Sans compte",
+        "text": "On tape un prénom et on joue"
+      },
+      {
+        "badge": "",
+        "title": "2 à 20 joueurs",
+        "text": "Dès 4, jouez aussi en équipes"
+      }
     ],
     "faqTitle": "Questions fréquentes",
     "faq": [
-      { "q": "Faut-il un Chromecast ?", "a": "Pour afficher sur la TV, oui : un Chromecast ou une TV avec Chromecast intégré. Sinon, ouvre le lien sur un ordinateur relié à la TV." },
-      { "q": "Les invités doivent-ils installer l'application ?", "a": "Non, ils scannent le QR code (ou tapent le code) et jouent dans le navigateur de leur téléphone." },
-      { "q": "Combien ça coûte ?", "a": "Rien : l'application est gratuite, sans publicité ni achat intégré." },
-      { "q": "Faut-il créer un compte ?", "a": "Non, ni pour l'hôte ni pour les joueurs. Un prénom suffit." }
+      {
+        "q": "Faut-il un Chromecast ?",
+        "a": "Pour afficher sur la TV, oui : un Chromecast ou une TV avec Chromecast intégré. Sinon, ouvre le lien sur un ordinateur relié à la TV."
+      },
+      {
+        "q": "Les invités doivent-ils installer l'application ?",
+        "a": "Non, ils scannent le QR code (ou tapent le code) et jouent dans le navigateur de leur téléphone."
+      },
+      {
+        "q": "Combien ça coûte ?",
+        "a": "Rien : l'application est gratuite, sans publicité ni achat intégré."
+      },
+      {
+        "q": "Faut-il créer un compte ?",
+        "a": "Non, ni pour l'hôte ni pour les joueurs. Un prénom suffit."
+      }
     ],
     "faqMore": "Un souci ? Consulte la page",
     "faqMoreLink": "Aide",
     "ctaTitle": "Ce soir, on joue ?"
+  },
+  "help": {
+    "title": "Aide",
+    "sub": "Un souci pour afficher la partie ou pour rejoindre ? Voici les réponses les plus courantes.",
+    "items": [
+      {
+        "q": "Ma TV n'apparaît pas dans la liste",
+        "a": "Vérifie que le téléphone et le Chromecast sont sur le même réseau Wi-Fi (pas un réseau invité), sans VPN. Sur iPhone, vérifie aussi que « Réseau local » est activé pour Quiz'in dans les Réglages, puis relance l'application."
+      },
+      {
+        "q": "Je n'ai pas de Chromecast",
+        "a": "Ouvre le lien d'affichage dans le navigateur d'un ordinateur relié à la TV (câble HDMI) ou de ta Smart TV, puis passe en plein écran."
+      },
+      {
+        "q": "Mes invités n'arrivent pas à rejoindre",
+        "a": "Vérifie qu'ils scannent le QR code affiché, ou qu'ils tapent bien le code à 4 caractères. Un navigateur à jour est nécessaire."
+      },
+      {
+        "q": "Comment jouer en équipes ?",
+        "a": "Dès 4 joueurs, l'option équipes apparaît dans les réglages du salon."
+      }
+    ],
+    "contactTitle": "Toujours bloqué ?",
+    "contactText": "Écris-nous en précisant ton téléphone et ce que tu vois à l'écran."
+  },
+  "legal": {
+    "title": "Informations légales",
+    "lastUpdate": "Dernière mise à jour : [DATE À COMPLÉTER]",
+    "privacySections": [
+      {
+        "h": "Qui est responsable ?",
+        "p": "Quiz'in est édité par [À COMPLÉTER : nom de l'éditeur, voir les mentions légales]. C'est l'éditeur qui décide de l'usage des données décrit ici. Contact : quizinsupport@gmail.com."
+      },
+      {
+        "h": "Ce que nous collectons",
+        "p": "Aucun compte n'est créé. Pour jouer, tu saisis un prénom (ou un pseudo) et tu peux choisir un avatar. Pendant une partie, nous enregistrons aussi le code de la partie, tes réponses, tes scores, tes dessins (dans Dessine-moi) et les réglages choisis par l'hôte. Une connexion anonyme identifie ton appareil le temps du jeu, sans lien avec ton identité. Nous ne demandons ni e-mail, ni numéro de téléphone, ni contacts, ni position, ni photos, ni accès au micro. Un pseudo suffit : évite de saisir ton nom complet."
+      },
+      {
+        "h": "Ce que les autres joueurs voient",
+        "p": "Ton prénom, ton avatar, tes réponses et tes dessins sont visibles par les autres joueurs de la partie et affichés sur la TV. Évite d'y mettre des informations personnelles."
+      },
+      {
+        "h": "À quoi servent ces données",
+        "p": "Uniquement à faire fonctionner la partie : te connecter, afficher les questions, compter les points, montrer les réponses et les dessins. C'est la base légale « exécution du service » (art. 6.1.b du RGPD). Nous nous appuyons aussi sur notre intérêt légitime à protéger le service contre les abus (art. 6.1.f). Il n'y a ni publicité, ni revente de données, ni profilage. [À VÉRIFIER : l'application n'utilise aucun outil de statistiques ni de rapport de plantage ; sinon, le préciser ici.]"
+      },
+      {
+        "h": "Réseau local et diffusion sur la TV",
+        "p": "Pour trouver ta TV, l'application demande sur iPhone l'accès au « réseau local ». Il sert uniquement à repérer les appareils Chromecast de ton Wi-Fi : aucune donnée n'est collectée par ce biais. La diffusion sur la TV passe par Google Cast, un service de Google."
+      },
+      {
+        "h": "Prestataires",
+        "p": "Nous faisons appel à Google (Firebase : connexion anonyme, base de données en temps réel et hébergement des pages ; Google Cast pour la diffusion). Si le Blind test est activé, les extraits musicaux sont fournis par Deezer, qui peut recevoir ton adresse IP lors de la lecture. Apple et Google distribuent l'application et appliquent leurs propres règles. Nous ne vendons aucune donnée."
+      },
+      {
+        "h": "Où sont stockées les données",
+        "p": "Les données de partie sont stockées sur les serveurs de Google (Firebase Realtime Database), dans la région [À VÉRIFIER : région de la base, par exemple Belgique ou États-Unis]. Les pages du site et du jeu sont servies par le réseau de Google (Firebase Hosting), situé dans plusieurs pays. Nous n'avons pas de serveur à nous. Lorsque des données sont traitées hors de l'Union européenne, c'est encadré par les clauses contractuelles types de Google ou par le cadre UE–États-Unis de protection des données (Data Privacy Framework). Sur ton téléphone, l'application garde seulement quelques réglages locaux [À VÉRIFIER : liste, par exemple prénom mémorisé et son] ; ils disparaissent quand tu désinstalles l'application."
+      },
+      {
+        "h": "Combien de temps nous les gardons",
+        "p": "Les parties sont temporaires : [À VÉRIFIER : durée et mécanisme de suppression, par exemple suppression automatique 24 heures après la fin de la partie]. L'identifiant anonyme est conservé [À VÉRIFIER : durée]. Quand tu quittes une partie ou que tu désinstalles l'application, il ne reste rien de plus sur ton téléphone."
+      },
+      {
+        "h": "Enfants",
+        "p": "Quiz'in est fait pour jouer en famille. L'application ne crée aucun compte et ne montre aucune publicité. Nous conseillons aux parents d'accompagner les plus jeunes et de choisir un pseudo plutôt qu'un nom complet."
+      },
+      {
+        "h": "Sécurité",
+        "p": "Les échanges avec les serveurs sont chiffrés (HTTPS) et l'accès à la base de données est limité par des règles de sécurité. Aucun système n'est parfait : en cas de problème, écris-nous."
+      },
+      {
+        "h": "Tes droits",
+        "p": "Tu peux demander l'accès à tes données, leur rectification, leur effacement, la limitation de leur traitement, ou t'opposer à leur traitement (RGPD, art. 15 à 21). Tu peux aussi retirer à tout moment un consentement donné. Écris-nous à quizinsupport@gmail.com : nous répondons sous un mois, gratuitement. Comme il n'y a pas de compte, nous ne pouvons te retrouver que si tu nous aides : indique le code de la partie, le prénom utilisé, la date et ton type de téléphone. Si nous ne pouvons pas t'identifier avec certitude, nous ne pourrons pas donner suite, pour ne pas communiquer les données de quelqu'un d'autre. Si tu estimes que tes droits ne sont pas respectés, tu peux saisir la CNIL (cnil.fr, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07)."
+      },
+      {
+        "h": "Modifications",
+        "p": "Nous pouvons mettre à jour cette politique. La date de dernière mise à jour est indiquée en haut de la page."
+      }
+    ],
+    "termsText": "[À COMPLÉTER : objet de l'application, gratuité, règles de conduite, responsabilité de l'hôte, disponibilité du service, droit applicable.]",
+    "noticeLines": [
+      "Éditeur : [À COMPLÉTER]",
+      "Responsable de la publication : [À COMPLÉTER]",
+      "Hébergeur du site : [À COMPLÉTER]"
+    ]
+  },
+  "soon": {
+    "title": "Bientôt disponible",
+    "text": "Quiz'in arrive bientôt sur Google Play et sur l'App Store. En attendant, une question ? Écris-nous :",
+    "back": "Retour à l'accueil"
   },
   "notFound": {
     "title": "Page introuvable",

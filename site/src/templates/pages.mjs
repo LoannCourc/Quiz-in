@@ -1,26 +1,20 @@
 import { homeMain } from './home.mjs'
 import { html } from './html.mjs'
 import { layout } from './layout.mjs'
+import { helpMain, legalMain, soonMain } from './textPages.mjs'
 
-function stub(pageId) {
-  return (ctx) => {
-    const meta = ctx.t.meta[pageId]
-    return layout(ctx, meta, html`<section class="page-narrow wrap"><h1 class="page-title">${meta.title}</h1></section>`)
-  }
+function page(main, options) {
+  return (ctx) => layout(ctx, ctx.t.meta[ctx.pageId], main(ctx), options?.(ctx))
 }
 
 // Pages produites dans chaque langue ; l'adresse de chacune est dans le fichier de langue (paths).
-function home(ctx) {
-  return layout(ctx, ctx.t.meta.home, homeMain(ctx), { stylesheets: [ctx.gamesCssUrl] })
-}
-
 export const PAGES = [
-  { id: 'home', render: home },
-  { id: 'help', render: stub('help') },
-  { id: 'privacy', render: stub('privacy') },
-  { id: 'terms', render: stub('terms') },
-  { id: 'notice', render: stub('notice') },
-  { id: 'soon', render: stub('soon') },
+  { id: 'home', render: page(homeMain, (ctx) => ({ stylesheets: [ctx.gamesCssUrl] })) },
+  { id: 'help', render: page(helpMain) },
+  { id: 'privacy', render: page(legalMain) },
+  { id: 'terms', render: page(legalMain) },
+  { id: 'notice', render: page(legalMain) },
+  { id: 'soon', render: page(soonMain) },
 ]
 
 // Une seule page 404 (Firebase n'en sert qu'une) : un bloc par langue, la langue par défaut d'abord.
