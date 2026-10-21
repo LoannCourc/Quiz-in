@@ -10,6 +10,7 @@ import { SubmitButton } from '@/components/ui/SubmitButton';
 import { AppColors, AppFonts, AppSizes } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useKeyboardInset } from '@/hooks/useKeyboardInset';
 import { saveHostProfile, type HostProfile } from '@/lib/hostProfile';
 import { firstFreeAvatar, getJoinRefusal, registerPlayer, updateProfile } from '@/lib/joinGame';
 
@@ -41,6 +42,8 @@ function OpenSheet({ code, session, onClose, initial, initialError = null }: Omi
   const [avatar, setAvatar] = useState(() => initial?.avatar ?? firstFreeAvatar(session.players));
   const [error, setError] = useState<string | null>(initialError);
   const [isSaving, setIsSaving] = useState(false);
+  // Clavier ouvert : la phrase d'introduction laisse sa place au champ (petit écran, grande police).
+  const isTyping = useKeyboardInset() > 0;
   const name = cleanPlayerName(rawName);
   const canSave = isValidPlayerName(name) && !isSaving;
 
@@ -72,7 +75,7 @@ function OpenSheet({ code, session, onClose, initial, initialError = null }: Omi
       onClose={onClose}
       title={texts.sheetTitle}
       footer={<SubmitButton label={label} onPress={save} disabled={!canSave} />}>
-      <Text style={styles.intro}>{texts.sheetIntro}</Text>
+      {!isTyping && <Text style={styles.intro}>{texts.sheetIntro}</Text>}
       <TextInput
         value={rawName}
         onChangeText={(text) => {

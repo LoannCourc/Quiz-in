@@ -5,6 +5,7 @@ import { BigButton } from '@/components/ui/BigButton';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useKeyboardInset } from '@/hooks/useKeyboardInset';
 
 interface BottomSheetProps {
   isOpen: boolean;
@@ -26,28 +27,33 @@ interface BottomSheetProps {
 // Feuille du bas, par-dessus l'écran (salon de l'hôte : son, réglages) : poignée, en-tête facultatif, contenu
 // qui défile (petit écran, grande police), « Terminé » jaune. Appui en dehors, bouton retour d'Android ou
 // « Terminé » : fermeture.
+// Clavier ouvert (prénom de « Je joue aussi ») : la fenêtre ne rétrécit pas (Modal, bord à bord), la feuille
+// est posée dans la zone au-dessus du clavier et raccourcit avec elle ; en-tête et bas restent visibles, le milieu défile.
 export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, onDismissed, children }: BottomSheetProps) {
+  const keyboardInset = useKeyboardInset();
   return (
     <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose} onDismiss={onDismissed}>
-      <View style={styles.overlay}>
+      <View style={[styles.overlay, { paddingBottom: keyboardInset }]}>
         <Pressable accessibilityRole="button" accessibilityLabel={strings.quizSetup.settingsDone} style={styles.backdrop} onPress={onClose} />
-        <View style={styles.sheet}>
-          <View style={styles.handle} />
-          {header}
-          {title && (
-            <View style={styles.header}>
-              <Text style={styles.title}>{title}</Text>
-              {action ? (
-                <Pressable accessibilityRole="button" onPress={action.onPress} hitSlop={Spacing.three} style={styles.action}>
-                  <Text style={styles.actionLabel}>{action.label}</Text>
-                </Pressable>
-              ) : (
-                aside && <Text style={styles.aside}>{aside}</Text>
-              )}
-            </View>
-          )}
-          <ScrollView contentContainerStyle={styles.content}>{children}</ScrollView>
-          {footer ?? <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />}
+        <View style={styles.aboveKeyboard}>
+          <View style={styles.sheet}>
+            <View style={styles.handle} />
+            {header}
+            {title && (
+              <View style={styles.header}>
+                <Text style={styles.title}>{title}</Text>
+                {action ? (
+                  <Pressable accessibilityRole="button" onPress={action.onPress} hitSlop={Spacing.three} style={styles.action}>
+                    <Text style={styles.actionLabel}>{action.label}</Text>
+                  </Pressable>
+                ) : (
+                  aside && <Text style={styles.aside}>{aside}</Text>
+                )}
+              </View>
+            )}
+            <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">{children}</ScrollView>
+            {footer ?? <BigButton label={strings.quizSetup.settingsDone} onPress={onClose} />}
+          </View>
         </View>
       </View>
     </Modal>
@@ -66,6 +72,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     inset: 0,
     backgroundColor: AppColors.backdrop,
+  },
+  // Zone visible au-dessus du clavier : la hauteur maximale de la feuille se mesure sur elle. Transparente
+  // au toucher : un appui au-dessus de la feuille atteint le fond qui ferme.
+  aboveKeyboard: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    pointerEvents: 'box-none',
   },
   sheet: {
     width: '100%',

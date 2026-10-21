@@ -1,7 +1,7 @@
 import { PLAYER_NAME_MAX_LENGTH, PRIVACY_URL } from '@shared/constants';
 import { cleanPlayerName, isValidPlayerName } from '@shared/playerName';
 import type { GameStatus, PlayerId } from '@shared/types';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { strings } from '@/constants/strings';
@@ -11,6 +11,7 @@ import { firstFreeAvatar, getJoinRefusal, registerPlayer, rememberedProfile, upd
 
 import { AvatarPicker } from './AvatarPicker';
 import { BigButton } from '@/components/ui/BigButton';
+import { useKeepFieldVisible } from '@/components/ui/Screen';
 import { SubmitButton } from '@/components/ui/SubmitButton';
 import { textStyles } from '@/components/ui/textStyles';
 
@@ -33,6 +34,8 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isNameFocused, setIsNameFocused] = useState(false);
+  const nameRef = useRef<TextInput>(null);
+  const keepFieldVisible = useKeepFieldVisible(nameRef);
 
   const name = cleanPlayerName(rawName);
   const canSubmit = isValidPlayerName(name) && !isSubmitting;
@@ -69,13 +72,17 @@ export function JoinForm({ code, uid, status, players, edit }: JoinFormProps) {
       <View style={styles.field}>
         <Text style={styles.label}>{strings.join.nameLabel}</Text>
         <TextInput
+          ref={nameRef}
           value={rawName}
           onChangeText={(text) => {
             setRawName(text);
             setError(null);
           }}
           onSubmitEditing={submit}
-          onFocus={() => setIsNameFocused(true)}
+          onFocus={() => {
+            setIsNameFocused(true);
+            keepFieldVisible();
+          }}
           onBlur={() => setIsNameFocused(false)}
           placeholder={strings.join.namePlaceholder}
           placeholderTextColor={AppColors.textMuted}
