@@ -54,6 +54,19 @@ function gamesCss(games) {
     .join('')
 }
 
+// Date de mise à jour des pages légales : null tant qu'elle n'est pas fixée (compte alors comme un marqueur à
+// compléter), sinon une vraie date AAAA-MM-JJ.
+function legalDateMarkers(config) {
+  const date = config.legalUpdated
+  if (date === null) return [{ file: 'config.json', key: 'legalUpdated', marker: '[DATE À COMPLÉTER]' }]
+  const isDate = typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)
+  const parsed = isDate ? new Date(`${date}T00:00:00Z`) : null
+  if (!parsed || Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) {
+    throw new Error(`config.json : legalUpdated doit être null ou une date AAAA-MM-JJ (reçu ${JSON.stringify(date)}).`)
+  }
+  return []
+}
+
 function hashOf(content) {
   return createHash('sha256').update(content).digest('hex').slice(0, 10)
 }
@@ -124,7 +137,10 @@ export function renderSite() {
   const { config, dicts, games } = loadSources()
   const errors = gameErrors(config, games)
   if (errors.length > 0) throw new Error(errors.join('\n'))
-  const markers = config.languages.flatMap((code) => findMarkers(dicts[code]).map((found) => ({ ...found, file: `i18n/${code}.json` })))
+  const markers = [
+    ...legalDateMarkers(config),
+    ...config.languages.flatMap((code) => findMarkers(dicts[code]).map((found) => ({ ...found, file: `i18n/${code}.json` }))),
+  ]
   if (config.indexable && markers.length > 0) {
     throw new Error(`Site indexable avec ${markers.length} marqueur(s) à compléter : lance npm run check pour la liste.`)
   }

@@ -159,11 +159,12 @@
   },
   "legal": {
     "title": "Legal information",
-    "lastUpdate": "Last updated: [DATE TO FILL IN]",
+    "lastUpdateLabel": "Last updated:",
+    "dateMissing": "DATE TO FILL IN",
     "privacySections": [
       {
         "h": "Who is responsible?",
-        "p": "Quiz'in is published by HeroCorp (full details in the legal notice). The publisher decides how the data described here is used. Contact: quizinsupport@gmail.com."
+        "p": "Quiz'in is published by Loann Courcoul, under the name HeroCorp (see the legal notice). The publisher decides how the data described here is used. Contact: quizinsupport@gmail.com."
       },
       {
         "h": "What we collect",
@@ -191,7 +192,7 @@
       },
       {
         "h": "How long we keep it",
-        "p": "When the host leaves a game, it is deleted with all its content, drawings included. An abandoned game is deleted once the host has been away for more than 5 minutes, as long as a device in the game is still connected. [TO CHECK: in addition, automatic cleanup of any game older than 24 hours, to be set up before release.] The anonymous account holds neither your name nor your email, only a random identifier: Firebase keeps it until we delete it. On your device, it stays until you clear the app's data. You can ask us to delete it (see \"Your rights\")."
+        "p": "When the host leaves a game, it is deleted with all its content, drawings included. An abandoned game is deleted once the host has been away for more than 5 minutes, as long as a device in the game is still connected. In addition, an automatic cleanup deletes games older than about 24 hours. [TO CHECK: cleanup not yet in service.] The anonymous account holds neither your name nor your email, only a random identifier: Firebase keeps it until we delete it. On your device, it stays until you clear the app's data. You can ask us to delete it (see \"Your rights\")."
       },
       {
         "h": "Children",
@@ -213,7 +214,7 @@
     "termsSections": [
       {
         "h": "Purpose",
-        "p": "These terms govern the use of the Quiz'in app and website, published by HeroCorp. By playing, you accept them."
+        "p": "These terms govern the use of the Quiz'in app and website, published by Loann Courcoul under the name HeroCorp. By playing, you accept them."
       },
       {
         "h": "The service",
@@ -237,11 +238,11 @@
       },
       {
         "h": "Intellectual property",
-        "p": "The questions, design, logo, texts and code of Quiz'in belong to HeroCorp or its partners. You may use them to play, for personal use, but not copy or reuse them otherwise without written permission. Google, Chromecast, Google Cast and Deezer are trademarks of their owners; Quiz'in is neither affiliated with nor endorsed by them."
+        "p": "The questions, design, logo, texts and code of Quiz'in belong to the publisher or its partners. You may use them to play, for personal use, but not copy or reuse them otherwise without written permission. Google, Chromecast, Google Cast and Deezer are trademarks of their owners; Quiz'in is neither affiliated with nor endorsed by them."
       },
       {
         "h": "Availability and liability",
-        "p": "The service is provided as is, with no guarantee of continuous access: it may be interrupted for maintenance or in case of failure. Questions and answers may contain errors. To the extent permitted by law, HeroCorp is not liable for indirect damages related to the use of the service. Nothing here limits the rights the law gives you, in particular as a consumer."
+        "p": "The service is provided as is, with no guarantee of continuous access: it may be interrupted for maintenance or in case of failure. Questions and answers may contain errors. To the extent permitted by law, the publisher is not liable for indirect damages related to the use of the service. Nothing here limits the rights the law gives you, in particular as a consumer."
       },
       {
         "h": "Personal data",
@@ -253,7 +254,7 @@
       },
       {
         "h": "Governing law and disputes",
-        "p": "These terms are governed by French law. In case of a dispute, write to us first: we will look for an amicable solution. [TO CHECK: consumer mediator, if the law requires one for HeroCorp.] Failing that, French courts have jurisdiction, without prejudice to the rules that protect consumers."
+        "p": "These terms are governed by French law. In case of a dispute, write to us first: we will look for an amicable solution. Failing that, French courts have jurisdiction, without prejudice to the rules that protect consumers."
       },
       {
         "h": "Contact",
@@ -262,17 +263,15 @@
     ],
     "noticeParagraphs": [
       [
-        "Publisher: HeroCorp",
-        "Legal form, company number and registered address: [TO FILL IN]",
-        "Phone: [TO FILL IN]",
-        "Publication director: [TO FILL IN]",
+        "Publisher: Loann Courcoul, as a private individual and not as a business, under the name HeroCorp.",
+        "Publication director: Loann Courcoul.",
         "Contact: quizinsupport@gmail.com"
       ],
       [
         "Site host: Google LLC (Firebase Hosting), 1600 Amphitheatre Parkway, Mountain View, CA 94043, United States. [TO CHECK: contracting entity named in Firebase's terms]"
       ],
       [
-        "Intellectual property: the Quiz'in name, logo, texts, questions and design are the property of HeroCorp. Bowlby One and Nunito fonts, under the SIL Open Font License."
+        "Intellectual property: the Quiz'in name, logo, texts, questions and design are the property of the publisher. Bowlby One and Nunito fonts, under the SIL Open Font License."
       ]
     ]
   },

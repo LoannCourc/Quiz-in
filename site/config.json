@@ -1,6 +1,7 @@
 {
   "siteUrl": "https://quizin-site.web.app",
   "indexable": false,
+  "legalUpdated": null,
   "languages": ["fr", "en"],
   "defaultLanguage": "fr",
   "fallbackLanguage": "en",

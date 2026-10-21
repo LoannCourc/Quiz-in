@@ -33,6 +33,9 @@ dépendance npm : un script Node génère les pages HTML.
 - **Liens des stores** : `storeLinks.googlePlay` et `storeLinks.appStore`. Tant qu'ils valent `null`, les boutons
   disent « Bientôt sur » et mènent à `/bientot`. À la publication : mettre les liens et remplacer les boutons par les
   badges officiels de Google et d'Apple.
+- **Date de mise à jour des pages légales** : `legalUpdated` dans `config.json` (`"2026-11-03"` → « 3 novembre 2026 »
+  et « November 3, 2026 » sur les trois pages). Tant qu'elle vaut `null`, les pages affichent `[DATE À COMPLÉTER]` et
+  le build la compte comme un marqueur.
 - **Textes légaux** : dans `legal` des fichiers de langue. Les marqueurs `[À COMPLÉTER]`, `[À VÉRIFIER]`, `[TO FILL IN]`,
   `[TO CHECK]` et `[DATE …]` sont listés par `npm run check`.
 

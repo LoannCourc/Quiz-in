@@ -30,19 +30,28 @@ ${LEGAL_TABS.map((tab) => html`<a class="legal-tab" href="${t.paths[tab.id]}"${t
 `)}</nav>`
 }
 
-function legalSections(legal, sections) {
-  return html`<p class="legal-date">${legal.lastUpdate}</p>
-${sections.map((section) => html`<section class="legal-section"><h2>${section.h}</h2><p>${section.p}</p></section>
-`)}`
+// Date de config.legalUpdated (AAAA-MM-JJ) écrite dans la langue de la page, ou marqueur tant qu'elle manque.
+function legalDate(ctx) {
+  const { legal, locale } = ctx.t
+  const date = ctx.config.legalUpdated
+  const text = date
+    ? new Intl.DateTimeFormat(locale.replace('_', '-'), { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`))
+    : `[${legal.dateMissing}]`
+  return html`<p class="legal-date">${legal.lastUpdateLabel} ${text}</p>`
+}
+
+function legalSections(sections) {
+  return sections.map((section) => html`<section class="legal-section"><h2>${section.h}</h2><p>${section.p}</p></section>
+`)
 }
 
 function legalBody(ctx) {
   const { legal } = ctx.t
   switch (ctx.pageId) {
     case 'privacy':
-      return legalSections(legal, legal.privacySections)
+      return legalSections(legal.privacySections)
     case 'terms':
-      return legalSections(legal, legal.termsSections)
+      return legalSections(legal.termsSections)
     default:
       return legal.noticeParagraphs.map((lines) => html`<p class="legal-text">${lines.map((line, index) => html`${index > 0 ? html`<br>` : ''}${line}`)}</p>
 `)
@@ -55,6 +64,7 @@ export function legalMain(ctx) {
 <h1 class="page-title">${ctx.t.legal.title}</h1>
 ${legalTabs(ctx)}
 <div class="legal-content">
+${legalDate(ctx)}
 ${legalBody(ctx)}
 </div>
 </section>`

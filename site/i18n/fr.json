@@ -159,11 +159,12 @@
   },
   "legal": {
     "title": "Informations légales",
-    "lastUpdate": "Dernière mise à jour : [DATE À COMPLÉTER]",
+    "lastUpdateLabel": "Dernière mise à jour :",
+    "dateMissing": "DATE À COMPLÉTER",
     "privacySections": [
       {
         "h": "Qui est responsable ?",
-        "p": "Quiz'in est édité par HeroCorp (coordonnées complètes dans les mentions légales). C'est l'éditeur qui décide de l'usage des données décrit ici. Contact : quizinsupport@gmail.com."
+        "p": "Quiz'in est édité par Loann Courcoul, sous le nom HeroCorp (voir les mentions légales). C'est l'éditeur qui décide de l'usage des données décrit ici. Contact : quizinsupport@gmail.com."
       },
       {
         "h": "Ce que nous collectons",
@@ -191,7 +192,7 @@
       },
       {
         "h": "Combien de temps nous les gardons",
-        "p": "Quand l'hôte quitte une partie, elle est supprimée avec tout son contenu, dessins compris. Une partie abandonnée est supprimée quand l'hôte est absent depuis plus de 5 minutes, dès qu'un appareil de la partie est encore connecté. [À VÉRIFIER : en plus, nettoyage automatique de toute partie de plus de 24 heures, à mettre en place avant la publication.] Le compte anonyme ne contient ni ton nom ni ton e-mail, seulement un identifiant aléatoire : il est conservé par Firebase jusqu'à ce que nous le supprimions. Sur ton appareil, il reste jusqu'à ce que tu effaces les données de l'application. Tu peux nous demander sa suppression (voir « Tes droits »)."
+        "p": "Quand l'hôte quitte une partie, elle est supprimée avec tout son contenu, dessins compris. Une partie abandonnée est supprimée quand l'hôte est absent depuis plus de 5 minutes, dès qu'un appareil de la partie est encore connecté. En plus, un nettoyage automatique supprime les parties de plus d'environ 24 heures. [À VÉRIFIER : nettoyage pas encore en service.] Le compte anonyme ne contient ni ton nom ni ton e-mail, seulement un identifiant aléatoire : il est conservé par Firebase jusqu'à ce que nous le supprimions. Sur ton appareil, il reste jusqu'à ce que tu effaces les données de l'application. Tu peux nous demander sa suppression (voir « Tes droits »)."
       },
       {
         "h": "Enfants",
@@ -213,7 +214,7 @@
     "termsSections": [
       {
         "h": "Objet",
-        "p": "Les présentes conditions encadrent l'utilisation de l'application et du site Quiz'in, édités par HeroCorp. En jouant, tu les acceptes."
+        "p": "Les présentes conditions encadrent l'utilisation de l'application et du site Quiz'in, édités par Loann Courcoul sous le nom HeroCorp. En jouant, tu les acceptes."
       },
       {
         "h": "Le service",
@@ -237,11 +238,11 @@
       },
       {
         "h": "Propriété intellectuelle",
-        "p": "Les questions, le design, le logo, les textes et le code de Quiz'in appartiennent à HeroCorp ou à ses partenaires. Tu peux les utiliser pour jouer, à titre personnel, mais pas les copier ni les réutiliser autrement sans accord écrit. Google, Chromecast, Google Cast et Deezer sont des marques de leurs titulaires ; Quiz'in n'est ni affilié à elles, ni approuvé par elles."
+        "p": "Les questions, le design, le logo, les textes et le code de Quiz'in appartiennent à l'éditeur ou à ses partenaires. Tu peux les utiliser pour jouer, à titre personnel, mais pas les copier ni les réutiliser autrement sans accord écrit. Google, Chromecast, Google Cast et Deezer sont des marques de leurs titulaires ; Quiz'in n'est ni affilié à elles, ni approuvé par elles."
       },
       {
         "h": "Disponibilité et responsabilité",
-        "p": "Le service est fourni tel quel, sans garantie d'accès continu : il peut être interrompu pour maintenance ou en cas de panne. Les questions et réponses peuvent contenir des erreurs. Dans les limites permises par la loi, HeroCorp n'est pas responsable des dommages indirects liés à l'usage du service. Rien ici ne limite les droits que la loi te reconnaît, notamment comme consommateur."
+        "p": "Le service est fourni tel quel, sans garantie d'accès continu : il peut être interrompu pour maintenance ou en cas de panne. Les questions et réponses peuvent contenir des erreurs. Dans les limites permises par la loi, l'éditeur n'est pas responsable des dommages indirects liés à l'usage du service. Rien ici ne limite les droits que la loi te reconnaît, notamment comme consommateur."
       },
       {
         "h": "Données personnelles",
@@ -253,7 +254,7 @@
       },
       {
         "h": "Droit applicable et litiges",
-        "p": "Ces conditions sont soumises au droit français. En cas de litige, écris-nous d'abord : nous chercherons une solution à l'amiable. [À VÉRIFIER : médiateur de la consommation, si la loi l'exige pour HeroCorp.] À défaut, les tribunaux français sont compétents, sans préjudice des règles qui protègent les consommateurs."
+        "p": "Ces conditions sont soumises au droit français. En cas de litige, écris-nous d'abord : nous chercherons une solution à l'amiable. À défaut, les tribunaux français sont compétents, sans préjudice des règles qui protègent les consommateurs."
       },
       {
         "h": "Contact",
@@ -262,17 +263,15 @@
     ],
     "noticeParagraphs": [
       [
-        "Éditeur : HeroCorp",
-        "Forme juridique, SIREN/SIRET et adresse du siège : [À COMPLÉTER]",
-        "Téléphone : [À COMPLÉTER]",
-        "Responsable de la publication : [À COMPLÉTER]",
+        "Éditeur : Loann Courcoul, à titre personnel et non professionnel, sous le nom HeroCorp.",
+        "Responsable de la publication : Loann Courcoul.",
         "Contact : quizinsupport@gmail.com"
       ],
       [
         "Hébergeur du site : Google LLC (Firebase Hosting), 1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis. [À VÉRIFIER : entité contractuelle indiquée dans les conditions de Firebase]"
       ],
       [
-        "Propriété intellectuelle : le nom Quiz'in, le logo, les textes, les questions et le design sont la propriété de HeroCorp. Polices Bowlby One et Nunito, sous licence SIL Open Font License."
+        "Propriété intellectuelle : le nom Quiz'in, le logo, les textes, les questions et le design sont la propriété de l'éditeur. Polices Bowlby One et Nunito, sous licence SIL Open Font License."
       ]
     ]
   },
