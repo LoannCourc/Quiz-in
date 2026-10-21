@@ -171,11 +171,11 @@
       },
       {
         "h": "What other players see",
-        "p": "Your name, avatar, answers and drawings are visible to the other players in the game and shown on the TV. Avoid putting personal information in them."
+        "p": "Your name, avatar, answers and drawings are visible to the other players in the game and shown on the TV. The game code is the access key: only share it with your guests. Avoid putting personal information in your name or drawings."
       },
       {
         "h": "What the data is used for",
-        "p": "Only to run the game: connecting you, showing questions, counting points, showing answers and drawings. The legal basis is performance of the service (GDPR art. 6.1.b). We also rely on our legitimate interest in protecting the service from abuse (art. 6.1.f). There are no ads, no data resale and no profiling. [TO CHECK: the app uses no analytics or crash reporting tool; otherwise, say so here.]"
+        "p": "Only to run the game: connecting you, showing questions, counting points, showing answers and drawings. The legal basis is performance of the service (GDPR art. 6.1.b). We also rely on our legitimate interest in protecting the service from abuse (art. 6.1.f). There are no ads, no data resale and no profiling, and the app uses no analytics or crash reporting tool."
       },
       {
         "h": "Local network and casting to the TV",
@@ -183,15 +183,15 @@
       },
       {
         "h": "Service providers",
-        "p": "We use Google (Firebase: anonymous sign-in, realtime database and page hosting; Google Cast for casting). If the Blind test is turned on, music previews are provided by Deezer, which may receive your IP address during playback. Apple and Google distribute the app and apply their own rules. We do not sell any data."
+        "p": "We use Google: Firebase (anonymous sign-in, realtime database, page hosting) and Google Cast for casting. On the TV, the Cast player is loaded from Google's servers, which therefore receive the TV's IP address. If the Blind test is turned on, music previews are provided by Deezer, which may receive your IP address during playback. Apple and Google distribute the app and apply their own rules. We do not sell any data."
       },
       {
         "h": "Where data is stored",
-        "p": "Game data is stored on Google's servers (Firebase Realtime Database), in the [TO CHECK: database region, e.g. Belgium or United States] region. The site and game pages are served by Google's network (Firebase Hosting), located in several countries. We have no servers of our own. When data is processed outside the European Union, it is covered by Google's standard contractual clauses or by the EU–US Data Privacy Framework. On your phone, the app only keeps a few local settings [TO CHECK: list, e.g. remembered first name and sound]; they disappear when you uninstall the app."
+        "p": "Game data is stored on Google's servers (Firebase Realtime Database), in Belgium, within the European Union. The site and game pages are served by Google's network (Firebase Hosting), present in several countries. We have no servers of our own. When Google processes data outside the European Union, it is covered by Google's standard contractual clauses or by the EU–US Data Privacy Framework. On your phone (or in your browser), Quiz'in keeps a few local items: your sound setting, the questions already played, the answers given during the game, your anonymous identifier and, if you are the host and you play, your first name, avatar and your game code. They disappear when you uninstall the app or clear your browser data."
       },
       {
         "h": "How long we keep it",
-        "p": "Games are temporary: [TO CHECK: duration and deletion mechanism, e.g. automatic deletion 24 hours after the game ends]. The anonymous identifier is kept [TO CHECK: duration]. When you leave a game or uninstall the app, nothing more remains on your phone."
+        "p": "When the host leaves a game, it is deleted with all its content, drawings included. An abandoned game is deleted once the host has been away for more than 5 minutes, as long as a device in the game is still connected. [TO CHECK: in addition, automatic cleanup of any game older than 24 hours, to be set up before release.] The anonymous identifier stays on your device until you clear the app's data. [TO CHECK: how long Firebase keeps inactive anonymous accounts.]"
       },
       {
         "h": "Children",

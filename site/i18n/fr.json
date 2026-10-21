@@ -171,11 +171,11 @@
       },
       {
         "h": "Ce que les autres joueurs voient",
-        "p": "Ton prénom, ton avatar, tes réponses et tes dessins sont visibles par les autres joueurs de la partie et affichés sur la TV. Évite d'y mettre des informations personnelles."
+        "p": "Ton prénom, ton avatar, tes réponses et tes dessins sont visibles par les autres joueurs de la partie et affichés sur la TV. Le code de la partie sert d'accès : ne le partage qu'avec tes invités. Évite de mettre des informations personnelles dans ton prénom ou tes dessins."
       },
       {
         "h": "À quoi servent ces données",
-        "p": "Uniquement à faire fonctionner la partie : te connecter, afficher les questions, compter les points, montrer les réponses et les dessins. C'est la base légale « exécution du service » (art. 6.1.b du RGPD). Nous nous appuyons aussi sur notre intérêt légitime à protéger le service contre les abus (art. 6.1.f). Il n'y a ni publicité, ni revente de données, ni profilage. [À VÉRIFIER : l'application n'utilise aucun outil de statistiques ni de rapport de plantage ; sinon, le préciser ici.]"
+        "p": "Uniquement à faire fonctionner la partie : te connecter, afficher les questions, compter les points, montrer les réponses et les dessins. C'est la base légale « exécution du service » (art. 6.1.b du RGPD). Nous nous appuyons aussi sur notre intérêt légitime à protéger le service contre les abus (art. 6.1.f). Il n'y a ni publicité, ni revente de données, ni profilage, et l'application n'utilise aucun outil de statistiques ni de rapport de plantage."
       },
       {
         "h": "Réseau local et diffusion sur la TV",
@@ -183,15 +183,15 @@
       },
       {
         "h": "Prestataires",
-        "p": "Nous faisons appel à Google (Firebase : connexion anonyme, base de données en temps réel et hébergement des pages ; Google Cast pour la diffusion). Si le Blind test est activé, les extraits musicaux sont fournis par Deezer, qui peut recevoir ton adresse IP lors de la lecture. Apple et Google distribuent l'application et appliquent leurs propres règles. Nous ne vendons aucune donnée."
+        "p": "Nous faisons appel à Google : Firebase (connexion anonyme, base de données en temps réel, hébergement des pages) et Google Cast pour la diffusion. Sur la TV, le lecteur Cast est chargé depuis les serveurs de Google, qui reçoivent donc l'adresse IP de la TV. Si le Blind test est activé, les extraits musicaux sont fournis par Deezer, qui peut recevoir ton adresse IP lors de la lecture. Apple et Google distribuent l'application et appliquent leurs propres règles. Nous ne vendons aucune donnée."
       },
       {
         "h": "Où sont stockées les données",
-        "p": "Les données de partie sont stockées sur les serveurs de Google (Firebase Realtime Database), dans la région [À VÉRIFIER : région de la base, par exemple Belgique ou États-Unis]. Les pages du site et du jeu sont servies par le réseau de Google (Firebase Hosting), situé dans plusieurs pays. Nous n'avons pas de serveur à nous. Lorsque des données sont traitées hors de l'Union européenne, c'est encadré par les clauses contractuelles types de Google ou par le cadre UE–États-Unis de protection des données (Data Privacy Framework). Sur ton téléphone, l'application garde seulement quelques réglages locaux [À VÉRIFIER : liste, par exemple prénom mémorisé et son] ; ils disparaissent quand tu désinstalles l'application."
+        "p": "Les données de partie sont stockées sur les serveurs de Google (Firebase Realtime Database), en Belgique, dans l'Union européenne. Les pages du site et du jeu sont servies par le réseau de Google (Firebase Hosting), présent dans plusieurs pays. Nous n'avons pas de serveur à nous. Quand Google traite des données hors de l'Union européenne, c'est encadré par les clauses contractuelles types de Google ou par le cadre UE–États-Unis de protection des données (Data Privacy Framework). Sur ton téléphone (ou dans ton navigateur), Quiz'in garde quelques informations locales : ton réglage du son, les questions déjà jouées, les réponses données pendant la partie, ton identifiant anonyme et, si tu es l'hôte et que tu joues, ton prénom, ton avatar et le code de ta partie. Elles disparaissent quand tu désinstalles l'application ou que tu effaces les données du navigateur."
       },
       {
         "h": "Combien de temps nous les gardons",
-        "p": "Les parties sont temporaires : [À VÉRIFIER : durée et mécanisme de suppression, par exemple suppression automatique 24 heures après la fin de la partie]. L'identifiant anonyme est conservé [À VÉRIFIER : durée]. Quand tu quittes une partie ou que tu désinstalles l'application, il ne reste rien de plus sur ton téléphone."
+        "p": "Quand l'hôte quitte une partie, elle est supprimée avec tout son contenu, dessins compris. Une partie abandonnée est supprimée quand l'hôte est absent depuis plus de 5 minutes, dès qu'un appareil de la partie est encore connecté. [À VÉRIFIER : en plus, nettoyage automatique de toute partie de plus de 24 heures, à mettre en place avant la publication.] L'identifiant anonyme reste sur ton appareil tant que tu n'effaces pas les données de l'application. [À VÉRIFIER : durée de conservation des comptes anonymes inactifs côté Firebase.]"
       },
       {
         "h": "Enfants",
