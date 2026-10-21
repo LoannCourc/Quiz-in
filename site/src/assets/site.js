@@ -1,4 +1,18 @@
-// Site vitrine : menu du téléphone (burger).
+// Site vitrine : choix de langue mémorisé, menu du téléphone (burger).
+
+// Clé lue aussi par assets/lang.js (généré par scripts/build.mjs) : un choix mémorisé empêche la redirection.
+;(function () {
+  document.querySelectorAll('.lang-switch a[data-lang]').forEach((link) => {
+    link.addEventListener('click', () => {
+      try {
+        localStorage.setItem('quizin-site:lang', link.dataset.lang)
+      } catch (error) {
+        // Stockage refusé (navigation privée) : la bascule fonctionne quand même, sans mémoire.
+      }
+    })
+  })
+})()
+
 ;(function () {
   const burger = document.querySelector('.burger')
   const menu = document.getElementById('menu-mobile')

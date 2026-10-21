@@ -5,7 +5,7 @@ import { ctaStoreButtons, heroStoreButtons } from './stores.mjs'
 // QR code décoratif (pas un vrai lien) de l'illustration.
 const QR = html`<svg class="tv-qr-code" viewBox="0 0 21 21" shape-rendering="crispEdges" aria-hidden="true"><rect width="21" height="21" fill="#fff"/><g fill="#14064a"><path d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0z"/></g><g fill="#fff"><path d="M1 1h5v5H1zM15 1h5v5h-5zM1 15h5v5H1z"/></g><g fill="#14064a"><path d="M2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2z"/><path d="M8 0h2v2H8zM11 1h2v2h-2zM8 3h1v3H8zM10 4h3v1h-3zM9 7h2v2H9zM12 7h2v1h-2zM0 8h3v1H0zM4 8h2v2H4zM1 10h2v2H1zM5 11h3v1H5zM8 10h1v3H8zM10 9h3v2h-3zM14 8h2v2h-2zM17 8h3v1h-3zM18 10h2v2h-2zM15 11h2v2h-2zM9 14h2v2H9zM12 13h2v2h-2zM14 14h3v1h-3zM17 14h2v2h-2zM10 17h3v1h-3zM8 18h1v3H8zM11 19h2v2h-2zM14 17h2v3h-2zM17 18h3v1h-3zM18 20h3v1h-3z"/></g></svg>`
 
-function illustration(h) {
+export function illustration(h) {
   return html`<div class="hero-art" role="img" aria-label="${h.illustrationAlt}">
 <div class="art" aria-hidden="true">
 <div class="tv">

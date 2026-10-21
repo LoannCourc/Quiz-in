@@ -71,6 +71,50 @@ function assetUrlFor(name) {
   return `/assets/${name}?v=${hashOf(readFileSync(join(ASSETS_DIR, name)))}`
 }
 
+// Clé du choix de langue mémorisé (localStorage, pas un cookie), partagée avec assets/site.js.
+const LANG_STORAGE_KEY = 'quizin-site:lang'
+const BOT_PATTERN = 'bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse|headless'
+
+// Première visite de l'accueil par défaut : langue du navigateur parmi celles du site (sinon la langue de
+// repli), location.replace pour que le bouton retour ne ramène pas sur la page redirigée.
+function languageScript(config, dicts) {
+  const homes = Object.fromEntries(config.languages.map((code) => [code, dicts[code].paths.home]))
+  return `// Généré par scripts/build.mjs.
+;(function () {
+  var homes = ${JSON.stringify(homes)}
+  try {
+    if (localStorage.getItem(${JSON.stringify(LANG_STORAGE_KEY)})) return
+  } catch (error) {
+    return
+  }
+  if (/${BOT_PATTERN}/i.test(navigator.userAgent)) return
+  var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']
+  var target = ${JSON.stringify(config.fallbackLanguage)}
+  for (var i = 0; i < preferred.length; i++) {
+    var code = String(preferred[i]).toLowerCase().split('-')[0]
+    if (homes[code]) {
+      target = code
+      break
+    }
+  }
+  if (target !== ${JSON.stringify(config.defaultLanguage)}) location.replace(homes[target])
+})()
+`
+}
+
+function sitemapXml(config, dicts) {
+  const absolute = (path) => `${config.siteUrl}${path}`
+  const urls = PAGES.flatMap((page) =>
+    config.languages.map((code) => {
+      const alternates = config.languages
+        .map((other) => `    <xhtml:link rel="alternate" hreflang="${dicts[other].lang}" href="${absolute(dicts[other].paths[page.id])}"/>`)
+        .join('\n')
+      return `  <url>\n    <loc>${absolute(dicts[code].paths[page.id])}</loc>\n${alternates}\n  </url>`
+    }),
+  )
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`
+}
+
 function robotsTxt(config) {
   return config.indexable ? `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}/sitemap.xml\n` : 'User-agent: *\nAllow: /\n'
 }
@@ -88,7 +132,16 @@ export function renderSite() {
   const files = new Map()
   const css = gamesCss(games)
   files.set('assets/games.css', css)
-  const base = { config, dicts, games, assetUrl: assetUrlFor, gamesCssUrl: `/assets/games.css?v=${hashOf(css)}` }
+  const langScript = languageScript(config, dicts)
+  files.set('assets/lang.js', langScript)
+  const base = {
+    config,
+    dicts,
+    games,
+    assetUrl: assetUrlFor,
+    gamesCssUrl: `/assets/games.css?v=${hashOf(css)}`,
+    langScriptUrl: `/assets/lang.js?v=${hashOf(langScript)}`,
+  }
   for (const code of config.languages) {
     for (const page of PAGES) {
       const ctx = { ...base, t: dicts[code], pageId: page.id }
@@ -98,6 +151,7 @@ export function renderSite() {
   const defaultCtx = { ...base, t: dicts[config.defaultLanguage], pageId: 'notFound' }
   files.set('404.html', renderNotFound(defaultCtx))
   files.set('robots.txt', robotsTxt(config))
+  if (config.indexable) files.set('sitemap.xml', sitemapXml(config, dicts))
   return { config, files, markers }
 }
 

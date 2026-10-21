@@ -57,6 +57,41 @@ function footer(ctx) {
 </footer>`
 }
 
+// Accueil de la langue par défaut seulement : script bloquant (avant l'affichage) qui envoie une première
+// visite vers la langue du navigateur ; jamais si un choix est mémorisé ni pour un robot (assets/lang.js).
+function languageRedirect(ctx) {
+  const { t, config, pageId, langScriptUrl } = ctx
+  if (pageId !== 'home' || t.lang !== config.defaultLanguage) return ''
+  return html`<script src="${langScriptUrl}"></script>
+`
+}
+
+// Adresse canonique, versions dans les autres langues (hreflang) et aperçu de partage (Open Graph).
+// La 404 n'en a pas : elle n'a pas d'adresse propre.
+function seo(ctx, meta) {
+  const { t, config, dicts, pageId } = ctx
+  if (pageId === 'notFound') return ''
+  const absolute = (path) => `${config.siteUrl}${path}`
+  const url = absolute(t.paths[pageId])
+  const image = absolute(`/assets/og-image-${t.lang}.jpg`)
+  return html`<link rel="canonical" href="${url}">
+${config.languages.map((code) => html`<link rel="alternate" hreflang="${dicts[code].lang}" href="${absolute(dicts[code].paths[pageId])}">
+`)}<link rel="alternate" hreflang="x-default" href="${absolute(dicts[config.defaultLanguage].paths[pageId])}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${t.meta.siteName}">
+<meta property="og:title" content="${meta.title}">
+<meta property="og:description" content="${meta.description}">
+<meta property="og:url" content="${url}">
+<meta property="og:image" content="${image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${t.meta.ogImageAlt}">
+<meta property="og:locale" content="${t.locale}">
+${config.languages.filter((code) => code !== t.lang).map((code) => html`<meta property="og:locale:alternate" content="${dicts[code].locale}">
+`)}<meta name="twitter:card" content="summary_large_image">
+`
+}
+
 function head(ctx, meta, stylesheets) {
   const { config, assetUrl } = ctx
   return html`<meta charset="utf-8">
@@ -65,8 +100,9 @@ function head(ctx, meta, stylesheets) {
 <meta name="description" content="${meta.description}">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
 ${config.indexable ? '' : html`<meta name="robots" content="noindex">
-`}<meta name="theme-color" content="#2d1074">
+`}${languageRedirect(ctx)}${seo(ctx, meta)}<meta name="theme-color" content="#2d1074">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/bowlby-one-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/nunito-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assetUrl('site.css')}">
