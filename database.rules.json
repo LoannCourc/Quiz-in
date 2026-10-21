@@ -1,9 +1,5 @@
 {
   "rules": {
-    "debug": {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    },
     "config": {
       ".read": "auth != null"
     },

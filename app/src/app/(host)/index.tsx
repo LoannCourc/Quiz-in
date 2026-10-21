@@ -92,7 +92,6 @@ function HomeScreen() {
 const DEMOS: readonly { href: Href; label: string }[] = [
   { href: '/debug/catalog', label: strings.catalog.demoCatalogLink },
   { href: '/debug/player', label: strings.catalog.playerDemoLink },
-  { href: '/debug/counter', label: strings.catalog.debugLink },
 ];
 
 // « Démos » ouvre une feuille avec les démos de développement.

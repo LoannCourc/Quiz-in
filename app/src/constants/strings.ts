@@ -27,12 +27,6 @@ export const strings = {
   appName: "Quiz'in",
   // Flèche retour en haut à gauche (BackButton), sur tous les écrans qui ont un écran précédent.
   back: 'Retour',
-  counter: {
-    title: 'Compteur partagé',
-    loading: 'Connexion…',
-    incrementButton: '+1',
-    errorPrefix: 'Erreur :',
-  },
   join: {
     // Maquette J : rejoindre avec un code (appli et site des joueurs).
     topTitle: 'Rejoindre une partie',
@@ -389,7 +383,6 @@ export const strings = {
     difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
     // Quiz joué (salon, salle d'attente, fin) : « Électro des années 80 · Moyen ».
     playedQuiz: (title: string, level: string) => `${title} · ${level}`,
-    debugLink: 'Démo compteur',
     playerDemoLink: 'Démo joueur',
     // Un seul lien « Démos » sur la ligne d'À propos : l'accueil garde la mise en page du build publié.
     demosLink: 'Démos',
