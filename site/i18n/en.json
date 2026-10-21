@@ -1,0 +1,63 @@
+{
+  "lang": "en",
+  "locale": "en_US",
+  "label": "EN",
+  "name": "English",
+  "paths": {
+    "home": "/en/",
+    "help": "/en/help",
+    "privacy": "/en/legal/privacy",
+    "terms": "/en/legal/terms",
+    "notice": "/en/legal/notice",
+    "soon": "/en/coming-soon"
+  },
+  "meta": {
+    "siteName": "Quiz'in",
+    "home": {
+      "title": "Quiz'in: quiz, bluff and drawing games on your TV",
+      "description": "Turn your TV into the game show of the night: the question shows up on the TV, everyone answers on their phone. Free, no ads, no account, 2 to 20 players."
+    },
+    "help": {
+      "title": "Help · Quiz'in",
+      "description": "Trouble showing the game on the TV or joining? Here are the most common answers."
+    },
+    "privacy": {
+      "title": "Privacy · Quiz'in",
+      "description": "Quiz'in privacy policy."
+    },
+    "terms": {
+      "title": "Terms of use · Quiz'in",
+      "description": "Quiz'in terms of use."
+    },
+    "notice": {
+      "title": "Legal notice · Quiz'in",
+      "description": "Quiz'in legal notice."
+    },
+    "soon": {
+      "title": "Coming soon · Quiz'in",
+      "description": "Quiz'in is coming soon to Google Play and the App Store."
+    }
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "homeLabel": "Quiz'in, home",
+    "mainNav": "Main navigation",
+    "footerNav": "Site links",
+    "langLabel": "Language",
+    "menu": "Menu",
+    "navGames": "Games",
+    "navHow": "How it works",
+    "navHelp": "Help",
+    "download": "Download",
+    "tagline": "One TV. Your people. Games.",
+    "privacy": "Privacy",
+    "terms": "Terms of use",
+    "legal": "Legal notice",
+    "contact": "Contact"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page doesn't exist, or no longer does.",
+    "back": "Back to home"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "lang": "fr",
+  "locale": "fr_FR",
+  "label": "FR",
+  "name": "Français",
+  "paths": {
+    "home": "/",
+    "help": "/aide",
+    "privacy": "/legal/confidentialite",
+    "terms": "/legal/conditions",
+    "notice": "/legal/mentions",
+    "soon": "/bientot"
+  },
+  "meta": {
+    "siteName": "Quiz'in",
+    "home": {
+      "title": "Quiz'in : quiz, bluff et dessins sur ta TV",
+      "description": "Ta TV devient le plateau de la soirée : la question s'affiche sur la TV, chacun répond avec son téléphone. Gratuit, sans pub, sans compte, de 2 à 20 joueurs."
+    },
+    "help": {
+      "title": "Aide · Quiz'in",
+      "description": "Un souci pour afficher la partie sur la TV ou pour rejoindre ? Les réponses les plus courantes."
+    },
+    "privacy": {
+      "title": "Confidentialité · Quiz'in",
+      "description": "Politique de confidentialité de Quiz'in."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation · Quiz'in",
+      "description": "Conditions d'utilisation de Quiz'in."
+    },
+    "notice": {
+      "title": "Mentions légales · Quiz'in",
+      "description": "Mentions légales de Quiz'in."
+    },
+    "soon": {
+      "title": "Bientôt disponible · Quiz'in",
+      "description": "Quiz'in arrive bientôt sur Google Play et sur l'App Store."
+    }
+  },
+  "common": {
+    "skipToContent": "Aller au contenu",
+    "homeLabel": "Quiz'in, accueil",
+    "mainNav": "Navigation principale",
+    "footerNav": "Liens du site",
+    "langLabel": "Langue",
+    "menu": "Menu",
+    "navGames": "Les jeux",
+    "navHow": "Comment ça marche",
+    "navHelp": "Aide",
+    "download": "Télécharger",
+    "tagline": "Une TV. Des proches. Des jeux.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation",
+    "legal": "Mentions légales",
+    "contact": "Contact"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Cette page n'existe pas, ou plus.",
+    "back": "Retour à l'accueil"
+  }
+}

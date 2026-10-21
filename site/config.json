@@ -1,0 +1,13 @@
+{
+  "siteUrl": "https://quizin-app.web.app",
+  "indexable": false,
+  "languages": ["fr", "en"],
+  "defaultLanguage": "fr",
+  "fallbackLanguage": "en",
+  "contactEmail": "quizinsupport@gmail.com",
+  "showBlindTest": false,
+  "storeLinks": {
+    "googlePlay": null,
+    "appStore": null
+  }
+}
