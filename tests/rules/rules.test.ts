@@ -226,6 +226,7 @@ describe('Hôte et état de la partie', () => {
     settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false },
     currentIndex: 0,
     phaseStartedAt: SERVER_TIME,
+    createdAt: SERVER_TIME,
     phaseEndsAt: 0,
   })
 

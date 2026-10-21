@@ -27,6 +27,8 @@ async function tryClaimCode(code: string, hostUid: string, quizId: string, setti
       sound,
       currentIndex: 0,
       phaseStartedAt: serverTimestamp(),
+      // Date de création, pour le nettoyage des parties de plus de 24 h (scripts/cleanup-sessions.mjs).
+      createdAt: serverTimestamp(),
       // Le lobby n'a pas de fin automatique.
       phaseEndsAt: 0,
       // Thèmes du Quiz : questions déjà tirées sur la fiche (sinon, tirage au salon).

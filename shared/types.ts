@@ -410,6 +410,9 @@ export interface SoundSettings {
 
 // Session complète, lisible uniquement par l'hôte.
 export interface Session extends PublicSession {
+  // Heure du serveur à la création, jamais modifiée : le nettoyage planifié supprime les parties de plus de 24 h
+  // (scripts/cleanup-sessions.mjs). Absente des parties créées par une ancienne version de l'app.
+  createdAt?: number;
   // Joueurs exclus par l'hôte (salon) : ils ne peuvent plus rejoindre cette partie ; chacun ne lit que le sien.
   banned?: Record<PlayerId, true>;
   answers?: Record<number, Record<PlayerId, Answer>>;
