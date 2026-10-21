@@ -55,6 +55,50 @@
     "legal": "Legal notice",
     "contact": "Contact"
   },
+  "stores": {
+    "availableOn": "Get it on",
+    "comingSoonOn": "Coming soon on",
+    "googlePlay": "Google Play",
+    "appStoreLong": "the App Store",
+    "appStore": "App Store"
+  },
+  "home": {
+    "heroTitle": "Turn your TV into the game show of the night.",
+    "heroSub": "Quiz, bluff, drawing games: the question shows up on the TV, everyone answers on their phone. Free, no ads, no account, and guests have nothing to install.",
+    "heroMeta": "2 to 20 players · for family and friends",
+    "illustrationAlt": "A TV shows the game code FM57 and a QR code; next to it, a phone joins the game.",
+    "tvGame": "QUIZ",
+    "tvCode": "GAME CODE",
+    "scanToPlay": "Scan to play",
+    "joinTitle": "JOIN IN!",
+    "joinName": "Camille",
+    "joinGo": "LET'S GO",
+    "stepsTitle": "Ready in 3 steps",
+    "stepsSub": "No controllers, no account to create.",
+    "steps": [
+      { "title": "Pick a game", "text": "The host opens Quiz'in, then picks a game and a theme." },
+      { "title": "Show it on the TV", "text": "They cast the game to the TV with a Chromecast, or open the link on a computer connected to the TV." },
+      { "title": "Guests join", "text": "A QR code or a 4-character code is all it takes. They play in their phone browser, nothing to install." }
+    ],
+    "gamesTitle": "Games",
+    "soonTitle": "More games are coming",
+    "soonText": "New games are in the works.",
+    "band": [
+      { "badge": "0 €", "title": "Free", "text": "No ads, no in-app purchases" },
+      { "badge": "", "title": "No account", "text": "Type a name and play" },
+      { "badge": "", "title": "2 to 20 players", "text": "From 4, you can also play in teams" }
+    ],
+    "faqTitle": "Frequently asked questions",
+    "faq": [
+      { "q": "Do I need a Chromecast?", "a": "To show the game on the TV, yes: a Chromecast or a TV with built-in Chromecast. Otherwise, open the link on a computer connected to the TV." },
+      { "q": "Do guests need to install the app?", "a": "No, they scan the QR code (or type the code) and play in their phone browser." },
+      { "q": "How much does it cost?", "a": "Nothing: the app is free, with no ads and no in-app purchases." },
+      { "q": "Do I need an account?", "a": "No, neither for the host nor for the players. A first name is enough." }
+    ],
+    "faqMore": "Having trouble? See the",
+    "faqMoreLink": "Help",
+    "ctaTitle": "Game night tonight?"
+  },
   "notFound": {
     "title": "Page not found",
     "text": "This page doesn't exist, or no longer does.",

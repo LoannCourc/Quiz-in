@@ -57,7 +57,7 @@ function footer(ctx) {
 </footer>`
 }
 
-function head(ctx, meta) {
+function head(ctx, meta, stylesheets) {
   const { config, assetUrl } = ctx
   return html`<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,16 +70,18 @@ ${config.indexable ? '' : html`<meta name="robots" content="noindex">
 <link rel="preload" href="/assets/fonts/bowlby-one-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/nunito-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assetUrl('site.css')}">
-<script src="${assetUrl('site.js')}" defer></script>`
+${stylesheets.map((url) => html`<link rel="stylesheet" href="${url}">
+`)}<script src="${assetUrl('site.js')}" defer></script>`
 }
 
-// Page complète : en-tête, contenu principal, pied. meta : { title, description }.
-export function layout(ctx, meta, main) {
+// Page complète : en-tête, contenu principal, pied. meta : { title, description } ; options.stylesheets :
+// feuilles de style propres à la page.
+export function layout(ctx, meta, main, { stylesheets = [] } = {}) {
   const { t } = ctx
   return `<!doctype html>
 <html lang="${t.lang}">
 <head>
-${head(ctx, meta)}
+${head(ctx, meta, stylesheets)}
 </head>
 <body>
 ${html`<a class="skip-link" href="#main">${t.common.skipToContent}</a>`}

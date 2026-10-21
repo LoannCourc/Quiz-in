@@ -55,6 +55,50 @@
     "legal": "Mentions légales",
     "contact": "Contact"
   },
+  "stores": {
+    "availableOn": "Disponible sur",
+    "comingSoonOn": "Bientôt sur",
+    "googlePlay": "Google Play",
+    "appStoreLong": "l'App Store",
+    "appStore": "App Store"
+  },
+  "home": {
+    "heroTitle": "Ta TV devient le plateau de la soirée.",
+    "heroSub": "Quiz, bluff, dessins à deviner : la question s'affiche sur la TV, chacun répond avec son téléphone. Gratuit, sans pub, sans compte, et les invités n'ont rien à installer.",
+    "heroMeta": "De 2 à 20 joueurs · pour la famille et les amis",
+    "illustrationAlt": "Une TV affiche le code de la partie FM57 et un QR code ; à côté, un téléphone rejoint la partie.",
+    "tvGame": "QUIZ",
+    "tvCode": "CODE DE LA PARTIE",
+    "scanToPlay": "Scanne pour jouer",
+    "joinTitle": "REJOINS !",
+    "joinName": "Camille",
+    "joinGo": "C'EST PARTI",
+    "stepsTitle": "Prêt en 3 étapes",
+    "stepsSub": "Pas de manette, pas de compte à créer.",
+    "steps": [
+      { "title": "Choisis un jeu", "text": "L'hôte ouvre Quiz'in, puis choisit un jeu et un thème." },
+      { "title": "Affiche sur la TV", "text": "Il envoie la partie vers la TV avec un Chromecast, ou ouvre le lien sur l'ordinateur relié à la TV." },
+      { "title": "Les invités rejoignent", "text": "Un QR code ou un code à 4 caractères suffit. Ils jouent dans le navigateur de leur téléphone, sans rien installer." }
+    ],
+    "gamesTitle": "Les jeux",
+    "soonTitle": "D'autres jeux arrivent",
+    "soonText": "De nouveaux jeux sont en préparation.",
+    "band": [
+      { "badge": "0 €", "title": "Gratuit", "text": "Sans pub, sans achat intégré" },
+      { "badge": "", "title": "Sans compte", "text": "On tape un prénom et on joue" },
+      { "badge": "", "title": "2 à 20 joueurs", "text": "Dès 4, jouez aussi en équipes" }
+    ],
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      { "q": "Faut-il un Chromecast ?", "a": "Pour afficher sur la TV, oui : un Chromecast ou une TV avec Chromecast intégré. Sinon, ouvre le lien sur un ordinateur relié à la TV." },
+      { "q": "Les invités doivent-ils installer l'application ?", "a": "Non, ils scannent le QR code (ou tapent le code) et jouent dans le navigateur de leur téléphone." },
+      { "q": "Combien ça coûte ?", "a": "Rien : l'application est gratuite, sans publicité ni achat intégré." },
+      { "q": "Faut-il créer un compte ?", "a": "Non, ni pour l'hôte ni pour les joueurs. Un prénom suffit." }
+    ],
+    "faqMore": "Un souci ? Consulte la page",
+    "faqMoreLink": "Aide",
+    "ctaTitle": "Ce soir, on joue ?"
+  },
   "notFound": {
     "title": "Page introuvable",
     "text": "Cette page n'existe pas, ou plus.",

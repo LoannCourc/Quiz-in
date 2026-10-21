@@ -1,0 +1,54 @@
+{
+  "games": [
+    {
+      "id": "quiz",
+      "visible": true,
+      "background": "#ffd23f",
+      "color": "#1a0a4d",
+      "motif": "answers",
+      "name": { "fr": "Quiz", "en": "Quiz" },
+      "description": {
+        "fr": "Réponds vite pour marquer plus de points, sur de nombreux thèmes.",
+        "en": "Answer fast to score more points, across many themes."
+      }
+    },
+    {
+      "id": "bluff",
+      "visible": true,
+      "background": "#f48aae",
+      "color": "#1a0a4d",
+      "motif": "lines",
+      "name": { "fr": "Bluff", "en": "Bluff" },
+      "description": {
+        "fr": "Invente une fausse réponse crédible pour piéger les autres, puis retrouve la vraie.",
+        "en": "Invent a believable fake answer to fool the others, then find the real one."
+      }
+    },
+    {
+      "id": "draw",
+      "visible": true,
+      "background": "#35d8f2",
+      "color": "#1a0a4d",
+      "motif": "scribble",
+      "name": { "fr": "Dessine-moi", "en": "Draw Me" },
+      "description": {
+        "fr": "Dessine un mot sur ton téléphone, les autres le devinent sur la TV.",
+        "en": "Draw a word on your phone, the others guess it on the TV."
+      }
+    },
+    {
+      "id": "blindtest",
+      "visible": true,
+      "requires": "showBlindTest",
+      "background": "#5a2ac8",
+      "color": "#ffffff",
+      "border": "#cbb8ff",
+      "motif": "equalizer",
+      "name": { "fr": "Blind test", "en": "Blind test" },
+      "description": {
+        "fr": "Devine le titre et l'artiste à l'oreille.",
+        "en": "Guess the title and the artist by ear."
+      }
+    }
+  ]
+}

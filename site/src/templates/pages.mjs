@@ -1,3 +1,4 @@
+import { homeMain } from './home.mjs'
 import { html } from './html.mjs'
 import { layout } from './layout.mjs'
 
@@ -9,13 +10,12 @@ function stub(pageId) {
 }
 
 // Pages produites dans chaque langue ; l'adresse de chacune est dans le fichier de langue (paths).
-function homeStub(ctx) {
-  const meta = ctx.t.meta.home
-  return layout(ctx, meta, html`<section class="page-narrow wrap"><h1 class="page-title">${meta.title}</h1><div id="telecharger"></div><div id="comment"></div><div id="jeux"></div></section>`)
+function home(ctx) {
+  return layout(ctx, ctx.t.meta.home, homeMain(ctx), { stylesheets: [ctx.gamesCssUrl] })
 }
 
 export const PAGES = [
-  { id: 'home', render: homeStub },
+  { id: 'home', render: home },
   { id: 'help', render: stub('help') },
   { id: 'privacy', render: stub('privacy') },
   { id: 'terms', render: stub('terms') },
