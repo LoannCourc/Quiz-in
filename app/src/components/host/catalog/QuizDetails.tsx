@@ -34,6 +34,8 @@ interface QuizDetailsProps {
   onChoose: () => void;
   isCreating?: boolean;
   error?: string | null;
+  // Ligne grise « Réf. : … » sous l'erreur de création.
+  errorReference?: string | null;
   // Raison pour laquelle le quiz ne peut pas être choisi (blind test désactivé) : bouton bloqué.
   unavailableReason?: string;
   // Quiz déjà joué sur ce téléphone (lot E) : étiquette « Déjà fait ».
@@ -50,7 +52,7 @@ function posterWidthFor(screenHeight: number): number {
 // Fiche d'un quiz (maquettes S2 et R2) : grande affiche, informations, puis « Choisir ce quiz » et la
 // carte des réglages, fixés en bas de l'écran pour être atteints sans défiler. La carte ouvre la feuille.
 export function QuizDetails(props: QuizDetailsProps) {
-  const { quiz, settings, onSettingsChange, sound, onSoundChange, onChoose, isCreating = false, error, unavailableReason } = props;
+  const { quiz, settings, onSettingsChange, sound, onSoundChange, onChoose, isCreating = false, error, errorReference, unavailableReason } = props;
   const { initialSettingsOpen = false, isPlayed = false } = props;
   const { height } = useWindowDimensions();
   const [isSettingsOpen, setIsSettingsOpen] = useState(initialSettingsOpen);
@@ -61,6 +63,7 @@ export function QuizDetails(props: QuizDetailsProps) {
   const footer = (
     <View style={styles.footer}>
       {error && <Text style={textStyles.error}>{error}</Text>}
+      {error && errorReference && <Text style={textStyles.muted}>{errorReference}</Text>}
       {unavailableReason && <Text style={textStyles.error}>{unavailableReason}</Text>}
       <BigButton
         label={isCreating ? strings.quizSetup.creating : quiz.gameType === 'draw' ? strings.quizSetup.createGameButton : strings.quizSetup.createButton}

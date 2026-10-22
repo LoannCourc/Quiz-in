@@ -1,18 +1,20 @@
-import { CREATE_GAME_TIMEOUT_MS, PLAYERS_SITE_URL, RECEIVER_CODE_PARAM, RECEIVER_SITE_URL } from '@shared/constants';
-import { claimRoomCode, createGameFailureOf, withTimeout, type CreateGameFailure } from '@shared/gameCreation';
+import { AUTH_RETRY_DELAY_MS, CREATE_GAME_TIMEOUT_MS, PLAYERS_SITE_URL, RECEIVER_CODE_PARAM, RECEIVER_SITE_URL } from '@shared/constants';
+import { claimRoomCode, createGameFailureOf, createGameReference, withTimeout, type CreateGameFailure, type CreateGameProblem } from '@shared/gameCreation';
 import { generateRoomCode } from '@shared/roomCode';
 import type { SessionSettings, SoundSettings } from '@shared/types';
 import { get, ref, serverTimestamp, set } from 'firebase/database';
 
-import { db, ensureSignedIn } from './firebase';
+import { auth, db, ensureSignedIn } from './firebase';
 
-// Échec de la création, avec sa cause (useStartGame choisit le message).
+// Échec de la création, avec sa cause (useStartGame choisit le message) et sa ligne « Réf. » (étape et code
+// technique, jamais l'uid ni le code de la partie).
 export class CreateGameError extends Error {
-  constructor(
-    readonly failure: CreateGameFailure,
-    readonly cause?: unknown,
-  ) {
-    super(failure);
+  readonly failure: CreateGameFailure;
+  readonly reference: string;
+  constructor(readonly problem: CreateGameProblem) {
+    super(problem.failure);
+    this.failure = problem.failure;
+    this.reference = createGameReference(problem);
   }
 }
 
@@ -34,27 +36,39 @@ function sessionWrite(hostUid: string, quizId: string, settings: SessionSettings
   };
 }
 
+// Filet de sécurité d'une écriture refusée alors que le code est libre : jeton rafraîchi, puis court délai pour
+// que la connexion à la base reprenne le bon compte.
+async function refreshAuth(): Promise<void> {
+  const user = auth.currentUser;
+  if (user) await withTimeout(user.getIdToken(true), CREATE_GAME_TIMEOUT_MS);
+  await new Promise((resolve) => setTimeout(resolve, AUTH_RETRY_DELAY_MS));
+}
+
 // Crée la session initiale en LOBBY, avec le son de la TV choisi par l'hôte, et renvoie son code. Chaque accès
 // à Firebase a un délai (hors ligne, une écriture ne répond jamais) ; la cause d'un échec est classée par
-// claimRoomCode (shared/gameCreation.ts), l'erreur réelle notée dans la console en développement.
+// claimRoomCode (shared/gameCreation.ts). La référence est écrite dans le journal du téléphone, aussi en release
+// (adb logcat -s ReactNativeJS) ; l'erreur complète seulement en développement.
 export async function createGame(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]): Promise<string> {
-  const fail = (failure: CreateGameFailure, cause: unknown): never => {
-    if (__DEV__) console.warn(`[create] Partie non créée (${failure})`, cause);
-    throw new CreateGameError(failure, cause);
+  const fail = (problem: CreateGameProblem): never => {
+    const error = new CreateGameError(problem);
+    console.warn(`[create] Partie non créée (${problem.failure}) · Réf. : ${error.reference}`);
+    if (__DEV__) console.warn('[create] Détail', problem.cause);
+    throw error;
   };
   let hostUid: string;
   try {
     hostUid = (await withTimeout(ensureSignedIn(), CREATE_GAME_TIMEOUT_MS)).uid;
   } catch (error) {
-    return fail(createGameFailureOf(error), error);
+    return fail({ failure: createGameFailureOf(error), stage: 'connexion', cause: error });
   }
   const outcome = await claimRoomCode({
     generateCode: () => generateRoomCode(),
     // On ne peut pas lire sessions/CODE d'un bloc sans en être l'hôte ; hostUid est lisible par tous.
     isCodeTaken: async (code) => (await withTimeout(get(ref(db, `sessions/${code}/hostUid`)), CREATE_GAME_TIMEOUT_MS)).exists(),
     writeGame: (code) => withTimeout(set(ref(db, `sessions/${code}`), sessionWrite(hostUid, quizId, settings, sound, questionRefs)), CREATE_GAME_TIMEOUT_MS),
+    refreshAuth,
   });
-  return outcome.ok ? outcome.code : fail(outcome.failure, outcome.cause);
+  return outcome.ok ? outcome.code : fail(outcome);
 }
 
 // Adresse à ouvrir sur la TV (ou un navigateur) pour afficher la partie.

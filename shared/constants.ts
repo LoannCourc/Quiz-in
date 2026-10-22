@@ -129,6 +129,9 @@ export const ROOM_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 export const ROOM_CODE_MAX_ATTEMPTS = 5;
 // Création d'une partie : délai d'attente de chaque accès à Firebase (hors ligne, une écriture ne répond jamais).
 export const CREATE_GAME_TIMEOUT_MS = 10_000;
+// Création refusée alors que le code est libre : jeton rafraîchi, puis ce délai avant un seul nouvel essai
+// (la connexion à la base reprend le bon compte ; 500 ms suffisaient sur l'émulateur, marge pour le réseau mobile).
+export const AUTH_RETRY_DELAY_MS = 1_000;
 
 export const SESSION_TTL_HOURS = 24;
 

@@ -15,21 +15,26 @@ export interface GameStarter {
   start: (quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) => Promise<void>;
   isStarting: boolean;
   error: string | null;
+  // Ligne grise « Réf. : … » sous l'erreur de création (étape et code technique).
+  errorReference: string | null;
+}
+
+// Cause connue : son message ; création échouée pour une autre raison : message général (le détail est dans la
+// référence) ; autre erreur locale : son texte.
+function createErrorMessage(error: unknown): string {
+  if (error instanceof CreateGameError) {
+    return error.failure === 'unknown' ? strings.quizSetup.createFailedUnknown : strings.quizSetup.createFailures[error.failure];
+  }
+  return `${strings.quizSetup.createFailed} ${toErrorMessage(error)}`;
 }
 
 // « Choisir ce quiz » (fiche d'un quiz ou d'une partie tirée dans des thèmes) : crée la partie et ouvre son
 // salon ; room (Changer de jeu) : le jeu choisi remplace celui de cette partie, puis retour à son salon.
-// Cause connue : son message ; sinon, l'erreur telle quelle.
-function createErrorMessage(error: unknown): string {
-  if (error instanceof CreateGameError && error.failure !== 'unknown') return strings.quizSetup.createFailures[error.failure];
-  const cause = error instanceof CreateGameError ? error.cause : error;
-  return `${strings.quizSetup.createFailed} ${toErrorMessage(cause)}`;
-}
-
 export function useStartGame(room: string | undefined): GameStarter {
   const serverOffsetMs = useServerTimeOffset();
   const [isStarting, setIsStarting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errorReference, setErrorReference] = useState<string | null>(null);
 
   async function create(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
     try {
@@ -40,6 +45,7 @@ export function useStartGame(room: string | undefined): GameStarter {
       router.replace({ pathname: '/host/[code]', params: { code } });
     } catch (createError) {
       setError(createErrorMessage(createError));
+      setErrorReference(createError instanceof CreateGameError ? strings.quizSetup.createReference(createError.reference) : null);
       setIsStarting(false);
     }
   }
@@ -61,9 +67,10 @@ export function useStartGame(room: string | undefined): GameStarter {
   async function start(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
     setIsStarting(true);
     setError(null);
+    setErrorReference(null);
     if (room) await changeGame(room, quizId, settings, questionRefs);
     else await create(quizId, settings, sound, questionRefs);
   }
 
-  return { start, isStarting, error };
+  return { start, isStarting, error, errorReference };
 }

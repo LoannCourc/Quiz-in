@@ -23,6 +23,7 @@ interface ThemeGameScreenProps {
   start: (quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs: readonly string[]) => void;
   isCreating: boolean;
   error?: string | null;
+  errorReference?: string | null;
   // Démo : « Ta partie » ouvert d'emblée.
   initialEditing?: boolean;
 }
@@ -36,7 +37,7 @@ function poolAudience(quizzes: readonly QuizEntry[]): QuizAudience {
 // Fiche d'une partie tirée dans des thèmes du Quiz : tirage sur la fiche (useThemeGameDraw), réglages,
 // puis création avec ces questions (questionRefs écrit avec la partie). « Modifier mon choix » affiche
 // « Ta partie » à la place de la fiche ; VALIDER y revient avec le nouveau choix (nouveau tirage).
-export function ThemeGameScreen({ entries, themes, count, source, start, isCreating, error, initialEditing = false }: ThemeGameScreenProps) {
+export function ThemeGameScreen({ entries, themes, count, source, start, isCreating, error, errorReference, initialEditing = false }: ThemeGameScreenProps) {
   const [choice, setChoice] = useState<ThemeGameChoice>({ themes, count, levels: 'all' });
   const [isEditing, setIsEditing] = useState(initialEditing);
   const [chosenSettings, setSettings] = useState<SessionSettings>(DEFAULT_SESSION_SETTINGS);
@@ -85,6 +86,7 @@ export function ThemeGameScreen({ entries, themes, count, source, start, isCreat
       onCreate={create}
       isCreating={isCreating}
       error={error}
+      errorReference={errorReference}
       onModify={() => setIsEditing(true)}
     />
   );

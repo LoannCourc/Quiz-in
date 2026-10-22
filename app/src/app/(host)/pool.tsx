@@ -93,6 +93,7 @@ function ThemeGameRoute({ entries, themes, count, room }: { entries: QuizEntry[]
       start={(quizId, settings, sound, questionRefs) => void starter.start(quizId, settings, sound, questionRefs)}
       isCreating={starter.isStarting}
       error={starter.error}
+      errorReference={starter.errorReference}
     />
   );
 }
@@ -121,6 +122,7 @@ function MixGameScreen({ game, room }: { game: MixGame; room?: string }) {
       onChoose={choose}
       isCreating={starter.isStarting}
       error={starter.error}
+      errorReference={starter.errorReference}
     />
   );
 }

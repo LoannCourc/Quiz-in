@@ -1,3 +1,4 @@
+import { createEnsureSignedIn } from '@shared/signIn'
 import { initializeApp, type FirebaseOptions } from 'firebase/app'
 import { connectAuthEmulator, getAuth, signInAnonymously, type Auth } from 'firebase/auth'
 import { connectDatabaseEmulator, getDatabase, type Database } from 'firebase/database'
@@ -48,10 +49,13 @@ export function getFirebase(): FirebaseServices {
   return services
 }
 
+// Une seule connexion à la fois pour tous les écrans de la TV (shared/signIn.ts), comme l'app.
+const ensureUser = createEnsureSignedIn({
+  ready: () => getFirebase().auth.authStateReady(),
+  current: () => getFirebase().auth.currentUser,
+  signIn: async () => (await signInAnonymously(getFirebase().auth)).user,
+})
+
 export async function ensureSignedIn(): Promise<void> {
-  const { auth } = getFirebase()
-  await auth.authStateReady()
-  if (!auth.currentUser) {
-    await signInAnonymously(auth)
-  }
+  await ensureUser()
 }

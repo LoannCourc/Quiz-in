@@ -35,6 +35,8 @@ interface ThemeGameDetailsProps {
   onCreate: () => void;
   isCreating: boolean;
   error?: string | null;
+  // Ligne grise « Réf. : … » sous l'erreur de création.
+  errorReference?: string | null;
   // « Modifier mon choix » (écran « Ta partie ») ; absent : bouton caché.
   onModify?: () => void;
 }
@@ -48,7 +50,7 @@ const WATERMARK_SIZE = 130;
 // titre, durée, pastilles, « Au programme » (répartition réelle des questions tirées), réglages ;
 // en bas, « Modifier mon choix », CRÉER LA PARTIE et la ligne d'aide.
 export function ThemeGameDetails(props: ThemeGameDetailsProps) {
-  const { themes, count, draw, levels, audience, settings, onSettingsChange, sound, onSoundChange, onCreate, isCreating, error, onModify } = props;
+  const { themes, count, draw, levels, audience, settings, onSettingsChange, sound, onSoundChange, onCreate, isCreating, error, errorReference, onModify } = props;
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const programme = draw.kind === 'ready' ? gameProgramme(draw.draw.info, themes) : null;
   const questionCount = draw.kind === 'ready' ? draw.draw.refs.length : count;
@@ -56,6 +58,7 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
   const footer = (
     <View style={styles.footer}>
       {error && <Text style={textStyles.error}>{error}</Text>}
+      {error && errorReference && <Text style={textStyles.muted}>{errorReference}</Text>}
       {onModify && (
         <Pressable accessibilityRole="button" onPress={onModify} style={({ pressed }) => [styles.modify, pressed && styles.pressed]}>
           <ButtonLabel stretch={false} style={styles.modifyLabel}>{`✎ ${texts.modify}`}</ButtonLabel>

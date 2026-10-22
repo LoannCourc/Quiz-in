@@ -1,3 +1,4 @@
+import { createEnsureSignedIn } from '@shared/signIn';
 import { getApp, getApps, initializeApp, type FirebaseOptions } from 'firebase/app';
 import { getAuth, signInAnonymously, type User } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
@@ -35,12 +36,10 @@ const app = isFirstInit ? initializeApp(firebaseConfig) : getApp();
 export const auth = isFirstInit ? createAuth(app) : getAuth(app);
 export const db = getDatabase(app);
 
-// Attend la restauration d'une éventuelle session enregistrée, sinon en crée une anonyme.
-export async function ensureSignedIn(): Promise<User> {
-  await auth.authStateReady();
-  if (auth.currentUser) {
-    return auth.currentUser;
-  }
-  const credential = await signInAnonymously(auth);
-  return credential.user;
-}
+// Attend la restauration d'une éventuelle session enregistrée, sinon en crée une anonyme. Une seule connexion
+// à la fois pour tous les écrans (shared/signIn.ts) : sinon, au premier lancement, plusieurs comptes anonymes.
+export const ensureSignedIn: () => Promise<User> = createEnsureSignedIn({
+  ready: () => auth.authStateReady(),
+  current: () => auth.currentUser,
+  signIn: async () => (await signInAnonymously(auth)).user,
+});

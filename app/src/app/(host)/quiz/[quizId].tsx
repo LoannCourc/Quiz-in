@@ -110,6 +110,7 @@ function QuizScreen({ quizId, drawCategories, room }: { quizId: string; drawCate
       onChoose={choose}
       isCreating={starter.isStarting}
       error={starter.error}
+      errorReference={starter.errorReference}
       unavailableReason={unavailableReason}
       isPlayed={played.has(quizId)}
     />

@@ -444,6 +444,8 @@ export const strings = {
       offline: 'Pas de connexion. Vérifie ton réseau et réessaie.',
     } satisfies Record<Exclude<CreateGameFailure, 'unknown'>, string>,
     createFailed: 'La partie n’a pas pu être créée :',
+    createFailedUnknown: 'La partie n’a pas pu être créée. Réessaie.',
+    createReference: (detail: string) => `Réf. : ${detail}`,
   },
   // Groupe (maquettes G1 à G4) : équipes Rose, Cyan, Or, Vert.
   teams: {
