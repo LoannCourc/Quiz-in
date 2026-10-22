@@ -9,6 +9,83 @@
     "questions": {
       ".read": "auth != null"
     },
+    "stats": {
+      ".read": "auth != null && root.child('admins').child(auth.uid).val() === true",
+      "modes": {
+        "$mode": {
+          "started": {
+            ".write": "auth != null && newData.exists() && $mode.matches(/^(quiz|bluff|draw)$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          },
+          "completed": {
+            ".write": "auth != null && newData.exists() && $mode.matches(/^(quiz|bluff|draw)$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          },
+          "reached": {
+            "$index": {
+              ".write": "auth != null && newData.exists() && $mode.matches(/^(quiz|bluff|draw)$/) && $index.matches(/^([0-9]|[12][0-9])$/)",
+              ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+            }
+          }
+        }
+      },
+      "quizzes": {
+        "$quizId": {
+          "started": {
+            ".write": "auth != null && newData.exists() && root.child('quizzes').child($quizId).exists()",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          },
+          "completed": {
+            ".write": "auth != null && newData.exists() && root.child('quizzes').child($quizId).exists()",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          }
+        }
+      },
+      "pools": {
+        "$pool": {
+          "started": {
+            ".write": "auth != null && newData.exists() && $pool.matches(/^(themes|mix)$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          },
+          "completed": {
+            ".write": "auth != null && newData.exists() && $pool.matches(/^(themes|mix)$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          }
+        }
+      },
+      "playerCounts": {
+        "$count": {
+          ".write": "auth != null && newData.exists() && $count.matches(/^([1-9]|1[0-9]|20)$/)",
+          ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+        }
+      },
+      "questions": {
+        "$quizId": {
+          "$questionId": {
+            "answered": {
+              ".write": "auth != null && newData.exists() && root.child('quizzes').child($quizId).exists() && $questionId.matches(/^[a-z0-9-]{1,60}$/)",
+              ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+            },
+            "correct": {
+              ".write": "auth != null && newData.exists() && root.child('quizzes').child($quizId).exists() && $questionId.matches(/^[a-z0-9-]{1,60}$/)",
+              ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+            }
+          }
+        }
+      },
+      "daily": {
+        "$day": {
+          "started": {
+            ".write": "auth != null && newData.exists() && $day.matches(/^20[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          },
+          "completed": {
+            ".write": "auth != null && newData.exists() && $day.matches(/^20[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)",
+            ".validate": "newData.isNumber() && newData.val() == (data.exists() ? data.val() : 0) + 1"
+          }
+        }
+      }
+    },
     "sessions": {
       ".indexOn": ["createdAt"],
       "$code": {

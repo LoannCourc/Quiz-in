@@ -2096,3 +2096,133 @@ describe('Présence de la TV (tvPresence)', () => {
     for (const field of PUBLIC_SESSION_FIELDS) await assertSucceeds(db(TV).ref(`${SESSION}/${field}`).once('value'))
   })
 })
+
+describe('Statistiques anonymes (/stats) : compteurs + 1 seulement, lus par le compte admin seul', () => {
+  const ADMIN = 'admin-uid'
+  const PLUS_ONE = firebase.database.ServerValue.increment(1)
+  const QUIZ = 'animaux-du-monde'
+  const seedStats = (stats: Data = {}) =>
+    seed({ quizzes: { [QUIZ]: { title: 'Les animaux du monde' } }, admins: { [ADMIN]: true }, stats })
+
+  // Tous les compteurs que l'app écrit, un par famille.
+  const COUNTERS = [
+    'modes/quiz/started',
+    'modes/bluff/completed',
+    'modes/draw/reached/0',
+    'modes/quiz/reached/29',
+    `quizzes/${QUIZ}/started`,
+    `quizzes/${QUIZ}/completed`,
+    'pools/themes/started',
+    'pools/mix/completed',
+    'playerCounts/1',
+    'playerCounts/20',
+    `questions/${QUIZ}/am-01/answered`,
+    `questions/${QUIZ}/am-01/correct`,
+    'daily/2026-10-22/started',
+    'daily/2026-10-22/completed',
+  ]
+
+  test('increment(1) accepté sur chaque compteur, même absent (0 + 1)', async () => {
+    await seedStats()
+    for (const path of COUNTERS) await assertSucceeds(db(HOST).ref(`stats/${path}`).set(PLUS_ONE))
+    for (const path of COUNTERS) expect(await readAsAdmin(`stats/${path}`)).toBe(1)
+  })
+
+  test('increment(1) sur un compteur existant : ancienne valeur + 1', async () => {
+    await seedStats({ modes: { quiz: { started: 41 } } })
+    await assertSucceeds(db(PLAYER).ref('stats/modes/quiz/started').set(PLUS_ONE))
+    expect(await readAsAdmin('stats/modes/quiz/started')).toBe(42)
+  })
+
+  test('une seule écriture multi-chemins (comme l’app) : acceptée', async () => {
+    await seedStats({ daily: { '2026-10-22': { started: 3 } } })
+    const paths = Object.fromEntries(['modes/quiz/started', `quizzes/${QUIZ}/started`, 'playerCounts/4', 'daily/2026-10-22/started', 'modes/quiz/reached/0'].map((p) => [p, PLUS_ONE]))
+    await assertSucceeds(db(HOST).ref('stats').update(paths))
+    expect(await readAsAdmin('stats/daily/2026-10-22/started')).toBe(4)
+    expect(await readAsAdmin('stats/playerCounts/4')).toBe(1)
+  })
+
+  test('20 increment(1) simultanés de 20 comptes : 20 au total, aucun refusé', async () => {
+    await seedStats()
+    const writers = Array.from({ length: 20 }, (_, i) => db(`host-${i}`).ref('stats/modes/quiz/started').set(PLUS_ONE))
+    await Promise.all(writers.map((write) => assertSucceeds(write)))
+    expect(await readAsAdmin('stats/modes/quiz/started')).toBe(20)
+  })
+
+  test('+ 2, valeur fixée, valeur qui baisse, texte : refusés', async () => {
+    await seedStats({ modes: { quiz: { started: 5 } } })
+    const ref = db(HOST).ref('stats/modes/quiz/started')
+    await assertFails(ref.set(firebase.database.ServerValue.increment(2)))
+    await assertFails(ref.set(6000))
+    await assertFails(ref.set(4))
+    await assertFails(ref.set(firebase.database.ServerValue.increment(-1)))
+    await assertFails(ref.set('6'))
+    await assertFails(db(HOST).ref('stats/playerCounts/3').set(1.5))
+    expect(await readAsAdmin('stats/modes/quiz/started')).toBe(5)
+  })
+
+  test('suppression d’un compteur ou d’une branche : refusée', async () => {
+    await seedStats({ modes: { quiz: { started: 5 } } })
+    await assertFails(db(HOST).ref('stats/modes/quiz/started').remove())
+    await assertFails(db(HOST).ref('stats/modes').remove())
+    await assertFails(db(HOST).ref('stats').remove())
+    await assertFails(db(HOST).ref('stats/modes/quiz/started').set(null))
+  })
+
+  test('écriture d’une branche entière (et non d’un compteur) : refusée', async () => {
+    await seedStats()
+    await assertFails(db(HOST).ref('stats/modes/quiz').set({ started: 1 }))
+    await assertFails(db(HOST).ref('stats').set({ modes: { quiz: { started: 1 } } }))
+  })
+
+  test('clés inconnues ou hors des limites : refusées', async () => {
+    await seedStats()
+    const refused = [
+      'modes/blindTest/started',
+      'modes/quiz/abandoned',
+      'modes/quiz/reached/30',
+      'modes/quiz/reached/-1',
+      'quizzes/quiz-inexistant/started',
+      `quizzes/${QUIZ}/abandoned`,
+      'pools/autre/started',
+      'playerCounts/0',
+      'playerCounts/21',
+      'playerCounts/deux',
+      `questions/${QUIZ}/AM-01/answered`,
+      'questions/quiz-inexistant/am-01/answered',
+      `questions/${QUIZ}/am-01/wrong`,
+      'daily/22-10-2026/started',
+      'daily/2026-13-01/started',
+      'daily/2026-10-22/abandoned',
+      'autre/started',
+    ]
+    for (const path of refused) await assertFails(db(HOST).ref(`stats/${path}`).set(PLUS_ONE))
+  })
+
+  test('non connecté : aucune écriture', async () => {
+    await seedStats()
+    await assertFails(db(null).ref('stats/modes/quiz/started').set(PLUS_ONE))
+  })
+
+  test('lecture : refusée à l’hôte, aux joueurs, aux non connectés ; acceptée pour le compte admin', async () => {
+    await seedStats({ modes: { quiz: { started: 5 } } })
+    await assertFails(db(HOST).ref('stats').once('value'))
+    await assertFails(db(HOST).ref('stats/modes/quiz/started').once('value'))
+    await assertFails(db(PLAYER).ref('stats/daily').once('value'))
+    await assertFails(db(null).ref('stats').once('value'))
+    await assertSucceeds(db(ADMIN).ref('stats').once('value'))
+  })
+
+  test('liste des admins : ni lisible ni modifiable par un client, même pour s’ajouter', async () => {
+    await seedStats()
+    await assertFails(db(ADMIN).ref('admins').once('value'))
+    await assertFails(db(HOST).ref(`admins/${HOST}`).set(true))
+    await assertFails(db(HOST).ref('stats').once('value'))
+  })
+
+  test('interrupteur config/statsEnabled : lisible par tout utilisateur connecté, jamais modifiable', async () => {
+    await seed({ config: { statsEnabled: false } })
+    await assertSucceeds(db(HOST).ref('config/statsEnabled').once('value'))
+    await assertFails(db(HOST).ref('config/statsEnabled').set(true))
+  })
+})
