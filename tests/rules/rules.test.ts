@@ -33,6 +33,7 @@ import { drawGameQuestions } from '../../shared/drawGame'
 import { drawHintsUpdate } from '../../shared/drawGuess'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
+import { startStatsEvent, transitionStatsEvent } from '../../shared/stats'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeQuestion, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
@@ -2218,6 +2219,34 @@ describe('Statistiques anonymes (/stats) : compteurs + 1 seulement, lus par le c
     await assertFails(db(ADMIN).ref('admins').once('value'))
     await assertFails(db(HOST).ref(`admins/${HOST}`).set(true))
     await assertFails(db(HOST).ref('stats').once('value'))
+  })
+
+  test('vrai chemin : toutes les écritures de shared/stats.ts (lancement, question, révélation du moteur, fin) acceptées', async () => {
+    await seed({ quizzes: { 'quiz-1': { title: 'Quiz' } }, admins: { [ADMIN]: true } })
+    const now = Date.now()
+    const lobbyGame = makeSession()
+    const playing = makeSession({
+      status: 'question',
+      currentIndex: 0,
+      phaseEndsAt: now,
+      answers: { 0: { [HOST]: { value: 1, answeredAt: now - 1000 }, [PLAYER]: { value: 0, answeredAt: now - 1000 } } },
+    } as Partial<Session>)
+    const reveal = transitionUpdate(playing, QUESTIONS, { status: 'question', currentIndex: 0 }, now)
+    const events = [
+      startStatsEvent(lobbyGame, QUESTIONS, now),
+      transitionStatsEvent(makeSession({ status: 'starting' }), { status: 'question', currentIndex: 0 }, QUESTIONS, now),
+      transitionStatsEvent(playing, reveal!, QUESTIONS, now),
+      transitionStatsEvent(makeSession({ status: 'reveal', currentIndex: 9 }), { status: 'ended' }, QUESTIONS, now),
+    ]
+    for (const event of events) {
+      expect(event).not.toBeNull()
+      for (const paths of event!.writes) {
+        await assertSucceeds(db(HOST).ref('stats').update(Object.fromEntries(paths.map((path) => [path, PLUS_ONE]))))
+      }
+    }
+    expect(await readAsAdmin('stats/questions/quiz-1/q-0')).toEqual({ answered: 2, correct: 1 })
+    expect(await readAsAdmin('stats/quizzes/quiz-1')).toEqual({ started: 1, completed: 1 })
+    expect(await readAsAdmin('stats/playerCounts/3')).toBe(1)
   })
 
   test('interrupteur config/statsEnabled : lisible par tout utilisateur connecté, jamais modifiable', async () => {

@@ -17,6 +17,7 @@ import { get, ref, remove, update } from 'firebase/database';
 
 import { warnIgnoredEntries } from './devLog';
 import { db } from './firebase';
+import { stats } from './stats';
 
 // Écritures de l'hôte pendant la partie. La logique (quoi écrire) est dans shared/hostEngine.ts ;
 // ici, seulement la lecture et l'écriture dans Firebase.
@@ -49,6 +50,7 @@ export async function launchGame(
   if (!result.ok) return result;
   if (draw) await update(ref(db, `sessions/${code}`), draw.update);
   await update(ref(db, `sessions/${code}`), result.update);
+  stats.gameStart(code, draw?.session ?? session, questions, nowServer);
   return { ok: true };
 }
 
@@ -68,9 +70,9 @@ export async function runTransition(
   const snapshot = await get(ref(db, `sessions/${code}`));
   if (!snapshot.exists()) return;
   // Forme garantie par les règles de validation ; seul l'hôte lit la session d'un bloc.
-  const session = snapshot.val() as Session;
+  const session = withStoredDefaults(snapshot.val() as Session);
   const changes = transitionUpdate(
-    withStoredDefaults(session),
+    session,
     questions,
     expected,
     nowServer,
@@ -79,6 +81,7 @@ export async function runTransition(
   );
   if (!changes || !canWrite()) return;
   await update(ref(db, `sessions/${code}`), changes);
+  stats.transition(code, session, changes, questions, nowServer);
 }
 
 // Blind test : republie l'adresse renouvelée de l'extrait en cours (question, révélation, pause),
