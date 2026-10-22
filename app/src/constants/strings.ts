@@ -527,8 +527,6 @@ export const strings = {
     // Bluff, Mon mélange : partie tirée dans plusieurs quiz.
     mixTitle: (quizzes: number) => `Mon mélange · ${quizzes} quiz`,
     // Aide « Je ne trouve pas ma TV » (écran tvHelp) : lien sous « Afficher sur la TV », bandeau si aucune TV.
-    noTvFoundBanner: 'Pas de TV trouvée ?',
-    noTvFoundAction: 'Voir l’aide',
     playersTitle: 'Joueurs',
     connectedCount: (count: number) => `${count} connecté${count > 1 ? 's' : ''}`,
     // Exclure un joueur (bouton × sur son avatar, puis confirmation).

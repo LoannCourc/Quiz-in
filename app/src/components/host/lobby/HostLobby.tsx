@@ -304,14 +304,6 @@ export function HostLobby(props: HostLobbyProps) {
           <>
             <LobbyCodeHero code={code} />
             {cast.isAvailable && <TvCastPill onPress={openTvPicker} isSearching={cast.isSearchingTv} />}
-            {/* Recherche Cast sans résultat depuis 8 s : le bandeau mène tout droit à l'aide Chromecast. */}
-            {cast.noTvFound && (
-              <Pressable accessibilityRole="link" onPress={() => router.push('/tv-help')} style={styles.noTvFoundBanner}>
-                <Text style={styles.noTvFoundText}>
-                  {strings.hostLobby.noTvFoundBanner} <Text style={styles.noTvFoundAction}>{strings.hostLobby.noTvFoundAction}</Text>
-                </Text>
-              </Pressable>
-            )}
             <Pressable accessibilityRole="button" onPress={() => setIsDisplayOptionsOpen(true)} style={styles.displayOptionsButton}>
               <Text style={styles.displayOptionsLink}>{strings.hostLobby.displayOptionsLink}</Text>
             </Pressable>
@@ -473,24 +465,6 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.bold,
     fontSize: 14,
     textAlign: 'center',
-    textDecorationLine: 'underline',
-  },
-  // Recherche des TV sans résultat depuis 8 s : bandeau vers l'aide Chromecast.
-  noTvFoundBanner: {
-    paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.three,
-    borderRadius: AppSizes.radius,
-    backgroundColor: AppColors.surface,
-  },
-  noTvFoundText: {
-    color: AppColors.text,
-    fontFamily: AppFonts.bold,
-    fontSize: 15,
-    textAlign: 'center',
-  },
-  noTvFoundAction: {
-    color: AppColors.link,
-    fontFamily: AppFonts.extraBold,
     textDecorationLine: 'underline',
   },
   players: {

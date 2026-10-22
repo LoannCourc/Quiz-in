@@ -4,7 +4,7 @@ import { pauseUpdate } from '@shared/hostEngine';
 import type { Session } from '@shared/types';
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
 import { AppState } from 'react-native';
-import GoogleCast, { CastState, useCastChannel, useCastState } from 'react-native-google-cast';
+import GoogleCast, { useCastChannel } from 'react-native-google-cast';
 
 import {
   castDeviceCount,
@@ -18,9 +18,6 @@ import {
   stopCastDiscovery,
 } from '@/lib/castDiscovery';
 import { applyHostAction } from '@/lib/hostGame';
-
-// Recherche des TV sans résultat depuis ce délai : le salon propose l'aide « Je ne trouve pas ma TV ».
-const NO_TV_FOUND_DELAY_MS = 8000;
 
 // iOS : minuteries de l'attente des TV (shared/castSearch.ts), lignes [cast] dans la console.
 const CAST_SEARCH_DEPS: CastSearchDeps = {
@@ -45,8 +42,6 @@ export interface CastGame {
   isTvConnected: boolean;
   // La session Cast s'est terminée pendant la partie, qui a été mise en pause.
   castInterrupted: boolean;
-  // La recherche des TV ne trouve rien depuis quelques secondes.
-  noTvFound: boolean;
   // Liste des TV (dialogue Cast natif) ; exige un TvCastButton affiché à l'écran.
   showTvPicker: () => void;
   // iOS, jamais encore demandé sur ce téléphone : expliquer l'accès au réseau local avant la liste.
@@ -69,8 +64,6 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   const [castInterrupted, setCastInterrupted] = useState(false);
   const [previousStatus, setPreviousStatus] = useState(session.status);
   const latest = useRef({ canWrite, serverOffsetMs });
-  const isSearchEmpty = useCastState() === CastState.NO_DEVICES_AVAILABLE;
-  const [hasWaitedForTv, setHasWaitedForTv] = useState(false);
   // iOS : la recherche des TV tourne dans le salon tant qu'aucune TV n'est connectée, une fois la demande
   // d'accès au réseau local faite (jamais avant : elle s'afficherait sans explication).
   // null tant que la mémoire du téléphone n'est pas lue.
@@ -91,15 +84,6 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
   useEffect(() => {
     latest.current = { canWrite, serverOffsetMs };
   }, [canWrite, serverOffsetMs]);
-
-  useEffect(() => {
-    if (!isSearchEmpty) return;
-    const timer = setTimeout(() => setHasWaitedForTv(true), NO_TV_FOUND_DELAY_MS);
-    return () => {
-      clearTimeout(timer);
-      setHasWaitedForTv(false);
-    };
-  }, [isSearchEmpty]);
 
   useEffect(() => {
     if (!needsExplicitDiscovery) return;
@@ -224,7 +208,7 @@ export function useCastGame(code: string, session: Session, canWrite: boolean, s
     searchThenShowTvPicker('appui');
   }
 
-  return { isAvailable: true, isTvConnected, castInterrupted, noTvFound: isSearchEmpty && hasWaitedForTv,
+  return { isAvailable: true, isTvConnected, castInterrupted,
     showTvPicker,
     needsLocalNetworkExplanation: isLocalNetworkAsked === false,
     isSearchingTv,

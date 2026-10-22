@@ -14,7 +14,7 @@ import { applyLocalUpdate } from './localUpdate';
 import { DEMO_CODE } from './playerScenarios';
 
 // Démo du salon de l'hôte (développement uniquement), sans Firebase :
-// /debug/lobby?players=<0 à 20>&tv=<none|connected|unavailable|notfound>&host=<1|0>&display=<0|1>
+// /debug/lobby?players=<0 à 20>&tv=<none|connected|unavailable>&host=<1|0>&display=<0|1>
 // host=0 : l'hôte n'a pas encore choisi son pseudo (formulaire au-dessus de la liste).
 // &teams=random|host|players : Groupe (composition des équipes, actions appliquées sur place) ;
 // &drawn=1 : équipes déjà tirées au sort ; &late=3 : 3 joueurs arrivés après le tirage (sans équipe) ; &page=teams : page « Équipes » ouverte ;
@@ -64,7 +64,6 @@ function demoCast(tv: string | undefined, localNetwork: boolean, search: string 
     isAvailable: tv !== 'unavailable',
     isTvConnected: tv === 'connected',
     castInterrupted: false,
-    noTvFound: tv === 'notfound',
     showTvPicker: () => undefined,
     needsLocalNetworkExplanation: localNetwork,
     isSearchingTv: search === 'searching',
