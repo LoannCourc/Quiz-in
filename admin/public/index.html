@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Quiz'in · Statistiques</title>
+<link rel="stylesheet" href="/admin.css">
+<script type="module" src="/admin.js"></script>
+</head>
+<body>
+<header class="top">
+  <h1>Quiz'in <span>· Statistiques</span></h1>
+  <div class="account" id="account" hidden>
+    <span id="account-email"></span>
+    <button type="button" class="link" id="sign-out">Se déconnecter</button>
+  </div>
+</header>
+<p class="banner" id="emulator-banner" hidden>Émulateur local : données de démonstration, jamais la base réelle.</p>
+
+<main>
+  <p class="status" id="loading">Chargement…</p>
+
+  <section class="card narrow" id="login" hidden>
+    <h2>Connexion</h2>
+    <form id="login-form" novalidate>
+      <label>E-mail<input type="email" name="email" autocomplete="username" required></label>
+      <label>Mot de passe<input type="password" name="password" autocomplete="current-password" required></label>
+      <p class="error" id="login-error" role="alert" hidden></p>
+      <button type="submit" class="primary" id="login-button">Se connecter</button>
+    </form>
+  </section>
+
+  <section class="card narrow" id="denied" hidden>
+    <h2>Accès refusé</h2>
+    <p>Ce compte n'a pas accès aux statistiques. Seuls les comptes ajoutés dans <code>admins</code> de la base (console Firebase) peuvent les lire.</p>
+  </section>
+
+  <section class="card narrow" id="failure" hidden>
+    <h2>Lecture impossible</h2>
+    <p id="failure-text"></p>
+    <button type="button" class="primary" id="retry">Réessayer</button>
+  </section>
+
+  <div id="dashboard" hidden>
+    <div class="toolbar">
+      <p class="muted" id="updated"></p>
+      <button type="button" class="link" id="refresh">Actualiser</button>
+    </div>
+    <p class="status" id="empty" hidden>Aucune statistique pour l'instant : elles arrivent avec les parties jouées sur une version publiée de l'app.</p>
+
+    <section class="kpis" id="kpis"></section>
+
+    <section class="card">
+      <h2>Jeux les plus joués</h2>
+      <div class="rows" id="modes"></div>
+    </section>
+
+    <section class="card">
+      <h2>Quiz les plus joués</h2>
+      <div class="rows" id="games"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Courbe d'abandon</h2>
+        <label class="inline">Jeu <select id="dropoff-mode"></select></label>
+      </div>
+      <p class="muted">Parties arrivées à chaque question (ou manche), en part des parties démarrées.</p>
+      <div class="rows" id="dropoff"></div>
+    </section>
+
+    <section class="card">
+      <h2>Nombre de joueurs par partie</h2>
+      <p class="muted">Joueurs connectés au lancement, hôte compris s'il joue.</p>
+      <div class="rows" id="players"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Questions</h2>
+        <label class="inline">Au moins <input type="number" id="min-answers" min="1" max="1000" step="1" value="20"> réponses</label>
+      </div>
+      <p class="muted" id="questions-count"></p>
+      <h3>Les plus dures</h3>
+      <ol class="questions" id="hardest"></ol>
+      <h3>Les plus faciles</h3>
+      <ol class="questions" id="easiest"></ol>
+    </section>
+
+    <section class="card">
+      <h2>Tendance (30 derniers jours, UTC)</h2>
+      <div class="legend"><span class="key started"></span>démarrées <span class="key completed"></span>terminées</div>
+      <div class="chart" id="daily"></div>
+      <div class="chart-axis" id="daily-axis"></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

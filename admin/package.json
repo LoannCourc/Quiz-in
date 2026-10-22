@@ -1,0 +1,10 @@
+{
+  "name": "quizin-admin",
+  "private": true,
+  "type": "module",
+  "description": "Page privée des statistiques de Quiz'in (docs/statistiques.md). Sans dépendance.",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "demo-data": "node scripts/demo-data.mjs"
+  }
+}
