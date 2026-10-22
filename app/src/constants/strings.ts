@@ -654,7 +654,7 @@ export const strings = {
     searching: 'Recherche des TV…',
     noTvFound: {
       title: 'Aucune TV trouvée',
-      text: 'Vérifie que le réseau local est activé pour Quiz’in (Réglages → Quiz’in → Réseau local) et que ton téléphone est sur le même Wi-Fi que la TV.',
+      text: 'Ton iPhone doit pouvoir voir les appareils de ton Wi-Fi. Ouvre Réglages → Quiz’in et active « Réseau local ». Vérifie aussi que la TV est allumée et sur le même Wi-Fi que ton iPhone.',
       openSettings: 'OUVRIR LES RÉGLAGES',
       retry: 'Réessayer',
       help: 'Voir l’aide',
