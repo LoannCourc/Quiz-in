@@ -1681,6 +1681,12 @@
   "title": "Comment Ca",
   "checkedAt": "2026-10-15"
  },
+ "Comment ça va – The Shorts": {
+  "id": "3175846",
+  "artist": "The Shorts",
+  "title": "Comment ça va",
+  "checkedAt": "2026-10-22"
+ },
  "Common People – Pulp": {
   "id": "910074",
   "artist": "Pulp",
@@ -2503,6 +2509,18 @@
   "title": "Faded",
   "checkedAt": "2026-10-15"
  },
+ "Fais comme l'oiseau – Michel Fugain": {
+  "id": "3786033532",
+  "artist": "Michel Fugain",
+  "title": "Fais comme l'oiseau",
+  "checkedAt": "2026-10-22"
+ },
+ "Fais pas ci, fais pas ça – Jacques Dutronc": {
+  "id": "540433",
+  "artist": "Jacques Dutronc",
+  "title": "Fais pas ci, fais pas ça",
+  "checkedAt": "2026-10-22"
+ },
  "Faites du bruit – Svinkels": {
   "id": "3783624",
   "artist": "Svinkels",
@@ -2585,6 +2603,12 @@
   "title": "Feelings",
   "checkedAt": "2026-10-15"
  },
+ "Félicie aussi – Fernandel": {
+  "id": "64788325",
+  "artist": "Fernandel",
+  "title": "Félicie aussi",
+  "checkedAt": "2026-10-22"
+ },
  "Femme libérée – Cookie Dingler": {
   "id": "1849978827",
   "artist": "Cookie Dingler",
@@ -2654,6 +2678,12 @@
   "artist": "Angèle",
   "title": "Flemme",
   "checkedAt": "2026-10-15"
+ },
+ "Fleur de Paris – Maurice Chevalier": {
+  "id": "5420293",
+  "artist": "Maurice Chevalier",
+  "title": "Fleur de Paris",
+  "checkedAt": "2026-10-22"
  },
  "Fleur De Saison – Émilie Simon": {
   "id": "2541497",
@@ -3907,6 +3937,12 @@
   "title": "Itchycoo Park",
   "checkedAt": "2026-10-15"
  },
+ "J'ai bien mangé, j'ai bien bu – Patrick Topaloff": {
+  "id": "5674569",
+  "artist": "Patrick Topaloff",
+  "title": "J'ai bien mangé, j'ai bien bu",
+  "checkedAt": "2026-10-22"
+ },
  "J'ai les loves – Maska": {
   "id": "1780266497",
   "artist": "Maska",
@@ -4497,6 +4533,12 @@
   "title": "La carte bleue",
   "checkedAt": "2026-10-15"
  },
+ "La Chenille – La Bande à Basile": {
+  "id": "3034391",
+  "artist": "La Bande à Basile",
+  "title": "La chenille",
+  "checkedAt": "2026-10-22"
+ },
  "La clairière – Dominique A": {
   "id": "441379612",
   "artist": "Dominique A",
@@ -4514,6 +4556,12 @@
   "artist": "Francis Cabrel",
   "title": "La dame de Haute-Savoie (Remastered)",
   "checkedAt": "2026-10-15"
+ },
+ "La Danse des canards – JJ Lionel": {
+  "id": "254954",
+  "artist": "Jj Lionel",
+  "title": "La danse des canards (Original Radio Edit 1980)",
+  "checkedAt": "2026-10-22"
  },
  "La dernière fois que je parle de toi – KIK": {
   "id": "488038532",
@@ -4550,6 +4598,12 @@
   "artist": "Michel Berger",
   "title": "La groupie du pianiste (Remasterisé en 2002)",
   "checkedAt": "2026-10-15"
+ },
+ "La Java bleue – Fréhel": {
+  "id": "1459726822",
+  "artist": "Fréhel",
+  "title": "La java bleue (Remastered 2020)",
+  "checkedAt": "2026-10-22"
  },
  "La Javanaise – Serge Gainsbourg": {
   "id": "508426542",
@@ -4651,6 +4705,12 @@
   "title": "La ruelle des morts",
   "checkedAt": "2026-10-15"
  },
+ "La Salsa du démon – Le Grand Orchestre du Splendid": {
+  "id": "2574993",
+  "artist": "Le Grand Orchestre du Splendid",
+  "title": "La salsa du démon",
+  "checkedAt": "2026-10-22"
+ },
  "La Sécurité de l'emploi – Les Fatals Picards": {
   "id": "794737",
   "artist": "Les Fatals Picards",
@@ -4698,6 +4758,12 @@
   "artist": "Benjamin Biolay",
   "title": "La Superbe",
   "checkedAt": "2026-10-15"
+ },
+ "La Tactique du gendarme – Bourvil": {
+  "id": "1130285942",
+  "artist": "Bourvil",
+  "title": "La tactique du gendarme",
+  "checkedAt": "2026-10-22"
  },
  "La tendresse – Bourvil": {
   "id": "410213492",
@@ -4903,11 +4969,23 @@
   "title": "Le lac majeur",
   "checkedAt": "2026-10-15"
  },
+ "Le Lion est mort ce soir – Pow Wow": {
+  "id": "2149986",
+  "artist": "Pow Wow",
+  "title": "Le lion est mort ce soir",
+  "checkedAt": "2026-10-22"
+ },
  "Le loir et cher – Michel Delpech": {
   "id": "3812307172",
   "artist": "Michel Delpech",
   "title": "Le Loir et Cher",
   "checkedAt": "2026-10-15"
+ },
+ "Le Lundi au soleil – Claude François": {
+  "id": "535660",
+  "artist": "Claude François",
+  "title": "Le lundi au soleil",
+  "checkedAt": "2026-10-22"
  },
  "Le Maillot – Yanns": {
   "id": "4057648011",
@@ -5097,6 +5175,12 @@
   "title": "Les Autres",
   "checkedAt": "2026-10-15"
  },
+ "Les Bêtises – Sabine Paturel": {
+  "id": "769250892",
+  "artist": "Sabine Paturel",
+  "title": "Les bêtises",
+  "checkedAt": "2026-10-22"
+ },
  "Les Blancs Ne Savent Pas Danser – James Deano": {
   "id": "515846372",
   "artist": "James Deano",
@@ -5108,6 +5192,12 @@
   "artist": "Jenifer",
   "title": "Les choses simples",
   "checkedAt": "2026-10-15"
+ },
+ "Les Cornichons – Nino Ferrer": {
+  "id": "2628774",
+  "artist": "Nino Ferrer",
+  "title": "Les cornichons",
+  "checkedAt": "2026-10-22"
  },
  "Les Daltons – Joe Dassin": {
   "id": null,
@@ -5222,6 +5312,18 @@
   "artist": "Patachou",
   "title": "Les ronds dans l'eau",
   "checkedAt": "2026-10-15"
+ },
+ "Les Sucettes – France Gall": {
+  "id": "92700342",
+  "artist": "France Gall",
+  "title": "Les sucettes (Remastered)",
+  "checkedAt": "2026-10-22"
+ },
+ "Les Sunlights des tropiques – Gilbert Montagné": {
+  "id": "1142341",
+  "artist": "Gilbert Montagné",
+  "title": "Les sunlights des tropiques",
+  "checkedAt": "2026-10-22"
  },
  "Les vacances au bord de la mer – Michel Jonasz": {
   "id": "365933821",
@@ -6005,11 +6107,23 @@
   "title": "Mon papa à moi est un gangster",
   "checkedAt": "2026-10-15"
  },
+ "Mon père était tellement de gauche – Les Fatals Picards": {
+  "id": "794745",
+  "artist": "Les Fatals Picards",
+  "title": "Mon père était tellement de gauche",
+  "checkedAt": "2026-10-22"
+ },
  "Mon roi (facile x fragile +) – Camélia Jordana": {
   "id": "1699782437",
   "artist": "Camélia Jordana",
   "title": "Mon roi (facile x fragile +)",
   "checkedAt": "2026-10-15"
+ },
+ "Mon truc en plumes – Zizi Jeanmaire": {
+  "id": "2231310",
+  "artist": "Zizi Jeanmaire",
+  "title": "Mon truc en plumes",
+  "checkedAt": "2026-10-22"
  },
  "Mon vieux – Daniel Guichard": {
   "id": "2150191",
@@ -6124,6 +6238,12 @@
   "artist": "Daphné",
   "title": "Musicamor",
   "checkedAt": "2026-10-15"
+ },
+ "Mustapha – Bob Azzam": {
+  "id": "903549082",
+  "artist": "Bob Azzam",
+  "title": "Mustapha",
+  "checkedAt": "2026-10-22"
  },
  "My Escape – Marina Kaye": {
   "id": "417336842",
@@ -6890,6 +7010,12 @@
   "artist": "Def Leppard",
   "title": "Pour Some Sugar On Me",
   "checkedAt": "2026-10-15"
+ },
+ "Pour un flirt – Michel Delpech": {
+  "id": "1150373",
+  "artist": "Michel Delpech",
+  "title": "Pour un flirt (Album Version)",
+  "checkedAt": "2026-10-22"
  },
  "Pourquoi? – Busta Flex": {
   "id": "749752",
@@ -8369,6 +8495,12 @@
   "title": "Tarzan Boy",
   "checkedAt": "2026-10-15"
  },
+ "Tata Yoyo – Annie Cordy": {
+  "id": "3785416142",
+  "artist": "Annie Cordy",
+  "title": "Tata Yoyo",
+  "checkedAt": "2026-10-22"
+ },
  "Tchikita – Jul": {
   "id": null,
   "checkedAt": "2026-10-15"
@@ -9045,6 +9177,12 @@
   "title": "Tu trouveras",
   "checkedAt": "2026-10-15"
  },
+ "Tu veux ou tu veux pas – Brigitte Bardot": {
+  "id": "1101472",
+  "artist": "Brigitte Bardot",
+  "title": "Tu veux ou tu veux pas?",
+  "checkedAt": "2026-10-22"
+ },
  "Tumbleweed – Brigitte": {
   "id": "10446171",
   "artist": "Brigitte",
@@ -9185,6 +9323,12 @@
   "title": "Use Me",
   "checkedAt": "2026-10-15"
  },
+ "Vacances j'oublie tout – Elegance": {
+  "id": "17247877",
+  "artist": "Elegance",
+  "title": "Vacances j'oublie tout (Version originale 1982)",
+  "checkedAt": "2026-10-22"
+ },
  "Vai et viens – Lartiste": {
   "id": "450365142",
   "artist": "Lartiste",
@@ -9224,6 +9368,12 @@
   "artist": "Ultravox",
   "title": "Vienna (2009 Remaster)",
   "checkedAt": "2026-10-15"
+ },
+ "Viens boire un p'tit coup à la maison – Licence IV": {
+  "id": "91215634",
+  "artist": "Licence IV",
+  "title": "Viens boire un p'tit coup à la maison",
+  "checkedAt": "2026-10-22"
  },
  "Viens me faire oublier – Dick Rivers": {
   "id": "1130245262",

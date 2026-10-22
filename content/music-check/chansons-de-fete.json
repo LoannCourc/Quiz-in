@@ -1,0 +1,469 @@
+{
+  "quizId": "chansons-de-fete",
+  "source": "deezer",
+  "lookedUpAt": "2026-10-22",
+  "tracks": [
+    {
+      "questionId": "fete-01",
+      "query": {
+        "artist": "Patrick Sébastien",
+        "title": "Les sardines"
+      },
+      "found": {
+        "id": "66644816",
+        "title": "Les sardines",
+        "artist": "Patrick Sébastien",
+        "album": "A L'Attaque",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/66644816",
+        "explicit": false,
+        "rank": 659236
+      },
+      "alternatives": [
+        {
+          "id": "68305919",
+          "title": "Les sardines (Remix Edit Version 2013)",
+          "artist": "Patrick Sébastien",
+          "album": "Les Sardines",
+          "durationS": 233,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/68305919",
+          "explicit": false,
+          "rank": 409638
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-02",
+      "query": {
+        "artist": "Pierre Perret",
+        "title": "Les jolies colonies de vacances"
+      },
+      "found": {
+        "id": "3487044821",
+        "title": "Les jolies colonies de vacances",
+        "artist": "Pierre Perret",
+        "album": "Premières amours",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3487044821",
+        "explicit": false,
+        "rank": 498096
+      },
+      "alternatives": [
+        {
+          "id": "6774157",
+          "title": "Les jolies colonies de vacances (Version instrumentale)",
+          "artist": "Patrick Péronne",
+          "album": "Pierre Perret et le trio François Charpin",
+          "durationS": 222,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6774157",
+          "explicit": false,
+          "rank": 37528
+        },
+        {
+          "id": "8772155",
+          "title": "Les Jolies Colonies De Vacances — Karaoké Avec Chant Témoin — Rendu Célèbre Par Pierre Perret",
+          "artist": "Karaoké Playback Français",
+          "album": "Les Succès De Pierre Perret Vol. 1",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/8772155",
+          "explicit": false,
+          "rank": 26421
+        },
+        {
+          "id": "6869486",
+          "title": "Les Jolies Colonies De Vacances — Karaoké Avec Chant Témoin — Rendu Célèbre Par Pierre Perret",
+          "artist": "Karaoké Playback Français",
+          "album": "Chansons Pour Faire La Fête",
+          "durationS": 216,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/6869486",
+          "explicit": false,
+          "rank": 32916
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-03",
+      "query": {
+        "artist": "Harmonie bayonnaise",
+        "title": "Peña Baiona"
+      },
+      "found": {
+        "id": "3852338",
+        "title": "Peña Baiona",
+        "artist": "Harmonie bayonnaise",
+        "album": "Vino Pan y Toros (Orchestre des arènes)",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3852338",
+        "explicit": false,
+        "rank": 236048
+      },
+      "alternatives": [
+        {
+          "id": "43386631",
+          "title": "Peña Baiona - Vino Griego",
+          "artist": "Harmonie bayonnaise",
+          "album": "Fêtes de Bayonne 2012",
+          "durationS": 213,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/43386631",
+          "explicit": false,
+          "rank": 425452
+        },
+        {
+          "id": "41729921",
+          "title": "Peña Baiona",
+          "artist": "Harmonie bayonnaise",
+          "album": "De Bayonne à Beziers (Compil officielle des fêtes)",
+          "durationS": 232,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/41729921",
+          "explicit": false,
+          "rank": 266367
+        },
+        {
+          "id": "2573195",
+          "title": "Peña Baiona",
+          "artist": "Harmonie bayonnaise",
+          "album": "Kant'ABaiona - ivalalouper!",
+          "durationS": 307,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2573195",
+          "explicit": false,
+          "rank": 226865
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-04",
+      "query": {
+        "artist": "Vincè la petite culotte",
+        "title": "La goffa Lolita"
+      },
+      "found": {
+        "id": "1619126272",
+        "title": "La goffa Lolita",
+        "artist": "Vincè la petite culotte",
+        "album": "La goffa Lolita",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1619126272",
+        "explicit": false,
+        "rank": 878153
+      },
+      "alternatives": [
+        {
+          "id": "2550930152",
+          "title": "La goffa Lolita (feat. Chico & The Gypsies)",
+          "artist": "Vincè la petite culotte",
+          "album": "In Festa",
+          "durationS": 219,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2550930152",
+          "explicit": false,
+          "rank": 364333
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-05",
+      "query": {
+        "artist": "Sébastien Patoche",
+        "title": "La tournée du patron"
+      },
+      "found": {
+        "id": "2649989182",
+        "title": "La tournée du patron",
+        "artist": "Sébastien Patoche",
+        "album": "J'emmerde les bobos !",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2649989182",
+        "explicit": false,
+        "rank": 751494
+      },
+      "alternatives": [
+        {
+          "id": "2650109482",
+          "title": "Beau black - Sébastien Patoche présente Jimmy Foxtrot",
+          "artist": "Sébastien Patoche",
+          "album": "Look d'enfer",
+          "durationS": 197,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/2650109482",
+          "explicit": false,
+          "rank": 486396
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-06",
+      "query": {
+        "artist": "Les Charlots",
+        "title": "Merci Patron"
+      },
+      "found": {
+        "id": "2280698",
+        "title": "Merci Patron",
+        "artist": "Les Charlots",
+        "album": "Compilation",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2280698",
+        "explicit": false,
+        "rank": 483302
+      },
+      "alternatives": [
+        {
+          "id": "3773302",
+          "title": "Merci patron",
+          "artist": "Les Charlots",
+          "album": "Les Charlots : Best of",
+          "durationS": 172,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3773302",
+          "explicit": false,
+          "rank": 354567
+        },
+        {
+          "id": "3034396",
+          "title": "Merci patron",
+          "artist": "Les Charlots",
+          "album": "Age tendre… La tournée des idoles, Vol. 4",
+          "durationS": 171,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/3034396",
+          "explicit": false,
+          "rank": 157204
+        },
+        {
+          "id": "604232032",
+          "title": "Merci Patron",
+          "artist": "Atelier Tordu",
+          "album": "Huile",
+          "durationS": 141,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/604232032",
+          "explicit": false,
+          "rank": 85983
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-07",
+      "query": {
+        "artist": "Boby Lapointe",
+        "title": "Framboise"
+      },
+      "found": {
+        "id": "64535115",
+        "title": "Framboise",
+        "artist": "Boby Lapointe",
+        "album": "Bobby Lapointe",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/64535115",
+        "explicit": false,
+        "rank": 258927
+      },
+      "alternatives": [
+        {
+          "id": "502934572",
+          "title": "Framboise",
+          "artist": "Boby Lapointe",
+          "album": "Boby lapointe en public",
+          "durationS": 151,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/502934572",
+          "explicit": false,
+          "rank": 341575
+        },
+        {
+          "id": "11287603",
+          "title": "Framboise - Avanie et framboise (1960)",
+          "artist": "Boby Lapointe",
+          "album": "Sonneries authentiques - 200 tubes de l'été (200 Ringtones)",
+          "durationS": 44,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/11287603",
+          "explicit": false,
+          "rank": 79642
+        },
+        {
+          "id": "1794257967",
+          "title": "Framboise (Live aux Trois Baudets, Paris / 1960)",
+          "artist": "Boby Lapointe",
+          "album": "Boby Lapointe a 100 ans",
+          "durationS": 141,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/1794257967",
+          "explicit": false,
+          "rank": 65858
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-08",
+      "query": {
+        "artist": "Georges Brassens",
+        "title": "Le gorille"
+      },
+      "found": {
+        "id": "14396302",
+        "title": "Le gorille",
+        "artist": "Georges Brassens",
+        "album": "Chanson Pour L'Auvergnat Vol 3",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14396302",
+        "explicit": false,
+        "rank": 639228
+      },
+      "alternatives": [
+        {
+          "id": "90649353",
+          "title": "Le gorille",
+          "artist": "Georges Brassens",
+          "album": "Best Of 40 chansons",
+          "durationS": 196,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/90649353",
+          "explicit": false,
+          "rank": 432101
+        },
+        {
+          "id": "9955855",
+          "title": "Le Gorille (Répétition) (Version remasterisée)",
+          "artist": "Georges Brassens",
+          "album": "Il N'Y A D'Honnête Que Le Bonheur",
+          "durationS": 99,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/9955855",
+          "explicit": false,
+          "rank": 96931
+        },
+        {
+          "id": "9955856",
+          "title": "Le Gorille (Version remasterisée)",
+          "artist": "Georges Brassens",
+          "album": "Il N'Y A D'Honnête Que Le Bonheur",
+          "durationS": 381,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/9955856",
+          "explicit": false,
+          "rank": 46443
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-09",
+      "query": {
+        "artist": "Les Quatre Barbus",
+        "title": "Chevaliers de la table ronde"
+      },
+      "found": {
+        "id": "643779592",
+        "title": "Chevaliers de la table ronde",
+        "artist": "Les Quatre Barbus",
+        "album": "Honneur aux barbus",
+        "durationS": 145,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/643779592",
+        "explicit": false,
+        "rank": 253408
+      },
+      "alternatives": [
+        {
+          "id": "37930951",
+          "title": "Chevaliers de la table ronde",
+          "artist": "Les Quatre Barbus",
+          "album": "Dary Cowl presente la boite en chansons and Chanson a Boire",
+          "durationS": 146,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/37930951",
+          "explicit": false,
+          "rank": 186302
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-10",
+      "query": {
+        "artist": "Lina Margy",
+        "title": "Ah le petit vin blanc"
+      },
+      "found": {
+        "id": "291132",
+        "title": "Ah le petit vin blanc",
+        "artist": "Lina Margy",
+        "album": "Ah le petit vin blanc",
+        "durationS": 199,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/291132",
+        "explicit": false,
+        "rank": 347915
+      },
+      "alternatives": [
+        {
+          "id": "942125192",
+          "title": "Ah le petit vin blanc",
+          "artist": "Lina Margy",
+          "album": "Ah! le petit vin blanc",
+          "durationS": 200,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/942125192",
+          "explicit": false,
+          "rank": 218192
+        },
+        {
+          "id": "14998459",
+          "title": "Ah! Le petit vin blanc",
+          "artist": "Lina Margy",
+          "album": "La chanson du bonheur",
+          "durationS": 225,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/14998459",
+          "explicit": true,
+          "rank": 151220
+        },
+        {
+          "id": "103706532",
+          "title": "Ah! Le petit vin blanc",
+          "artist": "Lina Margy",
+          "album": "Rendez-moi son amour (Collection \"Légende de la chanson française\")",
+          "durationS": 206,
+          "previewAvailable": true,
+          "link": "https://www.deezer.com/track/103706532",
+          "explicit": false,
+          "rank": 89199
+        }
+      ],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "id": "chansons-de-fete",
+  "gameType": "blindTest",
+  "title": "Chansons de fête",
+  "theme": "Musique",
+  "description": "Bandas, bals et refrains de fin de banquet : dix chansons à reprendre en chœur, toutes époques.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "addedAt": "2026-10-22",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-7)",
+  "questions": [
+    {
+      "id": "fete-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les Démons de minuit – Images",
+        "Les sardines – Patrick Sébastien",
+        "Les Sunlights des tropiques – Gilbert Montagné",
+        "Vacances j'oublie tout – Elegance"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Les sardines"],
+      "difficulty": 1,
+      "music": { "artist": "Patrick Sébastien", "title": "Les sardines" }
+    },
+    {
+      "id": "fete-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Les Bêtises – Sabine Paturel",
+        "Comment ça va – The Shorts",
+        "Pour un flirt – Michel Delpech",
+        "Les jolies colonies de vacances – Pierre Perret"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Pierre Perret"],
+      "difficulty": 1,
+      "music": { "artist": "Pierre Perret", "title": "Les jolies colonies de vacances" }
+    },
+    {
+      "id": "fete-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Peña Baiona – Harmonie bayonnaise",
+        "Mustapha – Bob Azzam",
+        "Ça plane pour moi – Plastic Bertrand",
+        "Femme libérée – Cookie Dingler"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Peña Baiona"],
+      "difficulty": 2,
+      "music": { "artist": "Harmonie bayonnaise", "title": "Peña Baiona", "titleAliases": ["Pena Baiona"] }
+    },
+    {
+      "id": "fete-04",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tata Yoyo – Annie Cordy",
+        "La Chenille – La Bande à Basile",
+        "La goffa Lolita – Vincè la petite culotte",
+        "La Danse des canards – JJ Lionel"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": ["La goffa Lolita"],
+      "difficulty": 2,
+      "music": { "artist": "Vincè la petite culotte", "title": "La goffa Lolita" }
+    },
+    {
+      "id": "fete-05",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La tournée du patron – Sébastien Patoche",
+        "Viens boire un p'tit coup à la maison – Licence IV",
+        "J'ai bien mangé, j'ai bien bu – Patrick Topaloff",
+        "La Salsa du démon – Le Grand Orchestre du Splendid"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": ["Sébastien Patoche"],
+      "difficulty": 2,
+      "music": { "artist": "Sébastien Patoche", "title": "La tournée du patron" }
+    },
+    {
+      "id": "fete-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fais pas ci, fais pas ça – Jacques Dutronc",
+        "Merci patron – Les Charlots",
+        "Les Cornichons – Nino Ferrer",
+        "Le Lundi au soleil – Claude François"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Les Charlots"],
+      "difficulty": 2,
+      "music": { "artist": "Les Charlots", "title": "Merci Patron", "displayTitle": "Merci patron" }
+    },
+    {
+      "id": "fete-07",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tu veux ou tu veux pas – Brigitte Bardot",
+        "Les Sucettes – France Gall",
+        "Fais comme l'oiseau – Michel Fugain",
+        "Framboise – Boby Lapointe"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Boby Lapointe"],
+      "difficulty": 2,
+      "music": { "artist": "Boby Lapointe", "title": "Framboise" }
+    },
+    {
+      "id": "fete-08",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mon père était tellement de gauche – Les Fatals Picards",
+        "Le gorille – Georges Brassens",
+        "Manu Chao – Les Wampas",
+        "Le Lion est mort ce soir – Pow Wow"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Le gorille"],
+      "difficulty": 1,
+      "music": { "artist": "Georges Brassens", "title": "Le gorille", "titleAliases": ["Gare au gorille"] }
+    },
+    {
+      "id": "fete-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Félicie aussi – Fernandel",
+        "La Tactique du gendarme – Bourvil",
+        "Mon truc en plumes – Zizi Jeanmaire",
+        "Chevaliers de la table ronde – Les Quatre Barbus"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": ["Chevaliers de la table ronde"],
+      "difficulty": 1,
+      "music": { "artist": "Les Quatre Barbus", "title": "Chevaliers de la table ronde", "titleAliases": ["Les Chevaliers de la table ronde"] }
+    },
+    {
+      "id": "fete-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La Java bleue – Fréhel",
+        "Ah ! Le petit vin blanc – Lina Margy",
+        "Fleur de Paris – Maurice Chevalier",
+        "Mon amant de Saint-Jean – Lucienne Delyle"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": ["Lina Margy"],
+      "difficulty": 2,
+      "music": { "artist": "Lina Margy", "title": "Ah le petit vin blanc", "displayTitle": "Ah ! Le petit vin blanc" }
+    }
+  ]
+}
