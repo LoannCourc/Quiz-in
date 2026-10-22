@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BigButton } from '@/components/ui/BigButton';
 import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
@@ -21,19 +22,32 @@ interface BottomSheetProps {
   footer?: ReactNode;
   // iOS : appelé quand la feuille a fini de disparaître (une fenêtre native ne peut s'ouvrir qu'après).
   onDismissed?: () => void;
+  // Appelé quand la feuille est affichée (focus d'un champ : le clavier ne s'ouvre qu'une fois la fenêtre prête).
+  onShow?: () => void;
   children: ReactNode;
 }
 
 // Feuille du bas, par-dessus l'écran (salon de l'hôte : son, réglages) : poignée, en-tête facultatif, contenu
 // qui défile (petit écran, grande police), « Terminé » jaune. Appui en dehors, bouton retour d'Android ou
 // « Terminé » : fermeture.
-// Clavier ouvert (prénom de « Je joue aussi ») : la fenêtre ne rétrécit pas (Modal, bord à bord), la feuille
-// est posée dans la zone au-dessus du clavier et raccourcit avec elle ; en-tête et bas restent visibles, le milieu défile.
-export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, onDismissed, children }: BottomSheetProps) {
+// Clavier ouvert (prénom de « Je joue aussi ») : la feuille est posée dans la zone au-dessus du clavier et
+// raccourcit avec elle ; en-tête et bas restent visibles, le milieu défile. Android : le Modal est une fenêtre à
+// part, mise en bord à bord comme l'écran (sinon le système la remonte lui-même au-dessus du clavier et la marge
+// du clavier s'y ajoute : feuille écrasée, champ invisible) ; les barres système sont donc laissées en marge.
+export function BottomSheet({ isOpen, onClose, title, aside, action, header, footer, onDismissed, onShow, children }: BottomSheetProps) {
   const keyboardInset = useKeyboardInset();
+  const insets = useSafeAreaInsets();
   return (
-    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose} onDismiss={onDismissed}>
-      <View style={[styles.overlay, { paddingBottom: keyboardInset }]}>
+    <Modal
+      visible={isOpen}
+      transparent
+      animationType="slide"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+      onDismiss={onDismissed}
+      onShow={onShow}>
+      <View style={[styles.overlay, { paddingTop: insets.top, paddingBottom: Math.max(keyboardInset, insets.bottom) }]}>
         <Pressable accessibilityRole="button" accessibilityLabel={strings.quizSetup.settingsDone} style={styles.backdrop} onPress={onClose} />
         <View style={styles.aboveKeyboard}>
           <View style={styles.sheet}>

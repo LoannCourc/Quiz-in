@@ -579,6 +579,7 @@ export const strings = {
       sheetTitle: 'Ton profil de joueur',
       sheetIntro: 'Ton prénom et ton avatar, comme les autres joueurs.',
       namePlaceholder: 'Ton prénom',
+      nameRequired: `Écris ton prénom : ${PLAYER_NAME_MIN_LENGTH} à ${PLAYER_NAME_MAX_LENGTH} caractères.`,
       scrollHint: 'Fais défiler pour voir tous les avatars.',
       joinButton: 'Rejoindre la partie',
       saveButton: 'Enregistrer',

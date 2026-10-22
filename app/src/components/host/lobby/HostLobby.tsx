@@ -131,7 +131,12 @@ export function HostLobby(props: HostLobbyProps) {
   // « Je joue aussi » : mêmes écritures qu'avant (inscription comme un joueur, hostLeaveUpdate pour
   // arrêter) ; le prénom et l'avatar gardés sur le téléphone inscrivent l'hôte d'un geste.
   const hostPlayer = players[uid];
-  const [profileSheet, setProfileSheet] = useState<{ isOpen: boolean; error: string | null }>({ isOpen: initialProfileOpen, error: null });
+  const [profileSheet, setProfileSheet] = useState<{ isOpen: boolean; error: string | null; focusName: boolean }>({
+    isOpen: initialProfileOpen,
+    error: null,
+    // Démo ?profile=1 : feuille ouverte comme par l'interrupteur.
+    focusName: initialProfileOpen,
+  });
   const [storedProfile, setStoredProfile] = useState<HostProfile | null>(null);
   const [isJoiningAsPlayer, setIsJoiningAsPlayer] = useState(false);
   useEffect(() => {
@@ -143,8 +148,9 @@ export function HostLobby(props: HostLobbyProps) {
       isActive = false;
     };
   }, [profileSheet.isOpen]);
-  function openProfileSheet(error: string | null = null) {
-    setProfileSheet({ isOpen: true, error });
+  // Ouverte par l'interrupteur : le prénom prend le focus (clavier ouvert) ; par « Modifier » : non.
+  function openProfileSheet(error: string | null = null, focusName = false) {
+    setProfileSheet({ isOpen: true, error, focusName });
   }
   async function togglePlayAlso(isOn: boolean) {
     if (!isOn) {
@@ -153,19 +159,19 @@ export function HostLobby(props: HostLobbyProps) {
     }
     const profile = storedProfile ?? (await loadHostProfile());
     if (!profile) {
-      openProfileSheet();
+      openProfileSheet(null, true);
       return;
     }
     const refusal = getJoinRefusal(session.status, players, uid, profile.name);
     if (refusal) {
-      openProfileSheet(strings.join.refusals[refusal]);
+      openProfileSheet(strings.join.refusals[refusal], true);
       return;
     }
     setIsJoiningAsPlayer(true);
     try {
       await registerPlayer(code, uid, profile.name, profile.avatar);
     } catch {
-      openProfileSheet(strings.join.submitFailed);
+      openProfileSheet(strings.join.submitFailed, true);
     } finally {
       setIsJoiningAsPlayer(false);
     }
@@ -355,9 +361,10 @@ export function HostLobby(props: HostLobbyProps) {
         code={code}
         session={session}
         isOpen={profileSheet.isOpen}
-        onClose={() => setProfileSheet({ isOpen: false, error: null })}
+        onClose={() => setProfileSheet({ isOpen: false, error: null, focusName: false })}
         initial={hostPlayer ? { name: hostPlayer.name, avatar: hostPlayer.avatar } : storedProfile}
         initialError={profileSheet.error}
+        focusName={profileSheet.focusName}
       />
       <DisplayOptionsSheet
         isOpen={isDisplayOptionsOpen}

@@ -1,8 +1,8 @@
 import { PLAYER_NAME_MAX_LENGTH } from '@shared/constants';
 import { cleanPlayerName, isValidPlayerName } from '@shared/playerName';
 import type { Session } from '@shared/types';
-import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { AvatarPicker } from '@/components/player/AvatarPicker';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -23,9 +23,13 @@ interface HostProfileSheetProps {
   initial: HostProfile | null;
   // Refus déjà connu à l'ouverture (activation : prénom gardé déjà pris par un joueur).
   initialError?: string | null;
+  // Ouverte par l'interrupteur « Je joue aussi » : le champ du prénom prend le focus, clavier ouvert.
+  focusName?: boolean;
 }
 
 const texts = strings.hostLobby.playAlso;
+// Délai entre l'affichage de la feuille et le focus : la fenêtre doit être prête pour recevoir le clavier.
+const FOCUS_DELAY_MS = 150;
 
 // Prénom et avatar de l'hôte qui joue : première activation de « Je joue aussi » (inscription, mêmes
 // écritures et mêmes refus qu'un joueur), ou « Modifier » (mise à jour, comme « Modifier mon profil » d'un
@@ -35,20 +39,40 @@ export function HostProfileSheet({ isOpen, ...props }: HostProfileSheetProps) {
   return isOpen ? <OpenSheet {...props} /> : null;
 }
 
-function OpenSheet({ code, session, onClose, initial, initialError = null }: Omit<HostProfileSheetProps, 'isOpen'>) {
+function OpenSheet({ code, session, onClose, initial, initialError = null, focusName = false }: Omit<HostProfileSheetProps, 'isOpen'>) {
   const uid = session.hostUid;
   const isPlaying = session.players[uid] !== undefined;
   const [rawName, setRawName] = useState(initial?.name ?? '');
   const [avatar, setAvatar] = useState(() => initial?.avatar ?? firstFreeAvatar(session.players));
   const [error, setError] = useState<string | null>(initialError);
   const [isSaving, setIsSaving] = useState(false);
+  const nameInput = useRef<TextInput>(null);
+  const focusTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (focusTimer.current) clearTimeout(focusTimer.current);
+  }, []);
   // Clavier ouvert : la phrase d'introduction laisse sa place au champ (petit écran, grande police).
   const isTyping = useKeyboardInset() > 0;
   const name = cleanPlayerName(rawName);
-  const canSave = isValidPlayerName(name) && !isSaving;
 
+  function focusNameInput() {
+    if (!focusName) return;
+    focusTimer.current = setTimeout(() => nameInput.current?.focus(), FOCUS_DELAY_MS);
+  }
+
+  // Fermeture sans valider (fond, retour d'Android) : rien n'est enregistré, le clavier se ferme.
+  function close() {
+    Keyboard.dismiss();
+    onClose();
+  }
+
+  // Prénom refusé : le message s'affiche sous le champ, le clavier reste ouvert pour corriger.
   async function save() {
-    if (!canSave) return;
+    if (isSaving) return;
+    if (!isValidPlayerName(name)) {
+      setError(texts.nameRequired);
+      return;
+    }
     const refusal = getJoinRefusal(session.status, session.players, uid, name);
     if (refusal) {
       setError(strings.join.refusals[refusal]);
@@ -60,7 +84,7 @@ function OpenSheet({ code, session, onClose, initial, initialError = null }: Omi
       if (isPlaying) await updateProfile(code, uid, name, avatar);
       else await registerPlayer(code, uid, name, avatar);
       await saveHostProfile({ name, avatar });
-      onClose();
+      close();
     } catch {
       // Partie lancée entre-temps : les règles refusent l'écriture.
       setError(isPlaying ? strings.profile.submitFailed : strings.join.submitFailed);
@@ -72,17 +96,20 @@ function OpenSheet({ code, session, onClose, initial, initialError = null }: Omi
   return (
     <BottomSheet
       isOpen
-      onClose={onClose}
+      onClose={close}
+      onShow={focusNameInput}
       title={texts.sheetTitle}
-      footer={<SubmitButton label={label} onPress={save} disabled={!canSave} />}>
+      footer={<SubmitButton label={label} onPress={save} disabled={isSaving} />}>
       {!isTyping && <Text style={styles.intro}>{texts.sheetIntro}</Text>}
       <TextInput
+        ref={nameInput}
         value={rawName}
         onChangeText={(text) => {
           setRawName(text);
           setError(null);
         }}
         onSubmitEditing={save}
+        submitBehavior="submit"
         placeholder={texts.namePlaceholder}
         placeholderTextColor={AppColors.textMuted}
         maxLength={PLAYER_NAME_MAX_LENGTH}
@@ -90,13 +117,13 @@ function OpenSheet({ code, session, onClose, initial, initialError = null }: Omi
         autoComplete="off"
         returnKeyType="done"
         accessibilityLabel={strings.join.nameLabel}
-        style={styles.nameInput}
+        style={[styles.nameInput, error !== null && styles.nameInputError]}
       />
+      {error && <Text style={styles.error}>{error}</Text>}
       <View style={styles.avatars}>
         <AvatarPicker layout="row" selected={avatar} onSelect={setAvatar} fadeColor={AppColors.inkSurface} />
         <Text style={styles.hint}>{texts.scrollHint}</Text>
       </View>
-      {error && <Text style={styles.error}>{error}</Text>}
     </BottomSheet>
   );
 }
@@ -111,11 +138,16 @@ const styles = StyleSheet.create({
     minHeight: 52,
     paddingHorizontal: Spacing.three,
     borderRadius: AppSizes.radius,
+    borderWidth: 2,
+    borderColor: AppColors.lobbyPanel,
     // La feuille est encre : le champ prend le violet des cartes du salon.
     backgroundColor: AppColors.lobbyPanel,
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: 18,
+  },
+  nameInputError: {
+    borderColor: AppColors.wrong,
   },
   avatars: {
     gap: Spacing.one,
