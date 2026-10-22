@@ -44,6 +44,10 @@
       "public": "app/dist",
       "predeploy": ["npm --prefix app run export:web"],
       "ignore": ["firebase.json", "**/.*"],
+      "redirects": [
+        { "source": "/confidentialite", "destination": "https://quizin-site.web.app/legal/confidentialite", "type": 302 },
+        { "source": "/confidentialite.html", "destination": "https://quizin-site.web.app/legal/confidentialite", "type": 302 }
+      ],
       "rewrites": [
         {
           "source": "/confidentialite",
