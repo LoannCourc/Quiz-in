@@ -34,6 +34,7 @@ import { drawHintsUpdate } from '../../shared/drawGuess'
 import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type PublicField } from '../../shared/publicFields'
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { startStatsEvent, transitionStatsEvent } from '../../shared/stats'
+import { trackPresence, type PresenceTracker } from '../../shared/presence'
 import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeQuestion, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
@@ -2253,5 +2254,94 @@ describe('Statistiques anonymes (/stats) : compteurs + 1 seulement, lus par le c
     await seed({ config: { statsEnabled: false } })
     await assertSucceeds(db(HOST).ref('config/statsEnabled').once('value'))
     await assertFails(db(HOST).ref('config/statsEnabled').set(true))
+  })
+})
+
+describe('Présence après « Quitter la partie » (shared/presence.ts sur l’émulateur)', () => {
+  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+  const CONNECTED = (uid: string) => `${SESSION}/players/${uid}/connected`
+
+  // Même branchement que app/src/hooks/usePresence.ts, avec le SDK des tests. Un uid par test : goOffline()
+  // coupe la connexion de ce compte pour la suite.
+  function presence(uid: string): { tracker: PresenceTracker; client: ReturnType<typeof db> } {
+    const client = db(uid)
+    const connectedRef = client.ref(CONNECTED(uid))
+    const tracker = trackPresence({
+      watchConnection: (onConnected) => {
+        const infoRef = client.ref('.info/connected')
+        const listener = infoRef.on('value', (snapshot) => {
+          if (snapshot.val() === true) onConnected()
+        })
+        return () => infoRef.off('value', listener)
+      },
+      armDisconnect: () => connectedRef.onDisconnect().set(false),
+      cancelDisconnect: () => connectedRef.onDisconnect().cancel(),
+      setConnected: (connected) => connectedRef.set(connected),
+      warn: () => undefined,
+    })
+    return { tracker, client }
+  }
+
+  async function until(path: string, expected: unknown) {
+    for (let i = 0; i < 40 && (await readAsAdmin(path)) !== expected; i++) await wait(50)
+    return readAsAdmin(path)
+  }
+
+  const lobbyWith = (uid: string) =>
+    seedSession({ status: 'lobby', phaseEndsAt: 0, players: { [HOST]: { name: 'Hôte', avatar: '🐸', connected: true }, [uid]: { name: 'Tom', avatar: '🐼', connected: true } } })
+
+  test('reproduction du bug : sans départ explicite, le joueur reste connecté tant que l’app garde sa connexion', async () => {
+    const uid = 'ghost-uid'
+    await lobbyWith(uid)
+    const { tracker, client } = presence(uid)
+    expect(await until(CONNECTED(uid), true)).toBe(true)
+    tracker.stop() // ancien comportement : l'écran se démonte, rien n'est écrit
+    await wait(300)
+    expect(await readAsAdmin(CONNECTED(uid))).toBe(true)
+    client.goOffline() // seule une coupure faisait passer à false
+    expect(await until(CONNECTED(uid), false)).toBe(false)
+  })
+
+  test('« Quitter » : absent tout de suite, plus compté ; une coupure plus tard ne change plus rien', async () => {
+    const uid = 'quit-uid'
+    await lobbyWith(uid)
+    const { tracker, client } = presence(uid)
+    expect(await until(CONNECTED(uid), true)).toBe(true)
+    tracker.leave()
+    expect(await until(CONNECTED(uid), false)).toBe(false)
+    const players = (await readAsAdmin(`${SESSION}/players`)) as Session['players']
+    expect(startStatsEvent(makeSession({ players }), QUESTIONS, Date.now())?.writes[0]).toContain('playerCounts/1')
+    // Le joueur revient avec le code (nouvel écran) : de nouveau présent.
+    const back = presence(uid)
+    expect(await until(CONNECTED(uid), true)).toBe(true)
+    back.tracker.leave()
+    expect(await until(CONNECTED(uid), false)).toBe(false)
+    client.goOffline()
+    await wait(300)
+    expect(await readAsAdmin(CONNECTED(uid))).toBe(false)
+    expect(await readAsAdmin(`${SESSION}/players/${uid}/name`)).toBe('Tom')
+  })
+
+  test('un joueur écrit son propre connected = false dans tous les états de la partie, jamais celui d’un autre', async () => {
+    for (const status of ['lobby', 'starting', 'question', 'vote', 'validation', 'reveal', 'scores', 'paused', 'ended']) {
+      await seedSession({ status, players: { [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true }, [OTHER]: { name: 'Tom', avatar: '🐼', score: 0, rank: 2, connected: true } } })
+      await assertSucceeds(db(PLAYER).ref(CONNECTED(PLAYER)).set(false))
+      await assertFails(db(PLAYER).ref(CONNECTED(OTHER)).set(false))
+    }
+  })
+
+  test('entrée retirée (exclusion, « Je joue aussi » arrêté) : départ refusé sans recréer d’entrée', async () => {
+    const uid = 'removed-uid'
+    await lobbyWith(uid)
+    const { tracker, client } = presence(uid)
+    expect(await until(CONNECTED(uid), true)).toBe(true)
+    await assertSucceeds(db(HOST).ref(SESSION).update(removePlayerUpdate((await readAsAdmin(SESSION)) as Session, uid) as SessionUpdate))
+    tracker.leave()
+    await wait(300)
+    expect(await readAsAdmin(`${SESSION}/players/${uid}`)).toBeNull()
+    await assertFails(db(uid).ref(CONNECTED(uid)).set(false))
+    client.goOffline()
+    await wait(300)
+    expect(await readAsAdmin(`${SESSION}/players/${uid}`)).toBeNull()
   })
 })

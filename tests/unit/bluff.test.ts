@@ -152,6 +152,13 @@ describe('Bluff : vérification des propositions', () => {
     const waiting = checked({ p0: 'Monopolis' }, 2)
     expect(writingDeadline(waiting)).toBe(waiting.phaseEndsAt + REVEAL_GRACE_MS)
   })
+
+  test('joueur parti sans proposition (« Quitter ») : il ne retient pas l’écriture', () => {
+    const session = checked({ p0: 'Monopolis', p1: 'Capitale Express' }, 3)
+    expect(writingDeadline(session)).toBe(session.phaseEndsAt + REVEAL_GRACE_MS)
+    const gone = { ...session, players: { ...session.players, p2: { ...session.players.p2, connected: false } } }
+    expect(writingDeadline(gone)).toBe(NOW + 1 + 2000)
+  })
 })
 
 describe('Bluff : choix du vote', () => {

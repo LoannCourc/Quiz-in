@@ -21,6 +21,7 @@ import {
   teamsEnabledUpdate,
   teamQuestionPoints,
   teamRanking,
+  teamPresenceSnapshot,
   teamStandings,
 } from '../../shared/teams'
 import type { Answer, Player, PlayerId, Session, SessionSettings, TeamId } from '../../shared/types'
@@ -171,6 +172,16 @@ describe('Score des équipes', () => {
     const presence = { a: true, b: true, d: true, e: true } as const
     const results = { a: { correct: true, points: 150 }, c: { correct: true, points: 200 }, d: { correct: true, points: 100 }, e: { correct: true, points: 120 } }
     expect(teamQuestionPoints(roster, presence, results, ['pink', 'cyan'])).toEqual({ pink: 75, cyan: 110 })
+  })
+
+  test('joueurs comptés à la fin d’une question : seulement ceux qui ont une équipe et sont connectés (parti : jamais compté)', () => {
+    const snapshot = teamPresenceSnapshot({
+      a: { team: 'pink', connected: true },
+      b: { team: 'pink', connected: false },
+      c: { team: 'cyan', connected: true },
+      d: { connected: true },
+    })
+    expect(snapshot).toEqual({ a: true, c: true })
   })
 
   test('équipe sans joueur présent : 0 point', () => {
