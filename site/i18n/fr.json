@@ -75,19 +75,18 @@
     "joinName": "Camille",
     "joinGo": "C'EST PARTI",
     "stepsTitle": "Prêt en 3 étapes",
-    "stepsSub": "Pas de manette, pas de compte à créer.",
     "steps": [
       {
         "title": "Choisis un jeu",
         "text": "L'hôte ouvre Quiz'in, puis choisit un jeu et un thème."
       },
       {
-        "title": "Affiche sur la TV",
-        "text": "Il envoie la partie vers la TV avec un Chromecast, ou ouvre le lien sur l'ordinateur relié à la TV."
+        "title": "Affiche-le sur ta TV",
+        "text": "Affiche le jeu sur ta TV, ou ouvre le lien sur l'ordinateur relié à ta TV."
       },
       {
         "title": "Les invités rejoignent",
-        "text": "Un QR code ou un code à 4 caractères suffit. Ils jouent dans le navigateur de leur téléphone, sans rien installer."
+        "text": "Entrez le code affiché sur la TV ou scannez le QR code pour rejoindre la partie. Vous pouvez jouer via votre navigateur."
       }
     ],
     "gamesTitle": "Les jeux",
@@ -96,18 +95,15 @@
     "band": [
       {
         "badge": "0 €",
-        "title": "Gratuit",
-        "text": "Sans pub, sans achat intégré"
+        "title": "Gratuit"
       },
       {
         "badge": "",
-        "title": "Sans compte",
-        "text": "On tape un prénom et on joue"
+        "title": "Sans compte"
       },
       {
         "badge": "",
-        "title": "2 à 20 joueurs",
-        "text": "Dès 4, jouez aussi en équipes"
+        "title": "2 à 20 joueurs"
       }
     ],
     "faqTitle": "Questions fréquentes",

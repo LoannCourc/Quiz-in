@@ -53,7 +53,6 @@ function steps(ctx) {
   const h = ctx.t.home
   return html`<section id="comment" class="section wrap">
 <h2 class="section-title">${h.stepsTitle}</h2>
-<p class="section-sub">${h.stepsSub}</p>
 <ol class="steps">
 ${h.steps.map((step, index) => html`<li class="card step"><span class="step-number ${STEP_COLORS[index % STEP_COLORS.length]}" aria-hidden="true">${index + 1}</span><h3>${step.title}</h3><p>${step.text}</p></li>
 `)}</ol>
@@ -94,7 +93,7 @@ function band(ctx) {
 <ul class="band">
 ${ctx.t.home.band.map((item, index) => {
     const style = BAND_STYLES[index % BAND_STYLES.length]
-    return html`<li class="band-item"><span class="band-badge ${style.color}" aria-hidden="true">${style.icon ?? item.badge}</span><span class="band-text"><span class="band-title">${item.title}</span><span class="band-desc">${item.text}</span></span></li>
+    return html`<li class="band-item"><span class="band-badge ${style.color}" aria-hidden="true">${style.icon ?? item.badge}</span><span class="band-title">${item.title}</span></li>
 `
   })}</ul>
 </section>`

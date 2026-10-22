@@ -75,19 +75,18 @@
     "joinName": "Camille",
     "joinGo": "LET'S GO",
     "stepsTitle": "Ready in 3 steps",
-    "stepsSub": "No controllers, no account to create.",
     "steps": [
       {
         "title": "Pick a game",
         "text": "The host opens Quiz'in, then picks a game and a theme."
       },
       {
-        "title": "Show it on the TV",
-        "text": "They cast the game to the TV with a Chromecast, or open the link on a computer connected to the TV."
+        "title": "Show it on your TV",
+        "text": "Show the game on your TV, or open the link on the computer connected to your TV."
       },
       {
         "title": "Guests join",
-        "text": "A QR code or a 4-character code is all it takes. They play in their phone browser, nothing to install."
+        "text": "Enter the code shown on the TV or scan the QR code to join the game. You can play in your browser."
       }
     ],
     "gamesTitle": "Games",
@@ -96,18 +95,15 @@
     "band": [
       {
         "badge": "0 €",
-        "title": "Free",
-        "text": "No ads, no in-app purchases"
+        "title": "Free"
       },
       {
         "badge": "",
-        "title": "No account",
-        "text": "Type a name and play"
+        "title": "No account"
       },
       {
         "badge": "",
-        "title": "2 to 20 players",
-        "text": "From 4, you can also play in teams"
+        "title": "2 to 20 players"
       }
     ],
     "faqTitle": "Frequently asked questions",
