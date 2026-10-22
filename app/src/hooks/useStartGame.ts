@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { strings } from '@/constants/strings';
 import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
-import { createGame, NoFreeRoomCodeError } from '@/lib/createGame';
+import { createGame, CreateGameError } from '@/lib/createGame';
 import { toErrorMessage } from '@/lib/errors';
 import { applyHostAction } from '@/lib/hostGame';
 import { saveHostedGameCode } from '@/lib/hostedGameStorage';
@@ -19,6 +19,13 @@ export interface GameStarter {
 
 // « Choisir ce quiz » (fiche d'un quiz ou d'une partie tirée dans des thèmes) : crée la partie et ouvre son
 // salon ; room (Changer de jeu) : le jeu choisi remplace celui de cette partie, puis retour à son salon.
+// Cause connue : son message ; sinon, l'erreur telle quelle.
+function createErrorMessage(error: unknown): string {
+  if (error instanceof CreateGameError && error.failure !== 'unknown') return strings.quizSetup.createFailures[error.failure];
+  const cause = error instanceof CreateGameError ? error.cause : error;
+  return `${strings.quizSetup.createFailed} ${toErrorMessage(cause)}`;
+}
+
 export function useStartGame(room: string | undefined): GameStarter {
   const serverOffsetMs = useServerTimeOffset();
   const [isStarting, setIsStarting] = useState(false);
@@ -32,7 +39,7 @@ export function useStartGame(room: string | undefined): GameStarter {
       // replace : le retour arrière depuis le lobby ramène au catalogue, pas à cette fiche.
       router.replace({ pathname: '/host/[code]', params: { code } });
     } catch (createError) {
-      setError(createError instanceof NoFreeRoomCodeError ? strings.quizSetup.noFreeCode : `${strings.quizSetup.createFailed} ${toErrorMessage(createError)}`);
+      setError(createErrorMessage(createError));
       setIsStarting(false);
     }
   }

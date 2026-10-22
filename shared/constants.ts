@@ -127,6 +127,8 @@ export const ROOM_CODE_LENGTH = 4;
 export const ROOM_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 // Codes tirés au plus à la création d'une partie, si les précédents sont déjà pris.
 export const ROOM_CODE_MAX_ATTEMPTS = 5;
+// Création d'une partie : délai d'attente de chaque accès à Firebase (hors ligne, une écriture ne répond jamais).
+export const CREATE_GAME_TIMEOUT_MS = 10_000;
 
 export const SESSION_TTL_HOURS = 24;
 

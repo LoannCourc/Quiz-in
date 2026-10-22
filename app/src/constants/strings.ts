@@ -13,6 +13,7 @@ import type { AwaitingNext, LaunchRefusal, SkipTarget } from '@shared/hostEngine
 import type { GameOption } from '@shared/quizCatalog';
 import type { ReviewBadge } from '@shared/validationReview';
 import type { BluffSortId } from '@shared/bluffCatalog';
+import type { CreateGameFailure } from '@shared/gameCreation';
 import type { AnswerMode, BlindTestAsk, BluffVerdict, DifficultyLevel, QuestionLevel, QuizAudience, TeamId, TeamMode } from '@shared/types';
 
 import type { JoinRefusal } from '@/lib/joinGame';
@@ -436,7 +437,12 @@ export const strings = {
     // Dessine-moi : catégories choisies dans le catalogue (vide : toutes).
     drawCategories: (names: string[]) => `Catégories : ${names.length === 0 ? 'Mélange' : names.join(', ')}`,
     creating: 'Création…',
-    noFreeCode: 'Impossible de trouver un code de partie libre. Réessaie.',
+    // Création impossible, selon la cause (shared/gameCreation.ts).
+    createFailures: {
+      codeTaken: 'Pas de code de partie libre trouvé. Réessaie.',
+      refused: 'Le serveur a refusé la création. Mets l’app à jour ou réessaie plus tard.',
+      offline: 'Pas de connexion. Vérifie ton réseau et réessaie.',
+    } satisfies Record<Exclude<CreateGameFailure, 'unknown'>, string>,
     createFailed: 'La partie n’a pas pu être créée :',
   },
   // Groupe (maquettes G1 à G4) : équipes Rose, Cyan, Or, Vert.

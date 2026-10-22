@@ -1,56 +1,60 @@
-import {
-  PLAYERS_SITE_URL,
-  RECEIVER_CODE_PARAM,
-  RECEIVER_SITE_URL,
-  ROOM_CODE_MAX_ATTEMPTS,
-} from '@shared/constants';
+import { CREATE_GAME_TIMEOUT_MS, PLAYERS_SITE_URL, RECEIVER_CODE_PARAM, RECEIVER_SITE_URL } from '@shared/constants';
+import { claimRoomCode, createGameFailureOf, withTimeout, type CreateGameFailure } from '@shared/gameCreation';
 import { generateRoomCode } from '@shared/roomCode';
 import type { SessionSettings, SoundSettings } from '@shared/types';
 import { get, ref, serverTimestamp, set } from 'firebase/database';
 
-import { isPermissionDenied } from './errors';
 import { db, ensureSignedIn } from './firebase';
 
-export class NoFreeRoomCodeError extends Error {}
-
-// Tente d'occuper un code. Faux s'il est déjà pris (par n'importe quel hôte).
-async function tryClaimCode(code: string, hostUid: string, quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
-  // On ne peut pas lire sessions/CODE d'un bloc sans en être l'hôte ; hostUid est lisible par tous.
-  const existingHost = await get(ref(db, `sessions/${code}/hostUid`));
-  if (existingHost.exists()) return false;
-  try {
-    await set(ref(db, `sessions/${code}`), {
-      hostUid,
-      quizId,
-      status: 'lobby',
-      settings,
-      sound,
-      currentIndex: 0,
-      phaseStartedAt: serverTimestamp(),
-      // Date de création, pour le nettoyage des parties de plus de 24 h (scripts/cleanup-sessions.mjs).
-      createdAt: serverTimestamp(),
-      // Le lobby n'a pas de fin automatique.
-      phaseEndsAt: 0,
-      // Thèmes du Quiz : questions déjà tirées sur la fiche (sinon, tirage au salon).
-      ...(questionRefs && { questionRefs: [...questionRefs] }),
-    });
-    return true;
-  } catch (error) {
-    // Un autre hôte a pris le code entre la lecture et l'écriture : les règles refusent.
-    if (isPermissionDenied(error)) return false;
-    throw error;
+// Échec de la création, avec sa cause (useStartGame choisit le message).
+export class CreateGameError extends Error {
+  constructor(
+    readonly failure: CreateGameFailure,
+    readonly cause?: unknown,
+  ) {
+    super(failure);
   }
 }
 
-// Crée la session initiale en LOBBY, avec le son de la TV choisi par l'hôte, et renvoie son code
-// (au plus ROOM_CODE_MAX_ATTEMPTS tirages).
+function sessionWrite(hostUid: string, quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]) {
+  return {
+    hostUid,
+    quizId,
+    status: 'lobby',
+    settings,
+    sound,
+    currentIndex: 0,
+    phaseStartedAt: serverTimestamp(),
+    // Date de création, pour le nettoyage des parties de plus de 24 h (scripts/cleanup-sessions.mjs).
+    createdAt: serverTimestamp(),
+    // Le lobby n'a pas de fin automatique.
+    phaseEndsAt: 0,
+    // Thèmes du Quiz : questions déjà tirées sur la fiche (sinon, tirage au salon).
+    ...(questionRefs && { questionRefs: [...questionRefs] }),
+  };
+}
+
+// Crée la session initiale en LOBBY, avec le son de la TV choisi par l'hôte, et renvoie son code. Chaque accès
+// à Firebase a un délai (hors ligne, une écriture ne répond jamais) ; la cause d'un échec est classée par
+// claimRoomCode (shared/gameCreation.ts), l'erreur réelle notée dans la console en développement.
 export async function createGame(quizId: string, settings: SessionSettings, sound: SoundSettings, questionRefs?: readonly string[]): Promise<string> {
-  const user = await ensureSignedIn();
-  for (let attempt = 0; attempt < ROOM_CODE_MAX_ATTEMPTS; attempt++) {
-    const code = generateRoomCode();
-    if (await tryClaimCode(code, user.uid, quizId, settings, sound, questionRefs)) return code;
+  const fail = (failure: CreateGameFailure, cause: unknown): never => {
+    if (__DEV__) console.warn(`[create] Partie non créée (${failure})`, cause);
+    throw new CreateGameError(failure, cause);
+  };
+  let hostUid: string;
+  try {
+    hostUid = (await withTimeout(ensureSignedIn(), CREATE_GAME_TIMEOUT_MS)).uid;
+  } catch (error) {
+    return fail(createGameFailureOf(error), error);
   }
-  throw new NoFreeRoomCodeError();
+  const outcome = await claimRoomCode({
+    generateCode: () => generateRoomCode(),
+    // On ne peut pas lire sessions/CODE d'un bloc sans en être l'hôte ; hostUid est lisible par tous.
+    isCodeTaken: async (code) => (await withTimeout(get(ref(db, `sessions/${code}/hostUid`)), CREATE_GAME_TIMEOUT_MS)).exists(),
+    writeGame: (code) => withTimeout(set(ref(db, `sessions/${code}`), sessionWrite(hostUid, quizId, settings, sound, questionRefs)), CREATE_GAME_TIMEOUT_MS),
+  });
+  return outcome.ok ? outcome.code : fail(outcome.failure, outcome.cause);
 }
 
 // Adresse à ouvrir sur la TV (ou un navigateur) pour afficher la partie.
