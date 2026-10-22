@@ -168,7 +168,7 @@
       },
       {
         "h": "What we collect",
-        "p": "No account is created. To play, you enter a first name (or nickname) and can pick an avatar. During a game we also record the game code, your answers, your scores, your drawings (in Draw Me) and the settings chosen by the host. An anonymous connection identifies your device while you play, with no link to your identity. We do not ask for an email, phone number, contacts, location, photos or microphone access. A nickname is enough: avoid entering your full name."
+        "p": "No account is created. To play, you enter a first name (or nickname) and can pick an avatar. During a game we also record the game code, your answers, your scores, your drawings (in Draw Me) and the settings chosen by the host. An anonymous connection identifies your device while you play, with no link to your identity. We do not ask for an email, phone number, contacts, location, photos or microphone access. A nickname is enough: avoid entering your full name. Anonymous usage statistics. To improve the quizzes, the host's app sends aggregated counters: quizzes, modes and game types (chosen quiz, themes or mix) started, number of players per game, question reached and games finished (which lets us count abandoned games), number of answers and correct answers per question, and number of games per day. These counters contain no device identifier, first name, avatar, game code or individual answer, and cannot be linked to a person. As with any connection, Firebase's technical service receives the host's IP address to process the request; it is not stored in the counters."
       },
       {
         "h": "What other players see",
@@ -176,7 +176,7 @@
       },
       {
         "h": "What the data is used for",
-        "p": "Only to run the game: connecting you, showing questions, counting points, showing answers and drawings. The legal basis is performance of the service (GDPR art. 6.1.b). We also rely on our legitimate interest in protecting the service from abuse (art. 6.1.f). There are no ads, no data resale and no profiling, and the app uses no analytics or crash reporting tool."
+        "p": "Only to run the game: connecting you, showing questions, counting points, showing answers and drawings. The legal basis is performance of the service (GDPR art. 6.1.b). We also rely on our legitimate interest in protecting the service from abuse (art. 6.1.f). There are no ads, no data resale and no profiling, and the app uses no third-party analytics or crash reporting tool; only the anonymous counters described above are sent. The anonymous counters are only used to choose and fix the quizzes we offer; they are neither sold nor shared."
       },
       {
         "h": "Local network and casting to the TV",
@@ -192,7 +192,7 @@
       },
       {
         "h": "How long we keep it",
-        "p": "When the host leaves a game, it is deleted with all its content, drawings included. An abandoned game is deleted once the host has been away for more than 5 minutes, as long as a device in the game is still connected. In addition, an automatic cleanup deletes games older than about 24 hours. [TO CHECK: cleanup not yet in service.] The anonymous account holds neither your name nor your email, only a random identifier: Firebase keeps it until we delete it. On your device, it stays until you clear the app's data. You can ask us to delete it (see \"Your rights\")."
+        "p": "When the host leaves a game, it is deleted with all its content, drawings included. An abandoned game is deleted once the host has been away for more than 5 minutes, as long as a device in the game is still connected. In addition, an automatic cleanup deletes games older than about 24 hours. [TO CHECK: cleanup not yet in service.] The anonymous account holds neither your name nor your email, only a random identifier: Firebase keeps it until we delete it. On your device, it stays until you clear the app's data. You can ask us to delete it (see \"Your rights\"). Aggregated counters are kept for as long as the service exists, as they contain no personal data."
       },
       {
         "h": "Children",

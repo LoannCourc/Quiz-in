@@ -168,7 +168,7 @@
       },
       {
         "h": "Ce que nous collectons",
-        "p": "Aucun compte n'est créé. Pour jouer, tu saisis un prénom (ou un pseudo) et tu peux choisir un avatar. Pendant une partie, nous enregistrons aussi le code de la partie, tes réponses, tes scores, tes dessins (dans Dessine-moi) et les réglages choisis par l'hôte. Une connexion anonyme identifie ton appareil le temps du jeu, sans lien avec ton identité. Nous ne demandons ni e-mail, ni numéro de téléphone, ni contacts, ni position, ni photos, ni accès au micro. Un pseudo suffit : évite de saisir ton nom complet."
+        "p": "Aucun compte n'est créé. Pour jouer, tu saisis un prénom (ou un pseudo) et tu peux choisir un avatar. Pendant une partie, nous enregistrons aussi le code de la partie, tes réponses, tes scores, tes dessins (dans Dessine-moi) et les réglages choisis par l'hôte. Une connexion anonyme identifie ton appareil le temps du jeu, sans lien avec ton identité. Nous ne demandons ni e-mail, ni numéro de téléphone, ni contacts, ni position, ni photos, ni accès au micro. Un pseudo suffit : évite de saisir ton nom complet. Statistiques d'usage anonymes. Pour améliorer les quiz, l'application de l'hôte envoie des compteurs agrégés : quiz, modes et types de parties (quiz choisi, thèmes ou mélange) lancés, nombre de joueurs par partie, question atteinte et parties terminées (ce qui permet de compter les abandons), nombre de réponses et de bonnes réponses par question, et nombre de parties par jour. Ces compteurs ne contiennent aucun identifiant d'appareil, ni prénom, ni avatar, ni code de partie, ni réponse individuelle, et ne peuvent pas être rattachés à une personne. Comme pour toute connexion, le service technique de Firebase reçoit l'adresse IP de l'hôte pour traiter la requête ; elle n'est pas enregistrée dans les compteurs."
       },
       {
         "h": "Ce que les autres joueurs voient",
@@ -176,7 +176,7 @@
       },
       {
         "h": "À quoi servent ces données",
-        "p": "Uniquement à faire fonctionner la partie : te connecter, afficher les questions, compter les points, montrer les réponses et les dessins. C'est la base légale « exécution du service » (art. 6.1.b du RGPD). Nous nous appuyons aussi sur notre intérêt légitime à protéger le service contre les abus (art. 6.1.f). Il n'y a ni publicité, ni revente de données, ni profilage, et l'application n'utilise aucun outil de statistiques ni de rapport de plantage."
+        "p": "Uniquement à faire fonctionner la partie : te connecter, afficher les questions, compter les points, montrer les réponses et les dessins. C'est la base légale « exécution du service » (art. 6.1.b du RGPD). Nous nous appuyons aussi sur notre intérêt légitime à protéger le service contre les abus (art. 6.1.f). Il n'y a ni publicité, ni revente de données, ni profilage, et l'application n'utilise aucun outil de statistiques ou de rapport de plantage fourni par un tiers ; seuls les compteurs anonymes décrits plus haut sont envoyés. Les compteurs anonymes servent uniquement à choisir et corriger les quiz proposés ; ils ne sont ni vendus ni partagés."
       },
       {
         "h": "Réseau local et diffusion sur la TV",
@@ -192,7 +192,7 @@
       },
       {
         "h": "Combien de temps nous les gardons",
-        "p": "Quand l'hôte quitte une partie, elle est supprimée avec tout son contenu, dessins compris. Une partie abandonnée est supprimée quand l'hôte est absent depuis plus de 5 minutes, dès qu'un appareil de la partie est encore connecté. En plus, un nettoyage automatique supprime les parties de plus d'environ 24 heures. [À VÉRIFIER : nettoyage pas encore en service.] Le compte anonyme ne contient ni ton nom ni ton e-mail, seulement un identifiant aléatoire : il est conservé par Firebase jusqu'à ce que nous le supprimions. Sur ton appareil, il reste jusqu'à ce que tu effaces les données de l'application. Tu peux nous demander sa suppression (voir « Tes droits »)."
+        "p": "Quand l'hôte quitte une partie, elle est supprimée avec tout son contenu, dessins compris. Une partie abandonnée est supprimée quand l'hôte est absent depuis plus de 5 minutes, dès qu'un appareil de la partie est encore connecté. En plus, un nettoyage automatique supprime les parties de plus d'environ 24 heures. [À VÉRIFIER : nettoyage pas encore en service.] Le compte anonyme ne contient ni ton nom ni ton e-mail, seulement un identifiant aléatoire : il est conservé par Firebase jusqu'à ce que nous le supprimions. Sur ton appareil, il reste jusqu'à ce que tu effaces les données de l'application. Tu peux nous demander sa suppression (voir « Tes droits »). Les compteurs agrégés sont conservés tant que le service existe, car ils ne contiennent pas de données personnelles."
       },
       {
         "h": "Enfants",
