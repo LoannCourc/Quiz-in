@@ -1,6 +1,7 @@
 import { bluffHideUpdate, hideableBluffProposals, voteProgress } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import { isClassicQuestion } from '@shared/gameQuestions';
+import { hostLeaveOf } from '@shared/hostAbsence';
 import {
   endUpdate,
   hostControls,
@@ -159,13 +160,19 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
   const cast = useCastGame(code, session, connection.canWrite, serverOffsetMs);
-  // Départ volontaire confirmé : pause, puis heure de départ notée, avant de quitter l'écran (pas hors ligne :
-  // les écritures partiraient en retard ; l'écriture onDisconnect du serveur s'en charge).
-  useLeaveGuard(inProgress, async () => {
-    if (!connection.canWrite) return;
-    await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
-    await connection.leave();
-  });
+  // Départ volontaire confirmé, avant de quitter l'écran : partie en cours, pause puis heure de départ notée ;
+  // salon, heure de départ notée (joueurs et TV : « En attente de l'hôte… », partie supprimée sans retour dans
+  // les 5 min). Pas hors ligne : les écritures partiraient en retard ; l'écriture onDisconnect du serveur s'en charge.
+  const leave = hostLeaveOf(session.status);
+  useLeaveGuard(
+    leave !== null,
+    async () => {
+      if (!connection.canWrite) return;
+      if (leave === 'game') await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
+      await connection.leave();
+    },
+    leave === 'lobby' ? strings.leaveLobby : strings.leaveGame,
+  );
   useLobbyCleanup(code, session);
 
   // Adresse renouvelée pendant la partie : republiée pour l'extrait en cours (aussi pendant une pause).

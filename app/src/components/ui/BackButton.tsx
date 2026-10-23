@@ -8,8 +8,8 @@ import { Spacing } from '@/constants/theme';
 
 const SIZE = 44;
 
-// Retour par défaut : l'écran précédent, sinon l'accueil (lien direct, app relancée). Pendant une partie
-// en cours, l'écran de l'hôte intercepte ce retour et demande confirmation (useLeaveGuard).
+// Retour par défaut : l'écran précédent, sinon l'accueil (lien direct, app relancée). Au salon et pendant une
+// partie en cours, l'écran de l'hôte intercepte ce retour et demande confirmation (useLeaveGuard).
 export function goBackOrHome(): void {
   if (router.canGoBack()) router.back();
   else router.replace('/');

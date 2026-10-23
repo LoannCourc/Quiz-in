@@ -14,6 +14,15 @@ export function isHostAway(session: AbsenceFields & Pick<PublicSession, 'nextGam
   return session.hostLeftAt !== undefined && (session.status !== 'ended' || session.nextGameAt != null)
 }
 
+// Sortie volontaire de l'écran de l'hôte (retour, geste, lien), confirmée puis notée (hostLeftAt) : partie
+// en cours (pause, puis départ noté) ou salon (départ noté) ; null sur l'écran de fin (sans confirmation).
+export type HostLeave = 'game' | 'lobby'
+
+export function hostLeaveOf(status: GameStatus): HostLeave | null {
+  if (status === 'lobby') return 'lobby'
+  return status === 'ended' ? null : 'game'
+}
+
 // Heure serveur à partir de laquelle un joueur ou la TV peut supprimer la partie, ou null.
 // Même condition que database.rules.json : strictement après hostLeftAt + délai.
 export function abandonedGameDeletableAt(session: AbsenceFields): number | null {
