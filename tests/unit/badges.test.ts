@@ -5,11 +5,13 @@ import {
   applyBadgeAction,
   applyFinishedGame,
   BADGE_SCHEMA_VERSION,
+  categoryProgress,
   emptyBadgeState,
   localDayOf,
   parseBadgeState,
   PROCESSED_GAMES_KEPT,
   tierReached,
+  unlockedCount,
   type BadgeGame,
   type BadgeState,
   type FinishedGame,
@@ -249,5 +251,25 @@ describe('Badges : stockage et version', () => {
     const parsed = parseBadgeState({ v: BADGE_SCHEMA_VERSION + 1, counters: { completed: 7 }, unlocked: {} })
     expect(parsed.writable).toBe(false)
     expect(parsed.state.counters.completed).toBe(7)
+  })
+})
+
+describe('Badges : progression affichée', () => {
+  test('barre vers le prochain palier, pleine au troisième', () => {
+    const { state } = play(wins(9))
+    expect(categoryProgress(state.counters, 'wins', OPEN)).toEqual({ tier: 1, value: 9, fraction: 0.45 })
+    expect(categoryProgress(play(losses(100)).state.counters, 'played', OPEN)).toEqual({ tier: 3, value: 100, fraction: 1 })
+    expect(categoryProgress(emptyBadgeState().counters, 'artist', OPEN)).toEqual({ tier: 0, value: 0, fraction: 0 })
+  })
+
+  test('réponse rapide : rien encore, puis seuil / meilleur temps', () => {
+    expect(categoryProgress(emptyBadgeState().counters, 'lightning', OPEN)).toEqual({ tier: 0, value: null, fraction: 0 })
+    const { state } = play([game({}, { fastestCorrectMs: 4000 })])
+    expect(categoryProgress(state.counters, 'lightning', OPEN)).toEqual({ tier: 1, value: 4000, fraction: 0.75 })
+  })
+
+  test('nombre de badges débloqués', () => {
+    // Parties jouées, Parties perdues et Marathon (quiz de 10 questions).
+    expect(unlockedCount(play(losses(5)).state)).toBe(3)
   })
 })

@@ -4,7 +4,7 @@ import type { TeamId } from '@shared/types';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
-import { BadgeUnlockedToast, badgeToastDelayMs } from '@/components/badges/BadgeUnlockedToast';
+import { BadgeNotice, badgeToastDelayMs } from '@/components/badges/LazyBadges';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { HostAwayNotice, WaitingHostNotice } from '@/components/player/HostAwayNotice';
@@ -166,7 +166,7 @@ function RegisteredPlayer(props: RegisteredPlayerProps) {
     <>
       <Stack.Screen options={{ gestureEnabled: props.state.status === 'lobby' }} />
       <RegisteredPlayerContent {...props} />
-      <BadgeUnlockedToast badges={badges.unlocked} delayMs={badgeToastDelayMs(props.state.session)} onDismiss={badges.dismiss} />
+      <BadgeNotice badges={badges.unlocked} delayMs={badgeToastDelayMs(props.state.session)} onDismiss={badges.dismiss} />
     </>
   );
 }

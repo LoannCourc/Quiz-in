@@ -314,3 +314,25 @@ export function parseBadgeState(raw: unknown): ParsedBadgeState {
     writable: version <= BADGE_SCHEMA_VERSION,
   }
 }
+
+// Écran « Mes badges » : palier atteint, valeur actuelle et remplissage de la barre vers le prochain palier
+// (pleine quand les trois sont atteints). « Rapide comme l'éclair » : seuil / meilleur temps.
+export interface CategoryProgress {
+  tier: 0 | BadgeTier
+  value: number | null
+  fraction: number
+}
+
+export function categoryProgress(counters: BadgeCounters, category: BadgeCategory, openGames: readonly BadgeGame[]): CategoryProgress {
+  const value = categoryValue(counters, category, openGames)
+  const tier = tierReached(counters, category, openGames)
+  if (tier === 3) return { tier, value, fraction: 1 }
+  const next = BADGE_TIERS[category][tier]
+  const raw = value === null || value <= 0 ? 0 : category === 'lightning' ? next / value : value / next
+  return { tier, value, fraction: Math.min(1, Math.max(0, raw)) }
+}
+
+// Nombre de badges débloqués (accueil, en-tête de l'écran).
+export function unlockedCount(state: BadgeState): number {
+  return ALL_BADGES.filter((id) => state.unlocked[id] !== undefined).length
+}

@@ -1,85 +1,156 @@
 import type { BadgeId } from '@shared/badges';
-import { SUSPENSE_DRUMROLL_MS } from '@shared/sound';
-import type { PublicSession } from '@shared/types';
+import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Pressable, StyleSheet, Text } from 'react-native';
+import { AccessibilityInfo, Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AppColors, AppFonts, AppShadows, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
+import { SettingsIcon } from '@/components/host/settings/SettingsIcon';
+import { AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
-import { badgeLabel } from '@/lib/badgeTexts';
+import { byImportance, type BadgeInfo } from '@/lib/badgeTexts';
+
+import { TrophyArt } from './BadgeArt';
+import { UltimateTrophyView } from './BadgeVisuals';
 
 const texts = strings.trophies;
-// Badges nommés dans la notification ; au-delà : « et N de plus ».
-const NAMED_MAX = 3;
 const VISIBLE_MS = 6_000;
-const FADE_MS = 250;
-// Apparition après l'arrivée sur l'écran de fin (podium et confettis d'abord) ; Suspense : après le roulement de tambour.
-const END_SCREEN_FIRST_MS = 1_500;
-
-export function badgeToastDelayMs(session: Pick<PublicSession, 'settings'>): number {
-  return END_SCREEN_FIRST_MS + (session.settings.suspense ? SUSPENSE_DRUMROLL_MS : 0);
+const ENTER_MS = 250;
+const ENTER_OFFSET = -24;
+const CARD_TROPHY_WIDTH = 34;
+const CELEBRATION_TROPHY_WIDTH = 120;
+function openBadges() {
+  router.push('/badges');
 }
 
 interface BadgeUnlockedToastProps {
   badges: readonly BadgeId[];
-  // Attente avant l'apparition (écran de fin d'abord : roulement de tambour du Suspense, confettis).
+  // Attente avant l'apparition (0 : tout de suite).
   delayMs: number;
   onDismiss: () => void;
 }
 
-// Notification provisoire (avant les maquettes) : carte en haut de l'écran de fin, qui ne bloque rien (seule la
-// carte reçoit les touchers ; un toucher la ferme), disparaît seule. Fondu coupé si « réduire les animations ».
+// Badges débloqués (maquette G2) : un badge ultime (troisième palier) ouvre d'abord la fenêtre de célébration ;
+// les autres (ou ceux qui restent après « Continuer ») arrivent dans une carte en haut de l'écran, qui ne
+// bloque rien, mène à « Mes badges » au toucher et disparaît seule après 6 s.
 export function BadgeUnlockedToast({ badges, delayMs, onDismiss }: BadgeUnlockedToastProps) {
-  const insets = useSafeAreaInsets();
-  const [opacity] = useState(() => new Animated.Value(0));
-  const [isShown, setIsShown] = useState(false);
+  const [isDue, setIsDue] = useState(delayMs === 0);
+  const [isCelebrationClosed, setIsCelebrationClosed] = useState(false);
   const hasBadges = badges.length > 0;
-  // Dernière fonction reçue : les minuteries ne repartent pas à chaque rendu de l'écran de fin.
   const dismiss = useRef(onDismiss);
   useEffect(() => {
     dismiss.current = onDismiss;
   });
 
   useEffect(() => {
-    if (!hasBadges) return;
+    if (!hasBadges || delayMs === 0) return;
+    const timer = setTimeout(() => setIsDue(true), delayMs);
+    return () => clearTimeout(timer);
+  }, [hasBadges, delayMs]);
+
+  if (!hasBadges || !isDue) return null;
+  const ordered = byImportance(badges);
+  const ultimate = ordered[0].ultimate ? ordered[0] : null;
+  if (ultimate && !isCelebrationClosed) {
+    return (
+      <Celebration
+        badge={ultimate}
+        onContinue={() => (ordered.length > 1 ? setIsCelebrationClosed(true) : dismiss.current())}
+        onSeeBadges={() => {
+          dismiss.current();
+          openBadges();
+        }}
+      />
+    );
+  }
+  const rest = ultimate ? ordered.slice(1) : ordered;
+  return rest.length > 0 ? <NoticeCard badges={rest} onDismiss={() => dismiss.current()} /> : null;
+}
+
+// Carte « Nouveau badge » : entre depuis le haut (fondu, 250 ms ; immobile si « réduire les animations »).
+function NoticeCard({ badges, onDismiss }: { badges: readonly BadgeInfo[]; onDismiss: () => void }) {
+  const insets = useSafeAreaInsets();
+  const [progress] = useState(() => new Animated.Value(0));
+  const close = useRef(onDismiss);
+  useEffect(() => {
+    close.current = onDismiss;
+  });
+
+  useEffect(() => {
     let isActive = true;
-    const showTimer = setTimeout(() => {
-      void AccessibilityInfo.isReduceMotionEnabled().then((isReduced) => {
-        if (!isActive) return;
-        setIsShown(true);
-        Animated.timing(opacity, { toValue: 1, duration: isReduced ? 0 : FADE_MS, useNativeDriver: true }).start();
-      });
-    }, delayMs);
-    const hideTimer = setTimeout(() => dismiss.current(), delayMs + VISIBLE_MS);
+    void AccessibilityInfo.isReduceMotionEnabled().then((isReduced) => {
+      if (isActive) Animated.timing(progress, { toValue: 1, duration: isReduced ? 0 : ENTER_MS, useNativeDriver: true }).start();
+    });
+    const timer = setTimeout(() => close.current(), VISIBLE_MS);
     return () => {
       isActive = false;
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
+      clearTimeout(timer);
     };
-  }, [hasBadges, delayMs, opacity]);
+  }, [progress]);
 
-  if (!hasBadges || !isShown) return null;
-  const named = badges.slice(0, NAMED_MAX).map(badgeLabel).join(' · ');
-  const rest = badges.length - NAMED_MAX;
-  const title = badges.length === 1 ? texts.unlockedOne : texts.unlockedMany(badges.length);
-  const detail = rest > 0 ? `${named} ${texts.andMore(rest)}` : named;
+  const [first] = badges;
+  const kicker = badges.length === 1 ? texts.newBadge : texts.newBadges(badges.length);
+  const subtitle = badges.length > 1 ? `${first.goal}${texts.andMore(badges.length - 1)}` : first.goal;
+  const translateY = progress.interpolate({ inputRange: [0, 1], outputRange: [ENTER_OFFSET, 0] });
   return (
-    <Animated.View pointerEvents="box-none" style={[styles.layer, { top: insets.top + Spacing.two, opacity }]}>
+    <Animated.View style={[styles.layer, { top: insets.top + Spacing.two, opacity: progress, transform: [{ translateY }] }]}>
       <Pressable
-        onPress={onDismiss}
-        accessibilityRole="alert"
+        onPress={() => {
+          onDismiss();
+          openBadges();
+        }}
+        accessibilityRole="button"
         accessibilityLiveRegion="polite"
-        accessibilityLabel={`${title} ${detail}`}
-        accessibilityHint={texts.close}
-        style={styles.card}>
-        <Text style={styles.title}>🏆 {title}</Text>
-        <Text style={styles.detail}>{detail}</Text>
+        accessibilityLabel={`${kicker}. ${first.title}. ${subtitle}`}
+        accessibilityHint={texts.openBadges}
+        style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+        <TrophyArt tier={first.shape} emblem={first.emblem} isUnlocked width={CARD_TROPHY_WIDTH} />
+        <View style={styles.cardTexts}>
+          <Text style={styles.kicker}>{kicker}</Text>
+          <Text style={styles.cardTitle} numberOfLines={1}>
+            {first.title}
+          </Text>
+          <Text style={styles.cardSubtitle} numberOfLines={2}>
+            {subtitle}
+          </Text>
+        </View>
+        <SettingsIcon name="chevron" color={AppColors.onBadge} />
       </Pressable>
     </Animated.View>
   );
 }
+
+interface CelebrationProps {
+  badge: BadgeInfo;
+  onContinue: () => void;
+  onSeeBadges: () => void;
+}
+
+// Fenêtre « Badge ultime débloqué » (maquette G2) : le trophée entre (0,6 → 1, léger rebond), puis brille.
+function Celebration({ badge, onContinue, onSeeBadges }: CelebrationProps) {
+  return (
+    <Modal transparent animationType="fade" statusBarTranslucent onRequestClose={onContinue}>
+      <View style={styles.backdrop}>
+        <View style={styles.celebration} accessibilityViewIsModal>
+          <Text style={styles.celebrationKicker}>{texts.ultimateKicker}</Text>
+          <UltimateTrophyView emblem={badge.emblem} width={CELEBRATION_TROPHY_WIDTH} active withEntrance />
+          <Text style={styles.celebrationTitle} accessibilityRole="header">
+            {badge.ultimate?.title}
+          </Text>
+          <Text style={styles.celebrationTagline}>{badge.ultimate?.tagline}</Text>
+          <Pressable accessibilityRole="button" onPress={onSeeBadges} style={({ pressed }) => [styles.seeBadges, pressed && styles.pressed]}>
+            <Text style={styles.seeBadgesLabel}>{texts.seeBadges}</Text>
+          </Pressable>
+          <Text accessibilityRole="button" onPress={onContinue} style={styles.continue}>
+            {texts.continue}
+          </Text>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+const CELEBRATION_TITLE_SIZE = 24;
 
 const styles = StyleSheet.create({
   layer: {
@@ -89,25 +160,102 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
+    width: '100%',
     maxWidth: 480,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
     paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.three,
     borderRadius: AppSizes.radius,
-    backgroundColor: AppColors.accent,
-    boxShadow: AppShadows.hardInk,
+    backgroundColor: AppColors.badgeNotice,
+    boxShadow: AppShadows.hard,
   },
-  title: {
-    color: AppColors.onAccent,
+  pressed: {
+    opacity: 0.85,
+  },
+  cardTexts: {
+    flex: 1,
+    minWidth: 0,
+  },
+  kicker: {
+    color: AppColors.onBadge,
     fontFamily: AppFonts.black,
-    fontSize: AppSizes.textBody,
-    textAlign: 'center',
+    fontSize: 11,
+    letterSpacing: 2,
+    textTransform: 'uppercase',
     ...TEXT_FIT_SAFETY,
   },
-  detail: {
-    color: AppColors.onAccent,
+  cardTitle: {
+    color: AppColors.onBadge,
+    fontFamily: AppFonts.black,
+    fontSize: 18,
+    ...TEXT_FIT_SAFETY,
+  },
+  cardSubtitle: {
+    color: AppColors.onBadge,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
+  },
+  backdrop: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: Spacing.four,
+    backgroundColor: AppColors.backdrop,
+  },
+  celebration: {
+    width: '100%',
+    maxWidth: 420,
+    alignItems: 'center',
+    gap: Spacing.three,
+    padding: Spacing.four,
+    borderRadius: AppSizes.radiusCard,
+    borderWidth: 3,
+    borderColor: AppColors.badgeCelebrationBorder,
+    backgroundColor: AppColors.badgeCelebrationPanel,
+  },
+  celebrationKicker: {
+    color: AppColors.badgeCelebrationBorder,
+    fontFamily: AppFonts.black,
+    fontSize: 12,
+    letterSpacing: 3,
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  },
+  celebrationTitle: {
+    color: AppColors.text,
+    fontFamily: AppFonts.display,
+    fontSize: CELEBRATION_TITLE_SIZE,
+    lineHeight: Math.round(CELEBRATION_TITLE_SIZE * DISPLAY_LINE_HEIGHT),
+    textAlign: 'center',
+  },
+  celebrationTagline: {
+    color: AppColors.textMuted,
     fontFamily: AppFonts.bold,
     fontSize: AppSizes.textBody,
     textAlign: 'center',
+  },
+  seeBadges: {
+    alignSelf: 'stretch',
+    minHeight: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.badgeNotice,
+  },
+  seeBadgesLabel: {
+    color: AppColors.onBadge,
+    fontFamily: AppFonts.black,
+    fontSize: 17,
+    textAlign: 'center',
     ...TEXT_FIT_SAFETY,
+  },
+  continue: {
+    paddingVertical: Spacing.two,
+    color: AppColors.textMuted,
+    fontFamily: AppFonts.black,
+    fontSize: AppSizes.textBody,
   },
 });

@@ -25,7 +25,7 @@ import { HostControlsBar, HostControlsPanel, type HostActions } from '@/componen
 import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
-import { BadgeUnlockedToast, badgeToastDelayMs } from '@/components/badges/BadgeUnlockedToast';
+import { BadgeNotice, badgeToastDelayMs } from '@/components/badges/LazyBadges';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { BigButton } from '@/components/ui/BigButton';
 import { GameUnavailable } from '@/components/ui/GameUnavailable';
@@ -210,7 +210,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           cast={cast}
         />
       )}
-      <BadgeUnlockedToast badges={badges.unlocked} delayMs={badgeToastDelayMs(session)} onDismiss={badges.dismiss} />
+      <BadgeNotice badges={badges.unlocked} delayMs={badgeToastDelayMs(session)} onDismiss={badges.dismiss} />
     </>
   );
 }

@@ -23,6 +23,16 @@ import type { AnswerRefusal, RevealOutcome } from '@/lib/playerGame';
 export type GameType = 'quiz' | 'blindTest' | 'bluff' | 'draw';
 
 // Textes affichés à l'écran, regroupés ici pour faciliter la traduction.
+// « 1 victoire », « 9 victoires » (0 et 1 au singulier).
+function countLabel(count: number, one: string, many: string): string {
+  return `${count} ${count <= 1 ? one : many}`;
+}
+
+// Secondes avec une décimale au plus, virgule française : 4100 → « 4,1 », 2000 → « 2 ».
+function seconds(ms: number): string {
+  return String(Math.round(ms / 100) / 10).replace('.', ',');
+}
+
 export const strings = {
   // Nom de l'app, écrit par le logo (components/ui/Logo.tsx) et lu par les lecteurs d'écran.
   appName: "Quiz'in",
@@ -104,43 +114,123 @@ export const strings = {
     back: 'Retour au catalogue',
     privacyLink: 'Politique de confidentialité',
   },
-  // Badges (spec 20). Jamais le nom d'un jeu fermé : Touche-à-tout dit « chacun des jeux ».
+  // Badges (spec 20 ; maquettes G1 à G3). Jamais le nom d'un jeu fermé ni un nombre de jeux : Touche-à-tout dit
+  // « chacun des jeux ». goal : sous-titre de la notification ; status : valeur actuelle sous le titre (une ligne) ;
+  // tier : libellé sous un trophée ; ultimate : fenêtre du troisième palier.
   trophies: {
     categories: {
-      played: { title: 'Parties jouées', goal: (n: number) => `Termine ${n} parties` },
-      wins: { title: 'Parties gagnées', goal: (n: number) => `Gagne ${n} parties` },
-      losses: { title: 'Parties perdues', goal: (n: number) => `Perds ${n} parties (ça arrive aux meilleurs)` },
-      gathering: { title: 'Joueurs réunis', goal: (n: number) => `Termine une partie à ${n} joueurs ou plus` },
-      winStreak: { title: 'Série de victoires', goal: (n: number) => `Gagne ${n} parties d’affilée` },
-      loyal: { title: 'Fidèle', goal: (n: number) => `Joue ${n} jours différents` },
+      played: {
+        title: 'Parties jouées',
+        goal: (n: number) => `${n} parties terminées`,
+        status: (n: number) => countLabel(n, 'partie', 'parties'),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} parties jouées`, tagline: 'Une vraie légende du salon !' },
+      },
+      wins: {
+        title: 'Parties gagnées',
+        goal: (n: number) => `${n} victoires`,
+        status: (n: number) => countLabel(n, 'victoire', 'victoires'),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} victoires`, tagline: 'Imbattable, ou presque !' },
+      },
+      losses: {
+        title: 'Parties perdues',
+        goal: (n: number) => `${n} défaites`,
+        status: (n: number) => countLabel(n, 'défaite', 'défaites'),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} défaites`, tagline: 'Le roi du fair-play !' },
+      },
+      gathering: {
+        title: 'Joueurs réunis',
+        goal: (n: number) => `Une partie à ${n} joueurs ou plus`,
+        status: (n: number) => (n === 0 ? 'Pas encore de record' : `Record : ${countLabel(n, 'joueur', 'joueurs')}`),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `Une partie à ${n} joueurs`, tagline: 'La plus grande soirée du quartier !' },
+      },
+      winStreak: {
+        title: 'Série de victoires',
+        goal: (n: number) => `${n} victoires d’affilée`,
+        status: (n: number) => `Meilleure série : ${n}`,
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} victoires d’affilée`, tagline: 'Personne ne t’arrête !' },
+      },
+      loyal: {
+        title: 'Fidèle',
+        goal: (n: number) => `${n} jours de jeu différents`,
+        status: (n: number) => countLabel(n, 'jour différent', 'jours différents'),
+        tier: (n: number) => `${n}j`,
+        ultimate: { title: (n: number) => `${n} jours de jeu`, tagline: 'Fidèle parmi les fidèles !' },
+      },
       allRounder: {
         title: 'Touche-à-tout',
-        goal: (n: number) => (n === 1 ? 'Joue à chacun des jeux' : `Joue ${n} parties de chacun des jeux`),
+        goal: (n: number) => (n === 1 ? 'Chaque jeu joué au moins une fois' : `${n} parties de chaque jeu`),
+        status: (n: number) => (n === 0 ? 'Pas encore chaque jeu' : `Chaque jeu, ${n} fois`),
+        tier: (n: number) => `${n}×`,
+        ultimate: { title: (n: number) => `${n} parties de chaque jeu`, tagline: 'Tu as tout essayé, et plus encore !' },
       },
-      marathon: { title: 'Marathon', goal: (n: number) => `Termine un quiz de ${n} questions ou plus` },
+      marathon: {
+        title: 'Marathon',
+        goal: (n: number) => `Un quiz de ${n} questions terminé`,
+        status: (n: number) => (n === 0 ? 'Pas encore de quiz terminé' : `Quiz de ${n} questions`),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `Un quiz de ${n} questions`, tagline: 'Quelle endurance !' },
+      },
       lightning: {
         title: 'Rapide comme l’éclair',
-        goal: (ms: number) => `Donne une bonne réponse en moins de ${ms / 1000} s`,
+        goal: (ms: number) => `Bonne réponse en moins de ${seconds(ms)} s`,
+        status: (ms: number | null) => (ms === null ? 'Pas encore de bonne réponse' : `Ta meilleure : ${seconds(ms)} s`),
+        tier: (ms: number) => `${seconds(ms)} s`,
+        ultimate: { title: (ms: number) => `Moins de ${seconds(ms)} secondes`, tagline: 'Plus rapide que l’éclair !' },
       },
-      liar: { title: 'Menteur ultime', goal: (n: number) => `Piège ${n} joueurs avec tes fausses réponses au Bluff` },
-      artist: { title: 'Artiste', goal: (n: number) => `Fais deviner tes dessins ${n} fois à Dessine-moi` },
+      liar: {
+        title: 'Menteur ultime',
+        goal: (n: number) => `${n} joueurs trompés au Bluff`,
+        status: (n: number) => countLabel(n, 'joueur trompé', 'joueurs trompés'),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} joueurs trompés`, tagline: 'Un menteur de génie !' },
+      },
+      artist: {
+        title: 'Artiste',
+        goal: (n: number) => `${n} dessins devinés`,
+        status: (n: number) => countLabel(n, 'dessin deviné', 'dessins devinés'),
+        tier: (n: number) => String(n),
+        ultimate: { title: (n: number) => `${n} dessins devinés`, tagline: 'Un vrai artiste !' },
+      },
     },
-    // Paliers 1, 2, 3 : médaille, coupe, grand trophée.
-    tiers: ['médaille', 'coupe', 'trophée'],
     singles: {
-      perfect: { title: 'Sans faute', goal: 'Termine un quiz d’au moins 10 questions sans une seule erreur' },
-      comeback: { title: 'Comeback', goal: 'Gagne une partie après avoir été dernier à la moitié' },
-      christmas: { title: 'Noël', goal: 'Termine une partie le 24 ou le 25 décembre' },
-      newYear: { title: 'Réveillon', goal: 'Termine une partie le 31 décembre ou le 1er janvier' },
-      share: { title: 'Partager l’app', goal: 'Fais découvrir Quiz’in à quelqu’un' },
-      rate: { title: 'Noter l’app', goal: 'Donne ton avis sur Quiz’in' },
+      perfect: { title: 'Sans faute', goal: 'Un quiz d’au moins 10 questions, sans une erreur' },
+      comeback: { title: 'Comeback', goal: 'Dernier à la moitié, premier à la fin' },
+      christmas: { title: 'Noël', goal: 'Une partie le 24 ou le 25 décembre' },
+      newYear: { title: 'Réveillon', goal: 'Une partie le 31 décembre ou le 1er janvier' },
+      share: { title: 'Partager l’app', goal: 'Quiz’in partagé', action: 'Partager' },
+      rate: { title: 'Noter l’app', goal: 'Merci pour ton avis !', action: 'Noter' },
     },
-    // Notification de fin de partie (provisoire, avant les maquettes).
-    unlockedOne: 'Badge débloqué !',
-    unlockedMany: (count: number) => `${count} badges débloqués !`,
-    andMore: (count: number) => `et ${count} de plus`,
-    close: 'Fermer',
+    screenTitle: 'Mes badges',
+    unlockedCount: (count: number, total: number) => `${count} / ${total} débloqués`,
+    sections: { games: 'Parties', challenges: 'Défis', singles: 'Uniques' },
+    locked: 'verrouillé',
+    unlocked: 'débloqué',
+    // Accueil (maquette G3) : trophée et compteur.
+    homeButton: (count: number) => `Mes badges, ${countLabel(count, 'débloqué', 'débloqués')}`,
+    // « À propos » et carte Partager.
+    shareButton: 'Partager Quiz’in',
     shareMessage: (url: string) => `Ta TV devient le plateau de la soirée : joue à Quiz’in avec moi ! ${url}`,
+    // Notification de fin de partie (maquette G2).
+    newBadge: 'Nouveau badge',
+    newBadges: (count: number) => `${count} nouveaux badges`,
+    andMore: (count: number) => ` · et ${count} de plus`,
+    openBadges: 'Ouvrir mes badges',
+    ultimateKicker: 'Badge ultime débloqué',
+    seeBadges: 'Voir mes badges',
+    continue: 'Continuer',
+    // Développement seulement (__DEV__) : états d'exemple.
+    dev: {
+      title: 'Développement',
+      sample: 'Exemple : 15 badges',
+      reset: 'Remettre à zéro',
+      notice: 'Notification',
+      ultimate: 'Badge ultime',
+    },
   },
   // Aide « Je ne trouve pas ma TV » (même texte que la page /aide-tv du site des joueurs).
   tvHelp: {

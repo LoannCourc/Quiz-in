@@ -5,6 +5,7 @@ import {
   parseBadgeState,
   type BadgeAction,
   type BadgeGame,
+  type BadgeState,
   type BadgeId,
   type BadgeUpdate,
   type FinishedGame,
@@ -98,4 +99,11 @@ export function saveTrackedGame(tracked: TrackedGame | null): Promise<void> {
       // Non gardée : après une relance de l'app en pleine partie, le suivi repart de la question en cours.
     }
   });
+}
+
+// Développement seulement (écran « Mes badges », outils de développement) : remplace les badges de ce
+// téléphone. Sans effet dans un build publié.
+export function writeBadgeStateForDev(state: BadgeState): Promise<void> {
+  if (!__DEV__) return Promise.resolve();
+  return enqueue(() => AsyncStorage.setItem(BADGES_KEY, JSON.stringify(state)));
 }
