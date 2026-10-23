@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   applyBadgeAction,
   applyFinishedGame,
+  markAllSeen,
   parseBadgeState,
   type BadgeAction,
   type BadgeGame,
@@ -65,6 +66,23 @@ export function recordFinishedGame(game: FinishedGame, openGames: readonly Badge
       console.warn('[badges] Partie non comptée', error);
       return [];
     }
+  });
+}
+
+// Écran « Mes badges » affiché : badges débloqués marqués vus (la pastille de l'accueil disparaît). Échec du
+// stockage : état lu tel quel, la pastille reste.
+export function loadBadgesAndMarkSeen(): Promise<ParsedBadgeState> {
+  return enqueue(async () => {
+    const parsed = await readBadges();
+    if (!parsed.writable) return parsed;
+    const state = markAllSeen(parsed.state);
+    if (state === parsed.state) return parsed;
+    try {
+      await AsyncStorage.setItem(BADGES_KEY, JSON.stringify(state));
+    } catch {
+      return parsed;
+    }
+    return { ...parsed, state };
   });
 }
 

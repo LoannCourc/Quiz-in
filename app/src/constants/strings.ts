@@ -211,7 +211,7 @@ export const strings = {
     locked: 'verrouillé',
     unlocked: 'débloqué',
     // Accueil (maquette G3) : trophée et compteur.
-    homeButton: (count: number) => `Mes badges, ${countLabel(count, 'débloqué', 'débloqués')}`,
+    homeButton: (unseen: number) => (unseen > 0 ? `Mes badges, ${countLabel(unseen, 'nouveau', 'nouveaux')}` : 'Mes badges'),
     // « À propos » et carte Partager.
     shareButton: 'Partager Quiz’in',
     shareMessage: (url: string) => `Ta TV devient le plateau de la soirée : joue à Quiz’in avec moi ! ${url}`,

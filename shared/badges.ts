@@ -115,6 +115,9 @@ export interface BadgeState {
   // Badge débloqué → heure (téléphone) du déblocage. Jamais retiré.
   unlocked: Partial<Record<BadgeId, number>>
   processed: string[]
+  // Badges débloqués déjà vus sur l'écran « Mes badges » (pastille de l'accueil : seulement les autres).
+  // Absent des données plus anciennes : tout ce qui est débloqué compte comme nouveau.
+  seen: BadgeId[]
 }
 
 export function emptyBadgeState(): BadgeState {
@@ -142,6 +145,7 @@ export function emptyBadgeState(): BadgeState {
     },
     unlocked: {},
     processed: [],
+    seen: [],
   }
 }
 
@@ -309,8 +313,9 @@ export function parseBadgeState(raw: unknown): ParsedBadgeState {
   const unlocked = isRecord(raw.unlocked)
     ? Object.fromEntries(Object.entries(raw.unlocked).filter(([id, at]) => known.has(id) && typeof at === 'number'))
     : {}
+  const seen = [...new Set(strings(raw.seen))].filter((id): id is BadgeId => known.has(id))
   return {
-    state: { v: BADGE_SCHEMA_VERSION, counters, unlocked, processed: strings(raw.processed).slice(-PROCESSED_GAMES_KEPT) },
+    state: { v: BADGE_SCHEMA_VERSION, counters, unlocked, processed: strings(raw.processed).slice(-PROCESSED_GAMES_KEPT), seen },
     writable: version <= BADGE_SCHEMA_VERSION,
   }
 }
@@ -335,4 +340,19 @@ export function categoryProgress(counters: BadgeCounters, category: BadgeCategor
 // Nombre de badges débloqués (accueil, en-tête de l'écran).
 export function unlockedCount(state: BadgeState): number {
   return ALL_BADGES.filter((id) => state.unlocked[id] !== undefined).length
+}
+
+function unseenBadges(state: BadgeState): BadgeId[] {
+  return ALL_BADGES.filter((id) => state.unlocked[id] !== undefined && !state.seen.includes(id))
+}
+
+// Badges débloqués pas encore vus (pastille du trophée de l'accueil).
+export function unseenCount(state: BadgeState): number {
+  return unseenBadges(state).length
+}
+
+// Écran « Mes badges » ouvert : tout ce qui est débloqué est vu. Rien de nouveau : même état (rien à écrire).
+export function markAllSeen(state: BadgeState): BadgeState {
+  const unseen = unseenBadges(state)
+  return unseen.length === 0 ? state : { ...state, seen: [...state.seen, ...unseen] }
 }

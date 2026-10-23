@@ -22,7 +22,7 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT } from '@/constants/
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { rateApp, shareApp } from '@/lib/badgeActions';
-import { loadBadges } from '@/lib/badgeStore';
+import { loadBadgesAndMarkSeen } from '@/lib/badgeStore';
 import { readOpenGames } from '@/lib/openGames';
 
 import { BadgeCategoryCard, BadgeSingleCard } from './BadgeCards';
@@ -97,7 +97,7 @@ export function BadgesScreen() {
   const isOnScreen = useIsOnScreen();
 
   const reload = useCallback(() => {
-    void loadBadges().then((parsed) => setState(parsed.state));
+    void loadBadgesAndMarkSeen().then((parsed) => setState(parsed.state));
   }, []);
   useFocusEffect(reload);
   useEffect(() => {

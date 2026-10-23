@@ -8,10 +8,12 @@ import {
   categoryProgress,
   emptyBadgeState,
   localDayOf,
+  markAllSeen,
   parseBadgeState,
   PROCESSED_GAMES_KEPT,
   tierReached,
   unlockedCount,
+  unseenCount,
   type BadgeGame,
   type BadgeState,
   type FinishedGame,
@@ -271,5 +273,43 @@ describe('Badges : progression affichée', () => {
   test('nombre de badges débloqués', () => {
     // Parties jouées, Parties perdues et Marathon (quiz de 10 questions).
     expect(unlockedCount(play(losses(5)).state)).toBe(3)
+  })
+})
+
+describe('Badges : pastille des badges pas encore vus', () => {
+  // Redémarrage de l'app : état écrit puis relu dans le stockage.
+  const restart = (state: BadgeState) => parseBadgeState(JSON.parse(JSON.stringify(state))).state
+
+  test('débloqué → pastille ; écran ouvert → plus de pastille ; nouveau badge → pastille ; redémarrage : gardé', () => {
+    const first = play(losses(5)).state
+    expect(unseenCount(first)).toBe(unlockedCount(first))
+    expect(unseenCount(first)).toBeGreaterThan(0)
+
+    const opened = markAllSeen(first)
+    expect(unseenCount(opened)).toBe(0)
+    expect(unseenCount(restart(opened))).toBe(0)
+
+    const shared = applyBadgeAction(restart(opened), 'share', OPEN, NOW)
+    expect(shared.unlocked).toEqual(['share'])
+    expect(unseenCount(shared.state)).toBe(1)
+    expect(unseenCount(restart(shared.state))).toBe(1)
+    expect(unseenCount(markAllSeen(restart(shared.state)))).toBe(0)
+  })
+
+  test('idempotent : rien de nouveau, même état (aucune écriture) ; partie déjà comptée, pastille inchangée', () => {
+    const opened = markAllSeen(play(losses(5)).state)
+    expect(markAllSeen(opened)).toBe(opened)
+    expect(markAllSeen(markAllSeen(opened)).seen).toEqual(opened.seen)
+    const again = applyFinishedGame(opened, game({ gameKey: opened.processed[0] }), OPEN, NOW)
+    expect(again.state).toBe(opened)
+    expect(unseenCount(again.state)).toBe(0)
+  })
+
+  test('données d’avant la pastille (sans « seen ») ou douteuses : tout ce qui est débloqué est nouveau', () => {
+    const { seen: _seen, ...older } = play(losses(5)).state
+    const parsed = parseBadgeState(JSON.parse(JSON.stringify(older))).state
+    expect(parsed.seen).toEqual([])
+    expect(unseenCount(parsed)).toBe(unlockedCount(parsed))
+    expect(parseBadgeState({ v: 1, unlocked: {}, seen: ['played.1', 'played.1', 'inconnu', 3] }).state.seen).toEqual(['played.1'])
   })
 })

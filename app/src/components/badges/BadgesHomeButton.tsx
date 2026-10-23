@@ -1,4 +1,4 @@
-import { unlockedCount } from '@shared/badges';
+import { unseenCount } from '@shared/badges';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -12,15 +12,15 @@ import { BadgeEmblem } from './LazyBadges';
 export const BADGES_HOME_BUTTON_SIZE = 48;
 const ICON_SIZE = 24;
 
-// Accueil (maquette G3) : trophée jaune dans l'en-tête, avec le nombre de badges débloqués (relu au retour
-// sur l'accueil) ; ouvre « Mes badges ».
+// Accueil (maquette G3) : trophée jaune dans l'en-tête ; pastille seulement s'il y a des badges débloqués
+// pas encore vus (relue au retour sur l'accueil, effacée par l'ouverture de « Mes badges », qu'il ouvre).
 export function BadgesHomeButton() {
-  const [count, setCount] = useState(0);
+  const [unseen, setUnseen] = useState(0);
   useFocusEffect(
     useCallback(() => {
       let isActive = true;
       void loadBadges().then((parsed) => {
-        if (isActive) setCount(unlockedCount(parsed.state));
+        if (isActive) setUnseen(unseenCount(parsed.state));
       });
       return () => {
         isActive = false;
@@ -30,14 +30,14 @@ export function BadgesHomeButton() {
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={strings.trophies.homeButton(count)}
+      accessibilityLabel={strings.trophies.homeButton(unseen)}
       onPress={() => router.push('/badges')}
       hitSlop={6}
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
       <BadgeEmblem name="parties-gagnees" size={ICON_SIZE} />
-      {count > 0 && (
+      {unseen > 0 && (
         <View style={styles.counter}>
-          <Text style={styles.counterText}>{count}</Text>
+          <Text style={styles.counterText}>{unseen}</Text>
         </View>
       )}
     </Pressable>

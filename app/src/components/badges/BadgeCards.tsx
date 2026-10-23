@@ -207,7 +207,9 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.7,
   },
+  // Largeur de la carte et texte centré : centré quelle que soit la mesure du texte (deux lignes, Android).
   singleTitle: {
+    alignSelf: 'stretch',
     color: AppColors.text,
     fontFamily: AppFonts.black,
     fontSize: 13,
@@ -217,6 +219,7 @@ const styles = StyleSheet.create({
     color: AppColors.badgeLocked,
   },
   singleAction: {
+    alignSelf: 'center',
     paddingHorizontal: Spacing.two,
     paddingVertical: 2,
     borderRadius: AppSizes.radiusPill,

@@ -697,4 +697,4 @@ Badges uniques :
 - Noël : partie terminée le 24 ou le 25 décembre ; Réveillon : le 31 décembre ou le 1er janvier (date locale du téléphone).
 - Partager l'app : débloqué à l'ouverture de la fenêtre de partage (lien du site vitrine). Noter l'app : débloqué à l'ouverture de la fiche du store ; si le lien ne s'ouvre pas, rien (ni message ni badge). Déclaratifs.
 
-**Affichage.** À la fin d'une partie, une notification discrète pour chaque badge débloqué, sans bloquer l'écran. Écran « Mes badges » : d'après les maquettes (à venir).
+**Affichage.** À la fin d'une partie, une notification discrète pour chaque badge débloqué, sans bloquer l'écran. Écran « Mes badges » : d'après les maquettes (à venir). Trophée de l'accueil : pastille du nombre de badges débloqués pas encore vus, effacée à l'ouverture de « Mes badges », de retour au prochain badge débloqué (liste des badges vus gardée avec les badges, sur le téléphone).
