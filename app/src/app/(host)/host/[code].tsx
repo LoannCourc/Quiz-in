@@ -4,6 +4,7 @@ import { isClassicQuestion } from '@shared/gameQuestions';
 import {
   endUpdate,
   hostControls,
+  keepsHostedCode,
   pauseUpdate,
   cancelNextGameUpdate,
   chooseNextGameUpdate,
@@ -51,7 +52,7 @@ import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { confirmAction } from '@/lib/confirm';
 import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
 import { applyHostAction, deleteGame, publishAudioUrl } from '@/lib/hostGame';
-import { clearHostedGameCode } from '@/lib/hostedGameStorage';
+import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
 import { publishSound, saveSoundPreferences } from '@/lib/soundPreferences';
 
 // Écran de l'hôte : salon (HostLobby), puis la partie, pilotée par le
@@ -175,10 +176,12 @@ function HostGame({ code, session }: { code: string; session: Session }) {
     );
   }, [code, gameQuestions, audio.urls, connection.canWrite, inProgress]);
 
-  // Partie terminée : plus rien à reprendre après une relance de l'app.
+  // « Reprendre la partie » après une relance de l'app : code gardé tant que le salon continue (aussi après
+  // Changer de jeu, pendant le choix du prochain jeu) ; oublié sur l'écran de fin, sans choix en cours.
+  const keepsCode = keepsHostedCode(session);
   useEffect(() => {
-    if (session.status === 'ended') void clearHostedGameCode();
-  }, [session.status]);
+    void (keepsCode ? saveHostedGameCode(code) : clearHostedGameCode());
+  }, [code, keepsCode]);
 
   return (
     <>
@@ -269,6 +272,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
   // des jeux en mode salon (room) ; ce salon reste ouvert dessous (présence, Cast, moteur).
   async function changeGame() {
     if (!connection.canWrite) return;
+    // Gardé avant l'écriture : app fermée juste après, « Reprendre la partie » reste proposé.
+    await saveHostedGameCode(code);
     await act(chooseNextGameUpdate);
     router.push({ pathname: '/', params: { room: code } });
   }
