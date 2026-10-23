@@ -8,9 +8,10 @@ import type { GameStatus, PublicSession, Session } from './types'
 
 type AbsenceFields = Pick<PublicSession, 'status' | 'hostLeftAt'>
 
-// Message « L'hôte a perdu la connexion… » : pas en fin de partie (seul le nettoyage reste actif).
-export function isHostAway(session: AbsenceFields): boolean {
-  return session.hostLeftAt !== undefined && session.status !== 'ended'
+// Message « L'hôte a perdu la connexion… » : pas sur l'écran de fin (podium gardé, seul le nettoyage reste
+// actif), sauf pendant le choix du prochain jeu (Changer de jeu : l'hôte doit revenir pour la suite).
+export function isHostAway(session: AbsenceFields & Pick<PublicSession, 'nextGameAt'>): boolean {
+  return session.hostLeftAt !== undefined && (session.status !== 'ended' || session.nextGameAt != null)
 }
 
 // Heure serveur à partir de laquelle un joueur ou la TV peut supprimer la partie, ou null.

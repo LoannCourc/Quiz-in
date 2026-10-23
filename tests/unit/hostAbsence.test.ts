@@ -29,8 +29,13 @@ describe('isHostAway', () => {
     }
   })
 
-  test('en fin de partie : pas de message d’absence', () => {
+  test('en fin de partie : pas de message d’absence (podium gardé)', () => {
     expect(isHostAway(makeSession({ status: 'ended', hostLeftAt: NOW }))).toBe(false)
+  })
+
+  test('pendant le choix du prochain jeu (Changer de jeu) : hôte absent', () => {
+    expect(isHostAway(makeSession({ status: 'ended', nextGameAt: NOW - 10_000, hostLeftAt: NOW }))).toBe(true)
+    expect(isHostAway(makeSession({ status: 'ended', nextGameAt: NOW - 10_000 }))).toBe(false)
   })
 
   test('sans hostLeftAt : hôte présent', () => {
