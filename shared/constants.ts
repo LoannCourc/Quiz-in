@@ -141,6 +141,12 @@ export const PLAYERS_SITE_URL = 'https://quizin-play.web.app';
 // Politique de confidentialité (page statique du site des joueurs ; adresse donnée aux stores).
 export const PRIVACY_URL = `${PLAYERS_SITE_URL}/confidentialite`;
 
+// Site vitrine (cible « site ») : lien partagé par « Partager l’app » (badge Partager).
+export const SHOWCASE_SITE_URL = 'https://quizin-site.web.app';
+// Fiches des stores (badge Noter) : identifiant App Store de l’app et paquet Android.
+export const IOS_APP_STORE_ID = '6820975402';
+export const ANDROID_PACKAGE = 'com.herocorp.quizin';
+
 // Site Firebase Hosting du récepteur TV (cible « tv ») : il affiche la partie de `?code=CODE`.
 export const RECEIVER_SITE_URL = 'https://quiz-in-7dbd6.web.app';
 export const RECEIVER_CODE_PARAM = 'code';

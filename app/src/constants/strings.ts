@@ -104,6 +104,44 @@ export const strings = {
     back: 'Retour au catalogue',
     privacyLink: 'Politique de confidentialité',
   },
+  // Badges (spec 20). Jamais le nom d'un jeu fermé : Touche-à-tout dit « chacun des jeux ».
+  trophies: {
+    categories: {
+      played: { title: 'Parties jouées', goal: (n: number) => `Termine ${n} parties` },
+      wins: { title: 'Parties gagnées', goal: (n: number) => `Gagne ${n} parties` },
+      losses: { title: 'Parties perdues', goal: (n: number) => `Perds ${n} parties (ça arrive aux meilleurs)` },
+      gathering: { title: 'Joueurs réunis', goal: (n: number) => `Termine une partie à ${n} joueurs ou plus` },
+      winStreak: { title: 'Série de victoires', goal: (n: number) => `Gagne ${n} parties d’affilée` },
+      loyal: { title: 'Fidèle', goal: (n: number) => `Joue ${n} jours différents` },
+      allRounder: {
+        title: 'Touche-à-tout',
+        goal: (n: number) => (n === 1 ? 'Joue à chacun des jeux' : `Joue ${n} parties de chacun des jeux`),
+      },
+      marathon: { title: 'Marathon', goal: (n: number) => `Termine un quiz de ${n} questions ou plus` },
+      lightning: {
+        title: 'Rapide comme l’éclair',
+        goal: (ms: number) => `Donne une bonne réponse en moins de ${ms / 1000} s`,
+      },
+      liar: { title: 'Menteur ultime', goal: (n: number) => `Piège ${n} joueurs avec tes fausses réponses au Bluff` },
+      artist: { title: 'Artiste', goal: (n: number) => `Fais deviner tes dessins ${n} fois à Dessine-moi` },
+    },
+    // Paliers 1, 2, 3 : médaille, coupe, grand trophée.
+    tiers: ['médaille', 'coupe', 'trophée'],
+    singles: {
+      perfect: { title: 'Sans faute', goal: 'Termine un quiz d’au moins 10 questions sans une seule erreur' },
+      comeback: { title: 'Comeback', goal: 'Gagne une partie après avoir été dernier à la moitié' },
+      christmas: { title: 'Noël', goal: 'Termine une partie le 24 ou le 25 décembre' },
+      newYear: { title: 'Réveillon', goal: 'Termine une partie le 31 décembre ou le 1er janvier' },
+      share: { title: 'Partager l’app', goal: 'Fais découvrir Quiz’in à quelqu’un' },
+      rate: { title: 'Noter l’app', goal: 'Donne ton avis sur Quiz’in' },
+    },
+    // Notification de fin de partie (provisoire, avant les maquettes).
+    unlockedOne: 'Badge débloqué !',
+    unlockedMany: (count: number) => `${count} badges débloqués !`,
+    andMore: (count: number) => `et ${count} de plus`,
+    close: 'Fermer',
+    shareMessage: (url: string) => `Ta TV devient le plateau de la soirée : joue à Quiz’in avec moi ! ${url}`,
+  },
   // Aide « Je ne trouve pas ma TV » (même texte que la page /aide-tv du site des joueurs).
   tvHelp: {
     title: 'Je ne trouve pas ma TV',

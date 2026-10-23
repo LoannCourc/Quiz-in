@@ -2,6 +2,7 @@ import type { PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
+import { answerClock } from '@/lib/answerClock';
 import { loadGiven, saveGiven } from '@/lib/answerStorage';
 import { db } from '@/lib/firebase';
 import { IDLE_ANSWER, type AnswerState, type GivenAnswer } from '@/lib/playerGame';
@@ -39,6 +40,12 @@ export function useAnswer(code: string, uid: PlayerId, session: PublicSession) {
   const { phaseEndsAt } = session;
   const answer = currentAnswer(local, index, phaseEndsAt);
 
+  // Badge « Rapide comme l'éclair » : question affichée sur ce téléphone (premier passage seulement).
+  const isQuestion = session.status === 'question';
+  useEffect(() => {
+    if (isQuestion) answerClock.questionShown(code, index);
+  }, [isQuestion, code, index]);
+
   // Après un rechargement : answeredBy dit qu'on a répondu ; on retrouve la réponse sur l'appareil.
   const needsStoredChoice = session.answeredBy?.[index]?.[uid] === true && answer.kind === 'idle';
   useEffect(() => {
@@ -65,6 +72,7 @@ export function useAnswer(code: string, uid: PlayerId, session: PublicSession) {
       return;
     }
     setLocal({ index, phaseEndsAt, state: { kind: 'sending', given } });
+    answerClock.answerGiven(code, index);
     void saveGiven(code, index, given);
     submitAnswer(code, uid, index, given).then((outcome) =>
       setLocal({

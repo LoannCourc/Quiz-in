@@ -4,6 +4,7 @@ import type { TeamId } from '@shared/types';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
+import { BadgeUnlockedToast, badgeToastDelayMs } from '@/components/badges/BadgeUnlockedToast';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { JoinForm } from '@/components/player/JoinForm';
 import { HostAwayNotice, WaitingHostNotice } from '@/components/player/HostAwayNotice';
@@ -20,6 +21,7 @@ import { strings } from '@/constants/strings';
 import { PLAYER_LOADING_TIMEOUT_S, usePlayerSession, type PlayerSessionState } from '@/hooks/usePlayerSession';
 import { useAbandonedGameCleanup } from '@/hooks/useAbandonedGameCleanup';
 import { useAnswer } from '@/hooks/useAnswer';
+import { useBadgeTracking } from '@/hooks/useBadgeTracking';
 import { useBluff } from '@/hooks/useBluff';
 import { useDraw } from '@/hooks/useDraw';
 import { usePhaseStale } from '@/hooks/usePhaseStale';
@@ -158,10 +160,13 @@ interface RegisteredPlayerProps {
 // Joueur déjà inscrit. Pendant la partie (après le salon), le geste de retour d'iOS est coupé : un glissement
 // du bord de l'écran ne fait plus sortir de la partie ; « Quitter la partie » le remplace.
 function RegisteredPlayer(props: RegisteredPlayerProps) {
+  // Badges (spec 20) : dans l'appli seulement (rien sur le site des joueurs).
+  const badges = useBadgeTracking(props.code, props.state.uid, 'player', props.state.session);
   return (
     <>
       <Stack.Screen options={{ gestureEnabled: props.state.status === 'lobby' }} />
       <RegisteredPlayerContent {...props} />
+      <BadgeUnlockedToast badges={badges.unlocked} delayMs={badgeToastDelayMs(props.state.session)} onDismiss={badges.dismiss} />
     </>
   );
 }
