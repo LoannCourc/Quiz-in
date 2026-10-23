@@ -669,3 +669,32 @@ Plan et décisions : `docs/plan-dessine-moi.md`. Un joueur dessine un mot secret
 **Données.** `drawTurn` (public : dessinateur, manche, nombre de lettres, catégorie), `drawing` (public : paquets du dessin), `drawFound/{uid}` (public : heure à laquelle le joueur a trouvé), `drawSecret` (mot : hôte et dessinateur), `drawGuess/{uid}` (dernier essai : hôte seulement), `drawHint/{uid}` (verdict du dernier essai : ce joueur seulement), `drawWordChange` (demande du dessinateur), `drawPoints/{manche}/{uid}` (hôte). Effacés à chaque manche (sauf `drawPoints`, effacé au lancement et à Changer de jeu).
 
 **Disponibilité.** Interrupteur à distance `config/drawEnabled` (console Firebase) : absent ou true, jeu ouvert ; false, tuile « Bientôt ».
+
+## 20. Badges (version 1.1)
+
+**Principe.** Trophées gardés sur le téléphone seulement (pas de compte, rien dans la base, aucune règle de sécurité ni statistique anonyme changée). Désinstaller l'app ou effacer ses données les efface. Pas de badges pour les joueurs du site web. Logique pure : `shared/badges.ts` (catalogue, compteurs, déblocages) et `shared/badgeTracking.ts` (suivi d'une partie depuis la session publique).
+
+**Partie comptée.** Seulement une partie **terminée** : ce téléphone a vu la révélation de la dernière question (ou manche), puis l'écran de fin. « Terminer la partie » avant la dernière révélation, une partie quittée ou abandonnée n'apportent rien et ne touchent pas à la série. Chaque partie compte une seule fois (identifiant : code et heure serveur de la fin ; même code après « Changer de jeu » : autre partie).
+
+**Qui compte quoi.** Le joueur (l'hôte qui joue compris) : tout. L'hôte qui ne joue pas (organisateur) : Parties jouées, Joueurs réunis, Touche-à-tout et Fidèle seulement.
+
+**Victoire.** Premier du classement final, égalité comprise ; en Groupe, mon équipe première, égalité comprise. Défaite : sinon.
+
+**Catalogue (39 badges).** Trois paliers :
+- Parties jouées 5 / 20 / 100 ; Parties gagnées 5 / 20 / 100 ; Parties perdues 5 / 20 / 100.
+- Joueurs réunis : une partie terminée à 5 / 10 / 15 joueurs ou plus (tous les joueurs inscrits, l'hôte s'il joue).
+- Série de victoires : 3 / 5 / 10 d'affilée (une défaite remet à zéro ; meilleure série gardée).
+- Fidèle : parties terminées 3 / 7 / 30 jours différents (date locale du téléphone).
+- Touche-à-tout : 1 / 10 / 50 parties terminées de chacun des jeux ouverts (lus dans la config au moment de compter). Un badge débloqué le reste quand un jeu ouvre ; le nouveau jeu compte pour les paliers suivants. Aucun texte ne nomme les jeux.
+- Marathon : une partie de Quiz terminée de 10 / 20 / 30 questions ou plus (Quiz seulement).
+- Rapide comme l'éclair : une bonne réponse en moins de 5 s / 3 s / 2 s, au Quiz et au Blind test (choix multiples et réponse libre), mesurée sur le téléphone de l'affichage de la question au dernier appui qui envoie la réponse (en mémoire : une app relancée en pleine question ne mesure rien).
+- Menteur ultime (Bluff) : 10 / 30 / 100 joueurs piégés en tout par mes fausses réponses (votants de ma proposition, `reveal.stats.bluffChoices`).
+- Artiste (Dessine-moi) : 10 / 30 / 100 devineurs en tout ont trouvé mes dessins (manche annulée : 0).
+
+Badges uniques :
+- Sans faute : partie de Quiz d'au moins 10 questions, toutes entièrement justes (moitié juste ou sans réponse : non ; Contrôle : correction de l'hôte ; révélation manquée : non).
+- Comeback : au moins 3 joueurs, hors Groupe ; dernier à la moitié (révélation de la question ⌈n/2⌉ : score le plus bas, égalité comprise, et strictement sous le meilleur), puis victoire.
+- Noël : partie terminée le 24 ou le 25 décembre ; Réveillon : le 31 décembre ou le 1er janvier (date locale du téléphone).
+- Partager l'app : débloqué à l'ouverture de la fenêtre de partage (lien du site vitrine). Noter l'app : débloqué à l'ouverture de la fiche du store ; si le lien ne s'ouvre pas, rien (ni message ni badge). Déclaratifs.
+
+**Affichage.** À la fin d'une partie, une notification discrète pour chaque badge débloqué, sans bloquer l'écran. Écran « Mes badges » : d'après les maquettes (à venir).
