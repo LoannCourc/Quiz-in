@@ -16,6 +16,7 @@ import {
   endUpdate,
   gradeAnswer,
   hostControls,
+  keepsHostedCode,
   resumeDecision,
   hostScreenFailure,
   isTransitionLocked,
@@ -462,7 +463,7 @@ describe('verrou de transition', () => {
 })
 
 describe('resumeDecision (bouton « Reprendre la partie »)', () => {
-  const found = (game: { hostUid?: string; status?: GameStatus; hostLeftAt?: number }) => ({ kind: 'found' as const, game })
+  const found = (game: { hostUid?: string; status?: GameStatus; hostLeftAt?: number; nextGameAt?: number }) => ({ kind: 'found' as const, game })
 
   test('partie présente dont je suis l’hôte : reprise', () => {
     expect(resumeDecision(found({ hostUid: HOST, status: 'question' }), HOST, NOW)).toBe('resume')
@@ -491,6 +492,21 @@ describe('resumeDecision (bouton « Reprendre la partie »)', () => {
     expect(resumeDecision(found({ hostUid: HOST, status: 'ended' }), HOST, NOW)).toBe('forget')
     expect(resumeDecision(found({ hostUid: HOST, status: 'ended', hostLeftAt: NOW - 60_000 }), HOST, NOW)).toBe('forget')
     expect(resumeDecision(found({ hostUid: HOST, status: 'ended', hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('delete')
+  })
+
+  test('Changer de jeu en cours (prochain jeu en cours de choix) : reprise, même après le départ de l’hôte ; abandonnée : supprimée', () => {
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended', nextGameAt: NOW - 30_000 }), HOST, NOW)).toBe('resume')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended', nextGameAt: NOW - 90_000, hostLeftAt: NOW - 60_000 }), HOST, NOW)).toBe('resume')
+    expect(resumeDecision(found({ hostUid: HOST, status: 'ended', nextGameAt: NOW - 7 * 60_000, hostLeftAt: NOW - 6 * 60_000 }), HOST, NOW)).toBe('delete')
+  })
+
+  test('code gardé tant que le salon continue : salon, partie, choix du prochain jeu ; oublié sur l’écran de fin', () => {
+    for (const status of ['lobby', 'starting', 'question', 'vote', 'reveal', 'scores', 'validation', 'paused'] as const) {
+      expect(keepsHostedCode({ status })).toBe(true)
+    }
+    expect(keepsHostedCode({ status: 'ended' })).toBe(false)
+    expect(keepsHostedCode({ status: 'ended', nextGameAt: null })).toBe(false)
+    expect(keepsHostedCode({ status: 'ended', nextGameAt: NOW })).toBe(true)
   })
 
   test('partie d’un autre hôte abandonnée : jamais supprimée par moi, seulement oubliée', () => {

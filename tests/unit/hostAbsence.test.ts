@@ -6,6 +6,7 @@ import {
   canDeleteAbandonedGame,
   connectionLostPauseUpdate,
   formatMinutesSeconds,
+  hostLeaveOf,
   hostReturnUpdate,
   isHostAway,
   isPhaseStale,
@@ -29,12 +30,27 @@ describe('isHostAway', () => {
     }
   })
 
-  test('en fin de partie : pas de message d’absence', () => {
+  test('en fin de partie : pas de message d’absence (podium gardé)', () => {
     expect(isHostAway(makeSession({ status: 'ended', hostLeftAt: NOW }))).toBe(false)
+  })
+
+  test('pendant le choix du prochain jeu (Changer de jeu) : hôte absent', () => {
+    expect(isHostAway(makeSession({ status: 'ended', nextGameAt: NOW - 10_000, hostLeftAt: NOW }))).toBe(true)
+    expect(isHostAway(makeSession({ status: 'ended', nextGameAt: NOW - 10_000 }))).toBe(false)
   })
 
   test('sans hostLeftAt : hôte présent', () => {
     expect(isHostAway(makeSession({ status: 'question' }))).toBe(false)
+  })
+})
+
+describe('hostLeaveOf (sortie volontaire de l’écran de l’hôte)', () => {
+  test('salon : départ confirmé et noté ; partie en cours (pause comprise) : pause, puis départ noté ; fin : rien', () => {
+    expect(hostLeaveOf('lobby')).toBe('lobby')
+    for (const status of ['starting', 'question', 'vote', 'reveal', 'scores', 'validation', 'paused'] as const) {
+      expect(hostLeaveOf(status)).toBe('game')
+    }
+    expect(hostLeaveOf('ended')).toBeNull()
   })
 })
 

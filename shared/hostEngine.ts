@@ -662,7 +662,7 @@ export function isTransitionLocked(lock: TransitionLock | null, key: string, now
 // Lecture de la partie gardée sur le téléphone (bouton « Reprendre la partie » de l'accueil) : trouvée, absente
 // (lecture réussie, plus de session), ou échouée (refus, réseau, délai dépassé : on ne sait pas).
 export type ResumeRead =
-  | { kind: 'found'; game: { hostUid?: PlayerId; status?: GameStatus; hostLeftAt?: number } }
+  | { kind: 'found'; game: { hostUid?: PlayerId; status?: GameStatus; hostLeftAt?: number; nextGameAt?: number } }
   | { kind: 'missing' }
   | { kind: 'failed' }
 
@@ -672,14 +672,21 @@ export type ResumeRead =
 export type ResumeDecision = 'resume' | 'forget' | 'delete' | 'retry'
 
 // Spec 6.6. Le bouton ne disparaît que sur une réponse certaine (lecture réussie) : session supprimée, partie
-// d'un autre hôte, partie terminée (podium gardé pour les joueurs : rien n'est supprimé), ou hôte absent
+// d'un autre hôte, partie terminée sans prochain jeu en cours de choix (podium gardé pour les joueurs : rien
+// n'est supprimé), ou hôte absent
 // depuis plus de HOST_DISCONNECT_TIMEOUT_S (l'hôte supprime alors sa partie, comme joueurs et TV).
 export function resumeDecision(read: ResumeRead, uid: PlayerId, nowServer: number): ResumeDecision {
   if (read.kind === 'failed') return 'retry'
   if (read.kind === 'missing' || read.game.hostUid !== uid) return 'forget'
   const status = read.game.status ?? 'lobby'
   if (canDeleteAbandonedGame({ status, hostLeftAt: read.game.hostLeftAt }, nowServer)) return 'delete'
-  return status === 'ended' ? 'forget' : 'resume'
+  return keepsHostedCode({ status, nextGameAt: read.game.nextGameAt }) ? 'resume' : 'forget'
+}
+
+// Code de la partie gardé sur le téléphone de l'hôte (« Reprendre la partie ») : tant que le salon continue,
+// y compris pendant le choix du prochain jeu (Changer de jeu) ; oublié sur l'écran de fin sans choix en cours.
+export function keepsHostedCode(session: { status: GameStatus; nextGameAt?: number | null }): boolean {
+  return session.status !== 'ended' || session.nextGameAt != null
 }
 
 // Écran de l'hôte qui ne peut pas lire sa partie (« Reprendre la partie », lien) : gone = partie certainement

@@ -6,9 +6,12 @@ import { BackHandler } from 'react-native';
 import { strings } from '@/constants/strings';
 import { confirmAction } from '@/lib/confirm';
 
-// « Quitter la partie ? Elle sera interrompue » ; onLeave n'est appelé que si l'hôte confirme.
-function confirmLeave(onLeave: () => void): void {
-  const { title, message, stay, leave } = strings.leaveGame;
+type LeaveTexts = typeof strings.leaveGame;
+
+// « Quitter la partie ? Elle sera interrompue » (ou « Quitter le salon ? ») ; onLeave n'est appelé que si
+// l'hôte confirme.
+function confirmLeave(texts: LeaveTexts, onLeave: () => void): void {
+  const { title, message, stay, leave } = texts;
   confirmAction({ title, message, confirm: leave, cancel: stay }, onLeave);
 }
 
@@ -36,12 +39,12 @@ export function useEndScreenLeave(isActive: boolean, onLeave: () => void): void 
   }, [navigation, isActive, onLeave]);
 }
 
-export function useLeaveGuard(isActive: boolean, beforeLeave: () => Promise<unknown>): void {
+export function useLeaveGuard(isActive: boolean, beforeLeave: () => Promise<unknown>, texts: LeaveTexts = strings.leaveGame): void {
   const navigation = useNavigation();
 
   // Navigation (retour, geste, lien) : bloquée, puis rejouée si l'hôte confirme.
   usePreventRemove(isActive, ({ data }) => {
-    confirmLeave(() => leaveAfter(beforeLeave, () => navigation.dispatch(data.action)));
+    confirmLeave(texts, () => leaveAfter(beforeLeave, () => navigation.dispatch(data.action)));
   });
 
   // Bouton Retour d'Android sans écran derrière : il fermerait l'app sans passer par la navigation.
@@ -49,9 +52,9 @@ export function useLeaveGuard(isActive: boolean, beforeLeave: () => Promise<unkn
     if (!isActive) return;
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
       if (router.canGoBack()) return false;
-      confirmLeave(() => leaveAfter(beforeLeave, () => BackHandler.exitApp()));
+      confirmLeave(texts, () => leaveAfter(beforeLeave, () => BackHandler.exitApp()));
       return true;
     });
     return () => subscription.remove();
-  }, [isActive, beforeLeave]);
+  }, [isActive, beforeLeave, texts]);
 }

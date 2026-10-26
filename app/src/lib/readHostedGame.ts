@@ -12,15 +12,16 @@ export function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 }
 
 // Partie gardée sur ce téléphone (« Reprendre la partie », écran de l'hôte qui ne peut pas la lire).
-// Champs publics seulement : hostUid, status et hostLeftAt. Toute erreur (refus au relancement, avant que la
+// Champs publics seulement : hostUid, status, hostLeftAt et nextGameAt. Toute erreur (refus au relancement, avant que la
 // connexion porte l'authentification ; réseau ; délai) donne « failed », jamais « missing ».
 export async function readHostedGame(code: string): Promise<ResumeRead> {
   try {
-    const [hostUid, status, hostLeftAt] = await withTimeout(
+    const [hostUid, status, hostLeftAt, nextGameAt] = await withTimeout(
       Promise.all([
         get(ref(db, `sessions/${code}/hostUid`)),
         get(ref(db, `sessions/${code}/status`)),
         get(ref(db, `sessions/${code}/hostLeftAt`)),
+        get(ref(db, `sessions/${code}/nextGameAt`)),
       ]),
       READ_TIMEOUT_MS,
     );
@@ -31,6 +32,7 @@ export async function readHostedGame(code: string): Promise<ResumeRead> {
         hostUid: hostUid.val() as string,
         status: status.val() as GameStatus,
         hostLeftAt: typeof hostLeftAt.val() === 'number' ? (hostLeftAt.val() as number) : undefined,
+        nextGameAt: typeof nextGameAt.val() === 'number' ? (nextGameAt.val() as number) : undefined,
       },
     };
   } catch (error) {

@@ -1,9 +1,11 @@
 import { bluffHideUpdate, hideableBluffProposals, voteProgress } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import { isClassicQuestion } from '@shared/gameQuestions';
+import { hostLeaveOf } from '@shared/hostAbsence';
 import {
   endUpdate,
   hostControls,
+  keepsHostedCode,
   pauseUpdate,
   cancelNextGameUpdate,
   chooseNextGameUpdate,
@@ -53,7 +55,7 @@ import { useServerTimeOffset } from '@/hooks/useServerTimeOffset';
 import { confirmAction } from '@/lib/confirm';
 import { cancelHostAbsenceMarker } from '@/lib/hostAbsence';
 import { applyHostAction, deleteGame, publishAudioUrl } from '@/lib/hostGame';
-import { clearHostedGameCode } from '@/lib/hostedGameStorage';
+import { clearHostedGameCode, saveHostedGameCode } from '@/lib/hostedGameStorage';
 import { publishSound, saveSoundPreferences } from '@/lib/soundPreferences';
 
 // Écran de l'hôte : salon (HostLobby), puis la partie, pilotée par le
@@ -160,13 +162,19 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   // Même présence que les autres joueurs : il compte dans les joueurs connectés.
   usePresence(code, isRegistered ? uid : null);
   const cast = useCastGame(code, session, connection.canWrite, serverOffsetMs);
-  // Départ volontaire confirmé : pause, puis heure de départ notée, avant de quitter l'écran (pas hors ligne :
-  // les écritures partiraient en retard ; l'écriture onDisconnect du serveur s'en charge).
-  useLeaveGuard(inProgress, async () => {
-    if (!connection.canWrite) return;
-    await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
-    await connection.leave();
-  });
+  // Départ volontaire confirmé, avant de quitter l'écran : partie en cours, pause puis heure de départ notée ;
+  // salon, heure de départ notée (joueurs et TV : « En attente de l'hôte… », partie supprimée sans retour dans
+  // les 5 min). Pas hors ligne : les écritures partiraient en retard ; l'écriture onDisconnect du serveur s'en charge.
+  const leave = hostLeaveOf(session.status);
+  useLeaveGuard(
+    leave !== null,
+    async () => {
+      if (!connection.canWrite) return;
+      if (leave === 'game') await applyHostAction(code, pauseUpdate, Date.now() + serverOffsetMs);
+      await connection.leave();
+    },
+    leave === 'lobby' ? strings.leaveLobby : strings.leaveGame,
+  );
   useLobbyCleanup(code, session);
   // Badges (spec 20) : un seul suivi sur le téléphone de l'hôte, en joueur s'il joue, sinon en organisateur.
   const badges = useBadgeTracking(code, uid, isRegistered ? 'player' : 'organizer', session);
@@ -179,10 +187,12 @@ function HostGame({ code, session }: { code: string; session: Session }) {
     );
   }, [code, gameQuestions, audio.urls, connection.canWrite, inProgress]);
 
-  // Partie terminée : plus rien à reprendre après une relance de l'app.
+  // « Reprendre la partie » après une relance de l'app : code gardé tant que le salon continue (aussi après
+  // Changer de jeu, pendant le choix du prochain jeu) ; oublié sur l'écran de fin, sans choix en cours.
+  const keepsCode = keepsHostedCode(session);
   useEffect(() => {
-    if (session.status === 'ended') void clearHostedGameCode();
-  }, [session.status]);
+    void (keepsCode ? saveHostedGameCode(code) : clearHostedGameCode());
+  }, [code, keepsCode]);
 
   return (
     <>
@@ -274,6 +284,8 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
   // des jeux en mode salon (room) ; ce salon reste ouvert dessous (présence, Cast, moteur).
   async function changeGame() {
     if (!connection.canWrite) return;
+    // Gardé avant l'écriture : app fermée juste après, « Reprendre la partie » reste proposé.
+    await saveHostedGameCode(code);
     await act(chooseNextGameUpdate);
     router.push({ pathname: '/', params: { room: code } });
   }

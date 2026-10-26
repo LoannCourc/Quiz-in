@@ -18,15 +18,18 @@ import {
   pauseUpdate,
   changeGameUpdate,
   chooseNextGameUpdate,
+  cancelNextGameUpdate,
+  resumeDecision,
   resumeUpdate,
   selectGameQuestions,
   transitionUpdate,
   validateUpdate,
+  type ResumeRead,
   type SessionUpdate,
 } from '../../shared/hostEngine'
 import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, DEFAULT_SESSION_SETTINGS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
-import { hostReturnUpdate, isHostAway } from '../../shared/hostAbsence'
+import { abandonedGameDeletableAt, hostReturnUpdate, isHostAway } from '../../shared/hostAbsence'
 import { removePlayerUpdate } from '../../shared/players'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
 import { drawGameQuestions } from '../../shared/drawGame'
@@ -2472,5 +2475,162 @@ describe('Présence après « Quitter la partie » (shared/presence.ts sur l’�
     client.goOffline()
     await wait(300)
     expect(await readAsAdmin(`${SESSION}/players/${uid}`)).toBeNull()
+  })
+})
+
+// Départ de l'hôte après « Changer de jeu » et au salon (spec 6.6) : vrai chemin sur l'émulateur (onDisconnect
+// de l'hôte déclenché par goOffline()), puis lectures d'un joueur et de la TV (champ par champ) et de l'app de
+// l'hôte (« Reprendre la partie »).
+describe("Départ de l'hôte pendant le choix du prochain jeu et au salon", () => {
+  const TIMEOUT_MS = HOST_DISCONNECT_TIMEOUT_S * 1000
+  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+  // Un compte d'hôte par test : goOffline() coupe sa connexion pour la suite.
+  let hostCount = 0
+  const nextHost = () => `departing-host-${++hostCount}`
+
+  async function readPublicSession(uid: string): Promise<PublicSession> {
+    const values: Partial<Record<PublicField, unknown>> = {}
+    for (const field of PUBLIC_SESSION_FIELDS) {
+      values[field] = (await db(uid).ref(`${SESSION}/${field}`).once('value')).val() ?? undefined
+    }
+    const publicSession = toPublicSession(values)
+    expect(publicSession).not.toBeNull()
+    return publicSession as PublicSession
+  }
+
+  // Mêmes lectures que app/src/lib/readHostedGame.ts.
+  async function readHostedGame(uid: string): Promise<ResumeRead> {
+    const read = async (field: string) => (await db(uid).ref(`${SESSION}/${field}`).once('value')).val() as unknown
+    const [hostUid, status, hostLeftAt, nextGameAt] = await Promise.all(['hostUid', 'status', 'hostLeftAt', 'nextGameAt'].map(read))
+    if (hostUid === null) return { kind: 'missing' }
+    return {
+      kind: 'found',
+      game: {
+        hostUid: hostUid as string,
+        status: status as GameStatus,
+        hostLeftAt: typeof hostLeftAt === 'number' ? hostLeftAt : undefined,
+        nextGameAt: typeof nextGameAt === 'number' ? nextGameAt : undefined,
+      },
+    }
+  }
+
+  async function waitForHostLeftAt(): Promise<number> {
+    for (let attempt = 0; attempt < 50; attempt++) {
+      const value = await readAsAdmin(`${SESSION}/hostLeftAt`)
+      if (typeof value === 'number') return value
+      await wait(100)
+    }
+    throw new Error("hostLeftAt n'a pas été écrit")
+  }
+
+  // Coupure brutale (app fermée) : l'écriture préparée par armHostAbsenceMarker part du serveur.
+  async function disconnectHost(host: string): Promise<number> {
+    const hostDb = db(host)
+    await assertSucceeds(hostDb.ref(SESSION).onDisconnect().update({ hostLeftAt: SERVER_TIME }))
+    hostDb.goOffline()
+    return waitForHostLeftAt()
+  }
+
+  // L'app rouverte se reconnecte avec le même compte : un autre compte de test, qui devient l'hôte de la partie.
+  async function reopenAs(host: string): Promise<string> {
+    const reopened = `${host}-rouvert`
+    await env.withSecurityRulesDisabled(async (context) => {
+      await context.database().ref(`${SESSION}/hostUid`).set(reopened)
+    })
+    return reopened
+  }
+
+  test('cas A : fin de partie, Changer de jeu, app fermée → absence affichée aux joueurs et à la TV, reprise proposée', async () => {
+    const host = nextHost()
+    await seedSession({ hostUid: host, status: 'ended', phaseEndsAt: 0 })
+    let current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(host).ref(SESSION).update(chooseNextGameUpdate(current, Date.now()) ?? {}))
+    const hostLeftAt = await disconnectHost(host)
+
+    for (const viewer of [PLAYER, OTHER]) {
+      const seen = await readPublicSession(viewer)
+      expect(seen).toMatchObject({ status: 'ended', nextGameAt: expect.any(Number), hostLeftAt })
+      expect(isHostAway(seen)).toBe(true)
+      expect(abandonedGameDeletableAt(seen)).toBe(hostLeftAt + TIMEOUT_MS)
+    }
+    // Avant le délai, ni un joueur ni la TV ne peuvent supprimer la partie.
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+    await assertFails(db(OTHER).ref(SESSION).remove())
+
+    const reopened = await reopenAs(host)
+    expect(resumeDecision(await readHostedGame(reopened), reopened, Date.now())).toBe('resume')
+
+    // Retour de l'hôte : hostLeftAt effacé, puis choix annulé (écran de fin) ; plus d'absence.
+    current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(reopened).ref(SESSION).update(hostReturnUpdate(current) ?? {}))
+    current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(reopened).ref(SESSION).update(cancelNextGameUpdate(current) ?? {}))
+    const back = await readPublicSession(PLAYER)
+    expect(back.hostLeftAt).toBeUndefined()
+    expect(back.nextGameAt).toBeUndefined()
+    expect(isHostAway(back)).toBe(false)
+  })
+
+  test('cas A, hôte jamais revenu : supprimée par un joueur après le délai, puis plus rien à reprendre', async () => {
+    const host = nextHost()
+    await seedSession({
+      hostUid: host,
+      status: 'ended',
+      phaseEndsAt: 0,
+      nextGameAt: Date.now() - TIMEOUT_MS - 10_000,
+      hostLeftAt: Date.now() - TIMEOUT_MS - 5_000,
+    })
+    expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('delete')
+    await assertSucceeds(db(PLAYER).ref(SESSION).remove())
+    expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('forget')
+  })
+
+  test('fin de partie sans choix en cours, app fermée : podium gardé, pas d’absence affichée, rien à reprendre', async () => {
+    const host = nextHost()
+    await seedSession({ hostUid: host, status: 'ended', phaseEndsAt: 0 })
+    const hostLeftAt = await disconnectHost(host)
+    const seen = await readPublicSession(PLAYER)
+    expect(seen.hostLeftAt).toBe(hostLeftAt)
+    expect(isHostAway(seen)).toBe(false)
+    expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('forget')
+  })
+
+  test('cas B : départ du salon noté par l’app de l’hôte → absence affichée, reprise, retour accepté', async () => {
+    const host = nextHost()
+    await seedSession({ hostUid: host, status: 'lobby', phaseEndsAt: 0 })
+    // Même écriture que markHostLeft : onDisconnect annulé, heure du serveur.
+    await assertSucceeds(db(host).ref(SESSION).onDisconnect().cancel())
+    await assertSucceeds(db(host).ref(SESSION).update({ hostLeftAt: SERVER_TIME }))
+    expect(isHostAway(await readPublicSession(PLAYER))).toBe(true)
+    await assertFails(db(PLAYER).ref(`${SESSION}/hostLeftAt`).remove())
+    await assertFails(db(PLAYER).ref(SESSION).remove())
+    expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('resume')
+    const current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(host).ref(SESSION).update(hostReturnUpdate(current) ?? {}))
+    expect(await readAsAdmin(`${SESSION}/hostLeftAt`)).toBeNull()
+    expect(await readAsAdmin(`${SESSION}/status`)).toBe('lobby')
+  })
+
+  test('cas B, app fermée au salon : l’onDisconnect suffit, absence affichée', async () => {
+    const host = nextHost()
+    await seedSession({ hostUid: host, status: 'lobby', phaseEndsAt: 0 })
+    await disconnectHost(host)
+    expect(isHostAway(await readPublicSession(OTHER))).toBe(true)
+  })
+
+  test('cas C : nouveau jeu lancé, départ confirmé → pause et absence, reprise, retour en pause', async () => {
+    const host = nextHost()
+    await seedSession({ hostUid: host, status: 'question' })
+    let current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(host).ref(SESSION).update(pauseUpdate(current, Date.now()) ?? {}))
+    await assertSucceeds(db(host).ref(SESSION).update({ hostLeftAt: SERVER_TIME }))
+    const seen = await readPublicSession(PLAYER)
+    expect(seen.status).toBe('paused')
+    expect(isHostAway(seen)).toBe(true)
+    expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('resume')
+    current = (await readAsAdmin(SESSION)) as Session
+    await assertSucceeds(db(host).ref(SESSION).update(hostReturnUpdate(current) ?? {}))
+    expect(await readAsAdmin(`${SESSION}/status`)).toBe('paused')
+    expect(await readAsAdmin(`${SESSION}/hostLeftAt`)).toBeNull()
   })
 })

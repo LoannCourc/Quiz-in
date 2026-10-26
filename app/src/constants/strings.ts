@@ -1,5 +1,6 @@
 import {
   DEV_SHORT_GAME_QUESTIONS,
+  HOST_DISCONNECT_TIMEOUT_S,
   MAX_PLAYERS,
   MIN_PLAYERS,
   MIN_TEAM_GAME_PLAYERS,
@@ -960,6 +961,13 @@ export const strings = {
   leaveGame: {
     title: 'Quitter la partie ?',
     message: 'Elle sera interrompue.',
+    stay: 'Rester',
+    leave: 'Quitter',
+  },
+  // Salon : départ noté, les joueurs voient « En attente de l'hôte… » ; sans retour, la partie est supprimée.
+  leaveLobby: {
+    title: 'Quitter le salon ?',
+    message: `Les joueurs attendront ton retour ${HOST_DISCONNECT_TIMEOUT_S / 60} minutes.`,
     stay: 'Rester',
     leave: 'Quitter',
   },
