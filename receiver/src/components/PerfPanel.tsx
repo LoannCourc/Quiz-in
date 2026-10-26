@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { emojiSupport } from '../lib/emojiSupport'
 import { perfMonitor, type MusicBucket, type PerfIncident, type PerfSnapshot } from '../lib/perf/perfMonitor'
 import { strings } from '../strings'
 import './PerfPanel.css'
@@ -65,6 +66,7 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
       </div>
       <div>{texts.keepAwake(keepAwake.video, keepAwake.wakeLock)}</div>
       <div>{texts.screen(snapshot.screen, snapshot.chromeVersion)}</div>
+      <div>{texts.emoji(emojiSupport())}</div>
       <div>{texts.build(new Date(__BUILD_TIME__), __BUILD_COMMIT__)}</div>
       <div>{texts.streaks(snapshot.streaks.active, snapshot.streaks.zero, snapshot.streaks.missing)}</div>
       {snapshot.drawing && (

@@ -13,7 +13,22 @@
 }
 
 .difficulty-dots {
-  letter-spacing: 0.15em;
+  display: inline-grid;
+  grid-auto-flow: column;
+  column-gap: 0.2em;
+  align-items: center;
+}
+
+/* Point de la couleur du niveau : plein jusqu'au niveau, cerclé au-delà (comme ● et ○). */
+.difficulty-dot {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  border: 0.12em solid currentColor;
+}
+
+.difficulty-dot.is-full {
+  background: currentColor;
 }
 
 .difficulty-1 .difficulty-dots {

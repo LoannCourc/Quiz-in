@@ -2,6 +2,7 @@ import { teamRanking, teamsInGame, type TeamRow } from '@shared/teams'
 import type { Player, PlayerId, PublicSession } from '@shared/types'
 
 import { Avatar } from './Avatar'
+import { AvatarGlyph } from './AvatarGlyph'
 import { hasAnswered, sortByRank, type RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
 import { StreakBadge } from './StreakBadge'
@@ -36,7 +37,9 @@ function BestPlayer({ player, streak, delay }: { player: Player | undefined; str
   if (!player) return <span />
   return (
     <span className="team-best">
-      <span className="team-best-avatar">{player.avatar}</span>
+      <span className="team-best-avatar">
+        <AvatarGlyph emoji={player.avatar} />
+      </span>
       <span className="team-best-texts">
         <span className="team-best-label">{strings.teams.bestPlayer}</span>
         <span className="team-best-name">{strings.teams.bestPlayerScore(player.name, player.score ?? 0)}</span>
@@ -122,7 +125,7 @@ export function TeamPodium({ session, delays, dance = false }: { session: Public
                 <span className="team-podium-members">
                   {winners.map((player, index) => (
                     <span key={player.id} className="team-member-avatar" style={{ animationDelay: `${-index * 0.12}s` }}>
-                      {player.avatar}
+                      <AvatarGlyph emoji={player.avatar} />
                     </span>
                   ))}
                 </span>
@@ -138,7 +141,9 @@ export function TeamPodium({ session, delays, dance = false }: { session: Public
         <span className="team-best-players-label">{strings.teams.bestPlayers}</span>
         {best.map((player) => (
           <span key={player.id} className="team-best-chip">
-            <span className="team-best-avatar">{player.avatar}</span>
+            <span className="team-best-avatar">
+        <AvatarGlyph emoji={player.avatar} />
+      </span>
             {strings.teams.bestPlayerRank(player.rank, player.name, player.score)}
           </span>
         ))}

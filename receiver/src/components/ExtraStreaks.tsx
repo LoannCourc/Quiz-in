@@ -2,6 +2,7 @@ import { extraStreaks } from '@shared/streak'
 import type { PublicSession } from '@shared/types'
 
 import { strings } from '../strings'
+import { AvatarGlyph } from './AvatarGlyph'
 import { StreakBadge } from './StreakBadge'
 import './ExtraStreaks.css'
 
@@ -17,7 +18,9 @@ export function ExtraStreaks({ session, delay }: { session: PublicSession; delay
         const player = session.players[id]
         return (
           <span key={id} className="extra-streak">
-            <span className="extra-streak-avatar">{player.avatar}</span>
+            <span className="extra-streak-avatar">
+              <AvatarGlyph emoji={player.avatar} />
+            </span>
             <span>{player.name}</span>
             <StreakBadge streak={streak} delay={delay} />
           </span>

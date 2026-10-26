@@ -3,6 +3,7 @@ import type { PlayerId } from '@shared/types'
 import type { RankedPlayer } from '../lib/players'
 import { strings } from '../strings'
 import { nameScaleStyle } from '../lib/playerNameStyle'
+import { AvatarGlyph } from './AvatarGlyph'
 import { StreakBadge } from './StreakBadge'
 import './RankingList.css'
 
@@ -48,7 +49,7 @@ export function RankingList({ players, gainedPoints, columns = 1, delays, dance 
             <span
               className={dance ? `ranking-avatar energy-${energyOf(position, players.length)}` : 'ranking-avatar'}
               style={dance ? { animationDelay: `${-(position % 6) * DANCE_OFFSET_S}s` } : undefined}>
-              {player.avatar}
+              <AvatarGlyph emoji={player.avatar} />
               {streaks?.[player.id] !== undefined && (
                 <span className="ranking-streak">
                   <StreakBadge streak={streaks[player.id]} delay={delays?.[position]} />

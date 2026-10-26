@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { FIT_EVENT } from '../hooks/useFitScale'
 import { strings } from '../strings'
 import { nameScaleStyle } from '../lib/playerNameStyle'
+import { AvatarGlyph } from './AvatarGlyph'
 import { TeamSymbol } from './TeamSymbol'
 import './TeamColumns.css'
 
@@ -38,7 +39,9 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
                   key={id}
                   className={arrivalDelayMs ? 'team-member is-arriving' : 'team-member'}
                   style={arrivalDelayMs ? { animationDelay: `${arrivalDelayMs[id] ?? 0}ms`, animationDuration: `${TEAM_DRAW_ARRIVAL_MS}ms` } : undefined}>
-                  <span className="team-member-avatar">{session.players[id].avatar}</span>
+                  <span className="team-member-avatar">
+                    <AvatarGlyph emoji={session.players[id].avatar} />
+                  </span>
                   <span className="team-member-name" style={nameScaleStyle(session.players[id].name)}>
                     {session.players[id].name}
                   </span>
@@ -55,7 +58,7 @@ export function TeamColumns({ session, arrivalDelayMs }: TeamColumnsProps) {
           <span className="team-unassigned-label">{strings.teams.unassigned(unassigned.length)}</span>
           {unassigned.map((id) => (
             <span key={id} className="team-unassigned-player">
-              {session.players[id].avatar} {session.players[id].name}
+              <AvatarGlyph emoji={session.players[id].avatar} /> {session.players[id].name}
             </span>
           ))}
         </p>

@@ -1,0 +1,7 @@
+/* Même encombrement qu'un emoji de la police Noto Color Emoji : environ 1,17 em de haut. */
+.avatar-glyph {
+  display: inline-block;
+  width: 1.17em;
+  height: 1.17em;
+  vertical-align: -0.2em;
+}

@@ -3,6 +3,7 @@ import type { PlayerId } from '@shared/types'
 
 import { strings } from '../strings'
 import { nameScaleStyle } from '../lib/playerNameStyle'
+import { AvatarGlyph } from './AvatarGlyph'
 import { StreakBadge } from './StreakBadge'
 import './Podium.css'
 
@@ -32,7 +33,7 @@ export function Podium({ players, delays, dance = false, streaks }: PodiumProps)
             {dance && position === 0 && <span className="podium-spotlight" aria-hidden="true" />}
             <span className="podium-avatar">
               {dance && position === 0 && <Crown />}
-              {player.avatar}
+              <AvatarGlyph emoji={player.avatar} />
               {streaks?.[player.id] !== undefined && (
                 <span className="podium-streak">
                   <StreakBadge streak={streaks[player.id]} delay={delays?.[position]} />

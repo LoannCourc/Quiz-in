@@ -2,6 +2,7 @@ import type { BluffChoicesLayout } from '@shared/bluffLayout'
 import type { Player, PlayerId, RevealedBluffChoice } from '@shared/types'
 
 import { strings } from '../strings'
+import { AvatarGlyph } from './AvatarGlyph'
 import './BluffChoices.css'
 
 // Lettre d'un choix : A, B, C… (jusqu'à 21 choix : 20 joueurs et la vraie réponse).
@@ -38,7 +39,7 @@ function Voters({ voters, players }: { voters: PlayerId[]; players: Record<Playe
     <span className="bluff-voters">
       {shown.map((id) => (
         <span key={id} className="bluff-voter">
-          {players[id]?.avatar}
+          {players[id] && <AvatarGlyph emoji={players[id].avatar} />}
         </span>
       ))}
       {voters.length > shown.length && <span className="bluff-more">{strings.bluff.moreVoters(voters.length - shown.length)}</span>}

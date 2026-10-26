@@ -1,4 +1,5 @@
 import type { SoundEngineState } from './lib/sound/soundEngine'
+import type { EmojiSupport } from './lib/emojiSupport'
 import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, DifficultyLevel, GameStatus, TeamId } from '@shared/types'
 
 const LEVEL_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' }
@@ -263,6 +264,9 @@ export const strings = {
     memory: (usedMb: number, limitMb: number) => `Mémoire JS : ${usedMb} / ${limitMb} Mo`,
     memoryUnknown: 'Mémoire JS : non mesurable',
     screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
+    // Police emoji de la TV : sans elle, les avatars ne s'affichent que grâce à leurs images.
+    emoji: (support: EmojiSupport) =>
+      `Emoji : ${{ color: 'oui', mono: 'oui, en noir et blanc', none: 'non', unknown: 'non mesurable' }[support]} (avatars en images)`,
     // Groupe : équipe reçus/affichés (capacité) ; en rouge si un membre n'est pas affiché.
     build: (builtAt: Date, commit: string) =>
       `Version de la TV : construite le ${builtAt.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })} · commit ${commit}`,
