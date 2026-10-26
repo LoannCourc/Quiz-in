@@ -37,11 +37,13 @@ interface HomeViewProps {
   // espacés de gap ; la hauteur de leur zone est mesurée (onGridHeight) pour choisir la densité.
   // isCompact : écran bas (sous-titre effacé, logo, titre et bouton plus petits).
   fit?: { density: HomeTileDensity; gap: number; isCompact: boolean; onGridHeight: (height: number) => void };
+  // À droite du logo (maquette G3 : trophée des badges).
+  headerAction?: ReactNode;
 }
 
 // Accueil de l'hôte (maquette H1, « grille 2 × 2 ») : logo, « À quoi on joue ? », une tuile par jeu, qui
 // ouvre le catalogue de ce jeu. Pas de recherche ici : elle reste dans chaque catalogue.
-export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled, onJoinWithCode, fit }: HomeViewProps) {
+export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled, onJoinWithCode, fit, headerAction }: HomeViewProps) {
   const isCompact = fit?.isCompact ?? false;
   const tile = (game: GameType) => (
     <GameTile
@@ -55,7 +57,10 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
   );
   return (
     <View style={[styles.column, fit && { flex: 1, gap: fit.gap }]}>
-      <Logo size={isCompact ? 'small' : 'medium'} align="start" />
+      <View style={styles.header}>
+        <Logo size={isCompact ? 'small' : 'medium'} align="start" />
+        {headerAction}
+      </View>
       {banner ?? (
         <View style={styles.titles}>
           <Text style={[styles.title, isCompact && styles.titleCompact]}>{strings.home.title}</Text>
@@ -91,6 +96,12 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
 const styles = StyleSheet.create({
   column: {
     gap: Spacing.four,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.three,
   },
   joinButton: {
     minHeight: AppSizes.submitHeight,

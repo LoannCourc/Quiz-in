@@ -34,6 +34,15 @@ const Palette = {
   track: 'rgba(201, 184, 255, 0.35)',
 } as const;
 
+// Badges (maquettes G1 à G3) : teintes du pack de dessins et des tuiles de catégorie.
+const BadgeHues = {
+  yellow: '#ffd23f',
+  cyan: '#35d8f2',
+  pink: '#f48aae',
+  lilac: '#a98bff',
+  orange: '#ff9f5a',
+} as const;
+
 // Affiches du catalogue : début et fin du dégradé de chaque palette (fichiers de contenu, champ poster).
 const PosterColors: Record<PosterPalette, readonly [string, string]> = {
   pink: ['#ff4f9a', '#a8268f'],
@@ -229,7 +238,23 @@ export const AppColors = {
   shortageBorder: Palette.pink,
   shortageBackground: 'rgba(255, 61, 139, 0.14)',
   blindTestTile: Palette.violetPanel,
+  // Badges : accent de chaque catégorie (tuile de l'icône, barre de progression), dans l'ordre des cartes ;
+  // catégorie sans badge débloqué à BADGE_LOCKED_OPACITY. Paliers (libellés sous les trophées) : couleurs des
+  // dessins du pack, médaille cyan, coupe rose, trophée or.
+  badgeAccents: [BadgeHues.yellow, BadgeHues.cyan, BadgeHues.pink, BadgeHues.lilac, BadgeHues.orange, BadgeHues.cyan, BadgeHues.pink, BadgeHues.lilac, BadgeHues.yellow, BadgeHues.pink, BadgeHues.cyan],
+  badgeTiers: [BadgeHues.cyan, BadgeHues.pink, BadgeHues.yellow],
+  badgeCard: 'rgba(255, 255, 255, 0.08)',
+  badgeTrack: 'rgba(255, 255, 255, 0.12)',
+  badgeLocked: Palette.lavenderMuted,
+  badgeCounter: Palette.pinkSoft,
+  badgeNotice: BadgeHues.yellow,
+  badgeCelebrationBorder: BadgeHues.yellow,
+  badgeCelebrationPanel: Palette.violetPanel,
+  badgeHomeButton: BadgeHues.yellow,
+  onBadge: Palette.ink,
 } as const;
+
+export const BADGE_LOCKED_OPACITY = 0.45;
 
 // Fonds : dégradés radiaux en syntaxe CSS (Android et web).
 export const AppBackgrounds = {

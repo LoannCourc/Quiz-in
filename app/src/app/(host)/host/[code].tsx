@@ -25,6 +25,7 @@ import { HostControlsBar, HostControlsPanel, type HostActions } from '@/componen
 import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
+import { BadgeNotice, badgeToastDelayMs } from '@/components/badges/LazyBadges';
 import { PlayerGame } from '@/components/player/game/PlayerGame';
 import { BigButton } from '@/components/ui/BigButton';
 import { GameUnavailable } from '@/components/ui/GameUnavailable';
@@ -36,6 +37,7 @@ import { useAnswer } from '@/hooks/useAnswer';
 import { useBluff } from '@/hooks/useBluff';
 import { useDraw } from '@/hooks/useDraw';
 import { useAudioUrls } from '@/hooks/useAudioUrls';
+import { useBadgeTracking } from '@/hooks/useBadgeTracking';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useCastGame, type CastGame } from '@/hooks/useCastGame';
 import { useGameQuestions } from '@/hooks/useGameQuestions';
@@ -166,6 +168,8 @@ function HostGame({ code, session }: { code: string; session: Session }) {
     await connection.leave();
   });
   useLobbyCleanup(code, session);
+  // Badges (spec 20) : un seul suivi sur le téléphone de l'hôte, en joueur s'il joue, sinon en organisateur.
+  const badges = useBadgeTracking(code, uid, isRegistered ? 'player' : 'organizer', session);
 
   // Adresse renouvelée pendant la partie : republiée pour l'extrait en cours (aussi pendant une pause).
   useEffect(() => {
@@ -206,6 +210,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
           cast={cast}
         />
       )}
+      <BadgeNotice badges={badges.unlocked} delayMs={badgeToastDelayMs(session)} onDismiss={badges.dismiss} />
     </>
   );
 }

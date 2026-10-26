@@ -5,6 +5,7 @@ import { Link, Redirect, router, useLocalSearchParams, type Href } from 'expo-ro
 import { useState } from 'react';
 import { Linking, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
+import { BADGES_HOME_BUTTON_SIZE, BadgesHomeButton } from '@/components/badges/BadgesHomeButton';
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -72,6 +73,7 @@ function HomeScreen() {
         isBlindTestEnabled={isBlindTestEnabled === true}
         isDrawEnabled={isDrawEnabled !== false}
         fit={fit}
+        headerAction={<BadgesHomeButton />}
       />
 
       <View style={styles.footerLinks}>
@@ -82,8 +84,8 @@ function HomeScreen() {
           {strings.about.privacyShortLink}
         </Text>
       </View>
-      {/* Démos : en développement seulement (absentes de l'APK publié), en haut à droite, à côté du logo, hors
-          de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
+      {/* Démos : en développement seulement (absentes de l'APK publié), en haut, à gauche du trophée des badges,
+          hors de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
       {__DEV__ && <DemosLink />}
     </Screen>
   );
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   demosLink: {
     position: 'absolute',
     top: 0,
-    right: 0,
+    right: BADGES_HOME_BUTTON_SIZE + Spacing.three,
   },
   footerLink: {
     paddingVertical: Spacing.two,
