@@ -65,7 +65,6 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
         </Pressable>
       )}
       <SubmitButton singleLine label={isCreating ? texts.creating : texts.create} disabled={isCreating || draw.kind !== 'ready' || questionCount === 0} onPress={onCreate} />
-      <Text style={styles.help}>{texts.help}</Text>
     </View>
   );
 
@@ -85,7 +84,6 @@ export function ThemeGameDetails(props: ThemeGameDetailsProps) {
           {draw.kind === 'loading' && <Text style={styles.small}>{texts.loading}</Text>}
           {draw.kind === 'error' && <Text style={textStyles.error}>{`${texts.drawFailed} ${draw.detail}`}</Text>}
           {programme && <ProgrammeBars programme={programme} />}
-          <Text style={styles.small}>{texts.unplayedFirst}</Text>
         </View>
         <GameSettingsCard settings={settings} onPress={() => setIsSettingsOpen(true)} />
       </View>
@@ -302,11 +300,5 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.8,
-  },
-  help: {
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.bold,
-    fontSize: 12,
-    textAlign: 'center',
   },
 });

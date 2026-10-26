@@ -360,7 +360,7 @@ export const strings = {
     // Bluff, Mon mélange : fiche de la partie tirée dans les quiz choisis (route /pool).
     mixGame: {
       description: (count: number, total: number) =>
-        `${count} questions tirées au hasard parmi les ${total} des quiz choisis, en commençant par celles jamais jouées sur ce téléphone.`,
+        `${count} questions tirées au hasard parmi les ${total} des quiz choisis.`,
     },
     // Fiche d'une partie tirée dans des thèmes du Quiz (route /pool, maquette QN1-F).
     themesGame: {
@@ -373,12 +373,10 @@ export const strings = {
       byTheme: 'Par thème',
       byLevel: 'Par niveau',
       share: (label: string, count: number) => `${label} · ${count}`,
-      unplayedFirst: 'Les questions que tu n’as jamais jouées passent en premier.',
       modify: 'Modifier mon choix',
       modifyLabel: 'Modifier mon choix : thèmes, nombre de questions et difficulté',
       create: 'Créer la partie',
       creating: 'Création…',
-      help: 'Tu auras ensuite le code et le QR code pour inviter les joueurs.',
     },
     // Catalogue Quiz (maquette QN1-A) : thème à la une et tuiles des thèmes.
     themesHome: {
