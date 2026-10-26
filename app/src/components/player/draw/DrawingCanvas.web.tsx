@@ -1,4 +1,5 @@
 import { DrawingDoc, DrawingWriter } from '@shared/drawing/encoding';
+import { isPalmContact } from '@shared/drawing/palm';
 import { BACKGROUND_COLOR, DRAW_COLORS, DRAW_HEIGHT, DRAW_WIDTH, STROKE_WIDTHS } from '@shared/drawing/palette';
 import { floodFill, rasterize } from '@shared/drawing/raster';
 import { DrawingRenderer } from '@shared/drawing/render';
@@ -13,13 +14,12 @@ import {
 import { useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 
 import { AppColors, AppSizes } from '@/constants/appTheme';
+import { isIosDevice } from '@/lib/platform';
 
 import type { DrawingCanvasProps } from './drawingTypes';
 
 // Envoi groupé du dessin (plan § 2) : un paquet toutes les 300 ms au plus, et à chaque fin de geste.
 const FLUSH_INTERVAL_MS = 300;
-// Contact plus large que ce diamètre (pixels CSS) : une paume, pas un doigt (si le navigateur le donne).
-const PALM_CONTACT_PX = 44;
 // Début d'un trait gardé sur le téléphone : un second doigt arrivé avant ce délai (pincement) l'annule.
 const STROKE_HOLD_MS = 100;
 // Zoom : le dessin est repeint plus fin (jusqu'à deux fois) quand on zoome, pour rester net.
@@ -63,6 +63,11 @@ interface Session {
   gesture: Gesture;
   last: ScreenPoint | null;
   minimap: DrawingRenderer | null;
+}
+
+function releaseCanvas(canvas: HTMLCanvasElement): void {
+  canvas.width = 0;
+  canvas.height = 0;
 }
 
 // Site des joueurs : surface de dessin du dessinateur (canvas 2D du navigateur, 4:3) dans un cadre fixe.
@@ -115,6 +120,7 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
   useEffect(() => {
     const frame = frameRef.current;
     const canvas = canvasRef.current;
+    const minimapCanvas = minimapCanvasRef.current;
     if (!frame || !canvas) return;
     const doc = new DrawingDoc();
     for (const data of toolRef.current.initialChunks ?? []) doc.applyChunk(data);
@@ -219,7 +225,7 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
         y: Math.max(0, Math.min(DRAW_HEIGHT, Math.round(logical.y))),
       };
     };
-    const isPalm = (event: PointerEvent) => event.pointerType === 'touch' && Math.max(event.width, event.height) > PALM_CONTACT_PX;
+    const isPalm = (event: PointerEvent) => isPalmContact(event, isIosDevice);
 
     // Trait tout de suite à l'écran, avant l'envoi (même style que le rendu des paquets).
     const drawLive = (colorIndex: number, widthIndex: number, from: ScreenPoint, to: ScreenPoint) => {
@@ -375,6 +381,10 @@ export function DrawingCanvas({ tool, color, width, onChunk, initialChunks, onVi
       frame.removeEventListener('gesturechange', block);
       root.style.overscrollBehavior = previous.root;
       document.body.style.overscrollBehavior = previous.body;
+      // Mémoire des canvas rendue tout de suite : Safari la libère mal d'une manche à l'autre, et au-delà de
+      // sa limite getContext ne renvoie plus rien (dessin impossible).
+      releaseCanvas(canvas);
+      if (minimapCanvas) releaseCanvas(minimapCanvas);
     };
     // flush ne lit que des références : les gestionnaires sont posés une seule fois.
   }, []);
