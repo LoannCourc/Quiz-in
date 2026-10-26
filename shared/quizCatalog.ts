@@ -55,10 +55,9 @@ export function estimateQuizMinutes(
 }
 
 // Durée estimée d'une partie selon ses réglages, en minutes arrondies au-dessus : sans les classements
-// intermédiaires en Suspense (ni après la dernière question), avec une validation estimée en Contrôle ; null en Pas à pas (la durée
-// dépend de l'hôte : « à votre rythme »).
-export function estimateGameMinutes(questionCount: number, settings: SessionSettings): number | null {
-  if (settings.stepByStep) return null
+// intermédiaires en Suspense (ni après la dernière question), avec une validation estimée en Contrôle. Au
+// rythme du mode Automatique, aussi en Pas à pas (estimation : l'hôte peut aller plus vite ou plus lentement).
+export function estimateGameMinutes(questionCount: number, settings: SessionSettings): number {
   const { answerMode } = settings
   const scoresS = settings.suspense ? 0 : SCORES_DURATION_S
   const validationS = hasValidationPhase(settings) ? VALIDATION_ESTIMATE_S : 0

@@ -75,7 +75,7 @@ export function themesQuestionTotal(stats: readonly ThemeStats[], themes: readon
 
 // Durée estimée d'une partie tirée dans des thèmes : la même fonction sur la carte héro, la feuille d'un
 // thème, la fiche et « Ta partie » (réglages par défaut tant que l'hôte ne les a pas changés).
-export function themeGameMinutes(questionCount: number, settings: SessionSettings = DEFAULT_SESSION_SETTINGS): number | null {
+export function themeGameMinutes(questionCount: number, settings: SessionSettings = DEFAULT_SESSION_SETTINGS): number {
   return estimateGameMinutes(questionCount, settings)
 }
 

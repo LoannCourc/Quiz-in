@@ -17,8 +17,10 @@ import { makeSession, QUESTIONS } from './engineFixtures'
 const NOW = 2_000_000
 const GAME = QUESTIONS.slice(0, 3)
 
+// Réglages par défaut en mode Automatique (Pas à pas est le défaut depuis le retour du test fermé) : les
+// combinaisons avec Pas à pas sont écrites explicitement.
 function settings(overrides: Partial<SessionSettings>): SessionSettings {
-  return { ...DEFAULT_SESSION_SETTINGS, ...overrides }
+  return { ...DEFAULT_SESSION_SETTINGS, stepByStep: false, ...overrides }
 }
 
 // Applique un update à plat (chemins de premier niveau seulement) : suffisant pour enchaîner les phases.
@@ -127,7 +129,13 @@ describe('durée estimée sur la fiche', () => {
   })
 
   test('Pas à pas : pas d’estimation (« à votre rythme »)', () => {
-    expect(estimateGameMinutes(QUESTIONS_PER_GAME, settings({ stepByStep: true }))).toBeNull()
-    expect(estimateGameMinutes(QUESTIONS_PER_GAME, settings({ stepByStep: true, suspense: true }))).toBeNull()
+    // Pas à pas (par défaut) : même estimation qu'en Automatique, au rythme automatique.
+    expect(estimateGameMinutes(QUESTIONS_PER_GAME, settings({ stepByStep: true }))).toBe(estimateGameMinutes(QUESTIONS_PER_GAME, settings({ stepByStep: false })))
+    expect(estimateGameMinutes(QUESTIONS_PER_GAME, settings({ stepByStep: true, suspense: true }))).toBe(5)
+  })
+
+  test('Pas à pas par défaut à la création ; une ancienne partie sans le champ reste en Automatique', () => {
+    expect(DEFAULT_SESSION_SETTINGS.stepByStep).toBe(true)
+    expect(isAwaitingHost({ status: 'reveal', settings: { answerMode: 'choice', speedBonus: true, control: false, teams: false } })).toBe(false)
   })
 })

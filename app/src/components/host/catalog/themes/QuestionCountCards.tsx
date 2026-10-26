@@ -47,7 +47,7 @@ export function QuestionCountCards({ value, available, onChange, compact = false
             <Text style={[styles.number, compact && styles.compactNumber, isSelected && styles.inkText]}>{count}</Text>
             {!compact && <Text style={[styles.small, isSelected && styles.inkText]}>{texts.questions}</Text>}
             {!compact && <Text style={[styles.name, isSelected && styles.inkText]}>{name}</Text>}
-            {minutes !== null && <Text style={[styles.small, isSelected && styles.inkText]}>{texts.minutes(minutes)}</Text>}
+            <Text style={[styles.small, isSelected && styles.inkText]}>{texts.minutes(minutes)}</Text>
           </Pressable>
         );
       })}

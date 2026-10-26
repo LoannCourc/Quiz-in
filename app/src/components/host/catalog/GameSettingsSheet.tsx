@@ -104,11 +104,12 @@ export function GameSettingsSheet({ visible, settings, onChange, sound, onSoundC
             {/* Rythme : hors des options (ne compte pas dans la limite de deux en Choix multiples). */}
             <Text style={styles.sectionLabel}>{strings.quizSetup.rhythmLabel}</Text>
             <View style={styles.grid}>
+              {/* Automatique = stepByStep false ; éteinte par défaut (Pas à pas). */}
               <SettingTile
                 icon="next"
-                title={strings.quizSetup.stepByStep.title}
-                hint={strings.quizSetup.stepByStep.hint}
-                state={settings.stepByStep ? 'active' : 'idle'}
+                title={strings.quizSetup.automatic.title}
+                hint={strings.quizSetup.automatic.hint}
+                state={settings.stepByStep ? 'idle' : 'active'}
                 role="checkbox"
                 onPress={() => onChange({ ...settings, stepByStep: !settings.stepByStep })}
               />

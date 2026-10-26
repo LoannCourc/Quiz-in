@@ -61,13 +61,14 @@ export const MIN_TEAMS = 2;
 export const MAX_TEAMS = 4;
 export const MIN_TEAM_SIZE = 2;
 
-// Réglages proposés par défaut sur la fiche d'un quiz.
+// Réglages proposés par défaut sur la fiche d'un quiz. Pas à pas par défaut (retour du test fermé) : l'hôte
+// choisit l'option « Automatique » pour que les questions s'enchaînent seules (spec 5.1).
 export const DEFAULT_SESSION_SETTINGS: SessionSettings = {
   answerMode: 'choice',
   speedBonus: true,
   control: false,
   teams: false,
-  stepByStep: false,
+  stepByStep: true,
   suspense: false,
 };
 

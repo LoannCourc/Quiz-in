@@ -25,7 +25,7 @@ import {
   type SessionUpdate,
 } from '../../shared/hostEngine'
 import { bluffChecksUpdate } from '../../shared/bluff'
-import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
+import { BLUFF_MAX_ATTEMPTS, DEFAULT_SESSION_SETTINGS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
 import { hostReturnUpdate, isHostAway } from '../../shared/hostAbsence'
 import { removePlayerUpdate } from '../../shared/players'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
@@ -349,6 +349,11 @@ describe('Pas à pas (settings.stepByStep)', () => {
   test('réglage booléen accepté à la création, valeur non booléenne refusée', async () => {
     await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null, settings: stepSettings })))
     await assertFails(db(HOST).ref(`${SESSION}/settings/stepByStep`).set('oui'))
+  })
+
+  test('partie créée avec les réglages par défaut (Pas à pas, depuis le retour du test fermé) : acceptée', async () => {
+    expect(DEFAULT_SESSION_SETTINGS.stepByStep).toBe(true)
+    await assertSucceeds(db(HOST).ref(SESSION).set(session({ players: null, status: 'lobby', settings: DEFAULT_SESSION_SETTINGS })))
   })
 
   test('partie sans le champ (créée avant ce réglage) : toujours valide', async () => {

@@ -238,8 +238,7 @@ export const strings = {
       unavailable: 'Cette sélection de thèmes n’est plus disponible.',
       loading: 'Préparation des questions…',
       drawFailed: 'Impossible de préparer les questions.',
-      meta: (count: number, minutes: number | null) =>
-        `${count} questions · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · ${MIN_PLAYERS} à ${MAX_PLAYERS} joueurs`,
+      meta: (count: number, minutes: number) => `${count} questions · environ ${minutes} min · ${MIN_PLAYERS} à ${MAX_PLAYERS} joueurs`,
       mixedLevels: 'Niveaux mélangés',
       programme: 'Au programme',
       byTheme: 'Par thème',
@@ -276,8 +275,8 @@ export const strings = {
       recommended: 'Conseillé',
       // Espaces insécables : « ≈ 11 min » ne se coupe jamais.
       minutes: (minutes: number) => `≈ ${minutes} min`,
-      cardLabel: (count: number, name: string, minutes: number | null, isRecommended: boolean) =>
-        `${count} questions, ${name}${minutes === null ? '' : `, environ ${minutes} minutes`}${isRecommended ? ', conseillé' : ''}`,
+      cardLabel: (count: number, name: string, minutes: number, isRecommended: boolean) =>
+        `${count} questions, ${name}, environ ${minutes} minutes${isRecommended ? ', conseillé' : ''}`,
       mixTitle: 'Mélanger avec un autre thème ?',
       addTheme: (theme: string) => `Ajouter le thème ${theme}`,
       removeTheme: (theme: string) => `Retirer le thème ${theme}`,
@@ -296,8 +295,7 @@ export const strings = {
       questionCount: 'Nombre de questions',
       difficulty: 'Difficulté',
       allLevels: 'Tous niveaux',
-      summary: (themes: string[], count: number, minutes: number | null) =>
-        `${themes.join(' + ')} · ${count} questions${minutes === null ? '' : ` · ≈ ${minutes} min`}`,
+      summary: (themes: string[], count: number, minutes: number) => `${themes.join(' + ')} · ${count} questions · ≈ ${minutes} min`,
       validate: (count: number) => `Valider · ${count} questions`,
       // Avertissement quand il manque des questions : nombre réel, niveaux, thèmes, conseil.
       levelAdjectives: { easy: 'faciles', medium: 'moyennes', hard: 'difficiles' } satisfies Record<QuestionLevel, string>,
@@ -410,7 +408,8 @@ export const strings = {
     } satisfies Record<AnswerMode, string>,
     optionsLabel: 'Options',
     rhythmLabel: 'Rythme',
-    stepByStep: { title: 'Pas à pas', hint: 'Tu passes à la suite' },
+    // Sans elle, Pas à pas (par défaut) : l'hôte passe à la suite, avec un 3-2-1 avant chaque question.
+    automatic: { title: 'Automatique', hint: 'Les questions s’enchaînent seules' },
     suspense: { title: 'Suspense', hint: 'Classement à la fin' },
     options: {
       speedBonus: { title: 'Rapidité', hint: 'Points bonus' },
@@ -419,10 +418,9 @@ export const strings = {
     } satisfies Record<GameOption, { title: string; hint: string }>,
     comingSoon: 'bientôt',
     incompatible: 'incompatible avec ces réglages',
-    // minutes null : Pas à pas, la durée dépend de l'hôte.
     // isRound : Dessine-moi (des manches, pas des questions).
-    meta: (questionCount: number, minutes: number | null, isRound = false) =>
-      `${questionCount} ${isRound ? 'manches' : 'questions'} · ${minutes === null ? 'à votre rythme' : `environ ${minutes} min`} · jusqu’à ${MAX_PLAYERS} joueurs`,
+    meta: (questionCount: number, minutes: number, isRound = false) =>
+      `${questionCount} ${isRound ? 'manches' : 'questions'} · environ ${minutes} min · jusqu’à ${MAX_PLAYERS} joueurs`,
     audiences: { all: 'Tout public', kids: 'Enfants', experts: 'Experts' } satisfies Record<QuizAudience, string>,
     settingsTitle: 'Réglages de la partie',
     audioCredit: 'Extrait audio et informations : Deezer',

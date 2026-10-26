@@ -27,7 +27,7 @@ export function LobbyHeader({ quizId, drawRounds, settings }: { quizId: string; 
   if (pool) {
     const count = gameQuestionCount(settings);
     const gameType = pool.kind === 'themes' ? 'quiz' : 'bluff';
-    return <LobbyTitle title={strings.home.games[gameType].name} meta={strings.hostLobby.quizMeta(count, estimateGameMinutes(count, settings) ?? 0)} />;
+    return <LobbyTitle title={strings.home.games[gameType].name} meta={strings.hostLobby.quizMeta(count, estimateGameMinutes(count, settings))} />;
   }
   if (!summary) return null;
   const shown =
