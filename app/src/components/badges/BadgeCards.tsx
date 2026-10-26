@@ -109,7 +109,11 @@ export function BadgeSingleCard({ badge, isUnlocked, active, onPress }: SingleCa
       <Text style={[styles.singleTitle, !isUnlocked && styles.singleLocked]} numberOfLines={2}>
         {labels.title}
       </Text>
-      {action && onPress && <Text style={styles.singleAction}>{action}</Text>}
+      {action && onPress && (
+        <View style={styles.singleAction}>
+          <Text style={styles.singleActionLabel}>{action}</Text>
+        </View>
+      )}
     </>
   );
   const accessibility = `${labels.title}, ${isUnlocked ? texts.unlocked : texts.locked}`;
@@ -218,16 +222,21 @@ const styles = StyleSheet.create({
   singleLocked: {
     color: AppColors.badgeLocked,
   },
+  // Pastille : marges et fond sur la vue, texte centré dedans. Sur le texte, TEXT_FIT_SAFETY (paddingRight)
+  // écrasait la marge droite de paddingHorizontal sur Android : texte collé à gauche, qui touchait le bord droit.
   singleAction: {
     alignSelf: 'center',
+    alignItems: 'center',
     paddingHorizontal: Spacing.two,
     paddingVertical: 2,
     borderRadius: AppSizes.radiusPill,
-    overflow: 'hidden',
     backgroundColor: AppColors.badgeNotice,
+  },
+  singleActionLabel: {
     color: AppColors.onBadge,
     fontFamily: AppFonts.black,
     fontSize: 12,
+    textAlign: 'center',
     ...TEXT_FIT_SAFETY,
   },
 });
