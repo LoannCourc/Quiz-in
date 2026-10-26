@@ -268,6 +268,7 @@ questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par 
   music?: { source: "deezer", id, title, artist, startS? }   // blind test (section 15) ; startS + timer de la question ≤ 30 s
 
 config/blindTestEnabled               // interrupteur à distance du blind test : absent ou false = désactivé ; lisible connecté, modifiable dans la console seulement
+config/appVersion/{android|ios}       // mise à jour disponible (section 21) : { latest, minimum, storeUrl, enabled } ; lisible connecté, modifiable dans la console seulement
 
 sessions/{code}
   hostUid, quizId
@@ -701,3 +702,23 @@ Badges uniques :
 - Partager l'app : débloqué à l'ouverture de la fenêtre de partage (lien du site vitrine). Noter l'app : débloqué à l'ouverture de la fiche du store ; si le lien ne s'ouvre pas, rien (ni message ni badge). Déclaratifs.
 
 **Affichage.** À la fin d'une partie, une notification discrète pour chaque badge débloqué, sans bloquer l'écran. Écran « Mes badges » : d'après les maquettes (à venir). Trophée de l'accueil : pastille du nombre de badges débloqués pas encore vus, effacée à l'ouverture de « Mes badges », de retour au prochain badge débloqué (liste des badges vus gardée avec les badges, sur le téléphone).
+
+## 21. Mise à jour disponible (app)
+
+**Principe.** Prévenir l'hôte qui a une ancienne version de l'app, sans jamais gêner une partie. Procédure pour le développeur : `docs/mises-a-jour.md`.
+
+**Source de vérité.** `config/appVersion/android` et `config/appVersion/ios`, modifiés dans la console Firebase seulement (aucune règle d'écriture : tout client est refusé ; lecture par tout utilisateur connecté, comme le reste de `config/`). Champs : `latest` (dernière version publiée), `minimum` (plus ancienne version encore acceptée), `storeUrl` (fiche du store), `enabled` (false ou absent : rien sur cette plateforme ; iOS reste à false tant que la fiche App Store n'est pas publique).
+
+**Version comparée.** La version de l'app (`version` d'`app.json`, lue par `Constants.expoConfig.version`), comparée nombre par nombre (1.10.0 est plus récente que 1.9.0 ; 1.1 vaut 1.1.0). **Toute mise à jour publiée sur un store doit changer ce numéro**, même un correctif (1.1.0 devient 1.1.1) : sinon elle n'est pas détectée. Le versionCode Android et le numéro de build iOS ne comptent pas (gérés par EAS, indépendants de ce numéro).
+
+**Deux niveaux.**
+- Version inférieure à `latest` : feuille « Une mise à jour est disponible », « Mettre à jour » et « Plus tard ». Au plus une fois par jour (date locale du téléphone) et trois fois au plus pour une même valeur de `latest` ; une nouvelle valeur remet le compte à zéro (gardé sur le téléphone).
+- Version inférieure à `minimum` : écran « Mets à jour Quiz'in pour continuer à jouer » à la place de l'accueil, avec seulement « Mettre à jour ». Réservé à un changement du protocole de partie (une ancienne app ne pourrait plus jouer avec les nouvelles) : elle ne peut alors plus créer, reprendre ni rejoindre de partie depuis l'accueil. Jamais pour pousser une mise à jour, jamais à une version qui n'est pas déjà en ligne sur le store.
+
+**Où et quand.** Une seule lecture par lancement de l'app, à l'accueil, sans retarder son affichage (la feuille ou l'écran apparaît une fois la lecture faite). Jamais pendant une partie, au salon, à l'écran de fin ni en mode salon (Changer de jeu) ; une partie en cours n'est jamais interrompue. Jamais sur le site des joueurs (toujours à jour).
+
+**Sûreté.** Lecture impossible, hors ligne ou au-delà de 5 s : rien, aucun blocage. Valeurs invalides ignorées (rien n'est affiché) : version mal écrite, `minimum` supérieure à `latest`, `storeUrl` hors de `https://play.google.com/` (Android) et `https://apps.apple.com/` (iOS).
+
+**Liens.** Android : `market://details?id=com.herocorp.quizin`, puis `storeUrl` en secours ; iOS : `storeUrl`. Si aucun ne s'ouvre : « Ouvre le Play Store et cherche Quiz'in. » (ou l'App Store), jamais d'impasse.
+
+**Données.** Aucune donnée personnelle collectée : seule la date et le nombre des rappels restent sur le téléphone (Data safety et politique de confidentialité inchangées).
