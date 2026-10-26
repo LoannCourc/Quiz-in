@@ -72,11 +72,11 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 
 ### 4.1 Hôte
 1. Ouvre l'app et arrive sur le **catalogue** de quiz (maquette « S2 ») : « QUIZ'IN » et une recherche par titre ; un sélecteur de type de jeu (« Quiz », et « Blind test » quand l'interrupteur `config/blindTestEnabled` est ouvert, sinon visible, marqué « bientôt », non cliquable) ; des puces de thème (« Tout » puis un thème par thème présent) qui filtrent les rangées ; des rangées d'affiches qui défilent horizontalement : « Top 10 cette semaine » (ordre choisi à la main, gros chiffres), « Nouveautés », « Faciles, pour tout le monde », « Pour les experts ». Une rangée vide n'est pas affichée. Les affiches portent la couleur du quiz et son titre, sans emoji.
-2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs » (durée estimée d'après les réglages choisis, section 6.1 ; « à votre rythme » en Pas à pas), pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité) et ouvre le salon.
-3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Contrôle », « · Groupe », « · Pas à pas » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
+2. Ouvre la **fiche d'un quiz** : grande affiche, titre, « N questions · environ X min · jusqu'à 20 joueurs » (durée estimée d'après les réglages choisis, au rythme du mode Automatique dans les deux modes, section 6.1), pastilles (difficulté, public, type de jeu), description, et le bouton **« Choisir ce quiz »**, visible sans défiler. Ce bouton crée la partie avec les réglages par défaut (Choix multiples, Rapidité, Pas à pas) et ouvre le salon.
+3. **Réglages de la partie** (facultatif, maquette R2) : sous « Choisir ce quiz », une carte « Réglages de la partie » (bordure cyan, résumé « Choix multiples · Rapidité activée » ou « … · sans Rapidité », suivi de « · Contrôle », « · Groupe », « · Automatique » et « · Suspense » s'ils sont activés) ouvre une feuille de **tuiles à toucher** : active en jaune, inactive en sombre, « bientôt » grisée et non sélectionnable. « Terminé », un appui à côté ou le bouton retour la ferment.
    - **Mode de réponse** : *Choix multiples* (4 propositions) ou *Réponse libre* (les joueurs écrivent leur réponse, section 6.3).
    - **Options** : Rapidité, Contrôle (« Tu valides les réponses », Réponse libre seulement, section 5.2), Groupe (équipes, section 6.4).
-   - **Rythme** : *Pas à pas* et *Suspense* (« Classement à la fin »), désactivés par défaut, combinables entre eux et avec toutes les options (section 5.1).
+   - **Rythme** : *Automatique* (« Les questions s'enchaînent seules » ; sans elle, la partie est en Pas à pas, le mode par défaut) et *Suspense* (« Classement à la fin »), désactivés par défaut, combinables entre eux et avec toutes les options (section 5.1).
    - **Règles de compatibilité** : Contrôle n'est disponible qu'en Réponse libre. En Choix multiples, au maximum deux options sont actives ; en Réponse libre, les trois peuvent l'être.
 4. Arrive dans le **salon** (maquette L) : titre et méta du quiz, liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
    - **TV pas encore connectée** : carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast) et lien discret **« Je n'ai pas de TV »**. Le lien des joueurs et le QR code ne sont **pas** affichés par défaut : « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** (QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager », « Masquer », et le lien de l'écran pour le plan B, section 6.6), replié à chaque ouverture du salon.
@@ -119,12 +119,12 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 | État | Sortie déclenchée par | Condition |
 |---|---|---|
 | **LOBBY** | Hôte (bouton « Lancer ») | Au moins 2 joueurs ; en Groupe, conditions de la section 6.4 |
-| **STARTING** (3 s) | Automatique | Fin du compte à rebours |
+| **STARTING** (3 s) | Automatique | Fin du compte à rebours. Avant la première question, et en Pas à pas avant chaque question suivante, après l'action de l'hôte (section 5.1) |
 | **QUESTION** | Automatique | Fin du chrono, **ou** tous les joueurs connectés ont répondu (délai de 2 s). L'hôte peut aussi forcer « Passer ». Avec Contrôle, passage à VALIDATION, sinon à REVEAL. En Bluff, QUESTION est l'écriture des fausses réponses (60 s, terminée quand chaque joueur connecté a une proposition acceptée ou n'a plus d'essai) et mène à VOTE |
-| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. Après la dernière question, passage direct à END (pas de classement intermédiaire : il ferait doublon avec le classement final). En Suspense, passage direct à QUESTION, ou à END après la dernière question |
+| **REVEAL** (6 s) | Automatique | Fin du délai. L'hôte peut avancer plus tôt. Après la dernière question, passage direct à END (pas de classement intermédiaire : il ferait doublon avec le classement final). En Suspense, passage direct à QUESTION (en Pas à pas : STARTING, puis QUESTION), ou à END après la dernière question |
 | **VOTE** (Bluff seulement, sans minuteur) | Automatique | Tous les joueurs connectés ont voté (délai de 2 s), **ou** l'hôte appuie sur « Clore le vote » (confirmation s'il manque des votes). Toujours suivi de REVEAL (section 16) |
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
-| **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. Toujours suivi de la QUESTION suivante (jamais après la dernière question) |
+| **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. Toujours suivi de la QUESTION suivante (en Pas à pas : STARTING, puis la QUESTION suivante ; jamais après la dernière question) |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
 | **END** | Hôte | « Changer de jeu » : l'hôte ouvre le catalogue (`nextGameAt` public : la TV et les joueurs affichent « L'hôte choisit le prochain jeu… ») ; le jeu choisi remplace le précédent et la partie revient au lobby avec le même code, les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, séries, Bluff et Dessine-moi remis à zéro (pas de cumul des scores). Revenir sans choisir : retour à l'écran de fin. « Quitter » : suppression immédiate de la partie |
 
@@ -132,12 +132,13 @@ Les durées sont des constantes de configuration, ajustables après les tests.
 
 ### 5.1 Rythme : Pas à pas et Suspense
 
-Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), désactivés par défaut et combinables.
+Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), combinables. **Pas à pas est le mode par défaut** (`stepByStep` vaut true à la création d'une partie) ; l'hôte choisit l'option **Automatique** (`stepByStep` false) pour que les questions s'enchaînent seules. Suspense est désactivé par défaut. Une partie sans le champ (créée par une ancienne version de l'app) reste en Automatique.
 
 **Pas à pas** : l'hôte décide quand la partie avance après chaque question.
 - REVEAL et SCORES n'ont **pas d'échéance** (`phaseEndsAt = 0`) : seule une action de l'hôte les fait sortir. QUESTION garde son chrono.
 - Un gros bouton jaune (même action que « Passer ») est nommé d'après sa destination : **Voir le classement** (pendant la révélation), **Question suivante** (pendant le classement, ou pendant la révélation en Suspense), **Classement final** (pendant la révélation de la dernière question, qui mène directement à l'écran de fin). Un verrou évite qu'un double appui saute une étape ; le bouton est absent pendant la pause.
 - Pause puis reprise pendant l'attente : la partie revient à l'état attendu, toujours sans échéance (elle ne repart pas seule).
+- **3-2-1 avant chaque question** : après l'action de l'hôte (« Question suivante »), la partie passe en STARTING pendant 3 s, avec `currentIndex` déjà sur la question suivante et sans question publiée, puis en QUESTION. L'hôte a le temps de poser son téléphone ; le chrono de la question (et la Rapidité) ne part qu'à son affichage, comme pour la première question. TV : « Prêts ? », 3-2-1, « GO ! », et « Question N / M » (« Manche N / M » à Dessine-moi) ; téléphones : « Prêt ? » et le même décompte. Personne ne peut répondre pendant le décompte. Pause possible (reprise avec le temps restant) ; « Passer » mène tout de suite à la question. La musique en cours continue (pas de retour à la musique d'attente). En Automatique, pas de 3-2-1 entre les questions : l'annonce plein écran « Question N » du classement en tient lieu.
 - Joueurs et TV affichent « En attente de l'hôte pour la suite… » à la place du compte à rebours, et jamais l'annonce plein écran « Question N ». Un joueur qui se reconnecte pendant l'attente retrouve le même écran.
 
 **Suspense** : pas de classement en cours de partie, seulement à la fin.
@@ -145,7 +146,7 @@ Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), désac
 - Révélation sans rang chez les joueurs (seulement les points gagnés) ; onglets d'étapes sans Classement ; avatars de la TV triés par pseudo pendant la question.
 - **Limite acceptée** : l'hôte continue d'écrire `score` et `rank` de chaque joueur après chaque question (lisibles par tout utilisateur connecté) ; seul l'affichage les masque. Un joueur averti pourrait les consulter.
 
-**Combinaison** : en Pas à pas + Suspense, la révélation attend l'hôte, puis « Question suivante » (ou « Classement final ») mène directement à la suite.
+**Combinaison** : en Pas à pas + Suspense, la révélation attend l'hôte, puis « Question suivante » mène au 3-2-1 de la question suivante (« Classement final » : directement à l'écran de fin).
 
 ### 5.2 Contrôle : validation des réponses libres par l'hôte
 
@@ -170,7 +171,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 - **Bluff** : écriture 60 s, vote sans minuteur, révélation : les fausses propositions se retournent (2 s chacune jusqu'à 6, puis de plus en plus vite, 0,4 s à partir de 12, 12 s au plus en tout), puis 4 s pour la vraie réponse (section 16).
 - Chaque question peut surcharger sa durée.
 - **Durée d'une partie** : 10 questions représentent environ 5 à 7 minutes selon le mode de réponse (10 questions au MVP, décision 12.5).
-- **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense) ; en Pas à pas, la durée dépend de l'hôte : la fiche affiche « à votre rythme ».
+- **Durée affichée sur la fiche** : calculée d'après les réglages choisis (chrono, validation estimée à 15 s avec Contrôle, révélation, et classement sauf en Suspense), au rythme du mode Automatique, aussi en Pas à pas (estimation : l'hôte peut aller plus vite ou plus lentement).
 
 ### 6.2 Points
 - **Bonne réponse** : 100 points.
@@ -269,7 +270,7 @@ config/blindTestEnabled               // interrupteur à distance du blind test 
 sessions/{code}
   hostUid, quizId
   status: "lobby|starting|question|reveal|validation|scores|paused|ended"
-  settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense?, teamMode?, teamCount? }   // rythme (section 5.1) : absent = désactivé
+  settings: { answerMode: "free|choice", speedBonus, control, teams, stepByStep?, suspense?, teamMode?, teamCount? }   // rythme (section 5.1) : absent = désactivé ; stepByStep vaut true à la création (Pas à pas par défaut)
     // teamMode : "random|host|players" (absent = random) ; teamCount : 2 à 4, écrit avec chaque action d'équipe et figé au lancement
   currentIndex
   questionCount                       // écrit par l'hôte au lancement uniquement, public en lecture
@@ -450,7 +451,7 @@ sessions/{code}
 9. Le client joueur ne lit jamais `questions/` ; la bonne réponse n'est publiée qu'à la révélation (dans `reveal`). La lisibilité du catalogue par un utilisateur connecté est une limite acceptée au MVP (section 7).
 10. Réponse libre : 60 caractères maximum.
 11. Le nom reste « Quiz'in ». Logo retenu : variante C (anneau doré, queue rose en diagonale), fichier source `docs/design/logo-1024.png` ; il sert d'icône d'application, d'écran de démarrage, de favicon et d'icône Cast (`docs/design/cast-icon-512.png`).
-12. **Pas à pas** : révélation et classement attendent l'hôte, sans échéance ; bouton nommé d'après sa destination (section 5.1).
+12. **Pas à pas** (mode par défaut, Automatique en option) : révélation et classement attendent l'hôte, sans échéance ; bouton nommé d'après sa destination ; 3-2-1 avant chaque question (section 5.1).
 13. **Suspense** : classement seulement à la fin ; avatars triés par pseudo ; scores et rangs restent écrits dans la base (limite acceptée, section 5.1).
 14. Propositions d'une question : une seule taille de texte, celle de la plus longue (section 9).
 15. **Réponse libre** : 30 s par question (quiz et blind test) ; correction automatique à quatre niveaux, une faute dès 5 lettres et deux dès 10 (section 6.3).
@@ -597,12 +598,12 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 **Canaux de la TV.** Un seul moteur Web Audio : canal musique (35 % du volume général) et canal effets (80 %). Effets synthétisés dans le code, sans fichier ; 6 effets au plus en même temps ; un même effet pas plus d'une fois toutes les 150 ms. **Ducking** : un effet important baisse la musique à 30 % en 150 ms, puis elle remonte en 600 ms. L'extrait d'un blind test garde son propre lecteur.
 
 **Musique, chrono et extrait.** Jamais deux sources en même temps, jamais de coupure sèche (fondus) :
-- Salon, tirage des équipes, 3-2-1 : musique d'attente (boucle).
+- Salon, tirage des équipes, 3-2-1 du début de partie : musique d'attente (boucle). 3-2-1 entre deux questions (Pas à pas) : la musique en cours continue.
 - Question, révélation et classement d'un quiz à choix multiples : musique de jeu (boucle, volume bas), sans interruption d'une phase à l'autre. Question, révélation et classement en saisie libre (Contrôle compris) : musique d'écriture (boucle).
 - Bluff : musique d'écriture, puis musique du vote (boucles), qui continue pendant la révélation et le classement.
 - Classement entre les questions : pas de jingle ; seuls ses effets (lignes, glissement) passent par-dessus la musique, avec le ducking habituel. Écran de fin : la musique de fin démarre à l'arrivée du podium (en Suspense, après le roulement de tambour), puis boucle sans coupure audible tant que l'écran est affiché, sous les effets (ducking) ; « Changer de jeu » l'éteint par un fondu de 600 ms (la musique du salon prend le relais), et elle s'éteint en fondu quand la partie est quittée.
 - Passage d'une musique à l'autre : fondu enchaîné de 800 ms ; une même musique d'une phase à l'autre continue sans reprendre au début.
-- Blind test : aucune musique pendant la question (l'extrait joue seul). La musique de jeu revient en fondu dès l'affichage de la bonne réponse (début de la révélation) et continue au classement. Elle se tait par un fondu de 300 ms qui se termine avant l'extrait suivant : à la fin du 3-2-1, du classement, ou de la révélation en Suspense (en Pas à pas, au début de la question). Musique d'attente au salon, musique de fin inchangée.
+- Blind test : aucune musique pendant la question (l'extrait joue seul). La musique de jeu revient en fondu dès l'affichage de la bonne réponse (début de la révélation) et continue au classement. Elle se tait par un fondu de 300 ms qui se termine avant l'extrait suivant : à la fin du 3-2-1 (début de partie, et avant chaque question en Pas à pas), du classement, ou de la révélation en Suspense. Musique d'attente au salon, musique de fin inchangée.
 - Jingle entamé depuis plus de 1,5 s quand la TV s'ouvre : pas joué.
 - Fichiers et durées : `docs/sons.md`.
 - Chrono : tic discret pendant les 5 dernières secondes, puis buzzer, en quiz classique et à l'écriture du Bluff (le vote n'a pas de minuteur) ; rien en blind test (l'extrait qui s'arrête fait office de signal) ; pas de buzzer si tout le monde a déjà répondu.
