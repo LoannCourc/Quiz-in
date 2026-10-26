@@ -262,7 +262,6 @@ export function HostLobby(props: HostLobbyProps) {
         unassignedCount={teamAssignment(session).unassigned}
         error={launchError}
         audioStatus={audio.status}
-        connectedCount={connectedCount}
       />
       <BigButton
         label={isLaunching ? strings.hostLobby.launching : strings.hostLobby.launchButton}
@@ -410,14 +409,13 @@ interface LaunchHintProps {
   unassignedCount: number;
   error: string | null;
   audioStatus: AudioUrlsStatus;
-  connectedCount: number;
   // Dessine-moi à deux : le seul dessinateur possible dessine toutes les manches (information, sans blocage).
 }
 
 // Ce qui empêche le lancement, ou l'erreur du dernier essai.
 
 function LaunchHint(props: LaunchHintProps) {
-  const { questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus, connectedCount } = props;
+  const { questions, hasEnoughPlayers, teamRefusal, unassignedCount, error, audioStatus } = props;
   if (error) return <Text style={[textStyles.error, styles.centered]}>{error}</Text>;
   if (questions.kind === 'error') {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.questionsError}</Text>;
@@ -431,8 +429,7 @@ function LaunchHint(props: LaunchHintProps) {
   if (questions.kind === 'loading') {
     return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.loadingQuestions}</Text>;
   }
-  // Personne encore : l'état normal du salon, dit simplement au-dessus du bouton grisé.
-  if (connectedCount === 0) return <Text style={[styles.hint, styles.centered]}>{strings.hostLobby.waitingPlayers}</Text>;
+  // Pas assez de joueurs (personne compris) : le bouton grisé suffit, sans texte au-dessus.
   if (!hasEnoughPlayers) return null;
   if (teamRefusal === 'teamsUnassigned' && unassignedCount > 0) {
     return <Text style={[textStyles.error, styles.centered]}>{strings.hostLobby.unassignedLaunch(unassignedCount)}</Text>;

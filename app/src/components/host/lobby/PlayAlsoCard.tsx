@@ -31,13 +31,11 @@ export function PlayAlsoCard({ player, onToggle, onEdit, isBusy = false }: PlayA
         onPress={onEdit}
         style={styles.texts}>
         <Text style={styles.title}>{texts.title}</Text>
-        {player ? (
+        {player && (
           <Text style={styles.hint}>
             {`${texts.playingAs(player.avatar, player.name)} · `}
             <Text style={styles.edit}>{texts.edit}</Text>
           </Text>
-        ) : (
-          <Text style={styles.hint}>{texts.hint}</Text>
         )}
       </Pressable>
       <View style={styles.switchBox}>

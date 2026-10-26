@@ -698,13 +698,11 @@ export const strings = {
       qrLabel: (url: string) => `QR code du lien ${url}`,
     },
     noPlayersShort: 'Aucun joueur pour l’instant',
-    waitingPlayers: 'En attente des joueurs…',
     // Dessine-moi : des manches, pas des questions.
     roundsMeta: (roundCount: number, minutes: number) => `${roundCount} manches · environ ${minutes} min`,
     // Carte « Je joue aussi » au-dessus de « Réglages », et la feuille du prénom et de l'avatar de l'hôte.
     playAlso: {
       title: 'Je joue aussi',
-      hint: 'Tu réponds aux questions depuis ce téléphone.',
       playingAs: (avatar: string, name: string) => `Tu joues en tant que ${avatar} ${name}`,
       edit: 'Modifier',
       you: 'Toi',
