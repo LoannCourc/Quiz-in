@@ -718,7 +718,8 @@ export const strings = {
     // Ligne « Réglages » et sa feuille.
     settings: {
       title: 'Réglages',
-      summary: 'équipes',
+      summaryRounds: 'manches',
+      summaryTeams: 'équipes',
       playerCount: (count: number) => `${count} joueur${count > 1 ? 's' : ''}`,
       // Dessine-moi.
       roundsTitle: 'Nombre de manches',
@@ -726,7 +727,6 @@ export const strings = {
       roundsChoice: (rounds: number) => `${rounds} manches`,
       teamsTitle: 'Jouer en équipes',
       teamsHint: 'Le score d’une équipe est la moyenne de ses joueurs.',
-      teamsMinPlayers: `Disponible dès ${MIN_TEAM_GAME_PLAYERS} joueurs.`,
       // Bloc réservé au développement (absent de l'app publiée).
       devTitle: 'Développement',
       devHint: 'Partie courte, un seul dessinateur. Absent de l’app publiée.',

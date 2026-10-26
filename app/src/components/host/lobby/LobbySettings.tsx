@@ -1,6 +1,6 @@
 import { DRAW_ROUND_CHOICES, drawRoundsOf } from '@shared/drawGame';
-import { MIN_TEAM_GAME_PLAYERS } from '@shared/constants';
 import { connectedPlayerIds } from '@shared/players';
+import { canOfferTeams } from '@shared/teams';
 import type { Session } from '@shared/types';
 import { useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
@@ -18,16 +18,27 @@ import { TeamsSummaryRow } from './TeamsSummaryRow';
 const texts = strings.hostLobby.settings;
 
 // Ligne unique « Réglages · équipes › » du salon : elle ouvre la feuille.
-export function LobbySettingsRow({ onPress }: { onPress: () => void }) {
+// Ce que contient la feuille : manches (Dessine-moi), équipes (seulement quand l'option est proposée).
+function settingsSummary(session: Session): string[] {
+  const parts: string[] = [];
+  if (session.settings.answerMode === 'draw') parts.push(texts.summaryRounds);
+  if (canOfferTeams(session)) parts.push(texts.summaryTeams);
+  return parts;
+}
+
+// Masquée tant que la feuille n'a rien à proposer (en développement, elle garde le bloc « Développement »).
+export function LobbySettingsRow({ session, onPress }: { session: Session; onPress: () => void }) {
+  const summary = settingsSummary(session).join(' · ');
+  if (summary === '' && !__DEV__) return null;
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${texts.title} : ${texts.summary}`}
+      accessibilityLabel={summary === '' ? texts.title : `${texts.title} : ${summary}`}
       onPress={onPress}
       style={({ pressed }) => [styles.entryRow, pressed && styles.pressed]}>
       <Text style={styles.entryText}>
         <Text style={styles.entryTitle}>{texts.title}</Text>
-        <Text style={styles.entrySummary}>{` · ${texts.summary}`}</Text>
+        {summary !== '' && <Text style={styles.entrySummary}>{` · ${summary}`}</Text>}
       </Text>
       <SettingsIcon name="chevron" color={AppColors.text} />
     </Pressable>
@@ -40,7 +51,7 @@ interface LobbySettingsSheetProps {
   session: Session;
   // Dessine-moi : nombre de manches (4, 6 ou 8).
   onRounds: (rounds: number) => void;
-  // Groupe : activé ou coupé (dès MIN_TEAM_GAME_PLAYERS joueurs) ; page « Équipes ».
+  // Groupe : activé ou coupé (proposé dès MIN_TEAM_GAME_PLAYERS joueurs connectés, canOfferTeams) ; page « Équipes ».
   onTeamsEnabled: (enabled: boolean) => void;
   onOpenTeams: () => void;
   // Développement seulement : partie courte, un seul dessinateur (Dessine-moi).
@@ -56,9 +67,8 @@ export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
   const { isOpen, onClose, session, onRounds, onTeamsEnabled, onOpenTeams } = props;
   const isDraw = session.settings.answerMode === 'draw';
   const isTeams = session.settings.teams;
-  const playerCount = Object.keys(session.players).length;
-  // Coupé avec trop peu de joueurs : activation impossible ; activé, on peut toujours couper.
-  const canTeams = isTeams || playerCount >= MIN_TEAM_GAME_PLAYERS;
+  // Absente tant qu'il manque des joueurs connectés ; activée, toujours là pour pouvoir la couper.
+  const canTeams = canOfferTeams(session);
   const closeThen = (action: () => void) => () => {
     onClose();
     action();
@@ -73,14 +83,15 @@ export function LobbySettingsSheet(props: LobbySettingsSheetProps) {
           right={<RoundsPicker value={drawRoundsOf(session.settings)} onChange={onRounds} />}
         />
       )}
-      <SettingRow
-        icon={<SettingsIcon name="group" color={AppColors.accent} />}
-        title={texts.teamsTitle}
-        hint={canTeams ? texts.teamsHint : texts.teamsMinPlayers}
-        isDisabled={!canTeams}
-        right={<Toggle value={isTeams} onChange={onTeamsEnabled} isDisabled={!canTeams} label={texts.teamsTitle} />}>
-        {isTeams && <TeamsSummaryRow session={session} onPress={closeThen(onOpenTeams)} />}
-      </SettingRow>
+      {canTeams && (
+        <SettingRow
+          icon={<SettingsIcon name="group" color={AppColors.accent} />}
+          title={texts.teamsTitle}
+          hint={texts.teamsHint}
+          right={<Toggle value={isTeams} onChange={onTeamsEnabled} label={texts.teamsTitle} />}>
+          {isTeams && <TeamsSummaryRow session={session} onPress={closeThen(onOpenTeams)} />}
+        </SettingRow>
+      )}
       {__DEV__ && <DevelopmentBlock {...props} isDraw={isDraw} />}
     </BottomSheet>
   );

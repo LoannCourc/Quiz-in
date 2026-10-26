@@ -38,7 +38,7 @@ import { PUBLIC_SESSION_FIELDS, toPublicSession, withStoredDefaults, type Public
 import { rankingStreakBadges, revealStreak } from '../../shared/streak'
 import { startStatsEvent, transitionStatsEvent } from '../../shared/stats'
 import { trackPresence, type PresenceTracker } from '../../shared/presence'
-import { lateJoinerUpdate, launchTeamDraw, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
+import { canOfferTeams, lateJoinerUpdate, launchTeamDraw, lobbyTeamRefusal, teamDrawUpdate, teamsEnabledUpdate, teamsValidatedUpdate } from '../../shared/teams'
 import type { GameStatus, PublicSession, Session } from '../../shared/types'
 import { BLUFF_QUESTIONS, makeQuestion, makeSession, player, QUESTIONS } from '../unit/engineFixtures'
 
@@ -1821,6 +1821,61 @@ describe('Série (players/{uid}/streak)', () => {
   test('Changer de jeu : l’hôte la supprime', async () => {
     await seedSession({ status: 'ended', players: { [PLAYER]: { name: 'Léa', avatar: '🦊', score: 0, rank: 1, connected: true, streak: 4 } } })
     await assertSucceeds(db(HOST).ref(STREAK_PATH).remove())
+  })
+})
+
+// Option « Jouer en équipes » proposée au salon dès 4 joueurs connectés (canOfferTeams), jamais coupée d'office ;
+// le lancement compte les joueurs connectés. Aucune règle nouvelle : présence et équipes déjà écrites ainsi.
+describe('Groupe : 4 joueurs connectés, déconnexion avant le lancement, Changer de jeu', () => {
+  const TEAM_SETTINGS = { answerMode: 'choice', speedBonus: true, control: false, teams: true, teamMode: 'host', teamCount: 2 } as const
+  const AWAY = 'teams-away-uid'
+  const roster = (connected: boolean) => ({
+    [HOST]: player('Hôte', { avatar: '🐸', team: 'pink' }),
+    [PLAYER]: player('Léa', { team: 'pink' }),
+    [OTHER]: player('Tom', { avatar: '🐼', team: 'cyan' }),
+    [AWAY]: player('Noé', { avatar: '🦖', team: 'cyan', connected }),
+  })
+  const read = async () => (await readAsAdmin(SESSION)) as Session
+
+  test('joueur qui se déconnecte juste avant le lancement : connected à false par le serveur, option gardée, lancement refusé ; retour, lancement accepté', OFFLINE_TEST_TIMEOUT, async () => {
+    await seed({ sessions: { [CODE]: makeSession({ status: 'lobby', phaseEndsAt: 0, settings: TEAM_SETTINGS, players: roster(true) }) } })
+    expect(launchUpdate(await read(), QUESTIONS.slice(0, 1), Date.now()).ok).toBe(true)
+    // Présence du joueur (hooks/usePresence.ts), puis coupure réelle (téléphone en veille, réseau perdu).
+    const awayDb = db(AWAY)
+    const connectedRef = awayDb.ref(`${SESSION}/players/${AWAY}/connected`)
+    await assertSucceeds(connectedRef.onDisconnect().set(false))
+    awayDb.goOffline()
+    for (let attempt = 0; attempt < 50 && (await readAsAdmin(`${SESSION}/players/${AWAY}/connected`)) !== false; attempt++) {
+      await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+    const away = await read()
+    expect(away.players[AWAY]).toMatchObject({ connected: false, team: 'cyan' })
+    expect(away.settings.teams).toBe(true)
+    expect(canOfferTeams(away)).toBe(true)
+    expect(lobbyTeamRefusal(away)).toBe('teamsTooFewPlayers')
+    expect(launchUpdate(away, QUESTIONS.slice(0, 1), Date.now())).toEqual({ ok: false, reason: 'teamsTooFewPlayers' })
+    // Retour du joueur : sa présence repasse à true, son équipe est gardée, le lancement est accepté.
+    awayDb.goOnline()
+    await assertSucceeds(connectedRef.set(true))
+    const back = await read()
+    expect(lobbyTeamRefusal(back)).toBeNull()
+    const launch = launchUpdate(back, QUESTIONS.slice(0, 1), Date.now())
+    expect(launch.ok).toBe(true)
+    await assertSucceeds(db(HOST).ref(SESSION).update(launch.ok ? launch.update : {}))
+  })
+
+  test('partie revenue de « Changer de jeu » avec des équipes constituées : accepté, Groupe et équipes gardés, relance acceptée', async () => {
+    await seed({ sessions: { [CODE]: makeSession({ status: 'ended', phaseEndsAt: 0, settings: TEAM_SETTINGS, players: roster(true), teamsValidatedAt: Date.now() - 60_000 }) } })
+    // La fiche ne propose plus Groupe : le jeu choisi arrive sans équipes, le salon garde celles de la partie.
+    const chosen = { answerMode: 'choice', speedBonus: true, control: false, teams: false } as const
+    await assertSucceeds(db(HOST).ref(SESSION).update(changeGameUpdate(await read(), 'quiz-2', chosen, Date.now()) ?? {}))
+    const lobby = await read()
+    expect(lobby).toMatchObject({ status: 'lobby', quizId: 'quiz-2', settings: { teams: true, teamMode: 'host', teamCount: 2 } })
+    expect(Object.values(lobby.players).map((entry) => entry.team).sort()).toEqual(['cyan', 'cyan', 'pink', 'pink'])
+    expect(canOfferTeams(lobby)).toBe(true)
+    const launch = launchUpdate(lobby, QUESTIONS.slice(0, 1), Date.now())
+    expect(launch.ok).toBe(true)
+    await assertSucceeds(db(HOST).ref(SESSION).update(launch.ok ? launch.update : {}))
   })
 })
 

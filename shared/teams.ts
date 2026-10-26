@@ -1,5 +1,6 @@
 import { MAX_TEAMS, MIN_TEAM_GAME_PLAYERS, MIN_TEAM_SIZE, MIN_TEAMS } from './constants'
 import type { SessionUpdate } from './hostEngine'
+import { connectedPlayerIds } from './players'
 import { computeRanks } from './ranking'
 import type { Player, PlayerId, PlayerResult, PublicSession, Session, SessionSettings, TeamId, TeamMode, TeamStanding } from './types'
 
@@ -172,10 +173,18 @@ export function teamCountUpdate(session: Session, count: number): SessionUpdate 
 // Groupe activé ou coupé depuis le salon (feuille « Réglages » de l'hôte). Activé : seulement à partir de
 // MIN_TEAM_GAME_PLAYERS joueurs, « Au hasard » par défaut. Coupé : équipes, tirage et validation effacés
 // (les téléphones quittent l'écran des équipes).
+// Option « Jouer en équipes » proposée au salon (spec 6.4) : dès MIN_TEAM_GAME_PLAYERS joueurs connectés (l'hôte
+// compte seulement s'il joue : il est alors dans players). Déjà activée, elle reste proposée pour pouvoir la couper,
+// même si des joueurs sont partis : jamais coupée d'office (un téléphone en veille se déconnecte quelques secondes).
+export function canOfferTeams(session: Pick<Session, 'status' | 'settings' | 'players'>): boolean {
+  if (session.settings.teams) return true
+  return session.status === 'lobby' && connectedPlayerIds(session.players).length >= MIN_TEAM_GAME_PLAYERS
+}
+
 export function teamsEnabledUpdate(session: Session, enabled: boolean): SessionUpdate | null {
   if (session.status !== 'lobby' || session.settings.teams === enabled) return null
   if (enabled) {
-    if (Object.keys(session.players).length < MIN_TEAM_GAME_PLAYERS) return null
+    if (!canOfferTeams(session)) return null
     return { 'settings/teams': true, 'settings/teamMode': teamModeOf(session.settings), ...countPath(session) }
   }
   const update: SessionUpdate = { 'settings/teams': false, teamDrawAt: null, teamsValidatedAt: null }
@@ -193,7 +202,8 @@ export type TeamRefusal = 'teamsTooFewPlayers' | 'teamsUnassigned' | 'teamTooSma
 export function teamLaunchRefusal(session: Pick<PublicSession, 'settings' | 'players'>): TeamRefusal | null {
   if (!session.settings.teams) return null
   const playerIds = Object.keys(session.players)
-  if (playerIds.length < MIN_TEAM_GAME_PLAYERS) return 'teamsTooFewPlayers'
+  // Joueurs connectés : un joueur parti reste inscrit 30 s au salon, il ne compte pas.
+  if (connectedPlayerIds(session.players).length < MIN_TEAM_GAME_PLAYERS) return 'teamsTooFewPlayers'
   const teams = activeTeams(teamCountOf(session.settings, playerIds.length))
   if (playerIds.some((id) => !teams.includes(session.players[id].team as TeamId))) return 'teamsUnassigned'
   if (teams.some((team) => teamMembers(session.players, team).length < MIN_TEAM_SIZE)) return 'teamTooSmall'

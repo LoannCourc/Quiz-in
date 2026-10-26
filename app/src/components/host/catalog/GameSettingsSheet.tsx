@@ -23,10 +23,10 @@ const ANSWER_MODES: readonly { mode: AnswerMode; icon: SettingsIconName }[] = [
   { mode: 'free', icon: 'keyboard' },
 ];
 
+// Groupe n'est pas ici : les équipes se décident au salon, avec les joueurs connectés (canOfferTeams).
 const OPTIONS: readonly { option: GameOption; icon: SettingsIconName }[] = [
   { option: 'speedBonus', icon: 'bolt' },
   { option: 'control', icon: 'check' },
-  { option: 'teams', icon: 'group' },
 ];
 
 function answerModeState(settings: SessionSettings, mode: AnswerMode): SettingTileState {
@@ -52,7 +52,7 @@ interface GameSettingsSheetProps {
 // Feuille des réglages de la partie (maquette R2) : tuiles à toucher, « Terminé » fixé en bas (seules
 // les tuiles défilent sur un petit écran). Fermeture aussi par un appui à côté ou le bouton retour.
 // Changer de mode coupe les options devenues incompatibles (withAnswerMode).
-// Bluff et Dessine-moi : ni mode de réponse ni Contrôle ou Rapidité, seulement Groupe et le rythme.
+// Bluff et Dessine-moi : ni mode de réponse ni options (Contrôle, Rapidité), seulement le rythme.
 export function GameSettingsSheet({ visible, settings, onChange, sound, onSoundChange, onClose }: GameSettingsSheetProps) {
   const isBluff = hasImposedAnswerMode(settings.answerMode);
   const options = isBluff ? OPTIONS.filter(({ option }) => !BLUFF_HIDDEN_OPTIONS.includes(option)) : OPTIONS;
@@ -84,22 +84,26 @@ export function GameSettingsSheet({ visible, settings, onChange, sound, onSoundC
               </>
             )}
 
-            <Text style={styles.sectionLabel}>{strings.quizSetup.optionsLabel}</Text>
-            <View style={styles.grid}>
-              {options.map(({ option, icon }) => (
-                <SettingTile
-                  key={option}
-                  icon={icon}
-                  title={strings.quizSetup.options[option].title}
-                  hint={strings.quizSetup.options[option].hint}
-                  state={optionState(settings, option)}
-                  role="checkbox"
-                  onPress={() => onChange({ ...settings, [option]: !settings[option] })}
-                />
-              ))}
-              {/* Nombre impair de tuiles : la dernière garde une demi-largeur. */}
-              {options.length % 2 === 1 && <View style={styles.filler} />}
-            </View>
+            {options.length > 0 && (
+              <>
+                <Text style={styles.sectionLabel}>{strings.quizSetup.optionsLabel}</Text>
+                <View style={styles.grid}>
+                  {options.map(({ option, icon }) => (
+                    <SettingTile
+                      key={option}
+                      icon={icon}
+                      title={strings.quizSetup.options[option].title}
+                      hint={strings.quizSetup.options[option].hint}
+                      state={optionState(settings, option)}
+                      role="checkbox"
+                      onPress={() => onChange({ ...settings, [option]: !settings[option] })}
+                    />
+                  ))}
+                  {/* Nombre impair de tuiles : la dernière garde une demi-largeur. */}
+                  {options.length % 2 === 1 && <View style={styles.filler} />}
+                </View>
+              </>
+            )}
 
             {/* Rythme : hors des options (ne compte pas dans la limite de deux en Choix multiples). */}
             <Text style={styles.sectionLabel}>{strings.quizSetup.rhythmLabel}</Text>

@@ -333,7 +333,7 @@ export function HostLobby(props: HostLobbyProps) {
           petit écran, ils défilent avec les joueurs, jamais cachés par le pied fixe. */}
       <View style={styles.playAlso}>
         <PlayAlsoCard player={hostPlayer} onToggle={togglePlayAlso} onEdit={() => openProfileSheet()} isBusy={isJoiningAsPlayer} />
-        <LobbySettingsRow onPress={() => setIsSettingsOpen(true)} />
+        <LobbySettingsRow session={session} onPress={() => setIsSettingsOpen(true)} />
       </View>
       <LobbySettingsSheet
         isOpen={isSettingsOpen}

@@ -4,6 +4,7 @@ import { launchUpdate, changeGameUpdate, transitionUpdate, validateUpdate, type 
 import {
   assignTeamUpdate,
   bestPlayerByTeam,
+  canOfferTeams,
   drawsAtLaunch,
   drawTeams,
   launchTeamDraw,
@@ -402,10 +403,59 @@ describe('Groupe activé ou coupé depuis le salon', () => {
       players: Object.fromEntries(Array.from({ length: count }, (_, index) => [`p${index}`, player(`Joueur ${index}`)])),
     })
 
-  test('activé dès 4 joueurs, « Au hasard » par défaut ; refusé en dessous', () => {
+  test('activé dès 4 joueurs connectés, « Au hasard » par défaut ; refusé en dessous', () => {
     expect(teamsEnabledUpdate(lobby(3), true)).toBeNull()
+    // Un joueur parti reste inscrit 30 s au salon : il ne compte pas.
+    const oneAway = lobby(4)
+    oneAway.players.p3 = { ...oneAway.players.p3, connected: false }
+    expect(teamsEnabledUpdate(oneAway, true)).toBeNull()
     expect(teamsEnabledUpdate(lobby(4), true)).toMatchObject({ 'settings/teams': true, 'settings/teamMode': 'random' })
     expect(teamsEnabledUpdate(lobby(4, { teams: true }), true)).toBeNull()
+  })
+
+  test('option proposée dès 4 joueurs connectés ; l’hôte compte seulement s’il joue (inscrit dans players)', () => {
+    expect(canOfferTeams(lobby(3))).toBe(false)
+    expect(canOfferTeams(lobby(4))).toBe(true)
+    const withDisconnected = lobby(4)
+    withDisconnected.players.p0 = { ...withDisconnected.players.p0, connected: false }
+    expect(canOfferTeams(withDisconnected)).toBe(false)
+    // L'hôte qui joue est un joueur comme les autres ; sinon il n'est pas dans players et ne compte pas.
+    const hostPlays = lobby(3)
+    hostPlays.players[hostPlays.hostUid] = player('Hôte')
+    expect(canOfferTeams(hostPlays)).toBe(true)
+    expect(canOfferTeams({ ...lobby(4), status: 'question' })).toBe(false)
+  })
+
+  test('activée puis joueurs connectés sous 4 : rien n’est coupé, l’option reste là ; lancement refusé tant qu’ils ne sont pas revenus', () => {
+    const ready = makeSession({ settings: TEAMS, players: players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', 'cyan']]) })
+    expect(launchUpdate(ready, [makeQuestion(0)], NOW).ok).toBe(true)
+    // Juste avant le lancement, d se déconnecte (téléphone en veille) : encore inscrit, plus compté.
+    const dAway = makeSession({ settings: TEAMS, players: players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', 'cyan', 0, false]]) })
+    expect(canOfferTeams(dAway)).toBe(true)
+    expect(dAway.settings.teams).toBe(true)
+    expect(dAway.players.d.team).toBe('cyan')
+    expect(lobbyTeamRefusal(dAway)).toBe('teamsTooFewPlayers')
+    expect(launchUpdate(dAway, [makeQuestion(0)], NOW)).toEqual({ ok: false, reason: 'teamsTooFewPlayers' })
+    // d revient : son équipe est gardée, le lancement repart.
+    expect(launchUpdate(ready, [makeQuestion(0)], NOW).ok).toBe(true)
+  })
+
+  test('retour de « Changer de jeu » avec des équipes constituées : Groupe et équipes gardés, option toujours proposée', () => {
+    const roster = players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', 'cyan']])
+    const ended = makeSession({ status: 'ended', settings: { ...TEAMS, teamMode: 'host', teamCount: 2 }, players: roster, teamsValidatedAt: NOW - 60_000 })
+    // La fiche ne propose plus Groupe : le jeu choisi arrive avec teams false, le salon garde les équipes.
+    const chosen: SessionSettings = { answerMode: 'choice', speedBonus: true, control: false, teams: false }
+    const lobbyAgain = apply(ended, changeGameUpdate(ended, ended.quizId, chosen, NOW))
+    expect(lobbyAgain.status).toBe('lobby')
+    expect(lobbyAgain.settings).toMatchObject({ teams: true, teamMode: 'host', teamCount: 2, speedBonus: true })
+    expect(Object.values(lobbyAgain.players).map((entry) => entry.team)).toEqual(['pink', 'pink', 'cyan', 'cyan'])
+    expect(canOfferTeams(lobbyAgain)).toBe(true)
+    expect(lobbyTeamRefusal(lobbyAgain)).toBeNull()
+    expect(launchUpdate(lobbyAgain, [makeQuestion(0)], NOW).ok).toBe(true)
+    // Un joueur n'est pas revenu : l'option reste (pour la couper), le lancement attend.
+    const oneMissing = { ...lobbyAgain, players: { ...lobbyAgain.players, d: { ...lobbyAgain.players.d, connected: false } } }
+    expect(canOfferTeams(oneMissing)).toBe(true)
+    expect(lobbyTeamRefusal(oneMissing)).toBe('teamsTooFewPlayers')
   })
 
   test('coupé : équipes, tirage et validation effacés ; jamais hors du salon', () => {
