@@ -177,6 +177,8 @@ export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';
 // Interrupteur à distance de Dessine-moi : absent ou true, le jeu est ouvert ; false (console Firebase),
 // la tuile passe en « Bientôt » sans nouvelle version de l'app.
 export const DRAW_ENABLED_PATH = 'config/drawEnabled';
+// Mise à jour disponible (spec 21) : { android, ios }, chacun { latest, minimum, storeUrl, enabled }, console seulement.
+export const APP_VERSION_PATH = 'config/appVersion';
 
 // Modes de réponse connus de cette version (liste exhaustive par le typage). Un site des joueurs resté
 // ouvert depuis une version plus ancienne ne connaît pas un mode récent : il demande de recharger la page
