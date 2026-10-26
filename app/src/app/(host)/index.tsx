@@ -7,6 +7,8 @@ import { Linking, StyleSheet, Text, useWindowDimensions, View } from 'react-nati
 
 import { BADGES_HOME_BUTTON_SIZE, BadgesHomeButton } from '@/components/badges/BadgesHomeButton';
 import { HomeView } from '@/components/host/home/HomeView';
+import { UpdateRequiredScreen } from '@/components/update/UpdateRequiredScreen';
+import { UpdateSheet } from '@/components/update/UpdateSheet';
 import { BigButton } from '@/components/ui/BigButton';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Screen } from '@/components/ui/Screen';
@@ -14,6 +16,7 @@ import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useAppUpdate } from '@/hooks/useAppUpdate';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useResumableGame } from '@/hooks/useResumableGame';
@@ -42,6 +45,8 @@ function HomeScreen() {
   const resumableCode = useResumableGame();
   const isBlindTestEnabled = useBlindTestEnabled();
   const isDrawEnabled = useDrawEnabled();
+  // Mise à jour disponible (spec 21) : jamais en mode salon (une partie est ouverte), lue sans retarder l'accueil.
+  const update = useAppUpdate(room === undefined);
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
@@ -63,6 +68,8 @@ function HomeScreen() {
     density !== null
       ? { density, gap: homeBlockGap(height), isCompact: height < HOME_COMPACT_BELOW_HEIGHT, onGridHeight: (measuredHeight: number) => setMeasured({ sizeKey, gridHeight: measuredHeight }) }
       : undefined;
+
+  if (update.prompt.kind === 'required') return <UpdateRequiredScreen storeUrl={update.prompt.storeUrl} />;
 
   return (
     <Screen scrollable={fit === undefined}>
@@ -87,6 +94,7 @@ function HomeScreen() {
       {/* Démos : en développement seulement (absentes de l'APK publié), en haut, à gauche du trophée des badges,
           hors de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
       {__DEV__ && <DemosLink />}
+      {update.prompt.kind === 'soft' && <UpdateSheet isOpen storeUrl={update.prompt.storeUrl} onClose={update.dismiss} />}
     </Screen>
   );
 }
