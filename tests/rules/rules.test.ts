@@ -45,6 +45,9 @@ import { BLUFF_QUESTIONS, makeQuestion, makeSession, player, QUESTIONS } from '.
 const PROJECT_ID = 'demo-quiz-in'
 const CODE = 'K7PX'
 const SESSION = `sessions/${CODE}`
+// Tests qui coupent une connexion (goOffline) et attendent l'écriture onDisconnect du serveur : jusqu'à 5 s
+// d'attente, autant que la limite par défaut de Vitest. Un émulateur lent ferait échouer le test sur le délai.
+const OFFLINE_TEST_TIMEOUT = { timeout: 15_000 }
 const HOST = 'host-uid'
 const PLAYER = 'player-uid'
 const OTHER = 'other-uid'
@@ -480,7 +483,7 @@ describe('Pas à pas : 3-2-1 avant chaque question suivante', () => {
     expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
   })
 
-  test('hôte qui quitte l’appli pendant le décompte : hostLeftAt par le serveur, absence lue, suppression refusée avant le délai ; retour, pause, puis la question', async () => {
+  test('hôte qui quitte l’appli pendant le décompte : hostLeftAt par le serveur, absence lue, suppression refusée avant le délai ; retour, pause, puis la question', OFFLINE_TEST_TIMEOUT, async () => {
     const host = 'countdown-host-4'
     await seedAwaitingScores(host)
     await nextQuestion(host)
@@ -960,7 +963,7 @@ describe('Présence (onDisconnect)', () => {
     throw new Error(`${path} n'a pas pris la valeur ${String(expected)}`)
   }
 
-  test('connected passe à false quand le joueur se déconnecte', async () => {
+  test('connected passe à false quand le joueur se déconnecte', OFFLINE_TEST_TIMEOUT, async () => {
     await seedSession()
     const playerDb = db(PLAYER)
     const connectedRef = playerDb.ref(`${SESSION}/players/${PLAYER}/connected`)
@@ -971,7 +974,7 @@ describe('Présence (onDisconnect)', () => {
   })
 
   // Séquence exacte du client joueur (app/src/lib/joinGame.ts puis hooks/usePresence.ts).
-  test("inscription par update, puis présence : seul connected change à la déconnexion", async () => {
+  test("inscription par update, puis présence : seul connected change à la déconnexion", OFFLINE_TEST_TIMEOUT, async () => {
     await seedSession({ status: 'lobby', players: null })
     const playerDb = db(OTHER)
     const playerRef = playerDb.ref(`${SESSION}/players/${OTHER}`)
@@ -1286,7 +1289,7 @@ describe('Hôte absent : hostLeftAt et suppression après délai', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/hostLeftAt`).set(firebase.database.ServerValue.TIMESTAMP))
   })
 
-  test("l'onDisconnect de l'hôte écrit hostLeftAt (heure du serveur) quand il se déconnecte", async () => {
+  test("l'onDisconnect de l'hôte écrit hostLeftAt (heure du serveur) quand il se déconnecte", OFFLINE_TEST_TIMEOUT, async () => {
     await seedSession()
     const hostDb = db(HOST)
     await assertSucceeds(hostDb.ref(SESSION).onDisconnect().update({ hostLeftAt: SERVER_TIME }))
@@ -1341,7 +1344,7 @@ describe('Hôte absent : hostLeftAt et suppression après délai', () => {
     expect(after.hostLeftAt).toBeUndefined()
   })
 
-  test("Quitter : l'onDisconnect annulé ne recrée pas de hostLeftAt orphelin", async () => {
+  test("Quitter : l'onDisconnect annulé ne recrée pas de hostLeftAt orphelin", OFFLINE_TEST_TIMEOUT, async () => {
     await seedSession()
     const hostDb = db(HOST)
     const sessionRef = hostDb.ref(SESSION)
@@ -2422,7 +2425,7 @@ describe('Présence après « Quitter la partie » (shared/presence.ts sur l’�
   const lobbyWith = (uid: string) =>
     seedSession({ status: 'lobby', phaseEndsAt: 0, players: { [HOST]: { name: 'Hôte', avatar: '🐸', connected: true }, [uid]: { name: 'Tom', avatar: '🐼', connected: true } } })
 
-  test('reproduction du bug : sans départ explicite, le joueur reste connecté tant que l’app garde sa connexion', async () => {
+  test('reproduction du bug : sans départ explicite, le joueur reste connecté tant que l’app garde sa connexion', OFFLINE_TEST_TIMEOUT, async () => {
     const uid = 'ghost-uid'
     await lobbyWith(uid)
     const { tracker, client } = presence(uid)
@@ -2434,7 +2437,7 @@ describe('Présence après « Quitter la partie » (shared/presence.ts sur l’�
     expect(await until(CONNECTED(uid), false)).toBe(false)
   })
 
-  test('« Quitter » : absent tout de suite, plus compté ; une coupure plus tard ne change plus rien', async () => {
+  test('« Quitter » : absent tout de suite, plus compté ; une coupure plus tard ne change plus rien', OFFLINE_TEST_TIMEOUT, async () => {
     const uid = 'quit-uid'
     await lobbyWith(uid)
     const { tracker, client } = presence(uid)
@@ -2462,7 +2465,7 @@ describe('Présence après « Quitter la partie » (shared/presence.ts sur l’�
     }
   })
 
-  test('entrée retirée (exclusion, « Je joue aussi » arrêté) : départ refusé sans recréer d’entrée', async () => {
+  test('entrée retirée (exclusion, « Je joue aussi » arrêté) : départ refusé sans recréer d’entrée', OFFLINE_TEST_TIMEOUT, async () => {
     const uid = 'removed-uid'
     await lobbyWith(uid)
     const { tracker, client } = presence(uid)
@@ -2540,7 +2543,7 @@ describe("Départ de l'hôte pendant le choix du prochain jeu et au salon", () =
     return reopened
   }
 
-  test('cas A : fin de partie, Changer de jeu, app fermée → absence affichée aux joueurs et à la TV, reprise proposée', async () => {
+  test('cas A : fin de partie, Changer de jeu, app fermée → absence affichée aux joueurs et à la TV, reprise proposée', OFFLINE_TEST_TIMEOUT, async () => {
     const host = nextHost()
     await seedSession({ hostUid: host, status: 'ended', phaseEndsAt: 0 })
     let current = (await readAsAdmin(SESSION)) as Session
@@ -2585,7 +2588,7 @@ describe("Départ de l'hôte pendant le choix du prochain jeu et au salon", () =
     expect(resumeDecision(await readHostedGame(host), host, Date.now())).toBe('forget')
   })
 
-  test('fin de partie sans choix en cours, app fermée : podium gardé, pas d’absence affichée, rien à reprendre', async () => {
+  test('fin de partie sans choix en cours, app fermée : podium gardé, pas d’absence affichée, rien à reprendre', OFFLINE_TEST_TIMEOUT, async () => {
     const host = nextHost()
     await seedSession({ hostUid: host, status: 'ended', phaseEndsAt: 0 })
     const hostLeftAt = await disconnectHost(host)
@@ -2611,7 +2614,7 @@ describe("Départ de l'hôte pendant le choix du prochain jeu et au salon", () =
     expect(await readAsAdmin(`${SESSION}/status`)).toBe('lobby')
   })
 
-  test('cas B, app fermée au salon : l’onDisconnect suffit, absence affichée', async () => {
+  test('cas B, app fermée au salon : l’onDisconnect suffit, absence affichée', OFFLINE_TEST_TIMEOUT, async () => {
     const host = nextHost()
     await seedSession({ hostUid: host, status: 'lobby', phaseEndsAt: 0 })
     await disconnectHost(host)
