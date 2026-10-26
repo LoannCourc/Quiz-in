@@ -440,6 +440,13 @@ describe('Groupe activé ou coupé depuis le salon', () => {
     expect(launchUpdate(ready, [makeQuestion(0)], NOW).ok).toBe(true)
   })
 
+  test('partie sans équipes : un téléphone en veille ne bloque pas le lancement (règle inchangée : 2 joueurs connectés)', () => {
+    const normal = makeSession({ settings: { ...TEAMS, teams: false }, players: players([['a', undefined], ['b', undefined], ['c', undefined, 0, false]]) })
+    expect(teamLaunchRefusal(normal)).toBeNull()
+    expect(lobbyTeamRefusal(normal)).toBeNull()
+    expect(launchUpdate(normal, [makeQuestion(0)], NOW).ok).toBe(true)
+  })
+
   test('retour de « Changer de jeu » avec des équipes constituées : Groupe et équipes gardés, option toujours proposée', () => {
     const roster = players([['a', 'pink'], ['b', 'pink'], ['c', 'cyan'], ['d', 'cyan']])
     const ended = makeSession({ status: 'ended', settings: { ...TEAMS, teamMode: 'host', teamCount: 2 }, players: roster, teamsValidatedAt: NOW - 60_000 })
