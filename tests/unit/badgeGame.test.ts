@@ -9,6 +9,7 @@ import { bluffChecksUpdate, isBluffQuestion } from '../../shared/bluff'
 import { DEFAULT_SESSION_SETTINGS } from '../../shared/constants'
 import { drawGameQuestions } from '../../shared/drawGame'
 import { drawHintsUpdate } from '../../shared/drawGuess'
+import { isAwaitingHost } from '../../shared/gameFlow'
 import { changeGameUpdate, endUpdate, launchUpdate, nextDeadline, transitionUpdate, type SessionUpdate } from '../../shared/hostEngine'
 import { PUBLIC_SESSION_FIELDS, toPublicSession } from '../../shared/publicFields'
 import { settingsForGameType } from '../../shared/quizCatalog'
@@ -106,7 +107,8 @@ function runGame(start: Session, questions: readonly GameQuestion[], script: Scr
     if (session.status === 'question' && question && isBluffQuestion(question)) session = apply(session, bluffChecksUpdate(session, question))
     session = apply(session, drawHintsUpdate(session))
     observe(phones, session)
-    const deadline = nextDeadline(session)
+    // Pas à pas (par défaut) : révélation et classement sans échéance, l'hôte appuie au bout de 5 s.
+    const deadline = isAwaitingHost(session) ? now + 5_000 : nextDeadline(session)
     if (deadline === null) throw new Error(`partie bloquée en ${key}`)
     now = Math.max(now, deadline) + 1
     session = apply(session, transitionUpdate(session, questions, { status: session.status, currentIndex: session.currentIndex }, now))
