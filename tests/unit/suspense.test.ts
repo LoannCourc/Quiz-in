@@ -85,12 +85,12 @@ describe('Suspense : pas de classement en cours de partie', () => {
 describe('Suspense + Pas à pas', () => {
   const both = { suspense: true, stepByStep: true }
 
-  test('révélation en attente, bouton « Question suivante » qui mène à la question (sans classement)', () => {
+  test('révélation en attente, bouton « Question suivante » qui mène au 3-2-1 de la question suivante (sans classement)', () => {
     const revealed = reveal(0, both)
     expect(isAwaitingHost(revealed)).toBe(true)
     expect(nextDeadline(revealed)).toBeNull()
     expect(hostControls(revealed).awaitingNext).toBe('nextQuestion')
-    expect(advance(revealed, NOW + 60_000)).toMatchObject({ status: 'question', currentIndex: 1 })
+    expect(advance(revealed, NOW + 60_000)).toMatchObject({ status: 'starting', currentIndex: 1 })
   })
 
   test('dernière question : « Classement final », puis fin de partie', () => {

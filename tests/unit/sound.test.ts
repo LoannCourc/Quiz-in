@@ -113,6 +113,13 @@ describe('Sons déduits des changements d’état', () => {
     expect(soundCues(starting, question, NOW + CUE_MAX_AGE_MS)).toEqual([])
   })
 
+  test('Pas à pas, 3-2-1 avant la question suivante : bips et « GO » programmés, pas de son « question » en plus', () => {
+    const countdown = inPhase({ status: 'starting', currentIndex: 1, phaseStartedAt: NOW, phaseEndsAt: NOW + 3_000 })
+    expect(soundCues(inPhase({ status: 'scores' }), countdown, NOW)).toEqual([])
+    expect(timedCues(countdown).map((cue) => cue.id)).toEqual(['countdown', 'countdown', 'countdown', 'go'])
+    expect(soundCues(countdown, { ...question, currentIndex: 1, phaseStartedAt: NOW + 3_000 }, NOW + 3_000)).toEqual([])
+  })
+
   test('Contrôle : début de la validation, puis « validé » à la révélation (le résultat suit, programmé)', () => {
     const control = { ...question.settings, answerMode: 'free' as const, control: true }
     const validation = inPhase({ status: 'validation', phaseEndsAt: 0, settings: control })

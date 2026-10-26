@@ -46,6 +46,9 @@ export const strings = {
   starting: {
     getReady: 'Prêts ?',
     firstQuestion: 'La première question arrive…',
+    // Pas à pas : 3-2-1 avant chaque question suivante.
+    nextQuestion: (number: number, total: number) => `Question ${number} / ${total}`,
+    nextRound: (number: number, total: number) => `Manche ${number} / ${total}`,
     // Fin du 3-2-1, avec le son GO.
     go: 'GO !',
   },

@@ -347,6 +347,9 @@ export function transitionUpdate(
       const presence = reviewed ? {} : teamPresencePaths(session)
       return { ...base, ...revealPaths(session, result), ...presence, ...teamPaths(session, result.results) }
     }
+    case 'starting':
+      // Pas à pas, 3-2-1 avant la question suivante : rien de la question précédente, rien de la suivante.
+      return { ...base, currentQuestion: null, reveal: null }
     case 'ended':
       return { ...base, currentQuestion: null, reveal: null }
     default:
@@ -842,7 +845,7 @@ export function hostControls(session: Session): HostControls {
 function skipTarget(session: Session): SkipTarget | null {
   switch (session.status) {
     case 'starting':
-      return 'firstQuestion'
+      return session.currentIndex === 0 ? 'firstQuestion' : 'nextQuestion'
     case 'question':
       if (session.settings.answerMode === 'bluff') return 'vote'
       return hasValidationPhase(session.settings) ? 'validation' : 'reveal'

@@ -26,7 +26,7 @@ import {
 } from '../../shared/hostEngine'
 import { bluffChecksUpdate } from '../../shared/bluff'
 import { BLUFF_MAX_ATTEMPTS, HOST_DISCONNECT_TIMEOUT_S } from '../../shared/constants'
-import { hostReturnUpdate } from '../../shared/hostAbsence'
+import { hostReturnUpdate, isHostAway } from '../../shared/hostAbsence'
 import { removePlayerUpdate } from '../../shared/players'
 import { DrawingDoc, DrawingWriter } from '../../shared/drawing/encoding'
 import { drawGameQuestions } from '../../shared/drawGame'
@@ -384,7 +384,131 @@ describe('Pas à pas (settings.stepByStep)', () => {
     await write(resumeUpdate(await read(), Date.now()))
     expect(await read()).toMatchObject({ status: 'scores', phaseEndsAt: 0 })
     await write(transitionUpdate(await read(), gameQuestions, { status: 'scores', currentIndex: 0 }, Date.now()))
+    // 3-2-1 avant la question suivante, puis la question.
+    expect(await read()).toMatchObject({ status: 'starting', currentIndex: 1 })
+    await write(transitionUpdate(await read(), gameQuestions, { status: 'starting', currentIndex: 1 }, Date.now()))
     expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+})
+
+// Pas à pas : 3-2-1 (STARTING) entre deux questions, sur l'émulateur, avec les updates du moteur (spec 5.1).
+// Aucune règle nouvelle : status accepte déjà « starting », currentIndex tout entier positif, et un joueur ne
+// répond qu'en QUESTION. Un hôte par test : la vraie coupure (goOffline) ne gêne pas les autres.
+// Léa (PLAYER) et Tom (OTHER), inscrits avant le lancement.
+const PLAYERS_OF_COUNTDOWN: Session['players'] = {
+  [PLAYER]: player('Léa'),
+  [OTHER]: player('Tom', { avatar: '🐼' }),
+}
+
+describe('Pas à pas : 3-2-1 avant chaque question suivante', () => {
+  const GAME = selectGameQuestions(QUESTIONS.slice(0, 2))
+  const STEP = { answerMode: 'choice', speedBonus: true, control: false, teams: false, stepByStep: true } as const
+  const read = async () => (await readAsAdmin(SESSION)) as Session
+
+  // Classement de la question 1 en attente de l'hôte, Léa (PLAYER) et Tom (OTHER) inscrits.
+  async function seedAwaitingScores(host: string, players: Session['players'] = PLAYERS_OF_COUNTDOWN) {
+    const scores = makeSession({
+      hostUid: host,
+      status: 'scores',
+      currentIndex: 0,
+      questionCount: 2,
+      phaseStartedAt: Date.now() - 1_000,
+      phaseEndsAt: 0,
+      settings: STEP,
+      players,
+    })
+    await seed({ sessions: { [CODE]: scores } })
+  }
+
+  async function write(host: string, update: SessionUpdate | null) {
+    expect(update).not.toBeNull()
+    await assertSucceeds(db(host).ref(SESSION).update(update as SessionUpdate))
+  }
+
+  // « Question suivante » de l'hôte : 3-2-1 écrit par le moteur.
+  async function nextQuestion(host: string) {
+    await write(host, transitionUpdate(await read(), GAME, { status: 'scores', currentIndex: 0 }, Date.now()))
+  }
+
+  test('« Question suivante » : 3-2-1 accepté, lu champ par champ par un joueur et la TV, puis la question', async () => {
+    const host = 'countdown-host-1'
+    await seedAwaitingScores(host)
+    await nextQuestion(host)
+    const starting = await read()
+    expect(starting).toMatchObject({ status: 'starting', currentIndex: 1, questionCount: 2 })
+    expect(starting.currentQuestion).toBeUndefined()
+    // Joueur et TV : champs publics lus un par un, comme useLiveSession et usePlayerSession.
+    for (const reader of [PLAYER, 'countdown-tv-1']) {
+      for (const field of ['status', 'currentIndex', 'questionCount', 'phaseStartedAt', 'phaseEndsAt', 'settings']) {
+        await assertSucceeds(db(reader).ref(`${SESSION}/${field}`).once('value'))
+      }
+    }
+    expect((await db(PLAYER).ref(`${SESSION}/status`).once('value')).val()).toBe('starting')
+    await write(host, transitionUpdate(await read(), GAME, { status: 'starting', currentIndex: 1 }, Date.now()))
+    expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+
+  test('pendant le décompte, personne ne répond ; à l’affichage de la question, la réponse est acceptée', async () => {
+    const host = 'countdown-host-2'
+    await seedAwaitingScores(host)
+    await nextQuestion(host)
+    await assertFails(submitAnswer(PLAYER, 1, 2))
+    await assertFails(submitAnswer(PLAYER, 0, 2))
+    await write(host, transitionUpdate(await read(), GAME, { status: 'starting', currentIndex: 1 }, Date.now()))
+    await assertSucceeds(submitAnswer(PLAYER, 1, 2))
+  })
+
+  test('pause puis reprise pendant le décompte : acceptées, temps restant gardé, puis la question', async () => {
+    const host = 'countdown-host-3'
+    await seedAwaitingScores(host)
+    await nextQuestion(host)
+    await write(host, pauseUpdate(await read(), Date.now()))
+    const paused = await read()
+    expect(paused).toMatchObject({ status: 'paused', pausedFrom: 'starting', currentIndex: 1 })
+    expect(paused.remainingMs).toBeGreaterThan(0)
+    await write(host, resumeUpdate(paused, Date.now()))
+    expect(await read()).toMatchObject({ status: 'starting', currentIndex: 1 })
+    await write(host, transitionUpdate(await read(), GAME, { status: 'starting', currentIndex: 1 }, Date.now()))
+    expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+
+  test('hôte qui quitte l’appli pendant le décompte : hostLeftAt par le serveur, absence lue, suppression refusée avant le délai ; retour, pause, puis la question', async () => {
+    const host = 'countdown-host-4'
+    await seedAwaitingScores(host)
+    await nextQuestion(host)
+    const hostDb = db(host)
+    await assertSucceeds(hostDb.ref(SESSION).onDisconnect().update({ hostLeftAt: SERVER_TIME }))
+    hostDb.goOffline()
+    let hostLeftAt: unknown = null
+    for (let attempt = 0; attempt < 50 && typeof hostLeftAt !== 'number'; attempt++) {
+      await new Promise((resolve) => setTimeout(resolve, 100))
+      hostLeftAt = await readAsAdmin(`${SESSION}/hostLeftAt`)
+    }
+    expect(typeof hostLeftAt).toBe('number')
+    // Joueur et TV voient l'absence pendant le 3-2-1 ; la partie n'est pas supprimable avant 5 min.
+    const seen = (await db(PLAYER).ref(`${SESSION}/hostLeftAt`).once('value')).val()
+    expect(isHostAway({ status: (await read()).status, hostLeftAt: seen })).toBe(true)
+    await assertFails(db('countdown-tv-4').ref(SESSION).remove())
+    // Retour de l'hôte (autre connexion du même compte) : pause avec le temps restant, absence effacée.
+    hostDb.goOnline()
+    const back = await read()
+    await write(host, hostReturnUpdate(back))
+    const returned = await read()
+    expect(returned).toMatchObject({ status: 'paused', pausedFrom: 'starting', currentIndex: 1 })
+    expect(returned.hostLeftAt).toBeUndefined()
+    await write(host, resumeUpdate(returned, Date.now()))
+    await write(host, transitionUpdate(await read(), GAME, { status: 'starting', currentIndex: 1 }, Date.now()))
+    expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+
+  test('joueur en retard pendant le décompte : un nouveau venu est refusé ; un inscrit qui se reconnecte revient et répond à la question', async () => {
+    const host = 'countdown-host-5'
+    await seedAwaitingScores(host, { ...PLAYERS_OF_COUNTDOWN, [OTHER]: { ...PLAYERS_OF_COUNTDOWN[OTHER], connected: false } })
+    await nextQuestion(host)
+    await assertFails(db('countdown-late-5').ref(`${SESSION}/players/countdown-late-5`).update({ name: 'Zoé', avatar: '🐱', connected: true }))
+    await assertSucceeds(db(OTHER).ref(`${SESSION}/players/${OTHER}/connected`).set(true))
+    await write(host, transitionUpdate(await read(), GAME, { status: 'starting', currentIndex: 1 }, Date.now()))
+    await assertSucceeds(submitAnswer(OTHER, 1, 0))
   })
 })
 

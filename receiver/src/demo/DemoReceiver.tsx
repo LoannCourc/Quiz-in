@@ -15,6 +15,7 @@ import { DevPanel } from './DevPanel'
 import { SoundGallery } from './SoundGallery'
 import {
   buildDemoSession,
+  DEMO_CURRENT_INDEX,
   DEMO_MAX_ANSWERS,
   DEMO_ROOM_CODE,
   demoExtraPlayerCount,
@@ -94,12 +95,14 @@ function DemoGame({ params }: { params: URLSearchParams }) {
     : long === '1' || long === 'one'
       ? withLongOptions(baseSession, isBlindTest, long === 'one' ? 'one' : 'all')
       : baseSession
-  // Pas à pas (&step=1) : la révélation et le classement attendent l'hôte, sans fin programmée.
+  // Pas à pas (&step=1) : la révélation et le classement attendent l'hôte, sans fin programmée ; 3-2-1 avant
+  // la question suivante (« Question 3 / 10 »).
   const isStepByStep = params.get('step') === '1'
   const stepped = isStepByStep
     ? {
         ...withLong,
         settings: { ...withLong.settings, stepByStep: true },
+        currentIndex: withLong.status === 'starting' ? DEMO_CURRENT_INDEX : withLong.currentIndex,
         phaseEndsAt: withLong.status === 'reveal' || withLong.status === 'scores' ? 0 : withLong.phaseEndsAt,
       }
     : withLong

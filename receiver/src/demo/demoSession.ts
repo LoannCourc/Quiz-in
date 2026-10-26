@@ -72,7 +72,7 @@ export const DEMO_TOGGLEABLE_PLAYER_NAME = DEMO_PLAYERS[DEMO_TOGGLEABLE_PLAYER_I
 
 export const DEMO_MAX_ANSWERS = DEMO_ANSWERS.length
 
-const DEMO_CURRENT_INDEX = 2
+export const DEMO_CURRENT_INDEX = 2
 
 function phaseDurationS(status: GameStatus, answerMode: AnswerMode): number {
   switch (status) {
@@ -189,7 +189,8 @@ export function buildDemoSession({
     quizId: 'demo',
     status,
     settings: { answerMode, speedBonus: true, control: false, teams: false },
-    currentIndex: DEMO_CURRENT_INDEX,
+    // 3-2-1 : début de partie (première question) ; &step=1 : avant la question suivante (Pas à pas).
+    currentIndex: status === 'starting' ? 0 : DEMO_CURRENT_INDEX,
     questionCount: QUESTIONS_PER_GAME,
     phaseStartedAt: startedAt,
     // Validation (Contrôle) : sans échéance, comme dans une vraie partie.

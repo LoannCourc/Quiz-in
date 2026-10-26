@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest'
 
-import { REVEAL_DURATION_S } from '../../shared/constants'
+import { QUESTION_DURATION_S, REVEAL_DURATION_S, STARTING_DURATION_S } from '../../shared/constants'
 import { isAnnouncingNextQuestion, isAwaitingHost, nextPhase, nextQuestionCountdown } from '../../shared/gameFlow'
-import { isPhaseStale } from '../../shared/hostAbsence'
+import { connectionLostPauseUpdate, isHostAway, isPhaseStale } from '../../shared/hostAbsence'
 import {
   buildReveal,
   hostControls,
@@ -92,9 +92,11 @@ describe('Pas à pas : attente après la révélation et après le classement', 
     expect(nextDeadline(scores)).toBeNull()
   })
 
-  test('« Question suivante » depuis le classement : la question démarre avec son timer', () => {
+  test('« Question suivante » depuis le classement : 3-2-1, puis la question démarre avec son timer', () => {
     const scores = awaitingScores()
-    const next = apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: 0 }, NOW + 90_000))
+    const starting = apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: 0 }, NOW + 90_000))
+    expect(starting).toMatchObject({ status: 'starting', currentIndex: 1 })
+    const next = apply(starting, transitionUpdate(starting, GAME, { status: 'starting', currentIndex: 1 }, starting.phaseEndsAt))
     expect(next).toMatchObject({ status: 'question', currentIndex: 1 })
     expect(next.phaseEndsAt).toBeGreaterThan(NOW + 90_000)
   })
@@ -182,6 +184,96 @@ describe('Pas à pas : attente après la révélation et après le classement', 
     const without = buildReveal(GAME[0], questionSession(false)).results[PLAYER]
     expect(withStep).toEqual(without)
     expect(withStep.points).toBeGreaterThan(100)
+  })
+})
+
+// 3-2-1 entre deux questions (spec 5.1), après « Question suivante » depuis le classement.
+function countdown(overrides: Partial<Session> = {}): Session {
+  const scores = awaitingScores(overrides)
+  return apply(scores, transitionUpdate(scores, GAME, { status: 'scores', currentIndex: scores.currentIndex }, NOW + 90_000))
+}
+
+describe('Pas à pas : 3-2-1 avant chaque question suivante', () => {
+  const CLICK = NOW + 90_000
+
+  test('l’action de l’hôte lance un 3-2-1 de 3 s, déjà sur la question suivante, sans rien publier de la question', () => {
+    const starting = countdown()
+    expect(starting).toMatchObject({ status: 'starting', currentIndex: 1, phaseStartedAt: CLICK, phaseEndsAt: CLICK + STARTING_DURATION_S * 1000 })
+    expect(starting.currentQuestion).toBeUndefined()
+    expect(starting.reveal).toBeUndefined()
+    expect(nextDeadline(starting)).toBe(starting.phaseEndsAt)
+    expect(isAwaitingHost(starting)).toBe(false)
+  })
+
+  test('équité : le chrono de la question part à son affichage, à la fin du 3-2-1 (pas au clic de l’hôte)', () => {
+    const starting = countdown()
+    const shownAt = starting.phaseEndsAt + 40
+    const question = apply(starting, transitionUpdate(starting, GAME, { status: 'starting', currentIndex: 1 }, shownAt))
+    expect(question).toMatchObject({ status: 'question', currentIndex: 1, phaseStartedAt: shownAt })
+    expect(question.phaseEndsAt).toBe(shownAt + (GAME[1].timeLimit ?? QUESTION_DURATION_S.choice) * 1000)
+    expect(question.currentQuestion?.text).toBe(GAME[1].text)
+  })
+
+  test('mode automatique : pas de 3-2-1, le classement mène directement à la question suivante', () => {
+    expect(nextPhase('scores', { answerMode: 'choice', currentIndex: 0, questionCount: 3 })).toMatchObject({ status: 'question', currentIndex: 1 })
+    expect(nextPhase('scores', { answerMode: 'choice', currentIndex: 0, questionCount: 3, stepByStep: true })).toEqual({
+      status: 'starting',
+      currentIndex: 1,
+      durationS: STARTING_DURATION_S,
+    })
+  })
+
+  test('tous les jeux : choix, réponse libre, Bluff et Dessine-moi passent par le 3-2-1 ; Suspense aussi', () => {
+    for (const answerMode of ['choice', 'free', 'bluff', 'draw'] as const) {
+      expect(nextPhase('scores', { answerMode, currentIndex: 0, questionCount: 3, stepByStep: true })?.status).toBe('starting')
+      expect(nextPhase('starting', { answerMode, currentIndex: 1, questionCount: 3, stepByStep: true })).toMatchObject({ status: 'question', currentIndex: 1 })
+    }
+    expect(nextPhase('reveal', { answerMode: 'choice', currentIndex: 0, questionCount: 3, stepByStep: true, suspense: true })).toMatchObject({
+      status: 'starting',
+      currentIndex: 1,
+    })
+  })
+
+  test('lancement inchangé : le 3-2-1 du début mène à la question 1', () => {
+    expect(nextPhase('starting', { answerMode: 'choice', currentIndex: 0, questionCount: 3 })).toMatchObject({ status: 'question', currentIndex: 0 })
+  })
+
+  test('contrôles de l’hôte pendant le décompte : « Question suivante » (pas « question 1 »), pause possible, pas de gros bouton', () => {
+    expect(hostControls(countdown())).toMatchObject({ skip: 'nextQuestion', canPause: true, awaitingNext: null })
+    expect(hostControls(makeSession({ status: 'starting', currentIndex: 0, phaseEndsAt: NOW + 3_000 })).skip).toBe('firstQuestion')
+  })
+
+  test('pause puis reprise pendant le décompte : le temps restant est gardé, puis la question suivante', () => {
+    const starting = countdown()
+    const paused = apply(starting, pauseUpdate(starting, CLICK + 1_000))
+    expect(paused).toMatchObject({ status: 'paused', pausedFrom: 'starting', remainingMs: 2_000, currentIndex: 1 })
+    expect(hostControls(paused).skip).toBeNull()
+    const resumed = apply(paused, resumeUpdate(paused, CLICK + 60_000))
+    expect(resumed).toMatchObject({ status: 'starting', currentIndex: 1, phaseEndsAt: CLICK + 62_000 })
+    const question = apply(resumed, transitionUpdate(resumed, GAME, { status: 'starting', currentIndex: 1 }, resumed.phaseEndsAt))
+    expect(question).toMatchObject({ status: 'question', currentIndex: 1, phaseStartedAt: CLICK + 62_000 })
+  })
+
+  test('hôte parti pendant le décompte : absence affichée, phase bloquée signalée ; à son retour, la suite (jamais coincée en 3-2-1)', () => {
+    const starting = countdown()
+    expect(isHostAway({ ...starting, hostLeftAt: CLICK + 1_000 })).toBe(true)
+    expect(isPhaseStale(starting, starting.phaseEndsAt + 5_000)).toBe(true)
+    // Retour après une coupure vue par le téléphone : pause avec le temps qui restait, puis reprise.
+    const paused = apply(starting, connectionLostPauseUpdate(starting, CLICK + 1_000))
+    expect(paused).toMatchObject({ status: 'paused', pausedFrom: 'starting', remainingMs: 2_000 })
+    const resumed = apply(paused, resumeUpdate(paused, CLICK + 300_000))
+    const question = apply(resumed, transitionUpdate(resumed, GAME, { status: 'starting', currentIndex: 1 }, resumed.phaseEndsAt))
+    expect(question).toMatchObject({ status: 'question', currentIndex: 1 })
+    // Retour sans pause : l'échéance est passée, la question part aussitôt.
+    expect(transitionUpdate(starting, GAME, { status: 'starting', currentIndex: 1 }, CLICK + 300_000)).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+
+  test('« Passer » pendant le décompte : la question tout de suite ; double appui ignoré', () => {
+    const starting = countdown()
+    const expected = { status: 'starting' as const, currentIndex: 1 }
+    const question = apply(starting, transitionUpdate(starting, GAME, expected, CLICK + 500))
+    expect(question).toMatchObject({ status: 'question', currentIndex: 1, phaseStartedAt: CLICK + 500 })
+    expect(transitionUpdate(question, GAME, expected, CLICK + 550)).toBeNull()
   })
 })
 

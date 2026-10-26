@@ -24,9 +24,17 @@ export function StartingScreen({ session }: { session: PublicSession }) {
           </span>
         </div>
       </div>
-      <p className="starting-hint">{strings.starting.firstQuestion}</p>
+      <p className="starting-hint">{startingHint(session)}</p>
     </main>
   )
+}
+
+// Début de partie : « La première question arrive… » ; Pas à pas, avant la question suivante : son numéro.
+function startingHint(session: PublicSession): string {
+  if (session.currentIndex === 0) return strings.starting.firstQuestion
+  const number = session.currentIndex + 1
+  const total = session.questionCount ?? number
+  return session.settings.answerMode === 'draw' ? strings.starting.nextRound(number, total) : strings.starting.nextQuestion(number, total)
 }
 
 function remainingMs(phaseEndsAt: number, offsetMs: number): number {

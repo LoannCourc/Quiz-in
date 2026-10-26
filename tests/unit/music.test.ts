@@ -21,6 +21,17 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('starting'), false)).toMatchObject({ track: 'waiting', stopBy: undefined })
   })
 
+  test('3-2-1 du Pas à pas entre deux questions : la musique du classement continue (pas de musique d’attente)', () => {
+    expect(musicPlan(inPhase('starting', 'choice', { currentIndex: 1 }), false).track).toBe('game')
+    expect(musicPlan(inPhase('starting', 'free', { currentIndex: 1 }), false).track).toBe('writing')
+    expect(musicPlan(inPhase('starting', 'bluff', { currentIndex: 1 }), false).track).toBe('vote')
+    // Blind test : la musique se tait avant l'extrait, à la fin du 3-2-1.
+    expect(musicPlan(inPhase('starting', 'free', { currentIndex: 1 }), true)).toMatchObject({ track: 'game', stopBy: NOW + 20_000 })
+    // Pause pendant ce 3-2-1 : musique d'attente, celle du jeu retenue pour la reprise.
+    const paused = inPhase('paused', 'choice', { currentIndex: 1, pausedFrom: 'starting' })
+    expect(musicPlan(paused, false)).toMatchObject({ track: 'waiting', heldTrack: 'game', isPaused: true })
+  })
+
   test('choix multiples : musique de jeu pendant la question et la révélation', () => {
     expect(musicPlan(inPhase('question'), false).track).toBe('game')
     expect(musicPlan(inPhase('reveal'), false).track).toBe('game')

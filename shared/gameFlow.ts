@@ -73,12 +73,14 @@ export function revealDurationS(answerMode: AnswerMode, choiceCount = 0): number
   return base + (falseCount * bluffRevealStepMs(falseCount)) / 1000
 }
 
-// Après une question (classement, ou révélation en Suspense) : question suivante, ou fin de partie.
-function afterQuestion({ answerMode, currentIndex, questionCount }: FlowContext, timeLimitS?: number): Phase {
+// Après une question (classement, ou révélation en Suspense) : question suivante, ou fin de partie. Pas à
+// pas : 3-2-1 (STARTING, déjà sur la question suivante) après l'action de l'hôte, le temps de poser son
+// téléphone ; le chrono de la question ne part qu'à son affichage.
+function afterQuestion({ answerMode, currentIndex, questionCount, stepByStep = false }: FlowContext, timeLimitS?: number): Phase {
   const nextIndex = currentIndex + 1
-  return nextIndex < questionCount
-    ? { status: 'question', currentIndex: nextIndex, durationS: questionDurationS(answerMode, timeLimitS) }
-    : { status: 'ended', currentIndex, durationS: null }
+  if (nextIndex >= questionCount) return { status: 'ended', currentIndex, durationS: null }
+  if (stepByStep) return { status: 'starting', currentIndex: nextIndex, durationS: STARTING_DURATION_S }
+  return { status: 'question', currentIndex: nextIndex, durationS: questionDurationS(answerMode, timeLimitS) }
 }
 
 // Phase qui suit `status`, ou null s'il n'y en a pas (ENDED, PAUSED).
@@ -91,7 +93,8 @@ export function nextPhase(status: GameStatus, context: FlowContext, timeLimitS?:
     case 'lobby':
       return { status: 'starting', currentIndex: 0, durationS: STARTING_DURATION_S }
     case 'starting':
-      return { status: 'question', currentIndex: 0, durationS: questionDurationS(answerMode, timeLimitS) }
+      // Première question (lancement), ou question suivante en Pas à pas (index déjà avancé).
+      return { status: 'question', currentIndex, durationS: questionDurationS(answerMode, timeLimitS) }
     case 'question':
       // Bluff : après l'écriture, le vote, sans durée (fin : tous ont voté, ou « Clore le vote »).
       if (answerMode === 'bluff') return { status: 'vote', currentIndex, durationS: null }

@@ -53,6 +53,9 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
     case 'lobby':
       return play('waiting')
     case 'starting':
+      // 3-2-1 du Pas à pas entre deux questions : la musique du classement continue (blind test : elle se tait
+      // avant l'extrait). Début de partie : musique d'attente.
+      if (session.currentIndex > 0) return phaseMusic(session, 'scores', isBlindTestGame)
       return { ...play('waiting'), stopBy }
     case 'question':
       if (mode === 'bluff') return play('writing')
