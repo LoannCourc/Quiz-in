@@ -49,3 +49,49 @@ export function fittedLabelScale(
   }
   return Math.round(scale * 100) / 100
 }
+
+// Titre mesuré : morceaux coupables (mots, ou parties d'un mot après un trait d'union), avec leur largeur
+// réelle à la taille size et spaced (true : précédé d'une espace, de largeur space). Plus grande taille, par pas
+// d'un demi-point jusqu'à minSize, pour laquelle le titre tient en entier sur maxLines lignes sans couper un
+// morceau. Largeur inconnue (0) : size.
+export interface MeasuredPiece {
+  width: number
+  spaced: boolean
+}
+
+const MEASURED_SIZE_STEP = 0.5
+
+function measuredLines(pieces: readonly MeasuredPiece[], space: number, width: number): number {
+  let lines = 1
+  let used = 0
+  for (const piece of pieces) {
+    if (piece.width > width) return Infinity
+    const withPiece = used === 0 ? piece.width : used + (piece.spaced ? space : 0) + piece.width
+    if (withPiece <= width) {
+      used = withPiece
+    } else {
+      lines += 1
+      used = piece.width
+    }
+  }
+  return lines
+}
+
+export function fittedMeasuredSize(pieces: readonly MeasuredPiece[], space: number, width: number, size: number, maxLines: number, minSize: number): number {
+  if (width <= 0 || pieces.length === 0) return size
+  for (let candidate = size; candidate > minSize; candidate -= MEASURED_SIZE_STEP) {
+    const ratio = candidate / size
+    const scaled = pieces.map((piece) => ({ width: piece.width * ratio, spaced: piece.spaced }))
+    if (measuredLines(scaled, space * ratio, width) <= maxLines) return candidate
+  }
+  return minSize
+}
+
+// Morceaux coupables d'un titre : coupé aux espaces, et après chaque trait d'union (là où l'écran peut aussi
+// passer à la ligne).
+export function breakablePieces(text: string): { text: string; spaced: boolean }[] {
+  return text
+    .split(/\s+/)
+    .filter(Boolean)
+    .flatMap((word, wordIndex) => (word.match(/[^-]+-?|-/g) ?? [word]).map((part, partIndex) => ({ text: part, spaced: wordIndex > 0 && partIndex === 0 })))
+}

@@ -1,6 +1,7 @@
 import { BADGE_TIERS, type BadgeCategory, type BadgeTier, type CategoryProgress, type SingleBadge } from '@shared/badges';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { FittedTitle } from '@/components/ui/FittedTitle';
 import { AppColors, AppFonts, AppSizes, BADGE_LOCKED_OPACITY, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
@@ -15,6 +16,9 @@ const TILE_SIZE = 46;
 const TILE_EMBLEM_SIZE = 26;
 const TROPHY_WIDTH = 34;
 const SINGLE_TROPHY_WIDTH = 40;
+// Titre d'une catégorie : en entier sur deux lignes au plus, réduit au besoin (« Artiste (Gribouille) » à 320).
+const TITLE_MAX_LINES = 2;
+const TITLE_MIN_SIZE = 10;
 
 // Valeur actuelle sous le titre, seule (une ligne) : le prochain palier se lit sur les trophées et la barre.
 function statusText(category: BadgeCategory, progress: CategoryProgress): string {
@@ -50,9 +54,7 @@ export function BadgeCategoryCard({ category, accent, progress, unlockedTiers, a
           </MovingIconView>
         </View>
         <View style={styles.texts}>
-          <Text style={styles.title} numberOfLines={2}>
-            {labels.title}
-          </Text>
+          <FittedTitle text={labels.title} style={styles.title} maxLines={TITLE_MAX_LINES} minSize={TITLE_MIN_SIZE} />
           <Text style={styles.status} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
             {status}
           </Text>
