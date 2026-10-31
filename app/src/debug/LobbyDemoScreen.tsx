@@ -1,5 +1,6 @@
 import { AVATARS } from '@shared/avatars';
 import { DEFAULT_SESSION_SETTINGS } from '@shared/constants';
+import { DRAW_QUIZ_ID } from '@shared/drawGame';
 import { TEAM_MODES, teamDrawUpdate } from '@shared/teams';
 import type { Player, PlayerId, Session, TeamMode } from '@shared/types';
 import { useLocalSearchParams } from 'expo-router';
@@ -45,7 +46,7 @@ function demoSession(playerCount: number, hostRegistered: boolean, teamMode?: Te
   }
   return {
     hostUid: HOST_UID,
-    quizId: DEMO_CATALOG[0].id,
+    quizId: isDraw ? DRAW_QUIZ_ID : DEMO_CATALOG[0].id,
     status: 'lobby',
     settings: {
       ...DEFAULT_SESSION_SETTINGS,
@@ -91,7 +92,8 @@ export default function LobbyDemoScreen() {
       questions={{ kind: 'ready', questions: [], refs: [] }}
       serverOffsetMs={0}
       cast={demoCast(params.tv, params.localnetwork === '1', params.tvsearch)}
-      header={<LobbyQuizTitle quiz={DEMO_CATALOG[0]} />}
+      // Gribouille : en-tête réel (fiche locale, sans base).
+      header={params.draw === '1' ? undefined : <LobbyQuizTitle quiz={DEMO_CATALOG[0]} />}
       initialDisplayOptionsOpen={params.display === '1'}
       initialInviteOpen={params.invite === '1'}
       initialProfileOpen={params.profile === '1'}
