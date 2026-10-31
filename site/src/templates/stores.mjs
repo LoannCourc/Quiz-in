@@ -1,10 +1,10 @@
 import { html } from './html.mjs'
 
-// Boutons des stores : lien de config.json, ou page « Bientôt disponible » tant qu'il vaut null
+// Boutons des stores : lien de config.json (nouvel onglet), ou page « Bientôt disponible » tant qu'il vaut null
 // (et « Bientôt sur » à la place de « Disponible sur »).
 function storeLink(ctx, store) {
   const url = ctx.config.storeLinks[store]
-  return url ? html`href="${url}" rel="noopener"` : html`href="${ctx.t.paths.soon}"`
+  return url ? html`href="${url}" target="_blank" rel="noopener"` : html`href="${ctx.t.paths.soon}"`
 }
 
 function isAvailable(ctx, store) {

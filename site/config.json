@@ -8,7 +8,7 @@
   "contactEmail": "quizinsupport@gmail.com",
   "showBlindTest": false,
   "storeLinks": {
-    "googlePlay": null,
-    "appStore": null
+    "googlePlay": "https://play.google.com/store/apps/details?id=com.herocorp.quizin",
+    "appStore": "https://apps.apple.com/fr/app/id6820975402"
   }
 }
