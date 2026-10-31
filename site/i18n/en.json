@@ -8,8 +8,7 @@
     "help": "/en/help",
     "privacy": "/en/legal/privacy",
     "terms": "/en/legal/terms",
-    "notice": "/en/legal/notice",
-    "soon": "/en/coming-soon"
+    "notice": "/en/legal/notice"
   },
   "meta": {
     "siteName": "Quiz'in",
@@ -33,10 +32,6 @@
     "notice": {
       "title": "Legal notice · Quiz'in",
       "description": "Quiz'in legal notice."
-    },
-    "soon": {
-      "title": "Coming soon · Quiz'in",
-      "description": "Quiz'in is coming soon to Google Play and the App Store."
     }
   },
   "common": {
@@ -270,11 +265,6 @@
         "Intellectual property: the Quiz'in name, logo, texts, questions and design are the property of the publisher. Bowlby One and Nunito fonts, under the SIL Open Font License."
       ]
     ]
-  },
-  "soon": {
-    "title": "Coming soon",
-    "text": "Quiz'in is coming soon to Google Play and the App Store. In the meantime, have a question? Write to us:",
-    "back": "Back to home"
   },
   "notFound": {
     "title": "Page not found",

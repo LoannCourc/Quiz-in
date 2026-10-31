@@ -8,8 +8,7 @@
     "help": "/aide",
     "privacy": "/legal/confidentialite",
     "terms": "/legal/conditions",
-    "notice": "/legal/mentions",
-    "soon": "/bientot"
+    "notice": "/legal/mentions"
   },
   "meta": {
     "siteName": "Quiz'in",
@@ -33,10 +32,6 @@
     "notice": {
       "title": "Mentions légales · Quiz'in",
       "description": "Mentions légales de Quiz'in."
-    },
-    "soon": {
-      "title": "Bientôt disponible · Quiz'in",
-      "description": "Quiz'in arrive bientôt sur Google Play et sur l'App Store."
     }
   },
   "common": {
@@ -270,11 +265,6 @@
         "Propriété intellectuelle : le nom Quiz'in, le logo, les textes, les questions et le design sont la propriété de l'éditeur. Polices Bowlby One et Nunito, sous licence SIL Open Font License."
       ]
     ]
-  },
-  "soon": {
-    "title": "Bientôt disponible",
-    "text": "Quiz'in arrive bientôt sur Google Play et sur l'App Store. En attendant, une question ? Écris-nous :",
-    "back": "Retour à l'accueil"
   },
   "notFound": {
     "title": "Page introuvable",

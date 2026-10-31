@@ -87,6 +87,10 @@
       "predeploy": ["npm --prefix site run build"],
       "ignore": ["firebase.json", "**/.*"],
       "cleanUrls": true,
+      "redirects": [
+        { "source": "/bientot", "destination": "/", "type": 301 },
+        { "source": "/en/coming-soon", "destination": "/en/", "type": 301 }
+      ],
       "headers": [
         {
           "source": "**",

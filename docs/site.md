@@ -31,7 +31,7 @@ dépendance npm : un script Node génère les pages HTML.
   langue). Un nouveau dessin de carte s'ajoute dans `src/templates/motifs.mjs`.
 - **Blind test** : caché tant que `showBlindTest` vaut `false` (pas avant l'accord de Deezer et la validation des stores).
 - **Liens des stores** : `storeLinks.googlePlay` et `storeLinks.appStore`. Tant qu'ils valent `null`, les boutons
-  disent « Bientôt sur » et mènent à `/bientot`. À la publication : mettre les liens et remplacer les boutons par les
+  disent « Bientôt sur », sans lien (l'ancienne page `/bientot`, `/en/coming-soon`, redirige vers l'accueil : `firebase.json`). À la publication : mettre les liens et remplacer les boutons par les
   badges officiels de Google et d'Apple.
 - **Date de mise à jour des pages légales** : `legalUpdated` dans `config.json` (`"2026-11-03"` → « 3 novembre 2026 »
   et « November 3, 2026 » sur les trois pages). Tant qu'elle vaut `null`, les pages affichent `[DATE À COMPLÉTER]` et

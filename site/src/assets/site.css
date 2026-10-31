@@ -1004,17 +1004,6 @@ p {
   color: var(--text-soft);
 }
 
-.soon {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.soon .contact-mail {
-  font-size: inherit;
-}
-
 .not-found {
   display: flex;
   flex-direction: column;

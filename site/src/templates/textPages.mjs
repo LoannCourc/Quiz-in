@@ -69,12 +69,3 @@ ${legalBody(ctx)}
 </div>
 </section>`
 }
-
-export function soonMain(ctx) {
-  const { t, config } = ctx
-  return html`<section class="page-narrow wrap soon">
-<h1 class="page-title">${t.soon.title}</h1>
-<p class="lead">${t.soon.text} <a class="contact-mail" href="mailto:${config.contactEmail}">${config.contactEmail}</a></p>
-<a class="pill pill-yellow" href="${t.paths.home}">${t.soon.back}</a>
-</section>`
-}

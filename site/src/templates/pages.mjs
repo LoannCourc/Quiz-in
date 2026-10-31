@@ -1,7 +1,7 @@
 import { homeMain } from './home.mjs'
 import { html } from './html.mjs'
 import { layout } from './layout.mjs'
-import { helpMain, legalMain, soonMain } from './textPages.mjs'
+import { helpMain, legalMain } from './textPages.mjs'
 
 function page(main, options) {
   return (ctx) => layout(ctx, ctx.t.meta[ctx.pageId], main(ctx), options?.(ctx))
@@ -14,7 +14,6 @@ export const PAGES = [
   { id: 'privacy', render: page(legalMain) },
   { id: 'terms', render: page(legalMain) },
   { id: 'notice', render: page(legalMain) },
-  { id: 'soon', render: page(soonMain) },
 ]
 
 // Une seule page 404 (Firebase n'en sert qu'une) : un bloc par langue, la langue par défaut d'abord.
