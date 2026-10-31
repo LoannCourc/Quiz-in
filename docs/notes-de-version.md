@@ -1,24 +1,22 @@
 # Notes de version (stores)
 
-500 caractères au plus (Google Play). Jamais de mention du blind test.
+500 caractères au plus (Google Play). Jamais de mention du blind test. Nombre de caractères : texte tel qu'il
+est collé dans la console, retours à la ligne compris.
 
-## 1.1.0 : première sortie publique (262 caractères)
-
-Quiz’in, le jeu de soirée à jouer en famille ou entre amis !
-• Les questions s’affichent sur ta TV (Chromecast), chacun répond sur son téléphone.
-• 3 jeux : Quiz, Bluff et Dessine-moi.
-• Jusqu’à 20 joueurs, sans compte, sans pub.
-• Débloque des badges en jouant.
-
-## Pour une future mise à jour (438 caractères)
-
-Texte « Nouveautés » préparé pour la 1.1, gardé pour la première mise à jour après la sortie publique (à
-adapter à son contenu).
+## 1.1.0 : nouveautés (mise à jour depuis la 1.0.1, 459 caractères)
 
 Nouveautés de la 1.1 :
+• Dessine-moi devient Gribouille, et le dessin fonctionne enfin sur iPhone.
 • Badges : débloque des trophées en jouant ! Les parties jouées avant la 1.1 ne comptent pas.
 • Pas à pas par défaut : l’hôte passe à la suite quand tout le monde est prêt (option « Automatique » dans les réglages).
 • Un 3-2-1 avant chaque question, le temps de reprendre son téléphone.
 • TV : les avatars s’affichent sur toutes les TV.
-• Dessine-moi : le dessin fonctionne enfin sur iPhone.
 • Corrections diverses.
+
+## Présentation courte (première sortie sur un store, 261 caractères)
+
+Quiz’in, le jeu de soirée à jouer en famille ou entre amis !
+• Les questions s’affichent sur ta TV (Chromecast), chacun répond sur son téléphone.
+• 3 jeux : Quiz, Bluff et Gribouille.
+• Jusqu’à 20 joueurs, sans compte, sans pub.
+• Débloque des badges en jouant.

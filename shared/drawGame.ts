@@ -23,7 +23,7 @@ export const DRAW_QUIZ_ID = 'dessine-moi'
 
 // Fiche du jeu dans le catalogue de l'hôte (pas de quiz dans la base).
 export const DRAW_QUIZ_SUMMARY: QuizSummary = {
-  title: 'Dessine-moi',
+  title: 'Gribouille',
   theme: 'Culture générale',
   gameType: 'draw',
   language: 'fr',

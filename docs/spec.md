@@ -81,7 +81,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 4. Arrive dans le **salon** (maquette L) : titre et méta du quiz, liste des joueurs (avatar, pseudo, étiquette HÔTE) et **« Lancer la partie »** toujours visible en bas : seule la liste défile.
    - **TV pas encore connectée** : carte « Code de la partie », bouton **« Afficher sur la TV »** (icône Cast ; il choisit sa TV dans la liste Cast) et lien discret **« Je n'ai pas de TV »**. Le lien des joueurs et le QR code ne sont **pas** affichés par défaut : « Je n'ai pas de TV » ouvre le bloc **« Rejoindre sans TV »** (QR code et lien `quizin-play.web.app/join/CODE`, « Copier le lien », « Partager », « Masquer », et le lien de l'écran pour le plan B, section 6.6), replié à chaque ouverture du salon.
    - **TV connectée** : tout cela se réduit à une barre « TV connectée · Code de la partie : XXXX » avec « Détails » ; un appui déplie le QR code, le lien, « Copier le lien » et « Partager » (« Masquer » les replie). L'icône Cast reste dans la barre pour changer de TV ou la déconnecter.
-   - **Réglages** : une ligne « Réglages · manches · équipes » ouvre une feuille : nombre de manches (Dessine-moi) et « Jouer en équipes ». Cette option n'apparaît qu'à partir de 4 joueurs **connectés** (l'hôte compte seulement s'il joue) ; activée, elle reste affichée pour pouvoir la couper. Sans rien à proposer, la ligne est masquée.
+   - **Réglages** : une ligne « Réglages · manches · équipes » ouvre une feuille : nombre de manches (Gribouille) et « Jouer en équipes ». Cette option n'apparaît qu'à partir de 4 joueurs **connectés** (l'hôte compte seulement s'il joue) ; activée, elle reste affichée pour pouvoir la couper. Sans rien à proposer, la ligne est masquée.
    - **Groupe** : les équipes tiennent sur une ligne (« Équipes · Au hasard · 3 équipes · tirage au lancement › », ou « équipes prêtes », « à compléter »), qui ouvre la page « Équipes » (section 6.4).
 5. La TV affiche le **lobby** : QR code, code de salle, joueurs qui arrivent.
 6. Tant qu'il n'est pas inscrit, l'hôte voit une carte « Tu n'es pas dans la partie » avec **« Je joue aussi »**, qui ouvre le même formulaire que celui des joueurs (pseudo et avatar) ; ensuite, un lien « Modifier » sur sa ligne. S'il ne s'inscrit pas, il peut quand même lancer la partie avec au moins 2 joueurs connectés.
@@ -127,7 +127,7 @@ Entre deux questions, des onglets d'étapes (Révélation, Classement, Question 
 | **VALIDATION** (Réponse libre avec Contrôle, sans échéance) | Hôte (« Valider les réponses », ou « Passer » avec les coches actuelles) | Toujours suivie de REVEAL (section 5.2) |
 | **SCORES** (5 s, dont 1,5 s d'annonce plein écran de la question suivante) | Automatique | Fin du délai, ou l'hôte avance. Toujours suivi de la QUESTION suivante (en Pas à pas : STARTING, puis la QUESTION suivante ; jamais après la dernière question) |
 | **PAUSED** | Hôte (bouton) ou déconnexion de l'hôte | L'hôte reprend. La partie revient à l'état mémorisé dans `pausedFrom`, avec le temps restant `remainingMs` (la nouvelle fin de phase est recalculée à partir de l'heure du serveur) |
-| **END** | Hôte | « Changer de jeu » : l'hôte ouvre le catalogue (`nextGameAt` public : la TV et les joueurs affichent « L'hôte choisit le prochain jeu… ») ; le jeu choisi remplace le précédent et la partie revient au lobby avec le même code, les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, séries, Bluff et Dessine-moi remis à zéro (pas de cumul des scores). Revenir sans choisir : retour à l'écran de fin ; de même après « Reprendre la partie » (app fermée pendant le choix : le choix est annulé, l'hôte retouche « Changer de jeu »). Pendant le choix, l'absence de l'hôte (section 6.6) est affichée aux joueurs et à la TV. « Quitter » : suppression immédiate de la partie |
+| **END** | Hôte | « Changer de jeu » : l'hôte ouvre le catalogue (`nextGameAt` public : la TV et les joueurs affichent « L'hôte choisit le prochain jeu… ») ; le jeu choisi remplace le précédent et la partie revient au lobby avec le même code, les mêmes joueurs (pseudos, avatars), les mêmes équipes et les mêmes exclus ; scores, réponses, séries, Bluff et Gribouille remis à zéro (pas de cumul des scores). Revenir sans choisir : retour à l'écran de fin ; de même après « Reprendre la partie » (app fermée pendant le choix : le choix est annulé, l'hôte retouche « Changer de jeu »). Pendant le choix, l'absence de l'hôte (section 6.6) est affichée aux joueurs et à la TV. « Quitter » : suppression immédiate de la partie |
 
 Les durées sont des constantes de configuration, ajustables après les tests.
 
@@ -139,7 +139,7 @@ Deux réglages de la partie (`settings.stepByStep`, `settings.suspense`), combin
 - REVEAL et SCORES n'ont **pas d'échéance** (`phaseEndsAt = 0`) : seule une action de l'hôte les fait sortir. QUESTION garde son chrono.
 - Un gros bouton jaune (même action que « Passer ») est nommé d'après sa destination : **Voir le classement** (pendant la révélation), **Question suivante** (pendant le classement, ou pendant la révélation en Suspense), **Classement final** (pendant la révélation de la dernière question, qui mène directement à l'écran de fin). Un verrou évite qu'un double appui saute une étape ; le bouton est absent pendant la pause.
 - Pause puis reprise pendant l'attente : la partie revient à l'état attendu, toujours sans échéance (elle ne repart pas seule).
-- **3-2-1 avant chaque question** : après l'action de l'hôte (« Question suivante »), la partie passe en STARTING pendant 3 s, avec `currentIndex` déjà sur la question suivante et sans question publiée, puis en QUESTION. L'hôte a le temps de poser son téléphone ; le chrono de la question (et la Rapidité) ne part qu'à son affichage, comme pour la première question. TV : « Prêts ? », 3-2-1, « GO ! », et « Question N / M » (« Manche N / M » à Dessine-moi) ; téléphones : « Prêt ? » et le même décompte. Personne ne peut répondre pendant le décompte. Pause possible (reprise avec le temps restant) ; « Passer » mène tout de suite à la question. La musique en cours continue (pas de retour à la musique d'attente). En Automatique, pas de 3-2-1 entre les questions : l'annonce plein écran « Question N » du classement en tient lieu.
+- **3-2-1 avant chaque question** : après l'action de l'hôte (« Question suivante »), la partie passe en STARTING pendant 3 s, avec `currentIndex` déjà sur la question suivante et sans question publiée, puis en QUESTION. L'hôte a le temps de poser son téléphone ; le chrono de la question (et la Rapidité) ne part qu'à son affichage, comme pour la première question. TV : « Prêts ? », 3-2-1, « GO ! », et « Question N / M » (« Manche N / M » à Gribouille) ; téléphones : « Prêt ? » et le même décompte. Personne ne peut répondre pendant le décompte. Pause possible (reprise avec le temps restant) ; « Passer » mène tout de suite à la question. La musique en cours continue (pas de retour à la musique d'attente). En Automatique, pas de 3-2-1 entre les questions : l'annonce plein écran « Question N » du classement en tient lieu.
 - Joueurs et TV affichent « En attente de l'hôte pour la suite… » à la place du compte à rebours, et jamais l'annonce plein écran « Question N ». Un joueur qui se reconnecte pendant l'attente retrouve le même écran.
 
 **Suspense** : pas de classement en cours de partie, seulement à la fin.
@@ -649,7 +649,9 @@ Sous le classement intermédiaire, ligne « Aussi en série : 🐯 Max 4 · 🐧
 
 **Téléphone.** Sur l'écran de résultat (joueurs et hôte qui joue, quiz et Bluff), après une bonne réponse et à partir de 3 : badge flamme avec le nombre et « Série de 4 ! », sans son. Rien après une réponse à moitié juste (la série n'a pas grandi). Aussi en Suspense : sa propre série ne dit rien de son rang.
 
-## 19. Dessine-moi
+## 19. Gribouille
+
+Nom affiché : « Gribouille » (« Doodle » en anglais sur le site), anciennement « Dessine-moi » (octobre 2026). Identifiants techniques inchangés : type de jeu et mode `draw`, quiz `dessine-moi`, chemins de la base, noms de fichiers et de composants.
 
 Plan et décisions : `docs/plan-dessine-moi.md`. Un joueur dessine un mot secret sur son téléphone (site des joueurs), la TV montre le dessin en direct, les autres devinent en tapant le mot.
 
@@ -692,7 +694,7 @@ Plan et décisions : `docs/plan-dessine-moi.md`. Un joueur dessine un mot secret
 - Marathon : une partie de Quiz terminée de 10 / 20 / 30 questions ou plus (Quiz seulement).
 - Rapide comme l'éclair : une bonne réponse en moins de 5 s / 3 s / 2 s, au Quiz et au Blind test (choix multiples et réponse libre), mesurée sur le téléphone de l'affichage de la question au dernier appui qui envoie la réponse (en mémoire : une app relancée en pleine question ne mesure rien).
 - Menteur ultime (Bluff) : 10 / 30 / 100 joueurs piégés en tout par mes fausses réponses (votants de ma proposition, `reveal.stats.bluffChoices`).
-- Artiste (Dessine-moi) : 10 / 30 / 100 devineurs en tout ont trouvé mes dessins (manche annulée : 0).
+- Artiste (Gribouille) : 10 / 30 / 100 devineurs en tout ont trouvé mes dessins (manche annulée : 0).
 
 Badges uniques :
 - Sans faute : partie de Quiz d'au moins 10 questions, toutes entièrement justes (moitié juste ou sans réponse : non ; Contrôle : correction de l'hôte ; révélation manquée : non).

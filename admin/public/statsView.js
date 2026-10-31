@@ -1,7 +1,7 @@
 // Calculs de la page des statistiques à partir de /stats (docs/statistiques.md). Module pur, sans Firebase ni
 // DOM : testé par tests/unit/adminStatsView.test.ts.
 
-export const MODE_LABELS = { quiz: 'Quiz', bluff: 'Bluff', draw: 'Dessine-moi' }
+export const MODE_LABELS = { quiz: 'Quiz', bluff: 'Bluff', draw: 'Gribouille' }
 export const POOL_LABELS = { themes: 'Quiz par thèmes', mix: 'Mélange de Bluff' }
 export const DEFAULT_MIN_ANSWERS = 20
 const RANKING_SIZE = 10

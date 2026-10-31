@@ -190,9 +190,10 @@ export const strings = {
         tier: (n: number) => String(n),
         ultimate: { title: (n: number) => `${n} joueurs trompés`, tagline: 'Un menteur de génie !' },
       },
+      // Cite Gribouille, ouvert par défaut : si config/drawEnabled passe un jour à false, revoir ces textes.
       artist: {
-        title: 'Artiste',
-        goal: (n: number) => `${n} dessins devinés`,
+        title: 'Artiste (Gribouille)',
+        goal: (n: number) => `${n} dessins devinés à Gribouille`,
         status: (n: number) => countLabel(n, 'dessin deviné', 'dessins devinés'),
         tier: (n: number) => String(n),
         ultimate: { title: (n: number) => `${n} dessins devinés`, tagline: 'Un vrai artiste !' },
@@ -494,7 +495,7 @@ export const strings = {
     played: 'Déjà fait',
     playedLabel: (title: string) => `${title}, déjà fait`,
     withLevel: (label: string, level: string) => `${label}, difficulté : ${level}`,
-    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Dessine-moi' } satisfies Record<GameType, string>,
+    gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Gribouille' } satisfies Record<GameType, string>,
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
     rows: {
@@ -552,7 +553,7 @@ export const strings = {
     settingsTitle: 'Réglages de la partie',
     audioCredit: 'Extrait audio et informations : Deezer',
     blindTestUnavailable: 'Le blind test n’est pas disponible pour le moment.',
-    drawUnavailable: 'Dessine-moi n’est pas disponible pour le moment.',
+    drawUnavailable: 'Gribouille n’est pas disponible pour le moment.',
     speedBonusOn: 'Rapidité activée',
     speedBonusOff: 'sans Rapidité',
     settingsCardLabel: (summary: string) => `Réglages de la partie : ${summary}. Modifier`,
@@ -1176,7 +1177,7 @@ export const strings = {
       quiz: { name: 'Quiz', hint: 'Réponds vite, marque plus.' },
       blindTest: { name: 'Blind test', hint: 'Titre et artiste, à l’oreille.' },
       bluff: { name: 'Bluff', hint: 'Invente la fausse réponse.' },
-      draw: { name: 'Dessine-moi', hint: 'Dessine, les autres devinent.' },
+      draw: { name: 'Gribouille', hint: 'Dessine, les autres devinent.' },
     } satisfies Record<GameType, { name: string; hint: string }>,
     soonBadge: 'Bientôt',
     back: 'Retour à l’accueil',
@@ -1245,7 +1246,7 @@ export const strings = {
   },
   // Prototype du dessin (lot 1, développement seulement) : /debug/draw.
   drawDemo: {
-    title: 'Dessine-moi · prototype',
+    title: 'Gribouille · prototype',
     hint: 'Rien n’est envoyé : le dessin est enregistré sur ce téléphone, pour le banc d’essai de la TV.',
     stats: (ops: number, chunks: number, kilobytes: string) => `${ops} opérations · ${chunks} paquets · ${kilobytes} Ko`,
     export: 'Exporter le dessin',

@@ -30,7 +30,7 @@
       "background": "#35d8f2",
       "color": "#1a0a4d",
       "motif": "scribble",
-      "name": { "fr": "Dessine-moi", "en": "Draw Me" },
+      "name": { "fr": "Gribouille", "en": "Doodle" },
       "description": {
         "fr": "Dessine un mot sur ton téléphone, les autres le devinent sur la TV.",
         "en": "Draw a word on your phone, the others guess it on the TV."
