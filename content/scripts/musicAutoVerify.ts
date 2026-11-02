@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { fitsBlindTestTimer } from '../../shared/quizValidation'
-import { quizzesDir, readMusicCheck, sameQuery, writeMusicCheck, type FoundTrack, type SourceMusic } from './musicCheck'
+import { musicCheckDir, quizFile, readMusicCheck, sameQuery, writeMusicCheck, type FoundTrack, type SourceMusic } from './musicCheck'
 
 interface SourceQuiz {
   id: string
@@ -57,7 +57,7 @@ export function autoCheckFailure(music: SourceMusic, found: FoundTrack | null, t
 }
 
 function verifyQuiz(quizId: string): number {
-  const quiz = JSON.parse(readFileSync(join(quizzesDir, `${quizId}.json`), 'utf8')) as SourceQuiz
+  const quiz = JSON.parse(readFileSync(quizFile(quizId), 'utf8')) as SourceQuiz
   if (quiz.gameType !== 'blindTest') throw new Error(`${quizId} n'est pas un blind test`)
   const check = readMusicCheck(quizId)
   if (!check) throw new Error(`${quizId} : lancer d'abord npm run music:lookup -- ${quizId}`)
@@ -79,7 +79,7 @@ function verifyQuiz(quizId: string): number {
       entry.verifiedBy = 'auto'
     }
   }
-  const markdown = readFileSync(join(quizzesDir, '..', 'music-check', `${quizId}.md`), 'utf8')
+  const markdown = readFileSync(join(musicCheckDir, `${quizId}.md`), 'utf8')
   writeMusicCheck(check, markdown)
   console.log(`${quizId} : ${quiz.questions.length - failures}/${quiz.questions.length} morceaux vérifiés.`)
   return failures

@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import {
-  quizzesDir,
+  quizFile,
   readMusicCheck,
   sameQuery,
   writeMusicCheck,
@@ -160,7 +160,7 @@ function toMarkdown(quiz: SourceQuiz, check: MusicCheckFile): string {
 async function main() {
   const quizId = process.argv[2]
   if (!quizId) throw new Error('Usage : npm run music:lookup -- <quizId>')
-  const quiz = JSON.parse(readFileSync(join(quizzesDir, `${quizId}.json`), 'utf8')) as SourceQuiz
+  const quiz = JSON.parse(readFileSync(quizFile(quizId), 'utf8')) as SourceQuiz
   if (quiz.gameType !== 'blindTest') throw new Error(`${quizId} n'est pas un blind test (gameType)`)
 
   const previous = readMusicCheck(quizId)

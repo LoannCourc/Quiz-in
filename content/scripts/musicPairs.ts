@@ -8,7 +8,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { TRACK_OPTION_SEPARATOR, trackOptionParts } from '../../shared/trackOption'
-import { quizzesDir } from './musicCheck'
+import { musicCheckDir, quizFile } from './musicCheck'
 
 interface PairQuestion {
   id: string
@@ -120,10 +120,10 @@ function toMarkdown(quiz: PairQuiz, pairs: Pair[]): string {
 async function main() {
   const [quizId, flag] = process.argv.slice(2)
   if (!quizId) throw new Error('Usage : npm run music:pairs -- <quizId> [--apply]')
-  const path = join(quizzesDir, `${quizId}.json`)
+  const path = quizFile(quizId)
   const quiz = JSON.parse(readFileSync(path, 'utf8')) as PairQuiz
   if (quiz.gameType !== 'blindTest') throw new Error(`${quizId} n'est pas un blind test`)
-  const draftPath = join(quizzesDir, '..', 'music-check', `${quizId}-pairs.json`)
+  const draftPath = join(musicCheckDir, `${quizId}-pairs.json`)
   if (flag !== '--apply') {
     if (existsSync(draftPath)) throw new Error(`${draftPath} existe déjà (relu ?) : le supprimer pour refaire la recherche`)
     const pairs = await pairsOf(quiz)

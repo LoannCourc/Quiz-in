@@ -7,7 +7,7 @@
 import { BLIND_TEST_DECADES, BLIND_TEST_GENRES, isBlindTestDecade, isBlindTestGenre } from '../../shared/blindTestCatalog'
 import { isValidQuestionId } from '../../shared/questionPool'
 import { TRACK_OPTION_SEPARATOR, trackOptionAnswer, trackOptionParts } from '../../shared/trackOption'
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { isAnswerCorrect, normalizeAnswer } from '../../shared/answerMatching'
@@ -43,7 +43,8 @@ import type {
 } from '../../shared/types'
 import { bluffQuestionErrors, bluffQuestionWarnings, toBluffQuestion } from './bluffContent'
 import { displayedFonts, displayedTexts, fontCodepoints, missingGlyphs } from './fontCoverage'
-import { contentDir, quizzesDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
+import { contentDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
+import { GAME_TYPE_DIRS, listQuizFiles } from './quizFiles.mjs'
 
 // Question du fichier source : un blind test donne l'artiste et le titre, pas l'identifiant du morceau.
 type SourceQuestion = Omit<Question, 'music'> & { music?: SourceMusic }
@@ -347,10 +348,11 @@ function toSummary(quiz: QuizFile, featuredTheme: string | null): QuizSummary {
   }
 }
 
-const fileNames = readdirSync(quizzesDir).filter((name) => name.endsWith('.json'))
-const quizzes = fileNames.map((fileName) => ({
+// Un dossier par type de jeu (content/quizzes/quiz/, bluff/, blind-test/), triés par nom de fichier : quizFiles.mjs.
+const quizzes = listQuizFiles().map(({ fileName, folder, path }) => ({
   fileName,
-  quiz: JSON.parse(readFileSync(join(quizzesDir, fileName), 'utf8')) as QuizFile,
+  folder,
+  quiz: JSON.parse(readFileSync(path, 'utf8')) as QuizFile,
 }))
 
 // Une place du Top 10 ne peut être donnée qu'à un seul quiz du même onglet (quiz ou blind test).
@@ -489,8 +491,17 @@ function fontErrors(): string[] {
   )
 }
 
+// Dossier d'un fichier : celui de son type de jeu (content/quizzes/quiz/, bluff/, blind-test/), jamais la racine.
+function folderErrors(): string[] {
+  return quizzes.flatMap(({ fileName, folder, quiz }) => {
+    const expected = GAME_TYPE_DIRS[(quiz.gameType ?? 'quiz') as keyof typeof GAME_TYPE_DIRS]
+    return folder === expected ? [] : [`${fileName} : à ranger dans content/quizzes/${expected}/ (gameType ${quiz.gameType ?? 'quiz'}), trouvé dans ${folder ? `${folder}/` : 'la racine'}`]
+  })
+}
+
 const allErrors = [
   ...quizzes.flatMap(({ fileName, quiz }) => quizErrors(quiz, fileName).map((error) => `${fileName} : ${error}`)),
+  ...folderErrors(),
   ...featuredRankErrors(),
   ...duplicateTrackErrors(),
   ...levelCoherenceErrors(),

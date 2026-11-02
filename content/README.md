@@ -1,6 +1,17 @@
 # Contenu des quiz
 
-Un fichier par quiz dans `quizzes/`, nommé d'après son identifiant (`culture-generale-1.json`).
+Un fichier par quiz, nommé d'après son identifiant (`culture-generale-1.json`), rangé dans le dossier de son type de jeu :
+
+| Dossier | `gameType` | Exemple |
+|---|---|---|
+| `quizzes/quiz/` | absent (quiz classique) | `quizzes/quiz/culture-generale-1.json` |
+| `quizzes/bluff/` | `bluff` | `quizzes/bluff/bluff-antiquite.json` |
+| `quizzes/blind-test/` | `blindTest` | `quizzes/blind-test/annees-80-facile.json` |
+
+Le nom du fichier est toujours l'`id` du quiz (clé dans la base, jamais changée) ; seul le dossier dit le type. Le build
+refuse un fichier rangé dans le mauvais dossier ou laissé à la racine de `quizzes/`. Les scripts trouvent un quiz par
+son id, quel que soit son dossier (`scripts/quizFiles.mjs`) ; les fichiers `music-check/<id>.json` et
+`frozen-blind-tests.json` restent rangés par id (déplacer un fichier ne change pas l'empreinte d'un blind test figé).
 
 ## Guide : ajouter, corriger ou supprimer un quiz
 
@@ -8,7 +19,8 @@ Résumé de A à Z. Le détail de chaque champ est dans les sections suivantes e
 
 ### Fichiers à modifier
 
-- **Un fichier par quiz** : `content/quizzes/<id>.json`. C'est le seul fichier à créer pour un quiz classique.
+- **Un fichier par quiz** : `content/quizzes/quiz/<id>.json` (Bluff : `bluff/`, blind test : `blind-test/`). C'est le
+  seul fichier à créer pour un quiz classique.
 - Facultatif : `content/featuredTheme.json` (thème de la carte « Thème de la semaine »).
 - Blind test en plus : `content/music-check/<id>.json` (vérification des morceaux, écrit par les scripts, coché
   ensuite).
@@ -198,7 +210,7 @@ Console Firebase → Realtime Database → Données (détail plus bas, « Géné
 
 ### Corriger un quiz
 
-1. Modifier le fichier dans `content/quizzes/`.
+1. Modifier le fichier dans `content/quizzes/<dossier du type>/`.
 2. **Ne jamais changer l'`id` du quiz ni celui d'une question déjà publiée** : ils servent à retenir les
    questions déjà jouées et les tirages en cours. Pour remplacer une question par une autre, lui donner un
    nouvel `id` (par exemple `hf3-11`).
@@ -209,7 +221,7 @@ Console Firebase → Realtime Database → Données (détail plus bas, « Géné
 
 ### Supprimer un quiz
 
-1. Supprimer `content/quizzes/<id>.json` (blind test : aussi `music-check/<id>.json`, `<id>.md` et
+1. Supprimer `content/quizzes/<dossier du type>/<id>.json` (blind test : aussi `music-check/<id>.json`, `<id>.md` et
    `<id>-pairs.*` s'ils existent).
 2. S'il était le seul quiz du thème de `featuredTheme.json`, changer ce thème.
 3. `npm run build`, puis réimporter `/quizzes` puis `/questions` : l'import complet le retire de la base.

@@ -7,7 +7,8 @@ import { parseBluffQuestion, parseBluffQuestions, parseQuizSummary } from '../..
 import type { BluffQuestion } from '../../shared/types'
 import { makeBluffQuestion } from './engineFixtures'
 
-const QUIZZES_DIR = new URL('../../content/quizzes/', import.meta.url)
+// Un dossier par type de jeu (content/scripts/quizFiles.mjs) : les Bluff sont dans content/quizzes/bluff/.
+const QUIZZES_DIR = new URL('../../content/quizzes/bluff/', import.meta.url)
 
 // Quiz Bluff du contenu actuel.
 const BLUFF_QUIZZES = readdirSync(QUIZZES_DIR)

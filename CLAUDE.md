@@ -155,7 +155,7 @@ Quiz'in est une application de quiz pour soirées entre amis et en famille. L'h�
 - `site/` : site vitrine statique (voir `docs/site.md`).
 - `admin/` : page privée des statistiques (voir `docs/statistiques.md`).
 - `scripts/` et `.github/workflows/` : nettoyage planifié des parties de plus de 24 h (voir `docs/nettoyage-parties.md`).
-- `content/` : quiz sources (`quizzes/*.json`) et script qui génère les fichiers d'import (voir `content/README.md`).
+- `content/` : quiz sources, un dossier par type de jeu (`quizzes/quiz/`, `quizzes/bluff/`, `quizzes/blind-test/` ; nom du fichier = id du quiz, jamais changé ; dossier contrôlé par le build d'après `gameType` ; fichiers trouvés par id avec `content/scripts/quizFiles.mjs`), et script qui génère les fichiers d'import (voir `content/README.md`).
 - `tests/unit/` : tests Vitest de `shared/`. `tests/rules/` : tests des règles de sécurité sur l'émulateur.
 - `docs/` : spec et maquettes (`design/`). `database.rules.json` : règles de sécurité. `firebase.json` / `.firebaserc` : Hosting et émulateurs.
 

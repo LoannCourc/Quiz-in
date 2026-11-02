@@ -3,12 +3,13 @@
 // explicite. Usage (depuis content/) : npm run music:decoys [-- <quizId> …] (sans argument : tous les blind
 // tests). Résultats gardés dans music-check/decoys.json (une recherche par proposition, jamais refaite) ;
 // supprimer une entrée pour la rechercher de nouveau. Code de sortie 1 s'il en manque.
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { normalizeAnswer } from '../../shared/answerMatching'
 import { trackOptionParts } from '../../shared/trackOption'
-import { musicCheckDir, quizzesDir } from './musicCheck'
+import { musicCheckDir } from './musicCheck'
+import { listQuizFiles } from './quizFiles.mjs'
 
 interface DecoyCheck {
   // Morceau Deezer qui correspond, ou null si aucun.
@@ -74,11 +75,11 @@ async function check(option: string): Promise<DecoyCheck> {
 async function main() {
   const wanted = process.argv.slice(2)
   const cache: Record<string, DecoyCheck> = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : {}
-  const files = readdirSync(quizzesDir).filter((name) => name.endsWith('.json'))
+  const files = listQuizFiles()
   const missing: string[] = []
   let checked = 0
   for (const file of files) {
-    const quiz = JSON.parse(readFileSync(join(quizzesDir, file), 'utf8')) as {
+    const quiz = JSON.parse(readFileSync(file.path, 'utf8')) as {
       id: string
       gameType?: string
       questions: { id: string; options: string[]; correctIndex: number }[]

@@ -7,8 +7,15 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { quizPath } from './quizFiles.mjs'
+
 export const contentDir = join(dirname(fileURLToPath(import.meta.url)), '..')
-export const quizzesDir = join(contentDir, 'quizzes')
+// Fichier source d'un quiz, quel que soit son dossier (quiz/, bluff/, blind-test/) ; erreur claire s'il n'existe pas.
+export function quizFile(quizId: string): string {
+  const path = quizPath(quizId)
+  if (!path) throw new Error(`quiz introuvable dans content/quizzes : ${quizId}`)
+  return path
+}
 export const musicCheckDir = join(contentDir, 'music-check')
 
 // Morceau tel qu'il est écrit dans le fichier source d'un blind test (sans identifiant).

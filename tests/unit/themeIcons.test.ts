@@ -5,13 +5,16 @@ import { catalogThemes } from '../../shared/catalogRows'
 import type { QuizEntry } from '../../shared/quizValidation'
 import { GENRE_ICONS, hasThemeIcon, isQuizIconName, quizIconOf, themeIconOf } from '../../shared/themeIcons'
 
-const QUIZZES_DIR = new URL('../../content/quizzes/', import.meta.url)
+// Un dossier par type de jeu (content/scripts/quizFiles.mjs).
+const QUIZ_DIRS = ['quiz', 'bluff', 'blind-test'].map((folder) => new URL(`../../content/quizzes/${folder}/`, import.meta.url))
 
 // Fiches du contenu actuel : seuls le thème et l'icône comptent ici.
 function contentEntries(): (QuizEntry & { icon?: unknown })[] {
-  return readdirSync(QUIZZES_DIR)
-    .filter((file) => file.endsWith('.json'))
-    .map((file) => JSON.parse(readFileSync(new URL(file, QUIZZES_DIR), 'utf8')) as QuizEntry & { icon?: unknown })
+  return QUIZ_DIRS.flatMap((dir) =>
+    readdirSync(dir)
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => JSON.parse(readFileSync(new URL(file, dir), 'utf8')) as QuizEntry & { icon?: unknown }),
+  )
 }
 
 describe('Icônes de thème', () => {

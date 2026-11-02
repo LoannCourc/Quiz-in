@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { contentDir, quizzesDir, readMusicCheck, type SourceMusic } from './musicCheck'
+import { contentDir, quizFile, readMusicCheck, type SourceMusic } from './musicCheck'
 
 export const IMPOSSIBLE_MAX_RANK = 200000
 export const IMPOSSIBLE_MIN_FANS = 50000
@@ -193,7 +193,7 @@ function toMarkdown(lot: string, quizzes: SourceQuiz[], tracks: TrackReview[], d
 async function main() {
   const [lot, ...quizIds] = process.argv.slice(2)
   if (!lot || quizIds.length === 0) throw new Error('Usage : npm run music:review -- <lot> <quizId> [<quizId>…]')
-  const quizzes = quizIds.map((quizId) => JSON.parse(readFileSync(join(quizzesDir, `${quizId}.json`), 'utf8')) as SourceQuiz)
+  const quizzes = quizIds.map((quizId) => JSON.parse(readFileSync(quizFile(quizId), 'utf8')) as SourceQuiz)
   const tracks: TrackReview[] = []
   for (const quiz of quizzes) tracks.push(...(await review(quiz)))
   const date = new Date().toISOString().slice(0, 10)
