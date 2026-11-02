@@ -216,7 +216,18 @@ export const strings = {
     homeButton: (unseen: number) => (unseen > 0 ? `Mes badges, ${countLabel(unseen, 'nouveau', 'nouveaux')}` : 'Mes badges'),
     // « À propos » et carte Partager.
     shareButton: 'Partager Quiz’in',
-    shareMessage: (url: string) => `Ta TV devient le plateau de la soirée : joue à Quiz’in avec moi ! ${url}`,
+    shareMessage: (url: string) => `Je joue à Quiz’in avec mes proches, essaie ! ${url}`,
+    // Accueil : cœur « Soutenir l’app » et sa fenêtre (Partager, Noter).
+    support: {
+      homeButton: 'Soutenir Quiz’in',
+      title: 'Quiz’in te plaît ?',
+      subtitle: 'Aide-nous à le faire connaître.',
+      share: 'Partager l’app',
+      rate: 'Noter l’app',
+      unlocksBadge: 'Débloque un badge',
+      later: 'Plus tard',
+      close: 'Fermer',
+    },
     // Notification de fin de partie (maquette G2).
     newBadge: 'Nouveau badge',
     newBadges: (count: number) => `${count} nouveaux badges`,

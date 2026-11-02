@@ -82,6 +82,13 @@ export function TrophyArt({ tier, emblem, isUnlocked, width }: TrophyArtProps) {
 }
 
 // Emblème seul (tuile de catégorie, bouton de l'accueil) : trait encre du pack.
-export function EmblemArt({ name, size }: { name: EmblemName; size: number }) {
-  return <SvgXml xml={EMBLEM_SVGS[name]} width={size} height={size} />;
+// Encre des emblèmes du pack.
+const EMBLEM_INK = '#14064a';
+
+// color : trait d'une autre couleur (emblème sur un rond encre) ; filled : dessin plein de cette couleur (étoile).
+export function EmblemArt({ name, size, color, filled = false }: { name: EmblemName; size: number; color?: string; filled?: boolean }) {
+  const ink = color ?? EMBLEM_INK;
+  const tinted = EMBLEM_SVGS[name].replaceAll(EMBLEM_INK, ink);
+  const xml = filled ? tinted.replace('fill="none"', `fill="${ink}"`) : tinted;
+  return <SvgXml xml={xml} width={size} height={size} />;
 }

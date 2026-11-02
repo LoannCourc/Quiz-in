@@ -1,3 +1,4 @@
+import type { BadgeId } from '@shared/badges';
 import { PRIVACY_URL } from '@shared/constants';
 import { HOME_COMPACT_BELOW_HEIGHT, homeBlockGap, homeTileDensity } from '@shared/homeLayout';
 import { isValidRoomCode } from '@shared/roomCode';
@@ -6,6 +7,9 @@ import { useState } from 'react';
 import { Linking, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { BADGES_HOME_BUTTON_SIZE, BadgesHomeButton } from '@/components/badges/BadgesHomeButton';
+import { BadgeNotice } from '@/components/badges/LazyBadges';
+import { SupportAppDialog } from '@/components/badges/SupportAppDialog';
+import { SupportHomeButton } from '@/components/badges/SupportHomeButton';
 import { HomeView } from '@/components/host/home/HomeView';
 import { BigButton } from '@/components/ui/BigButton';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -42,6 +46,9 @@ function HomeScreen() {
   const resumableCode = useResumableGame();
   const isBlindTestEnabled = useBlindTestEnabled();
   const isDrawEnabled = useDrawEnabled();
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [unlocked, setUnlocked] = useState<BadgeId[]>([]);
+  const [badgesReloadKey, setBadgesReloadKey] = useState(0);
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
@@ -65,31 +72,52 @@ function HomeScreen() {
       : undefined;
 
   return (
-    <Screen scrollable={fit === undefined}>
-      <HomeView
-        onOpenGame={(game) => openGame(game, room)}
-        onJoinWithCode={room ? undefined : () => router.push('/join')}
-        banner={room ? <RoomBanner code={room} /> : resumeButton}
-        isBlindTestEnabled={isBlindTestEnabled === true}
-        isDrawEnabled={isDrawEnabled !== false}
-        fit={fit}
-        headerAction={<BadgesHomeButton />}
-      />
+    <View style={styles.fill}>
+      <Screen scrollable={fit === undefined}>
+        <HomeView
+          onOpenGame={(game) => openGame(game, room)}
+          onJoinWithCode={room ? undefined : () => router.push('/join')}
+          banner={room ? <RoomBanner code={room} /> : resumeButton}
+          isBlindTestEnabled={isBlindTestEnabled === true}
+          isDrawEnabled={isDrawEnabled !== false}
+          fit={fit}
+          headerAction={
+            <View style={styles.headerButtons}>
+              <SupportHomeButton onPress={() => setIsSupportOpen(true)} />
+              {/* Badge débloqué ici : trophée remonté, sa pastille est relue. */}
+              <BadgesHomeButton key={badgesReloadKey} />
+            </View>
+          }
+        />
 
-      <View style={styles.footerLinks}>
-        <Link href="/about" style={styles.footerLink}>
-          {strings.about.link}
-        </Link>
-        <Text accessibilityRole="link" onPress={openPrivacy} style={styles.footerLink}>
-          {strings.about.privacyShortLink}
-        </Text>
-      </View>
-      {/* Démos : en développement seulement (absentes de l'APK publié), en haut, à gauche du trophée des badges,
-          hors de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
-      {__DEV__ && <DemosLink />}
-    </Screen>
+        <View style={styles.footerLinks}>
+          <Link href="/about" style={styles.footerLink}>
+            {strings.about.link}
+          </Link>
+          <Text accessibilityRole="link" onPress={openPrivacy} style={styles.footerLink}>
+            {strings.about.privacyShortLink}
+          </Text>
+        </View>
+        {/* Démos : en développement seulement (absentes de l'APK publié), en haut, à gauche du trophée des badges,
+            hors de la mise en page : l'accueil a exactement la même disposition que dans le build publié. */}
+        {__DEV__ && <DemosLink />}
+      </Screen>
+      <SupportAppDialog
+        isOpen={isSupportOpen}
+        onClose={() => setIsSupportOpen(false)}
+        onUnlocked={(badges) => {
+          setUnlocked(badges);
+          setBadgesReloadKey((key) => key + 1);
+        }}
+      />
+      <BadgeNotice badges={unlocked} delayMs={SUPPORT_NOTICE_DELAY_MS} onDismiss={() => setUnlocked([])} />
+    </View>
   );
 }
+
+// Notification d'un badge débloqué depuis la fenêtre « Soutenir » : après la disparition de celle-ci.
+const SUPPORT_NOTICE_DELAY_MS = 400;
+const HEADER_BUTTONS_GAP = Spacing.two;
 
 const DEMOS: readonly { href: Href; label: string }[] = [
   { href: '/debug/catalog', label: strings.catalog.demoCatalogLink },
@@ -133,6 +161,15 @@ function RoomBanner({ code }: { code: string }) {
 }
 
 const styles = StyleSheet.create({
+  fill: {
+    flex: 1,
+  },
+  // Cœur « Soutenir » puis trophée des badges.
+  headerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: HEADER_BUTTONS_GAP,
+  },
   roomBanner: {
     gap: Spacing.two,
   },
@@ -150,7 +187,7 @@ const styles = StyleSheet.create({
   demosLink: {
     position: 'absolute',
     top: 0,
-    right: BADGES_HOME_BUTTON_SIZE + Spacing.three,
+    right: 2 * BADGES_HOME_BUTTON_SIZE + HEADER_BUTTONS_GAP + Spacing.three,
   },
   footerLink: {
     paddingVertical: Spacing.two,

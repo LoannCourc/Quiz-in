@@ -31,7 +31,7 @@ export function BadgeNotice(props: BadgeNoticeProps) {
 }
 
 // Emblème du pack ; interface indisponible : un trophée en emoji à la place.
-export function BadgeEmblem({ name, size }: { name: EmblemName; size: number }) {
+export function BadgeEmblem({ name, size, color, filled }: { name: EmblemName; size: number; color?: string; filled?: boolean }) {
   const ui = badgeUi();
-  return ui ? <ui.EmblemArt name={name} size={size} /> : <Text style={{ fontSize: size * 0.8 }}>🏆</Text>;
+  return ui ? <ui.EmblemArt name={name} size={size} color={color} filled={filled} /> : <Text style={{ fontSize: size * 0.8 }}>🏆</Text>;
 }

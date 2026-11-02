@@ -252,6 +252,16 @@ export const AppColors = {
   badgeCelebrationPanel: Palette.violetPanel,
   badgeHomeButton: BadgeHues.yellow,
   onBadge: Palette.ink,
+  // Accueil : cœur « Soutenir l'app » (rose de la tuile Quiz) et sa fenêtre (Partager rose, Noter or ; icônes
+  // sur un rond encre).
+  support: Palette.pinkSoft,
+  supportBorder: Palette.white,
+  supportPanel: Palette.violetPanel,
+  supportClose: Palette.violetTrack,
+  supportShare: Palette.pinkSoft,
+  supportRate: BadgeHues.yellow,
+  supportIconDisc: Palette.ink,
+  onSupport: Palette.ink,
 } as const;
 
 export const BADGE_LOCKED_OPACITY = 0.45;
