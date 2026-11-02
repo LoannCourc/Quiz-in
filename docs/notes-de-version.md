@@ -3,6 +3,18 @@
 500 caractères au plus (Google Play). Jamais de mention du blind test. Nombre de caractères : texte tel qu'il
 est collé dans la console, retours à la ligne compris.
 
+## 1.2.0 : nouveautés (mise à jour depuis la 1.1.0, 170 caractères)
+
+Nouveautés de la 1.2 :
+• Un cœur sur l’accueil pour soutenir Quiz’in : partage l’app ou laisse une note, et débloque les badges Partager et Noter.
+• Corrections diverses.
+
+English (144 characters), si la fiche a une version anglaise :
+
+What’s new in 1.2:
+• A heart on the home screen to support Quiz’in: share the app or rate it, and unlock the Share and Rate badges.
+• Bug fixes.
+
 ## 1.1.0 : nouveautés (mise à jour depuis la 1.0.1, 459 caractères)
 
 Nouveautés de la 1.1 :
