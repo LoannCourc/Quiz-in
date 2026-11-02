@@ -1,6 +1,6 @@
 // Contrôle des mauvaises propositions des blind tests : chaque « Titre – Artiste » proposé doit exister chez
 // Deezer (même artiste, même titre, sans casse, accents ni article), dans une version ni live ni remix et non
-// explicite. Usage (depuis content/) : npm run music:decoys [-- <quizId> …] (sans argument : tous les blind
+// explicite (explicite permis dans les blind tests de rap, comme leurs bonnes réponses : allowsExplicit). Usage (depuis content/) : npm run music:decoys [-- <quizId> …] (sans argument : tous les blind
 // tests). Résultats gardés dans music-check/decoys.json (une recherche par proposition, jamais refaite) ;
 // supprimer une entrée pour la rechercher de nouveau. Code de sortie 1 s'il en manque.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
@@ -8,7 +8,7 @@ import { join } from 'node:path'
 
 import { normalizeAnswer } from '../../shared/answerMatching'
 import { trackOptionParts } from '../../shared/trackOption'
-import { musicCheckDir } from './musicCheck'
+import { allowsExplicit, musicCheckDir } from './musicCheck'
 import { listQuizFiles } from './quizFiles.mjs'
 
 interface DecoyCheck {
@@ -16,6 +16,8 @@ interface DecoyCheck {
   id: string | null
   artist?: string
   title?: string
+  // Seule version trouvée marquée explicite (absent : non explicite, ou entrée antérieure à ce champ).
+  explicit?: boolean
   checkedAt: string
 }
 
@@ -60,16 +62,18 @@ async function check(option: string): Promise<DecoyCheck> {
   const checkedAt = new Date().toISOString().slice(0, 10)
   if (!artist) return { id: null, checkedAt }
   const rows = await search(`${artist} ${title}`.replace(/[,!?]/g, ' '))
-  const match = rows.find(
+  const isExplicit = (row: DeezerTrack) => row.explicit_lyrics || [1, 4].includes(row.explicit_content_lyrics)
+  const matches = rows.filter(
     (row) =>
       sameArtist(row.artist.name, artist) &&
       baseTitle(row.title) === baseTitle(title) &&
       !OTHER_VERSION.test(row.title) &&
-      !OTHER_VERSION.test(row.album.title) &&
-      !row.explicit_lyrics &&
-      ![1, 4].includes(row.explicit_content_lyrics),
+      !OTHER_VERSION.test(row.album.title),
   )
-  return match ? { id: String(match.id), artist: match.artist.name, title: match.title, checkedAt } : { id: null, checkedAt }
+  // Une version non explicite d'abord ; sinon la version explicite, retenue seulement pour un blind test de rap.
+  const match = matches.find((row) => !isExplicit(row)) ?? matches[0]
+  if (!match) return { id: null, checkedAt }
+  return { id: String(match.id), artist: match.artist.name, title: match.title, ...(isExplicit(match) && { explicit: true }), checkedAt }
 }
 
 async function main() {
@@ -82,18 +86,21 @@ async function main() {
     const quiz = JSON.parse(readFileSync(file.path, 'utf8')) as {
       id: string
       gameType?: string
+      genre?: string
       questions: { id: string; options: string[]; correctIndex: number }[]
     }
     if (quiz.gameType !== 'blindTest' || (wanted.length > 0 && !wanted.includes(quiz.id))) continue
     for (const question of quiz.questions) {
       for (const [index, option] of question.options.entries()) {
         if (index === question.correctIndex) continue
-        if (!cache[option]) {
+        // Entrée sans le champ explicit et introuvable : peut-être une version explicite seulement, à rechercher pour le rap.
+        const stale = cache[option] && !cache[option].id && allowsExplicit(quiz.genre)
+        if (!cache[option] || stale) {
           cache[option] = await check(option)
           checked += 1
           if (checked % 25 === 0) writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 1)}\n`)
         }
-        if (!cache[option].id) missing.push(`${quiz.id}/${question.id} : « ${option} »`)
+        if (!cache[option].id || (cache[option].explicit && !allowsExplicit(quiz.genre))) missing.push(`${quiz.id}/${question.id} : « ${option} »`)
       }
     }
   }

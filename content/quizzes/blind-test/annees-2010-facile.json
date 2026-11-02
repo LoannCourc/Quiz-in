@@ -1,0 +1,218 @@
+{
+  "id": "annees-2010-facile",
+  "gameType": "blindTest",
+  "title": "Années 2010 : les tubes",
+  "theme": "Musique",
+  "description": "Dix tubes des années 2010, des stades aux réseaux sociaux : le titre ou l’artiste, à vous de jouer.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "smartphone",
+  "genre": "pop",
+  "decade": 2010,
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "featuredRank": 5,
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a10f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Happy – Pharrell Williams",
+        "Girl on Fire – Alicia Keys",
+        "Can't stop the feeling! – Justin Timberlake",
+        "Just Can’t Get Enough – Black Eyed Peas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Happy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Pharrell Williams",
+        "title": "Happy"
+      }
+    },
+    {
+      "id": "a10f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Shallow – Lady Gaga",
+        "Locked out of Heaven – Bruno Mars",
+        "Rolling in the Deep – Adele",
+        "Someone You Loved – Lewis Capaldi"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Adele"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Adele",
+        "title": "Rolling in the Deep"
+      }
+    },
+    {
+      "id": "a10f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Shape of You – Ed Sheeran",
+        "Just Give Me a Reason – P!nk",
+        "Moves Like Jagger – Maroon 5",
+        "Treat You Better – Shawn Mendes"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Shape of You"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ed Sheeran",
+        "title": "Shape of You"
+      }
+    },
+    {
+      "id": "a10f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't Let Me Down – The Chainsmokers",
+        "Feel So Close – Calvin Harris",
+        "Wake Me Up – Avicii",
+        "Sugar – Robin Schulz"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Avicii"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Avicii",
+        "title": "Wake Me Up"
+      }
+    },
+    {
+      "id": "a10f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Duele el corazon – Enrique Iglesias",
+        "Despacito – Luis Fonsi",
+        "Amigos Con Derechos – Reik",
+        "Por Fin Te Encontré – Cali Y El Dandee"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Despacito"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Luis Fonsi",
+        "title": "Despacito"
+      }
+    },
+    {
+      "id": "a10f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Believer – Imagine Dragons",
+        "Chandelier – Sia",
+        "Hymn for the Weekend – Coldplay",
+        "Human – Rag'n'Bone Man"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Imagine Dragons"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Imagine Dragons",
+        "title": "Believer"
+      }
+    },
+    {
+      "id": "a10f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Somebody That I Used To Know – Gotye",
+        "Uptown Funk – Mark Ronson",
+        "Love Again – Dua Lipa",
+        "Let Me Love You – DJ Snake"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Uptown Funk"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Mark Ronson",
+        "title": "Uptown Funk"
+      }
+    },
+    {
+      "id": "a10f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lovely – Billie Eilish",
+        "One Dance – Drake",
+        "All of Me – John Legend",
+        "Get Lucky – Daft Punk"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Daft Punk"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "Get Lucky"
+      }
+    },
+    {
+      "id": "a10f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Juste une photo de toi – M. Pokora",
+        "Amour censure – Hoshi",
+        "Fallait Pas – Marwa Loud",
+        "Jour 1 – Louane"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jour 1"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Louane",
+        "title": "Jour 1"
+      }
+    },
+    {
+      "id": "a10f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Je veux – Zaz",
+        "Le chant des sirènes – Fréro Delavega",
+        "Tombé sous le charme – Christophe Maé",
+        "Le coach – Soprano"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Christophe Maé"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Christophe Maé",
+        "title": "Tombé sous le charme"
+      }
+    }
+  ]
+}

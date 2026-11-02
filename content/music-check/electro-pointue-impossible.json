@@ -1,0 +1,217 @@
+{
+  "quizId": "electro-pointue-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "epi-01",
+      "query": {
+        "artist": "Autechre",
+        "title": "Bike"
+      },
+      "found": {
+        "id": "29369751",
+        "title": "Bike",
+        "artist": "Autechre",
+        "album": "Incunabula",
+        "durationS": 480,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/29369751",
+        "explicit": false,
+        "rank": 255191
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-02",
+      "query": {
+        "artist": "Squarepusher",
+        "title": "Do You Know Squarepusher"
+      },
+      "found": {
+        "id": "29378391",
+        "title": "Do You Know Squarepusher",
+        "artist": "Squarepusher",
+        "album": "Do You Know Squarepusher",
+        "durationS": 305,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/29378391",
+        "explicit": false,
+        "rank": 233527
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-03",
+      "query": {
+        "artist": "Plastikman",
+        "title": "Krakpot"
+      },
+      "found": {
+        "id": "729316412",
+        "title": "Krakpot",
+        "artist": "Plastikman",
+        "album": "Krakpot",
+        "durationS": 671,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/729316412",
+        "explicit": false,
+        "rank": 169016
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-04",
+      "query": {
+        "artist": "Jeff Mills",
+        "title": "Alarms"
+      },
+      "found": {
+        "id": "623893252",
+        "title": "Alarms",
+        "artist": "Jeff Mills",
+        "album": "Purpose Maker Compilation",
+        "durationS": 315,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623893252",
+        "explicit": false,
+        "rank": 174257
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-05",
+      "query": {
+        "artist": "Carl Craig",
+        "title": "Sandstorms"
+      },
+      "found": {
+        "id": "12266862",
+        "title": "Sandstorms",
+        "artist": "Carl Craig",
+        "album": "Sessions",
+        "durationS": 575,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12266862",
+        "explicit": false,
+        "rank": 181957
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-06",
+      "query": {
+        "artist": "Model 500",
+        "title": "Huesca"
+      },
+      "found": {
+        "id": "125632338",
+        "title": "Huesca",
+        "artist": "Model 500",
+        "album": "OFI / Huesca",
+        "durationS": 428,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/125632338",
+        "explicit": false,
+        "rank": 17949
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-07",
+      "query": {
+        "artist": "Aril Brikha",
+        "title": "Ex Machina"
+      },
+      "found": {
+        "id": "2374002345",
+        "title": "Ex Machina",
+        "artist": "Aril Brikha",
+        "album": "Ex Machina",
+        "durationS": 401,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2374002345",
+        "explicit": false,
+        "rank": 93777
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-08",
+      "query": {
+        "artist": "Andy Stott",
+        "title": "Never the right time"
+      },
+      "found": {
+        "id": "1268567252",
+        "title": "Never the right time",
+        "artist": "Andy Stott",
+        "album": "Never The Right Time",
+        "durationS": 296,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1268567252",
+        "explicit": false,
+        "rank": 177441
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-09",
+      "query": {
+        "artist": "Surgeon",
+        "title": "Triple Threat"
+      },
+      "found": {
+        "id": "3254026131",
+        "title": "Triple Threat",
+        "artist": "Surgeon",
+        "album": "Shell~Wave",
+        "durationS": 396,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3254026131",
+        "explicit": false,
+        "rank": 92609
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "epi-10",
+      "query": {
+        "artist": "Rival Consoles",
+        "title": "Unfolding"
+      },
+      "found": {
+        "id": "626050632",
+        "title": "Unfolding",
+        "artist": "Rival Consoles",
+        "album": "Persona",
+        "durationS": 358,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/626050632",
+        "explicit": false,
+        "rank": 257685
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

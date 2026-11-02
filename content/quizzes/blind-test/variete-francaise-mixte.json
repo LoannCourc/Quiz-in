@@ -1,0 +1,217 @@
+{
+  "id": "variete-francaise-mixte",
+  "gameType": "blindTest",
+  "title": "Variété française : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix chansons de variété française, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "vfm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Alors on danse – Stromae",
+        "Une seule vie – Angèle",
+        "Le prochain rêve – Grand Corps Malade",
+        "Qui de nous deux – -M-"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Alors on danse"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Stromae",
+        "title": "Alors on danse"
+      }
+    },
+    {
+      "id": "vfm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Égaré – M. Pokora",
+        "La recette – Jeck",
+        "Frérot – Jeremy Frerot",
+        "Dernière danse – Indila"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Indila"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Indila",
+        "title": "Dernière danse"
+      }
+    },
+    {
+      "id": "vfm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Diego, libre dans sa tête – Johnny Hallyday",
+        "Tombé pour elle (L'île aux oiseaux) – Pascal Obispo",
+        "On ne change pas – Céline Dion",
+        "Le soldat – Florent Pagny"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "On ne change pas"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Céline Dion",
+        "title": "On ne change pas"
+      }
+    },
+    {
+      "id": "vfm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le chant des cygnes – Indochine",
+        "Si seulement je pouvais lui manquer – Calogero",
+        "Il changeait la vie – Jean-Jacques Goldman",
+        "J'envoie valser – Zazie"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Calogero"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Calogero",
+        "title": "Si seulement je pouvais lui manquer"
+      }
+    },
+    {
+      "id": "vfm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Octobre – Francis Cabrel",
+        "Quand on arrive en ville – Daniel Balavoine",
+        "Dès que le vent soufflera – Renaud",
+        "Musique – France Gall"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Octobre"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Francis Cabrel",
+        "title": "Octobre"
+      }
+    },
+    {
+      "id": "vfm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mon mec à moi – Patricia Kaas",
+        "Cœur de loup – Philippe Lafontaine",
+        "En rouge et noir – Jeanne Mas",
+        "Maîtresse – Images"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Jeanne Mas"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Jeanne Mas",
+        "title": "En rouge et noir"
+      }
+    },
+    {
+      "id": "vfm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le coup de folie – Thierry Pastor",
+        "L'amour à la plage – Niagara",
+        "Fallait pas commencer – Lio",
+        "Chacun fait (c'qui lui plait) – Chagrin D'Amour"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Chacun fait (c'qui lui plait)"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Chagrin D'Amour",
+        "title": "Chacun fait (c'qui lui plait)"
+      }
+    },
+    {
+      "id": "vfm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Chanter pour elles – Axelle Red",
+        "Hélène – Roch Voisine",
+        "Pour le plaisir – Herbert Léonard",
+        "T'en va pas – Elsa Lunghini"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Elsa Lunghini"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Elsa Lunghini",
+        "title": "T'en va pas"
+      }
+    },
+    {
+      "id": "vfm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pour toi la musique – Gold",
+        "Qu'Est-ce Qu'On a Dansé Sur Cette Chanson – François Valéry",
+        "Le mal de toi – François Feldman",
+        "L'amour pour qui – Jean-Luc Lahaye"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le mal de toi"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "François Feldman",
+        "title": "Le mal de toi"
+      }
+    },
+    {
+      "id": "vfm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Du rhum des femmes – Soldat Louis",
+        "Je l'aime aussi – Carole Fredericks",
+        "Rentre chez toi – Francis Lalanne",
+        "Je N Oublierai Jamais – Partenaire Particulier"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Carole Fredericks"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Carole Fredericks",
+        "title": "Je l'aime aussi"
+      }
+    }
+  ]
+}

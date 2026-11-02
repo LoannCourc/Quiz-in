@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-francais-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rff-01",
+      "query": {
+        "artist": "MC Solaar",
+        "title": "Bouge de là"
+      },
+      "found": {
+        "id": "249492",
+        "title": "Bouge de là",
+        "artist": "MC Solaar",
+        "album": "Le tour de la question",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/249492",
+        "explicit": false,
+        "rank": 466176
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-02",
+      "query": {
+        "artist": "Sexion d'Assaut",
+        "title": "Wati by Night"
+      },
+      "found": {
+        "id": "5639255",
+        "title": "Wati by Night",
+        "artist": "Sexion d'Assaut",
+        "album": "L'école des points vitaux",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/5639255",
+        "explicit": false,
+        "rank": 961517
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-03",
+      "query": {
+        "artist": "Nekfeu",
+        "title": "On verra"
+      },
+      "found": {
+        "id": "101764813",
+        "title": "On verra",
+        "artist": "Nekfeu",
+        "album": "Feu",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/101764813",
+        "explicit": false,
+        "rank": 909075
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-04",
+      "query": {
+        "artist": "Kaaris",
+        "title": "Zoo"
+      },
+      "found": {
+        "id": "71678124",
+        "title": "Zoo",
+        "artist": "Kaaris",
+        "album": "Or Noir",
+        "durationS": 289,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71678124",
+        "explicit": true,
+        "rank": 920083
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-05",
+      "query": {
+        "artist": "Black M",
+        "title": "Sur ma route"
+      },
+      "found": {
+        "id": "76395840",
+        "title": "Sur ma route",
+        "artist": "Black M",
+        "album": "Les yeux plus gros que le monde",
+        "durationS": 252,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/76395840",
+        "explicit": false,
+        "rank": 909409
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-06",
+      "query": {
+        "artist": "Maes",
+        "title": "Madrina"
+      },
+      "found": {
+        "id": "572770982",
+        "title": "Madrina",
+        "artist": "Maes",
+        "album": "Madrina",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/572770982",
+        "explicit": true,
+        "rank": 877211
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-07",
+      "query": {
+        "artist": "La Fouine",
+        "title": "Jamais lâcher"
+      },
+      "found": {
+        "id": "4315276202",
+        "title": "Jamais lâcher",
+        "artist": "La Fouine",
+        "album": "Silence Radio",
+        "durationS": 156,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4315276202",
+        "explicit": true,
+        "rank": 988659
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-08",
+      "query": {
+        "artist": "Lomepal",
+        "title": "Trop beau"
+      },
+      "found": {
+        "id": "583177742",
+        "title": "Trop beau",
+        "artist": "Lomepal",
+        "album": "Jeannine",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/583177742",
+        "explicit": true,
+        "rank": 897715
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-09",
+      "query": {
+        "artist": "Naps",
+        "title": "La kiffance"
+      },
+      "found": {
+        "id": "1253711502",
+        "title": "La kiffance",
+        "artist": "Naps",
+        "album": "La kiffance",
+        "durationS": 179,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1253711502",
+        "explicit": true,
+        "rank": 868694
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rff-10",
+      "query": {
+        "artist": "13 Organisé",
+        "title": "Bande organisée"
+      },
+      "found": {
+        "id": "2191140397",
+        "title": "Bande organisée",
+        "artist": "13 Organisé",
+        "album": "13 Organisé",
+        "durationS": 356,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2191140397",
+        "explicit": true,
+        "rank": 527276
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

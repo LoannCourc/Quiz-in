@@ -105,7 +105,8 @@ export type CatalogSortId = 'new' | 'notPlayed' | 'easiest' | 'alphabetical'
 
 export const CATALOG_SORTS: readonly CatalogSortId[] = ['new', 'notPlayed', 'easiest', 'alphabetical']
 
-const LEVEL_ORDER: Record<DifficultyLevel, number> = { easy: 0, medium: 1, hard: 2, impossible: 3 }
+// « Tous niveaux » entre Moyen et Difficile.
+const LEVEL_ORDER: Record<DifficultyLevel, number> = { easy: 0, medium: 1, mixed: 1.5, hard: 2, impossible: 3 }
 
 // Plus récents d'abord ; une fiche sans date en dernier.
 export function byNewest(a: QuizEntry, b: QuizEntry): number {

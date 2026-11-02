@@ -69,6 +69,12 @@ describe('Thèmes du catalogue Quiz', () => {
   })
 })
 
+describe('Difficulté 4 (Impossible, blind tests)', () => {
+  test('comptée avec les difficiles', () => {
+    expect(countLevels([1, 2, 3, 4, 4])).toEqual({ easy: 1, medium: 1, hard: 3 })
+  })
+})
+
 describe('Au programme de la fiche', () => {
   test('répartition des questions tirées par thème (ordre des thèmes choisis) et par niveau', () => {
     const drawn = [

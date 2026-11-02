@@ -1,0 +1,223 @@
+{
+  "id": "rock-hymnes-facile",
+  "gameType": "blindTest",
+  "title": "Rock : les hymnes",
+  "theme": "Musique",
+  "description": "Dix hymnes du rock que tout le monde a déjà entendus, des riffs aux refrains.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "rkh-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bohemian Rhapsody – Queen",
+        "Every Breath You Take – The Police",
+        "Walk Of Life – Dire Straits",
+        "Simple Man – Lynyrd Skynyrd"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bohemian Rhapsody"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Queen",
+        "title": "Bohemian Rhapsody"
+      }
+    },
+    {
+      "id": "rkh-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Nothing Else Matters – Metallica",
+        "Runnin' with the Devil – Van Halen",
+        "Highway to Hell – AC/DC",
+        "I Was Made For Lovin' You – KISS"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "AC/DC"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "AC/DC",
+        "title": "Highway to Hell"
+      }
+    },
+    {
+      "id": "rkh-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Baba O'Riley – The Who",
+        "Gimme All Your Lovin' – ZZ Top",
+        "Whole Lotta Love – Led Zeppelin",
+        "Heart of Gold – Neil Young"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Whole Lotta Love"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Led Zeppelin",
+        "title": "Whole Lotta Love"
+      }
+    },
+    {
+      "id": "rkh-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Dream On – Aerosmith",
+        "You Give Love A Bad Name – Bon Jovi",
+        "Sweet Child O' Mine – Guns N' Roses",
+        "Black – Pearl Jam"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Guns N' Roses"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Guns N' Roses",
+        "title": "Sweet Child O' Mine"
+      }
+    },
+    {
+      "id": "rkh-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bad Moon Rising – Creedence Clearwater Revival",
+        "Like a Rolling Stone – Bob Dylan",
+        "Roadhouse Blues – The Doors",
+        "(I Can't Get No) Satisfaction – The Rolling Stones"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "(I Can't Get No) Satisfaction"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Rolling Stones",
+        "title": "(I Can't Get No) Satisfaction"
+      }
+    },
+    {
+      "id": "rkh-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Here I Go Again – Whitesnake",
+        "Smoke on the Water – Deep Purple",
+        "No More Mr. Nice Guy – Alice Cooper",
+        "Lithium – Nirvana"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Deep Purple"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Deep Purple",
+        "title": "Smoke On The Water",
+        "displayTitle": "Smoke on the Water"
+      }
+    },
+    {
+      "id": "rkh-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Seven Nation Army – The White Stripes",
+        "Californication – Red Hot Chili Peppers",
+        "Basket Case – Green Day",
+        "Everlong – Foo Fighters"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Californication"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Californication",
+        "artistAliases": [
+          "Red Hot",
+          "RHCP"
+        ]
+      }
+    },
+    {
+      "id": "rkh-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Another Brick in the Wall, Pt. 2 – Pink Floyd",
+        "The Logical Song – Supertramp",
+        "The Chain – Fleetwood Mac",
+        "Let's Dance – David Bowie"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Pink Floyd"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Pink Floyd",
+        "title": "Another Brick in the Wall, Pt. 2"
+      }
+    },
+    {
+      "id": "rkh-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Wind of Change – Scorpions",
+        "No More Tears – Ozzy Osbourne",
+        "Love Bites – Def Leppard",
+        "Rock the Night – Europe"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Wind of Change"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Scorpions",
+        "title": "Wind Of Change",
+        "displayTitle": "Wind of Change"
+      }
+    },
+    {
+      "id": "rkh-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La nuit je mens – Alain Bashung",
+        "Les nuits parisiennes – Louise Attaque",
+        "L'apologie – Matmatah",
+        "Le vent nous portera – Noir Désir"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Noir Désir"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Noir Désir",
+        "title": "Le vent nous portera"
+      }
+    }
+  ]
+}

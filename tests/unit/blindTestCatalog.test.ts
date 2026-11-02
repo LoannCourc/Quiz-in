@@ -80,4 +80,19 @@ describe('Fiche lue dans la base', () => {
     expect(unknown).not.toHaveProperty('genre')
     expect(unknown).not.toHaveProperty('decade')
   })
+
+  test('marquage « paroles explicites » : gardé s’il vaut true, ignoré sinon', () => {
+    const base = { title: 'X', theme: 'Musique', gameType: 'blindTest', language: 'fr', difficulty: 4, difficultyLabel: 'Impossible', questionCount: 10, estimatedMinutes: 6 }
+    expect(parseQuizSummary({ ...base, explicitLyrics: true })).toMatchObject({ explicitLyrics: true })
+    expect(parseQuizSummary({ ...base, explicitLyrics: 'oui' })).not.toHaveProperty('explicitLyrics')
+  })
+
+  test('niveau « mixed » (Tous niveaux) gardé ; tuile du niveau, sans point plein', () => {
+    const base = { title: 'X', theme: 'Musique', gameType: 'blindTest', language: 'fr', difficulty: 2.3, difficultyLabel: 'Tous niveaux', questionCount: 10, estimatedMinutes: 6 }
+    expect(parseQuizSummary({ ...base, level: 'mixed' })).toMatchObject({ level: 'mixed' })
+    const catalog = [...CATALOG, blindTest('mix80', { genre: 'pop', decade: 1980, level: 'mixed' })]
+    expect(blindTestTiles(catalog, 'level', new Set()).map((tile) => tile.facet.value)).toContain('mixed')
+    expect(levelDots('mixed')).toBe(0)
+    expect(levelDots('impossible')).toBe(4)
+  })
 })

@@ -99,6 +99,11 @@ export function matchAnswer(answer: string, acceptedAnswers: readonly string[]):
   return best
 }
 
+// Le meilleur de deux niveaux (exact, puis typo, close, wrong).
+export function betterMatchLevel(a: MatchLevel, b: MatchLevel): MatchLevel {
+  return LEVEL_ORDER.indexOf(a) <= LEVEL_ORDER.indexOf(b) ? a : b
+}
+
 // Niveau qui vaut une bonne réponse sans intervention de l'hôte.
 export function isAcceptedLevel(level: MatchLevel): boolean {
   return level === 'exact' || level === 'typo'

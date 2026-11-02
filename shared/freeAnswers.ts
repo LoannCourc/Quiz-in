@@ -1,5 +1,5 @@
 import { displayableAnswer } from './answerFilter'
-import { isAcceptedLevel, matchAnswer, normalizeAnswer, type MatchLevel } from './answerMatching'
+import { betterMatchLevel, isAcceptedLevel, matchAnswer, normalizeAnswer, type MatchLevel } from './answerMatching'
 import { FREE_ANSWER_GROUPS_MAX, FREE_ANSWER_MAX_LENGTH, HIDDEN_ANSWER_TEXT } from './constants'
 import type { Answer, AnswerVerdict, FreeAnswerGroup, PlayerId, PlayerResult, Question } from './types'
 
@@ -49,11 +49,37 @@ export interface AnswerMatch {
   artist?: MatchLevel
 }
 
+// Mentions de version qu'un joueur peut recopier d'un titre de blind test : artiste invité (« feat. Jay-Z »,
+// « ft. », « featuring »), tout ce qui est entre parenthèses ou crochets (« (Radio Edit) », « [Remastered] »), et
+// en fin de titre, après un tiret ou non (« - Remastered 2011 », « Radio Edit », « Version originale »).
+const FEATURING = /\s+(feat\.?|ft\.?|featuring)\s.*$/i
+const BRACKETED = /\s*[([][^)\]]*[)\]]/g
+const TRAILING_VERSION =
+  /(\s+-)?\s+((\d{4}\s+)?remaster(ed|isé|isée)?(\s+(en\s+)?\d{4})?(\s+version)?|radio\s+(edit|version|mix)|single\s+(version|edit)|album\s+version|original\s+(mix|version)|extended\s+(mix|version)|version\s+(originale|radio|longue|courte|album|single)|edit|mono|stereo|stéréo)\s*$/i
+
+export function withoutTrackNotes(answer: string): string {
+  let rest = answer.replace(FEATURING, '').replace(BRACKETED, ' ').trim()
+  let previous
+  do {
+    previous = rest
+    rest = rest.replace(TRAILING_VERSION, '').trim()
+  } while (rest !== previous && rest !== '')
+  return rest === '' ? answer : rest
+}
+
+// Blind test : la réponse telle quelle, ou sans ses mentions de version ; le meilleur des deux.
+function matchTrackAnswer(answer: string, targets: readonly string[]): MatchLevel {
+  const asTyped = matchAnswer(answer, targets)
+  const cleaned = withoutTrackNotes(answer)
+  return cleaned === answer ? asTyped : betterMatchLevel(asTyped, matchAnswer(cleaned, targets))
+}
+
 export function matchFreeAnswer(question: Question, answer: Pick<Answer, 'value' | 'artist'>): AnswerMatch {
   const targets = answerTargets(question)
-  const main = matchAnswer(String(answer.value), targets.main)
+  const match = question.music ? matchTrackAnswer : matchAnswer
+  const main = match(String(answer.value), targets.main)
   if (!targets.artist) return { main }
-  return { main, artist: matchAnswer(answer.artist ?? '', targets.artist) }
+  return { main, artist: match(answer.artist ?? '', targets.artist) }
 }
 
 // Décisions de l'hôte pendant la validation (Contrôle), par réponse normalisée (normalizeAnswer) :

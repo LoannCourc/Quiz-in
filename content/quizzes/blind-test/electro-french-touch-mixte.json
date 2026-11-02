@@ -1,0 +1,217 @@
+{
+  "id": "electro-french-touch-mixte",
+  "gameType": "blindTest",
+  "title": "Électro et French touch : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "eft-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Veridis Quo – Daft Punk",
+        "Sad Girls – Bebe Rexha",
+        "Give Me Everything – Pitbull",
+        "Nightcall – Kavinsky"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Nightcall"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kavinsky",
+        "title": "Nightcall"
+      }
+    },
+    {
+      "id": "eft-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Baby I'm Yours – Breakbot",
+        "Sunset Lover – Petit Biscuit",
+        "Miles Away – Ofenbach",
+        "Upside Down – Jaden Bojsen"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Petit Biscuit"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Petit Biscuit",
+        "title": "Sunset Lover"
+      }
+    },
+    {
+      "id": "eft-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Go – Moby",
+        "Superlove – Avicii",
+        "Kelly Watch the Stars – Air",
+        "Years – Alesso"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Kelly Watch the Stars"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Air",
+        "title": "Kelly Watch the Stars"
+      }
+    },
+    {
+      "id": "eft-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Escape Velocity – The Chemical Brothers",
+        "Genesis – Justice",
+        "Under Control – Calvin Harris",
+        "Hey Mama – David Guetta"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Justice"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Justice",
+        "title": "Genesis"
+      }
+    },
+    {
+      "id": "eft-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Shed a Light – Robin Schulz",
+        "Everybody – Martin Solveig",
+        "Rock the Boat – Bob Sinclar",
+        "Cinema – Benny Benassi"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Everybody"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Martin Solveig",
+        "title": "Everybody"
+      }
+    },
+    {
+      "id": "eft-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Want Your Soul – Armand van Helden",
+        "The Weekend – Michael Gray",
+        "Stupidisco – Junior Jack",
+        "Lucky Star – Superfunk"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Superfunk"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Superfunk",
+        "title": "Lucky Star"
+      }
+    },
+    {
+      "id": "eft-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Chillin' – Modjo",
+        "Bubble Bath – The Swiss",
+        "In Your Arms (We Gonna Make It) – Benjamin Diamond",
+        "Midnight Funk – Demon"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "In Your Arms (We Gonna Make It)"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Benjamin Diamond",
+        "title": "In Your Arms (We Gonna Make It)"
+      }
+    },
+    {
+      "id": "eft-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Toop Toop – Cassius",
+        "Night Patrol – Lifelike",
+        "Intro – Alan Braxe",
+        "You – Etienne de Crécy"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Cassius"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Cassius",
+        "title": "Toop Toop"
+      }
+    },
+    {
+      "id": "eft-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Summer Days – Kid Francescoli",
+        "Joyride – French 79",
+        "One Last Time – VIZE",
+        "Dopamine – Mont Rouge"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Summer Days"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Kid Francescoli",
+        "title": "Summer Days"
+      }
+    },
+    {
+      "id": "eft-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pedrophilia – Busy P",
+        "Ragysh – Todd Terje",
+        "Brain Leech – Alex Gopher",
+        "Elevation – Para One"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Alex Gopher"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Alex Gopher",
+        "title": "Brain Leech"
+      }
+    }
+  ]
+}

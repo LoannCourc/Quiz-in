@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-80-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a80m-01",
+      "query": {
+        "artist": "Queen",
+        "title": "Another One Bites The Dust"
+      },
+      "found": {
+        "id": "4092324041",
+        "title": "Another One Bites The Dust",
+        "artist": "Queen",
+        "album": "The Game",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4092324041",
+        "explicit": false,
+        "rank": 918200
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-02",
+      "query": {
+        "artist": "Bonnie Tyler",
+        "title": "Total Eclipse of the Heart"
+      },
+      "found": {
+        "id": "532349",
+        "title": "Total Eclipse of the Heart",
+        "artist": "Bonnie Tyler",
+        "album": "Heaven & Hell",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/532349",
+        "explicit": false,
+        "rank": 961966
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-03",
+      "query": {
+        "artist": "Michael Jackson",
+        "title": "The Way You Make Me Feel"
+      },
+      "found": {
+        "id": "59509541",
+        "title": "The Way You Make Me Feel (2012 Remaster)",
+        "artist": "Michael Jackson",
+        "album": "Bad 25th Anniversary",
+        "durationS": 298,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/59509541",
+        "explicit": false,
+        "rank": 814533
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-04",
+      "query": {
+        "artist": "Madonna",
+        "title": "Papa Don't Preach"
+      },
+      "found": {
+        "id": "678363",
+        "title": "Papa Don't Preach",
+        "artist": "Madonna",
+        "album": "True Blue",
+        "durationS": 268,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/678363",
+        "explicit": false,
+        "rank": 683597
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-05",
+      "query": {
+        "artist": "Depeche Mode",
+        "title": "Everything Counts"
+      },
+      "found": {
+        "id": "68513660",
+        "title": "Everything Counts",
+        "artist": "Depeche Mode",
+        "album": "The Best of Depeche Mode, Vol. 1 (Deluxe)",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/68513660",
+        "explicit": false,
+        "rank": 664439
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-06",
+      "query": {
+        "artist": "Opus",
+        "title": "Live Is Life"
+      },
+      "found": {
+        "id": "67481099",
+        "title": "Live Is Life",
+        "artist": "Opus",
+        "album": "Les 15 plus grands hits, Vol. 1",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/67481099",
+        "explicit": false,
+        "rank": 646057
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-07",
+      "query": {
+        "artist": "Men Without Hats",
+        "title": "The Safety Dance"
+      },
+      "found": {
+        "id": "3244965261",
+        "title": "The Safety Dance (Music From the Motion Picture)",
+        "artist": "Men Without Hats",
+        "album": "Ghosts Of Girlfriends Past (Music From the Motion Picture) (Edited)",
+        "durationS": 272,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3244965261",
+        "explicit": false,
+        "rank": 454181
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-08",
+      "query": {
+        "artist": "Falco",
+        "title": "Rock Me Amadeus"
+      },
+      "found": {
+        "id": "542016",
+        "title": "Rock Me Amadeus",
+        "artist": "Falco",
+        "album": "The Definitive 80's (eighties)",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/542016",
+        "explicit": false,
+        "rank": 572835
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-09",
+      "query": {
+        "artist": "Odyssey",
+        "title": "Use It Up And Wear It Out"
+      },
+      "found": {
+        "id": "61692304",
+        "title": "Use It Up And Wear It Out",
+        "artist": "Odyssey",
+        "album": "Greatest Hits",
+        "durationS": 298,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/61692304",
+        "explicit": false,
+        "rank": 125556
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80m-10",
+      "query": {
+        "artist": "Samantha Fox",
+        "title": "Naughty Girls (Need Love Too)"
+      },
+      "found": {
+        "id": "2486074",
+        "title": "Naughty Girls (Need Love Too)",
+        "artist": "Samantha Fox",
+        "album": "Samantha Fox",
+        "durationS": 310,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2486074",
+        "explicit": false,
+        "rank": 140920
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

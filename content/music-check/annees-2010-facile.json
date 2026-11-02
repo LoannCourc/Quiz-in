@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2010-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a10f-01",
+      "query": {
+        "artist": "Pharrell Williams",
+        "title": "Happy"
+      },
+      "found": {
+        "id": "701326562",
+        "title": "Happy (From \"Despicable Me 2\")",
+        "artist": "Pharrell Williams",
+        "album": "G I R L",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/701326562",
+        "explicit": false,
+        "rank": 923864
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-02",
+      "query": {
+        "artist": "Adele",
+        "title": "Rolling in the Deep"
+      },
+      "found": {
+        "id": "8086126",
+        "title": "Rolling in the Deep",
+        "artist": "Adele",
+        "album": "21",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/8086126",
+        "explicit": false,
+        "rank": 972160
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-03",
+      "query": {
+        "artist": "Ed Sheeran",
+        "title": "Shape of You"
+      },
+      "found": {
+        "id": "139470659",
+        "title": "Shape of You",
+        "artist": "Ed Sheeran",
+        "album": "Shape of You",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/139470659",
+        "explicit": false,
+        "rank": 968208
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-04",
+      "query": {
+        "artist": "Avicii",
+        "title": "Wake Me Up"
+      },
+      "found": {
+        "id": "70266756",
+        "title": "Wake Me Up",
+        "artist": "Avicii",
+        "album": "True",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70266756",
+        "explicit": false,
+        "rank": 921155
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-05",
+      "query": {
+        "artist": "Luis Fonsi",
+        "title": "Despacito"
+      },
+      "found": {
+        "id": "623698142",
+        "title": "Despacito",
+        "artist": "Luis Fonsi",
+        "album": "VIDA",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/623698142",
+        "explicit": false,
+        "rank": 843059
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-06",
+      "query": {
+        "artist": "Imagine Dragons",
+        "title": "Believer"
+      },
+      "found": {
+        "id": "528330441",
+        "title": "Believer",
+        "artist": "Imagine Dragons",
+        "album": "Evolve",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/528330441",
+        "explicit": false,
+        "rank": 946141
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-07",
+      "query": {
+        "artist": "Mark Ronson",
+        "title": "Uptown Funk"
+      },
+      "found": {
+        "id": "92734438",
+        "title": "Uptown Funk (feat. Bruno Mars)",
+        "artist": "Mark Ronson",
+        "album": "Uptown Special",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92734438",
+        "explicit": false,
+        "rank": 951385
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-08",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Get Lucky"
+      },
+      "found": {
+        "id": "67238735",
+        "title": "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
+        "artist": "Daft Punk",
+        "album": "Random Access Memories",
+        "durationS": 367,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/67238735",
+        "explicit": false,
+        "rank": 877635
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-09",
+      "query": {
+        "artist": "Louane",
+        "title": "Jour 1"
+      },
+      "found": {
+        "id": "3027762121",
+        "title": "Jour 1",
+        "artist": "Louane",
+        "album": "foudre",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3027762121",
+        "explicit": false,
+        "rank": 856224
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10f-10",
+      "query": {
+        "artist": "Christophe Maé",
+        "title": "Tombé sous le charme"
+      },
+      "found": {
+        "id": "67535294",
+        "title": "Tombé sous le charme",
+        "artist": "Christophe Maé",
+        "album": "Je veux du bonheur",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/67535294",
+        "explicit": false,
+        "rank": 888507
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

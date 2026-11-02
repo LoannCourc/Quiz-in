@@ -1,0 +1,228 @@
+{
+  "id": "annees-90-mixte",
+  "gameType": "blindTest",
+  "title": "Années 90 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 90, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "cd",
+  "genre": "pop",
+  "decade": 1990,
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a90m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Better Off Alone – Alice DJ",
+        "Blue (Da Ba Dee) – Eiffel 65",
+        "Freed From Desire – Gala",
+        "Black Hole Sun – Soundgarden"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Blue (Da Ba Dee)"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Eiffel 65",
+        "title": "Blue (Da Ba Dee)"
+      }
+    },
+    {
+      "id": "a90m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't Look Back In Anger – Oasis",
+        "Linger – The Cranberries",
+        "One – U2",
+        "Losing My Religion – R.E.M."
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "R.E.M."
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "R.E.M.",
+        "title": "Losing My Religion"
+      }
+    },
+    {
+      "id": "a90m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Come On Over (All I Want Is You) – Christina Aguilera",
+        "Walking in Memphis – Cher",
+        "Mama – Spice Girls",
+        "Sailing – *nsync"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mama"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Spice Girls",
+        "title": "Mama"
+      }
+    },
+    {
+      "id": "a90m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Waiting for Tonight – Jennifer Lopez",
+        "Frozen – Madonna",
+        "All Apologies – Nirvana",
+        "Sometimes – Britney Spears"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Britney Spears"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Britney Spears",
+        "title": "Sometimes"
+      }
+    },
+    {
+      "id": "a90m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "When I Come Around – Green Day",
+        "Give It Away – Red Hot Chili Peppers",
+        "Civil War – Guns N' Roses",
+        "My Hero – Foo Fighters"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Give It Away"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Give It Away",
+        "artistAliases": [
+          "Red Hot",
+          "RHCP"
+        ]
+      }
+    },
+    {
+      "id": "a90m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Saturday Night – Whigfield",
+        "Another Night – Real McCoy",
+        "Beautiful Life – Ace of Base",
+        "Dreams – 2 Brothers on the 4th Floor"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Whigfield"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Whigfield",
+        "title": "Saturday Night"
+      }
+    },
+    {
+      "id": "a90m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "2 Times – Ann Lee",
+        "I Like to Move It – Reel 2 Real",
+        "Scatman (ski-ba-bop-ba-dop-bop) – Scatman John",
+        "Boom, Boom, Boom, Boom!! – Vengaboys"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Scatman (ski-ba-bop-ba-dop-bop)"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Scatman John",
+        "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+        "artistAliases": [
+          "Scatman"
+        ]
+      }
+    },
+    {
+      "id": "a90m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Summer Is Magic – Playahitty",
+        "It's My Life – Dr. Alban",
+        "No Limit – 2 Unlimited",
+        "Let the Dream Come True – DJ BoBo"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Dr. Alban"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dr. Alban",
+        "title": "It's My Life",
+        "artistAliases": [
+          "Dr Alban",
+          "Docteur Alban"
+        ]
+      }
+    },
+    {
+      "id": "a90m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Better Day – Ocean Colour Scene",
+        "The Devil Went Down to Georgia – Levellers",
+        "Walt Whitman's Niece – Billy Bragg",
+        "Friday Night – S Club"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Better Day"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ocean Colour Scene",
+        "title": "Better Day"
+      }
+    },
+    {
+      "id": "a90m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Crying in the Rain – Culture Beat",
+        "Feel the fire – Masterboy",
+        "You Won't Forget Me – La Bouche",
+        "Don't Go Breaking My Heart – Corona"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Culture Beat"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Culture Beat",
+        "title": "Crying in the Rain"
+      }
+    }
+  ]
+}

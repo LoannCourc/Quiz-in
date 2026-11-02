@@ -1,0 +1,223 @@
+{
+  "id": "chanson-francaise-mixte",
+  "gameType": "blindTest",
+  "title": "Chanson française : tous niveaux",
+  "theme": "Musique",
+  "description": "Du classique à la pépite oubliée : dix chansons françaises, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "cfm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Allumer le feu – Johnny Hallyday",
+        "Et un jour une femme – Florent Pagny",
+        "Les sunlights des tropiques – Gilbert Montagné",
+        "Prière païenne – Céline Dion"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Prière païenne"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Céline Dion",
+        "title": "Prière païenne"
+      }
+    },
+    {
+      "id": "cfm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Dans les yeux d'Émilie – Joe Dassin",
+        "Mourir sur scène – Dalida",
+        "Tous les cris les S.O.S. – Daniel Balavoine",
+        "Ella, elle l'a – France Gall"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "France Gall"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "France Gall",
+        "title": "Ella, elle l'a"
+      }
+    },
+    {
+      "id": "cfm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les deux guitares – Charles Aznavour",
+        "Mourir pour des idées – Georges Brassens",
+        "Mathilde – Jacques Brel",
+        "Sous le ciel de Paris – Edith Piaf"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mathilde"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Jacques Brel",
+        "title": "Mathilde",
+        "artistAliases": [
+          "Brel"
+        ]
+      }
+    },
+    {
+      "id": "cfm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La dame brune – Barbara",
+        "La salsa – Bernard Lavilliers",
+        "Le bagad de Lann-Bihoué – Alain Souchon",
+        "Couleur café – Serge Gainsbourg"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Serge Gainsbourg"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Serge Gainsbourg",
+        "title": "Couleur café",
+        "artistAliases": [
+          "Gainsbourg"
+        ]
+      }
+    },
+    {
+      "id": "cfm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Au bout de mes rêves – Jean-Jacques Goldman",
+        "L'encre de tes yeux – Francis Cabrel",
+        "Il ne rentre pas ce soir – Eddy Mitchell",
+        "Femmes... Je vous aime – Julien Clerc"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "L'encre de tes yeux"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Francis Cabrel",
+        "title": "L'encre de tes yeux"
+      }
+    },
+    {
+      "id": "cfm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Capri c'est fini – Hervé Vilard",
+        "Une femme amoureuse – Mireille Mathieu",
+        "Michèle – Gérard Lenorman",
+        "La plus belle pour aller danser – Sylvie Vartan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hervé Vilard"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Hervé Vilard",
+        "title": "Capri c'est fini"
+      }
+    },
+    {
+      "id": "cfm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pour un flirt – Michel Delpech",
+        "Lettre à France – Michel Polnareff",
+        "Et maintenant – Gilbert Bécaud",
+        "Et mon père – Nicolas Peyrac"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Pour un flirt"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Michel Delpech",
+        "title": "Pour un flirt"
+      }
+    },
+    {
+      "id": "cfm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "En l'an 2001 – Pierre Bachelet",
+        "D'aventures en aventures – Serge Lama",
+        "Mon vieux – Daniel Guichard",
+        "Je n'aurai pas le temps – Michel Fugain"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Daniel Guichard"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Daniel Guichard",
+        "title": "Mon vieux"
+      }
+    },
+    {
+      "id": "cfm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La décision – Dave",
+        "Faut pas rêver – Patrick Juvet",
+        "J'avais oublié que les roses sont roses – Salvatore Adamo",
+        "Il y a du soleil sur la France – Stone & Charden"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Faut pas rêver"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Patrick Juvet",
+        "title": "Faut pas rêver"
+      }
+    },
+    {
+      "id": "cfm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Je Veux Pleurer Comme Soraya – Marie-Paule Belle",
+        "Quand un soldat – Francis Lemarque",
+        "Les gentils, les méchants – Le Big Bazar",
+        "La Movida – Yves Simon"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le Big Bazar"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Le Big Bazar",
+        "title": "Les gentils, les méchants"
+      }
+    }
+  ]
+}

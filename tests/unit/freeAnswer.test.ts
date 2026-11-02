@@ -10,6 +10,7 @@ import {
   groupFreeAnswers,
   matchFreeAnswer,
   publicFreeAnswerGroups,
+  withoutTrackNotes,
 } from '../../shared/freeAnswers'
 import { hasValidationPhase, isUntimedPhase, nextPhase, nextQuestionCountdown } from '../../shared/gameFlow'
 import { hostReturnUpdate, isPhaseStale } from '../../shared/hostAbsence'
@@ -148,6 +149,43 @@ describe('Blind test en Réponse libre : ask et alias', () => {
     const question = blindTest('artist', { artistAliases: ['Stones'] })
     expect(matchFreeAnswer(question, answer('Rolling Stones')).main).toBe('exact')
     expect(matchFreeAnswer(question, answer('stones')).main).toBe('exact')
+  })
+
+  test('mentions de version recopiées par le joueur : feat., parenthèses, fin de titre', () => {
+    const title = blindTest('title')
+    for (const typed of [
+      'Satisfaction (Radio Edit)',
+      'Satisfaction [Remastered]',
+      'Satisfaction - Remastered 2011',
+      'Satisfaction Radio Edit',
+      'Satisfaction - Single Version',
+      'Satisfaction (Mono) - 2002 Remaster',
+      'Satisfaction feat. Mick Jagger',
+      'Satisfaction ft Keith Richards',
+      'Satisfaction version originale',
+    ]) {
+      expect(matchFreeAnswer(title, answer(typed)).main, typed).toBe('exact')
+    }
+    const artist = blindTest('artist')
+    expect(matchFreeAnswer(artist, answer('The Rolling Stones feat. Bob Dylan')).main).toBe('exact')
+    expect(matchFreeAnswer(artist, answer('Rolling Stones featuring Bob Dylan')).main).toBe('exact')
+    const both = blindTest('both')
+    expect(matchFreeAnswer(both, answer('Satisfaction (Remastered)', NOW, { artist: 'Rolling Stones ft. Bob Dylan' }))).toEqual({ main: 'exact', artist: 'exact' })
+  })
+
+  test('mentions retirées, la réponse reste jugée : un autre titre reste faux', () => {
+    const title = blindTest('title')
+    expect(matchFreeAnswer(title, answer('Angie (Radio Edit)')).main).toBe('wrong')
+    expect(matchFreeAnswer(title, answer('Paint It Black feat. Satisfaction')).main).not.toBe('exact')
+    // Une réponse qui n'est qu'une mention reste telle quelle.
+    expect(withoutTrackNotes('(Radio Edit)')).toBe('(Radio Edit)')
+    expect(withoutTrackNotes('Live Is Life')).toBe('Live Is Life')
+    expect(withoutTrackNotes('Edit Piaf')).toBe('Edit Piaf')
+  })
+
+  test('quiz classique : aucune mention retirée', () => {
+    const capital = makeQuestion(0, { text: 'Capitale ?', acceptedAnswers: ['Canberra'] })
+    expect(matchFreeAnswer(capital, answer('Canberra (Australie)')).main).not.toBe('exact')
   })
 
   test('both : deux parties, titre dans value et artiste dans artist', () => {

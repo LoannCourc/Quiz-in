@@ -1,0 +1,217 @@
+{
+  "id": "annees-80-oubliees-impossible",
+  "gameType": "blindTest",
+  "title": "Années 80 oubliées",
+  "theme": "Musique",
+  "description": "Les groupes des années 80 qui ont disparu des playlists : pour les vrais curieux.",
+  "audience": "experts",
+  "poster": "pink",
+  "icon": "cassette",
+  "genre": "pop",
+  "decade": 1980,
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "a80o-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Gone To Pieces – Nik Kershaw",
+        "Theme From \"Mantrap\" – ABC",
+        "Ordinary Girl – Alison Moyet",
+        "Different Seasons – Johnny Hates Jazz"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Different Seasons"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Johnny Hates Jazz",
+        "title": "Different Seasons"
+      }
+    },
+    {
+      "id": "a80o-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mr. X – Ultravox",
+        "No Regrets – Midge Ure",
+        "The Gap – Thompson Twins",
+        "Hypnotize Me – Wang Chung"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Thompson Twins"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Thompson Twins",
+        "title": "The Gap"
+      }
+    },
+    {
+      "id": "a80o-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cheers Then – Bananarama",
+        "Life In One Day – Howard Jones",
+        "Nightmares – A Flock of Seagulls",
+        "God Is A Bullet – Concrete Blonde"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Life In One Day"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Howard Jones",
+        "title": "Life In One Day"
+      }
+    },
+    {
+      "id": "a80o-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sign O’ The Times – Heaven 17",
+        "You Don't Need Someone New – The Lotus Eaters",
+        "Dissidents – Thomas Dolby",
+        "That's Love, That It Is – Blancmange"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Heaven 17"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Heaven 17",
+        "title": "Sign O’ The Times"
+      }
+    },
+    {
+      "id": "a80o-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mind Of A Toy – Visage",
+        "I Second That Emotion – Japan",
+        "Far Too Hard – Dead or Alive",
+        "Headstart For Happiness – The Style Council"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Mind Of A Toy"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Visage",
+        "title": "Mind Of A Toy"
+      }
+    },
+    {
+      "id": "a80o-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Eat Cannibals, Pt. 2 – Toto Coelo",
+        "What You Deserve – Re-Flex",
+        "On a Plane – Kajagoogoo",
+        "Antarctica – Men Without Hats"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Re-Flex"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Re-Flex",
+        "title": "What You Deserve"
+      }
+    },
+    {
+      "id": "a80o-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "A Matter Of Time – Berlin",
+        "Broken Again – Real Life",
+        "Robots Dance – Classix Nouveaux",
+        "Heard Through the Wall – Del Amitri"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Robots Dance"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Classix Nouveaux",
+        "title": "Robots Dance"
+      }
+    },
+    {
+      "id": "a80o-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Counting – The Motels",
+        "Love In A Vacuum – 'Til Tuesday",
+        "Windows – Missing Persons",
+        "(What) In the Name of Love – Naked Eyes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Naked Eyes"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Naked Eyes",
+        "title": "(What) In the Name of Love"
+      }
+    },
+    {
+      "id": "a80o-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Deeper And Deeper – The Fixx",
+        "Where The Rose Is Sown – Big Country",
+        "Leave the Planet – Galaxie 500",
+        "Sunshine Superman – Hüsker Dü"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Deeper And Deeper"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "The Fixx",
+        "title": "Deeper And Deeper"
+      }
+    },
+    {
+      "id": "a80o-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "How Men Are – Aztec Camera",
+        "Areas – New Musik",
+        "The \"Sweetest Girl\" – Scritti Politti",
+        "Arizona Sky – China Crisis"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "China Crisis"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "China Crisis",
+        "title": "Arizona Sky"
+      }
+    }
+  ]
+}

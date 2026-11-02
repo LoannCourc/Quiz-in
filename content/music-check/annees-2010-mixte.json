@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2010-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a10m-01",
+      "query": {
+        "artist": "Lorde",
+        "title": "Royals"
+      },
+      "found": {
+        "id": "70403437",
+        "title": "Royals",
+        "artist": "Lorde",
+        "album": "Pure Heroine",
+        "durationS": 190,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70403437",
+        "explicit": false,
+        "rank": 876369
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-02",
+      "query": {
+        "artist": "Carly Rae Jepsen",
+        "title": "Call Me Maybe"
+      },
+      "found": {
+        "id": "17826508",
+        "title": "Call Me Maybe",
+        "artist": "Carly Rae Jepsen",
+        "album": "Call Me Maybe",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/17826508",
+        "explicit": false,
+        "rank": 947822
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-03",
+      "query": {
+        "artist": "Ed Sheeran",
+        "title": "Lego House"
+      },
+      "found": {
+        "id": "13651710",
+        "title": "Lego House",
+        "artist": "Ed Sheeran",
+        "album": "+",
+        "durationS": 185,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13651710",
+        "explicit": false,
+        "rank": 626396
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-04",
+      "query": {
+        "artist": "The Weeknd",
+        "title": "Die For You"
+      },
+      "found": {
+        "id": "136889432",
+        "title": "Die For You",
+        "artist": "The Weeknd",
+        "album": "Starboy",
+        "durationS": 260,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136889432",
+        "explicit": false,
+        "rank": 918224
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-05",
+      "query": {
+        "artist": "Imagine Dragons",
+        "title": "On Top Of The World"
+      },
+      "found": {
+        "id": "63510362",
+        "title": "On Top Of The World",
+        "artist": "Imagine Dragons",
+        "album": "Night Visions",
+        "durationS": 189,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63510362",
+        "explicit": false,
+        "rank": 846652
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-06",
+      "query": {
+        "artist": "First Aid Kit",
+        "title": "My Silver Lining"
+      },
+      "found": {
+        "id": "78956229",
+        "title": "My Silver Lining",
+        "artist": "First Aid Kit",
+        "album": "Stay Gold",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/78956229",
+        "explicit": false,
+        "rank": 793466
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-07",
+      "query": {
+        "artist": "Cobra Starship",
+        "title": "You Make Me Feel..."
+      },
+      "found": {
+        "id": "14172440",
+        "title": "You Make Me Feel... (feat. Sabi)",
+        "artist": "Cobra Starship",
+        "album": "You Make Me Feel... (feat. Sabi)",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14172440",
+        "explicit": false,
+        "rank": 784650
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-08",
+      "query": {
+        "artist": "Michael Kiwanuka",
+        "title": "Home Again"
+      },
+      "found": {
+        "id": "16668499",
+        "title": "Home Again",
+        "artist": "Michael Kiwanuka",
+        "album": "Home Again (Deluxe Version)",
+        "durationS": 210,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/16668499",
+        "explicit": false,
+        "rank": 759517
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-09",
+      "query": {
+        "artist": "Fink",
+        "title": "Pilgrim"
+      },
+      "found": {
+        "id": "76263944",
+        "title": "Pilgrim",
+        "artist": "Fink",
+        "album": "Hard Believer",
+        "durationS": 422,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/76263944",
+        "explicit": false,
+        "rank": 394808
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a10m-10",
+      "query": {
+        "artist": "Laura Marling",
+        "title": "I Feel Your Love"
+      },
+      "found": {
+        "id": "96448718",
+        "title": "I Feel Your Love",
+        "artist": "Laura Marling",
+        "album": "Short Movie",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/96448718",
+        "explicit": false,
+        "rank": 138024
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

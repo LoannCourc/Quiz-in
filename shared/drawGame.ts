@@ -70,7 +70,8 @@ export function shuffled<T>(items: readonly T[], random: () => number): T[] {
 function levelQuotas(count: number): Record<Difficulty, number> {
   const hard = Math.floor(count / 8)
   const medium = Math.round(count * 0.375)
-  return { 1: count - medium - hard, 2: medium, 3: hard }
+  // Aucun mot « impossible » (niveau des blind tests).
+  return { 1: count - medium - hard, 2: medium, 3: hard, 4: 0 }
 }
 
 // Manches d'une partie : mots tirés au hasard (reproductible : même code de salle et mêmes catégories,

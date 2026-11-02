@@ -1,0 +1,224 @@
+{
+  "id": "chansons-de-fete-facile",
+  "gameType": "blindTest",
+  "title": "Chansons de fête",
+  "theme": "Musique",
+  "description": "Bandas, bals et refrains de fin de banquet : dix chansons à reprendre en chœur, toutes époques.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "fete-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Santiano – Hugues Aufray",
+        "Chevaliers de la table ronde – Les Quatre Barbus",
+        "Boule de flipper – Corynne Charby",
+        "La fête au village – Les Musclés"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Chevaliers de la table ronde"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Les Quatre Barbus",
+        "title": "Chevaliers de la table ronde"
+      }
+    },
+    {
+      "id": "fete-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Chante – Les Forbans",
+        "Il tape sur des bambous – Philippe Lavil",
+        "Voilà l'été – Les Négresses Vertes",
+        "Le gorille – Georges Brassens"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Georges Brassens"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Georges Brassens",
+        "title": "Le gorille",
+        "artistAliases": [
+          "Brassens"
+        ]
+      }
+    },
+    {
+      "id": "fete-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les jolies colonies de vacances – Pierre Perret",
+        "Fais comme l'oiseau – Michel Fugain",
+        "Merci Patron – Les Charlots",
+        "Viens boire un p'tit coup à la maison – Licence IV"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Les jolies colonies de vacances"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Pierre Perret",
+        "title": "Les jolies colonies de vacances"
+      }
+    },
+    {
+      "id": "fete-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Besoin De Rien, Envie De Toi – Peter & Sloane",
+        "Macumba – Jean-Pierre Mader",
+        "Les sardines – Patrick Sébastien",
+        "Les valses de Vienne – François Feldman"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Patrick Sébastien"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Patrick Sébastien",
+        "title": "Les sardines"
+      }
+    },
+    {
+      "id": "fete-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La Jument De Michao – Tri Yann",
+        "Tata Yoyo – Annie Cordy",
+        "Le banana split – Lio",
+        "En chantant – Michel Sardou"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Tata Yoyo"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Annie Cordy",
+        "title": "Tata Yoyo"
+      }
+    },
+    {
+      "id": "fete-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Alexandrie Alexandra – Claude François",
+        "J'ai encore rêvé d'elle – Il Etait Une Fois",
+        "Siffler sur la colline – Joe Dassin",
+        "Femme que j'aime – Jean-Luc Lahaye"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Claude François"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Claude François",
+        "title": "Alexandrie Alexandra",
+        "artistAliases": [
+          "Cloclo"
+        ]
+      }
+    },
+    {
+      "id": "fete-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ça plane pour moi – Plastic Bertrand",
+        "Capitaine abandonné – Gold",
+        "Lambé An Dro – Matmatah",
+        "Tomber la chemise – Zebda"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Ça plane pour moi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Plastic Bertrand",
+        "title": "Ca Plane Pour Moi",
+        "displayTitle": "Ça plane pour moi"
+      }
+    },
+    {
+      "id": "fete-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "On va s'aimer – Gilbert Montagné",
+        "La tribu de Dana – Manau",
+        "Femme libérée – Cookie Dingler",
+        "Ça fait rire les oiseaux – La Compagnie Créole"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "La Compagnie Créole"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "La Compagnie Créole",
+        "title": "Ça fait rire les oiseaux"
+      }
+    },
+    {
+      "id": "fete-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Torero – Chayanne",
+        "La Bamba – Los Lobos",
+        "María – Ricky Martin",
+        "Bamboléo – Gipsy Kings"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bamboléo"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Gipsy Kings",
+        "title": "Bamboléo"
+      }
+    },
+    {
+      "id": "fete-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Rasputin – Boney M.",
+        "YMCA – Village People",
+        "I Will Survive – Gloria Gaynor",
+        "Celebration – Kool & The Gang"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Gloria Gaynor"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Gloria Gaynor",
+        "title": "I Will Survive"
+      }
+    }
+  ]
+}

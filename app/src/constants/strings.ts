@@ -507,6 +507,8 @@ export const strings = {
     playedLabel: (title: string) => `${title}, déjà fait`,
     withLevel: (label: string, level: string) => `${label}, difficulté : ${level}`,
     gameTypes: { quiz: 'Quiz', blindTest: 'Blind test', bluff: 'Bluff', draw: 'Gribouille' } satisfies Record<GameType, string>,
+    // Fiche d'un blind test dont un morceau est marqué explicite par Deezer.
+    explicitLyrics: 'Paroles explicites',
     soon: 'bientôt',
     gameTypeSoon: (label: string) => `${label}, bientôt disponible`,
     rows: {
@@ -518,7 +520,7 @@ export const strings = {
     posterLabel: (title: string, rank?: number) => (rank === undefined ? title : `${rank}. ${title}`),
     // Démos (développement seulement), sur une ligne en bas de l'accueil.
     demoCatalogLink: 'Démo catalogue',
-    difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' } satisfies Record<DifficultyLevel, string>,
+    difficultyLevels: { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible', mixed: 'Tous niveaux' } satisfies Record<DifficultyLevel, string>,
     // Quiz joué (salon, salle d'attente, fin) : « Électro des années 80 · Moyen ».
     playedQuiz: (title: string, level: string) => `${title} · ${level}`,
     playerDemoLink: 'Démo joueur',

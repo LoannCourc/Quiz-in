@@ -20,7 +20,7 @@ const PROJECT = 'demo-quiz-in'
 const RUNS = Number(process.env.FIRST_LAUNCH_RUNS) || 5
 const COMPARE = process.env.FIRST_LAUNCH_COMPARE === '1'
 // Écrans de l'accueil et du catalogue qui demandent la connexion à l'ouverture.
-const STARTUP_READS = ['config/blindTestEnabled', 'config/drawEnabled', 'quizzes']
+const STARTUP_READS = ['config/blindTestV2Enabled', 'config/drawEnabled', 'quizzes']
 // Temps laissé à l'utilisateur pour choisir un quiz avant « Choisir ce quiz ».
 const BROWSE_MS = 2000
 

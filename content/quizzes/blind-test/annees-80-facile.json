@@ -1,0 +1,227 @@
+{
+  "id": "annees-80-facile",
+  "gameType": "blindTest",
+  "title": "Années 80 : les tubes",
+  "theme": "Musique",
+  "description": "Synthés, brushings et refrains cultes : dix tubes des années 80 que tout le monde reconnaît dès les premières notes.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "cassette",
+  "genre": "pop",
+  "decade": 1980,
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "featuredRank": 2,
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a80f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Batdance – Prince",
+        "Billie Jean – Michael Jackson",
+        "Careless Whisper – George Michael",
+        "Like a Prayer – Madonna"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Billie Jean"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Michael Jackson",
+        "title": "Billie Jean",
+        "artistAliases": [
+          "MJ"
+        ]
+      }
+    },
+    {
+      "id": "a80f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Take on Me – a-ha",
+        "Sweet Dreams (Are Made of This) – Eurythmics",
+        "Forever Young – Alphaville",
+        "Everybody Wants To Rule The World – Tears for Fears"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "a-ha"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "a-ha",
+        "title": "Take on Me",
+        "artistAliases": [
+          "aha"
+        ]
+      }
+    },
+    {
+      "id": "a80f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Girls Just Want to Have Fun – Cyndi Lauper",
+        "I'm Still Standing – Elton John",
+        "It Must Have Been Love – Roxette",
+        "Holding Out for a Hero – Bonnie Tyler"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Girls Just Want to Have Fun"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Cyndi Lauper",
+        "title": "Girls Just Want to Have Fun"
+      }
+    },
+    {
+      "id": "a80f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jump – Van Halen",
+        "Is This Love – Whitesnake",
+        "The Final Countdown – Europe",
+        "Rock You Like a Hurricane – Scorpions"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Europe"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Europe",
+        "title": "The Final Countdown"
+      }
+    },
+    {
+      "id": "a80f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Don't Stop Believin' – Journey",
+        "Uptown Girl – Billy Joel",
+        "Rebel Yell – Billy Idol",
+        "Africa – Toto"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Africa"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Toto",
+        "title": "Africa"
+      }
+    },
+    {
+      "id": "a80f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Nothing's Gonna Stop Us Now – Starship",
+        "Pour Some Sugar On Me – Def Leppard",
+        "Eye of the Tiger – Survivor",
+        "Tainted Love – Soft Cell"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Survivor"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Survivor",
+        "title": "Eye of the Tiger"
+      }
+    },
+    {
+      "id": "a80f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Une autre histoire – Gérard Blanc",
+        "Les démons de minuit – Images",
+        "La groupie du pianiste – Michel Berger",
+        "Voyage voyage – Desireless"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Voyage voyage"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Desireless",
+        "title": "Voyage voyage"
+      }
+    },
+    {
+      "id": "a80f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I'm So Excited – The Pointer Sisters",
+        "Wake Me Up Before You Go-Go – Wham!",
+        "Karma Chameleon – Culture Club",
+        "It's a Sin – Pet Shop Boys"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Wham!"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Wham!",
+        "title": "Wake Me Up Before You Go-Go",
+        "artistAliases": [
+          "Wham"
+        ]
+      }
+    },
+    {
+      "id": "a80f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Un autre monde – Telephone",
+        "Elle a les yeux revolver – Marc Lavoine",
+        "Là-bas – Jean-Jacques Goldman",
+        "L'aventurier – Indochine"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "L'aventurier"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Indochine",
+        "title": "L'aventurier"
+      }
+    },
+    {
+      "id": "a80f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Livin' On A Prayer – Bon Jovi",
+        "Forever – KISS",
+        "Under Pressure – Queen",
+        "Heaven – Bryan Adams"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bon Jovi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bon Jovi",
+        "title": "Livin' On A Prayer"
+      }
+    }
+  ]
+}

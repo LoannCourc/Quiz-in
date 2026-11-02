@@ -1,0 +1,222 @@
+{
+  "id": "latino-reggaeton-mixte",
+  "gameType": "blindTest",
+  "title": "Latino et reggaeton : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "sun",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "lat-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Coco loco – Maluma",
+        "Loco – Justin Quiles",
+        "Échame la Culpa – Luis Fonsi",
+        "Vivir Mi Vida – Marc Anthony"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Échame la Culpa"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Luis Fonsi",
+        "title": "Échame La Culpa",
+        "displayTitle": "Échame la Culpa"
+      }
+    },
+    {
+      "id": "lat-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "El Perdón – Nicky Jam",
+        "Con Calma – Daddy Yankee",
+        "Mi Mundo Entero – Andy Rivera",
+        "Salió El Sol – Don Omar"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Nicky Jam"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nicky Jam",
+        "title": "El Perdon",
+        "displayTitle": "El Perdón"
+      }
+    },
+    {
+      "id": "lat-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Vaina Loca – Ozuna",
+        "Ginza – J Balvin",
+        "El makinon – Karol G",
+        "Si Te Vas – Sech"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ginza"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "J Balvin",
+        "title": "Ginza"
+      }
+    },
+    {
+      "id": "lat-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Te Suelto el Pelo – Yandel",
+        "CAFé CON RON – Bad Bunny",
+        "Yo x Ti, Tu x Mi – Rosalía",
+        "El Taxi – Pitbull"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Bad Bunny"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bad Bunny",
+        "title": "CAFé CON RON"
+      }
+    },
+    {
+      "id": "lat-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Amor Genuino – Zion",
+        "Entre Tu y Yo – Tito El Bambino",
+        "Te Mueves – Zion & Lennox",
+        "Sexy Movimiento – Wisin & Yandel"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Sexy Movimiento"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Wisin & Yandel",
+        "title": "Sexy Movimiento"
+      }
+    },
+    {
+      "id": "lat-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Colgando en tus manos – Carlos Baute",
+        "Las Tumbas – Ismael Rivera",
+        "Te Toque Sin Querer – Diana Fuentes",
+        "Papi Chulo... Te Traigo El Mmmm – Lorna"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Lorna"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Lorna",
+        "title": "Papi Chulo... Te Traigo El Mmmm"
+      }
+    },
+    {
+      "id": "lat-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Una Vaina Loca – Fuego",
+        "Duele El Amor – Aleks Syntek",
+        "Suavemente – Elvis Crespo",
+        "Donde Estan las Gatas – Alex Gargolas"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Suavemente"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Elvis Crespo",
+        "title": "Suavemente"
+      }
+    },
+    {
+      "id": "lat-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "El Ausente – Pastor Lopez",
+        "Mi Primera Bachata – SBM",
+        "YO y TÚ – Ovy On The Drums",
+        "Mi Fidelidad – Osmani Garcia \"La Voz\""
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Ovy On The Drums"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Ovy On The Drums",
+        "title": "YO y TÚ"
+      }
+    },
+    {
+      "id": "lat-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mi Vicio – Ilegales",
+        "El Gavilan – El Taiger",
+        "El Vecino – DJ Unic",
+        "Que Viva el Amor – Jacob Forever"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Mi Vicio"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ilegales",
+        "title": "Mi Vicio"
+      }
+    },
+    {
+      "id": "lat-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mi Corazon Es Tuyo – El Chacal",
+        "Yo Voy A Legar – DJ Nelson",
+        "Feliz Con El – Divan",
+        "Hola Mi Amor – Srta. Dayana"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "DJ Nelson"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "DJ Nelson",
+        "title": "Yo Voy A Legar",
+        "titleAliases": [
+          "Yo Voy A Llegar"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "id": "electro-dance-hymnes-facile",
+  "gameType": "blindTest",
+  "title": "Électro et dance : les hymnes",
+  "theme": "Musique",
+  "description": "Dix hymnes électro et dance qui font lever les mains en soirée.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "edh-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Phantom – Justice",
+        "Around the World – Daft Punk",
+        "World Hold On (Children of the Sky) – Bob Sinclar",
+        "Right Here, Right Now – Fatboy Slim"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Around the World"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "Around the World"
+      }
+    },
+    {
+      "id": "edh-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "All Stars – Martin Solveig",
+        "Head Shoulders Knees & Toes – Ofenbach",
+        "Heroes (we could be) – Alesso",
+        "Titanium – David Guetta"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "David Guetta"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "David Guetta",
+        "title": "Titanium"
+      }
+    },
+    {
+      "id": "edh-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Runaway (U & I) – Galantis",
+        "Summer – Calvin Harris",
+        "Speechless – Robin Schulz",
+        "The Business – Tiësto"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Summer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Calvin Harris",
+        "title": "Summer"
+      }
+    },
+    {
+      "id": "edh-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't You Worry Child – Swedish House Mafia",
+        "Blah Blah Blah – Armin van Buuren",
+        "Whatever Turns You On – Axwell",
+        "Reload – Sebastian Ingrosso"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Swedish House Mafia"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Swedish House Mafia",
+        "title": "Don't You Worry Child"
+      }
+    },
+    {
+      "id": "edh-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Animals – Martin Garrix",
+        "Closer – The Chainsmokers",
+        "Believe (Shooting Stars) – R3HAB",
+        "Tsunami – Dvbbs"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Animals"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Martin Garrix",
+        "title": "Animals"
+      }
+    },
+    {
+      "id": "edh-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "9Pm (Till I Come) – ATB",
+        "Sandstorm – Darude",
+        "For An Angel – Paul van Dyk",
+        "Destination Calabria – Alex Gaudino"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Darude"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Darude",
+        "title": "Sandstorm"
+      }
+    },
+    {
+      "id": "edh-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Firestone – Kygo",
+        "Azukita – Steve Aoki",
+        "Faded – Alan Walker",
+        "Bonfire – Kshmr"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Faded"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Alan Walker",
+        "title": "Faded"
+      }
+    },
+    {
+      "id": "edh-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Clarity – ZEDD",
+        "Allein – Afrojack",
+        "Levels – Avicii",
+        "Music Sounds Better With You – Stardust"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Avicii"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Avicii",
+        "title": "Levels"
+      }
+    },
+    {
+      "id": "edh-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rattle – Bingo Players",
+        "Five More Hours – Deorro",
+        "Where Are Ü Now – Jack Ü",
+        "Satisfaction – Benny Benassi"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Satisfaction"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Benny Benassi",
+        "title": "Satisfaction"
+      }
+    },
+    {
+      "id": "edh-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Won't Look Back – Duke Dumont",
+        "I Remember – Deadmau5",
+        "In My Mind – Dynoro",
+        "Call on Me – Eric Prydz"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Eric Prydz"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Eric Prydz",
+        "title": "Call on Me"
+      }
+    }
+  ]
+}

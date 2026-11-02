@@ -1,0 +1,217 @@
+{
+  "id": "annees-70-facile",
+  "gameType": "blindTest",
+  "title": "Années 70 : les tubes",
+  "theme": "Musique",
+  "description": "Disco, rock et pop : dix tubes des années 70 que tout le monde connaît.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "discoBall",
+  "genre": "pop",
+  "decade": 1970,
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "a70f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mr. Blue Sky – Electric Light Orchestra",
+        "Vienna – Billy Joel",
+        "Da Ya Think I'm Sexy? – Rod Stewart",
+        "Dancing Queen – ABBA"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Dancing Queen"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "ABBA",
+        "title": "Dancing Queen"
+      }
+    },
+    {
+      "id": "a70f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Stairway to Heaven – Led Zeppelin",
+        "Stayin' Alive – Bee Gees",
+        "Sweet Home Alabama – Lynyrd Skynyrd",
+        "Wish You Were Here – Pink Floyd"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Bee Gees"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bee Gees",
+        "title": "Stayin' Alive"
+      }
+    },
+    {
+      "id": "a70f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sultans Of Swing – Dire Straits",
+        "Hotel California – Eagles",
+        "A Horse with No Name – America",
+        "Cocaine – Eric Clapton"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Hotel California"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Eagles",
+        "title": "Hotel California"
+      }
+    },
+    {
+      "id": "a70f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Don't Stop Me Now – Queen",
+        "Hold the Line – Toto",
+        "Miss You – The Rolling Stones",
+        "(Don't Fear) The Reaper – Blue Öyster Cult"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Queen"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Queen",
+        "title": "Don't Stop Me Now"
+      }
+    },
+    {
+      "id": "a70f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "September – Earth, Wind & Fire",
+        "You're The First, The Last, My Everything – Barry White",
+        "Blame It on the Boogie – The Jacksons",
+        "Ladies Night – Kool & The Gang"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "September"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Earth, Wind & Fire",
+        "title": "September"
+      }
+    },
+    {
+      "id": "a70f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Never Can Say Goodbye – Gloria Gaynor",
+        "I'm Not In Love – 10cc",
+        "Have You Ever Seen The Rain – Creedence Clearwater Revival",
+        "Daddy Cool – Boney M."
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Boney M."
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Boney M.",
+        "title": "Daddy Cool"
+      }
+    },
+    {
+      "id": "a70f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ain't No Mountain High Enough – Diana Ross",
+        "Heart Of Glass – Blondie",
+        "Riders on the Storm – The Doors",
+        "Hot Stuff – Donna Summer"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Hot Stuff"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Donna Summer",
+        "title": "Hot Stuff"
+      }
+    },
+    {
+      "id": "a70f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "School's Out – Alice Cooper",
+        "Lean On Me – Bill Withers",
+        "Le Freak – Chic",
+        "My Sweet Lord – George Harrison"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Chic"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Chic",
+        "title": "Le Freak"
+      }
+    },
+    {
+      "id": "a70f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Three Little Birds – Bob Marley & The Wailers",
+        "You're The One That I Want – John Travolta",
+        "Dreams – Fleetwood Mac",
+        "Paranoid – Black Sabbath"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dreams"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams"
+      }
+    },
+    {
+      "id": "a70f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "T.N.T. – AC/DC",
+        "The Passenger – Iggy Pop",
+        "Your Song – Elton John",
+        "Boys Don't Cry – The Cure"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Elton John"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Elton John",
+        "title": "Your Song"
+      }
+    }
+  ]
+}

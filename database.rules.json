@@ -179,7 +179,7 @@
             ".validate": "newData.hasChildren(['0', '1', '2', '3'])",
             "$option": { ".validate": "$option.matches(/^[0-3]$/) && newData.isString() && newData.val().length >= 1 && newData.val().length <= 80" }
           },
-          "difficulty": { ".validate": "newData.val() == 1 || newData.val() == 2 || newData.val() == 3" },
+          "difficulty": { ".validate": "newData.val() == 1 || newData.val() == 2 || newData.val() == 3 || newData.val() == 4" },
           "timeLimit": { ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 300" },
           "ask": { ".validate": "newData.isString() && newData.val().matches(/^(title|artist|both)$/)" },
           "choices": {

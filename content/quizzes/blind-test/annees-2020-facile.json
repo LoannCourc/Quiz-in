@@ -1,0 +1,221 @@
+{
+  "id": "annees-2020-facile",
+  "gameType": "blindTest",
+  "title": "Années 2020 : les tubes",
+  "theme": "Musique",
+  "description": "Dix tubes des années 2020 que tout le monde a entendus sur les réseaux et à la radio.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "smartphone",
+  "genre": "pop",
+  "decade": 2020,
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "a20f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Daisies – Justin Bieber",
+        "Unholy – Sam Smith",
+        "Blinding Lights – The Weeknd",
+        "The Color Violet – Tory Lanez"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Blinding Lights"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Weeknd",
+        "title": "Blinding Lights"
+      }
+    },
+    {
+      "id": "a20f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Midnight Sun – Zara Larsson",
+        "Bad Habits – Ed Sheeran",
+        "The Dead Dance – Lady Gaga",
+        "Levitating – Dua Lipa"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Dua Lipa"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dua Lipa",
+        "title": "Levitating"
+      }
+    },
+    {
+      "id": "a20f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Stupid song – Olivia Rodrigo",
+        "Wildflower – Billie Eilish",
+        "12 to 12 – Sombr",
+        "As It Was – Harry Styles"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "As It Was"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Harry Styles",
+        "title": "As It Was"
+      }
+    },
+    {
+      "id": "a20f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Opalite – Taylor Swift",
+        "Flowers – Miley Cyrus",
+        "Bam Bam – Camila Cabello",
+        "Light Switch – Charlie Puth"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Miley Cyrus"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Miley Cyrus",
+        "title": "Flowers"
+      }
+    },
+    {
+      "id": "a20f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Ain't Worried – OneRepublic",
+        "Forget Me – Lewis Capaldi",
+        "Dance Monkey – Tones And I",
+        "Anywhere Away from Here – Rag'n'Bone Man"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dance Monkey"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Tones and I",
+        "title": "Dance Monkey",
+        "displayArtist": "Tones And I"
+      }
+    },
+    {
+      "id": "a20f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Camouflage – Milky Chance",
+        "The First Time – Damiano David",
+        "So Easy (To Fall In Love) – Olivia Dean",
+        "Heat Waves – Glass Animals"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Glass Animals"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Glass Animals",
+        "title": "Heat Waves"
+      }
+    },
+    {
+      "id": "a20f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Beautiful Things – Benson Boone",
+        "Beggin – Måneskin",
+        "Enemy – Imagine Dragons",
+        "Drag Path – Twenty One Pilots"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Beggin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Måneskin",
+        "title": "Beggin'",
+        "displayTitle": "Beggin"
+      }
+    },
+    {
+      "id": "a20f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mon bébé – RnBoi",
+        "Au revoir – Angèle",
+        "Sur la piste – Eva",
+        "Pas Jalouse – Bamby"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "RnBoi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "RnBoi",
+        "title": "MON BÉBÉ",
+        "displayTitle": "Mon bébé"
+      }
+    },
+    {
+      "id": "a20f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Suavemente – Soolking",
+        "Mais je t'aime – Grand Corps Malade",
+        "Beau – Joseph Kamel",
+        "Et Bam – Mentissa"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Suavemente"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Soolking",
+        "title": "Suavemente"
+      }
+    },
+    {
+      "id": "a20f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tears – Sabrina Carpenter",
+        "Hate that i made you love me – Ariana Grande",
+        "Made You Look – Meghan Trainor",
+        "Parisienne – GIMS"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ariana Grande"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ariana Grande",
+        "title": "hate that i made you love me",
+        "displayTitle": "Hate that i made you love me"
+      }
+    }
+  ]
+}

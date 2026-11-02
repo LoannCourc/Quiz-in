@@ -17,14 +17,15 @@ export type GameStatus =
 // draw : Dessine-moi, un joueur dessine un mot secret que les autres devinent (plan-dessine-moi.md).
 export type AnswerMode = 'free' | 'choice' | 'bluff' | 'draw';
 
-// 1 = Facile, 2 = Moyen, 3 = Difficile.
-export type Difficulty = 1 | 2 | 3;
+// 1 = Facile, 2 = Moyen, 3 = Difficile, 4 = Impossible (blind tests seulement).
+export type Difficulty = 1 | 2 | 3 | 4;
 
 // Niveau d'un quiz, déduit de la moyenne des difficultés de ses questions (spec 8).
 // « Impossible » : blind tests très pointus (affiché dans les filtres seulement s'il a du contenu).
-export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'impossible';
+// « Tous niveaux » (mixed) : blind test qui monte du facile à l'impossible (2, 3, 3 et 2 questions).
+export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'impossible' | 'mixed';
 
-// Niveau d'une question (difficulté 1, 2, 3) : choix « Difficulté » d'une partie tirée dans des thèmes.
+// Niveau d'une question (difficulté 1, 2, 3 ; 4 compté avec 3) : choix « Difficulté » d'une partie tirée dans des thèmes.
 export type QuestionLevel = 'easy' | 'medium' | 'hard';
 
 // Nombre de questions d'un quiz par niveau (calculé par le build du contenu).
@@ -75,6 +76,9 @@ export interface QuizSummary {
   levelCounts?: QuestionLevelCounts;
   // Quiz du thème à la une (content/featuredTheme.json) : carte « Thème de la semaine » du catalogue Quiz.
   featuredTheme?: true;
+  // Blind test dont au moins un morceau est marqué « paroles explicites » par Deezer (build, d'après music-check) :
+  // pastille « Paroles explicites » sur la fiche.
+  explicitLyrics?: true;
 }
 
 export type ChoiceOptions = [string, string, string, string];

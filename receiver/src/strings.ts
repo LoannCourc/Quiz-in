@@ -2,7 +2,7 @@ import type { SoundEngineState } from './lib/sound/soundEngine'
 import type { EmojiSupport } from './lib/emojiSupport'
 import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, DifficultyLevel, GameStatus, TeamId } from '@shared/types'
 
-const LEVEL_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' }
+const LEVEL_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible', mixed: 'Tous niveaux' }
 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
@@ -70,6 +70,7 @@ export const strings = {
     1: 'Facile',
     2: 'Moyen',
     3: 'Difficile',
+    4: 'Impossible',
   } satisfies Record<Difficulty, string>,
   // Quiz fixe ou blind test joué (salon, bandeau en jeu, fin) : « Électro des années 80 · Moyen ».
   playedQuiz: (title: string, level: DifficultyLevel) => `${title} · ${LEVEL_LABELS[level]}`,

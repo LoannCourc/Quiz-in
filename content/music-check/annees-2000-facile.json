@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2000-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a00f-01",
+      "query": {
+        "artist": "Shakira",
+        "title": "Hips Don't Lie"
+      },
+      "found": {
+        "id": "88897841",
+        "title": "Hips Don't Lie (feat. Wyclef Jean)",
+        "artist": "Shakira",
+        "album": "Filtr presents R&B Party",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/88897841",
+        "explicit": false,
+        "rank": 918364
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-02",
+      "query": {
+        "artist": "Britney Spears",
+        "title": "Toxic"
+      },
+      "found": {
+        "id": "15391618",
+        "title": "Toxic",
+        "artist": "Britney Spears",
+        "album": "In The Zone",
+        "durationS": 201,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15391618",
+        "explicit": false,
+        "rank": 972750
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-03",
+      "query": {
+        "artist": "Black Eyed Peas",
+        "title": "I Gotta Feeling"
+      },
+      "found": {
+        "id": "4619466",
+        "title": "I Gotta Feeling",
+        "artist": "Black Eyed Peas",
+        "album": "THE E.N.D. (THE ENERGY NEVER DIES) (Deluxe Version)",
+        "durationS": 289,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4619466",
+        "explicit": false,
+        "rank": 928910
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-04",
+      "query": {
+        "artist": "Coldplay",
+        "title": "Viva La Vida"
+      },
+      "found": {
+        "id": "3157972",
+        "title": "Viva La Vida",
+        "artist": "Coldplay",
+        "album": "Viva La Vida or Death and All His Friends",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3157972",
+        "explicit": false,
+        "rank": 951268
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-05",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "One More Time"
+      },
+      "found": {
+        "id": "3135553",
+        "title": "One More Time",
+        "artist": "Daft Punk",
+        "album": "Discovery",
+        "durationS": 320,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3135553",
+        "explicit": false,
+        "rank": 896666
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-06",
+      "query": {
+        "artist": "Rihanna",
+        "title": "Umbrella"
+      },
+      "found": {
+        "id": "925106",
+        "title": "Umbrella",
+        "artist": "Rihanna",
+        "album": "Good Girl Gone Bad: Reloaded",
+        "durationS": 275,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/925106",
+        "explicit": false,
+        "rank": 958984
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-07",
+      "query": {
+        "artist": "Linkin Park",
+        "title": "In the End"
+      },
+      "found": {
+        "id": "676183",
+        "title": "In the End",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory (Bonus Edition)",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/676183",
+        "explicit": false,
+        "rank": 982895
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-08",
+      "query": {
+        "artist": "Christophe Maé",
+        "title": "On s'attache"
+      },
+      "found": {
+        "id": "790933",
+        "title": "On s'attache",
+        "artist": "Christophe Maé",
+        "album": "Mon paradis",
+        "durationS": 191,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/790933",
+        "explicit": false,
+        "rank": 924953
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-09",
+      "query": {
+        "artist": "Kylie Minogue",
+        "title": "Can't Get You out of My Head"
+      },
+      "found": {
+        "id": "3098100",
+        "title": "Can't Get You out of My Head",
+        "artist": "Kylie Minogue",
+        "album": "Fever",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3098100",
+        "explicit": false,
+        "rank": 860867
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00f-10",
+      "query": {
+        "artist": "Beyoncé",
+        "title": "Crazy In Love"
+      },
+      "found": {
+        "id": "609244",
+        "title": "Crazy In Love (feat. JAŸ-Z)",
+        "artist": "Beyoncé",
+        "album": "Dangerously In Love",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/609244",
+        "explicit": false,
+        "rank": 927130
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -82,6 +82,12 @@ export function writeMusicCheck(check: MusicCheckFile, markdown: string): void {
   writeFileSync(join(musicCheckDir, `${check.quizId}.md`), markdown)
 }
 
+// Paroles explicites : refusées (public familial), sauf dans les blind tests de rap (décision du 1er novembre 2026 :
+// la plupart des titres de rap récents n'existent chez Deezer qu'en version explicite).
+export function allowsExplicit(genre: unknown): boolean {
+  return genre === 'rap'
+}
+
 // Même requête qu'au moment de la recherche : si l'artiste ou le titre change dans la source, il faut
 // relancer la recherche et vérifier de nouveau.
 export function sameQuery(entry: MusicCheckEntry, music: SourceMusic): boolean {

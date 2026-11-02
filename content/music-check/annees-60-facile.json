@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-60-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a60f-01",
+      "query": {
+        "artist": "The Beatles",
+        "title": "Hey Jude"
+      },
+      "found": {
+        "id": "116348632",
+        "title": "Hey Jude (Remastered 2015)",
+        "artist": "The Beatles",
+        "album": "1 (Remastered 2015)",
+        "durationS": 429,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/116348632",
+        "explicit": false,
+        "rank": 859208
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-02",
+      "query": {
+        "artist": "The Rolling Stones",
+        "title": "Paint It, Black"
+      },
+      "found": {
+        "id": "7818900",
+        "title": "Paint It, Black",
+        "artist": "The Rolling Stones",
+        "album": "Big Hits (High Tide and Green Grass)",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7818900",
+        "explicit": false,
+        "rank": 929006
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-03",
+      "query": {
+        "artist": "The Beach Boys",
+        "title": "Good Vibrations"
+      },
+      "found": {
+        "id": "3091992",
+        "title": "Good Vibrations (Remastered 2001)",
+        "artist": "The Beach Boys",
+        "album": "The Very Best Of The Beach Boys: Sounds Of Summer",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3091992",
+        "explicit": false,
+        "rank": 781458
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-04",
+      "query": {
+        "artist": "Elvis Presley",
+        "title": "Suspicious Minds"
+      },
+      "found": {
+        "id": "1055776",
+        "title": "Suspicious Minds",
+        "artist": "Elvis Presley",
+        "album": "From Nashville To Memphis - The Essential 60s Masters I",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1055776",
+        "explicit": false,
+        "rank": 758683
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-05",
+      "query": {
+        "artist": "Simon & Garfunkel",
+        "title": "The Sound Of Silence"
+      },
+      "found": {
+        "id": "2468570",
+        "title": "The Sound Of Silence",
+        "artist": "Simon & Garfunkel",
+        "album": "Sounds Of Silence",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2468570",
+        "explicit": false,
+        "rank": 844727
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-06",
+      "query": {
+        "artist": "Aretha Franklin",
+        "title": "Respect"
+      },
+      "found": {
+        "id": "904732",
+        "title": "Respect",
+        "artist": "Aretha Franklin",
+        "album": "I Never Loved a Man the Way I Love You",
+        "durationS": 147,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/904732",
+        "explicit": false,
+        "rank": 868206
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-07",
+      "query": {
+        "artist": "The Animals",
+        "title": "The House of the Rising Sun"
+      },
+      "found": {
+        "id": "1340893992",
+        "title": "The House of the Rising Sun",
+        "artist": "The Animals",
+        "album": "Absolute 60's",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1340893992",
+        "explicit": false,
+        "rank": 410382
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-08",
+      "query": {
+        "artist": "Louis Armstrong",
+        "title": "What A Wonderful World"
+      },
+      "found": {
+        "id": "906625",
+        "title": "What A Wonderful World",
+        "artist": "Louis Armstrong",
+        "album": "Jazz #1's",
+        "durationS": 137,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/906625",
+        "explicit": false,
+        "rank": 803233
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-09",
+      "query": {
+        "artist": "Ben E. King",
+        "title": "Stand By Me"
+      },
+      "found": {
+        "id": "136710424",
+        "title": "Stand By Me",
+        "artist": "Ben E. King",
+        "album": "Stand By Me",
+        "durationS": 174,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136710424",
+        "explicit": false,
+        "rank": 930546
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a60f-10",
+      "query": {
+        "artist": "Otis Redding",
+        "title": "(Sittin' On) the Dock of the Bay"
+      },
+      "found": {
+        "id": "495824392",
+        "title": "(Sittin' On) the Dock of the Bay",
+        "artist": "Otis Redding",
+        "album": "Dock of the Bay Sessions",
+        "durationS": 160,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/495824392",
+        "explicit": false,
+        "rank": 846545
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

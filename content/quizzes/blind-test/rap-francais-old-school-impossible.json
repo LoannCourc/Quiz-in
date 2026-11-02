@@ -1,0 +1,218 @@
+{
+  "id": "rap-francais-old-school-impossible",
+  "gameType": "blindTest",
+  "title": "Rap français old school",
+  "theme": "Musique",
+  "description": "Du rap français des années 90 et 2000, loin des tubes : pour les vrais connaisseurs.",
+  "audience": "experts",
+  "poster": "gold",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": 1990,
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "rfo-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "J'en Place une – ATK",
+        "La Ruée vers le roro – Zoxea",
+        "Flirt avec le meurtre – Ministère A.M.E.R.",
+        "Détournement De Son – Fabe"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Flirt avec le meurtre"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ministère A.M.E.R.",
+        "title": "Flirt avec le meurtre"
+      }
+    },
+    {
+      "id": "rfo-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Qu'Est-Ce Tu Veux – La Brigade",
+        "Orly sud in bronx – Ideal J",
+        "L'arnaque – Beat De Boul",
+        "Les coulisses de l'angoisse – La Rumeur"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ideal J"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ideal J",
+        "title": "Orly sud in bronx"
+      }
+    },
+    {
+      "id": "rfo-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Boyblacka – Secteur A",
+        "Elle M'a Tout Volé – Driver",
+        "Entends mes regrets – Factor X",
+        "Faut Que J'Respire – Lady Laistee"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Boyblacka"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Secteur A",
+        "title": "BOYBLACKA",
+        "displayTitle": "Boyblacka"
+      }
+    },
+    {
+      "id": "rfo-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Marquer l'époque – Le 3ème Œil",
+        "Vie de crèv's – KDD",
+        "Crie mon nom – Ol'Kainry",
+        "Mash Up – Rocca"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Rocca"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Rocca",
+        "title": "Mash Up"
+      }
+    },
+    {
+      "id": "rfo-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "On a enfoncé des portes – Kool Shen",
+        "Jusqu'au bout – Don Choa",
+        "Reviens dans ma vie – Passi",
+        "Mes forces décuplent quand on m'inculpe – Stomy Bugsy"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Reviens dans ma vie"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Passi",
+        "title": "Reviens dans ma vie"
+      }
+    },
+    {
+      "id": "rfo-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "J'écris pour ma liberté – K-Mel",
+        "Qui sait au fond – Def Bond",
+        "Vis Ta Vie – Princess Aniès",
+        "Star Track – Alliance Ethnik"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "K-Mel"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "K-Mel",
+        "title": "J'écris pour ma liberté"
+      }
+    },
+    {
+      "id": "rfo-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le fainéant – Kheops",
+        "Tout saigne 2 – La Clinique",
+        "Un parmi des millions – Koma",
+        "Un homme et un micro – Les Sages Poètes De La Rue"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Un homme et un micro"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Les Sages Poètes De La Rue",
+        "title": "Un homme et un micro"
+      }
+    },
+    {
+      "id": "rfo-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ils étaient une fois – Saïan Supa Crew",
+        "La garde meurt mais ne se rend pas – Faf Larage",
+        "Ils m'appellent – Ärsenik",
+        "Tranquille – Menelik"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Menelik"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Menelik",
+        "title": "Tranquille"
+      }
+    },
+    {
+      "id": "rfo-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "J'attaque du mic – X-Men",
+        "Le sens du clan – Daddy Lord C",
+        "Glamour sur le globe – La Caution",
+        "Frappe à ma porte – L'Skadrille"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "J'attaque du mic"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "X-Men",
+        "title": "J'attaque du mic"
+      }
+    },
+    {
+      "id": "rfo-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Plus d'amour – Iron Sy",
+        "Majeur – Busta Flex",
+        "MC Jean Gabin VS Rap Français – MC Jean Gab'1",
+        "Nous contre eux II – Sat L'Artificier"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Busta Flex"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Busta Flex",
+        "title": "Majeur"
+      }
+    }
+  ]
+}

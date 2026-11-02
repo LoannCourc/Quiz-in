@@ -173,7 +173,10 @@ export const AUDIO_FADE_OUT_MS = 400;
 export const AUDIO_FADE_IN_MS = 80;
 export const AUDIO_STOP_FADE_MS = 150;
 // Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).
-export const BLIND_TEST_ENABLED_PATH = 'config/blindTestEnabled';
+// blindTestV2Enabled depuis la refonte de novembre 2026 (lot BT-8) : les apps 1.0.1 et 1.1.0 lisent l'ancien
+// config/blindTestEnabled, qui reste à false pour toujours : elles rejettent les questions de difficulté 4
+// (« Impossible » : 0 question jouable, « Tous niveaux » : 8 sur 10) et gardent donc le blind test fermé (« Bientôt »).
+export const BLIND_TEST_ENABLED_PATH = 'config/blindTestV2Enabled';
 // Interrupteur à distance de Dessine-moi : absent ou true, le jeu est ouvert ; false (console Firebase),
 // la tuile passe en « Bientôt » sans nouvelle version de l'app.
 export const DRAW_ENABLED_PATH = 'config/drawEnabled';

@@ -1,0 +1,217 @@
+{
+  "quizId": "rock-hymnes-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rkh-01",
+      "query": {
+        "artist": "Queen",
+        "title": "Bohemian Rhapsody"
+      },
+      "found": {
+        "id": "4091937401",
+        "title": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "album": "A Night At The Opera",
+        "durationS": 354,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4091937401",
+        "explicit": false,
+        "rank": 958949
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-02",
+      "query": {
+        "artist": "AC/DC",
+        "title": "Highway to Hell"
+      },
+      "found": {
+        "id": "92719900",
+        "title": "Highway to Hell",
+        "artist": "AC/DC",
+        "album": "Highway to Hell",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92719900",
+        "explicit": false,
+        "rank": 978152
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-03",
+      "query": {
+        "artist": "Led Zeppelin",
+        "title": "Whole Lotta Love"
+      },
+      "found": {
+        "id": "78671026",
+        "title": "Whole Lotta Love (Remaster)",
+        "artist": "Led Zeppelin",
+        "album": "Led Zeppelin II (Deluxe Edition)",
+        "durationS": 334,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/78671026",
+        "explicit": false,
+        "rank": 828993
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-04",
+      "query": {
+        "artist": "Guns N' Roses",
+        "title": "Sweet Child O' Mine"
+      },
+      "found": {
+        "id": "518458172",
+        "title": "Sweet Child O' Mine",
+        "artist": "Guns N' Roses",
+        "album": "Appetite For Destruction (Super Deluxe Edition)",
+        "durationS": 355,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/518458172",
+        "explicit": false,
+        "rank": 934281
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-05",
+      "query": {
+        "artist": "The Rolling Stones",
+        "title": "(I Can't Get No) Satisfaction"
+      },
+      "found": {
+        "id": "7677778",
+        "title": "(I Can't Get No) Satisfaction (Mono)",
+        "artist": "The Rolling Stones",
+        "album": "Singles 1965-1967",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7677778",
+        "explicit": false,
+        "rank": 824477
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-06",
+      "query": {
+        "artist": "Deep Purple",
+        "title": "Smoke On The Water"
+      },
+      "found": {
+        "id": "60840057",
+        "title": "Smoke On The Water (Remastered 2012)",
+        "artist": "Deep Purple",
+        "album": "Machine Head (Remastered)",
+        "durationS": 340,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60840057",
+        "explicit": false,
+        "rank": 868151
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-07",
+      "query": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Californication"
+      },
+      "found": {
+        "id": "725274",
+        "title": "Californication",
+        "artist": "Red Hot Chili Peppers",
+        "album": "Californication (Deluxe Edition)",
+        "durationS": 329,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/725274",
+        "explicit": false,
+        "rank": 957783
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-08",
+      "query": {
+        "artist": "Pink Floyd",
+        "title": "Another Brick in the Wall, Pt. 2"
+      },
+      "found": {
+        "id": "116914094",
+        "title": "Another Brick in the Wall, Pt. 2",
+        "artist": "Pink Floyd",
+        "album": "The Wall",
+        "durationS": 238,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/116914094",
+        "explicit": false,
+        "rank": 887839
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-09",
+      "query": {
+        "artist": "Scorpions",
+        "title": "Wind Of Change"
+      },
+      "found": {
+        "id": "927900",
+        "title": "Wind Of Change",
+        "artist": "Scorpions",
+        "album": "Crazy World",
+        "durationS": 312,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/927900",
+        "explicit": false,
+        "rank": 916862
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkh-10",
+      "query": {
+        "artist": "Noir Désir",
+        "title": "Le vent nous portera"
+      },
+      "found": {
+        "id": "14352333",
+        "title": "Le vent nous portera",
+        "artist": "Noir Désir",
+        "album": "Soyons désinvoltes, n'ayons l'air de rien",
+        "durationS": 288,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14352333",
+        "explicit": false,
+        "rank": 812534
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

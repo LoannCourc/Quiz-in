@@ -1,0 +1,222 @@
+{
+  "id": "rap-francais-mixte",
+  "gameType": "blindTest",
+  "title": "Rap français : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux de rap français, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "rfm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Laisse pas traîner ton fils – Suprême NTM",
+        "Je danse le Mia – IAM",
+        "L'enfant seul – Oxmo Puccino",
+        "Qui est l'exemple ? – Rohff"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Je danse le Mia"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "IAM",
+        "title": "Je danse le Mia"
+      }
+    },
+    {
+      "id": "rfm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "KAT – Gazo",
+        "La vie qu'on mène – Ninho",
+        "Crois-moi – Da Uzi",
+        "Biff pas d'love – Bouss"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ninho"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ninho",
+        "title": "La vie qu'on mène"
+      }
+    },
+    {
+      "id": "rfm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Autotune – Damso",
+        "Dans l'univers – Nekfeu",
+        "Quoi de neuf bébé – Jok'air",
+        "Ma substance – MZ"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Autotune"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Damso",
+        "title": "Autotune"
+      }
+    },
+    {
+      "id": "rfm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Superman – Vald",
+        "Dans mon élément – Georgio",
+        "C'est nous les yaya – Kaaris",
+        "Désert – La Fouine"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Vald"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Vald",
+        "title": "SUPERMAN",
+        "displayTitle": "Superman"
+      }
+    },
+    {
+      "id": "rfm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sur la lune – Bigflo & Oli",
+        "Temps électrique – Columbine",
+        "22h31 - Fais les backs – Casseurs Flowters",
+        "Jour meilleur – Orelsan"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jour meilleur"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Orelsan",
+        "title": "Jour meilleur"
+      }
+    },
+    {
+      "id": "rfm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Regarde-moi – Moji x Sboy",
+        "Loyal – La Fève",
+        "Pas de problème – Houdi",
+        "Mal aimés – Yvnnis"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "La Fève"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "La Fève",
+        "title": "LOYAL",
+        "displayTitle": "Loyal"
+      }
+    },
+    {
+      "id": "rfm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Opéra – Romsii",
+        "Là où on dort heureux – Tuerie",
+        "Joystick – Nelick",
+        "Oranj – Ino Casablanca"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Oranj"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Ino Casablanca",
+        "title": "ORANJ",
+        "displayTitle": "Oranj"
+      }
+    },
+    {
+      "id": "rfm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Quand il neigeait encore – Bekar",
+        "Fin de ce monde – ISHA",
+        "Chaque jour un peu plus – BEN plg",
+        "De la lune – B.B. Jacques"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "BEN plg"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "BEN plg",
+        "title": "Chaque jour un peu plus"
+      }
+    },
+    {
+      "id": "rfm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "C'est mort – Coelho",
+        "Plus jeune – sean",
+        "Le toast – Krisy",
+        "Sans Toi – Juice"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Sans Toi"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Juice",
+        "title": "Sans Toi"
+      }
+    },
+    {
+      "id": "rfm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "J'ai besoin de thérapie – MadeInParis",
+        "Béni – USKY",
+        "Adrénaline – Dakeez",
+        "Monde à dos – YG Pablo"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dakeez"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "DAKEEZ",
+        "title": "ADRÉNALINE",
+        "displayTitle": "Adrénaline",
+        "displayArtist": "Dakeez"
+      }
+    }
+  ]
+}

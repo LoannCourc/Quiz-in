@@ -1,0 +1,276 @@
+{
+  "id": "musiques-films-series-facile",
+  "gameType": "blindTest",
+  "title": "Musiques de films et séries",
+  "theme": "Musique",
+  "description": "Dix thèmes de films et de séries que tu reconnais en trois notes.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "clapper",
+  "genre": "pop",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "bof-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Concerning Hobbits – Howard Shore",
+        "The Avengers – Alan Silvestri",
+        "Time – Hans Zimmer",
+        "Star Wars: Main Title – John Williams"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Star Wars: Main Title"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "John Williams",
+        "title": "Star Wars: Main Title",
+        "artistAliases": [
+          "Star Wars"
+        ],
+        "titleAliases": [
+          "Star Wars"
+        ]
+      }
+    },
+    {
+      "id": "bof-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "He's a Pirate – Klaus Badelt",
+        "The Hanging Tree – James Newton Howard",
+        "Mad World – Michael Andrews",
+        "Fly – Ludovico Einaudi"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Klaus Badelt"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Klaus Badelt",
+        "title": "He's a Pirate",
+        "artistAliases": [
+          "Pirates des Caraïbes"
+        ],
+        "titleAliases": [
+          "Pirates des Caraïbes"
+        ]
+      }
+    },
+    {
+      "id": "bof-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tubular Bells – Mike Oldfield",
+        "Conquest of Paradise – Vangelis",
+        "Game of Thrones – Ramin Djawadi",
+        "The Pink Panther Theme – Henry Mancini"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Game of Thrones"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ramin Djawadi",
+        "title": "Game Of Thrones",
+        "displayTitle": "Game of Thrones",
+        "artistAliases": [
+          "Game of Thrones"
+        ]
+      }
+    },
+    {
+      "id": "bof-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Miami Vice Theme – Jan Hammer",
+        "Mission: Impossible – Lalo Schifrin",
+        "Axel F – Harold Faltermeyer",
+        "Don't You (Forget About Me) – Simple Minds"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Lalo Schifrin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lalo Schifrin",
+        "title": "Mission: Impossible",
+        "artistAliases": [
+          "Mission: Impossible"
+        ]
+      }
+    },
+    {
+      "id": "bof-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "May It Be – Enya",
+        "Mia & Sebastian’s Theme – Justin Hurwitz",
+        "James Bond Theme – Monty Norman",
+        "Men In Black – Will Smith"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "James Bond Theme"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Monty Norman",
+        "title": "James Bond Theme",
+        "artistAliases": [
+          "James Bond"
+        ],
+        "titleAliases": [
+          "James Bond"
+        ]
+      }
+    },
+    {
+      "id": "bof-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Stuck In The Middle With You – Stealers Wheel",
+        "Stranger Things – Kyle Dixon & Michael Stein",
+        "All Star – Smash Mouth",
+        "Gonna Fly Now – Bill Conti"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bill Conti"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bill Conti",
+        "title": "Gonna Fly Now",
+        "artistAliases": [
+          "Rocky"
+        ],
+        "titleAliases": [
+          "Rocky"
+        ]
+      }
+    },
+    {
+      "id": "bof-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ghostbusters – Ray Parker Jr.",
+        "Young And Beautiful – Lana Del Rey",
+        "Take My Breath Away – Berlin",
+        "Halloween Theme – John Carpenter"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Ghostbusters"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ray Parker Jr.",
+        "title": "Ghostbusters",
+        "artistAliases": [
+          "SOS Fantômes"
+        ],
+        "titleAliases": [
+          "SOS Fantômes"
+        ]
+      }
+    },
+    {
+      "id": "bof-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Je Suis Ton Ami – CharlElie Couture",
+        "Alabina – Alabina",
+        "Chi Mai – Ennio Morricone",
+        "Comptine d'un autre été, l'après-midi – Yann Tiersen"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Yann Tiersen"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Yann Tiersen",
+        "title": "Comptine d'un autre été, l'après-midi",
+        "artistAliases": [
+          "Amélie Poulain",
+          "Le Fabuleux Destin d'Amélie Poulain"
+        ],
+        "titleAliases": [
+          "Amélie Poulain",
+          "Comptine d'un autre été"
+        ]
+      }
+    },
+    {
+      "id": "bof-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le grand blond – Vladimir Cosma",
+        "Vois sur ton chemin – Bruno Coulais",
+        "Un Homme Et Une Femme – Francis Lai",
+        "L'histoire de la vie – Debbie Davis"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Vois sur ton chemin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bruno Coulais",
+        "title": "Vois sur ton chemin",
+        "artistAliases": [
+          "Les Choristes"
+        ],
+        "titleAliases": [
+          "Les Choristes"
+        ]
+      }
+    },
+    {
+      "id": "bof-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Love Theme From \"The Godfather\" – Nino Rota",
+        "Night Fever – Bee Gees",
+        "Bang Bang – Nancy Sinatra",
+        "Footloose – Kenny Loggins"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Nino Rota"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nino Rota",
+        "title": "Love Theme From \"The Godfather\"",
+        "artistAliases": [
+          "Le Parrain"
+        ],
+        "titleAliases": [
+          "Le Parrain",
+          "Parle plus bas",
+          "The Godfather"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "quizId": "disney-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "dsm-01",
+      "query": {
+        "artist": "Dimitri Rougeul",
+        "title": "Je Voudrais Déjà Être Roi"
+      },
+      "found": {
+        "id": "13277557",
+        "title": "Je Voudrais Déjà Être Roi",
+        "artist": "Dimitri Rougeul",
+        "album": "Le Roi Lion (Deluxe Collection - Lion King)",
+        "durationS": 171,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13277557",
+        "explicit": false,
+        "rank": 755292
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-02",
+      "query": {
+        "artist": "Maéva Méline",
+        "title": "Je veux y croire"
+      },
+      "found": {
+        "id": "595453812",
+        "title": "Je veux y croire (De \"Raiponce\"/Bande Originale Française du Film)",
+        "artist": "Maéva Méline",
+        "album": "Raiponce",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/595453812",
+        "explicit": false,
+        "rank": 765876
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-03",
+      "query": {
+        "artist": "Anthony Kavanagh",
+        "title": "Pour les hommes"
+      },
+      "found": {
+        "id": "136864438",
+        "title": "Pour les hommes",
+        "artist": "Anthony Kavanagh",
+        "album": "Vaiana - La Légende du Bout du Monde (Bande originale française du Film/Édition Deluxe)",
+        "durationS": 164,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136864438",
+        "explicit": false,
+        "rank": 837497
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-04",
+      "query": {
+        "artist": "Richard Darbois",
+        "title": "Je suis ton meilleur ami"
+      },
+      "found": {
+        "id": "668944952",
+        "title": "Je suis ton meilleur ami",
+        "artist": "Richard Darbois",
+        "album": "Aladdin (Bande Originale Française du Film)",
+        "durationS": 147,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/668944952",
+        "explicit": false,
+        "rank": 590200
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-05",
+      "query": {
+        "artist": "Jean Stout",
+        "title": "Être un homme comme vous"
+      },
+      "found": {
+        "id": "3117876",
+        "title": "Être un homme comme vous",
+        "artist": "Jean Stout",
+        "album": "The Jungle Book Original Soundtrack (French Version)",
+        "durationS": 229,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3117876",
+        "explicit": false,
+        "rank": 659419
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-06",
+      "query": {
+        "artist": "Mimi Félixine",
+        "title": "Jamais Je N'avouerai"
+      },
+      "found": {
+        "id": "3118335",
+        "title": "Jamais Je N'avouerai",
+        "artist": "Mimi Félixine",
+        "album": "Hercules Original Soundtrack",
+        "durationS": 139,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3118335",
+        "explicit": false,
+        "rank": 717422
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-07",
+      "query": {
+        "artist": "Marie Galey",
+        "title": "Une belle fille à aimer"
+      },
+      "found": {
+        "id": "85268736",
+        "title": "Une belle fille à aimer (De \"Mulan\"/Bande Originale Française du Film)",
+        "artist": "Marie Galey",
+        "album": "Mulan (Bande originale française du Film)",
+        "durationS": 145,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/85268736",
+        "explicit": false,
+        "rank": 588115
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-08",
+      "query": {
+        "artist": "Bernard Alane",
+        "title": "Les Cloches de Notre-Dame"
+      },
+      "found": {
+        "id": "3117952",
+        "title": "Les Cloches de Notre-Dame",
+        "artist": "Bernard Alane",
+        "album": "The Hunchback Of Notre Dame Original Soundtrack (French Version)",
+        "durationS": 383,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3117952",
+        "explicit": false,
+        "rank": 638562
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-09",
+      "query": {
+        "artist": "Phil Collins",
+        "title": "Jungle Jazz"
+      },
+      "found": {
+        "id": "3118070",
+        "title": "Jungle Jazz",
+        "artist": "Phil Collins",
+        "album": "Tarzan Original Soundtrack",
+        "durationS": 136,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3118070",
+        "explicit": false,
+        "rank": 539145
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsm-10",
+      "query": {
+        "artist": "MARCEL BOUNGOU",
+        "title": "Á Upendi"
+      },
+      "found": {
+        "id": "13277563",
+        "title": "Á Upendi",
+        "artist": "MARCEL BOUNGOU",
+        "album": "Le Roi Lion (Deluxe Collection - Lion King)",
+        "durationS": 168,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13277563",
+        "explicit": false,
+        "rank": 664149
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

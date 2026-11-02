@@ -1,0 +1,217 @@
+{
+  "quizId": "chanson-francaise-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "cfm-01",
+      "query": {
+        "artist": "Céline Dion",
+        "title": "Prière païenne"
+      },
+      "found": {
+        "id": "4762943",
+        "title": "Prière païenne",
+        "artist": "Céline Dion",
+        "album": "D'eux - Édition 15ème Anniversaire",
+        "durationS": 250,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4762943",
+        "explicit": false,
+        "rank": 963895
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-02",
+      "query": {
+        "artist": "France Gall",
+        "title": "Ella, elle l'a"
+      },
+      "found": {
+        "id": "46251471",
+        "title": "Ella, elle l'a (Remasterisé en 2004)",
+        "artist": "France Gall",
+        "album": "Babacar (Remasterisé en 2004)",
+        "durationS": 291,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/46251471",
+        "explicit": false,
+        "rank": 928160
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-03",
+      "query": {
+        "artist": "Jacques Brel",
+        "title": "Mathilde"
+      },
+      "found": {
+        "id": "137676459",
+        "title": "Mathilde",
+        "artist": "Jacques Brel",
+        "album": "Ces gens-là",
+        "durationS": 156,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/137676459",
+        "explicit": false,
+        "rank": 642947
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-04",
+      "query": {
+        "artist": "Serge Gainsbourg",
+        "title": "Couleur café"
+      },
+      "found": {
+        "id": "111011718",
+        "title": "Couleur café",
+        "artist": "Serge Gainsbourg",
+        "album": "Gainsbourg percussions",
+        "durationS": 132,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/111011718",
+        "explicit": false,
+        "rank": 645810
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-05",
+      "query": {
+        "artist": "Francis Cabrel",
+        "title": "L'encre de tes yeux"
+      },
+      "found": {
+        "id": "72064755",
+        "title": "L'encre de tes yeux (Remastered)",
+        "artist": "Francis Cabrel",
+        "album": "Fragile (Remastered)",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72064755",
+        "explicit": false,
+        "rank": 874599
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-06",
+      "query": {
+        "artist": "Hervé Vilard",
+        "title": "Capri c'est fini"
+      },
+      "found": {
+        "id": "2150209",
+        "title": "Capri c'est fini",
+        "artist": "Hervé Vilard",
+        "album": "Capri C'Est Fini",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2150209",
+        "explicit": false,
+        "rank": 637242
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-07",
+      "query": {
+        "artist": "Michel Delpech",
+        "title": "Pour un flirt"
+      },
+      "found": {
+        "id": "1572095",
+        "title": "Pour un flirt",
+        "artist": "Michel Delpech",
+        "album": "Album De Duos",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1572095",
+        "explicit": false,
+        "rank": 396836
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-08",
+      "query": {
+        "artist": "Daniel Guichard",
+        "title": "Mon vieux"
+      },
+      "found": {
+        "id": "2150191",
+        "title": "Mon vieux",
+        "artist": "Daniel Guichard",
+        "album": "Mon Vieux",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2150191",
+        "explicit": false,
+        "rank": 799122
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-09",
+      "query": {
+        "artist": "Patrick Juvet",
+        "title": "Faut pas rêver"
+      },
+      "found": {
+        "id": "84869757",
+        "title": "Faut pas rêver",
+        "artist": "Patrick Juvet",
+        "album": "Best Of 70",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/84869757",
+        "explicit": false,
+        "rank": 337106
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfm-10",
+      "query": {
+        "artist": "Le Big Bazar",
+        "title": "Les gentils, les méchants"
+      },
+      "found": {
+        "id": "114033888",
+        "title": "Les gentils, les méchants (From \"Je ne sais rien mais je dirai tout\")",
+        "artist": "Le Big Bazar",
+        "album": "Twist Again au ciné, Vol. 2 (La revanche) [Bandes originales de films]",
+        "durationS": 120,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/114033888",
+        "explicit": false,
+        "rank": 186971
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

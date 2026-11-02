@@ -1,0 +1,218 @@
+{
+  "id": "jazz-swing-mixte",
+  "gameType": "blindTest",
+  "title": "Jazz et swing : tous niveaux",
+  "theme": "Musique",
+  "description": "Du standard que tout le monde connaît à la pièce de connaisseurs : dix morceaux de jazz, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "note",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "jzz-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cantaloupe Island – Herbie Hancock",
+        "Just the Two of Us – Grover Washington, Jr.",
+        "Mornin' – Al Jarreau",
+        "Breezin' – George Benson"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Just the Two of Us"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Grover Washington, Jr.",
+        "title": "Just the Two of Us"
+      }
+    },
+    {
+      "id": "jzz-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Fly Me To The Moon – Frank Sinatra",
+        "That Old Feeling – Louis Armstrong",
+        "I've Got You Under My Skin – Ella Fitzgerald",
+        "Lullaby Of Birdland – Sarah Vaughan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Frank Sinatra"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Frank Sinatra",
+        "title": "Fly Me To The Moon"
+      }
+    },
+    {
+      "id": "jzz-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Everything Happens to Me – Chet Baker",
+        "They Say It's Wonderful – John Coltrane",
+        "Return To Forever – Chick Corea",
+        "Take the \"A\" Train – Duke Ellington"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Take the \"A\" Train"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Duke Ellington",
+        "title": "Take the \"A\" Train"
+      }
+    },
+    {
+      "id": "jzz-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Freddie Freeloader – Miles Davis",
+        "I'll Be Seeing You – Billie Holiday",
+        "Cheek To Cheek – Tony Bennett",
+        "All I Could Do Was Cry – Etta James"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Miles Davis"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Miles Davis",
+        "title": "Freddie Freeloader"
+      }
+    },
+    {
+      "id": "jzz-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ev'ry Time We Say Goodbye – Ray Charles",
+        "Sinnerman – Nina Simone",
+        "But Beautiful – Stan Getz",
+        "Night Train to Memphis – Dean Martin"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sinnerman"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Nina Simone",
+        "title": "Sinnerman"
+      }
+    },
+    {
+      "id": "jzz-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Just One Of Those Things – Oscar Peterson",
+        "Skating In Central Park – Bill Evans",
+        "Take Five – The Dave Brubeck Quartet",
+        "Moanin' – Art Blakey"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Dave Brubeck Quartet"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Dave Brubeck Quartet",
+        "title": "Take Five"
+      }
+    },
+    {
+      "id": "jzz-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sing, Sing, Sing – Benny Goodman and His Orchestra",
+        "Minnie the Moocher (Theme Song) – Cab Calloway",
+        "In the Mood – Glenn Miller",
+        "Ain't Misbehavin' – Fats Waller"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "In the Mood"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Glenn Miller",
+        "title": "In The Mood",
+        "displayTitle": "In the Mood"
+      }
+    },
+    {
+      "id": "jzz-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "It's a Mean Old Man's World – Dinah Washington",
+        "Comin' Home Baby – Mel Tormé",
+        "(You Don't Know) How Glad I Am – Nancy Wilson",
+        "Fever – Peggy Lee"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Peggy Lee"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Peggy Lee",
+        "title": "Fever"
+      }
+    },
+    {
+      "id": "jzz-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jordu – Clifford Brown",
+        "Home Run – Dexter Gordon",
+        "I Got Rhythm – Sonny Stitt",
+        "Beauty and the Beast – Wayne Shorter"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Jordu"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Clifford Brown",
+        "title": "Jordu"
+      }
+    },
+    {
+      "id": "jzz-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Feel Pretty – Oscar Peterson Trio",
+        "Dolphin Dance – Ahmad Jamal",
+        "Joy Is Sorrow Unmasked – Roy Hargrove",
+        "Face's Face – Michel Petrucciani"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Michel Petrucciani"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Michel Petrucciani",
+        "title": "Face's Face"
+      }
+    }
+  ]
+}

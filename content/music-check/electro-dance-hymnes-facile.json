@@ -1,0 +1,217 @@
+{
+  "quizId": "electro-dance-hymnes-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "edh-01",
+      "query": {
+        "artist": "Daft Punk",
+        "title": "Around the World"
+      },
+      "found": {
+        "id": "3129775",
+        "title": "Around the World",
+        "artist": "Daft Punk",
+        "album": "Homework",
+        "durationS": 429,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3129775",
+        "explicit": false,
+        "rank": 830730
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-02",
+      "query": {
+        "artist": "David Guetta",
+        "title": "Titanium"
+      },
+      "found": {
+        "id": "62847142",
+        "title": "Titanium (feat. Sia)",
+        "artist": "David Guetta",
+        "album": "Nothing but the Beat (Ultimate Edition)",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/62847142",
+        "explicit": false,
+        "rank": 956365
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-03",
+      "query": {
+        "artist": "Calvin Harris",
+        "title": "Summer"
+      },
+      "found": {
+        "id": "88936747",
+        "title": "Summer",
+        "artist": "Calvin Harris",
+        "album": "Motion",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/88936747",
+        "explicit": false,
+        "rank": 901999
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-04",
+      "query": {
+        "artist": "Swedish House Mafia",
+        "title": "Don't You Worry Child"
+      },
+      "found": {
+        "id": "60842359",
+        "title": "Don't You Worry Child (Radio Edit)",
+        "artist": "Swedish House Mafia",
+        "album": "Don't You Worry Child",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/60842359",
+        "explicit": false,
+        "rank": 867392
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-05",
+      "query": {
+        "artist": "Martin Garrix",
+        "title": "Animals"
+      },
+      "found": {
+        "id": "2102633427",
+        "title": "Animals",
+        "artist": "Martin Garrix",
+        "album": "Animals",
+        "durationS": 304,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2102633427",
+        "explicit": false,
+        "rank": 839789
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-06",
+      "query": {
+        "artist": "Darude",
+        "title": "Sandstorm"
+      },
+      "found": {
+        "id": "63653810",
+        "title": "Sandstorm (Radio Edit)",
+        "artist": "Darude",
+        "album": "Sandstorm",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63653810",
+        "explicit": false,
+        "rank": 702245
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-07",
+      "query": {
+        "artist": "Alan Walker",
+        "title": "Faded"
+      },
+      "found": {
+        "id": "140295501",
+        "title": "Faded",
+        "artist": "Alan Walker",
+        "album": "Faded",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/140295501",
+        "explicit": false,
+        "rank": 878556
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-08",
+      "query": {
+        "artist": "Avicii",
+        "title": "Levels"
+      },
+      "found": {
+        "id": "14383880",
+        "title": "Levels (Radio Edit)",
+        "artist": "Avicii",
+        "album": "Levels",
+        "durationS": 199,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14383880",
+        "explicit": false,
+        "rank": 898187
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-09",
+      "query": {
+        "artist": "Benny Benassi",
+        "title": "Satisfaction"
+      },
+      "found": {
+        "id": "3412442321",
+        "title": "Satisfaction",
+        "artist": "Benny Benassi",
+        "album": "Nostalgic Summer Vibes",
+        "durationS": 396,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3412442321",
+        "explicit": false,
+        "rank": 518590
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "edh-10",
+      "query": {
+        "artist": "Eric Prydz",
+        "title": "Call on Me"
+      },
+      "found": {
+        "id": "340051261",
+        "title": "Call on Me",
+        "artist": "Eric Prydz",
+        "album": "Call On Me (Remixes)",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/340051261",
+        "explicit": false,
+        "rank": 526944
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

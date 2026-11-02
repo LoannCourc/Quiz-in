@@ -1,0 +1,217 @@
+{
+  "quizId": "musiques-films-series-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "bof-01",
+      "query": {
+        "artist": "John Williams",
+        "title": "Star Wars: Main Title"
+      },
+      "found": {
+        "id": "119874636",
+        "title": "Star Wars: Main Title (From \"Star Wars\")",
+        "artist": "John Williams",
+        "album": "The Star Wars Trilogy (Return of the Jedi / The Empire Strikes Back / Star Wars)",
+        "durationS": 312,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/119874636",
+        "explicit": false,
+        "rank": 150791
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-02",
+      "query": {
+        "artist": "Klaus Badelt",
+        "title": "He's a Pirate"
+      },
+      "found": {
+        "id": "3117931",
+        "title": "He's a Pirate",
+        "artist": "Klaus Badelt",
+        "album": "Pirates Of The Caribbean Original Soundtrack",
+        "durationS": 88,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3117931",
+        "explicit": false,
+        "rank": 770970
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-03",
+      "query": {
+        "artist": "Ramin Djawadi",
+        "title": "Game Of Thrones"
+      },
+      "found": {
+        "id": "117729466",
+        "title": "Game Of Thrones",
+        "artist": "Ramin Djawadi",
+        "album": "Game Of Thrones (Music From The HBO Series)",
+        "durationS": 78,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/117729466",
+        "explicit": false,
+        "rank": 437425
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-04",
+      "query": {
+        "artist": "Lalo Schifrin",
+        "title": "Mission: Impossible"
+      },
+      "found": {
+        "id": "876476",
+        "title": "Mission: Impossible (From \"Music From Mission: Impossible\" Original Television Soundtrack)",
+        "artist": "Lalo Schifrin",
+        "album": "Mission: Impossible And Other Thrilling Themes",
+        "durationS": 151,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/876476",
+        "explicit": false,
+        "rank": 359732
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-05",
+      "query": {
+        "artist": "Monty Norman",
+        "title": "James Bond Theme"
+      },
+      "found": {
+        "id": "75672738",
+        "title": "James Bond Theme",
+        "artist": "Monty Norman",
+        "album": "Dr. No (Original Soundtrack) [1962]",
+        "durationS": 106,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/75672738",
+        "explicit": false,
+        "rank": 386588
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-06",
+      "query": {
+        "artist": "Bill Conti",
+        "title": "Gonna Fly Now"
+      },
+      "found": {
+        "id": "99127208",
+        "title": "Gonna Fly Now (Theme From \"Rocky\")",
+        "artist": "Bill Conti",
+        "album": "Rocky (Original Motion Picture Score)",
+        "durationS": 168,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/99127208",
+        "explicit": false,
+        "rank": 586137
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-07",
+      "query": {
+        "artist": "Ray Parker Jr.",
+        "title": "Ghostbusters"
+      },
+      "found": {
+        "id": "969252",
+        "title": "Ghostbusters (from the \"Ghostbusters\" Original Motion Picture Soundtrack)",
+        "artist": "Ray Parker Jr.",
+        "album": "Arista Heritage Series: Ray Parker",
+        "durationS": 238,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/969252",
+        "explicit": false,
+        "rank": 962783
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-08",
+      "query": {
+        "artist": "Yann Tiersen",
+        "title": "Comptine d'un autre été, l'après-midi"
+      },
+      "found": {
+        "id": "1412033732",
+        "title": "Comptine d'un autre été, l'après-midi",
+        "artist": "Yann Tiersen",
+        "album": "Le Fabuleux destin d'Amélie Poulain (Bande originale du film)",
+        "durationS": 140,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1412033732",
+        "explicit": false,
+        "rank": 881766
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-09",
+      "query": {
+        "artist": "Bruno Coulais",
+        "title": "Vois sur ton chemin"
+      },
+      "found": {
+        "id": "2170355777",
+        "title": "Vois sur ton chemin",
+        "artist": "Bruno Coulais",
+        "album": "Les Choristes (Bande originale du film)",
+        "durationS": 139,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2170355777",
+        "explicit": false,
+        "rank": 756157
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "bof-10",
+      "query": {
+        "artist": "Nino Rota",
+        "title": "Love Theme From \"The Godfather\""
+      },
+      "found": {
+        "id": "3040782",
+        "title": "Love Theme From \"The Godfather\"",
+        "artist": "Nino Rota",
+        "album": "The Godfather (Music From The Original Motion Picture Soundtrack)",
+        "durationS": 161,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3040782",
+        "explicit": false,
+        "rank": 546920
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

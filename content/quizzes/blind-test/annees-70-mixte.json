@@ -1,0 +1,219 @@
+{
+  "id": "annees-70-mixte",
+  "gameType": "blindTest",
+  "title": "Années 70 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 70, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "discoBall",
+  "genre": "pop",
+  "decade": 1970,
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "a70m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "How Deep Is Your Love – Bee Gees",
+        "Mamma Mia – ABBA",
+        "Sunny – Boney M.",
+        "Honesty – Billy Joel"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Mamma Mia"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "ABBA",
+        "title": "Mamma Mia"
+      }
+    },
+    {
+      "id": "a70m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Maggie May – Rod Stewart",
+        "Livin' Thing – Electric Light Orchestra",
+        "Rocket Man (I Think It’s Going to Be a Long, Long Time) – Elton John",
+        "A Horse with No Name – America"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Elton John"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Elton John",
+        "title": "Rocket Man (I Think It's Going To Be A Long, Long Time)",
+        "displayTitle": "Rocket Man (I Think It’s Going to Be a Long, Long Time)"
+      }
+    },
+    {
+      "id": "a70m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Knockin' On Heaven's Door – Eric Clapton",
+        "Woman To Woman – Joe Cocker",
+        "Lyin’ Eyes – Eagles",
+        "Badlands – Bruce Springsteen"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Lyin’ Eyes"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Eagles",
+        "title": "Lyin' Eyes",
+        "displayTitle": "Lyin’ Eyes"
+      }
+    },
+    {
+      "id": "a70m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Beast Of Burden – The Rolling Stones",
+        "Rhiannon – Fleetwood Mac",
+        "Love Her Madly – The Doors",
+        "The Man in Me – Bob Dylan"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Fleetwood Mac"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Fleetwood Mac",
+        "title": "Rhiannon"
+      }
+    },
+    {
+      "id": "a70m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "We Will Rock You – Queen",
+        "Can't Stand Losing You – The Police",
+        "Who Are You – The Who",
+        "Rebel Rebel – David Bowie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Rebel Rebel"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "David Bowie",
+        "title": "Rebel Rebel"
+      }
+    },
+    {
+      "id": "a70m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Play That Funky Music – Wild Cherry",
+        "Pick up the Pieces – Average White Band",
+        "Flash Light – Parliament",
+        "Strawberry Letter 23 – The Brothers Johnson"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Wild Cherry"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Wild Cherry",
+        "title": "Play That Funky Music"
+      }
+    },
+    {
+      "id": "a70m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "You Sexy Thing – Hot Chocolate",
+        "Devil Woman – Cliff Richard",
+        "I Love to Love – Tina Charles",
+        "Every Kinda People – Robert Palmer"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "You Sexy Thing"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Hot Chocolate",
+        "title": "You Sexy Thing"
+      }
+    },
+    {
+      "id": "a70m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Summer Breeze – Seals and Crofts",
+        "Dreadlock Holiday – 10cc",
+        "Listen to the Music – The Doobie Brothers",
+        "Brandy (You're a Fine Girl) – Looking Glass"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Looking Glass"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Looking Glass",
+        "title": "Brandy (You're a Fine Girl)"
+      }
+    },
+    {
+      "id": "a70m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Be Free – Loggins & Messina",
+        "Givin' Up Givin' In – The Three Degrees",
+        "The Dancer – Leo Sayer",
+        "Saturday Night – T-Connection"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Saturday Night"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "T-Connection",
+        "title": "Saturday Night"
+      }
+    },
+    {
+      "id": "a70m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Non Stop Dance – Gibson Brothers",
+        "Green Eyed Monster Girl – Sly Stone",
+        "Heartbeat – Showaddywaddy",
+        "Black And White – Three Dog Night"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Gibson Brothers"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Gibson Brothers",
+        "title": "Non Stop Dance"
+      }
+    }
+  ]
+}

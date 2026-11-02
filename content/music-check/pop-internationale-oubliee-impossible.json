@@ -1,0 +1,217 @@
+{
+  "quizId": "pop-internationale-oubliee-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "pio-01",
+      "query": {
+        "artist": "Atomic Kitten",
+        "title": "Be With You"
+      },
+      "found": {
+        "id": "3361208",
+        "title": "Be With You",
+        "artist": "Atomic Kitten",
+        "album": "Greatest Hits",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3361208",
+        "explicit": false,
+        "rank": 279289
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-02",
+      "query": {
+        "artist": "Five",
+        "title": "Let's Dance"
+      },
+      "found": {
+        "id": "994520",
+        "title": "Let's Dance (Radio Edit)",
+        "artist": "Five",
+        "album": "Let's Dance",
+        "durationS": 218,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/994520",
+        "explicit": false,
+        "rank": 338262
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-03",
+      "query": {
+        "artist": "Mandy Moore",
+        "title": "Crossing the Line"
+      },
+      "found": {
+        "id": "891181152",
+        "title": "Crossing the Line",
+        "artist": "Mandy Moore",
+        "album": "Rapunzel’s Tangled Adventure: Plus Est En Vous (Music from the TV Series)",
+        "durationS": 162,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/891181152",
+        "explicit": false,
+        "rank": 264464
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-04",
+      "query": {
+        "artist": "Michelle Branch",
+        "title": "Are You Happy Now?"
+      },
+      "found": {
+        "id": "3614638",
+        "title": "Are You Happy Now?",
+        "artist": "Michelle Branch",
+        "album": "Hotel Paper",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3614638",
+        "explicit": false,
+        "rank": 338852
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-05",
+      "query": {
+        "artist": "Jewel",
+        "title": "Standing Still"
+      },
+      "found": {
+        "id": "1444370022",
+        "title": "Standing Still",
+        "artist": "Jewel",
+        "album": "This Way",
+        "durationS": 272,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1444370022",
+        "explicit": false,
+        "rank": 156744
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-06",
+      "query": {
+        "artist": "Liberty X",
+        "title": "X"
+      },
+      "found": {
+        "id": "6343439",
+        "title": "X",
+        "artist": "Liberty X",
+        "album": "X",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6343439",
+        "explicit": false,
+        "rank": 37796
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-07",
+      "query": {
+        "artist": "A1",
+        "title": "Heaven By Your Side"
+      },
+      "found": {
+        "id": "13148794",
+        "title": "Heaven By Your Side",
+        "artist": "A1",
+        "album": "Here We Come",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13148794",
+        "explicit": false,
+        "rank": 209853
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-08",
+      "query": {
+        "artist": "Mis-Teeq",
+        "title": "Dance Your Cares Away"
+      },
+      "found": {
+        "id": "133738178",
+        "title": "Dance Your Cares Away",
+        "artist": "Mis-Teeq",
+        "album": "Eye Candy",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/133738178",
+        "explicit": false,
+        "rank": 102237
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-09",
+      "query": {
+        "artist": "Sugababes",
+        "title": "Overload"
+      },
+      "found": {
+        "id": "437462422",
+        "title": "Overload",
+        "artist": "Sugababes",
+        "album": "One Touch",
+        "durationS": 275,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/437462422",
+        "explicit": false,
+        "rank": 460280
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "pio-10",
+      "query": {
+        "artist": "Delta Goodrem",
+        "title": "Wings"
+      },
+      "found": {
+        "id": "127676525",
+        "title": "Wings",
+        "artist": "Delta Goodrem",
+        "album": "Wings of the Wild",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/127676525",
+        "explicit": false,
+        "rank": 354436
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

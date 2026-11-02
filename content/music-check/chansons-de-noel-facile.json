@@ -1,0 +1,217 @@
+{
+  "quizId": "chansons-de-noel-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "noel-01",
+      "query": {
+        "artist": "Mariah Carey",
+        "title": "All I Want for Christmas Is You"
+      },
+      "found": {
+        "id": "62710442",
+        "title": "All I Want for Christmas Is You",
+        "artist": "Mariah Carey",
+        "album": "Merry Christmas",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/62710442",
+        "explicit": false,
+        "rank": 880090
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-02",
+      "query": {
+        "artist": "Wham!",
+        "title": "Last Christmas"
+      },
+      "found": {
+        "id": "1036586",
+        "title": "Last Christmas",
+        "artist": "Wham!",
+        "album": "LAST CHRISTMAS",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1036586",
+        "explicit": false,
+        "rank": 873405
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-03",
+      "query": {
+        "artist": "Tino Rossi",
+        "title": "Petit Papa Noël"
+      },
+      "found": {
+        "id": "3104809",
+        "title": "Petit Papa Noël",
+        "artist": "Tino Rossi",
+        "album": "40 titres d'or",
+        "durationS": 195,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3104809",
+        "explicit": false,
+        "rank": 627948
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-04",
+      "query": {
+        "artist": "Brenda Lee",
+        "title": "Rockin' Around The Christmas Tree"
+      },
+      "found": {
+        "id": "24136731",
+        "title": "Rockin' Around The Christmas Tree",
+        "artist": "Brenda Lee",
+        "album": "Christmas Cookies",
+        "durationS": 126,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/24136731",
+        "explicit": false,
+        "rank": 669988
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-05",
+      "query": {
+        "artist": "Slade",
+        "title": "Merry Xmas Everybody"
+      },
+      "found": {
+        "id": "4093543081",
+        "title": "Merry Xmas Everybody",
+        "artist": "Slade",
+        "album": "Merry Xmas Everybody",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4093543081",
+        "explicit": false,
+        "rank": 413031
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-06",
+      "query": {
+        "artist": "José Feliciano",
+        "title": "Feliz Navidad"
+      },
+      "found": {
+        "id": "991049",
+        "title": "Feliz Navidad",
+        "artist": "José Feliciano",
+        "album": "Feliz Navidad",
+        "durationS": 182,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/991049",
+        "explicit": false,
+        "rank": 660252
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-07",
+      "query": {
+        "artist": "Chris Rea",
+        "title": "Driving Home for Christmas"
+      },
+      "found": {
+        "id": "425956912",
+        "title": "Driving Home for Christmas",
+        "artist": "Chris Rea",
+        "album": "The Works",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/425956912",
+        "explicit": false,
+        "rank": 621668
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-08",
+      "query": {
+        "artist": "Band Aid",
+        "title": "Do They Know It's Christmas?"
+      },
+      "found": {
+        "id": "2261793",
+        "title": "Do They Know It's Christmas? (1984 Version)",
+        "artist": "Band Aid",
+        "album": "Do They Know It's Christmas?",
+        "durationS": 222,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2261793",
+        "explicit": false,
+        "rank": 580578
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-09",
+      "query": {
+        "artist": "Andy Williams",
+        "title": "It's the Most Wonderful Time of the Year"
+      },
+      "found": {
+        "id": "585967",
+        "title": "It's the Most Wonderful Time of the Year",
+        "artist": "Andy Williams",
+        "album": "The Andy Williams Christmas Album",
+        "durationS": 151,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/585967",
+        "explicit": false,
+        "rank": 726867
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "noel-10",
+      "query": {
+        "artist": "John Lennon",
+        "title": "Happy Xmas (War Is Over)"
+      },
+      "found": {
+        "id": "7163389",
+        "title": "Happy Xmas (War Is Over) (Remastered 2010)",
+        "artist": "John Lennon",
+        "album": "Signature Box",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7163389",
+        "explicit": false,
+        "rank": 647914
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

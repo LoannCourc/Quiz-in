@@ -1,0 +1,219 @@
+{
+  "id": "variete-francaise-80-90-facile",
+  "gameType": "blindTest",
+  "title": "Variété française des années 80-90",
+  "theme": "Musique",
+  "description": "Dix tubes de la variété française des années 80 et 90, ceux qu'on chante en famille.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 1980,
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "vf89-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Je te donne – Jean-Jacques Goldman",
+        "A nos actes manqués – Carole Fredericks",
+        "Sensualité – Axelle Red",
+        "L'envie – Johnny Hallyday"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Je te donne"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jean-Jacques Goldman",
+        "title": "Je te donne"
+      }
+    },
+    {
+      "id": "vf89-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "L'Aziza – Daniel Balavoine",
+        "Désenchantée – Mylène Farmer",
+        "Joe le taxi – Vanessa Paradis",
+        "Le parking des anges – Marc Lavoine"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Mylène Farmer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Mylène Farmer",
+        "title": "Désenchantée"
+      }
+    },
+    {
+      "id": "vf89-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Morgane de toi – Renaud",
+        "Temps à nouveau – Jean-Louis Aubert",
+        "Encore et encore – Francis Cabrel",
+        "Mélissa – Julien Clerc"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Encore et encore"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Francis Cabrel",
+        "title": "Encore et encore"
+      }
+    },
+    {
+      "id": "vf89-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sur la route – De Palmas",
+        "Un autre monde – Telephone",
+        "Tu m'oublieras – Larusso",
+        "J'ai demandé à la lune – Indochine"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Indochine"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Indochine",
+        "title": "J'ai demandé à la lune"
+      }
+    },
+    {
+      "id": "vf89-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Savoir aimer – Florent Pagny",
+        "Être une femme – Michel Sardou",
+        "Tout – Lara Fabian",
+        "Déjeuner en paix – Stephan Eicher"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Savoir aimer"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Florent Pagny",
+        "title": "Savoir aimer"
+      }
+    },
+    {
+      "id": "vf89-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Aller Plus Haut – Tina Arena",
+        "J't'emmène au vent – Louise Attaque",
+        "Pour que tu m'aimes encore – Céline Dion",
+        "Eve Lève-Toi – Julie Pietri"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Céline Dion"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Céline Dion",
+        "title": "Pour que tu m'aimes encore"
+      }
+    },
+    {
+      "id": "vf89-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Foule sentimentale – Alain Souchon",
+        "Idées noires – Bernard Lavilliers",
+        "Rien que de l'eau – Véronique Sanson",
+        "Couleur menthe à l'eau – Eddy Mitchell"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Foule sentimentale"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Alain Souchon",
+        "title": "Foule sentimentale"
+      }
+    },
+    {
+      "id": "vf89-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Résiste – France Gall",
+        "C'est comme ça – Les Rita Mitsouko",
+        "Quelques mots d’amour – Michel Berger",
+        "Les corons – Pierre Bachelet"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Michel Berger"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Michel Berger",
+        "title": "Quelques mots d'amour",
+        "displayTitle": "Quelques mots d’amour"
+      }
+    },
+    {
+      "id": "vf89-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Place des grands hommes – Patrick Bruel",
+        "J'ai rien prévu pour demain – Tryo",
+        "Lambé An Dro – Matmatah",
+        "Belle-Île-en-Mer Marie-Galante – Laurent Voulzy"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Belle-Île-en-Mer Marie-Galante"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Laurent Voulzy",
+        "title": "Belle-Île-en-Mer, Marie-Galante",
+        "displayTitle": "Belle-Île-en-Mer Marie-Galante"
+      }
+    },
+    {
+      "id": "vf89-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mourir sur scène – Dalida",
+        "Osez Joséphine – Alain Bashung",
+        "Femme libérée – Cookie Dingler",
+        "La tribu de Dana – Manau"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Alain Bashung"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Alain Bashung",
+        "title": "Osez Joséphine"
+      }
+    }
+  ]
+}

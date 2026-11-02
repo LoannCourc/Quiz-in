@@ -1,0 +1,217 @@
+{
+  "quizId": "latino-reggaeton-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "lat-01",
+      "query": {
+        "artist": "Luis Fonsi",
+        "title": "Échame La Culpa"
+      },
+      "found": {
+        "id": "427935102",
+        "title": "Échame La Culpa",
+        "artist": "Luis Fonsi",
+        "album": "Échame La Culpa",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/427935102",
+        "explicit": false,
+        "rank": 730181
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-02",
+      "query": {
+        "artist": "Nicky Jam",
+        "title": "El Perdon"
+      },
+      "found": {
+        "id": "112987370",
+        "title": "El Perdon",
+        "artist": "Nicky Jam",
+        "album": "Revolucion Reggaeton",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/112987370",
+        "explicit": false,
+        "rank": 408134
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-03",
+      "query": {
+        "artist": "J Balvin",
+        "title": "Ginza"
+      },
+      "found": {
+        "id": "127245209",
+        "title": "Ginza",
+        "artist": "J Balvin",
+        "album": "Energía",
+        "durationS": 170,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/127245209",
+        "explicit": false,
+        "rank": 679565
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-04",
+      "query": {
+        "artist": "Bad Bunny",
+        "title": "CAFé CON RON"
+      },
+      "found": {
+        "id": "3171003091",
+        "title": "CAFé CON RON",
+        "artist": "Bad Bunny",
+        "album": "DeBÍ TiRAR MáS FOToS",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3171003091",
+        "explicit": false,
+        "rank": 931555
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-05",
+      "query": {
+        "artist": "Wisin & Yandel",
+        "title": "Sexy Movimiento"
+      },
+      "found": {
+        "id": "15425493",
+        "title": "Sexy Movimiento",
+        "artist": "Wisin & Yandel",
+        "album": "Los Extraterrestres - Otra Dimension",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15425493",
+        "explicit": false,
+        "rank": 569374
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-06",
+      "query": {
+        "artist": "Lorna",
+        "title": "Papi Chulo... Te Traigo El Mmmm"
+      },
+      "found": {
+        "id": "73219998",
+        "title": "Papi Chulo... Te Traigo El Mmmm (Radio Version)",
+        "artist": "Lorna",
+        "album": "Papi Chulo... Te Traigo El Mmmm",
+        "durationS": 180,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/73219998",
+        "explicit": false,
+        "rank": 667530
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-07",
+      "query": {
+        "artist": "Elvis Crespo",
+        "title": "Suavemente"
+      },
+      "found": {
+        "id": "13211608",
+        "title": "Suavemente",
+        "artist": "Elvis Crespo",
+        "album": "Suavemente...Los Exitos",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13211608",
+        "explicit": false,
+        "rank": 562059
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-08",
+      "query": {
+        "artist": "Ovy On The Drums",
+        "title": "YO y TÚ"
+      },
+      "found": {
+        "id": "3382134521",
+        "title": "YO y TÚ",
+        "artist": "Ovy On The Drums",
+        "album": "YO y TÚ",
+        "durationS": 198,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3382134521",
+        "explicit": false,
+        "rank": 720003
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-09",
+      "query": {
+        "artist": "Ilegales",
+        "title": "Mi Vicio"
+      },
+      "found": {
+        "id": "1769598297",
+        "title": "Mi Vicio",
+        "artist": "Ilegales",
+        "album": "Otra Atmósfera",
+        "durationS": 197,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1769598297",
+        "explicit": false,
+        "rank": 163499
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "lat-10",
+      "query": {
+        "artist": "DJ Nelson",
+        "title": "Yo Voy A Legar"
+      },
+      "found": {
+        "id": "121795660",
+        "title": "Yo Voy A Legar (feat. Zion)",
+        "artist": "DJ Nelson",
+        "album": "Mi Historia",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/121795660",
+        "explicit": false,
+        "rank": 284219
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

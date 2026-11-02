@@ -1,0 +1,217 @@
+{
+  "quizId": "generiques-dessins-animes-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "gen-01",
+      "query": {
+        "artist": "Bernard Minet",
+        "title": "Dragon Ball et Dragon Ball Z"
+      },
+      "found": {
+        "id": "97642098",
+        "title": "Dragon Ball et Dragon Ball Z",
+        "artist": "Bernard Minet",
+        "album": "Dragon Ball Z (Générique et chansons officiels)",
+        "durationS": 169,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/97642098",
+        "explicit": false,
+        "rank": 387960
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-02",
+      "query": {
+        "artist": "Bernard Minet",
+        "title": "Les chevaliers du zodiaque"
+      },
+      "found": {
+        "id": "8134110",
+        "title": "Les chevaliers du zodiaque",
+        "artist": "Bernard Minet",
+        "album": "Bernard Minet - Génériques TV",
+        "durationS": 162,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/8134110",
+        "explicit": false,
+        "rank": 458010
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-03",
+      "query": {
+        "artist": "Isabelle Guillard",
+        "title": "Signé Cat's Eyes"
+      },
+      "found": {
+        "id": "38892111",
+        "title": "Signé Cat's Eyes (Générique de la série télévisée)",
+        "artist": "Isabelle Guillard",
+        "album": "Signé Cat's Eyes (Générique de la série télévisée) - Single",
+        "durationS": 184,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/38892111",
+        "explicit": false,
+        "rank": 535116
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-04",
+      "query": {
+        "artist": "Jacques Cardona",
+        "title": "Les mystérieuses cités d'or"
+      },
+      "found": {
+        "id": "81670594",
+        "title": "Les mystérieuses cités d'or",
+        "artist": "Jacques Cardona",
+        "album": "Les mystérieuses cités d'or (Générique original du dessin animé) - Single",
+        "durationS": 133,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/81670594",
+        "explicit": false,
+        "rank": 504178
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-05",
+      "query": {
+        "artist": "Les Goldies",
+        "title": "Goldorak : La légende d'Actarus"
+      },
+      "found": {
+        "id": "393264072",
+        "title": "Goldorak : La légende d'Actarus",
+        "artist": "Les Goldies",
+        "album": "Goldorak : La légende d'Actarus (Générique original d'ouverture de la série TV - 1978) - Single",
+        "durationS": 174,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/393264072",
+        "explicit": false,
+        "rank": 311095
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-06",
+      "query": {
+        "artist": "Jacques Cardona",
+        "title": "Inspecteur Gadget"
+      },
+      "found": {
+        "id": "81670580",
+        "title": "Inspecteur Gadget (Générique original du dessin animé)",
+        "artist": "Jacques Cardona",
+        "album": "Inspecteur Gadget (Générique original du dessin animé) - Single",
+        "durationS": 158,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/81670580",
+        "explicit": false,
+        "rank": 521070
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-07",
+      "query": {
+        "artist": "Éric Charden",
+        "title": "Albator, le corsaire de l'espace"
+      },
+      "found": {
+        "id": "38892081",
+        "title": "Albator, le corsaire de l'espace (Bande originale du feuilleton)",
+        "artist": "Éric Charden",
+        "album": "Albator, le corsaire de l'espace (Bande originale du feuilleton) - Single",
+        "durationS": 86,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/38892081",
+        "explicit": false,
+        "rank": 443428
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-08",
+      "query": {
+        "artist": "Lionel Leroy",
+        "title": "Ulysse 31"
+      },
+      "found": {
+        "id": "81670602",
+        "title": "Ulysse 31 (Générique original d'ouverture du dessin animé)",
+        "artist": "Lionel Leroy",
+        "album": "Ulysse 31 (Générique original d'ouverture du dessin animé) - Single",
+        "durationS": 204,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/81670602",
+        "explicit": false,
+        "rank": 426664
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-09",
+      "query": {
+        "artist": "Jean-Paul Césari",
+        "title": "Nicky Larson"
+      },
+      "found": {
+        "id": "97792162",
+        "title": "Nicky Larson (Générique)",
+        "artist": "Jean-Paul Césari",
+        "album": "Méga hit enfant",
+        "durationS": 145,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/97792162",
+        "explicit": false,
+        "rank": 464761
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gen-10",
+      "query": {
+        "artist": "Dominique Poulain",
+        "title": "Au Pays de Candy"
+      },
+      "found": {
+        "id": "3744570",
+        "title": "Au Pays de Candy",
+        "artist": "Dominique Poulain",
+        "album": "Les chansons de Candy-Candy",
+        "durationS": 69,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3744570",
+        "explicit": false,
+        "rank": 413953
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

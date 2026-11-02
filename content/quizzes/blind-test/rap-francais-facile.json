@@ -1,0 +1,221 @@
+{
+  "id": "rap-francais-facile",
+  "gameType": "blindTest",
+  "title": "Rap français : les tubes",
+  "theme": "Musique",
+  "description": "Dix tubes du rap français, de MC Solaar à PNL : les sons que tout le monde a entendus.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "rff-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'enfant seul – Oxmo Puccino",
+        "Demain, c'est loin – IAM",
+        "Bouge de là – MC Solaar",
+        "Ma Benz – Suprême NTM"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Bouge de là"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "MC Solaar",
+        "title": "Bouge de là"
+      }
+    },
+    {
+      "id": "rff-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La Boulette (Génération Nan Nan) – Diam's",
+        "Wati by Night – Sexion d'Assaut",
+        "Charisme – Rohff",
+        "Une époque formidable – Sinik"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sexion d'Assaut"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Sexion d'Assaut",
+        "title": "Wati by Night"
+      }
+    },
+    {
+      "id": "rff-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Désaccordé – Vald",
+        "Le cœur des filles – A2H",
+        "J’aurais pas dû – S-Crew",
+        "On verra – Nekfeu"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "On verra"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nekfeu",
+        "title": "On verra"
+      }
+    },
+    {
+      "id": "rff-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "D'or et de platine – Gradur",
+        "Chasse à l'homme – Niska",
+        "Je la connais – SCH",
+        "Zoo – Kaaris"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Kaaris"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kaaris",
+        "title": "Zoo"
+      }
+    },
+    {
+      "id": "rff-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sur ma route – Black M",
+        "Les princes – MZ",
+        "Arrêt du cœur – Kalash Criminel",
+        "Ce soir ne sors pas – Lacrim"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Sur ma route"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Black M",
+        "title": "Sur ma route"
+      }
+    },
+    {
+      "id": "rff-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "C'est la cité – Jul",
+        "Madrina – Maes",
+        "Tout donner – Naza",
+        "Sans Coeur – Shay"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Maes"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Maes",
+        "title": "Madrina"
+      }
+    },
+    {
+      "id": "rff-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jamais lâcher – La Fouine",
+        "Mon amour ma musique – Niro",
+        "Tout va bien – Alonzo",
+        "Habitué – Dosseh"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Jamais lâcher"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "La Fouine",
+        "title": "Jamais lâcher"
+      }
+    },
+    {
+      "id": "rff-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Saïgon – Makala",
+        "Trop beau – Lomepal",
+        "Coup de vieux – Bigflo & Oli",
+        "La rue – No Limit"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Lomepal"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lomepal",
+        "title": "Trop beau"
+      }
+    },
+    {
+      "id": "rff-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La kiffance – Naps",
+        "Jamais – Mister V",
+        "Afro Trap Pt. 7 (La puissance) – MHD",
+        "Ainsi va la rue – Rim'K"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "La kiffance"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Naps",
+        "title": "La kiffance"
+      }
+    },
+    {
+      "id": "rff-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "A Toi... – Mister You",
+        "Ma fille – Kofs",
+        "Bande organisée – 13 Organisé",
+        "Le G – Soso Maness"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "13 Organisé"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "13 Organisé",
+        "title": "Bande organisée",
+        "artistAliases": [
+          "Jul",
+          "13 Organise"
+        ]
+      }
+    }
+  ]
+}

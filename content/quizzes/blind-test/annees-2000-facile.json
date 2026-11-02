@@ -1,0 +1,218 @@
+{
+  "id": "annees-2000-facile",
+  "gameType": "blindTest",
+  "title": "Années 2000 : les tubes",
+  "theme": "Musique",
+  "description": "Pop, électro et refrains de soirée : dix succès des années 2000 que tout le monde connaît.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "headphones",
+  "genre": "pop",
+  "decade": 2000,
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "featuredRank": 4,
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a00f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hips Don't Lie – Shakira",
+        "Maneater – Nelly Furtado",
+        "The Reason – Hoobastank",
+        "Hung Up – Madonna"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hips Don't Lie"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Shakira",
+        "title": "Hips Don't Lie"
+      }
+    },
+    {
+      "id": "a00f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "TiK ToK – Kesha",
+        "I Kissed A Girl – Katy Perry",
+        "The Sweet Escape – Gwen Stefani",
+        "Toxic – Britney Spears"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Britney Spears"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Britney Spears",
+        "title": "Toxic"
+      }
+    },
+    {
+      "id": "a00f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Right Round – Flo Rida",
+        "Temperature – Sean Paul",
+        "The Way I Are – Timbaland",
+        "I Gotta Feeling – Black Eyed Peas"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "I Gotta Feeling"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Black Eyed Peas",
+        "title": "I Gotta Feeling"
+      }
+    },
+    {
+      "id": "a00f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Viva La Vida – Coldplay",
+        "Apologize – OneRepublic",
+        "She Will Be Loved – Maroon 5",
+        "Chasing Cars – Snow Patrol"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Coldplay"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Coldplay",
+        "title": "Viva La Vida"
+      }
+    },
+    {
+      "id": "a00f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rock This Party (Everybody Dance Now) – Bob Sinclar",
+        "Lady (Hear Me Tonight) – Modjo",
+        "One More Time – Daft Punk",
+        "Starlight (The Fame) – The Supermen Lovers"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "One More Time"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Daft Punk",
+        "title": "One More Time"
+      }
+    },
+    {
+      "id": "a00f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Yeah! – Usher",
+        "Umbrella – Rihanna",
+        "SexyBack – Justin Timberlake",
+        "Whatcha Say – Jason Derulo"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Rihanna"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Rihanna",
+        "title": "Umbrella"
+      }
+    },
+    {
+      "id": "a00f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bring Me To Life – Evanescence",
+        "Wake Me up When September Ends – Green Day",
+        "In the End – Linkin Park",
+        "Behind Blue Eyes – Limp Bizkit"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "In the End"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Linkin Park",
+        "title": "In the End"
+      }
+    },
+    {
+      "id": "a00f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Face à la mer – Calogero",
+        "On s'attache – Christophe Maé",
+        "Toi + Moi – Gregoire",
+        "Je ne sais pas – Joyce Jonathan"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Christophe Maé"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Christophe Maé",
+        "title": "On s'attache"
+      }
+    },
+    {
+      "id": "a00f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hurt – Christina Aguilera",
+        "Can't Get You out of My Head – Kylie Minogue",
+        "Paper Planes – M.I.A.",
+        "It Wasn't Me – Shaggy"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Can't Get You out of My Head"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kylie Minogue",
+        "title": "Can't Get You out of My Head"
+      }
+    },
+    {
+      "id": "a00f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Crazy In Love – Beyoncé",
+        "Family Affair – Mary J. Blige",
+        "No One – Alicia Keys",
+        "So Sick – Ne-Yo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Beyoncé"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Beyoncé",
+        "title": "Crazy In Love"
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "quizId": "chanson-francaise-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "cfi-01",
+      "query": {
+        "artist": "Karpatt",
+        "title": "Pétales"
+      },
+      "found": {
+        "id": "899472872",
+        "title": "Pétales",
+        "artist": "Karpatt",
+        "album": "Angora",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/899472872",
+        "explicit": false,
+        "rank": 134070
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-02",
+      "query": {
+        "artist": "Alexis HK",
+        "title": "Nous"
+      },
+      "found": {
+        "id": "125367554",
+        "title": "Nous",
+        "artist": "Alexis HK",
+        "album": "Belle ville",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/125367554",
+        "explicit": false,
+        "rank": 122964
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-03",
+      "query": {
+        "artist": "Yves Jamait",
+        "title": "Les mêmes"
+      },
+      "found": {
+        "id": "545837462",
+        "title": "Les mêmes",
+        "artist": "Yves Jamait",
+        "album": "Mon totem",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/545837462",
+        "explicit": false,
+        "rank": 215069
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-04",
+      "query": {
+        "artist": "Les Wriggles",
+        "title": "Le complot"
+      },
+      "found": {
+        "id": "3152498411",
+        "title": "Le complot",
+        "artist": "Les Wriggles",
+        "album": "Tant pis! Tant mieux!",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3152498411",
+        "explicit": false,
+        "rank": 220222
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-05",
+      "query": {
+        "artist": "Volo",
+        "title": "Pas de requiem"
+      },
+      "found": {
+        "id": "4206048",
+        "title": "Pas de requiem",
+        "artist": "Volo",
+        "album": "En attendant",
+        "durationS": 187,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4206048",
+        "explicit": false,
+        "rank": 211939
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-06",
+      "query": {
+        "artist": "Marcel et son Orchestre",
+        "title": "Cerf-volant"
+      },
+      "found": {
+        "id": "1350439562",
+        "title": "Cerf-volant",
+        "artist": "Marcel et son Orchestre",
+        "album": "Dans la joie jusqu'au cou...",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1350439562",
+        "explicit": false,
+        "rank": 72886
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-07",
+      "query": {
+        "artist": "Carmen Maria Vega",
+        "title": "Aigre-doux"
+      },
+      "found": {
+        "id": "782114112",
+        "title": "Aigre-doux",
+        "artist": "Carmen Maria Vega",
+        "album": "Santa Maria",
+        "durationS": 188,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/782114112",
+        "explicit": false,
+        "rank": 252681
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-08",
+      "query": {
+        "artist": "Pauline Croze",
+        "title": "Quelle heure est-il ?"
+      },
+      "found": {
+        "id": "61228574",
+        "title": "Quelle heure est-il ?",
+        "artist": "Pauline Croze",
+        "album": "Le prix de l'eden",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/61228574",
+        "explicit": false,
+        "rank": 154460
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-09",
+      "query": {
+        "artist": "Archimède",
+        "title": "Hendaye"
+      },
+      "found": {
+        "id": "143798406",
+        "title": "Hendaye",
+        "artist": "Archimède",
+        "album": "Méhari",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/143798406",
+        "explicit": false,
+        "rank": 232845
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfi-10",
+      "query": {
+        "artist": "Les Tit' Nassels",
+        "title": "J'écris"
+      },
+      "found": {
+        "id": "3631746772",
+        "title": "J'écris",
+        "artist": "Les Tit' Nassels",
+        "album": "En plein coeur",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3631746772",
+        "explicit": false,
+        "rank": 73871
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

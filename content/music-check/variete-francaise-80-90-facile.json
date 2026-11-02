@@ -1,0 +1,217 @@
+{
+  "quizId": "variete-francaise-80-90-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "vf89-01",
+      "query": {
+        "artist": "Jean-Jacques Goldman",
+        "title": "Je te donne"
+      },
+      "found": {
+        "id": "730166752",
+        "title": "Je te donne",
+        "artist": "Jean-Jacques Goldman",
+        "album": "Non homologué",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/730166752",
+        "explicit": false,
+        "rank": 905909
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-02",
+      "query": {
+        "artist": "Mylène Farmer",
+        "title": "Désenchantée"
+      },
+      "found": {
+        "id": "2425807",
+        "title": "Désenchantée",
+        "artist": "Mylène Farmer",
+        "album": "L'Autre",
+        "durationS": 322,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2425807",
+        "explicit": false,
+        "rank": 902989
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-03",
+      "query": {
+        "artist": "Francis Cabrel",
+        "title": "Encore et encore"
+      },
+      "found": {
+        "id": "72064788",
+        "title": "Encore et encore (Remastered)",
+        "artist": "Francis Cabrel",
+        "album": "Photos de voyages (Remastered)",
+        "durationS": 273,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72064788",
+        "explicit": false,
+        "rank": 913288
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-04",
+      "query": {
+        "artist": "Indochine",
+        "title": "J'ai demandé à la lune"
+      },
+      "found": {
+        "id": "870090",
+        "title": "J'ai demandé à la lune",
+        "artist": "Indochine",
+        "album": "Paradize",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/870090",
+        "explicit": false,
+        "rank": 918744
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-05",
+      "query": {
+        "artist": "Florent Pagny",
+        "title": "Savoir aimer"
+      },
+      "found": {
+        "id": "984192",
+        "title": "Savoir aimer",
+        "artist": "Florent Pagny",
+        "album": "Savoir Aimer",
+        "durationS": 280,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/984192",
+        "explicit": false,
+        "rank": 873054
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-06",
+      "query": {
+        "artist": "Céline Dion",
+        "title": "Pour que tu m'aimes encore"
+      },
+      "found": {
+        "id": "4762933",
+        "title": "Pour que tu m'aimes encore",
+        "artist": "Céline Dion",
+        "album": "D'eux - Édition 15ème Anniversaire",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4762933",
+        "explicit": false,
+        "rank": 997318
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-07",
+      "query": {
+        "artist": "Alain Souchon",
+        "title": "Foule sentimentale"
+      },
+      "found": {
+        "id": "3132726",
+        "title": "Foule sentimentale",
+        "artist": "Alain Souchon",
+        "album": "C'est déjà ça",
+        "durationS": 324,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3132726",
+        "explicit": false,
+        "rank": 857875
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-08",
+      "query": {
+        "artist": "Michel Berger",
+        "title": "Quelques mots d'amour"
+      },
+      "found": {
+        "id": "46280471",
+        "title": "Quelques mots d'amour (Remasterisé en 2002)",
+        "artist": "Michel Berger",
+        "album": "Beauséjour (Remasterisé en 2002)",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/46280471",
+        "explicit": false,
+        "rank": 785587
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-09",
+      "query": {
+        "artist": "Laurent Voulzy",
+        "title": "Belle-Île-en-Mer, Marie-Galante"
+      },
+      "found": {
+        "id": "2170521",
+        "title": "Belle-Île-en-Mer, Marie-Galante",
+        "artist": "Laurent Voulzy",
+        "album": "Belle Ile En Mer",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2170521",
+        "explicit": false,
+        "rank": 712771
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vf89-10",
+      "query": {
+        "artist": "Alain Bashung",
+        "title": "Osez Joséphine"
+      },
+      "found": {
+        "id": "983903",
+        "title": "Osez Joséphine",
+        "artist": "Alain Bashung",
+        "album": "Osez Josephine",
+        "durationS": 176,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/983903",
+        "explicit": false,
+        "rank": 741255
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

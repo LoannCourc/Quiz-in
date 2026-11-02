@@ -1,0 +1,12 @@
+{
+  "_comment": "Seuils calibrés le 2026-11-01 sur les 12 références rap français (calibrate.mjs). Position : la meilleure entre la place dans le top Deezer de l'artiste et la place par rang parmi ses titres (deezer.mjs, topEntry). Connu : nbFan >= knownMinFans. Facile : position <= easyMaxPosition, et connu ou rank >= easyMinRankAnyArtist. Moyen : connu et position >= mediumMinPosition. Difficile : peu connu, et rank >= hardMinRank ou position <= hardMaxPosition (ta définition « son morceau le plus connu », pour les cas hors des références). Impossible : peu connu, nbFan <= impossibleMaxFans (100 000, décision du 1er novembre 2026 : borne haute des références, Krisy à 86 371 fans), rank < impossibleMaxRank et position >= impossibleMinPosition. Sinon : non classé (le morceau est remplacé).",
+  "knownMinFans": 300000,
+  "easyMaxPosition": 5,
+  "easyMinRankAnyArtist": 800000,
+  "mediumMinPosition": 6,
+  "hardMinRank": 600000,
+  "impossibleMaxRank": 550000,
+  "impossibleMinPosition": 6,
+  "hardMaxPosition": 2,
+  "impossibleMaxFans": 100000
+}

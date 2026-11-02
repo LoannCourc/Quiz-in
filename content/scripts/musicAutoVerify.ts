@@ -8,11 +8,12 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { fitsBlindTestTimer } from '../../shared/quizValidation'
-import { musicCheckDir, quizFile, readMusicCheck, sameQuery, writeMusicCheck, type FoundTrack, type SourceMusic } from './musicCheck'
+import { allowsExplicit, musicCheckDir, quizFile, readMusicCheck, sameQuery, writeMusicCheck, type FoundTrack, type SourceMusic } from './musicCheck'
 
 interface SourceQuiz {
   id: string
   gameType?: string
+  genre?: string
   questions: { id: string; timeLimit?: number; music?: SourceMusic }[]
 }
 
@@ -30,9 +31,12 @@ function displayed(text: string): string {
 }
 
 // Précisions acceptées après le titre, une ou plusieurs : même enregistrement (artiste invité, remasterisation,
-// version du single, bande originale d'un film), jamais une autre version (live, remix…).
+// version du single, bande originale d'un film, langue de l'original : « Bailando (Spanish Version) », crédit d'un
+// duo : « This Girl (Kungs Vs. Cookin' On 3 Burners) », année de l'original : « (1984 Version) », générique ou version
+// française d'un film : « (Générique original du dessin animé) », « (De "Mulan") »), jamais une autre version (live,
+// remix…).
 const SAME_RECORDING_PART =
-  /(\s*[([]\s*(feat\.? [^)\]]+|with [^)\]]+|(\d{4} )?remaster(ed)?( \d{4})?( version)?|remasteris[ée]e?( en \d{4})?|album version( - (\d{4} )?remaster(ed)?( \d{4})?)?|single (version|edit)|(original )?radio edit|original( mix| version)?( \d{4})?|mono|stereo|version (mono|stéréo|stereo)|7" (mix|version)|from [^)\]]*(soundtrack|motion picture)[^)\]]*)\s*[)\]]|\s+-\s+((\d{4} )?remaster(ed)?( \d{4})?|single version|radio edit|mono|stereo))\s*$/i
+  /(\s*[([]\s*((feat\.?|featuring) [^)\]]+|with [^)\]]+|(\d{4} )?(digital )?remaster(ed)?( \d{4})?( version)?|remasteris[ée]e?( en \d{4})?|album version( - (\d{4} )?remaster(ed)?( \d{4})?)?|single (version|edit)|(original )?radio (edit|version)|original( mix| version)?( \d{4})?|mono|stereo|version (mono|stéréo|stereo)|7["”] (mix|version)|video edit|(spanish|english|french|espa[ñn]ol) version|\d{4} version|(g[ée]n[ée]rique|bande originale|de ["“])[^)\]]*|[^)\]]+ vs\.? [^)\]]+|(music |theme )?from [^)\]]+)\s*[)\]]|\s+-\s+((\d{4} )?remaster(ed)?( \d{4})?|single version|radio edit|mono|stereo))\s*$/i
 
 // Titre affiché sans ses précisions de même enregistrement, retirées de la fin une à une.
 function recordingTitle(title: string): string {
@@ -41,13 +45,14 @@ function recordingTitle(title: string): string {
   return rest
 }
 
-const OTHER_VERSION = /\b(live|acoustic|acoustique|karaoke|cover|instrumental|unplugged|demo|reprise|remix|mix|rework|club|edit)\b/i
+const OTHER_VERSION = /\b(live|acoustic|acoustique|karaoke|cover|instrumental|unplugged|demo|reprise|remix|mix|rework|club (mix|edit|version)|edit)\b/i
 
 // Raison du refus, ou null si le morceau passe tous les contrôles.
-export function autoCheckFailure(music: SourceMusic, found: FoundTrack | null, timeLimit?: number): string | null {
+// allowExplicit : blind test de rap (voir allowsExplicit, buildImport.ts).
+export function autoCheckFailure(music: SourceMusic, found: FoundTrack | null, timeLimit?: number, allowExplicit = false): string | null {
   if (!found) return 'aucun morceau trouvé'
   if (!found.previewAvailable) return 'pas d’extrait'
-  if (found.explicit) return 'paroles explicites'
+  if (found.explicit && !allowExplicit) return 'paroles explicites'
   if (displayed(found.artist) !== displayed(music.artist)) return `artiste affiché par Deezer : « ${found.artist} »`
   if (displayed(recordingTitle(found.title)) !== displayed(music.title)) return `titre affiché par Deezer : « ${found.title} »`
   // Album d'une autre version (live, remix…) ; un album nommé d'après le single (« Move on Up (Single Edit) ») passe.
@@ -70,7 +75,7 @@ function verifyQuiz(quizId: string): number {
       continue
     }
     if (entry.verified) continue
-    const failure = autoCheckFailure(question.music, entry.found, question.timeLimit)
+    const failure = autoCheckFailure(question.music, entry.found, question.timeLimit, allowsExplicit(quiz.genre))
     if (failure) {
       console.log(`✗ ${quizId}/${question.id} ${question.music.artist} — ${question.music.title} : ${failure}`)
       failures += 1

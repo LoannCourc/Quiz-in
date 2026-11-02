@@ -1,0 +1,218 @@
+{
+  "id": "metal-hard-rock-mixte",
+  "gameType": "blindTest",
+  "title": "Metal et hard rock : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "mhr-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Walk This Way – Aerosmith",
+        "Crazy Train – Ozzy Osbourne",
+        "Master of Puppets – Metallica",
+        "Paradise City – Guns N' Roses"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Master of Puppets"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Metallica",
+        "title": "Master Of Puppets",
+        "displayTitle": "Master of Puppets"
+      }
+    },
+    {
+      "id": "mhr-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hellraiser – Motörhead",
+        "Kickstart My Heart – Mötley Crüe",
+        "Symphony Of Destruction – Megadeth",
+        "The Trooper – Iron Maiden"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Iron Maiden"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Iron Maiden",
+        "title": "The Trooper"
+      }
+    },
+    {
+      "id": "mhr-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "One Step Closer – Linkin Park",
+        "Sweet Sacrifice – Evanescence",
+        "Wanted Dead Or Alive – Bon Jovi",
+        "Stinkfist – TOOL"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "One Step Closer"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Linkin Park",
+        "title": "One Step Closer"
+      }
+    },
+    {
+      "id": "mhr-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Lick It Up – KISS",
+        "Children of the Grave – Black Sabbath",
+        "Eruption – Van Halen",
+        "Welcome to My Nightmare – Alice Cooper"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Black Sabbath"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Black Sabbath",
+        "title": "Children of the Grave"
+      }
+    },
+    {
+      "id": "mhr-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Shoot to Thrill – AC/DC",
+        "Black Night – Deep Purple",
+        "Rock Of Ages – Def Leppard",
+        "The Rover – Led Zeppelin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Shoot to Thrill"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "AC/DC",
+        "title": "Shoot to Thrill"
+      }
+    },
+    {
+      "id": "mhr-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Metal Health (Bang Your Head) – Quiet Riot",
+        "Princess Of The Dawn – Accept",
+        "I Wanna Be Somebody – W.A.S.P.",
+        "Tears of the Dragon – Bruce Dickinson"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "W.A.S.P."
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "W.A.S.P.",
+        "title": "I Wanna Be Somebody"
+      }
+    },
+    {
+      "id": "mhr-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Catch The Rainbow – Rainbow",
+        "Battle Hymn – Manowar",
+        "Silent Lucidity – Queensrÿche",
+        "Princess of the Night – Saxon"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Princess of the Night"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Saxon",
+        "title": "Princess of the Night"
+      }
+    },
+    {
+      "id": "mhr-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Nobody's Fool – Cinderella",
+        "Nothin' But A Good Time – Poison",
+        "Heaven – Warrant",
+        "Round and Round – Ratt"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Ratt"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Ratt",
+        "title": "Round and Round"
+      }
+    },
+    {
+      "id": "mhr-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Take It All – Pop Evil",
+        "Paint It Red – Bad Wolves",
+        "Perfect Soul – Spiritbox",
+        "RISE – Extreme"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Paint It Red"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Bad Wolves",
+        "title": "Paint It Red"
+      }
+    },
+    {
+      "id": "mhr-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Grey Hun – The HU",
+        "Rainbow – Emigrate",
+        "Hallowed Land – Paradise Lost",
+        "Protector – Heaven Shall Burn"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The HU"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "The HU",
+        "title": "Grey Hun"
+      }
+    }
+  ]
+}

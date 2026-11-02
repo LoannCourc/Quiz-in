@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-80-oubliees-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a80o-01",
+      "query": {
+        "artist": "Johnny Hates Jazz",
+        "title": "Different Seasons"
+      },
+      "found": {
+        "id": "3140066",
+        "title": "Different Seasons (2008 Digital Remaster)",
+        "artist": "Johnny Hates Jazz",
+        "album": "Turn Back The Clock",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3140066",
+        "explicit": false,
+        "rank": 158987
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-02",
+      "query": {
+        "artist": "Thompson Twins",
+        "title": "The Gap"
+      },
+      "found": {
+        "id": "3786097712",
+        "title": "The Gap",
+        "artist": "Thompson Twins",
+        "album": "Into the Gap",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3786097712",
+        "explicit": false,
+        "rank": 181826
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-03",
+      "query": {
+        "artist": "Howard Jones",
+        "title": "Life In One Day"
+      },
+      "found": {
+        "id": "2929237791",
+        "title": "Life In One Day",
+        "artist": "Howard Jones",
+        "album": "Dream Into Action",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2929237791",
+        "explicit": false,
+        "rank": 184592
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-04",
+      "query": {
+        "artist": "Heaven 17",
+        "title": "Sign O’ The Times"
+      },
+      "found": {
+        "id": "1323254",
+        "title": "Sign O’ The Times",
+        "artist": "Heaven 17",
+        "album": "Sign O' The Times",
+        "durationS": 286,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1323254",
+        "explicit": false,
+        "rank": 130656
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-05",
+      "query": {
+        "artist": "Visage",
+        "title": "Mind Of A Toy"
+      },
+      "found": {
+        "id": "2285083",
+        "title": "Mind Of A Toy",
+        "artist": "Visage",
+        "album": "Fade To Grey: The Best Of Visage",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2285083",
+        "explicit": false,
+        "rank": 179722
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-06",
+      "query": {
+        "artist": "Re-Flex",
+        "title": "What You Deserve"
+      },
+      "found": {
+        "id": "732066932",
+        "title": "What You Deserve",
+        "artist": "Re-Flex",
+        "album": "The Politics of Dancing (Expanded)",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/732066932",
+        "explicit": false,
+        "rank": 88376
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-07",
+      "query": {
+        "artist": "Classix Nouveaux",
+        "title": "Robots Dance"
+      },
+      "found": {
+        "id": "1245813712",
+        "title": "Robots Dance",
+        "artist": "Classix Nouveaux",
+        "album": "Cold Wave",
+        "durationS": 302,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1245813712",
+        "explicit": false,
+        "rank": 31720
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-08",
+      "query": {
+        "artist": "Naked Eyes",
+        "title": "(What) In the Name of Love"
+      },
+      "found": {
+        "id": "1787726217",
+        "title": "(What) In the Name of Love",
+        "artist": "Naked Eyes",
+        "album": "Fuel for the Fire",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1787726217",
+        "explicit": false,
+        "rank": 73749
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-09",
+      "query": {
+        "artist": "The Fixx",
+        "title": "Deeper And Deeper"
+      },
+      "found": {
+        "id": "119615306",
+        "title": "Deeper And Deeper",
+        "artist": "The Fixx",
+        "album": "Streets Of Fire",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/119615306",
+        "explicit": false,
+        "rank": 132291
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80o-10",
+      "query": {
+        "artist": "China Crisis",
+        "title": "Arizona Sky"
+      },
+      "found": {
+        "id": "3415878",
+        "title": "Arizona Sky",
+        "artist": "China Crisis",
+        "album": "What Price Paradise",
+        "durationS": 325,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3415878",
+        "explicit": false,
+        "rank": 228561
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

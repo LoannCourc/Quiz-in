@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { ensureSignedIn, getFirebase } from '../lib/firebase'
 
 export interface BlindTestInfo {
-  // Interrupteur à distance (config/blindTestEnabled) : absent ou false = aucun son joué.
+  // Interrupteur à distance (BLIND_TEST_ENABLED_PATH) : absent ou false = aucun son joué.
   isEnabled: boolean
   // Le quiz de la partie est un blind test (quizzes/{quizId}/gameType).
   isBlindTest: boolean

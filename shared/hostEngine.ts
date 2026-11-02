@@ -513,7 +513,7 @@ export type LaunchRefusal =
   | 'audioUnavailable'
   | TeamRefusal
 
-// Blind test : interrupteur à distance (config/blindTestEnabled) et adresses des extraits.
+// Blind test : interrupteur à distance (BLIND_TEST_ENABLED_PATH) et adresses des extraits.
 export interface LaunchAudio {
   enabled: boolean
   urls: AudioUrls

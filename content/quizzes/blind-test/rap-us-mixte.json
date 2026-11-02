@@ -1,0 +1,226 @@
+{
+  "id": "rap-us-mixte",
+  "gameType": "blindTest",
+  "title": "Rap US : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "rum-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ayo Technology – 50 Cent",
+        "Hypnotize – The Notorious B.I.G.",
+        "What's The Difference – Dr. Dre",
+        "Young, Wild & Free – Snoop Dogg"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Young, Wild & Free"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Snoop Dogg",
+        "title": "Young, Wild & Free"
+      }
+    },
+    {
+      "id": "rum-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "How We Do – The Game",
+        "You Know How We Do It – Ice Cube",
+        "Changes – 2Pac",
+        "If I Ruled the World (Imagine That) – Nas"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "2Pac"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "2Pac",
+        "title": "Changes",
+        "artistAliases": [
+          "Tupac"
+        ]
+      }
+    },
+    {
+      "id": "rum-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Don't Like.1 – Kanye West",
+        "Player's Ball – Outkast",
+        "Dirt Off Your Shoulder – JAY-Z",
+        "New York – Ja Rule"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dirt Off Your Shoulder"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "JAY Z",
+        "title": "Dirt Off Your Shoulder",
+        "displayArtist": "JAY-Z",
+        "artistAliases": [
+          "Jay Z"
+        ]
+      }
+    },
+    {
+      "id": "rum-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "6 Foot 7 Foot – Lil Wayne",
+        "I Can Feel It – DMX",
+        "My Buddy – G-Unit",
+        "Sing for the Moment – Eminem"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Eminem"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Eminem",
+        "title": "Sing For The Moment",
+        "displayTitle": "Sing for the Moment"
+      }
+    },
+    {
+      "id": "rum-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Arab Money – Busta Rhymes",
+        "Stand Up – Ludacris",
+        "Why You Wanna – T.I.",
+        "N Dey Say – Nelly"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Stand Up"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Ludacris",
+        "title": "Stand Up"
+      }
+    },
+    {
+      "id": "rum-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jump Around – House Of Pain",
+        "Da Joint – EPMD",
+        "Return of the Tres – Delinquent Habits",
+        "Se Acabo – The Beatnuts"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "House Of Pain"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "House of Pain",
+        "title": "Jump Around",
+        "displayArtist": "House Of Pain"
+      }
+    },
+    {
+      "id": "rum-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jump – Kris Kross",
+        "Hip Hop Hooray – Naughty by Nature",
+        "Mind Playing Tricks on Me – Geto Boys",
+        "Music – Erick Sermon"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Jump"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kris Kross",
+        "title": "Jump"
+      }
+    },
+    {
+      "id": "rum-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Push It – Salt-N-Pepa",
+        "It's Tricky – Run-DMC",
+        "Baby Got Back – Sir Mix-A-Lot",
+        "Informer – Snow"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sir Mix-A-Lot"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Sir Mix-A-Lot",
+        "title": "Baby Got Back"
+      }
+    },
+    {
+      "id": "rum-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mic Checka – Das EFX",
+        "Warm It Up, Kane – Big Daddy Kane",
+        "Music Makes Me High – Lost Boyz",
+        "High As Hell – Keith Murray"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Warm It Up, Kane"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Big Daddy Kane",
+        "title": "Warm It Up, Kane"
+      }
+    },
+    {
+      "id": "rum-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Crazy Puerto Rican – Funkdoobiest",
+        "Gettin' It – Chingy",
+        "Let's All Get High – Da Brat",
+        "Quality Control – Jurassic 5"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jurassic 5"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jurassic 5",
+        "title": "Quality Control"
+      }
+    }
+  ]
+}

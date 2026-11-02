@@ -1,0 +1,217 @@
+{
+  "quizId": "nouvelle-scene-francaise-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "nsf-01",
+      "query": {
+        "artist": "Grand Blanc",
+        "title": "Samedi la nuit"
+      },
+      "found": {
+        "id": "119498206",
+        "title": "Samedi la nuit",
+        "artist": "Grand Blanc",
+        "album": "Mémoires vives",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/119498206",
+        "explicit": false,
+        "rank": 250403
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-02",
+      "query": {
+        "artist": "Terrenoire",
+        "title": "alma"
+      },
+      "found": {
+        "id": "3079716681",
+        "title": "alma",
+        "artist": "Terrenoire",
+        "album": "protégé.e",
+        "durationS": 247,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3079716681",
+        "explicit": false,
+        "rank": 481745
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-03",
+      "query": {
+        "artist": "Voyou",
+        "title": "Yemaya"
+      },
+      "found": {
+        "id": "4042900481",
+        "title": "Yemaya",
+        "artist": "Voyou",
+        "album": "Chroniques terrestres, Vol. 2",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4042900481",
+        "explicit": false,
+        "rank": 473287
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-04",
+      "query": {
+        "artist": "Kids Return",
+        "title": "I Will Wait For You"
+      },
+      "found": {
+        "id": "1806595177",
+        "title": "I Will Wait For You",
+        "artist": "Kids Return",
+        "album": "I Will Wait For You",
+        "durationS": 141,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1806595177",
+        "explicit": false,
+        "rank": 354205
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-05",
+      "query": {
+        "artist": "Mansfield.TYA",
+        "title": "Ni morte ni connue"
+      },
+      "found": {
+        "id": "1228252252",
+        "title": "Ni morte ni connue",
+        "artist": "Mansfield.TYA",
+        "album": "Monument ordinaire",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1228252252",
+        "explicit": false,
+        "rank": 436276
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-06",
+      "query": {
+        "artist": "Jeanne Added",
+        "title": "Be Sensational"
+      },
+      "found": {
+        "id": "98673100",
+        "title": "Be Sensational",
+        "artist": "Jeanne Added",
+        "album": "Be Sensational",
+        "durationS": 234,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/98673100",
+        "explicit": false,
+        "rank": 461737
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-07",
+      "query": {
+        "artist": "Last Train",
+        "title": "How Does It Feel ?"
+      },
+      "found": {
+        "id": "3027263181",
+        "title": "How Does It Feel ?",
+        "artist": "Last Train",
+        "album": "III",
+        "durationS": 314,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3027263181",
+        "explicit": false,
+        "rank": 472065
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-08",
+      "query": {
+        "artist": "La Maison Tellier",
+        "title": "Là où je vis"
+      },
+      "found": {
+        "id": "3857024651",
+        "title": "Là où je vis",
+        "artist": "La Maison Tellier",
+        "album": "Timidité des arbres",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3857024651",
+        "explicit": false,
+        "rank": 462487
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-09",
+      "query": {
+        "artist": "Sages comme des sauvages",
+        "title": "Garçon"
+      },
+      "found": {
+        "id": "849658802",
+        "title": "Garçon",
+        "artist": "Sages comme des sauvages",
+        "album": "Luxe Misère",
+        "durationS": 248,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/849658802",
+        "explicit": false,
+        "rank": 357887
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "nsf-10",
+      "query": {
+        "artist": "Hervé",
+        "title": "Addenda"
+      },
+      "found": {
+        "id": "1226360972",
+        "title": "Addenda",
+        "artist": "Hervé",
+        "album": "HYPER - PROLONGATIONS",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1226360972",
+        "explicit": false,
+        "rank": 411060
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

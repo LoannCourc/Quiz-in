@@ -1,0 +1,249 @@
+{
+  "id": "disney-mixte",
+  "gameType": "blindTest",
+  "title": "Disney : tous niveaux",
+  "theme": "Musique",
+  "description": "Du classique que tous les enfants chantent au titre que seuls les fans connaissent : dix chansons Disney, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "star",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "dsm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Notre terre – Jean-Luc Guizonne",
+        "Le Cœur de Glace – Cast of Frozen",
+        "Le vaurien – Alan Menken",
+        "Je Voudrais Déjà être Roi – Dimitri Rougeul"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Je Voudrais Déjà être Roi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dimitri Rougeul",
+        "title": "Je Voudrais Déjà Être Roi",
+        "displayTitle": "Je Voudrais Déjà être Roi",
+        "artistAliases": [
+          "Le Roi Lion"
+        ]
+      }
+    },
+    {
+      "id": "dsm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Je veux y croire – Maéva Méline",
+        "Point d'avenir sans nous – Emmylou Homs",
+        "Dans un autre monde – Charlotte Hervieux",
+        "Toujours Dans Mon Coeur – Frédérique Tirmont"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Maéva Méline"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Maéva Méline",
+        "title": "Je veux y croire",
+        "artistAliases": [
+          "Raiponce"
+        ]
+      }
+    },
+    {
+      "id": "dsm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pour les hommes – Anthony Kavanagh",
+        "Un jour, mon prince viendra – Rachel Pignot",
+        "Embrasse-la – Henri Salvador",
+        "Le Gospel Pur II – Assitan Dembele"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Pour les hommes"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Anthony Kavanagh",
+        "title": "Pour les hommes",
+        "artistAliases": [
+          "Vaiana"
+        ]
+      }
+    },
+    {
+      "id": "dsm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Gaston – Jean-Claude Corbel",
+        "Je suis ton meilleur ami – Richard Darbois",
+        "Les Aristochats – Maurice Chevalier",
+        "Heigh-Ho! – Jean-Claude Donda"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Richard Darbois"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Richard Darbois",
+        "title": "Je suis ton meilleur ami",
+        "artistAliases": [
+          "Aladdin"
+        ]
+      }
+    },
+    {
+      "id": "dsm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Être un homme comme vous – Jean Stout",
+        "J'ai perdu le nord – Donald Reignoux",
+        "La patrouille des éléphants – Pierre Marret",
+        "N’écoute que moi – Sophie Delmas"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Être un homme comme vous"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Jean Stout",
+        "title": "Être un homme comme vous",
+        "artistAliases": [
+          "Le Livre de la jungle"
+        ]
+      }
+    },
+    {
+      "id": "dsm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Partir là-bas – Claire Guyot",
+        "Nous Sommes Un – Kelly Marot",
+        "Jamais Je N'avouerai – Mimi Félixine",
+        "Soyez Prêtes – Jean Piat"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mimi Félixine"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mimi Félixine",
+        "title": "Jamais Je N'avouerai",
+        "artistAliases": [
+          "Hercule"
+        ]
+      }
+    },
+    {
+      "id": "dsm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rien qu'un Jour – Francis Lalanne",
+        "Le Monde Qui Est Le Mien – Emmanuel Dahl",
+        "Une belle fille à aimer – Marie Galey",
+        "Chem-chem Cheminée – Michel Roux"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Une belle fille à aimer"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Marie Galey",
+        "title": "Une belle fille à aimer",
+        "artistAliases": [
+          "Mulan"
+        ]
+      }
+    },
+    {
+      "id": "dsm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Au Bout du Rêve – China Moses",
+        "Les Cloches de Notre-Dame – Bernard Alane",
+        "Le Festin – Camille",
+        "En Été – Emmanuel Curtil"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Bernard Alane"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Bernard Alane",
+        "title": "Les Cloches de Notre-Dame",
+        "artistAliases": [
+          "Le Bossu de Notre-Dame"
+        ]
+      }
+    },
+    {
+      "id": "dsm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Je ne savais pas – Bénédicte Lecroard",
+        "L'histoire de la vie – Debbie Davis",
+        "Comme un homme – Patrick Fiori",
+        "Jungle Jazz – Phil Collins"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jungle Jazz"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Phil Collins",
+        "title": "Jungle Jazz",
+        "artistAliases": [
+          "Tarzan"
+        ]
+      }
+    },
+    {
+      "id": "dsm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "L’Amour Est un Cadeau – Guillaume Beaujolais",
+        "Á Upendi – MARCEL BOUNGOU",
+        "Je Suis Ton Ami – CharlElie Couture",
+        "Je Voudrais un Bonhomme de Neige – Coralie Thuilier"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "MARCEL BOUNGOU"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "MARCEL BOUNGOU",
+        "title": "Á Upendi",
+        "artistAliases": [
+          "Le Roi Lion 2",
+          "Le Roi Lion"
+        ]
+      }
+    }
+  ]
+}

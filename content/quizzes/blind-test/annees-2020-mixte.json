@@ -1,0 +1,217 @@
+{
+  "id": "annees-2020-mixte",
+  "gameType": "blindTest",
+  "title": "Années 2020 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 2020, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "smartphone",
+  "genre": "pop",
+  "decade": 2020,
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "a20m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Save Your Tears – The Weeknd",
+        "Petal – Ariana Grande",
+        "My Guy – Sam Smith",
+        "Kill Bill – SZA"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Save Your Tears"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Weeknd",
+        "title": "Save Your Tears"
+      }
+    },
+    {
+      "id": "a20m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mystical Magical – Benson Boone",
+        "Let’s Go Home Together – Ella Henderson",
+        "Bad Habits – Ed Sheeran",
+        "Before You Go – Lewis Capaldi"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Lewis Capaldi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lewis Capaldi",
+        "title": "Before You Go"
+      }
+    },
+    {
+      "id": "a20m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Disease – Lady Gaga",
+        "Physical – Dua Lipa",
+        "Angels Like You – Miley Cyrus",
+        "Blue Moon – Zara Larsson"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Physical"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Dua Lipa",
+        "title": "Physical"
+      }
+    },
+    {
+      "id": "a20m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "less – Olivia Rodrigo",
+        "Adore You – Harry Styles",
+        "I Knew It, I Knew You – Taylor Swift",
+        "Look at My Life – Gracie Abrams"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Harry Styles"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Harry Styles",
+        "title": "Adore You"
+      }
+    },
+    {
+      "id": "a20m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bruxelles je t’aime – Angèle",
+        "Petite musique – Eddy de Pretto",
+        "C’est la Vie – MIKA",
+        "Santé – Stromae"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Santé"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Stromae",
+        "title": "Santé"
+      }
+    },
+    {
+      "id": "a20m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "ily (i love you baby) – Surf Mesa",
+        "Memories – Sam Feldt",
+        "Location – Zerb",
+        "Home – Drove"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Surf Mesa"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Surf Mesa",
+        "title": "ily (i love you baby)"
+      }
+    },
+    {
+      "id": "a20m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Kite – Benjamin Ingrosso",
+        "Sweet Caroline – Ashe",
+        "Roses – SAINt JHN",
+        "Talk To Me, Zara – Robyn"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Roses"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "SAINt JHN",
+        "title": "Roses"
+      }
+    },
+    {
+      "id": "a20m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Whisper – Joel Corry",
+        "Surrender – Gaullin",
+        "Breaking Me – Topic",
+        "Cynical – Twocolors"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Topic"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Topic",
+        "title": "Breaking Me"
+      }
+    },
+    {
+      "id": "a20m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Penny Out of Nothing – Lola Young",
+        "Glitter – BENEE",
+        "Ocean view – Hard Life",
+        "PhD Rockstar – Gus Dapperton"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Glitter"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "BENEE",
+        "title": "Glitter"
+      }
+    },
+    {
+      "id": "a20m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jayden – Claire Rosinkranz",
+        "Fool 4 u – Michelle",
+        "Eyes on my baby – Between Friends",
+        "Moon So High – Remi Wolf"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Remi Wolf"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Remi Wolf",
+        "title": "Moon So High"
+      }
+    }
+  ]
+}

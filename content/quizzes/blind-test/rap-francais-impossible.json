@@ -1,0 +1,221 @@
+{
+  "id": "rap-francais-impossible",
+  "gameType": "blindTest",
+  "title": "Rap français : faces cachées",
+  "theme": "Musique",
+  "description": "Rap français : artistes confidentiels, morceaux cachés. Bon courage.",
+  "audience": "experts",
+  "poster": "gold",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "rfi-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les crocodiles – sean",
+        "Numéro Vert – Tuerie",
+        "Sisyphe – Krisy",
+        "Apogée – Juice"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Sisyphe"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Krisy",
+        "title": "sisyphe",
+        "displayTitle": "Sisyphe"
+      }
+    },
+    {
+      "id": "rfi-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Médication – Malo",
+        "La thune de ma femme – Hippocampe Fou",
+        "Perdu dans le vent – Coelho",
+        "Les journées se ressemblent – Jewel Usain"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Hippocampe Fou"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Hippocampe Fou",
+        "title": "La thune de ma femme"
+      }
+    },
+    {
+      "id": "rfi-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le thème – Al-Walid",
+        "Sirènes – Tedax Max",
+        "LV Dans Le BOLT – Hologram Lo'",
+        "Pétales – B.B. Jacques"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "LV Dans Le BOLT"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Hologram Lo'",
+        "title": "LV Dans Le BOLT"
+      }
+    },
+    {
+      "id": "rfi-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "J'voulais être grand – James Loup",
+        "46 et demi – Ikaz Boi",
+        "Le monde est à toi – MadeInParis",
+        "Au bord de l'eau – Davodka"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Davodka"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Davodka",
+        "title": "Au bord de l'eau"
+      }
+    },
+    {
+      "id": "rfi-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tout prendre – NeS",
+        "Le cœur à papa – Wallace Cleaver",
+        "La Bible, dans Fury – Zuukou mayzie",
+        "Pas du genre a guinguin – Yvnnis"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Tout prendre"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "NeS",
+        "title": "Tout prendre"
+      }
+    },
+    {
+      "id": "rfi-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Génération z – Cherry Pie",
+        "C'est des faux – Lucci",
+        "Fille que j'aime – Nelick",
+        "Lion le tsunami – Jeune Lion"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Cherry Pie"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Cherry Pie",
+        "title": "GÉNÉRATION Z",
+        "displayTitle": "Génération z"
+      }
+    },
+    {
+      "id": "rfi-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La nuit – Sopico",
+        "À plus tard – Souffrance",
+        "Moimême – GAL",
+        "Toujours un peu froid – Myth Syzer"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Moimême"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "GAL",
+        "title": "moimême",
+        "displayTitle": "Moimême"
+      }
+    },
+    {
+      "id": "rfi-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Les photos du frigo – Celestino",
+        "Comme Freud – Swift Guad",
+        "Le jour d'après – USKY",
+        "Les voix – Mademoiselle Lou"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Swift Guad"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Swift Guad",
+        "title": "Comme Freud"
+      }
+    },
+    {
+      "id": "rfi-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tard le soir – ISHA",
+        "Été sans fin – Arma Jackson",
+        "Argentée – 808noche",
+        "Les fées – Sheldon"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Les fées"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Sheldon",
+        "title": "Les fées"
+      }
+    },
+    {
+      "id": "rfi-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Penny et shaq – Ol'Kainry",
+        "Plus rien – Gen",
+        "€€€ – Lyele",
+        "J'reviens d'en bas – 34murphy"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Ol'Kainry"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ol'Kainry",
+        "title": "PENNY ET SHAQ",
+        "displayTitle": "Penny et shaq"
+      }
+    }
+  ]
+}

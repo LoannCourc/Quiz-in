@@ -1,0 +1,274 @@
+{
+  "id": "films-series-mixte",
+  "gameType": "blindTest",
+  "title": "Films et séries : tous niveaux",
+  "theme": "Musique",
+  "description": "Du thème culte à la musique oubliée : dix thèmes de films et de séries, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "gold",
+  "icon": "clapper",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "fsm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cornfield Chase – Hans Zimmer",
+        "Lily's Theme – Alexandre Desplat",
+        "Test Drive – John Powell",
+        "For The Love Of A Princess – James Horner"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Cornfield Chase"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Hans Zimmer",
+        "title": "Cornfield Chase",
+        "artistAliases": [
+          "Interstellar"
+        ],
+        "titleAliases": [
+          "Interstellar"
+        ]
+      }
+    },
+    {
+      "id": "fsm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Let's Hear It for the Boy – Deniece Williams",
+        "Arrival to Earth – Steve Jablonsky",
+        "Top Gun Anthem – Harold Faltermeyer",
+        "The Good, The Bad And The Ugly – Ennio Morricone"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Ennio Morricone"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ennio Morricone",
+        "title": "The Good, The Bad And The Ugly",
+        "artistAliases": [
+          "Le Bon, la Brute et le Truand"
+        ],
+        "titleAliases": [
+          "Le Bon, la Brute et le Truand"
+        ]
+      }
+    },
+    {
+      "id": "fsm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "The Breaking of the Fellowship – Howard Shore",
+        "Married Life – Michael Giacchino",
+        "Any Other Name – Thomas Newman",
+        "Light of the Seven – Ramin Djawadi"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Light of the Seven"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Ramin Djawadi",
+        "title": "Light of the Seven",
+        "artistAliases": [
+          "Game of Thrones"
+        ],
+        "titleAliases": [
+          "Game of Thrones"
+        ]
+      }
+    },
+    {
+      "id": "fsm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Avengers – Alan Silvestri",
+        "Lux Aeterna – Clint Mansell",
+        "Duel of the Fates – John Williams",
+        "Can You Hear The Music – Ludwig Goransson"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "John Williams"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "John Williams",
+        "title": "Duel of the Fates",
+        "artistAliases": [
+          "Star Wars"
+        ],
+        "titleAliases": [
+          "Star Wars"
+        ]
+      }
+    },
+    {
+      "id": "fsm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Bathroom Dance – Hildur Guðnadóttir",
+        "One Summer's Day – Joe Hisaishi",
+        "This is Halloween – Danny Elfman",
+        "St Elmo's Fire – John Parr"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "This is Halloween"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Danny Elfman",
+        "title": "This is Halloween",
+        "artistAliases": [
+          "L'Étrange Noël de monsieur Jack"
+        ],
+        "titleAliases": [
+          "L'Étrange Noël de monsieur Jack"
+        ]
+      }
+    },
+    {
+      "id": "fsm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Chase – Giorgio Moroder",
+        "Chariots of Fire – Vangelis",
+        "Glory of Love – Peter Cetera",
+        "We Don't Need Another Hero (Thunderdome) – Tina Turner"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Vangelis"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Vangelis",
+        "title": "Chariots Of Fire",
+        "displayTitle": "Chariots of Fire",
+        "artistAliases": [
+          "Les Chariots de feu"
+        ],
+        "titleAliases": [
+          "Les Chariots de feu"
+        ]
+      }
+    },
+    {
+      "id": "fsm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "The Heat Is On – Glenn Frey",
+        "Now We Are Free – Lisa Gerrard",
+        "Flashdance...What a Feeling – Irene Cara",
+        "Maniac – Michael Sembello"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The Heat Is On"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Glenn Frey",
+        "title": "The Heat Is On",
+        "artistAliases": [
+          "Le Flic de Beverly Hills"
+        ]
+      }
+    },
+    {
+      "id": "fsm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Das Boot – Klaus Doldinger",
+        "Never Ending Story – Limahl",
+        "Fly – Ludovico Einaudi",
+        "Stranger Things – Kyle Dixon & Michael Stein"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Limahl"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Limahl",
+        "title": "Never Ending Story",
+        "artistAliases": [
+          "L'Histoire sans fin"
+        ],
+        "titleAliases": [
+          "L'Histoire sans fin"
+        ]
+      }
+    },
+    {
+      "id": "fsm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tubular Bells – Mike Oldfield",
+        "The Pink Panther Theme – Henry Mancini",
+        "Don't You (Forget About Me) – Simple Minds",
+        "Dare – Stan Bush"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Dare"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Stan Bush",
+        "title": "Dare",
+        "artistAliases": [
+          "Transformers",
+          "Transformers, le film"
+        ]
+      }
+    },
+    {
+      "id": "fsm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "May It Be – Enya",
+        "Crockett's Theme – Jan Hammer",
+        "Mia & Sebastian’s Theme – Justin Hurwitz",
+        "Halloween Theme – John Carpenter"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Jan Hammer"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jan Hammer",
+        "title": "Crockett's Theme",
+        "artistAliases": [
+          "Miami Vice",
+          "Deux flics à Miami"
+        ],
+        "titleAliases": [
+          "Miami Vice"
+        ]
+      }
+    }
+  ]
+}

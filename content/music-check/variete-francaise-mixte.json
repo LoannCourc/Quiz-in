@@ -1,0 +1,217 @@
+{
+  "quizId": "variete-francaise-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "vfm-01",
+      "query": {
+        "artist": "Stromae",
+        "title": "Alors on danse"
+      },
+      "found": {
+        "id": "6297555",
+        "title": "Alors on danse (Radio Edit)",
+        "artist": "Stromae",
+        "album": "Cheese",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6297555",
+        "explicit": false,
+        "rank": 952441
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-02",
+      "query": {
+        "artist": "Indila",
+        "title": "Dernière danse"
+      },
+      "found": {
+        "id": "74427067",
+        "title": "Dernière danse",
+        "artist": "Indila",
+        "album": "Mini World",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/74427067",
+        "explicit": false,
+        "rank": 949336
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-03",
+      "query": {
+        "artist": "Céline Dion",
+        "title": "On ne change pas"
+      },
+      "found": {
+        "id": "627432",
+        "title": "On ne change pas",
+        "artist": "Céline Dion",
+        "album": "S'il suffisait d'aimer",
+        "durationS": 248,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/627432",
+        "explicit": false,
+        "rank": 930134
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-04",
+      "query": {
+        "artist": "Calogero",
+        "title": "Si seulement je pouvais lui manquer"
+      },
+      "found": {
+        "id": "132629132",
+        "title": "Si seulement je pouvais lui manquer",
+        "artist": "Calogero",
+        "album": "Calog3ro",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/132629132",
+        "explicit": false,
+        "rank": 834209
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-05",
+      "query": {
+        "artist": "Francis Cabrel",
+        "title": "Octobre"
+      },
+      "found": {
+        "id": "72066532",
+        "title": "Octobre (Remastered)",
+        "artist": "Francis Cabrel",
+        "album": "Samedi soir sur la terre (Remastered)",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72066532",
+        "explicit": false,
+        "rank": 820704
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-06",
+      "query": {
+        "artist": "Jeanne Mas",
+        "title": "En rouge et noir"
+      },
+      "found": {
+        "id": "3099820",
+        "title": "En rouge et noir",
+        "artist": "Jeanne Mas",
+        "album": "J'm le meilleur de Jeanne Mas",
+        "durationS": 268,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3099820",
+        "explicit": false,
+        "rank": 797936
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-07",
+      "query": {
+        "artist": "Chagrin D'Amour",
+        "title": "Chacun fait (c'qui lui plait)"
+      },
+      "found": {
+        "id": "565581622",
+        "title": "Chacun fait (c'qui lui plait)",
+        "artist": "Chagrin D'Amour",
+        "album": "Chacun fait (C'qui lui plait)",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/565581622",
+        "explicit": false,
+        "rank": 788851
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-08",
+      "query": {
+        "artist": "Elsa Lunghini",
+        "title": "T'en va pas"
+      },
+      "found": {
+        "id": "6915000",
+        "title": "T'en va pas",
+        "artist": "Elsa Lunghini",
+        "album": "L'essentiel",
+        "durationS": 328,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6915000",
+        "explicit": false,
+        "rank": 785304
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-09",
+      "query": {
+        "artist": "François Feldman",
+        "title": "Le mal de toi"
+      },
+      "found": {
+        "id": "2536130",
+        "title": "Le mal de toi",
+        "artist": "François Feldman",
+        "album": "Vivre, Vivre",
+        "durationS": 337,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2536130",
+        "explicit": false,
+        "rank": 534346
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfm-10",
+      "query": {
+        "artist": "Carole Fredericks",
+        "title": "Je l'aime aussi"
+      },
+      "found": {
+        "id": "730170032",
+        "title": "Je l'aime aussi",
+        "artist": "Carole Fredericks",
+        "album": "Fredericks, Goldman, Jones",
+        "durationS": 374,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/730170032",
+        "explicit": false,
+        "rank": 462446
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

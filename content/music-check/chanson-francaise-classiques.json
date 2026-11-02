@@ -1,0 +1,217 @@
+{
+  "quizId": "chanson-francaise-classiques",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "cfc-01",
+      "query": {
+        "artist": "Edith Piaf",
+        "title": "La Vie en Rose"
+      },
+      "found": {
+        "id": "73693857",
+        "title": "La Vie en Rose",
+        "artist": "Edith Piaf",
+        "album": "La Vie en Rose",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/73693857",
+        "explicit": false,
+        "rank": 739389
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-02",
+      "query": {
+        "artist": "Jacques Brel",
+        "title": "Ne me quitte pas"
+      },
+      "found": {
+        "id": "2296855",
+        "title": "Ne me quitte pas",
+        "artist": "Jacques Brel",
+        "album": "La Valse A Mille Temps (Vol.4)",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2296855",
+        "explicit": false,
+        "rank": 729479
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-03",
+      "query": {
+        "artist": "Charles Aznavour",
+        "title": "La bohème"
+      },
+      "found": {
+        "id": "3413187",
+        "title": "La bohème",
+        "artist": "Charles Aznavour",
+        "album": "La Bohème",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3413187",
+        "explicit": false,
+        "rank": 940092
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-04",
+      "query": {
+        "artist": "Joe Dassin",
+        "title": "Les Champs-Elysées"
+      },
+      "found": {
+        "id": "561685",
+        "title": "Les Champs-Elysées",
+        "artist": "Joe Dassin",
+        "album": "Joe Dassin Éternel...",
+        "durationS": 157,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/561685",
+        "explicit": false,
+        "rank": 863251
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-05",
+      "query": {
+        "artist": "Claude François",
+        "title": "Comme d'habitude"
+      },
+      "found": {
+        "id": "1090312",
+        "title": "Comme d'habitude",
+        "artist": "Claude François",
+        "album": "Comme D'Habitude",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1090312",
+        "explicit": false,
+        "rank": 773702
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-06",
+      "query": {
+        "artist": "Michel Sardou",
+        "title": "Les lacs du Connemara"
+      },
+      "found": {
+        "id": "882920",
+        "title": "Les lacs du Connemara",
+        "artist": "Michel Sardou",
+        "album": "Les Lacs Du Connemara",
+        "durationS": 362,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/882920",
+        "explicit": false,
+        "rank": 901854
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-07",
+      "query": {
+        "artist": "Renaud",
+        "title": "Mistral gagnant"
+      },
+      "found": {
+        "id": "5151905",
+        "title": "Mistral gagnant",
+        "artist": "Renaud",
+        "album": "Mistral gagnant",
+        "durationS": 165,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/5151905",
+        "explicit": false,
+        "rank": 949716
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-08",
+      "query": {
+        "artist": "Dalida",
+        "title": "Paroles… paroles…"
+      },
+      "found": {
+        "id": "71560063",
+        "title": "Paroles… paroles…",
+        "artist": "Dalida",
+        "album": "L'Intégrale Des Enregistrements Orlando",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71560063",
+        "explicit": false,
+        "rank": 869683
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-09",
+      "query": {
+        "artist": "Francis Cabrel",
+        "title": "Je l'aime à mourir"
+      },
+      "found": {
+        "id": "72064735",
+        "title": "Je l'aime à mourir (Remastered)",
+        "artist": "Francis Cabrel",
+        "album": "Les chemins de traverse (Remastered)",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72064735",
+        "explicit": false,
+        "rank": 919317
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "cfc-10",
+      "query": {
+        "artist": "Georges Brassens",
+        "title": "Les copains d'abord"
+      },
+      "found": {
+        "id": "2420855",
+        "title": "Les copains d'abord",
+        "artist": "Georges Brassens",
+        "album": "Les Copains D'Abord",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2420855",
+        "explicit": false,
+        "rank": 812689
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

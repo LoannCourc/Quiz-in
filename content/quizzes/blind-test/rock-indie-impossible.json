@@ -1,0 +1,217 @@
+{
+  "id": "rock-indie-impossible",
+  "gameType": "blindTest",
+  "title": "Rock indé : faces cachées",
+  "theme": "Musique",
+  "description": "Du rock indé confidentiel des années 2000 à 2020 : pour les vrais curieux.",
+  "audience": "experts",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "rii-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Habit – Ought",
+        "Graveyard Orbit – Crystal Stilts",
+        "Slowly – Preoccupations",
+        "The World and the Sun – Moon Duo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Habit"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ought",
+        "title": "Habit"
+      }
+    },
+    {
+      "id": "rii-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hollywood Forever Cemetery Sings – Father John Misty",
+        "Like I Used To – Sharon Van Etten",
+        "Impossible Germany – Wilco",
+        "A Comet Appears – The Shins"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Wilco"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Wilco",
+        "title": "Impossible Germany"
+      }
+    },
+    {
+      "id": "rii-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Cinnamon – Palehound",
+        "Inside Out – Soccer Mommy",
+        "Needle And A Knife – Tennis",
+        "Faultline – Girlpool"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Faultline"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Girlpool",
+        "title": "Faultline"
+      }
+    },
+    {
+      "id": "rii-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Why Try – Chastity Belt",
+        "Comes a Day – Built to Spill",
+        "Plains – Deerhunter",
+        "Middle Sea – Yuck"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Yuck"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Yuck",
+        "title": "Middle Sea"
+      }
+    },
+    {
+      "id": "rii-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Gotta Get Down – The Orwells",
+        "Modern Act – Cloud Nothings",
+        "The Nights of Wine and Roses – Japandroids",
+        "Dog – Wavves"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Modern Act"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Cloud Nothings",
+        "title": "Modern Act"
+      }
+    },
+    {
+      "id": "rii-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bury Us Alive – Strfkr",
+        "Talking Backwards – Real Estate",
+        "Thrill – Future Islands",
+        "Light Upon the Lake – Whitney"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Real Estate"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Real Estate",
+        "title": "Talking Backwards"
+      }
+    },
+    {
+      "id": "rii-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Belong – The Pains Of Being Pure At Heart",
+        "Away with Murder – Camera Obscura",
+        "Rimbaud Eyes – Dum Dum Girls",
+        "The Christmas Song – The Raveonettes"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Belong"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "The Pains Of Being Pure At Heart",
+        "title": "Belong"
+      }
+    },
+    {
+      "id": "rii-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Against the Tide – The Radio Dept.",
+        "Mood – Porches",
+        "Shadow – Wild Nothing",
+        "Ramona – Craft Spells"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Wild Nothing"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Wild Nothing",
+        "title": "Shadow"
+      }
+    },
+    {
+      "id": "rii-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Red Planet – Alvvays",
+        "Linger – No Vacation",
+        "Radiovoice – Good Morning",
+        "Daydream – Beach Fossils"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Daydream"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Beach Fossils",
+        "title": "Daydream"
+      }
+    },
+    {
+      "id": "rii-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Was Wrong – Surfer Blood",
+        "Nova-Leigh – Born Ruffians",
+        "The End – Best Coast",
+        "Between The Lines – Peter Bjorn and John"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Surfer Blood"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Surfer Blood",
+        "title": "I Was Wrong"
+      }
+    }
+  ]
+}

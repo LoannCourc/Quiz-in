@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-francais-old-school-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rfo-01",
+      "query": {
+        "artist": "Ministère A.M.E.R.",
+        "title": "Flirt avec le meurtre"
+      },
+      "found": {
+        "id": "3134457",
+        "title": "Flirt avec le meurtre",
+        "artist": "Ministère A.M.E.R.",
+        "album": "95200",
+        "durationS": 396,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3134457",
+        "explicit": false,
+        "rank": 254045
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-02",
+      "query": {
+        "artist": "Ideal J",
+        "title": "Orly sud in bronx"
+      },
+      "found": {
+        "id": "1569562302",
+        "title": "Orly sud in bronx",
+        "artist": "Ideal J",
+        "album": "Classics Rap.FR #2",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1569562302",
+        "explicit": true,
+        "rank": 240648
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-03",
+      "query": {
+        "artist": "Secteur A",
+        "title": "BOYBLACKA"
+      },
+      "found": {
+        "id": "2636551832",
+        "title": "BOYBLACKA (feat. Chris pull up)",
+        "artist": "Secteur A",
+        "album": "BOYBLACKA (feat. Chris pull up)",
+        "durationS": 238,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2636551832",
+        "explicit": false,
+        "rank": 133908
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-04",
+      "query": {
+        "artist": "Rocca",
+        "title": "Mash Up"
+      },
+      "found": {
+        "id": "1613891542",
+        "title": "Mash Up",
+        "artist": "Rocca",
+        "album": "Mash Up",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1613891542",
+        "explicit": true,
+        "rank": 265249
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-05",
+      "query": {
+        "artist": "Passi",
+        "title": "Reviens dans ma vie"
+      },
+      "found": {
+        "id": "1900725337",
+        "title": "Reviens dans ma vie",
+        "artist": "Passi",
+        "album": "Odyssée +",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1900725337",
+        "explicit": false,
+        "rank": 493350
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-06",
+      "query": {
+        "artist": "K-Mel",
+        "title": "J'écris pour ma liberté"
+      },
+      "found": {
+        "id": "80559368",
+        "title": "J'écris pour ma liberté",
+        "artist": "K-Mel",
+        "album": "Reflexions",
+        "durationS": 259,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/80559368",
+        "explicit": false,
+        "rank": 112625
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-07",
+      "query": {
+        "artist": "Les Sages Poètes De La Rue",
+        "title": "Un homme et un micro"
+      },
+      "found": {
+        "id": "142799914",
+        "title": "Un homme et un micro",
+        "artist": "Les Sages Poètes De La Rue",
+        "album": "Jusqu'à l'amour",
+        "durationS": 299,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/142799914",
+        "explicit": false,
+        "rank": 319870
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-08",
+      "query": {
+        "artist": "Menelik",
+        "title": "Tranquille"
+      },
+      "found": {
+        "id": "2323294",
+        "title": "Tranquille",
+        "artist": "Menelik",
+        "album": "Phenomenelik",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2323294",
+        "explicit": false,
+        "rank": 301232
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-09",
+      "query": {
+        "artist": "X-Men",
+        "title": "J'attaque du mic"
+      },
+      "found": {
+        "id": "87397725",
+        "title": "J'attaque du mic",
+        "artist": "X-Men",
+        "album": "Special dédicace au rap français old school",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/87397725",
+        "explicit": false,
+        "rank": 143432
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfo-10",
+      "query": {
+        "artist": "Busta Flex",
+        "title": "Majeur"
+      },
+      "found": {
+        "id": "749729",
+        "title": "Majeur",
+        "artist": "Busta Flex",
+        "album": "Busta Flex",
+        "durationS": 137,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/749729",
+        "explicit": false,
+        "rank": 403063
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "id": "annees-2010-mixte",
+  "gameType": "blindTest",
+  "title": "Années 2010 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 2010, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "smartphone",
+  "genre": "pop",
+  "decade": 2010,
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a10m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Good Looking – Suki Waterhouse",
+        "Royals – Lorde",
+        "Video Games – Lana Del Rey",
+        "Watermelon Sugar – Harry Styles"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Royals"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lorde",
+        "title": "Royals"
+      }
+    },
+    {
+      "id": "a10m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Dark Horse – Katy Perry",
+        "Shake It Off – Taylor Swift",
+        "Call Me Maybe – Carly Rae Jepsen",
+        "Bloody Mary – Lady Gaga"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Carly Rae Jepsen"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Carly Rae Jepsen",
+        "title": "Call Me Maybe"
+      }
+    },
+    {
+      "id": "a10m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Imagination – Shawn Mendes",
+        "Lego House – Ed Sheeran",
+        "Monsters – James Blunt",
+        "Done for Me – Charlie Puth"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Lego House"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Ed Sheeran",
+        "title": "Lego House"
+      }
+    },
+    {
+      "id": "a10m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "One Last Time – Ariana Grande",
+        "Something Just Like This – Coldplay",
+        "One Kiss – Calvin Harris",
+        "Die For You – The Weeknd"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Weeknd"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "The Weeknd",
+        "title": "Die For You"
+      }
+    },
+    {
+      "id": "a10m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "The Greatest – Sia",
+        "On Top Of The World – Imagine Dragons",
+        "Maps – Maroon 5",
+        "Break My Heart – Dua Lipa"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "On Top Of The World"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Imagine Dragons",
+        "title": "On Top Of The World"
+      }
+    },
+    {
+      "id": "a10m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "My Silver Lining – First Aid Kit",
+        "Call It Dreaming – Iron & Wine",
+        "Facing West – The Staves",
+        "With The Ink Of A Ghost – José González"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "First Aid Kit"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "First Aid Kit",
+        "title": "My Silver Lining"
+      }
+    },
+    {
+      "id": "a10m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Castle in the Snow – Kadebostany",
+        "Out of My League – Fitz and The Tantrums",
+        "You Make Me Feel... – Cobra Starship",
+        "Goodbye – Feder"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "You Make Me Feel..."
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Cobra Starship",
+        "title": "You Make Me Feel..."
+      }
+    },
+    {
+      "id": "a10m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Home Again – Michael Kiwanuka",
+        "My Type – Saint Motel",
+        "The Keys – Talisco",
+        "Electric Love – Børns"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Michael Kiwanuka"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Michael Kiwanuka",
+        "title": "Home Again"
+      }
+    },
+    {
+      "id": "a10m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Can't Figure Out What's Going On – Half Moon Run",
+        "The Soul Serene – Villagers",
+        "Autumn Sun – Emilíana Torrini",
+        "Pilgrim – Fink"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Pilgrim"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Fink",
+        "title": "Pilgrim"
+      }
+    },
+    {
+      "id": "a10m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Feel Your Love – Laura Marling",
+        "Lovetap! – Smallpools",
+        "The Star of Bethnal Green – Bear's Den",
+        "Queens – MisterWives"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Laura Marling"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Laura Marling",
+        "title": "I Feel Your Love"
+      }
+    }
+  ]
+}

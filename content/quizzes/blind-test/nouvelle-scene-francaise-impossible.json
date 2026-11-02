@@ -1,0 +1,217 @@
+{
+  "id": "nouvelle-scene-francaise-impossible",
+  "gameType": "blindTest",
+  "title": "Nouvelle scène française",
+  "theme": "Musique",
+  "description": "La scène française récente, celle qui n'est pas encore sur toutes les playlists.",
+  "audience": "experts",
+  "poster": "cyan",
+  "icon": "note",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "nsf-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Dérangé – Lescop",
+        "Bowling de Diano Marina – Juniore",
+        "Samedi la nuit – Grand Blanc",
+        "Les rênes – Leonie Pernet"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Samedi la nuit"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Grand Blanc",
+        "title": "Samedi la nuit"
+      }
+    },
+    {
+      "id": "nsf-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le visage de la nuit – Tim Dup",
+        "alma – Terrenoire",
+        "C'est bon – Emma Peters",
+        "On m'a dit – Coline Rio"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Terrenoire"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Terrenoire",
+        "title": "alma"
+      }
+    },
+    {
+      "id": "nsf-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les contremplations – Flavien Berger",
+        "Yemaya – Voyou",
+        "Plein les doigts – Clio",
+        "Tempérament – Malik Djoudi"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Yemaya"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Voyou",
+        "title": "Yemaya"
+      }
+    },
+    {
+      "id": "nsf-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Will Wait For You – Kids Return",
+        "Imbécile – Pi Ja Ma",
+        "Réveil inconnu – Frànçois & The Atlas Mountains",
+        "Mon copain – Flora Fishbach"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Kids Return"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Kids Return",
+        "title": "I Will Wait For You"
+      }
+    },
+    {
+      "id": "nsf-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La Politesse – Sexy sushi",
+        "Ni morte ni connue – Mansfield.TYA",
+        "La fièvre noire – Laura Cahen",
+        "Avec les mots – Jacques"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Ni morte ni connue"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Mansfield.TYA",
+        "title": "Ni morte ni connue"
+      }
+    },
+    {
+      "id": "nsf-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Éléor – Dominique A",
+        "Si c'est un feu – Chien Noir",
+        "M'en veux pas – Marie-Flore",
+        "Be Sensational – Jeanne Added"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jeanne Added"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jeanne Added",
+        "title": "Be Sensational"
+      }
+    },
+    {
+      "id": "nsf-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'origine du mal – Pierre Lapointe",
+        "On vient à peine de commencer – Miossec",
+        "How Does It Feel ? – Last Train",
+        "Un jour l'occident – Florent Marchet"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "How Does It Feel ?"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Last Train",
+        "title": "How Does It Feel ?"
+      }
+    },
+    {
+      "id": "nsf-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Là où je vis – La Maison Tellier",
+        "Le dernier présent – Alexis HK",
+        "Celle qui vit vers le sud – Emily Loizeau",
+        "On a besoin d'amour – Cyril Mokaiesh"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "La Maison Tellier"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "La Maison Tellier",
+        "title": "Là où je vis"
+      }
+    },
+    {
+      "id": "nsf-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Garçon – Sages comme des sauvages",
+        "De colère – Bonbon Vodou",
+        "La ville – Matéo Langlois",
+        "La Kolèr – Lo'jo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Garçon"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Sages comme des sauvages",
+        "title": "Garçon"
+      }
+    },
+    {
+      "id": "nsf-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bouquet de pleurs – Foé",
+        "27 au Paradis – Le Noiseur",
+        "Manqué – Thibaut",
+        "Addenda – Hervé"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Hervé"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Hervé",
+        "title": "Addenda"
+      }
+    }
+  ]
+}

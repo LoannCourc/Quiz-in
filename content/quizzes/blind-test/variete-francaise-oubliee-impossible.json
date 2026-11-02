@@ -1,0 +1,217 @@
+{
+  "id": "variete-francaise-oubliee-impossible",
+  "gameType": "blindTest",
+  "title": "Variété française oubliée",
+  "theme": "Musique",
+  "description": "La variété française des années 80-90 que plus personne ne passe : pour les vrais connaisseurs.",
+  "audience": "experts",
+  "poster": "violet",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": 1980,
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "vfo-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Qu'est-ce que t'as qui va pas ? – Marie Myriam",
+        "Des chemins différents – Gérard Blanc",
+        "Machine à larmes – Philippe Lafontaine",
+        "Elle sortait tard le soir – Corynne Charby"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Elle sortait tard le soir"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Corynne Charby",
+        "title": "Elle sortait tard le soir"
+      }
+    },
+    {
+      "id": "vfo-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Danse moi – Rose Laurens",
+        "Début de soir'rock – Début de soirée",
+        "Dernière fois – Jakie Quartz",
+        "B'B' d'amour – Annabelle Mouloudji"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Jakie Quartz"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jakie Quartz",
+        "title": "Dernière fois"
+      }
+    },
+    {
+      "id": "vfo-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rien que pour ça – Elsa Lunghini",
+        "Je serais fou de l'oublier – Herbert Léonard",
+        "Pleure un bon coup ma p'tite Véro – Francis Lalanne",
+        "Le souvenir de toi – Phil Barney"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Le souvenir de toi"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Phil Barney",
+        "title": "Le souvenir de toi"
+      }
+    },
+    {
+      "id": "vfo-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "On dit des choses – Elli & Jacno",
+        "Ok pour plus jamais – Isabelle Adjani",
+        "Le cheval en savon – Valerie Lemercier",
+        "Élégante solution – Octobre"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Elli & Jacno"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Elli & Jacno",
+        "title": "On dit des choses"
+      }
+    },
+    {
+      "id": "vfo-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Beau comme garçon – Clarika",
+        "La lumière du vide – Jil Caplan",
+        "Ni plus ni moins – Kent",
+        "Doux type, tout sweet – David Koven"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Ni plus ni moins"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Kent",
+        "title": "Ni plus ni moins"
+      }
+    },
+    {
+      "id": "vfo-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "C'Est Toi Qui M'As Fait – François Feldman",
+        "L'enfant des rizières – Images",
+        "Décibelle – Jean-Luc Lahaye",
+        "Diamant dort – Gold"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Gold"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Gold",
+        "title": "Diamant dort"
+      }
+    },
+    {
+      "id": "vfo-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sexy rock – Cookie Dingler",
+        "Le Jeu – Valérie Lagrange",
+        "Les genoux écorchés – Catherine Lara",
+        "Rêves de compagnie – Enzo Enzo"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Sexy rock"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Cookie Dingler",
+        "title": "Sexy rock"
+      }
+    },
+    {
+      "id": "vfo-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jamais toujours – Muriel Dacq",
+        "Les Hippopotamtam – Léopold Nord & Vous",
+        "C'est un mystère – Thierry Pastor",
+        "L Amour A Trois – Partenaire Particulier"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Léopold Nord & Vous"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Léopold Nord & Vous",
+        "title": "Les Hippopotamtam"
+      }
+    },
+    {
+      "id": "vfo-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ce jour-là – Dennis' Twist",
+        "Pour toi je ferais n'importe quoi – Gérard Delahaye",
+        "Saisons – Lio",
+        "Amour chagrin – Elegance"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Saisons"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Lio",
+        "title": "Saisons"
+      }
+    },
+    {
+      "id": "vfo-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Maman, ma plus jolie chanson – Annie Cordy",
+        "Lève Ton Ful De Là – Les Forbans",
+        "Les yeux doux – Liane Foly",
+        "Ainsi soit-elle – Dick Rivers"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Les Forbans"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Les Forbans",
+        "title": "Lève Ton Ful De Là"
+      }
+    }
+  ]
+}

@@ -300,6 +300,14 @@ describe('Hôte et état de la partie', () => {
     )
   })
 
+  test('currentQuestion : difficulté de 1 à 4 (4 : Impossible, blind tests), rien d’autre', async () => {
+    await seedSession()
+    const ref = db(HOST).ref(`${SESSION}/currentQuestion`)
+    await assertSucceeds(ref.set({ text: 'Q ?', difficulty: 4, timeLimit: 20 }))
+    await assertFails(ref.set({ text: 'Q ?', difficulty: 5, timeLimit: 20 }))
+    await assertFails(ref.set({ text: 'Q ?', difficulty: 0, timeLimit: 20 }))
+  })
+
   test('statut inconnu refusé', async () => {
     await seedSession()
     await assertFails(db(HOST).ref(`${SESSION}/status`).set('finished'))
@@ -312,11 +320,13 @@ describe('Blind test', () => {
   // L'extrait dure tout le timer de la question (20 s) : début + timer ≤ 30 s.
   const audio = { url: URL, startS: 5, durationS: 20 }
 
-  test('interrupteur config/blindTestEnabled : lisible connecté, jamais modifiable depuis l’app', async () => {
-    await seed({ config: { blindTestEnabled: false } })
-    await assertSucceeds(db(PLAYER).ref('config/blindTestEnabled').once('value'))
-    await assertFails(db(null).ref('config/blindTestEnabled').once('value'))
-    await assertFails(db(HOST).ref('config/blindTestEnabled').set(true))
+  test('interrupteurs config/blindTestEnabled (apps 1.0.1 et 1.1.0) et config/blindTestV2Enabled : lisibles connecté, jamais modifiables depuis l’app', async () => {
+    await seed({ config: { blindTestEnabled: false, blindTestV2Enabled: false } })
+    for (const path of ['config/blindTestEnabled', 'config/blindTestV2Enabled']) {
+      await assertSucceeds(db(PLAYER).ref(path).once('value'))
+      await assertFails(db(null).ref(path).once('value'))
+      await assertFails(db(HOST).ref(path).set(true))
+    }
   })
 
   test('currentQuestion accepte un extrait (adresse https, début et durée valides)', async () => {

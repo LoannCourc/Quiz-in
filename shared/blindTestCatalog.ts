@@ -7,7 +7,7 @@ import type { BlindTestDecade, BlindTestGenre, DifficultyLevel } from './types'
 
 export const BLIND_TEST_GENRES: readonly BlindTestGenre[] = ['pop', 'rock', 'rap', 'chanson', 'discoFunk', 'electro']
 export const BLIND_TEST_DECADES: readonly BlindTestDecade[] = [1960, 1970, 1980, 1990, 2000, 2010, 2020, 'all']
-export const BLIND_TEST_LEVELS: readonly DifficultyLevel[] = ['easy', 'medium', 'hard', 'impossible']
+export const BLIND_TEST_LEVELS: readonly DifficultyLevel[] = ['easy', 'medium', 'hard', 'impossible', 'mixed']
 
 export function isBlindTestGenre(value: unknown): value is BlindTestGenre {
   return typeof value === 'string' && (BLIND_TEST_GENRES as readonly string[]).includes(value)
@@ -82,7 +82,9 @@ export function availableLevels(entries: readonly QuizEntry[], facet: BlindTestF
   return BLIND_TEST_LEVELS.filter((level) => inFacet.some((entry) => quizLevel(entry) === level))
 }
 
-// Points de difficulté (1 à 4) d'un niveau.
+// Points de difficulté (1 à 4) d'un niveau ; « Tous niveaux » : aucun point plein, le libellé le dit.
+const LEVEL_DOTS: Record<DifficultyLevel, number> = { easy: 1, medium: 2, hard: 3, impossible: 4, mixed: 0 }
+
 export function levelDots(level: DifficultyLevel): number {
-  return BLIND_TEST_LEVELS.indexOf(level) + 1
+  return LEVEL_DOTS[level]
 }

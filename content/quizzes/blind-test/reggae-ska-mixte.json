@@ -1,0 +1,218 @@
+{
+  "id": "reggae-ska-mixte",
+  "gameType": "blindTest",
+  "title": "Reggae et ska : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "sun",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "rgs-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Jerusalem – Alpha Blondy",
+        "Is This Love – Bob Marley & The Wailers",
+        "Chase The Devil – Max Romeo",
+        "54-46 Was My Number – Toots & The Maytals"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Is This Love"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bob Marley & The Wailers",
+        "title": "Is This Love"
+      }
+    },
+    {
+      "id": "rgs-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Many Rivers To Cross – Jimmy Cliff",
+        "Red Red Wine – UB40",
+        "Marcus Garvey – Burning Spear",
+        "Cool Down The Pace – Gregory Isaacs"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "UB40"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "UB40",
+        "title": "Red Red Wine"
+      }
+    },
+    {
+      "id": "rgs-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Dub For The Radicals – Alborosie",
+        "Circle of Peace – Ziggy Marley",
+        "Looks Are Deceiving – Damian Marley",
+        "Winning – Stephen Marley"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Looks Are Deceiving"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Damian Marley",
+        "title": "Looks Are Deceiving"
+      }
+    },
+    {
+      "id": "rgs-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mad Mad World – Shaggy",
+        "Like Glue – Sean Paul",
+        "Romie – Beenie Man",
+        "Nah Let Go – Gyptian"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sean Paul"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Sean Paul",
+        "title": "Like Glue"
+      }
+    },
+    {
+      "id": "rgs-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Djourou – Tiken Jah Fakoly",
+        "We No Worry 'bout Them – Konshens",
+        "Mystic Man – Peter Tosh",
+        "Rock with You – Inner Circle"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mystic Man"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Peter Tosh",
+        "title": "Mystic Man"
+      }
+    },
+    {
+      "id": "rgs-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ghost Town – The Specials",
+        "Mirror in the Bathroom – The Beat",
+        "Frankenska – The Toasters",
+        "Easy Life – The Bodysnatchers"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The Specials"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "The Specials",
+        "title": "Ghost Town"
+      }
+    },
+    {
+      "id": "rgs-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Police In Helicopter – John Holt",
+        "Do the Beng Beng – Derrick Morgan",
+        "Israelites – Desmond Dekker",
+        "Speak Softly Love – Ken Boothe"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Israelites"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Desmond Dekker",
+        "title": "Israelites"
+      }
+    },
+    {
+      "id": "rgs-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Pass the Dutchie – Musical Youth",
+        "Here Comes The Hotstepper – Ini Kamoze",
+        "Bam Bam – Sister Nancy",
+        "World A Reggae Music – Anthony B"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Musical Youth"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Musical Youth",
+        "title": "Pass The Dutchie",
+        "displayTitle": "Pass the Dutchie"
+      }
+    },
+    {
+      "id": "rgs-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Try Jah Love – Third World",
+        "Jim Screechie – Spice",
+        "Skylarking – Inna De Yard",
+        "A ticket to die ! – Kanka"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "A ticket to die !"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Kanka",
+        "title": "A ticket to die !"
+      }
+    },
+    {
+      "id": "rgs-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Addis Ababa – The Skatalites",
+        "Enjoy Yourself – Prince Buster",
+        "The Sun Stop Shining – Cornell Campbell",
+        "Falling – Iration"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Iration"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Iration",
+        "title": "Falling"
+      }
+    }
+  ]
+}

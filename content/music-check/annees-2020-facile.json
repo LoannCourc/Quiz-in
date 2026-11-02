@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2020-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a20f-01",
+      "query": {
+        "artist": "The Weeknd",
+        "title": "Blinding Lights"
+      },
+      "found": {
+        "id": "908604612",
+        "title": "Blinding Lights",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/908604612",
+        "explicit": false,
+        "rank": 984833
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-02",
+      "query": {
+        "artist": "Dua Lipa",
+        "title": "Levitating"
+      },
+      "found": {
+        "id": "1124841682",
+        "title": "Levitating",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1124841682",
+        "explicit": false,
+        "rank": 902185
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-03",
+      "query": {
+        "artist": "Harry Styles",
+        "title": "As It Was"
+      },
+      "found": {
+        "id": "1703487577",
+        "title": "As It Was",
+        "artist": "Harry Styles",
+        "album": "As It Was",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1703487577",
+        "explicit": false,
+        "rank": 969095
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-04",
+      "query": {
+        "artist": "Miley Cyrus",
+        "title": "Flowers"
+      },
+      "found": {
+        "id": "2105158337",
+        "title": "Flowers",
+        "artist": "Miley Cyrus",
+        "album": "Flowers",
+        "durationS": 200,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2105158337",
+        "explicit": false,
+        "rank": 966114
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-05",
+      "query": {
+        "artist": "Tones and I",
+        "title": "Dance Monkey"
+      },
+      "found": {
+        "id": "739870792",
+        "title": "Dance Monkey",
+        "artist": "Tones and I",
+        "album": "The Kids Are Coming",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/739870792",
+        "explicit": false,
+        "rank": 921950
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-06",
+      "query": {
+        "artist": "Glass Animals",
+        "title": "Heat Waves"
+      },
+      "found": {
+        "id": "1040154662",
+        "title": "Heat Waves",
+        "artist": "Glass Animals",
+        "album": "Dreamland",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1040154662",
+        "explicit": false,
+        "rank": 948600
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-07",
+      "query": {
+        "artist": "Måneskin",
+        "title": "Beggin'"
+      },
+      "found": {
+        "id": "437046332",
+        "title": "Beggin'",
+        "artist": "Måneskin",
+        "album": "Chosen",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/437046332",
+        "explicit": false,
+        "rank": 946093
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-08",
+      "query": {
+        "artist": "RnBoi",
+        "title": "MON BÉBÉ"
+      },
+      "found": {
+        "id": "3602108062",
+        "title": "MON BÉBÉ",
+        "artist": "RnBoi",
+        "album": "MON BÉBÉ",
+        "durationS": 130,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3602108062",
+        "explicit": false,
+        "rank": 997284
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-09",
+      "query": {
+        "artist": "Soolking",
+        "title": "Suavemente"
+      },
+      "found": {
+        "id": "1662709912",
+        "title": "Suavemente",
+        "artist": "Soolking",
+        "album": "Suavemente",
+        "durationS": 159,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1662709912",
+        "explicit": false,
+        "rank": 878636
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20f-10",
+      "query": {
+        "artist": "Ariana Grande",
+        "title": "hate that i made you love me"
+      },
+      "found": {
+        "id": "4045817471",
+        "title": "hate that i made you love me",
+        "artist": "Ariana Grande",
+        "album": "hate that i made you love me",
+        "durationS": 198,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4045817471",
+        "explicit": false,
+        "rank": 999011
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

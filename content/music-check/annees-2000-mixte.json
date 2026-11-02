@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2000-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a00m-01",
+      "query": {
+        "artist": "Gnarls Barkley",
+        "title": "Crazy"
+      },
+      "found": {
+        "id": "2794160",
+        "title": "Crazy",
+        "artist": "Gnarls Barkley",
+        "album": "St. Elsewhere",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2794160",
+        "explicit": false,
+        "rank": 900321
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-02",
+      "query": {
+        "artist": "Avril Lavigne",
+        "title": "Complicated"
+      },
+      "found": {
+        "id": "15587465",
+        "title": "Complicated",
+        "artist": "Avril Lavigne",
+        "album": "Let Go",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15587465",
+        "explicit": false,
+        "rank": 871298
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-03",
+      "query": {
+        "artist": "Coldplay",
+        "title": "In My Place"
+      },
+      "found": {
+        "id": "3098838",
+        "title": "In My Place",
+        "artist": "Coldplay",
+        "album": "A Rush of Blood to the Head",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3098838",
+        "explicit": false,
+        "rank": 809984
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-04",
+      "query": {
+        "artist": "P!nk",
+        "title": "Get the Party Started"
+      },
+      "found": {
+        "id": "655356162",
+        "title": "Get the Party Started",
+        "artist": "P!nk",
+        "album": "M!ssundaztood (Expanded Edition)",
+        "durationS": 191,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/655356162",
+        "explicit": false,
+        "rank": 698679
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-05",
+      "query": {
+        "artist": "Beyoncé",
+        "title": "Baby Boy"
+      },
+      "found": {
+        "id": "609381",
+        "title": "Baby Boy (feat. Sean Paul)",
+        "artist": "Beyoncé",
+        "album": "Dangerously In Love",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/609381",
+        "explicit": false,
+        "rank": 741202
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-06",
+      "query": {
+        "artist": "Natasha Bedingfield",
+        "title": "These Words"
+      },
+      "found": {
+        "id": "603320",
+        "title": "These Words",
+        "artist": "Natasha Bedingfield",
+        "album": "These Words",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/603320",
+        "explicit": false,
+        "rank": 560222
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-07",
+      "query": {
+        "artist": "Crazy Frog",
+        "title": "Axel F"
+      },
+      "found": {
+        "id": "387670601",
+        "title": "Axel F (Radio Edit)",
+        "artist": "Crazy Frog",
+        "album": "Axel F",
+        "durationS": 172,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/387670601",
+        "explicit": false,
+        "rank": 789997
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-08",
+      "query": {
+        "artist": "Just Jack",
+        "title": "Starz In Their Eyes"
+      },
+      "found": {
+        "id": "1113706",
+        "title": "Starz In Their Eyes",
+        "artist": "Just Jack",
+        "album": "Overtones",
+        "durationS": 298,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1113706",
+        "explicit": false,
+        "rank": 519376
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-09",
+      "query": {
+        "artist": "General Elektriks",
+        "title": "Bloodshot Eyes"
+      },
+      "found": {
+        "id": "134481010",
+        "title": "Bloodshot Eyes",
+        "artist": "General Elektriks",
+        "album": "Good City for Dreamers (Deluxe Edition)",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/134481010",
+        "explicit": false,
+        "rank": 408037
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a00m-10",
+      "query": {
+        "artist": "Razorlight",
+        "title": "Who Needs Love"
+      },
+      "found": {
+        "id": "101279284",
+        "title": "Who Needs Love",
+        "artist": "Razorlight",
+        "album": "Razorlight",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/101279284",
+        "explicit": false,
+        "rank": 386873
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

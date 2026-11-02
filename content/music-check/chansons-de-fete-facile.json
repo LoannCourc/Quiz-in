@@ -1,0 +1,217 @@
+{
+  "quizId": "chansons-de-fete-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "fete-01",
+      "query": {
+        "artist": "Les Quatre Barbus",
+        "title": "Chevaliers de la table ronde"
+      },
+      "found": {
+        "id": "643779592",
+        "title": "Chevaliers de la table ronde",
+        "artist": "Les Quatre Barbus",
+        "album": "Honneur aux barbus",
+        "durationS": 145,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/643779592",
+        "explicit": false,
+        "rank": 310735
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-02",
+      "query": {
+        "artist": "Georges Brassens",
+        "title": "Le gorille"
+      },
+      "found": {
+        "id": "14396302",
+        "title": "Le gorille",
+        "artist": "Georges Brassens",
+        "album": "Chanson Pour L'Auvergnat Vol 3",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14396302",
+        "explicit": false,
+        "rank": 636613
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-03",
+      "query": {
+        "artist": "Pierre Perret",
+        "title": "Les jolies colonies de vacances"
+      },
+      "found": {
+        "id": "3487044821",
+        "title": "Les jolies colonies de vacances",
+        "artist": "Pierre Perret",
+        "album": "Premières amours",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3487044821",
+        "explicit": false,
+        "rank": 485387
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-04",
+      "query": {
+        "artist": "Patrick Sébastien",
+        "title": "Les sardines"
+      },
+      "found": {
+        "id": "66644816",
+        "title": "Les sardines",
+        "artist": "Patrick Sébastien",
+        "album": "A L'Attaque",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/66644816",
+        "explicit": false,
+        "rank": 725990
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-05",
+      "query": {
+        "artist": "Annie Cordy",
+        "title": "Tata Yoyo"
+      },
+      "found": {
+        "id": "3785416142",
+        "title": "Tata Yoyo",
+        "artist": "Annie Cordy",
+        "album": "Ma vie en musique (Best of 50 titres)",
+        "durationS": 152,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785416142",
+        "explicit": false,
+        "rank": 659104
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-06",
+      "query": {
+        "artist": "Claude François",
+        "title": "Alexandrie Alexandra"
+      },
+      "found": {
+        "id": "793796",
+        "title": "Alexandrie Alexandra",
+        "artist": "Claude François",
+        "album": "Intégrale des années Warner 1975-1978",
+        "durationS": 262,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/793796",
+        "explicit": false,
+        "rank": 749894
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-07",
+      "query": {
+        "artist": "Plastic Bertrand",
+        "title": "Ca Plane Pour Moi"
+      },
+      "found": {
+        "id": "12216125",
+        "title": "Ca Plane Pour Moi",
+        "artist": "Plastic Bertrand",
+        "album": "L'Essential",
+        "durationS": 182,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12216125",
+        "explicit": false,
+        "rank": 734114
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-08",
+      "query": {
+        "artist": "La Compagnie Créole",
+        "title": "Ça fait rire les oiseaux"
+      },
+      "found": {
+        "id": "13025820",
+        "title": "Ça fait rire les oiseaux",
+        "artist": "La Compagnie Créole",
+        "album": "Best Of: C'est bon pour le moral !",
+        "durationS": 222,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13025820",
+        "explicit": false,
+        "rank": 744592
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-09",
+      "query": {
+        "artist": "Gipsy Kings",
+        "title": "Bamboléo"
+      },
+      "found": {
+        "id": "958647812",
+        "title": "Bamboléo",
+        "artist": "Gipsy Kings",
+        "album": "Gipsy Kings",
+        "durationS": 204,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/958647812",
+        "explicit": false,
+        "rank": 780144
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fete-10",
+      "query": {
+        "artist": "Gloria Gaynor",
+        "title": "I Will Survive"
+      },
+      "found": {
+        "id": "725634462",
+        "title": "I Will Survive",
+        "artist": "Gloria Gaynor",
+        "album": "Love Tracks (Deluxe Edition)",
+        "durationS": 296,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/725634462",
+        "explicit": false,
+        "rank": 529453
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

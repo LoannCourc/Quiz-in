@@ -256,9 +256,10 @@ quizzes/{quizId}                      // lisible par tout utilisateur connecté
   poster: "pink|blue|green|orange|red|cyan|violet|gold"   // palette du dégradé de l'affiche
   addedAt: "AAAA-MM-JJ"               // rangée « Nouveautés »
   featuredRank?: 1 à 10               // place dans le « Top 10 cette semaine » de son onglet (quiz ou blind test), choisie à la main
-  level?: "easy|medium|hard|impossible"   // sinon déduit de difficulty ; « impossible » : blind tests seulement
+  level?: "easy|medium|hard|impossible|mixed"   // sinon déduit de difficulty ; « impossible » et « mixed » (« Tous niveaux ») : blind tests seulement
   genre: "pop|rock|rap|chanson|discoFunk|electro"   // blind test seulement (obligatoire) : genre principal (catalogue BT5)
   decade: 1960…2020 | "all"           // blind test seulement (obligatoire) : décennie, « all » = Toutes époques
+  explicitLyrics?: true               // blind test seulement, calculé par le build : un morceau au moins est marqué « paroles explicites » par Deezer (permis en rap seulement) ; pastille « Paroles explicites » sur la fiche
   // Catalogue BT5 : onglets Genre / Années / Difficulté en tuiles, compteurs calculés dans l'app ; une tuile
   // ou un niveau sans blind test n'est pas affiché (« Impossible », « Électro » tant qu'ils sont vides).
   // Champs d'affichage facultatifs à la lecture : valeur par défaut si absents (fiches importées avant leur ajout)
@@ -267,7 +268,8 @@ questions/{quizId}/{index}            // chargé par l'hôte seul ; lisible par 
   (voir section 8)
   music?: { source: "deezer", id, title, artist, startS? }   // blind test (section 15) ; startS + timer de la question ≤ 30 s
 
-config/blindTestEnabled               // interrupteur à distance du blind test : absent ou false = désactivé ; lisible connecté, modifiable dans la console seulement
+config/blindTestV2Enabled             // interrupteur à distance du blind test : absent ou false = désactivé ; lisible connecté, modifiable dans la console seulement
+config/blindTestEnabled               // ancien interrupteur, lu par les apps 1.0.1 et 1.1.0 : toujours false (elles ignorent les questions de difficulté 4)
 
 sessions/{code}
   hostUid, quizId
@@ -355,7 +357,7 @@ sessions/{code}
 | `options` | 4 propositions, une seule correcte |
 | `correctIndex` | Position de la bonne proposition |
 | `acceptedAnswers` | Liste des réponses acceptées en Réponse libre |
-| `difficulty` | 1 (Facile), 2 (Moyen), 3 (Difficile) |
+| `difficulty` | 1 (Facile), 2 (Moyen), 3 (Difficile), 4 (Impossible, blind tests seulement) |
 | `explanation` | Optionnel, affichée à la révélation |
 | `timeLimit` | Optionnel, remplace la durée par défaut |
 | `ask` | Blind test, obligatoire : ce que la question demande, `title` (« Quel est ce titre ? »), `artist` (« Quel artiste ? ») ou `both` (« Quel est ce morceau ? » ; deux champs en Réponse libre) |
@@ -499,7 +501,7 @@ sessions/{code}
 
 a. **Nouveau catalogue de l'hôte** (maquette « S2 ») : sélecteur de jeux en haut (Quiz actif ; Blind test et Paroles marqués « bientôt ») ; puces de thème ; Top 10 de la semaine avec gros chiffres ; rangées d'affiches par thème ; fiche du quiz avec un bouton « Choisir ce quiz ».
 b. **Salon de l'hôte** : le lien et le QR code des joueurs sont masqués par défaut sur le téléphone de l'hôte et n'apparaissent qu'après un appui sur « Je n'ai pas de TV » (la TV reste le moyen normal de rejoindre).
-c. **Mode blind test** : **codé** (voir section 15), désactivé par défaut par l'interrupteur `config/blindTestEnabled`. Extraits de 30 secondes fournis par l'API Deezer, usage gratuit et non commercial, avec mention de Deezer ; source audio interchangeable. **En attente de la réponse écrite de Deezer avant toute publication.**
+c. **Mode blind test** : **codé** (voir section 15), désactivé par défaut par l'interrupteur `config/blindTestV2Enabled`. Extraits de 30 secondes fournis par l'API Deezer, usage gratuit et non commercial, avec mention de Deezer ; source audio interchangeable. **En attente de la réponse écrite de Deezer avant toute publication.**
 d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de test enregistrés).
 
 ---
@@ -510,7 +512,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 
 **Source des extraits.** Previews de 30 s de l'API publique Deezer, usage gratuit et non commercial, avec mention « Extrait audio et informations : Deezer » à chaque révélation sur la TV, sur la fiche d'un blind test et dans l'écran « À propos et crédits » de l'app. La source est interchangeable : seule l'app de l'hôte l'interroge (`app/src/lib/audio/`, interface `AudioSource`) ; la TV ne connaît qu'une adresse. **Aucune publication tant que Deezer n'a pas répondu par écrit.**
 
-**Interrupteur à distance.** `config/blindTestEnabled` (absent ou false par défaut) : coupé, l'onglet Blind test reste « bientôt », les blind tests sont masqués, leur création et leur lancement sont refusés, et la TV ne joue aucun son. Il se modifie dans la console Firebase, sans nouveau build.
+**Interrupteur à distance.** `config/blindTestV2Enabled` (absent ou false par défaut ; depuis la refonte de novembre 2026, l'ancien `config/blindTestEnabled` reste à false pour toujours : les apps 1.0.1 et 1.1.0, qui le lisent, rejettent les questions de difficulté 4, un blind test « Impossible » n'y aurait aucune question jouable) : coupé, l'onglet Blind test reste « bientôt », les blind tests sont masqués, leur création et leur lancement sont refusés, et la TV ne joue aucun son. Il se modifie dans la console Firebase, sans nouveau build.
 
 **Adresses des extraits.** Elles expirent environ 15 min après leur obtention. L'hôte les récupère dès le salon (l'API refuse les appels depuis un navigateur), les renouvelle quand il leur reste moins de 5 min et republie celle de l'extrait en cours (y compris pendant une pause). Le lancement est refusé tant qu'un extrait manque (« Extraits audio indisponibles »).
 
@@ -524,7 +526,7 @@ d. **Publication de l'application Cast** (aujourd'hui limitée aux appareils de 
 - Extrait illisible après un nouvel essai : « Extrait indisponible », l'hôte peut passer la question.
 - Plan B (navigateur d'un PC) : le navigateur exige un geste ; la TV affiche « Cliquez sur cet écran pour activer le son », un clic suffit pour toute la partie. En Cast, le son démarre seul (vérifié sur la box de test, Chrome 92).
 
-**Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). Public familial : aucun morceau marqué explicite par Deezer ; un morceau n'apparaît que dans un seul blind test. `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API (version originale de préférence, jamais une version explicite) et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
+**Contenu.** Les fichiers sources donnent l'artiste et le titre (`music`). Public familial : aucun morceau marqué explicite par Deezer, sauf dans les blind tests de rap (décision du 1er novembre 2026 : la plupart des titres de rap récents n'existent chez Deezer qu'en version explicite) ; un morceau n'apparaît que dans un seul blind test. Niveaux (refonte de novembre 2026, lot BT-8) : 1 Facile (tube d'un artiste connu), 2 Moyen (artiste connu, pas l'un de ses titres les plus écoutés), 3 Difficile (artiste moins connu, morceau parmi ses plus connus), 4 Impossible (artiste peu connu, morceau secondaire) ; seuils mesurés chez Deezer dans `scripts/blind-tests/thresholds.json`. Un blind test fait 10 questions : `easy` (10 × 1), `impossible` (10 × 4, public `experts`) ou `mixed` (« Tous niveaux » : 2 × 1, 3 × 2, 3 × 3, 2 × 4, dans cet ordre). `npm run music:lookup -- <quizId>` cherche les morceaux dans l'API (version originale de préférence, jamais une version explicite) et écrit `content/music-check/<quizId>.json` et `.md`. Le développeur écoute chaque morceau et coche `verified`. `npm run build` n'importe un blind test que si tous ses morceaux sont vérifiés ; sinon il l'exclut, avec la liste de ce qui manque.
 
 ---
 

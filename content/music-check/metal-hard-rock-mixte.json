@@ -1,0 +1,217 @@
+{
+  "quizId": "metal-hard-rock-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "mhr-01",
+      "query": {
+        "artist": "Metallica",
+        "title": "Master Of Puppets"
+      },
+      "found": {
+        "id": "424565232",
+        "title": "Master Of Puppets",
+        "artist": "Metallica",
+        "album": "Master Of Puppets (Remastered)",
+        "durationS": 515,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/424565232",
+        "explicit": false,
+        "rank": 763798
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-02",
+      "query": {
+        "artist": "Iron Maiden",
+        "title": "The Trooper"
+      },
+      "found": {
+        "id": "3155089",
+        "title": "The Trooper (1998 Remaster)",
+        "artist": "Iron Maiden",
+        "album": "Ed Hunter",
+        "durationS": 250,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3155089",
+        "explicit": false,
+        "rank": 784417
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-03",
+      "query": {
+        "artist": "Linkin Park",
+        "title": "One Step Closer"
+      },
+      "found": {
+        "id": "676162",
+        "title": "One Step Closer",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory (Bonus Edition)",
+        "durationS": 157,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/676162",
+        "explicit": false,
+        "rank": 881494
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-04",
+      "query": {
+        "artist": "Black Sabbath",
+        "title": "Children of the Grave"
+      },
+      "found": {
+        "id": "3783164482",
+        "title": "Children of the Grave (Remastered 2009)",
+        "artist": "Black Sabbath",
+        "album": "Master of Reality",
+        "durationS": 315,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3783164482",
+        "explicit": false,
+        "rank": 524158
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-05",
+      "query": {
+        "artist": "AC/DC",
+        "title": "Shoot to Thrill"
+      },
+      "found": {
+        "id": "92720038",
+        "title": "Shoot to Thrill",
+        "artist": "AC/DC",
+        "album": "Back In Black",
+        "durationS": 314,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92720038",
+        "explicit": false,
+        "rank": 780015
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-06",
+      "query": {
+        "artist": "W.A.S.P.",
+        "title": "I Wanna Be Somebody"
+      },
+      "found": {
+        "id": "138788143",
+        "title": "I Wanna Be Somebody",
+        "artist": "W.A.S.P.",
+        "album": "The Best of the Best",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/138788143",
+        "explicit": false,
+        "rank": 471181
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-07",
+      "query": {
+        "artist": "Saxon",
+        "title": "Princess of the Night"
+      },
+      "found": {
+        "id": "3100307",
+        "title": "Princess of the Night",
+        "artist": "Saxon",
+        "album": "Masters Of Rock: Saxon",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3100307",
+        "explicit": false,
+        "rank": 523355
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-08",
+      "query": {
+        "artist": "Ratt",
+        "title": "Round and Round"
+      },
+      "found": {
+        "id": "3785182782",
+        "title": "Round and Round",
+        "artist": "Ratt",
+        "album": "The Essentials: Ratt",
+        "durationS": 265,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785182782",
+        "explicit": false,
+        "rank": 502598
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-09",
+      "query": {
+        "artist": "Bad Wolves",
+        "title": "Paint It Red"
+      },
+      "found": {
+        "id": "4053421901",
+        "title": "Paint It Red",
+        "artist": "Bad Wolves",
+        "album": "Paint It Red",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4053421901",
+        "explicit": false,
+        "rank": 423413
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "mhr-10",
+      "query": {
+        "artist": "The HU",
+        "title": "Grey Hun"
+      },
+      "found": {
+        "id": "4003875341",
+        "title": "Grey Hun",
+        "artist": "The HU",
+        "album": "HUN",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4003875341",
+        "explicit": false,
+        "rank": 373100
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

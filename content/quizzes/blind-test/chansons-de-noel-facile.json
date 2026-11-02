@@ -1,0 +1,229 @@
+{
+  "id": "chansons-de-noel-facile",
+  "gameType": "blindTest",
+  "title": "Chansons de Noël",
+  "theme": "Musique",
+  "description": "Dix chansons de Noël que tout le monde fredonne dès décembre.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "star",
+  "genre": "pop",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "noel-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Snowman – Sia",
+        "Santa Tell Me – Ariana Grande",
+        "Underneath the Tree – Kelly Clarkson",
+        "All I Want for Christmas Is You – Mariah Carey"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "All I Want for Christmas Is You"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Mariah Carey",
+        "title": "All I Want for Christmas Is You"
+      }
+    },
+    {
+      "id": "noel-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sleigh Ride – The Ronettes",
+        "Let It Snow! Let It Snow! Let It Snow! – Dean Martin",
+        "Mistletoe – Justin Bieber",
+        "Last Christmas – Wham!"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Wham!"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Wham!",
+        "title": "Last Christmas",
+        "artistAliases": [
+          "Wham"
+        ]
+      }
+    },
+    {
+      "id": "noel-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Mon plus beau Noël – Johnny Hallyday",
+        "Bons baisers de Fort-de-France – La Compagnie Créole",
+        "Petit papa Noël – Tino Rossi",
+        "Vive le vent – Dalida"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Petit papa Noël"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Tino Rossi",
+        "title": "Petit Papa Noël",
+        "displayTitle": "Petit papa Noël"
+      }
+    },
+    {
+      "id": "noel-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "It's Beginning to Look a Lot Like Christmas – Michael Bublé",
+        "Rockin' Around the Christmas Tree – Brenda Lee",
+        "Jingle Bells – Frank Sinatra",
+        "Jingle Bell Rock – Bobby Helms"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Brenda Lee"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Brenda Lee",
+        "title": "Rockin' Around The Christmas Tree",
+        "displayTitle": "Rockin' Around the Christmas Tree"
+      }
+    },
+    {
+      "id": "noel-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "White Christmas – Bing Crosby",
+        "Merry Xmas Everybody – Slade",
+        "I Saw Mommy Kissing Santa Claus – Jackson 5",
+        "Shake Up Christmas – Train"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Merry Xmas Everybody"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Slade",
+        "title": "Merry Xmas Everybody",
+        "titleAliases": [
+          "Merry Christmas Everybody"
+        ]
+      }
+    },
+    {
+      "id": "noel-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Christmas Song (Merry Christmas To You) – Nat King Cole",
+        "Feliz Navidad – José Feliciano",
+        "Christmas Lights – Coldplay",
+        "Christmas Tree Farm – Taylor Swift"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "José Feliciano"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "José Feliciano",
+        "title": "Feliz Navidad"
+      }
+    },
+    {
+      "id": "noel-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Wonderful Christmastime – Paul McCartney",
+        "Step Into Christmas – Elton John",
+        "Driving Home for Christmas – Chris Rea",
+        "Merry Christmas Everyone – Shakin' Stevens"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Driving Home for Christmas"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Chris Rea",
+        "title": "Driving Home for Christmas"
+      }
+    },
+    {
+      "id": "noel-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Do They Know It's Christmas? – Band Aid",
+        "Rudolph the Red-Nosed Reindeer – Gene Autry",
+        "A Holly Jolly Christmas – Burl Ives",
+        "Christmas (Baby Please Come Home) – Darlene Love"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Band Aid"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Band Aid",
+        "title": "Do They Know It's Christmas?"
+      }
+    },
+    {
+      "id": "noel-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "A Nonsense Christmas – Sabrina Carpenter",
+        "Santa Baby – Eartha Kitt",
+        "It's the Most Wonderful Time of the Year – Andy Williams",
+        "One More Sleep – Leona Lewis"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "It's the Most Wonderful Time of the Year"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Andy Williams",
+        "title": "It's the Most Wonderful Time of the Year"
+      }
+    },
+    {
+      "id": "noel-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Happy Xmas (War Is Over) – John Lennon",
+        "Blue Christmas – Elvis Presley",
+        "Run Rudolph Run – Chuck Berry",
+        "You Make It Feel Like Christmas – Gwen Stefani"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "John Lennon"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "John Lennon",
+        "title": "Happy Xmas (War Is Over)",
+        "titleAliases": [
+          "Happy Christmas",
+          "Happy Xmas"
+        ]
+      }
+    }
+  ]
+}

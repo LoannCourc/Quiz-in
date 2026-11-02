@@ -1,0 +1,217 @@
+{
+  "id": "chanson-francaise-impossible",
+  "gameType": "blindTest",
+  "title": "Chanson française : faces cachées",
+  "theme": "Musique",
+  "description": "Des chansons que presque personne ne connaît, chez des artistes confidentiels : réservé aux vrais curieux.",
+  "audience": "experts",
+  "poster": "green",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "cfi-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pétales – Karpatt",
+        "La vie est dure mais ta peau est douce – Monsieur Roux",
+        "Le vilain petit cowboy – Les Blerots De R.A.V.E.L.",
+        "C'est peut-être – Mon Côté Punk"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Pétales"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Karpatt",
+        "title": "Pétales"
+      }
+    },
+    {
+      "id": "cfi-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Tonton Amédée – Les Elles",
+        "Nous – Alexis HK",
+        "16 ans et demi – Zaza Fournier",
+        "Au bord de l'abîme – Batlik"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Alexis HK"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Alexis HK",
+        "title": "Nous"
+      }
+    },
+    {
+      "id": "cfi-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pas D'Ma Faute – Marie Cherrier",
+        "Les mêmes – Yves Jamait",
+        "Le gardien de musée – Les Blaireaux",
+        "Les fausses promesses – Barcella"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Les mêmes"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Yves Jamait",
+        "title": "Les mêmes"
+      }
+    },
+    {
+      "id": "cfi-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Super héros – Oldelaf Et Monsieur D",
+        "Le crépi – Oldelaf",
+        "Le complot – Les Wriggles",
+        "60 millions d'amis – Ridan"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Les Wriggles"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Les Wriggles",
+        "title": "Le complot"
+      }
+    },
+    {
+      "id": "cfi-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les z'anges – SOAN",
+        "On n'est pas que des os – Les P'tits Yeux",
+        "Pas de requiem – Volo",
+        "La ballade de Oogie Tsuggie (Les temps changent) – Tété"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Pas de requiem"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Volo",
+        "title": "Pas de requiem"
+      }
+    },
+    {
+      "id": "cfi-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Cerf-volant – Marcel et son Orchestre",
+        "Si et seulement si – Beautés Vulgaires",
+        "Tous à l'usine – Les Caméléons",
+        "Aujourd'hui c'est dimanche – As de Trêfle"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Marcel et son Orchestre"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Marcel et son Orchestre",
+        "title": "Cerf-volant"
+      }
+    },
+    {
+      "id": "cfi-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Reste avec moi – Féloche",
+        "Je ne te dirai pas – Clarika",
+        "Le poids de l'existence – Emily Loizeau",
+        "Aigre-doux – Carmen Maria Vega"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Aigre-doux"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Carmen Maria Vega",
+        "title": "Aigre-doux"
+      }
+    },
+    {
+      "id": "cfi-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Quelle heure est-il ? – Pauline Croze",
+        "La Micheline – L (Raphaële Lannadère)",
+        "J'Aime La Pluie – Luce",
+        "Portrait D'Un Vertige – Daphné"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Pauline Croze"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Pauline Croze",
+        "title": "Quelle heure est-il ?"
+      }
+    },
+    {
+      "id": "cfi-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Si possible heureux – Blankass",
+        "Je ne t'aime plus – Mauss",
+        "Sur le coeur – Kaolin",
+        "Hendaye – Archimède"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Hendaye"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Archimède",
+        "title": "Hendaye"
+      }
+    },
+    {
+      "id": "cfi-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "L'Opéra – La ruelle en chantier",
+        "Je sais que tu m'aimes – Le Pied De La Pompe",
+        "J'écris – Les Tit' Nassels",
+        "Colère – La Belle Bleue"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Les Tit' Nassels"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Les Tit' Nassels",
+        "title": "J'écris"
+      }
+    }
+  ]
+}

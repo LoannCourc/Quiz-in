@@ -1,0 +1,217 @@
+{
+  "quizId": "rnb-soul-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rnb-01",
+      "query": {
+        "artist": "Alicia Keys",
+        "title": "Fallin'"
+      },
+      "found": {
+        "id": "959183",
+        "title": "Fallin'",
+        "artist": "Alicia Keys",
+        "album": "Songs In A Minor",
+        "durationS": 208,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/959183",
+        "explicit": false,
+        "rank": 918692
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-02",
+      "query": {
+        "artist": "Beyoncé",
+        "title": "Single Ladies (Put a Ring on It)"
+      },
+      "found": {
+        "id": "2485118",
+        "title": "Single Ladies (Put a Ring on It)",
+        "artist": "Beyoncé",
+        "album": "I AM...SASHA FIERCE",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2485118",
+        "explicit": false,
+        "rank": 867385
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-03",
+      "query": {
+        "artist": "USHER",
+        "title": "U Got It Bad"
+      },
+      "found": {
+        "id": "969349",
+        "title": "U Got It Bad",
+        "artist": "USHER",
+        "album": "8701",
+        "durationS": 247,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/969349",
+        "explicit": false,
+        "rank": 693145
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-04",
+      "query": {
+        "artist": "Bruno Mars",
+        "title": "Leave The Door Open"
+      },
+      "found": {
+        "id": "1666877272",
+        "title": "Leave The Door Open",
+        "artist": "Bruno Mars",
+        "album": "An Evening With Silk Sonic",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1666877272",
+        "explicit": false,
+        "rank": 885966
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-05",
+      "query": {
+        "artist": "Mary J. Blige",
+        "title": "Real Love"
+      },
+      "found": {
+        "id": "2112268",
+        "title": "Real Love",
+        "artist": "Mary J. Blige",
+        "album": "What's The 411?",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2112268",
+        "explicit": false,
+        "rank": 539506
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-06",
+      "query": {
+        "artist": "Soul II Soul",
+        "title": "Back To Life"
+      },
+      "found": {
+        "id": "3125988",
+        "title": "Back To Life",
+        "artist": "Soul II Soul",
+        "album": "Keep On Movin'",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3125988",
+        "explicit": false,
+        "rank": 581293
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-07",
+      "query": {
+        "artist": "Lisa Stansfield",
+        "title": "All Around the World"
+      },
+      "found": {
+        "id": "140858031",
+        "title": "All Around the World",
+        "artist": "Lisa Stansfield",
+        "album": "Affection (Deluxe)",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/140858031",
+        "explicit": false,
+        "rank": 657972
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-08",
+      "query": {
+        "artist": "Rose Royce",
+        "title": "Car Wash"
+      },
+      "found": {
+        "id": "1318611",
+        "title": "Car Wash",
+        "artist": "Rose Royce",
+        "album": "Greatest Hits",
+        "durationS": 312,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1318611",
+        "explicit": false,
+        "rank": 168953
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-09",
+      "query": {
+        "artist": "Jalen Ngonda",
+        "title": "Just Like You Used To"
+      },
+      "found": {
+        "id": "1880722497",
+        "title": "Just Like You Used To",
+        "artist": "Jalen Ngonda",
+        "album": "What A Difference She Made",
+        "durationS": 190,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1880722497",
+        "explicit": false,
+        "rank": 529585
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rnb-10",
+      "query": {
+        "artist": "Leon Bridges",
+        "title": "Bet Ain't Worth the Hand"
+      },
+      "found": {
+        "id": "492476192",
+        "title": "Bet Ain't Worth the Hand",
+        "artist": "Leon Bridges",
+        "album": "Good Thing",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/492476192",
+        "explicit": false,
+        "rank": 519986
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

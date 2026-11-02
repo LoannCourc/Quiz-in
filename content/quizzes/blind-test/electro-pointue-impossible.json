@@ -1,0 +1,217 @@
+{
+  "id": "electro-pointue-impossible",
+  "gameType": "blindTest",
+  "title": "Électro pointue",
+  "theme": "Musique",
+  "description": "De l'électro confidentielle : techno, IDM, ambient. Réservé aux initiés.",
+  "audience": "experts",
+  "poster": "green",
+  "icon": "headphones",
+  "genre": "electro",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "epi-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Raver – Burial",
+        "Ladyburst – Plaid",
+        "Bike – Autechre",
+        "Shut Down – LFO"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Bike"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Autechre",
+        "title": "Bike"
+      }
+    },
+    {
+      "id": "epi-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "King Bromeliad – Floating Points",
+        "Hajnal2 – Venetian Snares",
+        "Do You Know Squarepusher – Squarepusher",
+        "Backcountry – Skee Mask"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Squarepusher"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Squarepusher",
+        "title": "Do You Know Squarepusher"
+      }
+    },
+    {
+      "id": "epi-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Turbo Dreams – Ellen Allien",
+        "Krakpot – Plastikman",
+        "Dawning Revisited – Marcel Dettmann",
+        "Suicide Commando – DJ Hell"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Krakpot"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Plastikman",
+        "title": "Krakpot"
+      }
+    },
+    {
+      "id": "epi-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Suesse Cheques – Ricardo Villalobos",
+        "I Am Ur – Underground Resistance",
+        "Azimuth – Kenny Larkin",
+        "Alarms – Jeff Mills"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jeff Mills"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jeff Mills",
+        "title": "Alarms"
+      }
+    },
+    {
+      "id": "epi-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "White Lightning – Superpitcher",
+        "Sandstorms – Carl Craig",
+        "Farther And Fainter – John Tejada",
+        "Grandfathered – Nathan Fake"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Sandstorms"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Carl Craig",
+        "title": "Sandstorms"
+      }
+    },
+    {
+      "id": "epi-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Huesca – Model 500",
+        "Minimal Freak – Blake Baxter",
+        "My Neighborhood – Paperclip People",
+        "Mø5b – Maurizio"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Model 500"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Model 500",
+        "title": "Huesca"
+      }
+    },
+    {
+      "id": "epi-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Skin Diving – Swayzak",
+        "Wood & Neon – Roman Flügel",
+        "Spin Girl, Let’s Activate! – Octo Octa",
+        "Ex Machina – Aril Brikha"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Ex Machina"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Aril Brikha",
+        "title": "Ex Machina"
+      }
+    },
+    {
+      "id": "epi-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Never the right time – Andy Stott",
+        "The Deal – The Field",
+        "The Landscape Listens – Caterina barbieri",
+        "Everydays – Seefeel"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Andy Stott"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Andy Stott",
+        "title": "Never the right time"
+      }
+    },
+    {
+      "id": "epi-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Slac – F.U.S.E.",
+        "Untitled 4 – Robert Hood",
+        "Electric Dub – Juan Atkins",
+        "Triple Threat – Surgeon"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Triple Threat"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Surgeon",
+        "title": "Triple Threat"
+      }
+    },
+    {
+      "id": "epi-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Swayed – Kiasmos",
+        "Unfolding – Rival Consoles",
+        "New Light – Gidge",
+        "Movement – Weval"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Rival Consoles"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Rival Consoles",
+        "title": "Unfolding"
+      }
+    }
+  ]
+}

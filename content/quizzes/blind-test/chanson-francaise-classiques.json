@@ -1,0 +1,230 @@
+{
+  "id": "chanson-francaise-classiques",
+  "gameType": "blindTest",
+  "title": "Chanson française : les classiques",
+  "theme": "Musique",
+  "description": "Piaf, Brel, Brassens et les autres : dix classiques que tous les Français connaissent.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "accordion",
+  "genre": "chanson",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "featuredRank": 10,
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "cfc-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Une chanson douce (Le Loup, la biche et le chevalier) – Henri Salvador",
+        "Aimer à perdre la raison – Jean Ferrat",
+        "La Tendresse – Bourvil",
+        "La Vie en Rose – Edith Piaf"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "La Vie en Rose"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Edith Piaf",
+        "title": "La Vie en Rose"
+      }
+    },
+    {
+      "id": "cfc-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "J'ai dix ans – Alain Souchon",
+        "Céline – Hugues Aufray",
+        "Il est cinq heures, Paris s'éveille – Jacques Dutronc",
+        "Ne me quitte pas – Jacques Brel"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jacques Brel"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jacques Brel",
+        "title": "Ne me quitte pas",
+        "artistAliases": [
+          "Brel"
+        ]
+      }
+    },
+    {
+      "id": "cfc-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Le chasseur (Les oies sauvages) – Michel Delpech",
+        "Couleur menthe à l'eau – Eddy Mitchell",
+        "La bohème – Charles Aznavour",
+        "Ma préférence – Julien Clerc"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "La bohème"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Charles Aznavour",
+        "title": "La bohème",
+        "artistAliases": [
+          "Aznavour"
+        ]
+      }
+    },
+    {
+      "id": "cfc-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Elle est d'ailleurs – Pierre Bachelet",
+        "Les Champs-Elysées – Joe Dassin",
+        "Requiem pour un fou – Johnny Hallyday",
+        "Je suis malade – Serge Lama"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Joe Dassin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Joe Dassin",
+        "title": "Les Champs-Elysées"
+      }
+    },
+    {
+      "id": "cfc-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Amoureux de ma femme – Richard Anthony",
+        "Du côte de chez Swann – Dave",
+        "Si J'Etais President – Gérard Lenorman",
+        "Comme d'habitude – Claude François"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Comme d'habitude"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Claude François",
+        "title": "Comme d'habitude",
+        "artistAliases": [
+          "Cloclo"
+        ]
+      }
+    },
+    {
+      "id": "cfc-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Résiste – France Gall",
+        "Le chanteur – Daniel Balavoine",
+        "Les lacs du Connemara – Michel Sardou",
+        "Fais comme l'oiseau – Michel Fugain"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Michel Sardou"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Michel Sardou",
+        "title": "Les lacs du Connemara"
+      }
+    },
+    {
+      "id": "cfc-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Au café du canal – Pierre Perret",
+        "Chanson sur ma drôle de vie – Véronique Sanson",
+        "Mistral gagnant – Renaud",
+        "Marcia Baïla – Les Rita Mitsouko"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Mistral gagnant"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Renaud",
+        "title": "Mistral gagnant"
+      }
+    },
+    {
+      "id": "cfc-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Paroles… paroles… – Dalida",
+        "Les mots bleus – Christophe",
+        "Le temps de l'amour – Françoise Hardy",
+        "L'amour c'est comme une cigarette – Sylvie Vartan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Dalida"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dalida",
+        "title": "Paroles… paroles…"
+      }
+    },
+    {
+      "id": "cfc-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Je l'aime à mourir – Francis Cabrel",
+        "Envole-moi – Jean-Jacques Goldman",
+        "Les sunlights des tropiques – Gilbert Montagné",
+        "Plus près des étoiles – Gold"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Je l'aime à mourir"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Francis Cabrel",
+        "title": "Je l'aime à mourir"
+      }
+    },
+    {
+      "id": "cfc-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Le sud – Nino Ferrer",
+        "Les copains d'abord – Georges Brassens",
+        "L'Aigle Noir – Barbara",
+        "Je suis venu te dire que je m'en vais – Serge Gainsbourg"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Georges Brassens"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Georges Brassens",
+        "title": "Les copains d'abord",
+        "artistAliases": [
+          "Brassens"
+        ]
+      }
+    }
+  ]
+}

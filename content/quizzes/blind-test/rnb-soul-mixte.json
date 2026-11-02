@@ -1,0 +1,219 @@
+{
+  "id": "rnb-soul-mixte",
+  "gameType": "blindTest",
+  "title": "RnB et soul : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "microphone",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "rnb-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Obsessed – Mariah Carey",
+        "He Wasn't Man Enough – Toni Braxton",
+        "Fallin' – Alicia Keys",
+        "Commander – Kelly Rowland"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Fallin'"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Alicia Keys",
+        "title": "Fallin'"
+      }
+    },
+    {
+      "id": "rnb-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ain't Your Mama – Jennifer Lopez",
+        "Single Ladies (Put a Ring on It) – Beyoncé",
+        "Because Of You – Ne-Yo",
+        "Like a Boy – Ciara"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Beyoncé"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Beyoncé",
+        "title": "Single Ladies (Put a Ring on It)"
+      }
+    },
+    {
+      "id": "rnb-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Body On Me – Ashanti",
+        "I Need A Girl – Trey Songz",
+        "Put It Down – Brandy",
+        "U Got It Bad – Usher"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "U Got It Bad"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "USHER",
+        "title": "U Got It Bad",
+        "displayArtist": "Usher"
+      }
+    },
+    {
+      "id": "rnb-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Leave The Door Open – Bruno Mars",
+        "Her – John Legend",
+        "Selfish – Justin Timberlake",
+        "It's Easier – Stevie Wonder"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bruno Mars"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Bruno Mars",
+        "title": "Leave The Door Open"
+      }
+    },
+    {
+      "id": "rnb-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rock The Boat – Aaliyah",
+        "Cater 2 U – Destiny's Child",
+        "Real Love – Mary J. Blige",
+        "Why I Love You So Much – Monica"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Real Love"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Mary J. Blige",
+        "title": "Real Love"
+      }
+    },
+    {
+      "id": "rnb-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Word Up – Cameo",
+        "Back to Life – Soul II Soul",
+        "Sunshine – Alexander O'Neal",
+        "Never Stop – The Brand New Heavies"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Soul II Soul"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Soul II Soul",
+        "title": "Back To Life",
+        "displayTitle": "Back to Life"
+      }
+    },
+    {
+      "id": "rnb-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "When the Going Gets Tough, The Tough Get Going – Billy Ocean",
+        "Poison – Bell Biv DeVoe",
+        "All Around the World – Lisa Stansfield",
+        "Ride wit U – Joe"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "All Around the World"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Lisa Stansfield",
+        "title": "All Around the World"
+      }
+    },
+    {
+      "id": "rnb-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Steady – Olivier St.Louis",
+        "Can We Talk – Tevin Campbell",
+        "Heaven Help – Angie Stone",
+        "Car Wash – Rose Royce"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Rose Royce"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Rose Royce",
+        "title": "Car Wash"
+      }
+    },
+    {
+      "id": "rnb-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Just Like You Used To – Jalen Ngonda",
+        "Run Fay Run – Isaac Hayes",
+        "From My Heart and My Soul – Terrace Martin",
+        "For Once In My Life – Michael McDonald"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Just Like You Used To"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jalen Ngonda",
+        "title": "Just Like You Used To"
+      }
+    },
+    {
+      "id": "rnb-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Keeps Me Going – Otis Kane",
+        "I Am Not My Hair – India.Arie",
+        "Don't Give Me Up – Harold Melvin & The Blue Notes",
+        "Bet Ain't Worth the Hand – Leon Bridges"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Leon Bridges"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Leon Bridges",
+        "title": "Bet Ain't Worth the Hand"
+      }
+    }
+  ]
+}

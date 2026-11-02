@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-francais-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rfi-01",
+      "query": {
+        "artist": "Krisy",
+        "title": "sisyphe"
+      },
+      "found": {
+        "id": "2423545815",
+        "title": "sisyphe",
+        "artist": "Krisy",
+        "album": "euphoria",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2423545815",
+        "explicit": true,
+        "rank": 356111
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-02",
+      "query": {
+        "artist": "Hippocampe Fou",
+        "title": "La thune de ma femme"
+      },
+      "found": {
+        "id": "1145105712",
+        "title": "La thune de ma femme",
+        "artist": "Hippocampe Fou",
+        "album": "La thune de ma femme",
+        "durationS": 172,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1145105712",
+        "explicit": false,
+        "rank": 380536
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-03",
+      "query": {
+        "artist": "Hologram Lo'",
+        "title": "LV Dans Le BOLT"
+      },
+      "found": {
+        "id": "2775102371",
+        "title": "LV Dans Le BOLT",
+        "artist": "Hologram Lo'",
+        "album": "REPLICA 2",
+        "durationS": 181,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2775102371",
+        "explicit": true,
+        "rank": 512788
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-04",
+      "query": {
+        "artist": "Davodka",
+        "title": "Au bord de l'eau"
+      },
+      "found": {
+        "id": "4151573762",
+        "title": "Au bord de l'eau",
+        "artist": "Davodka",
+        "album": "Au bord de l'eau",
+        "durationS": 149,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4151573762",
+        "explicit": false,
+        "rank": 493247
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-05",
+      "query": {
+        "artist": "NeS",
+        "title": "Tout prendre"
+      },
+      "found": {
+        "id": "3758470832",
+        "title": "Tout prendre",
+        "artist": "NeS",
+        "album": "Des pieds et des mains",
+        "durationS": 109,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3758470832",
+        "explicit": false,
+        "rank": 486134
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-06",
+      "query": {
+        "artist": "Cherry Pie",
+        "title": "GÉNÉRATION Z"
+      },
+      "found": {
+        "id": "3623146672",
+        "title": "GÉNÉRATION Z",
+        "artist": "Cherry Pie",
+        "album": "TITAN",
+        "durationS": 202,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3623146672",
+        "explicit": true,
+        "rank": 471765
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-07",
+      "query": {
+        "artist": "GAL",
+        "title": "moimême"
+      },
+      "found": {
+        "id": "3629618472",
+        "title": "moimême",
+        "artist": "GAL",
+        "album": "JeuneBeurDeLaFontaine (vol.2)",
+        "durationS": 138,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3629618472",
+        "explicit": true,
+        "rank": 460037
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-08",
+      "query": {
+        "artist": "Swift Guad",
+        "title": "Comme Freud"
+      },
+      "found": {
+        "id": "4246755021",
+        "title": "Comme Freud",
+        "artist": "Swift Guad",
+        "album": "Comme Freud",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4246755021",
+        "explicit": true,
+        "rank": 455097
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-09",
+      "query": {
+        "artist": "Sheldon",
+        "title": "Les fées"
+      },
+      "found": {
+        "id": "4276056382",
+        "title": "Les fées",
+        "artist": "Sheldon",
+        "album": "Les fées",
+        "durationS": 138,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4276056382",
+        "explicit": false,
+        "rank": 451088
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfi-10",
+      "query": {
+        "artist": "Ol'Kainry",
+        "title": "PENNY ET SHAQ"
+      },
+      "found": {
+        "id": "3908412091",
+        "title": "PENNY ET SHAQ",
+        "artist": "Ol'Kainry",
+        "album": "Boug Dyf Legacy",
+        "durationS": 177,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3908412091",
+        "explicit": true,
+        "rank": 338620
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

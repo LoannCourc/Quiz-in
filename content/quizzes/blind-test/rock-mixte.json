@@ -1,0 +1,219 @@
+{
+  "id": "rock-mixte",
+  "gameType": "blindTest",
+  "title": "Rock : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "rkm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Still Loving You – Scorpions",
+        "Don't Cry – Guns N' Roses",
+        "Back In Black – AC/DC",
+        "Free Bird – Lynyrd Skynyrd"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Back In Black"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "AC/DC",
+        "title": "Back In Black"
+      }
+    },
+    {
+      "id": "rkm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Four to the Floor – Starsailor",
+        "Have A Nice Day – Stereophonics",
+        "Come As You Are – Nirvana",
+        "Lonely Day – System of a Down"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Starsailor"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Starsailor",
+        "title": "Four to the Floor"
+      }
+    },
+    {
+      "id": "rkm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Tie Your Mother Down – Queen",
+        "Knocking At Your Back Door – Deep Purple",
+        "Set the Controls for the Heart of the Sun – Pink Floyd",
+        "In A Hand Or A Face – The Who"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Tie Your Mother Down"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Queen",
+        "title": "Tie Your Mother Down"
+      }
+    },
+    {
+      "id": "rkm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Cherub Rock – The Smashing Pumpkins",
+        "Monkey Wrench – Foo Fighters",
+        "Better Man – Pearl Jam",
+        "The Adventures Of Rain Dance Maggie – Red Hot Chili Peppers"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Foo Fighters"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Foo Fighters",
+        "title": "Monkey Wrench"
+      }
+    },
+    {
+      "id": "rkm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Never Say Goodbye – Bon Jovi",
+        "Dude (Looks Like a Lady) – Aerosmith",
+        "The Ocean – Led Zeppelin",
+        "Why Can't This Be Love – Van Halen"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Dude (Looks Like a Lady)"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Aerosmith",
+        "title": "Dude (Looks Like A Lady)",
+        "displayTitle": "Dude (Looks Like a Lady)"
+      }
+    },
+    {
+      "id": "rkm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "More Than a Feeling – Boston",
+        "Heat Of The Moment – Asia",
+        "Urgent – Foreigner",
+        "Lady in Black – Uriah Heep"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Boston"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Boston",
+        "title": "More Than a Feeling"
+      }
+    },
+    {
+      "id": "rkm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Whatever You Want – Status Quo",
+        "Since You Been Gone – Rainbow",
+        "Aqualung – Jethro Tull",
+        "The Boys Are Back in Town – Thin Lizzy"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Boys Are Back in Town"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Thin Lizzy",
+        "title": "The Boys Are Back In Town",
+        "displayTitle": "The Boys Are Back in Town"
+      }
+    },
+    {
+      "id": "rkm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Funk #49 – James Gang",
+        "All Right Now – Free",
+        "I'd love to change the world – Ten Years After",
+        "30 Days In The Hole – Humble Pie"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Free"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Free",
+        "title": "All Right Now"
+      }
+    },
+    {
+      "id": "rkm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Undun – The Guess Who",
+        "Love to Love – UFO",
+        "Spoon – CAN",
+        "Stormtroopin' – Ted Nugent"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Spoon"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "CAN",
+        "title": "Spoon"
+      }
+    },
+    {
+      "id": "rkm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Wanna Go Back – Eddie Money",
+        "Taxman, Mr. Thief – Cheap Trick",
+        "I'm Your Captain/Closer To Home – Grand Funk Railroad",
+        "Miss America – Styx"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Styx"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Styx",
+        "title": "Miss America"
+      }
+    }
+  ]
+}

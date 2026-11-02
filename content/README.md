@@ -114,7 +114,7 @@ Il faut aussi au moins 10 questions ici (exemple de forme seulement : ces morcea
   - dans chaque question, `music` (`artist` et `title` écrits comme chez Deezer) ;
   - les propositions écrites « Titre – Artiste », avec un tiret demi-cadratin entouré d'espaces.
 - **Facultatifs** :
-  - `level` : `easy`, `medium`, `hard` ou `impossible` ;
+  - `level` : `easy`, `medium`, `hard`, `impossible` ou `mixed` (« Tous niveaux ») ;
   - `icon` (par exemple `cassette`, `guitar`) ;
   - dans `music` : `startS` (0 à 10), `titleAliases`, `artistAliases`, `displayTitle`, `displayArtist`.
 
@@ -127,6 +127,11 @@ Il faut aussi au moins 10 questions ici (exemple de forme seulement : ces morcea
 4. Écouter un échantillon, puis `npm run music:review -- <lot> rock-annees-90-bis` pour la relecture.
 
 Un blind test dont un morceau n'est pas vérifié n'est pas importé : le build l'annonce et importe les autres.
+
+**Blind tests figés.** Un blind test validé par le développeur est figé par `node scripts/blind-tests/freeze.mjs <quizId>`
+(depuis la racine) : son empreinte (fichier source et morceaux vérifiés) va dans `content/frozen-blind-tests.json`,
+le build refuse ensuite tout changement, et `scripts/blind-tests/generate.mjs` ne le réécrit plus. Un changement
+voulu se refait avec `freeze.mjs`, jamais en modifiant l'empreinte à la main.
 
 ### Règles vérifiées par la construction
 
@@ -147,7 +152,9 @@ Le build refuse tout le contenu (aucun fichier généré) à la première erreur
   - toutes les propositions en « Titre – Artiste », et ce séparateur interdit ailleurs ;
   - alias qui ne font pas accepter une mauvaise proposition ;
   - `displayTitle` et `displayArtist` identiques à Deezer une fois normalisés ;
-  - avec un `level`, toutes les questions à la même difficulté.
+  - avec un `level`, toutes les questions à la même difficulté (Impossible : 4) ; `mixed` : difficultés 1, 1, 2, 2,
+    2, 3, 3, 3, 4, 4 dans cet ordre ;
+  - paroles explicites refusées, sauf dans les blind tests de rap.
 - **Variété des blind tests** :
   - dans un blind test, 40 titres différents et chaque artiste une seule fois ;
   - un morceau dans un seul blind test ;

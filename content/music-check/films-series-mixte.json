@@ -1,0 +1,217 @@
+{
+  "quizId": "films-series-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "fsm-01",
+      "query": {
+        "artist": "Hans Zimmer",
+        "title": "Cornfield Chase"
+      },
+      "found": {
+        "id": "1137370842",
+        "title": "Cornfield Chase",
+        "artist": "Hans Zimmer",
+        "album": "Interstellar (Original Motion Picture Soundtrack) (Expanded Edition)",
+        "durationS": 126,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1137370842",
+        "explicit": false,
+        "rank": 870201
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-02",
+      "query": {
+        "artist": "Ennio Morricone",
+        "title": "The Good, The Bad And The Ugly"
+      },
+      "found": {
+        "id": "3089012",
+        "title": "The Good, The Bad And The Ugly (2004 Remaster)",
+        "artist": "Ennio Morricone",
+        "album": "The Good, The Bad And The Ugly (Original Motion Picture Soundtrack / Remastered & Expanded)",
+        "durationS": 158,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3089012",
+        "explicit": false,
+        "rank": 590319
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-03",
+      "query": {
+        "artist": "Ramin Djawadi",
+        "title": "Light of the Seven"
+      },
+      "found": {
+        "id": "127563043",
+        "title": "Light of the Seven",
+        "artist": "Ramin Djawadi",
+        "album": "Game of Thrones (Music from the HBO® Series - Season 6)",
+        "durationS": 589,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/127563043",
+        "explicit": false,
+        "rank": 710085
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-04",
+      "query": {
+        "artist": "John Williams",
+        "title": "Duel of the Fates"
+      },
+      "found": {
+        "id": "493896712",
+        "title": "Duel of the Fates",
+        "artist": "John Williams",
+        "album": "Star Wars: La Menace Fantôme (Bande Originale du Film)",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/493896712",
+        "explicit": false,
+        "rank": 608496
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-05",
+      "query": {
+        "artist": "Danny Elfman",
+        "title": "This is Halloween"
+      },
+      "found": {
+        "id": "1762460387",
+        "title": "This is Halloween",
+        "artist": "Danny Elfman",
+        "album": "Nightmare Before Christmas Special Edition",
+        "durationS": 199,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1762460387",
+        "explicit": false,
+        "rank": 437190
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-06",
+      "query": {
+        "artist": "Vangelis",
+        "title": "Chariots Of Fire"
+      },
+      "found": {
+        "id": "41319291",
+        "title": "Chariots Of Fire",
+        "artist": "Vangelis",
+        "album": "Chariots Of Fire - The Play",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/41319291",
+        "explicit": false,
+        "rank": 560590
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-07",
+      "query": {
+        "artist": "Glenn Frey",
+        "title": "The Heat Is On"
+      },
+      "found": {
+        "id": "2233196",
+        "title": "The Heat Is On (From \"Beverly Hills Cop\" Soundtrack)",
+        "artist": "Glenn Frey",
+        "album": "Classic Glenn Frey - The Universal Masters Collection",
+        "durationS": 225,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2233196",
+        "explicit": false,
+        "rank": 598596
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-08",
+      "query": {
+        "artist": "Limahl",
+        "title": "Never Ending Story"
+      },
+      "found": {
+        "id": "3518231",
+        "title": "Never Ending Story",
+        "artist": "Limahl",
+        "album": "The Very Best Of Kajagoogoo",
+        "durationS": 210,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3518231",
+        "explicit": false,
+        "rank": 780084
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-09",
+      "query": {
+        "artist": "Stan Bush",
+        "title": "Dare"
+      },
+      "found": {
+        "id": "13207750",
+        "title": "Dare",
+        "artist": "Stan Bush",
+        "album": "Transformers The Movie",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13207750",
+        "explicit": false,
+        "rank": 305024
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "fsm-10",
+      "query": {
+        "artist": "Jan Hammer",
+        "title": "Crockett's Theme"
+      },
+      "found": {
+        "id": "907805",
+        "title": "Crockett's Theme (From \"Miami Vice II\" Soundtrack)",
+        "artist": "Jan Hammer",
+        "album": "Music For Eighties",
+        "durationS": 209,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/907805",
+        "explicit": false,
+        "rank": 598480
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

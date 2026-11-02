@@ -156,7 +156,7 @@ export const AppColors = {
   onChipSelected: Palette.ink,
   soonBadge: Palette.cyan,
   onSoonBadge: Palette.ink,
-  tags: { difficulty: Palette.gold, audience: Palette.green, gameType: Palette.cyan },
+  tags: { difficulty: Palette.gold, audience: Palette.green, gameType: Palette.cyan, explicit: Palette.pinkSoft },
   onTag: Palette.ink,
   // Salon de l'hôte : panneaux sombres (carte du code, liste des joueurs), liens et bloc « sans TV ».
   panel: 'rgba(23, 6, 70, 0.55)',

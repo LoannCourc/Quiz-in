@@ -1,0 +1,220 @@
+{
+  "id": "annees-80-mixte",
+  "gameType": "blindTest",
+  "title": "Années 80 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 80, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "cassette",
+  "genre": "pop",
+  "decade": 1980,
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a80m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Modern Love – David Bowie",
+        "Dancing in the Dark – Bruce Springsteen",
+        "Another One Bites The Dust – Queen",
+        "Sacrifice – Elton John"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Another One Bites The Dust"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Queen",
+        "title": "Another One Bites The Dust"
+      }
+    },
+    {
+      "id": "a80m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bette Davis Eyes – Kim Carnes",
+        "Time After Time – Cyndi Lauper",
+        "Total Eclipse of the Heart – Bonnie Tyler",
+        "Big in Japan – Alphaville"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Bonnie Tyler"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bonnie Tyler",
+        "title": "Total Eclipse of the Heart"
+      }
+    },
+    {
+      "id": "a80m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Master Blaster (Jammin') – Stevie Wonder",
+        "The Way You Make Me Feel – Michael Jackson",
+        "Greatest Love of All – Whitney Houston",
+        "Sussudio – Phil Collins"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The Way You Make Me Feel"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Michael Jackson",
+        "title": "The Way You Make Me Feel",
+        "artistAliases": [
+          "MJ"
+        ]
+      }
+    },
+    {
+      "id": "a80m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sign 'O' the Times – Prince",
+        "Just Like Jesse James – Cher",
+        "What Have I Done to Deserve This? – Pet Shop Boys",
+        "Papa Don't Preach – Madonna"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Madonna"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Madonna",
+        "title": "Papa Don't Preach"
+      }
+    },
+    {
+      "id": "a80m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Pictures Of You – The Cure",
+        "Everything Counts – Depeche Mode",
+        "Hungry Like the Wolf – Duran Duran",
+        "Change – Tears for Fears"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Everything Counts"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Depeche Mode",
+        "title": "Everything Counts"
+      }
+    },
+    {
+      "id": "a80m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Live Is Life – Opus",
+        "Maria Magdalena – Sandra",
+        "Major Tom – Peter Schilling",
+        "Flash In The Night – Secret Service"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Opus"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Opus",
+        "title": "Live Is Life"
+      }
+    },
+    {
+      "id": "a80m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Send Me An Angel – Real Life",
+        "Hold Me Now – Thompson Twins",
+        "The Safety Dance – Men Without Hats",
+        "Vienna – Ultravox"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Safety Dance"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Men Without Hats",
+        "title": "The Safety Dance"
+      }
+    },
+    {
+      "id": "a80m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Nur geträumt – Nena",
+        "Rock Me Amadeus – Falco",
+        "Dein ist mein ganzes Herz – Heinz Rudolf Kunze",
+        "Sternenhimmel – Hubert Kah"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Falco"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Falco",
+        "title": "Rock Me Amadeus"
+      }
+    },
+    {
+      "id": "a80m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "My Way – Nina Hagen",
+        "System Addict – Five Star",
+        "The Motion of Love – Gene Loves Jezebel",
+        "Use It Up And Wear It Out – Odyssey"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Use It Up And Wear It Out"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Odyssey",
+        "title": "Use It Up And Wear It Out"
+      }
+    },
+    {
+      "id": "a80m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Naughty Girls (Need Love Too) – Samantha Fox",
+        "I Want You Back – Bananarama",
+        "It's Been a Long Time – Dead or Alive",
+        "Running For Your Love – Baltimora"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Samantha Fox"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Samantha Fox",
+        "title": "Naughty Girls (Need Love Too)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "quizId": "reggae-ska-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rgs-01",
+      "query": {
+        "artist": "Bob Marley & The Wailers",
+        "title": "Is This Love"
+      },
+      "found": {
+        "id": "2293791",
+        "title": "Is This Love",
+        "artist": "Bob Marley & The Wailers",
+        "album": "Kaya",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2293791",
+        "explicit": false,
+        "rank": 873346
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-02",
+      "query": {
+        "artist": "UB40",
+        "title": "Red Red Wine"
+      },
+      "found": {
+        "id": "3129568",
+        "title": "Red Red Wine",
+        "artist": "UB40",
+        "album": "The Very Best Of UB40",
+        "durationS": 182,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3129568",
+        "explicit": false,
+        "rank": 824524
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-03",
+      "query": {
+        "artist": "Damian Marley",
+        "title": "Looks Are Deceiving"
+      },
+      "found": {
+        "id": "383831771",
+        "title": "Looks Are Deceiving",
+        "artist": "Damian Marley",
+        "album": "Stony Hill",
+        "durationS": 278,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/383831771",
+        "explicit": false,
+        "rank": 559897
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-04",
+      "query": {
+        "artist": "Sean Paul",
+        "title": "Like Glue"
+      },
+      "found": {
+        "id": "1995617597",
+        "title": "Like Glue",
+        "artist": "Sean Paul",
+        "album": "Dutty Rock (20th Anniversary)",
+        "durationS": 232,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1995617597",
+        "explicit": false,
+        "rank": 679855
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-05",
+      "query": {
+        "artist": "Peter Tosh",
+        "title": "Mystic Man"
+      },
+      "found": {
+        "id": "3091917",
+        "title": "Mystic Man (2002 Remaster)",
+        "artist": "Peter Tosh",
+        "album": "The Best of Peter Tosh 1978-1987",
+        "durationS": 356,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3091917",
+        "explicit": false,
+        "rank": 497822
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-06",
+      "query": {
+        "artist": "The Specials",
+        "title": "Ghost Town"
+      },
+      "found": {
+        "id": "1798538807",
+        "title": "Ghost Town",
+        "artist": "The Specials",
+        "album": "Stereo-Typical: A's, B's & Rarities",
+        "durationS": 219,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1798538807",
+        "explicit": false,
+        "rank": 700411
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-07",
+      "query": {
+        "artist": "Desmond Dekker",
+        "title": "Israelites"
+      },
+      "found": {
+        "id": "71647395",
+        "title": "Israelites",
+        "artist": "Desmond Dekker",
+        "album": "Desmond Dekker - The Israelites, All The Hits",
+        "durationS": 169,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71647395",
+        "explicit": false,
+        "rank": 501184
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-08",
+      "query": {
+        "artist": "Musical Youth",
+        "title": "Pass The Dutchie"
+      },
+      "found": {
+        "id": "2234298",
+        "title": "Pass The Dutchie",
+        "artist": "Musical Youth",
+        "album": "Classic 80's",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2234298",
+        "explicit": false,
+        "rank": 757137
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-09",
+      "query": {
+        "artist": "Kanka",
+        "title": "A ticket to die !"
+      },
+      "found": {
+        "id": "226581",
+        "title": "A ticket to die !",
+        "artist": "Kanka",
+        "album": "Don't stop dub!",
+        "durationS": 436,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/226581",
+        "explicit": false,
+        "rank": 407044
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rgs-10",
+      "query": {
+        "artist": "Iration",
+        "title": "Falling"
+      },
+      "found": {
+        "id": "6451944",
+        "title": "Falling",
+        "artist": "Iration",
+        "album": "Sample This  - EP",
+        "durationS": 241,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6451944",
+        "explicit": false,
+        "rank": 249880
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

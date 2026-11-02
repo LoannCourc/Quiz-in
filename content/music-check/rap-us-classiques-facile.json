@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-us-classiques-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rus-01",
+      "query": {
+        "artist": "Eminem",
+        "title": "Lose Yourself"
+      },
+      "found": {
+        "id": "103121202",
+        "title": "Lose Yourself (From \"8 Mile\")",
+        "artist": "Eminem",
+        "album": "Best Ever Soundtracks",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/103121202",
+        "explicit": false,
+        "rank": 242260
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-02",
+      "query": {
+        "artist": "Outkast",
+        "title": "Ms. Jackson"
+      },
+      "found": {
+        "id": "963042",
+        "title": "Ms. Jackson",
+        "artist": "Outkast",
+        "album": "Stankonia",
+        "durationS": 272,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/963042",
+        "explicit": true,
+        "rank": 899315
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-03",
+      "query": {
+        "artist": "The Notorious B.I.G.",
+        "title": "Juicy"
+      },
+      "found": {
+        "id": "3616616",
+        "title": "Juicy",
+        "artist": "The Notorious B.I.G.",
+        "album": "Greatest Hits",
+        "durationS": 285,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3616616",
+        "explicit": false,
+        "rank": 636887
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-04",
+      "query": {
+        "artist": "Dr. Dre",
+        "title": "Still D.R.E."
+      },
+      "found": {
+        "id": "128743581",
+        "title": "Still D.R.E.",
+        "artist": "Dr. Dre",
+        "album": "2001",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/128743581",
+        "explicit": true,
+        "rank": 943997
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-05",
+      "query": {
+        "artist": "Nelly",
+        "title": "Hot In Herre"
+      },
+      "found": {
+        "id": "2447436",
+        "title": "Hot In Herre",
+        "artist": "Nelly",
+        "album": "Nellyville",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2447436",
+        "explicit": true,
+        "rank": 753015
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-06",
+      "query": {
+        "artist": "Kanye West",
+        "title": "Stronger"
+      },
+      "found": {
+        "id": "1178682",
+        "title": "Stronger",
+        "artist": "Kanye West",
+        "album": "Stronger",
+        "durationS": 312,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1178682",
+        "explicit": true,
+        "rank": 848755
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-07",
+      "query": {
+        "artist": "JAY Z",
+        "title": "Empire State Of Mind"
+      },
+      "found": {
+        "id": "90533119",
+        "title": "Empire State Of Mind",
+        "artist": "JAY Z",
+        "album": "The Blueprint 3",
+        "durationS": 277,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/90533119",
+        "explicit": true,
+        "rank": 947001
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-08",
+      "query": {
+        "artist": "50 Cent",
+        "title": "In Da Club"
+      },
+      "found": {
+        "id": "1141668",
+        "title": "In Da Club",
+        "artist": "50 Cent",
+        "album": "Get Rich Or Die Tryin'",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1141668",
+        "explicit": true,
+        "rank": 924879
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-09",
+      "query": {
+        "artist": "Coolio",
+        "title": "Gangsta's Paradise"
+      },
+      "found": {
+        "id": "1584416372",
+        "title": "Gangsta's Paradise",
+        "artist": "Coolio",
+        "album": "Gangsta's Paradise",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1584416372",
+        "explicit": false,
+        "rank": 968342
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rus-10",
+      "query": {
+        "artist": "Missy Elliott",
+        "title": "Get Ur Freak On"
+      },
+      "found": {
+        "id": "5094067",
+        "title": "Get Ur Freak On",
+        "artist": "Missy Elliott",
+        "album": "Respect M.E.",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/5094067",
+        "explicit": false,
+        "rank": 987058
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

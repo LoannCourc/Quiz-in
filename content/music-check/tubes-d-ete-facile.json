@@ -1,0 +1,217 @@
+{
+  "quizId": "tubes-d-ete-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "ete-01",
+      "query": {
+        "artist": "Los Del Rio",
+        "title": "Macarena"
+      },
+      "found": {
+        "id": "994491",
+        "title": "Macarena",
+        "artist": "Los Del Rio",
+        "album": "Hits Of The 90s",
+        "durationS": 252,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/994491",
+        "explicit": false,
+        "rank": 807135
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-02",
+      "query": {
+        "artist": "Magic System",
+        "title": "Premier Gaou"
+      },
+      "found": {
+        "id": "482681812",
+        "title": "Premier Gaou",
+        "artist": "Magic System",
+        "album": "Premier Gaou, The Remixes",
+        "durationS": 229,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/482681812",
+        "explicit": false,
+        "rank": 355998
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-03",
+      "query": {
+        "artist": "MIKA",
+        "title": "Relax, Take It Easy"
+      },
+      "found": {
+        "id": "953606",
+        "title": "Relax, Take It Easy",
+        "artist": "MIKA",
+        "album": "Life In Cartoon Motion (UK eDeluxe Album)",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/953606",
+        "explicit": false,
+        "rank": 842845
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-04",
+      "query": {
+        "artist": "Bob Sinclar",
+        "title": "Love Generation"
+      },
+      "found": {
+        "id": "2676362252",
+        "title": "Love Generation",
+        "artist": "Bob Sinclar",
+        "album": "Love Generation",
+        "durationS": 173,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2676362252",
+        "explicit": false,
+        "rank": 327946
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-05",
+      "query": {
+        "artist": "Daddy Yankee",
+        "title": "Gasolina"
+      },
+      "found": {
+        "id": "3165861441",
+        "title": "Gasolina",
+        "artist": "Daddy Yankee",
+        "album": "Barrio Fino (Bonus Track Version)",
+        "durationS": 192,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3165861441",
+        "explicit": false,
+        "rank": 909706
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-06",
+      "query": {
+        "artist": "Shaggy",
+        "title": "Boombastic"
+      },
+      "found": {
+        "id": "2122526",
+        "title": "Boombastic",
+        "artist": "Shaggy",
+        "album": "The Boombastic Collection - Best Of Shaggy (International Version)",
+        "durationS": 247,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2122526",
+        "explicit": false,
+        "rank": 755266
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-07",
+      "query": {
+        "artist": "Enrique Iglesias",
+        "title": "Bailando"
+      },
+      "found": {
+        "id": "765849012",
+        "title": "Bailando (Spanish Version)",
+        "artist": "Enrique Iglesias",
+        "album": "Greatest Hits",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/765849012",
+        "explicit": false,
+        "rank": 828116
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-08",
+      "query": {
+        "artist": "Kungs",
+        "title": "This Girl"
+      },
+      "found": {
+        "id": "135373112",
+        "title": "This Girl (Kungs Vs. Cookin' On 3 Burners) (Kungs Vs. Cookin' On 3 Burners)",
+        "artist": "Kungs",
+        "album": "Layers",
+        "durationS": 196,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/135373112",
+        "explicit": false,
+        "rank": 870017
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-09",
+      "query": {
+        "artist": "Wejdene",
+        "title": "Anissa"
+      },
+      "found": {
+        "id": "926691372",
+        "title": "Anissa",
+        "artist": "Wejdene",
+        "album": "Anissa",
+        "durationS": 176,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/926691372",
+        "explicit": false,
+        "rank": 809244
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "ete-10",
+      "query": {
+        "artist": "Shakira",
+        "title": "Waka Waka (This Time for Africa)"
+      },
+      "found": {
+        "id": "68473089",
+        "title": "Waka Waka (This Time for Africa) (feat. Freshlyground)",
+        "artist": "Shakira",
+        "album": "Party Hits: Summer Edition",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/68473089",
+        "explicit": false,
+        "rank": 920103
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-us-underground-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rui-01",
+      "query": {
+        "artist": "Aesop Rock",
+        "title": "Mindful Solutionism"
+      },
+      "found": {
+        "id": "2383036615",
+        "title": "Mindful Solutionism",
+        "artist": "Aesop Rock",
+        "album": "Integrated Tech Solutions",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2383036615",
+        "explicit": false,
+        "rank": 207604
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-02",
+      "query": {
+        "artist": "Atmosphere",
+        "title": "Really"
+      },
+      "found": {
+        "id": "3477740031",
+        "title": "Really",
+        "artist": "Atmosphere",
+        "album": "Yearning / Daley",
+        "durationS": 183,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3477740031",
+        "explicit": false,
+        "rank": 150446
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-03",
+      "query": {
+        "artist": "Brother Ali",
+        "title": "Good Lord"
+      },
+      "found": {
+        "id": "980640712",
+        "title": "Good Lord",
+        "artist": "Brother Ali",
+        "album": "Truth Is Here",
+        "durationS": 251,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/980640712",
+        "explicit": false,
+        "rank": 226393
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-04",
+      "query": {
+        "artist": "Sage Francis",
+        "title": "Makeshift Patriot"
+      },
+      "found": {
+        "id": "53770801",
+        "title": "Makeshift Patriot",
+        "artist": "Sage Francis",
+        "album": "Sick of Waging War",
+        "durationS": 350,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/53770801",
+        "explicit": false,
+        "rank": 138232
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-05",
+      "query": {
+        "artist": "Cannibal Ox",
+        "title": "Raspberry Fields"
+      },
+      "found": {
+        "id": "2075952647",
+        "title": "Raspberry Fields",
+        "artist": "Cannibal Ox",
+        "album": "The Cold Vein (Deluxe Edition)",
+        "durationS": 241,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2075952647",
+        "explicit": true,
+        "rank": 118647
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-06",
+      "query": {
+        "artist": "Isaiah Rashad",
+        "title": "Free Lunch"
+      },
+      "found": {
+        "id": "797676482",
+        "title": "Free Lunch",
+        "artist": "Isaiah Rashad",
+        "album": "The Sun's Tirade",
+        "durationS": 192,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/797676482",
+        "explicit": true,
+        "rank": 423216
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-07",
+      "query": {
+        "artist": "Murs",
+        "title": "The Science"
+      },
+      "found": {
+        "id": "2165723",
+        "title": "The Science",
+        "artist": "Murs",
+        "album": "Murs For President",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2165723",
+        "explicit": true,
+        "rank": 31043
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-08",
+      "query": {
+        "artist": "Evidence",
+        "title": "Mr. Slow Flow"
+      },
+      "found": {
+        "id": "3951855981",
+        "title": "Mr. Slow Flow",
+        "artist": "Evidence",
+        "album": "The Weatherman LP",
+        "durationS": 242,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3951855981",
+        "explicit": true,
+        "rank": 18698
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-09",
+      "query": {
+        "artist": "Masta Ace",
+        "title": "Bklyn Masala"
+      },
+      "found": {
+        "id": "526490342",
+        "title": "Bklyn Masala (Featuring Leschea)",
+        "artist": "Masta Ace",
+        "album": "A Long Hot Summer",
+        "durationS": 258,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/526490342",
+        "explicit": true,
+        "rank": 244141
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rui-10",
+      "query": {
+        "artist": "Little Brother",
+        "title": "Whatever You Say"
+      },
+      "found": {
+        "id": "478140672",
+        "title": "Whatever You Say",
+        "artist": "Little Brother",
+        "album": "The Listening",
+        "durationS": 327,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/478140672",
+        "explicit": false,
+        "rank": 134593
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

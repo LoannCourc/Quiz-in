@@ -1,0 +1,217 @@
+{
+  "quizId": "rock-indie-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rii-01",
+      "query": {
+        "artist": "Ought",
+        "title": "Habit"
+      },
+      "found": {
+        "id": "76909505",
+        "title": "Habit",
+        "artist": "Ought",
+        "album": "More Than Any Other Day",
+        "durationS": 364,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/76909505",
+        "explicit": false,
+        "rank": 108864
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-02",
+      "query": {
+        "artist": "Wilco",
+        "title": "Impossible Germany"
+      },
+      "found": {
+        "id": "738631",
+        "title": "Impossible Germany",
+        "artist": "Wilco",
+        "album": "Sky Blue Sky",
+        "durationS": 357,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/738631",
+        "explicit": false,
+        "rank": 418692
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-03",
+      "query": {
+        "artist": "Girlpool",
+        "title": "Faultline"
+      },
+      "found": {
+        "id": "1549452512",
+        "title": "Faultline",
+        "artist": "Girlpool",
+        "album": "Faultline",
+        "durationS": 251,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1549452512",
+        "explicit": false,
+        "rank": 141498
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-04",
+      "query": {
+        "artist": "Yuck",
+        "title": "Middle Sea"
+      },
+      "found": {
+        "id": "70726100",
+        "title": "Middle Sea",
+        "artist": "Yuck",
+        "album": "Glow & Behold",
+        "durationS": 255,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70726100",
+        "explicit": false,
+        "rank": 114784
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-05",
+      "query": {
+        "artist": "Cloud Nothings",
+        "title": "Modern Act"
+      },
+      "found": {
+        "id": "140719479",
+        "title": "Modern Act",
+        "artist": "Cloud Nothings",
+        "album": "Life Without Sound",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/140719479",
+        "explicit": false,
+        "rank": 141127
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-06",
+      "query": {
+        "artist": "Real Estate",
+        "title": "Talking Backwards"
+      },
+      "found": {
+        "id": "75494382",
+        "title": "Talking Backwards",
+        "artist": "Real Estate",
+        "album": "Atlas",
+        "durationS": 187,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/75494382",
+        "explicit": false,
+        "rank": 254010
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-07",
+      "query": {
+        "artist": "The Pains Of Being Pure At Heart",
+        "title": "Belong"
+      },
+      "found": {
+        "id": "10048357",
+        "title": "Belong",
+        "artist": "The Pains Of Being Pure At Heart",
+        "album": "Belong",
+        "durationS": 264,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10048357",
+        "explicit": false,
+        "rank": 135781
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-08",
+      "query": {
+        "artist": "Wild Nothing",
+        "title": "Shadow"
+      },
+      "found": {
+        "id": "69000431",
+        "title": "Shadow",
+        "artist": "Wild Nothing",
+        "album": "Nocturne",
+        "durationS": 258,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/69000431",
+        "explicit": false,
+        "rank": 204816
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-09",
+      "query": {
+        "artist": "Beach Fossils",
+        "title": "Daydream"
+      },
+      "found": {
+        "id": "484948082",
+        "title": "Daydream",
+        "artist": "Beach Fossils",
+        "album": "Beach Fossils",
+        "durationS": 184,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/484948082",
+        "explicit": false,
+        "rank": 164807
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rii-10",
+      "query": {
+        "artist": "Surfer Blood",
+        "title": "I Was Wrong"
+      },
+      "found": {
+        "id": "1855466977",
+        "title": "I Was Wrong",
+        "artist": "Surfer Blood",
+        "album": "Pythons (Deluxe Version)",
+        "durationS": 217,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1855466977",
+        "explicit": false,
+        "rank": 34621
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "quizId": "disney-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "dsn-01",
+      "query": {
+        "artist": "Anaïs Delva",
+        "title": "Libérée, Délivrée"
+      },
+      "found": {
+        "id": "72427143",
+        "title": "Libérée, Délivrée (De \"La Reine des Neiges\"/Bande Originale Française)",
+        "artist": "Anaïs Delva",
+        "album": "La Reine des Neiges (Bande Originale Française du Film)",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72427143",
+        "explicit": false,
+        "rank": 936885
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-02",
+      "query": {
+        "artist": "Dimitri Rougeul",
+        "title": "Hakuna Matata"
+      },
+      "found": {
+        "id": "3117861",
+        "title": "Hakuna Matata",
+        "artist": "Dimitri Rougeul",
+        "album": "The Lion King: Special Edition Original Soundtrack (French Version)",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3117861",
+        "explicit": false,
+        "rank": 786826
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-03",
+      "query": {
+        "artist": "Karine Costa",
+        "title": "Ce rêve bleu"
+      },
+      "found": {
+        "id": "4588779",
+        "title": "Ce rêve bleu",
+        "artist": "Karine Costa",
+        "album": "La Magie De Disney",
+        "durationS": 159,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4588779",
+        "explicit": false,
+        "rank": 765790
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-04",
+      "query": {
+        "artist": "Lucie Dolène",
+        "title": "Histoire éternelle"
+      },
+      "found": {
+        "id": "84363781",
+        "title": "Histoire éternelle (De \"La Belle et la Bête\"/Bande Originale Française du Film)",
+        "artist": "Lucie Dolène",
+        "album": "La Belle et La Bête",
+        "durationS": 164,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/84363781",
+        "explicit": false,
+        "rank": 767517
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-05",
+      "query": {
+        "artist": "Henri Salvador",
+        "title": "Sous l'océan"
+      },
+      "found": {
+        "id": "4588774",
+        "title": "Sous l'océan",
+        "artist": "Henri Salvador",
+        "album": "La Magie De Disney",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4588774",
+        "explicit": false,
+        "rank": 799604
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-06",
+      "query": {
+        "artist": "Jean Stout",
+        "title": "Il En Faut Peu Pour Être Heureux"
+      },
+      "found": {
+        "id": "3117875",
+        "title": "Il En Faut Peu Pour Être Heureux",
+        "artist": "Jean Stout",
+        "album": "The Jungle Book Original Soundtrack (French Version)",
+        "durationS": 282,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3117875",
+        "explicit": false,
+        "rank": 753666
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-07",
+      "query": {
+        "artist": "Cerise Calixte",
+        "title": "Le bleu lumière"
+      },
+      "found": {
+        "id": "136864432",
+        "title": "Le bleu lumière",
+        "artist": "Cerise Calixte",
+        "album": "Vaiana - La Légende du Bout du Monde (Bande originale française du Film/Édition Deluxe)",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136864432",
+        "explicit": false,
+        "rank": 873395
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-08",
+      "query": {
+        "artist": "Sharon Laloum",
+        "title": "Ne parlons pas de Bruno"
+      },
+      "found": {
+        "id": "1550795112",
+        "title": "Ne parlons pas de Bruno",
+        "artist": "Sharon Laloum",
+        "album": "Encanto: La fantastique famille Madrigal (Bande Originale Française du Film)",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1550795112",
+        "explicit": false,
+        "rank": 827990
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-09",
+      "query": {
+        "artist": "Laura Mayne",
+        "title": "L' air Du Vent"
+      },
+      "found": {
+        "id": "714372202",
+        "title": "L' air Du Vent (De \"Pocahontas, Une Légende Indienne\"/Bande Originale Française du Film)",
+        "artist": "Laura Mayne",
+        "album": "Pocahontas, Une Légende Indienne (Bande Originale Française du Film)",
+        "durationS": 213,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/714372202",
+        "explicit": false,
+        "rank": 797850
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "dsn-10",
+      "query": {
+        "artist": "José Germain",
+        "title": "Tout le monde veut devenir un cat"
+      },
+      "found": {
+        "id": "4588793",
+        "title": "Tout le monde veut devenir un cat",
+        "artist": "José Germain",
+        "album": "La Magie De Disney",
+        "durationS": 353,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4588793",
+        "explicit": false,
+        "rank": 710104
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

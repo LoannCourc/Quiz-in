@@ -1,0 +1,217 @@
+{
+  "quizId": "rock-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rkm-01",
+      "query": {
+        "artist": "AC/DC",
+        "title": "Back In Black"
+      },
+      "found": {
+        "id": "92720046",
+        "title": "Back In Black",
+        "artist": "AC/DC",
+        "album": "Back In Black",
+        "durationS": 253,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/92720046",
+        "explicit": false,
+        "rank": 966294
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-02",
+      "query": {
+        "artist": "Starsailor",
+        "title": "Four to the Floor"
+      },
+      "found": {
+        "id": "3130080",
+        "title": "Four to the Floor",
+        "artist": "Starsailor",
+        "album": "Silence Is Easy",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3130080",
+        "explicit": false,
+        "rank": 179687
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-03",
+      "query": {
+        "artist": "Queen",
+        "title": "Tie Your Mother Down"
+      },
+      "found": {
+        "id": "4091933791",
+        "title": "Tie Your Mother Down",
+        "artist": "Queen",
+        "album": "A Day At The Races",
+        "durationS": 288,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4091933791",
+        "explicit": false,
+        "rank": 447294
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-04",
+      "query": {
+        "artist": "Foo Fighters",
+        "title": "Monkey Wrench"
+      },
+      "found": {
+        "id": "4311601",
+        "title": "Monkey Wrench",
+        "artist": "Foo Fighters",
+        "album": "Greatest Hits",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4311601",
+        "explicit": false,
+        "rank": 591415
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-05",
+      "query": {
+        "artist": "Aerosmith",
+        "title": "Dude (Looks Like A Lady)"
+      },
+      "found": {
+        "id": "2125097",
+        "title": "Dude (Looks Like A Lady)",
+        "artist": "Aerosmith",
+        "album": "Permanent Vacation",
+        "durationS": 263,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2125097",
+        "explicit": false,
+        "rank": 646001
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-06",
+      "query": {
+        "artist": "Boston",
+        "title": "More Than a Feeling"
+      },
+      "found": {
+        "id": "1037414",
+        "title": "More Than a Feeling",
+        "artist": "Boston",
+        "album": "Greatest Hits",
+        "durationS": 285,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1037414",
+        "explicit": false,
+        "rank": 709459
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-07",
+      "query": {
+        "artist": "Thin Lizzy",
+        "title": "The Boys Are Back In Town"
+      },
+      "found": {
+        "id": "1101200",
+        "title": "The Boys Are Back In Town",
+        "artist": "Thin Lizzy",
+        "album": "Jailbreak",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1101200",
+        "explicit": false,
+        "rank": 704042
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-08",
+      "query": {
+        "artist": "Free",
+        "title": "All Right Now"
+      },
+      "found": {
+        "id": "929222",
+        "title": "All Right Now",
+        "artist": "Free",
+        "album": "Fire And Water (Deluxe Edition)",
+        "durationS": 332,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/929222",
+        "explicit": false,
+        "rank": 704963
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-09",
+      "query": {
+        "artist": "CAN",
+        "title": "Spoon"
+      },
+      "found": {
+        "id": "70880325",
+        "title": "Spoon",
+        "artist": "CAN",
+        "album": "Ege Bamyasi (Remastered)",
+        "durationS": 184,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/70880325",
+        "explicit": false,
+        "rank": 305516
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkm-10",
+      "query": {
+        "artist": "Styx",
+        "title": "Miss America"
+      },
+      "found": {
+        "id": "40983231",
+        "title": "Miss America",
+        "artist": "Styx",
+        "album": "The Grand Illusion",
+        "durationS": 301,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/40983231",
+        "explicit": false,
+        "rank": 258915
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

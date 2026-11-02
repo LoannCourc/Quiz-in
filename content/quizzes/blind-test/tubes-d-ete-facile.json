@@ -1,0 +1,218 @@
+{
+  "id": "tubes-d-ete-facile",
+  "gameType": "blindTest",
+  "title": "Tubes d'été",
+  "theme": "Musique",
+  "description": "Dix tubes de l'été, toutes époques et tous styles : la bande-son des vacances.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "sun",
+  "genre": "pop",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "ete-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Yo Voy – Zion & Lennox",
+        "Macarena – Los Del Rio",
+        "Ella Y Yo – Aventura",
+        "Salió El Sol – Don Omar"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Macarena"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Los Del Rio",
+        "title": "Macarena"
+      }
+    },
+    {
+      "id": "ete-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La légende Black – Black M",
+        "Rien qu'une fois – Keen' V",
+        "Premier Gaou – Magic System",
+        "Le jerk – Thierry Hazard"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Magic System"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Magic System",
+        "title": "Premier Gaou"
+      }
+    },
+    {
+      "id": "ete-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Reality – Lost Frequencies",
+        "Makeba – Jain",
+        "Relax, Take It Easy – Mika",
+        "Dragostea din tei – O-Zone"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Relax, Take It Easy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "MIKA",
+        "title": "Relax, Take It Easy",
+        "displayArtist": "Mika"
+      }
+    },
+    {
+      "id": "ete-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Love Generation – Bob Sinclar",
+        "Intoxicated – Martin Solveig",
+        "Barbra Streisand – Duck Sauce",
+        "Baianá – Bakermat"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Bob Sinclar"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bob Sinclar",
+        "title": "Love Generation"
+      }
+    },
+    {
+      "id": "ete-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "El Amante – Nicky Jam",
+        "Sigues Con El – Arcangel",
+        "Loco Contigo – DJ Snake",
+        "Gasolina – Daddy Yankee"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Gasolina"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Daddy Yankee",
+        "title": "Gasolina"
+      }
+    },
+    {
+      "id": "ete-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Hold You (Hold Yuh) – Gyptian",
+        "Boombastic – Shaggy",
+        "Get Busy – Sean Paul",
+        "King Of The Dancehall – Beenie Man"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Shaggy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Shaggy",
+        "title": "Boombastic"
+      }
+    },
+    {
+      "id": "ete-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Si Antes Te Hubiera Conocido – Karol G",
+        "Baila Pa Mi – Lucenzo",
+        "Andas En Mi Cabeza – Chino & Nacho",
+        "Bailando – Enrique Iglesias"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bailando"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Enrique Iglesias",
+        "title": "Bailando"
+      }
+    },
+    {
+      "id": "ete-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Overdrive – Ofenbach",
+        "How Deep Is Your Love – Calvin Harris",
+        "Ghosts – Mosimann",
+        "This Girl – Kungs"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Kungs"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kungs",
+        "title": "This Girl"
+      }
+    },
+    {
+      "id": "ete-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Passe ton chemin – Lynda",
+        "Anissa – Wejdene",
+        "1ère fois – Imen Es",
+        "Cœur noir – Eva"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Anissa"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Wejdene",
+        "title": "Anissa"
+      }
+    },
+    {
+      "id": "ete-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Waka Waka (This Time for Africa) – Shakira",
+        "Promiscuous – Nelly Furtado",
+        "Timber – Pitbull",
+        "Shower – Becky G"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Shakira"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Shakira",
+        "title": "Waka Waka (This Time for Africa)"
+      }
+    }
+  ]
+}

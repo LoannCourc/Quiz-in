@@ -91,6 +91,7 @@ export function QuizDetails(props: QuizDetailsProps) {
           <Tag label={strings.catalog.difficultyLevels[level]} color={AppColors.tags.difficulty} />
           <Tag label={strings.quizSetup.audiences[quiz.audience]} color={AppColors.tags.audience} />
           <Tag label={strings.catalog.gameTypes[quiz.gameType]} color={AppColors.tags.gameType} />
+          {quiz.explicitLyrics && <Tag label={strings.catalog.explicitLyrics} color={AppColors.tags.explicit} />}
           {isPlayed && <Tag label={strings.catalog.played} color={AppColors.correct} />}
         </View>
         {quiz.gameType === 'draw' && (

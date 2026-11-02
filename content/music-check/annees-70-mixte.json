@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-70-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a70m-01",
+      "query": {
+        "artist": "ABBA",
+        "title": "Mamma Mia"
+      },
+      "found": {
+        "id": "884030",
+        "title": "Mamma Mia",
+        "artist": "ABBA",
+        "album": "ABBA Gold",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/884030",
+        "explicit": false,
+        "rank": 840813
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-02",
+      "query": {
+        "artist": "Elton John",
+        "title": "Rocket Man (I Think It's Going To Be A Long, Long Time)"
+      },
+      "found": {
+        "id": "1144863",
+        "title": "Rocket Man (I Think It's Going To Be A Long, Long Time)",
+        "artist": "Elton John",
+        "album": "Honky Chateau",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1144863",
+        "explicit": false,
+        "rank": 862452
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-03",
+      "query": {
+        "artist": "Eagles",
+        "title": "Lyin' Eyes"
+      },
+      "found": {
+        "id": "68116159",
+        "title": "Lyin' Eyes (2013 Remaster)",
+        "artist": "Eagles",
+        "album": "The Complete Greatest Hits (2013 Remaster)",
+        "durationS": 381,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/68116159",
+        "explicit": false,
+        "rank": 510772
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-04",
+      "query": {
+        "artist": "Fleetwood Mac",
+        "title": "Rhiannon"
+      },
+      "found": {
+        "id": "664437",
+        "title": "Rhiannon",
+        "artist": "Fleetwood Mac",
+        "album": "Greatest Hits",
+        "durationS": 252,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/664437",
+        "explicit": false,
+        "rank": 698014
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-05",
+      "query": {
+        "artist": "David Bowie",
+        "title": "Rebel Rebel"
+      },
+      "found": {
+        "id": "3155590",
+        "title": "Rebel Rebel (1999 Digital Remaster)",
+        "artist": "David Bowie",
+        "album": "Best Of Bowie",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3155590",
+        "explicit": false,
+        "rank": 735151
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-06",
+      "query": {
+        "artist": "Wild Cherry",
+        "title": "Play That Funky Music"
+      },
+      "found": {
+        "id": "1067076",
+        "title": "Play That Funky Music",
+        "artist": "Wild Cherry",
+        "album": "Wild Cherry",
+        "durationS": 302,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1067076",
+        "explicit": false,
+        "rank": 676492
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-07",
+      "query": {
+        "artist": "Hot Chocolate",
+        "title": "You Sexy Thing"
+      },
+      "found": {
+        "id": "2825325492",
+        "title": "You Sexy Thing",
+        "artist": "Hot Chocolate",
+        "album": "Rock My World",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2825325492",
+        "explicit": false,
+        "rank": 125393
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-08",
+      "query": {
+        "artist": "Looking Glass",
+        "title": "Brandy (You're a Fine Girl)"
+      },
+      "found": {
+        "id": "6917710",
+        "title": "Brandy (You're a Fine Girl)",
+        "artist": "Looking Glass",
+        "album": "Looking Glass",
+        "durationS": 186,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/6917710",
+        "explicit": false,
+        "rank": 627511
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-09",
+      "query": {
+        "artist": "T-Connection",
+        "title": "Saturday Night"
+      },
+      "found": {
+        "id": "3119200",
+        "title": "Saturday Night",
+        "artist": "T-Connection",
+        "album": "Something For The Weekend",
+        "durationS": 414,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3119200",
+        "explicit": false,
+        "rank": 153436
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70m-10",
+      "query": {
+        "artist": "Gibson Brothers",
+        "title": "Non Stop Dance"
+      },
+      "found": {
+        "id": "13025935",
+        "title": "Non Stop Dance",
+        "artist": "Gibson Brothers",
+        "album": "Non Stop Dance",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13025935",
+        "explicit": false,
+        "rank": 110730
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

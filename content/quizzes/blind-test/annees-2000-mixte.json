@@ -1,0 +1,220 @@
+{
+  "id": "annees-2000-mixte",
+  "gameType": "blindTest",
+  "title": "Années 2000 : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux des années 2000, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "green",
+  "icon": "headphones",
+  "genre": "pop",
+  "decade": 2000,
+  "level": "mixed",
+  "addedAt": "2026-11-01",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a00m-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Crazy – Gnarls Barkley",
+        "Paper Planes – M.I.A.",
+        "Kids – MGMT",
+        "Say It Right – Nelly Furtado"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Crazy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Gnarls Barkley",
+        "title": "Crazy"
+      }
+    },
+    {
+      "id": "a00m-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Wherever You Will Go – The Calling",
+        "Complicated – Avril Lavigne",
+        "The Kill – Thirty Seconds to Mars",
+        "Because of You – Kelly Clarkson"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Avril Lavigne"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Avril Lavigne",
+        "title": "Complicated"
+      }
+    },
+    {
+      "id": "a00m-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "In My Place – Coldplay",
+        "Breathe Me – Sia",
+        "Vertigo – U2",
+        "This Love – Maroon 5"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "In My Place"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Coldplay",
+        "title": "In My Place"
+      }
+    },
+    {
+      "id": "a00m-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "All The Right Moves – OneRepublic",
+        "Get the Party Started – P!nk",
+        "Same Mistake – James Blunt",
+        "Ain't No Other Man – Christina Aguilera"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "P!nk"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "P!nk",
+        "title": "Get the Party Started",
+        "artistAliases": [
+          "Pink"
+        ]
+      }
+    },
+    {
+      "id": "a00m-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Don't Need A Man – The Pussycat Dolls",
+        "Soldier – Destiny's Child",
+        "Baby Boy – Beyoncé",
+        "Call On Me – Janet Jackson"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Baby Boy"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Beyoncé",
+        "title": "Baby Boy"
+      }
+    },
+    {
+      "id": "a00m-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "These Words – Natasha Bedingfield",
+        "About You Now – Sugababes",
+        "Stacy's Mom – Fountains of Wayne",
+        "Bulletproof – La Roux"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Natasha Bedingfield"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Natasha Bedingfield",
+        "title": "These Words"
+      }
+    },
+    {
+      "id": "a00m-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Are You Gonna Be My Girl – Jet",
+        "No Stress – Laurent Wolf",
+        "Axel F – Crazy Frog",
+        "Turn Me On – Kevin Lyttle"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Axel F"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Crazy Frog",
+        "title": "Axel F"
+      }
+    },
+    {
+      "id": "a00m-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Around the Bend – The Asteroids Galaxy Tour",
+        "Pull My Heart Away – Jack Peñate",
+        "Run The Show – Kat DeLuna",
+        "Starz In Their Eyes – Just Jack"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Just Jack"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Just Jack",
+        "title": "Starz In Their Eyes"
+      }
+    },
+    {
+      "id": "a00m-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Storm – Django Django",
+        "My Favorite Song – Gush",
+        "Now That I'm Free – Outlines",
+        "Bloodshot Eyes – General Elektriks"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bloodshot Eyes"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "General Elektriks",
+        "title": "Bloodshot Eyes"
+      }
+    },
+    {
+      "id": "a00m-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Alcoholic – Starsailor",
+        "Who Needs Love – Razorlight",
+        "More Than Anyone – Gavin DeGraw",
+        "Walking in Circles – Dead By Sunrise"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Razorlight"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Razorlight",
+        "title": "Who Needs Love"
+      }
+    }
+  ]
+}

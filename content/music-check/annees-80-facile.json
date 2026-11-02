@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-80-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a80f-01",
+      "query": {
+        "artist": "Michael Jackson",
+        "title": "Billie Jean"
+      },
+      "found": {
+        "id": "4603408",
+        "title": "Billie Jean",
+        "artist": "Michael Jackson",
+        "album": "Michael Jackson's This Is It",
+        "durationS": 293,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4603408",
+        "explicit": false,
+        "rank": 971418
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-02",
+      "query": {
+        "artist": "a-ha",
+        "title": "Take on Me"
+      },
+      "found": {
+        "id": "664107",
+        "title": "Take on Me",
+        "artist": "a-ha",
+        "album": "Hunting High and Low",
+        "durationS": 227,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/664107",
+        "explicit": false,
+        "rank": 988080
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-03",
+      "query": {
+        "artist": "Cyndi Lauper",
+        "title": "Girls Just Want to Have Fun"
+      },
+      "found": {
+        "id": "72194071",
+        "title": "Girls Just Want to Have Fun",
+        "artist": "Cyndi Lauper",
+        "album": "She's So Unusual",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72194071",
+        "explicit": false,
+        "rank": 945998
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-04",
+      "query": {
+        "artist": "Europe",
+        "title": "The Final Countdown"
+      },
+      "found": {
+        "id": "858371",
+        "title": "The Final Countdown",
+        "artist": "Europe",
+        "album": "The Final Countdown (Expanded Edition)",
+        "durationS": 310,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/858371",
+        "explicit": false,
+        "rank": 847358
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-05",
+      "query": {
+        "artist": "Toto",
+        "title": "Africa"
+      },
+      "found": {
+        "id": "1079668",
+        "title": "Africa",
+        "artist": "Toto",
+        "album": "Toto IV",
+        "durationS": 296,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1079668",
+        "explicit": false,
+        "rank": 964180
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-06",
+      "query": {
+        "artist": "Survivor",
+        "title": "Eye of the Tiger"
+      },
+      "found": {
+        "id": "576431",
+        "title": "Eye of the Tiger",
+        "artist": "Survivor",
+        "album": "Rocky IV",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/576431",
+        "explicit": false,
+        "rank": 898987
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-07",
+      "query": {
+        "artist": "Desireless",
+        "title": "Voyage voyage"
+      },
+      "found": {
+        "id": "4298172",
+        "title": "Voyage voyage",
+        "artist": "Desireless",
+        "album": "François",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4298172",
+        "explicit": false,
+        "rank": 915543
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-08",
+      "query": {
+        "artist": "Wham!",
+        "title": "Wake Me Up Before You Go-Go"
+      },
+      "found": {
+        "id": "15194531",
+        "title": "Wake Me Up Before You Go-Go",
+        "artist": "Wham!",
+        "album": "Make It Big",
+        "durationS": 230,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/15194531",
+        "explicit": false,
+        "rank": 875311
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-09",
+      "query": {
+        "artist": "Indochine",
+        "title": "L'aventurier"
+      },
+      "found": {
+        "id": "1132150",
+        "title": "L'aventurier",
+        "artist": "Indochine",
+        "album": "L'aventurier",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1132150",
+        "explicit": false,
+        "rank": 935412
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a80f-10",
+      "query": {
+        "artist": "Bon Jovi",
+        "title": "Livin' On A Prayer"
+      },
+      "found": {
+        "id": "538660022",
+        "title": "Livin' On A Prayer",
+        "artist": "Bon Jovi",
+        "album": "Slippery When Wet",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/538660022",
+        "explicit": false,
+        "rank": 936708
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

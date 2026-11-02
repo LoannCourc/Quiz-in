@@ -1,0 +1,256 @@
+{
+  "id": "disney-facile",
+  "gameType": "blindTest",
+  "title": "Disney : les chansons cultes",
+  "theme": "Musique",
+  "description": "Dix chansons de dessins animés Disney que toute la famille connaît par cœur.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "star",
+  "genre": "pop",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "dsn-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'Amour Brille Sous Les Étoiles – Maïdi Roth",
+        "Où est la vraie vie? – Maéva Méline",
+        "Libérée, délivrée – Anaïs Delva",
+        "Je Voudrais un Bonhomme de Neige – Coralie Thuilier"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Libérée, délivrée"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Anaïs Delva",
+        "title": "Libérée, Délivrée",
+        "displayTitle": "Libérée, délivrée",
+        "artistAliases": [
+          "La Reine des Neiges"
+        ]
+      }
+    },
+    {
+      "id": "dsn-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "L’Amour Est un Cadeau – Guillaume Beaujolais",
+        "Hakuna Matata – Dimitri Rougeul",
+        "Comme un homme – Patrick Fiori",
+        "Le Renouveau – Emmylou Homs"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Dimitri Rougeul"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dimitri Rougeul",
+        "title": "Hakuna Matata",
+        "artistAliases": [
+          "Le Roi Lion"
+        ]
+      }
+    },
+    {
+      "id": "dsn-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Nous Sommes Un – Kelly Marot",
+        "De Zéro En Héros – Mimi Félixine",
+        "Dans un autre monde – Charlotte Hervieux",
+        "Ce rêve bleu – Karine Costa"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Ce rêve bleu"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Karine Costa",
+        "title": "Ce rêve bleu",
+        "artistAliases": [
+          "Aladdin"
+        ]
+      }
+    },
+    {
+      "id": "dsn-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Histoire éternelle – Lucie Dolène",
+        "Partir là-bas – Claire Guyot",
+        "Soyez Prêtes – Jean Piat",
+        "En Été – Emmanuel Curtil"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Lucie Dolène"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lucie Dolène",
+        "title": "Histoire éternelle",
+        "artistAliases": [
+          "La Belle et la Bête"
+        ]
+      }
+    },
+    {
+      "id": "dsn-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Honneur à tous – Marie-Thérèse Orain",
+        "La patrouille des éléphants – Pierre Marret",
+        "J'ai perdu le nord – Donald Reignoux",
+        "Sous l'océan – Henri Salvador"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Sous l'océan"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Henri Salvador",
+        "title": "Sous l'océan",
+        "artistAliases": [
+          "La Petite Sirène"
+        ]
+      }
+    },
+    {
+      "id": "dsn-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Nuits d'Arabie – Bernard Alane",
+        "Il en faut peu pour être heureux – Jean Stout",
+        "N’écoute que moi – Sophie Delmas",
+        "Réflexion – Marie Galey"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Jean Stout"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jean Stout",
+        "title": "Il En Faut Peu Pour Être Heureux",
+        "displayTitle": "Il en faut peu pour être heureux",
+        "artistAliases": [
+          "Le Livre de la jungle"
+        ]
+      }
+    },
+    {
+      "id": "dsn-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sifflez en travaillant – Rachel Pignot",
+        "Gaston – Jean-Claude Corbel",
+        "Le bleu lumière – Cerise Calixte",
+        "Les Aristochats – Maurice Chevalier"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Le bleu lumière"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Cerise Calixte",
+        "title": "Le bleu lumière",
+        "artistAliases": [
+          "Vaiana"
+        ]
+      }
+    },
+    {
+      "id": "dsn-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Ne parlons pas de Bruno – Sharon Laloum",
+        "Heigh-Ho! – Jean-Claude Donda",
+        "Prince Ali – Richard Darbois",
+        "Au Bout du Rêve – China Moses"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Sharon Laloum"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Sharon Laloum",
+        "title": "Ne parlons pas de Bruno",
+        "artistAliases": [
+          "Encanto"
+        ],
+        "titleAliases": [
+          "On ne parle pas de Bruno"
+        ]
+      }
+    },
+    {
+      "id": "dsn-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'air du vent – Laura Mayne",
+        "Le Festin – Camille",
+        "Rien qu'un Jour – Francis Lalanne",
+        "Le Monde Qui Est Le Mien – Emmanuel Dahl"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "L'air du vent"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Laura Mayne",
+        "title": "L' air Du Vent",
+        "displayTitle": "L'air du vent",
+        "artistAliases": [
+          "Pocahontas"
+        ],
+        "titleAliases": [
+          "Les couleurs du vent"
+        ]
+      }
+    },
+    {
+      "id": "dsn-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Chem-chem Cheminée – Michel Roux",
+        "Je ne savais pas – Bénédicte Lecroard",
+        "Tout le monde veut devenir un cat – José Germain",
+        "L'histoire de la vie – Debbie Davis"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "José Germain"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "José Germain",
+        "title": "Tout le monde veut devenir un cat",
+        "artistAliases": [
+          "Les Aristochats"
+        ]
+      }
+    }
+  ]
+}

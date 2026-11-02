@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-francais-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rfm-01",
+      "query": {
+        "artist": "IAM",
+        "title": "Je danse le Mia"
+      },
+      "found": {
+        "id": "91045659",
+        "title": "Je danse le Mia",
+        "artist": "IAM",
+        "album": "Ombre est Lumière (Réédition 2014)",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/91045659",
+        "explicit": false,
+        "rank": 853410
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-02",
+      "query": {
+        "artist": "Ninho",
+        "title": "La vie qu'on mène"
+      },
+      "found": {
+        "id": "652380172",
+        "title": "La vie qu'on mène",
+        "artist": "Ninho",
+        "album": "Destin",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/652380172",
+        "explicit": false,
+        "rank": 969796
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-03",
+      "query": {
+        "artist": "Damso",
+        "title": "Autotune"
+      },
+      "found": {
+        "id": "366148531",
+        "title": "Autotune",
+        "artist": "Damso",
+        "album": "Batterie faible",
+        "durationS": 294,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/366148531",
+        "explicit": true,
+        "rank": 884344
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-04",
+      "query": {
+        "artist": "Vald",
+        "title": "SUPERMAN"
+      },
+      "found": {
+        "id": "3291727251",
+        "title": "SUPERMAN",
+        "artist": "Vald",
+        "album": "PANDEMONIUM",
+        "durationS": 199,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3291727251",
+        "explicit": true,
+        "rank": 595188
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-05",
+      "query": {
+        "artist": "Orelsan",
+        "title": "Jour meilleur"
+      },
+      "found": {
+        "id": "1544258382",
+        "title": "Jour meilleur",
+        "artist": "Orelsan",
+        "album": "Civilisation",
+        "durationS": 181,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1544258382",
+        "explicit": false,
+        "rank": 873136
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-06",
+      "query": {
+        "artist": "La Fève",
+        "title": "LOYAL"
+      },
+      "found": {
+        "id": "2591775982",
+        "title": "LOYAL",
+        "artist": "La Fève",
+        "album": "24",
+        "durationS": 228,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2591775982",
+        "explicit": true,
+        "rank": 684770
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-07",
+      "query": {
+        "artist": "Ino Casablanca",
+        "title": "ORANJ"
+      },
+      "found": {
+        "id": "3137818801",
+        "title": "ORANJ",
+        "artist": "Ino Casablanca",
+        "album": "TAMARA",
+        "durationS": 172,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3137818801",
+        "explicit": true,
+        "rank": 645634
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-08",
+      "query": {
+        "artist": "BEN plg",
+        "title": "Chaque jour un peu plus"
+      },
+      "found": {
+        "id": "3185919621",
+        "title": "Chaque jour un peu plus",
+        "artist": "BEN plg",
+        "album": "Paraît que les miracles n'existent pas",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3185919621",
+        "explicit": true,
+        "rank": 736656
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-09",
+      "query": {
+        "artist": "Juice",
+        "title": "Sans Toi"
+      },
+      "found": {
+        "id": "4316067202",
+        "title": "Sans Toi",
+        "artist": "Juice",
+        "album": "Sans Toi",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4316067202",
+        "explicit": false,
+        "rank": 479093
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rfm-10",
+      "query": {
+        "artist": "DAKEEZ",
+        "title": "ADRÉNALINE"
+      },
+      "found": {
+        "id": "3990346901",
+        "title": "ADRÉNALINE",
+        "artist": "DAKEEZ",
+        "album": "BACKSTAGE",
+        "durationS": 135,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3990346901",
+        "explicit": false,
+        "rank": 512941
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

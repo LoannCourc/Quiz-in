@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-70-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a70f-01",
+      "query": {
+        "artist": "ABBA",
+        "title": "Dancing Queen"
+      },
+      "found": {
+        "id": "884025",
+        "title": "Dancing Queen",
+        "artist": "ABBA",
+        "album": "ABBA Gold",
+        "durationS": 231,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/884025",
+        "explicit": false,
+        "rank": 941096
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-02",
+      "query": {
+        "artist": "Bee Gees",
+        "title": "Stayin' Alive"
+      },
+      "found": {
+        "id": "427219162",
+        "title": "Stayin' Alive (From \"Saturday Night Fever\" Soundtrack)",
+        "artist": "Bee Gees",
+        "album": "Saturday Night Fever (The Original Movie Soundtrack Deluxe Edition)",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/427219162",
+        "explicit": false,
+        "rank": 698724
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-03",
+      "query": {
+        "artist": "Eagles",
+        "title": "Hotel California"
+      },
+      "found": {
+        "id": "426703682",
+        "title": "Hotel California (2013 Remaster)",
+        "artist": "Eagles",
+        "album": "Hotel California (40th Anniversary Expanded Edition)",
+        "durationS": 391,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/426703682",
+        "explicit": false,
+        "rank": 977590
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-04",
+      "query": {
+        "artist": "Queen",
+        "title": "Don't Stop Me Now"
+      },
+      "found": {
+        "id": "4092329741",
+        "title": "Don't Stop Me Now",
+        "artist": "Queen",
+        "album": "Jazz",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4092329741",
+        "explicit": false,
+        "rank": 942478
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-05",
+      "query": {
+        "artist": "Earth, Wind & Fire",
+        "title": "September"
+      },
+      "found": {
+        "id": "487484142",
+        "title": "September",
+        "artist": "Earth, Wind & Fire",
+        "album": "September",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/487484142",
+        "explicit": false,
+        "rank": 934544
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-06",
+      "query": {
+        "artist": "Boney M.",
+        "title": "Daddy Cool"
+      },
+      "found": {
+        "id": "364951",
+        "title": "Daddy Cool",
+        "artist": "Boney M.",
+        "album": "Take The Heat Off Me",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/364951",
+        "explicit": false,
+        "rank": 864901
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-07",
+      "query": {
+        "artist": "Donna Summer",
+        "title": "Hot Stuff"
+      },
+      "found": {
+        "id": "538706952",
+        "title": "Hot Stuff",
+        "artist": "Donna Summer",
+        "album": "Bad Girls",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/538706952",
+        "explicit": false,
+        "rank": 784022
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-08",
+      "query": {
+        "artist": "Chic",
+        "title": "Le Freak"
+      },
+      "found": {
+        "id": "72060062",
+        "title": "Le Freak",
+        "artist": "Chic",
+        "album": "The Studio Album Collection 1977-1992",
+        "durationS": 327,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72060062",
+        "explicit": false,
+        "rank": 735820
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-09",
+      "query": {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams"
+      },
+      "found": {
+        "id": "63480987",
+        "title": "Dreams (2004 Remaster)",
+        "artist": "Fleetwood Mac",
+        "album": "Rumours",
+        "durationS": 257,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/63480987",
+        "explicit": false,
+        "rank": 907653
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a70f-10",
+      "query": {
+        "artist": "Elton John",
+        "title": "Your Song"
+      },
+      "found": {
+        "id": "880181",
+        "title": "Your Song",
+        "artist": "Elton John",
+        "album": "Elton John",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/880181",
+        "explicit": false,
+        "rank": 876287
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "id": "rap-us-underground-impossible",
+  "gameType": "blindTest",
+  "title": "Rap US underground",
+  "theme": "Musique",
+  "description": "Du rap américain underground : pour les initiés uniquement.",
+  "audience": "experts",
+  "poster": "blue",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "rui-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "O.G. Funk Rock – L'Orange",
+        "H20 – Apollo Brown",
+        "Upgrade (A Baymar College College) – Deltron 3030",
+        "Mindful Solutionism – Aesop Rock"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Mindful Solutionism"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Aesop Rock",
+        "title": "Mindful Solutionism"
+      }
+    },
+    {
+      "id": "rui-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Need Money – PaceWon & Mr. Green",
+        "Really – Atmosphere",
+        "Pay Attention – Dilated Peoples",
+        "Chemical Calisthenics – Blackalicious"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Atmosphere"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Atmosphere",
+        "title": "Really"
+      }
+    },
+    {
+      "id": "rui-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "E.K.N.Y. (Ed Koch New York) – R.A. The Rugged Man",
+        "Good Lord – Brother Ali",
+        "Desire – Pharoahe Monch",
+        "At the Helm – Hieroglyphics"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Good Lord"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Brother Ali",
+        "title": "Good Lord"
+      }
+    },
+    {
+      "id": "rui-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Revolution 5 – Roots Manuva",
+        "Kill Your Employer (Recreational Paranoia Is the Sport of Now) – Busdriver",
+        "Hourglass – CunninLynguists",
+        "Makeshift Patriot – Sage Francis"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Sage Francis"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Sage Francis",
+        "title": "Makeshift Patriot"
+      }
+    },
+    {
+      "id": "rui-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Raspberry Fields – Cannibal Ox",
+        "Umbrellas (God Forgive Me) – People Under the Stairs",
+        "Halfsharkalligatorhalfman – Dr. Octagon",
+        "Strapped – Jaylib"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Raspberry Fields"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Cannibal Ox",
+        "title": "Raspberry Fields"
+      }
+    },
+    {
+      "id": "rui-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Yesterday – Loyle Carner",
+        "Gang Shit No Lame Shit – Key Glock",
+        "Free Lunch – Isaiah Rashad",
+        "Strange Ways – Madvillain"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Isaiah Rashad"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Isaiah Rashad",
+        "title": "Free Lunch"
+      }
+    },
+    {
+      "id": "rui-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Growing Up In These Streets – DJ Kay Slay",
+        "Boombox – Blueprint",
+        "The Science – Murs",
+        "Jose Feliciano – Diamond D"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Science"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Murs",
+        "title": "The Science"
+      }
+    },
+    {
+      "id": "rui-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mr. Slow Flow – Evidence",
+        "21 & Over – Statik Selektah",
+        "My Calling – Prhyme",
+        "41mm – Meyhem Lauren"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Evidence"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Evidence",
+        "title": "Mr. Slow Flow"
+      }
+    },
+    {
+      "id": "rui-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "God Of Rap – Afu-Ra",
+        "Just Begun – Talib Kweli",
+        "99.9 Percent – Jeru the Damaja",
+        "Bklyn Masala – Masta Ace"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bklyn Masala"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Masta Ace",
+        "title": "Bklyn Masala"
+      }
+    },
+    {
+      "id": "rui-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Too Much – Slum Village",
+        "Memory Lane – Elzhi",
+        "Whatever You Say – Little Brother",
+        "All I Need Is You – Hi-Tek"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Little Brother"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Little Brother",
+        "title": "Whatever You Say"
+      }
+    }
+  ]
+}

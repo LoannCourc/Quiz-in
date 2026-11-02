@@ -1,0 +1,217 @@
+{
+  "quizId": "jazz-swing-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "jzz-01",
+      "query": {
+        "artist": "Grover Washington, Jr.",
+        "title": "Just the Two of Us"
+      },
+      "found": {
+        "id": "3821992",
+        "title": "Just the Two of Us",
+        "artist": "Grover Washington, Jr.",
+        "album": "Winelight",
+        "durationS": 443,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3821992",
+        "explicit": false,
+        "rank": 820911
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-02",
+      "query": {
+        "artist": "Frank Sinatra",
+        "title": "Fly Me To The Moon"
+      },
+      "found": {
+        "id": "71483067",
+        "title": "Fly Me To The Moon (2008 Remastered)",
+        "artist": "Frank Sinatra",
+        "album": "Nothing But The Best (2008 Remastered)",
+        "durationS": 150,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/71483067",
+        "explicit": false,
+        "rank": 816266
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-03",
+      "query": {
+        "artist": "Duke Ellington",
+        "title": "Take the \"A\" Train"
+      },
+      "found": {
+        "id": "581658",
+        "title": "Take the \"A\" Train",
+        "artist": "Duke Ellington",
+        "album": "Piano In The Background (Expanded Edition)",
+        "durationS": 332,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/581658",
+        "explicit": false,
+        "rank": 310560
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-04",
+      "query": {
+        "artist": "Miles Davis",
+        "title": "Freddie Freeloader"
+      },
+      "found": {
+        "id": "2711779",
+        "title": "Freddie Freeloader (feat. John Coltrane, Cannonball Adderley, Wynton Kelly & Paul Chambers)",
+        "artist": "Miles Davis",
+        "album": "Kind Of Blue (Legacy Edition)",
+        "durationS": 586,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2711779",
+        "explicit": false,
+        "rank": 495620
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-05",
+      "query": {
+        "artist": "Nina Simone",
+        "title": "Sinnerman"
+      },
+      "found": {
+        "id": "709830252",
+        "title": "Sinnerman",
+        "artist": "Nina Simone",
+        "album": "Feeling Good: The Very Best Of Nina Simone",
+        "durationS": 619,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/709830252",
+        "explicit": false,
+        "rank": 657804
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-06",
+      "query": {
+        "artist": "The Dave Brubeck Quartet",
+        "title": "Take Five"
+      },
+      "found": {
+        "id": "72203431",
+        "title": "Take Five",
+        "artist": "The Dave Brubeck Quartet",
+        "album": "Time Out",
+        "durationS": 324,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/72203431",
+        "explicit": false,
+        "rank": 564084
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-07",
+      "query": {
+        "artist": "Glenn Miller",
+        "title": "In The Mood"
+      },
+      "found": {
+        "id": "570273",
+        "title": "In The Mood",
+        "artist": "Glenn Miller",
+        "album": "The Essential Glenn Miller",
+        "durationS": 216,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/570273",
+        "explicit": false,
+        "rank": 637565
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-08",
+      "query": {
+        "artist": "Peggy Lee",
+        "title": "Fever"
+      },
+      "found": {
+        "id": "3124340",
+        "title": "Fever",
+        "artist": "Peggy Lee",
+        "album": "The Best Of Peggy Lee",
+        "durationS": 201,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3124340",
+        "explicit": false,
+        "rank": 737379
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-09",
+      "query": {
+        "artist": "Clifford Brown",
+        "title": "Jordu"
+      },
+      "found": {
+        "id": "548886082",
+        "title": "Jordu",
+        "artist": "Clifford Brown",
+        "album": "Clifford Brown And Max Roach (Expanded Edition)",
+        "durationS": 462,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/548886082",
+        "explicit": false,
+        "rank": 310007
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "jzz-10",
+      "query": {
+        "artist": "Michel Petrucciani",
+        "title": "Face's Face"
+      },
+      "found": {
+        "id": "93842212",
+        "title": "Face's Face",
+        "artist": "Michel Petrucciani",
+        "album": "The Blue Note Albums",
+        "durationS": 281,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/93842212",
+        "explicit": false,
+        "rank": 305872
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

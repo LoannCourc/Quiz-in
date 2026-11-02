@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-90-facile",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a90f-01",
+      "query": {
+        "artist": "Spice Girls",
+        "title": "Wannabe"
+      },
+      "found": {
+        "id": "3133738",
+        "title": "Wannabe",
+        "artist": "Spice Girls",
+        "album": "Spice",
+        "durationS": 172,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3133738",
+        "explicit": false,
+        "rank": 918044
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-02",
+      "query": {
+        "artist": "Backstreet Boys",
+        "title": "I Want It That Way"
+      },
+      "found": {
+        "id": "13141170",
+        "title": "I Want It That Way",
+        "artist": "Backstreet Boys",
+        "album": "Millennium",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13141170",
+        "explicit": false,
+        "rank": 899965
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-03",
+      "query": {
+        "artist": "Oasis",
+        "title": "Wonderwall"
+      },
+      "found": {
+        "id": "985745702",
+        "title": "Wonderwall",
+        "artist": "Oasis",
+        "album": "(What's The Story) Morning Glory?",
+        "durationS": 258,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/985745702",
+        "explicit": false,
+        "rank": 988464
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-04",
+      "query": {
+        "artist": "Nirvana",
+        "title": "Smells Like Teen Spirit"
+      },
+      "found": {
+        "id": "13791930",
+        "title": "Smells Like Teen Spirit",
+        "artist": "Nirvana",
+        "album": "Nevermind (Remastered)",
+        "durationS": 301,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13791930",
+        "explicit": false,
+        "rank": 985641
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-05",
+      "query": {
+        "artist": "Cher",
+        "title": "Believe"
+      },
+      "found": {
+        "id": "786717",
+        "title": "Believe",
+        "artist": "Cher",
+        "album": "Believe",
+        "durationS": 239,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/786717",
+        "explicit": false,
+        "rank": 862715
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-06",
+      "query": {
+        "artist": "Whitney Houston",
+        "title": "I Will Always Love You"
+      },
+      "found": {
+        "id": "7675403",
+        "title": "I Will Always Love You",
+        "artist": "Whitney Houston",
+        "album": "The Bodyguard - Original Soundtrack Album",
+        "durationS": 271,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7675403",
+        "explicit": false,
+        "rank": 852884
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-07",
+      "query": {
+        "artist": "Britney Spears",
+        "title": "...Baby One More Time"
+      },
+      "found": {
+        "id": "540175",
+        "title": "...Baby One More Time",
+        "artist": "Britney Spears",
+        "album": "...Baby One More Time (Digital Deluxe Version)",
+        "durationS": 210,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/540175",
+        "explicit": false,
+        "rank": 956742
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-08",
+      "query": {
+        "artist": "Aqua",
+        "title": "Barbie Girl"
+      },
+      "found": {
+        "id": "1115044",
+        "title": "Barbie Girl",
+        "artist": "Aqua",
+        "album": "Aquarium",
+        "durationS": 196,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1115044",
+        "explicit": false,
+        "rank": 845916
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-09",
+      "query": {
+        "artist": "Ricky Martin",
+        "title": "Livin' la Vida Loca"
+      },
+      "found": {
+        "id": "13704591",
+        "title": "Livin' la Vida Loca",
+        "artist": "Ricky Martin",
+        "album": "Ricky Martin",
+        "durationS": 243,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/13704591",
+        "explicit": false,
+        "rank": 715451
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90f-10",
+      "query": {
+        "artist": "Haddaway",
+        "title": "What Is Love"
+      },
+      "found": {
+        "id": "3786149242",
+        "title": "What Is Love (7” Mix)",
+        "artist": "Haddaway",
+        "album": "All the Best - His Greatest Hits",
+        "durationS": 267,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3786149242",
+        "explicit": false,
+        "rank": 908164
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

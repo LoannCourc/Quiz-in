@@ -150,25 +150,26 @@ Quiz : manques comblés par le lot Q1 (octobre 2026) ; chaque thème a au moins 
   erreur s'il en manque une.
 - `genre` (obligatoire, un genre principal) : `pop`, `rock`, `rap`, `chanson`, `discoFunk`, `electro`.
   `decade` (obligatoire) : `1960` à `2020`, ou `all` (toutes époques).
-- `level` (facultatif) : `easy`, `medium`, `hard` ou `impossible`. S'il est écrit, toutes les questions ont la
-  même `difficulty` (1, 2, 3 ; Impossible : 3) : le build refuse un morceau « facile » dans un blind test
-  « difficile ».
-- **Impossible** (octobre 2026) : 10 titres **très peu écoutés d'artistes connus** : titres d'album et faces
-  B, jamais les singles ni les tubes (hors du top 10 de l'artiste chez Deezer). Le jour de la vérification :
-  - popularité Deezer du morceau (`rank`) **sous 200 000**, sur toutes ses éditions propres (ni live ni
-    remix) : une édition secondaire peu écoutée ne suffit pas si l'édition principale dépasse le seuil (à titre
-    de comparaison, les tubes des autres blind tests sont entre 500 000 et 900 000) ;
-  - artiste à **50 000 fans ou plus** (`nb_fan`), pour que le marquage « non explicite » soit fiable ;
-  - mêmes règles qu'ailleurs : version d'origine, extrait présent, paroles non explicites, genre et époque
-    garantis par l'album Deezer (genre de l'album, date de sortie) ; titres vulgaires ou suggestifs écartés à
-    la main, même marqués non explicites ; ni reprise, ni live, ni album hommage.
-  - Les dates d'album des années 60 à 90 sont souvent celles d'une réédition chez Deezer : préférer des
-    époques où la date de l'album est celle d'origine (années 2000 et 2010). Deezer range aussi beaucoup
-    d'albums de chanson en « Pop » : pour le genre Chanson, l'album doit être classé « Chanson française ».
-  - Les propositions sont des titres d'album d'autres artistes de la même scène (30 artistes différents des
-    10 bonnes réponses), aussi peu connus, même genre et même époque.
-  - L'ancienne définition (artistes à moins de 800 fans) est abandonnée : trop de reprises, de titres
-    douteux et de paroles impossibles à garantir.
+- `level` (obligatoire depuis la refonte de novembre 2026, lot BT-8) : `easy`, `impossible` ou `mixed` (« Tous
+  niveaux ») ; `medium` et `hard` restent acceptés. Un blind test fait 10 questions :
+  - `easy` : 10 questions de difficulté 1 ; `impossible` : 10 de difficulté 4 (public `experts`) ;
+  - `mixed` : difficultés 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, dans cet ordre (le build le vérifie).
+- **Niveau d'un morceau** (`difficulty`, mesuré chez Deezer par `scripts/blind-tests/`, seuils dans
+  `scripts/blind-tests/thresholds.json`, calibrés sur 12 titres de rap français jugés bien classés) :
+  - 1 Facile : artiste connu (300 000 fans ou plus) et morceau parmi ses 5 premiers, ou morceau parmi ses 5
+    premiers avec un rang de 800 000 ou plus ;
+  - 2 Moyen : artiste connu, morceau au-delà de sa 5e place ;
+  - 3 Difficile : artiste moins connu, morceau au rang de 600 000 ou plus, ou 1er ou 2e chez lui ;
+  - 4 Impossible : artiste moins connu, morceau au rang sous 550 000 et au-delà de sa 5e place ;
+  - place d'un morceau chez son artiste : la meilleure entre son rang dans le « top » Deezer de l'artiste (qui
+    suit l'écoute récente) et sa place quand les titres de ce top sont classés par rang.
+- **Leurres** : 3 vrais morceaux Deezer par question, du même niveau, de la même langue et de la même époque que
+  la bonne réponse, d'artistes jamais vus ailleurs dans le test.
+- **Paroles explicites** : refusées, sauf dans les blind tests de genre `rap`. Le build écrit alors `explicitLyrics: true`
+  sur la fiche du quiz (d'après le marquage Deezer relevé dans `music-check`) : pastille « Paroles explicites » sur la
+  fiche. Rien à écrire à la main.
+- L'ancienne définition d'« Impossible » (titres d'album d'artistes connus, rang sous 200 000) est abandonnée :
+  ces titres restaient trop faciles à reconnaître par la voix de l'artiste.
 - `music.title` et `music.artist` : tels que Deezer les écrit (ce sont eux qui sont vérifiés).
 - `music.displayTitle` et `music.displayArtist` (facultatifs) : l'orthographe affichée à l'écran quand celle
   de Deezer est fausse (accents, casse d'un titre français, ponctuation) : « Téléphone » pour « Telephone »,

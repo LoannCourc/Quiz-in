@@ -1,0 +1,217 @@
+{
+  "quizId": "electro-french-touch-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "eft-01",
+      "query": {
+        "artist": "Kavinsky",
+        "title": "Nightcall"
+      },
+      "found": {
+        "id": "2992806421",
+        "title": "Nightcall",
+        "artist": "Kavinsky",
+        "album": "Nightcall",
+        "durationS": 179,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2992806421",
+        "explicit": false,
+        "rank": 967923
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-02",
+      "query": {
+        "artist": "Petit Biscuit",
+        "title": "Sunset Lover"
+      },
+      "found": {
+        "id": "124262674",
+        "title": "Sunset Lover",
+        "artist": "Petit Biscuit",
+        "album": "Petit Biscuit",
+        "durationS": 237,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/124262674",
+        "explicit": false,
+        "rank": 849584
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-03",
+      "query": {
+        "artist": "Air",
+        "title": "Kelly Watch the Stars"
+      },
+      "found": {
+        "id": "3148106",
+        "title": "Kelly Watch the Stars",
+        "artist": "Air",
+        "album": "Moon Safari",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3148106",
+        "explicit": false,
+        "rank": 582769
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-04",
+      "query": {
+        "artist": "Justice",
+        "title": "Genesis"
+      },
+      "found": {
+        "id": "10284907",
+        "title": "Genesis",
+        "artist": "Justice",
+        "album": "Justice",
+        "durationS": 235,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/10284907",
+        "explicit": false,
+        "rank": 777611
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-05",
+      "query": {
+        "artist": "Martin Solveig",
+        "title": "Everybody"
+      },
+      "found": {
+        "id": "3782900182",
+        "title": "Everybody",
+        "artist": "Martin Solveig",
+        "album": "Everybody",
+        "durationS": 257,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3782900182",
+        "explicit": false,
+        "rank": 600110
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-06",
+      "query": {
+        "artist": "Superfunk",
+        "title": "Lucky Star"
+      },
+      "found": {
+        "id": "3106327481",
+        "title": "Lucky Star",
+        "artist": "Superfunk",
+        "album": "Hold Up",
+        "durationS": 295,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3106327481",
+        "explicit": false,
+        "rank": 755893
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-07",
+      "query": {
+        "artist": "Benjamin Diamond",
+        "title": "In Your Arms (We Gonna Make It)"
+      },
+      "found": {
+        "id": "996283502",
+        "title": "In Your Arms (We Gonna Make It)",
+        "artist": "Benjamin Diamond",
+        "album": "Strange Attitude (Special Edition)",
+        "durationS": 261,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/996283502",
+        "explicit": false,
+        "rank": 434161
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-08",
+      "query": {
+        "artist": "Cassius",
+        "title": "Toop Toop"
+      },
+      "found": {
+        "id": "120536314",
+        "title": "Toop Toop",
+        "artist": "Cassius",
+        "album": "15 Again (Deluxe Edition)",
+        "durationS": 167,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/120536314",
+        "explicit": false,
+        "rank": 714389
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-09",
+      "query": {
+        "artist": "Kid Francescoli",
+        "title": "Summer Days"
+      },
+      "found": {
+        "id": "4000403351",
+        "title": "Summer Days",
+        "artist": "Kid Francescoli",
+        "album": "A Kind Wave",
+        "durationS": 201,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4000403351",
+        "explicit": false,
+        "rank": 536042
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "eft-10",
+      "query": {
+        "artist": "Alex Gopher",
+        "title": "Brain Leech"
+      },
+      "found": {
+        "id": "2553722",
+        "title": "Brain Leech",
+        "artist": "Alex Gopher",
+        "album": "Alex Gopher (Versailles Special Edition)",
+        "durationS": 222,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2553722",
+        "explicit": false,
+        "rank": 289500
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

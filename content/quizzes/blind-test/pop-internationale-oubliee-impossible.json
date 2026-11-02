@@ -1,0 +1,217 @@
+{
+  "id": "pop-internationale-oubliee-impossible",
+  "gameType": "blindTest",
+  "title": "Pop internationale oubliée",
+  "theme": "Musique",
+  "description": "Les autres titres des artistes pop des années 2000 : ceux que presque personne n'a retenus.",
+  "audience": "experts",
+  "poster": "pink",
+  "icon": "headphones",
+  "genre": "pop",
+  "decade": 2000,
+  "level": "impossible",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-11)",
+  "questions": [
+    {
+      "id": "pio-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Sexy! No No No... – Girls Aloud",
+        "Say Goodbye – S Club",
+        "Be With You – Atomic Kitten",
+        "Better Best Forgotten – Steps"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Be With You"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Atomic Kitten",
+        "title": "Be With You"
+      }
+    },
+    {
+      "id": "pio-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Bag It Up – Geri Halliwell",
+        "To You I Belong – B*Witched",
+        "Let's Dance – Five",
+        "Don't Forget To Remember – Billie Piper"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Five"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Five",
+        "title": "Let's Dance"
+      }
+    },
+    {
+      "id": "pio-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "When You Told Me You Loved Me – Jessica Simpson",
+        "Love Song – Hanson",
+        "How Do I Deal – Jennifer Love Hewitt",
+        "Crossing the Line – Mandy Moore"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Crossing the Line"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Mandy Moore",
+        "title": "Crossing the Line"
+      }
+    },
+    {
+      "id": "pio-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "We Belong Together – Gavin DeGraw",
+        "You'll Ask for Me – Tyler Hilton",
+        "Nolita Fairytale (Main) – Vanessa Carlton",
+        "Are You Happy Now? – Michelle Branch"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Michelle Branch"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Michelle Branch",
+        "title": "Are You Happy Now?"
+      }
+    },
+    {
+      "id": "pio-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "No One – Aly & AJ",
+        "Standing Still – Jewel",
+        "I Love It When We Do – Ronan Keating",
+        "Disguise – Lene Marlin"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Standing Still"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Jewel",
+        "title": "Standing Still"
+      }
+    },
+    {
+      "id": "pio-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Funny How – Rachel Stevens",
+        "X – Liberty X",
+        "Isn't It Strange – Samantha Mumba",
+        "Desire – Holly Valance"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Liberty X"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Liberty X",
+        "title": "X"
+      }
+    },
+    {
+      "id": "pio-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Heaven By Your Side – A1",
+        "Private Number – 911",
+        "Autobiography – Ashlee Simpson",
+        "Been Waiting – Jessica Mauboy"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Heaven By Your Side"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "A1",
+        "title": "Heaven By Your Side"
+      }
+    },
+    {
+      "id": "pio-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sym4ony – Shola Ama",
+        "Dance Your Cares Away – Mis-Teeq",
+        "Got To Have You – Christina Milian",
+        "The Rain – Another Level"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Mis-Teeq"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Mis-Teeq",
+        "title": "Dance Your Cares Away"
+      }
+    },
+    {
+      "id": "pio-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Northern Star – Melanie C",
+        "Rock Steady – All Saints",
+        "Love, Truth & Honesty – Bananarama",
+        "Overload – Sugababes"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Overload"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Sugababes",
+        "title": "Overload"
+      }
+    },
+    {
+      "id": "pio-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Wings – Delta Goodrem",
+        "For All That You Want – Gary Barlow",
+        "Battle Cry – Shontelle",
+        "Song 6 – Daniel Powter"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Delta Goodrem"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Delta Goodrem",
+        "title": "Wings"
+      }
+    }
+  ]
+}

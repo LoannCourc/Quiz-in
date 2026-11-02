@@ -1,0 +1,217 @@
+{
+  "quizId": "variete-francaise-oubliee-impossible",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "vfo-01",
+      "query": {
+        "artist": "Corynne Charby",
+        "title": "Elle sortait tard le soir"
+      },
+      "found": {
+        "id": "3931647191",
+        "title": "Elle sortait tard le soir",
+        "artist": "Corynne Charby",
+        "album": "Toi",
+        "durationS": 211,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3931647191",
+        "explicit": false,
+        "rank": 50779
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-02",
+      "query": {
+        "artist": "Jakie Quartz",
+        "title": "Dernière fois"
+      },
+      "found": {
+        "id": "612443502",
+        "title": "Dernière fois",
+        "artist": "Jakie Quartz",
+        "album": "Mise au point",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/612443502",
+        "explicit": false,
+        "rank": 21470
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-03",
+      "query": {
+        "artist": "Phil Barney",
+        "title": "Le souvenir de toi"
+      },
+      "found": {
+        "id": "2301729",
+        "title": "Le souvenir de toi",
+        "artist": "Phil Barney",
+        "album": "Histoires Confidentielles",
+        "durationS": 195,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2301729",
+        "explicit": false,
+        "rank": 271629
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-04",
+      "query": {
+        "artist": "Elli & Jacno",
+        "title": "On dit des choses"
+      },
+      "found": {
+        "id": "12269957",
+        "title": "On dit des choses",
+        "artist": "Elli & Jacno",
+        "album": "Tout Va Sauter",
+        "durationS": 260,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12269957",
+        "explicit": false,
+        "rank": 196266
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-05",
+      "query": {
+        "artist": "Kent",
+        "title": "Ni plus ni moins"
+      },
+      "found": {
+        "id": "101352600",
+        "title": "Ni plus ni moins",
+        "artist": "Kent",
+        "album": "Tous les hommes",
+        "durationS": 212,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/101352600",
+        "explicit": false,
+        "rank": 119838
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-06",
+      "query": {
+        "artist": "Gold",
+        "title": "Diamant dort"
+      },
+      "found": {
+        "id": "3785977762",
+        "title": "Diamant dort",
+        "artist": "Gold",
+        "album": "Le Best Of",
+        "durationS": 333,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3785977762",
+        "explicit": false,
+        "rank": 374161
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-07",
+      "query": {
+        "artist": "Cookie Dingler",
+        "title": "Sexy rock"
+      },
+      "found": {
+        "id": "1849978867",
+        "title": "Sexy rock",
+        "artist": "Cookie Dingler",
+        "album": "Femme Libérée",
+        "durationS": 168,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1849978867",
+        "explicit": false,
+        "rank": 148363
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-08",
+      "query": {
+        "artist": "Léopold Nord & Vous",
+        "title": "Les Hippopotamtam"
+      },
+      "found": {
+        "id": "2417379525",
+        "title": "Les Hippopotamtam",
+        "artist": "Léopold Nord & Vous",
+        "album": "C'est l'amour",
+        "durationS": 221,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2417379525",
+        "explicit": false,
+        "rank": 38194
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-09",
+      "query": {
+        "artist": "Lio",
+        "title": "Saisons"
+      },
+      "found": {
+        "id": "781636532",
+        "title": "Saisons",
+        "artist": "Lio",
+        "album": "Sainte",
+        "durationS": 203,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/781636532",
+        "explicit": false,
+        "rank": 21412
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "vfo-10",
+      "query": {
+        "artist": "Les Forbans",
+        "title": "Lève Ton Ful De Là"
+      },
+      "found": {
+        "id": "14145981",
+        "title": "Lève Ton Ful De Là",
+        "artist": "Les Forbans",
+        "album": "Best Of Tubes",
+        "durationS": 166,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14145981",
+        "explicit": false,
+        "rank": 263587
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

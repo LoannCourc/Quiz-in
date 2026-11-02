@@ -1,0 +1,217 @@
+{
+  "quizId": "rap-us-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rum-01",
+      "query": {
+        "artist": "Snoop Dogg",
+        "title": "Young, Wild & Free"
+      },
+      "found": {
+        "id": "14954267",
+        "title": "Young, Wild & Free (feat. Bruno Mars)",
+        "artist": "Snoop Dogg",
+        "album": "Mac and Devin Go To High School (Music From and Inspired By The Movie)",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/14954267",
+        "explicit": true,
+        "rank": 840193
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-02",
+      "query": {
+        "artist": "2Pac",
+        "title": "Changes"
+      },
+      "found": {
+        "id": "910693",
+        "title": "Changes",
+        "artist": "2Pac",
+        "album": "The Best of 2Pac",
+        "durationS": 269,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/910693",
+        "explicit": true,
+        "rank": 845298
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-03",
+      "query": {
+        "artist": "JAY Z",
+        "title": "Dirt Off Your Shoulder"
+      },
+      "found": {
+        "id": "2950438",
+        "title": "Dirt Off Your Shoulder",
+        "artist": "JAY Z",
+        "album": "The Black Album",
+        "durationS": 244,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2950438",
+        "explicit": true,
+        "rank": 616246
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-04",
+      "query": {
+        "artist": "Eminem",
+        "title": "Sing For The Moment"
+      },
+      "found": {
+        "id": "916426",
+        "title": "Sing For The Moment",
+        "artist": "Eminem",
+        "album": "The Eminem Show",
+        "durationS": 339,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/916426",
+        "explicit": true,
+        "rank": 838913
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-05",
+      "query": {
+        "artist": "Ludacris",
+        "title": "Stand Up"
+      },
+      "found": {
+        "id": "634447642",
+        "title": "Stand Up",
+        "artist": "Ludacris",
+        "album": "Stand Up",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/634447642",
+        "explicit": true,
+        "rank": 137579
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-06",
+      "query": {
+        "artist": "House of Pain",
+        "title": "Jump Around"
+      },
+      "found": {
+        "id": "1584589772",
+        "title": "Jump Around",
+        "artist": "House of Pain",
+        "album": "Hi-Five: House Of Pain",
+        "durationS": 214,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1584589772",
+        "explicit": false,
+        "rank": 784922
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-07",
+      "query": {
+        "artist": "Kris Kross",
+        "title": "Jump"
+      },
+      "found": {
+        "id": "1056838",
+        "title": "Jump",
+        "artist": "Kris Kross",
+        "album": "Totally Krossed Out",
+        "durationS": 194,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1056838",
+        "explicit": false,
+        "rank": 651222
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-08",
+      "query": {
+        "artist": "Sir Mix-A-Lot",
+        "title": "Baby Got Back"
+      },
+      "found": {
+        "id": "61548256",
+        "title": "Baby Got Back",
+        "artist": "Sir Mix-A-Lot",
+        "album": "\"I Like Big Butts\"",
+        "durationS": 262,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/61548256",
+        "explicit": false,
+        "rank": 565415
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-09",
+      "query": {
+        "artist": "Big Daddy Kane",
+        "title": "Warm It Up, Kane"
+      },
+      "found": {
+        "id": "12343566",
+        "title": "Warm It Up, Kane",
+        "artist": "Big Daddy Kane",
+        "album": "It's A Big Daddy Thing",
+        "durationS": 254,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/12343566",
+        "explicit": false,
+        "rank": 292527
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rum-10",
+      "query": {
+        "artist": "Jurassic 5",
+        "title": "Quality Control"
+      },
+      "found": {
+        "id": "2157911937",
+        "title": "Quality Control",
+        "artist": "Jurassic 5",
+        "album": "Quality Control",
+        "durationS": 288,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2157911937",
+        "explicit": false,
+        "rank": 383884
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

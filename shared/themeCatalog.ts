@@ -15,8 +15,9 @@ export const MAX_POOL_THEMES = 3
 // Nombre de questions proposé d'abord (carte héro, feuille d'un thème) : la carte « Conseillé ».
 export const RECOMMENDED_QUESTION_COUNT = 20
 
+// Difficulté 4 (Impossible, blind tests) : comptée avec les difficiles.
 export function questionLevelOf(difficulty: Difficulty): QuestionLevel {
-  return QUESTION_LEVELS[difficulty - 1]
+  return QUESTION_LEVELS[Math.min(difficulty, QUESTION_LEVELS.length) - 1]
 }
 
 // Questions d'un quiz par niveau ; fiche importée sans levelCounts : toutes au niveau du quiz.
@@ -24,7 +25,7 @@ export function quizLevelCounts(entry: QuizEntry): QuestionLevelCounts {
   if (entry.levelCounts) return entry.levelCounts
   const level = quizLevel(entry)
   const counts: QuestionLevelCounts = { easy: 0, medium: 0, hard: 0 }
-  counts[level === 'impossible' ? 'hard' : level] = entry.questionCount
+  counts[level === 'impossible' ? 'hard' : level === 'mixed' ? 'medium' : level] = entry.questionCount
   return counts
 }
 

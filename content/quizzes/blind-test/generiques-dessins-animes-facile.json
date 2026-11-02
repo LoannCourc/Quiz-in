@@ -1,0 +1,255 @@
+{
+  "id": "generiques-dessins-animes-facile",
+  "gameType": "blindTest",
+  "title": "Génériques de dessins animés",
+  "theme": "Musique",
+  "description": "Dix génériques de dessins animés qui ont bercé les mercredis après-midi.",
+  "audience": "all",
+  "poster": "orange",
+  "icon": "cassette",
+  "genre": "pop",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "gen-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Dragon Ball et Dragon Ball Z – Bernard Minet",
+        "Tom Sawyer: Le petit monde de Tom Sawyer – Elfie",
+        "Les entrechats sont là! – Noam",
+        "Cobra – Olivier Constantin"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Dragon Ball et Dragon Ball Z"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bernard Minet",
+        "title": "Dragon Ball et Dragon Ball Z",
+        "artistAliases": [
+          "Dragon Ball Z",
+          "Dragon Ball"
+        ]
+      }
+    },
+    {
+      "id": "gen-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Jayce et les conquérants de la lumière – Nick Carr",
+        "Les Schtroumpfs – Dorothée",
+        "Flo et les Robinson Suisses – Claude Lombard",
+        "Les chevaliers du zodiaque – Bernard Minet"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Bernard Minet"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Bernard Minet",
+        "title": "Les chevaliers du zodiaque",
+        "artistAliases": [
+          "Les Chevaliers du Zodiaque"
+        ]
+      }
+    },
+    {
+      "id": "gen-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Signé Cat's Eyes – Isabelle Guillard",
+        "Denver le dernier dinosaure – Peter Lorne",
+        "Les mondes engloutis – Vladimir Cosma",
+        "Voici venir les Barbapapa – Ricet Barrier"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Signé Cat's Eyes"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Isabelle Guillard",
+        "title": "Signé Cat's Eyes",
+        "artistAliases": [
+          "Cat's Eyes"
+        ]
+      }
+    },
+    {
+      "id": "gen-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Mes tendres années – Charlotte",
+        "Capitaine Flam: La chevauchée du Capitaine Flam – Richard Simon",
+        "Les mystérieuses cités d'or – Jacques Cardona",
+        "Les Minipouss – Les Minipouss"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Jacques Cardona"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jacques Cardona",
+        "title": "Les mystérieuses cités d'or",
+        "artistAliases": [
+          "Les Mystérieuses Cités d'or"
+        ]
+      }
+    },
+    {
+      "id": "gen-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ken le survivant – Bernard Denimal",
+        "Goldorak : La légende d'Actarus – Les Goldies",
+        "La panthère rose – The Edwin Davids Jazz Band",
+        "BécéBégé – Valérie Barouille"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Goldorak : La légende d'Actarus"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Les Goldies",
+        "title": "Goldorak : La légende d'Actarus",
+        "artistAliases": [
+          "Goldorak"
+        ],
+        "titleAliases": [
+          "Goldorak"
+        ]
+      }
+    },
+    {
+      "id": "gen-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Clémentine – Marie Dauphin",
+        "Les bisous des Bisounours – Stephanie",
+        "Les maîtres de l'univers – H. Saban",
+        "Inspecteur Gadget – Jacques Cardona"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Jacques Cardona"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jacques Cardona",
+        "title": "Inspecteur Gadget",
+        "artistAliases": [
+          "Inspecteur Gadget"
+        ]
+      }
+    },
+    {
+      "id": "gen-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "L'ours Gabby et les Petits Malins – Daniele Hazan",
+        "Albator, le corsaire de l'espace – Éric Charden",
+        "Il était une fois...l'espace – Michel Legrand",
+        "Lady Oscar – Marie Dauphin"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Albator, le corsaire de l'espace"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Éric Charden",
+        "title": "Albator, le corsaire de l'espace",
+        "artistAliases": [
+          "Albator"
+        ],
+        "titleAliases": [
+          "Albator"
+        ]
+      }
+    },
+    {
+      "id": "gen-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Les quatre fantastiques – Noam",
+        "La chanson de mon petit poney – Stéphanie Barre",
+        "Ulysse 31 – Lionel Leroy",
+        "La chanson de Lamu – Francine Chantereau"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Lionel Leroy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Lionel Leroy",
+        "title": "Ulysse 31",
+        "artistAliases": [
+          "Ulysse 31"
+        ]
+      }
+    },
+    {
+      "id": "gen-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "La chanson d'Heidi – Alexandra",
+        "Poupée de bois – Emmanuelle",
+        "Nicky Larson – Jean-Paul Césari",
+        "Galaxy Express – Bernard Denimal"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Nicky Larson"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Jean-Paul Césari",
+        "title": "Nicky Larson",
+        "artistAliases": [
+          "Nicky Larson"
+        ]
+      }
+    },
+    {
+      "id": "gen-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Au pays de Candy – Dominique Poulain",
+        "Rahan – Céline Pouzet",
+        "But pour Rudy – Junior Family",
+        "Creamy, Merveilleuse Creamy – Paolo Tuci"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Dominique Poulain"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dominique Poulain",
+        "title": "Au Pays de Candy",
+        "displayTitle": "Au pays de Candy",
+        "artistAliases": [
+          "Candy"
+        ]
+      }
+    }
+  ]
+}

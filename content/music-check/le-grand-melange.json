@@ -1,0 +1,217 @@
+{
+  "quizId": "le-grand-melange",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "gm-01",
+      "query": {
+        "artist": "Michael Jackson",
+        "title": "Thriller"
+      },
+      "found": {
+        "id": "555639",
+        "title": "Thriller",
+        "artist": "Michael Jackson",
+        "album": "Thriller 25 Super Deluxe Edition",
+        "durationS": 358,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/555639",
+        "explicit": false,
+        "rank": 975901
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-02",
+      "query": {
+        "artist": "Adele",
+        "title": "Someone Like You"
+      },
+      "found": {
+        "id": "8086136",
+        "title": "Someone Like You",
+        "artist": "Adele",
+        "album": "21",
+        "durationS": 285,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/8086136",
+        "explicit": false,
+        "rank": 924311
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-03",
+      "query": {
+        "artist": "Elton John",
+        "title": "Tiny Dancer"
+      },
+      "found": {
+        "id": "1151503",
+        "title": "Tiny Dancer",
+        "artist": "Elton John",
+        "album": "Madman Across The Water",
+        "durationS": 377,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1151503",
+        "explicit": false,
+        "rank": 778361
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-04",
+      "query": {
+        "artist": "David Bowie",
+        "title": "Ashes to Ashes"
+      },
+      "found": {
+        "id": "461045162",
+        "title": "Ashes to Ashes (2017 Remaster)",
+        "artist": "David Bowie",
+        "album": "Scary Monsters (And Super Creeps) (2017 Remaster)",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/461045162",
+        "explicit": false,
+        "rank": 716647
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-05",
+      "query": {
+        "artist": "Stevie Wonder",
+        "title": "Sir Duke"
+      },
+      "found": {
+        "id": "676011612",
+        "title": "Sir Duke",
+        "artist": "Stevie Wonder",
+        "album": "Songs In The Key Of Life",
+        "durationS": 233,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/676011612",
+        "explicit": false,
+        "rank": 728276
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-06",
+      "query": {
+        "artist": "Nik Kershaw",
+        "title": "Wouldn't It Be Good"
+      },
+      "found": {
+        "id": "1174769",
+        "title": "Wouldn't It Be Good",
+        "artist": "Nik Kershaw",
+        "album": "The Collection",
+        "durationS": 270,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1174769",
+        "explicit": false,
+        "rank": 679977
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-07",
+      "query": {
+        "artist": "Kim Wilde",
+        "title": "Kids In America"
+      },
+      "found": {
+        "id": "2891799832",
+        "title": "Kids In America",
+        "artist": "Kim Wilde",
+        "album": "Kim Wilde",
+        "durationS": 206,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2891799832",
+        "explicit": false,
+        "rank": 754969
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-08",
+      "query": {
+        "artist": "Huey Lewis & The News",
+        "title": "The Power Of Love"
+      },
+      "found": {
+        "id": "3116046",
+        "title": "The Power Of Love",
+        "artist": "Huey Lewis & The News",
+        "album": "Greatest Hits: Huey Lewis And The News",
+        "durationS": 234,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3116046",
+        "explicit": false,
+        "rank": 799076
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-09",
+      "query": {
+        "artist": "Eddie Cochran",
+        "title": "Milk Cow Blues"
+      },
+      "found": {
+        "id": "3089547",
+        "title": "Milk Cow Blues",
+        "artist": "Eddie Cochran",
+        "album": "Somethin' Else",
+        "durationS": 188,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3089547",
+        "explicit": false,
+        "rank": 146242
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "gm-10",
+      "query": {
+        "artist": "The Korgis",
+        "title": "If I Had You"
+      },
+      "found": {
+        "id": "2255896897",
+        "title": "If I Had You",
+        "artist": "The Korgis",
+        "album": "The Korgis Kollection",
+        "durationS": 238,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2255896897",
+        "explicit": false,
+        "rank": 210507
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

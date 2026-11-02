@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-90-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a90m-01",
+      "query": {
+        "artist": "Eiffel 65",
+        "title": "Blue (Da Ba Dee)"
+      },
+      "found": {
+        "id": "89629797",
+        "title": "Blue (Da Ba Dee) (Video Edit)",
+        "artist": "Eiffel 65",
+        "album": "Blue (Da Ba Dee)",
+        "durationS": 220,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/89629797",
+        "explicit": false,
+        "rank": 873407
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-02",
+      "query": {
+        "artist": "R.E.M.",
+        "title": "Losing My Religion"
+      },
+      "found": {
+        "id": "136334560",
+        "title": "Losing My Religion",
+        "artist": "R.E.M.",
+        "album": "Out Of Time",
+        "durationS": 266,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/136334560",
+        "explicit": false,
+        "rank": 973013
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-03",
+      "query": {
+        "artist": "Spice Girls",
+        "title": "Mama"
+      },
+      "found": {
+        "id": "3133743",
+        "title": "Mama",
+        "artist": "Spice Girls",
+        "album": "Spice",
+        "durationS": 303,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3133743",
+        "explicit": false,
+        "rank": 534700
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-04",
+      "query": {
+        "artist": "Britney Spears",
+        "title": "Sometimes"
+      },
+      "found": {
+        "id": "540177",
+        "title": "Sometimes",
+        "artist": "Britney Spears",
+        "album": "...Baby One More Time (Digital Deluxe Version)",
+        "durationS": 245,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/540177",
+        "explicit": false,
+        "rank": 656022
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-05",
+      "query": {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Give It Away"
+      },
+      "found": {
+        "id": "725837",
+        "title": "Give It Away",
+        "artist": "Red Hot Chili Peppers",
+        "album": "Blood Sugar Sex Magik (Deluxe Edition)",
+        "durationS": 282,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/725837",
+        "explicit": false,
+        "rank": 790816
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-06",
+      "query": {
+        "artist": "Whigfield",
+        "title": "Saturday Night"
+      },
+      "found": {
+        "id": "1655471312",
+        "title": "Saturday Night (Radio Edit)",
+        "artist": "Whigfield",
+        "album": "Saturday Night: The Greatest Hits (The Original Hit Recordings)",
+        "durationS": 223,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1655471312",
+        "explicit": false,
+        "rank": 185171
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-07",
+      "query": {
+        "artist": "Scatman John",
+        "title": "Scatman (ski-ba-bop-ba-dop-bop)"
+      },
+      "found": {
+        "id": "99360002",
+        "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+        "artist": "Scatman John",
+        "album": "Scatman's World",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/99360002",
+        "explicit": false,
+        "rank": 793311
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-08",
+      "query": {
+        "artist": "Dr. Alban",
+        "title": "It's My Life"
+      },
+      "found": {
+        "id": "3801448032",
+        "title": "It's My Life (Radio Edit)",
+        "artist": "Dr. Alban",
+        "album": "The Very Best of 1990-1997",
+        "durationS": 240,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3801448032",
+        "explicit": false,
+        "rank": 656198
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-09",
+      "query": {
+        "artist": "Ocean Colour Scene",
+        "title": "Better Day"
+      },
+      "found": {
+        "id": "2444900",
+        "title": "Better Day",
+        "artist": "Ocean Colour Scene",
+        "album": "Marchin' Already",
+        "durationS": 224,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2444900",
+        "explicit": false,
+        "rank": 238772
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a90m-10",
+      "query": {
+        "artist": "Culture Beat",
+        "title": "Crying in the Rain"
+      },
+      "found": {
+        "id": "17347981",
+        "title": "Crying in the Rain",
+        "artist": "Culture Beat",
+        "album": "Inside Out",
+        "durationS": 276,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/17347981",
+        "explicit": false,
+        "rank": 243258
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

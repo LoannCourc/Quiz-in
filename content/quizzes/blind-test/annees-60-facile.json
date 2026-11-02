@@ -1,0 +1,220 @@
+{
+  "id": "annees-60-facile",
+  "gameType": "blindTest",
+  "title": "Années 60 : les tubes",
+  "theme": "Musique",
+  "description": "Beatles, Stones, soul et folk : dix tubes des années 60.",
+  "audience": "all",
+  "poster": "pink",
+  "icon": "note",
+  "genre": "pop",
+  "decade": 1960,
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "a60f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hey Jude – The Beatles",
+        "Break on Through (To the Other Side) – The Doors",
+        "Blowin' in the Wind – Bob Dylan",
+        "Sunny Afternoon – The Kinks"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Hey Jude"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Beatles",
+        "title": "Hey Jude"
+      }
+    },
+    {
+      "id": "a60f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Proud Mary – Creedence Clearwater Revival",
+        "Kozmic Blues – Janis Joplin",
+        "Sunshine Of Your Love – Cream",
+        "Paint It, Black – The Rolling Stones"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "The Rolling Stones"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Rolling Stones",
+        "title": "Paint It, Black"
+      }
+    },
+    {
+      "id": "a60f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Happy Together – The Turtles",
+        "Season of the Witch – Donovan",
+        "Nights In White Satin – The Moody Blues",
+        "Good Vibrations – The Beach Boys"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Good Vibrations"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Beach Boys",
+        "title": "Good Vibrations"
+      }
+    },
+    {
+      "id": "a60f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Sweet Caroline – Neil Diamond",
+        "Suspicious Minds – Elvis Presley",
+        "Unchained Melody – The Righteous Brothers",
+        "You Never Can Tell – Chuck Berry"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Elvis Presley"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Elvis Presley",
+        "title": "Suspicious Minds"
+      }
+    },
+    {
+      "id": "a60f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Dream A Little Dream Of Me – The Mamas & The Papas",
+        "Suzanne – Leonard Cohen",
+        "The Sound of Silence – Simon & Garfunkel",
+        "Born To Be Wild – Steppenwolf"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "The Sound of Silence"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Simon & Garfunkel",
+        "title": "The Sound Of Silence",
+        "displayTitle": "The Sound of Silence"
+      }
+    },
+    {
+      "id": "a60f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Respect – Aretha Franklin",
+        "At Last – Etta James",
+        "I Heard It Through The Grapevine – Marvin Gaye",
+        "A Change Is Gonna Come – Sam Cooke"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Aretha Franklin"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Aretha Franklin",
+        "title": "Respect"
+      }
+    },
+    {
+      "id": "a60f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Piece of My Heart – Big Brother & The Holding Company",
+        "The House of the Rising Sun – The Animals",
+        "White Rabbit – Jefferson Airplane",
+        "Venus – Shocking Blue"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "The House of the Rising Sun"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Animals",
+        "title": "The House of the Rising Sun"
+      }
+    },
+    {
+      "id": "a60f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Oh, Pretty Woman – Roy Orbison",
+        "What a Wonderful World – Louis Armstrong",
+        "Son Of A Preacher Man – Dusty Springfield",
+        "Who's Loving You – Jackson 5"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Louis Armstrong"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Louis Armstrong",
+        "title": "What A Wonderful World",
+        "displayTitle": "What a Wonderful World"
+      }
+    },
+    {
+      "id": "a60f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "You Can't Hurry Love – The Supremes",
+        "My Girl – The Temptations",
+        "I Can't Help Myself (Sugar Pie, Honey Bunch) – Four Tops",
+        "Stand By Me – Ben E. King"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Stand By Me"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ben E. King",
+        "title": "Stand By Me"
+      }
+    },
+    {
+      "id": "a60f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Got You (I Feel Good) – James Brown",
+        "With A Little Help From My Friends – Joe Cocker",
+        "(Sittin' On) The Dock of the Bay – Otis Redding",
+        "For What It's Worth – Buffalo Springfield"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Otis Redding"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Otis Redding",
+        "title": "(Sittin' On) the Dock of the Bay",
+        "displayTitle": "(Sittin' On) The Dock of the Bay"
+      }
+    }
+  ]
+}

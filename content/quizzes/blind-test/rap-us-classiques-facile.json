@@ -1,0 +1,226 @@
+{
+  "id": "rap-us-classiques-facile",
+  "gameType": "blindTest",
+  "title": "Rap US : les classiques",
+  "theme": "Musique",
+  "description": "Dix classiques du rap américain, de 2Pac à Kendrick Lamar.",
+  "audience": "all",
+  "poster": "blue",
+  "icon": "microphone",
+  "genre": "rap",
+  "decade": "all",
+  "level": "easy",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-9)",
+  "questions": [
+    {
+      "id": "rus-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "California Love – 2Pac",
+        "Love Me – Lil Wayne",
+        "Lose Yourself – Eminem",
+        "Hate It Or Love It – The Game"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Lose Yourself"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Eminem",
+        "title": "Lose Yourself"
+      }
+    },
+    {
+      "id": "rus-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Know What You Want – Busta Rhymes",
+        "It Was A Good Day – Ice Cube",
+        "Shook Ones, Pt. II – Mobb Deep",
+        "Ms. Jackson – OutKast"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "OutKast"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Outkast",
+        "title": "Ms. Jackson",
+        "displayArtist": "OutKast"
+      }
+    },
+    {
+      "id": "rus-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Who Am I (What’s My Name)? – Snoop Dogg",
+        "Regulate – Warren G",
+        "Juicy – The Notorious B.I.G.",
+        "X Gon' Give It To Ya – DMX"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Juicy"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "The Notorious B.I.G.",
+        "title": "Juicy",
+        "artistAliases": [
+          "Biggie",
+          "Notorious BIG"
+        ]
+      }
+    },
+    {
+      "id": "rus-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Message – Nas",
+        "Da Rockwilder – Method Man",
+        "Still D.R.E. – Dr. Dre",
+        "Tha Crossroads – Bone Thugs-N-Harmony"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Dr. Dre"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Dr. Dre",
+        "title": "Still D.R.E."
+      }
+    },
+    {
+      "id": "rus-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "What's Luv? – Fat Joe",
+        "Give It To Me – Timbaland",
+        "Area Codes – Ludacris",
+        "Hot In Herre – Nelly"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Hot In Herre"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nelly",
+        "title": "Hot In Herre"
+      }
+    },
+    {
+      "id": "rus-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Stronger – Kanye West",
+        "Everyday – A$AP Rocky",
+        "Swimming Pools (Drank) – Kendrick Lamar",
+        "Black and Yellow – Wiz Khalifa"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Kanye West"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Kanye West",
+        "title": "Stronger"
+      }
+    },
+    {
+      "id": "rus-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Hey Lover – LL Cool J",
+        "Empire State Of Mind – JAY-Z",
+        "God's Plan – Drake",
+        "See You Again – Tyler, The Creator"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Empire State Of Mind"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "JAY Z",
+        "title": "Empire State Of Mind",
+        "displayArtist": "JAY-Z",
+        "artistAliases": [
+          "Jay Z"
+        ]
+      }
+    },
+    {
+      "id": "rus-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Poppin' Them Thangs – G-Unit",
+        "In Da Club – 50 Cent",
+        "Can't Let You Go – Fabolous",
+        "On Fire – Lloyd Banks"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "50 Cent"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "50 Cent",
+        "title": "In Da Club"
+      }
+    },
+    {
+      "id": "rus-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Straight Outta Compton – N.W.A",
+        "Smack That – Akon",
+        "Low – Flo Rida",
+        "Gangsta's Paradise – Coolio"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Gangsta's Paradise"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Coolio",
+        "title": "Gangsta's Paradise"
+      }
+    },
+    {
+      "id": "rus-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Get Ur Freak On – Missy Elliott",
+        "No Role Modelz – J. Cole",
+        "Crank That (Soulja Boy) – Soulja Boy",
+        "Insane in the Brain – Cypress Hill"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Missy Elliott"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Missy Elliott",
+        "title": "Get Ur Freak On"
+      }
+    }
+  ]
+}

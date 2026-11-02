@@ -1,0 +1,217 @@
+{
+  "quizId": "rock-francais-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "rkf-01",
+      "query": {
+        "artist": "Telephone",
+        "title": "New York avec toi"
+      },
+      "found": {
+        "id": "3256016",
+        "title": "New York avec toi (Remasterisé en 2006)",
+        "artist": "Telephone",
+        "album": "Un Autre Monde",
+        "durationS": 142,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/3256016",
+        "explicit": false,
+        "rank": 837305
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-02",
+      "query": {
+        "artist": "Noir Désir",
+        "title": "L'homme pressé"
+      },
+      "found": {
+        "id": "85986323",
+        "title": "L'homme pressé",
+        "artist": "Noir Désir",
+        "album": "666.667 Club",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/85986323",
+        "explicit": false,
+        "rank": 791205
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-03",
+      "query": {
+        "artist": "Alain Bashung",
+        "title": "Ma petite entreprise"
+      },
+      "found": {
+        "id": "7600483",
+        "title": "Ma petite entreprise",
+        "artist": "Alain Bashung",
+        "album": "Osez Bashung",
+        "durationS": 253,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/7600483",
+        "explicit": false,
+        "rank": 641870
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-04",
+      "query": {
+        "artist": "Louise Attaque",
+        "title": "Amours"
+      },
+      "found": {
+        "id": "983234",
+        "title": "Amours",
+        "artist": "Louise Attaque",
+        "album": "Louise Attaque",
+        "durationS": 116,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/983234",
+        "explicit": false,
+        "rank": 682474
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-05",
+      "query": {
+        "artist": "Mano Negra",
+        "title": "Soledad"
+      },
+      "found": {
+        "id": "370951801",
+        "title": "Soledad",
+        "artist": "Mano Negra",
+        "album": "Lo Mejor De La Mano Negra (Best Of 2005)",
+        "durationS": 156,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/370951801",
+        "explicit": false,
+        "rank": 547181
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-06",
+      "query": {
+        "artist": "Les Wampas",
+        "title": "Rimini"
+      },
+      "found": {
+        "id": "2462530",
+        "title": "Rimini",
+        "artist": "Les Wampas",
+        "album": "Rimini",
+        "durationS": 163,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2462530",
+        "explicit": false,
+        "rank": 665452
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-07",
+      "query": {
+        "artist": "Dionysos",
+        "title": "Song For Jedi"
+      },
+      "found": {
+        "id": "2712475",
+        "title": "Song For Jedi",
+        "artist": "Dionysos",
+        "album": "Western Sous La Neige",
+        "durationS": 180,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2712475",
+        "explicit": false,
+        "rank": 670521
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-08",
+      "query": {
+        "artist": "Mass Hysteria",
+        "title": "L'enfer des dieux"
+      },
+      "found": {
+        "id": "109449600",
+        "title": "L'enfer des dieux",
+        "artist": "Mass Hysteria",
+        "album": "Matière noire",
+        "durationS": 249,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/109449600",
+        "explicit": false,
+        "rank": 549824
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-09",
+      "query": {
+        "artist": "Ludwig Von 88",
+        "title": "Houlala !"
+      },
+      "found": {
+        "id": "2105817377",
+        "title": "Houlala !",
+        "artist": "Ludwig Von 88",
+        "album": "Houlala !",
+        "durationS": 137,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2105817377",
+        "explicit": false,
+        "rank": 366722
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "rkf-10",
+      "query": {
+        "artist": "Les Garçons Bouchers",
+        "title": "Le Rap Des Garçons Bouchers"
+      },
+      "found": {
+        "id": "2122624277",
+        "title": "Le Rap Des Garçons Bouchers",
+        "artist": "Les Garçons Bouchers",
+        "album": "Tome 2",
+        "durationS": 283,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2122624277",
+        "explicit": false,
+        "rank": 205831
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

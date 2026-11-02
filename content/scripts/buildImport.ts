@@ -42,9 +42,10 @@ import type {
   QuizSummary,
 } from '../../shared/types'
 import { bluffQuestionErrors, bluffQuestionWarnings, toBluffQuestion } from './bluffContent'
-import { displayedFonts, displayedTexts, fontCodepoints, missingGlyphs } from './fontCoverage'
-import { contentDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
+import { frozenHash } from './frozenHash.mjs'
 import { GAME_TYPE_DIRS, listQuizFiles } from './quizFiles.mjs'
+import { displayedFonts, displayedTexts, fontCodepoints, missingGlyphs } from './fontCoverage'
+import { allowsExplicit, contentDir, readMusicCheck, sameQuery, type SourceMusic } from './musicCheck'
 
 // Question du fichier source : un blind test donne l'artiste et le titre, pas l'identifiant du morceau.
 type SourceQuestion = Omit<Question, 'music'> & { music?: SourceMusic }
@@ -82,7 +83,7 @@ interface BluffQuizFile extends QuizFileBase {
 
 type QuizFile = ClassicQuizFile | BluffQuizFile
 
-const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible' }
+const DIFFICULTY_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', impossible: 'Impossible', mixed: 'Tous niveaux' }
 
 const outputDir = join(contentDir, 'import')
 
@@ -99,7 +100,7 @@ function questionErrors(question: SourceQuestion): string[] {
     errors.push('correctIndex hors de 0 à 3')
   }
   if (!acceptedAnswers?.length) errors.push('acceptedAnswers vide')
-  if (![1, 2, 3].includes(difficulty)) errors.push('difficulty doit valoir 1, 2 ou 3')
+  if (![1, 2, 3, 4].includes(difficulty)) errors.push('difficulty doit valoir 1, 2, 3 ou 4 (4 : blind tests seulement)')
   if (explanation !== undefined && explanation.length > EXPLANATION_MAX_LENGTH) {
     errors.push(`explication > ${EXPLANATION_MAX_LENGTH} caractères`)
   }
@@ -130,8 +131,9 @@ function quizErrors(quiz: QuizFile, fileName: string): string[] {
   if (!QUIZ_AUDIENCES.includes(quiz.audience)) errors.push(`audience : ${QUIZ_AUDIENCES.join(', ')}`)
   if (!POSTER_PALETTES.includes(quiz.poster)) errors.push(`poster : ${POSTER_PALETTES.join(', ')}`)
   if (!isQuizDate(quiz.addedAt)) errors.push('addedAt : date AAAA-MM-JJ')
-  if (quiz.level === 'impossible' && quiz.gameType !== 'blindTest') errors.push('level « impossible » : blind tests seulement')
-  if (quiz.level !== undefined && !['easy', 'medium', 'hard', 'impossible'].includes(quiz.level)) errors.push('level : easy, medium, hard ou impossible')
+  if ((quiz.level === 'impossible' || quiz.level === 'mixed') && quiz.gameType !== 'blindTest') errors.push(`level « ${quiz.level} » : blind tests seulement`)
+  if (quiz.level !== undefined && !['easy', 'medium', 'hard', 'impossible', 'mixed'].includes(quiz.level)) errors.push('level : easy, medium, hard, impossible ou mixed')
+  if (quiz.gameType !== 'blindTest' && quiz.questions.some((question) => question.difficulty === 4)) errors.push('difficulty 4 (Impossible) : blind tests seulement')
   if (quiz.gameType === 'blindTest') {
     if (!isBlindTestGenre(quiz.genre)) errors.push(`genre obligatoire pour un blind test : ${BLIND_TEST_GENRES.join(', ')}`)
     if (!isBlindTestDecade(quiz.decade)) errors.push(`decade obligatoire pour un blind test : ${BLIND_TEST_DECADES.join(', ')}`)
@@ -273,7 +275,7 @@ function freeAnswerWarnings(quiz: QuizFile): string[] {
   })
 }
 
-function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
+function checkTrack(quizId: string, question: SourceQuestion, genre?: unknown): TrackCheck {
   if (!question.music) return { kind: 'error', reason: 'champ music (artist, title) manquant' }
   const { title, artist, startS, titleAliases, artistAliases } = shownMusic(question.music)
   // La bonne proposition doit citer le titre (ou l'artiste) du morceau : évite d'associer le mauvais extrait.
@@ -287,7 +289,7 @@ function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
   if (!sameQuery(entry, question.music)) return { kind: 'pending', reason: 'artiste ou titre modifié : relancer music:lookup' }
   if (!entry.found?.previewAvailable) return { kind: 'pending', reason: 'aucun morceau avec extrait trouvé' }
   // Public familial : jamais de version marquée explicite par Deezer.
-  if (entry.found.explicit) return { kind: 'pending', reason: 'version marquée explicite : choisir une autre version ou un autre morceau' }
+  if (entry.found.explicit && !allowsExplicit(genre)) return { kind: 'pending', reason: 'version marquée explicite : choisir une autre version ou un autre morceau' }
   if (!entry.verified) return { kind: 'pending', reason: 'non vérifié (verified: false)' }
   const track = parseMusicTrack({ source: 'deezer', id: entry.found.id, title, artist, startS, titleAliases, artistAliases })
   if (!track || !fitsBlindTestTimer(track, question.timeLimit)) {
@@ -299,7 +301,7 @@ function checkTrack(quizId: string, question: SourceQuestion): TrackCheck {
 function musicIssues(quiz: QuizFile, kind: 'pending' | 'error'): string[] {
   if (quiz.gameType !== 'blindTest') return []
   return quiz.questions.flatMap((question, index) => {
-    const check = checkTrack(quiz.id, question)
+    const check = checkTrack(quiz.id, question, quiz.genre)
     return check.kind === kind ? [`question ${index + 1} (${question.id}) : ${check.reason}`] : []
   })
 }
@@ -313,10 +315,18 @@ function toQuestions(quiz: QuizFile): (Question | BluffQuestion)[] {
   if (quiz.gameType === 'bluff') return quiz.questions.map(toBluffQuestion)
   return quiz.questions.map(({ music, ...question }) => {
     if (quiz.gameType !== 'blindTest') return question
-    const check = checkTrack(quiz.id, { ...question, music })
+    const check = checkTrack(quiz.id, { ...question, music }, quiz.genre)
     if (check.kind !== 'track') throw new Error(`${quiz.id} : morceau non vérifié importé`)
     return { ...question, music: check.track }
   })
+}
+
+// Marquage « paroles explicites » de Deezer, relevé par la recherche des morceaux (music-check) : vrai si au moins un
+// morceau joué du blind test l'a (permis en rap seulement, voir allowsExplicit).
+function hasExplicitTrack(quiz: QuizFile): boolean {
+  if (quiz.gameType !== 'blindTest') return false
+  const tracks = readMusicCheck(quiz.id)?.tracks ?? []
+  return quiz.questions.some((question) => tracks.find((track) => track.questionId === question.id)?.found?.explicit === true)
 }
 
 function toSummary(quiz: QuizFile, featuredTheme: string | null): QuizSummary {
@@ -345,6 +355,7 @@ function toSummary(quiz: QuizFile, featuredTheme: string | null): QuizSummary {
     ...(isBlindTestDecade(quiz.decade) && { decade: quiz.decade }),
     levelCounts: countLevels(quiz.questions.map((question) => question.difficulty)),
     ...((quiz.gameType ?? 'quiz') === 'quiz' && quiz.theme === featuredTheme && { featuredTheme: true as const }),
+    ...(hasExplicitTrack(quiz) && { explicitLyrics: true as const }),
   }
 }
 
@@ -383,11 +394,15 @@ function featuredThemeErrors(): string[] {
 
 // Variété des blind tests (octobre 2026) :
 // - dans un blind test, les 40 propositions ont toutes un titre différent et chaque artiste n'y apparaît qu'une fois
-//   (donc 10 artistes différents pour les bonnes réponses, et une bonne réponse ne ressert jamais de leurre) ;
+//   (sauf ARTIST_REPEATS_ALLOWED ; donc 10 artistes différents pour les bonnes réponses, et une bonne réponse ne ressert jamais de leurre) ;
 // - une mauvaise proposition n'est jamais la bonne réponse d'un autre blind test ;
 // - « Impossible » : un artiste de bonne réponse au plus une fois sur l'ensemble des « Impossible », et jamais
 //   bonne réponse d'un autre blind test des lots BT-1 à BT-6.
 const NEW_BLIND_TEST_LOT = /\(lot BT-\d+\)/
+
+// Seule exception (décision du 2 novembre 2026) : les génériques, où un même chanteur a interprété plusieurs génériques
+// cultes (Bernard Minet, Jacques Cardona) ; 2 propositions au plus par artiste dans ce test.
+const ARTIST_REPEATS_ALLOWED: Record<string, number> = { 'generiques-dessins-animes-facile': 2 }
 
 function optionArtistKey(option: string): string {
   return compact(trackOptionParts(option).artist ?? '')
@@ -417,6 +432,7 @@ function blindTestVarietyErrors(): string[] {
     for (const key of repeated(options.map(optionTitleKey))) errors.push(`${quiz.id} : titre répété « ${options.find((option) => optionTitleKey(option) === key)} »`)
     for (const key of repeated(options.map(optionArtistKey))) {
       const count = options.filter((option) => optionArtistKey(option) === key).length
+      if (count <= (ARTIST_REPEATS_ALLOWED[quiz.id] ?? 1)) continue
       errors.push(`${quiz.id} : artiste « ${trackOptionParts(options.find((option) => optionArtistKey(option) === key) ?? '').artist} » dans ${count} propositions`)
     }
     for (const question of quiz.questions) {
@@ -457,15 +473,35 @@ function duplicateTrackErrors(): string[] {
   return errors
 }
 
-// Blind test avec un niveau : toutes ses questions à la difficulté de ce niveau (Impossible : 3).
-const LEVEL_DIFFICULTY: Record<DifficultyLevel, number> = { easy: 1, medium: 2, hard: 3, impossible: 3 }
+// Blind test avec un niveau : toutes ses questions à la difficulté de ce niveau (Impossible : 4). « Tous niveaux »
+// (mixed) : exactement ces 10 difficultés, dans cet ordre (du plus facile au plus pointu).
+const LEVEL_DIFFICULTY: Record<Exclude<DifficultyLevel, 'mixed'>, number> = { easy: 1, medium: 2, hard: 3, impossible: 4 }
+const MIXED_DIFFICULTIES = [1, 1, 2, 2, 2, 3, 3, 3, 4, 4]
 
 function levelCoherenceErrors(): string[] {
   return quizzes.flatMap(({ quiz }) => {
     if (quiz.gameType !== 'blindTest' || quiz.level === undefined) return []
+    if (quiz.level === 'mixed') {
+      const difficulties = quiz.questions.map((question) => question.difficulty)
+      return difficulties.join() === MIXED_DIFFICULTIES.join() ? [] : [`${quiz.id} : niveau mixed, difficultés attendues ${MIXED_DIFFICULTIES.join(', ')} (reçu ${difficulties.join(', ')})`]
+    }
     const expected = LEVEL_DIFFICULTY[quiz.level]
     const off = quiz.questions.filter((question) => question.difficulty !== expected).map((question) => question.id)
     return off.length > 0 ? [`${quiz.id} : niveau ${quiz.level}, difficulté ${expected} attendue pour ${off.join(', ')}`] : []
+  })
+}
+
+// Blind tests figés (content/frozen-blind-tests.json, écrit par scripts/blind-tests/freeze.mjs) : validés par le
+// développeur, leur fichier source et leurs morceaux vérifiés ne doivent plus changer. Un changement voulu se refait
+// par freeze.mjs, jamais en modifiant l'empreinte à la main.
+function frozenErrors(): string[] {
+  const path = join(contentDir, 'frozen-blind-tests.json')
+  if (!existsSync(path)) return []
+  const { hashes } = JSON.parse(readFileSync(path, 'utf8')) as { hashes: Record<string, string> }
+  return Object.entries(hashes).flatMap(([id, hash]) => {
+    const entry = quizzes.find(({ quiz }) => quiz.id === id)
+    if (!entry) return [`${id} : blind test figé, fichier introuvable`]
+    return frozenHash(entry.quiz, readMusicCheck(id)) === hash ? [] : [`${id} : blind test figé modifié (source ou morceaux vérifiés) ; si c'est voulu : node scripts/blind-tests/freeze.mjs ${id}`]
   })
 }
 
@@ -507,6 +543,7 @@ const allErrors = [
   ...levelCoherenceErrors(),
   ...blindTestVarietyErrors(),
   ...featuredThemeErrors(),
+  ...frozenErrors(),
   ...fontErrors(),
 ]
 if (allErrors.length > 0) {
@@ -522,6 +559,23 @@ for (const { quiz } of quizzes) {
   const bluffWarnings = quiz.gameType === 'bluff' ? quiz.questions.flatMap(bluffQuestionWarnings) : []
   if (bluffWarnings.length > 0) console.warn(`⚠ ${quiz.id}, Bluff :\n  - ${bluffWarnings.join('\n  - ')}`)
 }
+
+// Blind tests : même titre (sans précisions entre parenthèses), tous artistes confondus, parmi les bonnes réponses de
+// tests différents. Souvent deux chansons différentes (« Saturday Night » de Whigfield et de T-Connection), parfois une
+// reprise (« Play That Funky Music » de Vanilla Ice et de Wild Cherry, retirée le 2 novembre 2026) : à relire.
+function sameTitleWarnings(): string[] {
+  const byTitle = new Map<string, string[]>()
+  for (const { quiz } of quizzes.filter(({ quiz }) => quiz.gameType === 'blindTest')) {
+    for (const question of quiz.questions) {
+      const option = question.options[question.correctIndex]
+      const owners = byTitle.get(optionTitleKey(option)) ?? []
+      byTitle.set(optionTitleKey(option), [...owners, `${quiz.id}/${question.id} « ${option} »`])
+    }
+  }
+  return [...byTitle.values()].filter((owners) => new Set(owners.map((owner) => owner.split('/')[0])).size > 1).map((owners) => owners.join(' ; '))
+}
+const sameTitles = sameTitleWarnings()
+if (sameTitles.length > 0) console.warn(`⚠ Blind tests, même titre en bonne réponse de plusieurs tests (reprise ?) :\n  - ${sameTitles.join('\n  - ')}`)
 
 // Blind test dont un morceau n'est pas encore vérifié : exclu de l'import, avec la liste de ce qui manque.
 const pending = quizzes.map(({ quiz }) => ({ quiz, issues: musicIssues(quiz, 'pending') }))

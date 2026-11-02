@@ -1,0 +1,217 @@
+{
+  "quizId": "annees-2020-mixte",
+  "source": "deezer",
+  "lookedUpAt": "2026-11-01",
+  "tracks": [
+    {
+      "questionId": "a20m-01",
+      "query": {
+        "artist": "The Weeknd",
+        "title": "Save Your Tears"
+      },
+      "found": {
+        "id": "908604632",
+        "title": "Save Your Tears",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/908604632",
+        "explicit": false,
+        "rank": 955918
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-02",
+      "query": {
+        "artist": "Lewis Capaldi",
+        "title": "Before You Go"
+      },
+      "found": {
+        "id": "807205422",
+        "title": "Before You Go",
+        "artist": "Lewis Capaldi",
+        "album": "Before You Go",
+        "durationS": 215,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/807205422",
+        "explicit": false,
+        "rank": 875126
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-03",
+      "query": {
+        "artist": "Dua Lipa",
+        "title": "Physical"
+      },
+      "found": {
+        "id": "862051992",
+        "title": "Physical",
+        "artist": "Dua Lipa",
+        "album": "Physical",
+        "durationS": 193,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/862051992",
+        "explicit": false,
+        "rank": 765688
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-04",
+      "query": {
+        "artist": "Harry Styles",
+        "title": "Adore You"
+      },
+      "found": {
+        "id": "830336932",
+        "title": "Adore You",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "durationS": 207,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/830336932",
+        "explicit": false,
+        "rank": 823628
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-05",
+      "query": {
+        "artist": "Stromae",
+        "title": "Santé"
+      },
+      "found": {
+        "id": "1522205252",
+        "title": "Santé",
+        "artist": "Stromae",
+        "album": "Santé",
+        "durationS": 190,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/1522205252",
+        "explicit": false,
+        "rank": 820081
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-06",
+      "query": {
+        "artist": "Surf Mesa",
+        "title": "ily (i love you baby)"
+      },
+      "found": {
+        "id": "886766742",
+        "title": "ily (i love you baby)",
+        "artist": "Surf Mesa",
+        "album": "ily (i love you baby)",
+        "durationS": 176,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/886766742",
+        "explicit": false,
+        "rank": 737652
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-07",
+      "query": {
+        "artist": "SAINt JHN",
+        "title": "Roses"
+      },
+      "found": {
+        "id": "2498072661",
+        "title": "Roses",
+        "artist": "SAINt JHN",
+        "album": "Roses",
+        "durationS": 178,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/2498072661",
+        "explicit": false,
+        "rank": 584434
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-08",
+      "query": {
+        "artist": "Topic",
+        "title": "Breaking Me"
+      },
+      "found": {
+        "id": "831917182",
+        "title": "Breaking Me",
+        "artist": "Topic",
+        "album": "Breaking Me",
+        "durationS": 166,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/831917182",
+        "explicit": false,
+        "rank": 766277
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-09",
+      "query": {
+        "artist": "BENEE",
+        "title": "Glitter"
+      },
+      "found": {
+        "id": "700706332",
+        "title": "Glitter",
+        "artist": "BENEE",
+        "album": "FIRE ON MARZZ",
+        "durationS": 180,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/700706332",
+        "explicit": false,
+        "rank": 456416
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    },
+    {
+      "questionId": "a20m-10",
+      "query": {
+        "artist": "Remi Wolf",
+        "title": "Moon So High"
+      },
+      "found": {
+        "id": "4323306722",
+        "title": "Moon So High",
+        "artist": "Remi Wolf",
+        "album": "Mud",
+        "durationS": 226,
+        "previewAvailable": true,
+        "link": "https://www.deezer.com/track/4323306722",
+        "explicit": false,
+        "rank": 515736
+      },
+      "alternatives": [],
+      "verified": true,
+      "verifiedBy": "auto"
+    }
+  ]
+}

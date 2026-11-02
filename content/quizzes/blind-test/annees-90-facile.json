@@ -1,0 +1,218 @@
+{
+  "id": "annees-90-facile",
+  "gameType": "blindTest",
+  "title": "Années 90 : les tubes",
+  "theme": "Musique",
+  "description": "Dance, boys bands et grandes ballades : dix tubes des années 90 que tout le monde a chantés.",
+  "audience": "all",
+  "poster": "cyan",
+  "icon": "cd",
+  "genre": "pop",
+  "decade": 1990,
+  "level": "easy",
+  "addedAt": "2026-11-01",
+  "featuredRank": 6,
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-8)",
+  "questions": [
+    {
+      "id": "a90f-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Genie In a Bottle – Christina Aguilera",
+        "Wannabe – Spice Girls",
+        "I Want You Back – *nsync",
+        "Don't Speak – No Doubt"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Wannabe"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Spice Girls",
+        "title": "Wannabe"
+      }
+    },
+    {
+      "id": "a90f-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Kiss Me – Sixpence None the Richer",
+        "I Want It That Way – Backstreet Boys",
+        "Flying Without Wings – Westlife",
+        "Karma Police – Radiohead"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Backstreet Boys"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Backstreet Boys",
+        "title": "I Want It That Way"
+      }
+    },
+    {
+      "id": "a90f-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Wonderwall – Oasis",
+        "Are You Gonna Go My Way – Lenny Kravitz",
+        "Zombie – The Cranberries",
+        "Bitter Sweet Symphony – The Verve"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Wonderwall"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Oasis",
+        "title": "Wonderwall"
+      }
+    },
+    {
+      "id": "a90f-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Enter Sandman – Metallica",
+        "Thunderstruck – AC/DC",
+        "Smells Like Teen Spirit – Nirvana",
+        "Knockin' On Heaven's Door – Guns N' Roses"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Nirvana"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Nirvana",
+        "title": "Smells Like Teen Spirit"
+      }
+    },
+    {
+      "id": "a90f-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "(Everything I Do) I Do It For You – Bryan Adams",
+        "Pretty Fly (For A White Guy) – The Offspring",
+        "Mambo No. 5 (a Little Bit of...) – Lou Bega",
+        "Believe – Cher"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Believe"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Cher",
+        "title": "Believe"
+      }
+    },
+    {
+      "id": "a90f-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "I Will Always Love You – Whitney Houston",
+        "Un-Break My Heart – Toni Braxton",
+        "End Of The Road – Boyz II Men",
+        "That's The Way Love Goes – Janet Jackson"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Whitney Houston"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Whitney Houston",
+        "title": "I Will Always Love You"
+      }
+    },
+    {
+      "id": "a90f-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Let's Get Loud – Jennifer Lopez",
+        "...Baby One More Time – Britney Spears",
+        "Fade Into You – Mazzy Star",
+        "Enjoy the Silence – Depeche Mode"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "...Baby One More Time"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Britney Spears",
+        "title": "...Baby One More Time"
+      }
+    },
+    {
+      "id": "a90f-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "The Rhythm Of The Night – Corona",
+        "Freed From Desire – Gala",
+        "Angels – Robbie Williams",
+        "Barbie Girl – Aqua"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Aqua"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Aqua",
+        "title": "Barbie Girl"
+      }
+    },
+    {
+      "id": "a90f-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Waterfalls – TLC",
+        "Bills, Bills, Bills – Destiny's Child",
+        "Loser – Beck",
+        "Livin' la Vida Loca – Ricky Martin"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Livin' la Vida Loca"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Ricky Martin",
+        "title": "Livin' la Vida Loca"
+      }
+    },
+    {
+      "id": "a90f-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Rhythm Is A Dancer – Snap!",
+        "I Don't Want To Miss A Thing – Aerosmith",
+        "What Is Love – Haddaway",
+        "Song 2 – Blur"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Haddaway"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Haddaway",
+        "title": "What Is Love"
+      }
+    }
+  ]
+}

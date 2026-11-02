@@ -1,0 +1,222 @@
+{
+  "id": "le-grand-melange",
+  "gameType": "blindTest",
+  "title": "Le grand mélange",
+  "theme": "Musique",
+  "description": "Tous les genres, toutes les époques, tous les niveaux : le blind test qui ne prévient pas.",
+  "audience": "all",
+  "poster": "violet",
+  "icon": "note",
+  "genre": "pop",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "gm-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "I Want You Back – Jackson 5",
+        "Thriller – Michael Jackson",
+        "Boogie Wonderland – Earth, Wind & Fire",
+        "I Wanna Dance with Somebody (Who Loves Me) – Whitney Houston"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Thriller"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Michael Jackson",
+        "title": "Thriller",
+        "artistAliases": [
+          "MJ"
+        ]
+      }
+    },
+    {
+      "id": "gm-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Azizam – Ed Sheeran",
+        "People Help the People – Birdy",
+        "Someone Like You – Adele",
+        "Unstoppable – Sia"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Adele"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Adele",
+        "title": "Someone Like You"
+      }
+    },
+    {
+      "id": "gm-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Silver Springs – Fleetwood Mac",
+        "I Want To Break Free – Queen",
+        "Tiny Dancer – Elton John",
+        "Glory Days – Bruce Springsteen"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Tiny Dancer"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Elton John",
+        "title": "Tiny Dancer"
+      }
+    },
+    {
+      "id": "gm-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Who You Callin' Crazy – The Rolling Stones",
+        "Don't Stand So Close To Me – The Police",
+        "Spectral Eyes – Blondie",
+        "Ashes to Ashes – David Bowie"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "David Bowie"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "David Bowie",
+        "title": "Ashes to Ashes"
+      }
+    },
+    {
+      "id": "gm-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Got To Give It Up (Pt. 1) – Marvin Gaye",
+        "(Call Me) Super Bad – James Brown",
+        "You Are Everything – Diana Ross",
+        "Sir Duke – Stevie Wonder"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Sir Duke"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Stevie Wonder",
+        "title": "Sir Duke"
+      }
+    },
+    {
+      "id": "gm-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Dancing with Tears in My Eyes – Ultravox",
+        "Wouldn’t It Be Good – Nik Kershaw",
+        "Venus – Bananarama",
+        "The Look Of Love, Pt.1 – ABC"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Nik Kershaw"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Nik Kershaw",
+        "title": "Wouldn't It Be Good",
+        "displayTitle": "Wouldn’t It Be Good"
+      }
+    },
+    {
+      "id": "gm-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Kids in America – Kim Wilde",
+        "When Your Heart Is Weak – Cock Robin",
+        "Relax – Frankie Goes to Hollywood",
+        "Square Rooms – Al Corley"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Kids in America"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Kim Wilde",
+        "title": "Kids In America",
+        "displayTitle": "Kids in America"
+      }
+    },
+    {
+      "id": "gm-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Danger Zone – Kenny Loggins",
+        "The Power Of Love – Huey Lewis & The News",
+        "The Boys Of Summer – Don Henley",
+        "I Can't Go for That (No Can Do) – Daryl Hall & John Oates"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Huey Lewis & The News"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Huey Lewis & The News",
+        "title": "The Power Of Love"
+      }
+    },
+    {
+      "id": "gm-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Milk Cow Blues – Eddie Cochran",
+        "Lip Service – Elvis Costello & The Attractions",
+        "Greenbank Drive – The Christians",
+        "Alien – Japan"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Milk Cow Blues"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Eddie Cochran",
+        "title": "Milk Cow Blues"
+      }
+    },
+    {
+      "id": "gm-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "If I Had You – The Korgis",
+        "Our Own Baby – Gilbert O'Sullivan",
+        "Love Is All That Matters – Eric Carmen",
+        "Love Hurts – Boy George"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "The Korgis"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "The Korgis",
+        "title": "If I Had You"
+      }
+    }
+  ]
+}

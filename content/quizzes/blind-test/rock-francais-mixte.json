@@ -1,0 +1,217 @@
+{
+  "id": "rock-francais-mixte",
+  "gameType": "blindTest",
+  "title": "Rock français : tous niveaux",
+  "theme": "Musique",
+  "description": "Du tube à la pépite : dix morceaux de rock français, du plus évident au plus pointu.",
+  "audience": "all",
+  "poster": "red",
+  "icon": "guitar",
+  "genre": "rock",
+  "decade": "all",
+  "level": "mixed",
+  "addedAt": "2026-11-02",
+  "reviewStatus": "provisoire, morceaux vérifiés automatiquement (lot BT-10)",
+  "questions": [
+    {
+      "id": "rkf-01",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Les histoires d'a – Les Rita Mitsouko",
+        "Le chemin – Kyo",
+        "New York avec toi – Telephone",
+        "Dis-moi – BB Brunes"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "New York avec toi"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Telephone",
+        "title": "New York avec toi"
+      }
+    },
+    {
+      "id": "rkf-02",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "L'homme pressé – Noir Désir",
+        "J'accuse – Saez",
+        "Les moutons – Matmatah",
+        "La vie est belle – Indochine"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Noir Désir"
+      ],
+      "difficulty": 1,
+      "music": {
+        "artist": "Noir Désir",
+        "title": "L'homme pressé"
+      }
+    },
+    {
+      "id": "rkf-03",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ma petite entreprise – Alain Bashung",
+        "Je t'en remets au vent – Hubert-Félix Thiéfaine",
+        "Les yeux de ma mère – Arno",
+        "Le retour à la terre – Les Fatals Picards"
+      ],
+      "correctIndex": 0,
+      "acceptedAnswers": [
+        "Ma petite entreprise"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Alain Bashung",
+        "title": "Ma petite entreprise"
+      }
+    },
+    {
+      "id": "rkf-04",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La sentinelle – Luke",
+        "Amours – Louise Attaque",
+        "À toi – -M-",
+        "À la faveur de l'automne – Tété"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Louise Attaque"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Louise Attaque",
+        "title": "Amours"
+      }
+    },
+    {
+      "id": "rkf-05",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Zobi la mouche – Les Négresses Vertes",
+        "Madame Louise, elle est exquise – Pigalle",
+        "Dans ton kulte – Raoul Petite",
+        "Soledad – Mano Negra"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Soledad"
+      ],
+      "difficulty": 2,
+      "music": {
+        "artist": "Mano Negra",
+        "title": "Soledad"
+      }
+    },
+    {
+      "id": "rkf-06",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Salut à toi – Bérurier Noir",
+        "Sois pauvre et tais toi ! – Les Sales Majestés",
+        "Jouer avec le feu – Les Sheriff",
+        "Rimini – Les Wampas"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Les Wampas"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Les Wampas",
+        "title": "Rimini"
+      }
+    },
+    {
+      "id": "rkf-07",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Ça me vexe – Mademoiselle K",
+        "A Tout Moment La Rue – Eiffel",
+        "La ballade des gens qui sont nés quelque part – Tarmac",
+        "Song For Jedi – Dionysos"
+      ],
+      "correctIndex": 3,
+      "acceptedAnswers": [
+        "Song For Jedi"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Dionysos",
+        "title": "Song For Jedi"
+      }
+    },
+    {
+      "id": "rkf-08",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "La peau – No One Is Innocent",
+        "L'enfer des dieux – Mass Hysteria",
+        "La Puissance du Pouvoir – Ultra Vomit",
+        "\"Si\" n'existe pas – AqME"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Mass Hysteria"
+      ],
+      "difficulty": 3,
+      "music": {
+        "artist": "Mass Hysteria",
+        "title": "L'enfer des dieux"
+      }
+    },
+    {
+      "id": "rkf-09",
+      "text": "Quel est ce titre ?",
+      "ask": "title",
+      "options": [
+        "Rock’n’roll vengeance – La Souris Déglinguée",
+        "Houlala ! – Ludwig Von 88",
+        "Momo (la p'tite balle du sam'di soir) – Parabellum",
+        "Nain de jardin – Les Betteraves"
+      ],
+      "correctIndex": 1,
+      "acceptedAnswers": [
+        "Houlala !"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Ludwig Von 88",
+        "title": "Houlala !"
+      }
+    },
+    {
+      "id": "rkf-10",
+      "text": "Quel artiste ?",
+      "ask": "artist",
+      "options": [
+        "Riches et célèbres – Les Satellites",
+        "C'est vraiment fou la disco – Gogol Premier",
+        "Le Rap Des Garçons Bouchers – Les Garçons Bouchers",
+        "Vive L'Armée du Salut – Molodoï"
+      ],
+      "correctIndex": 2,
+      "acceptedAnswers": [
+        "Les Garçons Bouchers"
+      ],
+      "difficulty": 4,
+      "music": {
+        "artist": "Les Garçons Bouchers",
+        "title": "Le Rap Des Garçons Bouchers"
+      }
+    }
+  ]
+}

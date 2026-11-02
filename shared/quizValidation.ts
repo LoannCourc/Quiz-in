@@ -64,7 +64,7 @@ function isFiniteNumber(value: unknown): value is number {
 }
 
 function isDifficulty(value: unknown): value is Difficulty {
-  return value === 1 || value === 2 || value === 3
+  return value === 1 || value === 2 || value === 3 || value === 4
 }
 
 export function isQuizGameType(value: unknown): value is QuizGameType {
@@ -131,9 +131,9 @@ export function isFeaturedRank(value: unknown): value is number {
 // Une valeur absente ou mal formée prend la valeur par défaut au lieu d'écarter la fiche.
 function catalogDisplayFields(value: Record<string, unknown>): Pick<
   QuizSummary,
-  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level' | 'genre' | 'decade' | 'levelCounts' | 'featuredTheme'
+  'description' | 'audience' | 'poster' | 'addedAt' | 'featuredRank' | 'icon' | 'level' | 'genre' | 'decade' | 'levelCounts' | 'featuredTheme' | 'explicitLyrics'
 > {
-  const { description, audience, poster, addedAt, featuredRank, icon, level, genre, decade, levelCounts, featuredTheme } = value
+  const { description, audience, poster, addedAt, featuredRank, icon, level, genre, decade, levelCounts, featuredTheme, explicitLyrics } = value
   return {
     description:
       typeof description === 'string' && description.length <= QUIZ_DESCRIPTION_MAX_LENGTH ? description : '',
@@ -147,6 +147,7 @@ function catalogDisplayFields(value: Record<string, unknown>): Pick<
     ...(isBlindTestDecade(decade) && { decade }),
     ...(isLevelCounts(levelCounts) && { levelCounts }),
     ...(featuredTheme === true && { featuredTheme }),
+    ...(explicitLyrics === true && { explicitLyrics }),
   }
 }
 
@@ -156,7 +157,7 @@ function isLevelCounts(value: unknown): value is QuestionLevelCounts {
 }
 
 function isDifficultyLevel(value: unknown): value is DifficultyLevel {
-  return value === 'easy' || value === 'medium' || value === 'hard' || value === 'impossible'
+  return value === 'easy' || value === 'medium' || value === 'hard' || value === 'impossible' || value === 'mixed'
 }
 
 // Fiche d'un quiz (quizzes/{quizId}), ou null si elle est absente ou mal formée.
