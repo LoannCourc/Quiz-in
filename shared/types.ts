@@ -414,6 +414,10 @@ export interface SoundSettings {
 
 // Session complète, lisible uniquement par l'hôte.
 export interface Session extends PublicSession {
+  // Blind test : extrait de la question suivante, publié par l'hôte dès la révélation pour que la TV le
+  // précharge pendant le classement ; effacé au début de la question suivante. Lisible par la TV présente
+  // (tvPresence) et l'hôte seulement, jamais par les joueurs (ils pourraient écouter le morceau en avance).
+  nextAudio?: PublicAudio | null;
   // Heure du serveur à la création, jamais modifiée : le nettoyage planifié supprime les parties de plus de 24 h
   // (scripts/cleanup-sessions.mjs). Absente des parties créées par une ancienne version de l'app.
   createdAt?: number;

@@ -8,7 +8,7 @@ import {
   type MusicPlan,
 } from '@shared/music'
 import { bakeLoopSeam, type LoopRegion } from '@shared/loopSeam'
-import { MUSIC_DIRECTORY, MUSIC_TRACKS, type MusicTrackId } from '@shared/musicTracks'
+import { MUSIC_DIRECTORY, MUSIC_TRACK_IDS, MUSIC_TRACKS, type MusicTrackId } from '@shared/musicTracks'
 
 import { decodedBytes } from './musicLoop'
 import { soundEngine } from './soundEngine'
@@ -20,11 +20,11 @@ import { soundEngine } from './soundEngine'
 // musique du moteur applique le volume de l'hôte et le ducking des effets.
 //
 // Mémoire de la box : une piste décodée est stockée en échantillons bruts (4 octets chacun). Pour la
-// limiter, chaque piste est décodée en mono à MUSIC_SAMPLE_RATE (Salon_music, 137 s : environ 17,5 Mo
-// au lieu de 50 en stéréo 48 kHz), et les pistes décodées ne dépassent pas MUSIC_MEMORY_BUDGET_BYTES :
-// au-delà, les moins récemment utilisées sont libérées (elles seront redécodées depuis le fichier gardé,
-// compressé, en mémoire).
-export const MUSIC_SAMPLE_RATE = 32_000
+// limiter, les fichiers sont déjà en mono 24 kHz (docs/musiques-allegees.md) et décodés tels quels à
+// MUSIC_SAMPLE_RATE (Salon_music, 137 s : environ 13 Mo au lieu de 50 en stéréo 48 kHz). Seules les
+// pistes du moment restent décodées (prepare) ; au-delà de MUSIC_MEMORY_BUDGET_BYTES, les moins
+// récemment utilisées sont libérées (elles seront redécodées depuis le fichier gardé, compressé, en mémoire).
+export const MUSIC_SAMPLE_RATE = 24_000
 export const MUSIC_MEMORY_BUDGET_BYTES = 32 * 1024 * 1024
 // Démarrage net (musique de fin, à l'arrivée du podium) : fondu très court, pour éviter un clic.
 const JINGLE_FADE_IN_S = 0.02
@@ -32,17 +32,18 @@ const JINGLE_FADE_IN_S = 0.02
 const LOOP_SEAM_FADE_S = 0.04
 
 // Décodage d'un fichier de musique en mono, à MUSIC_SAMPLE_RATE (le navigateur rééchantillonne).
+// Fichier encore stéréo (essai, ancien fichier) : mixé en mono par le moteur audio du navigateur, sur
+// son propre fil (rendu hors ligne vers une sortie à un canal : (G + D) / 2), jamais par une boucle
+// JavaScript sur le fil qui dessine l'écran.
 export async function decodeMusic(data: ArrayBuffer): Promise<AudioBuffer> {
   const decoded = await new OfflineAudioContext(1, 1, MUSIC_SAMPLE_RATE).decodeAudioData(data)
   if (decoded.numberOfChannels === 1) return decoded
-  const mono = new AudioBuffer({ length: decoded.length, numberOfChannels: 1, sampleRate: decoded.sampleRate })
-  const target = mono.getChannelData(0)
-  const channels = decoded.numberOfChannels
-  for (let channel = 0; channel < channels; channel++) {
-    const samples = decoded.getChannelData(channel)
-    for (let i = 0; i < samples.length; i++) target[i] += samples[i] / channels
-  }
-  return mono
+  const mixer = new OfflineAudioContext(1, decoded.length, decoded.sampleRate)
+  const source = mixer.createBufferSource()
+  source.buffer = decoded
+  source.connect(mixer.destination)
+  source.start()
+  return mixer.startRendering()
 }
 
 // Diagnostic (panneau de mesures ?perf=1) : pistes décodées, mémoire, décodage en cours ou dernier.
@@ -99,12 +100,24 @@ class MusicPlayer {
   private stopTimer: ReturnType<typeof setTimeout> | null = null
   private isEnabled = true
   private preparing: Promise<void> = Promise.resolve()
+  // Pistes du moment (prepare) : les autres sont libérées dès qu'elles ne jouent plus.
+  private wanted = new Set<MusicTrackId>(MUSIC_TRACK_IDS)
 
-  // Télécharge puis décode à l'avance les pistes de la partie, une par une, sans bloquer l'affichage.
+  // Télécharge puis décode à l'avance les pistes du moment, une par une, et libère les autres (jamais
+  // celle qui joue : elle finit son fondu). Les fichiers compressés restent gardés pour redécoder.
   prepare(tracks: readonly MusicTrackId[]): void {
+    this.wanted = new Set(tracks)
+    this.releaseUnwanted()
     this.preparing = this.preparing.then(async () => {
-      for (const track of tracks) await this.buffer(track)
+      for (const track of tracks) if (this.wanted.has(track)) await this.buffer(track)
     })
+  }
+
+  private releaseUnwanted(): void {
+    const playing = this.current?.source.buffer
+    for (const [id, entry] of this.decoded) {
+      if (!this.wanted.has(id) && entry.buffer !== playing) this.decoded.delete(id)
+    }
   }
 
   // Fin de l'écran de la partie (test du son, partie supprimée) : silence, et plus rien en attente.
@@ -170,7 +183,7 @@ class MusicPlayer {
       return { fadeOutMs: plan.fastStop ? MUSIC_FAST_STOP_MS : MUSIC_RESUME_CROSSFADE_MS, fadeInMs: MUSIC_RESUME_CROSSFADE_MS, offsetS }
     }
     const fadeOutMs = plan.fastStop ? MUSIC_FAST_STOP_MS : this.current?.isCue ? MUSIC_JINGLE_FADE_OUT_MS : MUSIC_CROSSFADE_MS
-    return { fadeOutMs, fadeInMs: MUSIC_CROSSFADE_MS, offsetS: 0 }
+    return { fadeOutMs, fadeInMs: plan.fadeInMs ?? MUSIC_CROSSFADE_MS, offsetS: 0 }
   }
 
   // Position actuelle d'une boucle (s), pour la reprendre au même endroit.
@@ -220,6 +233,8 @@ class MusicPlayer {
     source.onended = () => {
       gain.disconnect()
       if (this.current === playing) this.current = null
+      // Piste qui n'est plus du moment (fin de partie → salon) : libérée une fois son fondu fini.
+      this.releaseUnwanted()
     }
     this.current = playing
   }

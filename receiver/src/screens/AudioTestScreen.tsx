@@ -1,3 +1,4 @@
+import { AUDIO_TAIL_FADE_MS } from '@shared/constants'
 import { useEffect, useState } from 'react'
 
 import { tvAudioPlayer } from '../lib/tvAudioPlayer'
@@ -40,7 +41,9 @@ export function AudioTestScreen({ url }: { url: string }) {
     // Écran remplacé (nouveau test) avant la fin du chargement : on ignore le résultat.
     let isCurrent = true
     const startedAt = performance.now()
-    void tvAudioPlayer.play(url, TEST_START_S, 1).then((result) => {
+    // Même fondu de fin qu'en partie, sur la durée du test (horloge de la TV des deux côtés).
+    const now = Date.now()
+    void tvAudioPlayer.play(url, TEST_START_S, { level: 1, endsAt: now + TEST_DURATION_S * 1000, fadeMs: AUDIO_TAIL_FADE_MS, volume: 1 }, now).then((result) => {
       if (!isCurrent || result === 'superseded') return
       if (result !== 'playing') {
         setState({ kind: result })

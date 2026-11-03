@@ -8,6 +8,7 @@ import {
   type CastSoundTestMessage,
   type CastShowGameMessage,
 } from '@shared/cast'
+import type { CastLightMessage } from '@shared/displayMode'
 
 // Page de test cast-sender.html (développement seulement) : lance le récepteur sur la TV et lui
 // envoie un code, comme le fera l'app de l'hôte au bloc 4.3. Textes non traduits : outil interne.
@@ -45,6 +46,10 @@ function context(): SenderContext | null {
   return globals.cast?.framework.CastContext.getInstance() ?? null
 }
 
+// ?app=XXXXXXXX : autre application Cast (récepteur d'essai, par exemple un canal de prévisualisation Hosting),
+// pour voir une TV pas encore déployée sur la box. Sinon, le récepteur publié.
+const RECEIVER_APP_ID = new URLSearchParams(window.location.search).get('app') ?? CAST_RECEIVER_APP_ID
+
 globals.__onGCastApiAvailable = (isAvailable) => {
   const castContext = context()
   if (!isAvailable || !castContext || !globals.chrome) {
@@ -52,14 +57,14 @@ globals.__onGCastApiAvailable = (isAvailable) => {
     return
   }
   castContext.setOptions({
-    receiverApplicationId: CAST_RECEIVER_APP_ID,
+    receiverApplicationId: RECEIVER_APP_ID,
     autoJoinPolicy: globals.chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
   })
-  show(`Prêt (récepteur ${CAST_RECEIVER_APP_ID}). Cliquez sur l’icône Cast et choisissez la TV.`)
+  show(`Prêt (récepteur ${RECEIVER_APP_ID}). Cliquez sur l’icône Cast et choisissez la TV.`)
 }
 
 function send(
-  message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage | CastPerfMusicMessage | CastDrawBenchMessage,
+  message: CastShowGameMessage | CastAudioTestMessage | CastSoundTestMessage | CastPerfMessage | CastPerfMusicMessage | CastDrawBenchMessage | CastLightMessage,
 ): void {
   const session = context()?.getCurrentSession()
   if (!session) {
@@ -80,6 +85,9 @@ document.getElementById('perf-on')!.addEventListener('click', () => send({ perf:
 document.getElementById('perf-off')!.addEventListener('click', () => send({ perf: false }))
 document.getElementById('perf-music-off')!.addEventListener('click', () => send({ perfMusic: false }))
 document.getElementById('perf-music-on')!.addEventListener('click', () => send({ perfMusic: true }))
+for (const setting of ['on', 'auto', 'off'] as const) {
+  document.getElementById(`light-${setting}`)!.addEventListener('click', () => send({ light: setting }))
+}
 document.getElementById('draw-bench')!.addEventListener('click', () => send({ drawBench: true }))
 document.getElementById('draw-bench-1')!.addEventListener('click', () => send({ drawBench: 1 }))
 document.getElementById('draw-bench-2')!.addEventListener('click', () => send({ drawBench: 2 }))

@@ -166,10 +166,21 @@ export const AUDIO_EXTRACT_START_S = 0;
 // laquelle il reste moins de AUDIO_URL_MIN_VALIDITY_MS, en vérifiant toutes les AUDIO_URL_REFRESH_INTERVAL_MS.
 export const AUDIO_URL_MIN_VALIDITY_MS = 5 * 60_000;
 export const AUDIO_URL_REFRESH_INTERVAL_MS = 60_000;
-// Fondu de fin, sur les dernières millisecondes du timer (pas de musique pendant la révélation).
-export const AUDIO_FADE_OUT_MS = 400;
-// Fondus du lecteur de la TV : entrée au démarrage, sortie à tout arrêt (fin anticipée, pause…), jamais
-// de coupure sèche (elle produit un clic ou une bouffée de son sur certaines TV).
+// Fin de l'extrait à la fin de son timing (20 s ou 30 s), fondus en cosinus joués par la rampe native du
+// moteur audio de la TV :
+// - tout le monde a répondu avant la fin du chrono : l'extrait continue, puis s'éteint sur ses
+//   AUDIO_TAIL_FADE_MS dernières millisecondes (réponses plus tardives : fondu sur le temps qui reste) ;
+// - chrono allé au bout : fondu court AUDIO_END_FADE_MS, juste pour éviter le clic.
+export const AUDIO_TAIL_FADE_MS = 5_000;
+export const AUDIO_END_FADE_MS = 400;
+// La musique qui prend le relais (salon, jeu) entre en fondu, juste après la fin de l'extrait.
+export const AUDIO_TAIL_MUSIC_FADE_IN_MS = 2_000;
+// Volume de l'extrait quand il continue après la question (tout le monde a répondu avant la fin du chrono) :
+// 1 = inchangé. Prévu pour une baisse de volume réglable plus tard.
+export const AUDIO_TAIL_VOLUME = 1;
+// Fondus courts du lecteur de la TV : entrée au démarrage, sortie quand l'extrait est coupé par un
+// changement d'étape (question suivante, pause…), jamais de coupure sèche (elle produit un clic ou une
+// bouffée de son sur certaines TV).
 export const AUDIO_FADE_IN_MS = 80;
 export const AUDIO_STOP_FADE_MS = 150;
 // Interrupteur à distance du blind test : absent ou false = désactivé (modifiable dans la console seulement).

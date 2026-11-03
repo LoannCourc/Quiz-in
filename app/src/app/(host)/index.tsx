@@ -1,6 +1,6 @@
 import type { BadgeId } from '@shared/badges';
 import { PRIVACY_URL } from '@shared/constants';
-import { HOME_COMPACT_BELOW_HEIGHT, homeBlockGap, homeTileDensity } from '@shared/homeLayout';
+import { HOME_COMPACT_BELOW_HEIGHT, homeBlockGap, homeTileDensity, type HomeTileDensity } from '@shared/homeLayout';
 import { isValidRoomCode } from '@shared/roomCode';
 import { Link, Redirect, router, useLocalSearchParams, type Href } from 'expo-router';
 import { useState } from 'react';
@@ -20,6 +20,7 @@ import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
+import { useKeyboardInset } from '@/hooks/useKeyboardInset';
 import { useResumableGame } from '@/hooks/useResumableGame';
 import { isPublishedWeb } from '@/lib/platform';
 
@@ -58,22 +59,30 @@ function HomeScreen() {
     />
   );
 
-  // Sans défilement (aussi avec « Reprendre la partie » ou le choix du prochain jeu, à la place du titre) :
-  // les tuiles prennent la hauteur restante, mesurée ; densité d'après cette hauteur et la police du système.
-  // Rien ne tient lisiblement : défilement, jusqu'au prochain changement de taille de fenêtre ou de police.
+  // Jamais de défilement (aussi avec « Reprendre la partie » ou le choix du prochain jeu, à la place du titre) :
+  // les tuiles prennent la hauteur restante, mesurée ; densité d'après cette hauteur et la police du système,
+  // jusqu'aux tuiles minimales (shared/homeLayout.ts). Les liens du bas restent toujours visibles.
+  // Clavier ouvert sur un autre écran (/join, l'accueil reste monté dessous) : la place du clavier est
+  // retirée de l'accueil aussi ; ces mesures-là sont ignorées (avant : l'accueil passait en défilement, tuiles
+  // agrandies, et y restait au retour).
   const { height, fontScale } = useWindowDimensions();
+  const isKeyboardOpen = useKeyboardInset() > 0;
   const sizeKey = `${height}|${fontScale}`;
-  const [measured, setMeasured] = useState<{ sizeKey: string; gridHeight: number } | null>(null);
-  const gridHeight = measured?.sizeKey === sizeKey ? measured.gridHeight : null;
-  const density = gridHeight === null ? 'normal' : homeTileDensity(gridHeight, fontScale);
-  const fit =
-    density !== null
-      ? { density, gap: homeBlockGap(height), isCompact: height < HOME_COMPACT_BELOW_HEIGHT, onGridHeight: (measuredHeight: number) => setMeasured({ sizeKey, gridHeight: measuredHeight }) }
-      : undefined;
+  const [measured, setMeasured] = useState<{ sizeKey: string; density: HomeTileDensity } | null>(null);
+  const density = measured?.sizeKey === sizeKey ? measured.density : 'normal';
+  const fit = {
+    density,
+    gap: homeBlockGap(height),
+    isCompact: height < HOME_COMPACT_BELOW_HEIGHT,
+    onGridHeight: (gridHeight: number) => {
+      const fitted = homeTileDensity(gridHeight, fontScale);
+      if (fitted !== null && !isKeyboardOpen) setMeasured({ sizeKey, density: fitted });
+    },
+  };
 
   return (
     <View style={styles.fill}>
-      <Screen scrollable={fit === undefined}>
+      <Screen scrollable={false}>
         <HomeView
           onOpenGame={(game) => openGame(game, room)}
           onJoinWithCode={room ? undefined : () => router.push('/join')}

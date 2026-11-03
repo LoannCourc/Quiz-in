@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 
+import { LIGHT_FPS_THRESHOLD, LIGHT_SLOW_WINDOWS, type AutoLightState } from '@shared/displayMode'
+
+import { displayModeState, type DisplayModeState } from '../lib/displayMode'
 import { emojiSupport } from '../lib/emojiSupport'
 import { perfMonitor, type MusicBucket, type PerfIncident, type PerfSnapshot } from '../lib/perf/perfMonitor'
+import { tvAudioPlayer, type ExtractStartStats } from '../lib/tvAudioPlayer'
 import { strings } from '../strings'
 import './PerfPanel.css'
 
@@ -17,10 +21,16 @@ interface PerfPanelProps {
 // seconde (son propre état : la partie n'est pas redessinée pour lui).
 export function PerfPanel({ serverOffsetMs }: PerfPanelProps) {
   const [snapshot, setSnapshot] = useState<PerfSnapshot>(() => perfMonitor.snapshot())
+  const [display, setDisplay] = useState(readDisplay)
+  const [extract, setExtract] = useState<ExtractStartStats | null>(() => tvAudioPlayer.startStats)
 
   useEffect(() => {
     perfMonitor.start()
-    const intervalId = setInterval(() => setSnapshot(perfMonitor.snapshot()), REFRESH_MS)
+    const intervalId = setInterval(() => {
+      setSnapshot(perfMonitor.snapshot())
+      setDisplay(readDisplay())
+      setExtract(tvAudioPlayer.startStats)
+    }, REFRESH_MS)
     return () => {
       clearInterval(intervalId)
       perfMonitor.stop()
@@ -33,7 +43,7 @@ export function PerfPanel({ serverOffsetMs }: PerfPanelProps) {
     <>
       <div className="perf-panel perf-panel-stats">
         <div className="perf-title">{texts.title}</div>
-        <LiveStats snapshot={snapshot} />
+        <LiveStats snapshot={snapshot} display={display} extract={extract} />
         <CompareTable on={snapshot.buckets.on} off={snapshot.buckets.off} />
       </div>
       <div className="perf-panel perf-panel-incidents">
@@ -47,7 +57,43 @@ export function PerfPanel({ serverOffsetMs }: PerfPanelProps) {
   )
 }
 
-function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
+// Mode allégé, relu à chaque rafraîchissement du panneau (deux fois par seconde), avec l'heure de lecture.
+type DisplayReading = DisplayModeState & { now: number }
+
+function readDisplay(): DisplayReading {
+  return { ...displayModeState(), now: performance.now() }
+}
+
+function DisplayModeLine({ display }: { display: DisplayReading }) {
+  const { setting, isLight, auto, now } = display
+  return (
+    <>
+      <div className={isLight ? 'perf-strong' : undefined}>{texts.lightMode(setting, isLight)}</div>
+      <div>{autoLightText(auto, now)}</div>
+    </>
+  )
+}
+
+function autoLightText(auto: AutoLightState, now: number): string {
+  const agoS = (at: number | null) => Math.max(0, Math.round((now - (at ?? now)) / 1000))
+  const { lightAuto } = texts
+  switch (auto.reason) {
+    case 'oldChrome':
+      return lightAuto.oldChrome(agoS(auto.triggeredAt))
+    case 'remembered':
+      return lightAuto.remembered(agoS(auto.triggeredAt))
+    case 'slow':
+      return lightAuto.slow(auto.lastFps ?? 0, LIGHT_FPS_THRESHOLD, agoS(auto.triggeredAt))
+    case 'freeze':
+      return lightAuto.freeze(agoS(auto.triggeredAt))
+    case null:
+      return auto.lastFps === null
+        ? lightAuto.waiting
+        : lightAuto.measuring(auto.lastFps, LIGHT_FPS_THRESHOLD, agoS(auto.lastAt), auto.slowStreak, LIGHT_SLOW_WINDOWS)
+  }
+}
+
+function LiveStats({ snapshot, display, extract }: { snapshot: PerfSnapshot; display: DisplayReading; extract: ExtractStartStats | null }) {
   const { music, memory, lastTransition, keepAwake } = snapshot
   return (
     <>
@@ -66,6 +112,8 @@ function LiveStats({ snapshot }: { snapshot: PerfSnapshot }) {
       </div>
       <div>{texts.keepAwake(keepAwake.video, keepAwake.wakeLock)}</div>
       <div>{texts.screen(snapshot.screen, snapshot.chromeVersion)}</div>
+      <DisplayModeLine display={display} />
+      <div>{extract ? texts.extractStart(extract.ms, extract.isPreloaded) : texts.noExtractStart}</div>
       <div>{texts.emoji(emojiSupport())}</div>
       <div>{texts.build(new Date(__BUILD_TIME__), __BUILD_COMMIT__)}</div>
       <div>{texts.streaks(snapshot.streaks.active, snapshot.streaks.zero, snapshot.streaks.missing)}</div>

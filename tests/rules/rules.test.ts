@@ -350,6 +350,32 @@ describe('Blind test', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/currentQuestion/audio/url`).set(`${URL}y`))
   })
 
+  test('extrait suivant (nextAudio) : écrit par l’hôte seul, lu par la TV présente et l’hôte, jamais par un joueur', async () => {
+    const TV = 'tv-uid'
+    await seedSession({ status: 'reveal', tvPresence: { [TV]: true } })
+    const path = `${SESSION}/nextAudio`
+    await assertSucceeds(db(HOST).ref(path).set(audio))
+    await assertFails(db(PLAYER).ref(path).set(audio))
+    await assertSucceeds(db(TV).ref(path).once('value'))
+    await assertSucceeds(db(HOST).ref(path).once('value'))
+    // Un joueur (ou un compte sans présence de TV) ne lit jamais le morceau à venir.
+    await assertFails(db(PLAYER).ref(path).once('value'))
+    await assertFails(db(OTHER).ref(path).once('value'))
+    await assertFails(db(null).ref(path).once('value'))
+    // Adresse renouvelée par l'hôte, effacement au début de la question suivante.
+    await assertSucceeds(db(HOST).ref(`${path}/url`).set(`${URL}x`))
+    await assertSucceeds(db(HOST).ref(path).remove())
+  })
+
+  test('extrait suivant refusé : adresse non https, dépassement de la preview, champ inconnu', async () => {
+    await seedSession({ status: 'reveal' })
+    const ref = db(HOST).ref(`${SESSION}/nextAudio`)
+    await assertFails(ref.set({ ...audio, url: 'http://exemple.fr/a.mp3' }))
+    await assertFails(ref.set({ ...audio, startS: 11 }))
+    await assertFails(ref.set({ ...audio, trackId: '6297555' }))
+    await assertFails(ref.set({ url: URL }))
+  })
+
   test('reveal accepte titre, artiste et source ; source inconnue refusée', async () => {
     await seedSession({ status: 'reveal' })
     const ref = db(HOST).ref(`${SESSION}/reveal`)
@@ -409,6 +435,43 @@ describe('Pas à pas (settings.stepByStep)', () => {
     expect(await read()).toMatchObject({ status: 'starting', currentIndex: 1 })
     await write(transitionUpdate(await read(), gameQuestions, { status: 'starting', currentIndex: 1 }, Date.now()))
     expect(await read()).toMatchObject({ status: 'question', currentIndex: 1 })
+  })
+
+  test('moteur, blind test : extrait suivant (nextAudio) publié à la révélation, gardé au 3-2-1, effacé à la question suivante', async () => {
+    const TV = 'tv-uid'
+    const musicQuestions = selectGameQuestions(QUESTIONS.slice(0, 2)).map((question, index) => ({
+      ...question,
+      music: { source: 'deezer' as const, id: String(index), title: `Titre ${index}`, artist: 'Artiste', startS: 0 },
+    }))
+    const urls = Object.fromEntries(musicQuestions.map((question, index) => [question.id, `https://cdnt-preview.dzcdn.net/${index}.mp3?hdnea=exp=1`]))
+    const start = makeSession({
+      status: 'question',
+      currentIndex: 0,
+      questionCount: 2,
+      phaseStartedAt: Date.now() - 5_000,
+      phaseEndsAt: Date.now() + 15_000,
+      settings: { answerMode: 'choice', speedBonus: false, control: false, teams: false, stepByStep: true },
+      tvPresence: { [TV]: true },
+    })
+    await seed({ sessions: { [CODE]: start } })
+    const read = async () => (await readAsAdmin(SESSION)) as Session
+    const write = (update: SessionUpdate | null) => {
+      expect(update).not.toBeNull()
+      return assertSucceeds(db(HOST).ref(SESSION).update(update as SessionUpdate))
+    }
+
+    await write(transitionUpdate(await read(), musicQuestions, { status: 'question', currentIndex: 0 }, Date.now(), urls))
+    expect((await read()).nextAudio).toEqual({ url: urls[musicQuestions[1].id], startS: 0, durationS: 20 })
+    // La TV présente le lit ; un joueur jamais.
+    await assertSucceeds(db(TV).ref(`${SESSION}/nextAudio`).once('value'))
+    await assertFails(db(PLAYER).ref(`${SESSION}/nextAudio`).once('value'))
+    await write(transitionUpdate(await read(), musicQuestions, { status: 'reveal', currentIndex: 0 }, Date.now(), urls))
+    await write(transitionUpdate(await read(), musicQuestions, { status: 'scores', currentIndex: 0 }, Date.now(), urls))
+    expect(await read()).toMatchObject({ status: 'starting', nextAudio: { url: urls[musicQuestions[1].id] } })
+    await write(transitionUpdate(await read(), musicQuestions, { status: 'starting', currentIndex: 1 }, Date.now(), urls))
+    const asked = await read()
+    expect(asked).toMatchObject({ status: 'question', currentIndex: 1, currentQuestion: { audio: { url: urls[musicQuestions[1].id] } } })
+    expect(asked.nextAudio).toBeUndefined()
   })
 })
 

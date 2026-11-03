@@ -1,4 +1,4 @@
-import { HOME_TILE_METRICS, type HomeTileDensity } from '@shared/homeLayout';
+import { HOME_TILE_METRICS, showsTileHint, type HomeTileDensity } from '@shared/homeLayout';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
@@ -51,7 +51,7 @@ export function GameTile({ game, onPress, isSoon = false, density = 'normal', fi
         <GameIcon game={game} size={icon} color={color} />
       </View>
       <ButtonLabel style={styles.name}>{name}</ButtonLabel>
-      <ButtonLabel style={styles.hint}>{hint}</ButtonLabel>
+      {showsTileHint(density) && <ButtonLabel style={styles.hint}>{hint}</ButtonLabel>}
     </Pressable>
   );
 }

@@ -40,6 +40,59 @@
     "plugins": [
       "expo-router",
       [
+        "expo-font",
+        {
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "BowlbyOne",
+                "fontDefinitions": [
+                  {
+                    "path": "./node_modules/@expo-google-fonts/bowlby-one/400Regular/BowlbyOne_400Regular.ttf",
+                    "weight": 400
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Nunito-Bold",
+                "fontDefinitions": [
+                  {
+                    "path": "./node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Nunito-ExtraBold",
+                "fontDefinitions": [
+                  {
+                    "path": "./node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf",
+                    "weight": 800
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Nunito-Black",
+                "fontDefinitions": [
+                  {
+                    "path": "./node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf",
+                    "weight": 900
+                  }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": [
+              "./node_modules/@expo-google-fonts/bowlby-one/400Regular/BowlbyOne_400Regular.ttf",
+              "./node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf",
+              "./node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf",
+              "./node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf"
+            ]
+          }
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#170646",

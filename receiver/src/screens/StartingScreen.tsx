@@ -3,6 +3,7 @@ import type { PublicSession } from '@shared/types'
 import { useEffect, useState } from 'react'
 
 import { RingArcs } from '../components/Countdown'
+import { phaseAnimation } from '../lib/phaseAnimation'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { strings } from '../strings'
 import '../components/Countdown.css'
@@ -71,5 +72,5 @@ function DigitRing({ phaseEndsAt, digit }: { phaseEndsAt: number; digit: number 
     const startedAt = digitsAt[digitsAt.length - digit] ?? phaseEndsAt - GO_DISPLAY_MS
     return Math.min(STARTING_DIGIT_MS, Math.max(0, estimateServerNow(offsetMs) - startedAt))
   })
-  return <RingArcs timing={{ animationDuration: `${STARTING_DIGIT_MS}ms`, animationDelay: `-${elapsedMs}ms` }} />
+  return <RingArcs timing={phaseAnimation(STARTING_DIGIT_MS, elapsedMs)} />
 }

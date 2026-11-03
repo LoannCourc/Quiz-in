@@ -84,6 +84,9 @@
 
   /* Fond de célébration (révélation, fin) : halo orangé et rose au centre. */
   --background-celebration: radial-gradient(ellipse 80% 75% at 50% 40%, #f0884a 0%, #c42d8a 45%, var(--bg-middle) 100%);
+  /* Mode allégé des petites box (displayMode.css) : couleurs unies à la place des dégradés plein écran. */
+  --background-flat: var(--bg-middle);
+  --background-celebration-flat: #a8287f;
 
   /* Polices */
   --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;

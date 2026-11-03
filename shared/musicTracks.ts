@@ -20,17 +20,17 @@ export interface MusicTrack {
 
 export const MUSIC_TRACKS: Record<MusicTrackId, MusicTrack> = {
   // Salon et tirage des équipes.
-  waiting: { file: 'Waiting_sound.ogg', volume: 1, loop: true },
+  waiting: { file: 'Waiting_sound_v2.ogg', volume: 1, loop: true },
   // Question, révélation et classement d'un quiz à choix multiples (volume bas) ; révélation et classement d'un blind test.
-  game: { file: 'Salon_music.ogg', volume: 0.5, loop: true },
+  game: { file: 'Salon_music_v2.ogg', volume: 0.5, loop: true },
   // Écriture du Bluff ; question, révélation et classement en saisie libre (Contrôle compris).
-  writing: { file: 'Bluffecriture_sound.ogg', volume: 0.8, loop: true },
+  writing: { file: 'Bluffecriture_sound_v2.ogg', volume: 0.8, loop: true },
   // Vote, révélation et classement du Bluff.
-  vote: { file: 'Bluffvote_sound.ogg', volume: 0.8, loop: true },
+  vote: { file: 'Bluffvote_sound_v2.ogg', volume: 0.8, loop: true },
   // Écran de fin : démarre à l'arrivée du podium, puis boucle tant que l'écran est affiché. Le fichier
   // (16,7 s) répète deux phrases musicales de 4,17 s et finit par un fondu : boucle sur les 8,348 premières
   // secondes, là où la 3e phrase reprend la 1re (corrélation 0,95 au raccord).
-  final: { file: 'Findepartie_sound.ogg', volume: 1, loop: true, cue: true, loopEndS: 8.348 },
+  final: { file: 'Findepartie_sound_v2.ogg', volume: 1, loop: true, cue: true, loopEndS: 8.348 },
 }
 
 export const MUSIC_TRACK_IDS = Object.keys(MUSIC_TRACKS) as readonly MusicTrackId[]

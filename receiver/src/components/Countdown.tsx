@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 
+import { phaseAnimation } from '../lib/phaseAnimation'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import './Countdown.css'
 
@@ -48,10 +49,7 @@ function CountdownRing({ phaseStartedAt, phaseEndsAt }: CountdownProps) {
   const seconds = useSecondsLeft(phaseEndsAt, offsetMs)
   // Mesuré une seule fois, au montage : l'animation CSS avance ensuite seule.
   const [elapsedMs] = useState(() => estimateServerNow(offsetMs) - phaseStartedAt)
-  const timing = {
-    animationDuration: `${Math.max(1, phaseEndsAt - phaseStartedAt)}ms`,
-    animationDelay: `-${Math.max(0, elapsedMs)}ms`,
-  }
+  const timing = phaseAnimation(phaseEndsAt - phaseStartedAt, elapsedMs)
   const isUrgent = seconds > 0 && seconds <= URGENT_THRESHOLD_S
 
   return (

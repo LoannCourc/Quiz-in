@@ -1,0 +1,84 @@
+/* Mode allégé des petites box (lib/displayMode.ts, shared/displayMode.ts).
+   Une animation sans fin oblige la TV à redessiner tout l'écran à chaque image, même quand rien d'autre ne
+   bouge : sur la Bbox 4K, l'écran du salon tombait à 5 images par seconde. Le mode allégé garde les mêmes
+   écrans et les mêmes informations, plus statiques. */
+
+/* Fonds unis à la place des dégradés plein écran. */
+:root.tv-light {
+  --background: var(--background-flat);
+  --background-celebration: var(--background-celebration-flat);
+}
+
+/* Animations sans fin : arrêtées, l'élément garde son aspect de repos. */
+.tv-light .audio-status.is-playing .audio-bar,
+.tv-light .connection-lost,
+.tv-light .countdown-seconds.is-urgent,
+.tv-light .lobby-waiting,
+.tv-light .paused-coin,
+.tv-light .status-spinner,
+.tv-light .validation-dots span,
+.tv-light .end-suspense-title,
+.tv-light .podium.is-dancing .podium-avatar,
+.tv-light .podium.is-dancing .podium-block,
+.tv-light .team-podium.is-dancing .team-podium-block,
+.tv-light .team-podium.is-dancing .team-dancer,
+.tv-light .team-podium.is-dancing .team-member-avatar,
+.tv-light .crown,
+.tv-light .ranking-avatar.energy-1,
+.tv-light .ranking-avatar.energy-2,
+.tv-light .ranking-avatar.energy-3 {
+  animation: none !important;
+}
+
+/* Points de la validation : allumés tous les trois, sans clignoter. */
+.tv-light .validation-dots span {
+  opacity: 1;
+}
+
+/* Fin de partie : ni projecteur ni pluie continue ; la salve de confettis reste. */
+.tv-light .podium-spotlight,
+.tv-light .confetti-rain-piece {
+  display: none !important;
+}
+
+/* Arrivées et transitions : instantanées. Les délais restent (lignes du classement, marches du podium et
+   joueurs du tirage apparaissent toujours au rythme des sons), seul le mouvement disparaît. Les durées
+   qui portent une information (anneau du chrono, barre « question suivante ») ne changent pas. */
+.tv-light .screen,
+.tv-light .bluff-row,
+.tv-light .extra-streaks,
+.tv-light .podium-step,
+.tv-light .ranking-row,
+.tv-light .streak-badge,
+.tv-light .team-row,
+.tv-light .team-podium-step,
+.tv-light .team-member.is-arriving,
+.tv-light .announce-title,
+.tv-light .draw-found-banner,
+.tv-light .lobby-avatars .avatar,
+.tv-light .starting-number,
+.tv-light .starting-go {
+  animation-duration: 1ms !important;
+}
+
+.tv-light *,
+.tv-light *::before,
+.tv-light *::after {
+  transition-duration: 0s !important;
+}
+
+/* Chrono et 3-2-1 : les chiffres seuls (mis à jour une fois par seconde, ou à chaque chiffre du 3-2-1),
+   sans l'anneau qui se vide ; barre « question suivante » masquée, son texte garde les secondes. Les
+   éléments animés sont retirés (display: none) : aucune animation ne tourne pour le temps. */
+.tv-light .countdown-ring {
+  border-color: transparent;
+}
+
+.tv-light .countdown-half,
+.tv-light .next-question-fill {
+  display: none;
+}
+
+.tv-light .next-question-track {
+  visibility: hidden;
+}

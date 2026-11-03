@@ -11,6 +11,7 @@ import { useBlindTestInfo } from './hooks/useBlindTestInfo'
 import { GameAudioStateContext, useGameAudio } from './hooks/useGameAudio'
 import { useKeepAwake } from './hooks/useKeepAwake'
 import { useLiveSession } from './hooks/useLiveSession'
+import { useNextAudio } from './hooks/useNextAudio'
 import { usePerfEnabled } from './hooks/usePerfEnabled'
 import { usePhaseStale } from './hooks/usePhaseStale'
 import { usePlayedQuizName } from './hooks/usePlayedQuizName'
@@ -35,10 +36,10 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
   const isConnectionLost = hasConnectedOnce && !isConnected
   const isPerfEnabled = usePerfEnabled()
   useAbandonedGameCleanup(roomCode, state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
-  useTvPresence(roomCode, state.kind === 'ready' && isConnected)
-  // Pas de veille de la box du salon à la fin de partie (podium compris) ; coupé sans partie.
-  // Changer de jeu : la TV reste éveillée pendant que l'hôte choisit le prochain jeu.
-  useKeepAwake(state.kind === 'ready' && (state.session.status !== 'ended' || state.session.nextGameAt != null))
+  const isTvPresent = useTvPresence(roomCode, state.kind === 'ready' && isConnected)
+  // Pas de veille de la box du salon à la fin de partie, ni pendant 15 min sur l'écran de fin (podium,
+  // Changer de jeu) ; toujours éveillée pendant le choix du prochain jeu ; coupé sans partie.
+  useKeepAwake(state.kind === 'ready' ? state.session : null, serverTimeOffsetMs)
 
   switch (state.kind) {
     case 'loading':
@@ -60,7 +61,7 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
     case 'ready':
       return (
         <ServerTimeOffsetContext value={serverTimeOffsetMs}>
-          <GameAudio session={state.session} serverOffsetMs={serverTimeOffsetMs} isCastMode={isCastMode}>
+          <GameAudio session={state.session} roomCode={roomCode} isTvPresent={isTvPresent} serverOffsetMs={serverTimeOffsetMs} isCastMode={isCastMode}>
             <LiveSessionScreen session={state.session} roomCode={roomCode} />
           </GameAudio>
           {isConnectionLost && <ConnectionLostBanner />}
@@ -72,6 +73,9 @@ export function LiveReceiver({ roomCode, isCastMode = false }: LiveReceiverProps
 
 interface GameAudioProps {
   session: PublicSession
+  roomCode: string
+  // Présence de la TV écrite : l'extrait suivant (nextAudio) est alors lisible.
+  isTvPresent: boolean
   serverOffsetMs: number
   isCastMode: boolean
   children: ReactNode
@@ -80,11 +84,12 @@ interface GameAudioProps {
 // Son de la TV, monté pour toute la partie (il continue d'un écran à l'autre) : extrait du blind test,
 // effets et musiques (spec 17). Plan B : bandeau « Cliquez pour activer le son » tant que le navigateur
 // n'a pas autorisé le son (avant un blind test, ou dès que l'hôte a activé musique ou effets).
-function GameAudio({ session, serverOffsetMs, isCastMode, children }: GameAudioProps) {
+function GameAudio({ session, roomCode, isTvPresent, serverOffsetMs, isCastMode, children }: GameAudioProps) {
   const { isEnabled, isBlindTest } = useBlindTestInfo(session.quizId)
-  const audioState = useGameAudio(session, isEnabled, serverOffsetMs)
+  const nextAudio = useNextAudio(roomCode, isTvPresent && isBlindTest)
+  const audioState = useGameAudio(session, isEnabled, serverOffsetMs, nextAudio)
   const sound = useTvSound(session, serverOffsetMs)
-  useTvMusic(session, isBlindTest, serverOffsetMs)
+  useTvMusic(session, isBlindTest, serverOffsetMs, audioState === 'playing')
   const isBeforeGame = session.status === 'lobby' || session.status === 'starting'
   const needsBlindTestUnlock = isEnabled && ((isBlindTest && isBeforeGame) || audioState === 'blocked')
   const needsUnlock = !isCastMode && (needsBlindTestUnlock || (sound.isWanted && sound.state === 'suspended'))

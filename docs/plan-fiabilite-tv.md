@@ -1,6 +1,25 @@
 # Plan de fiabilité de la TV (partie B)
 
-Statut : plan validé. **Lot 1 (mesures, dit lot a) et lot 3 (veille, dit lot c) codés**, à mesurer sur la box ; lots 2 et 4 (dits b et d) : pas avant les mesures. Mode d'emploi en fin de document.
+Statut : plan validé. **Lots a (mesures), b (musiques), c (veille) et d (mode allégé) codés** ; lots b et d mesurés sur la box en novembre 2026 (voir « Mesures de novembre 2026 »). Mode d'emploi en fin de document.
+
+## Mesures de novembre 2026 (Bbox 4K, Cast, 8 faux joueurs, partie de Quiz)
+
+Écran de la box : 960×540 ×2, Chrome 92. Retard de l'hôte 0 ms, réseau 7 à 54 ms : le réseau n'est pas en cause. Rendus par seconde : 0 ; le fil principal n'est pas en cause en continu.
+
+| | Avant (production `1de1b57`) | Musiques allégées seules (A) | + mode allégé forcé (B) |
+|---|---|---|---|
+| Salon : images/s | 4 à 7 (min 0) | 49 (min 48) | 50 |
+| Tâches longues : max | 2 905 ms | 558 ms (révélation) | 88 ms (question), 70 ms (révélation) |
+| Battement max (attendu 250 ms) | 4,8 à 8,2 s | 0,5 s | 0,3 à 0,6 s |
+| Affichage d'une transition | — | 212 à 218 ms | 63 à 92 ms |
+| Pistes décodées au salon | 3 (22,9 Mo) | 1 (3,1 Mo) | 1 (3,1 Mo) |
+
+- Cause des gros gels : décodage des musiques stéréo et leur mixage mono sur le fil principal (incidents tous marqués « décodage »). Remède : fichiers mono 24 kHz, piste du salon seule au salon, mixage par un `OfflineAudioContext` (essai local, PC ralenti ×6 : `Salon_music` 965 ms dont 671 ms bloqués → 78 ms sans blocage).
+- Cause de la lenteur restante (5 images/s sans musique) : l'affichage continu. Toute animation sans fin (texte du salon, anneau du chrono, danse de fin) oblige la box à recomposer tout l'écran en 1920×1080 à chaque image. Remède : mode allégé (essai local : images composées par seconde au salon 75 → 0, en question 75 → 15, à la fin 75 → 0).
+- Rendu en basse résolution (scène dessinée à moitié puis agrandie) : aucun gain mesuré (C ≈ B), retiré.
+- Automatique (D) : ne s'est pas déclenché (mesure de 3 s toutes les 30 s seulement, écran de fin trop court pour tomber dedans) ; corrigé (mesure continue par secondes, allégé d'office sur Chrome 92 et plus ancien), à re-mesurer.
+- Anti-veille coupé sur l'écran de fin : c'était voulu par le code (coupé à `ended`) ; désormais 15 min sur l'écran de fin, avec surveillance.
+- Reste : tâches de 200 à 630 ms à chaque transition (rendu React de l'écran et mesures de mise en page forcées par l'ajustement des tailles, `useFitScale`) ; pistes possibles plus tard : moins de mesures forcées, écrans qui ne redessinent pas toute la liste des joueurs.
 
 ## Problèmes observés (tests en famille, box Bouygues « Bouygtel 4K », Cast)
 

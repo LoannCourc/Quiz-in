@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
-import { musicPlan, musicTracksFor } from '../../shared/music'
+import { AUDIO_TAIL_MUSIC_FADE_IN_MS } from '../../shared/constants'
+import { musicPlan, musicTracksFor, musicTracksToPrepare } from '../../shared/music'
 import { MUSIC_TRACK_IDS, MUSIC_TRACKS } from '../../shared/musicTracks'
 import { SUSPENSE_DRUMROLL_MS } from '../../shared/sound'
 import type { AnswerMode, Session } from '../../shared/types'
@@ -72,6 +73,20 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(inPhase('ended'), true).track).toBe('final')
   })
 
+  test('blind test, fin anticipée : la musique attend la fin de l’extrait, puis reprend', () => {
+    const reveal = inPhase('reveal', 'choice', { currentQuestion: BLIND_TEST_QUESTION })
+    expect(musicPlan(reveal, true, true)).toMatchObject({ track: null, fastStop: true })
+    expect(musicPlan(inPhase('scores'), true, true).track).toBeNull()
+    expect(musicPlan(reveal, true, false).track).toBe('game')
+    // La musique prend le relais de l'extrait en fondu d'entrée (1,5 s), aussi au classement.
+    expect(musicPlan(reveal, true, false).fadeInMs).toBe(AUDIO_TAIL_MUSIC_FADE_IN_MS)
+    expect(musicPlan(inPhase('scores'), true, false).fadeInMs).toBe(AUDIO_TAIL_MUSIC_FADE_IN_MS)
+    // Quiz classique : fondu enchaîné habituel.
+    expect(musicPlan(inPhase('reveal'), false).fadeInMs).toBeUndefined()
+    // Pause pendant l'extrait : musique d'attente, comme aujourd'hui.
+    expect(musicPlan(inPhase('paused', 'choice', { pausedFrom: 'reveal' }), true, true)).toMatchObject({ track: 'waiting', isPaused: true })
+  })
+
   test('Changer de jeu : la musique de fin cède la place à celle du salon ; pause impossible en fin de partie', () => {
     expect(musicPlan(inPhase('lobby'), false)).toMatchObject({ track: 'waiting', isPaused: false })
     expect(musicPlan(inPhase('ended'), false).isPaused).toBe(false)
@@ -101,6 +116,14 @@ describe('Musique de la TV selon la phase (spec 17)', () => {
     expect(musicPlan(blindTest, false)).toMatchObject({ track: 'waiting', heldTrack: null })
     // Pause pendant la musique d'attente (3-2-1) : rien ne change, ni arrêt avant l'extrait pendant la pause.
     expect(musicPlan(inPhase('paused', 'choice', { pausedFrom: 'starting' }), true)).toEqual({ track: 'waiting', fastStop: false, isPaused: true })
+  })
+
+  test('pistes gardées décodées : au salon (et au choix du prochain jeu) celle du salon seule, puis celles du jeu dès le lancement', () => {
+    expect(musicTracksToPrepare(inPhase('lobby'), 'choice', false)).toEqual(['waiting'])
+    expect(musicTracksToPrepare(inPhase('ended', 'choice', { nextGameAt: NOW }), 'bluff', false)).toEqual(['waiting'])
+    expect(musicTracksToPrepare(inPhase('starting'), 'choice', false)).toEqual(['waiting', 'game', 'final'])
+    expect(musicTracksToPrepare(inPhase('question'), 'bluff', false)).toEqual(['waiting', 'writing', 'vote', 'final'])
+    expect(musicTracksToPrepare(inPhase('ended'), 'free', true)).toEqual(['waiting', 'game', 'final'])
   })
 
   test('pistes à préparer selon le mode, dans l’ordre d’utilisation', () => {

@@ -317,7 +317,12 @@ export function transitionUpdate(
       const question = questions[phase.currentIndex]
       if (!question) return null
       // reveal est effacé au passage à la question suivante (spec 7).
-      const published = { ...base, currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]), reveal: null }
+      const published = {
+        ...base,
+        currentQuestion: toPublicQuestion(question, answerMode, audioUrls[question.id]),
+        reveal: null,
+        ...clearNextAudio(session),
+      }
       return isDrawQuestion(question) ? { ...published, ...drawRoundPaths(session, question, phase.currentIndex) } : published
     }
     case 'vote': {
@@ -345,16 +350,32 @@ export function transitionUpdate(
       const result = buildReveal(question, session, reviewed)
       // Joueurs comptés pour les équipes : figés à la fin de la question (avant une validation éventuelle).
       const presence = reviewed ? {} : teamPresencePaths(session)
-      return { ...base, ...revealPaths(session, result), ...presence, ...teamPaths(session, result.results) }
+      const next = nextAudioPaths(session, questions, answerMode, audioUrls)
+      return { ...base, ...revealPaths(session, result), ...presence, ...teamPaths(session, result.results), ...next }
     }
     case 'starting':
       // Pas à pas, 3-2-1 avant la question suivante : rien de la question précédente, rien de la suivante.
       return { ...base, currentQuestion: null, reveal: null }
     case 'ended':
-      return { ...base, currentQuestion: null, reveal: null }
+      return { ...base, currentQuestion: null, reveal: null, ...clearNextAudio(session) }
     default:
       return base
   }
+}
+
+// Blind test : extrait de la question suivante, publié dès la révélation pour que la TV le précharge pendant
+// le classement (champ lu par la TV seule, voir Session.nextAudio). Mêmes adresse, début et durée que ceux
+// que publiera la question : la TV reconnaît l'extrait préchargé à son adresse. Rien à publier : effacé.
+function nextAudioPaths(session: Session, questions: readonly GameQuestion[], answerMode: AnswerMode, audioUrls: AudioUrls): SessionUpdate {
+  const next = questions[session.currentIndex + 1]
+  const audio = next ? toPublicQuestion(next, answerMode, audioUrls[next.id]).audio : undefined
+  return audio ? { nextAudio: audio } : clearNextAudio(session)
+}
+
+// nextAudio effacé seulement s'il existe : une partie sans blind test n'écrit jamais ce champ (une TV ou des
+// règles plus anciennes ne sont pas concernées).
+function clearNextAudio(session: Session): SessionUpdate {
+  return session.nextAudio ? { nextAudio: null } : {}
 }
 
 // Dessine-moi, réponse de la manche : le mot (celui du dessinateur, qui a pu en changer), les points des
@@ -491,17 +512,22 @@ function revealPaths(session: Session, { reveal, results, scores, ranks }: Revea
 }
 
 // Blind test : republie l'adresse renouvelée de l'extrait en cours (question, révélation ou pause,
-// par exemple à la reprise après une longue pause), ou null s'il n'y a rien à changer.
+// par exemple à la reprise après une longue pause) et de l'extrait suivant déjà publié (nextAudio), ou null
+// s'il n'y a rien à changer.
 export function audioUrlUpdate(
   session: Session,
   questions: readonly GameQuestion[],
   audioUrls: AudioUrls,
 ): SessionUpdate | null {
+  const update: SessionUpdate = {}
   const published = session.currentQuestion?.audio
   const question = questions[session.currentIndex]
   const url = question ? audioUrls[question.id] : undefined
-  if (!published || !url || url === published.url) return null
-  return { 'currentQuestion/audio/url': url }
+  if (published && url && url !== published.url) update['currentQuestion/audio/url'] = url
+  const next = questions[session.currentIndex + 1]
+  const nextUrl = next ? audioUrls[next.id] : undefined
+  if (session.nextAudio && nextUrl && nextUrl !== session.nextAudio.url) update['nextAudio/url'] = nextUrl
+  return Object.keys(update).length > 0 ? update : null
 }
 
 export type LaunchRefusal =
@@ -782,6 +808,7 @@ function newGameReset(session: Session, nowServer: number): SessionUpdate {
     teamPoints: null,
     teamPresence: null,
     nextGameAt: null,
+    ...clearNextAudio(session),
     ...BLUFF_RESET,
     ...DRAW_RESET,
   }

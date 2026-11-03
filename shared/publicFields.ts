@@ -1,4 +1,4 @@
-import type { PublicSession } from './types'
+import type { PublicSession, Session } from './types'
 
 // Champs publics de sessions/{code}, lus un par un par les joueurs et la TV (les règles interdisent
 // de lire la session d'un bloc : answers est réservé à l'hôte). Une seule liste pour tous : un champ
@@ -38,6 +38,11 @@ const PUBLIC_FIELD_SET: Record<keyof PublicSession, true> = {
 export type PublicField = keyof PublicSession
 
 export const PUBLIC_SESSION_FIELDS = Object.keys(PUBLIC_FIELD_SET) as readonly PublicField[]
+
+// Champs lus par la TV seule, en plus des champs publics : réservés par les règles à la TV présente
+// (sessions/{code}/tvPresence/{uid}) et à l'hôte. La TV ne s'y abonne qu'après avoir écrit sa présence, et
+// ignore un refus (règles pas encore déployées, présence perdue) : ces champs sont des bonus.
+export const TV_SESSION_FIELDS = ['nextAudio'] as const satisfies readonly (keyof Session)[]
 
 // La base ne stocke pas les objets vides : players (personne n'a rejoint) et reveal.stats (Dessine-moi,
 // Réponse libre sans réponse…) manquent à la lecture. Toute session lue dans la base (TV, joueurs, hôte,

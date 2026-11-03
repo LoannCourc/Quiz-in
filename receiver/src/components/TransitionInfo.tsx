@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useFitScale } from '../hooks/useFitScale'
 
 import { useRemainingMs } from '../hooks/useRemainingMs'
+import { phaseAnimation } from '../lib/phaseAnimation'
 import { estimateServerNow, useServerTimeOffset } from '../lib/serverTime'
 import { strings } from '../strings'
 import './TransitionInfo.css'
@@ -69,10 +70,7 @@ function WaitLine({ countdown, isRound }: { countdown: NextQuestionCountdown; is
       <span className="next-question-track">
         <span
           className="next-question-fill"
-          style={{
-            animationDuration: `${Math.max(1, countdown.endsAt - countdown.startsAt)}ms`,
-            animationDelay: `-${Math.max(0, elapsedMs)}ms`,
-          }}
+          style={phaseAnimation(countdown.endsAt - countdown.startsAt, elapsedMs)}
         />
       </span>
     </div>

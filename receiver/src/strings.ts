@@ -268,6 +268,21 @@ export const strings = {
     memory: (usedMb: number, limitMb: number) => `Mémoire JS : ${usedMb} / ${limitMb} Mo`,
     memoryUnknown: 'Mémoire JS : non mesurable',
     screen: (screen: string, chrome: string) => `Écran : ${screen} · Chrome ${chrome}`,
+    // Mode allégé (lib/displayMode.ts) : réglage (auto, on, off), ce qui est appliqué, et dernière décision
+    // de l'automatique (images par seconde de la dernière seconde comptée, seuil, il y a combien de temps).
+    // Blind test : délai entre l'ordre de jouer l'extrait et le son, et s'il était préchargé (nextAudio).
+    extractStart: (ms: number, isPreloaded: boolean) => `Extrait : son en ${ms} ms après play() (${isPreloaded ? 'préchargé' : 'pas préchargé'})`,
+    noExtractStart: 'Extrait : pas encore joué',
+    lightMode: (setting: string, isLight: boolean) => `Allégé : ${isLight ? 'OUI' : 'non'} (${setting})`,
+    lightAuto: {
+      waiting: 'Auto : pas encore de mesure',
+      measuring: (fps: number, threshold: number, agoS: number, slowStreak: number, needed: number) =>
+        `Auto : ${fps} images/s (seuil ${threshold}) il y a ${agoS} s · lentes de suite : ${slowStreak}/${needed}`,
+      oldChrome: (agoS: number) => `Auto : allégé d’office (Chrome 92 ou plus ancien) depuis ${agoS} s`,
+      remembered: (agoS: number) => `Auto : allégé (lenteur mesurée sur une page précédente) depuis ${agoS} s`,
+      slow: (fps: number, threshold: number, agoS: number) => `Auto : allégé il y a ${agoS} s (${fps} images/s, sous ${threshold})`,
+      freeze: (agoS: number) => `Auto : allégé il y a ${agoS} s (affichage figé plus de 2 s)`,
+    },
     // Police emoji de la TV : sans elle, les avatars ne s'affichent que grâce à leurs images.
     emoji: (support: EmojiSupport) =>
       `Emoji : ${{ color: 'oui', mono: 'oui, en noir et blanc', none: 'non', unknown: 'non mesurable' }[support]} (avatars en images)`,

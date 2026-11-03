@@ -74,14 +74,31 @@ async function requestWakeLock(): Promise<void> {
       if (status.wakeLock === 'held') status.wakeLock = 'off'
     })
   } catch (error: unknown) {
+    // Redemandé par la surveillance : un seul message tant qu'il reste refusé.
+    if (status.wakeLock !== 'refused') console.warn('[veille] Wake Lock refusé', error)
     status.wakeLock = 'refused'
-    console.warn('[veille] Wake Lock refusé', error)
   }
 }
 
 // Le navigateur relâche le Wake Lock quand la page est masquée : on le redemande à son retour.
 function onVisibilityChange(): void {
   if (isActive && document.visibilityState === 'visible' && wakeLock === null) void requestWakeLock()
+}
+
+// Surveillance tant que la TV doit rester éveillée : vidéo arrêtée (mise en pause ou en erreur sans
+// événement, page figée un moment) relancée, ou recréée après une erreur ; Wake Lock relâché redemandé.
+const WATCHDOG_MS = 10_000
+let watchdog: ReturnType<typeof setInterval> | null = null
+
+function checkKeepAwake(): void {
+  if (!isActive) return
+  if (status.video === 'error' && video) {
+    video.remove()
+    video = null
+  }
+  video ??= createVideo()
+  if (video.paused) playVideo(video)
+  if (wakeLock === null && status.wakeLock !== 'unsupported' && document.visibilityState === 'visible') void requestWakeLock()
 }
 
 export function startKeepAwake(): void {
@@ -92,12 +109,15 @@ export function startKeepAwake(): void {
   playVideo(video)
   void requestWakeLock()
   document.addEventListener('visibilitychange', onVisibilityChange)
+  watchdog = setInterval(checkKeepAwake, WATCHDOG_MS)
 }
 
 // Hors partie : vidéo retirée de la page (décodeur libéré), Wake Lock rendu.
 export function stopKeepAwake(): void {
   if (!isActive) return
   isActive = false
+  if (watchdog !== null) clearInterval(watchdog)
+  watchdog = null
   document.removeEventListener('visibilitychange', onVisibilityChange)
   if (video) {
     video.pause()

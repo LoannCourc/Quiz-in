@@ -1,6 +1,16 @@
-# Musiques allégées : préparation (rien n'est appliqué)
+# Musiques allégées
 
-Option C du lot b (`docs/plan-fiabilite-tv.md`), préparée en attendant les mesures à 20 joueurs avec musique active. **À n'appliquer que si les seuils ne sont pas tenus** (minuteur ≤ 1,2 s, transition ≤ 1 s, ≥ 30 images/s) et après validation à l'oreille.
+**Appliquées en novembre 2026** (mesures de la Bbox 4K : `docs/plan-fiabilite-tv.md`). Fichiers produits avec FFmpeg, à l'identique (durées égales à l'échantillon près) :
+
+```
+ffmpeg -i <original>.ogg -af "pan=mono|c0=0.5*c0+0.5*c1,aresample=24000:resampler=soxr:precision=28" -c:a libvorbis -q:a 4 -map_metadata -1 <original>_v2.ogg
+```
+
+Le mixage `0.5*G + 0.5*D` est celui que faisait la TV. Fichiers publiés : `receiver/public/music/*_v2.ogg` (2,2 Mo en tout) ; originaux hors du dépôt dans `C:\dev\sons-originaux\`. `MUSIC_SAMPLE_RATE` vaut 24 000. La suite de ce document est l'étude préalable.
+
+Enchaînement avec l'extrait d'un blind test (constantes dans `shared/constants.ts`) : quand tout le monde a répondu avant la fin du chrono, l'extrait continue et s'éteint en cosinus sur ses `AUDIO_TAIL_FADE_MS` dernières millisecondes (5 s ; réponses tardives : à partir du moment où tout le monde a répondu) ; quand le chrono va au bout, fondu court `AUDIO_END_FADE_MS` (400 ms). La musique de jeu (`Salon_music_v2.ogg`) entre ensuite en `AUDIO_TAIL_MUSIC_FADE_IN_MS` (2 s).
+
+Option C du lot b (`docs/plan-fiabilite-tv.md`).
 
 ## Ce que joue la box aujourd'hui
 

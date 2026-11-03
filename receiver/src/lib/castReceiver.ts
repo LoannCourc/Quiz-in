@@ -1,5 +1,8 @@
 import { CAST_NAMESPACE, readCastAudioTest, readCastDrawBench, readCastPerf, readCastPerfMusic, readCastRoomCode, readCastSoundTest } from '@shared/cast'
 
+import { readCastLight } from '@shared/displayMode'
+
+import { applyCastLight } from './displayMode'
 import { setPerfEnabled, setPerfMusicForcedOff } from './perf/perfFlag'
 
 // SDK Web Receiver de Google : toujours chargé depuis gstatic (Google interdit de l'héberger
@@ -65,6 +68,12 @@ function receiveMessage(event: CustomMessageEvent): void {
   const perf = readCastPerf(event.data)
   if (perf !== null) {
     setPerfEnabled(perf)
+    return
+  }
+  // Mode allégé (cast-sender.html), même en pleine partie.
+  const light = readCastLight(event.data)
+  if (light !== null) {
+    applyCastLight(light)
     return
   }
   const perfMusic = readCastPerfMusic(event.data)

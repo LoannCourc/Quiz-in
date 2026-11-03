@@ -1,3 +1,4 @@
+import { AUDIO_TAIL_MUSIC_FADE_IN_MS } from './constants'
 import type { MusicTrackId } from './musicTracks'
 import { SUSPENSE_DRUMROLL_MS } from './sound'
 import type { AnswerMode, GameStatus, PublicSession } from './types'
@@ -29,13 +30,21 @@ export interface MusicPlan {
   isPaused: boolean
   // Pause : musique de la phase interrompue, reprise là où elle s'était arrêtée (null : silence, blind test).
   heldTrack?: MusicTrackId | null
+  // Fondu d'entrée (ms) à la place du fondu enchaîné habituel : blind test, la musique prend le relais de
+  // l'extrait qui vient de s'éteindre (AUDIO_TAIL_MUSIC_FADE_IN_MS).
+  fadeInMs?: number
 }
 
 // isBlindTestGame : le quiz de la partie est un blind test (l'extrait de chaque question joue seul).
+// isExtractPlaying : l'extrait joue encore sur la TV (après une fin anticipée de la question, jusqu'au bout
+// de son timing) : la musique attend qu'il se termine.
 // Pause : la musique d'attente joue, la musique de la phase est retenue pour la reprise (une pause
 // pendant la musique d'attente ne change rien).
-export function musicPlan(session: PublicSession, isBlindTestGame: boolean): MusicPlan {
-  if (session.status !== 'paused') return phaseMusic(session, session.status, isBlindTestGame)
+export function musicPlan(session: PublicSession, isBlindTestGame: boolean, isExtractPlaying = false): MusicPlan {
+  if (session.status !== 'paused') {
+    const plan = phaseMusic(session, session.status, isBlindTestGame)
+    return isExtractPlaying && plan.track !== null ? { track: null, fastStop: true, isPaused: false } : plan
+  }
   const held = phaseMusic(session, session.pausedFrom ?? 'question', isBlindTestGame)
   if (held.track === 'waiting') return { track: 'waiting', fastStop: false, isPaused: true }
   return { track: 'waiting', heldTrack: held.track, fastStop: false, isPaused: true }
@@ -69,13 +78,13 @@ function phaseMusic(session: PublicSession, status: GameStatus, isBlindTestGame:
       if (mode === 'bluff') return play('vote')
       // Blind test : la musique de jeu revient dès la bonne réponse. Elle continue au classement ; en Suspense,
       // la question suivante suit directement la révélation : la musique se tait alors avant son extrait.
-      if (isBlindTest) return { ...play('game'), stopBy: session.settings.suspense ? stopBy : undefined }
+      if (isBlindTest) return { ...play('game'), fadeInMs: AUDIO_TAIL_MUSIC_FADE_IN_MS, stopBy: session.settings.suspense ? stopBy : undefined }
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'scores':
       // La musique de la question continue à travers le classement ; blind test : la musique de jeu revient,
       // puis se tait avant l'extrait suivant.
       if (mode === 'bluff') return play('vote')
-      if (isBlindTest) return { ...play('game'), stopBy }
+      if (isBlindTest) return { ...play('game'), fadeInMs: AUDIO_TAIL_MUSIC_FADE_IN_MS, stopBy }
       return play(mode === 'choice' ? 'game' : 'writing')
     case 'ended':
       // Changer de jeu : l'hôte choisit le prochain jeu, la musique du salon reprend.
@@ -94,4 +103,16 @@ export function musicTracksFor(mode: AnswerMode, isBlindTestGame: boolean): Musi
   const loops: MusicTrackId[] =
     mode === 'bluff' ? ['writing', 'vote'] : isBlindTestGame || mode === 'choice' ? ['game'] : ['writing']
   return ['waiting', ...loops, 'final']
+}
+
+// Pistes à garder décodées selon le moment (box de salon : décoder bloque l'affichage et occupe la
+// mémoire). Salon, et choix du prochain jeu (des joueurs peuvent rejoindre) : la musique du salon seule.
+// Dès le lancement : celles du mode de jeu, décodées l'une après l'autre pendant le 3-2-1.
+export function musicTracksToPrepare(
+  session: Pick<PublicSession, 'status' | 'nextGameAt'>,
+  mode: AnswerMode,
+  isBlindTestGame: boolean,
+): MusicTrackId[] {
+  const isWelcoming = session.status === 'lobby' || (session.status === 'ended' && session.nextGameAt != null)
+  return isWelcoming ? ['waiting'] : musicTracksFor(mode, isBlindTestGame)
 }

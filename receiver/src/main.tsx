@@ -1,8 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './displayMode.css'
 import App from './App.tsx'
 import { preloadAvatarImages } from './lib/avatarImages'
+import { startDisplayMode } from './lib/displayMode'
+
+// Mode allégé et basse résolution des petites box : avant le premier affichage.
+startDisplayMode()
 
 // Graisses de la DA (theme.css) et images des avatars à charger avant le premier affichage.
 const FONT_FACES = ['400 1rem "Bowlby One"', '700 1rem Nunito', '800 1rem Nunito', '900 1rem Nunito']

@@ -279,10 +279,11 @@ export const AppCoinGradient = `radial-gradient(circle at 50% 40%, ${Palette.gol
 export type AppBackgroundName = keyof typeof AppBackgrounds;
 
 // Une famille par graisse : sur Android, fontWeight ne choisit pas la graisse d'une police
-// chargée à part. Les noms sont ceux enregistrés au chargement (hooks/useAppFonts.ts) et, sur le web,
-// ceux des @font-face de public/index.html.
+// chargée à part. Android : noms donnés aux polices intégrées par le plugin expo-font (app.json) ; iOS :
+// nom PostScript lu dans chaque fichier (Bowlby One : « BowlbyOne-Regular », les Nunito ont déjà le leur) ;
+// web : noms des @font-face de public/index.html.
 export const AppFontNames = {
-  display: 'BowlbyOne',
+  display: Platform.OS === 'ios' ? 'BowlbyOne-Regular' : 'BowlbyOne',
   bold: 'Nunito-Bold',
   extraBold: 'Nunito-ExtraBold',
   black: 'Nunito-Black',
