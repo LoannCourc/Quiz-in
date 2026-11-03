@@ -1,48 +1,37 @@
-// Panneau de mesures de la TV (?perf=1) : désactivé par défaut, sans aucun coût s'il est éteint.
-// Allumé par l'adresse (?perf=1, plan B ; ?perf=0 l'éteint) ou par le message Cast { "perf": true }
-// envoyé depuis cast-sender.html, même en pleine partie. Le choix est gardé par la TV (localStorage) :
-// une fois allumé, il le reste aux parties suivantes jusqu'à { "perf": false }.
+import { LEGACY_PERF_STORAGE_KEY, perfEnabledFromUrl } from '@shared/perfFlag'
+
+// Panneau de mesures de la TV (?perf=1) : éteint par défaut, sans aucun coût s'il est éteint (le moniteur ne
+// tourne que panneau affiché). Allumé seulement par une action volontaire, pour la page en cours : ?perf=1
+// dans l'adresse (plan B), ou le message Cast { "perf": true } envoyé depuis cast-sender.html, même en pleine
+// partie. Rien n'est mémorisé (shared/perfFlag.ts) : rechargement, redémarrage de la box ou nouveau Cast,
+// le panneau est éteint ; { "perf": false } ou ?perf=0 l'éteignent aussi.
 // Musique coupée pour comparer sur une même partie (seulement panneau allumé, jamais gardée) :
 // ?perfmusic=0, ou le message Cast { "perfMusic": false } ; { "perfMusic": true } rend la main à l'hôte.
 
-const STORAGE_KEY = 'quizin.perf'
-const PARAM = 'perf'
 const MUSIC_PARAM = 'perfmusic'
 
 type PerfListener = () => void
 
 const listeners = new Set<PerfListener>()
-let isEnabled = readInitialFlag()
+
+// Ancienne valeur gardée par la TV avant la 1.2.2 (panneau qui revenait à chaque partie) : effacée.
+function clearLegacyFlag(): void {
+  try {
+    localStorage.removeItem(LEGACY_PERF_STORAGE_KEY)
+  } catch {
+    // Stockage indisponible : rien à effacer.
+  }
+}
+
+clearLegacyFlag()
+let isEnabled = perfEnabledFromUrl(window.location.search)
 let isMusicForcedOff = new URLSearchParams(window.location.search).get(MUSIC_PARAM) === '0'
-
-function store(value: boolean): void {
-  try {
-    if (value) localStorage.setItem(STORAGE_KEY, '1')
-    else localStorage.removeItem(STORAGE_KEY)
-  } catch {
-    // Stockage indisponible : le réglage vaut pour cette page seulement.
-  }
-}
-
-function readInitialFlag(): boolean {
-  const param = new URLSearchParams(window.location.search).get(PARAM)
-  if (param === '1' || param === '0') {
-    store(param === '1')
-    return param === '1'
-  }
-  try {
-    return localStorage.getItem(STORAGE_KEY) === '1'
-  } catch {
-    return false
-  }
-}
 
 export function isPerfEnabled(): boolean {
   return isEnabled
 }
 
 export function setPerfEnabled(value: boolean): void {
-  store(value)
   if (value === isEnabled) return
   isEnabled = value
   listeners.forEach((listener) => listener())
