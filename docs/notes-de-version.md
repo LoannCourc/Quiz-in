@@ -3,6 +3,18 @@
 500 caractères au plus (Google Play). Jamais de mention du blind test. Nombre de caractères : texte tel qu'il
 est collé dans la console, retours à la ligne compris.
 
+## 1.2.1 : nouveautés (mise à jour depuis la 1.2.0, 136 caractères)
+
+Nouveautés de la 1.2.1 :
+• L’écran d’accueil tient toujours en entier, même après avoir saisi un code de partie.
+• Corrections diverses.
+
+English (107 characters), si la fiche a une version anglaise :
+
+What’s new in 1.2.1:
+• The home screen always fits on screen, even after entering a game code.
+• Bug fixes.
+
 ## 1.2.0 : nouveautés (mise à jour depuis la 1.1.0, 170 caractères)
 
 Nouveautés de la 1.2 :
