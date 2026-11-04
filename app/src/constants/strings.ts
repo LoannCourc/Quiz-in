@@ -1197,6 +1197,17 @@ export const strings = {
     soonBadge: 'Bientôt',
     back: 'Retour à l’accueil',
   },
+  // Mise à jour disponible (spec 21) : feuille de l'accueil (doux) ou écran à la place de l'accueil (obligatoire).
+  update: {
+    title: 'Une mise à jour est disponible',
+    text: 'Une nouvelle version de Quiz’in est prête, avec des nouveautés et des corrections.',
+    update: 'Mettre à jour',
+    later: 'Plus tard',
+    requiredTitle: 'Mise à jour nécessaire',
+    requiredText: 'Mets à jour Quiz’in pour continuer à jouer.',
+    // Aucun lien ne s'est ouvert : jamais d'impasse.
+    storeFallback: { android: 'Ouvre le Play Store et cherche Quiz’in.', ios: 'Ouvre l’App Store et cherche Quiz’in.' },
+  },
   // Dessine-moi (plan docs/plan-dessine-moi.md) : outils du dessinateur.
   draw: {
     // Maquette E1 : cinq outils ronds avec leur nom dessous.

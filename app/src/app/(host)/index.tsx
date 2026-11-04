@@ -11,6 +11,8 @@ import { BadgeNotice } from '@/components/badges/LazyBadges';
 import { SupportAppDialog } from '@/components/badges/SupportAppDialog';
 import { SupportHomeButton } from '@/components/badges/SupportHomeButton';
 import { HomeView } from '@/components/host/home/HomeView';
+import { UpdateRequiredScreen } from '@/components/update/UpdateRequiredScreen';
+import { UpdateSheet } from '@/components/update/UpdateSheet';
 import { BigButton } from '@/components/ui/BigButton';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Screen } from '@/components/ui/Screen';
@@ -18,6 +20,7 @@ import { textStyles } from '@/components/ui/textStyles';
 import { AppColors } from '@/constants/appTheme';
 import { strings, type GameType } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
+import { useAppUpdate } from '@/hooks/useAppUpdate';
 import { useBlindTestEnabled } from '@/hooks/useBlindTestEnabled';
 import { useDrawEnabled } from '@/hooks/useDrawEnabled';
 import { useKeyboardInset } from '@/hooks/useKeyboardInset';
@@ -50,6 +53,8 @@ function HomeScreen() {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [unlocked, setUnlocked] = useState<BadgeId[]>([]);
   const [badgesReloadKey, setBadgesReloadKey] = useState(0);
+  // Mise à jour disponible (spec 21) : jamais en mode salon (une partie est ouverte), lue sans retarder l'accueil.
+  const update = useAppUpdate(room === undefined);
   const resumeButton = resumableCode && (
     <BigButton
       label={strings.catalog.resumeGame(resumableCode)}
@@ -79,6 +84,8 @@ function HomeScreen() {
       if (fitted !== null && !isKeyboardOpen) setMeasured({ sizeKey, density: fitted });
     },
   };
+
+  if (update.prompt.kind === 'required') return <UpdateRequiredScreen storeUrl={update.prompt.storeUrl} />;
 
   return (
     <View style={styles.fill}>
@@ -120,6 +127,7 @@ function HomeScreen() {
         }}
       />
       <BadgeNotice badges={unlocked} delayMs={SUPPORT_NOTICE_DELAY_MS} onDismiss={() => setUnlocked([])} />
+      {update.prompt.kind === 'soft' && <UpdateSheet isOpen storeUrl={update.prompt.storeUrl} onClose={update.dismiss} />}
     </View>
   );
 }

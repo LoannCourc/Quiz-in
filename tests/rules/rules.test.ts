@@ -2518,6 +2518,22 @@ describe('Statistiques anonymes (/stats) : compteurs + 1 seulement, lus par le c
     await assertSucceeds(db(HOST).ref('config/statsEnabled').once('value'))
     await assertFails(db(HOST).ref('config/statsEnabled').set(true))
   })
+
+  test('config/appVersion (mise à jour disponible) : lisible connecté, jamais sans compte ; jamais modifiable par un client', async () => {
+    const android = { latest: '1.1.0', minimum: '1.0.0', storeUrl: 'https://play.google.com/store/apps/details?id=com.herocorp.quizin', enabled: true }
+    await seed({ config: { appVersion: { android, ios: { ...android, storeUrl: 'https://apps.apple.com/app/id6820975402', enabled: false } } } })
+    for (const reader of [HOST, PLAYER, 'tv-uid']) await assertSucceeds(db(reader).ref('config/appVersion').once('value'))
+    expect((await db(PLAYER).ref('config/appVersion/android/latest').once('value')).val()).toBe('1.1.0')
+    await assertFails(db(null).ref('config/appVersion').once('value'))
+    for (const writer of [HOST, PLAYER]) {
+      await assertFails(db(writer).ref('config/appVersion/android/minimum').set('9.9.9'))
+      await assertFails(db(writer).ref('config/appVersion').set(null))
+      await assertFails(db(writer).ref('config/appVersion/android').update({ enabled: false }))
+    }
+    // Un hôte de partie n'a pas plus de droits : sa partie ne lui ouvre pas config/.
+    await seedSession({ status: 'lobby' })
+    await assertFails(db(HOST).ref('config/appVersion/android/latest').set('2.0.0'))
+  })
 })
 
 describe('Présence après « Quitter la partie » (shared/presence.ts sur l’émulateur)', () => {
