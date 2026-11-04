@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Quiz « déjà faits » (lot E) : mémorisés sur ce téléphone seulement, au lancement d'une partie. Une
-// réinstallation, l'effacement des données de l'app ou un autre téléphone repartent de zéro.
+// Quiz « déjà faits » (lot E) : mémorisés sur ce téléphone seulement, quand l'hôte finit une partie (même règle
+// que les badges : dernière révélation vue, puis écran de fin ; useBadgeTracking). Une partie abandonnée ne
+// compte pas. Une réinstallation, l'effacement des données de l'app ou un autre téléphone repartent de zéro.
 const STORAGE_KEY = 'quizin:played';
 
 export async function loadPlayedQuizzes(): Promise<Set<string>> {

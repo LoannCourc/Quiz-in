@@ -88,6 +88,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 7. Quand tout le monde est là, il appuie sur **« Lancer la partie »** (minimum 2 joueurs, hôte compris ; en Groupe, conditions de la section 6.4). Ce qui manque est écrit au-dessus du bouton, sauf le nombre de joueurs : le bouton grisé suffit (retour du test du build preview).
 8. Pendant la partie, il joue et dispose de boutons admin : **Passer** (avance à l'étape suivante), **Pause**, **Terminer**. En Pas à pas, un gros bouton jaune en bas de l'écran fait avancer la partie ; il est nommé d'après sa destination (section 5.1). Avec Contrôle, après chaque question, il valide les réponses (section 5.2).
 9. À la fin : classement final, puis **Changer de jeu** (le même jeu ou un autre, sans nouveau salon : mêmes joueurs, même code, même QR) ou **Quitter**. Plus de bouton « Rejouer » (octobre 2026) : choisir le même jeu le relance.
+10. **« Déjà fait » et « Joué »** (repères du catalogue, compteurs « N joués », « Cacher ceux déjà faits ») : un quiz choisi seul dont l'hôte a **terminé** une partie sur ce téléphone, c'est-à-dire vu la révélation de la dernière question puis l'écran de fin (même règle que les badges, section 20). Une partie abandonnée, ou arrêtée par « Terminer » avant la dernière révélation, ne compte pas. Les parties par thèmes et les mélanges ne marquent aucun quiz. Les questions jouées (tirages suivants) restent marquées dès le lancement.
 
 ### 4.2 Joueur
 1. Scanne le **QR code** affiché sur la TV (ou ouvre l'adresse et saisit le code de salle).

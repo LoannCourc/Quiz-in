@@ -4,7 +4,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { applyFinishedGame, emptyBadgeState, type BadgeGame, type BadgeRole, type BadgeState } from '../../shared/badges'
-import { finishedGameOf, parseTrackedGame, trackSession, type TrackedGame } from '../../shared/badgeTracking'
+import { completedQuizId, finishedGameOf, parseTrackedGame, trackSession, type TrackedGame } from '../../shared/badgeTracking'
 import { bluffChecksUpdate, isBluffQuestion } from '../../shared/bluff'
 import { DEFAULT_SESSION_SETTINGS } from '../../shared/constants'
 import { drawGameQuestions } from '../../shared/drawGame'
@@ -57,10 +57,12 @@ interface Phone {
   // Dernière partie suivie écrite dans le stockage (saveTrackedGame), avant qu'elle soit comptée.
   stored: TrackedGame | null
   badges: BadgeState
+  // Quiz marqués « déjà faits » (markQuizPlayed).
+  completedQuizzes: string[]
 }
 
 function phone(uid: PlayerId, role: BadgeRole = 'player', answerMs = 4_000): Phone {
-  return { uid, role, answerMs, tracked: null, stored: null, badges: emptyBadgeState() }
+  return { uid, role, answerMs, tracked: null, stored: null, badges: emptyBadgeState(), completedQuizzes: [] }
 }
 
 function observe(phones: Phone[], session: Session) {
@@ -70,6 +72,8 @@ function observe(phones: Phone[], session: Session) {
     if (device.tracked) device.stored = JSON.parse(JSON.stringify(device.tracked)) as TrackedGame
     const finished = finishedGameOf(device.tracked, view, { code: CODE, uid: device.uid, localDay: DAY })
     if (!finished) continue
+    const quizId = completedQuizId(finished, view)
+    if (quizId !== null) device.completedQuizzes.push(quizId)
     device.badges = applyFinishedGame(device.badges, finished, OPEN, 0).state
     device.tracked = null
   }
@@ -81,6 +85,10 @@ interface Script {
   vote?: (session: Session) => SessionUpdate
   // Arrêt (« Terminer la partie ») à cette question, avant sa révélation.
   endAt?: number
+  // Arrêt pendant la révélation de cette question.
+  endAtReveal?: number
+  // À chaque étape, avant que le téléphone observe (app relancée en pleine partie).
+  everyStep?: (session: Session, device?: Phone) => void
 }
 
 // Partie du lancement à l'écran de fin, les minuteurs pris à leur échéance.
@@ -93,7 +101,10 @@ function runGame(start: Session, questions: readonly GameQuestion[], script: Scr
   const acted = new Set<string>()
   for (let step = 0; step < 500 && session.status !== 'ended'; step++) {
     const key = `${session.status}:${session.currentIndex}`
-    if (session.status === 'question' && script.endAt === session.currentIndex) {
+    script.everyStep?.(session)
+    const stopsHere =
+      (session.status === 'question' && script.endAt === session.currentIndex) || (session.status === 'reveal' && script.endAtReveal === session.currentIndex)
+    if (stopsHere) {
       session = apply(session, endUpdate(session, now))
       break
     }
@@ -183,6 +194,46 @@ describe('Badges, partie complète : Quiz', () => {
     const second = runGame(lobby, QUIZ, quizAnswers, [relaunched], 10)
     expect(second.phaseStartedAt).not.toBe(first.phaseStartedAt)
     expect(relaunched.badges.counters).toMatchObject({ completed: 2, wins: 2, winStreak: 2 })
+  })
+})
+
+describe('Quiz « déjà fait » : seulement une partie terminée, sur le téléphone de l’hôte', () => {
+  function playedAfter(start: Session, script: Script = quizAnswers): { end: Session; played: string[] } {
+    const host = phone(HOST, 'organizer')
+    const end = runGame(start, QUIZ, { ...script, everyStep: (session) => script.everyStep?.(session, host) }, [host], 10)
+    return { end, played: host.completedQuizzes }
+  }
+  const session = () => makeSession({ players: PLAYERS })
+
+  test('partie menée à son terme : quiz marqué', () => {
+    const start = session()
+    expect(playedAfter(start).played).toEqual([start.quizId])
+  })
+
+  test('« Terminer la partie » en cours, ou à la dernière question avant sa révélation : rien', () => {
+    expect(playedAfter(session(), { ...quizAnswers, endAt: 5 }).played).toEqual([])
+    expect(playedAfter(session(), { ...quizAnswers, endAt: 9 }).played).toEqual([])
+  })
+
+  test('« Terminer la partie » pendant la dernière révélation : toutes les questions ont été vues, marqué', () => {
+    const start = session()
+    expect(playedAfter(start, { ...quizAnswers, endAtReveal: 9 }).played).toEqual([start.quizId])
+  })
+
+  test('app relancée en pleine partie, partie suivie relue ou perdue : marqué quand la partie finit', () => {
+    const relaunch = (lost: boolean): Script['everyStep'] => (current, device) => {
+      if (device && current.status === 'question' && current.currentIndex === 5) device.tracked = lost ? null : parseTrackedGame(device.stored)
+    }
+    const start = session()
+    expect(playedAfter(start, { ...quizAnswers, everyStep: relaunch(false) }).played).toEqual([start.quizId])
+    expect(playedAfter(start, { ...quizAnswers, everyStep: relaunch(true) }).played).toEqual([start.quizId])
+  })
+
+  test('partie par thèmes : pas de fiche à marquer, même terminée', () => {
+    const themes = makeSession({ players: PLAYERS, settings: { ...DEFAULT_SESSION_SETTINGS, themes: ['Histoire'], questionCount: 10 } })
+    const { end, played } = playedAfter(themes)
+    expect(end.status).toBe('ended')
+    expect(played).toEqual([])
   })
 })
 

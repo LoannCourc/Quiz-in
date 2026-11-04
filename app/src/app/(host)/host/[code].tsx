@@ -177,7 +177,7 @@ function HostGame({ code, session }: { code: string; session: Session }) {
   );
   useLobbyCleanup(code, session);
   // Badges (spec 20) : un seul suivi sur le téléphone de l'hôte, en joueur s'il joue, sinon en organisateur.
-  const badges = useBadgeTracking(code, uid, isRegistered ? 'player' : 'organizer', session);
+  const badges = useBadgeTracking(code, uid, isRegistered ? 'player' : 'organizer', session, true);
 
   // Adresse renouvelée pendant la partie : republiée pour l'extrait en cours (aussi pendant une pause).
   useEffect(() => {

@@ -6,6 +6,7 @@ import {
   type FinishedGame,
   type PlayerGameOutcome,
 } from './badges'
+import { poolOf } from './questionPool'
 import { computeRanks } from './ranking'
 import type { PlayerId, PublicSession } from './types'
 
@@ -184,6 +185,12 @@ export function finishedGameOf(
   if (tracked.role === 'organizer') return base
   if (!session.players[context.uid]) return null
   return { ...base, outcome: outcomeOf(tracked, session, context.uid, playerCount) }
+}
+
+// Quiz à marquer « déjà fait » sur le téléphone de l'hôte, ou null : même définition d'une partie terminée que les
+// badges. Un quiz choisi seul : jamais une partie par thèmes ou un mélange (ensembles sans fiche à marquer).
+export function completedQuizId(finished: FinishedGame | null, session: Pick<TrackedSession, 'quizId' | 'settings'>): string | null {
+  return finished && poolOf(session.settings) === null ? session.quizId : null
 }
 
 // Partie suivie relue du stockage : null si illisible ou d'une autre version (on repart de la question en cours).

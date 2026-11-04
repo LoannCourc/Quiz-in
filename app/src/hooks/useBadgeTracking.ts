@@ -1,5 +1,5 @@
 import { localDayOf, type BadgeId, type BadgeRole } from '@shared/badges';
-import { finishedGameOf, trackSession, type TrackedGame } from '@shared/badgeTracking';
+import { completedQuizId, finishedGameOf, trackSession, type TrackedGame } from '@shared/badgeTracking';
 import type { PlayerId, PublicSession } from '@shared/types';
 import { useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
@@ -7,11 +7,13 @@ import { Platform } from 'react-native';
 import { answerClock } from '@/lib/answerClock';
 import { loadTrackedGame, recordFinishedGame, saveTrackedGame } from '@/lib/badgeStore';
 import { readOpenGames } from '@/lib/openGames';
+import { markQuizPlayed } from '@/lib/playedQuizzes';
 
 // Badges (spec 20) : suit la partie affichée sur ce téléphone et compte la partie terminée, une seule fois.
 // Un seul appel par écran de partie : écran du joueur dans l'appli (rôle « player »), écran de l'hôte (« player »
 // s'il joue, « organizer » sinon). Jamais sur le site des joueurs. Renvoie les badges débloqués à la fin.
-export function useBadgeTracking(code: string, uid: PlayerId, role: BadgeRole, session: PublicSession) {
+// isHostPhone : la partie terminée marque aussi le quiz « déjà fait » dans le catalogue de ce téléphone.
+export function useBadgeTracking(code: string, uid: PlayerId, role: BadgeRole, session: PublicSession, isHostPhone = false) {
   const isEnabled = Platform.OS !== 'web';
   const tracked = useRef<TrackedGame | null>(null);
   const countedKey = useRef<string | null>(null);
@@ -46,12 +48,14 @@ export function useBadgeTracking(code: string, uid: PlayerId, role: BadgeRole, s
     // Comptée une fois par écran ; le stockage refuse de toute façon une partie déjà comptée (gameKey).
     countedKey.current = finished.gameKey;
     tracked.current = null;
+    const playedQuizId = isHostPhone ? completedQuizId(finished, session) : null;
+    if (playedQuizId !== null) void markQuizPlayed(playedQuizId);
     void readOpenGames()
       .then((openGames) => recordFinishedGame(finished, openGames))
       .then((ids) => {
         if (ids.length > 0) setUnlocked((current) => [...current, ...ids]);
       });
-  }, [isEnabled, isLoaded, code, uid, role, session]);
+  }, [isEnabled, isLoaded, code, uid, role, session, isHostPhone]);
 
   return { unlocked, dismiss: () => setUnlocked([]) };
 }

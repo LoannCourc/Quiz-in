@@ -19,22 +19,6 @@ What’s new in 1.2.3:
 • TV: new answer and ranking screens.
 • Bug fixes.
 
-### Variante avec le blind test (273 / 221 caractères)
-
-À n'utiliser que si Loann lève la règle « jamais de mention du blind test » ci-dessus, le jeu étant ouvert à tous.
-
-Nouveautés de la 1.2.3 :
-• Gribouille : 360 nouveaux mots à dessiner, dans tous les thèmes, et une correction plus fiable des réponses.
-• Blind tests : on voit maintenant ceux que tu as déjà joués.
-• TV : nouveaux écrans de réponse et de classement.
-• Corrections diverses.
-
-What’s new in 1.2.3:
-• Doodle: 360 new words to draw, across all themes, and more reliable answer checking.
-• Blind tests: you can now see the ones you’ve already played.
-• TV: new answer and ranking screens.
-• Bug fixes.
-
 ## 1.2.2 : nouveautés (mise à jour depuis la 1.2.0, 136 caractères)
 
 La 1.2.1 n’a été publiée qu’en test interne Android : la 1.2.2 reprend ses notes (l’app ne change pas d’autre façon ; la correction du panneau de mesures concerne la TV).

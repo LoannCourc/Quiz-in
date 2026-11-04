@@ -15,7 +15,6 @@ import {
   type TeamRefusal,
 } from '@shared/teams';
 import { soundSettingsOf } from '@shared/sound';
-import { poolOf } from '@shared/questionPool';
 import type { Session, SoundSettings } from '@shared/types';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { router, useFocusEffect } from 'expo-router';
@@ -36,7 +35,6 @@ import type { GameQuestionsState } from '@/hooks/useGameQuestions';
 import { confirmAction } from '@/lib/confirm';
 import { applyHostAction, launchGame } from '@/lib/hostGame';
 import { markQuestionsPlayed } from '@/lib/playedQuestions';
-import { markQuizPlayed } from '@/lib/playedQuizzes';
 import { saveSoundPreferences } from '@/lib/soundPreferences';
 import { loadHostProfile, type HostProfile } from '@/lib/hostProfile';
 import { getJoinRefusal, registerPlayer } from '@/lib/joinGame';
@@ -235,12 +233,9 @@ export function HostLobby(props: HostLobbyProps) {
       const singleDrawer = __DEV__ && isSingleDrawer;
       const outcome = await launchGame(code, session, questions.questions, Date.now() + serverOffsetMs, limit, launchAudio, singleDrawer);
       if (!outcome.ok) setLaunchError(strings.hostLobby.launchRefusals[outcome.reason]);
-      // Lot E : le quiz porte le repère « déjà fait » dans le catalogue de ce téléphone.
-      if (outcome.ok) {
-        // « Déjà fait » : un quiz choisi seul ; questions jouées : toujours (tirages suivants).
-        if (poolOf(session.settings) === null) void markQuizPlayed(session.quizId);
-        void markQuestionsPlayed(questions.refs);
-      }
+      // Questions jouées (tirages suivants) : dès le lancement. Le repère « déjà fait » d'un quiz attend la fin de
+      // la partie (useBadgeTracking).
+      if (outcome.ok) void markQuestionsPlayed(questions.refs);
       // Extrait manquant : nouvel essai tout de suite, l'hôte pourra relancer dans un instant.
       if (!outcome.ok && outcome.reason === 'audioUnavailable') audio.retry();
     } catch (error) {

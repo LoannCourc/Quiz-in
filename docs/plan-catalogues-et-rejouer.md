@@ -28,7 +28,7 @@ Chaque lot : spec d'abord, puis règles et tests d'émulateur, puis code.
   (quiz, blindTest, bluff), `difficulty` (moyenne 1 à 3), `difficultyLabel`, `questionCount`, `estimatedMinutes`,
   `description`, `audience`, `poster`, `addedAt`, `featuredRank`, `icon` (facultatif), `level` (facultatif :
   easy / medium / hard, sinon déduit de la moyenne).
-- **Déjà joué** : quiz lancés sur ce téléphone (`lib/playedQuizzes.ts`), par quiz, pas par question.
+- **Déjà joué** : quiz terminés sur ce téléphone (`lib/playedQuizzes.ts`, depuis la 1.2.3 ; lancés avant), par quiz, pas par question.
 - **Rejouer** (`replayUpdate`) : retour au salon, même code, mêmes joueurs et équipes, **même quiz, mêmes questions**.
 - La TV lit `quizzes/{quizId}/gameType` en direct (blind test) ; le joueur qui rejoint le lit une fois (`useJoinGameType`).
 
