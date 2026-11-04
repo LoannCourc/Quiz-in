@@ -5,6 +5,7 @@ import {
   availableLevels,
   blindTestTiles,
   filterBlindTests,
+  isBlindTestPlayed,
   levelDots,
 } from '../../shared/blindTestCatalog'
 import { parseQuizSummary, type QuizEntry } from '../../shared/quizValidation'
@@ -44,6 +45,18 @@ describe('Blind test : tuiles', () => {
       ['rap', 1, 0],
     ])
     expect(blindTestTiles(CATALOG, 'decade', new Set()).map((tile) => tile.facet.value)).toEqual([1980, 'all'])
+  })
+
+  test('« joué » : le compteur d’une tuile égale le nombre de lignes marquées dans sa liste (une seule source)', () => {
+    const played = new Set(['rock80', 'metal80', 'rap'])
+    for (const tab of ['genre', 'decade', 'level'] as const) {
+      for (const tile of blindTestTiles(CATALOG, tab, played)) {
+        const rows = filterBlindTests(CATALOG, { facet: tile.facet, genres: [], levels: [] })
+        expect(rows.filter((entry) => isBlindTestPlayed(entry, played)).length, String(tile.facet.value)).toBe(tile.playedCount)
+      }
+    }
+    expect(isBlindTestPlayed({ id: 'a80' }, played)).toBe(false)
+    expect(isBlindTestPlayed({ id: 'rap' }, played)).toBe(true)
   })
 
   test('« Impossible » seulement s’il a au moins un blind test', () => {

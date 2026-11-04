@@ -228,6 +228,12 @@ export const AppColors = {
   levelDot: Palette.gold,
   levelDotImpossible: Palette.pink,
   levelDotEmpty: Palette.lavenderMuted,
+  // Ligne d'un blind test (maquette A) : carte, et déjà jouée (teinte et bordure vertes, pastille « ✓ JOUÉ »).
+  blindTestRow: 'rgba(255, 255, 255, 0.07)',
+  blindTestPlayedRow: 'rgba(124, 255, 155, 0.07)',
+  blindTestPlayedBorder: 'rgba(124, 255, 155, 0.45)',
+  playedBadge: '#7cff9b',
+  onPlayedBadge: '#0d2a14',
   // Fiche d'une partie tirée dans des thèmes (maquette QN1-F) : bloc « Au programme », barres par niveau,
   // fondu du visuel vers le fond, bouton « Modifier mon choix ».
   programmePanel: 'rgba(255, 255, 255, 0.07)',

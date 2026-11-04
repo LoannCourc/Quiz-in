@@ -362,7 +362,9 @@ export const strings = {
       decadeTitles: { 1960: 'Années 60', 1970: 'Années 70', 1980: 'Années 80', 1990: 'Années 90', 2000: 'Années 2000', 2010: 'Années 2010', 2020: 'Années 2020', all: 'Toutes époques' },
       count: (count: number) => `${count} blind test${count > 1 ? 's' : ''}`,
       played: (count: number) => `${count} joué${count > 1 ? 's' : ''}`,
-      ofTotal: (shown: number, total: number) => `${shown} sur ${total} blind test${total > 1 ? 's' : ''}`,
+      // Ligne d'un blind test déjà joué sur ce téléphone (maquette A).
+      playedBadge: 'Joué',
+      playedRow: 'déjà joué',
       genreFilter: 'Genre',
       levelFilter: 'Difficulté',
       sort: 'Trier',

@@ -1,4 +1,4 @@
-import { blindTestTiles, type BlindTestFacet, type BlindTestTab } from '@shared/blindTestCatalog';
+import { blindTestTiles, isBlindTestPlayed, type BlindTestFacet, type BlindTestTab } from '@shared/blindTestCatalog';
 import { filterByGameType, searchByTitle } from '@shared/catalogRows';
 import type { QuizEntry } from '@shared/quizValidation';
 import { useMemo, useState } from 'react';
@@ -81,7 +81,7 @@ export function BlindTestCatalog({ entries: allEntries, played, onOpenQuiz, onBa
           <FlatList
             data={results}
             keyExtractor={(quiz) => quiz.id}
-            renderItem={({ item }) => <BlindTestRow quiz={item} onPress={() => onOpenQuiz(item.id)} />}
+            renderItem={({ item }) => <BlindTestRow quiz={item} isPlayed={isBlindTestPlayed(item, played)} onPress={() => onOpenQuiz(item.id)} />}
             getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
             ListEmptyComponent={<Text style={textStyles.body}>{strings.catalog.noSearchResult}</Text>}
             keyboardShouldPersistTaps="handled"

@@ -81,21 +81,28 @@ export function LevelDots({ level, total = 4, color }: { level: DifficultyLevel;
   );
 }
 
-export const ROW_HEIGHT = 64;
-const ROW_ICON = 44;
+const ROW_CARD_HEIGHT = 88;
+const ROW_GAP = 10;
+// Hauteur d'une ligne dans la liste (FlatList, getItemLayout) : la carte et l'espace dessous.
+export const ROW_HEIGHT = ROW_CARD_HEIGHT + ROW_GAP;
+const ROW_ICON = 56;
+const PLAYED_ICON_OPACITY = 0.55;
 
-// Ligne de la liste filtrée : icône du blind test sur la couleur de son genre, titre et genre, difficulté.
-export function BlindTestRow({ quiz, onPress }: { quiz: QuizEntry; onPress: () => void }) {
+// Ligne de la liste filtrée (maquette A) : icône du blind test sur la couleur de son genre, titre, genre,
+// difficulté, chevron. Déjà joué : carte teintée de vert, icône atténuée et pastille « ✓ JOUÉ » à la place du
+// chevron (la coche et le mot disent l'état, pas seulement la couleur).
+export function BlindTestRow({ quiz, isPlayed, onPress }: { quiz: QuizEntry; isPlayed: boolean; onPress: () => void }) {
   const level = quizLevel(quiz);
   const genre = quiz.genre ? texts.genres[quiz.genre] : '';
+  const label = `${quiz.title}, ${genre}, ${strings.catalog.difficultyLevels[level]}`;
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${quiz.title}, ${genre}, ${strings.catalog.difficultyLevels[level]}`}
+      accessibilityLabel={isPlayed ? `${label}, ${texts.playedRow}` : label}
       onPress={onPress}
-      style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
-      <View style={[styles.rowIcon, { backgroundColor: quiz.genre ? AppColors.blindTestGenres[quiz.genre] : AppColors.surface }]}>
-        <ThemeIcon name={quiz.icon ?? themeIconOf(quiz.theme)} size={26} />
+      style={({ pressed }) => [styles.row, isPlayed && styles.rowPlayed, pressed && styles.pressed]}>
+      <View style={[styles.rowIcon, isPlayed && styles.rowIconPlayed, { backgroundColor: quiz.genre ? AppColors.blindTestGenres[quiz.genre] : AppColors.surface }]}>
+        <ThemeIcon name={quiz.icon ?? themeIconOf(quiz.theme)} size={32} />
       </View>
       <View style={styles.rowTexts}>
         <Text style={styles.rowTitle} numberOfLines={1}>
@@ -104,12 +111,23 @@ export function BlindTestRow({ quiz, onPress }: { quiz: QuizEntry; onPress: () =
         <Text style={styles.rowGenre} numberOfLines={1}>
           {genre}
         </Text>
+        <View style={styles.rowLevel}>
+          <LevelDots level={level} />
+          <Text style={styles.rowLevelLabel}>{strings.catalog.difficultyLevels[level]}</Text>
+        </View>
       </View>
-      <View style={styles.rowLevel}>
-        <LevelDots level={level} />
-        <Text style={styles.rowLevelLabel}>{strings.catalog.difficultyLevels[level]}</Text>
-      </View>
+      {isPlayed ? <PlayedBadge /> : <View style={styles.chevron} />}
     </Pressable>
+  );
+}
+
+// Coche dessinée (les polices du design n'ont pas ✓) et « JOUÉ ».
+function PlayedBadge() {
+  return (
+    <View style={styles.playedBadge}>
+      <View style={styles.playedCheck} />
+      <Text style={styles.playedLabel}>{texts.playedBadge}</Text>
+    </View>
   );
 }
 
@@ -181,19 +199,30 @@ const styles = StyleSheet.create({
     borderColor: AppColors.levelDotEmpty,
   },
   row: {
-    height: ROW_HEIGHT,
+    height: ROW_CARD_HEIGHT,
+    marginBottom: ROW_GAP,
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.three,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: AppColors.chipBorder,
+    paddingHorizontal: Spacing.three,
+    borderRadius: AppSizes.radius,
+    borderWidth: 2,
+    borderColor: AppColors.chipBorder,
+    backgroundColor: AppColors.blindTestRow,
+  },
+  rowPlayed: {
+    borderColor: AppColors.blindTestPlayedBorder,
+    backgroundColor: AppColors.blindTestPlayedRow,
   },
   rowIcon: {
     width: ROW_ICON,
     height: ROW_ICON,
-    borderRadius: 12,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  rowIconPlayed: {
+    opacity: PLAYED_ICON_OPACITY,
   },
   rowTexts: {
     flex: 1,
@@ -210,14 +239,52 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   rowLevel: {
-    alignItems: 'flex-end',
-    gap: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    marginTop: 2,
   },
   rowLevelLabel: {
     ...TEXT_FIT_SAFETY,
     color: AppColors.text,
     fontFamily: AppFonts.extraBold,
     fontSize: 12,
+  },
+  // Chevron dessiné : deux bords d'un carré tourné.
+  chevron: {
+    width: 10,
+    height: 10,
+    marginRight: 2,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
+    borderColor: AppColors.textMuted,
+    transform: [{ rotate: '45deg' }],
+  },
+  playedBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 9,
+    paddingVertical: 4,
+    borderRadius: AppSizes.radiusPill,
+    backgroundColor: AppColors.playedBadge,
+  },
+  playedCheck: {
+    width: 5,
+    height: 9,
+    marginTop: -2,
+    borderRightWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: AppColors.onPlayedBadge,
+    transform: [{ rotate: '45deg' }],
+  },
+  playedLabel: {
+    ...TEXT_FIT_SAFETY,
+    color: AppColors.onPlayedBadge,
+    fontFamily: AppFonts.black,
+    fontSize: 11,
+    letterSpacing: 0.66,
+    textTransform: 'uppercase',
   },
   chip: {
     height: AppSizes.chipHeight,

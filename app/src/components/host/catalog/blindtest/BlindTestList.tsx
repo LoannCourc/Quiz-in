@@ -2,6 +2,7 @@ import {
   availableGenres,
   availableLevels,
   filterBlindTests,
+  isBlindTestPlayed,
   type BlindTestFacet,
 } from '@shared/blindTestCatalog';
 import { CATALOG_SORTS, sortCatalog, type CatalogSortId } from '@shared/catalogRows';
@@ -38,14 +39,13 @@ function toggled<T>(values: readonly T[], value: T): T[] {
 }
 
 // Liste d'une tuile (maquette BT5), déjà filtrée : titre de la tuile, filtres en plus en pastilles (actifs en
-// or avec ✕, à ouvrir avec « ▾ »), tri, « 7 sur 22 blind tests », puis la liste, rendue au fil du défilement
+// or avec ✕, à ouvrir avec « ▾ »), tri, puis la liste, rendue au fil du défilement
 // (FlatList, lignes de hauteur fixe) pour rester fluide avec plus de 100 blind tests.
 export function BlindTestList({ entries, facet, played, onOpenQuiz, onBack }: BlindTestListProps) {
   const [genres, setGenres] = useState<BlindTestGenre[]>([]);
   const [levels, setLevels] = useState<DifficultyLevel[]>([]);
   const [sort, setSort] = useState<CatalogSortId | null>(null);
   const [sheet, setSheet] = useState<OpenSheet>(null);
-  const inFacet = filterBlindTests(entries, { facet, genres: [], levels: [] });
   const filtered = filterBlindTests(entries, { facet, genres, levels });
   const shown = sort ? sortCatalog(filtered, sort, played) : filtered;
   const genreChoices = facet.tab === 'genre' ? [] : availableGenres(entries, facet);
@@ -83,11 +83,10 @@ export function BlindTestList({ entries, facet, played, onOpenQuiz, onBack }: Bl
           {levelChoices.length > 1 && <FilterChip label={`${texts.levelFilter} ▾`} isActive={false} onPress={() => setSheet('level')} />}
           <FilterChip label={sort ? strings.catalog.sorts[sort] : texts.sort} isActive={sort !== null} onPress={() => setSheet('sort')} />
         </ScrollView>
-        <Text style={styles.count}>{texts.ofTotal(shown.length, inFacet.length)}</Text>
         <FlatList
           data={shown}
           keyExtractor={(quiz) => quiz.id}
-          renderItem={({ item }) => <BlindTestRow quiz={item} onPress={() => onOpenQuiz(item.id)} />}
+          renderItem={({ item }) => <BlindTestRow quiz={item} isPlayed={isBlindTestPlayed(item, played)} onPress={() => onOpenQuiz(item.id)} />}
           getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
           initialNumToRender={10}
           ListEmptyComponent={<Text style={textStyles.body}>{texts.noResult}</Text>}
@@ -148,10 +147,5 @@ const styles = StyleSheet.create({
   chips: {
     gap: Spacing.two,
     paddingHorizontal: Spacing.three,
-  },
-  count: {
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.extraBold,
-    fontSize: 13,
   },
 });

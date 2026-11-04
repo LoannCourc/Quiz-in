@@ -43,13 +43,18 @@ function facetsOf(tab: BlindTestTab): BlindTestFacet[] {
   return BLIND_TEST_LEVELS.map((value) => ({ tab, value }))
 }
 
+// « Déjà joué » : seule définition, lue par les compteurs des tuiles et par les lignes de la liste.
+export function isBlindTestPlayed(entry: Pick<QuizEntry, 'id'>, played: ReadonlySet<string>): boolean {
+  return played.has(entry.id)
+}
+
 // Tuiles d'un onglet, dans l'ordre fixe, seulement celles qui ont au moins un blind test (« Impossible »,
 // « Électro »… n'apparaissent que lorsqu'ils ont du contenu).
 export function blindTestTiles(entries: readonly QuizEntry[], tab: BlindTestTab, played: ReadonlySet<string>): BlindTestTile[] {
   return facetsOf(tab)
     .map((facet) => {
       const matching = entries.filter((entry) => matchesFacet(entry, facet))
-      return { facet, count: matching.length, playedCount: matching.filter((entry) => played.has(entry.id)).length }
+      return { facet, count: matching.length, playedCount: matching.filter((entry) => isBlindTestPlayed(entry, played)).length }
     })
     .filter((tile) => tile.count > 0)
 }
