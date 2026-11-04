@@ -2,7 +2,7 @@
   "expo": {
     "name": "Quiz'in",
     "slug": "quizin",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "quizin",
