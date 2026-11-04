@@ -11,6 +11,7 @@ import { GameHeader } from '../components/GameHeader'
 import { useAvatarRowFit } from '../hooks/useAvatarRowFit'
 import { useFitScale } from '../hooks/useFitScale'
 import { TeamAvatarGroups } from '../components/TeamBoards'
+import { progressKindOf } from '../lib/answerLayout'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { isTightQuestion, questionSizeClass } from '../lib/questionSize'
 import { countConnected, countConnectedAnswered, hasAnswered, sortForGame } from '../lib/players'
@@ -65,6 +66,7 @@ export function QuestionScreen({ session, roomCode }: QuestionScreenProps) {
         questionIndex={session.currentIndex}
         questionCount={session.questionCount}
         difficulty={question.difficulty}
+        progressKind={progressKindOf(session)}
       />
 
       <section className="question-main">

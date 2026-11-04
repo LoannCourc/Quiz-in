@@ -55,6 +55,9 @@ export const MAX_SPEED_BONUS_POINTS = 100;
 
 export const SCORES_TOP_COUNT = 5;
 
+// TV, Pas à pas : le bandeau « La partie est en pause » apparaît après ce délai sans action de l'hôte.
+export const HOST_WAIT_BANNER_DELAY_MS = 20_000;
+
 // Groupe (équipes) : à partir de 4 joueurs, 2 à 4 équipes, au moins 2 joueurs par équipe.
 export const MIN_TEAM_GAME_PLAYERS = 4;
 export const MIN_TEAMS = 2;

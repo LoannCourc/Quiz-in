@@ -1,0 +1,197 @@
+/* « La bonne réponse » (maquettes Quiz, Blind test, Bluff). --text-scale (useFitScale) : tout réduit ensemble
+   tant que la zone déborde. Valeurs de la maquette 1280 × 720 (1 rem = 20 px). */
+.answer-pills {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: calc(1.1rem * var(--text-scale, 1)) 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Stretch par défaut dans la grille : deux pastilles d'une même rangée ont la même hauteur. */
+.answer-pill {
+  --letter-size: calc(3.2rem * var(--text-scale, 1));
+  --count-size: calc(2.7rem * var(--text-scale, 1));
+  --answer-font: calc(1.25rem * var(--text-scale, 1));
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.9rem;
+  min-height: calc(5.6rem * var(--text-scale, 1));
+  padding: calc(0.45rem * var(--text-scale, 1)) 0.75rem;
+  overflow: hidden;
+  border: 0.25rem solid transparent;
+  border-radius: 3rem;
+  background: var(--answer-wrong-bg);
+  color: var(--answer-wrong-text);
+  font-size: var(--answer-font);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.answer-pill.is-correct {
+  --answer-font: calc(1.35rem * var(--text-scale, 1));
+  border-color: var(--white);
+  background: var(--answer-correct-bg);
+  color: var(--answer-correct-text);
+  box-shadow: var(--answer-correct-shadow);
+  animation: answer-pop 700ms ease-out both;
+}
+
+/* Réponses très longues : 22 px, jamais de débordement. */
+.answer-pills.is-long .answer-pill {
+  --answer-font: calc(1.1rem * var(--text-scale, 1));
+}
+
+.answer-pills.is-long .answer-pill.is-correct {
+  --answer-font: calc(1.2rem * var(--text-scale, 1));
+}
+
+/* Bluff avec beaucoup de choix : rangées plus basses. */
+.answer-pills.is-dense {
+  row-gap: calc(0.6rem * var(--text-scale, 1));
+}
+
+.answer-pills.is-dense .answer-pill {
+  --letter-size: calc(2.2rem * var(--text-scale, 1));
+  --count-size: calc(2rem * var(--text-scale, 1));
+  --answer-font: calc(1rem * var(--text-scale, 1));
+  min-height: calc(3.2rem * var(--text-scale, 1));
+  padding-top: calc(0.15rem * var(--text-scale, 1));
+  padding-bottom: calc(0.15rem * var(--text-scale, 1));
+}
+
+.answer-pills.is-dense .answer-pill.is-correct {
+  --answer-font: calc(1.1rem * var(--text-scale, 1));
+}
+
+/* Jauge des votes : la boîte donne la largeur (part des votes), l'intérieur s'étire de gauche à droite. */
+.answer-gauge-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.answer-gauge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--answer-wrong-gauge);
+  transform-origin: left center;
+  animation: answer-gauge-fill 900ms ease-out 300ms both;
+}
+
+.answer-pill.is-correct .answer-gauge {
+  background: var(--answer-correct-gauge);
+}
+
+.answer-letter,
+.answer-texts,
+.answer-count {
+  position: relative;
+}
+
+.answer-letter {
+  display: grid;
+  place-items: center;
+  width: var(--letter-size);
+  height: var(--letter-size);
+  border-radius: 50%;
+  background: var(--answer-wrong-letter-bg);
+  font-family: var(--font-display);
+  font-size: calc(var(--letter-size) * 0.5);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.answer-pill.is-correct .answer-letter,
+.answer-pill.is-correct .answer-count {
+  background: var(--night);
+  color: var(--white);
+}
+
+.answer-texts {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.answer-label {
+  display: block;
+  font-size: calc(0.8rem * var(--text-scale, 1));
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.answer-pills.is-dense .answer-label {
+  font-size: calc(0.65rem * var(--text-scale, 1));
+}
+
+.answer-count {
+  display: grid;
+  place-items: center;
+  width: var(--count-size);
+  height: var(--count-size);
+  border-radius: 50%;
+  background: var(--answer-count-bg);
+  color: var(--white);
+  font-size: calc(var(--count-size) * 0.46);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Blind test : le titre en gras, l'artiste dessous, un peu plus léger. */
+.answer-pills.is-tracks .answer-pill {
+  --answer-font: calc(1.3rem * var(--text-scale, 1));
+}
+
+.answer-pills.is-tracks .answer-pill.is-correct {
+  --answer-font: calc(1.4rem * var(--text-scale, 1));
+}
+
+.answer-pill .choice-artist {
+  font-size: calc(1rem * var(--text-scale, 1));
+  font-weight: 800;
+}
+
+/* Encadré d'explication (ou du résumé du Bluff) : largeur de la maquette, jamais coupé (--text-scale). */
+.answer-explanation {
+  justify-self: center;
+  width: 50rem;
+  padding: calc(0.7rem * var(--text-scale, 1)) 1.6rem;
+  border-radius: 0.8rem;
+  background: var(--night);
+  color: var(--white);
+  font-size: calc(1.35rem * var(--text-scale, 1));
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+}
+
+@keyframes answer-gauge-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes answer-pop {
+  0% {
+    transform: scale(0.94);
+  }
+  60% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

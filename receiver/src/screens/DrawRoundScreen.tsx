@@ -1,12 +1,13 @@
 import { drawFoundProgress } from '@shared/drawGuess'
-import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
+import { nextQuestionCountdown } from '@shared/gameFlow'
 import type { PublicSession } from '@shared/types'
 import type { CSSProperties } from 'react'
 
 import { Countdown } from '../components/Countdown'
 import { GameHeader } from '../components/GameHeader'
+import { HostWaitBanner } from '../components/HostWaitBanner'
 import { LiveDrawing } from '../components/LiveDrawing'
-import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
+import { NextQuestionLine } from '../components/TransitionInfo'
 import { useFitScale } from '../hooks/useFitScale'
 import { strings } from '../strings'
 import './DrawRoundScreen.css'
@@ -39,7 +40,7 @@ export function DrawRoundScreen({ session, roomCode }: { session: PublicSession;
   const sideRef = useFitScale(`${drawerName}|${turn?.category ?? ''}|${session.settings.teams}`, SIDE_FIT)
   return (
     <main className="screen draw-round">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="round" />
       <div className="draw-round-body">
         <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-round-canvas" />
         <aside ref={sideRef} className="draw-round-side">
@@ -77,8 +78,8 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
   const isCancelled = session.reveal?.stats.drawCancelled === true
   const sideRef = useFitScale(word, WORD_FIT)
   return (
-    <main className="screen draw-round">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} isRound />
+    <main className="screen draw-round draw-reveal">
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="round" qrLabel="rejoin" />
       <div className="draw-round-body">
         {isCancelled ? (
           // Manche annulée par l'hôte : un cadre neutre à la place du dessin (effacé de la base).
@@ -89,7 +90,6 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
           <LiveDrawing key={turn?.round ?? -1} drawing={session.drawing} className="draw-reveal-canvas" />
         )}
         <aside ref={sideRef} className="draw-round-side draw-reveal-side">
-          <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} isRound />
           <p className="draw-round-hint">{strings.draw.itWas}</p>
           <h1 className="draw-reveal-word" style={wordBaseStyle(word)}>
             {word}
@@ -97,9 +97,9 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
           {drawerName && <p className="draw-reveal-by">{strings.draw.drawnBy(drawerName)}</p>}
           {isCancelled && <p className="draw-reveal-cancelled">{strings.draw.cancelled}</p>}
           {countdown && <NextQuestionLine countdown={countdown} isRound />}
-          {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
         </aside>
       </div>
+      <HostWaitBanner session={session} />
     </main>
   )
 }

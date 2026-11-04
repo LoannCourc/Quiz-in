@@ -285,6 +285,22 @@ export interface BluffRevealTimeline {
   stepMs: number
 }
 
+// Qui a piégé combien de joueurs (votes reçus par ses propositions), du plus au moins ; jamais un leurre. Deux
+// auteurs de la même proposition sont chacun crédités de ses votes.
+export interface BluffTrapper {
+  id: PlayerId
+  trapped: number
+}
+
+export function bluffTrappers(choices: readonly RevealedBluffChoice[]): BluffTrapper[] {
+  const trapped = new Map<PlayerId, number>()
+  for (const choice of choices) {
+    if (choice.kind !== 'bluff') continue
+    for (const id of choice.authors ?? []) trapped.set(id, (trapped.get(id) ?? 0) + (choice.voters?.length ?? 0))
+  }
+  return [...trapped].filter(([, count]) => count > 0).map(([id, count]) => ({ id, trapped: count })).sort((a, b) => b.trapped - a.trapped)
+}
+
 export function bluffRevealTimeline(choices: readonly RevealedBluffChoice[]): BluffRevealTimeline {
   const falseChoices = choices.map((choice, index) => ({ index, choice })).filter(({ choice }) => choice.kind !== 'truth')
   const stepMs = bluffRevealStepMs(falseChoices.length)

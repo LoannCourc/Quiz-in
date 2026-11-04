@@ -82,3 +82,30 @@
 .tv-light .next-question-track {
   visibility: hidden;
 }
+
+/* Bonne réponse, classement entre deux questions, bandeau d'attente : aucune animation en mode allégé ni si
+   l'utilisateur demande de réduire les animations. Jauges et barres pleines tout de suite, couronne et lumière
+   fixes. Carte du 1er : couleur unie à la place du dégradé. */
+:root.tv-light {
+  --leader-card: #ffd23f;
+}
+
+.tv-light .answer-pill.is-correct,
+.tv-light .answer-gauge,
+.tv-light .interim-leader,
+.tv-light .interim-bar,
+.tv-light .interim-crown-box,
+.tv-light .host-wait-sweep {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer-pill.is-correct,
+  .answer-gauge,
+  .interim-leader,
+  .interim-bar,
+  .interim-crown-box,
+  .host-wait-sweep {
+    animation: none !important;
+  }
+}

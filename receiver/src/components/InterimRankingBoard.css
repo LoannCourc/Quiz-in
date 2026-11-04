@@ -1,0 +1,290 @@
+/* Classement entre deux questions (maquette « 1er avec une couronne », 1 rem = 20 px en 1280 × 720).
+   --rows-scale (useFitScale) : les lignes rétrécissent si tout ne tient pas au-dessus du bandeau. */
+.interim-board {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  row-gap: 1rem;
+  min-height: 0;
+}
+
+/* Carte du 1er. Pas d'overflow : la couronne dépasse en haut. */
+.interim-leader {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1.8rem;
+  width: 54rem;
+  height: 8.5rem;
+  padding: 0 2.4rem 0 1.2rem;
+  border: 0.3rem solid var(--white);
+  border-radius: 4.25rem;
+  background: var(--leader-card);
+  box-shadow: var(--leader-card-shadow);
+  color: var(--night);
+  animation: interim-leader-in 300ms ease-out both;
+}
+
+.interim-avatar {
+  position: relative;
+  display: block;
+  width: 6.7rem;
+  height: 6.7rem;
+}
+
+.interim-avatar-glyph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 0.3rem solid var(--night);
+  border-radius: 50%;
+  background: var(--white);
+  font-size: 4.2rem;
+  line-height: 1;
+}
+
+.interim-leader-streak {
+  position: absolute;
+  right: -0.6rem;
+  bottom: -0.2rem;
+  z-index: 1;
+  font-size: 2.2rem;
+}
+
+/* Couronne au-dessus de l'avatar, à cheval sur son bord haut ; flottement doux, étincelles autour. */
+.interim-crown-box {
+  position: absolute;
+  bottom: 5.4rem;
+  left: 50%;
+  z-index: 1;
+  width: 6.6rem;
+  height: 5rem;
+  margin-left: -3.3rem;
+  animation: interim-float 1000ms ease-in-out infinite alternate;
+}
+
+.interim-crown {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.interim-sparkle {
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  fill: var(--white);
+}
+
+.interim-sparkle.is-left {
+  top: 1.6rem;
+  left: -1.8rem;
+}
+
+.interim-sparkle.is-right {
+  top: 2.4rem;
+  right: -1.8rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.interim-leader-texts {
+  display: grid;
+  min-width: 0;
+}
+
+.interim-leader-name {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: calc(2.8rem * var(--name-scale, 1));
+  font-weight: 400;
+  line-height: var(--display-line-height);
+  white-space: nowrap;
+}
+
+.interim-leader-status {
+  margin-top: -0.5rem;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.interim-leader-score {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: var(--display-line-height-tight);
+  white-space: nowrap;
+}
+
+/* 2e à 5e : rang, prénom, barre, mouvement. */
+.interim-rows {
+  display: grid;
+  row-gap: calc(0.8rem * var(--rows-scale, 1));
+  width: 54rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.interim-row {
+  display: grid;
+  grid-template-columns: 2.4rem 8.4rem minmax(0, 1fr) 3.8rem;
+  align-items: center;
+  column-gap: 0.4rem;
+  height: calc(2.2rem * var(--rows-scale, 1));
+}
+
+.interim-rank {
+  font-family: var(--font-display);
+  font-size: calc(1.5rem * var(--rows-scale, 1));
+  font-weight: 400;
+  line-height: var(--display-line-height-tight);
+}
+
+.interim-name {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  min-width: 0;
+  font-size: calc(1.4rem * var(--name-scale, 1) * var(--rows-scale, 1));
+  font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.interim-name .streak-badge {
+  font-size: 0.8em;
+}
+
+.interim-track {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: var(--rank-track);
+}
+
+/* La boîte donne la largeur (part du score du 1er), l'intérieur s'étire ; les points n'étirent jamais. */
+.interim-bar-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+}
+
+.interim-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 1.1rem;
+  transform-origin: left center;
+  animation: interim-bar-fill 900ms ease-out both;
+}
+
+.rank-bar-0 { background: var(--rank-bar-0); }
+.rank-bar-1 { background: var(--rank-bar-1); }
+.rank-bar-2 { background: var(--rank-bar-2); }
+.rank-bar-3 { background: var(--rank-bar-3); }
+.rank-bar-4 { background: var(--rank-bar-4); }
+.rank-bar-5 { background: var(--rank-bar-5); }
+
+.interim-points {
+  position: absolute;
+  top: 0;
+  right: 0.9rem;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  color: var(--night);
+  font-size: calc(1.1rem * var(--rows-scale, 1));
+  font-style: italic;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.interim-points.is-empty {
+  right: auto;
+  left: 0.9rem;
+  color: var(--white);
+}
+
+.interim-move {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 0.4rem;
+  font-size: calc(1.2rem * var(--rows-scale, 1));
+  font-weight: 900;
+}
+
+.interim-move.is-up {
+  color: var(--rank-up);
+}
+
+.interim-move.is-down {
+  color: var(--rank-down);
+}
+
+.interim-move.is-same {
+  color: var(--rank-same);
+}
+
+.interim-triangle {
+  width: 0;
+  height: 0;
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+}
+
+.is-up .interim-triangle {
+  border-bottom: 0.7em solid currentColor;
+}
+
+.is-down .interim-triangle {
+  border-top: 0.7em solid currentColor;
+}
+
+.interim-others {
+  font-size: calc(1.1rem * var(--rows-scale, 1));
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+/* « Aussi en série » : plus discret ici, la place va aux lignes. */
+.interim-board .extra-streaks {
+  font-size: 1rem;
+}
+
+@keyframes interim-bar-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes interim-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-0.3rem);
+  }
+}
+
+@keyframes interim-leader-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

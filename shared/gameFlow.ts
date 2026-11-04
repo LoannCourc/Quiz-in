@@ -4,6 +4,7 @@ import {
   BLUFF_REVEAL_FLIPS_MAX_MS,
   BLUFF_REVEAL_SLOW_MAX,
   BLUFF_REVEAL_SLOW_STEP_MS,
+  HOST_WAIT_BANNER_DELAY_MS,
   NEXT_QUESTION_ANNOUNCE_MS,
   QUESTION_DURATION_S,
   REVEAL_DURATION_S,
@@ -177,6 +178,15 @@ export function isAnnouncingNextQuestion(session: SessionTiming, nowServer: numb
 // Pas à pas : révélation ou classement en attente de l'hôte, sans fin programmée.
 export function isAwaitingHost(session: Pick<PublicSession, 'status' | 'settings'>): boolean {
   return (session.status === 'reveal' || session.status === 'scores') && session.settings.stepByStep === true
+}
+
+// TV : heure à laquelle montrer le bandeau « La partie est en pause » (serveur) ; null si on n'attend pas l'hôte.
+// waitStartedAt : début de l'attente, si elle ne commence pas avec la phase (Bluff : une fois la vraie réponse montrée).
+export function hostWaitBannerAt(
+  session: Pick<PublicSession, 'status' | 'settings' | 'phaseStartedAt'>,
+  waitStartedAt: number = session.phaseStartedAt,
+): number | null {
+  return isAwaitingHost(session) ? waitStartedAt + HOST_WAIT_BANNER_DELAY_MS : null
 }
 
 // Phase sans échéance (phaseEndsAt = 0) : attente de l'hôte en Pas à pas, validation (Contrôle) ou vote

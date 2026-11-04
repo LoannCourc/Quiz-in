@@ -1,14 +1,10 @@
 import type { BluffChoicesLayout } from '@shared/bluffLayout'
 import type { Player, PlayerId, RevealedBluffChoice } from '@shared/types'
 
+import { bluffLetter } from '../lib/answerLayout'
 import { strings } from '../strings'
 import { AvatarGlyph } from './AvatarGlyph'
 import './BluffChoices.css'
-
-// Lettre d'un choix : A, B, C… (jusqu'à 21 choix : 20 joueurs et la vraie réponse).
-function bluffLetter(index: number): string {
-  return String.fromCharCode(65 + index)
-}
 
 function layoutClass({ columns, size }: BluffChoicesLayout): string {
   return `bluff-choices bluff-columns-${columns} bluff-size-${size}`

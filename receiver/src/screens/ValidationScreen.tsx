@@ -1,6 +1,7 @@
 import type { PublicSession } from '@shared/types'
 
 import { GameHeader } from '../components/GameHeader'
+import { progressKindOf } from '../lib/answerLayout'
 import { answeredByCount } from '../lib/players'
 import { questionSizeClass } from '../lib/questionSize'
 import { strings } from '../strings'
@@ -14,7 +15,7 @@ export function ValidationScreen({ session, roomCode }: { session: PublicSession
   if (!question) return null
   return (
     <main className="screen validation">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} />
       <h1 className={['validation-question', questionSizeClass(question.text)].filter(Boolean).join(' ')}>{question.text}</h1>
       <div className="validation-status">
         <span className="validation-dots" aria-hidden="true">

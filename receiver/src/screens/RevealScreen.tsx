@@ -1,10 +1,16 @@
-import { hasRankingStep, isAwaitingHost, isLastQuestion, nextQuestionCountdown } from '@shared/gameFlow'
+import { nextQuestionCountdown } from '@shared/gameFlow'
+import { voteShares } from '@shared/revealGauge'
+import { trackOptionParts } from '@shared/trackOption'
 import type { AnswerVerdict, ChoiceOptions, FreeAnswerGroup, PublicSession } from '@shared/types'
 
+import { AnswerExplanation, AnswerPills, type AnswerPill } from '../components/AnswerPills'
 import { Confetti } from '../components/Confetti'
 import { TrackOptionText } from '../components/TrackOptionText'
 import { GameHeader } from '../components/GameHeader'
-import { NextQuestionLine, TransitionSteps } from '../components/TransitionInfo'
+import { HostWaitBanner } from '../components/HostWaitBanner'
+import { NextQuestionLine } from '../components/TransitionInfo'
+import { useFitScale } from '../hooks/useFitScale'
+import { ANSWER_FIT, answerSizeClass, progressKindOf } from '../lib/answerLayout'
 import { optionsSizeClass } from '../lib/optionsSize'
 import { strings } from '../strings'
 import { BluffRevealScreen } from './BluffRevealScreen'
@@ -17,46 +23,46 @@ interface RevealScreenProps {
 
 export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   const { currentQuestion: question, reveal } = session
+  const fitKey = `${question?.options?.join('|')}|${reveal?.explanation}`
+  const bodyRef = useFitScale(fitKey, ANSWER_FIT)
   if (!question || !reveal) return null
   // Bluff : révélation en deux étapes (fausses propositions, puis la vraie réponse).
   if (reveal.stats.bluffChoices) return <BluffRevealScreen session={session} roomCode={roomCode} choices={reveal.stats.bluffChoices} />
   const countdown = nextQuestionCountdown(session)
-  // Propositions très longues : révélation compacte, pour que tout tienne (sans :has(), absent de Chrome 92).
-  const isCompact = question.options !== undefined && optionsSizeClass(question.options) === "options-size-very-long"
-  const steps = <TransitionSteps active={0} withRanking={hasRankingStep(session)} isLastQuestion={isLastQuestion(session)} />
+  const hasChoices = question.options !== undefined && reveal.stats.choiceCounts !== undefined
+  // Blind test : mention obligatoire de la source des extraits.
+  const credit = reveal.music && <p className="reveal-credit">{strings.blindTest.credits[reveal.music.source]}</p>
 
   return (
-    <main className={isCompact ? "screen reveal reveal-compact" : "screen reveal"}>
+    <main className={hasChoices ? 'screen answer-screen' : 'screen reveal'} ref={hasChoices ? bodyRef : undefined}>
       <Confetti />
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} qrLabel="rejoin" />
       {question.options && reveal.stats.choiceCounts ? (
         <>
-          {steps}
-          <h1 className="hero-title reveal-title">{strings.reveal.title}</h1>
-          <ChoiceResults
-            options={question.options}
-            counts={reveal.stats.choiceCounts}
-            correctAnswer={reveal.correctAnswer}
-          />
+          <h1 className="hero-title answer-title">{strings.reveal.title}</h1>
+          <div className="answer-body">
+            <ChoiceResults options={question.options} counts={reveal.stats.choiceCounts} correctAnswer={reveal.correctAnswer} />
+            <AnswerExplanation text={reveal.explanation} />
+            {credit}
+          </div>
         </>
       ) : (
         <>
-          {/* Maquette T2 : l'étape à gauche, l'énoncé en rappel discret à droite (pas de grand titre). */}
-          <div className="reveal-free-top">
-            {steps}
-            <p className="reveal-free-question">{question.text}</p>
-          </div>
+          {/* Maquette T2 : l'énoncé en rappel discret (pas de grand titre). */}
+          <p className="reveal-free-question">{question.text}</p>
           <FreeResults correctAnswer={reveal.correctAnswer} groups={reveal.stats.freeAnswers ?? []} />
+          <div className="reveal-explanation-slot">
+            {reveal.explanation && <p className="reveal-explanation">{reveal.explanation}</p>}
+            {credit}
+          </div>
         </>
       )}
-
-      <div className="reveal-explanation-slot">
-        {reveal.explanation && <p className="reveal-explanation">{reveal.explanation}</p>}
-        {/* Blind test : mention obligatoire de la source des extraits. */}
-        {reveal.music && <p className="reveal-credit">{strings.blindTest.credits[reveal.music.source]}</p>}
-      </div>
-      {countdown && <NextQuestionLine countdown={countdown} />}
-      {isAwaitingHost(session) && <p className="awaiting-host">{strings.awaitingHost}</p>}
+      {countdown && (
+        <div className="screen-bottom-line">
+          <NextQuestionLine countdown={countdown} />
+        </div>
+      )}
+      <HostWaitBanner session={session} />
     </main>
   )
 }
@@ -67,23 +73,20 @@ interface ChoiceResultsProps {
   correctAnswer: string
 }
 
-// Les 4 pilules : la bonne réponse avec contour blanc, les autres éteintes ; chacune indique
-// combien de joueurs l'ont choisie. La lettre accompagne toujours la couleur.
+// Les 4 pastilles, aux mêmes places qu'à la question : la bonne réponse en cyan, et pour chacune le nombre de
+// joueurs qui l'ont choisie et sa jauge. La lettre et le contour accompagnent toujours la couleur.
 function ChoiceResults({ options, counts, correctAnswer }: ChoiceResultsProps) {
-  return (
-    <ol className={`question-options reveal-options ${optionsSizeClass(options)}`}>
-      {options.map((option, index) => {
-        const isCorrect = option === correctAnswer
-        return (
-          <li key={option} className={`choice choice-${index} ${isCorrect ? 'is-correct' : 'is-dimmed'}`}>
-            <span className="choice-letter">{strings.choiceLetters[index]}</span>
-            <TrackOptionText option={option} />
-            <span className="reveal-count">{strings.reveal.choiceCount(counts[index] ?? 0)}</span>
-          </li>
-        )
-      })}
-    </ol>
-  )
+  const shares = voteShares(options.map((_, index) => counts[index] ?? 0))
+  const pills: AnswerPill[] = options.map((option, index) => ({
+    key: option,
+    letter: strings.choiceLetters[index],
+    isCorrect: option === correctAnswer,
+    count: counts[index] ?? 0,
+    share: shares[index],
+    text: <TrackOptionText option={option} />,
+  }))
+  const isTracks = options.some((option) => trackOptionParts(option).artist !== null)
+  return <AnswerPills pills={pills} sizeClass={[answerSizeClass(options.map((option) => trackOptionParts(option).title)), isTracks && 'is-tracks'].filter(Boolean).join(' ')} />
 }
 
 // Réponse libre (maquette T2) : à gauche, la carte cyan « LA BONNE RÉPONSE » ; à droite, « VOS RÉPONSES » :

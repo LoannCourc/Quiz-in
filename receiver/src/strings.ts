@@ -7,8 +7,11 @@ const LEVEL_LABELS: Record<DifficultyLevel, string> = { easy: 'Facile', medium: 
 // Textes affichés sur la TV, regroupés ici pour faciliter la traduction.
 export const strings = {
   appName: "Quiz'in",
-  // Pas à pas : révélation et classement restent affichés jusqu'à l'action de l'hôte.
-  awaitingHost: 'En attente de l’hôte pour la suite…',
+  // Pas à pas : révélation et classement restent affichés jusqu'à l'action de l'hôte (bandeau du bas).
+  hostWait: {
+    title: 'La partie est en pause',
+    hint: 'L’hôte doit passer à la suite depuis son téléphone',
+  },
   lobby: {
     scanToJoin: 'Scannez pour rejoindre',
     orEnterCode: 'ou saisissez le code',
@@ -42,6 +45,8 @@ export const strings = {
     joinAt: (host: string) => `${host} · code`,
     // Pendant la partie, à côté du QR code : il ne sert qu'à revenir (pas de nouveau joueur après le lancement).
     rejoin: 'Déconnecté ? Scanne pour revenir dans la partie.',
+    // Écran de la bonne réponse : à côté du QR code, sur deux lignes, sans l'adresse.
+    rejoinShort: ['Déconnecté ?', 'Scanne pour revenir'],
   },
   starting: {
     getReady: 'Prêts ?',
@@ -56,6 +61,8 @@ export const strings = {
     progress: (index: number, total: number | undefined) => (total ? `Question ${index}/${total}` : `Question ${index}`),
     // Dessine-moi : une manche plutôt qu'une question.
     roundProgress: (index: number, total: number | undefined) => (total ? `Manche ${index}/${total}` : `Manche ${index}`),
+    blindTestProgress: (index: number, total: number | undefined) => (total ? `Blind test ${index}/${total}` : `Blind test ${index}`),
+    bluffProgress: (index: number, total: number | undefined) => (total ? `Bluff ${index}/${total}` : `Bluff ${index}`),
     answeredCount: (count: number, total: number) => `${count}/${total} ont répondu`,
     noConnectedPlayers: '—',
     // Réponse libre : à la place des propositions, ce qu'il faut écrire (blind test : selon ask).
@@ -103,6 +110,17 @@ export const strings = {
     suspense: 'Suspense… la vraie réponse arrive',
     truthTag: 'Vraie réponse',
     decoyTag: 'Leurre',
+    // Écran de la bonne réponse : libellés au-dessus du texte, en capitales.
+    truthLabel: 'La vraie réponse',
+    bluffOf: (names: string) => `Bluff ${/^[aeiouy]/i.test(names.normalize('NFD')) ? 'd’' : 'de '}${names}`,
+    // « Lola a piégé 2 joueurs, Hugo 1. » ; 3 noms au plus, puis « et N autres ».
+    trapSummary: (entries: { name: string; trapped: number }[]) => {
+      const [first, ...others] = entries
+      if (!first) return ''
+      const parts = [`${first.name} a piégé ${first.trapped} joueur${first.trapped > 1 ? 's' : ''}`, ...others.slice(0, 2).map(({ name, trapped }) => `${name} ${trapped}`)]
+      const more = others.length - 2
+      return `${parts.join(', ')}${more > 0 ? ` et ${more} autre${more > 1 ? 's' : ''}` : ''}.`
+    },
     writtenBy: (names: string) => `écrite par ${names}`,
     noVote: 'aucun vote',
     otherChoices: (count: number) => `+ ${count} autre${count > 1 ? 's' : ''} proposition${count > 1 ? 's' : ''} sans vote`,
@@ -113,14 +131,10 @@ export const strings = {
       return shown.length > 1 ? `${shown.slice(0, -1).join(', ')} et ${shown[shown.length - 1]}` : (shown[0] ?? '')
     },
   },
-  // Attente entre deux questions : étapes, compte à rebours et annonce de la question suivante.
+  // Attente entre deux questions : compte à rebours et annonce de la question suivante.
   transition: {
-    steps: ['Réponse', 'Classement', 'Question suivante'],
-    // Dernière question : la révélation mène directement à l'écran de fin.
-    finalStep: 'Classement final',
     nextQuestionIn: (seconds: number) => `Prochaine question dans ${seconds}…`,
     // Dessine-moi : des manches.
-    nextRoundStep: 'Manche suivante',
     nextRoundIn: (seconds: number) => `Prochaine manche dans ${seconds}…`,
     finalRankingIn: (seconds: number) => `Classement final dans ${seconds}…`,
     announce: (questionNumber: number, questionCount: number) => `Question ${questionNumber}/${questionCount}`,
@@ -129,9 +143,19 @@ export const strings = {
   },
   scores: {
     title: 'Classement',
-    afterQuestion: (index: number) => `après la question ${index}`,
-    // Dessine-moi : manches.
-    afterRound: (index: number) => `après la manche ${index}`,
+  },
+  // Classement entre deux questions : carte du 1er, puis barres.
+  interim: {
+    leads: 'en tête',
+    holds: 'reste en tête',
+    takes: 'passe en tête',
+    tied: 'à égalité en tête',
+    // Espace insécable entre les milliers (aucune des polices n'a l'espace fine insécable).
+    points: (points: number) => String(points).replace(/\B(?=(\d{3})+$)/g, ' '),
+    others: (count: number) => `et ${count} autre${count > 1 ? 's' : ''}`,
+    moveSame: 'même place',
+    moveUp: (places: number) => `${places} place${places > 1 ? 's' : ''} gagnée${places > 1 ? 's' : ''}`,
+    moveDown: (places: number) => `${places} place${places > 1 ? 's' : ''} perdue${places > 1 ? 's' : ''}`,
   },
   end: {
     title: 'Partie terminée !',
@@ -248,7 +272,6 @@ export const strings = {
     points: (points: number) => `${points} pts`,
     // Liste compacte (fin de partie à 13 joueurs et plus) : le nombre seul, le nom garde la place.
     compactPoints: (points: number) => `${points}`,
-    gained: (points: number) => `+${points}`,
   },
   // Série de bonnes réponses d'affilée (spec 18) : badge flamme, lu par les lecteurs d'écran.
   streak: (count: number) => `Série de ${count}`,

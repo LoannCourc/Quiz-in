@@ -88,6 +88,33 @@
   --background-flat: var(--bg-middle);
   --background-celebration-flat: #a8287f;
 
+  /* « La bonne réponse » et classement entre deux questions (maquettes validées par Loann). */
+  --night: #1a0b4a;
+  --answer-wrong-bg: rgba(255, 190, 200, 0.3);
+  --answer-wrong-letter-bg: rgba(255, 255, 255, 0.4);
+  --answer-wrong-text: #5b1a6e;
+  --answer-wrong-gauge: rgba(255, 255, 255, 0.3);
+  --answer-count-bg: #7b2a90;
+  --answer-correct-bg: #35e6fe;
+  --answer-correct-text: #14064a;
+  --answer-correct-gauge: rgba(26, 11, 74, 0.16);
+  --answer-correct-shadow: 0 0.5rem 0 rgba(26, 11, 74, 0.3);
+  --leader-card: linear-gradient(180deg, #ffe066, #ffd23f);
+  --leader-card-shadow: 0 0.6rem 0 rgba(122, 31, 90, 0.35);
+  --rank-track: rgba(255, 255, 255, 0.2);
+  --rank-up: #7cff9b;
+  --rank-down: #ffd0d0;
+  --rank-same: rgba(255, 255, 255, 0.7);
+  --rank-bar-0: #ccd4ff;
+  --rank-bar-1: #ffb98c;
+  --rank-bar-2: #7dff9a;
+  --rank-bar-3: #ff6fa8;
+  --rank-bar-4: #3fe9ff;
+  --rank-bar-5: #e3c7ff;
+  /* Bandeau « La partie est en pause » : hauteur réservée en bas des écrans qui attendent l'hôte. */
+  --host-banner-height: 5.6rem;
+  --host-banner-hint: rgba(255, 255, 255, 0.85);
+
   /* Polices */
   --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;
   --font-text: 'Nunito', system-ui, 'Segoe UI', sans-serif;

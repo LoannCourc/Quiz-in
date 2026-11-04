@@ -59,7 +59,13 @@
   --ring-width: calc(0.7rem * var(--side-scale));
 }
 
-/* Révélation : le dessin final, à côté du mot. */
+/* Révélation : le dessin final, à côté du mot. Cadre réduit pour laisser la place du bandeau d'attente. */
+.draw-reveal {
+  --draw-frame-width: 31rem;
+  row-gap: 0.4rem;
+  padding-bottom: calc(var(--host-banner-height) + 0.2rem);
+}
+
 .draw-reveal-side {
   --word-scale: 1;
 }

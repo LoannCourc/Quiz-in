@@ -16,7 +16,7 @@
 
 .ranking-row {
   display: grid;
-  grid-template-columns: 2.4rem 3rem 1fr auto auto;
+  grid-template-columns: 2.4rem 3rem 1fr auto;
   align-items: center;
   column-gap: 0.6rem;
   padding: 0.5rem 1.4rem;
@@ -52,27 +52,11 @@
   line-height: 1;
 }
 
-/* Séries affichées : colonne de l'avatar élargie pour le badge, posé à cheval sur son coin haut droit. */
-.ranking-with-streaks .ranking-row {
-  grid-template-columns: 2.4rem 4.4rem 1fr auto auto;
-}
-
-.ranking-streak {
-  position: absolute;
-  top: -0.5em;
-  left: 62%;
-  font-size: 0.72em;
-}
-
 .ranking-name {
   font-size: calc(1em * var(--name-scale, 1));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.ranking-gained {
-  color: var(--color-correct);
 }
 
 .ranking-score {

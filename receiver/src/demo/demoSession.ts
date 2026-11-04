@@ -393,7 +393,12 @@ export function withDemoBluff(session: PublicSession, { choiceCount, long, answe
       ...((session.status === 'vote' || hasReveal) && { choices: choices.map((choice) => choice.text) }),
     },
     reveal: hasReveal
-      ? { correctAnswer: BLUFF_TRUTH, stats: { bluffChoices: choices }, results: bluffResults(choices) }
+      ? {
+          correctAnswer: BLUFF_TRUTH,
+          explanation: 'Elizabeth Magie l’a déposé dès 1904 pour dénoncer les propriétaires fonciers.',
+          stats: { bluffChoices: choices },
+          results: bluffResults(choices),
+        }
       : undefined,
     answeredBy: undefined,
     bluffedBy: { [index]: acted },

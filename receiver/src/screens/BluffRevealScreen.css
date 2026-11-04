@@ -1,11 +1,9 @@
-/* Révélation du Bluff (maquette B5) : titre, lignes des choix (zone compressible), suite de la partie. */
+/* Révélation du Bluff (maquette B5), étape 1 : titre, lignes des choix (zone compressible). L'étape 2 est
+   « La bonne réponse » (.answer-screen, RevealScreen.css). */
 .bluff-reveal {
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr);
   row-gap: 0.8rem;
-}
-
-.bluff-reveal.is-truth-shown {
-  background: var(--background-celebration);
+  padding-bottom: calc(var(--host-banner-height) + 0.4rem);
 }
 
 .bluff-reveal-title {
@@ -35,19 +33,16 @@
 
 .bluff-hidden {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--text-scale, 1));
   font-weight: 900;
   text-align: center;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
-/* Beaucoup de choix : sans les étapes, titre plus petit, pour laisser la place aux lignes. */
+/* Beaucoup de choix : titre plus petit, pour laisser la place aux lignes. */
 .bluff-reveal.is-crowded {
   row-gap: 0.5rem;
-}
-
-.bluff-reveal.is-crowded .transition-steps {
-  display: none;
+  padding-bottom: 1.8rem;
 }
 
 .bluff-reveal.is-crowded .bluff-reveal-title {

@@ -1,0 +1,66 @@
+/* Bandeau bas, pleine largeur (maquette « Attente hôte 3 »). Sa hauteur est réservée par les écrans. */
+.host-wait-banner {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1.2rem;
+  height: var(--host-banner-height);
+  overflow: hidden;
+  background: var(--night);
+  color: var(--white);
+}
+
+/* Fine barre de lumière en haut du bandeau : balaie en boucle (fixe et centrée en mode allégé). */
+.host-wait-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24rem;
+  height: 0.3rem;
+  background: linear-gradient(90deg, transparent, var(--answer-correct-bg), transparent);
+  transform: translateX(20rem);
+  animation: host-wait-sweep 2200ms linear infinite;
+}
+
+.host-wait-clock {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  fill: none;
+  stroke: var(--answer-correct-bg);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.host-wait-texts {
+  display: grid;
+  row-gap: 0.1rem;
+}
+
+.host-wait-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.host-wait-hint {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--host-banner-hint);
+}
+
+@keyframes host-wait-sweep {
+  from {
+    transform: translateX(-24rem);
+  }
+  to {
+    transform: translateX(64rem);
+  }
+}

@@ -1,42 +1,39 @@
-/* Zone d'explication compressible (minmax 0) : le compte à rebours du bas reste toujours dans le cadre. */
-.reveal {
-  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
-  row-gap: 1rem;
+/* « La bonne réponse » (maquettes Quiz, Blind test, Bluff) : en-tête, titre, puis la zone des pastilles et de
+   l'explication, qui s'arrête au-dessus du bandeau (place réservée : rien ne bouge quand il apparaît). */
+.answer-screen {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  row-gap: 0.1rem;
+  padding-bottom: calc(var(--host-banner-height) + 0.4rem);
   background: var(--background-celebration);
 }
 
-.reveal-title {
+.answer-title {
   font-size: 2.8rem;
+  line-height: var(--display-line-height);
 }
 
-.reveal-options .choice {
-  grid-template-columns: auto 1fr auto;
-  min-height: 5rem;
-  outline: 0.25rem solid transparent;
-  outline-offset: 0.25rem;
-}
-
-.reveal-options .choice.is-correct {
-  outline-color: var(--color-selection);
-}
-
-.reveal-options .choice.is-dimmed {
-  opacity: var(--dimmed-opacity);
-}
-
-/* Nombre de joueurs ayant choisi la proposition, dans une pastille encre. */
-.reveal-count {
+.answer-body {
   display: grid;
-  place-items: center;
-  min-width: 3rem;
-  height: 3rem;
-  padding: 0 0.6rem;
-  border-radius: var(--radius-pill);
-  background: var(--ink-surface);
-  color: var(--color-text);
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.4rem;
+  align-content: start;
+  row-gap: calc(1rem * var(--text-scale, 1));
+  min-height: 0;
+}
+
+/* Compte à rebours (rythme automatique) : dans la place du bandeau, qui n'apparaît qu'en Pas à pas. */
+.screen-bottom-line {
+  position: absolute;
+  right: 3.2rem;
+  bottom: 1.8rem;
+  left: 3.2rem;
+  z-index: 1;
+}
+
+/* Réponse libre : la zone d'explication compressible (minmax 0) s'arrête au-dessus du bandeau. */
+.reveal {
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  row-gap: 1rem;
+  padding-bottom: calc(var(--host-banner-height) + 0.4rem);
+  background: var(--background-celebration);
 }
 
 .reveal-explanation-slot {
@@ -71,39 +68,13 @@
   text-align: center;
 }
 
-/* Propositions très longues : titre et espacements réduits, explication sur deux lignes au plus. */
-.reveal-compact {
-  row-gap: 0.6rem;
-}
-
-.reveal-compact .reveal-title {
-  font-size: 2.1rem;
-}
-
-.reveal-compact .reveal-explanation {
-  -webkit-line-clamp: 2;
-  padding: 0.6rem 1.4rem;
-  font-size: 1.2rem;
-}
-
-/* Réponse libre (maquette T2). En haut : l'étape à gauche, l'énoncé en rappel à droite. */
-.reveal-free-top {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  column-gap: 2rem;
-}
-
-.reveal-free-top .transition-steps-fit {
-  justify-items: start;
-}
-
+/* Réponse libre (maquette T2) : l'énoncé en rappel. */
 .reveal-free-question {
   overflow: hidden;
   font-size: 1.2rem;
   font-weight: 900;
   color: var(--color-text-muted);
-  text-align: right;
+  text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
 }

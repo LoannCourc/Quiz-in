@@ -1,7 +1,7 @@
 import { bluffRevealTimeline } from './bluff'
 import { drawFoundProgress } from './drawGuess'
 import { connectedPlayerIds } from './players'
-import { computeRanks } from './ranking'
+import { previousRanks } from './ranking'
 import { podiumEntryMs, podiumPlaceCount, scoresEntryMs, scoresRowCount } from './rankingTimeline'
 import { startingTimeline } from './startingCountdown'
 import { streakSound } from './streak'
@@ -193,11 +193,8 @@ function isEveryoneDone(session: PublicSession): boolean {
 // Classement : un rang a changé avec les points de la dernière question (rangs d'avant recalculés
 // à partir des scores moins ces points).
 export function ranksChanged(session: Pick<PublicSession, 'players' | 'reveal'>): boolean {
-  const results = session.reveal?.results ?? {}
-  const before: Record<PlayerId, number> = {}
-  for (const [id, player] of Object.entries(session.players)) before[id] = player.score - (results[id]?.points ?? 0)
-  const previousRanks = computeRanks(before)
-  return Object.entries(session.players).some(([id, player]) => previousRanks[id] !== player.rank)
+  const before = previousRanks(session)
+  return Object.entries(session.players).some(([id, player]) => before[id] !== player.rank)
 }
 
 
