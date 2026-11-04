@@ -24,20 +24,14 @@ const WORDS_PER_CATEGORY: Record<(typeof DRAW_CATEGORIES)[number], number> = {
   Vêtement: 45,
   Corps: 42,
 }
-// Paires d'anciens mots acceptés l'un pour l'autre (une faute tolérée dès 5 lettres), connues et laissées telles
-// quelles : (essai) → (mot). Aucune nouvelle paire n'est admise.
-const KNOWN_CLOSE_PAIRS = [
-  'bateau → gâteau',
-  'gâteau → bateau',
-  'bouche → douche',
-  'douche → bouche',
-  'chapeau → château',
-  'château → chapeau',
-  'ciseaux → oiseau',
-  'oiseau → ciseaux',
-  'manteau → marteau',
-  'marteau → manteau',
-  'tête → tente',
+// Mots de la liste qui ne diffèrent que d'une lettre : l'essai exact de l'un ne vaut jamais pour l'autre.
+const CLOSE_COUPLES = [
+  ['bateau', 'gâteau'],
+  ['bouche', 'douche'],
+  ['chapeau', 'château'],
+  ['ciseaux', 'oiseau'],
+  ['manteau', 'marteau'],
+  ['tête', 'tente'],
 ]
 // Sans casse, accents, article, tirets ni espaces, sans pluriel.
 const key = (text: string) => normalizeAnswer(text).replace(/[\s-]/g, '').replace(/[sx]$/, '')
@@ -86,7 +80,7 @@ describe('Dessine-moi : liste des mots', () => {
     }
   })
 
-  test('tolérance aux fautes : aucune nouvelle réponse d’un autre mot acceptée (« musée » pour « fusée »)', () => {
+  test('tolérance aux fautes : la réponse d’un autre mot n’est jamais acceptée (« musée » pour « fusée »)', () => {
     const wrong: string[] = []
     for (const { word } of DRAW_WORDS) {
       for (const other of DRAW_WORDS) {
@@ -96,7 +90,43 @@ describe('Dessine-moi : liste des mots', () => {
         }
       }
     }
-    expect(wrong.sort()).toEqual([...KNOWN_CLOSE_PAIRS].sort())
+    expect(wrong).toEqual([])
+  })
+
+  test.each(CLOSE_COUPLES)('« %s » et « %s » : les deux mots sont dans la liste, chacun faux pour l’autre', (first, second) => {
+    expect(DRAW_WORDS.some(({ word }) => word === first)).toBe(true)
+    expect(DRAW_WORDS.some(({ word }) => word === second)).toBe(true)
+    expect(judgeDrawGuess(second, first)).toBe('wrong')
+    expect(judgeDrawGuess(first, second)).toBe('wrong')
+    // Avec casse, accents, article et pluriel : toujours l'autre mot.
+    expect(judgeDrawGuess(`le ${second.toUpperCase()}`, first)).toBe('wrong')
+    expect(judgeDrawGuess(first, first)).toBe('found')
+  })
+
+  test('une vraie faute de frappe reste acceptée, même sur les mots proches', () => {
+    for (const [word, typo] of [
+      ['bateau', 'batau'],
+      ['gâteau', 'gateu'],
+      ['bouche', 'bouhce'],
+      ['douche', 'douchee'],
+      ['chapeau', 'chapau'],
+      ['château', 'chateu'],
+      ['ciseaux', 'cisaux'],
+      ['oiseau', 'oizeau'],
+      ['manteau', 'mantau'],
+      ['marteau', 'marteu'],
+      ['tente', 'tentee'],
+    ]) {
+      expect(judgeDrawGuess(typo, word), `${typo} pour ${word}`).not.toBe('wrong')
+    }
+    expect(judgeDrawGuess('batau', 'bateau')).toBe('found')
+    expect(judgeDrawGuess('oizeau', 'oiseau')).toBe('found')
+  })
+
+  test('le début du mot et les synonymes du mot lui-même ne changent pas', () => {
+    expect(judgeDrawGuess('gât', 'gâteau')).toBe('close')
+    expect(judgeDrawGuess('réfrigérateur', 'frigo')).toBe('found')
+    expect(judgeDrawGuess('frigos', 'frigo')).toBe('found')
   })
 
   test('répartition des niveaux : environ 60 % faciles, 30 % moyens, 10 % difficiles', () => {

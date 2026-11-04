@@ -1,7 +1,7 @@
 import { editDistance, normalizeAnswer } from './answerMatching'
 import { ALL_ANSWERED_DELAY_S, DRAW_DRAWER_MAX_POINTS, DRAW_GUESS_MAX_POINTS, DRAW_GUESS_MIN_POINTS } from './constants'
 import { seededRandom, shuffled, wordLetterCount } from './drawGame'
-import { drawAnswers, drawWordsIn } from './drawWords'
+import { DRAW_WORDS, drawAnswers, drawWordsIn } from './drawWords'
 import type { SessionUpdate } from './hostEngine'
 import { connectedPlayerIds } from './players'
 import type { DrawQuestion, DrawVerdict, PlayerId, PlayerResult, PublicSession, Session } from './types'
@@ -26,19 +26,25 @@ function comparable(text: string): string {
 
 const letters = (text: string) => text.replace(/ /g, '').length
 
+// Toutes les réponses de la liste (mots et synonymes), sous leur forme comparable : qui tape exactement l'une
+// d'elles n'a pas fait de faute de frappe, il propose un autre mot.
+const LIST_ANSWERS: ReadonlySet<string> = new Set(DRAW_WORDS.flatMap(({ word }) => drawAnswers(word)).map(comparable))
+
 // Verdict d'un essai : le meilleur obtenu contre le mot et ses synonymes acceptés (shared/drawWords.ts).
 export function judgeDrawGuess(guess: string, word: string): DrawVerdict {
-  const verdicts = drawAnswers(word).map((answer) => judgeAgainst(guess, answer))
+  const answers = drawAnswers(word)
+  const given = comparable(guess)
+  if (answers.some((answer) => comparable(answer) === given) && given !== '') return 'found'
+  // « gâteau » quand le mot est « bateau » : aucune tolérance, c'est faux (le début du mot reste « proche »).
+  const allowsTypos = !LIST_ANSWERS.has(given)
+  const verdicts = answers.map((answer) => judgeAgainst(given, comparable(answer), allowsTypos))
   if (verdicts.includes('found')) return 'found'
   return verdicts.includes('close') ? 'close' : 'wrong'
 }
 
-function judgeAgainst(guess: string, word: string): DrawVerdict {
-  const given = comparable(guess)
-  const expected = comparable(word)
+function judgeAgainst(given: string, expected: string, allowsTypos: boolean): DrawVerdict {
   if (given === '' || expected === '') return 'wrong'
-  if (given === expected) return 'found'
-  const distance = editDistance(given, expected)
+  const distance = allowsTypos ? editDistance(given, expected) : Infinity
   if (letters(expected) >= TYPO_MIN_LETTERS && distance <= 1) return 'found'
   if (letters(expected) >= CLOSE_MIN_LETTERS && distance <= 2) return 'close'
   if (letters(given) >= PREFIX_MIN_LETTERS && expected.startsWith(given)) return 'close'
