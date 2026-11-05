@@ -36,6 +36,7 @@ export type ScenarioId =
   | 'revealOneLong'
   | 'revealAwaiting'
   | 'scoresAwaiting'
+  | 'scoresMany'
   | 'revealSuspense'
   | 'freeQuestion'
   | 'freeQuestionTitle'
@@ -75,6 +76,7 @@ export const SCENARIO_LABELS: Record<ScenarioId, string> = {
   revealOneLong: 'Révélation, une proposition de 80 caractères',
   revealAwaiting: 'Pas à pas : attente de l’hôte',
   scoresAwaiting: 'Pas à pas : classement en attente',
+  scoresMany: 'Classement à 9 joueurs, hors du top 5',
   revealSuspense: 'Suspense : révélation sans rang',
   freeQuestion: 'Réponse libre : question',
   freeQuestionTitle: 'Réponse libre : blind test, titre',
@@ -466,6 +468,12 @@ export function buildScenario(id: ScenarioId, now: number): Scenario {
       // Suspense : points gagnés, mais ni rang ni étape Classement.
       const reveal = revealScenario(now, RESULTS[DEMO_UID]);
       return idle({ ...reveal, settings: { ...reveal.settings, suspense: true } });
+    }
+    case 'scoresMany': {
+      // Hors du top 5 ; &me=lea pour le voir en tête, &me=j3 dans le top 5.
+      const many: Record<PlayerId, Player> = { ...PLAYERS_AFTER, [DEMO_UID]: player('Moi', '🐸', 300, 9), sam: player('Sam', '🦄', 700, 6, false), j1: player('Maximilienne', '🐯', 600, 7), j2: player('Marie-Hélène', '🐻', 500, 8) };
+      const scores = baseSession(now, many);
+      return idle({ ...scores, status: 'scores', reveal: REVEAL, settings: { ...scores.settings, stepByStep: true }, phaseStartedAt: now, phaseEndsAt: 0 });
     }
     case 'scoresAwaiting': {
       // Pas à pas : classement sans fin programmée, en attente de « Question suivante ».

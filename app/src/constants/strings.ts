@@ -1162,6 +1162,22 @@ export const strings = {
       coinLabel: 'points',
       speedBonus: (bonus: number) => `Bonus rapidité : +${bonus}`,
     },
+    // Classement du téléphone après chaque question (version C).
+    ranking: {
+      title: 'Classement',
+      yourPlace: 'Ta place',
+      topFive: 'Le top 5',
+      me: 'Toi',
+      score: (points: number) => formatNumber(points),
+      same: '=',
+      places: (count: number) => `${count} place${count > 1 ? 's' : ''}`,
+      gap: (points: number, name: string) => `À ${formatNumber(points)} pts de ${name}`,
+      leader: 'Tu es en tête',
+      lead: (points: number, name: string) => `+${formatNumber(points)} pts d’avance sur ${name}`,
+      tied: (name: string) => `À égalité avec ${name}`,
+      dots: '…',
+      others: (count: number) => `et ${count} autre${count > 1 ? 's' : ''}`,
+    },
     scores: {
       title: 'Classement',
       afterQuestion: (index: number) => `après la question ${index + 1}`,

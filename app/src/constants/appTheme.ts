@@ -155,6 +155,20 @@ export const AppColors = {
   celebrationRay: 'rgba(255, 255, 255, 0.09)',
   celebrationStar: '#fff4c2',
   celebrationHalo: Palette.gold,
+  // Classement du téléphone (version C) : carte « Ta place », lignes du top 5. Barres : mêmes couleurs que la TV
+  // (receiver/src/theme.css, --rank-bar-0 à 5 ; RANK_BAR_COLOR_COUNT).
+  rankBars: ['#ccd4ff', '#ffb98c', '#7dff9a', '#ff6fa8', '#3fe9ff', '#e3c7ff'],
+  rankCardBase: Palette.cyan,
+  rankCardShine: 'rgba(255, 255, 255, 0.45)',
+  rankCardTrack: 'rgba(27, 10, 69, 0.2)',
+  rankPillBackground: 'rgba(255, 255, 255, 0.72)',
+  rankPillUp: '#0b7a35',
+  rankPillDown: '#c21d63',
+  rankUp: Palette.green,
+  rankDown: '#ff8fb8',
+  rankRow: 'rgba(255, 255, 255, 0.10)',
+  rankRowMine: 'rgba(255, 255, 255, 0.22)',
+  rankTrack: 'rgba(255, 255, 255, 0.16)',
   // Catalogue : puces de thème (contour, puce choisie en blanc), badge « bientôt », pastilles de la fiche.
   chipBorder: 'rgba(201, 184, 255, 0.45)',
   chipSelected: Palette.white,
@@ -285,6 +299,9 @@ export const AppBackgrounds = {
 } as const;
 
 // Pièce de la révélation : reflet clair au centre, or plus soutenu sur les bords (maquette).
+// Carte « Ta place » du classement du téléphone.
+export const RankCardGradient = 'linear-gradient(135deg, #3fe9ff 0%, #2bb8ff 100%)';
+
 export const AppCoinGradient = `radial-gradient(circle at 50% 40%, ${Palette.goldLight} 0%, ${Palette.gold} 55%, ${Palette.goldDeep} 100%)`;
 
 export type AppBackgroundName = keyof typeof AppBackgrounds;

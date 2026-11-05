@@ -111,7 +111,8 @@ function PlayerGameScreen(props: PlayerGameProps) {
         backdrop={celebration ? <CelebrationRays center={celebration} /> : undefined}
         header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
         footer={props.footer ?? (isQuitShown(props) ? props.quitLink : undefined)}
-        scrollable={!isDrawing}
+        // Classement (sauf Groupe) : tout tient, les lignes rétrécissent plutôt que de faire défiler.
+        scrollable={!isDrawing && !(session.status === 'scores' && !session.settings.teams)}
         wide={isDrawingLandscape}
         keyboardShowsBottom>
         {props.notice && <Text style={[textStyles.body, styles.notice]}>{props.notice}</Text>}
@@ -340,16 +341,15 @@ function renderView(props: PlayerGameProps, onCoinCenter: (center: CoinCenter) =
     }
     case 'scores':
       // Pas à pas : classement en attente de l'hôte (aussi après une reconnexion).
-      if (isAwaitingHost(session)) return <AwaitingScoresPhase players={ranked} uid={uid} index={index} team={team} isRound={session.settings.answerMode === 'draw'} />;
+      if (isAwaitingHost(session)) return <AwaitingScoresPhase session={session} uid={uid} team={team} isRound={session.settings.answerMode === 'draw'} />;
       if (!wait) return <WaitingView />;
       return (
         <ScoresPhase
           key={`${session.phaseStartedAt}-${session.phaseEndsAt}`}
-          players={ranked}
+          session={session}
           uid={uid}
-          index={index}
           phase={timing}
-          wait={wait}
+          isRound={wait.isRound}
           upcoming={upcomingQuestionNumber(session)}
           questionCount={questionCount}
           team={team}

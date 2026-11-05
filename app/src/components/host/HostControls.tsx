@@ -41,7 +41,7 @@ export function HostNextButton({ label, onPress, celebrates = false }: { label: 
   const rotate = shake.interpolate({ inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1], outputRange: ['0deg', '-1.5deg', '1.5deg', '-1deg', '1deg', '0deg'] });
   return (
     <Animated.View style={{ opacity: appear, transform: [{ rotate }] }}>
-      <BigButton label={label} onPress={onPress} />
+      <BigButton label={label} onPress={onPress} singleLine />
     </Animated.View>
   );
 }

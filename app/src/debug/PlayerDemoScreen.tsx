@@ -82,7 +82,7 @@ function withDemoOptions(session: PublicSession, options: string | undefined): P
 // ?bands=1 : bandes « Ta place » de 1 à 20 et avec changement de rang, étapes, en-tête et compte à
 // rebours (textes ajustés à leur contenu, voir TEXT_FIT_SAFETY).
 export default function PlayerDemoScreen() {
-  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string; options?: string; quizname?: string; bluffrules?: string; quit?: string }>();
+  const params = useLocalSearchParams<{ s?: string; capture?: string; host?: string; bands?: string; tv?: string; streak?: string; word?: string; choosing?: string; options?: string; quizname?: string; bluffrules?: string; quit?: string; me?: string }>();
   // &quizname=1 : quiz fixe ou blind test joué (salle d'attente, écran de fin).
   const quizName = params.quizname === '1' ? strings.catalog.playedQuiz('Électro des années 80', strings.catalog.difficultyLevels.medium) : null;
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
@@ -202,7 +202,8 @@ export default function PlayerDemoScreen() {
             withDemoStreak(params.tv === '1' ? { ...demoSession, tvPresence: { [DEMO_TV_UID]: true } } : demoSession, Number(params.streak) || 0),
             params.options,
           )}
-          uid={DEMO_UID}
+          // &me=lea : voir l'écran d'un autre joueur (classement en tête, à égalité…).
+          uid={params.me ?? DEMO_UID}
           serverOffsetMs={0}
           answer={scenario.answer}
           onAnswer={answer}
