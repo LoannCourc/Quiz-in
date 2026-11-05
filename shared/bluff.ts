@@ -1,5 +1,5 @@
 import { containsForbiddenWord } from './answerFilter'
-import { isAcceptedLevel, matchAnswer, normalizeAnswer } from './answerMatching'
+import { editDistance, isAcceptedLevel, matchAnswer, normalizeAnswer } from './answerMatching'
 import {
   ALL_ANSWERED_DELAY_S,
   BLUFF_MAX_ATTEMPTS,
@@ -42,13 +42,46 @@ export function cleanBluffText(text: string): string {
   return text.trim().replace(/\s+/g, ' ')
 }
 
-// Verdict de l'hôte sur une proposition. truth : la vraie réponse (ou une autre écriture acceptée),
-// exacte ou à une faute de frappe près (majuscules, accents et ponctuation ignorés) ; le joueur apprend
-// alors qu'il l'a trouvée. Le niveau « proche » de la Réponse libre ne compte pas : un mot de la vraie
-// réponse seul (« Game » pour « The Landlord's Game ») reste une proposition valable.
+// Mots trop courants pour qu'un morceau de réponse fait d'eux seuls compte comme un bout de la vraie réponse.
+const SMALL_WORDS: ReadonlySet<string> = new Set(
+  'le la les un une des du de au aux et ou en par pour sur sous dans avec sans ce cet cette ces son sa ses leur leurs qui que dont il elle ils elles on se ne pas plus the of and in a an to'.split(' '),
+)
+const NEAR_EQUAL_RATIO = 0.2
+const WORD_TYPO_MIN_LETTERS = 5
+
+function isSameWord(a: string, b: string): boolean {
+  return a === b || (Math.min(a.length, b.length) >= WORD_TYPO_MIN_LETTERS && editDistance(a, b) <= 1)
+}
+
+// part se retrouve-t-elle dans whole, mots consécutifs, à une faute de frappe par mot près ?
+function containsWordsInOrder(whole: readonly string[], part: readonly string[]): boolean {
+  for (let start = 0; start + part.length <= whole.length; start++) {
+    if (part.every((word, offset) => isSameWord(word, whole[start + offset]))) return true
+  }
+  return false
+}
+
+// Trop proche d'une réponse (sans casse, accents ni ponctuation) : un début ou une partie de celle-ci, la réponse
+// avec des mots en plus, ou presque la même phrase. Un morceau fait seulement de petits mots (« de la ») ne compte pas.
+function isTooCloseTo(text: string, answer: string): boolean {
+  const given = normalizeAnswer(text)
+  const expected = normalizeAnswer(answer)
+  if (given === '' || expected === '') return false
+  const givenWords = given.split(' ')
+  const expectedWords = expected.split(' ')
+  const hasRealWord = givenWords.some((word) => word.length >= 3 && !SMALL_WORDS.has(word))
+  if (hasRealWord && containsWordsInOrder(expectedWords, givenWords)) return true
+  if (containsWordsInOrder(givenWords, expectedWords)) return true
+  return editDistance(given, expected) <= Math.floor(Math.max(given.length, expected.length) * NEAR_EQUAL_RATIO)
+}
+
+// Verdict de l'hôte sur une proposition. truth : la vraie réponse (ou une autre écriture acceptée), à une faute de
+// frappe près, ou trop proche d'elle (« Toy Story » pour « Toy Story, le premier film… ») : refusée avec « Trop
+// proche de la vraie réponse », sans dire si c'est exactement elle.
 export function checkBluff(text: string, question: BluffQuestion): BluffVerdict {
   if (normalizeAnswer(text) === '') return 'empty'
-  if (isAcceptedLevel(matchAnswer(text, [question.answer, ...question.acceptedAnswers]))) return 'truth'
+  const answers = [question.answer, ...question.acceptedAnswers]
+  if (isAcceptedLevel(matchAnswer(text, answers)) || answers.some((answer) => isTooCloseTo(text, answer))) return 'truth'
   return containsForbiddenWord(text) ? 'forbidden' : 'ok'
 }
 

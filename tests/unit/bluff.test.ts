@@ -103,9 +103,19 @@ describe('Bluff : vérification des propositions', () => {
   })
 
   test('un seul mot de la vraie réponse, ou une réponse seulement proche : acceptée', () => {
-    expect(checkBluff('Game', QUESTION)).toBe('ok')
-    expect(checkBluff('Landlords', QUESTION)).toBe('ok')
+    expect(checkBluff('Game', QUESTION)).toBe('truth')
+    expect(checkBluff('Landlords', QUESTION)).toBe('truth')
     expect(checkBluff('The Landlady Game', QUESTION)).toBe('ok')
+  })
+
+  test('trop proche de la vraie réponse : début, partie, mots en plus, presque égale ; pas un autre texte', () => {
+    const long = { ...QUESTION, answer: "Toy Story, le premier film d'animation en synthèse.", acceptedAnswers: [] }
+    for (const tooClose of ['Toy Story', 'toy story', 'TOY STORY !', 'Toy Storry', "le premier film d'animation", 'animation en synthese', "Toy Story, le premier film d'animation en synthèse, de Pixar", "Toy Story le premier film d animation en synthes"]) {
+      expect(checkBluff(tooClose, long), tooClose).toBe('truth')
+    }
+    for (const valid of ['Toy Boy', 'Le Roi lion', 'Un film de Pixar', 'Story Toy', 'de la', 'Le premier film parlant']) {
+      expect(checkBluff(valid, long), valid).toBe('ok')
+    }
   })
 
   test('mot interdit refusé, proposition vide refusée', () => {

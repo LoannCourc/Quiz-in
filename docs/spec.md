@@ -544,7 +544,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 
 **Écriture.**
 - **Des phrases**, pas des mots : 100 caractères au plus (vraie réponse, leurres et propositions des joueurs). Champ de saisie sur plusieurs lignes, avec un compteur « n / 100 » ; les retours à la ligne et espaces superflus sont retirés à l'affichage. L'hôte vérifie chaque proposition (le téléphone du joueur ne connaît jamais la vraie réponse) :
-  - **la vraie réponse** (ou une autre écriture acceptée), exacte ou à une faute de frappe près (mêmes tolérances que la Réponse libre, section 6.3 ; majuscules, accents et ponctuation ignorés) : refusée avec « Tu as trouvé la vraie réponse ! Invente-en une fausse ». Le niveau « proche » ne compte pas : un mot de la vraie réponse seul, ou une réponse seulement ressemblante, est accepté ;
+  - **trop proche de la vraie réponse** (ou d'une autre écriture acceptée) : exacte ou à une faute de frappe près (mêmes tolérances que la Réponse libre, section 6.3), un début ou une partie de celle-ci (mots consécutifs, à une faute par mot près : « Toy Story » pour « Toy Story, le premier film… », mais pas un morceau fait seulement de petits mots comme « de la »), la réponse avec des mots en plus, ou presque la même phrase (moins de 20 % de lettres différentes). Majuscules, accents et ponctuation ignorés. Refusée avec « Trop proche de la vraie réponse. Invente-en une fausse à la place », sans dire si c'est exactement elle ;
   - **mot interdit** (même liste qu'en Réponse libre) : refusée, jamais masquée ;
   - **vide** (que des espaces ou de la ponctuation) : refusée.
 - **3 essais au plus** : après trois refus, le joueur n'a pas de proposition pour cette question. Le message de refus indique les essais restants.
