@@ -7,6 +7,7 @@ import {
   MAX_PLAYERS,
   MIN_PLAYERS,
   MIN_TEAM_GAME_PLAYERS,
+  QUESTION_DURATION_S,
   MIN_TEAM_SIZE,
   PLAYER_NAME_MAX_LENGTH,
   PLAYER_NAME_MIN_LENGTH,
@@ -300,7 +301,7 @@ export const strings = {
     title: 'Comment jouer au Bluff',
     link: 'Comment jouer ?',
     lines: [
-      'La question s’affiche sur la TV : invente une fausse réponse crédible (60 s).',
+      `La question s’affiche sur la TV : invente une fausse réponse crédible (${QUESTION_DURATION_S.bluff} s).`,
       'Toutes les fausses réponses sont mélangées avec la vraie.',
       'Vote pour celle que tu crois vraie (jamais la tienne).',
       `Vraie réponse trouvée : ${BLUFF_TRUTH_POINTS} points.`,

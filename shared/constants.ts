@@ -20,7 +20,7 @@ export const POSTER_PALETTES: readonly PosterPalette[] = ['pink', 'blue', 'green
 // Durées en secondes.
 export const STARTING_DURATION_S = 3;
 // Bluff : écriture d'une fausse réponse (une phrase).
-export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 60, draw: 75 };
+export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, free: 30, bluff: 75, draw: 75 };
 export const ALL_ANSWERED_DELAY_S = 2;
 // Bluff : durée de base (la vraie réponse), plus le retournement des fausses propositions (revealDurationS).
 // Dessine-moi (spec 19) : essais par manche, écart minimal entre deux essais, longueur d'un essai.

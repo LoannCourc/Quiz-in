@@ -239,6 +239,10 @@ describe('Bluff : votes et points', () => {
     expect(session.bluffOwn?.[0].p0).toBe(session.bluffOwn?.[0].p2)
   })
 
+  test('écriture : 75 s', () => {
+    expect(QUESTION_DURATION_S.bluff).toBe(75)
+  })
+
   test('valeurs : 500 pour la vraie réponse, 750 par joueur piégé', () => {
     expect(BLUFF_TRUTH_POINTS).toBe(500)
     expect(BLUFF_TRAP_POINTS).toBe(750)
@@ -339,7 +343,7 @@ describe('Bluff : vote sans minuteur, joueurs déconnectés', () => {
 })
 
 describe('Bluff : déroulé et moteur', () => {
-  test('question (écriture, 60 s) → vote (sans minuteur) → révélation (4 s + 2 s par fausse proposition)', () => {
+  test('question (écriture, 75 s) → vote (sans minuteur) → révélation (4 s + 2 s par fausse proposition)', () => {
     const context = { answerMode: 'bluff' as const, currentIndex: 0, questionCount: 3 }
     expect(nextPhase('question', context)).toEqual({ status: 'vote', currentIndex: 0, durationS: null })
     expect(nextPhase('question', { ...context, stepByStep: true, suspense: true })).toMatchObject({ status: 'vote', durationS: null })
