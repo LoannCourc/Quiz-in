@@ -11,8 +11,7 @@ export const strings = {
   appName: "Quiz'in",
   // Pas à pas : révélation et classement restent affichés jusqu'à l'action de l'hôte (bandeau du bas).
   hostWait: {
-    title: 'La partie est en pause',
-    hint: 'L’hôte doit passer à la suite depuis son téléphone',
+    message: 'L’hôte doit passer à la suite depuis son téléphone',
   },
   lobby: {
     scanToJoin: 'Scannez pour rejoindre',

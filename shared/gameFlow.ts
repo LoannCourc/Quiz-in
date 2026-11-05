@@ -180,7 +180,7 @@ export function isAwaitingHost(session: Pick<PublicSession, 'status' | 'settings
   return (session.status === 'reveal' || session.status === 'scores') && session.settings.stepByStep === true
 }
 
-// TV : heure à laquelle montrer le bandeau « La partie est en pause » (serveur) ; null si on n'attend pas l'hôte.
+// TV : heure à laquelle montrer le bandeau « L’hôte doit passer à la suite » (serveur) ; null si on n'attend pas l'hôte.
 // waitStartedAt : début de l'attente, si elle ne commence pas avec la phase (Bluff : une fois la vraie réponse montrée).
 export function hostWaitBannerAt(
   session: Pick<PublicSession, 'status' | 'settings' | 'phaseStartedAt'>,

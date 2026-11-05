@@ -111,9 +111,8 @@
   --rank-bar-3: #ff6fa8;
   --rank-bar-4: #3fe9ff;
   --rank-bar-5: #e3c7ff;
-  /* Bandeau « La partie est en pause » : hauteur réservée en bas des écrans qui attendent l'hôte. */
+  /* Bandeau « L’hôte doit passer à la suite » : hauteur réservée en bas des écrans qui attendent l'hôte. */
   --host-banner-height: 5.6rem;
-  --host-banner-hint: rgba(255, 255, 255, 0.85);
 
   /* Polices */
   --font-display: 'Bowlby One', 'Nunito', system-ui, sans-serif;

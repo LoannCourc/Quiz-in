@@ -35,7 +35,7 @@ Pour chaque jeu, Quiz, Blind test, Bluff et Gribouille, en Pas à pas puis en Au
 - [ ] Confettis de « La bonne réponse » (Quiz, Blind test, Bluff), réglage forcé sur off : sur toute la largeur, centre compris, petits et brefs, sans gêner la lecture ; aucun en automatique sur la Bbox (allégé), aucun au classement.
 - [ ] Mode allégé : lire le panneau de mesures (étape 5 de `cast-sender.html?app=0D978EA2`, connecté à la Bbox) : lignes « Écran … Chrome », « Images/s », « Allégé », « Auto ». Comparer off et Automatique sur le même écran.
 - [ ] En-tête identique sur ces trois écrans : logo, pastille, « Déconnecté ? Scanne pour revenir dans la partie. » et QR au même endroit, sans saut.
-- [ ] Bandeau « La partie est en pause » : absent avant 20 s, présent après 20 s en Pas à pas, disparaît dès que l'hôte avance, jamais en Automatique.
+- [ ] Bandeau « L’hôte doit passer à la suite depuis son téléphone », sur une ligne : absent avant 20 s, présent après 20 s en Pas à pas, disparaît dès que l'hôte avance, jamais en Automatique.
 - [ ] Téléphone et TV disent le même rang et le même mouvement au classement.
 - [ ] Hôte en 1.2.3 et un joueur sur le site publié (ancienne version, par le vrai QR de la TV) : il joue la partie entière, sans erreur.
 - [ ] Si un téléphone en 1.2.2 est disponible : hôte en 1.2.2 sur la TV d'essai, par le plan B (`?code=CODE`), car son Cast ouvre la production. Tout s'affiche et les points suivent ceux de l'ancienne version.

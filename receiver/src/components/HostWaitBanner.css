@@ -38,22 +38,12 @@
   stroke-linejoin: round;
 }
 
-.host-wait-texts {
-  display: grid;
-  row-gap: 0.1rem;
-}
-
-.host-wait-title {
-  font-size: 1.6rem;
+/* Une seule ligne, jamais coupée : largeur 44,5 rem à cette taille, dans la marge de sécurité. */
+.host-wait-message {
+  font-size: 1.9rem;
   font-weight: 900;
   line-height: 1.2;
-}
-
-.host-wait-hint {
-  font-size: 1.2rem;
-  font-weight: 800;
-  line-height: 1.2;
-  color: var(--host-banner-hint);
+  white-space: nowrap;
 }
 
 @keyframes host-wait-sweep {

@@ -34,10 +34,7 @@ export function HostWaitBanner({ session, waitStartedAt }: HostWaitBannerProps) 
         <circle cx="12" cy="12" r="10" />
         <path d="M12 6.5V12l3.5 2.2" />
       </svg>
-      <span className="host-wait-texts">
-        <span className="host-wait-title">{strings.hostWait.title}</span>
-        <span className="host-wait-hint">{strings.hostWait.hint}</span>
-      </span>
+      <span className="host-wait-message">{strings.hostWait.message}</span>
     </aside>
   )
 }

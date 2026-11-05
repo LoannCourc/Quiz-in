@@ -116,7 +116,7 @@ Confettis de « La bonne réponse » : une chute de 18 petits confettis sur tout
 7. **Fin** : podium et classement complet. En Groupe : podium des équipes, puis les meilleurs joueurs de la partie.
 8. **États spéciaux** : pause, « l'hôte se reconnecte… », partie terminée.
 
-Entre deux questions, des onglets d'étapes (Révélation, Classement, Question suivante ; sans Classement en Suspense) indiquent où en est la partie sur les téléphones, avec le temps restant ou, en Pas à pas, « En attente de l'hôte pour la suite… ». TV : pas d'onglets ; le temps restant (« Prochaine question dans N s ») ou, en Pas à pas, après 20 s sans action de l'hôte (`HOST_WAIT_BANNER_DELAY_MS`), un bandeau en bas de l'écran : « La partie est en pause / L'hôte doit passer à la suite depuis son téléphone ».
+Entre deux questions, des onglets d'étapes (Révélation, Classement, Question suivante ; sans Classement en Suspense) indiquent où en est la partie sur les téléphones, avec le temps restant ou, en Pas à pas, « En attente de l'hôte pour la suite… ». TV : pas d'onglets ; le temps restant (« Prochaine question dans N s ») ou, en Pas à pas, après 20 s sans action de l'hôte (`HOST_WAIT_BANNER_DELAY_MS`), un bandeau en bas de l'écran : « L'hôte doit passer à la suite depuis son téléphone ».
 
 ---
 
