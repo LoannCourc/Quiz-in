@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { isKnownAnswerMode } from '../../shared/constants'
-import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawHintText, drawOrderFor, isGuessCompact, drawRoundsOf, drawRoundsUpdate, wordLetterCount } from '../../shared/drawGame'
+import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawFreshGame, drawQuestionsFromRefs, drawWordRef, recentDrawWords, seededRandom, drawGameQuestions, drawHintText, drawOrderFor, isGuessCompact, drawRoundsOf, drawRoundsUpdate, wordLetterCount } from '../../shared/drawGame'
 import { hostLeaveUpdate } from '../../shared/players'
 import { isDrawGuesser } from '../../shared/drawGuess'
 import { drawCategoryId, DRAW_WORDS, drawWordsIn } from '../../shared/drawWords'
@@ -269,5 +269,67 @@ describe('Écran du devineur', () => {
     expect(isGuessCompact(568, 260)).toBe(true)
     expect(isGuessCompact(800, 300)).toBe(false)
     expect(isGuessCompact(667, 260)).toBe(true)
+  })
+})
+
+describe('Tirage des mots : deux parties de la même salle', () => {
+  const allAt = (refs: readonly string[], at: number) => Object.fromEntries(refs.map((ref) => [ref, at]))
+
+  test('le tirage ne dépend plus du code de la salle : deux tirages donnent des mots différents', () => {
+    const first = drawFreshGame(8, [], {}, seededRandom('a')).questions.map((question) => question.word)
+    const second = drawFreshGame(8, [], {}, seededRandom('b')).questions.map((question) => question.word)
+    expect(first).not.toEqual(second)
+    // Hasard réel par défaut : sur 20 parties, jamais deux fois exactement les mêmes mots.
+    const games = Array.from({ length: 20 }, () => drawFreshGame(8, [], {}).questions.map((question) => question.word).join('|'))
+    expect(new Set(games).size).toBe(20)
+  })
+
+  test('garde les niveaux : 4 faciles, 3 moyens, 1 difficile, la première manche facile', () => {
+    const { questions } = drawFreshGame(8, [], {})
+    expect(questions.map((question) => question.difficulty).sort()).toEqual([1, 1, 1, 1, 2, 2, 2, 3])
+    expect(questions[0].difficulty).toBe(1)
+  })
+
+  test('aucun mot repris sur 25 parties de suite (200 mots), tous thèmes', () => {
+    let played: Record<string, number> = {}
+    const seen = new Set<string>()
+    for (let game = 0; game < 25; game++) {
+      const { questions, refs } = drawFreshGame(8, [], played, seededRandom(`partie-${game}`))
+      for (const question of questions) {
+        expect(seen.has(question.word), question.word).toBe(false)
+        seen.add(question.word)
+      }
+      played = { ...played, ...allAt(refs, game) }
+    }
+    expect(seen.size).toBe(200)
+  })
+
+  test('catégorie trop petite : les mots reviennent, les plus anciens d’abord, jamais moins de manches', () => {
+    const words = drawWordsIn(['corps'])
+    const refs = words.map((entry) => drawWordRef(entry.word))
+    const played = Object.fromEntries(refs.map((ref, index) => [ref, index]))
+    const { questions } = drawFreshGame(8, ['corps'], played, seededRandom('x'))
+    expect(questions).toHaveLength(8)
+    const maxAge = Math.max(...questions.map((question) => played[drawWordRef(question.word)]))
+    expect(maxAge).toBeLessThan(words.length)
+    expect(new Set(questions.map((question) => question.word)).size).toBe(8)
+  })
+
+  test('mémoire : seulement les 200 derniers mots, les autres entrées ignorées', () => {
+    const refs = DRAW_WORDS.slice(0, 250).map((entry) => drawWordRef(entry.word))
+    const recent = recentDrawWords({ ...Object.fromEntries(refs.map((ref, index) => [ref, index])), 'histoire-1/h-07': 999 })
+    expect(recent.size).toBe(200)
+    expect(recent.has(DRAW_WORDS[249].word)).toBe(true)
+    expect(recent.has(DRAW_WORDS[0].word)).toBe(false)
+  })
+
+  test('identifiants : acceptés par la règle de questionRefs, un par mot, relus à l’identique', () => {
+    const refs = DRAW_WORDS.map((entry) => drawWordRef(entry.word))
+    expect(new Set(refs).size).toBe(DRAW_WORDS.length)
+    for (const ref of refs) expect(ref).toMatch(/^[a-z0-9-]{1,64}\/[a-z0-9-]{1,32}$/)
+    const drawn = drawFreshGame(8, [], {})
+    expect(drawQuestionsFromRefs(drawn.refs)).toEqual(drawn.questions)
+    expect(drawQuestionsFromRefs(['dessine-moi/mot-disparu'])).toBeNull()
+    expect(drawQuestionsFromRefs([])).toBeNull()
   })
 })

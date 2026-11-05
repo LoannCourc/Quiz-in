@@ -27,6 +27,8 @@ export const ALL_ANSWERED_DELAY_S = 2;
 // Limite anti-abus, jamais affichée au joueur (même valeur écrite en dur dans database.rules.json).
 export const DRAW_MAX_GUESSES = 30;
 export const DRAW_GUESS_MIN_INTERVAL_MS = 1_500;
+// Derniers mots tirés sur le téléphone de l'hôte, évités tant qu'il reste assez d'autres mots.
+export const DRAW_WORD_HISTORY_SIZE = 200;
 export const DRAW_GUESS_MAX_LENGTH = 40;
 // Points : devineur de 1 000 (tout de suite) à 400 (à la fin du chrono) ; dessinateur 1 000 au plus.
 export const DRAW_GUESS_MAX_POINTS = 1_000;

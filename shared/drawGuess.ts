@@ -138,14 +138,17 @@ export function isDrawRoundAbandoned(session: Pick<PublicSession, 'players' | 'd
 }
 
 // Changement de mot (décision D7) : une fois, avant le premier trait. Remplaçant tiré au hasard, de même
-// niveau si possible, jamais un mot prévu dans la partie ni le mot actuel ; reproductible (graine : les mots
-// de la partie) et propre à la manche (deux manches ne reçoivent jamais le même). null si rien à faire.
-export function drawWordChangeUpdate(session: Session, questions: readonly DrawQuestion[]): SessionUpdate | null {
+// niveau si possible, jamais un mot prévu dans la partie ni le mot actuel, d'abord un mot pas tiré récemment ;
+// reproductible (graine : les mots de la partie) et propre à la manche (deux manches ne reçoivent jamais le
+// même). null si rien à faire.
+export function drawWordChangeUpdate(session: Session, questions: readonly DrawQuestion[], recent: ReadonlySet<string> = new Set()): SessionUpdate | null {
   const turn = session.drawTurn
   if (!session.drawWordChange || !turn || turn.changedWord || session.status !== 'question') return null
   const planned = new Set([...questions.map((question) => question.word), session.drawSecret?.word])
   const level = questions[turn.round]?.difficulty
-  const free = drawWordsIn(session.settings.drawCategories).filter((entry) => !planned.has(entry.word))
+  const open = drawWordsIn(session.settings.drawCategories).filter((entry) => !planned.has(entry.word))
+  const notRecent = open.filter((entry) => !recent.has(entry.word))
+  const free = notRecent.length > turn.round ? notRecent : open
   const sameLevel = free.filter((entry) => entry.difficulty === level)
   const seed = `${questions.map((question) => question.word).join('|')}|change`
   const pool = shuffled(sameLevel.length > turn.round ? sameLevel : free, seededRandom(seed))

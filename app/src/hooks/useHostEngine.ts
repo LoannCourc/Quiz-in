@@ -1,5 +1,5 @@
 import { bluffChecksUpdate, isBluffQuestion } from '@shared/bluff';
-import { isDrawQuestion } from '@shared/drawGame';
+import { drawWordRef, isDrawQuestion, recentDrawWords } from '@shared/drawGame';
 import { drawHintsUpdate, drawWordChangeUpdate } from '@shared/drawGuess';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import {
@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { applyHostAction, isPermissionDenied, runTransition } from '@/lib/hostGame';
+import { loadPlayedQuestions, markQuestionsPlayed } from '@/lib/playedQuestions';
 
 export interface HostEngine {
   // Contrôle « Passer » de l'hôte ; decisions : pendant la validation (Contrôle), ses coches.
@@ -177,9 +178,27 @@ function useDrawJudging(
   report: ReportWrite,
 ): void {
   const drawQuestions = questions?.filter(isDrawQuestion);
+  // Mots récents du téléphone, relus à chaque partie : « Changer de mot » les évite aussi.
+  const [recent, setRecent] = useState<ReadonlySet<string>>(new Set());
+  const isDraw = session.settings.answerMode === 'draw';
+  useEffect(() => {
+    if (!isDraw) return;
+    let isActive = true;
+    void loadPlayedQuestions().then((played) => {
+      if (isActive) setRecent(new Set(recentDrawWords(played).keys()));
+    });
+    return () => {
+      isActive = false;
+    };
+  }, [isDraw, code]);
   const build =
     drawQuestions && drawQuestions.length > 0 && session.status === 'question'
-      ? (current: Session) => mergeUpdates(drawHintsUpdate(current), drawWordChangeUpdate(current, drawQuestions))
+      ? (current: Session) => {
+          const change = drawWordChangeUpdate(current, drawQuestions, recent);
+          const word = (change?.drawSecret as { word?: string } | undefined)?.word;
+          if (word) void markQuestionsPlayed([drawWordRef(word)]);
+          return mergeUpdates(drawHintsUpdate(current), change);
+        }
       : null;
   useHostVerdicts(code, session, build, serverOffsetMs, canWrite, 'Jugement des essais', report);
 }

@@ -1,4 +1,6 @@
-import { drawWordsIn } from './drawWords'
+import { removeDiacritics } from './answerMatching'
+import { DRAW_WORD_HISTORY_SIZE } from './constants'
+import { DRAW_WORDS, drawWordsIn, type DrawWord } from './drawWords'
 import type { Difficulty, DrawQuestion, GameQuestion, Player, PlayerId, PublicSession, QuizSummary, SessionSettings } from './types'
 
 // Dessine-moi (spec 19, plan docs/plan-dessine-moi.md) : manches, mots et ordre des dessinateurs.
@@ -43,8 +45,7 @@ export function isDrawQuestion(question: GameQuestion): question is DrawQuestion
   return 'word' in question
 }
 
-// Nombre pseudo-aléatoire reproductible (mulberry32) : mêmes mots pour un même code de partie, même
-// après une relance de l'app de l'hôte.
+// Nombre pseudo-aléatoire reproductible (mulberry32) : « Changer de mot », anciennes parties sans tirage mémorisé.
 export function seededRandom(seedText: string): () => number {
   let seed = 0
   for (const character of seedText) seed = (Math.imul(seed, 31) + character.charCodeAt(0)) | 0
@@ -74,18 +75,23 @@ function levelQuotas(count: number): Record<Difficulty, number> {
   return { 1: count - medium - hard, 2: medium, 3: hard, 4: 0 }
 }
 
-// Manches d'une partie : mots tirés au hasard (reproductible : même code de salle et mêmes catégories,
-// mêmes mots, même après une relance de l'app de l'hôte), dans les catégories choisies (toutes si aucune),
-// niveaux mélangés, la première manche toujours facile. Une catégorie sans assez de mots d'un niveau est
-// complétée par ses mots des autres niveaux : jamais moins de manches que prévu.
-export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT, categories: readonly string[] = []): DrawQuestion[] {
-  const random = seededRandom(roomCode)
+// Jamais joués d'abord (au hasard), puis, s'il en manque, les plus anciennement joués.
+function freshFirst(words: readonly DrawWord[], recent: ReadonlyMap<string, number>, random: () => number): DrawWord[] {
+  const stale = words.filter((entry) => recent.has(entry.word)).sort((a, b) => (recent.get(a.word) as number) - (recent.get(b.word) as number))
+  return [...shuffled(words.filter((entry) => !recent.has(entry.word)), random), ...stale]
+}
+
+// Mots d'une partie, dans les catégories choisies (toutes si aucune), niveaux mélangés, la première manche
+// toujours facile. Une catégorie sans assez de mots d'un niveau est complétée par ses mots des autres niveaux :
+// jamais moins de manches que prévu. Les mots récents ne reviennent que s'il n'en reste pas assez d'autres.
+function pickDrawQuestions(random: () => number, count: number, categories: readonly string[], recent: ReadonlyMap<string, number>): DrawQuestion[] {
   const quotas = levelQuotas(count)
   const pool = drawWordsIn(categories)
-  const byLevel = ([1, 2, 3] as const).map((level) => shuffled(pool.filter((entry) => entry.difficulty === level), random))
+  const byLevel = ([1, 2, 3] as const).map((level) => freshFirst(pool.filter((entry) => entry.difficulty === level), recent, random))
   const picked = byLevel.flatMap((words, index) => words.slice(0, quotas[(index + 1) as Difficulty]))
-  const rest = shuffled(
+  const rest = freshFirst(
     byLevel.flatMap((words, index) => words.slice(quotas[(index + 1) as Difficulty])),
+    recent,
     random,
   )
   picked.push(...rest.slice(0, Math.max(0, count - picked.length)))
@@ -93,6 +99,49 @@ export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT,
   const firstEasy = order.findIndex((entry) => entry.difficulty === 1)
   if (firstEasy > 0) [order[0], order[firstEasy]] = [order[firstEasy], order[0]]
   return order.map((entry, index) => ({ id: `draw-${index}`, word: entry.word, category: entry.category, difficulty: entry.difficulty }))
+}
+
+// Secours pour une partie déjà lancée sans tirage mémorisé (commencée avant la 1.2.3) : mots reproductibles,
+// déduits du code. Jamais pour une nouvelle partie : « Changer de jeu » garde le code, les mots seraient les mêmes.
+export function drawGameQuestions(roomCode: string, count = DRAW_ROUNDS_DEFAULT, categories: readonly string[] = []): DrawQuestion[] {
+  return pickDrawQuestions(seededRandom(roomCode), count, categories, new Map())
+}
+
+const DRAW_REF_PREFIX = `${DRAW_QUIZ_ID}/`
+
+// Identifiant d'un mot dans questionRefs et dans la mémoire du téléphone (règle : minuscules, chiffres, tirets).
+export function drawWordRef(word: string): string {
+  return DRAW_REF_PREFIX + removeDiacritics(word.toLocaleLowerCase('fr')).replace(/[^a-z0-9]+/g, '-')
+}
+
+const WORD_BY_REF: ReadonlyMap<string, DrawWord> = new Map(DRAW_WORDS.map((entry) => [drawWordRef(entry.word), entry]))
+
+// Derniers mots tirés (mot → heure), d'après les questions jouées mémorisées sur le téléphone.
+export function recentDrawWords(playedAt: Readonly<Record<string, number>>, size = DRAW_WORD_HISTORY_SIZE): Map<string, number> {
+  const entries = Object.entries(playedAt).flatMap(([ref, at]): [string, number][] => {
+    const entry = WORD_BY_REF.get(ref)
+    return entry ? [[entry.word, at]] : []
+  })
+  return new Map(entries.sort((a, b) => b[1] - a[1]).slice(0, size))
+}
+
+// Nouveau tirage, vraiment au hasard : deux parties de la même salle n'ont pas les mêmes mots. refs : à écrire
+// dans la partie (questionRefs, lisible par l'hôte seul), pour retrouver les mots après une relance de l'app.
+export function drawFreshGame(
+  count: number,
+  categories: readonly string[],
+  playedAt: Readonly<Record<string, number>>,
+  random: () => number = Math.random,
+): { questions: DrawQuestion[]; refs: string[] } {
+  const questions = pickDrawQuestions(random, count, categories, recentDrawWords(playedAt))
+  return { questions, refs: questions.map((question) => drawWordRef(question.word)) }
+}
+
+// Manches d'un tirage mémorisé ; null si un mot est inconnu (retiré de la liste).
+export function drawQuestionsFromRefs(refs: readonly string[]): DrawQuestion[] | null {
+  const words = refs.map((ref) => WORD_BY_REF.get(ref))
+  if (words.length === 0 || words.some((entry) => !entry)) return null
+  return (words as DrawWord[]).map((entry, index) => ({ id: `draw-${index}`, word: entry.word, category: entry.category, difficulty: entry.difficulty }))
 }
 
 // Dessinateurs possibles : tous les joueurs, l'hôte compris s'il joue (« Je joue aussi » : il est alors

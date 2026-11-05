@@ -1,3 +1,4 @@
+import { drawFreshGame } from '@shared/drawGame';
 import { drawPoolQuestions, parseQuestionRef, poolQuizzes, questionRef, type QuestionPool } from '@shared/questionPool';
 import { parseQuizCatalog } from '@shared/quizValidation';
 import { questionLevelOf } from '@shared/themeCatalog';
@@ -61,4 +62,11 @@ export async function drawPoolGame(code: string, pool: QuestionPool, count: numb
       : drawPoolQuestions([...byQuiz].flatMap(([quizId, questions]) => questions.map((question) => questionRef(quizId, question.id))), playedAt, count);
   await set(ref(db, `sessions/${code}/questionRefs`), drawn);
   return pick(drawn, byQuiz);
+}
+
+// Dessine-moi : mots tirés au salon, écrits dans la partie (questionRefs) avant d'être utilisés.
+export async function drawWordsGame(code: string, count: number, categories: readonly string[]): Promise<LoadedQuestions> {
+  const drawn = drawFreshGame(count, categories, await loadPlayedQuestions());
+  await set(ref(db, `sessions/${code}/questionRefs`), drawn.refs);
+  return drawn;
 }

@@ -74,6 +74,13 @@ describe('Statistiques anonymes : chemins augmentés à chaque événement', () 
     })
   })
 
+  test('Gribouille : les mots tirés (questionRefs) n’apparaissent jamais dans les statistiques', () => {
+    const session = makeSession({ status: 'question', currentIndex: 0, quizId: 'dessine-moi', questionRefs: ['dessine-moi/girafe'], settings: { answerMode: 'draw', speedBonus: false, control: false, teams: false } })
+    const reveal: Reveal = { correctAnswer: 'girafe', stats: {}, results: { [PLAYER]: { correct: true, points: 1000 } } }
+    const event = transitionStatsEvent(session, { status: 'reveal', reveal }, [{ id: 'draw-0', word: 'girafe', category: 'Animal', difficulty: 1 }], NOW)
+    expect(JSON.stringify(event)).not.toContain('girafe')
+  })
+
   test('partie tirée : la question est comptée dans son vrai quiz (questionRefs)', () => {
     const session = makeSession({ status: 'question', currentIndex: 1, questionRefs: ['histoire-1/h-07', 'sport-2/s-03'] })
     const reveal: Reveal = { correctAnswer: 'x', stats: {}, results: { [PLAYER]: { correct: true, points: 1000 } } }

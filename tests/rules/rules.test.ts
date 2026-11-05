@@ -746,6 +746,10 @@ describe('Partie tirée dans des thèmes (« Ta partie », maquette QN1-G)', () 
         }),
     )
     await assertSucceeds(db(HOST).ref(`${SESSION}/questionRefs`).set(['histoire-de-france/hf-01']))
+    // Gribouille : mots tirés au salon, l'hôte seul les lit.
+    await assertSucceeds(db(HOST).ref(`${SESSION}/questionRefs`).set(['dessine-moi/pomme-de-terre']))
+    await assertFails(db(PLAYER).ref(`${SESSION}/questionRefs`).once('value'))
+    await assertFails(db('tv-uid').ref(`${SESSION}/questionRefs`).once('value'))
     await assertSucceeds(db(HOST).ref(`${settingsPath}/quizIds`).set(['bluff-betes']))
     await assertSucceeds(db(HOST).ref(`${settingsPath}/questionCount`).set(15))
   })
