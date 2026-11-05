@@ -261,6 +261,36 @@ function vote(session: Session, votes: Record<PlayerId, number>): Session {
   return apply(session, update)
 }
 
+describe('Bluff : bluff identique ou trop proche d’un leurre', () => {
+  const question = {
+    ...QUESTION,
+    answer: 'Shrek, face à « Monstres et Cie ».',
+    acceptedAnswers: ['shrek'],
+    decoys: ['Le Roi lion, récompensé des années après sa sortie.', 'Toy Story, premier film tout en images de synthèse.', 'Le Voyage de Chihiro, film japonais.'],
+  }
+
+  test.each(['Toy Story', 'TOY STORY !', 'toy story premier film tout en images de synthese'])('« %s » : le leurre part, le bluff reste, un seul choix', (bluff) => {
+    const session = checked({ p0: bluff, p1: 'Le Petit Prince' })
+    expect(checkBluff(bluff, question)).toBe('ok')
+    const { choices } = buildVoteChoices(question, session)
+    expect(choices.map((choice) => choice.text)).not.toContain('Toy Story, premier film tout en images de synthèse.')
+    const toyStory = choices.filter((choice) => /toy story/i.test(choice.text))
+    expect(toyStory).toHaveLength(1)
+    expect(toyStory[0]).toMatchObject({ kind: 'bluff', authors: ['p0'] })
+  })
+
+  test('les autres leurres complètent les choix', () => {
+    const { choices } = buildVoteChoices(question, checked({ p0: 'Toy Story', p1: 'Le Petit Prince' }))
+    expect(choices.filter((choice) => choice.kind === 'decoy').map((choice) => choice.text).sort()).toEqual(['Le Roi lion, récompensé des années après sa sortie.', 'Le Voyage de Chihiro, film japonais.'])
+    expect(choices).toHaveLength(5)
+  })
+
+  test('bluff sans rapport : tous les leurres restent disponibles', () => {
+    const { choices } = buildVoteChoices(question, checked({ p0: 'Le Petit Prince' }))
+    expect(choices.filter((choice) => choice.kind === 'decoy')).toHaveLength(3)
+  })
+})
+
 describe('Bluff : votes et points', () => {
   test('vote : choix publiés sans auteur ni type, auteurs gardés par l’hôte', () => {
     const { session, choices } = votingSession()

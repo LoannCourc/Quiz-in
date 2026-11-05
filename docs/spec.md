@@ -559,7 +559,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
 **Choix du vote.**
 - La vraie réponse, les propositions acceptées et des leurres, mélangés au hasard. Chaque question du contenu a **2 ou 3 leurres** écrits d'avance (section 8).
 - **Doublons** : les propositions identiques après normalisation (majuscules, accents, ponctuation, article initial) n'en font qu'une, avec tous leurs auteurs ; le texte affiché est celui de la première arrivée. Une proposition identique à un leurre remplace ce leurre et reste celle du joueur.
-- **Leurres** : on vise 6 choix au total. Leurres utilisés = max(0, 6 − (1 + nombre de propositions distinctes)), dans la limite des leurres de la question, tirés au hasard. Garantie : chaque joueur a au moins **3 choix votables** hors sa propre proposition ; sinon, d'autres leurres sont ajoutés tant qu'il en reste.
+- **Leurres** : on vise 6 choix au total. Leurres utilisés = max(0, 6 − (1 + nombre de propositions distinctes)), dans la limite des leurres de la question, tirés au hasard. Garantie : chaque joueur a au moins **3 choix votables** hors sa propre proposition ; sinon, d'autres leurres sont ajoutés tant qu'il en reste. Un bluff identique ou trop proche d'un leurre (même comparaison que pour la vraie réponse) retire ce leurre et garde le bluff du joueur : jamais deux choix quasi identiques ; un autre leurre complète s'il en reste.
 - Les choix sont publiés sans auteur ni type. Chaque auteur sait seulement lequel est le sien (grisé, « Ta proposition ») : il ne peut pas voter pour lui.
 - **Fin du vote, sans minuteur** (les joueurs ont le temps de lire jusqu'à 20 propositions) :
   - automatiquement, 2 s après le dernier vote, quand tous les joueurs **connectés** ont voté ;

@@ -212,13 +212,17 @@ export interface VoteChoices {
   own: Record<PlayerId, number>
 }
 
-// Choix du vote : vraie réponse, propositions acceptées (identiques fusionnées) et leurres tirés au
-// hasard. Une proposition identique à un leurre le remplace (elle reste celle du joueur).
+// Choix du vote : vraie réponse, propositions acceptées (identiques fusionnées) et leurres tirés au hasard. Une
+// proposition identique ou trop proche d'un leurre le remplace (elle reste celle du joueur) ; un autre leurre complète
+// s'il en reste : jamais deux choix quasi identiques.
 export function buildVoteChoices(question: BluffQuestion, session: Session, random: () => number = Math.random): VoteChoices {
   const bluffs = acceptedBluffs(session)
-  const taken = new Set([normalizeAnswer(question.answer), ...bluffs.map((bluff) => normalizeAnswer(bluff.text))])
   const decoyPool = shuffled(
-    question.decoys.filter((decoy) => !taken.has(normalizeAnswer(decoy))),
+    question.decoys.filter(
+      (decoy) =>
+        normalizeAnswer(decoy) !== normalizeAnswer(question.answer) &&
+        !bluffs.some((bluff) => isAcceptedLevel(matchAnswer(bluff.text, [decoy])) || isTooCloseTo(bluff.text, decoy)),
+    ),
     random,
   )
   const decoys = decoyPool.slice(0, decoyCount(bluffs.length, decoyPool.length))
