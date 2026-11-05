@@ -180,7 +180,7 @@ Option de la partie (`settings.control`), disponible seulement en Réponse libre
 - **Option Rapidité** : bonus proportionnel au temps restant. `points = 100 + arrondi(100 × temps restant / durée de la question)`, soit de 100 à 200 points.
 - **Mauvaise réponse ou absence de réponse** : 0 point.
 - **Blind test « les deux » en Réponse libre** : le titre et l'artiste rapportent chacun la moitié des points (Rapidité comprise) ; résultat ✓ (les deux), ½ (un des deux) ou ✗.
-- **Bluff** : 1000 points pour un vote sur la vraie réponse, 500 par joueur piégé pour chaque auteur de la proposition ; pas de bonus de rapidité (section 16).
+- **Bluff** : 500 points pour un vote sur la vraie réponse, 750 par joueur piégé pour chaque auteur de la proposition ; pas de bonus de rapidité (section 16).
 - Le temps de réponse est mesuré avec l'horodatage du **serveur**, pas celui du téléphone.
 - Pause pendant une question : le bonus de rapidité des réponses données avant la pause est légèrement surévalué, plafonné à 100 (approximation acceptée au MVP).
 
@@ -564,7 +564,7 @@ Maquettes `docs/design/bluff/` (B1 à B5). **En cours** : lot 1 (règles du jeu,
   - **Un joueur déconnecté ne bloque jamais** : un joueur déconnecté qui n'a pas voté n'est pas attendu ; si le dernier qui n'avait pas voté se déconnecte, le vote se termine aussitôt. S'il revient avant la fin, il est de nouveau attendu et peut voter. Un joueur parti après son vote reste compté. Si personne n'est connecté ni n'a voté, seul « Clore le vote » fait avancer. Coupure brutale d'un téléphone : le serveur peut mettre jusqu'à environ une minute à la constater ; l'hôte peut clore le vote sans attendre. L'hôte qui joue est attendu comme les autres.
   - Pause pendant le vote : la reprise revient au vote, toujours sans minuteur.
 
-**Points.** 1000 pour un vote sur la vraie réponse ; 500 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
+**Points.** 500 pour un vote sur la vraie réponse ; 750 **par joueur piégé** pour chaque auteur de la proposition choisie (sans partage entre auteurs fusionnés). Un leurre ne rapporte rien à personne. Pas de bonus de rapidité. Un joueur qui n'a pas voté garde ses points de piège.
 
 **Révélation (TV, B5).** Les fausses propositions se retournent l'une après l'autre, d'autant plus vite qu'elles sont nombreuses (N fausses propositions : 2 s chacune jusqu'à N = 6 ; 0,4 s à partir de N = 12 ; entre les deux, de plus en plus vite ; jamais plus de 12 s de cartes en tout ; puis 4 s pour la vraie réponse : `bluffRevealStepMs`), chacune avec son auteur (« écrite par Loann ») ou « Leurre », et ses votants (6 avatars au plus, puis « +N ») ; puis la vraie réponse en tête, en vert, avec ses votants. Pas de résumé des points sur la TV : ils sont sur les téléphones, puis au classement. Au-delà de 8 choix, seuls les 8 derniers retournés restent à l'écran ; à la vraie réponse, on montre la vraie réponse et les propositions qui ont reçu des votes, les plus votées d'abord, et « + N autres propositions sans vote ».
 

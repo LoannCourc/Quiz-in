@@ -1,5 +1,7 @@
 import { drawHintText } from '@shared/drawGame';
 import {
+  BLUFF_TRAP_POINTS,
+  BLUFF_TRUTH_POINTS,
   DEV_SHORT_GAME_QUESTIONS,
   HOST_DISCONNECT_TIMEOUT_S,
   MAX_PLAYERS,
@@ -301,8 +303,8 @@ export const strings = {
       'La question s’affiche sur la TV : invente une fausse réponse crédible (60 s).',
       'Toutes les fausses réponses sont mélangées avec la vraie.',
       'Vote pour celle que tu crois vraie (jamais la tienne).',
-      'Vraie réponse trouvée : 1 000 points.',
-      'Chaque joueur piégé par ta fausse réponse : 500 points pour toi.',
+      `Vraie réponse trouvée : ${BLUFF_TRUTH_POINTS} points.`,
+      `Chaque joueur piégé par ta fausse réponse : ${BLUFF_TRAP_POINTS} points pour toi.`,
       'Si tu écris la vraie réponse, elle est refusée : invente-en une autre (3 essais).',
     ],
     close: 'Fermer',

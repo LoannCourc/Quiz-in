@@ -118,8 +118,8 @@ export const BLUFF_MIN_VOTABLE = 3;
 export const BLUFF_MIN_DECOYS = 2;
 export const BLUFF_MAX_DECOYS = 3;
 // Points : vote pour la vraie réponse, et chaque joueur piégé par sa proposition (pas de bonus de rapidité).
-export const BLUFF_TRUTH_POINTS = 1000;
-export const BLUFF_TRAP_POINTS = 500;
+export const BLUFF_TRUTH_POINTS = 500;
+export const BLUFF_TRAP_POINTS = 750;
 
 export const PLAYER_NAME_MIN_LENGTH = 2;
 export const PLAYER_NAME_MAX_LENGTH = 12;

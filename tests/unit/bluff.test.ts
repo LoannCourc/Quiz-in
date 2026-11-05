@@ -239,7 +239,12 @@ describe('Bluff : votes et points', () => {
     expect(session.bluffOwn?.[0].p0).toBe(session.bluffOwn?.[0].p2)
   })
 
-  test('1000 pour la vraie réponse, 500 par joueur piégé pour chaque auteur, rien pour un leurre', () => {
+  test('valeurs : 500 pour la vraie réponse, 750 par joueur piégé', () => {
+    expect(BLUFF_TRUTH_POINTS).toBe(500)
+    expect(BLUFF_TRAP_POINTS).toBe(750)
+  })
+
+  test('500 pour la vraie réponse, 750 par joueur piégé pour chaque auteur, rien pour un leurre', () => {
     const { session, choices, own } = votingSession()
     const truth = choices.findIndex((choice) => choice.kind === 'truth')
     const decoy = choices.findIndex((choice) => choice.kind === 'decoy')
