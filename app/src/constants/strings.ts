@@ -948,11 +948,6 @@ export const strings = {
     resume: 'Reprendre',
     end: 'Terminer la partie',
     // Bluff : masquer une proposition de joueur sur la TV et les téléphones (modération).
-    bluffProposalsTitle: 'Propositions des joueurs',
-    bluffProposalsHint: 'Masquée, une proposition s’affiche « ••• » sur la TV et les téléphones.',
-    bluffAuthors: (names: string) => `par ${names}`,
-    hideProposal: 'Masquer',
-    showProposal: 'Afficher',
     endConfirm: {
       title: 'Terminer la partie ?',
       message: 'Le classement actuel sera le classement final.',

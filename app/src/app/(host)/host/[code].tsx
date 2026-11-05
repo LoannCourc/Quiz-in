@@ -1,4 +1,4 @@
-import { bluffHideUpdate, hideableBluffProposals, voteProgress } from '@shared/bluff';
+import { voteProgress } from '@shared/bluff';
 import type { ValidationDecisions } from '@shared/freeAnswers';
 import { isClassicQuestion } from '@shared/gameQuestions';
 import { hostLeaveOf } from '@shared/hostAbsence';
@@ -386,11 +386,6 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       canShowTv={cast.isAvailable}
       sound={soundSettingsOf(session)}
       onSoundChange={changeSound}
-      bluffProposals={hideableBluffProposals(session).map((proposal) => ({
-        ...proposal,
-        authors: proposal.authors.map((id) => session.players[id]?.name ?? '?').join(', '),
-      }))}
-      onToggleBluffProposal={(choiceIndex, hidden) => void act((current) => bluffHideUpdate(current, choiceIndex, hidden))}
       onClose={() => setIsPanelOpen(false)}
     />
   ) : null;
