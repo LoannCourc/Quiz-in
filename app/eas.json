@@ -18,6 +18,12 @@
         "buildType": "apk"
       }
     },
+    "preview-essai-tv": {
+      "extends": "preview",
+      "env": {
+        "CAST_RECEIVER_APP_ID": "0D978EA2"
+      }
+    },
     "production": {
       "distribution": "store",
       "environment": "production",
