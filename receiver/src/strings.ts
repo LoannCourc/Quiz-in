@@ -42,11 +42,8 @@ export const strings = {
     bestPlayerRank: (rank: number, name: string, points: number) => `${rank}. ${name} · ${points}`,
   },
   header: {
-    joinAt: (host: string) => `${host} · code`,
     // Pendant la partie, à côté du QR code : il ne sert qu'à revenir (pas de nouveau joueur après le lancement).
     rejoin: 'Déconnecté ? Scanne pour revenir dans la partie.',
-    // Écran de la bonne réponse : à côté du QR code, sur deux lignes, sans l'adresse.
-    rejoinShort: ['Déconnecté ?', 'Scanne pour revenir'],
   },
   starting: {
     getReady: 'Prêts ?',

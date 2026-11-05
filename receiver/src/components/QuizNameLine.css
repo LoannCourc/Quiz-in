@@ -18,13 +18,6 @@
   color: var(--color-accent);
 }
 
-/* Bandeau des écrans de jeu : petit texte sous la pastille de la question, jusqu'à l'adresse. */
-.quiz-name-header {
-  --quiz-name-size: 0.85rem;
-  justify-self: stretch;
-  color: var(--color-text-muted);
-}
-
 /* Fin de partie : coin haut gauche, hors de la grille (le podium garde sa place). */
 .quiz-name-end {
   --quiz-name-size: 0.9rem;

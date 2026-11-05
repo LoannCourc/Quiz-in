@@ -79,7 +79,7 @@ export function DrawRevealScreen({ session, roomCode }: { session: PublicSession
   const sideRef = useFitScale(word, WORD_FIT)
   return (
     <main className="screen draw-round draw-reveal">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="round" qrLabel="rejoin" />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="round" />
       <div className="draw-round-body">
         {isCancelled ? (
           // Manche annulée par l'hôte : un cadre neutre à la place du dessin (effacé de la base).

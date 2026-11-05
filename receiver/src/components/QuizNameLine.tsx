@@ -18,11 +18,10 @@ function fit(box: HTMLElement): void {
   }
 }
 
-// Quiz fixe ou blind test joué (« Électro des années 80 · Moyen ») : salon (sous le logo), bandeau des écrans
-// de jeu (petit texte), écran de fin (coin haut gauche, hors de la mise en page du podium). Une ligne,
-// réduite tant qu'elle ne tient pas, recalculée quand la place change (taille de l'écran, polices, voisins
-// du bandeau) ; rien pour le Bluff, Dessine-moi ou une partie par thèmes.
-export function QuizNameLine({ place }: { place: 'lobby' | 'header' | 'end' }) {
+// Quiz fixe ou blind test joué (« Électro des années 80 · Moyen ») : salon (sous le logo), écran de fin (coin
+// haut gauche, hors de la mise en page du podium). Une ligne, réduite tant qu'elle ne tient pas, recalculée
+// quand la place change (taille de l'écran, polices) ; rien pour le Bluff, Dessine-moi ou une partie par thèmes.
+export function QuizNameLine({ place }: { place: 'lobby' | 'end' }) {
   const name = usePlayedQuizNameText()
   const [box, setBox] = useState<HTMLElement | null>(null)
 

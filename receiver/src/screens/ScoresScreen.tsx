@@ -39,7 +39,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
     return (
       <main className="screen announce">
         {/* Sans la pastille « QUESTION n/N » de la question finie : seule l'annonce compte. */}
-        <GameHeader roomCode={roomCode} qrLabel="none" />
+        <GameHeader roomCode={roomCode} />
         <div className="announce-center">
           <h1 className="hero-title announce-title">{(isRound ? strings.transition.announceRound : strings.transition.announce)(upcoming, session.questionCount)}</h1>
           <p className="announce-hint">{strings.transition.announceHint}</p>
@@ -52,7 +52,7 @@ export function ScoresScreen({ session, roomCode }: ScoresScreenProps) {
 
   return (
     <main className="screen scores">
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} qrLabel="none" />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} />
       {session.settings.teams ? (
         // Groupe : classement des équipes à la place du classement des joueurs (maquette G3).
         <>

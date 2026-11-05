@@ -73,7 +73,7 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
       <NextQuestionLine countdown={countdown} />
     </div>
   )
-  const header = <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="bluff" qrLabel="rejoin" />
+  const header = <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind="bluff" />
 
   if (isTruthShown) {
     const rows = truthStepRows(indexed)

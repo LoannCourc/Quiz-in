@@ -36,7 +36,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
   return (
     <main className={hasChoices ? 'screen answer-screen' : 'screen reveal'} ref={hasChoices ? bodyRef : undefined}>
       <Confetti />
-      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} qrLabel="rejoin" />
+      <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} />
       {question.options && reveal.stats.choiceCounts ? (
         <>
           <h1 className="hero-title answer-title">{strings.reveal.title}</h1>

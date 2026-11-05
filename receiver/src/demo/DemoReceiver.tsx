@@ -65,7 +65,7 @@ function initialOptions(params: URLSearchParams): DemoOptions {
 }
 
 // Mode démo (sans code dans l'URL) : session fictive pilotée par le panneau ; ?sounds=1 : galerie des sons.
-// &quizname=1 : quiz fixe ou blind test joué (salon, bandeau en jeu, fin) ; &quizname=long : titre long.
+// &quizname=1 : quiz fixe ou blind test joué (salon, fin) ; &quizname=long : titre long.
 function demoQuizName(param: string | null): string | null {
   if (param === '1') return strings.playedQuiz('Électro des années 80', 'medium')
   if (param === 'long') return strings.playedQuiz('Rap français des années 2000 et 2010, faces cachées', 'impossible')

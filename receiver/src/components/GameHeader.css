@@ -5,17 +5,11 @@
 }
 
 .game-header-progress {
-  display: grid;
-  flex: 1 1 0;
-  min-width: 0;
-  row-gap: 0.3rem;
-  justify-items: start;
-}
-
-.game-header-badges {
   display: flex;
+  flex: 1 1 0;
   align-items: center;
   column-gap: 1.2rem;
+  min-width: 0;
 }
 
 .game-header-question {
@@ -29,39 +23,12 @@
   text-transform: uppercase;
 }
 
-.game-header-join {
-  display: grid;
-  justify-items: end;
-  margin-left: auto;
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: var(--color-text-muted);
-  text-align: right;
-}
-
 .game-header-rejoin {
+  margin-left: auto;
   font-size: 0.8rem;
   font-weight: 800;
   color: var(--color-text);
-}
-
-/* Bonne réponse : le rappel seul, sur deux lignes. */
-.game-header-rejoin-short {
-  display: grid;
-  justify-items: end;
-  margin-left: auto;
-  font-size: 0.8rem;
-  font-weight: 900;
-  line-height: 1.25;
   text-align: right;
-}
-
-.game-header-code {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.3rem;
-  color: var(--color-accent);
-  letter-spacing: 0.05em;
 }
 
 .game-header-qr {
