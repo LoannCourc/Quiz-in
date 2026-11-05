@@ -94,7 +94,7 @@ function HomeScreen() {
           onOpenGame={(game) => openGame(game, room)}
           onJoinWithCode={room ? undefined : () => router.push('/join')}
           banner={room ? <RoomBanner code={room} /> : resumeButton}
-          isBlindTestEnabled={isBlindTestEnabled === true}
+          isBlindTestEnabled={isBlindTestEnabled}
           isDrawEnabled={isDrawEnabled !== false}
           fit={fit}
           headerAction={

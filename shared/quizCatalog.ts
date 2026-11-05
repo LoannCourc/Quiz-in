@@ -128,6 +128,24 @@ export function gameAccess(game: string | undefined, switches: GameSwitches): Ga
   return value ? 'open' : 'closed'
 }
 
+// Interrupteur du blind test : ouvert seulement s'il vaut true. Tant que la valeur n'est pas confirmée (lecture en
+// cours, ou impossible pendant une coupure), le dernier état connu ; null si on n'en a aucun.
+export type SwitchRead = { kind: 'loading' } | { kind: 'error' } | { kind: 'ready'; value: unknown }
+
+export function blindTestSwitch(read: SwitchRead, lastKnown: boolean | null): boolean | null {
+  return read.kind === 'ready' ? read.value === true : lastKnown
+}
+
+// Tuile de l'accueil : ouverte, « Bientôt » (coupée, valeur confirmée), ou en attente (grisée, sans « Bientôt »).
+export type GameTileState = 'open' | 'soon' | 'pending'
+
+export function gameTileState(game: string, switches: GameSwitches): GameTileState {
+  if (game !== 'blindTest' && game !== 'draw') return 'open'
+  const value = switches[game]
+  if (value === null) return 'pending'
+  return value ? 'open' : 'soon'
+}
+
 // Quiz joué, affiché au salon, sur la TV et à la fin (« Électro des années 80 · Moyen ») : quiz fixe ou blind
 // test seulement ; jamais le Bluff, Dessine-moi ni une partie tirée dans des thèmes ou un mélange.
 export interface PlayedQuizName {

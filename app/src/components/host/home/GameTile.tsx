@@ -1,4 +1,5 @@
 import { HOME_TILE_METRICS, showsTileHint, type HomeTileDensity } from '@shared/homeLayout';
+import type { GameTileState } from '@shared/quizCatalog';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
@@ -13,8 +14,9 @@ const BORDER = 4;
 interface GameTileProps {
   game: GameType;
   onPress: () => void;
-  // Jeu coupé à distance : étiquette « Bientôt » en haut à droite, tuile éteinte, non cliquable.
-  isSoon?: boolean;
+  // soon : jeu coupé à distance, étiquette « Bientôt » en haut à droite, tuile éteinte, non cliquable.
+  // pending : interrupteur pas encore confirmé, tuile éteinte, non cliquable, sans étiquette.
+  state?: GameTileState;
   // Accueil sans défilement : densité choisie d'après la hauteur disponible (shared/homeLayout.ts), et la
   // tuile remplit sa rangée.
   density?: HomeTileDensity;
@@ -24,25 +26,26 @@ interface GameTileProps {
 // Tuile d'un jeu de l'accueil (maquette H1) : fond de la couleur du jeu, bord blanc, ombre dure encre,
 // disque encre avec l'icône dans la couleur de la tuile, nom et phrase en encre (ButtonLabel : jamais
 // coupés). Une tuile « Bientôt » (jeu coupé à distance) reste visible mais ne s'ouvre pas.
-export function GameTile({ game, onPress, isSoon = false, density = 'normal', fill = false }: GameTileProps) {
+export function GameTile({ game, onPress, state = 'open', density = 'normal', fill = false }: GameTileProps) {
   const color = AppColors.gameTiles[game];
+  const isOff = state !== 'open';
   const { disc, icon, padding, gap } = HOME_TILE_METRICS[density];
   const { name, hint } = strings.home.games[game];
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={`${name}. ${hint}`}
-      accessibilityState={{ disabled: isSoon }}
-      disabled={isSoon}
+      accessibilityState={{ disabled: isOff }}
+      disabled={isOff}
       onPress={onPress}
       style={({ pressed }) => [
         styles.tile,
         fill && styles.fill,
         { backgroundColor: color, paddingVertical: padding, gap },
         pressed && styles.pressed,
-        isSoon && styles.soon,
+        isOff && styles.soon,
       ]}>
-      {isSoon && (
+      {state === 'soon' && (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>{strings.home.soonBadge}</Text>
         </View>

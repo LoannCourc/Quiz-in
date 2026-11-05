@@ -1,4 +1,5 @@
 import { HOME_ROWS_GAP, HOME_TILE_MAX_HEIGHT, type HomeTileDensity } from '@shared/homeLayout';
+import { gameTileState } from '@shared/quizCatalog';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -18,18 +19,14 @@ const TITLE_SIZE_COMPACT = 22;
 const JOIN_HEIGHT_COMPACT = 48;
 const JOIN_ICON_SIZE = 22;
 
-// « Bientôt » si l'interrupteur à distance du jeu est coupé.
-function isGameOff(game: GameType, isBlindTestEnabled: boolean, isDrawEnabled: boolean): boolean {
-  return (game === 'blindTest' && !isBlindTestEnabled) || (game === 'draw' && !isDrawEnabled);
-}
-
 interface HomeViewProps {
   onOpenGame: (game: GameType) => void;
   // Bandeau en haut (« Reprendre la partie », choix du prochain jeu) ; il remplace « À quoi on joue ? » et
   // son sous-titre, pour que les tuiles tiennent sans défilement.
   banner?: ReactNode;
   // Interrupteurs à distance : la tuile reste visible mais « Bientôt » si son jeu est coupé.
-  isBlindTestEnabled: boolean;
+  // null : pas encore confirmé (tuile grisée, jamais « Bientôt »).
+  isBlindTestEnabled: boolean | null;
   isDrawEnabled: boolean;
   // Maquette J1 : rejoindre la partie d'un autre hôte avec son code (absent : pas de bouton).
   onJoinWithCode?: () => void;
@@ -49,7 +46,7 @@ export function HomeView({ onOpenGame, banner, isBlindTestEnabled, isDrawEnabled
     <GameTile
       key={game}
       game={game}
-      isSoon={isGameOff(game, isBlindTestEnabled, isDrawEnabled)}
+      state={gameTileState(game, { blindTest: isBlindTestEnabled, draw: isDrawEnabled })}
       onPress={() => onOpenGame(game)}
       density={fit?.density}
       fill={fit !== undefined}

@@ -86,5 +86,5 @@ Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds
 - [ ] « Ouvrir les réglages » : réglages réseau sur Android, page de l'app sur iPhone ; lien absent du site des joueurs.
 - [ ] Coupure d'une seconde : pas de panneau.
 - [ ] Panneau affiché avec une feuille déjà ouverte, surtout sur iPhone.
-- [ ] Tuile Blind test en « Bientôt » sans réseau : aucun changement une fois le réseau revenu.
+- [ ] Tuile Blind test (interrupteur ouvert) : jamais « Bientôt », ni au lancement, ni au retour du réseau, ni en lançant l'app en mode avion puis en rétablissant le réseau. Interrupteur fermé : « Bientôt » une fois la valeur lue.
 - [ ] « Réduire les animations » actif.
