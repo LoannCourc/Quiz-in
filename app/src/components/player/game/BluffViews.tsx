@@ -1,5 +1,5 @@
 import { bluffAttemptsLeft, bluffPlayerOutcome, bluffWriteStatus } from '@shared/bluff';
-import { BLUFF_MAX_LENGTH, BLUFF_TRAP_POINTS } from '@shared/constants';
+import { BLUFF_MAX_LENGTH } from '@shared/constants';
 import type { Player, PlayerId, PlayerResult, PublicQuestion, RevealedBluffChoice } from '@shared/types';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
@@ -213,7 +213,9 @@ function namesOf(ids: readonly PlayerId[] | undefined, players: Record<PlayerId,
   return (ids ?? []).map((id) => players[id]?.name).filter((name): name is string => name !== undefined);
 }
 
-// B3 : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé.
+// B3 : « Bien vu ! » ou « Piégé ! », les points, la vraie réponse, et qui sa proposition a piégé. Seul le total écrit par
+// l'hôte est affiché, celui que compte le classement : jamais de recalcul ici (un hôte sur une ancienne version compte
+// d'autres valeurs).
 export function BluffRevealView({ choices, result, uid, players, streak }: BluffRevealViewProps) {
   const { voted, own, points } = bluffPlayerOutcome(choices, result, uid);
   const truth = choices.find((choice) => choice.kind === 'truth');
@@ -251,7 +253,7 @@ export function BluffRevealView({ choices, result, uid, players, streak }: Bluff
             <Text style={styles.cardText}>
               {texts.ownTrappedStart(own.text)}
               <Text style={styles.trappedNames}>{texts.names(trapped)}</Text>
-              {texts.ownTrappedEnd(trapped.length * BLUFF_TRAP_POINTS)}
+              {texts.ownTrappedEnd}
             </Text>
           ) : (
             <Text style={styles.cardText}>{texts.ownNobody}</Text>

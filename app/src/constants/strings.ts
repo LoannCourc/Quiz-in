@@ -1131,7 +1131,7 @@ export const strings = {
       butTrapped: (count: number) => `Mais ta proposition a piégé ${count} joueur${count > 1 ? 's' : ''}.`,
       truthLabel: 'La vraie réponse',
       ownTrappedStart: (text: string) => `Ta proposition « ${text} » a piégé `,
-      ownTrappedEnd: (points: number) => ` : +${formatNumber(points)}`,
+      ownTrappedEnd: '.',
       ownNobody: 'Personne n’a voté pour ta proposition.',
       names: (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} et ${names[names.length - 1]}` : (names[0] ?? '')),
     },

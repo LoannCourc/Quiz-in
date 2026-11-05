@@ -505,6 +505,9 @@ describe('Bluff : téléphone du joueur', () => {
     expect(outcome.own?.voters).toEqual(['b', 'c'])
     expect(outcome.points).toBe(1000)
     expect(bluffPlayerOutcome(choices, undefined, 'x')).toEqual({ voted: null, own: null, points: 0 })
+    // Hôte sur une ancienne version (500 par joueur piégé) : le total écrit par l'hôte, jamais recalculé.
+    const oldHost: RevealedBluffChoice[] = [{ text: 'mon bluff', kind: 'bluff', authors: ['me'], voters: ['a', 'b'] }]
+    expect(bluffPlayerOutcome(oldHost, { correct: false, points: 1000 }, 'me').points).toBe(1000)
   })
 })
 
