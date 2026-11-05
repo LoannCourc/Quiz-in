@@ -103,13 +103,57 @@ describe('Dessine-moi : devineurs et verdicts de l’hôte', () => {
 })
 
 describe('Dessine-moi : points, fin de manche, annulation', () => {
-  test('devineur : 1 000 tout de suite, 400 à la fin ; dessinateur : 1 000 × part des devineurs qui ont trouvé', () => {
+  test('devineur : 1 000 tout de suite, 200 à la fin ; dessinateur : 1 000 × part des devineurs qui ont trouvé', () => {
     const results = drawResults(round({ drawFound: { [OTHER]: START, zoe: END } }))
     expect(results[OTHER]).toEqual({ correct: true, points: DRAW_GUESS_MAX_POINTS })
     expect(results.zoe).toEqual({ correct: true, points: DRAW_GUESS_MIN_POINTS })
     // 2 devineurs sur 3 (l'hôte n'a pas trouvé).
     expect(results[PLAYER]).toEqual({ correct: true, points: 667 })
     expect(results[HOST]).toBeUndefined()
+  })
+
+  test('devineur : exactement 200 pendant la dernière seconde, dégressif avant', () => {
+    expect(DRAW_GUESS_MIN_POINTS).toBe(200)
+    const points = (elapsedS: number) => drawResults(round({ drawFound: { [OTHER]: START + elapsedS * 1000 } }))[OTHER].points
+    expect(points(0)).toBe(1_000)
+    expect(points(37)).toBe(600)
+    expect(points(73)).toBe(211)
+    expect(points(74)).toBe(200)
+    expect(points(74.9)).toBe(200)
+    // Tolérance réseau après la fin du chrono : jamais moins de 200.
+    expect(points(76)).toBe(200)
+  })
+
+  test('dessinateur : 3 trouvent sur 5 → 600', () => {
+    const five = { ana: player('Ana'), ben: player('Ben') }
+    const results = drawResults(round({ drawFound: { [OTHER]: START, zoe: START, ana: START } }, five))
+    expect(results[PLAYER]).toEqual({ correct: true, points: 600 })
+  })
+
+  test('dessinateur : parti après avoir trouvé, compté ; parti ou déconnecté sans avoir trouvé, pas compté', () => {
+    // Devineurs : Tom (parti après avoir trouvé), Zoé (trouvé), l'hôte (déconnecté, rien trouvé), Ana (connectée, rien trouvé).
+    const results = drawResults(
+      round({ drawFound: { [OTHER]: START, zoe: START } }, { [OTHER]: player('Tom', { connected: false }), [HOST]: player('Hôte', { connected: false }), ana: player('Ana') }),
+    )
+    expect(results[PLAYER].points).toBe(667)
+    // Retiré de la partie : plus compté du tout, même s'il avait trouvé.
+    const session = round({ drawFound: { [OTHER]: START, zoe: START } }, { ana: player('Ana') })
+    delete session.players[OTHER]
+    expect(drawResults(session)[PLAYER].points).toBe(333)
+  })
+
+  test('dessinateur en Groupe : seuls les joueurs de son équipe comptent', () => {
+    const teamed = round(
+      { settings: { ...DRAW, teams: true, teamCount: 2 }, drawFound: { [OTHER]: START } },
+      {
+        [PLAYER]: player('Léa', { team: 'pink' }),
+        [OTHER]: player('Tom', { team: 'pink' }),
+        ana: player('Ana', { team: 'pink' }),
+        zoe: player('Zoé', { team: 'cyan' }),
+        [HOST]: player('Hôte', { team: 'cyan' }),
+      },
+    )
+    expect(drawResults(teamed)[PLAYER].points).toBe(500)
   })
 
   test('personne n’a trouvé : 0 pour le dessinateur', () => {

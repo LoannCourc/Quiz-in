@@ -30,9 +30,9 @@ export const DRAW_GUESS_MIN_INTERVAL_MS = 1_500;
 // Derniers mots tirés sur le téléphone de l'hôte, évités tant qu'il reste assez d'autres mots.
 export const DRAW_WORD_HISTORY_SIZE = 200;
 export const DRAW_GUESS_MAX_LENGTH = 40;
-// Points : devineur de 1 000 (tout de suite) à 400 (à la fin du chrono) ; dessinateur 1 000 au plus.
+// Points : devineur de 1 000 (tout de suite) à 200 (dernière seconde du chrono) ; dessinateur 1 000 au plus.
 export const DRAW_GUESS_MAX_POINTS = 1_000;
-export const DRAW_GUESS_MIN_POINTS = 400;
+export const DRAW_GUESS_MIN_POINTS = 200;
 export const DRAW_DRAWER_MAX_POINTS = 1_000;
 
 export const REVEAL_DURATION_S: Record<AnswerMode, number> = { choice: 6, free: 6, bluff: 4, draw: 6 };

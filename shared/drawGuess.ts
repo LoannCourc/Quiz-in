@@ -102,13 +102,18 @@ export function drawHintsUpdate(session: Session): SessionUpdate | null {
   return Object.keys(update).length > 0 ? update : null
 }
 
-// Points de la manche. Devineur qui a trouvé : de 1 000 à 400 selon le moment ; dessinateur : 1 000 ×
-// part des devineurs qui ont trouvé (un devineur parti après avoir trouvé compte encore).
+// Dernière seconde du chrono : le devineur y marque exactement le minimum.
+const LAST_SECOND_MS = 1_000
+
+// Points de la manche. Devineur qui a trouvé : 1 000 − 800 × (temps écoulé ÷ (durée − 1 s)), plafonné à 200 pendant
+// la dernière seconde. Dessinateur : 1 000 × (devineurs qui ont trouvé ÷ devineurs de la manche). Devineurs de la
+// manche : joueurs connectés à la fin de la manche, plus ceux qui ont trouvé puis sont partis ; un joueur parti sans
+// avoir trouvé n'est pas compté ; en Groupe, seulement l'équipe du dessinateur.
 export function drawResults(session: Session): Record<PlayerId, PlayerResult> {
   const drawer = session.drawTurn?.drawer
   if (!drawer) return {}
   const found = Object.entries(session.drawFound ?? {}).filter(([uid]) => session.players[uid] && uid !== drawer)
-  const durationMs = Math.max(1, session.phaseEndsAt - session.phaseStartedAt)
+  const durationMs = Math.max(1, session.phaseEndsAt - session.phaseStartedAt - LAST_SECOND_MS)
   const results: Record<PlayerId, PlayerResult> = {}
   for (const [uid, at] of found) {
     const share = Math.min(1, Math.max(0, (at - session.phaseStartedAt) / durationMs))

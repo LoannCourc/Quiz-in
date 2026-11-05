@@ -2265,7 +2265,7 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     expect(session.drawHint?.[guesser]).toEqual({ count: 1, verdict: 'found' })
     await step()
     expect(session.reveal?.correctAnswer).toBe(questions[0].word)
-    expect(session.drawPoints?.[0]?.[guesser]).toBeGreaterThanOrEqual(400)
+    expect(session.drawPoints?.[0]?.[guesser]).toBeGreaterThanOrEqual(200)
     // Classement, puis manche suivante.
     await step()
     expect(session.status).toBe('scores')
