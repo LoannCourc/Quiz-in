@@ -4,7 +4,7 @@ import { trackOptionParts } from '@shared/trackOption'
 import type { AnswerVerdict, ChoiceOptions, FreeAnswerGroup, PublicSession } from '@shared/types'
 
 import { AnswerExplanation, AnswerPills, type AnswerPill } from '../components/AnswerPills'
-import { Confetti } from '../components/Confetti'
+import { RevealConfetti } from '../components/Confetti'
 import { TrackOptionText } from '../components/TrackOptionText'
 import { GameHeader } from '../components/GameHeader'
 import { HostWaitBanner } from '../components/HostWaitBanner'
@@ -35,7 +35,7 @@ export function RevealScreen({ session, roomCode }: RevealScreenProps) {
 
   return (
     <main className={hasChoices ? 'screen answer-screen' : 'screen reveal'} ref={hasChoices ? bodyRef : undefined}>
-      <Confetti />
+      <RevealConfetti />
       <GameHeader roomCode={roomCode} questionIndex={session.currentIndex} questionCount={session.questionCount} progressKind={progressKindOf(session)} />
       {question.options && reveal.stats.choiceCounts ? (
         <>

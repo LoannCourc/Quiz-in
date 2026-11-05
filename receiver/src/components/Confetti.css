@@ -64,3 +64,15 @@
   animation-iteration-count: infinite;
   animation-fill-mode: both;
 }
+
+/* « La bonne réponse » : toute la largeur, derrière les cartes (voir RevealConfetti). Version devant : plus petite et
+   légèrement transparente, au-dessus de tout, le temps de la chute. */
+.confetti-spread.is-front {
+  z-index: 2;
+  opacity: 0.75;
+}
+
+.confetti-spread.is-front .confetti-piece {
+  width: 0.45rem;
+  height: 0.9rem;
+}

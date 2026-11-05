@@ -35,8 +35,9 @@
   opacity: 1;
 }
 
-/* Fin de partie : ni projecteur ni pluie continue ; la salve de confettis reste. */
+/* Fin de partie : ni projecteur ni pluie continue ; la salve de confettis reste. « La bonne réponse » : pas de confettis. */
 .tv-light .podium-spotlight,
+.tv-light .confetti-spread,
 .tv-light .confetti-rain-piece {
   display: none !important;
 }
@@ -100,6 +101,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .confetti-spread {
+    display: none;
+  }
+
   .answer-pill.is-correct,
   .answer-gauge,
   .interim-leader,

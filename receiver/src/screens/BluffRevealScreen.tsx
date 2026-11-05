@@ -7,7 +7,7 @@ import type { Player, PlayerId, PublicSession, RevealedBluffChoice } from '@shar
 
 import { AnswerExplanation, AnswerPills, type AnswerPill } from '../components/AnswerPills'
 import { BluffRevealRows, type RevealRow } from '../components/BluffChoices'
-import { Confetti } from '../components/Confetti'
+import { RevealConfetti } from '../components/Confetti'
 import { GameHeader } from '../components/GameHeader'
 import { HostWaitBanner } from '../components/HostWaitBanner'
 import { NextQuestionLine } from '../components/TransitionInfo'
@@ -90,7 +90,7 @@ export function BluffRevealScreen({ session, roomCode, choices }: BluffRevealScr
     }))
     return (
       <main className="screen answer-screen" ref={bodyRef}>
-        <Confetti />
+        <RevealConfetti />
         {header}
         <h1 className="hero-title answer-title">{strings.reveal.title}</h1>
         <div className="answer-body">
