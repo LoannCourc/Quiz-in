@@ -65,14 +65,29 @@
   animation-fill-mode: both;
 }
 
-/* « La bonne réponse » : toute la largeur, derrière les cartes (voir RevealConfetti). Version devant : plus petite et
-   légèrement transparente, au-dessus de tout, le temps de la chute. */
-.confetti-spread.is-front {
-  z-index: 2;
-  opacity: 0.75;
+/* « La bonne réponse » : toute la scène, au-dessus de la mise en page et du bandeau d'attente. Absolu dans .screen (la scène
+   16:9, et pas la fenêtre : les bandes d'un écran d'un autre format restent vides). Petits, 75 % d'opacité par confetti (jamais
+   sur la couche : une opacité de groupe obligerait la box à recomposer tout l'écran), chute en rem, à la mesure de la scène. */
+.confetti-spread {
+  z-index: 3;
 }
 
-.confetti-spread.is-front .confetti-piece {
+.confetti-spread-piece {
   width: 0.45rem;
   height: 0.9rem;
+  animation-name: confetti-spread-fall;
+}
+
+@keyframes confetti-spread-fall {
+  0% {
+    opacity: 0.75;
+    transform: translateY(0) rotate(0deg);
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(39rem) rotate(540deg);
+  }
 }

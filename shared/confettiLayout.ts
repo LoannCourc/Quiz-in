@@ -1,6 +1,7 @@
 // Confettis de « La bonne réponse » (TV) : répartis régulièrement sur toute la largeur, départs mélangés pour ne pas
-// tomber en vague de gauche à droite. Même nombre qu'avant (règle : 10 à 15 au plus). Logique pure, testée.
-export const SPREAD_CONFETTI_COUNT = 12
+// tomber en vague de gauche à droite. Au-dessus de la mise en page : les cartes des réponses couvrent toute la largeur,
+// des confettis placés derrière n'étaient visibles que dans les marges. Logique pure, testée.
+export const SPREAD_CONFETTI_COUNT = 18
 
 export interface SpreadConfettiPiece {
   leftPercent: number
@@ -9,12 +10,12 @@ export interface SpreadConfettiPiece {
   colorIndex: number
 }
 
-const FIRST_LEFT = 4
-const LAST_LEFT = 96
-const DELAY_STEP_MS = 110
-// Multiplicateur premier avec 12 : chaque rang de départ sert une seule fois, les voisins partent loin l'un de l'autre.
-const DELAY_ORDER_STEP = 5
-const DURATIONS_MS = [2_800, 3_200, 3_000] as const
+const FIRST_LEFT = 3
+const LAST_LEFT = 97
+const DELAY_STEP_MS = 65
+// Multiplicateur premier avec 18 : chaque rang de départ sert une seule fois, les voisins partent loin l'un de l'autre.
+const DELAY_ORDER_STEP = 7
+const DURATIONS_MS = [2_200, 2_600, 2_400] as const
 
 export function spreadConfettiPieces(colorCount: number): SpreadConfettiPiece[] {
   return Array.from({ length: SPREAD_CONFETTI_COUNT }, (_, index) => ({

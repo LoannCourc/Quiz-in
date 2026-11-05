@@ -243,7 +243,7 @@ Références : `docs/design/` (maquettes mobile et TV). Esprit plateau de jeu t�
   - Pas de bandeau d'ampoules, de bordure décorative haut/bas ni de bandeau « scotch » : tout ce qui n'informe pas est supprimé.
   - Titres Bowlby One accentués (RÉPONSE, RÉVÉLATION…) : `line-height` ≥ 1,3 et marge suffisante ; un accent ne touche jamais la ligne du dessus.
   - Un écran = un seul message principal, très gros.
-  - TV : animations CSS uniquement (`transform`, `opacity`), pas d'ombre floue ni de `blur`. Confettis : 10 à 15 éléments CSS maximum, seulement à la révélation et à la fin ; fin de partie : salve, puis pluie continue de 30 confettis au plus (spec 17).
+  - TV : animations CSS uniquement (`transform`, `opacity`), pas d'ombre floue ni de `blur`. Confettis : 10 à 15 éléments CSS maximum, 18 pour « La bonne réponse » (petits, au-dessus de la mise en page, brefs : `shared/confettiLayout.ts`), seulement à la révélation et à la fin ; fin de partie : salve, puis pluie continue de 30 confettis au plus (spec 17).
   - La DA ne change aucune logique de jeu.
 
 ## Règles de travail

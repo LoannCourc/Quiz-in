@@ -106,7 +106,7 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 
 ### 4.3 Écran TV (séquence des écrans)
 
-Confettis de « La bonne réponse » : une chute de 12 confettis sur toute la largeur, derrière les cartes, jamais devant une réponse, un compteur ou un texte ; aucun en mode allégé ni avec « réduire les animations ». Rien au classement.
+Confettis de « La bonne réponse » : une chute de 18 petits confettis sur toute la largeur, au-dessus de la mise en page (derrière, les cartes les cachent : elles couvrent toute la largeur), à 75 % d'opacité, 2,2 à 2,6 s chacun, moins de 4 s en tout ; aucun en mode allégé ni avec « réduire les animations ». Rien au classement.
 1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés ; en Groupe, une colonne par équipe. Après un tirage au sort de l'hôte, écran « Tirage des équipes » : les joueurs arrivent un à un dans leur équipe (toutes les 0,315 s, plus vite quand ils sont nombreux : toutes les arrivées en 4,2 s au plus), un tic par joueur, le gong quand le dernier est posé, puis les équipes complètes restent 2,1 s (`shared/teamDraw.ts`). L'hôte ne peut valider les équipes qu'après le gong (« Tirage en cours… »).
 2. **Démarrage** : compte à rebours 3-2-1.
 3. **Question** : énoncé, difficulté, propositions (en Choix multiples) ou, en Réponse libre, un grand cadre « Écrivez votre réponse sur votre téléphone » (« le titre », « l'artiste », « le titre et l'artiste » pour un blind test) à la place des propositions, compte à rebours, indicateur discret de réponses reçues (avatars qui s'illuminent, sans montrer les réponses ; triés par rang, ou par pseudo en Suspense pour ne rien laisser deviner du classement ; regroupés par équipe en Groupe).

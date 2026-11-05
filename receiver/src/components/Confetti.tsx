@@ -48,19 +48,18 @@ export function Confetti() {
   )
 }
 
-// « La bonne réponse » : une chute sur toute la largeur. Derrière les cartes, visible entre elles : jamais devant une
-// réponse, un compteur ni un texte. Pour la passer devant (plus petite et légèrement transparente) : IN_FRONT à true.
-const IN_FRONT = false
+// « La bonne réponse » : une chute sur toute la largeur, au-dessus de la mise en page, car les cartes couvrent toute la
+// largeur (derrière elles, les confettis n'étaient visibles que dans les marges). Petits, légèrement transparents, brefs.
 const CONFETTI_COLORS = 5
 const SPREAD_PIECES = spreadConfettiPieces(CONFETTI_COLORS)
 
 export function RevealConfetti() {
   return (
-    <div className={IN_FRONT ? 'confetti confetti-spread is-front' : 'confetti confetti-spread'} aria-hidden="true">
+    <div className="confetti confetti-spread" aria-hidden="true">
       {SPREAD_PIECES.map((piece) => (
         <span
           key={piece.leftPercent}
-          className="confetti-piece"
+          className="confetti-piece confetti-spread-piece"
           style={{
             left: `${piece.leftPercent}%`,
             background: `var(--confetti-${piece.colorIndex + 1})`,
