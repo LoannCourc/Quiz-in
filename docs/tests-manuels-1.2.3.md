@@ -2,6 +2,14 @@
 
 Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds de production.
 
+## Comment tester avant la publication
+
+- **Site des joueurs, canal d'essai :** https://quizin-play--essai-joueurs-sktpp304.web.app (expire le 12 novembre 2026). Il utilise la vraie base : une partie d'essai est une partie normale.
+- **Rejoindre sur le canal :** taper l'adresse du canal suivie de `/join/CODE`, par exemple https://quizin-play--essai-joueurs-sktpp304.web.app/join/ABCD. **Le QR code de la TV et le lien « Partager » de l'app mènent au site publié**, donc à l'ancienne version : ne pas les utiliser pour tester le canal.
+- **Application hôte :** APK Android preview (profil `preview`, installation directe). Il remplace le build de développement sur le téléphone. Son Cast ouvre le récepteur de production, donc les anciens écrans TV.
+- **TV, nouveaux écrans :** canal `essai-tv` avec le récepteur de test `0D978EA2` et `receiver/cast-sender.html`, ou https://quiz-in-7dbd6--essai-tv-bkjhmkt1.web.app/?code=CODE dans un navigateur en plein écran.
+- **Règles de la base :** déployées le 5 novembre 2026 (30 essais à Gribouille). Rien à faire.
+
 ## TV (Bbox, récepteur de test)
 
 - [ ] Réglage auto : allégé bien actif (`?perf=1` ou étape 5), fluidité, QR lisible à 3 m.
@@ -46,8 +54,10 @@ Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds
 
 ## QR code
 
-- [ ] Scan du QR avec un iPhone, appareil photo natif, première ouverture dans Safari : le formulaire s'affiche.
+- [ ] Le QR de la TV ouvre le site publié, sans le correctif tant que le site n'est pas déployé. Sur le canal, tester `/join/CODE` tapé à la main, et `/join/code` en minuscules.
+- [ ] Pour tester le scan sur le canal : créer un QR vers l'adresse du canal suivie de `/join/CODE` (générateur sur le PC), le scanner avec l'appareil photo natif de l'iPhone, première ouverture dans Safari : le formulaire s'affiche.
 - [ ] Même scan une deuxième fois, page déjà chargée une fois.
+- [ ] Après le déploiement du site des joueurs : refaire le scan du vrai QR de la TV avec un iPhone.
 - [ ] En cas d'erreur : noter le titre et la ligne grise « Réf. » (elle dit « lien » ou « code saisi »).
 
 ## Écran « Bonne réponse » (téléphone)
