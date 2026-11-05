@@ -4,10 +4,12 @@ Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds
 
 ## Comment tester avant la publication
 
-- **Site des joueurs, canal d'essai :** https://quizin-play--essai-joueurs-sktpp304.web.app (expire le 12 novembre 2026). Il utilise la vraie base : une partie d'essai est une partie normale.
+- **Site des joueurs, canal d'essai :** https://quizin-play--essai-joueurs-sktpp304.web.app (expire le 21 novembre 2026). Il utilise la vraie base : une partie d'essai est une partie normale.
 - **Rejoindre sur le canal :** taper l'adresse du canal suivie de `/join/CODE`, par exemple https://quizin-play--essai-joueurs-sktpp304.web.app/join/ABCD. **Le QR code de la TV et le lien « Partager » de l'app mènent au site publié**, donc à l'ancienne version : ne pas les utiliser pour tester le canal.
-- **Application hôte :** APK Android preview (profil `preview`, installation directe). Il remplace le build de développement sur le téléphone. Son Cast ouvre le récepteur de production, donc les anciens écrans TV.
-- **TV, nouveaux écrans :** canal `essai-tv` avec le récepteur de test `0D978EA2` et `receiver/cast-sender.html`, ou https://quiz-in-7dbd6--essai-tv-bkjhmkt1.web.app/?code=CODE dans un navigateur en plein écran.
+- **Application hôte, TV de production :** APK du profil `preview`. Son Cast ouvre le récepteur `AA4E97E3`, donc les anciens écrans TV.
+- **Application hôte, TV d'essai :** APK du profil `preview-essai-tv`. Son Cast ouvre le récepteur de test `0D978EA2`, donc le canal `essai-tv` (https://quiz-in-7dbd6--essai-tv-bkjhmkt1.web.app/, expire le 21 novembre 2026). Même identifiant d'application : installer un APK remplace l'autre.
+- **Conditions pour le Cast d'essai :** dans la console Cast (https://cast.google.com/publish), l'application `0D978EA2` pointe sur l'adresse du canal `essai-tv`, et la Bbox est enregistrée comme appareil de test. Le téléphone et la Bbox sont sur le même Wi-Fi. Sinon la TV ne s'affiche pas ou le lancement échoue.
+- **Plan B sans Cast :** https://quiz-in-7dbd6--essai-tv-bkjhmkt1.web.app/?code=CODE dans un navigateur en plein écran.
 - **Règles de la base :** déployées le 5 novembre 2026 (30 essais à Gribouille). Rien à faire.
 
 ## TV (Bbox, récepteur de test)
@@ -23,6 +25,18 @@ Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds
 - [ ] Gribouille : révélation et classement ; indice « Objet – 10 lettres ».
 - [ ] Son calé sur les lignes du classement et les cartes du Bluff.
 - [ ] En-tête au même endroit de la question au classement : phrase « Déconnecté ? » et QR, sans saut.
+
+## TV d'essai avec l'APK `preview-essai-tv` (Cast sur la Bbox)
+
+Pour chaque jeu, Quiz, Blind test, Bluff et Gribouille, en Pas à pas puis en Automatique :
+
+- [ ] « Afficher sur la TV » ouvre bien la TV d'essai : le panneau `?perf=1` ou le message Cast de `cast-sender.html` montre la version, et l'écran de réponse est le nouveau (« La bonne réponse »).
+- [ ] Question → réponse → classement : écrans complets, sons calés, rien de coupé.
+- [ ] En-tête identique sur ces trois écrans : logo, pastille, « Déconnecté ? Scanne pour revenir dans la partie. » et QR au même endroit, sans saut.
+- [ ] Bandeau « La partie est en pause » : absent avant 20 s, présent après 20 s en Pas à pas, disparaît dès que l'hôte avance, jamais en Automatique.
+- [ ] Téléphone et TV disent le même rang et le même mouvement au classement.
+- [ ] Hôte en 1.2.3 et un joueur sur le site publié (ancienne version, par le vrai QR de la TV) : il joue la partie entière, sans erreur.
+- [ ] Si un téléphone en 1.2.2 est disponible : hôte en 1.2.2 sur la TV d'essai, par le plan B (`?code=CODE`), car son Cast ouvre la production. Tout s'affiche et les points suivent ceux de l'ancienne version.
 
 ## Téléphone hôte
 
