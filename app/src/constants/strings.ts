@@ -1,3 +1,4 @@
+import { drawHintText } from '@shared/drawGame';
 import {
   DEV_SHORT_GAME_QUESTIONS,
   HOST_DISCONNECT_TIMEOUT_S,
@@ -1239,7 +1240,7 @@ export const strings = {
     changeWord: 'Changer de mot',
     // Les devineurs : un mot à la fois, jugé par l'hôte.
     drawing: (name: string) => `${name} dessine !`,
-    hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
+    hint: drawHintText,
     guessLabel: 'Ton idée',
     guessPlaceholder: 'Un mot…',
     send: 'Valider',
@@ -1247,7 +1248,6 @@ export const strings = {
     wrong: (text: string | null) => (text ? `« ${text} » : pas ça…` : 'Pas ça…'),
     close: (text: string | null) => (text ? `« ${text} » : tu es proche !` : 'Tu es proche !'),
     failed: 'Essai non envoyé : réessaie.',
-    triesLeft: (left: number) => (left > 1 ? `Encore ${left} essais` : 'Dernier essai !'),
     exhausted: 'Plus d’essai pour cette manche.',
     found: 'Trouvé !',
     foundHint: 'Bravo ! Les points arrivent avec la réponse.',

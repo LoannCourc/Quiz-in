@@ -114,6 +114,8 @@ interface AnswerFieldProps {
   // exact (par défaut) : réponse jugée à la lettre (Réponse libre, Dessine-moi), sans correcteur du clavier ;
   // sentence : phrase inventée (Bluff), avec correction automatique, majuscule et vérification orthographique.
   writing?: AnswerWriting;
+  // Clavier ouvert sur un petit téléphone : sans libellé visible, champ plus bas.
+  compact?: boolean;
 }
 
 export type AnswerWriting = 'exact' | 'sentence';
@@ -137,12 +139,13 @@ export function AnswerField({
   maxLength = FREE_ANSWER_MAX_LENGTH,
   isRefused = false,
   writing = 'exact',
+  compact = false,
 }: AnswerFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View style={styles.field}>
-      <Text style={styles.fieldLabel}>{label}</Text>
-      <View style={[styles.inputBox, isFocused && styles.inputFocused, isRefused && styles.inputRefused, disabled && styles.inputDisabled]}>
+      {!compact && <Text style={styles.fieldLabel}>{label}</Text>}
+      <View style={[styles.inputBox, compact && styles.inputBoxCompact, isFocused && styles.inputFocused, isRefused && styles.inputRefused, disabled && styles.inputDisabled]}>
         <TextInput
           value={text}
           onChangeText={onChangeText}
@@ -181,6 +184,7 @@ function Equalizer() {
 }
 
 const FIELD_BORDER = 3;
+const COMPACT_FIELD_HEIGHT = 48;
 const BAR_WIDTH = 8;
 
 const styles = StyleSheet.create({
@@ -230,6 +234,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 1.5,
     textTransform: 'uppercase',
+  },
+  inputBoxCompact: {
+    minHeight: COMPACT_FIELD_HEIGHT,
   },
   inputBox: {
     flexDirection: 'row',

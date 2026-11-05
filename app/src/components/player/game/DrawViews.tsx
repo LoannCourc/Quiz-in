@@ -1,11 +1,11 @@
 import { fittedFontSize } from '@shared/fontSize';
 import { DRAW_GUESS_MAX_LENGTH, DRAW_MAX_GUESSES } from '@shared/constants';
-import { drawingChunkList } from '@shared/drawGame';
+import { drawingChunkList, isGuessCompact } from '@shared/drawGame';
 import { FIT_VIEWPORT, ZOOM_MAX, zoomPercent, type Viewport } from '@shared/drawing/viewport';
 import { DRAW_HEIGHT, DRAW_WIDTH } from '@shared/drawing/palette';
 import type { DrawTurn, PlayerResult, PublicSession } from '@shared/types';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { CANVAS_CAN_ZOOM, DrawingCanvas } from '@/components/player/draw/DrawingCanvas';
 import { ToolIcon, type ToolIconName } from '@/components/player/draw/ToolIcon';
@@ -26,6 +26,7 @@ import { AppColors, AppFonts, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } f
 import { strings } from '@/constants/strings';
 import { Spacing } from '@/constants/theme';
 import { useDrawerRotation } from '@/hooks/useDrawerRotation';
+import { useKeyboardInset } from '@/hooks/useKeyboardInset';
 import type { DrawGuessState, PlayerDraw } from '@/lib/playerDraw';
 import { isIosDevice } from '@/lib/platform';
 
@@ -355,12 +356,16 @@ interface DrawGuessViewProps {
 
 // Les devineurs (et l'hôte qui joue) : qui dessine, l'indice, un champ pour un mot à la fois. Le dessin
 // est sur la TV. L'hôte juge chaque essai ; seul le joueur voit son verdict (« Pas ça… », « Tu es
-// proche ! »). Trouvé : plus de champ. Le champ se vide après chaque envoi.
+// proche ! »). Trouvé : plus de champ. Le champ se vide après chaque envoi. La limite d'essais n'est jamais
+// affichée. Clavier ouvert sur un petit téléphone : version compacte, tout tient sans défilement.
 export function DrawGuessView({ turn, drawerName, draw }: DrawGuessViewProps) {
   const { guess } = draw;
   const [text, setText] = useState('');
   const isCooling = useIsBefore(guess.nextAllowedAt);
   const left = DRAW_MAX_GUESSES - guess.used;
+  const keyboardInset = useKeyboardInset();
+  // Hauteur de l'écran : sur le web, celle de la fenêtre rétrécit déjà avec le clavier.
+  const isCompact = isGuessCompact(Dimensions.get('screen').height, keyboardInset);
   const canSend = !isCooling && !guess.isPending && left > 0 && text.trim() !== '';
 
   function send() {
@@ -378,9 +383,9 @@ export function DrawGuessView({ turn, drawerName, draw }: DrawGuessViewProps) {
     );
   }
   return (
-    <View style={styles.guess}>
+    <View style={[styles.guess, isCompact && styles.guessCompact]}>
       <Text style={[textStyles.label, styles.centered]}>{texts.drawing(drawerName)}</Text>
-      <Text style={styles.hint}>{texts.hint(turn.category, turn.wordLength)}</Text>
+      <Text style={[styles.hint, isCompact && styles.hintCompact]}>{texts.hint(turn.category, turn.wordLength)}</Text>
       {left > 0 ? (
         <>
           <AnswerField
@@ -392,11 +397,11 @@ export function DrawGuessView({ turn, drawerName, draw }: DrawGuessViewProps) {
             disabled={false}
             maxLength={DRAW_GUESS_MAX_LENGTH}
             autoFocus
+            compact={isCompact}
           />
-          <GuessFeedback guess={guess} />
+          <GuessFeedback guess={guess} isCompact={isCompact} />
           <View style={styles.guessFooter}>
-            <Text style={[textStyles.muted, styles.centered]}>{texts.triesLeft(left)}</Text>
-            <SubmitButton label={texts.send} onPress={send} disabled={!canSend} />
+            <SubmitButton label={texts.send} onPress={send} disabled={!canSend} compact={isCompact} />
           </View>
         </>
       ) : (
@@ -410,14 +415,17 @@ export function DrawGuessView({ turn, drawerName, draw }: DrawGuessViewProps) {
 }
 
 // Verdict du dernier essai ; hauteur réservée : le bouton ne saute pas quand le texte change.
-function GuessFeedback({ guess }: { guess: DrawGuessState }) {
+// Version compacte : une ligne, sans rappeler le mot essayé (il pourrait la faire déborder).
+function GuessFeedback({ guess, isCompact = false }: { guess: DrawGuessState; isCompact?: boolean }) {
   const { hint } = guess;
+  const lastText = isCompact ? null : guess.lastText;
+  const textStyle = [styles.feedback, isCompact && styles.feedbackCompact];
   let content: ReactNode = null;
   if (guess.hasFailed) content = <Text style={[textStyles.error, styles.centered]}>{texts.failed}</Text>;
   else if (guess.isPending) content = <Text style={[textStyles.muted, styles.centered]}>{texts.checking}</Text>;
-  else if (hint?.verdict === 'close') content = <Text style={[styles.feedback, styles.close]}>{texts.close(guess.lastText)}</Text>;
-  else if (hint?.verdict === 'wrong') content = <Text style={[styles.feedback, styles.wrong]}>{texts.wrong(guess.lastText)}</Text>;
-  return <View style={styles.feedbackBox}>{content}</View>;
+  else if (hint?.verdict === 'close') content = <Text style={[textStyle, styles.close]}>{texts.close(lastText)}</Text>;
+  else if (hint?.verdict === 'wrong') content = <Text style={[textStyle, styles.wrong]}>{texts.wrong(lastText)}</Text>;
+  return <View style={[styles.feedbackBox, isCompact && styles.feedbackBoxCompact]}>{content}</View>;
 }
 
 // Vrai tant que l'heure locale n'a pas atteint `until` ; se met à jour tout seul à l'échéance.
@@ -666,6 +674,18 @@ const styles = StyleSheet.create({
   guess: {
     flexGrow: 1,
     gap: Spacing.three,
+  },
+  guessCompact: {
+    gap: Spacing.one,
+  },
+  hintCompact: {
+    fontSize: 16,
+  },
+  feedbackBoxCompact: {
+    minHeight: 22,
+  },
+  feedbackCompact: {
+    fontSize: 15,
   },
   guessFooter: {
     marginTop: 'auto',

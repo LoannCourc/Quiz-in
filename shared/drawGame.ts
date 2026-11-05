@@ -141,6 +141,18 @@ export function drawingChunkList(drawing: PublicSession['drawing']): string[] {
     .map(([, data]) => data)
 }
 
+// Indice affiché sur la TV et les téléphones : « Objet – 10 lettres ».
+export function drawHintText(category: string, letters: number): string {
+  return `${category} – ${letters} lettres`
+}
+
+// Écran du devineur : version compacte quand le clavier ne laisse pas assez de hauteur (petit téléphone).
+const GUESS_COMFORT_HEIGHT = 460
+
+export function isGuessCompact(windowHeight: number, keyboardInset: number): boolean {
+  return keyboardInset > 0 && windowHeight - keyboardInset < GUESS_COMFORT_HEIGHT
+}
+
 // Nombre de lettres affiché sur la TV (décision D5) : lettres seulement (espaces et tirets à part).
 export function wordLetterCount(word: string): number {
   return word.replace(/[^\p{L}]/gu, '').length

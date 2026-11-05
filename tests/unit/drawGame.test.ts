@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { isKnownAnswerMode } from '../../shared/constants'
-import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawOrderFor, drawRoundsOf, drawRoundsUpdate, wordLetterCount } from '../../shared/drawGame'
+import { DRAW_QUIZ_SUMMARY, DRAW_ROUNDS_DEFAULT, drawEligiblePlayers, drawGameQuestions, drawHintText, drawOrderFor, isGuessCompact, drawRoundsOf, drawRoundsUpdate, wordLetterCount } from '../../shared/drawGame'
 import { hostLeaveUpdate } from '../../shared/players'
 import { isDrawGuesser } from '../../shared/drawGuess'
 import { drawCategoryId, DRAW_WORDS, drawWordsIn } from '../../shared/drawWords'
@@ -256,5 +256,18 @@ describe('Dessine-moi : nombre de manches et un seul dessinateur (réglages R4)'
     expect(hostLeaveUpdate(lobby)).toEqual({ [`players/${HOST}`]: null })
     expect(hostLeaveUpdate({ ...lobby, status: 'question' })).toBeNull()
     expect(hostLeaveUpdate({ ...lobby, players: { [PLAYER]: player('Léa') } })).toBeNull()
+  })
+})
+
+describe('Écran du devineur', () => {
+  test('indice avec un tiret, sans point médian', () => {
+    expect(drawHintText('Objet', 10)).toBe('Objet – 10 lettres')
+  })
+
+  test('compact seulement si le clavier laisse moins de 460 de haut', () => {
+    expect(isGuessCompact(568, 0)).toBe(false)
+    expect(isGuessCompact(568, 260)).toBe(true)
+    expect(isGuessCompact(800, 300)).toBe(false)
+    expect(isGuessCompact(667, 260)).toBe(true)
   })
 })

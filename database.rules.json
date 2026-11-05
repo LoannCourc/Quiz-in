@@ -378,7 +378,7 @@
         "drawGuess": {
           "$uid": {
             ".write": "auth != null && auth.uid == $uid && root.child('sessions/' + $code + '/status').val() == 'question' && root.child('sessions/' + $code + '/settings/answerMode').val() == 'draw' && root.child('sessions/' + $code + '/players/' + $uid + '/name').exists() && root.child('sessions/' + $code + '/drawTurn/drawer').val() != $uid && !root.child('sessions/' + $code + '/drawFound/' + $uid).exists() && (root.child('sessions/' + $code + '/settings/teams').val() != true || root.child('sessions/' + $code + '/players/' + $uid + '/team').val() == root.child('sessions/' + $code + '/players/' + root.child('sessions/' + $code + '/drawTurn/drawer').val() + '/team').val())",
-            ".validate": "newData.hasChildren(['text', 'count', 'at']) && newData.child('at').val() == now && newData.child('count').val() <= 15 && (data.exists() ? newData.child('count').val() == data.child('count').val() + 1 && now >= data.child('at').val() + 1500 : newData.child('count').val() == 1)",
+            ".validate": "newData.hasChildren(['text', 'count', 'at']) && newData.child('at').val() == now && newData.child('count').val() <= 30 && (data.exists() ? newData.child('count').val() == data.child('count').val() + 1 && now >= data.child('at').val() + 1500 : newData.child('count').val() == 1)",
             "text": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40" },
             "count": { ".validate": "newData.isNumber() && newData.val() % 1 == 0" },
             "at": { ".validate": "newData.isNumber()" },
@@ -389,7 +389,7 @@
           "$uid": {
             ".read": "auth != null && auth.uid == $uid",
             ".validate": "newData.hasChildren(['count', 'verdict'])",
-            "count": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 15 && newData.val() % 1 == 0" },
+            "count": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 30 && newData.val() % 1 == 0" },
             "verdict": { ".validate": "newData.isString() && newData.val().matches(/^(wrong|close|found)$/)" },
             "$other": { ".validate": false }
           }

@@ -24,7 +24,8 @@ export const QUESTION_DURATION_S: Record<AnswerMode, number> = { choice: 20, fre
 export const ALL_ANSWERED_DELAY_S = 2;
 // Bluff : durée de base (la vraie réponse), plus le retournement des fausses propositions (revealDurationS).
 // Dessine-moi (spec 19) : essais par manche, écart minimal entre deux essais, longueur d'un essai.
-export const DRAW_MAX_GUESSES = 15;
+// Limite anti-abus, jamais affichée au joueur (même valeur écrite en dur dans database.rules.json).
+export const DRAW_MAX_GUESSES = 30;
 export const DRAW_GUESS_MIN_INTERVAL_MS = 1_500;
 export const DRAW_GUESS_MAX_LENGTH = 40;
 // Points : devineur de 1 000 (tout de suite) à 400 (à la fin du chrono) ; dessinateur 1 000 au plus.

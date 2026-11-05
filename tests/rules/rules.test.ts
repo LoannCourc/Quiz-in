@@ -2141,7 +2141,7 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     db(uid).ref(`${SESSION}/drawGuess/${uid}`).set({ text, count, at: SERVER_TIME })
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  test('essais : un devineur, numérotés de 1 à 15, 1,5 s d’écart au moins ; jamais le dessinateur', async () => {
+  test('essais : un devineur, numérotés de 1 à 30, 1,5 s d’écart au moins ; jamais le dessinateur', async () => {
     await seedSession(round())
     await assertSucceeds(guess(OTHER, 1))
     await assertFails(guess(OTHER, 2))
@@ -2155,11 +2155,14 @@ describe('Dessine-moi (dessin en direct, lot 2)', () => {
     await assertFails(db(PLAYER).ref(`${SESSION}/drawGuess/${OTHER}`).once('value'))
   })
 
-  test('essais : plus rien après avoir trouvé, ni après le 15e, ni hors de la manche', async () => {
+  test('essais : plus rien après avoir trouvé, ni après le 30e, ni hors de la manche', async () => {
     await seedSession(round({ drawFound: { [OTHER]: Date.now() } }))
     await assertFails(guess(OTHER, 1))
-    await seedSession(round({ drawGuess: { [OTHER]: { text: 'x', count: 15, at: Date.now() - 5_000 } } }))
-    await assertFails(guess(OTHER, 16))
+    await seedSession(round({ drawGuess: { [OTHER]: { text: 'x', count: 29, at: Date.now() - 5_000 } } }))
+    await assertSucceeds(guess(OTHER, 30))
+    await assertSucceeds(db(HOST).ref(`${SESSION}/drawHint/${OTHER}`).set({ count: 30, verdict: 'wrong' }))
+    await seedSession(round({ drawGuess: { [OTHER]: { text: 'x', count: 30, at: Date.now() - 5_000 } } }))
+    await assertFails(guess(OTHER, 31))
     await seedSession(round({ status: 'reveal' }))
     await assertFails(guess(OTHER, 1))
   })

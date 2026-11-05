@@ -1,3 +1,4 @@
+import { drawHintText } from '@shared/drawGame'
 import type { SoundEngineState } from './lib/sound/soundEngine'
 import type { EmojiSupport } from './lib/emojiSupport'
 import type { AnswerVerdict, AudioSourceId, BlindTestAsk, Difficulty, DifficultyLevel, GameStatus, TeamId } from '@shared/types'
@@ -198,7 +199,7 @@ export const strings = {
   draw: {
     // Espace insécable : le « ! » ne passe jamais seul à la ligne.
     drawing: (name: string) => `${name} dessine !`,
-    hint: (category: string, letters: number) => `${category} · ${letters} lettres`,
+    hint: drawHintText,
     itWas: 'C’était…',
     drawnBy: (name: string) => `Dessiné par ${name}`,
     // Espace insécable : le « ! » ne passe jamais seul à la ligne.
