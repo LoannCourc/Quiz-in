@@ -12,14 +12,13 @@ const CIRCLE_SIZE = 96;
 const CIRCLE_BORDER = 6;
 const ICON_SIZE = 56;
 
-// Wi-Fi barré, dessiné : trois arcs (le haut de cercles), un point, et une barre de la couleur du cercle qui les coupe.
+// Wi-Fi barré, dessiné : trois arcs (le haut de cercles) et une barre de la couleur du cercle qui les coupe.
 function NoWifiIcon() {
   return (
     <View style={styles.icon}>
       {[52, 34, 16].map((size) => (
-        <View key={size} style={[styles.arc, { width: size, height: size, borderRadius: size / 2, left: (ICON_SIZE - size) / 2, top: 34 - size / 2 }]} />
+        <View key={size} style={[styles.arc, { width: size, height: size, borderRadius: size / 2, left: (ICON_SIZE - size) / 2, top: 40 - size / 2 }]} />
       ))}
-      <View style={styles.dot} />
       <View style={styles.cut} />
     </View>
   );
@@ -122,15 +121,6 @@ const styles = StyleSheet.create({
     borderWidth: 6,
     borderColor: 'transparent',
     borderTopColor: AppColors.connectionInk,
-  },
-  dot: {
-    position: 'absolute',
-    left: ICON_SIZE / 2 - 5,
-    top: 38,
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: AppColors.connectionInk,
   },
   cut: {
     position: 'absolute',
