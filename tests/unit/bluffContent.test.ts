@@ -81,7 +81,10 @@ describe('Bluff : quiz du contenu', () => {
     for (const question of questions) {
       expect(bluffQuestionErrors(question)).toEqual([])
       expect(checkBluff(question.answer, question)).toBe('truth')
-      for (const decoy of question.decoys) expect(checkBluff(decoy, question)).toBe('ok')
+      for (const decoy of question.decoys) {
+        // « Mansard » : leurre qui joue volontairement sur la vraie réponse « Mansart » ; un joueur serait refusé.
+        if (question.id !== 'bom-10' || !decoy.includes('Mansard')) expect(checkBluff(decoy, question), decoy).toBe('ok')
+      }
     }
   })
 })
