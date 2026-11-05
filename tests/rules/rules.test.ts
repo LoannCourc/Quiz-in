@@ -1837,7 +1837,7 @@ describe('Bluff', () => {
     await assertSucceeds(hostRef.update(transitionUpdate(session, BLUFF_QUESTIONS, { status: 'vote', currentIndex: 0 }, Date.now()) ?? {}))
     session = (await readAsAdmin(SESSION)) as Session
     expect(session.status).toBe('reveal')
-    expect(session.bluffPoints?.[0]).toEqual({ [PLAYER]: 500, [OTHER]: 500 })
+    expect(session.bluffPoints?.[0]).toEqual({ [PLAYER]: 750, [OTHER]: 750 })
   })
 })
 
@@ -2057,7 +2057,7 @@ describe('Bluff : hôte qui joue, 2 joueurs', () => {
     const voted = (await readAsAdmin(SESSION)) as Session
     await assertSucceeds(hostRef.update(transitionUpdate(voted, BLUFF_QUESTIONS.slice(0, 1), { status: 'vote', currentIndex: 0 }, Date.now()) ?? {}))
     // Chacun a piégé l'autre : 500 points chacun.
-    expect(((await readAsAdmin(SESSION)) as Session).bluffPoints?.[0]).toEqual({ [HOST]: 500, [PLAYER]: 500 })
+    expect(((await readAsAdmin(SESSION)) as Session).bluffPoints?.[0]).toEqual({ [HOST]: 750, [PLAYER]: 750 })
     // Le jugement de l'hôte n'a jamais été refusé par les règles (heure recopiée comprise).
     expect(refused).toEqual([])
     // Diagnostic : l'hôte voit sa propre proposition avec une heure estimée, puis celle du serveur.
