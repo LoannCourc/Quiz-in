@@ -1,7 +1,9 @@
 import type { TeamId } from '@shared/types';
-import { StyleSheet, Text, View } from 'react-native';
+import { useRef } from 'react';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 
 import { MarkIcon } from '@/components/ui/MarkIcon';
+import { CountUpText, popScale, useEntrance, useLoop, useReduceMotion } from '@/components/ui/motion';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppCoinGradient, AppColors, AppFonts, AppShadows, AppSizes, DISPLAY_LINE_HEIGHT, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -11,6 +13,7 @@ import type { FreeText, RevealOutcome } from '@/lib/playerGame';
 import { gradientStyle } from '@/components/ui/gradient';
 
 import { ChoicePill, choiceTextSize } from './ChoicePill';
+import type { CoinCenter } from './RevealCelebration';
 import { StreakNotice } from './StreakNotice';
 import { TeamChip } from './TeamViews';
 
@@ -41,31 +44,78 @@ interface RevealViewProps {
   team?: TeamId;
   // Série du joueur à montrer (3 et plus, bonne réponse) : badge flamme et « Série de 4 ! ».
   streak?: number | null;
+  // Bonne réponse : position du centre de la pièce à l'écran, pour les rayons et les confettis.
+  onCoinCenter?: (center: CoinCenter) => void;
 }
 
 // Écran Réponse : juste ou faux, et les points gagnés. Aucun rang : il n'apparaît qu'au Classement.
 export function RevealView(props: RevealViewProps) {
-  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], free, team, streak } = props;
+  const { outcome, points, speedBonus, correctAnswer, correctChoice, options = [], free, team, streak, onCoinCenter } = props;
   const isCorrect = outcome === 'correct';
+  const isAnimated = !useReduceMotion();
+  const motion = useRevealMotion(isCorrect, outcome === 'wrong', isAnimated);
 
   return (
     <View style={styles.container}>
       {team && <TeamChip team={team} />}
-      <Text style={[textStyles.hero, outcome === 'partial' && styles.partialTitle]}>{strings.game.reveal.titles[outcome]}</Text>
+      <Animated.Text style={[textStyles.hero, outcome === 'partial' && styles.partialTitle, motion.title]}>{strings.game.reveal.titles[outcome]}</Animated.Text>
 
       {/* Ton plus doux pour une mauvaise réponse ou une absence de réponse : pièce translucide. */}
-      <PointsCoin points={points} isSoft={!isCorrect} />
+      <PointsCoin points={points} isSoft={!isCorrect} isAnimated={isAnimated} onCoinCenter={onCoinCenter} />
       {streak != null && <StreakNotice streak={streak} />}
-      {free ? (
-        <FreeResult free={free} isCorrect={isCorrect} points={points} />
-      ) : (
-        <ChoiceResult correctAnswer={correctAnswer} correctChoice={correctChoice} options={options} isCorrect={isCorrect} />
-      )}
+      <Animated.View style={[styles.result, motion.result]}>
+        {free ? (
+          <FreeResult free={free} isCorrect={isCorrect} points={points} />
+        ) : (
+          <ChoiceResult correctAnswer={correctAnswer} correctChoice={correctChoice} options={options} isCorrect={isCorrect} />
+        )}
+      </Animated.View>
       {isCorrect && free?.artist === undefined && speedBonus !== undefined && speedBonus > 0 && (
-        <Text style={[textStyles.body, styles.centered]}>{strings.game.reveal.speedBonus(speedBonus)}</Text>
+        <Animated.View style={motion.bonus}>
+          <CountUpText
+            to={speedBonus}
+            delayMs={BONUS_COUNT_DELAY_MS}
+            durationMs={BONUS_COUNT_MS}
+            isAnimated={isAnimated}
+            format={strings.game.reveal.speedBonus}
+            style={[textStyles.body, styles.centered]}
+          />
+        </Animated.View>
       )}
     </View>
   );
+}
+
+// Calendrier de l'écran. Bonne réponse : titre en « pop », pastille qui monte à 0,7 s, bonus à 0,95 s. Sinon, sobre :
+// petit tremblement du titre (mauvaise réponse), le reste apparaît en douceur, sans rayons ni confettis.
+const RESULT_DELAY_MS = 700;
+const BONUS_DELAY_MS = 950;
+const BONUS_COUNT_DELAY_MS = 1_200;
+const BONUS_COUNT_MS = 800;
+const SOFT_RESULT_DELAY_MS = 250;
+const RISE_DISTANCE = 40;
+const SHAKE_DISTANCE = 6;
+
+function useRevealMotion(isCorrect: boolean, shakes: boolean, isAnimated: boolean) {
+  const title = useEntrance({ durationMs: isCorrect ? 600 : 450, isAnimated, easing: Easing.linear });
+  const result = useEntrance({ delayMs: isCorrect ? RESULT_DELAY_MS : SOFT_RESULT_DELAY_MS, durationMs: isCorrect ? 450 : 400, isAnimated });
+  const bonus = useEntrance({ delayMs: BONUS_DELAY_MS, durationMs: 350, isAnimated });
+  const titleStyle = isCorrect
+    ? { transform: [{ scale: popScale(title) }] }
+    : {
+        opacity: title.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
+        transform: shakes
+          ? [{ translateX: title.interpolate({ inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1], outputRange: [0, -SHAKE_DISTANCE, SHAKE_DISTANCE, -SHAKE_DISTANCE / 2, SHAKE_DISTANCE / 2, 0] }) }]
+          : [],
+      };
+  return {
+    title: titleStyle,
+    result: {
+      opacity: result,
+      transform: [{ translateY: result.interpolate({ inputRange: [0, 1], outputRange: [isCorrect ? RISE_DISTANCE : RISE_DISTANCE / 4, 0] }) }],
+    },
+    bonus: { opacity: bonus },
+  };
 }
 
 interface ChoiceResultProps {
@@ -155,11 +205,57 @@ function PartRow({ isOk, label, value, points }: PartRowProps) {
   );
 }
 
-function PointsCoin({ points, isSoft }: { points: number; isSoft: boolean }) {
+interface PointsCoinProps {
+  points: number;
+  isSoft: boolean;
+  isAnimated: boolean;
+  onCoinCenter?: (center: CoinCenter) => void;
+}
+
+const COIN_POP_DELAY_MS = 250;
+const COIN_POP_MS = 550;
+const COIN_COUNT_MS = 1_300;
+const HALO_MS = 2_000;
+const PULSE_SCALE = 1.03;
+
+// Pièce des points. Bonne réponse : « pop » à 0,25 s, nombre qui monte, pulsation et halo jaune en boucle. Sinon, apparition douce.
+function PointsCoin({ points, isSoft, isAnimated, onCoinCenter }: PointsCoinProps) {
+  const isFestive = !isSoft && isAnimated;
+  const pop = useEntrance({ delayMs: isSoft ? 0 : COIN_POP_DELAY_MS, durationMs: isSoft ? 400 : COIN_POP_MS, isAnimated, easing: Easing.linear });
+  const beat = useLoop({ delayMs: COIN_POP_DELAY_MS + COIN_POP_MS, durationMs: HALO_MS, isAnimated: isFestive });
+  const ref = useRef<View>(null);
+  const pulse = beat.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, PULSE_SCALE, 1] });
+  const coinStyle = isSoft
+    ? { opacity: pop, transform: [{ scale: pop.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) }] }
+    : { transform: [{ scale: popScale(pop) }, { scale: pulse }] };
   return (
-    <View style={[styles.coin, isSoft ? styles.softCoin : COIN_GRADIENT]}>
-      <Text style={[styles.coinPoints, isSoft && styles.softCoinText]}>{strings.game.reveal.coinPoints(points)}</Text>
-      <Text style={[styles.coinLabel, isSoft && styles.softCoinText]}>{strings.game.reveal.coinLabel}</Text>
+    <View
+      ref={ref}
+      style={styles.coinBox}
+      onLayout={() => ref.current?.measureInWindow((x, y, width, height) => onCoinCenter?.({ x: x + width / 2, y: y + height / 2 }))}>
+      {isFestive && (
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            styles.halo,
+            {
+              opacity: beat.interpolate({ inputRange: [0, 0.1, 1], outputRange: [0, 0.55, 0] }),
+              transform: [{ scale: beat.interpolate({ inputRange: [0, 1], outputRange: [1, 1.32] }) }],
+            },
+          ]}
+        />
+      )}
+      <Animated.View style={[styles.coin, isSoft ? styles.softCoin : COIN_GRADIENT, coinStyle]}>
+        <CountUpText
+          to={points}
+          delayMs={COIN_POP_DELAY_MS}
+          durationMs={COIN_COUNT_MS}
+          isAnimated={isAnimated && !isSoft}
+          format={strings.game.reveal.coinPoints}
+          style={[styles.coinPoints, isSoft && styles.softCoinText]}
+        />
+        <Text style={[styles.coinLabel, isSoft && styles.softCoinText]}>{strings.game.reveal.coinLabel}</Text>
+      </Animated.View>
     </View>
   );
 }
@@ -178,8 +274,21 @@ const styles = StyleSheet.create({
   partialTitle: {
     color: AppColors.accent,
   },
-  coin: {
+  result: {
+    gap: Spacing.four,
+  },
+  coinBox: {
     alignSelf: 'center',
+    width: AppSizes.coinSize,
+    height: AppSizes.coinSize,
+  },
+  halo: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: AppSizes.coinSize / 2,
+    backgroundColor: AppColors.celebrationHalo,
+  },
+  coin: {
     width: AppSizes.coinSize,
     height: AppSizes.coinSize,
     borderRadius: AppSizes.coinSize / 2,

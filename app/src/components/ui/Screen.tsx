@@ -46,6 +46,8 @@ interface ScreenProps extends BackgroundProps {
   footer?: ReactNode;
   // false : la page ne défile pas, la colonne occupe la hauteur restante (une zone interne défile
   // à sa place, comme la liste des joueurs du salon).
+  // Décor plein écran, entre le fond et le contenu (rayons de la bonne réponse).
+  backdrop?: ReactNode;
   scrollable?: boolean;
   // Toute la largeur de l'écran, sans la colonne centrée (dessinateur en paysage, maquette E2).
   wide?: boolean;
@@ -61,7 +63,7 @@ const SCROLL_TO_BOTTOM_DELAY_MS = 50;
 
 // Fond et colonne centrée communs aux écrans de l'app (hôte et joueurs). Clavier ouvert : la zone utile
 // s'arrête au-dessus du clavier (useKeyboardInset), le bas de la colonne (bouton « Valider ») reste visible.
-export function Screen({ children, background, header, footer, scrollable = true, wide = false, keyboardShowsBottom = false, footerDivider = false }: ScreenProps) {
+export function Screen({ children, background, backdrop, header, footer, scrollable = true, wide = false, keyboardShowsBottom = false, footerDivider = false }: ScreenProps) {
   const keyboardInset = useKeyboardInset();
   const hasKeyboard = keyboardInset > 0;
   const scrollRef = useRef<ScrollView>(null);
@@ -98,6 +100,7 @@ export function Screen({ children, background, header, footer, scrollable = true
   const column = <View style={[styles.column, !scrollable && styles.fixedColumn, wide && styles.wideColumn]}>{children}</View>;
   return (
     <ScreenBackground background={background}>
+      {backdrop}
       <SafeAreaView
         edges={hasKeyboard ? EDGES_WITH_KEYBOARD : undefined}
         style={[styles.safeArea, hasKeyboard && { paddingBottom: keyboardInset }]}>

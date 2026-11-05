@@ -1,5 +1,6 @@
 import { DRAW_GUESS_MIN_INTERVAL_MS } from '@shared/constants';
 import { judgeDrawGuess } from '@shared/drawGuess';
+import { isAwaitingHost } from '@shared/gameFlow';
 import type { PublicSession } from '@shared/types';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -12,7 +13,7 @@ import type { PhaseTiming } from '@/components/player/game/phaseTiming';
 import { QuestionHeader } from '@/components/player/game/QuestionHeader';
 import { PlaceBand } from '@/components/player/game/PlaceBand';
 import { TransitionSteps } from '@/components/player/game/TransitionSteps';
-import { HostControlsBar } from '@/components/host/HostControls';
+import { HostControlsBar, HostNextButton } from '@/components/host/HostControls';
 import { JoinHeader } from '@/components/player/JoinHeader';
 import { PlayerLobby } from '@/components/player/PlayerLobby';
 import { PlayerQuitLink } from '@/components/player/PlayerQuitLink';
@@ -86,8 +87,8 @@ export default function PlayerDemoScreen() {
   const quizName = params.quizname === '1' ? strings.catalog.playedQuiz('Électro des années 80', strings.catalog.difficultyLevels.medium) : null;
   const initialId: ScenarioId = isScenarioId(params.s) ? params.s : 'questionShort';
   const isCapture = params.capture === '1';
-  // Barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page de l'écran de l'hôte.
-  const hostFooter = params.host === '1' ? <HostControlsBar onPress={() => {}} /> : undefined;
+  // &host=1 : je suis l'hôte, bouton de la suite et barre « Contrôles de l'hôte » (sans action) : vérifier la mise en page.
+  const isHostDemo = params.host === '1';
   const [scenarioId, setScenarioId] = useState<ScenarioId>(initialId);
   // Reconstruit à chaque choix (même scénario re-choisi) : les chronos repartent de maintenant.
   const [scenario, setScenario] = useState<Scenario>(() => withDemoWord(buildScenario(initialId, Date.now()), params.word));
@@ -160,6 +161,7 @@ export default function PlayerDemoScreen() {
     : null;
 
   if (params.bands === '1') return <PlaceBandGallery />;
+  const demoSession = isHostDemo ? { ...scenario.session, hostUid: DEMO_UID } : scenario.session;
 
   return (
     <View style={styles.root}>
@@ -197,7 +199,7 @@ export default function PlayerDemoScreen() {
           // Nouvelle clé à chaque scénario : les écrans repartent de leur état initial.
           key={scenario.session.phaseStartedAt}
           session={withDemoOptions(
-            withDemoStreak(params.tv === '1' ? { ...scenario.session, tvPresence: { [DEMO_TV_UID]: true } } : scenario.session, Number(params.streak) || 0),
+            withDemoStreak(params.tv === '1' ? { ...demoSession, tvPresence: { [DEMO_TV_UID]: true } } : demoSession, Number(params.streak) || 0),
             params.options,
           )}
           uid={DEMO_UID}
@@ -208,7 +210,7 @@ export default function PlayerDemoScreen() {
           draw={draw}
           quizName={quizName}
           quitLink={params.quit === '1' ? <PlayerQuitLink code={DEMO_CODE} showOnWeb /> : undefined}
-          footer={hostFooter}
+          footer={isHostDemo ? <HostDemoFooter session={demoSession} /> : undefined}
         />
       )}
 
@@ -280,6 +282,9 @@ function DemoPanel({ isOpen, selected, onToggle, onSelect }: DemoPanelProps) {
 }
 
 const styles = StyleSheet.create({
+  hostFooter: {
+    gap: 8,
+  },
   root: {
     flex: 1,
   },
@@ -315,3 +320,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
+
+// Démo de l'hôte qui joue : même pied d'écran que la vraie partie, sans action.
+function HostDemoFooter({ session }: { session: PublicSession }) {
+  const next = isAwaitingHost(session) ? (session.status === 'reveal' ? strings.hostControls.next.ranking : strings.hostControls.next.nextQuestion) : null;
+  return (
+    <View style={styles.hostFooter}>
+      {next && <HostNextButton label={next} onPress={() => {}} celebrates={session.status === 'reveal' && session.reveal?.results?.[DEMO_UID]?.correct === true} />}
+      <HostControlsBar onPress={() => {}} />
+    </View>
+  );
+}

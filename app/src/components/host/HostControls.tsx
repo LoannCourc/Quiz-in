@@ -2,11 +2,12 @@ import type { HideableBluff } from '@shared/bluff';
 import type { HostControls as AvailableControls } from '@shared/hostEngine';
 import type { SoundSettings } from '@shared/types';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
 import { SoundSettingsSection } from '@/components/host/settings/SoundSettingsSection';
 import { BigButton } from '@/components/ui/BigButton';
+import { useEntrance, useLoop, useReduceMotion } from '@/components/ui/motion';
 import { textStyles } from '@/components/ui/textStyles';
 import { AppColors, AppFonts, AppSizes, TEXT_FIT_SAFETY } from '@/constants/appTheme';
 import { strings } from '@/constants/strings';
@@ -23,6 +24,25 @@ export function HostControlsBar({ onPress, isCompact = false }: { onPress: () =>
       style={({ pressed }) => [styles.bar, isCompact && styles.barCompact, pressed && styles.pressed]}>
       <ButtonLabel style={[styles.barText, isCompact && styles.barTextCompact]}>{strings.hostControls.open}</ButtonLabel>
     </Pressable>
+  );
+}
+
+const NEXT_APPEAR_DELAY_MS = 1_100;
+const NEXT_SHAKE_FIRST_MS = 3_000;
+const NEXT_SHAKE_MS = 500;
+const NEXT_SHAKE_EVERY_MS = 4_000;
+
+// Gros bouton « passer à la suite » de l'hôte. Bonne réponse (celebrates) : il apparaît à 1,1 s, puis se secoue
+// légèrement toutes les 4 s. Toujours actif dès le premier instant, l'animation ne retarde jamais l'appui.
+export function HostNextButton({ label, onPress, celebrates = false }: { label: string; onPress: () => void; celebrates?: boolean }) {
+  const isAnimated = !useReduceMotion() && celebrates;
+  const appear = useEntrance({ delayMs: NEXT_APPEAR_DELAY_MS, durationMs: 350, isAnimated });
+  const shake = useLoop({ delayMs: NEXT_APPEAR_DELAY_MS + NEXT_SHAKE_FIRST_MS, durationMs: NEXT_SHAKE_MS, restMs: NEXT_SHAKE_EVERY_MS - NEXT_SHAKE_MS, isAnimated });
+  const rotate = shake.interpolate({ inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1], outputRange: ['0deg', '-1.5deg', '1.5deg', '-1deg', '1deg', '0deg'] });
+  return (
+    <Animated.View style={{ opacity: appear, transform: [{ rotate }] }}>
+      <BigButton label={label} onPress={onPress} />
+    </Animated.View>
   );
 }
 

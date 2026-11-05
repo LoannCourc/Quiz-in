@@ -23,7 +23,7 @@ import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { HostControlsBar, HostControlsPanel, type HostActions } from '@/components/host/HostControls';
+import { HostControlsBar, HostControlsPanel, HostNextButton, type HostActions } from '@/components/host/HostControls';
 import { HostLobby } from '@/components/host/lobby/HostLobby';
 import { TvCastButton } from '@/components/host/TvCastButton';
 import { HostValidation } from '@/components/host/validation/HostValidation';
@@ -362,6 +362,7 @@ function HostInGame({ code, session, serverOffsetMs, isRegistered, question, onS
       onQuit={actions.quit}
       awaitingNext={hostControls(session).awaitingNext}
       onNext={actions.skip}
+      celebrates={isRegistered && session.status === 'reveal' && !session.reveal?.stats.bluffChoices && session.settings.answerMode !== 'draw' && session.reveal?.results?.[session.hostUid]?.correct === true}
       validation={isValidation ? { counts: reviewCounts(groups), onValidate: actions.skip } : null}
       vote={votes ? { missingNames: votes.missing.map((id) => session.players[id]?.name ?? '?'), onClose: closeVote } : null}
     />
@@ -469,6 +470,8 @@ interface HostFooterProps {
   // Pas à pas : la révélation attend l'hôte ; même action que Passer (verrou contre le double appui).
   awaitingNext: HostControls['awaitingNext'];
   onNext: () => void;
+  // L'hôte qui joue voit l'écran « Bonne réponse » : le bouton s'anime avec lui.
+  celebrates: boolean;
   // Contrôle : bilan des coches et « Valider les réponses » (null hors de la validation).
   validation: { counts: ReturnType<typeof reviewCounts>; onValidate: () => void } | null;
   // Bluff, vote sans minuteur : qui n'a pas encore voté, et « Clore le vote » (null hors du vote).
@@ -489,6 +492,7 @@ function HostFooter({
   onQuit,
   awaitingNext,
   onNext,
+  celebrates,
   validation,
   vote,
 }: HostFooterProps) {
@@ -497,7 +501,7 @@ function HostFooter({
       {notice && <Text style={[textStyles.body, styles.centered]}>{notice}</Text>}
       {error && <Text style={[textStyles.error, styles.centered]}>{error}</Text>}
       {status === 'paused' && <BigButton label={strings.hostControls.resume} onPress={onResume} />}
-      {awaitingNext && <BigButton label={strings.hostControls.next[awaitingNext]} onPress={onNext} />}
+      {awaitingNext && <HostNextButton key={awaitingNext} label={strings.hostControls.next[awaitingNext]} onPress={onNext} celebrates={celebrates} />}
       {validation && (
         <>
           <Text style={[textStyles.muted, styles.centered]}>{strings.hostValidation.counts(validation.counts)}</Text>

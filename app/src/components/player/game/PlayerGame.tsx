@@ -8,7 +8,7 @@ import { revealStreak } from '@shared/streak';
 import { bestPlayerByTeam, rankInTeam, teamRanking } from '@shared/teams';
 import { isTvPresent } from '@shared/tvPresence';
 import type { PlayerId, PlayerResult, PublicSession } from '@shared/types';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { FittedLine } from '@/components/ui/FittedLine';
@@ -33,12 +33,14 @@ import {
 
 import { AnswerSentView, ValidationWaitView } from './AnswerSentView';
 import { BluffRevealView, BluffVoteView, BluffWriteView, type BluffProgressPlayer } from './BluffViews';
+import { useReduceMotion } from '@/components/ui/motion';
 import { Confetti } from './Confetti';
 import { FreeQuestionView } from './FreeQuestionView';
 import type { PhaseTiming } from './phaseTiming';
 import { QuestionHeader } from './QuestionHeader';
 import { QuestionView } from './QuestionView';
 import { RevealView, type FreeRevealInfo } from './RevealView';
+import { CelebrationPieces, CelebrationRays, type CoinCenter } from './RevealCelebration';
 import { DrawerTopBar, DrawerView, DrawGuessView, DrawRevealView, DrawSpectatorView, isDrawerLandscape, type DrawerTopBarProps } from './DrawViews';
 import { EndView, OutdatedView, PausedView, StartingView, WaitingView } from './StatusViews';
 import { TeamEndScreen, type TeamGameInfo } from './TeamViews';
@@ -90,8 +92,13 @@ function PlayerGameScreen(props: PlayerGameProps) {
   const outcome = session.status === 'reveal' ? revealOutcome(myResult(session, uid)) : undefined;
   // Fond festif seulement pour une bonne réponse ; ton plus doux sinon.
   const background: AppBackgroundName = outcome === 'correct' ? 'celebration' : 'main';
-  // Confettis : une fois à la révélation d'une bonne réponse et à la fin de partie.
-  const showConfetti = outcome === 'correct' || (session.status === 'ended' && isEndShown);
+  // Écran « Bonne réponse » (Quiz, Blind test) : rayons, éclat et étoiles autour de la pièce ; sinon confettis, une fois
+  // à la révélation d'une bonne réponse (Bluff, Gribouille) et à la fin de partie.
+  const isCelebrating = outcome === 'correct' && !session.reveal?.stats.bluffChoices && session.settings.answerMode !== 'draw';
+  const isCalm = useReduceMotion();
+  const [coinCenter, setCoinCenter] = useState<CoinCenter | null>(null);
+  const celebration = isCelebrating && !isCalm ? coinCenter : null;
+  const showConfetti = (outcome === 'correct' && !isCelebrating) || (session.status === 'ended' && isEndShown);
   // Dessinateur pendant sa manche : la page ne défile pas (le doigt dessine). En paysage (E2), son en-tête
   // est dans le panneau de droite et l'écran prend toute la largeur.
   const isDrawing = isDrawerNow(props);
@@ -101,6 +108,7 @@ function PlayerGameScreen(props: PlayerGameProps) {
     <View style={styles.root}>
       <Screen
         background={background}
+        backdrop={celebration ? <CelebrationRays center={celebration} /> : undefined}
         header={isEndShown && !isDrawingLandscape ? questionTopBar(props) : undefined}
         footer={props.footer ?? (isQuitShown(props) ? props.quitLink : undefined)}
         scrollable={!isDrawing}
@@ -110,8 +118,9 @@ function PlayerGameScreen(props: PlayerGameProps) {
         {isEndShown && session.status === 'ended' && props.quizName && (
           <FittedLine text={props.quizName} style={styles.quizName} minSize={QUIZ_NAME_MIN_SIZE} />
         )}
-        {isEndShown ? renderView(props) : <SuspenseEndView isTeams={session.settings.teams} />}
+        {isEndShown ? renderView(props, setCoinCenter) : <SuspenseEndView isTeams={session.settings.teams} />}
       </Screen>
+      {celebration && <CelebrationPieces key={session.phaseStartedAt} center={celebration} />}
       {showConfetti && <Confetti key={`${session.status}-${session.phaseStartedAt}`} />}
       {props.overlay}
     </View>
@@ -222,7 +231,7 @@ function otherTeamRound(session: PublicSession, uid: PlayerId): string | null {
   return strings.teams.names[drawerTeam];
 }
 
-function renderView(props: PlayerGameProps): ReactNode {
+function renderView(props: PlayerGameProps, onCoinCenter: (center: CoinCenter) => void): ReactNode {
   const { session, uid, serverOffsetMs, answer, onAnswer, bluff, draw } = props;
   if (!isKnownAnswerMode(session.settings.answerMode)) return <OutdatedView />;
   const timing: PhaseTiming = {
@@ -303,7 +312,7 @@ function renderView(props: PlayerGameProps): ReactNode {
           <>
             {wait && <WaitHeader step={0} wait={wait} withRanking={hasRankingStep(session)} />}
             <BluffRevealView choices={bluffChoices} result={result} uid={uid} players={session.players} streak={revealStreak(session, uid)} />
-            {isAwaitingHost(session) && <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>}
+            {isAwaitingHost(session) && uid !== session.hostUid && <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>}
           </>
         );
       }
@@ -320,9 +329,10 @@ function renderView(props: PlayerGameProps): ReactNode {
             free={freeRevealInfo(session, result, answer)}
             team={team?.team}
             streak={revealStreak(session, uid)}
+            onCoinCenter={onCoinCenter}
           />
-          {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). */}
-          {isAwaitingHost(session) && (
+          {/* Pas à pas : l'hôte passera à la suite (aussi après une reconnexion pendant l'attente). L'hôte qui joue a le bouton. */}
+          {isAwaitingHost(session) && uid !== session.hostUid && (
             <Text style={[textStyles.muted, styles.notice]}>{strings.game.awaitingHost}</Text>
           )}
         </>

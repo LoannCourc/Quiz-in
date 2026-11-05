@@ -150,6 +150,11 @@ export const AppColors = {
   // Voile derrière un panneau (contrôles de l'hôte).
   backdrop: 'rgba(23, 6, 70, 0.7)',
   confetti: [Palette.cyan, Palette.gold, Palette.green, Palette.white, Palette.pinkLight],
+  // Écran « Bonne réponse » : confettis, rayons de lumière, étoiles et halo de la pièce.
+  celebrationPieces: [Palette.gold, Palette.cyan, Palette.pinkLight, Palette.green, Palette.white],
+  celebrationRay: 'rgba(255, 255, 255, 0.09)',
+  celebrationStar: '#fff4c2',
+  celebrationHalo: Palette.gold,
   // Catalogue : puces de thème (contour, puce choisie en blanc), badge « bientôt », pastilles de la fiche.
   chipBorder: 'rgba(201, 184, 255, 0.45)',
   chipSelected: Palette.white,
