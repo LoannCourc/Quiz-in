@@ -1221,7 +1221,7 @@ export const strings = {
     // Maquette J1 : rejoindre la partie d'un autre hôte avec son code.
     joinWithCode: 'J’ai un code : rejoindre une partie',
     games: {
-      quiz: { name: 'Quiz', hint: 'Réponds vite, marque plus.' },
+      quiz: { name: 'Quiz', hint: 'Viens tester tes connaissances.' },
       blindTest: { name: 'Blind test', hint: 'Titre et artiste, à l’oreille.' },
       bluff: { name: 'Bluff', hint: 'Invente la fausse réponse.' },
       draw: { name: 'Gribouille', hint: 'Dessine, les autres devinent.' },
