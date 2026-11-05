@@ -65,11 +65,11 @@ function readDisplay(): DisplayReading {
 }
 
 function DisplayModeLine({ display }: { display: DisplayReading }) {
-  const { setting, isLight, auto, now } = display
+  const { setting, source, isLight, auto, now } = display
   return (
     <>
-      <div className={isLight ? 'perf-strong' : undefined}>{texts.lightMode(setting, isLight)}</div>
-      <div>{autoLightText(auto, now)}</div>
+      <div className={isLight ? 'perf-strong' : undefined}>{texts.lightMode(setting, isLight, source)}</div>
+      <div>{setting === 'auto' ? autoLightText(auto, now) : texts.lightAuto.ignored(auto.reason !== null)}</div>
     </>
   )
 }

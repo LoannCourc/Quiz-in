@@ -32,6 +32,8 @@ Pour chaque jeu, Quiz, Blind test, Bluff et Gribouille, en Pas à pas puis en Au
 
 - [ ] « Afficher sur la TV » ouvre bien la TV d'essai : le panneau `?perf=1` ou le message Cast de `cast-sender.html` montre la version, et l'écran de réponse est le nouveau (« La bonne réponse »).
 - [ ] Question → réponse → classement : écrans complets, sons calés, rien de coupé.
+- [ ] Confettis de « La bonne réponse » (Quiz, Blind test, Bluff), réglage forcé sur off : sur toute la largeur, jamais devant une réponse ; aucun en automatique sur la Bbox (allégé), aucun au classement.
+- [ ] Mode allégé : lire le panneau de mesures (étape 5 de `cast-sender.html?app=0D978EA2`, connecté à la Bbox) : lignes « Écran … Chrome », « Images/s », « Allégé », « Auto ». Comparer off et Automatique sur le même écran.
 - [ ] En-tête identique sur ces trois écrans : logo, pastille, « Déconnecté ? Scanne pour revenir dans la partie. » et QR au même endroit, sans saut.
 - [ ] Bandeau « La partie est en pause » : absent avant 20 s, présent après 20 s en Pas à pas, disparaît dès que l'hôte avance, jamais en Automatique.
 - [ ] Téléphone et TV disent le même rang et le même mouvement au classement.

@@ -1,3 +1,4 @@
+import type { DisplaySettingSource } from '@shared/displayMode'
 import { drawHintText } from '@shared/drawGame'
 import type { SoundEngineState } from './lib/sound/soundEngine'
 import type { EmojiSupport } from './lib/emojiSupport'
@@ -294,8 +295,11 @@ export const strings = {
     // Blind test : délai entre l'ordre de jouer l'extrait et le son, et s'il était préchargé (nextAudio).
     extractStart: (ms: number, isPreloaded: boolean) => `Extrait : son en ${ms} ms après play() (${isPreloaded ? 'préchargé' : 'pas préchargé'})`,
     noExtractStart: 'Extrait : pas encore joué',
-    lightMode: (setting: string, isLight: boolean) => `Allégé : ${isLight ? 'OUI' : 'non'} (${setting})`,
+    lightMode: (setting: string, isLight: boolean, source: DisplaySettingSource) =>
+      `Allégé : ${isLight ? 'OUI' : 'non'} (${setting}, ${{ address: 'par l’adresse, gardé', stored: 'gardé par cette TV', cast: 'envoyé par Cast, gardé', default: 'par défaut' }[source]})`,
     lightAuto: {
+      // Réglage forcé (on ou off) : l'automatique ne décide rien ; « Automatique » (étape 5 de cast-sender) le rétablit.
+      ignored: (wouldBeLight: boolean) => `Auto : non appliqué, réglage forcé (en automatique : ${wouldBeLight ? 'allégé d’office' : 'selon la mesure'})`,
       waiting: 'Auto : pas encore de mesure',
       measuring: (fps: number, threshold: number, agoS: number, slowStreak: number, needed: number) =>
         `Auto : ${fps} images/s (seuil ${threshold}) il y a ${agoS} s · lentes de suite : ${slowStreak}/${needed}`,

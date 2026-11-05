@@ -5,9 +5,10 @@ import {
   isOldChrome,
   LIGHT_WINDOW_MS,
   nextAutoLight,
-  readDisplaySetting,
+  resolveDisplaySetting,
   type AutoLightState,
   type DisplaySetting,
+  type DisplaySettingSource,
 } from '@shared/displayMode'
 
 // Mode allégé des petites box (shared/displayMode.ts) : applique la classe tv-light sur <html> (règles
@@ -22,6 +23,7 @@ const REMEMBERED_KEY = 'quizin.light.slow'
 
 export interface DisplayModeState {
   setting: DisplaySetting
+  source: DisplaySettingSource
   auto: AutoLightState
   isLight: boolean
 }
@@ -44,13 +46,10 @@ function store(key: string, value: string | null): void {
 }
 
 // Adresse d'abord (et gardée), sinon réglage gardé, sinon auto.
-function initialSetting(): DisplaySetting {
-  const fromUrl = readDisplaySetting(new URLSearchParams(window.location.search).get('light'))
-  if (fromUrl) {
-    store(SETTING_KEY, fromUrl)
-    return fromUrl
-  }
-  return readDisplaySetting(readStored(SETTING_KEY)) ?? 'auto'
+function initialSetting(): { setting: DisplaySetting; source: DisplaySettingSource } {
+  const resolved = resolveDisplaySetting(new URLSearchParams(window.location.search).get('light'), readStored(SETTING_KEY))
+  if (resolved.source === 'address') store(SETTING_KEY, resolved.setting)
+  return resolved
 }
 
 // Point de départ de l'automatique : vieux Chrome, ou lenteur mesurée sur une page précédente.
@@ -60,7 +59,7 @@ function initialAuto(): AutoLightState {
   return INITIAL_AUTO_LIGHT
 }
 
-let setting = initialSetting()
+let { setting, source } = initialSetting()
 let auto = initialAuto()
 let frameId: number | null = null
 // Page masquée pendant la seconde en cours (onglet en arrière-plan) : seconde ignorée.
@@ -68,11 +67,12 @@ let wasHidden = false
 document.addEventListener('visibilitychange', () => (wasHidden = true))
 
 export function displayModeState(): DisplayModeState {
-  return { setting, auto, isLight: isLightActive(setting, auto) }
+  return { setting, source, auto, isLight: isLightActive(setting, auto) }
 }
 
 export function applyCastLight(value: DisplaySetting): void {
   setting = value
+  source = 'cast'
   store(SETTING_KEY, value)
   // Revenir en automatique remet la mesure à zéro (le vieux Chrome reste allégé d'office).
   if (value === 'auto') {

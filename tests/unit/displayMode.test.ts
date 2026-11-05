@@ -9,8 +9,7 @@ import {
   readCastLight,
   readDisplaySetting,
   type AutoLightState,
-  type FrameWindow,
-} from '../../shared/displayMode'
+  type FrameWindow, resolveDisplaySetting } from '../../shared/displayMode'
 
 // Une seconde mesurée à fps images par seconde, avec le plus long écart entre deux images.
 function second(fps: number, at: number, maxGapMs = 1000 / Math.max(1, fps)): FrameWindow {
@@ -73,5 +72,20 @@ describe('Mode allégé de la TV', () => {
     expect(run([second(60, 4000)], triggered)).toBe(triggered)
     expect(isLightActive('on', INITIAL_AUTO_LIGHT)).toBe(true)
     expect(isLightActive('off', triggered)).toBe(false)
+  })
+})
+
+describe('Réglage du mode allégé : d’où il vient (panneau de mesures)', () => {
+  test('l’adresse d’abord, puis le réglage gardé par la TV, sinon automatique', () => {
+    expect(resolveDisplaySetting('off', 'on')).toEqual({ setting: 'off', source: 'address' })
+    expect(resolveDisplaySetting(null, 'off')).toEqual({ setting: 'off', source: 'stored' })
+    expect(resolveDisplaySetting(null, null)).toEqual({ setting: 'auto', source: 'default' })
+    expect(resolveDisplaySetting('n’importe quoi', 'pareil')).toEqual({ setting: 'auto', source: 'default' })
+  })
+
+  test('off gardé sur la TV : jamais allégé, même sur Chrome 92', () => {
+    const { setting } = resolveDisplaySetting(null, 'off')
+    expect(isLightActive(setting, { ...INITIAL_AUTO_LIGHT, reason: 'oldChrome' })).toBe(false)
+    expect(isOldChrome(chromeMajorVersion('Mozilla/5.0 (Linux; Android 11) Chrome/92.0.4515 CrKey/1.56'))).toBe(true)
   })
 })

@@ -27,6 +27,16 @@ export function readDisplaySetting(value: unknown): DisplaySetting | null {
   return DISPLAY_SETTINGS.find((setting) => setting === value) ?? null
 }
 
+// D'où vient le réglage appliqué : l'adresse (gardée), le stockage de cette TV, ou aucun (automatique par défaut).
+export type DisplaySettingSource = 'address' | 'stored' | 'cast' | 'default'
+
+export function resolveDisplaySetting(fromAddress: unknown, stored: unknown): { setting: DisplaySetting; source: DisplaySettingSource } {
+  const addressSetting = readDisplaySetting(fromAddress)
+  if (addressSetting) return { setting: addressSetting, source: 'address' }
+  const storedSetting = readDisplaySetting(stored)
+  return storedSetting ? { setting: storedSetting, source: 'stored' } : { setting: 'auto', source: 'default' }
+}
+
 export interface CastLightMessage {
   light: DisplaySetting
 }
