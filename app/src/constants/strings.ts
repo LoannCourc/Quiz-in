@@ -925,6 +925,13 @@ export const strings = {
     validate: 'Valider les réponses',
     // Bluff, vote sans minuteur : l'hôte clôt le vote ; ceux qui n'ont pas voté n'ont pas de point de vote.
     closeVote: 'Clore le vote',
+    hideBluff: {
+      open: 'Masquer un bluff',
+      close: 'Replier',
+      hint: 'Un bluff masqué s’affiche « ••• » sur la TV et les téléphones.',
+      hide: 'Masquer',
+      show: 'Afficher',
+    },
     closeVoteConfirm: (missing: number) => ({
       title: 'Clore le vote ?',
       message: `${missing} joueur${missing > 1 ? 's n’ont' : ' n’a'} pas voté. Clore quand même ?`,

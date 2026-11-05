@@ -341,10 +341,25 @@ export function bluffRevealTimeline(choices: readonly RevealedBluffChoice[]): Bl
   return { flips, truthAtMs: flips.length * stepMs, stepMs }
 }
 
+// Masquer un bluff (modération) : pendant le vote et la révélation, l'hôte peut remplacer le texte d'une proposition de
+// joueur par « ••• » sur la TV et les téléphones. Jamais la vraie réponse ni un leurre (contenu du quiz). Le vote et
+// les points ne changent pas.
+export function canHideBluffChoice(session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices'>, choiceIndex: number): boolean {
+  if (session.status !== 'vote' && session.status !== 'reveal') return false
+  return session.bluffChoices?.[session.currentIndex]?.[choiceIndex]?.kind === 'bluff'
+}
+
+export function bluffHideUpdate(
+  session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices'>,
+  choiceIndex: number,
+  hidden: boolean,
+): Record<string, true | null> | null {
+  if (!canHideBluffChoice(session, choiceIndex)) return null
+  return { [`bluffHidden/${session.currentIndex}/${choiceIndex}`]: hidden ? true : null }
+}
+
 // Session telle qu'affichée : textes des propositions masquées remplacés par « ••• », au vote (choix
-// publiés) comme à la révélation (choix avec auteurs et votants). L'app de l'hôte ne masque plus rien depuis
-// la 1.2.3 (le panneau révélait les auteurs), mais un hôte sur une version publiée peut encore écrire bluffHidden :
-// la TV, les téléphones et la règle restent compatibles.
+// publiés) comme à la révélation (choix avec auteurs et votants).
 export function withHiddenBluffChoices<T extends Pick<PublicSession, 'bluffHidden' | 'currentIndex' | 'currentQuestion' | 'reveal'>>(session: T): T {
   const hidden = session.bluffHidden?.[session.currentIndex]
   if (!hidden || Object.keys(hidden).length === 0) return session
@@ -357,4 +372,20 @@ export function withHiddenBluffChoices<T extends Pick<PublicSession, 'bluffHidde
     currentQuestion: question && choices ? { ...question, choices } : question,
     reveal: session.reveal && revealed ? { ...session.reveal, stats: { ...session.reveal.stats, bluffChoices: revealed } } : session.reveal,
   }
+}
+
+// Bluffs que l'hôte peut masquer maintenant (panneau des contrôles) : le texte et l'état seulement, jamais les
+// auteurs : l'hôte ne doit pas voir qui a écrit quoi.
+export interface HideableBluff {
+  choiceIndex: number
+  text: string
+  hidden: boolean
+}
+
+export function hideableBluffs(session: Pick<Session, 'status' | 'currentIndex' | 'bluffChoices' | 'bluffHidden'>): HideableBluff[] {
+  const choices = session.bluffChoices?.[session.currentIndex] ?? []
+  const hidden = session.bluffHidden?.[session.currentIndex]
+  return choices.flatMap((choice, choiceIndex) =>
+    canHideBluffChoice(session, choiceIndex) ? [{ choiceIndex, text: choice.text, hidden: hidden?.[choiceIndex] === true }] : [],
+  )
 }

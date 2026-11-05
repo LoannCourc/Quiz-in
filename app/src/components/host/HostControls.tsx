@@ -1,5 +1,7 @@
+import type { HideableBluff } from '@shared/bluff';
 import type { HostControls as AvailableControls } from '@shared/hostEngine';
 import type { SoundSettings } from '@shared/types';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { ButtonLabel } from '@/components/ui/ButtonLabel';
@@ -43,6 +45,9 @@ interface HostControlsPanelProps {
   // Son de la TV, réglable à tout moment (le panneau reste ouvert).
   sound: SoundSettings;
   onSoundChange: (sound: SoundSettings) => void;
+  // Bluff, vote et révélation : bluffs que l'hôte peut masquer, sans leurs auteurs (le panneau reste ouvert).
+  hideableBluffs?: HideableBluff[];
+  onToggleBluff?: (choiceIndex: number, hidden: boolean) => void;
   onClose: () => void;
 }
 
@@ -50,7 +55,7 @@ interface HostControlsPanelProps {
 // en fin de partie, Changer de jeu / Quitter ; Afficher sur la TV (reconnexion du Cast) ; son de la TV. Chaque action ferme le
 // panneau, sauf les réglages du son. Appui en dehors : fermeture sans action. Le contenu défile sur un petit écran.
 export function HostControlsPanel(props: HostControlsPanelProps) {
-  const { controls, actions, canShowTv, sound, onSoundChange, onClose } = props;
+  const { controls, actions, canShowTv, sound, onSoundChange, hideableBluffs = [], onToggleBluff, onClose } = props;
   const run = (action: () => void) => () => {
     onClose();
     action();
@@ -78,9 +83,36 @@ export function HostControlsPanel(props: HostControlsPanelProps) {
         {controls.canChangeGame && <BigButton label={strings.hostControls.changeGame} onPress={run(actions.changeGame)} />}
         {controls.canChangeGame && <BigButton label={strings.hostControls.quit} variant="secondary" onPress={run(actions.quit)} />}
         {canShowTv && <BigButton label={strings.cast.showButton} variant="secondary" onPress={run(actions.showTv)} />}
+        {hideableBluffs.length > 0 && onToggleBluff && <HideBluffSection bluffs={hideableBluffs} onToggle={onToggleBluff} />}
         <SoundSettingsSection sound={sound} onChange={onSoundChange} />
         <BigButton label={strings.hostControls.close} variant="secondary" onPress={onClose} />
       </ScrollView>
+    </View>
+  );
+}
+
+// Accès discret, replié par défaut : seulement si un bluff pose problème. Le texte, jamais qui l'a écrit.
+function HideBluffSection({ bluffs, onToggle }: { bluffs: HideableBluff[]; onToggle: (choiceIndex: number, hidden: boolean) => void }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const texts = strings.hostControls.hideBluff;
+  return (
+    <View style={styles.hideBluffs}>
+      <Pressable accessibilityRole="button" accessibilityState={{ expanded: isOpen }} onPress={() => setIsOpen((open) => !open)} hitSlop={8}>
+        <Text style={[textStyles.muted, styles.centered, styles.hideBluffsLink]}>{isOpen ? texts.close : texts.open}</Text>
+      </Pressable>
+      {isOpen && <Text style={textStyles.muted}>{texts.hint}</Text>}
+      {isOpen &&
+        bluffs.map((bluff) => (
+          <View key={bluff.choiceIndex} style={styles.hideBluff}>
+            <Text style={[styles.hideBluffText, bluff.hidden && styles.hideBluffHidden]}>{bluff.text}</Text>
+            <BigButton
+              label={bluff.hidden ? texts.show : texts.hide}
+              variant="secondary"
+              size="compact"
+              onPress={() => onToggle(bluff.choiceIndex, !bluff.hidden)}
+            />
+          </View>
+        ))}
     </View>
   );
 }
@@ -110,6 +142,31 @@ const styles = StyleSheet.create({
   },
   barTextCompact: {
     fontSize: 14,
+  },
+  hideBluffs: {
+    gap: Spacing.two,
+  },
+  hideBluffsLink: {
+    textDecorationLine: 'underline',
+  },
+  hideBluff: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    padding: Spacing.two,
+    borderRadius: AppSizes.radius,
+    backgroundColor: AppColors.surface,
+  },
+  hideBluffText: {
+    flex: 1,
+    color: AppColors.text,
+    fontFamily: AppFonts.extraBold,
+    fontSize: 15,
+  },
+  // Masqué : barré chez l'hôte (lui seul le voit encore).
+  hideBluffHidden: {
+    color: AppColors.textMuted,
+    textDecorationLine: 'line-through',
   },
   overlay: {
     position: 'absolute',
