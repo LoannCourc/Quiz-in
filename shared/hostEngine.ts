@@ -1,5 +1,6 @@
 import { extractOf } from './audioPlayback'
 import { bluffRevealData, buildVoteChoices, isBluffQuestion, voteDeadline, writingDeadline } from './bluff'
+import { voteChoiceTexts } from './bluffStyle'
 import {
   ALL_ANSWERED_DELAY_S,
   CORRECT_ANSWER_POINTS,
@@ -422,14 +423,14 @@ function drawRoundPaths(session: Session, question: DrawQuestion, round: number)
   }
 }
 
-// Bluff, début du vote : choix mélangés publiés dans currentQuestion (textes seuls) ; types et auteurs
-// gardés par l'hôte (bluffChoices) ; index de son propre choix pour chaque auteur (bluffOwn, lisible
+// Bluff, début du vote : choix mélangés publiés dans currentQuestion (textes seuls, réponses du jeu au style de la
+// manche, shared/bluffStyle.ts) ; textes d'origine, types et auteurs gardés par l'hôte (bluffChoices, révélation) ; index de son propre choix pour chaque auteur (bluffOwn, lisible
 // par lui seul : son écran le grise et les règles refusent ce vote).
 function votePaths(session: Session, question: BluffQuestion, random: () => number): SessionUpdate {
   const index = session.currentIndex
   const { choices, own } = buildVoteChoices(question, session, random)
   return {
-    'currentQuestion/choices': choices.map((choice) => choice.text),
+    'currentQuestion/choices': voteChoiceTexts(choices),
     [`bluffChoices/${index}`]: choices,
     [`bluffOwn/${index}`]: Object.keys(own).length > 0 ? own : null,
   }

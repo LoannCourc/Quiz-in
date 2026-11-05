@@ -32,6 +32,7 @@ import {
   transitionUpdate,
   type SessionUpdate,
 } from '../../shared/hostEngine'
+import { voteChoiceTexts } from '../../shared/bluffStyle'
 import { settingsForGameType } from '../../shared/quizCatalog'
 import { timedCues } from '../../shared/sound'
 import type { BluffChoice, BluffEntry, Player, PlayerId, RevealedBluffChoice, Session, SessionSettings } from '../../shared/types'
@@ -93,6 +94,28 @@ function checked(texts: Record<PlayerId, string>, playerCount?: number): Session
 function kinds(choices: BluffChoice[]): string[] {
   return choices.map((choice) => choice.kind).sort()
 }
+
+describe('Bluff : style des réponses du jeu, à l’affichage seulement', () => {
+  test('le vote publie le texte adapté, la révélation et le score gardent le texte d’origine et l’index', () => {
+    const stored: BluffChoice[] = [
+      { text: 'Une tortue.', kind: 'truth' },
+      { text: 'un chat', kind: 'bluff', authors: ['p0'] },
+      { text: 'un chien', kind: 'bluff', authors: ['p1'] },
+    ]
+    const session = makeSession({
+      status: 'vote',
+      currentIndex: 0,
+      players: { p0: player('Léa'), p1: player('Tom') },
+      bluffChoices: { 0: stored },
+      votes: { 0: { p0: { value: 0, submittedAt: 1 }, p1: { value: 1, submittedAt: 2 } } },
+    })
+    expect(voteChoiceTexts(stored)[0]).toBe('une tortue')
+    const { choices, results } = bluffRevealData(session)
+    expect(choices[0].text).toBe('Une tortue.')
+    expect(results.p0).toEqual({ correct: true, points: BLUFF_TRUTH_POINTS + BLUFF_TRAP_POINTS })
+    expect(results.p1).toEqual({ correct: false, points: 0 })
+  })
+})
 
 describe('Bluff : vérification des propositions', () => {
   test('vraie réponse exacte ou à une faute près (casse, accents, ponctuation ignorés) : refusée', () => {
@@ -244,7 +267,7 @@ describe('Bluff : votes et points', () => {
     expect(session.status).toBe('vote')
     // Vote sans minuteur.
     expect(session.phaseEndsAt).toBe(0)
-    expect(session.currentQuestion?.choices).toEqual(choices.map((choice) => choice.text))
+    expect(session.currentQuestion?.choices).toEqual(voteChoiceTexts(choices))
     expect(JSON.stringify(session.currentQuestion)).not.toContain('truth')
     expect(session.bluffOwn?.[0].p0).toBe(session.bluffOwn?.[0].p2)
   })
@@ -507,7 +530,7 @@ describe('Bluff : proposition de l’hôte qui joue (heure corrigée par le serv
     const choices = voting.bluffChoices?.[0] ?? []
     const own = voting.bluffOwn?.[0] ?? {}
     expect(choices.filter((choice) => choice.kind === 'bluff').map((choice) => choice.text).sort()).toEqual(['Monopolis', 'Rue Royale'])
-    expect(voting.currentQuestion?.choices).toEqual(choices.map((choice) => choice.text))
+    expect(voting.currentQuestion?.choices).toEqual(voteChoiceTexts(choices))
     expect(choices[own.p0]).toMatchObject({ text: 'Monopolis', authors: ['p0'] })
     expect(choices[own.p1]).toMatchObject({ text: 'Rue Royale', authors: ['p1'] })
     // Un vote pour sa propre proposition est ignoré ; celui de l'autre joueur compte.

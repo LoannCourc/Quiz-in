@@ -109,6 +109,10 @@ export const BLUFF_REVEAL_FLIPS_MAX_MS = 12_000;
 // database.rules.json), et essais au plus quand une
 // proposition est refusée (même valeur écrite en dur dans database.rules.json).
 export const BLUFF_MAX_LENGTH = 100;
+// Écran du vote : style de la vraie réponse et des leurres. 'clean' : sans faute ; 'light' : fautes légères, comme les
+// propositions de la manche (majuscule, accents, point final ; shared/bluffStyle.ts), à partir de 2 propositions.
+export const BLUFF_ANSWER_STYLE_LEVEL: 'clean' | 'light' = 'light';
+export const BLUFF_STYLE_MIN_SAMPLES = 2;
 export const BLUFF_MAX_ATTEMPTS = 3;
 // Choix visés au vote (leurres ajoutés tant qu'il en manque), et choix votables garantis à chaque joueur
 // (hors sa propre proposition).
