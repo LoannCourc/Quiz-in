@@ -822,6 +822,9 @@ export const strings = {
     // Champs de la partie sans réponse (3 au plus), après le délai.
     noAnswer: (fields: string[]) => `sans réponse : ${fields.slice(0, 3).join(', ')}${fields.length > 3 ? '…' : ''}`,
     missing: 'partie absente',
+    // Comment le joueur est arrivé : lien ou QR code (premier écran), ou code saisi.
+    viaLink: 'lien',
+    viaCode: 'code saisi',
     otherHost: 'autre hôte',
   },
   hostGame: {

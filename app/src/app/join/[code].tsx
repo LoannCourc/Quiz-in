@@ -1,7 +1,7 @@
 import { abandonedGameDeletableAt, isHostAway } from '@shared/hostAbsence';
 import { isValidRoomCode, normalizeRoomCode } from '@shared/roomCode';
 import type { TeamId } from '@shared/types';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 
 import { BadgeNotice, badgeToastDelayMs } from '@/components/badges/LazyBadges';
@@ -35,10 +35,16 @@ import { chooseTeam, getEntryRefusal, rememberProfile } from '@/lib/joinGame';
 export default function JoinRoomScreen() {
   const params = useLocalSearchParams<{ code: string }>();
   const code = normalizeRoomCode(params.code ?? '');
+  // Journal discret : ce qui a été lu dans l'adresse, et si on arrive par un lien ou QR code (premier écran).
+  const [viaLink] = useState(() => {
+    const isFirstScreen = !router.canGoBack();
+    console.info(`[join] ${isFirstScreen ? 'lien' : 'code saisi'} : « ${params.code ?? ''} » → ${code}`);
+    return isFirstScreen;
+  });
 
   // Code validé avant toute lecture dans la base.
   return isValidRoomCode(code) ? (
-    <RetryableJoinRoom code={code} />
+    <RetryableJoinRoom code={code} viaLink={viaLink} />
   ) : (
     <WelcomeScreen>
       <PlayerNotice message={strings.join.invalidCode} tone="error" showOtherCode />
@@ -64,9 +70,9 @@ function WelcomeScreen({ code, children, footer }: WelcomeScreenProps) {
 }
 
 // « Réessayer » (connexion impossible) : la partie est relue depuis le début.
-function RetryableJoinRoom({ code }: { code: string }) {
+function RetryableJoinRoom({ code, viaLink }: { code: string; viaLink: boolean }) {
   const [attempt, setAttempt] = useState(0);
-  return <JoinRoom key={attempt} code={code} onRetry={() => setAttempt((count) => count + 1)} />;
+  return <JoinRoom key={attempt} code={code} viaLink={viaLink} onRetry={() => setAttempt((count) => count + 1)} />;
 }
 
 const unavailable = strings.gameUnavailable;
@@ -87,8 +93,9 @@ function isRegistered(state: PlayerSessionState): boolean {
   return state.kind === 'ready' && state.players[state.uid] !== undefined;
 }
 
-function JoinRoom({ code, onRetry }: { code: string; onRetry: () => void }) {
+function JoinRoom({ code, viaLink, onRetry }: { code: string; viaLink: boolean; onRetry: () => void }) {
   const state = usePlayerSession(code);
+  const entry = viaLink ? unavailable.viaLink : unavailable.viaCode;
   const registered = isRegistered(state);
   usePresence(code, registered && state.kind === 'ready' ? state.uid : null);
   const serverOffsetMs = useServerTimeOffset();
@@ -105,7 +112,7 @@ function JoinRoom({ code, onRetry }: { code: string; onRetry: () => void }) {
       // complet dans la console (usePlayerSession).
       return (
         <WelcomeScreen code={code}>
-          <GameUnavailable kind={state.reason === 'refused' ? 'gone' : 'connection'} reference={errorReference(state)} onRetry={onRetry} />
+          <GameUnavailable kind={state.reason === 'refused' ? 'gone' : 'connection'} reference={`${errorReference(state)} · ${entry}`} onRetry={onRetry} />
         </WelcomeScreen>
       );
     case 'notFound':
@@ -115,7 +122,7 @@ function JoinRoom({ code, onRetry }: { code: string; onRetry: () => void }) {
           {state.wasRemoved ? (
             <PlayerNotice message={strings.join.gameOver} showOtherCode />
           ) : (
-            <GameUnavailable kind="gone" reference={unavailable.missing} />
+            <GameUnavailable kind="gone" reference={`${unavailable.missing} · ${entry}`} />
           )}
         </WelcomeScreen>
       );

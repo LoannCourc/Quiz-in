@@ -1,6 +1,6 @@
-import { createEnsureSignedIn } from '@shared/signIn';
+import { createEnsureSignedIn, refreshAfterRefusal } from '@shared/signIn';
 import { getApp, getApps, initializeApp, type FirebaseOptions } from 'firebase/app';
-import { getAuth, signInAnonymously, type User } from 'firebase/auth';
+import { getAuth, signInAnonymously, signOut, type User } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 
 import { createAuth } from './createAuth';
@@ -43,3 +43,10 @@ export const ensureSignedIn: () => Promise<User> = createEnsureSignedIn({
   current: () => auth.currentUser,
   signIn: async () => (await signInAnonymously(auth)).user,
 });
+
+// Lecture refusée : jeton renouvelé, ou compte disparu oublié, avant un nouvel essai (shared/signIn.ts).
+export const refreshSignedInUser = (): Promise<void> =>
+  refreshAfterRefusal({
+    refreshToken: async () => auth.currentUser?.getIdToken(true),
+    signOut: () => signOut(auth),
+  });

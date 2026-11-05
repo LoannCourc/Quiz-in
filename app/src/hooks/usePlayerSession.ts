@@ -1,10 +1,11 @@
+import { AUTH_RETRY_DELAY_MS } from '@shared/constants';
 import { PUBLIC_SESSION_FIELDS, toPublicSession, type PublicField } from '@shared/publicFields';
 import type { GameStatus, PlayerId, PublicSession } from '@shared/types';
 import { onValue, ref, type Unsubscribe } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
 import { toErrorMessage } from '@/lib/errors';
-import { db, ensureSignedIn } from '@/lib/firebase';
+import { db, ensureSignedIn, refreshSignedInUser } from '@/lib/firebase';
 import type { LobbyPlayers } from '@/lib/joinGame';
 
 export type PlayerSessionState =
@@ -49,6 +50,9 @@ export function usePlayerSession(code: string): PlayerSessionState {
     let hasFailed = false;
     // Vrai dès que la partie a été vue : sa disparition ensuite signifie « supprimée par l'hôte ».
     let hasSeenGame = false;
+    // Un seul nouvel essai après une lecture refusée : au premier chargement, le jeton peut ne pas être encore valable
+    // (une partie qui existe s'afficherait « introuvable »).
+    let hasRetried = false;
     const values: FieldValues = {};
     const received = new Set<PublicField>();
 
@@ -65,7 +69,20 @@ export function usePlayerSession(code: string): PlayerSessionState {
       fail('timeout', missing, `délai de ${LOADING_TIMEOUT_MS / 1000} s dépassé, champs sans réponse : ${missing.join(', ') || 'aucun'}`);
     }, LOADING_TIMEOUT_MS);
 
-    ensureSignedIn()
+    const retryAfterRefusal = (field: PublicField, error: unknown) => {
+      hasRetried = true;
+      console.warn(`[join] Lecture refusée (${field}), nouvel essai`, toErrorMessage(error));
+      unsubscribers.forEach((unsubscribe) => unsubscribe());
+      unsubscribers = [];
+      received.clear();
+      void refreshSignedInUser()
+        .then(() => new Promise((resolve) => setTimeout(resolve, AUTH_RETRY_DELAY_MS)))
+        .then(() => {
+          if (isActive) subscribe();
+        });
+    };
+
+    const subscribe = () => ensureSignedIn()
       .then((user) => {
         if (!isActive) return;
         unsubscribers = PUBLIC_FIELDS.map((field) =>
@@ -81,11 +98,15 @@ export function usePlayerSession(code: string): PlayerSessionState {
               if (next.kind !== 'loading') clearTimeout(timeoutId);
               setState(next);
             },
-            (error) => fail('refused', [field], `lecture refusée : ${field} (${toErrorMessage(error)})`, error),
+            (error) => {
+              if (!hasRetried) retryAfterRefusal(field, error);
+              else fail('refused', [field], `lecture refusée : ${field} (${toErrorMessage(error)})`, error);
+            },
           ),
         );
       })
       .catch((error: unknown) => fail('auth', [], `connexion anonyme échouée (${toErrorMessage(error)})`, error));
+    void subscribe();
 
     return () => {
       isActive = false;

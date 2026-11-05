@@ -218,6 +218,8 @@ Maquettes `docs/design/groupe/` : G1 à G4, L, E, R. Compatible avec tous les mo
 - En Suspense, il n'est affiché qu'à la fin (section 5.1).
 
 ### 6.6 Joueurs et connexion
+
+- **Lien ou QR code** : `/join/CODE`, code mis en forme comme à la saisie (majuscules, espaces et séparateurs retirés). Une lecture refusée est retentée une fois, session rafraîchie, avant d'afficher « Partie introuvable ou terminée ».
 - **Nombre de joueurs** : 2 à 20, hôte compris. Cette limite est une constante, relevable plus tard. Elle protège la lisibilité du classement sur la TV et les coûts. **[À VALIDER]**
 - **Pseudo** : 2 à 12 caractères, sans espace au début ni à la fin (l'app le nettoie avec `trim()` avant l'envoi ; les règles de la base refusent un pseudo mal formé), unique dans la partie sans tenir compte de la casse, filtre de base contre les mots interdits. L'app joueur vérifie l'unicité avant l'inscription ; l'hôte la vérifie en plus et retire un joueur en double.
 - **Avatar** : choisi dans une liste prédéfinie d'environ 24. Pas d'envoi de photo.

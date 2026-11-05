@@ -1,8 +1,8 @@
 import { ROOM_CODE_ALPHABET, ROOM_CODE_LENGTH } from './constants'
 
-// Met en forme un code saisi ou lu dans une URL : espaces retirés, majuscules.
+// Met en forme un code saisi ou lu dans une URL : majuscules, espaces et séparateurs retirés (même à l'intérieur).
 export function normalizeRoomCode(input: string): string {
-  return input.trim().toUpperCase()
+  return input.toUpperCase().replace(/[^A-Z0-9]/g, '')
 }
 
 // Tire un code au hasard. random renvoie un nombre dans [0, 1[ ; il est remplaçable dans les tests.
