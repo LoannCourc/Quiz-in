@@ -1093,6 +1093,7 @@ export const strings = {
       voteInstruction: 'Bluff · Quelle est la vraie réponse ?',
       // Vote sans minuteur (joueurs connectés et ceux qui ont déjà voté).
       votedCount: (count: number, total: number) => `${count}/${total} ont voté`,
+      styleHint: 'Écris une phrase, comme la vraie réponse.',
       fieldLabel: 'Ta fausse réponse',
       placeholder: 'Une réponse crédible…',
       counter: (length: number, max: number) => `${length} / ${max}`,

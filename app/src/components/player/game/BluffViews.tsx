@@ -79,6 +79,7 @@ export function BluffWriteView(props: PhaseProps) {
     <View style={styles.container}>
       <InstructionPill label={texts.writeInstruction} tone="write" />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
+      <Text style={styles.styleHint}>{texts.styleHint}</Text>
       <AnswerField
         label={texts.fieldLabel}
         placeholder={texts.placeholder}
@@ -270,6 +271,12 @@ const WAIT_TITLE_MAX = 30;
 const WAIT_TITLE_MIN = 16;
 
 const styles = StyleSheet.create({
+  styleHint: {
+    color: AppColors.questionMeta,
+    fontFamily: AppFonts.bold,
+    fontSize: 13,
+    textAlign: 'center',
+  },
   container: {
     flexGrow: 1,
     gap: Spacing.three,
