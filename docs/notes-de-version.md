@@ -3,20 +3,26 @@
 500 caractères au plus (Google Play). Jamais de mention du blind test. Nombre de caractères : texte tel qu'il
 est collé dans la console, retours à la ligne compris.
 
-## 1.2.3 : nouveautés (mise à jour depuis la 1.2.2, 211 caractères)
+## 1.2.3 : nouveautés (mise à jour depuis la 1.2.2, 458 caractères)
 
 À publier une fois la TV déployée (`firebase deploy --only hosting:tv`) : les écrans de réponse et de classement sont ceux de la TV.
 
 Nouveautés de la 1.2.3 :
-• Gribouille : 360 nouveaux mots à dessiner, dans tous les thèmes, et une correction plus fiable des réponses.
-• TV : nouveaux écrans de réponse et de classement.
+• Bluff : plus de temps pour écrire, nouveaux points, les bluffs trop proches de la réponse sont refusés, et les réponses du jeu s’écrivent comme les vôtres.
+• Gribouille : 360 nouveaux mots mieux répartis, nouveaux points, plus d’essais et une saisie plus confortable.
+• TV et téléphone : nouveaux écrans de réponse et de classement.
+• QR code : connexion plus fiable.
+• Message clair quand le réseau manque.
 • Corrections diverses.
 
-English (158 characters), si la fiche a une version anglaise :
+English (371 characters), si la fiche a une version anglaise :
 
 What’s new in 1.2.3:
-• Doodle: 360 new words to draw, across all themes, and more reliable answer checking.
-• TV: new answer and ranking screens.
+• Bluff: more time to write, new scoring, bluffs too close to the answer are refused, and the game’s answers now look like yours.
+• Doodle: 360 new, better-mixed words, new scoring, more guesses and easier typing.
+• TV and phone: new answer and ranking screens.
+• QR code: more reliable joining.
+• Clear message when there is no network.
 • Bug fixes.
 
 ## 1.2.2 : nouveautés (mise à jour depuis la 1.2.0, 136 caractères)

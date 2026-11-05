@@ -102,6 +102,8 @@ Statut : brouillon à valider. Les points marqués **[À VALIDER]** sont des pro
 7. Au **classement** (entre deux questions, absent en Suspense) : le classement des joueurs ; en Groupe (maquette R2), le classement des équipes avec leur moyenne, la phrase « Le score d'une équipe est la moyenne des points de ses joueurs. » (uniquement sur cet écran) et « Toi · Dans ton équipe 1er sur 2 ».
 8. À la fin, il voit le classement final. En Groupe : la place de son équipe (« Votre équipe gagne ! »), le classement des équipes, sa carte (rang, points, « Meilleur joueur de ton équipe » s'il l'est), puis sur demande le classement des joueurs.
 
+**Écrans du téléphone (novembre 2026, app et site des joueurs).** « Bonne réponse » animé (« pop », points qui montent, halo, rayons, éclat, étoiles) ; mauvaise réponse sobre (petit tremblement, apparition douce) ; tout est coupé avec « réduire les animations » ; les boutons sont actifs dès le premier instant. Classement après chaque question, version C : carte « Ta place » (rang, total, mouvement, écart au 1er ou avance sur le 2e, égalité), puis le top 5 (tout le monde à 5 joueurs ou moins ; « et N autres » ; ta ligne après « … » si tu es hors du top 5), mêmes rangs, mouvements et couleurs que la TV. Ni podium (fin de partie seulement), ni onglets, ni texte d'attente. Sans défilement : les lignes rétrécissent. Groupe : classement des équipes inchangé.
+
 ### 4.3 Écran TV (séquence des écrans)
 1. **Lobby** : QR code, code, avatars et pseudos des joueurs connectés ; en Groupe, une colonne par équipe. Après un tirage au sort de l'hôte, écran « Tirage des équipes » : les joueurs arrivent un à un dans leur équipe (toutes les 0,315 s, plus vite quand ils sont nombreux : toutes les arrivées en 4,2 s au plus), un tic par joueur, le gong quand le dernier est posé, puis les équipes complètes restent 2,1 s (`shared/teamDraw.ts`). L'hôte ne peut valider les équipes qu'après le gong (« Tirage en cours… »).
 2. **Démarrage** : compte à rebours 3-2-1.
@@ -219,6 +221,7 @@ Maquettes `docs/design/groupe/` : G1 à G4, L, E, R. Compatible avec tous les mo
 
 ### 6.6 Joueurs et connexion
 
+- **Connexion requise** : sans internet (état de la connexion à la base et vrai appel au serveur, confirmés après 1,5 s ; un Wi-Fi sans internet compte comme hors ligne), au lancement ou à tout moment, une fenêtre bloque l'app et le site des joueurs par-dessus l'écran, sans rien démonter : elle se ferme seule au retour du réseau et la partie reprend où elle en était.
 - **Lien ou QR code** : `/join/CODE`, code mis en forme comme à la saisie (majuscules, espaces et séparateurs retirés). Une lecture refusée est retentée une fois, session rafraîchie, avant d'afficher « Partie introuvable ou terminée ».
 - **Nombre de joueurs** : 2 à 20, hôte compris. Cette limite est une constante, relevable plus tard. Elle protège la lisibilité du classement sur la TV et les coûts. **[À VALIDER]**
 - **Pseudo** : 2 à 12 caractères, sans espace au début ni à la fin (l'app le nettoie avec `trim()` avant l'envoi ; les règles de la base refusent un pseudo mal formé), unique dans la partie sans tenir compte de la casse, filtre de base contre les mots interdits. L'app joueur vérifie l'unicité avant l'inscription ; l'hôte la vérifie en plus et retire un joueur en double.
