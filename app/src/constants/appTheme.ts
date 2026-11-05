@@ -155,6 +155,13 @@ export const AppColors = {
   celebrationRay: 'rgba(255, 255, 255, 0.09)',
   celebrationStar: '#fff4c2',
   celebrationHalo: Palette.gold,
+  // Panneau « Connexion requise ».
+  connectionBackdrop: 'rgba(23, 6, 70, 0.6)',
+  connectionCircle: Palette.pinkLight,
+  connectionInk: Palette.ink,
+  connectionText: '#46307e',
+  connectionLink: '#5a1fa8',
+  connectionFailed: '#c21d63',
   // Classement du téléphone (version C) : carte « Ta place », lignes du top 5. Barres : mêmes couleurs que la TV
   // (receiver/src/theme.css, --rank-bar-0 à 5 ; RANK_BAR_COLOR_COUNT).
   rankBars: ['#ccd4ff', '#ffb98c', '#7dff9a', '#ff6fa8', '#3fe9ff', '#e3c7ff'],

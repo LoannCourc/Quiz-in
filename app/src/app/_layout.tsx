@@ -2,6 +2,7 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StyleSheet, useColorScheme, View } from 'react-native';
 
+import { ConnectionGate } from '@/components/connection/ConnectionGate';
 import { LaunchOverlay } from '@/components/LaunchScreen';
 import { ScreenBackground } from '@/components/ui/Screen';
 import { AppColors } from '@/constants/appTheme';
@@ -27,6 +28,7 @@ export default function RootLayout() {
         <ScreenBackground />
       )}
       <LaunchOverlay fontsReady={fontsReady} />
+      {fontsReady && <ConnectionGate />}
     </View>
   );
 }

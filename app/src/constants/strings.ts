@@ -805,6 +805,14 @@ export const strings = {
       help: 'Voir l’aide',
     },
   },
+  // Plus de réseau, à tout moment (panneau par-dessus l'écran).
+  connection: {
+    title: 'Connexion requise',
+    text: 'Pas de réseau détecté. Vérifie ton Wi-Fi ou ta 4G, puis réessaie.',
+    retry: 'Réessayer',
+    stillOffline: 'Toujours pas de réseau',
+    openSettings: 'Ouvrir les réglages',
+  },
   // Partie impossible à ouvrir (« Reprendre la partie », lien, code) : hôte et joueurs.
   gameUnavailable: {
     goneTitle: 'Partie introuvable ou terminée',
