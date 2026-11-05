@@ -79,7 +79,6 @@ export function BluffWriteView(props: PhaseProps) {
     <View style={styles.container}>
       <InstructionPill label={texts.writeInstruction} tone="write" />
       {showQuestion && <Text style={styles.questionText}>{question.text}</Text>}
-      <Text style={styles.styleHint}>{texts.styleHint}</Text>
       <AnswerField
         label={texts.fieldLabel}
         placeholder={texts.placeholder}
@@ -92,13 +91,11 @@ export function BluffWriteView(props: PhaseProps) {
         writing="sentence"
         autoFocus
       />
-      {verdict !== undefined && verdict !== 'ok' ? (
+      {verdict !== undefined && verdict !== 'ok' && (
         <View style={styles.refusal}>
           <Text style={styles.refusalTitle}>{texts.refusals[verdict]}</Text>
           <Text style={styles.refusalText}>{texts.retry(bluffAttemptsLeft(bluff.check))}</Text>
         </View>
-      ) : (
-        <Text style={styles.hint}>{texts.hint}</Text>
       )}
       <View style={styles.footer}>
         {status === 'checking' && <Text style={[textStyles.muted, styles.centered]}>{texts.checking}</Text>}
@@ -271,12 +268,6 @@ const WAIT_TITLE_MAX = 30;
 const WAIT_TITLE_MIN = 16;
 
 const styles = StyleSheet.create({
-  styleHint: {
-    color: AppColors.questionMeta,
-    fontFamily: AppFonts.bold,
-    fontSize: 13,
-    textAlign: 'center',
-  },
   container: {
     flexGrow: 1,
     gap: Spacing.three,
@@ -306,11 +297,6 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.black,
     fontSize: 22,
     textAlign: 'center',
-  },
-  hint: {
-    color: AppColors.textMuted,
-    fontFamily: AppFonts.bold,
-    fontSize: 14,
   },
   refusal: {
     gap: 2,

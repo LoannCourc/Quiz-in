@@ -40,7 +40,7 @@ Ce que les tests automatiques ne peuvent pas prouver. À cocher avant les builds
 - [ ] Bluff identique ou trop proche d'un leurre (« Toy Story ») : un seul choix, celui du joueur.
 - [ ] Bluff trop proche de la vraie réponse : refusé avec « Trop proche de la vraie réponse. »
 - [ ] Modération : « Masquer un bluff » replié par défaut, aucun nom affiché ; bluff masqué en « ••• » sur la TV et les téléphones, au vote et à la révélation ; « Afficher » le rétablit.
-- [ ] Écriture : « Écris une phrase, comme la vraie réponse. » sous la question, avec et sans TV, clavier ouvert sur un petit téléphone.
+- [ ] Écriture : écran épuré, sans phrase sous la consigne ni sous le champ, avec et sans TV.
 - [ ] Résultat : le total affiché est bien celui ajouté au classement.
 - [ ] Écriture : 75 s partout (téléphone, TV, règles affichées).
 
